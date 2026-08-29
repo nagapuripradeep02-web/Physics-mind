@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 4,
     "name": "Laws of Motion"
   },
   "chapter": "Laws of Motion",
@@ -233,7 +233,8 @@
             "diagram",
             "pulling"
           ]
-        }
+        },
+        "memory_tip": "Draw the arrow leaving the handle upward. Arrowhead above the handle means this is the pull."
       },
       {
         "id": "s2_pull",
@@ -276,7 +277,8 @@
             "F sin theta",
             "normal force"
           ]
-        }
+        },
+        "memory_tip": "F = 100 N at 30° gives F sin θ = 50 N, so N is 50 N below mg."
       },
       {
         "id": "s3_push_figure",
@@ -454,7 +456,8 @@
             "diagram",
             "pushing"
           ]
-        }
+        },
+        "memory_tip": "Put the two figures side by side. The comparison is then visible before any algebra."
       },
       {
         "id": "s4_push",
@@ -493,7 +496,8 @@
             "F sin theta",
             "increases"
           ]
-        }
+        },
+        "memory_tip": "Same 100 N at 30°, and N is now 50 N ABOVE mg. The same 50 has changed sign."
       },
       {
         "id": "s5_compare",
@@ -530,7 +534,8 @@
             "more friction",
             "pushing"
           ]
-        }
+        },
+        "memory_tip": "The two normal forces differ by 2F sin θ — 100 N in the worked case."
       },
       {
         "id": "s6_conclude",
@@ -568,8 +573,10 @@
             "preferred",
             "less effort"
           ]
-        }
+        },
+        "memory_tip": "The same reason a wheeled suitcase is easier to pull by its handle than to push down on."
       }
     ]
-  }
+  },
+  "insider_note": "The most repeated Unit 5 question — 2004, 2006 and 2012. The comparison carries its own mark, so write the inequality out instead of implying it."
 }

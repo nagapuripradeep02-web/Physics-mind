@@ -1,9 +1,12 @@
 # Cloudflare Worker (static assets) for the STUDENT ANSWER BOOK — answers.viditra.co.
 # Separate from wrangler.toml (marketing site "viditra" → viditra.co) and
 # wrangler.app.toml (teacher pilot "viditra-app" → app.viditra.co).
-# Serves answer-book/dist — build the HOSTED variant before deploying, or the
-# page ships with no chat: npm run build:answers:hosted (never plain
-# build:answers, which is the offline test build the smoke suite asserts).
+# Serves answer-book/dist-mpc — the MPC STREAM cut (Maths/Physics/Chemistry, no
+# Botany), hosted variant, plus its og.png preview card. Always deploy via
+# `npm run deploy:answers`, which builds that exact directory first: pointing
+# this file at a directory some other script builds is how a deploy silently
+# ships a stale artifact. Never plain `build:answers` (the offline test build the
+# smoke suite asserts) and never the unstreamed hosted build (it carries Botany).
 # The custom_domain route auto-attaches answers.viditra.co on deploy (the
 # viditra.co zone lives on this account); workers.dev stays enabled as fallback.
 # NOTE: `routes` is a TOP-LEVEL key — placed above [assets]; if it comes after a
@@ -19,9 +22,22 @@ routes = [
   { pattern = "answers.viditra.co", custom_domain = true }
 ]
 
-# THE GATE FLIP (P3, parked): to launch the gated product, change directory to
-# "./answer-book/dist-gated", then: npm run build:answers:gated && npm run
-# content:push && npx wrangler deploy -c wrangler.answers.toml. Until then the
-# full free book serves. (Founder call — pairs with pricing ab_skus in P4.)
+# THE GATE IS LIVE (2026-08-27). Serves answer-book/dist-gated-mpc — the MPC
+# stream AND the chapter gate together, which needed --gated and --stream to stop
+# being mutually exclusive (content bundles are scoped per stream now, so an MPC
+# push cannot leave Botany's bundles behind to serve dead content).
+#
+# Four chapters are free to everyone — physics-4, chemistry-3, mathematics-4,
+# mathematics_1b-3, flagged `free` in ab_content and changeable with one UPDATE,
+# no redeploy. Every other chapter needs a pass (₹99 founding / ₹199 after).
+#
+# Rebuild+deploy:  npm run deploy:answers
+#   which runs build:answers:gated:mpc first — pointing this file at a directory
+#   some other script builds is how a deploy silently ships a stale artifact.
+# After changing which chapters ship: npm run content:push:mpc (a locked chapter
+# missing from ab_content can never be unlocked, even by a student who paid).
+#
+# To go back to the free book: point directory at "./answer-book/dist-mpc" and
+# set deploy:answers back to build:answers:mpc.
 [assets]
-directory = "./answer-book/dist"
+directory = "./answer-book/dist-gated-mpc"

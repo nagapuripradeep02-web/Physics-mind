@@ -134,6 +134,31 @@ async function main(): Promise<void> {
     console.log(`  Reveal map:  ${stateIds.map(s => `${s}=${maxRevealMsByState[s] ?? '?'}ms${holdExpectations[s] ? `(${holdExpectations[s]})` : ''}`).join(', ')}`);
     if (i2FormulaStates > 0) console.log(`  I2 formulas: replaying math_show in ${i2FormulaStates} states (equation-panel frames dumped)`);
 
+    // A partitioned state's non-default views are captured as EXTRA entries keyed
+    // `<STATE>@<group>` (bug_class every_visual_gate_captures_only_the_default_
+    // scene_group...). Every per-state map the gates read is keyed by state id, so
+    // each synthetic id inherits its base state's expectations — a view is the same
+    // state seen from a different picker position, not a different state.
+    const sceneGroupsByState = extractSceneGroups(conceptJson);
+    const extraSceneGroupsByState: Record<string, string[]> = {};
+    for (const [sid, g] of Object.entries(sceneGroupsByState)) {
+        if (g.extra.length === 0) continue;
+        extraSceneGroupsByState[sid] = g.extra;
+        for (const grp of g.extra) {
+            const synth = `${sid}@${grp}`;
+            if (expectsMotion[sid] !== undefined) expectsMotion[synth] = expectsMotion[sid];
+            if (holdExpectations[sid] !== undefined) holdExpectations[synth] = holdExpectations[sid];
+            if (maxRevealMsByState[sid] !== undefined) maxRevealMsByState[synth] = maxRevealMsByState[sid];
+            if (durationMsByState[sid] !== undefined) durationMsByState[synth] = durationMsByState[sid];
+        }
+    }
+    const extraViewCount = Object.values(extraSceneGroupsByState).reduce((k, v) => k + v.length, 0);
+    if (extraViewCount > 0) {
+        console.log(`  Scene groups: ${Object.entries(sceneGroupsByState)
+            .map(([sid, g]) => `${sid}[${g.all.join('|')}] default=${g.dflt}`).join(', ')}`);
+        console.log(`                capturing ${extraViewCount} non-default view(s) as <STATE>@<group>`);
+    }
+
     console.log('\n📸 Capturing every state + dense frames (this takes 1–3 min)...');
     const captureStart = Date.now();
     const capture = await captureSimStates({
@@ -155,6 +180,7 @@ async function main(): Promise<void> {
         // Deterministic pinned frame per state at its reveal-complete time — the
         // H2 frozen-baseline source (was a fixed 1500ms, which missed late reveals).
         frozenFrame: { atMsByState: maxRevealMsByState },
+        extraSceneGroupsByState,
     });
     const denseFrameCount = (capture.dense_timeseries ?? []).reduce((n, s) => n + s.frames_b64.length, 0);
     console.log(`   ✅ ${capture.state_captures.length} states + ${denseFrameCount} dense frames in ${Date.now() - captureStart}ms`);
@@ -217,6 +243,39 @@ async function main(): Promise<void> {
         console.log(`\n⊘ GATE COVERAGE — ${t.skipped} check(s) never executed (a skip is NOT evidence):`);
         for (const line of breakdown) console.log(line);
     }
+    // ── VIEW COVERAGE — a state can be more than one sandbox ──────────────
+    //   A field_3d state may partition its scene into scene_groups a teacher
+    //   switches with the in-sim picker. This run captures EVERY declared view:
+    //   the authored default under its ordinary id, and each other view under
+    //   `<STATE>@<group>` — dense series, motion gates and frozen frame alike.
+    //
+    //   Before this existed the walk saw only the default, and the other view was
+    //   captured by nothing and gated by nothing (bug_class every_visual_gate_
+    //   captures_only_the_default_scene_group_so_a_partitioned_explore_states_
+    //   other_view_is_ungated). On lines_and_planes_in_space the unvisited view
+    //   was a STILL PICTURE for its entire life and survived three Checkpoint-B
+    //   cycles; the CRITICAL introduced by the fix for that freeze then shipped
+    //   through the same hole.
+    //
+    //   A view the sim could not switch to is reported as NOT captured rather
+    //   than quietly counted — the capture warns, and this block names it.
+    const partitioned = Object.keys(sceneGroupsByState);
+    if (partitioned.length > 0) {
+        const capturedIds = new Set(capture.state_captures.map(c => c.state_id));
+        console.log(`\n👁  VIEW COVERAGE — ${partitioned.length} state(s) declare more than one scene_group:`);
+        for (const sid of partitioned) {
+            const g = sceneGroupsByState[sid];
+            const missing = g.extra.filter(k => !capturedIds.has(`${sid}@${k}`));
+            const got = g.extra.filter(k => capturedIds.has(`${sid}@${k}`));
+            console.log(`  ${missing.length === 0 ? '✓' : '⊘'} ${sid}: views [${g.all.join(', ')}] — ` +
+                `default ${g.dflt} captured as ${sid}` +
+                (got.length ? `, ${got.map(k => `${k} as ${sid}@${k}`).join(', ')}` : '') +
+                (missing.length ? ` — NOT CAPTURED: ${missing.join(', ')}` : ''));
+        }
+        console.log('  Each non-default view is a NEW baseline id — H2 skips it until');
+        console.log('  `npm run visual:approve` is run, which is honest, not a gap.');
+    }
+
     const blackout = motionGateBlackout(allResults, describeScenario(conceptJson ?? cached.physics_config));
     if (blackout) console.log(`\n${blackout}`);
     console.log(verdictLine(t, '✅ Deterministic gates clean. Now Read the frames — the eye is the gate the machine cannot replace.\n'));
@@ -230,6 +289,42 @@ main().catch(err => {
     console.error('\n💥 visual:eyes crashed:', err instanceof Error ? err.stack : err);
     process.exit(2);
 });
+
+/**
+ * States that partition their scene into more than one `scene_groups` view.
+ *
+ * Returns { STATE_ID: [group, ...] } for states with 2+ declared groups only —
+ * a single-group (or group-less) state is not partitioned and is fully covered
+ * by the ordinary capture, so it is deliberately absent from the result.
+ */
+function extractSceneGroups(conceptJson: unknown): Record<string, { all: string[]; dflt: string; extra: string[] }> {
+    const out: Record<string, { all: string[]; dflt: string; extra: string[] }> = {};
+    const cfg = (conceptJson as { field_3d_config?: { states?: Record<string, unknown> } } | null | undefined)
+        ?.field_3d_config?.states;
+    if (!cfg || typeof cfg !== 'object') return out;
+    for (const [sid, st] of Object.entries(cfg)) {
+        const vg = (st as { vg?: { scene_groups?: unknown; scene_group?: unknown } } | null)?.vg;
+        const g = vg?.scene_groups;
+        if (Array.isArray(g) && g.length > 1) {
+            // Authored as [{ key, label }] on field_3d (a bare string is tolerated
+            // for any other shape). `key` is what the picker's <option> value is,
+            // so it is what founder_drive selects on — report the same token.
+            const all = g.map(x => {
+                if (typeof x === 'string') return x;
+                const o = x as { key?: string; id?: string; label?: string };
+                return o?.key ?? o?.id ?? o?.label ?? JSON.stringify(x);
+            });
+            // The renderer seeds PM_vgSceneGroup from the state's authored
+            // `vg.scene_group`, falling back to the FIRST declared group — so
+            // that one is what the ordinary walk already captured, and only the
+            // others need an extra pass.
+            const authored = typeof vg?.scene_group === 'string' && vg.scene_group !== '' ? vg.scene_group : null;
+            const dflt = authored && all.includes(authored) ? authored : all[0];
+            out[sid] = { all, dflt, extra: all.filter(k => k !== dflt) };
+        }
+    }
+    return out;
+}
 
 /**
  * Per-state `eye_capture_ms` authored on a scenario config (or on epic_l_path).

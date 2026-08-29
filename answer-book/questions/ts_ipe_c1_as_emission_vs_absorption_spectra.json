@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book prints this answer as a three-row comparison table; a table is fully accepted in the examination and is the faster way to write it."
+    "note": "Chapter 1 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.48-52), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 2+2 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book prints this answer as a three-row comparison table; a table is fully accepted in the examination and is the faster way to write it. AI chemistry check 2026-08-25 (audit round): the insider note said three rows while the emission step carries three points and the absorption step four, because bright against dark is a numbered point on one side and the boxed lead line on the other; the note now names the three rows, says which line carries the third on the absorption side, and calls the matching-lines point an extra. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -86,5 +86,5 @@
       }
     ]
   },
-  "insider_note": "Write it as a two-column table with three rows. The examiner is looking for the direction of the jump, quanta, and bright against dark; missing the direction loses both halves at once."
+  "insider_note": "Write it as a two-column table with three rows: the direction of the jump, the energy in quanta, and bright lines on dark against dark lines on bright, which the boxed line carries on the absorption side. Missing the direction loses both halves at once. The extra point that the dark lines sit exactly where the emission lines are is worth writing when there is room."
 }

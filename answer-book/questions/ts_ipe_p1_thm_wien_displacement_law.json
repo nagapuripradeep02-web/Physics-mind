@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_wien_displacement_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Wien’s displacement law.",
+  "appearances": [
+    {
+      "year": 2020,
+      "q_no": 7,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The relation and the constant",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2020 (Q7) — Section A, 2 marks. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from that paper. Physics hand-checked: λₘ ∝ 1/T, that is λₘT = b with Wien’s constant b = 2.9 × 10⁻³ m K, so a hotter black body has its intensity maximum at a shorter wavelength."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "The wavelength at which a black body emits",
+          "the greatest amount of energy is inversely",
+          "proportional to its absolute temperature.",
+          {
+            "text": "λₘ ∝ 1/T",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The words inversely proportional carry it.",
+        "why": "The peak of the black body curve is displaced towards shorter wavelengths as the temperature rises, and that displacement is what gives the law its name.",
+        "common_mistakes": [
+          "Writing λₘ ∝ T. The relation is inverse: λₘ ∝ 1/T."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the wavelength of maximum emission is inversely proportional to the absolute temperature.",
+          "accept": [
+            "inversely proportional to temperature",
+            "lambda m is one by T",
+            "peak wavelength falls as T rises"
+          ],
+          "reject": [
+            "b is two point nine into ten to the minus three"
+          ],
+          "heard_as": [
+            "inversely proportional",
+            "lambda max",
+            "absolute temperature"
+          ]
+        },
+        "memory_tip": "Hotter body, shorter wavelength. Heated iron turns from red to white as T rises."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The relation and the constant",
+        "marks": 1,
+        "mark_note": "λₘT = b",
+        "lines": [
+          {
+            "text": "λₘ T = b, b = 2.9 × 10⁻³ m K",
+            "style": "boxed"
+          },
+          "b is Wien’s constant and has the same",
+          "value for every black body.",
+          "A hotter body has its maximum at a",
+          "shorter wavelength."
+        ],
+        "margin_note": "Second mark. Write λₘT = b together with the value of b.",
+        "why": "The constant fixes the product λₘT for every black body, so a single measurement of the peak wavelength gives the temperature of a distant source such as a star.",
+        "common_mistakes": [
+          "Giving b without its unit. Wien’s constant is 2.9 × 10⁻³ m K."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That λₘT = b with b = 2.9 × 10⁻³ m K.",
+          "accept": [
+            "lambda m into T equals b",
+            "two point nine into ten to the minus three",
+            "metre kelvin"
+          ],
+          "reject": [
+            "inversely proportional to temperature"
+          ],
+          "heard_as": [
+            "lambda T equals b",
+            "Wien constant",
+            "metre kelvin"
+          ]
+        },
+        "memory_tip": "λₘT = b. The product is fixed, so one rises exactly as the other falls."
+      }
+    ]
+  },
+  "insider_note": "Two marks — the statement in words and the relation λₘT = b. Stating it only in words leaves the second mark unearned."
+}

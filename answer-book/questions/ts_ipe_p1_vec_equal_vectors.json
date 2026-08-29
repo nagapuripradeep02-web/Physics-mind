@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 3,
     "name": "Motion in a Plane"
   },
   "chapter": "Motion in a Plane",
@@ -57,6 +57,7 @@
           "Both conditions must hold together — equal",
           "length alone is not enough."
         ],
+        "margin_note": "First mark. Both conditions in one sentence. Magnitude alone does not earn it.",
         "why": "A vector carries exactly two pieces of information, so matching both of them is the whole test.",
         "common_mistakes": [
           "Calling two vectors equal because their magnitudes are equal, ignoring direction."
@@ -75,7 +76,8 @@
             "equal vectors",
             "same direction"
           ]
-        }
+        },
+        "memory_tip": "Two 5 N forces, one east and one west, are not equal vectors. Same size, opposite direction."
       },
       {
         "id": "s2_position",
@@ -92,6 +94,7 @@
           "without changing it, so two equal vectors can",
           "lie anywhere in space."
         ],
+        "margin_note": "Second mark. Say that the point of application does not matter.",
         "why": "This is exactly why vectors can be slid head to tail to add them — position carries no information at all.",
         "common_mistakes": [
           "Requiring the two vectors to start from the same point."
@@ -110,8 +113,10 @@
             "same point",
             "parallel shift"
           ]
-        }
+        },
+        "memory_tip": "Two arrows at opposite corners of the page are still equal if length and direction match."
       }
     ]
-  }
+  },
+  "insider_note": "Asked in AP March 2026, Section A. Two marks for two sentences, and the second — that position does not matter — is the one usually left out."
 }

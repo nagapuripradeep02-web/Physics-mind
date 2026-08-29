@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_black_utensils_copper_bottom",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why utensils are coated black? Why the bottom of the utensils are made of copper?",
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 8,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The black coating",
+      "marks": 1
+    },
+    {
+      "label": "The copper base",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2024 (Q8) — Section A, 2 marks. The 1 + 1 mark split, one mark for each of the two parts asked, is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from that paper. Physics hand-checked: by Kirchhoff’s law a good absorber is also a good emitter, so a black surface both takes in and gives out radiation well; copper is used for the base because of its high thermal conductivity, second only to silver among common metals."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_black",
+        "kind": "text",
+        "label": "The black coating",
+        "marks": 1,
+        "mark_note": "Black coating",
+        "lines": [
+          "A black surface is a good absorber and",
+          "also a good emitter of radiation.",
+          "So a black utensil takes in heat from the",
+          "flame quickly and passes it to the food."
+        ],
+        "margin_note": "First mark. Absorber and emitter — say both words.",
+        "why": "Kirchhoff’s law says that a surface which absorbs radiation well also emits it well, so the black coating helps both while the vessel is being heated and while it cools.",
+        "common_mistakes": [
+          "Saying the black coating is only there to hide the soot. The physical reason is that black absorbs radiation well."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a black surface is a good absorber and a good emitter of radiation.",
+          "accept": [
+            "good absorber",
+            "good emitter",
+            "absorbs heat quickly"
+          ],
+          "reject": [
+            "high thermal conductivity"
+          ],
+          "heard_as": [
+            "black absorbs",
+            "emitter",
+            "absorber"
+          ]
+        },
+        "memory_tip": "A good absorber is also a good emitter, and black is the best at both."
+      },
+      {
+        "id": "s2_copper",
+        "kind": "boxed_final",
+        "label": "The copper base",
+        "marks": 1,
+        "mark_note": "Copper base",
+        "lines": [
+          {
+            "text": "Copper has a high thermal conductivity",
+            "style": "boxed"
+          },
+          "Heat from the flame travels through the",
+          "copper base to the food faster than it",
+          "would through iron or steel.",
+          "So the food is heated quickly and evenly."
+        ],
+        "margin_note": "Second mark. Name thermal conductivity, not the metal alone.",
+        "why": "The base is the part in contact with the flame, so all the heat has to cross it before reaching the food. A high conductivity makes that crossing fast.",
+        "common_mistakes": [
+          "Saying copper is used because it has a low specific heat. The reason is its high thermal conductivity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That copper is used for the base because it has a high thermal conductivity.",
+          "accept": [
+            "high thermal conductivity",
+            "good conductor of heat",
+            "conducts heat quickly"
+          ],
+          "reject": [
+            "good absorber"
+          ],
+          "heard_as": [
+            "copper",
+            "conductivity",
+            "good conductor"
+          ]
+        },
+        "memory_tip": "Copper is one of the best conductors of heat, after silver."
+      }
+    ]
+  },
+  "insider_note": "Two questions in one, one mark each — good absorber for the black coating, high thermal conductivity for the copper base."
+}

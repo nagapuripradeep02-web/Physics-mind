@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
+    "number": 5,
     "name": "Work Power Energy"
   },
   "chapter": "Work Power Energy",
@@ -16,7 +16,13 @@
   "paper_section": "Section C",
   "expected_time_min": 15,
   "question_text": "Develop the notions of work and kinetic energy and show that it leads to the work-energy theorem.",
-  "appearances": [],
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 19,
+      "board": "ts_ipe"
+    }
+  ],
   "mark_split": [
     {
       "label": "Work",

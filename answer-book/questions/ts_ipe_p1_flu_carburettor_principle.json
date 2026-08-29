@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_carburettor_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the principle behind the carburettor of an automobile?",
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 5,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2023,
+      "q_no": 7,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 5,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Bernoulli's principle",
+      "marks": 1
+    },
+    {
+      "label": "Low pressure at the throat lifts the petrol",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2017 (Q5), March 2023 (Q7) and March 2024 (Q5) — Section A, 2 marks each time. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the carburettor is a venturi. By Bernoulli's principle P + ½ρv² + ρgh = constant along a streamline; the air speeds up in the narrow throat, so the pressure there falls below atmospheric, and atmospheric pressure acting on the petrol surface in the float chamber pushes petrol up the jet into the airstream."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bernoulli",
+        "kind": "equation",
+        "label": "Bernoulli's principle",
+        "marks": 1,
+        "mark_note": "Bernoulli's principle",
+        "lines": [
+          "The carburettor works on Bernoulli's",
+          "principle: where a fluid flows faster, its",
+          "pressure is smaller.",
+          {
+            "text": "P + ½ρv² + ρgh = constant",
+            "style": "eq"
+          },
+          "The tube that carries air into the engine",
+          "has a narrow section called the venturi."
+        ],
+        "margin_note": "First mark. Name Bernoulli's principle and write the equation.",
+        "why": "The equation is the reason the pressure drops. The height does not change along the tube, so a larger v forces a smaller P.",
+        "common_mistakes": [
+          "Naming Pascal's law or Archimedes' principle. The carburettor is a Bernoulli device.",
+          "Describing the engine parts but never naming the principle the question asks for."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the carburettor works on Bernoulli's principle, where faster flow means lower pressure.",
+          "accept": [
+            "Bernoulli's principle",
+            "faster flow, lower pressure",
+            "P plus half rho v squared plus rho g h is constant"
+          ],
+          "reject": [
+            "petrol is pushed up the jet"
+          ],
+          "heard_as": [
+            "Bernoulli",
+            "venturi",
+            "half rho v squared"
+          ]
+        },
+        "memory_tip": "Narrow tube, fast air, low pressure. That order, every time."
+      },
+      {
+        "id": "s2_petrol_rises",
+        "kind": "boxed_final",
+        "label": "Low pressure at the throat lifts the petrol",
+        "marks": 1,
+        "mark_note": "Petrol is pushed into the airstream",
+        "lines": [
+          "Air speeds up as it passes through the",
+          "narrow throat, so the pressure there falls",
+          "below atmospheric pressure.",
+          "The petrol in the float chamber is at",
+          "atmospheric pressure, so it is pushed up",
+          "the jet into the fast airstream, where it",
+          "breaks into a fine spray and mixes with",
+          "the air.",
+          {
+            "text": "Fast air ⇒ low pressure ⇒ petrol rises",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Say the pressure at the throat falls below atmospheric, and the petrol rises.",
+        "why": "The petrol moves because of a pressure difference across it: atmospheric pressure below in the float chamber, reduced pressure above at the throat.",
+        "common_mistakes": [
+          "Saying the fast air sucks the petrol up. The atmospheric pressure on the petrol surface pushes it up.",
+          "Leaving out the comparison with atmospheric pressure, so the answer never explains why the petrol moves."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pressure at the narrow throat falls below atmospheric, so petrol is pushed up the jet into the airstream.",
+          "accept": [
+            "pressure at the throat drops below atmospheric",
+            "petrol is pushed up the jet",
+            "petrol mixes with the air as a spray"
+          ],
+          "reject": [
+            "Bernoulli's principle"
+          ],
+          "heard_as": [
+            "throat",
+            "float chamber",
+            "atmospheric pressure"
+          ]
+        },
+        "memory_tip": "Atmospheric pressure below, low pressure above. The petrol moves up that difference."
+      }
+    ]
+  },
+  "insider_note": "One mark is the name Bernoulli, one the pressure drop at the throat. Describing the engine without naming the principle loses half the marks."
+}

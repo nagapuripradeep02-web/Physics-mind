@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
+    "number": 5,
     "name": "Work Power Energy"
   },
   "chapter": "Work Power Energy",
@@ -55,6 +55,7 @@
             "style": "eq"
           }
         ],
+        "margin_note": "First mark. The words first, then the ratio. Both velocities in it are relative ones.",
         "why": "It is a measured number for a pair of bodies, and it is what tells you how much of the approach speed is left after the collision.",
         "common_mistakes": [
           "Writing it as a ratio of momenta or of kinetic energies rather than of relative velocities."
@@ -73,7 +74,8 @@
             "coefficient of restitution",
             "separation"
           ]
-        }
+        },
+        "memory_tip": "Separation over approach — the AFTER velocity on top, the BEFORE velocity underneath."
       },
       {
         "id": "s2_values",
@@ -92,6 +94,7 @@
           },
           "A real collision lies between, 0 < e < 1."
         ],
+        "margin_note": "Second mark. Both values, and the 0 < e < 1 line for a real collision.",
         "why": "e = 0 does not mean the bodies stop; it means they separate at zero relative speed, so they move on together.",
         "common_mistakes": [
           "Reading e = 0 as \"both bodies come to rest\"."
@@ -111,8 +114,10 @@
             "e equals one",
             "e equals zero"
           ]
-        }
+        },
+        "memory_tip": "A ball with e = 1 rebounds to the same height every time. e = 0 does not bounce at all."
       }
     ]
-  }
+  },
+  "insider_note": "One definition, two numbers. The words relative velocity of separation over approach are what earn the first mark."
 }

@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 5,
     "name": "Matrices"
   },
   "chapter": "Matrices",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 13,
   "question_text": "By the Gauss-Jordan method, solve 2x + 4y − z = 0, x + 2y + 2z = 5, 3x + 6y − 7z = 2.",
@@ -36,19 +36,19 @@
     },
     {
       "label": "State that there is no solution",
-      "marks": 1
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.34 — LAQ chapter 3 Matrices, answer 20.4. This answer carries NO printed year tag, so `appearances` is empty; it is in the book on merit rather than on frequency. It is the second of only two questions in the whole Matrices chapter whose answer is not a single triple — the other is answer 20.3, which has infinitely many. The two are a deliberate pair and are best studied together: both end with a row whose coefficients are all zero, and the ONLY thing that separates them is whether the constant after the rule is zero too. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.34 sets two questions side by side in two columns, leaving no margin for the [N Marks] tags the chapter uses elsewhere. The 1+2+1+2+1 above is deliberately the same shape used for the other three Gauss-Jordan answers in this unit. The row-operation chain is the book's own. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.34 — LAQ chapter 3 Matrices, answer 20.4. This answer carries NO printed year tag, so `appearances` is empty; it is in the book on merit rather than on frequency. It is the second of only two questions in the whole Matrices chapter whose answer is not a single triple — the other is answer 20.3, which has infinitely many. The two are a deliberate pair and are best studied together: both end with a row whose coefficients are all zero, and the ONLY thing that separates them is whether the constant after the rule is zero too. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S. Book p.34 sets two questions side by side in two columns, leaving no margin for the [N Marks] tags the chapter uses elsewhere. The 1+2+1+2+1 above is deliberately the same shape used for the other three Gauss-Jordan answers in this unit. The row-operation chain is the book's own. Star rank is the CHAPTER's ★★★, not this question's. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"State that there is no solution\" step."
   },
   "recall_prompt": "Say how you would solve this by the Gauss-Jordan method — and say what it means if a row ends up with all zeros on the left but not on the right.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Matrices · 7 marks"
+      "Matrices · 8 marks"
     ],
     "steps": [
       {
@@ -252,9 +252,9 @@
         "id": "s5_conclude",
         "kind": "boxed_final",
         "label": "State that there is no solution",
-        "marks": 1,
+        "marks": 2,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. Say it plainly and say why. 'No solution' with the impossible equation quoted beside it is the complete answer — there is nothing else to write.",
+        "margin_note": "Last two marks. Say it plainly and say why. 'No solution' with the impossible equation quoted beside it is the complete answer — there is nothing else to write.",
         "lines": [
           "Since one equation of the equivalent system",
           "cannot be satisfied by any x, y, z:",

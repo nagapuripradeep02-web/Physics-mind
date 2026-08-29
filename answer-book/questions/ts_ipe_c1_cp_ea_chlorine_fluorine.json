@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. TERMS: the book uses the older term electron affinity (E.A); NCERT now frames the same comparison through electron gain enthalpy. The card keeps the book's term because that is what the paper prints, and the reasoning is identical either way."
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. TERMS: the book uses the older term electron affinity (E.A); NCERT now frames the same comparison through electron gain enthalpy. The card keeps the book's term because that is what the paper prints, and the reasoning is identical either way. AI chemistry check 2026-08-25: the small-2p-subshell repulsion reason and the Cl above F conclusion were re-checked against NCERT Class-11 and nothing marked was changed; the conclusion why now bridges the book's electron affinity wording to the NCERT electron gain enthalpy sign convention, with the standard values. Status stays unverified."
   },
   "answer": {
     "page_header": [
@@ -75,7 +75,7 @@
           "larger 3p subshell, where the repulsion is",
           "much smaller, so more energy is released."
         ],
-        "why": "The same electron added to chlorine enters a larger 3p subshell, loses less of its energy release to repulsion, and so chlorine releases more energy overall.",
+        "why": "The same electron added to chlorine enters a larger 3p subshell, loses less of its energy release to repulsion, and so chlorine releases more energy overall. Under the NCERT electron gain enthalpy convention the same fact is written with signs: the value for chlorine, about −349 kJ mol⁻¹, is more negative than the value for fluorine, about −328 kJ mol⁻¹.",
         "common_mistakes": [
           "Stopping after the fluorine reason and never stating the conclusion for chlorine.",
           "Writing that chlorine is more electronegative than fluorine. Fluorine has the higher electronegativity; chlorine has the higher electron affinity."

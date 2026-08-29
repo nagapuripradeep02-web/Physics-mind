@@ -1,0 +1,178 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_pump_power_lift_only",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Calculate the power of a pump required to lift 600 kg of water per minute from a well of 25 m deep.",
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 19,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The rate in kg s⁻¹",
+      "marks": 1
+    },
+    {
+      "label": "Only the potential term",
+      "marks": 1
+    },
+    {
+      "label": "The power",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Printed as the applied half of an 8-mark Section-C question in TS March 2019 (Q19), Inter I-Year Physics Paper-I. The 4-mark standalone length is our authoring choice, not the board's — the board never printed it as a 4-mark Section-B question. This question gives NO ejection speed, so only the potential term counts; the companion card ts_ipe_p1_wpe_pump_power_lift_and_eject does add ½mv². Arithmetic hand-checked: 600/60 = 10 kg s⁻¹; P = mgh/t = 10 × 9.8 × 25 = 2450 W ≈ 2.45 kW. The paper prints no value of g, so g = 9.8 m s⁻² is used here and the g = 10 m s⁻² answer, 2500 W, is recorded alongside — both are defensible and the assumption is written on the answer sheet rather than hidden. The three-way split is invented and is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Work Power Energy · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rate",
+        "kind": "equation",
+        "label": "The rate in kg s⁻¹",
+        "marks": 1,
+        "mark_note": "600/60",
+        "lines": [
+          "The pump lifts 600 kg in 60 s, so the mass",
+          "raised each second is",
+          {
+            "text": "m/t = 600/60 = 10 kg s⁻¹",
+            "style": "eq"
+          },
+          "The depth the water is raised through is",
+          "h = 25 m."
+        ],
+        "margin_note": "First mark. The per-minute to per-second conversion is a mark on its own.",
+        "why": "Power is energy per second, so the mass has to be expressed per second before any energy is written down. Converting at the start turns the rest of the question into one multiplication.",
+        "common_mistakes": [
+          "Using 600 kg as the mass lifted in one second.",
+          "Leaving the division by 60 to the end and then forgetting it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 600 kg per minute is 10 kg per second, and the height is 25 m.",
+          "accept": [
+            "ten kilogram per second",
+            "six hundred by sixty",
+            "mass per second is ten kg"
+          ],
+          "reject": [
+            "half m v squared"
+          ],
+          "heard_as": [
+            "10 kg per second",
+            "600 by 60"
+          ]
+        },
+        "memory_tip": "600 kg in 60 s is 10 kg every second. Divide by 60 before anything else."
+      },
+      {
+        "id": "s2_potential_only",
+        "kind": "equation",
+        "label": "Only the potential term",
+        "marks": 1,
+        "mark_note": "mgh/t",
+        "lines": [
+          "The water is only raised. The question",
+          "gives it no speed at the top, so the pump",
+          "supplies potential energy alone:",
+          {
+            "text": "P = W/t = mgh/t = (m/t) × g × h",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. State that only the potential term counts, and say why.",
+        "why": "The question names no delivery speed, so the water arrives at the top with negligible kinetic energy and every joule the pump supplies has become potential energy. A ½mv² term added here would be energy the question never asked for.",
+        "common_mistakes": [
+          "Adding a ½mv² term when the question gives no ejection speed.",
+          "Treating 25 m as a height the water falls through instead of one it is raised through."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with no ejection speed the power is m g h by t, the potential term alone.",
+          "accept": [
+            "m g h by t",
+            "only potential energy",
+            "no kinetic term here"
+          ],
+          "reject": [
+            "ten kilogram per second"
+          ],
+          "heard_as": [
+            "mgh by t",
+            "potential energy"
+          ]
+        },
+        "memory_tip": "No speed in the question means no ½mv² term. Only mgh/t is supplied here."
+      },
+      {
+        "id": "s3_power",
+        "kind": "boxed_final",
+        "label": "The power",
+        "marks": 2,
+        "mark_note": "P",
+        "lines": [
+          "The paper prints no value of g, so take",
+          "g = 9.8 m s⁻². Then",
+          {
+            "text": "P = 10 × 9.8 × 25",
+            "style": "eq"
+          },
+          {
+            "text": "P = 2450 W ≈ 2.45 kW",
+            "style": "boxed"
+          },
+          "With g = 10 m s⁻² the answer is 2500 W."
+        ],
+        "margin_note": "Third and fourth marks. Write the g you used, then box the value in watts.",
+        "why": "Both 2450 W and 2500 W are defensible, and which one appears depends only on the value of g taken. Writing that value on the answer sheet lets the examiner follow the arithmetic instead of guessing at it.",
+        "common_mistakes": [
+          "Using a value of g without writing it down, so a 2450 or 2500 answer cannot be followed.",
+          "Reporting the answer in joules, which is energy, instead of watts."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P = 10 × 9.8 × 25 = 2450 W, about 2.45 kilowatt, and 2500 W if g is taken as 10.",
+          "accept": [
+            "two thousand four hundred fifty watt",
+            "two point four five kilowatt",
+            "twenty five hundred watt with g equals ten"
+          ],
+          "reject": [
+            "m g h by t"
+          ],
+          "heard_as": [
+            "2450 W",
+            "2.45 kW",
+            "2500 W"
+          ]
+        },
+        "memory_tip": "10 × 9.8 × 25 = 2450 W. With g = 10 it is 2500 W, about 2.5 kW."
+      }
+    ]
+  },
+  "insider_note": "Two of the four marks sit in the final value, and writing the g you used protects them — 2450 W and 2500 W are both defensible arithmetic."
+}

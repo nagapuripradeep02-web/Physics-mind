@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 8,
+    "number": 7,
     "name": "Oscillations"
   },
   "chapter": "Oscillations",
@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented."
+    "note": "The mark split is invented and is a CLAIM until a Telangana IPE teacher confirms it. The question itself is sourced, not invented. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -173,7 +173,7 @@
             }
           ]
         },
-        "why": "The figure fixes the mean position O, which is where the spring force is zero — every y in the answer is measured from there.",
+        "why": "The figure fixes the mean position O, where the hanging mass rests: the spring is already stretched by mg/k and its pull balances the weight. Every y in the answer is measured from O, not from the natural length.",
         "common_mistakes": [
           "Measuring y from the natural length of the spring instead of from the mean position O."
         ],
@@ -192,7 +192,8 @@
             "diagram"
           ]
         },
-        "memory_tip": "Draw the hanging spring with the mean position O marked — every y is measured from O."
+        "memory_tip": "Draw the hanging spring with the mean position O marked — every y is measured from O.",
+        "margin_note": "First mark. Mark the mean position O on the figure. Every y is measured from O."
       },
       {
         "id": "s2_force",
@@ -216,7 +217,7 @@
           },
           "a ∝ −y, which IS simple harmonic motion."
         ],
-        "why": "Showing a ∝ −y first is what earns the right to use the SHM formulas at all; quoting T = 2π√(m/k) without it assumes the answer.",
+        "why": "Showing a ∝ −y first is what earns the right to use the SHM formulas at all; quoting T = 2π√(m/k) without it assumes the answer. Here F = −ky is the NET force measured from O — the extra spring pull beyond the part that balances mg. Gravity cancels, so the vertical spring obeys the same equation as a horizontal one.",
         "common_mistakes": [
           "Dropping the minus sign, which turns an oscillation into a runaway."
         ],
@@ -236,7 +237,8 @@
             "k by m"
           ]
         },
-        "memory_tip": "Show F = −ky gives a = −(k/m)y FIRST; that line earns the right to use the SHM formulas."
+        "memory_tip": "Show F = −ky gives a = −(k/m)y FIRST; that line earns the right to use the SHM formulas.",
+        "margin_note": "Two marks here. a = −(k/m)y has to be reached before any period formula is used."
       },
       {
         "id": "s3_frequency",
@@ -276,8 +278,10 @@
             "2 pi"
           ]
         },
-        "memory_tip": "ω² = k/m, so n = (1/2π)√(k/m). Stiffer spring or lighter mass → higher frequency."
+        "memory_tip": "ω² = k/m, so n = (1/2π)√(k/m). Stiffer spring or lighter mass → higher frequency.",
+        "margin_note": "The last mark. The question says frequency, so end at n and not at T."
       }
     ]
-  }
+  },
+  "insider_note": "The question asks for frequency, so an answer that stops at T = 2π√(m/k) drops the last mark — finish with n = (1/2π)√(k/m)."
 }

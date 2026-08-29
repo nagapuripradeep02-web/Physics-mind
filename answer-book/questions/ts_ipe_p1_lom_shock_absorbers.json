@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 4,
     "name": "Laws of Motion"
   },
   "chapter": "Laws of Motion",
@@ -200,5 +200,6 @@
         "memory_tip": "The spring lengthens Δt, so the force on the rider drops. End the answer on that sentence."
       }
     ]
-  }
+  },
+  "insider_note": "Four marks in one sequence — impulse, Δp is fixed, F ∝ 1/Δt, then the rider. An answer that says only \"for comfort\" loses three of them."
 }

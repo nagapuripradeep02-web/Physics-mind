@@ -97,7 +97,18 @@ export const MATHEMATICS_GHOSTS: GhostSeed[] = [
         why_learn: 'Why a gradient can exist at a single point. The secant interval shrinks continuously while the slope readout settles on one number — the gap stays visible and never closes, which is exactly the distinction between approaching and reaching that a static board sketch cannot make.',
     },
     {
-        concept_id: 'definite_integral_as_area',
+        // Id corrected 2026-08-09 to match the SHIPPED, baseline-locked concept
+        // (src/data/concepts/mathematics/definite_integral_as_accumulated_area.json,
+        // present in visual_baselines). This row said 'definite_integral_as_area'
+        // and was the second instance of the divergence fixed one row below on
+        // 2026-08-08 — that fix was applied to the row an architect had reported
+        // and NEVER SWEPT ACROSS THIS FILE, so the identical defect survived four
+        // rows up and orphaned solids_of_revolution's only prerequisite edge.
+        // The prevention rule the sibling comment already states is the right one;
+        // it just was not executed as a sweep: a concept-id check sweeps the
+        // catalog AND the registries, not only the concept files — and a fix to
+        // one row of a registry is re-run against every other row before closing.
+        concept_id: 'definite_integral_as_accumulated_area',
         concept_name: 'The Definite Integral as Accumulated Area',
         chapter: 8, section: '8.1', class_level: 12, prerequisites: ['derivative_as_secant_limit'], is_spine: true,
         why_learn: 'A teacher draws four rectangles and says "imagine a thousand". The sim runs four to a thousand while the running sum converges on screen, so the limit is watched rather than asserted.',
@@ -141,7 +152,8 @@ export const MATHEMATICS_GHOSTS: GhostSeed[] = [
     {
         concept_id: 'solids_of_revolution',
         concept_name: 'Solids of Revolution — Volume by Integration',
-        chapter: 8, section: '8.2', class_level: 12, prerequisites: ['definite_integral_as_area'],
+        // Prerequisite id corrected 2026-08-09 with the row it points at (see above).
+        chapter: 8, section: '8.2', class_level: 12, prerequisites: ['definite_integral_as_accumulated_area'],
     },
     {
         concept_id: 'lines_and_planes_in_space',

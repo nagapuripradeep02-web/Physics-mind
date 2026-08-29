@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_excess_pressure_liquid_drop",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the expression for the excess pressure in a liquid drop. Mention the terms in the expression.",
+  "appearances": [
+    {
+      "year": 2023,
+      "q_no": 6,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 6,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "One surface, so ΔP = 2T/r",
+      "marks": 1
+    },
+    {
+      "label": "The terms ΔP, T and r",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2017 (Q6) and March 2023 (Q6) — Section A, 2 marks each time. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: a liquid drop is liquid throughout and meets the air at ONE surface, so the excess pressure is ΔP = 2T/r. The same 2T/r holds for an air bubble inside a liquid, which also has one liquid surface; a soap bubble in air has TWO surfaces and gives 4T/r. This question also asks for the meaning of each term, so ΔP, T and r must each be named."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_one_surface",
+        "kind": "equation",
+        "label": "One surface, so ΔP = 2T/r",
+        "marks": 1,
+        "mark_note": "ΔP = 2T/r",
+        "lines": [
+          "A liquid drop is liquid all the way",
+          "through. It meets the air at only ONE",
+          "surface, its outer boundary.",
+          "That single curved surface is under",
+          "tension and presses inward on the liquid,",
+          "so the pressure inside is larger than the",
+          "pressure outside:",
+          {
+            "text": "ΔP = 2T/r",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Say the drop has one liquid surface, then write 2T/r.",
+        "why": "The number of liquid surfaces fixes the numerator. One surface gives 2T/r; a soap bubble has two and gives 4T/r.",
+        "common_mistakes": [
+          "Writing 4T/r, which belongs to a soap bubble with two surfaces.",
+          "Writing 2T/r² . The radius appears to the first power."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a liquid drop has one liquid surface, so the excess pressure is 2T by r.",
+          "accept": [
+            "only one surface",
+            "delta P is 2T by r",
+            "two T by r"
+          ],
+          "reject": [
+            "T is the surface tension of the liquid"
+          ],
+          "heard_as": [
+            "one surface",
+            "2T by r"
+          ]
+        },
+        "memory_tip": "A drop is liquid throughout, so it has one boundary with air: one surface, 2T/r."
+      },
+      {
+        "id": "s2_terms",
+        "kind": "boxed_final",
+        "label": "The terms ΔP, T and r",
+        "marks": 1,
+        "mark_note": "ΔP, T and r named",
+        "lines": [
+          "In the expression:",
+          "ΔP is the excess pressure, that is the",
+          "pressure inside the drop minus the",
+          "pressure just outside it.",
+          "T is the surface tension of the liquid,",
+          "measured in N m⁻¹.",
+          "r is the radius of the drop.",
+          {
+            "text": "ΔP = 2T/r",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. The question says mention the terms, so define all three symbols.",
+        "why": "This question asks for the meaning of the symbols as well as the formula, so half of the credit sits in the three definitions and not in the equation.",
+        "common_mistakes": [
+          "Writing the formula and stopping. The second half of the question is left unanswered.",
+          "Giving the unit of T as N m⁻² . Surface tension is force per unit length, N m⁻¹."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ΔP is the pressure inside minus the pressure outside, T is the surface tension and r is the radius of the drop.",
+          "accept": [
+            "delta P is inside minus outside",
+            "T is the surface tension",
+            "r is the radius of the drop"
+          ],
+          "reject": [
+            "the drop has only one surface"
+          ],
+          "heard_as": [
+            "surface tension",
+            "radius",
+            "inside minus outside"
+          ]
+        },
+        "memory_tip": "Three symbols, three names: a pressure difference, a surface tension, a radius."
+      }
+    ]
+  },
+  "insider_note": "The wording asks for the terms, so half the credit is in naming ΔP, T and r — the formula written on its own is a one-mark answer here."
+}

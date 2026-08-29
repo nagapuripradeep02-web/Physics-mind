@@ -83,6 +83,18 @@ function isParked(branch) {
   return PARKED.some(re => re.test(branch || ''));
 }
 
+/**
+ * The ref every ahead/behind reading is taken against.
+ *
+ * `origin/master` in every normal case — the commands here fetch origin before
+ * they measure, so it is current. Falls back to the local `master` only when the
+ * remote ref does not resolve (offline, or a clone with no origin); callers
+ * surface that fallback rather than silently reporting a stale number.
+ */
+function masterRef(cwd) {
+  return git(['rev-parse', '--verify', '--quiet', 'origin/master'], cwd) ? 'origin/master' : 'master';
+}
+
 /** Parse `git worktree list --porcelain` into {path, branch, head} records. */
 function worktrees() {
   const out = git(['worktree', 'list', '--porcelain']) || '';
@@ -126,10 +138,27 @@ function describe(wt) {
     return n === null ? null : parseInt(n, 10);
   })();
 
-  const behindMaster = isMain ? 0 : countRevs(`HEAD..master`, cwd);
-  const aheadMaster  = isMain ? 0 : countRevs(`master..HEAD`, cwd);
+  // Measure against origin/master, never the LOCAL master ref. Every command
+  // here fetches origin first, so origin/master is fresh by construction while
+  // local master is whatever this checkout last happened to leave it at — in
+  // the office that is routinely hundreds of commits stale, because the office
+  // is fast-forwarded by hand and nothing enforces it.
+  //
+  // Both readings broke, in opposite and equally bad directions:
+  //   aheadMaster  OVER-reported  -> `close` cried "N commit(s) are not in
+  //                                  master" over work that had just merged
+  //                                  cleanly (observed: 27, actual: 0).
+  //   behindMaster UNDER-reported -> a desk genuinely behind origin/master
+  //                                  looked current, so `audit` never suggested
+  //                                  desk:sync and the drift stayed invisible.
+  // The second is the dangerous one: it is silent. This is the same principle
+  // the `stranded` comment above already states — an alarm that overstates gets
+  // ignored, and one that understates never fires at all.
+  const mref = masterRef(cwd);
+  const behindMaster = isMain ? 0 : countRevs(`HEAD..${mref}`, cwd);
+  const aheadMaster  = isMain ? 0 : countRevs(`${mref}..HEAD`, cwd);
 
-  return { ...wt, branch, isMain, dirty, untracked, upstream, unpushed, stranded, behindOrigin, behindMaster, aheadMaster };
+  return { ...wt, branch, isMain, dirty, untracked, upstream, unpushed, stranded, behindOrigin, behindMaster, aheadMaster, mref };
 }
 
 function flagsFor(d) {
@@ -306,12 +335,16 @@ function cmdClose(branch, yes) {
   else if (wt.stranded > 0) blockers.push(`${wt.stranded} commit(s) exist on this disk only`);
   if (wt.dirty > 0)         blockers.push(`${wt.dirty} uncommitted change(s)`);
 
+  if (wt.mref === 'master') {
+    console.log(C.yel('  warning: origin/master did not resolve — measuring against the LOCAL master ref,'));
+    console.log(C.dim('  which may be stale. Fetch and re-run before trusting the line below.'));
+  }
   if (wt.aheadMaster > 0) {
-    console.log(C.yel(`  note: ${wt.aheadMaster} commit(s) are not in master.`));
+    console.log(C.yel(`  note: ${wt.aheadMaster} commit(s) are not in ${wt.mref}.`));
     console.log(C.dim('  That is fine IF the work landed another way (a merged PR, a port) or the branch') );
     console.log(C.dim('  stays on GitHub for the record. It is NOT fine if this is unlanded work.'));
   } else {
-    console.log(C.grn('  work is fully in master ✓'));
+    console.log(C.grn(`  work is fully in ${wt.mref} ✓`));
   }
 
   const untracked = (git(['status', '--porcelain'], wt.path) || '')

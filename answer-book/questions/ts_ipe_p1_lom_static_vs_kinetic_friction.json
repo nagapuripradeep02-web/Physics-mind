@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 4,
     "name": "Laws of Motion"
   },
   "chapter": "Laws of Motion",
@@ -69,7 +69,9 @@
             "limiting",
             "greater"
           ]
-        }
+        },
+        "memory_tip": "Steel on steel gives about μ_s = 0.74 against μ_k = 0.57. Static is the larger number.",
+        "margin_note": "First mark. Commit to limiting friction in the first line, then write μ_s > μ_k."
       },
       {
         "id": "s2_reason",
@@ -107,8 +109,11 @@
             "contact points",
             "settle"
           ]
-        }
+        },
+        "memory_tip": "Nothing about the body changes. What changes is how long the contacts had to form.",
+        "margin_note": "Second mark. The reason is the contact points, not the speed the body has gained."
       }
     ]
-  }
+  },
+  "insider_note": "Which is greater is one mark, the reason is the other. Answering μ_s > μ_k and stopping answers only half the question."
 }

@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's alternative definition line is garbled in print ('A solution reserves its acidity or alkalinity'); the standard definition is written here."
+    "note": "Chapter 7 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.75-79), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter prints NO Long Answer section, so no 8-mark form is invented. The 2+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. The book's alternative definition line is garbled in print ('A solution reserves its acidity or alkalinity'); the standard definition is written here. AI chemistry check 2026-08-25. Chemistry verified correct; two memory tips rewritten for Rule 41 ('pushes', 'mirror/twin'). FLAGGED FOR A TEACHER, not changed: the marked lines assert an acidic buffer has pH below 7 and a basic buffer above 7 — true for the named examples and standard board wording, but a weak-acid buffer with a very large salt-to-acid ratio can exceed pH 7."
   },
   "answer": {
     "page_header": [
@@ -61,7 +61,7 @@
           "Writing that the pH does not change at all. It changes very little, not zero.",
           "Writing that a buffer works against ANY amount of added acid. The definition says a small amount."
         ],
-        "memory_tip": "Three small pushes — acid, base, dilution — and the pH stays nearly where it was.",
+        "memory_tip": "Three small changes — added acid, added base, dilution — and the pH stays nearly the same.",
         "margin_note": "The two marks are for the full definition with 'small amount' in it."
       },
       {
@@ -111,7 +111,7 @@
           "Writing NaOH + NaCl as a basic buffer. NaOH is a strong base; the buffer needs the weak base NH₄OH.",
           "Swapping the salt types — the basic buffer's salt comes from a strong ACID (NH₄Cl)."
         ],
-        "memory_tip": "Mirror pair: ammonia solution + ammonium chloride, the basic twin of acetic acid + sodium acetate.",
+        "memory_tip": "The basic pair is ammonia solution + ammonium chloride; the acidic pair is acetic acid + sodium acetate.",
         "margin_note": "Box the one-line summary; both named pairs sit above it."
       }
     ]

@@ -913,42 +913,48 @@ test('chapter chips appear from the second unit and filter to their own chapter'
     // The row is stubbed in shell.html but was never populated, so for one whole unit
     // it sat hidden and empty. It has to stay hidden while there is one chapter (a
     // filter with a single choice is noise) and appear the moment there are two.
+    // The chapter filter became a native <select> (2026-08-26): 38 chapters as
+    // chips was a wall a student had to scroll past to reach one answer. With no
+    // subject chosen every chapter is still offered — grouped by paper through
+    // <optgroup> — so this gate still sees the whole inventory.
     const shape = await page.evaluate(() => {
         const units = (window as any).PM_UNITS as any[];
-        const row = document.getElementById('unitChips')!;
+        const sel = document.getElementById('unitSelect') as HTMLSelectElement;
         return {
             unitCount: units.length,
-            hidden: row.hidden,
-            chips: [...row.querySelectorAll('.cat-chip')].map((c) => c.getAttribute('data-unit')),
+            hidden: document.getElementById('unitField')!.hidden,
+            options: [...sel.querySelectorAll('option')].map((o) => o.getAttribute('data-unit')),
             want: ['ALL', ...units.map((u: any) => ((u.subject || 'physics') + '-' + u.number))],
         };
     });
     expect(shape.unitCount).toBeGreaterThanOrEqual(2);   // else this gate proves nothing
     expect(shape.hidden).toBe(false);
-    expect(shape.chips).toEqual(shape.want);             // All chapters, then one per unit in order
+    expect(shape.options).toEqual(shape.want);           // All chapters, then one per unit in order
 
-    // Each chip shows only its own chapter, and its count is that chapter's whole
-    // inventory — coming-soon entries included, exactly like the qtype chips.
+    // Each option filters to only its own chapter, and its count is that chapter's
+    // whole inventory — coming-soon entries included, like the qtype chips.
     for (const key of shape.want) {
-        await page.click('#unitChips .cat-chip[data-unit="' + key + '"]');
+        await page.selectOption('#unitSelect', key);
         await page.waitForTimeout(200);
         const r = await page.evaluate((k) => {
             const units = (window as any).PM_UNITS as any[];
             const mine = k === 'ALL' ? units : units.filter((u: any) => ((u.subject || 'physics') + '-' + u.number) === k);
-            const chip = document.querySelector('#unitChips .cat-chip[data-unit="' + k + '"]')!;
+            const sel = document.getElementById('unitSelect') as HTMLSelectElement;
+            const opt = sel.querySelector('option[data-unit="' + k + '"]')!;
+            const m = /\((\d+)\)\s*$/.exec(opt.textContent || '');   // trailing "(N)"
             return {
                 visible: document.querySelectorAll('.cat-card').length,
                 headings: document.querySelectorAll('.cat-section').length,
                 want: mine.reduce((a: number, u: any) => a + u.questions.length, 0),
                 wantHeadings: mine.length,
-                chipCount: Number(chip.querySelector('.ct')!.textContent),
-                chipOn: chip.classList.contains('on'),
+                optCount: m ? Number(m[1]) : -1,
+                selected: sel.value === k,
             };
         }, key);
-        expect(r.chipOn, key + ' chip active').toBe(true);
+        expect(r.selected, key + ' option selected').toBe(true);
         expect(r.visible, key + ' visible cards').toBe(r.want);
         expect(r.headings, key + ' chapter headings').toBe(r.wantHeadings);
-        expect(r.chipCount, key + ' chip count').toBe(r.want);
+        expect(r.optCount, key + ' option count').toBe(r.want);
     }
 });
 
@@ -1239,7 +1245,9 @@ test('rename is offered once after the first Mark revised, blocklist holds, name
 });
 
 test('the exam-eve route renders the most-asked list and Back returns to the catalog', async ({ page }) => {
-    await page.goto(URL + '#/exam-eve/4');
+    // physics-3 = Motion in a Plane since the 2026-27 renumbering; the trailing
+    // year marks the link as post-renumbering (a bare '4' would be remapped).
+    await page.goto(URL + '#/exam-eve/physics-3/2027');
     await page.waitForSelector('#examEveView:not([hidden])');
 
     const r = await page.evaluate(() => ({
@@ -1249,8 +1257,8 @@ test('the exam-eve route renders the most-asked list and Back returns to the cat
         catCardsInEve: document.querySelectorAll('#eveBody .cat-card').length,
         backShown: !document.getElementById('btnCatalog')!.hidden,
     }));
-    expect(r.title).toContain('Unit 4');
-    expect(r.cards).toBeGreaterThan(0);          // unit 4 has 3-star questions
+    expect(r.title).toContain('Unit 3');
+    expect(r.cards).toBeGreaterThan(0);          // Motion in a Plane has 3-star questions
     expect(r.catCardsInEve).toBe(0);
     expect(r.backShown).toBe(true);
 
@@ -1273,7 +1281,7 @@ test('the triage strip appears under a chapter filter and card counts stay exact
     }));
     expect(landing.triageHidden).toBe(true);     // no chapter filter → no strip
 
-    await page.click('.cat-chip[data-unit="physics-4"]');
+    await page.selectOption('#unitSelect', 'physics-4');
     await page.waitForTimeout(150);
     const filtered = await page.evaluate(() => {
         const u4 = ((window as any).PM_UNITS as any[]).find((u) => ((u.subject || 'physics') + '-' + u.number) === 'physics-4');
@@ -1418,6 +1426,11 @@ async function bootPlanner(page: any, today: string, seed: Record<string, string
     await page.addInitScript((args: { today: string; seed: Record<string, string> }) => {
         try {
             localStorage.setItem('pm_today_override', args.today);
+            // The planner is DORMANT for students (founder, 2026-08-27) — its
+            // timings are unvalidated. Every gate below revives it explicitly so
+            // the feature stays PROVEN while it sleeps; a dormant feature that
+            // stops being tested is one that cannot be switched back on.
+            localStorage.setItem('pm_planner', '1');
             for (const k of Object.keys(args.seed)) localStorage.setItem(k, args.seed[k]);
         } catch { /* file:// storage may be blocked; the page has its own fallback */ }
     }, { today, seed });
@@ -1425,19 +1438,61 @@ async function bootPlanner(page: any, today: string, seed: Record<string, string
     await page.waitForFunction(() => (window as any).PM_ANSWER);
 }
 
-/** Drive the whole onboarding conversation and return the stored plan. */
-async function buildPlanViaChat(page: any, examDate: string, unitIdx: number[] = [0, 1], hoursLabel = '1 hour', scopeUntick: string[] = []) {
+/** Drive the whole onboarding conversation and return the stored plan.
+
+    Single-subject by default (physics), which is what every plan gate below
+    means — so this signature is unchanged by the per-subject exam dates of
+    2026-08-26. For several papers with their own dates, use
+    buildMultiSubjectPlan. */
+async function buildPlanViaChat(page: any, examDate: string,
+    unitNames: string[] = ['Physical World and Measurement', 'Motion in a Straight Line'],
+    hoursLabel = '1 hour', scopeUntick: string[] = []) {
+    return buildMultiSubjectPlan(page, { physics: examDate }, unitNames, hoursLabel, scopeUntick);
+}
+
+/** Drive onboarding with one exam date PER SUBJECT.
+
+    `dates` is keyed by the subject value units.json uses — 'physics',
+    'chemistry', 'mathematics' (Maths-1A), 'mathematics_1b', 'botany'. */
+async function buildMultiSubjectPlan(page: any, dates: Record<string, string>,
+    unitNames: string[] = ['Physical World and Measurement', 'Motion in a Straight Line'],
+    hoursLabel = '1 hour', scopeUntick: string[] = []) {
     if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
     const lastW = () => page.locator('.vidi-widget').last();
     // intro not done → the intro widget; done → the offer chip
     const introBtn = page.locator('.vw-btn', { hasText: 'Plan my first-term exam' });
     if (await introBtn.count()) await introBtn.click();
     else await page.locator('#vidiChips .vidi-chip', { hasText: 'Plan my exam prep' }).click();
-    await lastW().locator('input[type=date]').waitFor({ timeout: 4000 });
-    await lastW().locator('input[type=date]').fill(examDate);
-    await lastW().locator('.vw-btn.primary').click();                       // Set date
+    // Subjects and their dates are ONE step: tick the paper, set its date.
+    await lastW().locator('.vw-subject-box').first().waitFor({ timeout: 4000 });
+    const wanted = Object.keys(dates);
+    const boxes = lastW().locator('.vw-subject-box');
+    for (let i = 0; i < await boxes.count(); i++) {
+        const box = boxes.nth(i);
+        const subject = await box.getAttribute('value');
+        const want = wanted.indexOf(subject!) >= 0;
+        if (want !== await box.isChecked()) await box.setChecked(want);
+        if (want) {
+            await lastW().locator(`.vw-subject-date[data-subject="${subject}"]`).fill(dates[subject!]);
+        }
+    }
+    await lastW().locator('.vw-btn.primary').click();                       // These subjects →
     await lastW().locator('.vw-check input').first().waitFor({ timeout: 4000 });
-    for (const i of unitIdx) await lastW().locator('.vw-check input').nth(i).check();
+    // Chapters now default to ALL of each picked paper, so a test that means a
+    // specific pair must clear the rest before ticking the two it wants.
+    const chapterBoxes = lastW().locator('.vw-check input[type=checkbox]');
+    for (let i = 0; i < await chapterBoxes.count(); i++) {
+        await chapterBoxes.nth(i).setChecked(false);
+    }
+    // Pick chapters BY NAME, never by array index. units.json is ordered by unit
+    // number, so a new low-numbered chapter shifts every index: physics Unit 1
+    // landed on 2026-08-26 and silently re-pointed [0,1] from units 2+3 to units
+    // 1+2 — a 3-question chapter paired with a 22-question one, which changes how
+    // deep day 1 has to dig into the star ranking. The planner was correct; the
+    // selection was not what the test meant.
+    for (const name of unitNames) {
+        await lastW().locator('.vw-check', { hasText: name }).locator('input').check();
+    }
     await lastW().locator('.vw-btn.primary').click();                       // These chapters →
     await lastW().locator('.vw-scope-box').first().waitFor({ timeout: 4000 });   // the qtype scope step
     for (const t of scopeUntick) await lastW().locator(`.vw-scope-box[value="${t}"]`).uncheck();
@@ -1623,7 +1678,7 @@ test('crunch mode: one week and too much work flips the plan to marks-first — 
     // and says so; very short answers wait for exam-eve.
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     // Units 4+5 (they hold real LAQs) · 7 days · 30 min/day — cannot fit
-    const plan = await buildPlanViaChat(page, '2026-09-08', [2, 3], '30 min');
+    const plan = await buildPlanViaChat(page, '2026-09-08', ['Motion in a Plane', 'Laws of Motion'], '30 min');
     expect(plan.crunch).toBe(true);
 
     // in the learn order, no VSAQ is ever scheduled before an LAQ or SAQ
@@ -1693,7 +1748,7 @@ test('Test myself is dormant: the entry stays hidden and Understand alone comple
 test('the plan can skip question types: unticked LAQs never appear anywhere in the plan', async ({ page }) => {
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     // Units 4+5 hold real LAQs (the crunch gate uses them for the same reason)
-    const plan = await buildPlanViaChat(page, '2026-09-21', [2, 3], '1 hour', ['LAQ']);
+    const plan = await buildPlanViaChat(page, '2026-09-21', ['Motion in a Plane', 'Laws of Motion'], '1 hour', ['LAQ']);
     expect(plan.scope).toEqual(['SAQ', 'VSAQ']);
 
     const qids: string[] = Object.keys(plan.learnDay).concat(plan.optional);
@@ -1712,7 +1767,7 @@ test('the plan can skip question types: unticked LAQs never appear anywhere in t
 
 test('mid-plan "Change my plan" re-scopes by proposal — nothing changes until the student accepts', async ({ page }) => {
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
-    const plan = await buildPlanViaChat(page, '2026-09-21', [2, 3]);
+    const plan = await buildPlanViaChat(page, '2026-09-21', ['Motion in a Plane', 'Laws of Motion']);
     expect(plan.scope).toBe(null);
 
     // the student has finished the very short answers elsewhere
@@ -1823,8 +1878,9 @@ test('the catalog filters by subject and each section shows its own mark value',
         return by;
     });
     const names = Object.keys(subjects);
-    const row = page.locator('#subjectChips');
-    // One subject = no row at all; the physics-only build must look untouched.
+    // The subject filter is a native <select> (2026-08-26) — see the chapter test.
+    const row = page.locator('#subjectField');
+    // One subject = no picker at all; the physics-only build must look untouched.
     if (names.length < 2) {
         await expect(row).toBeHidden();
         return;
@@ -1832,7 +1888,7 @@ test('the catalog filters by subject and each section shows its own mark value',
     await expect(row).toBeVisible();
 
     for (const s of names) {
-        await page.click(`#subjectChips [data-subject="${s}"]`);
+        await page.selectOption('#subjectSelect', s);
         await page.waitForTimeout(200);
         const shown = await page.evaluate(() => document.querySelectorAll('.cat-card').length);
         expect(shown, `cards shown for ${s}`).toBe(subjects[s]);
@@ -1840,7 +1896,7 @@ test('the catalog filters by subject and each section shows its own mark value',
 
     // The section heading's mark value is read off the questions, never hardcoded:
     // a Physics-I long answer is 8 marks and a Maths-1A long answer is 7.
-    await page.click('#subjectChips [data-subject="ALL"]');
+    await page.selectOption('#subjectSelect', 'ALL');
     await page.waitForTimeout(200);
     const heads = await page.evaluate(() =>
         [...document.querySelectorAll('#catSections .cat-subhead')].map((h) => h.textContent || ''));
@@ -2067,4 +2123,524 @@ test('a sync endpoint that is down never breaks the book', async ({ page }) => {
     expect(errors).toEqual([]);                        // no unhandled rejection
     expect(marks.marksEarned).toBe(marks.marksTotal);
     expect(r.stages).toBeTruthy();                     // progress still recorded
+});
+
+// ═══ per-subject exam dates (2026-08-26) ═══════════════════════════════════
+// A board student sits three or four papers on DIFFERENT days, and the gap
+// between two papers is when the second one actually gets revised. One shared
+// date cannot express that, so each subject carries its own date and races its
+// own runway. These gates cover the promises that follow from it.
+
+/** Day number (1-based, plan.start = day 1) of a calendar date. */
+function planDayOf(start: string, iso: string) {
+    return Math.round((Date.parse(iso + 'T00:00:00Z') - Date.parse(start + 'T00:00:00Z')) / 86400000) + 1;
+}
+
+function countBySubject(plan: any, qids: string[]) {
+    const out: Record<string, number> = {};
+    for (const q of qids) { const s = plan.subjectByQid[q]; out[s] = (out[s] || 0) + 1; }
+    return out;
+}
+
+test('three papers, three dates: nothing is scheduled on or after its OWN subject\'s exam', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const plan = await buildMultiSubjectPlan(page, {
+        physics: '2026-09-13', chemistry: '2026-09-18', mathematics: '2026-09-24',
+    }, ['Physical World and Measurement', 'Atomic Structure', 'Matrices']);
+
+    expect(plan.examDates).toEqual({
+        physics: '2026-09-13', chemistry: '2026-09-18', mathematics: '2026-09-24',
+    });
+    // examDate stays the LAST paper so every pre-existing reader still works
+    expect(plan.examDate).toBe('2026-09-24');
+    expect((plan.subjects as string[]).sort()).toEqual(['chemistry', 'mathematics', 'physics']);
+
+    // THE promise: a subject's learning never lands on or after its own paper.
+    // With one shared date this is exactly what broke — maths revision was
+    // scheduled for days after the maths exam had already been written.
+    let checked = 0;
+    for (const qid of Object.keys(plan.learnDay)) {
+        const s = plan.subjectByQid[qid];
+        expect(plan.learnDay[qid]).toBeLessThan(planDayOf(plan.start, plan.examDates[s]));
+        checked++;
+    }
+    expect(checked).toBeGreaterThan(20);          // the assertion actually ran
+
+    // each paper gets its OWN revision run-in, not one shared tail
+    expect(plan.revBlockStartBy.physics).toBeLessThan(plan.revBlockStartBy.chemistry);
+    expect(plan.revBlockStartBy.chemistry).toBeLessThan(plan.revBlockStartBy.mathematics);
+});
+
+test('day one mixes every paper the student picked', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const plan = await buildMultiSubjectPlan(page, {
+        physics: '2026-09-13', chemistry: '2026-09-18', mathematics: '2026-09-24',
+    }, ['Physical World and Measurement', 'Atomic Structure', 'Matrices'], '2 hours');
+
+    const day1 = countBySubject(plan, plan.days[0].learn);
+    expect(Object.keys(day1).sort()).toEqual(['chemistry', 'mathematics', 'physics']);
+});
+
+test('the nearer a paper is, the bigger its share of the day', async ({ page }) => {
+    // Same chapters, same pace, same rival — ONLY the physics date moves. A
+    // bare threshold would not prove urgency drives the split; this comparison
+    // does, and carries its own control.
+    // Sample = a 22-question chapter (Motion in a Straight Line since the 2026-27
+    // renumbering; it was Units and Measurements, also 22). The merged 25-card
+    // Unit 1 saturates the ten-day window in BOTH cases and the shares tie.
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const far = await buildMultiSubjectPlan(page, {
+        physics: '2026-10-20', chemistry: '2026-10-24',
+    }, ['Physical World and Measurement', 'Atomic Structure'], '2 hours');
+
+    await page.evaluate(() => localStorage.removeItem('pm_plan_v1'));
+    await page.reload();
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    const near = await buildMultiSubjectPlan(page, {
+        physics: '2026-09-12', chemistry: '2026-10-24',
+    }, ['Physical World and Measurement', 'Atomic Structure'], '2 hours');
+
+    // Measured over the first FIVE days, not day one and not ten. Day one
+    // saturates: the same physics questions fit whether the paper is six weeks
+    // out or ten days out, so a day-1 comparison can see nothing. Ten days
+    // saturates the other way since the 2026-27 renumbering merged old Units 1+2
+    // into one 25-card chapter that BOTH plans finish inside ten days — the
+    // cumulative shares then tie exactly. Five days is where urgency shows.
+    // Sample: merged Unit 1 + Atomic Structure at 2 hours a day (2026-08-28) —
+    // the comparison is the assertion, so no fixed percentage is recorded here.
+    const share = (p: any) => {
+        let phy = 0, tot = 0;
+        for (let d = 0; d < Math.min(5, p.days.length); d++) {
+            for (const q of p.days[d].learn) { if (p.subjectByQid[q] === 'physics') phy++; tot++; }
+        }
+        return phy / Math.max(1, tot);
+    };
+    expect(share(near)).toBeGreaterThan(share(far));
+    // and day one still mixes both papers in each case
+    for (const p of [far, near]) {
+        expect(Object.keys(countBySubject(p, p.days[0].learn)).length).toBeGreaterThan(1);
+    }
+});
+
+test('a paper already written leaves the plan — the rest keep going', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const plan = await buildMultiSubjectPlan(page, {
+        physics: '2026-09-10', chemistry: '2026-09-25',
+    }, ['Physical World and Measurement', 'Atomic Structure']);
+
+    // walk the clock past the physics paper, keeping the plan
+    await bootPlanner(page, '2026-09-14', {
+        pm_intro_done: '1', pm_plan_v1: JSON.stringify(plan),
+    });
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+
+    // the plan is NOT archived — only the written paper is done
+    const stored = await page.evaluate(() => JSON.parse(localStorage.getItem('pm_plan_v1')!));
+    expect(stored.archived).toBeFalsy();
+    expect(stored.doneSubjects).toContain('physics');
+
+    // the countdown now names the paper that is actually next
+    const strip = await page.$eval('#vidiPlanStrip', (e) => ({
+        hidden: (e as HTMLElement).hidden, text: e.textContent || '',
+    }));
+    expect(strip.hidden).toBe(false);
+    expect(strip.text).toContain('Chemistry');
+    expect(strip.text).not.toContain('Physics');
+
+    // and no physics question is offered any more
+    const rows = await page.$$eval('.vw-item', (es) => es.map((e) => e.textContent || ''));
+    const physicsText = await page.evaluate((qids: string[]) => {
+        const units = (window as any).PM_UNITS as any[];
+        const out: string[] = [];
+        for (const u of units) {
+            if ((u.subject || 'physics') !== 'physics') continue;
+            for (const e of u.questions) if (qids.indexOf(e.question_id) >= 0) out.push(e.text);
+        }
+        return out;
+    }, Object.keys(plan.learnDay));
+    for (const t of physicsText) {
+        for (const r of rows) expect(r).not.toContain(t.slice(0, 30));
+    }
+});
+
+test('a plan saved before per-subject dates still loads and still counts down', async ({ page }) => {
+    // The plan is an opaque blob in localStorage AND in ab_plans, so an old
+    // one can arrive from another device at any time. It must read as "every
+    // subject sits on that one date" — a lazy normalizer, never a migration.
+    const legacy = {
+        v: 1, start: '2026-09-01', examDate: '2026-09-21',
+        units: ['physics-2'], minsPerDay: 60, scope: null,
+        days: [{ learn: ['ts_ipe_p2_um_what_is_physics'], revise: [] }],
+        learnDay: {}, optional: [], revBlockStart: 18, totalDays: 20,
+        crunch: false, implemented: true, lastNudgeDay: '2026-09-01', archived: false,
+    };
+    await bootPlanner(page, '2026-09-05', {
+        pm_intro_done: '1', pm_plan_v1: JSON.stringify(legacy),
+    });
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+
+    const strip = await page.$eval('#vidiPlanStrip', (e) => ({
+        hidden: (e as HTMLElement).hidden, text: e.textContent || '',
+    }));
+    expect(strip.hidden).toBe(false);
+    expect(strip.text).toContain('16 days left');     // one subject ⇒ the old wording
+    // nothing threw: the page is still alive and the chat opened
+    expect(await page.isVisible('#vidiThread')).toBe(true);
+});
+
+test('an unknown timetable is guessed two days apart, and the plan says it guessed', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+    const lastW = () => page.locator('.vidi-widget').last();
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Plan my exam prep' }).click();
+    await lastW().locator('.vw-subject-box').first().waitFor({ timeout: 4000 });
+
+    // tick three papers but date only the first
+    for (const s of ['physics', 'chemistry', 'mathematics']) {
+        await lastW().locator(`.vw-subject-box[value="${s}"]`).setChecked(true);
+    }
+    await lastW().locator('.vw-subject-date[data-subject="physics"]').fill('2026-09-14');
+    await lastW().locator('.vw-btn', { hasText: 'I do not know the rest yet' }).click();
+
+    await lastW().locator('.vw-check input').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();                       // These chapters →
+    await lastW().locator('.vw-scope-box').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();                       // These types →
+    await page.locator('.vw-btn', { hasText: 'Generate my plan' }).click();
+    await page.locator('.vw-btn', { hasText: '1 hour' }).click();
+    await page.locator('.vw-btn', { hasText: 'Implement this plan' }).waitFor({ timeout: 6000 });
+    await page.locator('.vw-btn', { hasText: 'Implement this plan' }).click();
+
+    const plan = await page.evaluate(() => JSON.parse(localStorage.getItem('pm_plan_v1')!));
+    expect(plan.datesProvisional).toBe(true);
+    expect(plan.examDates.physics).toBe('2026-09-14');
+    expect(plan.examDates.chemistry).toBe('2026-09-16');       // the ladder: +2
+    expect(plan.examDates.mathematics).toBe('2026-09-18');     // and +2 again
+});
+
+test('a real four-paper plan at one hour a day MIXES its days — not one subject at a time', async ({ page }) => {
+    // The regression the founder caught in the shipped build (2026-08-27): a
+    // 50-day, four-paper, one-hour plan read "Chemistry" on days 1, 2, 3 and 4
+    // and never mixed. The old per-day quota (~15 min across four papers)
+    // could not fit a single long answer (mins x 2 = 16-20), so every day fell
+    // through to the spill and the most urgent subject took all of it.
+    //
+    // Deliberately the WHOLE book at a realistic pace — a smaller pick with a
+    // roomier budget is exactly what hid this.
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+    const lastW = () => page.locator('.vidi-widget').last();
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Plan my exam prep' }).click();
+    await lastW().locator('.vw-subject-box').first().waitFor({ timeout: 4000 });
+
+    const dates: Record<string, string> = {
+        physics: '2026-10-14', chemistry: '2026-10-17',
+        mathematics: '2026-10-19', mathematics_1b: '2026-10-21',
+    };
+    for (const s of Object.keys(dates)) {
+        await lastW().locator(`.vw-subject-box[value="${s}"]`).setChecked(true);
+        await lastW().locator(`.vw-subject-date[data-subject="${s}"]`).fill(dates[s]);
+    }
+    await lastW().locator('.vw-btn.primary').click();          // These subjects →
+    await lastW().locator('.vw-check input').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();          // every chapter, pre-ticked
+    await lastW().locator('.vw-scope-box').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();          // These types →
+    await page.locator('.vw-btn', { hasText: 'Generate my plan' }).click();
+    await page.locator('.vw-btn', { hasText: '1 hour' }).click();
+    await page.locator('.vw-btn', { hasText: 'Implement this plan' }).waitFor({ timeout: 8000 });
+    await page.locator('.vw-btn', { hasText: 'Implement this plan' }).click();
+    const plan = await page.evaluate(() => JSON.parse(localStorage.getItem('pm_plan_v1')!));
+
+    expect(plan.subjects.length).toBe(4);
+
+    // Across the opening fortnight every paper must get real time — the bug
+    // gave one subject all fourteen days.
+    const seen = new Set<string>();
+    for (let d = 0; d < Math.min(14, plan.days.length); d++) {
+        for (const qid of plan.days[d].learn) seen.add(plan.subjectByQid[qid]);
+    }
+    expect([...seen].sort()).toEqual(['chemistry', 'mathematics', 'mathematics_1b', 'physics']);
+
+    // and no single paper may swallow the opening fortnight
+    const share: Record<string, number> = {};
+    let n = 0;
+    for (let d = 0; d < Math.min(14, plan.days.length); d++) {
+        for (const qid of plan.days[d].learn) { share[plan.subjectByQid[qid]] = (share[plan.subjectByQid[qid]] || 0) + 1; n++; }
+    }
+    for (const s of Object.keys(share)) expect(share[s] / n).toBeLessThan(0.75);
+});
+
+test('the whole plan expands day by day, and names the day each paper is written', async ({ page }) => {
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+    const lastW = () => page.locator('.vidi-widget').last();
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Plan my exam prep' }).click();
+    await lastW().locator('.vw-subject-box').first().waitFor({ timeout: 4000 });
+    for (const [s, d] of Object.entries({ physics: '2026-09-20', chemistry: '2026-09-25' })) {
+        await lastW().locator(`.vw-subject-box[value="${s}"]`).setChecked(true);
+        await lastW().locator(`.vw-subject-date[data-subject="${s}"]`).fill(d);
+    }
+    await lastW().locator('.vw-btn.primary').click();
+    await lastW().locator('.vw-check input').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();
+    await lastW().locator('.vw-scope-box').first().waitFor({ timeout: 4000 });
+    await lastW().locator('.vw-btn.primary').click();
+    await page.locator('.vw-btn', { hasText: 'Generate my plan' }).click();
+    await page.locator('.vw-btn', { hasText: '1 hour' }).click();
+    await page.locator('.vw-toggle', { hasText: 'View whole plan' }).waitFor({ timeout: 8000 });
+
+    // collapsed: the opening days, an ellipsis, then the revision run-ins
+    const collapsed = await page.locator('.vw-plan .vw-day').count();
+    expect(collapsed).toBeLessThan(10);
+
+    await page.locator('.vw-toggle', { hasText: 'View whole plan' }).click();
+    const rows = await page.locator('.vw-plan .vw-day').count();
+    expect(rows).toBeGreaterThan(20);                 // every day, not a sample
+
+    const text = await page.locator('.vw-plan').innerText();
+    // the exam row is CSS-uppercased, so compare case-insensitively
+    expect(text).toMatch(/physics exam/i);            // the anchor days are named
+    expect(text).toMatch(/chemistry exam/i);
+    expect(text).toMatch(/Day\s*1\b/);
+    expect(text).not.toMatch(/Day (\d+)–\1\b/);         // never "Day 43–43"
+
+    // and it closes again
+    await page.locator('.vw-toggle', { hasText: 'Show less' }).click();
+    expect(await page.locator('.vw-plan .vw-day').count()).toBe(collapsed);
+});
+
+test('the planner is dormant: a student sees no plan offer anywhere', async ({ page }) => {
+    // Deliberately NOT bootPlanner — that revives the planner. This is the
+    // student's build, exactly as shipped.
+    await page.addInitScript(() => {
+        try { localStorage.clear(); localStorage.setItem('pm_today_override', '2026-09-01'); } catch { /* file:// */ }
+    });
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+
+    // the intro offers only "Start learning now"
+    await page.locator('.vw-btn', { hasText: 'Start learning now' }).waitFor({ timeout: 6000 });
+    expect(await page.locator('.vw-btn', { hasText: 'Plan my first-term exam' }).count()).toBe(0);
+    await page.locator('.vw-btn', { hasText: 'Start learning now' }).click();
+
+    // no plan chip on the home conversation, and no countdown strip
+    const body = await page.locator('#vidiThread').innerText();
+    expect(body).not.toMatch(/study plan|plan your exam|exam preparation/i);
+    for (const label of ['Plan my exam prep', 'Plan my next exam', 'Change my plan', 'Want a study plan?']) {
+        expect(await page.locator('.vidi-chip', { hasText: label }).count()).toBe(0);
+    }
+    expect(await page.$eval('#vidiPlanStrip', (e) => (e as HTMLElement).hidden)).toBe(true);
+
+    // and a plan blob left on the device (a test device, or one synced from
+    // another) must not resurrect any of it
+    await page.evaluate(() => {
+        localStorage.setItem('pm_plan_v1', JSON.stringify({
+            v: 2, start: '2026-09-01', examDate: '2026-09-21', examDates: { physics: '2026-09-21' },
+            units: ['physics-2'], minsPerDay: 60, scope: null, days: [], learnDay: {},
+            subjects: ['physics'], optional: [], revBlockStart: 18, totalDays: 20,
+            implemented: true, lastNudgeDay: '', archived: false,
+        }));
+    });
+    await page.reload();
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+    expect(await page.$eval('#vidiPlanStrip', (e) => (e as HTMLElement).hidden)).toBe(true);
+    expect(await page.locator('.vidi-chip', { hasText: 'Change my plan' }).count()).toBe(0);
+});
+
+test('with the planner dormant, revision and the answer flow still work', async ({ page }) => {
+    // What must survive the removal: the two-stage Understand/Revise ticks and
+    // the plan-less next-day revision queue. Neither ever needed a schedule.
+    // Earned through the REAL flow, not by seeding pm_stage_v1 — the app reads
+    // stages into memory at boot, so a post-load write is simply ignored.
+    await page.addInitScript(() => {
+        try {
+            localStorage.clear();
+            localStorage.setItem('pm_today_override', '2026-09-01');
+            localStorage.setItem('pm_intro_done', '1');
+        } catch { /* file:// storage may be blocked */ }
+    });
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+
+    const qid = await page.evaluate(() => (window as any).PM_QUESTIONS[0].question_id);
+    await page.evaluate((q: string) => (window as any).PM_ANSWER.openQuestion(q), qid);
+    await page.waitForTimeout(400);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await leaveAndAnswer(page);                       // claims the Understand tick
+
+    // next day: the revision queues itself, with no plan in sight
+    await page.evaluate(() => localStorage.setItem('pm_today_override', '2026-09-02'));
+    if (!(await page.isVisible('#vidiFab'))) await page.click('#vidiClose');
+    await page.click('#vidiFab');
+    await page.waitForSelector('.vidi-widget .vw-item', { timeout: 6000 });
+    await page.waitForFunction(() => /due for revision/.test(
+        document.getElementById('vidiThread')!.textContent || ''), undefined, { timeout: 6000 });
+
+    // and the greeting never offers a plan
+    const text = await page.locator('#vidiThread').innerText();
+    expect(text).not.toMatch(/study plan|plan your exam|exam preparation/i);
+    expect(await page.locator('.vidi-chip', { hasText: 'Plan my exam prep' }).count()).toBe(0);
+
+    // the revise tick still completes to green
+    await page.click('.vidi-widget .vw-item');
+    await page.waitForTimeout(400);
+    await page.evaluate(() => (window as any).PM_ANSWER.revealAll());
+    await leaveAndAnswer(page);
+    const st = await page.evaluate((q: string) =>
+        JSON.parse(localStorage.getItem('pm_stage_v1') || '{}')[q], qid);
+    expect(st.u).toBeTruthy();
+    expect(st.r).toBeTruthy();
+});
+
+
+test('the home chat is never blank: a returning student with nothing due still gets a greeting', async ({ page }) => {
+    // Regression guard. Removing the plan offer left this branch rendering
+    // NOTHING — intro seen, no plan, nothing due for revision, so the student
+    // opened the chat to an empty thread and no chips.
+    await page.addInitScript(() => {
+        try {
+            localStorage.clear();
+            localStorage.setItem('pm_today_override', '2026-09-05');
+            localStorage.setItem('pm_intro_done', '1');
+        } catch { /* file:// storage may be blocked */ }
+    });
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    if (await page.isVisible('#vidiFab')) await page.click('#vidiFab');
+    // Wait for the SETTLED text, not the typing dots — say() renders "· · ·"
+    // first, which satisfies a naive "length > 0" and reads as a blank chat.
+    await page.waitForFunction(() => /step by step/.test(
+        document.getElementById('vidiThread')!.textContent || ''), undefined, { timeout: 8000 });
+    const text = await page.locator('#vidiThread').innerText();
+    expect(text.trim().length).toBeGreaterThan(20);
+    expect(text).toMatch(/step by step/i);
+    expect(text).not.toMatch(/study plan|plan your exam|exam preparation/i);
+});
+
+
+// ═══ the 2026-27 syllabus revision (2026-08-28) ═══════════════════════════════
+// Three mechanisms landed together: the physics renumbering (old Units 1+2 merged,
+// old 3-14 → 2-13, new Unit 14), the legacy-link remap that keeps forwarded
+// exam-eve links pointing at the chapter they meant, and the retire mechanism.
+
+test('a pre-renumbering exam-eve link still lands on the chapter it meant', async ({ page }) => {
+    // Old links carried the OLD physics key and no year: "#/exam-eve/4" and
+    // "#/exam-eve/physics-4" both meant Motion in a Plane (old Unit 4), which is
+    // Unit 3 in the 2026-27 book. A link WITH the year is taken literally.
+    await page.goto(URL + '#/exam-eve/physics-4');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Unit 3 — Motion in a Plane');
+
+    await page.goto(URL + '#/exam-eve/4');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Unit 3 — Motion in a Plane');
+
+    await page.goto(URL + '#/exam-eve/physics-4/2027');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Unit 4 — Laws of Motion');
+
+    // Subject keys with an underscore never matched the old route regex, so a
+    // Maths-1B exam-eve link fell through to the catalog.
+    await page.goto(URL + '#/exam-eve/mathematics_1b-3/2027');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('The Straight Line');
+});
+
+test('the physics bank is on the 2026-27 numbering and Unit 14 is coming-soon', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    const r = await page.evaluate(() => {
+        const units = ((window as any).PM_UNITS as any[]).filter((u) => !u.subject);
+        const byN: Record<number, any> = {};
+        for (const u of units) byN[u.number] = u;
+        return {
+            n: units.length,
+            u1: byN[1]?.name, u1n: byN[1]?.questions.length,
+            u3: byN[3]?.name, u14: byN[14]?.name,
+            u14ready: byN[14]?.questions.filter((e: any) => e.question_id).length,
+            u14coming: byN[14]?.questions.length,
+            patternsLaq: (window as any).PM_PATTERNS?.mathematics?.sections?.find((s: any) => s.key === 'LAQ')?.marks,
+        };
+    });
+    expect(r.n).toBe(14);
+    expect(r.u1).toBe('Physical World and Measurement');
+    expect(r.u1n).toBe(25);                               // 3 + 22 merged
+    expect(r.u3).toBe('Motion in a Plane');
+    expect(r.u14).toBe('Physics of Emerging Technologies');
+    expect(r.u14ready).toBe(0);
+    expect(r.u14coming).toBeGreaterThan(0);
+    expect(r.patternsLaq).toBe(8);                        // the maths LAQ is 8 marks now
+});
+
+test('a retired card renders on a forwarded link with the syllabus banner', async ({ page }) => {
+    // No card is retired yet (the official syllabus lists are not in hand), so the
+    // banner path is exercised by pinning PM_RETIRED before the page's own data
+    // script assigns it — a setter that ignores the assignment keeps the pin.
+    const qid = 'ts_ipe_p1_um_fundamental_vs_derived_units';
+    await page.addInitScript((id: string) => {
+        const pinned = { [id]: { wef: '2026-27', reason: 'this topic was removed from the syllabus', unit: 'Physical World and Measurement' } };
+        Object.defineProperty(window, 'PM_RETIRED', { get: () => pinned, set: () => { /* pinned */ }, configurable: true });
+    }, qid);
+    await page.goto(URL + '#/q/' + qid);
+    await page.waitForSelector('.page', { timeout: 8000 });
+    const chip = page.locator('.question-meta .chip-retired');
+    expect(await chip.count()).toBe(1);
+    expect(await chip.textContent()).toContain('Not in the 2026-27 syllabus');
+    expect(await chip.textContent()).toContain('removed from the syllabus');
+});
+
+test('a card that is not retired shows no syllabus banner', async ({ page }) => {
+    await page.goto(URL + '#/q/ts_ipe_p1_um_fundamental_vs_derived_units');
+    await page.waitForSelector('.page', { timeout: 8000 });
+    expect(await page.locator('.question-meta .chip-retired').count()).toBe(0);
+});
+
+
+test('a pre-renumbering Maths-1A link lands on the chapter it meant', async ({ page }) => {
+    // The 2026-27 Maths-1A book inserted Sets and Relations at 1 and Sequences
+    // and Series at 3, so old mathematics-4 (Addition of Vectors) is now
+    // mathematics-6. Same trap as physics: every old key is still a valid key
+    // naming a DIFFERENT chapter, so only the trailing year tells them apart.
+    await page.goto(URL + '#/exam-eve/mathematics-4');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Addition of Vectors');
+
+    await page.goto(URL + '#/exam-eve/mathematics-6/2027');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Addition of Vectors');
+
+    // Maths-1B did NOT renumber, so its old keys must pass through untouched.
+    await page.goto(URL + '#/exam-eve/mathematics_1b-3');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('The Straight Line');
+});
+
+test('Maths-1A is on the 2026-27 numbering with its two new chapters listed', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    const r = await page.evaluate(() => {
+        const u = ((window as any).PM_UNITS as any[]).filter((x) => x.subject === 'mathematics');
+        const byN: Record<number, any> = {};
+        for (const x of u) byN[x.number] = x;
+        const ready = (n: number) => byN[n]?.questions.filter((e: any) => e.question_id).length;
+        return {
+            n: u.length,
+            u1: byN[1]?.name, u1ready: ready(1),
+            u3: byN[3]?.name, u3ready: ready(3),
+            u8: byN[8]?.name, u9: byN[9]?.name, u12: byN[12]?.name,
+        };
+    });
+    expect(r.n).toBe(12);
+    expect(r.u1).toContain('Sets and Relations');
+    expect(r.u1ready).toBe(0);                       // announced, not written yet
+    expect(r.u3).toContain('Sequences and Series');
+    expect(r.u3ready).toBe(0);
+    // the book says "and", not the old "upto"
+    expect(r.u8).toContain('Trigonometric Ratios and Transformations');
+    // NOT removed, despite a circular proposing it — see docs/SYLLABUS_2026_27.md
+    expect(r.u9).toContain('Trigonometric Equations');
+    expect(r.u12).toContain('Properties of Triangles');
 });

@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 9,
+    "number": 8,
     "name": "Gravitation"
   },
   "chapter": "Gravitation",
@@ -73,7 +73,8 @@
             "depth"
           ]
         },
-        "memory_tip": "g_d = g(1 − d/R): only the sphere below your feet still pulls."
+        "memory_tip": "g_d = g(1 − d/R): only the sphere below your feet still pulls.",
+        "margin_note": "First mark. The formula, with R and d named underneath it."
       },
       {
         "id": "s2_centre",
@@ -112,8 +113,10 @@
             "centre"
           ]
         },
-        "memory_tip": "At the centre d = R, so g = 0 — there is no sphere left below you."
+        "memory_tip": "At the centre d = R, so g = 0 — there is no sphere left below you.",
+        "margin_note": "Second mark. Substitute d = R and show that line, then box g = 0."
       }
     ]
-  }
+  },
+  "insider_note": "Two questions in one sentence, one mark each — the formula alone answers only half of what was asked."
 }

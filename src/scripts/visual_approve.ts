@@ -66,6 +66,20 @@ async function main(): Promise<void> {
     const cached = await loadCachedSim(conceptId);
     const conceptJson = loadConceptJson(conceptId);
     const expectsMotion = deriveMotionExpectations(conceptJson ?? cached.physics_config);
+
+    /**
+     * The concept-JSON state id a captured id belongs to.
+     *
+     * A non-default scene_group is captured under the synthetic id
+     * `<STATE>@<group>` (ExtraSceneGroups, screenshotter.ts). It is the SAME state
+     * seen from a different picker position, so it inherits that state's motion
+     * expectation. deriveMotionExpectations only knows ids that literally appear in
+     * the concept JSON, so without this every extra view is approved as UNKNOWN and
+     * therefore compare:true — and an animated view live-compared frame-to-frame is
+     * precisely the flakiness compare:false exists to prevent. It would go red on
+     * the next honest run and be read as a regression.
+     */
+    const baseStateId = (capturedId: string): string => capturedId.split('@')[0];
     const unknownStates: string[] = [];
 
     const statePngs = readdirSync(runDir)
@@ -130,10 +144,11 @@ async function main(): Promise<void> {
         // assumed: an unpinnable animated state under a guessed compare:true is
         // exactly how electric_potential_point_charge got a 2.90% baseline that
         // could never pass (2026-08-11).
-        const animated = expectsMotion[stateId] === true;
-        if (expectsMotion[stateId] === undefined) unknownStates.push(stateId);
+        const motionKey = baseStateId(stateId);
+        const animated = expectsMotion[motionKey] === true;
+        if (expectsMotion[motionKey] === undefined) unknownStates.push(stateId);
         states[stateId] = { compare: !animated };
-        console.log(`   ${animated ? '◌' : '✓'} ${stateId}.png (${Math.round(downscaled.length / 1024)} KB)${animated ? ' — compare:false (animated state, reference only)' : ''}${expectsMotion[stateId] === undefined ? ' — compare:true on an UNKNOWN motion expectation (guess)' : ''}`);
+        console.log(`   ${animated ? '◌' : '✓'} ${stateId}.png (${Math.round(downscaled.length / 1024)} KB)${animated ? ' — compare:false (animated state, reference only)' : ''}${expectsMotion[motionKey] === undefined ? ' — compare:true on an UNKNOWN motion expectation (guess)' : ''}${motionKey !== stateId ? ` — scene_group view, motion inherited from ${motionKey}` : ''}`);
 
         // Frozen baseline — the SET_TIME_FREEZE deterministic capture. This is
         // what gives ANIMATED states real H2 protection (live compare is off

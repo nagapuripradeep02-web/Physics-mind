@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -72,7 +72,8 @@
             "moment of inertia",
             "increases"
           ]
-        }
+        },
+        "memory_tip": "One test for every question of this kind: nearer the axis lowers I, farther raises it."
       },
       {
         "id": "s2_effect",
@@ -111,8 +112,10 @@
             "omega decreases",
             "day increases"
           ]
-        }
+        },
+        "memory_tip": "T = 2π/ω, so ω down means T up. A 1% slower spin would add about 15 minutes to the day."
       }
     ]
-  }
+  },
+  "insider_note": "The direction of the change is the marked answer. Write INCREASES, and give the I-up-ω-down chain that reaches it."
 }

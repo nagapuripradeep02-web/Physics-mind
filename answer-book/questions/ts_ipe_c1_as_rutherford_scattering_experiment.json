@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 2+2 mark split are claims until a Telangana IPE teacher confirms them."
+    "note": "PREDICTED, not asked. This question is not listed in the Sri Chaitanya Junior Fastrack chemistry section; it comes from the enumeration sweep of the Atomic Structure syllabus against the standard question archetypes. Both the question and the 2+2 mark split are claims until a Telangana IPE teacher confirms them. AI chemistry check 2026-08-25: the three observations, the one-in-twenty-thousand figure and each conclusion verified; one common mistake corrected for grammar (explanation text only, marked lines and marks untouched)."
   },
   "answer": {
     "page_header": [
@@ -56,7 +56,7 @@
         ],
         "why": "The three observations are the evidence, and each one leads to a different conclusion. Writing them as a numbered list makes the pairing with the conclusions easy for the examiner to follow.",
         "common_mistakes": [
-          "Leaving out the third observation. The particles that came back are the one that proves the nucleus is heavy.",
+          "Leaving out the third observation. The particles that came back are the ones that prove the nucleus is heavy.",
           "Naming a different metal foil. The experiment used gold because it can be beaten very thin."
         ],
         "memory_tip": "Most through, few bent, very few back. Three observations, three conclusions.",

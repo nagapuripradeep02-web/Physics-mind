@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 7,
+    "number": 6,
     "name": "System of Particles and Rotational Motion"
   },
   "chapter": "System of Particles and Rotational Motion",
@@ -81,7 +81,8 @@
             "torque",
             "r F sin theta"
           ]
-        }
+        },
+        "memory_tip": "Three factors in τ = rF sin θ. Only r changes in this question; the force does not."
       },
       {
         "id": "s2_reason",
@@ -120,8 +121,10 @@
             "torque zero",
             "no turning"
           ]
-        }
+        },
+        "memory_tip": "Anything multiplied by zero is zero. A 1000 N push at r = 0 still gives τ = 0."
       }
     ]
-  }
+  },
+  "insider_note": "The second mark is one line of symbols — r = 0, so τ = 0. An answer in words alone does not reach it."
 }

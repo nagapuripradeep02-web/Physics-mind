@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_liquids_no_linear_areal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why do liquids have no linear and areal expansions?",
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 8,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "A liquid has no fixed shape",
+      "marks": 1
+    },
+    {
+      "label": "Only cubical expansion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2019 (Q8) — Section A, 2 marks. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from that paper. Physics hand-checked: a liquid has a definite volume but no definite shape, so it has no length and no surface area of its own to expand; only cubical expansion, ΔV = γV₀Δθ, is defined for it, and the relations β = 2α and γ = 3α belong to solids."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_shape",
+        "kind": "text",
+        "label": "A liquid has no fixed shape",
+        "marks": 1,
+        "mark_note": "No fixed shape",
+        "lines": [
+          "A liquid has no shape of its own. It takes",
+          "the shape of the vessel that holds it.",
+          "So a liquid has no definite length and no",
+          "definite surface area of its own."
+        ],
+        "margin_note": "First mark. Say that a liquid has no shape of its own.",
+        "why": "Linear expansion needs a definite length and areal expansion needs a definite surface, and a liquid supplies neither because it flows into the shape of its container.",
+        "common_mistakes": [
+          "Saying that liquids do not expand at all. They do expand, but only in volume."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a liquid has no shape of its own, so it has no definite length or area.",
+          "accept": [
+            "no shape of its own",
+            "takes the shape of the vessel",
+            "no definite length or area"
+          ],
+          "reject": [
+            "only cubical expansion"
+          ],
+          "heard_as": [
+            "no shape",
+            "shape of the vessel",
+            "no length"
+          ]
+        },
+        "memory_tip": "No fixed shape means no fixed length and no fixed area to measure."
+      },
+      {
+        "id": "s2_volume",
+        "kind": "boxed_final",
+        "label": "Only cubical expansion",
+        "marks": 1,
+        "mark_note": "Cubical only",
+        "lines": [
+          "A liquid does have a definite volume, so",
+          "only its change in volume can be measured.",
+          {
+            "text": "ΔV = γV₀Δθ",
+            "style": "eq"
+          },
+          {
+            "text": "Liquids show cubical expansion only",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name cubical, or volume, expansion as the only kind.",
+        "why": "Volume is the one dimension a liquid keeps, so the coefficient of cubical expansion γ is the only expansion coefficient a liquid can have.",
+        "common_mistakes": [
+          "Writing β = 2α and γ = 3α for a liquid. Those relations hold for solids."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a liquid has a definite volume, so only cubical expansion is defined for it.",
+          "accept": [
+            "only cubical expansion",
+            "volume expansion only",
+            "definite volume"
+          ],
+          "reject": [
+            "takes the shape of the vessel"
+          ],
+          "heard_as": [
+            "cubical",
+            "volume expansion",
+            "gamma"
+          ]
+        },
+        "memory_tip": "A liquid keeps one definite thing, its volume. So only γ is defined for it."
+      }
+    ]
+  },
+  "insider_note": "Two marks — no definite shape, therefore only volume expansion. Naming cubical expansion by name is what earns the second."
+}

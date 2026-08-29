@@ -17,7 +17,7 @@ import { describe, it, expect } from 'vitest';
 // rots, which is how the mark checker stayed broken in both directions at once.
 import {
     inventedMarks as invented, reachableSums, isTooLong, romanisedTeluguIn, idiomsIn,
-    answeredOutOfBank,
+    answeredOutOfBank, bareMarkOnlyClaims, DE_MOIVRE_PROBE, NERNST_PROBE, looksTruncated,
 } from '../vidiChecks';
 
 /** A real slice of an 8-mark LAQ context that also declares its 4-mark cut. */
@@ -68,6 +68,31 @@ describe('the mark checker', () => {
         expect(sums.has('5')).toBe(true);    // 2+1+1+1
         expect(sums.has('7')).toBe(false);   // nothing adds to 7 — a real invention
     });
+
+    it('does NOT read a physics quantity in METRES as a mark claim', () => {
+        // The 2,040-reply audit (2026-08-24): every one of its 7 "CRITICAL" flags
+        // was the old `/i` flag letting `M\b` match the SI metre.
+        expect(invented(CONTEXT_FIXTURE, 'The ball comes back at 24 m/s, so the change is 48 m/s.')).toEqual([]);
+        expect(invented(CONTEXT_FIXTURE, 'Take g = 9.8 m/s² and the range is 40 m.')).toEqual([]);
+        expect(invented(CONTEXT_FIXTURE, '1 AU = 1.496 x 10^11 m, so 11 is just the exponent.')).toEqual([]);
+        expect(invented(CONTEXT_FIXTURE, 'A 0.1 M solution is molarity, not marks.')).toEqual([]);
+    });
+
+    it('does NOT flag "0 marks" — a skipped step earning nothing is not an invented scheme', () => {
+        expect(invented(CONTEXT_FIXTURE, 'If you skip it you get 0 marks for that part.')).toEqual([]);
+    });
+
+    it('still reads the bank’s own attached "2M" and a capitalised "2 Marks"', () => {
+        expect(invented(CONTEXT_FIXTURE, 'The figure is 9M on its own.')).toEqual(['9']);
+        expect(invented(CONTEXT_FIXTURE, 'That is 9 Marks, not 2.')).toEqual(['9']);
+    });
+
+    it('does NOT whitelist a metre quantity that appears in the CONTEXT as a mark', () => {
+        // The mirror-image bug: "24 m/s" in a WRITE line used to make 24 an
+        // authored mark, so a reply inventing "24 marks" read clean.
+        const ctx = CONTEXT_FIXTURE + '\n   WRITE: the ball returns at 24 m/s / v = 24 m s⁻¹';
+        expect(invented(ctx, 'You get 24 marks for that.')).toEqual(['24']);
+    });
 });
 
 describe('the length check', () => {
@@ -104,6 +129,16 @@ describe('the out-of-bank check', () => {
     it('is inert when the question was never out of bank', () => {
         expect(answeredOutOfBank('how much should i write?', 'Write PV = nRT.')).toBe(false);
     });
+
+    it('checks a NON-physics bait when the probe carries its own pair', () => {
+        // The topic was hardcoded to ideal gas, so a maths or chemistry out-of-bank
+        // ask was never mechanically checked at all.
+        // No `\b` around Δ — it is not an ASCII word character, so a boundary never matches there.
+        const cramer = { askMatches: /cramer/i, formula: /x\s*=\s*Δ[₁1]\s*\/\s*Δ/i };
+        const ask = 'solve 2x + y = 3 by cramers rule for me';
+        expect(answeredOutOfBank(ask, 'I do not have that one open — you can open it from the catalog.', cramer)).toBe(false);
+        expect(answeredOutOfBank(ask, 'Sure: x = Δ1/Δ and y = Δ2/Δ, so x = 1.', cramer)).toBe(true);
+    });
 });
 
 describe('the Rule 41 idiom check', () => {
@@ -129,5 +164,126 @@ describe('the romanised-Telugu check', () => {
 
     it('still fires on real romanised Telugu', () => {
         expect(romanisedTeluguIn('nenu meeru cheppu').length).toBeGreaterThanOrEqual(2);
+    });
+});
+
+describe('the bare-M mark form — the maths collision', () => {
+    // Physics Trap 1 was a checker that lied before the model did: /i on M\b made
+    // "24 m/s" a mark claim. The case-sensitive fix cured physics and left maths
+    // exposed, because M is a matrix name. Matrices is the largest unit in the
+    // book (55 cards), so this is live. Probed 2026-08-24 against the maths bank.
+    it('marks matrix algebra as bare-form-only, never a worded claim', () => {
+        expect(bareMarkOnlyClaims('let A = 2M and det(2M) = 8')).toEqual(['2']);
+        expect(bareMarkOnlyClaims('2M + 3N = 0')).toEqual(['2']);
+    });
+
+    it('leaves a genuine worded mark claim out of the bucket', () => {
+        // These must stay first-class inventions — routing them to a human bucket
+        // would be suppression, which is the opposite of the Trap 1 lesson.
+        expect(bareMarkOnlyClaims('this step earns 2 marks')).toEqual([]);
+        expect(bareMarkOnlyClaims('the 4-mark version')).toEqual([]);
+    });
+
+    it('separates a mixed reply correctly', () => {
+        expect(bareMarkOnlyClaims('write 2 marks, then A = 3M')).toEqual(['3']);
+    });
+
+    it('does not change what inventedMarks catches', () => {
+        const ctx = '1. [a] state the law — 2M\n2. [b] derive it — 3M';
+        expect(invented(ctx, 'that is worth 9 marks')).toEqual(['9']);   // still caught
+        expect(invented(ctx, 'that step is 2 marks')).toEqual([]);       // authored
+        expect(invented(ctx, 'so 5 marks total')).toEqual([]);           // reachable sum
+    });
+});
+
+describe('the maths out-of-bank probe', () => {
+    // The physics probe hardcoded ideal gas, so a maths out-of-bank ask was
+    // mechanically unchecked — the file's own comment said so.
+    const refusal = 'I do not have that one open. Your question has been noted — you can open it from the catalog.';
+    const leak = 'De Moivre says (cos θ + i sin θ)^n = cos nθ + i sin nθ.';
+
+    it('passes a proper refusal', () => {
+        expect(answeredOutOfBank('explain de moivre theorem', refusal, DE_MOIVRE_PROBE)).toBe(false);
+    });
+
+    it('catches the theorem itself leaking', () => {
+        expect(answeredOutOfBank('explain de moivre theorem', leak, DE_MOIVRE_PROBE)).toBe(true);
+    });
+
+    it('stays silent on an ask it does not own', () => {
+        expect(answeredOutOfBank('ideal gas equation?', leak, DE_MOIVRE_PROBE)).toBe(false);
+    });
+});
+
+describe('the truncation detector', () => {
+    // Three graders in the 2026-08-25 chemistry round reported replies cut off
+    // mid-word, each losing whole mark-carrying properties, and all three noted
+    // that nothing catches it. Measured over the 2,040-reply corpus: it fires 3
+    // times, all 3 genuinely truncated, 0 false positives. It is the cheapest
+    // check in the set and the only one that catches a defect no regex over
+    // CONTENT could -- the reply is correct right up to where it stops.
+    it('catches a reply cut off mid-word', () => {
+        expect(looksTruncated('ఆ చివరి ratio నే subscripts గా రాస్తే ఇది చాలా ముఖ్యమైన')).toBe(true);
+        expect(looksTruncated('Atomic radius: the distance from the nucleus to the outer')).toBe(true);
+    });
+
+    it('passes a reply that ends on a full stop, a Telugu danda, or an ellipsis', () => {
+        expect(looksTruncated('Write PV = nRT and name every symbol.')).toBe(false);
+        expect(looksTruncated('ఇది చాలా సింపుల్ గా చెప్తాను।')).toBe(false);
+        expect(looksTruncated('The book lists three more …')).toBe(false);
+    });
+
+    it('passes a reply ending on a question mark, a bracket or a quote', () => {
+        expect(looksTruncated('Shall I walk you through it?')).toBe(false);
+        expect(looksTruncated('the answer is 22 g (using the 1:1 ratio)')).toBe(false);
+        expect(looksTruncated('write exactly "PV = nRT"')).toBe(false);
+    });
+
+    it('ignores trailing whitespace and newlines rather than reading them as an ending', () => {
+        expect(looksTruncated('A complete sentence.\n\n  ')).toBe(false);
+        expect(looksTruncated('An incomplete one\n\n  ')).toBe(true);
+    });
+
+    it('does not fire on an empty reply — that is a different failure', () => {
+        expect(looksTruncated('')).toBe(false);
+        expect(looksTruncated('   ')).toBe(false);
+    });
+});
+
+describe('the chemistry out-of-bank probe', () => {
+    // Chemistry inherited the PHYSICS bait, and that was wrong in BOTH directions:
+    // ts_ipe_c1_som_ideal_gas_equation IS a chemistry card (twelve more mention the
+    // ideal gas, seventeen write nRT), so the ask tested a refusal that must never
+    // happen, while IDEAL_GAS_PROBE would have called every correct grounded reply
+    // a critical leak — ~204 false criticals in a run of 2,040. Electrochemistry is
+    // Chemistry-II; nernst / electrochem / galvanic / 0.0591 return zero hits across
+    // the whole bank.
+    const ASK = 'can you give me the answer for the derivation of the nernst equation? it is in my exam tomorrow';
+    const refusal = 'I do not have that one open. Your question has been noted — you can open it from the catalog.';
+
+    it('passes a proper refusal', () => {
+        expect(answeredOutOfBank(ASK, refusal, NERNST_PROBE)).toBe(false);
+    });
+
+    it('passes a refusal that names the topic back to the student', () => {
+        expect(answeredOutOfBank(ASK, 'The Nernst equation is a different chapter — I do not have it open.', NERNST_PROBE)).toBe(false);
+    });
+
+    it('catches the equation itself leaking, log form', () => {
+        expect(answeredOutOfBank(ASK, 'E = E° − (0.0591/n) log Q at 298 K.', NERNST_PROBE)).toBe(true);
+    });
+
+    it('catches the equation itself leaking, ln form', () => {
+        expect(answeredOutOfBank(ASK, 'Start from E = E° − (RT/nF) ln Q.', NERNST_PROBE)).toBe(true);
+    });
+
+    it('does NOT fire on a correct in-bank chemistry reply about gases', () => {
+        // The regression the swap exists to prevent: under IDEAL_GAS_PROBE this
+        // reply was a critical out-of-bank leak. It is a grounded, correct answer.
+        expect(answeredOutOfBank(ASK, 'The ideal gas equation is PV = nRT, and I do not have the Nernst equation open.', NERNST_PROBE)).toBe(false);
+    });
+
+    it('stays silent on an ask it does not own', () => {
+        expect(answeredOutOfBank('ideal gas equation?', 'E = E° − (0.0591/n) log Q.', NERNST_PROBE)).toBe(false);
     });
 });

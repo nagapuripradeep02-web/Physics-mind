@@ -7,10 +7,10 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 2,
-    "name": "Units and Measurements"
+    "number": 1,
+    "name": "Physical World and Measurement"
   },
-  "chapter": "Units and Measurements",
+  "chapter": "Physical World and Measurement",
   "qtype": "VSAQ",
   "marks_total": 2,
   "paper_section": "Section A",
@@ -36,7 +36,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. This cell is not listed by either source book. It was asked in the AP March 2026 paper, Section A question 10, and is authored from that paper."
+    "note": "Unit 2 has NO Short Answer or Long Answer section in EITHER source book — the Fastrack (pp.4-5) and the TSBIE Basic Learning Material (pp.2-3) both list Very Short Answer questions only. So every Unit 2 card is a 2-mark VSAQ and no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. This cell is not listed by either source book. It was asked in the AP March 2026 paper, Section A question 10, and is authored from that paper. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -97,7 +97,7 @@
           "Its value equals the surface tension of the",
           "liquid, whose unit N m⁻¹ is the same thing."
         ],
-        "why": "J m⁻² and N m⁻¹ are the same combination written two ways, which is exactly why surface energy and surface tension have equal numerical values.",
+        "why": "J m⁻² and N m⁻¹ are the same combination written two ways, which is exactly why surface energy and surface tension have equal numerical values. Strictly, J m⁻² is surface energy PER UNIT AREA; the total surface energy of a film is measured in joules. Examiners accept \"surface energy\" for J m⁻², so write it, but know the per-area meaning.",
         "common_mistakes": [
           "Answering \"pressure\". Pressure is N m⁻², not J m⁻²."
         ],

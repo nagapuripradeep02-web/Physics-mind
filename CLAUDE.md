@@ -251,6 +251,22 @@ until the chemistry serving path lands, register NOWHERE else (sites 2/3/4/7/8 f
 chemistry ids — Gate 8b is all-or-nothing). Chemistry validation = `npm run validate:chemistry`.
 Full rules: `docs/CHEMISTRY_ARCHITECTURE.md` §7. — 2026-07-23)*
 
+*(MATHEMATICS concepts do NOT use these 8 sites either — same isolation contract, added here
+2026-08-09 because this section previously named ONLY chemistry and therefore actively misled an
+author working in the mathematics namespace. They live in `src/data/concepts/mathematics/` and
+register **NOWHERE else**: sites 2/3/4/7/8 are forbidden for mathematics ids. Verified live — the
+shipped, baseline-locked `definite_integral_as_accumulated_area` appears in ZERO of `panelConfig.ts`,
+`aiSimulationGenerator.ts` (`CONCEPT_RENDERER_MAP` / `PCPL_CONCEPTS`) and `intentClassifier.ts`.
+Mathematics validation = `npm run validate:mathematics`, which scans ONLY the mathematics dir;
+`npm run validate:concepts` reads the flat dir NON-recursively by design and **cannot see a
+mathematics concept at all**, so a green `validate:concepts` is NOT evidence about one. Note its
+warnings do not fail the run — read the WARN list explicitly. The ranked list in
+`docs/MATHEMATICS_DISCUSSIONS.md` §6 is blocking, and only `[LIVE]` archetypes in
+`docs/patterns/mathematics.md` may be specified. **Concept ids are ONE namespace across all three
+subjects** even though the directories are separate — check the catalog and the registries, not just
+the concept files. Full rules: `docs/MATHEMATICS_ARCHITECTURE.md` §5 +
+`src/data/concepts/mathematics/README.md`. — 2026-08-09)*
+
 ### Self-review checklist (before declaring a concept done)
 `tsc` 0 · `validate:concepts` target PASSES · Rule 15 (≥2 advance_mode) · Rule 16a (EPIC-L confronts the
 wrong belief via a straightforward contrast beat) · Rule 19 (≥3 primitives/state) · Rule 24

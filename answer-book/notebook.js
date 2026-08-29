@@ -119,10 +119,7 @@
     var chips = [
       question.class_label,
       // The chip names the PAPER, same table as the catalog's subject chips.
-      ({ physics: 'Physics', chemistry: 'Chemistry',
-         mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
-         botany: 'Botany-I', botany_2: 'Botany-II', zoology: 'Zoology' })[question.subject] ||
-        question.subject.charAt(0).toUpperCase() + question.subject.slice(1),
+      subjLabel(question.subject),
       'Unit ' + question.unit.number + ' · ' + question.unit.name,
       cut.paper_section + ' · ' + cut.qtype,
       'about ' + cut.expected_time_min + ' minutes'
@@ -145,6 +142,16 @@
     marksChip.className = 'chip chip-marks';
     marksChip.textContent = marksTotal + ' marks';
     meta.appendChild(marksChip);
+    // A forwarded link to a card whose topic left the syllabus: say so, plainly,
+    // above the answer (Rule 41). The card still renders — the student asked
+    // for it — but nothing else in the book will offer it again.
+    var ret = retiredOf(question.question_id);
+    if (ret) {
+      var rc = document.createElement('span');
+      rc.className = 'chip chip-retired';
+      rc.textContent = 'Not in the ' + ret.wef + ' syllabus — ' + ret.reason;
+      meta.appendChild(rc);
+    }
 
     $('accTotal').textContent = '/' + marksTotal;
   }
@@ -261,6 +268,61 @@
   var qIndexById = {};
   questions.forEach(function (q, i) { qIndexById[q.question_id] = i; });
 
+  /** The paper each subject sits (build-emitted from src/schemas/answerBook.ts
+      PAPER_PATTERNS — one table for the schema, the build and this player).
+      Absent on a build older than 2026-08-28; every reader below has a fallback. */
+  var PATTERNS = window.PM_PATTERNS || {};
+  /** Cards whose topic left the syllabus (build-emitted): still in PM_QUESTIONS
+      so a forwarded link renders, absent from UNITS so they are never offered.
+      question_id → {wef, reason, unit}. */
+  var RETIRED = window.PM_RETIRED || {};
+  function retiredOf(qid) { return RETIRED[qid] || null; }
+
+  /** The 2026-27 textbooks renumbered two papers (2026-08-28): the PHYSICS book
+      merged the old Units 1+2 into one and added a Unit 14, moving every chapter
+      down by one; the MATHS-1A book inserted "Sets and Relations" at 1 and
+      "Sequences and Series" at 3, pushing the old ten down. Links and saved plans
+      written BEFORE that carry the OLD keys — and the old keys are all still
+      valid keys, now naming a different chapter — so a legacy key cannot be told
+      from a new one by its shape. New exam-eve links therefore carry the exam
+      year as a trailing segment (#/exam-eve/physics-3/2027) and saved plans carry
+      `syllabus`; anything without the marker is remapped here. Maths-1B,
+      Chemistry and Botany did not move and pass through unchanged. */
+  var SYLLABUS_YEAR = '2027';
+  var LEGACY_UNIT_KEYS = {
+    'physics-1': 'physics-1', 'physics-2': 'physics-1', 'physics-3': 'physics-2',
+    'physics-4': 'physics-3', 'physics-5': 'physics-4', 'physics-6': 'physics-5',
+    'physics-7': 'physics-6', 'physics-8': 'physics-7', 'physics-9': 'physics-8',
+    'physics-10': 'physics-9', 'physics-11': 'physics-10', 'physics-12': 'physics-11',
+    'physics-13': 'physics-12', 'physics-14': 'physics-13',
+    'mathematics-1': 'mathematics-2', 'mathematics-2': 'mathematics-4',
+    'mathematics-3': 'mathematics-5', 'mathematics-4': 'mathematics-6',
+    'mathematics-5': 'mathematics-7', 'mathematics-6': 'mathematics-8',
+    'mathematics-7': 'mathematics-9', 'mathematics-8': 'mathematics-10',
+    'mathematics-9': 'mathematics-11', 'mathematics-10': 'mathematics-12'
+  };
+  function legacyUnitKey(key) {
+    return Object.prototype.hasOwnProperty.call(LEGACY_UNIT_KEYS, key) ? LEGACY_UNIT_KEYS[key] : key;
+  }
+  /** Read-side normaliser for a saved plan (localStorage or another device via
+      sync): a plan without `syllabus` was written against the old physics
+      numbering. Never a migration step — the stored blob is left as it was. */
+  function normalisePlan(p) {
+    if (!p || typeof p !== 'object' || p.syllabus === SYLLABUS_YEAR) return p;
+    var out = {};
+    for (var k in p) if (Object.prototype.hasOwnProperty.call(p, k)) out[k] = p[k];
+    if (Array.isArray(p.units)) {
+      var seen = {}, us = [];
+      for (var i = 0; i < p.units.length; i++) {
+        var nk = legacyUnitKey(String(p.units[i]));
+        if (!seen[nk]) { seen[nk] = true; us.push(nk); }
+      }
+      out.units = us;
+    }
+    out.syllabus = SYLLABUS_YEAR;
+    return out;
+  }
+
   var currentView = null;               // 'catalog' | 'notebook'
   var catFilter = { subject: 'ALL', qtype: 'ALL', unit: 'ALL', search: '' };
 
@@ -268,7 +330,12 @@
     currentView = v;
     var nb = v === 'notebook';
     var ee = v === 'exam-eve';
-    $('catalogView').hidden = nb || ee;
+    var dr = v === 'door';
+    // The catalog is the fallthrough view — anything not claimed above un-hides
+    // it — so every new view has to subtract itself here or it renders UNDER the
+    // catalog rather than instead of it.
+    $('catalogView').hidden = nb || ee || dr;
+    $('doorView').hidden = !dr;
     $('notebookView').hidden = !nb;
     $('examEveView').hidden = !ee;
     $('btnCatalog').hidden = !(nb || ee);
@@ -306,15 +373,204 @@
     return 'Asked: ' + parts.join(' · ');
   }
 
+  /** The study planner is DORMANT (founder, 2026-08-27) — removed for now, NOT
+      deleted, exactly the way "Test myself" was.
+
+      The scheduling itself is sound, but every minute it books rests on an
+      authored `expected_time_min` (LAQ 15, SAQ 8, VSAQ 4) that has never been
+      timed against a real student, and the book goes to real students now. A
+      plan a student follows for two weeks before discovering it was built on a
+      guess costs more trust than offering no plan at all — and trust is the
+      whole product.
+
+      Revive by setting `window.PM_PLANNER = true` or `pm_planner=1` in
+      localStorage. The e2e planner gates set exactly that, so the feature
+      stays PROVEN while it sleeps rather than rotting out of use. Revive it for
+      real once the three timings are measured, not estimated.
+
+      Everything that does not depend on a schedule keeps working: asking Vidi,
+      memory tips, insider notes, the step-by-step answers, the Understand and
+      Revise ticks, the plan-less next-day revision queue, and the exam-eve
+      chapter lists. */
+  function plannerOn() {
+    try { if (window.PM_PLANNER === true) return true; } catch (e) { /* ignore */ }
+    try { return localStorage.getItem('pm_planner') === '1'; } catch (e) { return false; }
+  }
+
   /** A unit's subject. Absent = physics: physics units predate the field, exactly the
       way an appearance with no board means TS. */
   function subjectOf(u) { return u.subject || 'physics'; }
+
+  /** The PAPER a student picks by — the one table every surface names a subject
+      from: the question chips, the catalog filter, and the plan's subject-and-date
+      picker. Module-scoped because the study plan now names subjects too, and two
+      copies would drift the day a sixth paper lands. */
+  var SUBJ_LABEL = { physics: 'Physics', chemistry: 'Chemistry',
+                     mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
+                     botany: 'Botany', zoology: 'Zoology',
+                     botany_2: 'Botany-II' };
+  function subjLabel(s) {
+    return SUBJ_LABEL[s] || (String(s || '').charAt(0).toUpperCase() + String(s || '').slice(1));
+  }
 
   /** Unit numbers namespace PER SUBJECT (physics Unit 3 and maths Unit 3 are
       different chapters), so everything that identifies a unit — the chapter
       chips, the triage box, the exam-eve route — keys on subject-number,
       never the bare number. */
   function unitKey(u) { return subjectOf(u) + '-' + u.number; }
+
+  /** Chapters a student can OPEN come first (founder, 2026-08-27). The four free
+      chapters are #4, #3, #4 and #3 of their subjects — never #1 — so picking
+      Physics landed on Physical World, Units and Measurements and Motion in a
+      Straight Line, all locked, before the one chapter that would open. The
+      student met three closed doors before the product said anything at all.
+
+      A stable PARTITION, not a comparator sort: order WITHIN each half must stay
+      exactly units.json order, because a chapter list that is not in chapter
+      order is its own bug.
+
+      For a student holding a pass nothing is locked, so this is a no-op and the
+      catalog reads exactly as it always did. Same before the entitlement list
+      answers, since locked() is false until then — which is why the first paint
+      waits on Gate.whenListed rather than reshuffling under a thumb. */
+  function unitsFreeFirst(list) {
+    // Only when the lock cues are actually on. Reordering a chapter list out of
+    // chapter order is its own bug (see above) and is justified ONLY by the
+    // paywall — so with no gate, or with a pass, the catalog reads 1, 2, 3 …
+    // exactly as units.json lists it, unwritten chapters included, in place.
+    // Before 2026-08-28 this fell out for free: nothing was locked, so the
+    // partition was a no-op. Once "openable" also meant "has answers", the three
+    // announced-but-unwritten chapters started being moved to the end of the
+    // FREE book too, which no reader has a reason to expect.
+    if (!lockCuesOn()) return list;
+    var open = [], shut = [];
+    for (var i = 0; i < list.length; i++) {
+      (unitOpenable(list[i]) ? open : shut).push(list[i]);
+    }
+    return open.concat(shut);
+  }
+
+  /** Answers a student can actually open in this chapter. */
+  function readyCount(u) {
+    var n = 0;
+    for (var i = 0; i < u.questions.length; i++) if (u.questions[i].question_id) n++;
+    return n;
+  }
+
+  /** A chapter is LOCKED only if the pass would actually open something in it.
+      A chapter listed for its true shape but with nothing written yet (physics
+      Unit 14 "Physics of Emerging Technologies", 2026-08-28) has no answers to
+      sell: labelling it "Locked" invites a student to pay for an empty chapter,
+      and counting its coming-soon rows into the offer overstates what the pass
+      buys. It reads as "0 of 5 ready" either way, which is the honest line. */
+  function unitLocked(u) { return readyCount(u) > 0 && Gate.locked(unitKey(u)); }
+
+  /** Can a student open something here RIGHT NOW? Drives the order only. An
+      unwritten chapter is not locked (nothing to sell) but it is not openable
+      either, so it must not be promoted into the free half — it sorts last,
+      with no pill, reading "0 of 5 ready". */
+  function unitOpenable(u) { return readyCount(u) > 0 && !Gate.locked(unitKey(u)); }
+
+  /** Draw a lock cue only when the answer is KNOWN and MEANINGFUL: the gate is
+      live, the list has actually answered, and this student does not already
+      hold a pass. Without the middle term a server blip paints "Free" on all 38
+      chapters, which is worse than no cue at all; without the last one a paying
+      student reads a lock vocabulary that no longer applies to them. */
+  function lockCuesOn() { return Gate.on() && Gate.listed() && !Gate.hasPass(); }
+
+  /** The offer, drawn once, immediately above the first locked chapter.
+
+      Counts are WHOLE-BOOK on purpose even when the catalog is filtered to one
+      subject: the pass unlocks the book, so a physics-only student reading
+      "unlock all 38 chapters" is reading what they would actually get.
+
+      The price is the one the SERVER decided for this device (ab_price_for,
+      carried in the same list reply) — the client still never invents a number,
+      so a founding student reads ₹99 and a later one ₹199, and before the
+      server has said anything the line simply carries no number. */
+  function buildWall() {
+    var lockedQs = 0;
+    UNITS.forEach(function (u) {
+      if (unitLocked(u)) lockedQs += readyCount(u);
+    });
+    var price = Gate.price();
+
+    var w = document.createElement('div');
+    w.className = 'cat-wall';
+    var t = document.createElement('p');
+    t.className = 'cat-wall-title';
+    // Chapters that HAVE answers — the pass cannot unlock a chapter nobody has
+    // written yet, so it must not be counted in what the pass buys.
+    var sellableUnits = 0;
+    UNITS.forEach(function (u) { if (readyCount(u) > 0) sellableUnits++; });
+    t.textContent = 'Unlock all ' + sellableUnits + ' chapters' + (price ? ' · ₹' + price : '');
+    w.appendChild(t);
+    var s = document.createElement('p');
+    s.className = 'cat-wall-sub';
+    s.textContent = lockedQs + ' more answers, each one written out step by step ' +
+      'with the marks every step earns.';
+    w.appendChild(s);
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'cat-wall-btn';
+    b.textContent = 'See what you get';
+    b.addEventListener('click', function () { location.hash = '#/pricing'; });
+    w.appendChild(b);
+    return w;
+  }
+
+  /** The chapter name as a student should READ it in the chapter picker.
+      units.json disambiguates across papers by suffixing the subject —
+      "Atomic Structure (Chemistry)", "Functions (Maths-1A)" — which exists only
+      because every subject's chapters used to be listed together. The picker now
+      scopes by subject (or groups by it), so that suffix is noise to read past.
+      Only a KNOWN subject label is stripped, so a chapter whose real name ends in
+      brackets is never mangled, and the underlying data is untouched — this is a
+      display concern, and the notebook header still shows the full name. */
+  function chapterLabel(u) {
+    return String(u.name || '').replace(
+      /\s*\((?:Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B)\)\s*$/, ''
+    );
+  }
+
+  /** A QUESTION's unit key. A question carries its subject at the TOP level, and its
+      unit as {number, name} with no subject of its own (src/schemas/answerBook.ts:232),
+      so unitKey(question.unit) would read EVERY card as physics. Build it from the
+      question's own subject instead — same absent-means-physics rule as subjectOf. */
+  function questionUnitKey(q) { return (q.subject || 'physics') + '-' + q.unit.number; }
+
+  /** The chapter's 3-star set, for Vidi's grounding text. Keyed on subject-number,
+      never the bare number: keying on the number told a Maths Unit 3 (Matrices) card
+      that its chapter-mates were Physics Unit 3 (Motion in a Straight Line) questions,
+      and physics sorts first in UNITS, so the maths mates were never reached at all. */
+  function chapterMates(q, limit) {
+    var mates = [];
+    var want = questionUnitKey(q);
+    var cap = limit || 6;
+    for (var u2 = 0; u2 < UNITS.length; u2++) {
+      if (unitKey(UNITS[u2]) !== want) continue;
+      var qs2 = UNITS[u2].questions;
+      for (var e2 = 0; e2 < qs2.length && mates.length < cap; e2++) {
+        var me2 = qs2[e2];
+        if (me2.question_id && me2.stars === 3 && me2.question_id !== q.question_id) {
+          // Finish the word. A bare slice(0,80) cut mid-word — three graders quoted
+          // "...completely burn 100 ml of acetylen" and "...in acid medium (or) Write t"
+          // out of this list, and Vidi repeats it to students verbatim. Extend FORWARD
+          // to the next space so the clip can only ever ADD characters; trimming
+          // backwards could drop a word a caller asserts on.
+          var t2 = String(me2.text);
+          if (t2.length > 80) {
+            var end2 = t2.indexOf(' ', 80);
+            t2 = (end2 > 0 && end2 <= 100) ? t2.slice(0, end2) : t2.slice(0, 80);
+            t2 = t2.replace(/[\s,;:.]+$/, '') + '…';
+          }
+          mates.push(me2.section + ' ' + me2.number + ': ' + t2);
+        }
+      }
+    }
+    return mates;
+  }
+  // --- end of the Vidi context key helpers ---
 
   function entryMatches(e, u) {
     if (catFilter.subject !== 'ALL' && subjectOf(u) !== catFilter.subject) return false;
@@ -335,52 +591,97 @@
     var coming = allEntries.length - ready;
     $('catSub').textContent = ready + ' answers ready' + (coming ? ' · ' + coming + ' more coming' : '');
 
-    // Subject chips. Hidden while the book holds ONE subject, so a physics-only
-    // build looks exactly as it did — the row appears the moment a second subject
-    // is authored. Counts are whole-inventory, static like the qtype counts below.
-    var subjRow = $('subjectChips');
-    subjRow.innerHTML = '';
+    // Name the STREAM beside the board and the year. This link is forwarded
+    // between students, so the header has to answer "is this book for me?"
+    // before the reader scrolls — the subject chips alone make that an
+    // inference. Absent (the full build) leaves the eyebrow subject-neutral.
+    var eyebrow = $('catEyebrow');
+    if (eyebrow && window.PM_STREAM) {
+      var base = 'Telangana IPE · First year';
+      var eyeText = base + ' · ' + window.PM_STREAM;
+      if (Door.enabled()) {
+        // The eyebrow already names the board, the year and the group, so it is
+        // the honest place to change them from — no new chrome in a topbar that
+        // already carries four controls on a phone. Only the WORD is the button:
+        // wrapping the whole line made it read as one tracked small-caps label
+        // that happened to end in CHANGE, with no affordance at all.
+        eyebrow.textContent = '';
+        eyebrow.appendChild(document.createTextNode(eyeText + ' · '));
+        var chg = document.createElement('button');
+        chg.type = 'button';
+        chg.id = 'btnChangeTrack';
+        chg.className = 'cat-eyebrow-btn';
+        chg.textContent = 'Change';
+        chg.addEventListener('click', function () { location.hash = '#/choose'; });
+        eyebrow.appendChild(chg);
+      } else {
+        eyebrow.textContent = eyeText;
+      }
+    }
+
+    // The subject picker. Hidden while the book holds ONE subject, so a
+    // physics-only build looks exactly as it did — it appears the moment a
+    // second subject is authored. Counts are whole-inventory, static like the
+    // qtype counts below.
+    var subjField = $('subjectField');
+    var subjSel = $('subjectSelect');
     var subjects = [];
     UNITS.forEach(function (u) {
       if (subjects.indexOf(subjectOf(u)) < 0) subjects.push(subjectOf(u));
     });
-    subjRow.hidden = subjects.length < 2;
+    subjField.hidden = subjects.length < 2;
     if (subjects.length >= 2) {
-      // The chip names the PAPER, which is what a student picks by.
-      var SUBJ_LABEL = { physics: 'Physics', chemistry: 'Chemistry',
-                         mathematics: 'Maths-1A', mathematics_1b: 'Maths-1B',
-                         botany: 'Botany-I', botany_2: 'Botany-II', zoology: 'Zoology' };
-      var subjChips = [{ key: 'ALL', label: 'All subjects', n: allEntries.length }];
+      subjSel.innerHTML = '';
+      // The option names the PAPER, which is what a student picks by.
+      var subjOpts = [{ key: 'ALL', label: 'All subjects', n: allEntries.length }];
       subjects.forEach(function (sName) {
         var n = 0;
         UNITS.forEach(function (u) { if (subjectOf(u) === sName) n += u.questions.length; });
-        subjChips.push({ key: sName, label: SUBJ_LABEL[sName] || sName, n: n });
+        subjOpts.push({ key: sName, label: SUBJ_LABEL[sName] || sName, n: n });
       });
-      subjChips.forEach(function (c) {
-        var sb = document.createElement('button');
-        sb.type = 'button';
-        sb.className = 'cat-chip' + (catFilter.subject === c.key ? ' on' : '');
-        sb.setAttribute('data-subject', String(c.key));
-        sb.setAttribute('aria-pressed', catFilter.subject === c.key ? 'true' : 'false');
-        sb.appendChild(document.createTextNode(c.label));
-        var sct = document.createElement('span');
-        sct.className = 'ct';
-        sct.textContent = String(c.n);
-        sb.appendChild(sct);
-        sb.addEventListener('click', function () { catFilter.subject = c.key; catFilter.unit = 'ALL'; renderCatalog(); });
-        subjRow.appendChild(sb);
+      subjOpts.forEach(function (c) {
+        var o = document.createElement('option');
+        o.value = String(c.key);
+        o.setAttribute('data-subject', String(c.key));
+        o.textContent = c.label + ' (' + c.n + ')';
+        subjSel.appendChild(o);
       });
+      subjSel.value = catFilter.subject;
+      subjSel.className = 'cat-select' + (catFilter.subject !== 'ALL' ? ' on' : '');
+      // Rebuilt on every render, so the handler is assigned (not added) — an
+      // addEventListener here would stack a new listener per render and fire
+      // renderCatalog N times on the Nth change.
+      subjSel.onchange = function () {
+        catFilter.subject = subjSel.value;
+        // Changing subject invalidates the chapter: a physics chapter is not in
+        // the chemistry list, and a stale key would filter everything to zero.
+        catFilter.unit = 'ALL';
+        renderCatalog();
+      };
     }
 
-    // qtype chips, counts static across the whole build so they read as an
-    // inventory, not as a moving target
+    // qtype chips. The counts follow the chosen SUBJECT and CHAPTER (2026-08-26).
+    // They used to be whole-book constants, which was right while the book held
+    // one paper; once a student can pick Chemistry, "LAQ 118" beside 204 visible
+    // chemistry cards is simply a false number. Scoped this way "All N" always
+    // equals what is on screen. Search is deliberately NOT part of the scope —
+    // counts that moved on every keystroke would read as flicker, not inventory.
+    var scopedEntries = [];
+    UNITS.forEach(function (u) {
+      if (catFilter.subject !== 'ALL' && subjectOf(u) !== catFilter.subject) return;
+      if (catFilter.unit !== 'ALL' && unitKey(u) !== catFilter.unit) return;
+      u.questions.forEach(function (e) { scopedEntries.push(e); });
+    });
     var chipRow = $('qtypeChips');
     chipRow.innerHTML = '';
     ['ALL', 'LAQ', 'SAQ', 'VSAQ'].forEach(function (t) {
       var n = t === 'ALL'
-        ? allEntries.length
-        : allEntries.filter(function (e) { return e.section === t; }).length;
-      if (t !== 'ALL' && n === 0) return;
+        ? scopedEntries.length
+        : scopedEntries.filter(function (e) { return e.section === t; }).length;
+      // A zero chip is hidden — except when it is the ACTIVE filter. Hiding the
+      // active one strands the student: the page empties, and the control that
+      // emptied it is no longer on screen to switch off.
+      if (t !== 'ALL' && n === 0 && catFilter.qtype !== t) return;
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'cat-chip' + (catFilter.qtype === t ? ' on' : '');
@@ -396,47 +697,116 @@
       chipRow.appendChild(b);
     });
 
-    // Chapter chips, labelled by chapter NAME because that is what a student is
-    // looking for. The row appears only from the second unit on: with one chapter a
-    // chapter filter is noise, and with several a single scroll stops being usable.
-    // Counts are whole-chapter inventory, static like the qtype counts above.
-    var unitRow = $('unitChips');
-    unitRow.innerHTML = '';
-    unitRow.hidden = UNITS.length < 2;
+    // The chapter picker, labelled by chapter NAME because that is what a student
+    // looks for. Appears only from the second unit on: with one chapter a chapter
+    // filter is noise. Counts are whole-chapter inventory, static like the qtype
+    // counts above.
+    //
+    // Chapters are SCOPED to the chosen subject. Listing all 38 at once was the
+    // core defect: a student reading physics had to scroll past every chemistry
+    // and maths chapter to reach theirs. With no subject chosen the full list is
+    // still reachable, but grouped by paper via <optgroup> so the phone's own
+    // picker shows the subject as a heading.
+    var unitField = $('unitField');
+    var unitSel = $('unitSelect');
+    var scoped = UNITS.filter(function (u) {
+      return catFilter.subject === 'ALL' || subjectOf(u) === catFilter.subject;
+    });
+    unitField.hidden = UNITS.length < 2;
     if (UNITS.length >= 2) {
-      var unitChips = [{ key: 'ALL', label: 'All chapters', n: allEntries.length }];
-      UNITS.forEach(function (u) {
-        unitChips.push({ key: unitKey(u), label: u.name, n: u.questions.length });
-      });
-      unitChips.forEach(function (c) {
-        var ub = document.createElement('button');
-        ub.type = 'button';
-        ub.className = 'cat-chip' + (catFilter.unit === c.key ? ' on' : '');
-        ub.setAttribute('data-unit', String(c.key));
-        ub.setAttribute('aria-pressed', catFilter.unit === c.key ? 'true' : 'false');
-        ub.appendChild(document.createTextNode(c.label));
-        var uct = document.createElement('span');
-        uct.className = 'ct';
-        uct.textContent = String(c.n);
-        ub.appendChild(uct);
-        ub.addEventListener('click', function () { catFilter.unit = c.key; renderCatalog(); });
-        unitRow.appendChild(ub);
-      });
+      unitSel.innerHTML = '';
+      var scopedTotal = 0;
+      scoped.forEach(function (u) { scopedTotal += u.questions.length; });
+      var allOpt = document.createElement('option');
+      allOpt.value = 'ALL';
+      allOpt.setAttribute('data-unit', 'ALL');
+      allOpt.textContent = 'All chapters (' + scopedTotal + ')';
+      unitSel.appendChild(allOpt);
+
+      var addUnit = function (u, parent) {
+        var o = document.createElement('option');
+        o.value = unitKey(u);
+        o.setAttribute('data-unit', unitKey(u));
+        // A native <option> takes text and nothing else, so the lock has to BE
+        // text. Without it the picker was the one surface carrying no lock
+        // signal: a student chose "Physical World" off a clean-looking list and
+        // learned it was locked only after tapping a card inside it.
+        var shut = lockCuesOn() && unitLocked(u);
+        // Once the subject is known — either picked, or the optgroup heading
+        // says it — a trailing "(Chemistry)" on the chapter name is noise the
+        // student has to read past. Strip ONLY a known subject label, so a
+        // chapter whose real name contains brackets is never mangled.
+        o.textContent = (shut ? '🔒 ' : '') + chapterLabel(u) + ' (' + u.questions.length + ')';
+        parent.appendChild(o);
+      };
+
+      if (catFilter.subject === 'ALL' && subjects.length >= 2) {
+        subjects.forEach(function (sName) {
+          var inSubj = UNITS.filter(function (u) { return subjectOf(u) === sName; });
+          if (!inSubj.length) return;
+          var g = document.createElement('optgroup');
+          g.label = SUBJ_LABEL[sName] || sName;
+          unitsFreeFirst(inSubj).forEach(function (u) { addUnit(u, g); });
+          unitSel.appendChild(g);
+        });
+      } else {
+        unitsFreeFirst(scoped).forEach(function (u) { addUnit(u, unitSel); });
+      }
+
+      // A chapter key from the previously-selected subject is not in this list;
+      // fall back to ALL rather than leaving the select showing a value it does
+      // not contain (browsers silently blank it, which reads as broken).
+      var hasCurrent = catFilter.unit === 'ALL' || scoped.some(function (u) { return unitKey(u) === catFilter.unit; });
+      if (!hasCurrent) catFilter.unit = 'ALL';
+      unitSel.value = catFilter.unit;
+      unitSel.className = 'cat-select' + (catFilter.unit !== 'ALL' ? ' on' : '');
+      unitSel.onchange = function () {
+        catFilter.unit = unitSel.value;
+        renderCatalog();
+      };
     }
 
     var sections = $('catSections');
     sections.innerHTML = '';
     var shown = 0;
+    var cues = lockCuesOn();
+    var wallPlaced = false;
 
-    UNITS.forEach(function (u) {
+    unitsFreeFirst(UNITS).forEach(function (u) {
       var visible = u.questions.filter(function (e) { return entryMatches(e, u); });
       if (!visible.length) return;
       shown += visible.length;
 
+      var uLocked = cues && unitLocked(u);
+      // The offer, ONCE, immediately above the first locked chapter on screen —
+      // never repeated per chapter. Everything above it opens; everything below
+      // it is what the pass buys, and it stays listed and countable because those
+      // 688 answers ARE the sell. What changed is only the order in which a
+      // student meets them.
+      if (uLocked && !wallPlaced) { sections.appendChild(buildWall()); wallPlaced = true; }
+
       var sec = document.createElement('section');
-      sec.className = 'cat-section';
+      sec.className = 'cat-section' + (uLocked ? ' locked' : '');
       var h = document.createElement('h2');
-      h.appendChild(document.createTextNode('Unit ' + u.number + ' — ' + u.name));
+      // With a subject chosen, the "(Chemistry)" suffix is redundant and costs a
+      // second line on a phone. With ALL subjects showing it is load-bearing —
+      // physics Unit 1 and chemistry Unit 1 are both on screen. The search blob
+      // keeps the full name plus the subject either way, so search is unaffected.
+      var headName = catFilter.subject === 'ALL' ? u.name : chapterLabel(u);
+      h.appendChild(document.createTextNode('Unit ' + u.number + ' — ' + headName));
+      // The lock belongs to the CHAPTER, which is the thing that is locked. It
+      // used to live as a bare emoji on every card inside it — the same fact
+      // repeated twenty-nine times, and absent from the chapter heading and the
+      // chapter picker, the two places a student actually decides from.
+      // No pill at all on a chapter with nothing written yet: "Locked" would
+      // sell an empty chapter and "Free" would promise answers that do not
+      // exist. The count pill beside it already says "0 of 5 ready".
+      if (cues && readyCount(u) > 0) {
+        var lockPill = document.createElement('span');
+        lockPill.className = 'cat-lock' + (uLocked ? '' : ' free');
+        lockPill.textContent = uLocked ? '🔒 Locked' : 'Free';
+        h.appendChild(lockPill);
+      }
       var pill = document.createElement('span');
       pill.className = 'cat-count';
       var uReady = u.questions.filter(function (e) { return e.question_id !== undefined; }).length;
@@ -537,15 +907,6 @@
             // says WHEN revision is due; green chip = done. Authored branch only
             // — the soon-card gate asserts its chips verbatim. A class turns the
             // red margin rule green.
-            // The chapter gate's lock cue. Only in the GATED build, only
-            // once the entitlement list has answered (no flicker), and
-            // appended after the other chips so no first-chip gate moves.
-            if (Gate.locked(unitKey(u))) {
-              var lk = document.createElement('span');
-              lk.className = 'cc-chip pm-lock';
-              lk.textContent = '🔒';
-              badges.appendChild(lk);
-            }
             var stg = Vidi.stageFor(e.question_id);
             if (stg.u || stg.r) {
               var done = stg.u && stg.r;
@@ -581,9 +942,22 @@
     renderTriage();
   }
 
+  var catalogPainted = false;          // has this session drawn the catalog once?
+
   function showCatalog() {
-    showView('catalog');
-    renderCatalog();
+    // Every paint after the first is synchronous. Only the first waits, because
+    // it is the only one that could REORDER: Gate.locked() reads false until the
+    // server answers, so painting immediately would show units.json order and
+    // then shuffle the whole list a moment later, under the student's thumb.
+    // The view stays hidden while waiting rather than flashing an empty catalog,
+    // and Gate.whenListed caps the wait so a dead endpoint costs a moment, not
+    // the page. Ungated builds never wait at all — there is nothing to ask.
+    if (catalogPainted) { showView('catalog'); renderCatalog(); return; }
+    Gate.whenListed(function () {
+      catalogPainted = true;
+      showView('catalog');
+      renderCatalog();
+    });
   }
 
   /** Keep the hash truthful after an in-notebook cut switch, so the current
@@ -642,10 +1016,28 @@
 
   function route() {
     if (askGuard()) return;
-    var ee = location.hash.match(/^#\/exam-eve\/([a-z]+-\d+|\d+)$/);
-    if (ee) { showExamEve(ee[1]); return; }
+    // Subject keys carry underscores (mathematics_1b-3) — the old [a-z]+ never
+    // matched a Maths-1B link. The optional trailing year is the post-renumbering
+    // marker (see LEGACY_UNIT_KEYS).
+    var ee = location.hash.match(/^#\/exam-eve\/([a-z0-9_]+-\d+|\d+)(?:\/(\d{4}))?$/);
+    if (ee) { showExamEve(ee[1], ee[2] || null); return; }
+    // #/pricing — reachable from a locked chapter, and a link the founder can
+    // send on its own. Renders over whatever view is behind it.
+    if (location.hash === '#/pricing') { showCatalog(); Gate.showPricing(); return; }
+    // #/choose — the door on demand, from the catalog eyebrow. Always available
+    // once a choice exists, so a student who tapped the wrong tile is not stuck.
+    if (location.hash === '#/choose') { Door.show(); return; }
     var m = location.hash.match(/^#\/q\/([^\/]+)(?:\/([^\/]+))?$/);
-    if (!m) { showCatalog(); return; }
+    if (!m) {
+      // The door only ever intercepts the BARE landing route. A link to an
+      // answer is how this product actually travels between students, and a
+      // chooser standing in front of a forwarded answer would cost us the
+      // reader we most wanted — so #/q/, #/exam-eve/ and #/pricing all pass
+      // above this line, untouched.
+      if (Door.enabled() && !Door.chosen()) { Door.show(); return; }
+      showCatalog();
+      return;
+    }
     var id = decodeURIComponent(m[1]);
     if (qIndexById[id] === undefined) { location.hash = '#/'; return; }
     var cutKey = m[2] ? decodeURIComponent(m[2]) : null;
@@ -791,7 +1183,10 @@
       red.className = 'red-mark';
       red.innerHTML =
         '<svg width="40" height="30" viewBox="0 0 40 30">' +
-        '<path class="tick" d="M 5 17 L 15 26 L 35 5" fill="none" stroke="#C62828" ' +
+        // The examiner's tick. style=, not stroke=, because var() is invalid in
+        // an SVG presentation attribute — the same trap that kept the figure
+        // pens navy through a full sweep of notebook.css.
+        '<path class="tick" d="M 5 17 L 15 26 L 35 5" fill="none" style="stroke:var(--red)" ' +
         'stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
         '<span class="red-num">' + step.marks + '</span>';
       block.appendChild(red);
@@ -833,7 +1228,12 @@
         path.setAttribute('stroke-linecap', 'round');
         path.setAttribute('stroke-linejoin', 'round');
         if (el.pen === 'pencil') {
-          path.setAttribute('stroke', '#7D8CA8');
+          // Bound to the CSS token, not a literal: a figure is drawn with the
+          // same two pens the page is written with, so a palette change must
+          // reach it. Set via .style because var() is invalid in a presentation
+          // attribute — this is exactly how the old navy survived a sweep of
+          // notebook.css, and why a computed-style scan could not see it.
+          path.style.stroke = 'var(--pencil)';
           path.setAttribute('stroke-width', String(el.w || 1.6));
           path.setAttribute('stroke-dasharray', '6 5');
           // dasharray is spent on the dashes → reveal via clip wipe
@@ -849,7 +1249,7 @@
           svg.appendChild(g);
           el._node = path; el._clipRect = rect;
         } else {
-          path.setAttribute('stroke', '#1A2F6B');
+          path.style.stroke = 'var(--ink)';        /* the pen — see --pencil above */
           path.setAttribute('stroke-width', String(el.w || 2.25));
           svg.appendChild(path);
           el._node = path;
@@ -1282,10 +1682,7 @@
   notebook.addEventListener('click', advance);
   btnNext.addEventListener('click', advance);
   $('btnRestart').addEventListener('click', function () { renderUpTo(-1, false); });
-  $('btnPrint').addEventListener('click', function () {
-    if (!completed) renderUpTo(steps.length - 1, false);
-    window.print();
-  });
+  $('doorBack').addEventListener('click', function () { Door.show(); });
   $('catSearch').addEventListener('input', function () {
     catFilter.search = this.value.trim().toLowerCase();
     renderCatalog();
@@ -2053,12 +2450,12 @@
       setWin: function (w) { lsSet('pm_vidi_win', JSON.stringify(w)); },
       // ── the study plan (per device, like every other Vidi key) ────────────
       todayStr: todayStr,
-      getPlan: function () { try { return JSON.parse(lsGet('pm_plan_v1') || 'null'); } catch (e) { return null; } },
+      getPlan: function () { try { return normalisePlan(JSON.parse(lsGet('pm_plan_v1') || 'null')); } catch (e) { return null; } },
       setPlan: function (p) {
         // saved_at is what lets two devices agree on WHICH plan is current
         // (the plan is one blob, so it is last-write-wins — unlike the stage
         // ticks, which merge). Stamped here so every write is comparable.
-        if (p && typeof p === 'object') p.saved_at = new Date().toISOString();
+        if (p && typeof p === 'object') { p.saved_at = new Date().toISOString(); p.syllabus = SYLLABUS_YEAR; }
         lsSet('pm_plan_v1', JSON.stringify(p));
         syncTouch();
       },
@@ -2138,6 +2535,12 @@
       return Date.UTC(+m[1], +m[2] - 1, +m[3]);
     }
     function diffDays(a, b) { return Math.round((parseDay(a) - parseDay(b)) / 86400000); }
+    /** 'YYYY-MM-DD' + n days, as 'YYYY-MM-DD'. */
+    function addDays(a, n) {
+      var d = new Date(parseDay(a) + n * 86400000);
+      var mm = d.getUTCMonth() + 1, dd = d.getUTCDate();
+      return d.getUTCFullYear() + '-' + (mm < 10 ? '0' : '') + mm + '-' + (dd < 10 ? '0' : '') + dd;
+    }
 
     var QT_RANK = { LAQ: 3, SAQ: 2, VSAQ: 1 };
     var QT_WORDS = { LAQ: 'long answers', SAQ: 'short answers', VSAQ: 'very short answers' };
@@ -2169,6 +2572,13 @@
             qid: e.question_id, cut: e.cut || null, stars: e.stars || 0,
             qtype: q.qtype, mins: q.expected_time_min,
             ref: e.section + ' ' + e.number, text: e.text,
+            // The SUBJECT rides on the item, because a plan now carries one
+            // exam date PER SUBJECT. Read it from the UNIT being walked, never
+            // derive it downstream from q.unit — a question holds its subject
+            // at the top level and its unit as {number,name} with no subject
+            // of its own, so a later derivation reads every card as physics
+            // (the chapterMates scar, 2026-08-25).
+            subject: subjectOf(UNITS[u]),
             unit: UNITS[u].number, predicted: e.source === 'enumerated'
           });
         }
@@ -2190,71 +2600,256 @@
                text: q.question_text, unit: q.unit.number };
     }
 
-    /** The scheduler. Day 1 = startDate; the last plan day is exam-eve. The
-        final ~15% of days are a full-revision block (weakest first, the
-        exam-eve logic). Items that do not fit fall off the BOTTOM of the
-        priority list into `optional` — and the plan says so, honestly. */
-    function build(examDate, unitNums, minsPerDay, startDate, itemsOverride, scope) {
-      var D = diffDays(examDate, startDate);
-      if (D < 1) return null;
-      var R = Math.max(1, Math.ceil(D * 0.15));
-      if (R >= D) R = D > 1 ? 1 : 0;
-      var L = D - R;
-      var queue = (itemsOverride || itemsFor(unitNums, scope)).slice();
+    /** The subject half of a unit key: 'mathematics_1b-3' → 'mathematics_1b'.
+        Split at the LAST dash — a subject name may hold an underscore but
+        never a dash, while the number after it always follows one. */
+    function subjectOfKey(k) {
+      var s = String(k), c = s.lastIndexOf('-');
+      return c > 0 ? s.slice(0, c) : '';
+    }
 
-      // ── CRUNCH MODE (founder, 2026-08-23) ─────────────────────────────────
-      // When the time left cannot fit the work — the student who ignored a
-      // 45-day plan and opens the book with one week to go — the priority
-      // FLIPS from stars-first to marks-first: long answers, then short
-      // answers, carry the paper; the very short answers move to the back and
-      // mostly land in `optional` ("do them on exam-eve"). The revision block
-      // shrinks to one day so learning days survive.
-      var demand = 0;
-      for (var di = 0; di < queue.length; di++) demand += Math.ceil(queue[di].mins * 2.5);
-      var crunch = demand > minsPerDay * L * 1.15;
-      if (crunch) {
-        if (D > 1) { R = 1; L = D - R; }
-        queue.sort(function (a, b) {
-          var av = a.qtype === 'VSAQ' ? 1 : 0, bv = b.qtype === 'VSAQ' ? 1 : 0;
-          if (av !== bv) return av - bv;                     // VSAQs last, whatever their stars
-          if (QT_RANK[b.qtype] !== QT_RANK[a.qtype]) return QT_RANK[b.qtype] - QT_RANK[a.qtype];
-          if (b.stars !== a.stars) return b.stars - a.stars;
-          if (a.predicted !== b.predicted) return a.predicted ? 1 : -1;
-          return a.unit - b.unit;
-        });
+    /** {subject: date} for every subject present in a units list. */
+    function spreadOneDate(unitNums, date) {
+      var out = {}, us = unitNums || [], any = false;
+      for (var i = 0; i < us.length; i++) {
+        var s = subjectOfKey(us[i]);
+        if (s) { out[s] = date; any = true; }
+      }
+      if (!any && date) out.physics = date;
+      return out;
+    }
+
+    /** A plan's exam dates as {subject: 'YYYY-MM-DD'}.
+
+        Plans written before 2026-08-26 carry ONE `examDate` for the whole
+        plan, and they arrive both from localStorage and — at any moment, from
+        another device — through sync. So this is a lazy READ-side normalizer,
+        never a migration step: an old plan reads as "every subject sits on
+        that one date", which is exactly what it meant. */
+    function examDatesOf(plan) {
+      if (!plan) return {};
+      if (plan.examDates) return plan.examDates;
+      return spreadOneDate(plan.units, plan.examDate);
+    }
+
+    /** The soonest paper not yet written, or null once they are all done. */
+    function nextExam(plan, today) {
+      var dates = examDatesOf(plan), best = null;
+      for (var s in dates) {
+        if (!Object.prototype.hasOwnProperty.call(dates, s)) continue;
+        var d = diffDays(dates[s], today);
+        if (d < 0) continue;                       // already written
+        if (!best || d < best.days) best = { subject: s, date: dates[s], days: d };
+      }
+      return best;
+    }
+
+    /** Has this subject's paper already been written? */
+    function subjectDone(plan, subject, today) {
+      var dates = examDatesOf(plan);
+      return !!dates[subject] && diffDays(dates[subject], today) < 0;
+    }
+
+    /** A planned question's subject. Read from the plan's own map; a plan
+        written before per-subject dates has none, and every question in it
+        shared one date anyway, so the units list answers it. */
+    function subjectOfQid(plan, qid) {
+      if (plan.subjectByQid && plan.subjectByQid[qid]) return plan.subjectByQid[qid];
+      var us = plan.units || [];
+      return us.length ? subjectOfKey(us[0]) : 'physics';
+    }
+
+    /** The day this subject's full-revision block opens. */
+    function revStartFor(plan, subject) {
+      if (plan.revBlockStartBy && plan.revBlockStartBy[subject]) return plan.revBlockStartBy[subject];
+      return plan.revBlockStart;
+    }
+
+    // ── CRUNCH MODE (founder, 2026-08-23) ───────────────────────────────────
+    // When the time left cannot fit the work — the student who ignored a
+    // 45-day plan and opens the book with one week to go — the priority FLIPS
+    // from stars-first to marks-first: long answers, then short answers, carry
+    // the paper; the very short answers move to the back and mostly land in
+    // `optional` ("do them on exam-eve"). The revision block shrinks to one
+    // day so learning days survive. Now decided PER SUBJECT: maths in five
+    // days can be in crunch while chemistry in three weeks is comfortable.
+    function crunchSort(a, b) {
+      var av = a.qtype === 'VSAQ' ? 1 : 0, bv = b.qtype === 'VSAQ' ? 1 : 0;
+      if (av !== bv) return av - bv;                     // VSAQs last, whatever their stars
+      if (QT_RANK[b.qtype] !== QT_RANK[a.qtype]) return QT_RANK[b.qtype] - QT_RANK[a.qtype];
+      if (b.stars !== a.stars) return b.stars - a.stars;
+      if (a.predicted !== b.predicted) return a.predicted ? 1 : -1;
+      return a.unit - b.unit;
+    }
+
+    /** The scheduler. Day 1 = startDate.
+
+        Each SUBJECT runs its own race to its own exam date: its last ~15% of
+        days are its full-revision block, and none of its questions is ever
+        scheduled on or after its paper. Within a day the minutes split across
+        the subjects still ahead, weighted by urgency — work left ÷ that
+        subject's own days left — so early days mix every subject, the nearest
+        exam takes a growing share as it approaches, and a written paper frees
+        its minutes to the rest automatically.
+
+        Items that never fit fall off the BOTTOM of each subject's priority
+        list into `optional` — and the plan says so, honestly.
+
+        A bare date string is still accepted and means "every subject sits that
+        day": the old single-date plan is the DEGENERATE CASE of this
+        scheduler, not a separate path. */
+    function build(examDates, unitNums, minsPerDay, startDate, itemsOverride, scope) {
+      if (typeof examDates === 'string') examDates = spreadOneDate(unitNums, examDates);
+      if (!examDates) return null;
+      var all = (itemsOverride || itemsFor(unitNums, scope)).slice();
+
+      // ── one race per subject ──────────────────────────────────────────────
+      var S = {}, subjects = [], subjectByQid = {}, i, k;
+      for (i = 0; i < all.length; i++) {
+        var sName = all[i].subject || 'physics';
+        subjectByQid[all[i].qid] = sName;
+        if (!S[sName]) {
+          // No date, or a paper already written: that subject is not planned.
+          var d = examDates[sName] ? diffDays(examDates[sName], startDate) : -1;
+          if (d < 1) continue;
+          var r = Math.max(1, Math.ceil(d * 0.15));
+          if (r >= d) r = d > 1 ? 1 : 0;
+          S[sName] = { name: sName, queue: [], D: d, R: r, L: d - r,
+                       demand: 0, crunch: false, reviseNext: [], w: 0, spent: 0 };
+          subjects.push(sName);
+        }
+        S[sName].queue.push(all[i]);
+        S[sName].demand += Math.ceil(all[i].mins * 2.5);
+      }
+      if (!subjects.length) return null;
+
+      // Crunch is judged against a subject's SHARE of each day, not the whole
+      // day — with three papers running, no subject ever owns all 60 minutes.
+      // Share ≈ minsPerDay × (its demand ÷ all demand), which reduces to the
+      // original single-subject test exactly when there is only one subject.
+      var totalDemand = 0, maxD = 0, maxL = 0;
+      for (k = 0; k < subjects.length; k++) totalDemand += S[subjects[k]].demand;
+      for (k = 0; k < subjects.length; k++) {
+        var st = S[subjects[k]];
+        var share = totalDemand > 0 ? minsPerDay * (st.demand / totalDemand) : minsPerDay;
+        st.crunch = st.demand > share * Math.max(1, st.L) * 1.15;
+        if (st.crunch) {
+          if (st.D > 1) { st.R = 1; st.L = st.D - 1; }
+          st.queue.sort(crunchSort);
+        }
+        if (st.L > maxL) maxL = st.L;
+        if (st.D > maxD) maxD = st.D;
       }
 
-      var learnDay = {}, byDay = [], reviseNext = [];
-      for (var day = 1; day <= L; day++) {
-        var budget = minsPerDay;
+      var learnDay = {}, byDay = [], cumPot = 0;
+      for (var day = 1; day <= Math.max(1, maxL); day++) {
         var row = { learn: [], revise: [] };
-        for (var r = 0; r < reviseNext.length; r++) {
-          budget -= Math.ceil(reviseNext[r].mins / 2);
-          row.revise.push(reviseNext[r].qid);
+        var budget = minsPerDay, st2, nx;
+
+        // 1. Revisions first — yesterday's learning, every subject. Cheap
+        //    (half cost) and time-critical, so never dropped or deferred.
+        for (k = 0; k < subjects.length; k++) {
+          st2 = S[subjects[k]];
+          for (var rv = 0; rv < st2.reviseNext.length; rv++) {
+            budget -= Math.ceil(st2.reviseNext[rv].mins / 2);
+            row.revise.push(st2.reviseNext[rv].qid);
+          }
+          st2.reviseNext = [];
         }
-        reviseNext = [];
-        while (queue.length && queue[0].mins * 2 <= budget) {
-          var nx = queue.shift();
+
+        // 2. The rest of the day splits by URGENCY = minutes of work left per
+        //    remaining learning day. A subject past its learning days, or with
+        //    an empty queue, drops out and its minutes go to the others.
+        var active = [], wTotal = 0;
+        for (k = 0; k < subjects.length; k++) {
+          st2 = S[subjects[k]];
+          if (day > st2.L || !st2.queue.length) continue;
+          var left = 0;
+          for (var qi = 0; qi < st2.queue.length; qi++) left += st2.queue[qi].mins * 2;
+          st2.w = left / Math.max(1, st2.L - day + 1);
+          wTotal += st2.w;
+          active.push(st2);
+        }
+        // Most urgent first — the deterministic tiebreak when two subjects are
+        // equally far behind.
+        active.sort(function (a, b) { return b.w - a.w; });
+
+        // 3. Fill the day by DEFICIT, not by a per-day quota.
+        //
+        //    A quota cannot work here: at 60 minutes across four papers each
+        //    share is ~15 minutes, while one long answer costs mins × 2 ≈ 16-20
+        //    — so no subject's quota ever fits its next question, everything
+        //    falls through to a spill, and the single most urgent subject takes
+        //    the whole day. Every day. (Found in the shipped build 2026-08-27:
+        //    a real 50-day, four-paper, one-hour plan read "Chemistry" on days
+        //    1, 2, 3 and 4 and never mixed at all.)
+        //
+        //    So entitlement is tracked CUMULATIVELY instead: each subject is
+        //    owed its urgency share of every learning minute offered so far,
+        //    and each question goes to whoever is furthest behind what they are
+        //    owed. A day too small to give everyone a turn still evens out
+        //    across days, and a day of cheap questions mixes within itself.
+        var pot = Math.max(0, budget);
+        cumPot += pot;
+        while (true) {
+          var pick = null, worst = -Infinity;
+          for (k = 0; k < active.length; k++) {
+            st2 = active[k];
+            if (!st2.queue.length) continue;
+            if (st2.queue[0].mins * 2 > budget) continue;
+            var frac = wTotal > 0 ? st2.w / wTotal : 1 / active.length;
+            var deficit = frac * cumPot - st2.spent;
+            if (deficit > worst) { worst = deficit; pick = st2; }
+          }
+          if (!pick) break;
+          nx = pick.queue.shift();
           budget -= nx.mins * 2;
+          pick.spent += nx.mins * 2;
           row.learn.push(nx.qid);
           learnDay[nx.qid] = day;
-          reviseNext.push(nx);
+          pick.reviseNext.push(nx);
         }
         byDay.push(row);
       }
+
+      var optional = [], optionalBySubject = {}, revBlockStartBy = {},
+          crunchBy = {}, anyCrunch = false, revStartMin = 0, lastDate = '',
+          plannedDates = {};
+      for (k = 0; k < subjects.length; k++) {
+        var sn = subjects[k], st3 = S[sn];
+        optionalBySubject[sn] = st3.queue.map(function (x) { return x.qid; });
+        optional = optional.concat(optionalBySubject[sn]);
+        revBlockStartBy[sn] = st3.L + 1;
+        crunchBy[sn] = st3.crunch;
+        if (st3.crunch) anyCrunch = true;
+        if (!revStartMin || revBlockStartBy[sn] < revStartMin) revStartMin = revBlockStartBy[sn];
+        plannedDates[sn] = examDates[sn];
+        // ISO dates compare correctly as strings, so the last paper is the max.
+        if (!lastDate || examDates[sn] > lastDate) lastDate = examDates[sn];
+      }
+
       return {
-        v: 1, start: startDate, examDate: examDate,
+        v: 2, start: startDate,
+        examDates: plannedDates,
+        // Kept as the LAST paper so every pre-existing reader — daysLeft, the
+        // archived check, the sync blob comparison — still answers sensibly.
+        examDate: lastDate,
         units: unitNums.slice(), minsPerDay: minsPerDay,
         scope: scope || null,
         days: byDay, learnDay: learnDay,
-        optional: queue.map(function (x) { return x.qid; }),
-        revBlockStart: L + 1, totalDays: D,
-        crunch: crunch,
+        subjectByQid: subjectByQid, subjects: subjects.slice(),
+        optional: optional, optionalBySubject: optionalBySubject,
+        revBlockStart: revStartMin || 1, revBlockStartBy: revBlockStartBy,
+        totalDays: maxD,
+        crunch: anyCrunch, crunchBy: crunchBy,
+        datesProvisional: false,
         implemented: false, lastNudgeDay: '', archived: false
       };
     }
 
     function dayN(plan, today) { return diffDays(today, plan.start) + 1; }
+    /** Days to the LAST paper — the whole plan's horizon. For the countdown a
+        student actually cares about, use nextExam(). */
     function daysLeft(plan, today) { return diffDays(plan.examDate, today); }
 
     // Two stages since 2026-08-23 (founder): the p tick is vestigial — the
@@ -2287,11 +2882,20 @@
         self-check first. */
     function todays(plan, today) {
       var n = dayN(plan, today);
-      var out = { day: n, learn: [], revise: [], finalBlock: n >= plan.revBlockStart };
-      var qid;
+      // The final block is now decided PER SUBJECT: each paper has its own
+      // revision run-in. `finalBlock` stays true when ANY subject still in the
+      // plan has entered its block, which is what the display asks about.
+      var out = { day: n, learn: [], revise: [], finalBlock: false, bySubject: {} };
+      var qid, subj;
       for (qid in plan.learnDay) {
         if (!Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) continue;
-        if (plan.learnDay[qid] <= Math.min(n, plan.revBlockStart - 1) && !learned(qid)) {
+        subj = subjectOfQid(plan, qid);
+        // A written paper leaves the plan: its questions are neither learned
+        // nor revised any more, and its minutes went to the other subjects.
+        if (subjectDone(plan, subj, today)) continue;
+        var rs = revStartFor(plan, subj);
+        if (n >= rs) out.finalBlock = true;
+        if (plan.learnDay[qid] <= Math.min(n, rs - 1) && !learned(qid)) {
           out.learn.push(qid);
         }
         var s = Vidi.stageFor(qid);
@@ -2303,6 +2907,10 @@
         for (qid in plan.learnDay) {
           if (!Object.prototype.hasOwnProperty.call(plan.learnDay, qid)) continue;
           if (green(qid)) continue;
+          subj = subjectOfQid(plan, qid);
+          if (subjectDone(plan, subj, today)) continue;
+          // Only a subject that has REACHED its own block sweeps everything in.
+          if (n < revStartFor(plan, subj)) continue;
           if (out.learn.indexOf(qid) >= 0 || out.revise.indexOf(qid) >= 0) continue;
           rest.push(qid);
         }
@@ -2316,6 +2924,14 @@
       }
       // keep the scheduler's priority order for learns
       out.learn.sort(function (a, b) { return plan.learnDay[a] - plan.learnDay[b]; });
+      // Grouped counts, so today's card can head each subject's rows.
+      var bs = function (q) {
+        var sj = subjectOfQid(plan, q);
+        if (!out.bySubject[sj]) out.bySubject[sj] = { learn: [], revise: [] };
+        return out.bySubject[sj];
+      };
+      for (var li = 0; li < out.learn.length; li++) bs(out.learn[li]).learn.push(out.learn[li]);
+      for (var ri = 0; ri < out.revise.length; ri++) bs(out.revise[ri]).revise.push(out.revise[ri]);
       return out;
     }
 
@@ -2349,7 +2965,15 @@
         var inPlan = Object.prototype.hasOwnProperty.call(plan.learnDay, all[i].qid);
         if (inPlan && !green(all[i].qid)) remaining.push(all[i]);
       }
-      return build(plan.examDate, plan.units, plan.minsPerDay, today, remaining, plan.scope || null);
+      return carryFlags(plan,
+        build(examDatesOf(plan), plan.units, plan.minsPerDay, today, remaining, plan.scope || null));
+    }
+
+    /** A re-plan keeps what the student told us that the scheduler cannot
+        re-derive: that some exam dates were guessed, not known. */
+    function carryFlags(plan, draft) {
+      if (draft && plan && plan.datesProvisional) draft.datesProvisional = true;
+      return draft;
     }
 
     /** A fresh schedule from today with a NEW qtype scope — everything in the
@@ -2363,18 +2987,33 @@
         if (!green(all[i].qid)) remaining.push(all[i]);
       }
       if (!remaining.length) return null;
-      return build(plan.examDate, plan.units, plan.minsPerDay, today, remaining, scope);
+      return carryFlags(plan,
+        build(examDatesOf(plan), plan.units, plan.minsPerDay, today, remaining, scope));
     }
 
     /** A compact factual block for the hosted model — read, never generated. */
     function modelStatus(qid) {
+      if (!plannerOn()) return null;      // dormant: no plan line reaches Vidi
       var plan = Vidi.getPlan();
       if (!plan || !plan.implemented || plan.archived) return null;
       var today = Vidi.todayStr();
       var p = progress(plan);
       var t = todays(plan, today);
-      var lines = 'exam on ' + plan.examDate + ', ' + daysLeft(plan, today) +
-        ' days left; finished ' + p.done + ' of ' + p.total + ' planned questions' +
+      // One clause per paper still ahead, nearest first. The hosted model
+      // slices this to 400 characters, so it stays terse by construction:
+      // "Physics 12 Nov (3 days), Chemistry 15 Nov (6 days)".
+      var dates = examDatesOf(plan), pending = [], sj;
+      for (sj in dates) {
+        if (!Object.prototype.hasOwnProperty.call(dates, sj)) continue;
+        var dl = diffDays(dates[sj], today);
+        if (dl >= 0) pending.push({ s: sj, date: dates[sj], days: dl });
+      }
+      pending.sort(function (a, b) { return a.days - b.days; });
+      var when = pending.map(function (x) {
+        return subjLabel(x.s) + ' ' + x.date + ' (' + x.days + ' days)';
+      }).join(', ');
+      var lines = (pending.length > 1 ? 'exams: ' : 'exam: ') + (when || plan.examDate) +
+        '; finished ' + p.done + ' of ' + p.total + ' planned questions' +
         '; today: learn ' + t.learn.length + ', revise ' + t.revise.length;
       if (plan.crunch) {
         lines += '; time is SHORT so the plan does long and short answers first, very short answers on exam-eve';
@@ -2394,9 +3033,11 @@
       itemsFor: itemsFor, itemInfo: itemInfo, build: build, replan: replan,
       rescope: rescope, scopeWords: scopeWords,
       todays: todays, progress: progress, behindBy: behindBy,
-      dayN: dayN, daysLeft: daysLeft, diffDays: diffDays,
+      dayN: dayN, daysLeft: daysLeft, diffDays: diffDays, addDays: addDays,
       green: green, learned: learned, modelStatus: modelStatus,
-      dueWithoutPlan: dueWithoutPlan
+      dueWithoutPlan: dueWithoutPlan,
+      examDatesOf: examDatesOf, nextExam: nextExam, subjectDone: subjectDone,
+      subjectOfQid: subjectOfQid, revStartFor: revStartFor
     };
   })();
 
@@ -2527,13 +3168,179 @@
   // Unlocked bundles merge into `questions` IN MEMORY only. A new session
   // re-fetches — deliberate for now: a 550 KB bundle is localStorage-quota
   // roulette, and the fetch is one fast call.
+  // ═══ Auth — Google sign-in, so a pass follows the STUDENT ════════════════
+  // Identity was an anonymous device UUID, so a student who paid ₹99 on their
+  // phone and opened the book on a laptop met the paywall again. Signing in
+  // links devices to one account; the server then unions their entitlements.
+  //
+  // NO SDK. The whole flow is a redirect to Supabase's own /auth/v1/authorize
+  // and a token read back off the URL hash — this is a single-file build with
+  // zero dependencies and it stays that way.
+  //
+  // ANONYMOUS FIRST, STILL. With no PM_AUTH_BASE the module is inert. Even
+  // hosted, a student never has to sign in: the four free chapters and the whole
+  // deterministic book work signed out, exactly as before. Signing in buys one
+  // thing — carrying a pass between devices.
+  var Auth = (function () {
+    var BASE = (window.PM_AUTH_BASE || '').trim();
+    // Supabase Auth wants apikey AND the bearer token; with only the bearer it
+    // answers 401 for a valid session. Public anon key by design.
+    var ANON = (window.PM_AUTH_ANON || '').trim();
+    var K_AT = 'pm_ab_at', K_RT = 'pm_ab_rt', K_EMAIL = 'pm_ab_email';
+
+    function g(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+    function s(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
+    function d(k) { try { localStorage.removeItem(k); } catch (e) { /* private mode */ } }
+
+    function token() { return g(K_AT); }
+    function email() { return g(K_EMAIL); }
+    function signedIn() { return !!(BASE && token()); }
+    function available() { return !!BASE; }
+
+    /** Hand the student to Google. Comes back to this page with the token on
+        the hash, which capture() strips before anything else reads the URL. */
+    function signIn() {
+      if (!BASE) return;
+      var back = location.origin + location.pathname;
+      location.href = BASE + '/auth/v1/authorize?provider=google&redirect_to=' + encodeURIComponent(back);
+    }
+
+    function signOut() {
+      // The DEVICE keeps whatever it owns — signing out is not giving anything
+      // back, only forgetting the account on this browser.
+      d(K_AT); d(K_RT); d(K_EMAIL);
+    }
+
+    /** Read #access_token=… on the way back from Google.
+
+        Must run BEFORE the router: what comes back is a token blob, not a
+        route, and route() would read it as a bad question id and bounce. The
+        tokens are stripped out of the URL immediately so they never sit in
+        browser history or get pasted into a WhatsApp group with the link. */
+    function capture() {
+      var h = location.hash || '';
+      if (h.indexOf('access_token=') < 0) return false;
+      var p = {};
+      h.replace(/^#/, '').split('&').forEach(function (kv) {
+        var i = kv.indexOf('=');
+        if (i > 0) {
+          try { p[decodeURIComponent(kv.slice(0, i))] = decodeURIComponent(kv.slice(i + 1)); }
+          catch (e) { /* a malformed pair is simply not a token */ }
+        }
+      });
+      if (!p.access_token) return false;
+      s(K_AT, p.access_token);
+      if (p.refresh_token) s(K_RT, p.refresh_token);
+      try {
+        history.replaceState(null, '', location.pathname + location.search + '#/');
+      } catch (e) { location.hash = '#/'; }
+      return true;
+    }
+
+    /** Who is signed in, for the label on screen. A failure here is never fatal
+        — the pass works off the token; the email is only a courtesy. */
+    function loadProfile(cb) {
+      if (!signedIn()) { cb && cb(false); return; }
+      try {
+        fetch(BASE + '/auth/v1/user', {
+          headers: { apikey: ANON, Authorization: 'Bearer ' + token() }
+        })
+          .then(function (r) {
+            // ONLY an auth rejection forgets the token. A 500, a rate limit or
+            // a gateway hiccup must never sign a paying student out — they
+            // would come back to a paywall over a transient blip. On anything
+            // else the token is kept and simply retried next load.
+            if (r.status === 401 || r.status === 403) { signOut(); return null; }
+            return r.ok ? r.json() : null;
+          })
+          .then(function (u) {
+            if (u && u.email) { s(K_EMAIL, u.email); cb && cb(true); return; }
+            cb && cb(false);
+          })
+          .catch(function () { cb && cb(false); });   // offline: keep the token
+      } catch (e) { cb && cb(false); }
+    }
+
+    /** The account chip in the top bar.
+
+        Students had no way to tell whether signing in had worked: the book looked
+        identical before and after, so the honest read was "it did nothing". The
+        chip is the whole feedback loop — signed out it invites, signed in it
+        shows who you are and what that buys you. */
+    function paintChip() {
+      var btn = $('btnAccount'), card = $('acctCard');
+      if (!btn || !card) return;
+      if (!available()) { btn.hidden = true; card.hidden = true; return; }
+      btn.hidden = false;
+      var mail = email();
+      if (signedIn()) {
+        // The initial, the way every account menu does it. Falls back to a dot
+        // when the profile has not loaded yet, never to an empty circle.
+        btn.textContent = (mail ? mail.charAt(0) : '•').toUpperCase();
+        btn.className = 'btn btn-acct is-in';
+        btn.setAttribute('aria-label', 'Account' + (mail ? ' — ' + mail : ''));
+        btn.title = mail || 'Signed in';
+      } else {
+        btn.textContent = 'Sign in';
+        btn.className = 'btn btn-acct';
+        btn.setAttribute('aria-label', 'Sign in with Google');
+        btn.title = 'Sign in with Google';
+      }
+    }
+
+    function paintCard() {
+      var card = $('acctCard');
+      if (!card) return;
+      var mailEl = $('acctEmail'), noteEl = $('acctNote'), actEl = $('acctAction');
+      if (signedIn()) {
+        mailEl.textContent = email() || 'Signed in';
+        noteEl.textContent = 'Your pass opens the book on every device you sign in on.';
+        actEl.textContent = 'Sign out';
+        actEl.onclick = function () { signOut(); location.reload(); };
+      } else {
+        mailEl.textContent = 'Not signed in';
+        noteEl.textContent = 'Sign in and a pass you buy follows you to any phone or laptop. The free chapters work either way.';
+        actEl.textContent = 'Sign in with Google';
+        actEl.onclick = function () { signIn(); };
+      }
+    }
+
+    function initChip() {
+      var btn = $('btnAccount'), card = $('acctCard');
+      if (!btn || !card) return;
+      paintChip();
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (!card.hidden) { card.hidden = true; return; }
+        paintCard();
+        card.hidden = false;
+      });
+      // Tap anywhere else to dismiss — a card that can only be closed by the
+      // control that opened it reads as stuck on a phone.
+      document.addEventListener('click', function (e) {
+        if (card.hidden) return;
+        if (card.contains(e.target) || btn.contains(e.target)) return;
+        card.hidden = true;
+      });
+    }
+
+    return {
+      available: available, signedIn: signedIn, token: token, email: email,
+      signIn: signIn, signOut: signOut, capture: capture, loadProfile: loadProfile,
+      initChip: initChip, paintChip: paintChip
+    };
+  })();
+
   var Gate = (function () {
     var BASE = (window.PM_CONTENT_BASE || '').trim();
     var unlockedUnits = {};            // unit_key -> true
     var hasAll = false;
     var listLoaded = false;            // lock chips wait for the truth (no flicker)
+    var listWaiters = [];              // first catalog paint, held until the truth lands
     var pendingUnlock = null;          // where the student was headed before paying
     var freeAvailable = null;
+    var serverSignedIn = false;        // the SERVER's view of the token we sent
+    var linkedDevices = 1;
     var priceInfo = null;              // what THIS device pays (server-decided)
     var paidUntil = null;
     var PAY_BASE = (window.PM_PAY_BASE || '').trim();
@@ -2542,6 +3349,8 @@
 
     function post(body, cb) {
       body.device_id = Sync.deviceId();
+      // Signed in? Then the server answers for the ACCOUNT, not just this phone.
+      if (Auth.signedIn()) body.access_token = Auth.token();
       try {
         fetch(BASE, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -2555,8 +3364,36 @@
     function adoptStanding(out) {
       if (!out) return;
       if (typeof out.free_available === 'boolean') freeAvailable = out.free_available;
+      if (typeof out.signed_in === 'boolean') serverSignedIn = out.signed_in;
+      if (typeof out.devices === 'number') linkedDevices = out.devices;
       if (typeof out.paid_until !== 'undefined') paidUntil = out.paid_until;
       if (out.sku) priceInfo = out.sku;
+    }
+
+    /** Show the price AS a price: list price struck through, founding price big
+        beside it, and how many places are left. A sentence saying "it later
+        costs 199" is read past; a struck-through number is not.
+
+        Every number still comes from the server, so a founding student and a
+        later one each see their own truth. */
+    function paintPrice() {
+      var pb = $('lockPrice');
+      if (!pb || !priceInfo || !priceInfo.price_inr) return;
+      pb.innerHTML = '';
+      var list = priceInfo.list_price_inr;
+      // Only strike a price that is actually higher than what this student pays.
+      if (priceInfo.founding && list && list > priceInfo.price_inr) {
+        pb.appendChild(el('span', 'lp-was', '₹' + list));
+      }
+      pb.appendChild(el('span', 'lp-now', '₹' + priceInfo.price_inr));
+      pb.appendChild(el('span', 'lp-per', 'for ' + priceInfo.period_days + ' days'));
+      var left = priceInfo.founding_slots_left;
+      if (priceInfo.founding_locked) {
+        pb.appendChild(el('span', 'lp-note', 'Your founding price, kept for you.'));
+      } else if (priceInfo.founding && typeof left === 'number' && left > 0) {
+        pb.appendChild(el('span', 'lp-note', 'First ' + left + ' students. Then ₹' + list + '.'));
+      }
+      pb.hidden = false;
     }
 
     /** The offer line. The price ALWAYS comes from the server (ab_price_for) —
@@ -2564,17 +3401,12 @@
         each see their own truth without the page knowing the rule. */
     function offerLine() {
       if (!priceInfo || !priceInfo.price_inr) return 'Unlocking every chapter is coming soon.';
-      var p = '₹' + priceInfo.price_inr + ' for ' + priceInfo.period_days + ' days';
-      if (priceInfo.founding_locked) {
-        return 'Unlock every chapter again — ' + p + ', your founding price.';
-      }
-      if (priceInfo.founding) {
-        var left = priceInfo.founding_slots_left;
-        return 'Unlock every chapter — ' + p + '. That is the founding price'
-          + (typeof left === 'number' && left > 0 ? ' (' + left + ' places left)' : '')
-          + '; it later costs ₹' + priceInfo.list_price_inr + '. Once you join at this price, it stays yours.';
-      }
-      return 'Unlock every chapter — ' + p + '.';
+      // Short on purpose. The numbers live in the price block above this line,
+      // where a struck-through price is read at a glance; repeating them here
+      // in a sentence only made the sheet longer.
+      if (priceInfo.founding_locked) return 'Unlock every chapter again at your own price.';
+      if (priceInfo.founding) return 'Unlock every chapter. This price stays yours.';
+      return 'Unlock every chapter.';
     }
 
     function payable() { return !!(PAY_BASE && priceInfo && priceInfo.price_inr); }
@@ -2583,9 +3415,13 @@
         over to Razorpay. The device id rides the payment, so the webhook can
         unlock this very phone seconds after the UPI confirmation. */
     function startPayment(i, cutKey) {
-      pendingUnlock = { i: i, cutKey: cutKey };
+      // From the pricing page there is no chapter to return to (i is null), so
+      // a successful payment lands on the catalog rather than trying to reopen
+      // question index null.
+      pendingUnlock = (i === null || i === undefined) ? null : { i: i, cutKey: cutKey };
       sheet('Opening the payment page…', []);
       var body = { device_id: Sync.deviceId() };
+      if (Auth.signedIn()) body.access_token = Auth.token();
       try {
         fetch(PAY_BASE, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -2627,6 +3463,10 @@
     // ── the sheet ───────────────────────────────────────────────────────────
     function sheet(text, buttons) {
       $('lockText').textContent = text;
+      var list = $('lockList');
+      if (list) { list.innerHTML = ''; list.hidden = true; }
+      var pb = $('lockPrice');
+      if (pb) { pb.innerHTML = ''; pb.hidden = true; }
       var row = $('lockRow');
       row.innerHTML = '';
       for (var i = 0; i < buttons.length; i++) {
@@ -2662,25 +3502,81 @@
       loadQuestion(i, cutKey);
     }
 
+    /** The pricing page — what a pass includes, and what THIS device pays.
+        Every number comes from the server (ab_price_for); the client still
+        never names a price of its own, so a founding student and a later one
+        each read their own truth from the same code. */
+    function showPricing() {
+      var render = function () {
+        var buttons = [];
+        if (payable()) {
+          buttons.push({ label: 'Pay ₹' + priceInfo.price_inr + ' and unlock everything', primary: true,
+                         fn: function () { startPayment(null, null); } });
+        }
+        // Signing in is what carries a pass to a second device. Offered, never
+        // required: paying works signed out, and the pass still opens THIS
+        // device — it just cannot follow the student anywhere else.
+        if (Auth.available()) {
+          buttons.push(Auth.signedIn()
+            ? { label: 'Sign out', fn: function () { Auth.signOut(); location.hash = '#/'; location.reload(); } }
+            : { label: 'Sign in with Google', fn: function () { Auth.signIn(); } });
+        }
+        buttons.push({ label: 'Back to the book', fn: function () { location.hash = '#/'; } });
+        sheet(offerLine(), buttons);
+        paintPrice();
+        var list = $('lockList');
+        if (!list) return;
+        var items = [
+          Auth.signedIn()
+            ? ('Signed in' + (Auth.email() ? ' as ' + Auth.email() : '') +
+               ' — your pass works on every device you sign in on'
+               + (linkedDevices > 1 ? ' (' + linkedDevices + ' so far)' : ''))
+            : 'Sign in with Google and your pass follows you to any phone or laptop',
+          'Every chapter in Physics, Chemistry, Maths-1A and Maths-1B',
+          'The answer an examiner wants, written out step by step',
+          'Diagrams that draw themselves, line by line',
+          'Vidi explains any step you are stuck on',
+          'Memory tips and insider notes on the questions that repeat',
+          'Four chapters stay free — one in each subject'
+        ];
+        for (var i = 0; i < items.length; i++) {
+          var li = document.createElement('li');
+          li.textContent = items[i];
+          list.appendChild(li);
+        }
+        list.hidden = false;
+      };
+      // The price may not have arrived yet (a cold open straight to #/pricing).
+      if (priceInfo || !BASE) { render(); return; }
+      sheet('Loading…', []);
+      post({ list: true }, function (out) { adoptStanding(out); render(); });
+    }
+
     function showLocked(i, cutKey, k) {
       var buttons = [];
-      var text;
+      // Four chapters — one per subject — are free for EVERY student since
+      // 2026-08-27. The old copy here said "you have already used your free
+      // chapter", which under this model tells a student they spent something
+      // they never had. Say what is true: some chapters are free, this one is
+      // not, and here is what the rest costs.
+      var text = 'This chapter is locked. Four chapters are free, one in each subject. '
+               + offerLine();
+      if (payable()) {
+        buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, primary: true, fn: function () { startPayment(i, cutKey); } });
+      }
+      buttons.push({ label: 'See what you get', fn: function () { location.hash = '#/pricing'; } });
+      if (Auth.available() && !Auth.signedIn()) {
+        // A student who already paid on another phone gets in from here.
+        buttons.push({ label: 'Already paid? Sign in', fn: function () { Auth.signIn(); } });
+      }
       if (freeAvailable) {
-        text = 'This chapter is locked. Every student gets ONE full chapter free — do you want this one as your free chapter?';
-        buttons.push({ label: 'Read this chapter free', primary: true, fn: function () { claimFree(i, cutKey, k); } });
-        // The paid option sits BESIDE the free one: a student who already knows
-        // they want the whole book should not have to spend the gift first.
-        if (payable()) {
-          buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, fn: function () { startPayment(i, cutKey); } });
-        }
-      } else {
-        text = 'This chapter is locked. You have already used your free chapter. ' + offerLine();
-        if (payable()) {
-          buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, primary: true, fn: function () { startPayment(i, cutKey); } });
-        }
+        // Only reachable if the per-device free slot is revived server-side
+        // (free_available is false today); claimFree stays wired for that day.
+        buttons.push({ label: 'Read this chapter free', fn: function () { claimFree(i, cutKey, k); } });
       }
       buttons.push(backBtn());
       sheet(text, buttons);
+      paintPrice();
     }
 
     function claimFree(i, cutKey, k) {
@@ -2711,8 +3607,47 @@
       });
     }
 
+    /** Release whatever is waiting on the list, exactly once each. Returns true
+        if anything was waiting, so init() can skip its own repaint rather than
+        render the catalog twice in one tick. */
+    function drainList() {
+      if (!listWaiters.length) return false;
+      var w = listWaiters; listWaiters = [];
+      for (var i = 0; i < w.length; i++) w[i]();
+      return true;
+    }
+
     return {
       showLockFlow: showLockFlow,
+      showPricing: showPricing,
+      /** Is the chapter gate live at all? False in every ungated build, where
+          the whole module is inert and no lock vocabulary should appear. */
+      on: function () { return !!BASE; },
+      /** Has the server actually answered? Distinguishes "nothing is locked"
+          from "we do not know yet", which locked() alone cannot express. */
+      listed: function () { return listLoaded; },
+      /** This student holds a pass covering everything. */
+      hasPass: function () { return hasAll; },
+      /** What THIS device pays, as decided by ab_price_for and carried in the
+          list reply — null until the server has said. The client still never
+          invents a number; it only repeats the one it was given, so a founding
+          student and a later one each read their own. */
+      price: function () { return priceInfo && priceInfo.price_inr ? priceInfo.price_inr : null; },
+      /** Run cb once the entitlement list has answered — immediately when there
+          is nothing to wait for (every ungated build, or a list already in), and
+          after capMs regardless, so a dead endpoint delays the catalog by a
+          moment instead of withholding it.
+
+          The catalog's FIRST paint waits on this because it now ORDERS by lock
+          state, and locked() reads false until the list lands: painting early
+          would show units.json order and then reshuffle the whole list under the
+          student's thumb. Every later render is synchronous. */
+      whenListed: function (cb, capMs) {
+        if (!BASE || listLoaded) { cb(); return; }
+        var done = false;
+        listWaiters.push(function () { if (!done) { done = true; cb(); } });
+        setTimeout(function () { if (!done) { done = true; cb(); } }, capMs || 1500);
+      },
       /** True only when the LIST has answered and says this unit is locked —
           before that the catalog shows no lock cue rather than a wrong one. */
       locked: function (k) {
@@ -2722,14 +3657,19 @@
       init: function () {
         if (!BASE) return;               // inert in every full build
         post({ list: true }, function (out) {
-          if (!out || !out.ok) return;   // no list = no chips; opens still work
+          // No list = no chips, and opens still work — but whatever is holding
+          // the first paint has to be released either way, or a server blip
+          // costs the student the catalog rather than the lock cues.
+          if (!out || !out.ok) { drainList(); return; }
           adoptStanding(out);
           var u = out.unlocked || [];
           for (var i = 0; i < u.length; i++) {
             if (u[i] === 'all') hasAll = true; else unlockedUnits[u[i]] = true;
           }
           listLoaded = true;
-          if (currentView === 'catalog') renderCatalog();
+          // A waiter IS the first paint; letting it render and then repainting
+          // here would draw the catalog twice in one tick.
+          if (!drainList() && currentView === 'catalog') renderCatalog();
           // Coming back from a successful payment: the pass is live, so drop the
           // student straight into the chapter they were trying to open.
           if (hasAll && pendingUnlock) {
@@ -2739,6 +3679,179 @@
         });
       }
     };
+  })();
+
+  // ═══ THE DOOR — group and year, before the book ═══════════════════════════
+  // (founder, 2026-08-27.) The site used to open straight on an MPC first-year
+  // catalog. A BiPC, MEC or second-year student arriving from a forwarded link
+  // found a book that was not theirs, and nothing on screen saying theirs is
+  // coming — so they left, and we never heard from them. The taps on the
+  // coming-soon control are the answer to "which group do we build next?",
+  // measured instead of guessed.
+  //
+  // Two steps, group then year, and EVERY group advances to the year step even
+  // when both of its years are unbuilt: the whole point is that a BiPC student
+  // sees first year AND second year listed for their own branch. A tile that
+  // dead-ended at step one would say "not you" and nothing more.
+  //
+  // Inert unless window.PM_TRACKS was emitted, which only a --stream build does.
+  // An unstreamed build is the whole five-subject bank and belongs to no group,
+  // so a chooser over it would be a lie — and the offline suite goes on meeting
+  // the catalog exactly as it always has.
+  var Door = (function () {
+    var TRACKS = (window.PM_TRACKS && window.PM_TRACKS.length) ? window.PM_TRACKS : null;
+    var KEY = 'pm_track_v1';
+    var SOON_KEY = 'pm_soon_asked';     // same key and shape as the website tiles
+
+    // Its own storage accessors, the way Auth and Sync each have theirs: private
+    // mode throws on every localStorage call, and a chooser that cannot remember
+    // must still open.
+    function g(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+    function s(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } }
+
+    function el(cls, text) {
+      var n = document.createElement('span');
+      n.className = cls;
+      n.textContent = text;
+      return n;
+    }
+
+    function enabled() { return !!TRACKS; }
+
+    function chosen() {
+      if (!TRACKS) return null;
+      try {
+        var t = JSON.parse(g(KEY) || 'null');
+        return (t && t.group && t.year) ? t : null;
+      } catch (e) { return null; }
+    }
+
+    function trackById(id) {
+      for (var i = 0; TRACKS && i < TRACKS.length; i++) if (TRACKS[i].id === id) return TRACKS[i];
+      return null;
+    }
+
+    function liveYear(t) {
+      for (var i = 0; i < t.years.length; i++) if (t.years[i].live) return t.years[i];
+      return null;
+    }
+
+    function asked() {
+      try { return JSON.parse(g(SOON_KEY) || '{}') || {}; } catch (e) { return {}; }
+    }
+
+    function markAsked(btn) {
+      btn.textContent = 'Noted — we will tell you';
+      btn.setAttribute('disabled', '');
+      btn.className = 'door-soon-btn done';
+    }
+
+    /** Record who wants what. No new endpoint and no new table: this rides the
+        telemetry batch Vidi already flushes, so the demand signal costs nothing
+        to collect and is dropped silently in a build that has no endpoint. */
+    function ask(key, btn) {
+      var m = asked();
+      m[key] = 1;
+      s(SOON_KEY, JSON.stringify(m));
+      Vidi.log('track_interest', { track: key });
+      markAsked(btn);
+    }
+
+    function soonButton(key) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'door-soon-btn';
+      b.setAttribute('data-soon', key);
+      if (asked()[key]) { markAsked(b); return b; }
+      b.textContent = 'Tell me when it is ready';
+      b.addEventListener('click', function (ev) { ev.stopPropagation(); ask(key, b); });
+      return b;
+    }
+
+    /** Remember the choice, then go. replaceState rather than a hash write: the
+        door must not sit in history behind the catalog, where Back would drop a
+        student who just chose straight back onto the chooser. It also fires no
+        hashchange, so the catalog is shown once — here — and not again by route(). */
+    function choose(group, year) {
+      s(KEY, JSON.stringify({ group: group, year: year, at: new Date().toISOString() }));
+      if (location.hash && location.hash !== '#/') {
+        try { history.replaceState(null, '', location.pathname + location.search + '#/'); }
+        catch (e) { /* file:// refuses replaceState; the hash is cosmetic here */ }
+      }
+      showCatalog();
+    }
+
+    function renderGroups() {
+      var host = $('doorGroups');
+      host.innerHTML = '';
+      TRACKS.forEach(function (t) {
+        var live = liveYear(t);
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'door-tile' + (live ? ' live' : '');
+        b.setAttribute('data-door-group', t.id);
+        b.appendChild(el('door-tile-name', t.label));
+        b.appendChild(el('door-tile-sub', t.subjects));
+        b.appendChild(el('door-pill' + (live ? ' on' : ''),
+          live ? live.questions + ' answers · ' + live.units + ' chapters' : 'Coming soon'));
+        b.addEventListener('click', function () { showYears(t.id); });
+        host.appendChild(b);
+      });
+    }
+
+    function renderYears(t) {
+      var host = $('doorYears');
+      host.innerHTML = '';
+      t.years.forEach(function (y) {
+        var key = t.id + '_' + y.id;
+        if (y.live) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'door-tile live';
+          b.setAttribute('data-door-year', y.id);
+          b.appendChild(el('door-tile-name', y.label));
+          b.appendChild(el('door-tile-sub', t.subjects));
+          b.appendChild(el('door-pill on', y.questions + ' answers · ' + y.units + ' chapters'));
+          b.appendChild(el('door-go', 'Open the Answer Book →'));
+          b.addEventListener('click', function () { choose(t.id, y.id); });
+          host.appendChild(b);
+          return;
+        }
+        // A div, not a button: nothing in this tile is pressable except the one
+        // control inside it, and a dead button a student can still press reads
+        // as broken rather than as unbuilt.
+        var d = document.createElement('div');
+        d.className = 'door-tile soon';
+        d.setAttribute('data-door-year', y.id);
+        d.appendChild(el('door-tile-name', y.label));
+        d.appendChild(el('door-pill', 'Coming soon'));
+        if (y.note) d.appendChild(el('door-note', y.note));
+        d.appendChild(soonButton(key));
+        host.appendChild(d);
+      });
+    }
+
+    function showYears(id) {
+      var t = trackById(id);
+      if (!t) return;
+      $('doorTitle').textContent = t.label + ' — which year?';
+      $('doorTag').textContent = 'First year is Junior Inter. Second year is Senior Inter.';
+      renderYears(t);
+      $('doorStep1').hidden = true;
+      $('doorStep2').hidden = false;
+    }
+
+    function show() {
+      if (!TRACKS) { showCatalog(); return; }
+      $('doorTitle').textContent = 'Which group are you in?';
+      $('doorTag').textContent = 'Pick your group, then your year. We will remember it.';
+      renderGroups();
+      $('doorStep1').hidden = false;
+      $('doorStep2').hidden = true;
+      showView('door');
+    }
+
+    return { enabled: enabled, chosen: chosen, show: show };
   })();
 
   var VidiPanel = (function () {
@@ -2872,7 +3985,8 @@
     // Widgets are tutor bubbles that hold controls (.vidi-widget, never
     // .vidi-chip — the chip gates count #vidiChips only). All deterministic.
 
-    var ob = { active: false, step: '', date: '', units: [], mins: 0, scope: null, draft: null };
+    var ob = { active: false, step: '', dates: {}, subjects: [], units: [],
+               mins: 0, scope: null, draft: null, provisional: false };
 
     function widget(build) {
       var w = el('div', 'vidi-msg tutor vidi-widget');
@@ -2905,17 +4019,23 @@
       say('Hi, I am ' + Vidi.getName() + ' — welcome to Viditra.');
       // Subject-neutral: the book has held physics, chemistry AND mathematics
       // since 2026-08-23, and this line greets a student on any of them.
-      say('This book holds the questions your board exam can ask, each with the answer the examiner wants, revealed step by step. I can also plan your whole preparation — day by day, revision included.', 700);
+      say(plannerOn()
+        ? 'This book holds the questions your board exam can ask, each with the answer the examiner wants, revealed step by step. I can also plan your whole preparation — day by day, revision included.'
+        : 'This book holds the questions your board exam can ask, each with the answer the examiner wants, revealed step by step. Ask me about any step and I will explain it.', 700);
       var g = gen;
       setTimeout(function () {
         if (g !== gen) return;
         widget(function (w) {
-          w.appendChild(document.createTextNode('Shall we plan your exam preparation, or jump straight in?'));
+          w.appendChild(document.createTextNode(plannerOn()
+            ? 'Shall we plan your exam preparation, or jump straight in?'
+            : 'Ready to start?'));
           var row = el('div', 'vw-row');
-          row.appendChild(wBtn('Plan my first-term exam', true, function () {
-            Vidi.markIntroDone(); startOnboarding();
-          }));
-          row.appendChild(wBtn('Start learning now', false, function () {
+          if (plannerOn()) {
+            row.appendChild(wBtn('Plan my first-term exam', true, function () {
+              Vidi.markIntroDone(); startOnboarding();
+            }));
+          }
+          row.appendChild(wBtn('Start learning now', !plannerOn(), function () {
             Vidi.markIntroDone();
             say('Great — open any question and start. Each answer writes itself step by step, the way the examiner wants it. When you move on from a question I will ask how it went; anything you understood comes back tomorrow for one revision. That is what makes it stick.');
           }));
@@ -2926,54 +4046,315 @@
     }
 
     function startOnboarding() {
-      ob = { active: true, step: 'date', date: '', units: [], mins: 0, scope: null, draft: null };
-      askDate();
+      ob = { active: true, step: 'subjects', dates: {}, subjects: [], units: [],
+             mins: 0, scope: null, draft: null, provisional: false };
+      askSubjectsAndDates();
     }
 
-    function askDate() {
-      ob.step = 'date';
-      say('When is your exam?');
+    /** Every subject the book holds, in units.json order. */
+    function bookSubjects() {
+      var out = [];
+      for (var i = 0; i < UNITS.length; i++) {
+        var s = subjectOf(UNITS[i]);
+        if (out.indexOf(s) < 0) out.push(s);
+      }
+      return out;
+    }
+
+    /** The next rung of the date ladder: two days after the latest date already
+        given, so ticking a second and third paper usually needs no typing. A
+        student with no date yet gets a blank — we do not invent the first one. */
+    function ladderFrom(dates) {
+      var latest = '';
+      for (var s in dates) {
+        if (!Object.prototype.hasOwnProperty.call(dates, s)) continue;
+        if (dates[s] && (!latest || dates[s] > latest)) latest = dates[s];
+      }
+      return latest ? Plan.addDays(latest, 2) : '';
+    }
+
+    /** Subjects AND their exam dates, in ONE step.
+
+        A real board student sits three or four papers on DIFFERENT days, and
+        the gap between two papers is the time they actually revise the second
+        one in. One shared date cannot express that: read as the first paper
+        the plan stops early, read as the last it schedules maths revision for
+        after the maths exam. So each ticked subject carries its own date, and
+        the scheduler races each one to its own paper. */
+    function askSubjectsAndDates() {
+      ob.step = 'subjects';
+      var subs = bookSubjects();
+      var one = subs.length === 1;
+      say(one ? 'When is your exam?' : 'Which subjects are in this exam, and when is each paper?');
       widget(function (w) {
-        var inp = document.createElement('input');
-        inp.type = 'date';
-        var t = Vidi.todayStr();
-        inp.min = t;
-        inp.value = ob.date || '';
+        var rows = [], today = Vidi.todayStr();
+        for (var i = 0; i < subs.length; i++) {
+          (function (s) {
+            var lab = el('label', 'vw-check vw-subject');
+            var cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.className = 'vw-subject-box';
+            cb.value = s;
+            cb.checked = one || ob.subjects.indexOf(s) >= 0;
+            var dt = document.createElement('input');
+            dt.type = 'date';
+            dt.className = 'vw-subject-date';
+            dt.setAttribute('data-subject', s);
+            dt.min = today;
+            dt.value = ob.dates[s] || '';
+            dt.disabled = !cb.checked;
+            cb.addEventListener('change', function () {
+              dt.disabled = !cb.checked;
+              if (!cb.checked) { dt.value = ''; return; }
+              // Ticking a later paper prefills the next rung of the ladder.
+              if (!dt.value) dt.value = ladderFrom(collect(rows).dates);
+            });
+            lab.appendChild(cb);
+            lab.appendChild(document.createTextNode(one ? subjLabel(s) + ' exam' : subjLabel(s)));
+            lab.appendChild(dt);
+            w.appendChild(lab);
+            rows.push({ subject: s, cb: cb, dt: dt });
+          })(subs[i]);
+        }
+
         var row = el('div', 'vw-row');
-        row.appendChild(inp);
-        row.appendChild(wBtn('Set date', true, function () {
-          var v = inp.value;
-          if (!v || Plan.diffDays(v, Vidi.todayStr()) < 1) {
-            say('Pick a date after today — the plan needs at least one day.');
-            askDate();
-            return;
+        row.appendChild(wBtn(one ? 'Set date' : 'These subjects →', true, function () {
+          var got = collect(rows);
+          if (!got.subjects.length) {
+            say('Tick at least one subject.'); askSubjectsAndDates(); return;
           }
-          ob.date = v;
-          bubble('My exam is on ' + v, 'student');
+          var missing = [], bad = [];
+          for (var k = 0; k < got.subjects.length; k++) {
+            var s2 = got.subjects[k], v = got.dates[s2];
+            if (!v) missing.push(subjLabel(s2));
+            else if (Plan.diffDays(v, Vidi.todayStr()) < 1) bad.push(subjLabel(s2));
+          }
+          if (bad.length) {
+            say('Pick a date after today for ' + listWords(bad) + ' — the plan needs at least one day.');
+            askSubjectsAndDates(); return;
+          }
+          if (missing.length) {
+            say('I still need the date for ' + listWords(missing) +
+              '. If the timetable is not out yet, tap "I do not know the rest yet" and I will assume the papers are two days apart.');
+            askSubjectsAndDates(); return;
+          }
+          ob.subjects = got.subjects;
+          ob.dates = got.dates;
+          bubble(got.subjects.map(function (s3) {
+            return subjLabel(s3) + ' on ' + got.dates[s3];
+          }).join(', '), 'student');
           askUnits();
         }));
+
+        if (!one) {
+          // The timetable is often announced one paper at a time. Guessing a
+          // date beats refusing to plan — but the plan remembers it guessed,
+          // and asks again at the next check-in.
+          row.appendChild(wBtn('I do not know the rest yet', false, function () {
+            var got = collect(rows);
+            if (!got.subjects.length) { say('Tick at least one subject.'); askSubjectsAndDates(); return; }
+            var anchor = '';
+            for (var k = 0; k < got.subjects.length; k++) {
+              var v = got.dates[got.subjects[k]];
+              if (v && (!anchor || v > anchor)) anchor = v;
+            }
+            if (!anchor) {
+              say('Give me one date first — any paper you do know — and I will space the rest two days apart from it.');
+              askSubjectsAndDates(); return;
+            }
+            var guessed = [];
+            for (k = 0; k < got.subjects.length; k++) {
+              var s4 = got.subjects[k];
+              if (got.dates[s4]) continue;
+              anchor = Plan.addDays(anchor, 2);
+              got.dates[s4] = anchor;
+              guessed.push(subjLabel(s4) + ' ' + anchor);
+            }
+            ob.subjects = got.subjects;
+            ob.dates = got.dates;
+            ob.provisional = guessed.length > 0;
+            if (guessed.length) {
+              say('I have assumed ' + listWords(guessed) +
+                '. Tell me the real dates when the timetable is out and I will re-plan.');
+            }
+            askUnits();
+          }));
+        }
         w.appendChild(row);
       });
     }
 
+    /** Read the ticked subjects and their dates out of the live widget rows. */
+    function collect(rows) {
+      var subjects = [], dates = {};
+      for (var i = 0; i < rows.length; i++) {
+        if (!rows[i].cb.checked) continue;
+        subjects.push(rows[i].subject);
+        dates[rows[i].subject] = rows[i].dt.value || '';
+      }
+      return { subjects: subjects, dates: dates };
+    }
+
+    /** The day a paper is actually written (plan.start is day 1). */
+    function examDayOf(plan, subject) {
+      return Plan.diffDays(plan.examDates[subject], plan.start) + 1;
+    }
+
+    /** Every day of the plan as one display row: what is learned, what is
+        revised, and — the row that makes a multi-paper plan legible — the day
+        each paper is written. Days beyond the learning array are the revision
+        run-ins, which the scheduler stores as ranges rather than rows. */
+    function planDayRows(plan) {
+      var subs = (plan.subjects || []).slice();
+      var rows = [], d, i, s;
+      if (!subs.length) {
+        // A single-subject or pre-per-subject plan: the old shape, unchanged.
+        for (d = 1; d <= plan.totalDays; d++) {
+          var od = plan.days[d - 1], op = [];
+          if (od && od.revise.length) op.push('revise ' + od.revise.length);
+          if (od && od.learn.length) op.push('learn ' + od.learn.length);
+          if (!od && d >= plan.revBlockStart) op.push('full revision, weakest first');
+          rows.push({ day: d, exam: [], text: op.join(' · ') || 'catch-up' });
+        }
+        return rows;
+      }
+      var examDay = {}, last = 0;
+      for (i = 0; i < subs.length; i++) {
+        examDay[subs[i]] = examDayOf(plan, subs[i]);
+        if (examDay[subs[i]] > last) last = examDay[subs[i]];
+      }
+      for (d = 1; d <= last; d++) {
+        var learnParts = [], revParts = [], sat = [];
+        var day = plan.days[d - 1];
+        var by = day ? countBySubject(plan, day.learn.concat(day.revise)) : {};
+        for (i = 0; i < subs.length; i++) {
+          s = subs[i];
+          if (d === examDay[s]) { sat.push(subjLabel(s)); continue; }
+          if (d > examDay[s]) continue;                       // paper written
+          if (by[s]) learnParts.push(subjLabel(s) + ' ' + by[s]);
+          else if (d >= Plan.revStartFor(plan, s)) revParts.push(subjLabel(s) + ' revision');
+        }
+        rows.push({
+          day: d, exam: sat,
+          text: learnParts.concat(revParts).join(' · '),
+        });
+      }
+      return rows;
+    }
+
+    /** Paint the plan's days into `box`. Collapsed shows the opening days and
+        each paper's revision run-in; expanded shows every single day. */
+    function renderPlanDays(box, plan, expanded) {
+      var subs = plan.subjects || [];
+      var rows = planDayRows(plan), i;
+      var mk = function (label, text, isExam) {
+        var r = el('div', 'vw-day' + (isExam ? ' vwd-examrow' : ''));
+        r.appendChild(el('span', 'vwd-n', label));
+        r.appendChild(el('span', '', text));
+        box.appendChild(r);
+      };
+      if (expanded) {
+        for (i = 0; i < rows.length; i++) {
+          if (rows[i].exam.length) {
+            mk('Day ' + rows[i].day, listWords(rows[i].exam) + ' exam', true);
+            if (rows[i].text) mk('', rows[i].text, false);
+          } else {
+            mk('Day ' + rows[i].day, rows[i].text || 'catch-up', false);
+          }
+        }
+        return;
+      }
+      var show = Math.min(4, rows.length);
+      for (i = 0; i < show; i++) mk('Day ' + rows[i].day, rows[i].text || 'catch-up', false);
+      if (rows.length > show) {
+        var dots = el('div', 'vw-day');
+        dots.appendChild(el('span', 'vwd-n', '…'));
+        box.appendChild(dots);
+      }
+      // Each paper's own revision run-in, NEAREST EXAM FIRST — listing them in
+      // plan.subjects order put a day-43 block after a day-50 one.
+      if (subs.length > 1) {
+        var order = subs.slice().sort(function (a, b) { return examDayOf(plan, a) - examDayOf(plan, b); });
+        for (i = 0; i < order.length; i++) {
+          var s = order[i];
+          var from = Plan.revStartFor(plan, s), to = examDayOf(plan, s) - 1;
+          // A one-day run-in is "Day 43", never "Day 43–43".
+          mk(from >= to ? 'Day ' + to : 'Day ' + from + '–' + to,
+             subjLabel(s) + ' revision, weakest first', false);
+        }
+      } else {
+        var f = plan.revBlockStart, t = plan.totalDays;
+        mk(f >= t ? 'Day ' + t : 'Day ' + f + '–' + t, 'full revision, weakest first', false);
+      }
+    }
+
+    /** {subject: how many of these qids belong to it}. */
+    function countBySubject(plan, qids) {
+      var out = {};
+      for (var i = 0; i < qids.length; i++) {
+        var s = Plan.subjectOfQid(plan, qids[i]);
+        out[s] = (out[s] || 0) + 1;
+      }
+      return out;
+    }
+
+    /** ['Physics','Maths-1A'] → 'Physics and Maths-1A'. */
+    function listWords(xs) {
+      if (xs.length <= 1) return xs[0] || '';
+      return xs.slice(0, -1).join(', ') + ' and ' + xs[xs.length - 1];
+    }
+
     function askUnits() {
       ob.step = 'units';
-      say('Which chapters are in this exam? Tick every one.');
+      var multi = ob.subjects.length > 1;
+      say(multi
+        ? 'Which chapters are in these papers? Everything is ticked — untick what your exam leaves out.'
+        : 'Which chapters are in this exam? Everything is ticked — untick what your exam leaves out.');
       widget(function (w) {
         var boxes = [];
-        for (var i = 0; i < UNITS.length; i++) {
-          (function (u) {
-            var lab = el('label', 'vw-check');
-            var cb = document.createElement('input');
-            cb.type = 'checkbox';
-            cb.value = unitKey(u);
-            if (ob.units.indexOf(unitKey(u)) >= 0) cb.checked = true;
-            lab.appendChild(cb);
-            lab.appendChild(document.createTextNode(
-              u.number + '. ' + u.name + ' (' + u.questions.length + ' questions)'));
-            w.appendChild(lab);
-            boxes.push(cb);
-          })(UNITS[i]);
+        // Grouped under the picked subjects only. The whole book is 51 chapters
+        // across five papers, and one flat list of them is unreadable — and
+        // most of it belongs to a subject this student did not even pick.
+        for (var si = 0; si < ob.subjects.length; si++) {
+          (function (s) {
+            var mine = [];
+            for (var i = 0; i < UNITS.length; i++) {
+              if (subjectOf(UNITS[i]) === s) mine.push(UNITS[i]);
+            }
+            if (!mine.length) return;
+            if (multi) {
+              var head = el('div', 'vw-subhead', subjLabel(s) + ' · ' + ob.dates[s]);
+              w.appendChild(head);
+            }
+            var group = [];
+            for (var j = 0; j < mine.length; j++) {
+              (function (u) {
+                var lab = el('label', 'vw-check');
+                var cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.value = unitKey(u);
+                // Default is EVERY chapter of a picked paper: a first-term exam
+                // usually covers the lot, so the common case is one tap.
+                cb.checked = ob.units.length ? ob.units.indexOf(unitKey(u)) >= 0 : true;
+                lab.appendChild(cb);
+                lab.appendChild(document.createTextNode(
+                  u.number + '. ' + chapterLabel(u) + ' (' + u.questions.length + ' questions)'));
+                w.appendChild(lab);
+                boxes.push(cb);
+                group.push(cb);
+              })(mine[j]);
+            }
+            if (multi && group.length > 1) {
+              var t = el('button', 'vw-toggle', 'All / none');
+              t.type = 'button';
+              t.addEventListener('click', function () {
+                var anyOff = false;
+                for (var g = 0; g < group.length; g++) if (!group[g].checked) anyOff = true;
+                for (g = 0; g < group.length; g++) group[g].checked = anyOff;
+              });
+              w.appendChild(t);
+            }
+          })(ob.subjects[si]);
         }
         var row = el('div', 'vw-row');
         row.appendChild(wBtn('These chapters →', true, function () {
@@ -2981,6 +4362,14 @@
           for (var b = 0; b < boxes.length; b++) if (boxes[b].checked) picked.push(boxes[b].value);
           if (!picked.length) { say('Tick at least one chapter.'); askUnits(); return; }
           ob.units = picked;
+          // A subject whose every chapter was unticked is not in this exam.
+          var kept = [];
+          for (var s5 = 0; s5 < ob.subjects.length; s5++) {
+            for (var p = 0; p < picked.length; p++) {
+              if (picked[p].indexOf(ob.subjects[s5] + '-') === 0) { kept.push(ob.subjects[s5]); break; }
+            }
+          }
+          ob.subjects = kept;
           askScope();
         }));
         w.appendChild(row);
@@ -2991,7 +4380,21 @@
     // "I finished all long answers elsewhere — plan only SAQs and VSAQs."
     // A deterministic plan dimension, never the model's: all three ticked =
     // null scope = everything, so the default student never notices the step.
-    var SCOPE_OPTS = [['LAQ', 'Long answers (8 marks)'], ['SAQ', 'Short answers (4 marks)'], ['VSAQ', 'Very short answers (2 marks)']];
+    // The mark values are read off PM_PATTERNS (the same table the schema holds
+    // every card to), never typed here: on the 2026-27 papers every subject's
+    // long answer is 8 marks, but a hardcoded number is exactly how the maths
+    // section once printed "8 marks" over 7-mark cards.
+    function scopeMarks(qtype, fallback) {
+      var p = PATTERNS.physics || PATTERNS[Object.keys(PATTERNS)[0]];
+      if (!p || !p.sections) return fallback;
+      for (var i = 0; i < p.sections.length; i++) if (p.sections[i].key === qtype) return p.sections[i].marks;
+      return fallback;
+    }
+    var SCOPE_OPTS = [
+      ['LAQ', 'Long answers (' + scopeMarks('LAQ', 8) + ' marks)'],
+      ['SAQ', 'Short answers (' + scopeMarks('SAQ', 4) + ' marks)'],
+      ['VSAQ', 'Very short answers (' + scopeMarks('VSAQ', 2) + ' marks)']
+    ];
 
     function scopeBoxes(w, current) {
       var boxes = [];
@@ -3043,9 +4446,21 @@
         mins += Math.ceil(items[i].mins * 2.5);
       }
       var hours = Math.round(mins / 30) / 2;      // half-hour precision
-      var D = Plan.diffDays(ob.date, Vidi.todayStr());
+      // Name each paper and its own countdown, nearest first — with three
+      // papers there is no single "that is N days away" to report.
+      var order = ob.subjects.slice().sort(function (a, b) {
+        return Plan.diffDays(ob.dates[a], Vidi.todayStr()) - Plan.diffDays(ob.dates[b], Vidi.todayStr());
+      });
+      var when = order.map(function (s) {
+        var d = Plan.diffDays(ob.dates[s], Vidi.todayStr());
+        return subjLabel(s) + ' in ' + d + ' day' + (d === 1 ? '' : 's');
+      });
+      var D = Plan.diffDays(ob.dates[order[0]], Vidi.todayStr());
+      var away = order.length > 1
+        ? listWords(when) + '.'
+        : 'That is ' + D + ' day' + (D === 1 ? '' : 's') + ' away.';
       if (!ob.scope) {
-        say('That is ' + D + ' day' + (D === 1 ? '' : 's') + ' away. Those chapters hold ' +
+        say(away + ' Those chapters hold ' +
           n.LAQ + ' long answers, ' + n.SAQ + ' short answers and ' + n.VSAQ +
           ' very short answers — about ' + hours + ' hours of work including revision.');
       } else {
@@ -3056,7 +4471,7 @@
           else skipped.push(allT[t]);
         }
         var list = parts.length > 1 ? parts.slice(0, -1).join(', ') + ' and ' + parts[parts.length - 1] : parts[0];
-        say('That is ' + D + ' day' + (D === 1 ? '' : 's') + ' away. You are keeping ' + list +
+        say(away + ' You are keeping ' + list +
           ' — about ' + hours + ' hours of work including revision.');
         say('The plan skips ' + Plan.scopeWords(skipped) + ' because you did not tick them.', 400);
       }
@@ -3089,39 +4504,48 @@
 
     function preview() {
       ob.step = 'preview';
-      var plan = Plan.build(ob.date, ob.units, ob.mins, Vidi.todayStr(), null, ob.scope);
-      if (!plan) { askDate(); return; }
+      var plan = Plan.build(ob.dates, ob.units, ob.mins, Vidi.todayStr(), null, ob.scope);
+      if (!plan) { askSubjectsAndDates(); return; }
+      plan.datesProvisional = !!ob.provisional;
       ob.draft = plan;
       var total = 0; for (var q in plan.learnDay) if (Object.prototype.hasOwnProperty.call(plan.learnDay, q)) total++;
       say('Here is your plan — ' + plan.totalDays + ' days, ' + total + ' questions, revision built in.');
       widget(function (w) {
         w.appendChild(document.createTextNode(plan.totalDays + ' days · ' +
           (plan.minsPerDay >= 60 ? (plan.minsPerDay / 60) + ' hour' + (plan.minsPerDay > 60 ? 's' : '') : plan.minsPerDay + ' min') + ' a day'));
+        var subs = plan.subjects || [];
+        var multi = subs.length > 1;
         var box = el('div', 'vw-plan');
-        var show = Math.min(4, plan.days.length);
-        for (var d = 0; d < show; d++) {
-          var row = el('div', 'vw-day');
-          row.appendChild(el('span', 'vwd-n', 'Day ' + (d + 1)));
-          var parts = [];
-          if (plan.days[d].revise.length) parts.push('revise ' + plan.days[d].revise.length);
-          if (plan.days[d].learn.length) parts.push('learn ' + plan.days[d].learn.length);
-          row.appendChild(el('span', '', parts.join(' · ') || 'catch-up'));
-          box.appendChild(row);
-        }
-        if (plan.days.length > show) {
-          var dots = el('div', 'vw-day');
-          dots.appendChild(el('span', 'vwd-n', '…'));
-          box.appendChild(dots);
-        }
-        var rb = el('div', 'vw-day');
-        rb.appendChild(el('span', 'vwd-n', 'Day ' + plan.revBlockStart + '–' + plan.totalDays));
-        rb.appendChild(el('span', '', 'full revision, weakest first'));
-        box.appendChild(rb);
+        var expanded = false;
+        var toggle = el('button', 'vw-toggle', '');
+        toggle.type = 'button';
+        var paint = function () {
+          box.innerHTML = '';
+          renderPlanDays(box, plan, expanded);
+          toggle.textContent = expanded ? 'Show less' : 'View whole plan';
+          box.className = 'vw-plan' + (expanded ? ' vw-plan-full' : '');
+        };
+        // NOT a wBtn: wBtn freezes every control in its widget once used, which
+        // is right for a step of the conversation and wrong for a view toggle
+        // the student should be able to open and close as often as they like.
+        toggle.addEventListener('click', function () { expanded = !expanded; paint(); });
+        paint();
         w.appendChild(box);
+        w.appendChild(toggle);
+        if (plan.datesProvisional) {
+          w.appendChild(el('div', 'vw-warn', 'Some of these dates are my guess, two days apart. Tell me the real ones when the timetable is out and I will re-plan.'));
+        }
         if (plan.crunch) {
           // The founder's crunch strategy, said out loud: with little time,
           // long and short answers score the marks; very short answers wait.
-          w.appendChild(el('div', 'vw-warn', 'Time is short, so this plan puts long answers and short answers first — they carry the marks.' +
+          var tight = [];
+          for (var ci = 0; ci < subs.length; ci++) {
+            if (plan.crunchBy && plan.crunchBy[subs[ci]]) tight.push(subjLabel(subs[ci]));
+          }
+          w.appendChild(el('div', 'vw-warn',
+            (multi && tight.length && tight.length < subs.length
+              ? 'Time is short for ' + listWords(tight) + ', so the plan puts their long answers and short answers first — they carry the marks.'
+              : 'Time is short, so this plan puts long answers and short answers first — they carry the marks.') +
             (plan.optional.length ? ' ' + plan.optional.length + ' questions, mostly very short answers, are left for exam-eve — do not start with them.' : '')));
         } else if (plan.optional.length) {
           w.appendChild(el('div', 'vw-warn', 'At this pace ' + plan.optional.length +
@@ -3140,9 +4564,16 @@
       plan.implemented = true;
       plan.lastNudgeDay = Vidi.todayStr();
       Vidi.setPlan(plan);
-      ob = { active: false, step: '', date: '', units: [], mins: 0, scope: null, draft: null };
-      Vidi.log('plan_implemented', { days: plan.totalDays, mins: plan.minsPerDay, units: plan.units.join(','), scope: (plan.scope || []).join(',') || 'all' });
-      say('Done — ' + Plan.daysLeft(plan, Vidi.todayStr()) + ' days on the clock. Here is today:');
+      ob = { active: false, step: '', dates: {}, subjects: [], units: [],
+             mins: 0, scope: null, draft: null, provisional: false };
+      Vidi.log('plan_implemented', { days: plan.totalDays, mins: plan.minsPerDay,
+        units: plan.units.join(','), scope: (plan.scope || []).join(',') || 'all',
+        subjects: (plan.subjects || []).join(','),
+        provisional: plan.datesProvisional ? 1 : 0 });
+      var nx = Plan.nextExam(plan, Vidi.todayStr());
+      say('Done — ' + (nx && (plan.subjects || []).length > 1
+          ? subjLabel(nx.subject) + ' first, in ' + nx.days + ' days'
+          : Plan.daysLeft(plan, Vidi.todayStr()) + ' days on the clock') + '. Here is today:');
       renderTodayCard(plan);
       updatePlanStrip();
       renderVidiChips();
@@ -3150,7 +4581,7 @@
     }
 
     function resumeOnboarding() {
-      if (ob.step === 'date') askDate();
+      if (ob.step === 'date' || ob.step === 'subjects') askSubjectsAndDates();
       else if (ob.step === 'units') askUnits();
       else if (ob.step === 'scope') askScope();
       else if (ob.step === 'analyze' || ob.step === 'hours') askHours();
@@ -3176,9 +4607,28 @@
           a.appendChild(el('span', 'vwi-what', info.qtype + ' · ' + what));
           w.appendChild(a);
         };
-        var i;
-        for (i = 0; i < t.revise.length && i < 5; i++) mk(t.revise[i], 'revise');
-        for (i = 0; i < t.learn.length && i < 6; i++) mk(t.learn[i], 'learn');
+        var i, subs = plan.subjects || [];
+        if (subs.length > 1) {
+          // Headed per paper, nearest exam first — the student reads today as
+          // "my physics bit, then my chemistry bit", which is how they work.
+          var order = subs.slice().sort(function (a, b) {
+            var da = Plan.diffDays(plan.examDates[a], today);
+            var db = Plan.diffDays(plan.examDates[b], today);
+            return da - db;
+          });
+          for (var si = 0; si < order.length; si++) {
+            var s = order[si], g = t.bySubject[s];
+            if (!g || (!g.learn.length && !g.revise.length)) continue;
+            var dl = Plan.diffDays(plan.examDates[s], today);
+            w.appendChild(el('div', 'vw-subhead',
+              subjLabel(s) + ' · ' + (dl === 0 ? 'exam tomorrow' : dl + ' days')));
+            for (i = 0; i < g.revise.length && i < 4; i++) mk(g.revise[i], 'revise');
+            for (i = 0; i < g.learn.length && i < 4; i++) mk(g.learn[i], 'learn');
+          }
+        } else {
+          for (i = 0; i < t.revise.length && i < 5; i++) mk(t.revise[i], 'revise');
+          for (i = 0; i < t.learn.length && i < 6; i++) mk(t.learn[i], 'learn');
+        }
         if (!any) w.appendChild(document.createTextNode(
           t.finalBlock ? 'Everything is revised — you are ready.' : 'Nothing due today — you are ahead.'));
       });
@@ -3198,16 +4648,27 @@
     function updatePlanStrip() {
       var strip = $('vidiPlanStrip');
       var plan = Vidi.getPlan();
+      if (!plannerOn()) { strip.hidden = true; return; }
       if (!plan || !plan.implemented || plan.archived) { strip.hidden = true; return; }
       var today = Vidi.todayStr();
       var left = Plan.daysLeft(plan, today);
       if (left < 0) { strip.hidden = true; return; }
       var p = Plan.progress(plan);
       strip.innerHTML = '';
+      // The countdown a student cares about is the NEXT paper, not the last
+      // one — with three papers, "18 days left" is the wrong number to show.
+      var nx = Plan.nextExam(plan, today);
+      var subs = plan.subjects || [];
+      var countdown;
+      if (nx && subs.length > 1) {
+        countdown = subjLabel(nx.subject) + ' ' +
+          (nx.days === 0 ? 'exam tomorrow' : 'in ' + nx.days + ' days');
+      } else {
+        countdown = left === 0 ? 'exam tomorrow' : left + ' days left';
+      }
       strip.appendChild(document.createTextNode(
         'Day ' + Math.min(Plan.dayN(plan, today), plan.totalDays) + ' of ' + plan.totalDays +
-        ' · ' + (left === 0 ? 'exam tomorrow' : left + ' days left') +
-        ' · done ' + p.done + ' of ' + p.total));
+        ' · ' + countdown + ' · done ' + p.done + ' of ' + p.total));
       var behind = Plan.behindBy(plan, today);
       if (behind) strip.appendChild(el('span', 'vps-late', ' · behind by ' + behind));
       strip.hidden = false;
@@ -3270,6 +4731,7 @@
     /** The once-a-day check-in: progress, pace, and — when the pace shows the
         plan cannot finish — a proposed re-plan the student must accept. */
     function planCheckin(plan) {
+      if (!plannerOn()) return;
       var today = Vidi.todayStr();
       if (plan.lastNudgeDay === today) return;
       plan.lastNudgeDay = today;
@@ -3281,6 +4743,34 @@
         say('Your exam day has come — all the best. When the next exam is announced, I can plan for it too.');
         updatePlanStrip();
         return;
+      }
+      // A paper written mid-plan LEAVES the plan — its questions stop being
+      // scheduled and its minutes go to whatever is next. Said once, on the
+      // first check-in after that date, and only while other papers remain.
+      var subs = plan.subjects || [];
+      if (subs.length > 1) {
+        var sat = [];
+        for (var si = 0; si < subs.length; si++) {
+          if (!Plan.subjectDone(plan, subs[si], today)) continue;
+          if ((plan.doneSubjects || []).indexOf(subs[si]) >= 0) continue;
+          sat.push(subs[si]);
+        }
+        if (sat.length) {
+          plan.doneSubjects = (plan.doneSubjects || []).concat(sat);
+          Vidi.setPlan(plan);
+          var nx0 = Plan.nextExam(plan, today);
+          say(listWords(sat.map(subjLabel)) + ' is done — all the best.' +
+            (nx0 ? ' ' + subjLabel(nx0.subject) + ' is next, in ' + nx0.days + ' day' +
+              (nx0.days === 1 ? '' : 's') + '. Those hours are yours now.' : ''), 400);
+          updatePlanStrip();
+        }
+      }
+      // Dates the student let me guess: ask once, the day the plan starts
+      // running, so a wrong guess does not quietly misschedule a whole paper.
+      if (plan.datesProvisional && !plan.datesAsked) {
+        plan.datesAsked = true;
+        Vidi.setPlan(plan);
+        say('Some exam dates in this plan are my guess. If the timetable is out now, tap "Change my plan" and start over with the real dates.', 500);
       }
       var p = Plan.progress(plan);
       var behind = Plan.behindBy(plan, today);
@@ -3334,9 +4824,9 @@
       var chips = $('vidiChips');
       chips.innerHTML = '';
       var plan = Vidi.getPlan();
-      if (ob.active) { resumeOnboarding(); return; }
+      if (ob.active && plannerOn()) { resumeOnboarding(); return; }
       if (!Vidi.introDone()) { startIntro(); return; }
-      if (plan && plan.implemented && !plan.archived) {
+      if (plannerOn() && plan && plan.implemented && !plan.archived) {
         updatePlanStrip();
         planCheckin(plan);
         // the check-in may have just archived the plan (exam day passed)
@@ -3370,11 +4860,19 @@
             w.appendChild(a);
           })(due[i]);
         });
+        if (plannerOn()) chips.appendChild(chipBtn('Plan my exam prep', startOnboarding));
+        return;
+      }
+      if (plannerOn()) {
+        say('Want me to plan your exam preparation? Tell me the date and the chapters, and I will build a day-by-day plan with revision.');
         chips.appendChild(chipBtn('Plan my exam prep', startOnboarding));
         return;
       }
-      say('Want me to plan your exam preparation? Tell me the date and the chapters, and I will build a day-by-day plan with revision.');
-      chips.appendChild(chipBtn('Plan my exam prep', startOnboarding));
+      // With the planner dormant this branch used to render NOTHING — a
+      // returning student with nothing due opened the chat to a blank thread
+      // and no chips. Whatever else changes, the home conversation always says
+      // something a student can act on.
+      say('Open any question and the answer writes itself step by step. Ask me about any step you are not sure about — that is what I am here for.');
     }
 
     function currentStep() {
@@ -3424,10 +4922,10 @@
           if (!Vidi.renameOffered()) offerRename();
         }));
       }
-      if (plan && plan.implemented && !plan.archived) {
+      if (plannerOn() && plan && plan.implemented && !plan.archived) {
         row.appendChild(chipBtn('Change my plan', changePlanWidget));
       }
-      if (!plan || !plan.implemented || plan.archived) {
+      if (plannerOn() && (!plan || !plan.implemented || plan.archived)) {
         row.appendChild(chipBtn('Want a study plan?', function () {
           Vidi.markIntroDone();
           startOnboarding();
@@ -3532,10 +5030,43 @@
       out.push('QUESTION: ' + (cut.question_text || question.question_text));
       out.push('SECTION: ' + cut.paper_section + ' · ' + cut.qtype + ' · ' + marksTotal +
         ' marks · about ' + cut.expected_time_min + ' minutes');
+      // The paper's shape, from the one table (PM_PATTERNS). Byte-stable per
+      // subject, so the prefix cache is unaffected; a student asking "how many
+      // long answers do I write" gets the 2026-27 paper, not the model's memory
+      // of the old 75-mark maths paper.
+      var pat = PATTERNS[question.subject || 'physics'];
+      if (pat && pat.sections) {
+        var secs = [];
+        for (var pi = 0; pi < pat.sections.length; pi++) {
+          var ps = pat.sections[pi];
+          secs.push(ps.section + ' ' + (ps.answer === ps.printed ? 'all ' + ps.printed : 'any ' + ps.answer + ' of ' + ps.printed) + ' × ' + ps.marks);
+        }
+        out.push('PAPER: ' + pat.label + ' · ' + pat.total + ' marks written (w.e.f. ' + pat.wef + ') · ' + secs.join(' · ') +
+          (pat.internal ? ' · plus ' + pat.internal.marks + ' marks ' + pat.internal.kind + ' outside the written paper' : ''));
+      }
       if (question.chapter) out.push('CHAPTER: ' + question.chapter);
       var e = manifestEntry();
-      if (e) out.push('STARS: ' + e.stars + (e.source === 'enumerated' ? ' · predicted, not asked yet' : ''));
+      // Say what the rank MEANS, both ways. The old line emitted a bare "STARS: 0" on a
+      // sourced card and "STARS: 0 · predicted, not asked yet" on an enumerated one, and
+      // four independent graders caught the model reading those as two different
+      // rankings — "the book predicts it IS likely to be asked" on one card and "predicts
+      // it is not asked often" on another, from the same underlying 0. The second half
+      // fixes a separate contradiction they all hit: cards carrying STARS 0 alongside
+      // five Asked years. Stars are the book's rank; the Asked line is exam history; the
+      // context never said they were independent.
+      // Compute the Asked line FIRST: the rank gloss may only point at it when
+      // it exists. Measured 2026-08-25 -- only 7 of 204 chemistry cards carry
+      // one, and an earlier version of this gloss told the model to read a line
+      // that was absent on the other 197. Four graders reported the dangling
+      // pointer; every reply had to improvise the absence.
       var asked = askedLine(question);
+      if (e) {
+        out.push(e.source === 'enumerated'
+          ? 'STARS: none — this question is PREDICTED BY THIS ANSWER BOOK. The source book does not ask it, so there is no frequency rank and no exam history to report. If you must name who expects it, say this answer book or this card — never the book, which does not contain the question.'
+          : 'STARS: ' + e.stars + ' of 3 — the source book’s frequency rank (3 = asked very often, 0 = the book gives it no star). Frequency rank and exam history are separate facts: report each only from the line that states it.'
+          + (asked ? ' An Asked line below gives this question’s exam history.'
+                   : ' No Asked line is given for this question, so the book records no exam years for it — say that plainly rather than concluding it was never asked.'));
+      }
       if (asked) out.push(asked);
       var split = [];
       for (var i = 0; i < cut.mark_split.length; i++) {
@@ -3546,8 +5077,15 @@
       // teacher confirms it (verification.needs_teacher_verification is true on
       // all 157). The model must be able to say so when asked instead of
       // presenting the split as a board-issued rubric; the persona governs WHEN.
+      // An enumerated question is NOT in the source book, so the book cannot
+      // have printed a mark split for it. Saying otherwise launders an authored
+      // split as a sourced one -- four graders in four slices named this the
+      // highest-value defect in the round-2 corpus, because this is the sentence
+      // that licenses a reply to say "the book gives 1 mark for ...".
       if (question.verification && question.verification.needs_teacher_verification) {
-        out.push('VERIFICATION: this mark split is the source book’s, not yet confirmed by a board teacher.');
+        out.push(e && e.source === 'enumerated'
+          ? 'VERIFICATION: this mark split was authored by THIS ANSWER BOOK for a predicted question; it was not copied from the source book, which does not contain the question, and no board teacher has confirmed it. Call it this answer book’s split or this card’s split — never the book’s.'
+          : 'VERIFICATION: this mark split is the source book’s, not yet confirmed by a board teacher.');
       }
       // One examiner-insight sentence. It already opens the deterministic
       // greeting; the model was never given it, so it could not build on it.
@@ -3568,19 +5106,14 @@
         }
       }
       // The chapter's 3-star set — the #1 follow-up question a crammer asks.
-      var mates = [];
-      for (var u2 = 0; u2 < UNITS.length; u2++) {
-        if (UNITS[u2].number !== question.unit.number) continue;
-        var qs2 = UNITS[u2].questions;
-        for (var e2 = 0; e2 < qs2.length && mates.length < 6; e2++) {
-          var me2 = qs2[e2];
-          if (me2.question_id && me2.stars === 3 && me2.question_id !== question.question_id) {
-            mates.push(me2.section + ' ' + me2.number + ': ' + String(me2.text).slice(0, 80));
-          }
-        }
-      }
+      // Say SOME. The cap of 6 silently drops 3-star questions in the bigger
+      // chapters, and graders caught replies quoting this list to a student as the
+      // complete set ("the book lists disproportionation and comproportionation as
+      // the 3-star ones") while two 3-star SAQs in that very chapter were invisible
+      // to it. A partial list presented as whole is a wrong answer, not a short one.
+      var mates = chapterMates(question, 6);
       if (mates.length) {
-        out.push('THIS CHAPTER\u2019S OTHER MOST-ASKED (3-star) QUESTIONS: ' + mates.join(' | '));
+        out.push('SOME OF THIS CHAPTER\u2019S OTHER MOST-ASKED (3-star) QUESTIONS (a partial list, never present it as the complete set): ' + mates.join(' | '));
       }
       out.push('THE MODEL ANSWER, step by step:');
       for (var k = 0; k < steps.length; k++) {
@@ -3921,7 +5454,8 @@
     box.appendChild(links);
     var eve = document.createElement('a');
     eve.className = 'vidi-eve-link';
-    eve.setAttribute('href', '#/exam-eve/' + unitKey(u));
+    // The trailing year marks the link as post-renumbering (see LEGACY_UNIT_KEYS).
+    eve.setAttribute('href', '#/exam-eve/' + unitKey(u) + '/' + SYLLABUS_YEAR);
     eve.textContent = 'Exam soon? Open the 15-minute list →';
     box.appendChild(eve);
     box.hidden = false;
@@ -3929,10 +5463,12 @@
 
   /** #/exam-eve/<unit> — the 15-minute list: weakest self-checks first, then the
       most-asked questions of the chapter. Deterministic; history from localStorage. */
-  function showExamEve(unitRef) {
+  function showExamEve(unitRef, year) {
     // unitRef: 'physics-4' (subject-qualified) or a bare '4' from a historic
     // link — the bare form takes the FIRST unit with that number (= physics,
-    // which is what every pre-merge link meant).
+    // which is what every pre-merge link meant). A link with no trailing year
+    // predates the 2026-27 renumbering, so its key is remapped.
+    if (!year) unitRef = legacyUnitKey(/^\d+$/.test(String(unitRef)) ? 'physics-' + unitRef : String(unitRef));
     var u = null;
     for (var i = 0; i < UNITS.length; i++) {
       var cand = UNITS[i];
@@ -4096,6 +5632,16 @@
   ]).then(function () {
     initTest();
     initVidi();
+    // BEFORE the router, and before Gate asks the server anything: coming back
+    // from Google the hash is a token blob, not a route. route() would read it
+    // as a bad question id and bounce to the catalog, and Gate.init would ask
+    // for the standing of a device with no token attached — so a student who
+    // had just signed in would land back on the paywall.
+    Auth.capture();
+    Auth.initChip();
+    // The email arrives a moment later; repaint so the chip shows the real
+    // initial rather than the placeholder dot.
+    Auth.loadProfile(function () { Auth.paintChip(); });
     Sync.init();
     Gate.init();
     route();

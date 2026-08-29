@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 3,
     "name": "Motion in a Plane"
   },
   "chapter": "Motion in a Plane",
@@ -54,6 +54,7 @@
           "R changes with θ only through cos θ,",
           "and cos θ runs from +1 down to −1."
         ],
+        "margin_note": "First mark. Quote the formula and say that only cos θ varies.",
         "why": "One formula covers every case; the two results are simply its end points.",
         "common_mistakes": [
           "Adding the magnitudes directly at any angle."
@@ -72,7 +73,8 @@
             "cos theta",
             "resultant formula"
           ]
-        }
+        },
+        "memory_tip": "With P = 3 and Q = 5 the resultant can be anything from 2 to 8, and never outside that."
       },
       {
         "id": "s2_limits",
@@ -92,6 +94,7 @@
           "Every other angle gives a value between",
           "these two."
         ],
+        "margin_note": "Second mark. Both limits, and the modulus bars on the smaller one.",
         "why": "Same direction adds, opposite direction subtracts — the two limits a student can quote without touching the formula.",
         "common_mistakes": [
           "Writing the minimum as P − Q and getting a negative magnitude; it is the modulus."
@@ -111,8 +114,10 @@
             "maximum",
             "minimum"
           ]
-        }
+        },
+        "memory_tip": "The minimum is zero only when P = Q. For unequal magnitudes something is always left."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks, two limits: P + Q and |P − Q|. The modulus bars on the minimum are checked — a magnitude is never negative."
 }

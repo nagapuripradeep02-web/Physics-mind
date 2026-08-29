@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 9,
+    "number": 8,
     "name": "Gravitation"
   },
   "chapter": "Gravitation",
@@ -73,7 +73,9 @@
             "cancels",
             "no mass"
           ]
-        }
+        },
+        "memory_tip": "The m sits on BOTH sides of ½mv² = GMm/R, so it cancels and cannot matter.",
+        "margin_note": "First mark. Answer no first, then show the m cancelling."
       },
       {
         "id": "s2_direction",
@@ -108,8 +110,11 @@
             "direction",
             "energy"
           ]
-        }
+        },
+        "memory_tip": "Kinetic energy is ½mv², and v² holds no direction. Straight up or slanting, the same speed.",
+        "margin_note": "Second mark. Name energy as the reason; direction is not in ½mv²."
       }
     ]
-  }
+  },
+  "insider_note": "Two questions, a mark each, and each needs its own reason — m cancelling, and energy depending only on speed."
 }

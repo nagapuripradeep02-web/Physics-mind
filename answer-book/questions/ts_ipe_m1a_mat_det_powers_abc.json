@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 3,
+    "number": 5,
     "name": "Matrices"
   },
   "chapter": "Matrices",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 12,
   "question_text": "Show that the determinant with rows (a, b, c), (a², b², c²) and (a³, b³, c³) is equal to abc(a−b)(b−c)(c−a).",
@@ -49,19 +49,19 @@
     },
     {
       "label": "Rearrange to the required form",
-      "marks": 1
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.22 — LAQ chapter 3 Matrices, answer 12, the chapter's opening question. The chapter header reads '★★★ 3. MATRICES ★★★ 7+7 = 14 Marks': Matrices carries TWO Section-C slots (Q20 and Q21), so it is the largest single block on the paper. The mark split is PRINTED in that book's margin as [1 Mark] against each of the seven working lines — a fully sourced 1+1+1+1+1+1+1, not an inference, and the cleanest split in the book. Star rank is the CHAPTER's ★★★, not this question's; the book stars chapters in its LAQ section. Appearance is printed as the single tag 'TS 17'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.22 — LAQ chapter 3 Matrices, answer 12, the chapter's opening question. The chapter header reads '★★★ 3. MATRICES ★★★ 7+7 = 14 Marks': Matrices carries TWO Section-C slots (Q20 and Q21), so it is the largest single block on the paper. The mark split is PRINTED in that book's margin as [1 Mark] against each of the seven working lines — a fully sourced 1+1+1+1+1+1+1, not an inference, and the cleanest split in the book. Star rank is the CHAPTER's ★★★, not this question's; the book stars chapters in its LAQ section. Appearance is printed as the single tag 'TS 17'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Rearrange to the required form\" step."
   },
   "recall_prompt": "Say how you would prove this determinant identity — name each operation you would do, in order, and say what comes out at the end.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Matrices · 7 marks"
+      "Matrices · 8 marks"
     ],
     "steps": [
       {
@@ -373,9 +373,9 @@
         "id": "s8_final",
         "kind": "boxed_final",
         "label": "Rearrange to the given form",
-        "marks": 1,
+        "marks": 2,
         "mark_note": "Required form",
-        "margin_note": "Last mark. The answer is already correct, but the question asked for (a−b)(b−c)(c−a). Flipping (b−a) to −(a−b) and (c−b) to −(b−c) uses two minus signs, and two minus signs cancel — so the value does not change.",
+        "margin_note": "Last two marks. The answer is already correct, but the question asked for (a−b)(b−c)(c−a). Flipping (b−a) to −(a−b) and (c−b) to −(b−c) uses two minus signs, and two minus signs cancel — so the value does not change.",
         "lines": [
           "(b−a) = −(a−b)  and  (c−b) = −(b−c)",
           "Two sign changes cancel each other.",

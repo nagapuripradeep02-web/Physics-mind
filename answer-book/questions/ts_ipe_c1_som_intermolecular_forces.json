@@ -34,7 +34,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This card comes from the Chapter 4 enumeration sweep: intermolecular forces open the NCERT States of Matter chapter, yet the Fastrack chemistry section (book pp.62-66) skips the whole topic — an entire syllabus section with no question. Only ONE chemistry source book is held, so the two-book union check is PENDING. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark split is a CLAIM until a Telangana IPE teacher confirms it."
+    "note": "PREDICTED, not asked. This card comes from the Chapter 4 enumeration sweep: intermolecular forces open the NCERT States of Matter chapter, yet the Fastrack chemistry section (book pp.62-66) skips the whole topic — an entire syllabus section with no question. Only ONE chemistry source book is held, so the two-book union check is PENDING. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25. The three forces described are correct and the strength order dispersion < dipole–dipole < hydrogen bond is right, but the card omits NCERT's FOURTH type — dipole–induced dipole (Debye) forces — on a question that asks for the different types. The mark split is fixed at three steps, so the omission is recorded in the dipole–dipole step's margin_note rather than added as a step; a teacher must decide whether the 4-mark answer has to name all four. No marked line changed. AI chemistry check 2026-08-25 (audit round 3), two items. (1) The step-2 note told the student to add the fourth type if the question asks for ALL the types, but this card's own question asks for the different types, so that condition may already be met while the mark split funds only three; the note now states plainly that the three funded types are the answer and the fourth is background. OPEN FOR THE TEACHER GATE: whether a 4-mark answer must name dipole–induced dipole as a fourth type, and if so how the split changes. (2) The boxed strength order was stated unconditionally while the similar-size qualifier sat in a why the student never copies; the step-3 why now carries that qualifier. No marked line changed and no mark moved."
   },
   "answer": {
     "page_header": [
@@ -84,7 +84,7 @@
           "Confusing this with the ion–ion attraction of salts, which is far stronger."
         ],
         "memory_tip": "Permanent plus-to-minus pairing — the polar molecules' own force.",
-        "margin_note": "One named polar example completes the point."
+        "margin_note": "One named polar example completes the point. NCERT names a fourth type between this one and hydrogen bonding — dipole–induced dipole (Debye) forces, where a polar molecule induces a dipole in a non-polar neighbour. The three types above are the answer this mark split pays for; the fourth is background, not a fourth marked point."
       },
       {
         "id": "s3_hbond",
@@ -104,7 +104,7 @@
             "style": "boxed"
           }
         ],
-        "why": "Bonding to N, O or F strips the small hydrogen atom of electron density, leaving an exposed positive centre that binds strongly to a neighbour's lone pair. That special case earns its own name and the top of the strength order.",
+        "why": "Bonding to N, O or F strips the small hydrogen atom of electron density, leaving an exposed positive centre that binds strongly to a neighbour's lone pair. That special case earns its own name and the top of the strength order. The order compares molecules of similar size: dispersion forces grow with molecular size, so between large non-polar molecules they can be stronger than the dipole–dipole forces between small polar ones. The boxed line is the board's answer and is written as it stands.",
         "common_mistakes": [
           "Extending hydrogen bonding to H bonded to C or Cl. Only N, O and F qualify.",
           "Calling the hydrogen bond a covalent bond. It is an intermolecular attraction, much weaker than a covalent bond."

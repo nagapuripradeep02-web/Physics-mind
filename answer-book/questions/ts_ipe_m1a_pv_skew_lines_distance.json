@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 7,
     "name": "Product of Vectors"
   },
   "chapter": "Product of Vectors",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 13,
   "question_text": "Find the shortest distance between the skew lines r = (6i+2j+2k) + t(i−2j+2k) and r = (−4i−k) + s(3i−2j−2k).",
@@ -57,19 +57,19 @@
     },
     {
       "label": "Divide to get the shortest distance",
-      "marks": 2
+      "marks": 3
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.37 — LAQ chapter 4 Product of Vectors, answer 23, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17,19 · AP 16,20. The book calls it \"the Top model LAQ in Vectors\", and it is the ONLY answer in this chapter whose mark split is printed.THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of five working lines and [2 Marks] against the closing division — a sourced 1+1+1+1+1+2. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.37 — LAQ chapter 4 Product of Vectors, answer 23, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 17,19 · AP 16,20. The book calls it \"the Top model LAQ in Vectors\", and it is the ONLY answer in this chapter whose mark split is printed.THE MARK SPLIT IS PRINTED in that book's margin as [1 Mark] against each of five working lines and [2 Marks] against the closing division — a sourced 1+1+1+1+1+2. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q22 is the Product of Vectors slot. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Divide to get the shortest distance."
   },
   "recall_prompt": "Say how you would find the shortest distance between two skew lines — say the formula and each piece you need.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Product of Vectors · 7 marks"
+      "Product of Vectors · 8 marks"
     ],
     "steps": [
       {
@@ -291,9 +291,9 @@
         "id": "s6_divide",
         "kind": "boxed_final",
         "label": "Divide",
-        "marks": 2,
+        "marks": 3,
         "mark_note": "Shortest distance",
-        "margin_note": "The last two marks. 108 over 12 is 9 exactly. A distance is never negative, which is what the modulus in the formula guarantees.",
+        "margin_note": "The last three marks. 108 over 12 is 9 exactly. A distance is never negative, which is what the modulus in the formula guarantees.",
         "lines": [
           "S.D = |(a−c)·(b×d)| / |b×d|",
           "= 108 / 12",

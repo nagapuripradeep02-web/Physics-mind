@@ -7,10 +7,10 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 2,
-    "name": "Units and Measurements"
+    "number": 1,
+    "name": "Physical World and Measurement"
   },
-  "chapter": "Units and Measurements",
+  "chapter": "Physical World and Measurement",
   "qtype": "VSAQ",
   "marks_total": 2,
   "paper_section": "Section A",
@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them."
+    "note": "PREDICTED CELL — not asked by either source book. Unit 2 has NO Short Answer or Long Answer section in the Fastrack (pp.4-5) or the TSBIE Basic Learning Material (pp.2-3), so it is authored as a 2-mark VSAQ like every other Unit 2 card. Both the question and the 1+1 mark split are CLAIMS until a Telangana IPE teacher confirms them. AI physics check 2026-08-24: formulas, signs, numbers and claims verified against NCERT Class-11 conventions; corrections applied to explanation text (why / common_mistakes / memory_tip), marked answer lines unchanged unless factually wrong."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -72,7 +72,7 @@
             "luminous intensity"
           ]
         },
-        "memory_tip": "Three mechanical (length, mass, time) then four more: current, temperature, mole, candela.",
+        "memory_tip": "Three mechanical (length, mass, time) then four more: current, temperature, amount of substance, luminous intensity. Their units: ampere, kelvin, mole, candela.",
         "margin_note": "Count to seven before you stop writing."
       },
       {

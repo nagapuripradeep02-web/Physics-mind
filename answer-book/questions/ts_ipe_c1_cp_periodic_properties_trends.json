@@ -50,7 +50,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+1+1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. WORDING + CONVENTIONS: the book's question line 'How are the following properties vary' is regularised. The book's periodicity definition does not say what the elements are arranged by; the card states the modern basis, increasing atomic number. The book defines electron gain enthalpy as 'energy released' and gives its trends as bare increases/decreases with no sign convention; under NCERT's convention the enthalpy change is negative when energy is released, so the card phrases the trends as the amount of energy released and records the sign convention once on the card."
+    "note": "Chapter 2 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.53-55), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+2+1+1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. WORDING + CONVENTIONS: the book's question line 'How are the following properties vary' is regularised. The book's periodicity definition does not say what the elements are arranged by; the card states the modern basis, increasing atomic number. The book defines electron gain enthalpy as 'energy released' and gives its trends as bare increases/decreases with no sign convention; under NCERT's convention the enthalpy change is negative when energy is released, so the card phrases the trends as the amount of energy released and records the sign convention once on the card. AI chemistry check 2026-08-25: every trend and definition re-checked against NCERT Class-11 conventions and nothing marked was changed; the ionisation enthalpy why now names the known period exceptions (Be above B, N above O) and the electron gain enthalpy why now names the group-17 exception (Cl releases more than F) and the positive noble-gas values, so neither trend can be read as absolute; three memory tips reworded to plain literal language. AI chemistry check 2026-08-25 (audit round): the electron gain enthalpy why appeared to sanction the book's unsigned increases and decreases while its common mistakes calls that error mixing the sign and the magnitude; the why now states one convention, the energy released with the sign written once. AI chemistry check 2026-08-25 (audit round 3): the ionisation enthalpy memory tip read 'size up means I.E down, in a group and in a period alike', which reads as I.E falling across a period, the opposite of the marked line; the tip now says which way size moves in each direction. No marked line changed. Status stays unverified."
   },
   "answer": {
     "page_header": [
@@ -100,12 +100,12 @@
             "style": "eq"
           }
         ],
-        "why": "Ionisation enthalpy is the energy needed to overcome the nuclear pull on the outer electron, so anything that weakens that pull (distance, screening) lowers it and anything that strengthens the pull (nuclear charge, small size) raises it. The ∝ line is a qualitative shorthand for this trend, not a numerical law.",
+        "why": "Ionisation enthalpy is the energy needed to overcome the nuclear pull on the outer electron, so anything that weakens that pull (distance, screening) lowers it and anything that strengthens the pull (nuclear charge, small size) raises it. The ∝ line is a qualitative shorthand for this trend, not a numerical law. The rise across a period is the general trend and has known exceptions where a half-filled or completely filled subshell is involved: beryllium is higher than boron, and nitrogen is higher than oxygen.",
         "common_mistakes": [
           "Dropping any of the three words isolated, gaseous, neutral from the definition.",
           "Writing the group trend and the period trend without their reasons. The reasons are the explain in the question."
         ],
-        "memory_tip": "Farther electron, easier removal: size up means I.E down, in a group and in a period alike.",
+        "memory_tip": "Farther electron, easier removal. The size rule holds in both directions, but size itself moves opposite ways: down a group size increases, so I.E falls; across a period size decreases, so I.E rises.",
         "margin_note": "The first property carries the full pattern — definition, group trend with reason, period trend with reason. The rest reuse it."
       },
       {
@@ -128,7 +128,7 @@
           "Defining electronegativity for a free atom. It is defined for an atom inside a bond.",
           "Leaving out the words shared pair (bond pair). Attraction for electrons in general is a different property."
         ],
-        "memory_tip": "Small bonded atom, strong pull on the shared pair. Fluorine, the smallest halogen, tops the scale at 4.0.",
+        "memory_tip": "Small bonded atom, strong pull on the shared pair. Fluorine, the smallest halogen, has the highest value, 4.0.",
         "margin_note": "One definition and both trends; the reason is the same size argument as I.E."
       },
       {
@@ -152,7 +152,7 @@
           "Giving one reason for both directions. New shells explains the group; greater nuclear charge explains the period.",
           "Writing that the radius increases across a period because electrons are added. The added electrons enter the same shell while the pull grows."
         ],
-        "memory_tip": "Down: new floors are added to the building. Across: the same floor is pulled in tighter.",
+        "memory_tip": "Down a group a new shell is added. Across a period the same outer shell is pulled in more strongly.",
         "margin_note": "This property is the cause the other trends keep pointing back to."
       },
       {
@@ -175,13 +175,13 @@
           "higher nuclear charge attract the electron",
           "more strongly."
         ],
-        "why": "Phrasing the trends as the amount of energy released keeps them true under the sign convention: more energy released means a more negative enthalpy change. The book writes the same trends as bare increases and decreases without signs.",
+        "why": "Phrasing the trends as the amount of energy released keeps them true under the sign convention: more energy released means a more negative enthalpy change. The book writes the same trends as bare increases and decreases without saying which quantity is meant, and that wording is ambiguous, so this card always names the quantity (the energy released) and states the sign once. Both trends are general, not absolute: chlorine releases more energy than fluorine, so group 17 does not fall in a straight line, and the noble gases at the end of each period absorb energy instead of releasing it, which makes their enthalpy change positive.",
         "common_mistakes": [
           "Mixing the sign and the magnitude: across a period the enthalpy change becomes more negative while the energy released increases.",
           "Calling it the energy required. For most elements energy comes out, not in."
         ],
         "memory_tip": "Think of the energy released: it grows toward the halogens (across) and shrinks going down the group.",
-        "margin_note": "Write the trends in terms of energy released; one line noting the negative sign covers the convention."
+        "margin_note": "Write the trends in terms of energy released; one line noting the negative sign covers the convention. Do not write a bare increases or decreases without saying what increases."
       },
       {
         "id": "s6_nature_of_oxides",
@@ -204,7 +204,7 @@
           "Writing the trend without the basic-from-metal, acidic-from-non-metal rule it rests on.",
           "Leaving out the amphoteric middle. Na₂O is basic, Al₂O₃ amphoteric, Cl₂O₇ acidic across period 3."
         ],
-        "memory_tip": "The oxide copies its element: metal side basic, non-metal side acidic, aluminium's oxide in between behaves both ways.",
+        "memory_tip": "The oxide follows its element: metal side basic, non-metal side acidic, aluminium's oxide in between is amphoteric.",
         "margin_note": "Period 3 (Na₂O → Al₂O₃ → Cl₂O₇) is the standard illustration if one is asked."
       },
       {

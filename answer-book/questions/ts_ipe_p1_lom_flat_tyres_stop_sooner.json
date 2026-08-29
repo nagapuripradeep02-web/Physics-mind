@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 4,
     "name": "Laws of Motion"
   },
   "chapter": "Laws of Motion",
@@ -114,5 +114,6 @@
         "memory_tip": "More rolling friction removes kinetic energy faster, so the car stops in less distance."
       }
     ]
-  }
+  },
+  "insider_note": "The examiner is checking for the word ROLLING. \"More friction\", without naming which kind, does not earn the first mark."
 }

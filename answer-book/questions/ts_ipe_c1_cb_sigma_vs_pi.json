@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. The book asks this SAME comparison at two lengths: VSAQ 5 (a two-row table: formation and strength) and SAQ 5 (a four-point list), so this file carries both as cuts of one answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The one-mark-per-difference splits are CLAIMS until a Telangana IPE teacher confirms them; the question itself is sourced, not invented."
+    "note": "Chapter 3 is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.56-61), which prints the question, its star rank and a model answer. The book asks this SAME comparison at two lengths: VSAQ 5 (a two-row table: formation and strength) and SAQ 5 (a four-point list), so this file carries both as cuts of one answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The one-mark-per-difference splits are CLAIMS until a Telangana IPE teacher confirms them; the question itself is sourced, not invented. AI chemistry check 2026-08-25 (audit round): the 2-mark cut serves steps 1 and 4, so the student read 1. Formation: followed by 4. Strength:; the cut now carries a lines override renumbering that row 2. Marks, mark split and cut membership unchanged."
   },
   "insider_note": "The book asks this twice — a two-mark table and a four-mark list. Always write differences in matched pairs: one sentence for σ, one for π, on the same point.",
   "cuts": [
@@ -112,11 +112,21 @@
         },
         "s4_strength": {
           "marks": 1,
-          "mark_note": "Strength"
+          "mark_note": "Strength",
+          "lines": [
+            "2. Strength:",
+            {
+              "text": "σ bond is stronger than π bond",
+              "style": "boxed"
+            },
+            "The extent of overlap is greater in axial",
+            "overlap than in sidewise overlap, so the",
+            "σ bond is the stronger of the two."
+          ]
         }
       },
       "needs_teacher_verification": true,
-      "note": "The book's VSAQ table prints exactly these two rows: formation and strength."
+      "note": "The book's VSAQ table prints exactly these two rows: formation and strength. The strength row is renumbered 2 in this cut, because the rows numbered 2 and 3 in the 4-mark form are not served here."
     }
   ],
   "answer": {

@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Classification chapter against the Fastrack chemistry section (book pp.53-55): the book asks nothing on the electron gain enthalpy exceptions (the noble gases), the standard explain-with-a-reason cell for this property. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it."
+    "note": "PREDICTED, not asked. This question comes from the enumeration sweep of the Classification chapter against the Fastrack chemistry section (book pp.53-55): the book asks nothing on the electron gain enthalpy exceptions (the noble gases), the standard explain-with-a-reason cell for this property. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. AI chemistry check 2026-08-25: the reason and the sign convention were re-checked against NCERT Class-11 and nothing marked was changed; the why now records that helium is the exception in form, with a filled 1s² shell and no p subshell. Status stays unverified."
   },
   "answer": {
     "page_header": [
@@ -52,7 +52,7 @@
           "higher shell, far from the nucleus and well",
           "screened by the inner electrons."
         ],
-        "why": "Energy is released only when the added electron finds a place where the nuclear attraction outweighs the repulsion; the next higher shell of a noble gas offers almost no attraction, so there is no release to be had.",
+        "why": "Energy is released only when the attraction of the nucleus on the added electron is greater than its repulsion by the electrons already present; in the next higher shell of a noble gas that attraction is very small, so no energy is released. Helium is the exception in form: its filled shell is 1s², with no p subshell, but the argument is the same.",
         "common_mistakes": [
           "Saying only that noble gases are stable. The marked reason is the full ns² np⁶ shell and the next-shell entry.",
           "Writing that noble gases cannot gain an electron at all. They can, but energy must be supplied."

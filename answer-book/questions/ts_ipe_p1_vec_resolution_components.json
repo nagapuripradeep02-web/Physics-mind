@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 4,
+    "number": 3,
     "name": "Motion in a Plane"
   },
   "chapter": "Motion in a Plane",
@@ -55,6 +55,7 @@
           "of A on to the two axes. The two pieces",
           "along the axes are its components A_x, A_y."
         ],
+        "margin_note": "First mark. Define θ and drop the two perpendiculars before any formula.",
         "why": "Resolution is addition run backwards: the two components are the two vectors that would add back to A.",
         "common_mistakes": [
           "Drawing the components along any two directions — they must be perpendicular for these formulas."
@@ -73,7 +74,8 @@
             "components",
             "perpendiculars"
           ]
-        }
+        },
+        "memory_tip": "A vector and its two components make a right-angled triangle, and A is always the hypotenuse."
       },
       {
         "id": "s2_expressions",
@@ -93,6 +95,7 @@
           },
           "and A_x i + A_y j builds A back again."
         ],
+        "margin_note": "Two marks. Both components, and one line showing they add back to A.",
         "why": "The cosine goes with the axis the angle is measured FROM — that one habit removes most sign and swap errors.",
         "common_mistakes": [
           "Swapping sine and cosine when the angle is measured from the y-axis instead."
@@ -112,7 +115,8 @@
             "A cos theta",
             "A sin theta"
           ]
-        }
+        },
+        "memory_tip": "Test θ = 0°: the vector lies on the x-axis, A_x = A cos 0 = A and A_y = 0. That fixes which is which."
       },
       {
         "id": "s3_magnitude",
@@ -129,6 +133,7 @@
           "The two components act independently of",
           "each other."
         ],
+        "margin_note": "Fourth mark. Box both results — magnitude and direction are asked for separately.",
         "why": "Independence is the useful part: projectile motion works because the horizontal and vertical components never affect each other.",
         "common_mistakes": [
           "Writing tan θ = A_x / A_y, the ratio upside down."
@@ -147,8 +152,10 @@
             "root",
             "tan theta"
           ]
-        }
+        },
+        "memory_tip": "If θ is less than 45° then A_x is the larger component. Use that to check tan θ = A_y / A_x."
       }
     ]
-  }
+  },
+  "insider_note": "A_x = A cos θ and A_y = A sin θ carry 2 of the 4 marks. Draw the labelled right-angled triangle they are read from."
 }

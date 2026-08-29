@@ -1,0 +1,188 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_wpe_machine_gun_power",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Work Power Energy"
+  },
+  "chapter": "Work Power Energy",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A machine gun fires 360 bullets per minute and each bullet travels with a velocity of 600 ms⁻¹. If the mass of each bullet is 5 gm, find the power of the machine gun.",
+  "appearances": [
+    {
+      "year": 2025,
+      "q_no": 19,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2024,
+      "q_no": 21,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Rate and mass",
+      "marks": 1
+    },
+    {
+      "label": "Energy of one bullet",
+      "marks": 1
+    },
+    {
+      "label": "The power",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Printed as the applied half of an 8-mark Section-C question in TS March 2024 (Q21) and TS March 2025 (Q19), Inter I-Year Physics Paper-I. The 4-mark standalone length is our authoring choice, not the board's — the board never printed it as a 4-mark Section-B question. Arithmetic hand-checked: 360/60 = 6 bullets per second; m = 5 g = 0.005 kg; ½mv² = ½ × 0.005 × (600)² = ½ × 0.005 × 360000 = 900 J; P = 6 × 900 = 5400 W = 5.4 kW. The three-way split is invented and is a CLAIM until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Work Power Energy · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rate_and_mass",
+        "kind": "equation",
+        "label": "Rate and mass",
+        "marks": 1,
+        "mark_note": "n and m",
+        "lines": [
+          "The gun fires 360 bullets in 60 s, so the",
+          "number fired each second is",
+          {
+            "text": "n = 360/60 = 6 bullets per second",
+            "style": "eq"
+          },
+          "The mass of one bullet is 5 g, so",
+          {
+            "text": "m = 5 g = 5 × 10⁻³ kg = 0.005 kg",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Both conversions on one line: per second, and kilograms.",
+        "why": "Power is energy per second, so the firing rate has to be per second before it is used. The mass has to be in kilograms because the joule is built from kilograms, and a mass left in grams makes the energy 1000 times too large.",
+        "common_mistakes": [
+          "Using 360 as the number of bullets fired in one second.",
+          "Leaving the mass as 5 in the formula, which gives 900000 J per bullet."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 360 bullets per minute is 6 per second, and 5 g is 0.005 kg.",
+          "accept": [
+            "six bullets per second",
+            "three sixty by sixty",
+            "five grams is zero point zero zero five kg",
+            "per minute ni per second ki convert cheyyali"
+          ],
+          "reject": [
+            "nine hundred joules per bullet"
+          ],
+          "heard_as": [
+            "six per second",
+            "0.005 kg"
+          ]
+        },
+        "memory_tip": "360 in 60 s is 6 per second, and 5 g is 0.005 kg. Convert both before squaring."
+      },
+      {
+        "id": "s2_energy_one_bullet",
+        "kind": "equation",
+        "label": "Energy of one bullet",
+        "marks": 1,
+        "mark_note": "½mv²",
+        "lines": [
+          "Each bullet leaves the gun with kinetic",
+          "energy ½mv². For one bullet,",
+          {
+            "text": "½mv² = ½ × 0.005 × (600)²",
+            "style": "eq"
+          },
+          {
+            "text": "= ½ × 0.005 × 360000 = 900 J",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. One bullet first, the whole gun after. Keep the two apart.",
+        "why": "The gun does work only to give each bullet its speed, so the energy delivered to one bullet is its kinetic energy. Finding the energy of a single bullet first keeps the mass and the rate in separate lines, and only the rate is used again.",
+        "common_mistakes": [
+          "Using ½mv instead of ½mv², so the square of the speed is lost.",
+          "Writing (600)² as 3600 instead of 360000."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one bullet has kinetic energy half m v squared, equal to 900 J.",
+          "accept": [
+            "half m v squared",
+            "nine hundred joules",
+            "half into point zero zero five into six hundred squared"
+          ],
+          "reject": [
+            "six bullets per second"
+          ],
+          "heard_as": [
+            "900 J",
+            "half m v squared"
+          ]
+        },
+        "memory_tip": "600² = 360000 and half of 0.005 is 0.0025, so 0.0025 × 360000 = 900 J."
+      },
+      {
+        "id": "s3_power",
+        "kind": "boxed_final",
+        "label": "The power",
+        "marks": 2,
+        "mark_note": "P",
+        "lines": [
+          "Power is the work done each second. In one",
+          "second the gun fires 6 bullets, so",
+          {
+            "text": "P = n × ½mv² = 6 × 900",
+            "style": "eq"
+          },
+          {
+            "text": "P = 5400 W = 5.4 kW",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Third and fourth marks. The value with its unit, W or kW, is what is checked.",
+        "why": "Power is work divided by time. Here the time is one second and the work done in that second is the kinetic energy of the six bullets fired in it, so the multiplication is the whole step.",
+        "common_mistakes": [
+          "Giving 900 J as the answer, when the question asks for power, not energy.",
+          "Writing 5.4 W instead of 5.4 kW, or leaving the unit off."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P is 6 × 900 = 5400 W, that is 5.4 kilowatt.",
+          "accept": [
+            "five thousand four hundred watt",
+            "five point four kilowatt",
+            "six into nine hundred"
+          ],
+          "reject": [
+            "nine hundred joules"
+          ],
+          "heard_as": [
+            "5400 W",
+            "5.4 kW"
+          ]
+        },
+        "memory_tip": "6 bullets a second, 900 J each: 5.4 kW."
+      }
+    ]
+  },
+  "insider_note": "The power step carries 2 of the 4 marks, and the value there is checked with its unit — write 5400 W or 5.4 kW, never a bare 5400."
+}

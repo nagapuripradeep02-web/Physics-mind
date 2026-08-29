@@ -1,0 +1,180 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_msl_mean_speed_three_thirds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Motion in a Straight Line"
+  },
+  "chapter": "Motion in a Straight Line",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A car travels the first third of a distance with a speed of 10 kmph, the second third at 20 kmph and the last third at 60 kmph. What is its mean speed over the entire distance?",
+  "appearances": [
+    {
+      "year": 2016,
+      "q_no": 11,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The three times",
+      "marks": 1
+    },
+    {
+      "label": "The total time",
+      "marks": 1
+    },
+    {
+      "label": "The mean speed",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS March 2016 (Q11) — TS Inter I-Year Physics Paper-I, Section B, 4 marks. appearances[] is left empty deliberately: a separate reviewed tagging pass fills that field from a reviewed mapping, so a hand-written entry here would read as an invented tag. The 1+1+2 split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Arithmetic hand-checked: let the whole distance be 3d, so each third is d; t₁ = d/10, t₂ = d/20, t₃ = d/60; total time = d(6 + 3 + 1)/60 = 10d/60 = d/6; mean speed = 3d ÷ (d/6) = 18 kmph. It is NOT the arithmetic mean of 10, 20 and 60, which would give 30."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Motion in a Straight Line · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_times",
+        "kind": "equation",
+        "label": "The three times",
+        "marks": 1,
+        "mark_note": "The times",
+        "lines": [
+          "Mean speed = total distance ÷ total time.",
+          "Let the whole distance be 3d, so each third",
+          "is d. The three times taken are",
+          {
+            "text": "t₁ = d/10,  t₂ = d/20,  t₃ = d/60",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The definition, then the three separate times.",
+        "why": "Mean speed is defined as total distance divided by total time, so the three times are what the answer actually needs. The thirds are equal in distance, which is why the three times come out different.",
+        "common_mistakes": [
+          "Averaging 10, 20 and 60 to get 30. Mean speed is not the average of the three speeds."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That mean speed is total distance over total time, and that the three times are d/10, d/20 and d/60.",
+          "accept": [
+            "total distance by total time",
+            "each third is d",
+            "d by ten d by twenty d by sixty"
+          ],
+          "reject": [
+            "the answer is eighteen kmph"
+          ],
+          "heard_as": [
+            "total time",
+            "d by ten",
+            "one third"
+          ]
+        },
+        "memory_tip": "Equal DISTANCES, not equal times. The slow third takes six times as long as the fast one."
+      },
+      {
+        "id": "s2_total_time",
+        "kind": "equation",
+        "label": "The total time",
+        "marks": 1,
+        "mark_note": "Total time",
+        "lines": [
+          "Add the three times over 60:",
+          {
+            "text": "t = d/10 + d/20 + d/60",
+            "style": "eq"
+          },
+          {
+            "text": "t = d(6 + 3 + 1)/60 = 10d/60 = d/6",
+            "style": "eq"
+          },
+          "The whole journey takes d/6 hour."
+        ],
+        "margin_note": "Second mark. The single fraction d/6 is what is checked.",
+        "why": "The slow third takes six times as long as the fast third, so most of the clock is spent at 10 kmph. Adding over the common denominator 60 keeps every number a whole number.",
+        "common_mistakes": [
+          "Taking the three times as equal. The thirds are equal in distance, not in time."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three times add to d/6.",
+          "accept": [
+            "six plus three plus one by sixty",
+            "ten d by sixty",
+            "total time is d by six"
+          ],
+          "reject": [
+            "mean speed is eighteen kmph"
+          ],
+          "heard_as": [
+            "d by six",
+            "ten by sixty",
+            "six plus three plus one"
+          ]
+        },
+        "memory_tip": "Add over 60: 6 + 3 + 1 = 10, so the total time is 10d/60, which is d/6."
+      },
+      {
+        "id": "s3_mean_speed",
+        "kind": "boxed_final",
+        "label": "The mean speed",
+        "marks": 2,
+        "mark_note": "Mean speed",
+        "lines": [
+          "The total distance is 3d, so",
+          {
+            "text": "v = 3d ÷ (d/6) = 3d × 6/d = 18",
+            "style": "eq"
+          },
+          {
+            "text": "Mean speed = 18 kmph",
+            "style": "boxed"
+          },
+          "The d cancels, so the answer does not",
+          "depend on the distance chosen."
+        ],
+        "margin_note": "The last two marks. The value 18 and the unit kmph.",
+        "why": "The letter d cancels because mean speed depends only on the three speeds, not on how long the road is. That is why the question can leave the distance unstated.",
+        "common_mistakes": [
+          "Leaving the answer as 3d ÷ (d/6) without cancelling d and evaluating it.",
+          "Dropping the unit. The speeds were given in kmph, so the answer is in kmph."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean speed is 3d divided by d/6, which is 18 kmph.",
+          "accept": [
+            "three d by d by six",
+            "eighteen kilometres per hour",
+            "eighteen kmph"
+          ],
+          "reject": [
+            "thirty kmph"
+          ],
+          "heard_as": [
+            "eighteen",
+            "18",
+            "kmph"
+          ]
+        },
+        "memory_tip": "18 kmph sits below 20, nearer the slow thirds — mean speed always does."
+      }
+    ]
+  },
+  "insider_note": "The last two marks are the value 18 with the unit kmph. Answering 30, the average of the three speeds, earns none of the four."
+}

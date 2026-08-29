@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 4,
     "name": "Laws of Motion"
   },
   "chapter": "Laws of Motion",
@@ -76,7 +76,9 @@
             "inertia",
             "rest"
           ]
-        }
+        },
+        "memory_tip": "Inert means not acting by itself. Inertia is that property of a body, never a force.",
+        "margin_note": "First mark. The definition and the rest example together. Both are needed for it."
       },
       {
         "id": "s2_motion_direction",
@@ -111,7 +113,9 @@
             "inertia of motion",
             "tangent"
           ]
-        }
+        },
+        "memory_tip": "Inertia of motion keeps a body moving; inertia of direction keeps it straight. Bus jerk, then mud off a wheel.",
+        "margin_note": "Second and third marks. Two types, one mark each, and a DIFFERENT example on each."
       },
       {
         "id": "s3_measure",
@@ -146,8 +150,11 @@
             "mass",
             "measure"
           ]
-        }
+        },
+        "memory_tip": "Mass, not weight. On the Moon the same body has the same inertia and less weight.",
+        "margin_note": "Fourth mark. One word — MASS. The greater-the-mass line completes it."
       }
     ]
-  }
+  },
+  "insider_note": "Three types with three different examples are 3 of the 4 marks; mass as the measure of inertia is the fourth."
 }

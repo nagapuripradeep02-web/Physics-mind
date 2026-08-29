@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pw_cv_raman_discovery",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Physical World and Measurement"
+  },
+  "chapter": "Physical World and Measurement",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the discovery of C.V. Raman?",
+  "appearances": [
+    {
+      "year": 2020,
+      "q_no": 1,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "q_no": 1,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "The Raman effect",
+      "marks": 1
+    },
+    {
+      "label": "What is observed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2017 (Q1) and March 2020 (Q1) — Section A, 2 marks each time. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question text itself is sourced from those papers. `appearances` is deliberately left empty — a separate reviewed tagging pass fills it, and a hand-written tag here would be an invented claim. Content hand-checked against NCERT Class-11 Chapter 1: C. V. Raman discovered the Raman effect, the scattering of light by molecules in which a small part of the scattered light emerges with a changed wavelength, and was awarded the Nobel Prize in Physics in 1930."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physical World · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_effect",
+        "kind": "text",
+        "label": "The Raman effect",
+        "marks": 1,
+        "mark_note": "The Raman effect",
+        "lines": [
+          "C. V. Raman discovered the Raman effect:",
+          "the scattering of light by molecules with",
+          "a change in wavelength.",
+          "He was awarded the Nobel Prize in Physics",
+          "in 1930 for this work."
+        ],
+        "margin_note": "First mark. Name the effect, then say what changes in it.",
+        "why": "The question asks for a discovery, so it needs a name and one line saying what that name means. The change in wavelength is the whole content, because ordinary scattering leaves the wavelength unchanged.",
+        "common_mistakes": [
+          "Naming the effect without saying what it is. The words change in wavelength carry the mark."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That C V Raman discovered the Raman effect, the scattering of light with a change in wavelength.",
+          "accept": [
+            "Raman effect",
+            "scattering of light by molecules",
+            "change in wavelength"
+          ],
+          "reject": [
+            "Chandrasekhar limit"
+          ],
+          "heard_as": [
+            "raman effect",
+            "raman scattering"
+          ]
+        },
+        "memory_tip": "Raman scattering changes the wavelength of the scattered light. Ordinary scattering does not."
+      },
+      {
+        "id": "s2_observation",
+        "kind": "boxed_final",
+        "label": "What is observed",
+        "marks": 1,
+        "mark_note": "New wavelengths",
+        "lines": [
+          "When light of a single wavelength passes",
+          "through a transparent medium, most of the",
+          "scattered light keeps that wavelength.",
+          "A small part comes out with a longer or a",
+          "shorter wavelength, because the molecule",
+          "takes energy from the light or gives",
+          "energy to it.",
+          {
+            "text": "Raman effect · Nobel Prize in Physics, 1930",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Say WHY the wavelength changes: energy is exchanged with the molecule.",
+        "why": "The shifted wavelengths are the evidence. The light exchanges a fixed amount of energy with a molecule, so the size of the shift measures that molecule's own energy levels, and the effect became a tool for studying molecular structure.",
+        "common_mistakes": [
+          "Saying all the scattered light changes wavelength. Only a small part of it does.",
+          "Saying the frequency of the light stays the same. A changed wavelength means a changed frequency."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a small part of the scattered light comes out with a longer or shorter wavelength because energy is exchanged with the molecule.",
+          "accept": [
+            "small part of the scattered light",
+            "longer or shorter wavelength",
+            "energy is exchanged with the molecule"
+          ],
+          "reject": [
+            "Raman effect is the discovery"
+          ],
+          "heard_as": [
+            "wavelength changes",
+            "energy exchange"
+          ]
+        },
+        "memory_tip": "Energy given to the molecule makes the light redder; energy taken from it makes the light bluer."
+      }
+    ]
+  },
+  "insider_note": "One mark names the effect and the other says what it is — the name written alone, with no mention of the change in wavelength, is half."
+}

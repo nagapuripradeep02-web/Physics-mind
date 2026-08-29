@@ -1,0 +1,223 @@
+{
+  "schema_version": "ipe_paper_v1",
+  "paper_id": "ts_ipe_p1_2024_03",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "paper": "Paper-I",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "year": 2024,
+  "month": 3,
+  "month_label": "March 2024",
+  "date_confidence": "printed",
+  "paper_code": "0119",
+  "set": "A",
+  "provenance": {
+    "source_pdf": "TS_Inter_1st_Year_Physcis_Mar_2024_QP.pdf",
+    "transcribed_on": "2026-08-26",
+    "transcribed_from": "the PDF scan itself, read page by page — never a prior transcription",
+    "year_source": "printed on the paper",
+    "header_note": "Header reads \"Part III PHYSICS, Paper - I (English Version)\"; booklet code 0119, set A. Total questions 21, printed pages 2."
+  },
+  "exam_pattern": {
+    "max_marks": 60,
+    "duration_hours": 3,
+    "sections": [
+      {
+        "name": "Section A",
+        "qtype": "VSAQ",
+        "marks_each": 2,
+        "count": 10,
+        "choose": 10,
+        "q_range": [
+          1,
+          10
+        ]
+      },
+      {
+        "name": "Section B",
+        "qtype": "SAQ",
+        "marks_each": 4,
+        "count": 8,
+        "choose": 6,
+        "q_range": [
+          11,
+          18
+        ]
+      },
+      {
+        "name": "Section C",
+        "qtype": "LAQ",
+        "marks_each": 8,
+        "count": 3,
+        "choose": 2,
+        "q_range": [
+          19,
+          21
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "q_no": 1,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What is Physics?"
+    },
+    {
+      "q_no": 2,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "How can systematic errors be minimised or eliminated?"
+    },
+    {
+      "q_no": 3,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Two forces of magnitudes 3 units and 5 units act at 60° with each other. What is the magnitude of their resultant?"
+    },
+    {
+      "q_no": 4,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "A horse has to pull harder during the start of the motion than later. Explain."
+    },
+    {
+      "q_no": 5,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "What is the principle behind the carburetor of an automobile?"
+    },
+    {
+      "q_no": 6,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Why are drops and bubbles spherical?"
+    },
+    {
+      "q_no": 7,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Distinguish between heat and temperature."
+    },
+    {
+      "q_no": 8,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "Why utensils are coated black? Why the bottom of the utensils are made of copper?"
+    },
+    {
+      "q_no": 9,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "When does a real gas behave like an ideal gas?"
+    },
+    {
+      "q_no": 10,
+      "section": "Section A",
+      "qtype": "VSAQ",
+      "marks": 2,
+      "text": "State Dalton’s law of partial pressures."
+    },
+    {
+      "q_no": 11,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "State parallelogram law of vectors. Derive an expression for the magnitude and direction of the resultant vector."
+    },
+    {
+      "q_no": 12,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Mention the methods used to decrease friction."
+    },
+    {
+      "q_no": 13,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Distinguish between centre of mass and centre of gravity."
+    },
+    {
+      "q_no": 14,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Define angular velocity (ω). Derive v = rω."
+    },
+    {
+      "q_no": 15,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "What is orbital velocity? Obtain an expression for it."
+    },
+    {
+      "q_no": 16,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "In what way is the anomalous behaviour of water advantageous to aquatic animals?"
+    },
+    {
+      "q_no": 17,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "A man runs across the roof of a tall building and jumps horizontally on to the (lower) roof of an adjacent building. If his speed is 9 m s⁻¹ and the horizontal distance between the buildings is 10 m and the height difference between the roofs is 9 m, will he be able to land on the next building? (take g = 10 m s⁻²)"
+    },
+    {
+      "q_no": 18,
+      "section": "Section B",
+      "qtype": "SAQ",
+      "marks": 4,
+      "text": "Describe the behaviour of a wire under gradually increasing load."
+    },
+    {
+      "q_no": 19,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "State second law of thermodynamics. How is heat engine different from a refrigerator?"
+    },
+    {
+      "q_no": 20,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "Show that the motion of a simple pendulum is simple harmonic and hence derive an equation for its time period. What is seconds pendulum?"
+    },
+    {
+      "q_no": 21,
+      "section": "Section C",
+      "qtype": "LAQ",
+      "marks": 8,
+      "text": "State and prove law of conservation of energy in case of a freely falling body. A machine gun fires 360 bullets per minute and each bullet travels with a velocity of 600 ms⁻¹. If the mass of each bullet is 5 gm, find the power of the machine gun?",
+      "parts": [
+        {
+          "part": "a",
+          "kind": "derivation",
+          "text": "State and prove law of conservation of energy in case of a freely falling body."
+        },
+        {
+          "part": "b",
+          "kind": "numerical",
+          "text": "A machine gun fires 360 bullets per minute and each bullet travels with a velocity of 600 ms⁻¹. If the mass of each bullet is 5 gm, find the power of the machine gun?"
+        }
+      ]
+    }
+  ]
+}

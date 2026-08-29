@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_wien_black_body_numerical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the maximum intensity of radiation for a black body is found at 1.45 μm, what is the temperature of radiating body? (Wien’s constant = 2.9 × 10⁻³ mK)",
+  "appearances": [
+    {
+      "year": 2019,
+      "q_no": 7,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Wien’s law and the conversion",
+      "marks": 1
+    },
+    {
+      "label": "The temperature",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2019 (Q7) — Section A, 2 marks. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced from that paper. Arithmetic hand-checked: λₘ = 1.45 μm = 1.45 × 10⁻⁶ m; T = b / λₘ = 2.9 × 10⁻³ / 1.45 × 10⁻⁶; 2.9 ÷ 1.45 = 2 and 10⁻³ ÷ 10⁻⁶ = 10³, so T = 2 × 10³ K = 2000 K."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_law",
+        "kind": "equation",
+        "label": "Wien’s law and the units",
+        "marks": 1,
+        "mark_note": "λₘT = b",
+        "lines": [
+          "By Wien’s displacement law,",
+          {
+            "text": "λₘ T = b",
+            "style": "eq"
+          },
+          "The constant b is given in metre kelvin,",
+          "so convert the wavelength to metres:",
+          {
+            "text": "λₘ = 1.45 μm = 1.45 × 10⁻⁶ m",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The unit conversion is written here, never assumed.",
+        "why": "Wien’s law connects the wavelength of maximum intensity to the absolute temperature. The constant is quoted in metre kelvin, so the wavelength has to be in metres before the division.",
+        "common_mistakes": [
+          "Dividing by 1.45 without converting micrometres to metres, which makes the answer 10⁶ times too small."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That λₘT = b and that 1.45 μm must be written as 1.45 × 10⁻⁶ m.",
+          "accept": [
+            "lambda m into T equals b",
+            "convert micrometre to metre",
+            "one point four five into ten to the minus six"
+          ],
+          "reject": [
+            "two thousand kelvin"
+          ],
+          "heard_as": [
+            "lambda T equals b",
+            "micrometre",
+            "ten to the minus six"
+          ]
+        },
+        "memory_tip": "1 μm = 10⁻⁶ m. The constant is in metre kelvin, so the wavelength must be in metres."
+      },
+      {
+        "id": "s2_temperature",
+        "kind": "boxed_final",
+        "label": "The temperature",
+        "marks": 1,
+        "mark_note": "T",
+        "lines": [
+          {
+            "text": "T = b / λₘ = 2.9 × 10⁻³ / 1.45 × 10⁻⁶",
+            "style": "eq"
+          },
+          {
+            "text": "T = 2000 K",
+            "style": "boxed"
+          },
+          "The wavelength in the denominator must be",
+          "in metres, not in micrometres."
+        ],
+        "margin_note": "Second mark. The number 2000 with the unit K is what is checked.",
+        "why": "Dividing 2.9 by 1.45 gives 2, and 10⁻³ divided by 10⁻⁶ gives 10³, so the temperature is 2 × 10³ K.",
+        "common_mistakes": [
+          "Leaving the answer as 2 × 10³ with no unit. The unit K is part of the mark."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That T = 2000 K.",
+          "accept": [
+            "two thousand kelvin",
+            "two into ten cube kelvin",
+            "T is 2000 K"
+          ],
+          "reject": [
+            "convert micrometre to metre"
+          ],
+          "heard_as": [
+            "two thousand",
+            "kelvin",
+            "2000 K"
+          ]
+        },
+        "memory_tip": "2.9 ÷ 1.45 = 2 and 10⁻³ ÷ 10⁻⁶ = 10³, so T = 2 × 10³ K."
+      }
+    ]
+  },
+  "insider_note": "Two marks: one for λₘT = b with the metre conversion, one for the value 2000 K. The unit K is part of the second mark."
+}

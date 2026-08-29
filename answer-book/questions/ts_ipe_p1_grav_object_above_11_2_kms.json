@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 9,
+    "number": 8,
     "name": "Gravitation"
   },
   "chapter": "Gravitation",
@@ -74,7 +74,9 @@
             "escape velocity",
             "11.2"
           ]
-        }
+        },
+        "memory_tip": "√(2gR) with g = 9.8 m s⁻² and R = 6.4 × 10⁶ m comes to 11.2 km s⁻¹.",
+        "margin_note": "Two marks. Name the number as the escape velocity, then write √(2gR)."
       },
       {
         "id": "s2_why",
@@ -113,8 +115,11 @@
             "never returns",
             "energy"
           ]
-        }
+        },
+        "memory_tip": "At exactly 11.2 km s⁻¹ the speed reaches zero only at infinity. Faster, and speed is left over.",
+        "margin_note": "Two marks. Say what is left over far away, then answer that it never returns."
       }
     ]
-  }
+  },
+  "insider_note": "Listed by the TSBIE material and not by the Fastrack. Two of the four marks are just for naming 11.2 km s⁻¹ as the escape velocity."
 }

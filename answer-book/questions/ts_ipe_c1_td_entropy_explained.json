@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. The book attaches ΔS(total) = ΔS(system) + ΔS(surroundings) to 'any isolated system'; this card states it for any process, since an isolated system exchanges nothing with its surroundings. NOTE: the book also asks entropy at VSAQ 4a as one of three definitions in a bundle; that bundle is a separate card (ts_ipe_c1_td_define_entropy_terms), not a cut of this one, because its two other definitions cannot come from this step list."
+    "note": "Unit 6 Thermodynamics is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.73-75), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. This chapter has NO Long Answer section in the book, so no 8-mark form is invented. The 1+1+1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it. The book attaches ΔS(total) = ΔS(system) + ΔS(surroundings) to 'any isolated system'; this card states it for any process, since an isolated system exchanges nothing with its surroundings. NOTE: the book also asks entropy at VSAQ 4a as one of three definitions in a bundle; that bundle is a separate card (ts_ipe_c1_td_define_entropy_terms), not a cut of this one, because its two other definitions cannot come from this step list. AI chemistry check 2026-08-25. MARKED LINE CHANGED in step s3_quantitative: the unit line read Units of ΔS: J K⁻¹ mol⁻¹ (per mole), which does not follow from ΔS = q(rev)/T written directly above it and contradicted this card's own step-1 common mistake and step-3 memory tip (both J K⁻¹) and the sibling card ts_ipe_c1_td_define_entropy_terms (J K⁻¹). It now reads Units of ΔS: J K⁻¹ (per mole, J K⁻¹ mol⁻¹), so both forms still earn the mark."
   },
   "answer": {
     "page_header": [
@@ -103,12 +103,12 @@
             "text": "ΔS = q(rev) / T",
             "style": "eq"
           },
-          "Units of ΔS: J K⁻¹ mol⁻¹ (per mole)."
+          "Units of ΔS: J K⁻¹ (per mole, J K⁻¹ mol⁻¹)."
         ],
-        "why": "The same amount of heat disturbs a cold system more than a hot one, so the entropy change is the heat divided by the temperature at which it is transferred.",
+        "why": "The same quantity of heat produces a larger entropy change in a cold system than in a hot one, so the entropy change is the heat divided by the temperature at which it is transferred. Check the units from the formula itself: q(rev) in joules divided by T in kelvin gives J K⁻¹. The per-mole form J K⁻¹ mol⁻¹ applies when q(rev) is the heat for one mole, which is how tabulated entropy values are quoted.",
         "common_mistakes": [
           "Multiplying instead of dividing by T.",
-          "Writing the unit as J mol⁻¹, dropping the K⁻¹."
+          "Writing the unit as J mol⁻¹, dropping the K⁻¹. Entropy is measured in J K⁻¹ and molar entropy in J K⁻¹ mol⁻¹."
         ],
         "memory_tip": "Heat over temperature: q on top, T below, units J K⁻¹.",
         "margin_note": "The reversible q and the unit both matter here."

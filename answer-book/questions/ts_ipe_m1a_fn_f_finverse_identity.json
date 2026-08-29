@@ -7,12 +7,12 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 1,
+    "number": 2,
     "name": "Functions"
   },
   "chapter": "Functions",
   "qtype": "LAQ",
-  "marks_total": 7,
+  "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 12,
   "question_text": "If f: A→B is a bijective function then prove that (i) fof⁻¹ = I_B (ii) f⁻¹of = I_A.",
@@ -41,7 +41,7 @@
   "mark_split": [
     {
       "label": "Proof that fof⁻¹ = I_B",
-      "marks": 3
+      "marks": 4
     },
     {
       "label": "Proof that f⁻¹of = I_A",
@@ -51,13 +51,13 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 Functions, question 4. The 3+4 split is printed in that book's margin; appearance years are printed board-split as TS 16,18,19 and AP 15,17 — the most-asked question in this chapter across both boards. Publisher's claims until a Telangana IPE teacher confirms them. Lines naming an identity function use render:'katex' (a capital-letter subscript has no Unicode form)."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 Functions, question 4. The 3+4 split is printed in that book's margin; appearance years are printed board-split as TS 16,18,19 and AP 15,17 — the most-asked question in this chapter across both boards. Publisher's claims until a Telangana IPE teacher confirms them. Lines naming an identity function use render:'katex' (a capital-letter subscript has no Unicode form). Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Proof that fof⁻¹ = I_B."
   },
   "recall_prompt": "Say how you would prove that f composed with its inverse gives the identity — both ways round, and how each one goes.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
-      "Functions · 7 marks"
+      "Functions · 8 marks"
     ],
     "steps": [
       {
@@ -117,9 +117,9 @@
         "id": "s2_right",
         "kind": "equation",
         "label": "f after f inverse",
-        "marks": 3,
+        "marks": 4,
         "mark_note": "First part",
-        "margin_note": "Three of the seven marks. This side starts at B, so the element you take is b, not a. Get the domain line down, then the substitution.",
+        "margin_note": "Four of the eight marks. This side starts at B, so the element you take is b, not a. Get the domain line down, then the substitution.",
         "lines": [
           {
             "text": "\\text{(i) To prove } f \\circ f^{-1} = I_B",
@@ -191,7 +191,7 @@
         "label": "f inverse after f",
         "marks": 4,
         "mark_note": "Second part",
-        "margin_note": "Four of the seven marks. The mirror of part (i): this side starts at A, so take a, and it lands on I_A. Write it out fully, never 'by symmetry'.",
+        "margin_note": "Four of the eight marks. The mirror of part (i): this side starts at A, so take a, and it lands on I_A. Write it out fully, never 'by symmetry'.",
         "lines": [
           {
             "text": "\\text{(ii) To prove } f^{-1} \\circ f = I_A",
@@ -293,7 +293,7 @@
             "both"
           ]
         },
-        "why": "The question asked for two results. Writing both on the last line shows you finished the second part, which is where four of the seven marks are.",
+        "why": "The question asked for two results. Writing both on the last line shows you finished the second part, which is where four of the eight marks are.",
         "common_mistakes": [
           "Writing only one of the two results."
         ]

@@ -1,0 +1,300 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_second_law_engine_vs_fridge",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "State second law of thermodynamics. How is heat engine different from a refrigerator?",
+  "appearances": [
+    {
+      "year": 2024,
+      "q_no": 19,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2023,
+      "q_no": 21,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2020,
+      "q_no": 21,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "q_no": 21,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Kelvin–Planck statement",
+      "marks": 1
+    },
+    {
+      "label": "Clausius statement",
+      "marks": 1
+    },
+    {
+      "label": "The heat engine",
+      "marks": 2
+    },
+    {
+      "label": "The refrigerator",
+      "marks": 2
+    },
+    {
+      "label": "The difference",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Asked in TS March 2016 (Q21), March 2020 (Q21), March 2023 (Q21) and March 2024 (Q19) — TS Inter I-Year Physics Paper-I, Section C, 8 marks each time. The five-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Kelvin–Planck (no engine working in a cycle converts heat from a single reservoir entirely into work) and Clausius (heat does not flow on its own from a colder body to a hotter one) are the two equivalent statements; engine W = Q₁ − Q₂ with η = W/Q₁ = 1 − Q₂/Q₁; refrigerator Q₁ = Q₂ + W with coefficient of performance β = Q₂/W."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Thermodynamics · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_kelvin_planck",
+        "kind": "text",
+        "label": "Kelvin–Planck statement",
+        "marks": 1,
+        "mark_note": "Kelvin–Planck",
+        "lines": [
+          "The second law fixes the direction of heat",
+          "flow and limits how much heat can be turned",
+          "into work.",
+          "Kelvin–Planck statement: no engine working in",
+          "a cycle can take heat from a single reservoir",
+          "and convert all of it into work. Some heat",
+          "must be rejected to a colder body."
+        ],
+        "margin_note": "First mark. The words \"working in a cycle\" and \"single reservoir\" are the two checked phrases.",
+        "why": "The first law allows an engine that converts all its heat into work; nothing in energy conservation forbids it. The second law is the separate statement that rules it out.",
+        "common_mistakes": [
+          "Leaving out \"working in a cycle\". A single isothermal expansion does convert all its heat into work; it is the repeated cycle that cannot.",
+          "Saying no heat can be converted into work. Part of it can; all of it cannot."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That no engine working in a cycle can take heat from a single reservoir and convert all of it into work.",
+          "accept": [
+            "cannot convert all the heat into work",
+            "working in a cycle",
+            "some heat must be rejected"
+          ],
+          "reject": [
+            "heat cannot flow from a colder body to a hotter one"
+          ],
+          "heard_as": [
+            "Kelvin Planck",
+            "single reservoir",
+            "cannot convert completely"
+          ]
+        },
+        "memory_tip": "Kelvin–Planck is about WORK: one reservoir cannot give an engine work with nothing rejected."
+      },
+      {
+        "id": "s2_clausius",
+        "kind": "text",
+        "label": "Clausius statement",
+        "marks": 1,
+        "mark_note": "Clausius",
+        "lines": [
+          "Clausius statement: heat cannot flow on its",
+          "own from a colder body to a hotter one. It",
+          "flows that way only when external work is",
+          "done on the system.",
+          "The two statements are equivalent: if either",
+          "one were false, the other would fail as well."
+        ],
+        "margin_note": "Second mark. Both statements are asked, so write this one even if the first looks complete.",
+        "why": "Clausius covers the direction of heat flow and Kelvin–Planck covers the conversion of heat into work. Together they are what makes an engine and a refrigerator two different machines.",
+        "common_mistakes": [
+          "Leaving out \"on its own\". Heat does flow from cold to hot in a refrigerator, because work is supplied.",
+          "Writing only one of the two statements. The question says the second law, and both statements are part of it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That heat cannot flow on its own from a colder body to a hotter one, and does so only when external work is supplied.",
+          "accept": [
+            "heat cannot flow by itself from cold to hot",
+            "only with external work",
+            "Clausius statement"
+          ],
+          "reject": [
+            "cannot convert all the heat into work"
+          ],
+          "heard_as": [
+            "Clausius",
+            "cold to hot",
+            "on its own"
+          ]
+        },
+        "memory_tip": "Clausius is about DIRECTION: cold to hot needs work, hot to cold does not."
+      },
+      {
+        "id": "s3_heat_engine",
+        "kind": "equation",
+        "label": "The heat engine",
+        "marks": 2,
+        "mark_note": "η = W/Q₁",
+        "lines": [
+          "A heat engine converts heat into work in a",
+          "repeated cycle. In one cycle the working",
+          "substance takes heat Q₁ from a hot reservoir",
+          "at T₁, does external work W, and rejects heat",
+          "Q₂ to a cold reservoir at T₂.",
+          {
+            "text": "W = Q₁ − Q₂",
+            "style": "eq"
+          },
+          {
+            "text": "Efficiency η = W/Q₁ = 1 − Q₂/Q₁",
+            "style": "eq"
+          },
+          "η is always less than 1: some heat is always",
+          "rejected to the sink."
+        ],
+        "margin_note": "Two marks. One for the three quantities Q₁, W and Q₂ in the right places, one for the efficiency.",
+        "why": "The working substance returns to its starting state at the end of a cycle, so its internal energy is unchanged and the whole of Q₁ − Q₂ appears as work.",
+        "common_mistakes": [
+          "Writing η = W/Q₂. The efficiency is the work divided by the heat TAKEN IN, which is Q₁.",
+          "Saying an ideal engine has η = 1. The second law forbids it; Q₂ is never zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an engine takes Q one from the hot reservoir, does work W, rejects Q two to the cold reservoir, with W equal to Q one minus Q two and efficiency W by Q one.",
+          "accept": [
+            "takes Q one from the source and rejects Q two to the sink",
+            "W is Q one minus Q two",
+            "efficiency is W by Q one"
+          ],
+          "reject": [
+            "work is done on the working substance"
+          ],
+          "heard_as": [
+            "Q one minus Q two",
+            "efficiency",
+            "W by Q one"
+          ]
+        },
+        "memory_tip": "Engine: Q₁ taken in, W given out, Q₂ rejected. Efficiency is W divided by Q₁."
+      },
+      {
+        "id": "s4_refrigerator",
+        "kind": "equation",
+        "label": "The refrigerator",
+        "marks": 2,
+        "mark_note": "β = Q₂/W",
+        "lines": [
+          "A refrigerator is the same cycle run in the",
+          "opposite direction. External work W is done",
+          "on the working substance, which takes heat Q₂",
+          "from the cold body at T₂ and rejects Q₁ to",
+          "the hot surroundings at T₁.",
+          {
+            "text": "Q₁ = Q₂ + W",
+            "style": "eq"
+          },
+          {
+            "text": "Coefficient of performance β = Q₂/W",
+            "style": "eq"
+          },
+          "β can be greater than 1, so it is not called",
+          "an efficiency."
+        ],
+        "margin_note": "Two marks. One for work being done ON the substance and the heat moving cold to hot, one for β.",
+        "why": "What is wanted from a refrigerator is the heat removed from the cold body, so the useful output is Q₂ and the cost is W. That is why β is Q₂/W and not W/Q₂.",
+        "common_mistakes": [
+          "Writing β = W/Q₂ upside down. The useful output Q₂ goes on top.",
+          "Calling β an efficiency. A quantity that can be greater than 1 is not called an efficiency."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That work W is done on a refrigerator, which takes Q two from the cold body and rejects Q one to the hot body, with coefficient of performance Q two by W.",
+          "accept": [
+            "work is done on the refrigerator",
+            "takes Q two from the cold body",
+            "coefficient of performance is Q two by W"
+          ],
+          "reject": [
+            "efficiency is W by Q one"
+          ],
+          "heard_as": [
+            "coefficient of performance",
+            "Q two by W",
+            "beta"
+          ]
+        },
+        "memory_tip": "Refrigerator: the useful output is Q₂ and the cost is W, so β = Q₂/W."
+      },
+      {
+        "id": "s5_difference",
+        "kind": "boxed_final",
+        "label": "The difference",
+        "marks": 2,
+        "mark_note": "The difference",
+        "lines": [
+          "The two devices run the same cycle in",
+          "opposite directions.",
+          "Heat engine: heat flows from hot to cold on",
+          "its own and part of it is taken out as work.",
+          "Refrigerator: external work is supplied to",
+          "move heat from cold to hot, which the second",
+          "law does not allow on its own.",
+          "The engine is rated by its efficiency, the",
+          "refrigerator by its coefficient of",
+          "performance.",
+          {
+            "text": "Engine: η = W/Q₁ · Refrigerator: β = Q₂/W",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "The last two marks. One for the direction of the cycle, one for the two different performance ratios.",
+        "why": "The comparison is the second half of the question and is worth as much as either machine on its own, so it needs its own paragraph rather than a closing sentence.",
+        "common_mistakes": [
+          "Describing both machines and never stating the difference. The question asks for the difference in so many words.",
+          "Saying a refrigerator breaks the second law. It obeys it, because external work is supplied."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two run the same cycle in opposite directions, the engine taking work out of a natural hot-to-cold flow and the refrigerator using supplied work to move heat cold to hot, rated by eta and beta.",
+          "accept": [
+            "same cycle in opposite directions",
+            "engine gives work, refrigerator takes work",
+            "one is rated by efficiency, the other by coefficient of performance"
+          ],
+          "reject": [
+            "no engine can convert all the heat into work"
+          ],
+          "heard_as": [
+            "opposite direction",
+            "reverse cycle",
+            "difference"
+          ]
+        },
+        "memory_tip": "Same cycle, opposite direction: the engine gives out work, the refrigerator takes work in."
+      }
+    ]
+  },
+  "insider_note": "Both statements carry a mark each, so an answer with only one starts a mark down. η = W/Q₁ and β = Q₂/W carry the last two."
+}

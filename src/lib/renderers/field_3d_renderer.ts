@@ -12681,6 +12681,38 @@ export const FIELD_3D_RENDERER_CODE = `
         return "|a×b| = |b×a|";
     }
 
+    // ── THE DOT-PRODUCT ROW'S NAME, DERIVED FROM THE OBJECT IT MEASURES ─────
+    //   bug_class readout_family_label_is_a_hardcoded_constant_so_renaming_an_
+    //   authored_object_makes_the_panel_name_the_wrong_one (CRITICAL).
+    //   VG_READOUT_LABEL.d_dot_n was the constant string "n·d", and the comment
+    //   above the intersection publish site justified it by quoting a fact
+    //   about CONCEPT DATA: "on the state this exists for, both lines carry the
+    //   same generic label d". That was true when written. An authoring fix
+    //   then renamed lines_and_planes_in_space STATE_4's parallel line to d′
+    //   (to cure a DIFFERENT defect — two lines both labelled d) and falsified
+    //   it, silently: for the first 9.5 s of the concept's misconception state
+    //   the panel printed "n·d = 0.000" while the only line on screen was
+    //   labelled d′ and no line called d existed yet, then printed
+    //   "n·d = 0.574" for the OTHER line at t = 17500. One symbol, two lines,
+    //   one state — and the state's whole job is to attach that arithmetic to
+    //   the right line. Nothing recomputed the constant, because a constant has
+    //   no link back to the data its comment depended on.
+    //
+    //   THE RULE, which is the transferable part: a display label that NAMES AN
+    //   AUTHORED OBJECT is derived from that object's authored label, never
+    //   from a constant. A constant is legal only for a token whose subject can
+    //   never be renamed (|a|, θ, λ, "distance" — the quantity IS the name).
+    //   And a code comment that justifies a constant by quoting a fact about
+    //   concept data is a dependency on that data with no link back to it: when
+    //   the comment states a data fact, derive from the data instead.
+    //
+    //   The sibling of vgCrossMagLabelText above, and the same doctrine: ONE
+    //   source for the name and the thing it names.
+    function vgDotLabelText(fixedSym, subjectLabel, fallbackSym) {
+        var s = (typeof subjectLabel === "string" && subjectLabel !== "") ? subjectLabel : fallbackSym;
+        return fixedSym + "·" + s;
+    }
+
     // ── F21 · vg.animate[] — per-state parameter ramps ──────────────────────
     //   A PORT of two mechanisms this renderer already ships, not an
     //   invention: param_ramp (nlbRunParamRamp) and idle_auto_sweep
@@ -13459,7 +13491,18 @@ export const FIELD_3D_RENDERER_CODE = `
             // The readout tokens NO subject could claim unambiguously this frame.
             // Empty on every well-authored state; never silently dropped, on the
             // PM_vgPoolOverflow precedent.
-            readout_conflicts: []
+            readout_conflicts: [],
+            // ── A LABEL THAT NAMES AN AUTHORED OBJECT IS DERIVED FROM THAT
+            //    OBJECT, NEVER FROM A CONSTANT (bug_class readout_family_label_
+            //    is_a_hardcoded_constant_so_renaming_an_authored_object_makes_
+            //    the_panel_name_the_wrong_one). Token -> the label text the
+            //    panel must print for the subject THIS frame resolved,
+            //    published at the SAME statement as the value so the two can
+            //    never separate. A token absent from this bag renders its
+            //    VG_READOUT_LABEL constant unchanged — which is every
+            //    products-mode token, and every lines/planes token whose
+            //    subject is fixed by the token itself.
+            readout_labels: {}
         };
         var i, o, frac;
 
@@ -13615,6 +13658,13 @@ export const FIELD_3D_RENDERER_CODE = `
             } else if (o.readout === "n_dot_v" && typeof o.against === "string" && ctx.planes[o.against]) {
                 if (vgArrived(sfrac) && vgArrived(ctx.planes[o.against].frac)) {
                     out.readouts.n_dot_v = vgDotVec(ctx.planes[o.against].n, vgNormalize(vgSub(s1, s0)));
+                    // The row NAMES THE SEGMENT IT MEASURES, off the same
+                    // authored label the sprite beside the segment draws. Both
+                    // of today's authored segments carry "v", so this renders
+                    // the constant it replaces byte for byte — which is the
+                    // point: the panel now survives a rename it used to
+                    // contradict, and one publish site owns name AND number.
+                    out.readout_labels.n_dot_v = vgDotLabelText("n", o.label, "v");
                 }
             }
         }
@@ -13706,16 +13756,18 @@ export const FIELD_3D_RENDERER_CODE = `
                 }
             }
             // Δ2b — the four numbers describe THIS intersection's line, so they
-            // wait for THIS intersection's own reveal instant.
-            if (vgArrived(ifrac)) arrivedMeets.push({ id: iId, meet: meet });
+            // wait for THIS intersection's own reveal instant. The line's own
+            // AUTHORED LABEL rides along, because the panel has to say which
+            // line it is describing and iL is the only place that knows.
+            if (vgArrived(ifrac)) arrivedMeets.push({ id: iId, meet: meet, subject: iL.label });
         }
         // ── ONE SUBJECT AT A TIME, AND NEVER A SILENT WINNER ────────────────
-        //   The four tokens below are NAMES, not addresses: d_dot_n means "n·d"
-        //   for whichever line the panel is describing. Two arrived
-        //   intersections both claim all four — and on the state this exists
-        //   for, both lines carry the same generic label d — so any precedence
-        //   rule (first authored, last authored, the one that exists) prints a
-        //   number the reader cannot attach to a line. That is
+        //   The four tokens below are NAMES, not addresses: d_dot_n describes
+        //   whichever line the panel is describing, and the name it PRINTS is
+        //   derived from that line's authored label (out.readout_labels), never
+        //   from a constant. Two arrived intersections both claim all four, so
+        //   any precedence rule (first authored, last authored, the one that
+        //   exists) prints a number the reader cannot attach to a line. That is
         //   vg_lines_planes_segment_readouts_compute_regardless_of_reveal_state
         //   one level up: the number is arithmetically right and describes
         //   something other than what the reader is looking at.
@@ -13728,6 +13780,11 @@ export const FIELD_3D_RENDERER_CODE = `
         if (arrivedMeets.length === 1) {
             var mt = arrivedMeets[0].meet;
             out.readouts.d_dot_n = mt.d_dot_n;
+            // ...and the row says WHICH line's direction it dotted. The
+            // one-subject-at-a-time invariant above is what makes this
+            // answerable at all: exactly one line is being described, so its
+            // authored label is the honest name for the number beside it.
+            out.readout_labels.d_dot_n = vgDotLabelText("n", arrivedMeets[0].subject, "d");
             if (mt.exists) {
                 out.readouts.lambda = mt.lambda;
                 out.readouts.intersection_point = mt.point;
@@ -14177,14 +14234,14 @@ export const FIELD_3D_RENDERER_CODE = `
     //   (the range input sanitises what it is given) — that is the resolution
     //   the control genuinely has, and the LABEL beside it carries the exact
     //   resolved value, which is the number the geometry is built from.
-    function vgSyncRampedRows(anim, resolved, showSliders) {
+    function vgSyncRampedRows(anim, resolved) {
         var written = [];
         if (!anim || !anim.length) { window.PM_vgRowsTracking = written; return written; }
         for (var i = 0; i < anim.length; i++) {
             var k = (anim[i] || {}).knob;
             if (!k || VG_ROW_DEC[k] == null) continue;              // not a slider-bound knob
             if (written.indexOf(k) >= 0) continue;                  // several windows, one row
-            if (showSliders && window[VG_ROW_DRAG[k]]) continue;    // the teacher's drag owns it
+            if (window[VG_ROW_DRAG[k]]) continue;                   // the teacher's drag owns it
             var v = resolved ? resolved[k] : null;
             if (!(typeof v === "number" && isFinite(v))) continue;
             var sl = document.getElementById("vg_" + k + "_slider");
@@ -14424,6 +14481,16 @@ export const FIELD_3D_RENDERER_CODE = `
         segment_length: "segment length",
         angle_lines_deg: "angle", angle_line_plane_deg: "angle to plane",
         angle_line_normal_deg: "angle to normal",
+        // These two entries are the UNLABELLED-SUBJECT form only, kept here so
+        // the tokens have a label for the §11c union check and as the fallback
+        // when an authored line/segment carries no label of its own. THE TEXT
+        // THAT REACHES THE SCREEN is derived per frame from the authored label
+        // of the subject the resolver described (out.readout_labels, via
+        // vgDotLabelText) — exactly the cross_mag arrangement above, and for
+        // exactly the same reason: a constant that names an authored object
+        // starts lying the day that object is renamed (bug_class
+        // readout_family_label_is_a_hardcoded_constant_so_renaming_an_authored_
+        // object_makes_the_panel_name_the_wrong_one).
         d_dot_n: "n·d", n_dot_v: "n·v",
         lambda: "λ", intersection_point: "meeting point",
         n_norm: "‖n‖", cross_norm: "‖d₁×d₂‖",
@@ -14533,6 +14600,16 @@ export const FIELD_3D_RENDERER_CODE = `
     function vgReadoutLine(key, vals) {
         var lab = VG_READOUT_LABEL[key];
         if (!lab) return null;
+        // ── THE DERIVED NAME WINS OVER THE TABLE ────────────────────────────
+        //   vals.__readout_labels is the resolver's per-frame token -> label
+        //   bag (out.readout_labels), carrying a name only for the tokens whose
+        //   SUBJECT IS AN AUTHORED OBJECT that can be renamed — today n·d and
+        //   n·v, each published at the same statement as its value. The table
+        //   entry stays the fallback and is what products mode always renders
+        //   (the resolver never runs there, so the bag is never present): this
+        //   line cannot change a single character of vector_products_in_space.
+        var derivedLab = (vals && vals.__readout_labels) ? vals.__readout_labels[key] : null;
+        if (typeof derivedLab === "string" && derivedLab !== "") lab = derivedLab;
         if (key === "theta_deg") return lab + " = " + vgFx(vals.theta_deg, 0) + "°";
         // The cross magnitude NAMES THE ARROW THAT IS ON SCREEN, derived from
         // the same flip_frac the arrow and its sprite are drawn from, so the
@@ -15352,13 +15429,29 @@ export const FIELD_3D_RENDERER_CODE = `
         var grpOn = (((d.controls || []).indexOf("scene_group") !== -1) && groups && groups.length) ? true : false;
         var grpRow = document.getElementById("vg_scene_group_row");
         if (grpRow) grpRow.style.display = grpOn ? "block" : "none";
+        // Rule 39b \u00b7 A FORCE-SHOWN ROW IS A LIVE ROW. Same clause the
+        // curated capacitance path already carries (capApplyWidgetVis: "a
+        // force-shown row is also live \u2014 the teacher showed it to use
+        // it"), in this panel's terms. Without it the \u2699 override wins the
+        // row's DISPLAY (the generic engine's .pmWgShow beats the write above,
+        // and its shell pass force-shows #vg_sliders too) and then hands the
+        // teacher a slider this pass has already set disabled \u2014 grey, and
+        // incapable of emitting the input event the whole drag-seize contract
+        // starts from. Measured on #9 STATE_4: row on screen, panel on screen,
+        // slider.disabled true, a real mouse drag moved nothing.
+        //
+        // ONLY a row the state does not show at all is promoted. A row the
+        // state DOES show as a static_readout stays greyed under a redundant
+        // "show" \u2014 a greyed row is a value display the state authored on
+        // purpose, not a control that failed to work.
+        var wgOv = window.PM_widgetVis || {};
         var anyRow = grpOn, shown = [];
         for (var key in rowIds) {
             var relevant = controls.indexOf(key) !== -1 || statics.indexOf(key) !== -1;
             var rowEl = document.getElementById(rowIds[key]);
             if (rowEl) rowEl.style.display = relevant ? "block" : "none";
             if (relevant) { anyRow = true; shown.push(key); }
-            var isLive = controls.indexOf(key) !== -1;
+            var isLive = controls.indexOf(key) !== -1 || (!relevant && wgOv[rowIds[key]] === "show");
             var slEl = document.getElementById(sliderIds[key]);
             if (slEl) { slEl.disabled = !isLive; slEl.style.opacity = isLive ? "1" : "0.55"; }
         }
@@ -15397,8 +15490,34 @@ export const FIELD_3D_RENDERER_CODE = `
         // idle_auto_sweep already use — a teacher scrubbing theta is never
         // fought by a ramp). THE EYE never drags, so a frozen frame always
         // takes the closed-form branch and stays deterministic.
+        //
+        //   ── AND A TRUSTED DRAG IS THE AUTHORITY, NEVER THE AUTHORED FLAG ──
+        //   bug_class field3d_vg_teacher_forced_slider_row_is_inert_because_
+        //   authored_state_flags_still_own_the_control. This branch was ALSO
+        //   gated on stateDef.show_sliders, so on every state whose JSON omits
+        //   that key the condition was unreachable and a teacher's drag was
+        //   silently discarded — measured on #9 STATE_4: PM_vgTheta 60 -> 110
+        //   with the seize flag set, and the frame still built the meshes from
+        //   60. The \u2699 panel (Rule 39f) declares EVERY vg row on EVERY
+        //   state, so a teacher can force a row on, watch the thumb and the
+        //   number follow their finger, and watch the picture ignore them —
+        //   which is exactly what Rule 39b forbids.
+        //
+        //   The seize flag is authority enough, and is a STRICTLY stronger
+        //   guarantee than any visibility test: wire() sets it only from an
+        //   ev.isTrusted input on that row (a real finger on a row that was
+        //   really on screen and really enabled), and the apply pass clears
+        //   every flag on state entry — so it can be true only if a teacher
+        //   really dragged that row during THIS state. A visibility test would
+        //   be weaker AND would introduce a second defect of the same family:
+        //   hiding the row again mid-state would silently release the seize and
+        //   snap the geometry back under the teacher's hand.
+        //
+        //   THE EYE never drags and never sends SET_WIDGET_VIS, so a captured
+        //   frame always takes the closed-form branch — baselines unaffected
+        //   by construction.
         function knob(key, dflt, liveKey, dragKey) {
-            if (stateDef.show_sliders && window[dragKey] && window[liveKey] != null) return window[liveKey];
+            if (window[dragKey] && window[liveKey] != null) return window[liveKey];
             return vgAnimValue(anim, key, stateMs, (d[key] != null ? d[key] : dflt), animLoopMs);
         }
         var aMag = knob("a_mag", 3.0, "PM_vgAMag", "PM_vgAMagDragged");
@@ -15439,7 +15558,13 @@ export const FIELD_3D_RENDERER_CODE = `
                 // this frame (empty on every well-authored state). Published for
                 // the same reason PM_vgPoolOverflow is: a resolver that cannot
                 // say something says so out loud, where a probe can read it.
-                readout_conflicts: lpRes.readout_conflicts
+                readout_conflicts: lpRes.readout_conflicts,
+                // The NAME each of those tokens is printed under this frame,
+                // derived from the authored label of the subject the resolver
+                // described. Published for the same reason readouts is: a probe
+                // (and THE CALCULATOR's DOM harvest) must be able to check that
+                // the panel names the object on screen, not a constant.
+                readout_labels: lpRes.readout_labels
             };
         } else {
             window.PM_vgLinesPlanes = null;
@@ -15558,7 +15683,7 @@ export const FIELD_3D_RENDERER_CODE = `
             half_extent: LP_KNOBS.half_extent, q_height: LP_KNOBS.q_height,
             line2_offset: LP_KNOBS.line2_offset
         };
-        vgSyncRampedRows(anim, resolvedKnobs, !!stateDef.show_sliders);
+        vgSyncRampedRows(anim, resolvedKnobs);
 
         var rdEl = document.getElementById("vg_readout");
         if (rdEl) {
@@ -15599,6 +15724,15 @@ export const FIELD_3D_RENDERER_CODE = `
                     for (var rk in lpRes.readouts) {
                         if (Object.prototype.hasOwnProperty.call(lpRes.readouts, rk)) vals[rk] = lpRes.readouts[rk];
                     }
+                    // ...and the NAMES the resolver derived for the subjects it
+                    // actually described this frame. Carried in its own bag
+                    // rather than merged into vals as tokens, because the token
+                    // key set of lpRes.readouts is itself an asserted surface
+                    // (a state's readouts arrive beat by beat, and a probe
+                    // reads that key set) — a label must not look like a value.
+                    // Set ONLY inside the mode gate: in products mode the bag
+                    // is absent and vgReadoutLine falls back to the table.
+                    vals.__readout_labels = lpRes.readout_labels;
                 }
                 var html = "";
                 for (var ri = 0; ri < keys.length; ri++) {
@@ -75575,7 +75709,34 @@ export const FIELD_3D_RENDERER_CODE = `
     var SR_READOUTS = {
         area: 1, x_edge: 1, a: 1, b: 1, n: 1, V_exact: 1,
         theta: 1, x_cut: 1, r: 1, face_area: 1, R: 1, r_inner: 1, ring_area: 1,
-        V_n: 1, gap: 1, discs_drawn: 1, V_about_x: 1, V_about_y: 1, V_wrong: 1
+        V_n: 1, gap: 1, discs_drawn: 1, V_about_x: 1, V_about_y: 1, V_wrong: 1,
+        // Three keys the nine authored states need and the first pass did not
+        // carry. Each is a LABEL over a quantity this scenario already computes;
+        // none adds a second implementation of a drawn number (SR-D3).
+        //   V_settles — the SAME value as V_exact under the name the picture on a
+        //     CORE state accounts for. Rule 38b: S4 is core and shows a stack
+        //     climbing and levelling off, so "settles on" is what its own picture
+        //     earns; "V =" asserts a value whose provenance is pi times the
+        //     integral, and that lives on S8 — the ADVANCED state the first preset
+        //     cut removes. A core state must not print a number whose only account
+        //     is in a ring that can be hidden.
+        //   dx — Rule 25 no-untaught-term, on the concept's most-used equation.
+        //     S4 and S6 both carry a formula surface reading Sigma pi r squared
+        //     dx, and nothing on screen said what dx WAS. It reads the slab width
+        //     the ONE summation already published; it is not recomputed here.
+        //   pi_area — M1 made visible instead of merely spoken. The wrong belief
+        //     is that spinning an area gives pi times that area; Rule 16a wants
+        //     the wrong expectation shown as its CONSEQUENCE before the real
+        //     mathematics, and a consequence that exists only in narration is not
+        //     shown at all.
+        V_settles: 1, dx: 1, pi_area: 1,
+        //   ring_area_wrong — M2 as a NUMBER instead of only a sentence. The
+        //     design asked for the true ring area to stand AGAINST the wrong one
+        //     (pi (R - r) squared, 3.0x too small at the labelled slice) and no
+        //     key computed that at all, so the contrast existed only in
+        //     narration. It computes directly from the geometry, like V_about_x,
+        //     which is what lets it share a frame with the value it refutes.
+        ring_area_wrong: 1
     };
     var SR_GLOW_KEYS = {
         region: 1, curve: 1, inner_curve: 1, axis: 1, frame: 1, readout: 1, formula: 1,
@@ -75617,6 +75778,9 @@ export const FIELD_3D_RENDERER_CODE = `
     function srPubClear() { for (var k in SR_PUB) { if (Object.prototype.hasOwnProperty.call(SR_PUB, k)) delete SR_PUB[k]; } }
 
     var srShiftX = 0;               // graph x -> world x offset (SR-D10)
+    var srShiftY = 0;               // graph y -> world y offset (SR-D11), REWRITTEN
+                                    // every frame from the drawn content span
+    var srTickEncl = null;          // this frame\u0027s enclosing solid, or null
     var srFrameGroup = null;        // axes + arrowheads + tick marks (rebuilt on apply)
     var srRegionMesh = null;        // pooled triangle strip (rewritten per frame)
     var srCurveMesh = null;         // pooled tube (rewritten per frame)
@@ -75630,6 +75794,7 @@ export const FIELD_3D_RENDERER_CODE = `
                                     // bowl the y-axis revolution leaves
     var srDiscPool = null;          // capped cylinders — solid discs
     var srRingOutPool = null;       // open cylinders — a ring's outer wall
+    var srSliceRing = null;         // the ONE labelled annular slab (caps + walls)
     var srRingInPool = null;        // open cylinders — a ring's inner wall
 
     function srWarnStage(mode) {
@@ -75797,6 +75962,126 @@ export const FIELD_3D_RENDERER_CODE = `
     function srSpanInnerR(sp, u) {
         if (sp.axis === "y") return (u <= sp.yBot) ? sp.x0 : Math.max(sp.x0, srInvF(sp.outer, u));
         return sp.inner ? srF(sp.inner, u) : 0;
+    }
+
+    // ── SR-D11 — THE VERTICAL SHIFT, AND WHY IT IS NOT ONE CONSTANT. ─────────
+    //   SR-D10 put the apparatus on the world origin along X only, so the camera
+    //   (which always looks at 0, 0, 0 — updateCameraFromSpherical, :4805) aims
+    //   at graph y = 0, the axis of revolution. A revolved solid straddles that
+    //   axis and reads centred; a state that draws only the FLAT REGION does not.
+    //   MEASURED before this landed (1280x720, the review build, apparatus-only
+    //   pixels): STATE_1 @13600 ms drew y = 115..385 px, centre 250 — 0.306 NDC
+    //   above frame centre against a 0.15 tolerance, with the lower half of the
+    //   frame empty; STATE_2 @2100 ms (near face-on, theta = 12 deg) 105..386,
+    //   centre 245.5, 0.318.
+    //
+    //   ONE GLOBAL srShiftY WOULD BE WRONG. Shift everything down by half a frame
+    //   and STATE_1 centres while every solid state — already centred on the axis
+    //   — is pushed off by the same amount. The shift therefore follows WHAT IS
+    //   DRAWN, closed-form on the values the frame already holds:
+    //
+    //     the profile band  [min(0, min f), max(0, max f)]  is ALWAYS included,
+    //       at its FULL extent rather than its revealed fraction, because a span
+    //       that grew with a wipe would slide the whole apparatus while the curve
+    //       draws — a reveal is a wipe, not a change of framing;
+    //     a stack / slice state draws FULL circles about the axis at every t, so
+    //       it contributes +/- R_max unconditionally (no reveal gating, for the
+    //       same reason: the stack fading in must not move the picture);
+    //     a swept SKIN contributes only the arc it has drawn. srWriteSurface lays
+    //       theta-major rings from phi = 0 (which is +y) and clips with a draw
+    //       range, so the drawn band is R_max * [min cos, max cos] over
+    //       phi in [0, theta] = [R_max cos theta, R_max] up to 180 deg and
+    //       [-R_max, R_max] past it — exact, continuous, and it is what makes
+    //       STATE_2 glide from -1 to 0 as its solid closes instead of jumping;
+    //     about the Y axis the solid spans the axis interval [u0, u1] in y and
+    //       revolving cannot change that, so theta does not enter at all.
+    //
+    //   THE FRAME IS DELIBERATELY NOT IN THE SPAN. Its y rod is single-sided by
+    //   construction (0 .. y_range1), so including it would bias every solid
+    //   state upward and, worse, would make the apparatus DRIFT vertically on any
+    //   state whose radius ramps under a fixed y_range (S5's r 1 -> 2, S8's
+    //   b 1 -> 4, every S9 slider corner) — motion no author asked for, against
+    //   Rule 32b. What has to be centred is the mathematics; the frame is the
+    //   scaffold drawn around it and it centres with it.
+    //
+    //   NO ACCUMULATION (SR-D2): a pure function of the same state-local values
+    //   the rest of the frame is built from, so a SET_TIME_FREEZE re-pin lands on
+    //   the same offset. When the content is symmetric about the axis the span is
+    //   symmetric and the shift is EXACTLY 0 — which is why every solid-about-x
+    //   state (S3, S4, S5, S6, S8, S9) keeps its pixels to the byte.
+    function srContentYSpan(sr, outer, inner, x0, x1, axis, thetaDeg) {
+        var lo = 0, hi = 0, i, y;
+        // the profile band, sampled on the SAME grid the region strip is written on
+        for (i = 0; i <= SR_REGION_SAMPLES; i++) {
+            var x = x0 + (x1 - x0) * (i / SR_REGION_SAMPLES);
+            y = srF(outer, x);
+            if (isFinite(y)) { if (y < lo) lo = y; if (y > hi) hi = y; }
+            if (inner) {
+                y = srF(inner, x);
+                if (isFinite(y)) { if (y < lo) lo = y; if (y > hi) hi = y; }
+            }
+        }
+        var mode = sr ? sr.mode : null;
+        if (mode === "region") return { y0: lo, y1: hi };
+        var sp = srStackSpan(outer, inner, x0, x1, axis);
+        if (axis === "y") {
+            // revolution about y: the solid occupies the axis interval in y and
+            // the sweep angle cannot move it
+            if (isFinite(sp.u0) && sp.u0 < lo) lo = sp.u0;
+            if (isFinite(sp.u1) && sp.u1 > hi) hi = sp.u1;
+            return { y0: lo, y1: hi };
+        }
+        var rMax = 0;
+        for (i = 0; i <= SR_SURF_NU; i++) {
+            var u = sp.u0 + (sp.u1 - sp.u0) * (i / SR_SURF_NU);
+            var r = srSpanOuterR(sp, u);
+            if (isFinite(r) && r > rMax) rMax = r;
+        }
+        // full circles (a stack, a slice, the sandbox) vs the arc a sweep has drawn
+        var full = (mode === "stack" || mode === "compare" || mode === "slice" || mode === "explore");
+        var th = (thetaDeg == null) ? 360 : thetaDeg;
+        var cosLo = full ? -1 : ((th >= 180) ? -1 : Math.cos(th * Math.PI / 180));
+        var cosHi = (full || th > 0) ? 1 : 0;
+        if (rMax * cosLo < lo) lo = rMax * cosLo;
+        if (rMax * cosHi > hi) hi = rMax * cosHi;
+        return { y0: lo, y1: hi };
+    }
+    function srContentShiftY(sr, outer, inner, x0, x1, axis, thetaDeg) {
+        var s = srContentYSpan(sr, outer, inner, x0, x1, axis, thetaDeg);
+        var v = -(s.y0 + s.y1) / 2;
+        return isFinite(v) ? v : 0;
+    }
+
+    // ── THE TICK NUMBERS ARE DOM, SO THEY ALWAYS PAINT LAST. ────────────────
+    //   A DOM node has no z relationship to the scene (that is the price of the
+    //   blocker-2 decision: authored glyph height in device px, screen-space
+    //   decollision, readable by every DOM probe). MEASURED: on STATE_5 at
+    //   r = 2.00 the ticks -1, 0 and 1 sit at screen (582,352), (627,369),
+    //   (707,397), inside the ball\u0027s projected silhouette (x 535..785), and
+    //   read as ink ON the ball.
+    //   HIDING THEM IS WORSE. The axes of a solid of revolution are geometrically
+    //   INSIDE the solid, so "hide what is occluded" deletes the scale on every
+    //   solid state. The solid is translucent by design, so a tick seen THROUGH
+    //   it is not wrong; what is wrong is full strength.
+    //   THE TEST IS ENCLOSURE, NOT SILHOUETTE OVERLAP. A point inside the solid
+    //   has the near wall in front of it at every camera, so attenuating it is
+    //   always honest; a point merely overlapping the silhouette may be in FRONT
+    //   of the solid and must not be touched. And enclosure is only claimed when
+    //   the solid closes around the axis — full circles (a stack / slice) or a
+    //   skin swept the whole 360 — so a partially swept STATE_2 leaves its ticks
+    //   at full strength.
+    //   It attenuates only: no tick MOVES, on any state, and nothing latches, so
+    //   the value is a pure function of the frame (SR-D2).
+    var SR_TICK_BEHIND_OPACITY = 0.45;
+    function srTickEnclosed(encl, gx, gy) {
+        if (!encl) return false;
+        var u = (encl.axis === "y") ? gy : gx;
+        var rad = Math.abs((encl.axis === "y") ? gx : gy);
+        var sp = encl.span;
+        var u0 = Math.min(sp.u0, sp.u1), u1 = Math.max(sp.u0, sp.u1);
+        if (!(u >= u0 && u <= u1)) return false;
+        var R = srSpanOuterR(sp, u);
+        return isFinite(R) && rad < R;
     }
 
     // ── SR-D3 / SR6 — THE ONE SUMMATION. Called ONCE per frame. It accumulates
@@ -75999,6 +76284,76 @@ export const FIELD_3D_RENDERER_CODE = `
         return a0 + (a1 - a0) * f;
     }
 
+    // SR-C — THE EXPLORE IDLE TURN (Rule 37). The last state is a live teacher
+    // sandbox: the player deliberately does NOT freeze it (advance_mode
+    // interaction_complete skips the pin), so whatever the scenario draws has to
+    // keep moving on its own. This one drew a settled picture and then held it,
+    // and it measured 0 px changed over 1 s against founder_drive's 60 px floor
+    // — dead still until the teacher's first drag.
+    //
+    //   WHAT THE MOTION CANNOT BE, so the obvious reading is not tried twice: a
+    //   solid of revolution is rotationally symmetric ABOUT ITS AXIS. Turning
+    //   the swept skin about that axis maps the surface onto itself — it changes
+    //   essentially no pixels and it teaches nothing.
+    //   WHAT IT IS: the flat REGION STRIP keeps sweeping. That is this
+    //   scenario's own motion vocabulary (the sweep state's theta advancing with
+    //   the region turning on it), it is the OBJECT's motion and not the
+    //   camera's (Rule 32 — the camera language is spent deliberately in this
+    //   chapter), and it says the true thing: the thing that painted this
+    //   surface is still painting it.
+    //
+    //   IT DRIVES THE REGION MESH ALONE. The solid's own theta stays at its
+    //   closed 360 (srThetaDeg above), because feeding a wrapping angle into
+    //   srWriteSurface's draw range would un-sweep and re-sweep the skin every
+    //   12 s — a solid that keeps dissolving is a different, wrong lesson.
+    //
+    //   EXPLORE ONLY, BY CONSTRUCTION. Every other mode returns 0, so the eight
+    //   guided states' measured baselines and D5 profiles cannot move.
+    //   NO ACCUMULATION (SR-D2): a closed form on state-local ms, wrapped with
+    //   floor() rather than carried in a variable, so a SET_TIME_FREEZE re-pin
+    //   to the same at_ms redraws byte-identical pixels and Rule 36's variable
+    //   step count cannot drift the phase. The drag-seize latches are untouched
+    //   — a slider reshapes the solid live while this keeps turning.
+    var SR_EXPLORE_TURN_DEG_PER_S = 30;
+    function srIdleTurnDeg(sr, tMs) {
+        if (!sr || sr.mode !== "explore") return 0;
+        var t = (isFinite(tMs) && tMs > 0) ? tMs : 0;
+        var a = (t / 1000) * SR_EXPLORE_TURN_DEG_PER_S;
+        return a - Math.floor(a / 360) * 360;
+    }
+
+    // SR-C2 — THE SANDBOX ORBIT, and the measurement that forced it.
+    //
+    //   The region turn above is the RIGHT motion and it was not enough, which is
+    //   a fact about this shape rather than about the code. MEASURED end to end:
+    //   the turn runs live at exactly 30 deg/s (PM_srTurnDeg 264.0 -> 294.2 over
+    //   one second), the strip is drawn last so it reads over the solid, and the
+    //   two frames differ in 9 034 pixels — and founder_drive still scored ZERO,
+    //   because its pixelmatch threshold is PERCEPTUAL (0.1) and the difference
+    //   is chromatic only: the region is #4FC3F7 and the disc stack it sweeps
+    //   inside is #B39DDB, whose luminances are 166 and 171. Anything that turns
+    //   INSIDE a closed solid of revolution stays inside that solid's silhouette,
+    //   and the silhouette is where the contrast against the dark background is.
+    //   At threshold 0.05 the same pair scores 9 034 px; at 0.1 it scores 0.
+    //
+    //   So the sandbox also ORBITS, slowly, at the bonding_scene / orbital_shapes
+    //   idle rate (0.14 rad/s = 8 deg/s). This is the fallback the dispatch named
+    //   and it is taken on evidence, not preference: it moves the SILHOUETTE, and
+    //   it earns its keep pedagogically too, because a solid of revolution read
+    //   from one fixed azimuth is a flat purple blob.
+    //   THE TEACHER OWNS THE CAMERA THE INSTANT THEY TOUCH IT — the seize is the
+    //   shipped organic_structure edge (:68966), cloned locally, cleared on state
+    //   entry. THE EYE never drags, so a frozen frame always takes the closed
+    //   form and stays byte-identical; the azimuth is a pure function of
+    //   state-local ms, so a re-pin lands on the same pose (SR-D2).
+    var SR_EXPLORE_CAM_DEG_PER_S = 8;
+    function srIdleCamAzDeg(sr, tMs, baseAz) {
+        if (!sr || sr.mode !== "explore") return baseAz;
+        var t = (isFinite(tMs) && tMs > 0) ? tMs : 0;
+        var a = baseAz + (t / 1000) * SR_EXPLORE_CAM_DEG_PER_S;
+        return a - Math.floor(a / 360) * 360;
+    }
+
     // Quantise a live value to ITS OWN SLIDER STEP, on every path that can set it.
     //   This is load-bearing on S5 and it is not a cosmetic rounding. That state
     //   claims the disc total and (4/3)pi r cubed print the SAME four decimals at
@@ -76074,6 +76429,39 @@ export const FIELD_3D_RENDERER_CODE = `
         // (a frame that reads the authored value while the picker moved the global
         // is the explore-picker scar).
         if (window.PM_srB != null) hi = window.PM_srB;
+        // ── A CIRCLE_ARC DOES NOT EXIST OUTSIDE ITS OWN RADIUS, SO ITS DRAWN
+        //   DOMAIN IS DERIVED FROM THE PROFILE AND NEVER TAKEN ON TRUST.
+        //   S5 (the PRIMARY AHA) sweeps r from 1.00 to 2.00 while the domain is a
+        //   static authored pair, and only the HIGH end has a live override
+        //   (PM_srB) — so no authorable domain tracks a swept radius. Authored at
+        //   the widest reach [-2, 2], every r < 2 put the sampler outside the arc,
+        //   where srF returns NON-FINITE by design. Both consumers coerce that to
+        //   zero (srWriteTube and srWriteSurface, "if (!isFinite(R)) R = 0"), so
+        //   the state rendered a FLAT LINE running out to +/-2 where no curve
+        //   exists — a drawn claim that is false — while srExactVolume returned
+        //   NaN and the comparison readout the whole state exists for printed the
+        //   em-dash placeholder. THE NUMBER SURVIVED AND THE PICTURE DID NOT:
+        //   measured over all 101 reachable radii at the authored n = 20 000, the
+        //   disc total still matched (4/3)pi r cubed to 8.378e-8 on BOTH domains.
+        //   An assertion on the sum can therefore never see this defect, which is
+        //   why the gate section paired with this fix scores the DRAWN SAMPLES and
+        //   the exact-volume readout instead.
+        //
+        //   DERIVED, NOT AUTHORED, for the reason the vg cross-label fix chose:
+        //   a domain and a profile that are authored independently are one slip
+        //   apart from disagreeing, and taking the intersection makes them
+        //   incapable of it. It CLAMPS rather than replaces, so a deliberately
+        //   narrow authored window (a quarter arc) survives untouched and only an
+        //   over-reaching one is pulled back to the support [x0 - r, x0 + r].
+        var op = sr.outer;
+        if (op && op.family === "circle_arc") {
+            var lr = srOuter(sr);                        // the LIVE radius, not the authored one
+            var cx = (lr.x0 != null) ? lr.x0 : 0, rr = lr.r;
+            if (isFinite(rr) && rr > 0) {
+                if (lo < cx - rr) lo = cx - rr;
+                if (hi > cx + rr) hi = cx + rr;
+            }
+        }
         return [lo, hi];
     }
     function srOuter(sr) {
@@ -76101,6 +76489,69 @@ export const FIELD_3D_RENDERER_CODE = `
         var at = cueTriggerMs("sr_" + key, (rv[key + "_at_ms"] != null) ? rv[key + "_at_ms"] : defAt);
         var dur = (rv[key + "_ms"] != null) ? rv[key + "_ms"] : defDur;
         return { at: at, dur: Math.max(1, dur) };
+    }
+
+    // ── SR-C3 — THE THREE REVEAL BEATS THE FIRST PASS DID NOT CARRY: the disc /
+    //    ring STACK, the FORMULA surface, and the individual HUD READOUTS.
+    //
+    //    WHY THEY EXIST. Rule 32a says the CAUSE moves visibly first and the
+    //    EFFECT answers after a readable beat. This scenario was shipping the
+    //    effect first, and a concept measured it: STATE_7 drew all 120 rings of
+    //    the "about y" bowl AND printed "about y: 80.4248" at t = 0 — before the
+    //    region had turned one degree (its theta_ramp starts at 3000 ms) — on the
+    //    one state whose whole lesson is that the OTHER axis makes a DIFFERENT
+    //    solid. The answer was on screen ahead of the question. STATE_6 showed the
+    //    CORRECT ring formula beside the WRONG solid and its wrong number for the
+    //    entire 9.5 s misconception window, so the eye read a formula and a value
+    //    that contradict each other.
+    //
+    //    WHY THEY ARE GATED ON PRESENCE AND NOT ON A DEFAULT TIME — the property
+    //    this design exists for, stated so it is never traded away later. An
+    //    ABSENT field is today\u0027s behaviour BYTE FOR BYTE: a stack with no
+    //    stack_at_ms is placed from frame 0, a state with no formula_at_ms shows
+    //    its formula at apply, an empty readout_at_ms changes nothing. A default
+    //    reveal time would silently re-time every already-measured state of every
+    //    concept that ships this scenario, which is the same blast radius a new
+    //    mechanism would have had. srRevealHas is what makes "authored" and "not
+    //    authored" two different code PATHS rather than two values of one number,
+    //    and check:solid-of-revolution section 17 asserts that identity directly.
+    //
+    //    They ride the EXISTING contract rather than adding a second one: the same
+    //    sr.reveal block, the same srRevealWin window, the same cueTriggerMs
+    //    binding (sr_stack / sr_formula / sr_readout_<key>) that curve and region
+    //    already use, so a pacing trim retimes the picture with the narration
+    //    instead of desyncing from it.
+    function srRevealHas(sr, key) {
+        var rv = sr.reveal;
+        return !!rv && rv[key + "_at_ms"] != null;
+    }
+    // The stack\u0027s own beat: whether the pools may be PLACED this frame, and the
+    // opacity multiplier of the optional fade. CLOSED FORM on state-local ms
+    // (SR-D2) — nothing accumulates and nothing latches, so a SET_TIME_FREEZE
+    // re-pin to the same at_ms redraws the identical opacity.
+    //   A stack_ms of 1 (srRevealWin\u0027s floor, i.e. nothing authored) is an INSTANT
+    //   appearance rather than a one-millisecond fade, so the frame pinned exactly
+    //   AT stack_at_ms shows the stack rather than a fully transparent one.
+    function srStackReveal(sr, tMs) {
+        if (!srRevealHas(sr, "stack")) return { show: true, fade: 1 };
+        var w = srRevealWin(sr, "stack", 0, 1);
+        if (tMs < w.at) return { show: false, fade: 0 };
+        return { show: true, fade: (w.dur <= 1) ? 1 : srClamp01((tMs - w.at) / w.dur) };
+    }
+    // The fade is applied to the POOL MATERIALS, which the glow pass deliberately
+    // does not own: all three pools are brightenOnly (a volume you must see
+    // through), so applyGlowEmphasis never writes their opacity and there is no
+    // second writer to fight. It is written on EVERY frame, at the pool\u0027s own
+    // authored base when nothing is gating, so there is no one-way dim with no
+    // restore branch (the dim-apparatus scar) — the value simply IS the base again
+    // the moment the state changes.
+    function srSetStackOpacity(f) {
+        var pools = [srDiscPool, srRingOutPool, srRingInPool], i, p;
+        for (i = 0; i < pools.length; i++) {
+            p = pools[i];
+            if (!p || !p.material) continue;
+            p.material.opacity = p.baseOpacity * srClamp01(f);
+        }
     }
 
     // ── BUILD ──────────────────────────────────────────────────────────────
@@ -76283,7 +76734,10 @@ export const FIELD_3D_RENDERER_CODE = `
             grp.add(m);
             arr.push(m);
         }
-        return { group: grp, meshes: arr };
+        // the material and its AUTHORED base opacity travel with the pool, because
+        // the stack reveal fades the pool as a whole (SR-C3) and a fade that had to
+        // re-derive the base from a mesh would drift the moment anything else wrote it.
+        return { group: grp, meshes: arr, material: mat, baseOpacity: opacity };
     }
     // Place the drawn subset. The slab THICKNESS is always the TRUE du, never a
     // thickness scaled up to stay visible: a disc drawn wider than its own slab is
@@ -76316,6 +76770,151 @@ export const FIELD_3D_RENDERER_CODE = `
     function srHideDiscs(pool) {
         for (var i = 0; i < pool.meshes.length; i++) pool.meshes[i].visible = false;
     }
+
+    // ── THE LABELLED SLICE, DRAWN AS THE ANNULUS IT IS NAMED AS. ────────────
+    //   MEASURED DEFECT: on a compare state with an inner profile, the state
+    //   said "each slice is a ring" on its caption, its formula surface, its HUD
+    //   ring-area line and its narration, and drew a CLOSED SHELL plus a pooled
+    //   stack of open walls at every t. The annulus itself was on no frame.
+    //   It was not an authoring miss either. SR_MODES is one mode per state and
+    //   CLOSED (SR-D8), so "slice" and "compare" cannot be combined; and when the
+    //   two bounding curves MEET at both ends of the domain — which they do on
+    //   the concept that ships this — the closed solid exposes no ring at an end
+    //   face either. The named object was unreachable by every authored
+    //   combination, which is why the fix is here and not in the JSON.
+    //   So: no new mode and no new enum member. It is the ALREADY AUTHORED
+    //   slice_x, drawn, on the states that already carry an inner curve.
+    //   WHY IT CARRIES CAPS WHEN THE POOLED STACK DELIBERATELY DOES NOT. The
+    //   stack omits annular end caps because 240 more meshes buy a surface its
+    //   own neighbours occlude everywhere but the two ends. Here there is ONE
+    //   slab and the cap IS the point: a flat annular FACE with the hole punched
+    //   through it is what makes the word "ring" true on screen. The hole is
+    //   drawn by drawing nothing there, so what shows through it is the axis rod
+    //   and the tunnel behind it — which is how an eye reads a hole as a hole.
+
+    //   THE PURE HALF, so the gate can run it with no browser: does this state
+    //   draw a labelled annulus this frame, and with which radii? It returns
+    //   null for every state that does not, and that null IS the absent-field
+    //   identity — a compare or stack state with no slice_x takes the null path
+    //   and its frame is byte-identical to the one before this landed.
+    function srSliceRingPlan(sr, outer, inner, x0, x1, stackShow, wrongOn) {
+        if (!sr || !inner) return null;
+        if (sr.mode !== "compare" && sr.mode !== "stack") return null;
+        if (sr.slice_x == null) return null;
+        // the SAME beat the true stack rides, and never during the wrong-kind
+        // window: the ring must not appear beside the solid the state is still
+        // refuting, because it is the answer to that refutation.
+        if (!stackShow || wrongOn) return null;
+        var u = srClamp(srSliceX(sr, x0, x1), x0, x1);
+        var R = srF(outer, u), r = srF(inner, u);
+        if (!isFinite(R) || !isFinite(r)) return null;
+        if (r < 0) r = 0;
+        // where the two radii have MET there is no ring, and an annulus drawn
+        // there would claim a hole the solid does not have.
+        if (R - r <= 1e-6) return null;
+        var th = (sr.slice_thickness != null) ? sr.slice_thickness : 0.12;
+        return { u: u, R: R, r: r, th: th };
+    }
+
+    // A flat annulus whose two rims are REWRITTEN per frame (SR-D2): a
+    // RingGeometry fixes its radius RATIO at construction, and the ratio is
+    // exactly the quantity that has to move.
+    function srMakeAnnulus(color, opacity) {
+        var seg = SR_DISC_SEG, i;
+        var pos = new Float32Array((seg + 1) * 2 * 3);
+        var idx = [];
+        for (i = 0; i < seg; i++) {
+            var a = i * 2;
+            idx.push(a, a + 1, a + 3, a, a + 3, a + 2);
+        }
+        var g = new THREE.BufferGeometry();
+        g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+        g.setIndex(idx);
+        var m = new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(color), transparent: true, opacity: opacity,
+            side: THREE.DoubleSide, depthWrite: false
+        });
+        // the vertex array travels WITH the mesh, so the writer never goes back
+        // through the geometry to find the buffer it already owns.
+        return { mesh: new THREE.Mesh(g, m), pos: pos, material: m };
+    }
+    // vertex 2i is the inner rim and 2i+1 the outer rim of the SAME theta, so
+    // one expression drives the pair and a hole can never be written wider than
+    // the ring it is a hole in.
+    function srWriteAnnulus(an, R, r) {
+        var seg = SR_DISC_SEG, p = an.pos, i, th, cs, sn, o;
+        for (i = 0; i <= seg; i++) {
+            th = (i / seg) * Math.PI * 2;
+            cs = Math.cos(th); sn = Math.sin(th);
+            o = i * 6;
+            p[o] = r * cs; p[o + 1] = r * sn; p[o + 2] = 0;
+            p[o + 3] = R * cs; p[o + 4] = R * sn; p[o + 5] = 0;
+        }
+        var at = (an.mesh.geometry && an.mesh.geometry.attributes)
+            ? an.mesh.geometry.attributes.position : null;
+        if (at) at.needsUpdate = true;
+        if (an.mesh.geometry && an.mesh.geometry.computeBoundingSphere) an.mesh.geometry.computeBoundingSphere();
+    }
+    function srMakeSliceRing() {
+        var capA = srMakeAnnulus(SR_COLORS.disc, 0.92);
+        var capB = srMakeAnnulus(SR_COLORS.disc, 0.92);
+        var wallGeo = new THREE.CylinderGeometry(1, 1, 1, SR_DISC_SEG, 1, true);
+        var wallMat = new THREE.MeshBasicMaterial({
+            color: hexToThreeColor(SR_COLORS.disc), transparent: true, opacity: 0.75,
+            side: THREE.DoubleSide, depthWrite: false
+        });
+        var wallOut = new THREE.Mesh(wallGeo, wallMat);
+        var wallIn = new THREE.Mesh(wallGeo, wallMat);
+        var grp = new THREE.Group();
+        grp.add(capA.mesh); grp.add(capB.mesh); grp.add(wallOut); grp.add(wallIn);
+        // DRAWN LAST, over the 0.60 stack it sits inside. Every SR mesh is
+        // transparent with depthWrite off, so an object left at renderOrder 0
+        // inside 120 ring walls composites away to almost nothing — the same
+        // saturation the explore region hit, answered the same way it was.
+        // renderOrder is NOT inherited from a group, so each mesh carries it.
+        capA.mesh.renderOrder = 6; capB.mesh.renderOrder = 6;
+        wallOut.renderOrder = 6; wallIn.renderOrder = 6;
+        grp.visible = false;
+        return {
+            group: grp, capA: capA, capB: capB, wallOut: wallOut, wallIn: wallIn,
+            wallMat: wallMat, baseCap: 0.92, baseWall: 0.75
+        };
+    }
+    // The slab is CENTRED on the labelled x, exactly as the slice mode centres
+    // its one travelling face, so the ring the HUD measures at x and the ring
+    // the eye sees at x are the same object.
+    function srPlaceSliceRing(sl, plan, ax, shiftX, fade) {
+        var f = srClamp01(fade), h = plan.th / 2;
+        sl.capA.material.opacity = sl.baseCap * f;
+        sl.capB.material.opacity = sl.baseCap * f;
+        sl.wallMat.opacity = sl.baseWall * f;
+        srWriteAnnulus(sl.capA, plan.R, plan.r);
+        srWriteAnnulus(sl.capB, plan.R, plan.r);
+        if (ax === "y") {
+            sl.capA.mesh.rotation.set(-Math.PI / 2, 0, 0);
+            sl.capB.mesh.rotation.set(-Math.PI / 2, 0, 0);
+            sl.capA.mesh.position.set(shiftX, plan.u - h, 0);
+            sl.capB.mesh.position.set(shiftX, plan.u + h, 0);
+            sl.wallOut.rotation.set(0, 0, 0);
+            sl.wallIn.rotation.set(0, 0, 0);
+            sl.wallOut.position.set(shiftX, plan.u, 0);
+            sl.wallIn.position.set(shiftX, plan.u, 0);
+        } else {
+            sl.capA.mesh.rotation.set(0, Math.PI / 2, 0);
+            sl.capB.mesh.rotation.set(0, Math.PI / 2, 0);
+            sl.capA.mesh.position.set(shiftX + plan.u - h, 0, 0);
+            sl.capB.mesh.position.set(shiftX + plan.u + h, 0, 0);
+            sl.wallOut.rotation.set(0, 0, Math.PI / 2);
+            sl.wallIn.rotation.set(0, 0, Math.PI / 2);
+            sl.wallOut.position.set(shiftX + plan.u, 0, 0);
+            sl.wallIn.position.set(shiftX + plan.u, 0, 0);
+        }
+        sl.wallOut.scale.set(plan.R, plan.th, plan.R);
+        sl.wallIn.scale.set(plan.r, plan.th, plan.r);
+        sl.wallIn.visible = (plan.r > 1e-9);
+        sl.group.visible = true;
+    }
+    function srHideSliceRing(sl) { if (sl) sl.group.visible = false; }
 
     // ── SR3 — THE TICKED FRAME as flat 3D geometry, in the revolution plane. ──
     //   It is NOT the cartesian_plane duplicate: in a 3D scene the mathematics
@@ -76410,7 +77009,7 @@ export const FIELD_3D_RENDERER_CODE = `
         for (var i = 0; i < srTicks.length; i++) {
             var node = srTickNodes[i];
             if (!node) continue;
-            srTmpV.set(srTicks[i].gx + srShiftX, srTicks[i].gy, 0);
+            srTmpV.set(srTicks[i].gx + srShiftX, srTicks[i].gy + srShiftY, 0);
             // BEHIND the camera projects to garbage — a dot product, not a second
             // projector (nlbProjPx is the one projection helper and it already ships).
             var behind = srTmpV.clone().sub(camera.position).dot(fwd) <= 0;
@@ -76431,16 +77030,46 @@ export const FIELD_3D_RENDERER_CODE = `
             node.style.display = "block";
             node.style.left = p.x.toFixed(1) + "px";
             node.style.top = p.y.toFixed(1) + "px";
+            // ...and the ONLY thing enclosure changes is strength: a tick inside
+            // the drawn solid reads through the glass instead of on it. Written
+            // on every frame at both values, so there is no one-way dim.
+            node.style.opacity = srTickEnclosed(srTickEncl, srTicks[i].gx, srTicks[i].gy)
+                ? String(SR_TICK_BEHIND_OPACITY) : "1";
         }
     }
 
     function buildSolidOfRevolution(config) {
+        // The fleet's overlay ink, declared LOCALLY exactly as all 149 other uses
+        // in this renderer are — every scenario builder carries its own local
+        // textColor, because there is no shared one. This block used the name
+        // twice and declared it NOWHERE, so buildSolidOfRevolution threw
+        // "ReferenceError: textColor is not defined" on its FIRST line of DOM
+        // work and the scenario never started: PM_simTimeMs stayed at 0 and THE
+        // EYE aborted the capture rather than photograph an arbitrary phase.
+        //
+        // IT SHIPPED THROUGH 217 GATE ASSERTIONS AND 32 NEGATIVE CONTROLS,
+        // because every one of them runs the PURE helpers in node — the gate
+        // pulls function bodies out of the template literal by brace matching
+        // precisely so it needs no browser. buildSolidOfRevolution touches DOM
+        // and THREE, so it was the one function the gate could not call, and no
+        // concept authored the scenario, so nothing else ever called it either.
+        // A29's rule in a third costume: the evidence was strong about the half
+        // that could not fail this way. Section 15 now EXECUTES this function.
+        var textColor = (config.pvl_colors && config.pvl_colors.text) || "#D4D4D8";
         // 1. the DOM surfaces — every one a body child with inline position:fixed,
         //    which is exactly what the generic Rule-39f widget engine discovers, so
         //    the teacher toggles cost no wiring. data-wg-label names each one.
         var tk = document.createElement("div"); tk.id = "sr_ticks";
         tk.setAttribute("data-wg-label", "Axis numbers");
-        tk.style.cssText = "position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:8;display:none;";
+        // THE CONTAINER CARRIES NO INK — ONLY ITS CHILDREN DO, so it is given an
+        // EMPTY RECT. At 100% x 100% its bounding box is the whole viewport, so a
+        // DOM collision probe scored it against every piece of review chrome it
+        // overlaps and nothing else: 27 collisions (#fsBtn / #wgBtn / #simPenBar on
+        // all 9 states) for a transparent sheet. The tick glyphs are absolutely
+        // positioned children written from nlbProjPx in VIEWPORT px, and a fixed
+        // 0x0 box still has its origin at (0,0) with overflow visible, so every
+        // glyph lands on the identical pixel and the probe now measures the ticks.
+        tk.style.cssText = "position:fixed;left:0;top:0;width:0;height:0;overflow:visible;pointer-events:none;z-index:8;display:none;";
         document.body.appendChild(tk);
 
         // Rule 34d — the HUD clears the review chrome Full screen button (top:52px+);
@@ -76494,7 +77123,14 @@ export const FIELD_3D_RENDERER_CODE = `
             // SR7's control is a CHOICE, not a magnitude, so it is a two-button
             // toggle rather than a two-position range: a slider whose only reachable
             // values are its two ends invites a drag that does nothing.
-            + '<div id="sr_axis_row" style="display:none;margin-top:6px"><label>Axis of revolution</label><br>'
+            // AND IT NAMES ITSELF TO THE GEAR PANEL. Rule 39f's row-label fallback
+            // appends " slider" to a row's <label> text, which is right for the five
+            // rows above and a contradiction on this one — the teacher would read
+            // "Axis of revolution slider" over two buttons. data-wg-label is the
+            // authoritative path pmWgRowLabel checks FIRST (:85536), the same
+            // attribute the three DOM panels above already carry, so the fix is the
+            // attribute and never a special case in the shared engine.
+            + '<div id="sr_axis_row" data-wg-label="Axis of revolution" style="display:none;margin-top:6px"><label>Axis of revolution</label><br>'
             + '<button type="button" id="sr_axis_x" style="margin-top:3px">about x</button> '
             + '<button type="button" id="sr_axis_y" style="margin-top:3px">about y</button></div>';
         document.body.appendChild(sp);
@@ -76575,6 +77211,9 @@ export const FIELD_3D_RENDERER_CODE = `
         srRingInPool = srMakeDiscPool(SR_COLORS.inner, true, 0.60);
         srRingInPool.group.userData = { elementType: "sr_stack", id: "sr_ring_inner" };
         addToScene(srRingInPool.group);
+        srSliceRing = srMakeSliceRing();
+        srSliceRing.group.userData = { elementType: "sr_stack", id: "sr_slice_ring" };
+        addToScene(srSliceRing.group);
 
         var first = config.states && config.states[Object.keys(config.states)[0]];
         if (first && first.sr) applySolidOfRevolutionState(first);
@@ -76584,6 +77223,11 @@ export const FIELD_3D_RENDERER_CODE = `
     function applySolidOfRevolutionState(stateDef) {
         var sr = srBlock(stateDef, "applySolidOfRevolutionState");
         srWarnStage(sr.mode);
+        // SR-C2 — the sandbox orbit owns the camera again on every state ENTRY,
+        // and only a drag takes it away. Cleared here rather than in the frame,
+        // because a clear that re-runs per frame undoes the drag on the frame it
+        // arrives (the organic_structure defect this pattern is cloned from).
+        window.PM_srCamSeized = false;
         var dom = sr.domain || [0, 1];
         srShiftX = -(dom[0] + dom[1]) / 2;      // SR-D10
 
@@ -76651,6 +77295,29 @@ export const FIELD_3D_RENDERER_CODE = `
         srDriveParamRamp(sr, tMs);
         var outer = srOuter(sr), inner = srInner(sr);
         var d = srDomain(sr), x0 = d[0], x1 = d[1];
+        // SR7 — the LIVE choice wins over the authored one (the explore-picker
+        // scar: a frame that reads the authored value while the picker moved).
+        // Read HERE, before anything is placed, because SR-D11\u0027s vertical
+        // shift depends on which axis the solid is built about.
+        var ax = (window.PM_srAxis === "y" || window.PM_srAxis === "x") ? window.PM_srAxis : (sr.axis || "x");
+        // ── SR5 — the swept skin. theta is a pure function of state-local ms and
+        //   the reveal is a DRAW RANGE over theta-major quads, never a rebuild.
+        var thDeg = srThetaDeg(sr, tMs);
+        SR_PUB.theta_deg = thDeg;
+        // ── SR-D11 — centre what is DRAWN on the camera target, before one pixel
+        //   of it is placed. Exactly 0 whenever the content already straddles the
+        //   axis, so a solid state cannot move.
+        srShiftY = srContentShiftY(sr, outer, inner, x0, x1, ax, thDeg);
+        //   Carried on the ROOTS that are otherwise pinned at the origin — the
+        //   frame group and the four pooled groups — so the per-object placement
+        //   below stays in graph coordinates and reads exactly as it always did.
+        //   The meshes with their own y (the axis rod, the curve, the region, the
+        //   skin) take it at their own position write.
+        if (srFrameGroup) srFrameGroup.position.y = srShiftY;
+        if (srDiscPool) srDiscPool.group.position.y = srShiftY;
+        if (srRingOutPool) srRingOutPool.group.position.y = srShiftY;
+        if (srRingInPool) srRingInPool.group.position.y = srShiftY;
+        if (srSliceRing) srSliceRing.group.position.y = srShiftY;
 
         var wc = srRevealWin(sr, "curve", 0, 1200);
         var wr = srRevealWin(sr, "region", 1200, 1200);
@@ -76666,7 +77333,7 @@ export const FIELD_3D_RENDERER_CODE = `
             pts.push([x, isFinite(y) ? y : 0]);
         }
         srWriteTube(srCurveMesh, pts, SR_CURVE_RADIUS, SR_CURVE_TUB * curveF);
-        srCurveMesh.position.x = srShiftX;
+        srCurveMesh.position.set(srShiftX, srShiftY, 0);
         if (inner) {
             var ip = [];
             for (i = 0; i < n; i++) {
@@ -76675,29 +77342,27 @@ export const FIELD_3D_RENDERER_CODE = `
                 ip.push([xi, isFinite(yi) ? yi : 0]);
             }
             srWriteTube(srInnerCurveMesh, ip, SR_CURVE_RADIUS, SR_CURVE_TUB * curveF);
-            srInnerCurveMesh.position.x = srShiftX;
+            srInnerCurveMesh.position.set(srShiftX, srShiftY, 0);
         } else {
             srInnerCurveMesh.visible = false;
         }
 
         srWriteRegion(srRegionMesh, outer, inner, x0, x1, fillF);
-        srRegionMesh.position.x = srShiftX;
+        srRegionMesh.position.set(srShiftX, srShiftY, 0);
         srRegionMesh.visible = srRegionMesh.visible && (sr.show_region !== false);
 
         // the axis of revolution, drawn as its own brighter rod so the line the
         // region turns about is never confused with the frame it is measured on.
-        // SR7 — the LIVE choice wins over the authored one (the explore-picker
-        // scar: a frame that reads the authored value while the picker moved).
-        var ax = (window.PM_srAxis === "y" || window.PM_srAxis === "x") ? window.PM_srAxis : (sr.axis || "x");
+        // (ax is read at the top of this frame — SR-D11 needs it before placement.)
         if (ax === "x") {
             srAxisMesh.scale.set(1, Math.max(1e-3, x1 - x0), 1);
             srAxisMesh.rotation.set(0, 0, Math.PI / 2);
-            srAxisMesh.position.set(srShiftX + (x0 + x1) / 2, 0, 0);
+            srAxisMesh.position.set(srShiftX + (x0 + x1) / 2, srShiftY, 0);
         } else {
             var yTop = Math.max(1e-3, srF(outer, x1));
             srAxisMesh.scale.set(1, isFinite(yTop) ? yTop : 1, 1);
             srAxisMesh.rotation.set(0, 0, 0);
-            srAxisMesh.position.set(srShiftX + x0, (isFinite(yTop) ? yTop : 1) / 2, 0);
+            srAxisMesh.position.set(srShiftX + x0, srShiftY + (isFinite(yTop) ? yTop : 1) / 2, 0);
         }
 
         // SR10 — the ramp PUBLISHES n; nothing else recomputes it (SR-D3).
@@ -76728,24 +77393,38 @@ export const FIELD_3D_RENDERER_CODE = `
             if (wrongOn) kind = (ct.kind === "radius_difference") ? "radius_difference" : kind;
         }
 
-        // ── SR5 — the swept skin. theta is a pure function of state-local ms and
-        //   the reveal is a DRAW RANGE over theta-major quads, never a rebuild.
-        var thDeg = srThetaDeg(sr, tMs);
-        SR_PUB.theta_deg = thDeg;
         var sp = srStackSpan(outer, inner, x0, x1, ax);
         var showSolid = (sr.mode !== "region") && (sr.show_solid !== false) && !wrongOn;
         if (showSolid && isFinite(sp.u0) && isFinite(sp.u1) && sp.u1 > sp.u0) {
             srWriteSurface(srSurfOuter, sp.u0, sp.u1, ax, function (u) { return srSpanOuterR(sp, u); }, thDeg);
-            srSurfOuter.position.x = srShiftX;
+            srSurfOuter.position.set(srShiftX, srShiftY, 0);
             if (ax === "y" || inner) {
                 srWriteSurface(srSurfInner, sp.u0, sp.u1, ax, function (u) { return srSpanInnerR(sp, u); }, thDeg);
-                srSurfInner.position.x = srShiftX;
+                srSurfInner.position.set(srShiftX, srShiftY, 0);
             } else { srSurfInner.visible = false; }
         } else { srSurfOuter.visible = false; srSurfInner.visible = false; }
         // the flat region turns WITH its own sweep, so the thing that paints the
         // surface is visibly the thing that was measured (Rule 32d, one apparatus)
-        if (ax === "y") srRegionMesh.rotation.set(0, thDeg * Math.PI / 180, 0);
-        else srRegionMesh.rotation.set(thDeg * Math.PI / 180, 0, 0);
+        // — and in the explore sandbox it never stops turning (SR-C, Rule 37).
+        var turnDeg = srIdleTurnDeg(sr, tMs);
+        if (turnDeg !== 0) SR_PUB.turn_deg = turnDeg;
+        // PUBLISHED like every other live SR value, so a headless probe can read
+        // the idle turn without a scene handle (the scenario's own convention).
+        window.PM_srTurnDeg = turnDeg;
+        // ...AND IT HAS TO BE SEEN, which turning it was not enough for. MEASURED:
+        // with the turn verified live at 30 deg/s (PM_srTurnDeg 264.0 -> 294.2 over
+        // one second), the drive still scored 1 px. Every SR mesh is transparent
+        // with depthWrite off, so the sandbox's twenty 0.55-alpha discs and the
+        // 0.20 skin saturate the composite and the 0.34 region inside them
+        // contributes almost nothing to the final pixel — an invisible motion is
+        // the same defect as no motion. In explore the region is therefore drawn
+        // LAST, over the solid it generated: a renderOrder, not a new material and
+        // not a second mesh, and it is restored to 0 in every guided mode on the
+        // same frame it is read (no entry latch, so no missing exit branch).
+        srRegionMesh.renderOrder = (sr.mode === "explore") ? 5 : 0;
+        var regDeg = thDeg + turnDeg;
+        if (ax === "y") srRegionMesh.rotation.set(0, regDeg * Math.PI / 180, 0);
+        else srRegionMesh.rotation.set(regDeg * Math.PI / 180, 0, 0);
 
         // ── SR6 / SR-D3 — THE ONE SUMMATION. Called ONCE per frame, publishing
         //   its total and its drawn count; the placement below READS its radii.
@@ -76762,6 +77441,9 @@ export const FIELD_3D_RENDERER_CODE = `
             SR_PUB.volume = res.volume;
             SR_PUB.n_drawn = res.n_drawn;
             SR_PUB.kind = kind;
+            // the slab width, PUBLISHED by the pass that placed the slabs rather
+            // than re-divided by the HUD — the same SR-D3 property as the total.
+            SR_PUB.du = res.du;
         } else if (sr.mode === "slice") {
             // S3's ONE travelling disc. It is a placement, not a sum: the state
             // teaches what a single face IS and publishes no volume at all, so a
@@ -76775,7 +77457,19 @@ export const FIELD_3D_RENDERER_CODE = `
             };
             SR_PUB.slice_x = xc;
         }
-        if (res && kind === "ring" && sr.mode !== "slice") {
+        // ── SR-C3 — THE STACK\u0027S REVEAL BEAT. What is gated here is the
+        //   PLACEMENT, never the summation: srDiscSum above already ran and
+        //   already published the total, because the total is a NUMBER and this
+        //   beat is about a PICTURE (SR-D3 is untouched — there is still exactly
+        //   one summation, called once per frame). n_drawn is republished as 0
+        //   while the pools are hidden, so the SR-D5 cap line can never say discs
+        //   are drawn when none are; it reads "0 of n", which is the truth.
+        var srStk = srStackReveal(sr, tMs);
+        srSetStackOpacity(srStk.fade);
+        if (!srStk.show && SR_PUB.n_drawn != null) SR_PUB.n_drawn = 0;
+        if (!srStk.show) {
+            srHideDiscs(srDiscPool); srHideDiscs(srRingOutPool); srHideDiscs(srRingInPool);
+        } else if (res && kind === "ring" && sr.mode !== "slice") {
             srHideDiscs(srDiscPool);
             srPlaceDiscs(srRingOutPool, res, kind, "outer", srShiftX);
             srPlaceDiscs(srRingInPool, res, kind, "inner", srShiftX);
@@ -76787,6 +77481,27 @@ export const FIELD_3D_RENDERER_CODE = `
         } else {
             srHideDiscs(srDiscPool); srHideDiscs(srRingOutPool); srHideDiscs(srRingInPool);
         }
+
+        // ── THE LABELLED SLICE, on the same beat as the stack it belongs to.
+        var slPlan = srSliceRing
+            ? srSliceRingPlan(sr, outer, inner, x0, x1, srStk.show, wrongOn || kind === "radius_difference")
+            : null;
+        if (slPlan) {
+            srPlaceSliceRing(srSliceRing, slPlan, ax, srShiftX, srStk.fade);
+            // SR-D3 — the pass that PLACES the annulus publishes its radii and
+            // the HUD reads them, rather than evaluating the profile a second
+            // time: the ring on screen and the ring area printed beside it can
+            // never be taken at two different x.
+            SR_PUB.slice_x = slPlan.u;
+            SR_PUB.slice_R = slPlan.R;
+            SR_PUB.slice_r = slPlan.r;
+        } else {
+            srHideSliceRing(srSliceRing);
+        }
+        // PUBLISHED like every other live SR value, so a headless probe can read
+        // the drawn annulus with no scene handle (the convention of this block).
+        window.PM_srSliceRing = slPlan
+            ? { x: slPlan.u, R: slPlan.R, r: slPlan.r, th: slPlan.th } : null;
 
         // ── SR14 — THE MID-STATE CAMERA SCHEDULE. It is a straight REUSE of the
         //   shipped osCamScheduleAt (:62279 — declared @60714, implemented for
@@ -76811,10 +77526,51 @@ export const FIELD_3D_RENDERER_CODE = `
                 updateCameraFromSpherical();
                 window.PM_srCamPose = { az: camSch.az, el: camSch.el, dist: camSch.dist };
             }
+        } else if (sr.mode === "explore") {
+            // SR-C2 — the sandbox orbit. Same three writes the schedule above
+            // makes, from a closed-form azimuth, and it stands down for good the
+            // moment the teacher drags (cleared on state entry, never here).
+            if (isDragging) window.PM_srCamSeized = true;
+            if (!window.PM_srCamSeized) {
+                var camBase = srCamBase(stateDef, sr);
+                var camAz = srIdleCamAzDeg(sr, tMs, camBase.az);
+                targetSpherical.radius = camBase.dist;
+                targetSpherical.phi = Math.PI / 2 - camBase.el * Math.PI / 180;
+                targetSpherical.theta = camAz * Math.PI / 180;
+                spherical.radius = targetSpherical.radius;
+                spherical.phi = targetSpherical.phi;
+                spherical.theta = targetSpherical.theta;
+                animating = false;
+                updateCameraFromSpherical();
+                window.PM_srCamPose = { az: camAz, el: camBase.el, dist: camBase.dist };
+            } else { window.PM_srCamPose = null; }
         } else { window.PM_srCamPose = null; }
 
+        // ── SR-C3 — THE FORMULA SURFACE\u0027S OWN BEAT. It is written on the same
+        //   style.display channel applySolidOfRevolutionState already uses, i.e.
+        //   the DISPLAY pass and nothing else, so Rule 39f\u0027s .pmWgHide /
+        //   .pmWgShow !important classes still beat it and the teacher\u0027s gear
+        //   toggle stays authoritative over the author\u0027s timing.
+        if (srRevealHas(sr, "formula")) {
+            var fmlEl = document.getElementById("sr_formula");
+            if (fmlEl) {
+                var wf = srRevealWin(sr, "formula", 0, 1);
+                fmlEl.style.display = (stateDef.formula_overlay && tMs >= wf.at) ? "block" : "none";
+            }
+        }
+
+        // ── WHAT ENCLOSES THE AXIS THIS FRAME (the DOM ticks read it below).
+        //   Claimed only when the solid CLOSES around the axis: a skin swept the
+        //   full 360, or a stack of full circles spanning the axis. A partial
+        //   sweep, a single slice slab and the wrong-solid contrast beat all
+        //   claim nothing, so nothing is dimmed on a frame where a tick may
+        //   legitimately be in front.
+        var srSkinClosed = showSolid && srSurfOuter.visible && thDeg >= 359.9;
+        var srStackFull = srStk.show && !!res && sr.mode !== "slice"
+            && kind !== "radius_difference" && !wrongOn;
+        srTickEncl = (srSkinClosed || srStackFull) ? { axis: ax, span: sp } : null;
         srPlaceTickNodes((sr.frame && sr.frame.show_frame === false) ? false : true);
-        srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax);
+        srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax, tMs);
     }
 
     // The slice the state labels: the live control if a teacher has one, else the
@@ -76849,7 +77605,18 @@ export const FIELD_3D_RENDERER_CODE = `
         if (cp && cp.length === 3) {
             var d = Math.sqrt(cp[0] * cp[0] + cp[1] * cp[1] + cp[2] * cp[2]) || 1;
             return {
-                az: Math.atan2(cp[0], cp[2]) * 180 / Math.PI,
+                // atan2(z, x), NOT atan2(x, z). updateCameraFromSpherical places the
+                // camera at x = r sin(phi) cos(theta), z = r sin(phi) sin(theta), so
+                // the azimuth is measured FROM +x TOWARD +z and the inverse is
+                // atan2(z, x) — which is what the sibling conversion in this file
+                // has always used. This one was the odd one out, and it was not
+                // cosmetic: a face-on camera_position [0, 0, 5.2] mapped to az 0,
+                // i.e. looking straight DOWN the axis of revolution. It stayed
+                // latent while only a state authoring camera_base read it; the
+                // sandbox orbit (srIdleCamAzDeg) derives its STARTING azimuth from
+                // here on a state that authors camera_position only, so the orbit
+                // began 8.8 deg off the authored pose and the state entry jumped.
+                az: Math.atan2(cp[2], cp[0]) * 180 / Math.PI,
                 el: Math.asin(srClamp(cp[1] / d, -1, 1)) * 180 / Math.PI,
                 dist: d
             };
@@ -76863,19 +77630,50 @@ export const FIELD_3D_RENDERER_CODE = `
 
     // Value-only HUD (Rule 33d / 34b). Every line gates on the state's OWN
     // readout list, so a state can never leak a quantity it has not taught.
-    function srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax) {
+    function srWriteHud(sr, outer, inner, x0, x1, curveF, fillF, ax, tMs) {
         var hud = document.getElementById("sr_readout");
         if (!hud) return;
         var keys = sr.readouts || [];
         var lines = [];
+        // ── SR-C3 — THE PER-READOUT BEAT. A key listed in sr.readout_at_ms renders
+        //   only from its own time; an unlisted key renders exactly as it always
+        //   did. This is what stops a state printing its ANSWER before the picture
+        //   that earns it has moved (STATE_7 printed "about y" at t = 0 with the
+        //   sweep still 3 s away).
+        //   THE MAP IS VALIDATED FIRST, AND INDEPENDENTLY OF sr.readouts, because a
+        //   typo in a timing map is the one kind of miss that is invisible: an
+        //   unknown key would simply never gate anything and the state would look
+        //   like it always did. SR-D8 — the enum is CLOSED and the miss is loud.
+        var rat = sr.readout_at_ms || {}, rk;
+        for (rk in rat) {
+            if (!Object.prototype.hasOwnProperty.call(rat, rk)) continue;
+            if (SR_READOUTS[rk] !== 1) {
+                throw new Error("solid_of_revolution: unknown readout_at_ms key " + String(rk)
+                    + " — the enum is CLOSED; see SR_READOUTS");
+            }
+        }
+        //   tMs is the state-local clock. A caller with no clock to offer (the
+        //   gate\u0027s pure-helper harness) gates nothing, which is the same absent-field
+        //   identity the rest of SR-C3 is built on.
+        var ratOn = (tMs != null && isFinite(tMs));
+        function srReadoutDue(k) {
+            if (rat[k] == null || !ratOn) return true;
+            return tMs >= cueTriggerMs("sr_readout_" + k, rat[k]);
+        }
         var xc = srClamp(srSliceX(sr, x0, x1), x0, x1);
-        var Rc = srF(outer, xc), ric = inner ? srF(inner, xc) : 0;
+        // SR-D3 — when the frame has PLACED a labelled annulus, its radii are
+        // READ from that placement instead of evaluated a second time here.
+        // Identical numbers by construction, and structurally so rather than
+        // coincidentally: the drawn ring and the printed ring area cannot split.
+        var Rc = (SR_PUB.slice_R != null) ? SR_PUB.slice_R : srF(outer, xc);
+        var ric = (SR_PUB.slice_r != null) ? SR_PUB.slice_r : (inner ? srF(inner, xc) : 0);
         for (var i = 0; i < keys.length; i++) {
             var k = keys[i];
             if (SR_READOUTS[k] !== 1) {
                 throw new Error("solid_of_revolution: unknown readout key " + String(k)
                     + " — the enum is CLOSED; see SR_READOUTS");
             }
+            if (!srReadoutDue(k)) continue;
             if (k === "area") {
                 var A = srIntegralF(outer, x0, x1) - (inner ? srIntegralF(inner, x0, x1) : 0);
                 lines.push("area = " + srFmt(A, 4));
@@ -76889,6 +77687,22 @@ export const FIELD_3D_RENDERER_CODE = `
                 lines.push("n = " + String(SR_PUB.n != null ? SR_PUB.n : 0));
             } else if (k === "V_exact") {
                 lines.push("V = " + srFmt(srExactVolume(outer, inner, x0, x1, ax), 4));
+            } else if (k === "V_settles") {
+                lines.push("settles on = " + srFmt(srExactVolume(outer, inner, x0, x1, ax), 4));
+            } else if (k === "pi_area") {
+                // LABELLED AS THE BELIEF IT IS. Printed neutrally it read as an
+                // ordinary quantity standing beside a true face area, and with
+                // the sound off a student had no way to tell which of the two
+                // was being refuted — with the units silently disagreeing on top
+                // of that, since pi times an area is a VOLUME, not an area. The
+                // label now says both, in the vocabulary V_wrong already uses.
+                var Aw = srIntegralF(outer, x0, x1) - (inner ? srIntegralF(inner, x0, x1) : 0);
+                lines.push("wrong volume (\\u03C0 \\u00D7 area) = " + srFmt(Math.PI * Aw, 4));
+            } else if (k === "dx") {
+                // no slab exists until a pass has placed one, and a width printed
+                // from an authored n the picture never drew is the provenance
+                // split SR-D5 exists against. Silent until published.
+                if (SR_PUB.du != null) lines.push("\\u0394x = " + srFmt(SR_PUB.du, 4));
             } else if (k === "theta") {
                 lines.push("\\u03B8 = " + srFmt(SR_PUB.theta_deg != null ? SR_PUB.theta_deg : 0, 0) + "\\u00B0");
             } else if (k === "x_cut") {
@@ -76903,6 +77717,18 @@ export const FIELD_3D_RENDERER_CODE = `
                 lines.push("r = " + srFmt(ric, 3));
             } else if (k === "ring_area") {
                 lines.push("ring area = " + srFmt(Math.PI * (Rc * Rc - ric * ric), 4));
+            } else if (k === "ring_area_wrong") {
+                // WHY THIS ONE MAY STAND BESIDE WHAT IT REFUTES, WHEN V_n AND
+                // V_wrong MAY NOT. The mutual exclusion below exists for the
+                // contrast-ghost-co-resident scar: there the WRONG total reached
+                // Vn, a TRUE-LOOKING readout, and nothing on screen said which
+                // sum had produced it. That is a defect of the LABEL, not of
+                // co-residence. A key whose own label says "wrong" cannot be read
+                // as the true one, so the refutation and the thing it refutes may
+                // share a frame — which is the only way a contrast is a contrast
+                // at all. It is self-computing (like V_about_x) and never reads
+                // SR_PUB.volume, so no published total can leak into it.
+                lines.push("wrong ring area = " + srFmt(Math.PI * (Rc - ric) * (Rc - ric), 4));
             } else if (k === "V_n") {
                 // the PUBLISHED total — never a second sum. It prints only when the
                 // frame actually summed the TRUE slice, so the wrong-solid window
@@ -76982,7 +77808,8 @@ export const FIELD_3D_RENDERER_CODE = `
             [srSurfOuter, "solid", true], [srSurfInner, "solid", true],
             [srDiscPool ? srDiscPool.group : null, stackFocal ? focal : "stack", true],
             [srRingOutPool ? srRingOutPool.group : null, stackFocal ? focal : "stack", true],
-            [srRingInPool ? srRingInPool.group : null, stackFocal ? focal : "stack", true]
+            [srRingInPool ? srRingInPool.group : null, stackFocal ? focal : "stack", true],
+            [srSliceRing ? srSliceRing.group : null, stackFocal ? focal : "stack", true]
         ];
         for (var i = 0; i < map.length; i++) {
             if (!map[i][0]) continue;
@@ -85173,6 +86000,20 @@ export const FIELD_3D_RENDERER_CODE = `
                         var wvSd = config.states[PM_currentState];
                         if (wvSd) capApplyWidgetVis(wvSd.capacitance || {});
                     } else {
+                        // Rule 39b \u00b7 the vector-geometry panel's "live"
+                        // is a disabled flag its ROW PASS owns, so that pass
+                        // re-runs on an override change \u2014 otherwise a
+                        // force-shown row appears instantly and stays inert
+                        // until the next SET_STATE. It writes display /
+                        // disabled / opacity and NOTHING else (never a
+                        // drag-seize flag, never a slider VALUE), which is why
+                        // it was extracted in the first place: Rule 39c forbids
+                        // the full apply here. It runs BEFORE pmWgApply so the
+                        // generic shell pass reads current inline displays.
+                        if (config.scenario_type === "vector_geometry_3d" && !isMobile) {
+                            var wvVgSd = config.states[PM_currentState];
+                            if (wvVgSd) vgApplyControlRows(wvVgSd.vg || {}, wvVgSd.show_sliders);
+                        }
                         pmWgApply(true);   // generic engine (no-op on mobile)
                     }
                     break;

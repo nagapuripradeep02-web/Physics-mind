@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Arithmetic checked: (3/2) × 0.25 × 8.314 × 200 = 623.55 J, matching the book's 623.6 J."
+    "note": "Chapter 4 (States of Matter) is sourced from the Sri Chaitanya Junior Fastrack chemistry section (book pp.62-66), which prints the question, its star rank and a model answer. Only ONE source book is held for chemistry — the TSBIE Basic Learning Material in hand covers physics only — so the two-book union check is PENDING a second chemistry source. The book prints NO Long Answer section for this chapter, so no 8-mark form is invented. The 1+1 mark split is a CLAIM until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Arithmetic checked: (3/2) × 0.25 × 8.314 × 200 = 623.55 J, matching the book's 623.6 J. AI chemistry check 2026-08-25 (audit round): the first step's common mistake named subtracting as the error when subtracting is the correct operation; it now names the real error, dropping the minus sign and adding 73 to reach 346. No marked line changed."
   },
   "answer": {
     "page_header": [
@@ -56,7 +56,7 @@
         "why": "The formula takes moles and kelvin, and the question gives grams and Celsius. Both conversions — 4 g to 0.25 mol, and −73 °C to 200 K — must appear before the substitution.",
         "common_mistakes": [
           "Substituting the mass 4 in place of the moles 0.25.",
-          "Getting 200 K wrong by subtracting: −73 + 273 = 200, not 346."
+          "Dropping the minus sign and adding 73: 73 + 273 = 346 is wrong. The temperature is −73 °C, so −73 + 273 = 200 K."
         ],
         "memory_tip": "Grams to moles, Celsius to kelvin, then three halves n R T.",
         "margin_note": "The two conversion lines carry this mark; the examiner reads them before the arithmetic."

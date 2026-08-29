@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 5,
+    "number": 4,
     "name": "Laws of Motion"
   },
   "chapter": "Laws of Motion",
@@ -74,7 +74,8 @@
             "by F",
             "rate of change"
           ]
-        }
+        },
+        "memory_tip": "Check the rearrangement by its units: kg × m/s ÷ N comes out in seconds."
       },
       {
         "id": "s2_value",
@@ -111,8 +112,10 @@
             "seconds",
             "4"
           ]
-        }
+        },
+        "memory_tip": "4 s, not 100 s. A 5 N force on 10 kg gives 0.5 m/s², and 2 ÷ 0.5 = 4."
       }
     ]
-  }
+  },
+  "insider_note": "The formula mark survives an arithmetic slip, so write t = m Δv / F on its own line before any number goes in."
 }

@@ -12,11 +12,16 @@ npm install
 npm run build:answers      # note the file/entry counts BEFORE touching anything
 ```
 
-This desk was based on **`origin/feat/ipe-answerbook-zoology`**, not on master, because the phased
+This desk was opened on **`origin/feat/ipe-answerbook-zoology`**, to inherit the phased
 "watch it drawn" figure engine (`pause` elements, `pace_figures.ts`, `check_figure_pace.ts`,
-`pathLength.ts`) lives only on that branch. Master's figures still run at 200–770 units/second,
-which is the rushing the founder named. **If zoology has merged by the time you read this, base on
-master instead and this paragraph is history.**
+`pathLength.ts`), which exists on no other branch. **That was a mistake and it has been corrected:**
+the zoology branch was 166 commits behind master, so this desk was too, and it missed the payment
+gate, Google sign-in, the front door, the MPC stream lens and — the one that actually bites —
+`PAPER_PATTERNS`. `origin/master` has since been merged in and every gate re-run.
+
+**Open a new paper's desk on `origin/master`,** the way `feat/ipe-answerbook-sr-physics` (PR #167)
+and `feat/ipe-answerbook-sr-chemistry` (PR #169) did. Every subject lands as a **PR into master** —
+Botany-I was PR #137, Maths-1B #136 — never a direct commit.
 
 ## 2. Subject enablement — what `botany_2` needed
 
@@ -29,9 +34,16 @@ master instead and this paragraph is history.**
 | 3 | `answer-book/notebook.js` `subjectWord` | **the silent one** — it fell through to `'physics'`, so every Botany-II card would have read *"The physics and the method are checked."* Now matched on the `botany` PREFIX, so a third botany paper cannot fall through either |
 | 4 | `answer-book/notebook.js` `SUBJ_LABEL` | catalog chip |
 | 5 | `answer-book/notebook.js` meta-chip map | per-question chip |
+| 6 | **`PAPER_PATTERNS` in `src/schemas/answerBook.ts`** | added by PR #168. The schema REJECTS any question whose marks disagree with its paper's pattern, so an unregistered paper cannot build. Botany-II is the `ABC_60` shape already in the table — A 10 of 10 ×2, B any 6 of 8 ×4, C any 2 of 3 ×8 = 60, plus the 15-mark practical — so it is one line |
 
-Both botany papers are now labelled **Botany-I** and **Botany-II**, the same disambiguation
-Maths-1A/1B already uses. The three e2e fleet-sweep budgets were raised 1.8M → 2.4M ms. **Raise
+Not needed, and deliberately not invented: **no stream names `botany_2`.** `STREAMS` currently
+defines only `mpc`; a BiPC lens is a product decision, and the build asserts only that every
+subject a stream NAMES exists, so nothing breaks by leaving it out.
+
+Botany-II is labelled **Botany-II** and the first-year paper keeps its own label, **Botany** —
+the convention `chemistry_2: 'Chemistry-II'` and `physics_2: 'Physics II'` already set. An earlier
+draft here renamed the first-year paper to "Botany-I"; that was a student-facing change no other
+paper made, and it was reverted on the master merge. The three e2e fleet-sweep budgets were raised 1.8M → 2.4M ms. **Raise
 them when the book grows; never trim the sweep or its waits to fit.**
 
 **One PAPER = one subject value.** Unit numbers namespace per subject, so `botany_2` units 1–14

@@ -7,7 +7,7 @@
   "year_cycle": "first_year",
   "class_label": "Intermediate I Year (Class 11)",
   "unit": {
-    "number": 6,
+    "number": 5,
     "name": "Work Power Energy"
   },
   "chapter": "Work Power Energy",
@@ -121,5 +121,6 @@
         "memory_tip": "Inelastic keeps momentum only — some kinetic energy leaves as heat, sound and deformation."
       }
     ]
-  }
+  },
+  "insider_note": "Part (i) is one mark for TWO quantities, momentum and kinetic energy. Naming only one loses the whole mark, not half of it."
 }
