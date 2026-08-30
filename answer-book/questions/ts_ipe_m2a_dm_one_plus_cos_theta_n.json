@@ -1,0 +1,238 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_one_plus_cos_theta_n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If n is a positive integer, show that (1 + cos θ + i sin θ)ⁿ + (1 + cos θ − i sin θ)ⁿ = 2ⁿ⁺¹ cosⁿ(θ/2) cos(nθ/2).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Half-angle form of 1 + cos θ + i sin θ",
+      "marks": 2
+    },
+    {
+      "label": "Raise to n by De Moivre's theorem",
+      "marks": 2
+    },
+    {
+      "label": "The conjugate power",
+      "marks": 1
+    },
+    {
+      "label": "Add and simplify",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.15 — LAQ chapter 1 De Moivre's Theorem, answer 2. Printed appearances: AP 17 · TS 17. THE 2+2+1+2 SPLIT IS THE BOOK'S — book p.15 prints [2 Marks] against the mod-amp form of 1 + cos θ + i sin θ, [2 Marks] against equation (1), [1 Mark] against equation (2) and [2 Marks] against the addition. This is the printed split the whole family is patterned on. The SAME split shape and the SAME step ids (s1_mod_amp, s2_de_moivre, s3_conjugate, s4_add) are used on answers 1.1, 1.2, 2 and 5 of this unit, deliberately: they are one method (mod-amp form → De Moivre → the conjugate pair → add) over different numbers. Answer 4 carries the same step names shifted by one because the book's own [1 Mark] roots step precedes them. The book's LAQ chapter header (book p.14) carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q18 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). 2A is still the 75-mark pre-reform paper in 2026-27 (the 60-mark reform is first year only), so the LAQ is authored at 7 marks, not re-cut to 8. No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived with the half-angle identities 1 + cos θ = 2cos²(θ/2), sin θ = 2 sin(θ/2) cos(θ/2); the book's answer is correct. Asked as Model Paper 2, Q18 (book p.114). Re-solved in the Bullet Model Paper Q18 (book p.104) with the same steps."
+  },
+  "recall_prompt": "Say how you would prove this — how the half-angle identities rewrite 1 + cos θ + i sin θ, what De Moivre's theorem does to it, and how the two powers combine.",
+  "insider_note": "Two of the seven marks are for the half-angle rewrite alone. Students who jump straight to De Moivre without taking 2cos(θ/2) outside lose them and get the wrong power.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "De Moivre's Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mod_amp",
+        "kind": "equation",
+        "label": "Half-angle form of 1 + cos θ + i sin θ",
+        "marks": 2,
+        "mark_note": "Half-angle form",
+        "margin_note": "First and second marks. 1 + cos θ = 2cos²(θ/2) and sin θ = 2 sin(θ/2) cos(θ/2), so 2cos(θ/2) comes out as a common factor and leaves cos(θ/2) + i sin(θ/2). Here r is the expression 2cos(θ/2), not a number from a square root.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1 + cos θ + i sin θ",
+          "= 2cos²(θ/2) + i · 2 sin(θ/2) cos(θ/2)",
+          "= 2cos(θ/2) [cos(θ/2) + i sin(θ/2)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + cos θ + i sin θ is rewritten with half angles as 2cos(θ/2) times (cos(θ/2) + i sin(θ/2)).",
+          "accept": [
+            "use one plus cos theta equals two cos squared theta by two and sin theta equals two sin theta by two cos theta by two",
+            "take out two cos theta by two so the bracket is cos theta by two plus i sin theta by two",
+            "write it in half angles as two cos theta by two times cis theta by two",
+            "half angle formulas use chesi two cos theta by two bayataki teeyali",
+            "the modulus is two cos theta by two and the amplitude is theta by two"
+          ],
+          "reject": [
+            "expand it",
+            "use the formula",
+            "simplify"
+          ],
+          "heard_as": [
+            "half angle",
+            "theta by two",
+            "two cos",
+            "cos squared",
+            "cis theta by two"
+          ]
+        },
+        "why": "The number is not in cos + i sin form as given. The half-angle identities turn 1 + cos θ into 2cos²(θ/2) and sin θ into 2 sin(θ/2) cos(θ/2), and the common factor 2cos(θ/2) is exactly the r that De Moivre's theorem needs outside the bracket.",
+        "common_mistakes": [
+          "Using 1 + cos θ = 2 sin²(θ/2), the wrong half-angle identity.",
+          "Taking out cos(θ/2) but forgetting the 2, which loses the 2ⁿ later.",
+          "Trying to find r as √(...) numerically; here r is the expression 2cos(θ/2)."
+        ]
+      },
+      {
+        "id": "s2_de_moivre",
+        "kind": "equation",
+        "label": "Raise to n by De Moivre",
+        "marks": 2,
+        "mark_note": "De Moivre",
+        "margin_note": "Third and fourth marks. Raising to n gives 2ⁿ cosⁿ(θ/2) outside and cos(nθ/2) + i sin(nθ/2) inside. The n on cos(θ/2) sits outside the bracket and the n on the angle sits inside; they are two separate places.",
+        "lines": [
+          "(1 + cos θ + i sin θ)ⁿ",
+          "= 2ⁿ cosⁿ(θ/2) [cos(θ/2) + i sin(θ/2)]ⁿ",
+          "= 2ⁿ cosⁿ(θ/2) [cos(nθ/2) + i sin(nθ/2)] …(1)",
+          "(by De Moivre's theorem)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That De Moivre's theorem is applied: raising the mod-amp form to the power n multiplies the angle by n and gives 2ⁿ cosⁿ(θ/2) (cos(nθ/2) + i sin(nθ/2)), called equation (1).",
+          "accept": [
+            "apply De Moivre's theorem so the angle is multiplied by n and we get 2ⁿ cosⁿ(θ/2) (cos(nθ/2) + i sin(nθ/2))",
+            "raise the mod amp form to the power and multiply the angle by n by De Moivre",
+            "by De Moivre cos theta plus i sin theta to the power gives cos n theta plus i sin n theta",
+            "De Moivre theorem apply chesi angle ni n tho multiply cheyyali",
+            "the power goes onto the angle by De Moivre's theorem, that is equation one"
+          ],
+          "reject": [
+            "raise to the power",
+            "use the theorem",
+            "expand it"
+          ],
+          "heard_as": [
+            "De Moivre",
+            "demoivre",
+            "cos n theta",
+            "equation one",
+            "multiply the angle"
+          ]
+        },
+        "why": "De Moivre's theorem says (cos θ + i sin θ)ⁿ = cos nθ + i sin nθ for every integer n: the power moves onto the angle. The real factor r is raised separately, as an ordinary real number.",
+        "common_mistakes": [
+          "Raising the bracket by De Moivre but forgetting to raise 2cos(θ/2) to n as well.",
+          "Writing cos(nθ/2) as cosⁿ(θ/2) inside the bracket; the power on cos(θ/2) is outside, the n on the angle is inside.",
+          "Writing (cos θ + i sin θ)ⁿ = cosⁿ θ + i sinⁿ θ, which is false."
+        ]
+      },
+      {
+        "id": "s3_conjugate",
+        "kind": "equation",
+        "label": "The conjugate power",
+        "marks": 1,
+        "mark_note": "Conjugate",
+        "margin_note": "Fifth mark. The second bracket is the conjugate of the first, so it carries the same 2ⁿ cosⁿ(θ/2) with the sine sign reversed. Label it (2); nothing is recomputed.",
+        "lines": [
+          "Similarly,",
+          "(1 + cos θ − i sin θ)ⁿ",
+          "= 2ⁿ cosⁿ(θ/2) [cos(nθ/2) − i sin(nθ/2)] …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the conjugate number is treated in the same way and gives 2ⁿ cosⁿ(θ/2) (cos(nθ/2) − i sin(nθ/2)), called equation (2), with the sign of the sine term changed.",
+          "accept": [
+            "similarly the conjugate gives the same thing with minus i sin, that is equation two",
+            "do the same for the conjugate and only the sign of the sine changes",
+            "the second bracket is the conjugate so its power is 2ⁿ cosⁿ(θ/2) (cos(nθ/2) − i sin(nθ/2))",
+            "conjugate ki same step, sin term sign matrame minus avuthundi",
+            "equation two is the conjugate with cos minus i sin"
+          ],
+          "reject": [
+            "do it again",
+            "the other one",
+            "similarly"
+          ],
+          "heard_as": [
+            "conjugate",
+            "minus i sin",
+            "equation two",
+            "similarly"
+          ]
+        },
+        "why": "The second number is the conjugate of the first, so it has the same r and the angle −θ. Nothing new has to be computed; only the sign of the sine changes.",
+        "common_mistakes": [
+          "Changing the sign of the cosine as well as the sine.",
+          "Recomputing r and θ from scratch and losing time.",
+          "Writing equation (2) without the minus sign, so nothing cancels in the next step."
+        ]
+      },
+      {
+        "id": "s4_add",
+        "kind": "boxed_final",
+        "label": "Add (1) and (2)",
+        "marks": 2,
+        "mark_note": "Result",
+        "margin_note": "Sixth and seventh marks. Adding (1) and (2) cancels the i sin terms and doubles the cosine: 2ⁿ cosⁿ(θ/2) · 2 cos(nθ/2). Combine 2ⁿ · 2 into 2ⁿ⁺¹.",
+        "lines": [
+          "Adding (1) and (2):",
+          "(1 + cos θ + i sin θ)ⁿ + (1 + cos θ − i sin θ)ⁿ",
+          "= 2ⁿ cosⁿ(θ/2) · 2 cos(nθ/2)",
+          {
+            "text": "= 2ⁿ⁺¹ cosⁿ(θ/2) cos(nθ/2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equations (1) and (2) are added, the i sin terms cancel, and the result is 2ⁿ⁺¹ cosⁿ(θ/2) cos(nθ/2).",
+          "accept": [
+            "add one and two, the i sin terms cancel and we get 2ⁿ⁺¹ cosⁿ(θ/2) cos(nθ/2)",
+            "adding the two equations the sine parts cancel leaving two times the cosine",
+            "one plus two gives two cos and the final answer is 2ⁿ⁺¹ cosⁿ(θ/2) cos(nθ/2)",
+            "rendu equations add cheste sin terms cancel ayyi 2ⁿ⁺¹ cosⁿ(θ/2) cos(nθ/2) vasthundi",
+            "the imaginary parts cancel on adding and the answer is two to the n plus one times cos"
+          ],
+          "reject": [
+            "add them",
+            "then we get the answer",
+            "simplify"
+          ],
+          "heard_as": [
+            "adding",
+            "cancel",
+            "two cos",
+            "n plus one",
+            "final answer"
+          ]
+        },
+        "why": "The two numbers are conjugates, so their sum is twice the real part. Adding removes the i sin terms and leaves exactly the cosine the question asks for.",
+        "common_mistakes": [
+          "Subtracting instead of adding, which leaves 2i sin instead of 2 cos.",
+          "Leaving the answer as 2ⁿ · 2 cos instead of combining into one power of 2.",
+          "Dropping the factor that comes from r, which is the whole reason the answer has a power of 2."
+        ]
+      }
+    ]
+  }
+}

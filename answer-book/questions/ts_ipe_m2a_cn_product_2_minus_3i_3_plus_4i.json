@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_product_2_minus_3i_3_plus_4i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the complex number (2 − 3i)(3 + 4i) in the form A + iB.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Multiply out the brackets",
+      "marks": 1
+    },
+    {
+      "label": "Use i² = −1 and write A + iB",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.70 — VSAQ chapter 12 Complex Numbers, answer 105.1. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 17 · TS 20, 22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would write this product in the form A + iB.",
+  "insider_note": "The second mark is one substitution, i² = −1: it turns −12i² into +12 and makes the real part 6 + 12 = 18. And B is the real number −1, not −i — the form A + iB has both A and B real.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_multiply",
+        "kind": "equation",
+        "label": "Multiply out",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "First mark. Four products, like any two binomials: 2·3, 2·4i, −3i·3, −3i·4i.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(2 − 3i)(3 + 4i) = 6 + 8i − 9i − 12i²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the brackets are multiplied term by term to give 6 + 8i − 9i − 12i².",
+          "accept": [
+            "multiply each term of the first bracket by each term of the second to get six plus eight i minus nine i minus twelve i squared",
+            "expand like two binomials, four products",
+            "two into three, two into four i, minus three i into three, minus three i into four i",
+            "rendu brackets ni term by term multiply cheyali",
+            "foil the brackets to get six plus eight i minus nine i minus twelve i squared"
+          ],
+          "reject": [
+            "multiply",
+            "expand"
+          ],
+          "heard_as": [
+            "six",
+            "eight i",
+            "nine i",
+            "twelve i squared",
+            "multiply"
+          ]
+        },
+        "why": "Complex numbers multiply exactly like binomials in i. The only new thing happens in the next line, when i² is replaced.",
+        "common_mistakes": [
+          "Missing the cross term −9i.",
+          "Writing (−3i)(4i) as −12i instead of −12i²."
+        ]
+      },
+      {
+        "id": "s2_simplify",
+        "kind": "boxed_final",
+        "label": "Use i² = −1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. −12i² = +12, so the real part is 6 + 12 = 18. The i terms combine to −i.",
+        "lines": [
+          "= 6 − i + 12        (since i² = −1)",
+          {
+            "text": "= 18 − i, so A = 18, B = −1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That i² = −1 turns −12i² into +12, giving 18 − i, so A = 18 and B = −1.",
+          "accept": [
+            "replace i squared by minus one so minus twelve i squared is plus twelve and the answer is eighteen minus i",
+            "the answer is eighteen minus i, A is eighteen and B is minus one",
+            "six plus twelve is eighteen, eight i minus nine i is minus i",
+            "i square ki minus one pettithe eighteen minus i vasthundi",
+            "A equals eighteen and B equals minus one"
+          ],
+          "reject": [
+            "simplify",
+            "write the answer"
+          ],
+          "heard_as": [
+            "eighteen minus i",
+            "eighteen",
+            "minus one",
+            "i squared"
+          ]
+        },
+        "why": "The form A + iB means one real number and one real coefficient of i. Naming A and B at the end is what the question literally asks for.",
+        "common_mistakes": [
+          "Using i² = +1 and getting 6 − 12 = −6.",
+          "Writing B = −i instead of B = −1."
+        ]
+      }
+    ]
+  }
+}

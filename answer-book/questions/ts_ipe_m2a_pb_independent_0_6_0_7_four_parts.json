@@ -1,0 +1,279 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_independent_0_6_0_7_four_parts",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Suppose A and B are independent events with P(A) = 0.6, P(B) = 0.7. Compute (i) P(A ∩ B) (ii) P(A ∪ B) (iii) P(B|A) (iv) P(Aᶜ ∩ Bᶜ).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "(i) P(A ∩ B)",
+      "marks": 1
+    },
+    {
+      "label": "(ii) P(A ∪ B)",
+      "marks": 1
+    },
+    {
+      "label": "(iii) P(B|A)",
+      "marks": 1
+    },
+    {
+      "label": "(iv) P(Aᶜ ∩ Bᶜ)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.59 — SAQ chapter 10 Probability, answer 77 (PDF p.60: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes). Printed appearances: AP 17,17 · TS 16,18 (the AP chip prints 17 twice, presumably two 2017 sittings; recorded once in appearances). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on any Probability SAQ page (book pp.59–62). Four parts asked, four marks: one mark per part is the natural split, with the \"A, B are independent\" set-up carrying no mark of its own. The SAME step ids (s1_independent, s2_part_i … s5_part_iv) and the SAME 0 + 1 + 1 + 1 + 1 split are used on both \"A and B are independent events with P(A), P(B) given\" answers of this unit (77 and 78), deliberately: one method, four one-mark parts each, over different numbers and different parts. The book's SAQ chapter header carries ★★ and reads '4 + 4 = 8 Marks'; that ★★ is the CHAPTER's rank, not this question's, and the 4 + 4 is because Probability holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q16 and Q17 are the two Probability slots. This question is Q16 of Model Paper 1 (book p.111) and is re-solved in the Bullet Model Paper Q16 & 17 block (book p.103) — that second solution is identical. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answers checked: 0.42, 0.88, 0.7, 0.12 — agree with the book. Part (iv) uses the fact that the complements of independent events are independent, which is answer 91 of this chapter."
+  },
+  "recall_prompt": "Say how you would find the four quantities for independent events with P(A) = 0.6 and P(B) = 0.7 — the rule each part uses and the number.",
+  "insider_note": "Part (iii) is a one-line answer: for independent events P(B|A) is just P(B). Students lose that mark by computing P(A ∩ B)/P(A) — which gives the same 0.7, but slowly.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Probability · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_independent",
+        "kind": "text",
+        "label": "A and B are independent",
+        "marks": 0,
+        "margin_note": "No mark of its own. Write the given values and the word \"independent\" — it is the reason behind parts (i), (iii) and (iv).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Given: A, B are independent,",
+            "style": "normal"
+          },
+          {
+            "text": "P(A) = 0.6, P(B) = 0.7",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A and B are independent with P(A) = 0.6 and P(B) = 0.7.",
+          "accept": [
+            "A and B are independent with P A point six and P B point seven",
+            "the events are independent, point six and point seven",
+            "independent events, P of A is 0.6 and P of B is 0.7",
+            "A B independent, P A 0.6, P B 0.7 ani given"
+          ],
+          "reject": [
+            "given",
+            "write the values"
+          ],
+          "heard_as": [
+            "independent",
+            "point six",
+            "point seven"
+          ]
+        },
+        "why": "Independence is what turns P(A ∩ B) into a product; without that word none of the four parts can start.",
+        "common_mistakes": [
+          "Not writing \"independent\" and then using the product rule with no reason."
+        ]
+      },
+      {
+        "id": "s2_part_i",
+        "kind": "equation",
+        "label": "(i) P(A ∩ B)",
+        "marks": 1,
+        "mark_note": "(i)",
+        "margin_note": "Independent, so multiply: 0.6 × 0.7 = 0.42.",
+        "lines": [
+          {
+            "text": "(i) P(A ∩ B) = P(A)·P(B) = 0.6 × 0.7 = 0.42",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for independent events P(A ∩ B) = P(A)·P(B) = 0.6 × 0.7 = 0.42.",
+          "accept": [
+            "P of A intersection B is P A times P B which is point four two",
+            "independent so multiply point six by point seven to get 0.42",
+            "the intersection is the product 0.42",
+            "independent kabatti P A into P B, 0.42"
+          ],
+          "reject": [
+            "find the intersection",
+            "multiply"
+          ],
+          "heard_as": [
+            "point four two",
+            "A intersection B",
+            "product"
+          ]
+        },
+        "why": "P(A ∩ B) = P(A)·P(B) is the definition of independence; it is the only formula for the intersection when no overlap is given.",
+        "common_mistakes": [
+          "Adding 0.6 + 0.7 instead of multiplying.",
+          "Writing 0.6 × 0.7 = 4.2 or 0.042."
+        ]
+      },
+      {
+        "id": "s3_part_ii",
+        "kind": "equation",
+        "label": "(ii) P(A ∪ B)",
+        "marks": 1,
+        "mark_note": "(ii)",
+        "margin_note": "Addition theorem, using part (i): 0.6 + 0.7 − 0.42 = 0.88.",
+        "lines": [
+          {
+            "text": "(ii) P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
+            "style": "eq"
+          },
+          {
+            "text": "= 0.6 + 0.7 − 0.42 = 1.3 − 0.42 = 0.88",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(A ∪ B) = P(A) + P(B) − P(A ∩ B) = 0.6 + 0.7 − 0.42 = 0.88.",
+          "accept": [
+            "P of A union B is P A plus P B minus P A intersection B which is point eight eight",
+            "addition theorem 0.6 plus 0.7 minus 0.42 equals 0.88",
+            "the union is one point three minus point four two",
+            "addition theorem tho 0.6 plus 0.7 minus 0.42 ante 0.88"
+          ],
+          "reject": [
+            "find the union",
+            "add them"
+          ],
+          "heard_as": [
+            "point eight eight",
+            "A union B",
+            "addition theorem"
+          ]
+        },
+        "why": "The union counts the overlap twice, so the intersection just found is subtracted once.",
+        "common_mistakes": [
+          "Leaving the answer as 1.3, which is more than 1 and cannot be a probability.",
+          "Subtracting P(A)·P(B) written as 0.42 but then adding it."
+        ]
+      },
+      {
+        "id": "s4_part_iii",
+        "kind": "equation",
+        "label": "(iii) P(B|A)",
+        "marks": 1,
+        "mark_note": "(iii)",
+        "margin_note": "For independent events the condition changes nothing: P(B|A) = P(B) = 0.7.",
+        "lines": [
+          {
+            "text": "(iii) A, B independent ⇒ P(B|A) = P(B) = 0.7",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for independent events P(B|A) = P(B) = 0.7.",
+          "accept": [
+            "P of B given A equals P of B which is point seven because they are independent",
+            "independent so the conditional probability is just P B, 0.7",
+            "B given A is point seven",
+            "independent kabatti P B given A ante P B, 0.7"
+          ],
+          "reject": [
+            "conditional probability",
+            "find B given A"
+          ],
+          "heard_as": [
+            "B given A",
+            "point seven",
+            "independent"
+          ]
+        },
+        "why": "Independence means knowing A happened does not change the chance of B. P(B|A) = P(A ∩ B)/P(A) = 0.42/0.6 = 0.7 confirms it.",
+        "common_mistakes": [
+          "Writing P(B|A) = P(A) = 0.6.",
+          "Writing P(B|A) = P(A ∩ B) = 0.42."
+        ]
+      },
+      {
+        "id": "s5_part_iv",
+        "kind": "boxed_final",
+        "label": "(iv) P(Aᶜ ∩ Bᶜ)",
+        "marks": 1,
+        "mark_note": "(iv)",
+        "margin_note": "Aᶜ and Bᶜ are also independent, so multiply the complements: 0.4 × 0.3 = 0.12.",
+        "lines": [
+          {
+            "text": "(iv) Aᶜ, Bᶜ are also independent, so",
+            "style": "normal"
+          },
+          {
+            "text": "P(Aᶜ ∩ Bᶜ) = P(Aᶜ)·P(Bᶜ) = [1 − P(A)][1 − P(B)]",
+            "style": "eq"
+          },
+          {
+            "text": "= 0.4 × 0.3",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(Aᶜ ∩ Bᶜ) = 0.12",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the complements are independent too, so P(Aᶜ ∩ Bᶜ) = (1 − 0.6)(1 − 0.7) = 0.4 × 0.3 = 0.12.",
+          "accept": [
+            "the complements are independent so P of A complement and B complement is point four times point three which is point one two",
+            "one minus point six times one minus point seven equals 0.12",
+            "neither A nor B is 0.4 into 0.3",
+            "complements kuda independent, 0.4 into 0.3 ante 0.12"
+          ],
+          "reject": [
+            "find the complement",
+            "multiply the complements"
+          ],
+          "heard_as": [
+            "A complement",
+            "B complement",
+            "point one two",
+            "point four times point three"
+          ]
+        },
+        "why": "Aᶜ ∩ Bᶜ is \"neither A nor B\", the complement of A ∪ B: 1 − 0.88 = 0.12, the same number — a check that both routes agree.",
+        "common_mistakes": [
+          "Writing P(Aᶜ ∩ Bᶜ) = 1 − P(A ∩ B) = 0.58.",
+          "Using 0.6 and 0.7 instead of their complements."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_conjugate_pair_2_plus_11i_over_25",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that z₁ = (2 + 11i)/25 and z₂ = (−2 + i)/(1 − 2i)² are conjugate to each other.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Expand (1 − 2i)²",
+      "marks": 1
+    },
+    {
+      "label": "Simplify z₂ to the form a + ib",
+      "marks": 2
+    },
+    {
+      "label": "Write the conjugate of z₂ and match it with z₁",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.50 — SAQ chapter 7 Complex Numbers, answer 57. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: TS 15. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 7 (book pp.48–51). It is patterned on the 1A Matrices SAQ house split (1A book p.52, answer 41.2: set-up, bulk computation, conclusion). The chapter header carries ★★ and reads '4 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q11 is the Complex Numbers slot. The book prints an unsolved practice variant under this answer ('PQ: show that (2 − i)/(1 − 2i)² and (−2 − 11i)/25 are conjugate') — it has no answer number and is NOT authored as a card; recorded here so a later session knows it exists. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show the two numbers are conjugates — what you simplify, how you divide, and what you compare at the end.",
+  "insider_note": "z₁ is already finished, so all four marks sit on z₂: expand (1 − 2i)², divide by the conjugate, and only then compare. The denominator coming out as 25 — the same 25 as in z₁ — is the mid-question check that the arithmetic is right.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Complex Numbers · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_square",
+        "kind": "equation",
+        "label": "Expand (1 − 2i)²",
+        "marks": 1,
+        "mark_note": "Denominator",
+        "margin_note": "First mark. z₁ is already in the form a + ib, so all the work is on z₂. Start with its denominator: (1 − 2i)² = 1 − 4i + 4i² = −3 − 4i.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(1 − 2i)² = 1 − 4i + 4i² = 1 − 4i − 4",
+          "= −3 − 4i        (since i² = −1)",
+          {
+            "text": "∴ z₂ = (−2 + i)/(−3 − 4i) = (2 − i)/(3 + 4i)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the denominator (1 − 2i)² is expanded to −3 − 4i, so z₂ = (−2 + i)/(−3 − 4i), which is (2 − i)/(3 + 4i) after cancelling the minus.",
+          "accept": [
+            "expand one minus two i squared to get minus three minus four i in the denominator",
+            "the denominator becomes minus three minus four i, then cancel the minus signs",
+            "one minus two i whole square is minus three minus four i",
+            "denominator lo one minus two i square cheste minus three minus four i vasthundi",
+            "square the denominator first using i squared equals minus one"
+          ],
+          "reject": [
+            "simplify the denominator",
+            "expand it"
+          ],
+          "heard_as": [
+            "minus three minus four i",
+            "one minus two i",
+            "squared",
+            "denominator"
+          ]
+        },
+        "why": "z₂ cannot be compared with z₁ until it is a single a + ib. The square in the denominator is the first thing standing in the way, and it is an ordinary (p − q)² with i² = −1.",
+        "common_mistakes": [
+          "Writing (1 − 2i)² as 1 − 4i² = 5, forgetting the middle term.",
+          "Getting 1 − 4i + 4 = 5 − 4i by using i² = +1.",
+          "Not cancelling the shared minus sign, which makes the next division messier."
+        ]
+      },
+      {
+        "id": "s2_simplify",
+        "kind": "equation",
+        "label": "Simplify z₂",
+        "marks": 2,
+        "mark_note": "Division",
+        "margin_note": "Half the marks. Divide by multiplying top and bottom by the conjugate of the denominator, 3 − 4i. The bottom becomes 3² + 4² = 25 — the same 25 as in z₁, which is the first sign the answer is coming out right.",
+        "lines": [
+          "Multiply above and below by 3 − 4i:",
+          {
+            "text": "z₂ = (2 − i)(3 − 4i) / ((3 + 4i)(3 − 4i))",
+            "style": "eq"
+          },
+          {
+            "text": "= (6 − 8i − 3i + 4i²) / (3² + 4²)",
+            "style": "indent"
+          },
+          {
+            "text": "= (6 − 11i − 4) / 25 = (2 − 11i)/25",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That z₂ is simplified by multiplying numerator and denominator by 3 − 4i, giving (2 − 11i)/25.",
+          "accept": [
+            "multiply top and bottom by three minus four i and z two becomes two minus eleven i by twenty five",
+            "rationalise with the conjugate three minus four i, the denominator is twenty five and the numerator is two minus eleven i",
+            "z two simplifies to two minus eleven i over twenty five",
+            "conjugate three minus four i tho multiply cheste two minus eleven i by twenty five vasthundi",
+            "use the conjugate of the denominator to get two minus eleven i over twenty five"
+          ],
+          "reject": [
+            "simplify z two",
+            "rationalise",
+            "divide"
+          ],
+          "heard_as": [
+            "three minus four i",
+            "two minus eleven i",
+            "twenty five",
+            "conjugate",
+            "rationalise"
+          ]
+        },
+        "why": "Multiplying by the conjugate makes the denominator real, because (3 + 4i)(3 − 4i) = 3² + 4² has no i. That is the only standard way to write a complex quotient as a + ib.",
+        "common_mistakes": [
+          "Multiplying by 3 + 4i instead of 3 − 4i, which leaves an i in the denominator.",
+          "Writing 4i² as +4 instead of −4 in the numerator.",
+          "Adding −8i and −3i as −5i."
+        ]
+      },
+      {
+        "id": "s3_conclude",
+        "kind": "boxed_final",
+        "label": "Compare with z₁",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. The conjugate changes only the sign of the i term. Write the conjugate of z₂ and point at z₁.",
+        "lines": [
+          "Conjugate of z₂ = (2 − 11i)/25 is (2 + 11i)/25 = z₁.",
+          {
+            "text": "∴ z₁ and z₂ are conjugates of each other.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the conjugate of (2 − 11i)/25 is (2 + 11i)/25, which is exactly z₁, so the two are conjugates.",
+          "accept": [
+            "the conjugate of two minus eleven i by twenty five is two plus eleven i by twenty five which is z one",
+            "change the sign of the imaginary part of z two and you get z one",
+            "z two bar equals z one so they are conjugates",
+            "z two conjugate teeste z one vasthundi kabatti conjugates",
+            "flipping the sign of eleven i gives z one exactly"
+          ],
+          "reject": [
+            "hence proved",
+            "they are conjugates"
+          ],
+          "heard_as": [
+            "conjugate",
+            "z one",
+            "z two",
+            "two plus eleven i",
+            "sign"
+          ]
+        },
+        "why": "Two numbers are conjugates when they have the same real part and opposite imaginary parts. Both have real part 2/25; the imaginary parts are −11/25 and +11/25. The sentence at the end is what earns the mark — the arithmetic alone is not an answer to 'show that'.",
+        "common_mistakes": [
+          "Changing the sign of the real part as well.",
+          "Ending on (2 − 11i)/25 without writing its conjugate and naming z₁."
+        ]
+      }
+    ]
+  }
+}

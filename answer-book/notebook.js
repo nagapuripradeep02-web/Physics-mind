@@ -269,7 +269,33 @@
   // the chapter keeps its true shape. Routes: #/ = catalog, #/q/<id>(/<cutKey>)
   // = notebook — hash-based so back/forward work from file://.
 
-  var UNITS = window.PM_UNITS || [];
+  /** Every unit in the artifact. UNITS below is the LENSED view a student sees. */
+  var ALL_UNITS = window.PM_UNITS || [];
+  var UNITS = ALL_UNITS;
+  /** Multi-stream builds only: subjects and year label per stream, else null. */
+  var STREAM_SUBJECTS = window.PM_STREAM_SUBJECTS || null;
+  var STREAM_YEARS = window.PM_STREAM_YEARS || null;
+  /** The year the student is actually in, once the door knows. */
+  var EFFECTIVE_YEAR = window.PM_YEAR || null;
+  /**
+   * Lens the catalog to ONE stream's subjects.
+   *
+   * A single-stream artifact is already exactly one year, so this is a no-op there
+   * and the junior book behaves precisely as it did — that is what keeps a live
+   * product safe while the second year is added beside it. On a multi-stream
+   * artifact an unknown or missing stream falls back to the WHOLE book rather than
+   * to an empty one: a student who lands with a stale remembered choice should see
+   * too much, never nothing.
+   */
+  function applyYearLens(streamId) {
+    if (!STREAM_SUBJECTS) return;
+    var subs = streamId && STREAM_SUBJECTS[streamId];
+    if (!subs) { UNITS = ALL_UNITS; EFFECTIVE_YEAR = window.PM_YEAR || null; return; }
+    var want = {};
+    for (var i = 0; i < subs.length; i++) want[subs[i]] = 1;
+    UNITS = ALL_UNITS.filter(function (u) { return want[u.subject || 'physics'] === 1; });
+    if (STREAM_YEARS && STREAM_YEARS[streamId]) EFFECTIVE_YEAR = STREAM_YEARS[streamId];
+  }
   var qIndexById = {};
   questions.forEach(function (q, i) { qIndexById[q.question_id] = i; });
 
@@ -416,9 +442,24 @@
                      physics_2: 'Physics II',
                      chemistry_2: 'Chemistry II',
                      botany_2: 'Botany-II',
+                     mathematics_2a: 'Maths-2A',
                      mathematics_2b: 'Maths-2B' };
   function subjLabel(s) {
     return SUBJ_LABEL[s] || (String(s || '').charAt(0).toUpperCase() + String(s || '').slice(1));
+  }
+  /** The subjects THIS build carries, as a sentence ("Physics II, Chemistry II and
+      Maths-2A"), derived from the units on the page — never a typed list, which is
+      how the paywall once promised Maths-1A to a second-year student. */
+  function subjectsSentence() {
+    var seen = [], out = [];
+    for (var i = 0; i < UNITS.length; i++) {
+      var s = UNITS[i].subject || 'physics';
+      if (seen.indexOf(s) >= 0) continue;
+      seen.push(s); out.push(subjLabel(s));
+    }
+    if (!out.length) return 'every subject';
+    if (out.length === 1) return out[0];
+    return out.slice(0, -1).join(', ') + ' and ' + out[out.length - 1];
   }
 
   /** Unit numbers namespace PER SUBJECT (physics Unit 3 and maths Unit 3 are
@@ -537,7 +578,7 @@
       display concern, and the notebook header still shows the full name. */
   function chapterLabel(u) {
     return String(u.name || '').replace(
-      /\s*\((?:Chemistry-II|Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B|Maths-2B)\)\s*$/, ''
+      /\s*\((?:Chemistry-II|Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B|Maths-2A|Maths-2B)\)\s*$/, ''
     );
   }
 
@@ -605,7 +646,7 @@
     // inference. Absent (the full build) leaves the eyebrow subject-neutral.
     var eyebrow = $('catEyebrow');
     if (eyebrow && window.PM_STREAM) {
-      var base = 'Telangana IPE · ' + (window.PM_YEAR || 'First year');
+      var base = 'Telangana IPE · ' + (EFFECTIVE_YEAR || 'First year');
       var eyeText = base + ' · ' + window.PM_STREAM;
       if (Door.enabled()) {
         // The eyebrow already names the board, the year and the group, so it is
@@ -3540,12 +3581,12 @@
                ' — your pass works on every device you sign in on'
                + (linkedDevices > 1 ? ' (' + linkedDevices + ' so far)' : ''))
             : 'Sign in with Google and your pass follows you to any phone or laptop',
-          'Every chapter in Physics, Chemistry, Maths-1A and Maths-1B',
+          'Every chapter in ' + subjectsSentence(),
           'The answer an examiner wants, written out step by step',
           'Diagrams that draw themselves, line by line',
           'Vidi explains any step you are stuck on',
           'Memory tips and insider notes on the questions that repeat',
-          'Four chapters stay free — one in each subject'
+          'One chapter in every subject stays free'
         ];
         for (var i = 0; i < items.length; i++) {
           var li = document.createElement('li');
@@ -3562,12 +3603,18 @@
 
     function showLocked(i, cutKey, k) {
       var buttons = [];
-      // Four chapters — one per subject — are free for EVERY student since
-      // 2026-08-27. The old copy here said "you have already used your free
-      // chapter", which under this model tells a student they spent something
-      // they never had. Say what is true: some chapters are free, this one is
-      // not, and here is what the rest costs.
-      var text = 'This chapter is locked. Four chapters are free, one in each subject. '
+      // ONE chapter per subject is free for EVERY student since 2026-08-27. The
+      // old copy here said "you have already used your free chapter", which under
+      // this model tells a student they spent something they never had. Say what
+      // is true: some chapters are free, this one is not, and here is what the
+      // rest costs.
+      //
+      // The count is deliberately NOT stated. It was "Four chapters are free",
+      // which was true only while the book was first year alone: a second-year
+      // student has three subjects and three free chapters, and would have been
+      // told a number they could not find. The per-subject promise is the part
+      // that is true in every year (2026-08-30).
+      var text = 'This chapter is locked. One chapter in every subject is free. '
                + offerLine();
       if (payable()) {
         buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, primary: true, fn: function () { startPayment(i, cutKey); } });
@@ -3726,12 +3773,50 @@
 
     function enabled() { return !!TRACKS; }
 
+    /**
+     * Which stream a remembered choice opens. A choice saved BEFORE the
+     * multi-stream build carries no `stream` key, so it is resolved from TRACKS
+     * by group+year — that is what stops the first two-year deploy from
+     * stranding everyone who already has a choice in localStorage.
+     */
+    function resolveStream(t) {
+      if (!t) return null;
+      if (t.stream) return t.stream;
+      for (var i = 0; i < TRACKS.length; i++) {
+        if (TRACKS[i].id !== t.group) continue;
+        for (var j = 0; j < TRACKS[i].years.length; j++) {
+          if (TRACKS[i].years[j].id === t.year) return TRACKS[i].years[j].stream || null;
+        }
+      }
+      return null;
+    }
+
     function chosen() {
       if (!TRACKS) return null;
       try {
         var t = JSON.parse(g(KEY) || 'null');
-        return (t && t.group && t.year) ? t : null;
+        if (!(t && t.group && t.year)) return null;
+        // On a MULTI-stream artifact a remembered cell that opens nothing must
+        // send the student back to the door. Treating it as a choice skips the
+        // chooser and — because there is no stream to lens by — paints BOTH
+        // years at once under an eyebrow naming one of them: 1,664 answers
+        // labelled "First year · MPC". Found by replaying a stored BiPC choice,
+        // which no live cell can currently write but which any future stream
+        // change could strand. Falling back to the whole book was the wrong
+        // instinct: too much, wrongly labelled, is worse than asking again.
+        if (STREAM_SUBJECTS && !resolveStream(t)) return null;
+        return t;
       } catch (e) { return null; }
+    }
+
+    /**
+     * Re-apply a remembered choice on load, BEFORE the router paints anything —
+     * a student who chose second year last week must not open on first year.
+     */
+    function restore() {
+      var t = chosen();
+      if (!t) return;
+      applyYearLens(resolveStream(t));
     }
 
     function trackById(id) {
@@ -3742,6 +3827,24 @@
     function liveYear(t) {
       for (var i = 0; i < t.years.length; i++) if (t.years[i].live) return t.years[i];
       return null;
+    }
+
+    /** Every live year of a group, summed — a group offering two years offers both. */
+    function liveTotals(t) {
+      var q = 0, u = 0, n = 0;
+      for (var i = 0; i < t.years.length; i++) {
+        if (!t.years[i].live) continue;
+        q += t.years[i].questions; u += t.years[i].units; n++;
+      }
+      return n ? { questions: q, units: u, years: n } : null;
+    }
+
+    /** The papers a cell actually contains, named the way the catalog names them. */
+    function cellSubjects(y, t) {
+      if (!y.subjects || !y.subjects.length) return t.subjects;
+      var out = [];
+      for (var i = 0; i < y.subjects.length; i++) out.push(subjLabel(y.subjects[i]));
+      return out.join(' · ');
     }
 
     function asked() {
@@ -3780,8 +3883,9 @@
         door must not sit in history behind the catalog, where Back would drop a
         student who just chose straight back onto the chooser. It also fires no
         hashchange, so the catalog is shown once — here — and not again by route(). */
-    function choose(group, year) {
-      s(KEY, JSON.stringify({ group: group, year: year, at: new Date().toISOString() }));
+    function choose(group, year, stream) {
+      s(KEY, JSON.stringify({ group: group, year: year, stream: stream || null, at: new Date().toISOString() }));
+      applyYearLens(stream || null);
       if (location.hash && location.hash !== '#/') {
         try { history.replaceState(null, '', location.pathname + location.search + '#/'); }
         catch (e) { /* file:// refuses replaceState; the hash is cosmetic here */ }
@@ -3800,8 +3904,11 @@
         b.setAttribute('data-door-group', t.id);
         b.appendChild(el('door-tile-name', t.label));
         b.appendChild(el('door-tile-sub', t.subjects));
+        var tot = liveTotals(t);
         b.appendChild(el('door-pill' + (live ? ' on' : ''),
-          live ? live.questions + ' answers · ' + live.units + ' chapters' : 'Coming soon'));
+          tot ? tot.questions + ' answers · ' + tot.units + ' chapters'
+                + (tot.years > 1 ? ' · both years' : '')
+              : 'Coming soon'));
         b.addEventListener('click', function () { showYears(t.id); });
         host.appendChild(b);
       });
@@ -3818,10 +3925,10 @@
           b.className = 'door-tile live';
           b.setAttribute('data-door-year', y.id);
           b.appendChild(el('door-tile-name', y.label));
-          b.appendChild(el('door-tile-sub', t.subjects));
+          b.appendChild(el('door-tile-sub', cellSubjects(y, t)));
           b.appendChild(el('door-pill on', y.questions + ' answers · ' + y.units + ' chapters'));
           b.appendChild(el('door-go', 'Open the Answer Book →'));
-          b.addEventListener('click', function () { choose(t.id, y.id); });
+          b.addEventListener('click', function () { choose(t.id, y.id, y.stream); });
           host.appendChild(b);
           return;
         }
@@ -3859,7 +3966,7 @@
       showView('door');
     }
 
-    return { enabled: enabled, chosen: chosen, show: show };
+    return { enabled: enabled, chosen: chosen, show: show, restore: restore };
   })();
 
   var VidiPanel = (function () {
@@ -4389,14 +4496,31 @@
     // A deterministic plan dimension, never the model's: all three ticked =
     // null scope = everything, so the default student never notices the step.
     // The mark values are read off PM_PATTERNS (the same table the schema holds
-    // every card to), never typed here: on the 2026-27 papers every subject's
-    // long answer is 8 marks, but a hardcoded number is exactly how the maths
-    // section once printed "8 marks" over 7-mark cards.
+    // every card to), never typed here — a hardcoded number is exactly how the
+    // maths section once printed "8 marks" over 7-mark cards. Read for EVERY
+    // subject this build carries, not just physics: the 2026-27 second-year book
+    // holds Physics-II/Chemistry-II at 8-mark long answers beside Maths-2A at 7
+    // (its paper is unchanged until 2027-28), so the label prints a range.
     function scopeMarks(qtype, fallback) {
-      var p = PATTERNS.physics || PATTERNS[Object.keys(PATTERNS)[0]];
-      if (!p || !p.sections) return fallback;
-      for (var i = 0; i < p.sections.length; i++) if (p.sections[i].key === qtype) return p.sections[i].marks;
-      return fallback;
+      var seen = [], vals = [];
+      for (var i = 0; i < UNITS.length; i++) {
+        var s = UNITS[i].subject || 'physics';
+        if (seen.indexOf(s) >= 0) continue;
+        seen.push(s);
+        var p = PATTERNS[s];
+        if (!p || !p.sections) continue;
+        for (var j = 0; j < p.sections.length; j++) {
+          if (p.sections[j].key === qtype && vals.indexOf(p.sections[j].marks) < 0) vals.push(p.sections[j].marks);
+        }
+      }
+      if (!vals.length) {
+        var p0 = PATTERNS.physics || PATTERNS[Object.keys(PATTERNS)[0]];
+        if (!p0 || !p0.sections) return fallback;
+        for (var k = 0; k < p0.sections.length; k++) if (p0.sections[k].key === qtype) return p0.sections[k].marks;
+        return fallback;
+      }
+      vals.sort(function (a, b) { return a - b; });
+      return vals.length === 1 ? vals[0] : vals[0] + '\u2013' + vals[vals.length - 1];
     }
     var SCOPE_OPTS = [
       ['LAQ', 'Long answers (' + scopeMarks('LAQ', 8) + ' marks)'],
@@ -5652,6 +5776,11 @@
     Auth.loadProfile(function () { Auth.paintChip(); });
     Sync.init();
     Gate.init();
+    // BEFORE route(): a remembered door choice decides WHICH YEAR's catalog the
+    // student sees, and on a multi-stream artifact route() would otherwise paint
+    // the whole book — both years at once — for anyone returning with a choice
+    // already made. No-op on a single-stream build.
+    Door.restore();
     route();
     window.addEventListener('hashchange', route);
   });

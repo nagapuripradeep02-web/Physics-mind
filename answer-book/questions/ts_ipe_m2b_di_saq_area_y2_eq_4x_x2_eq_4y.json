@@ -116,7 +116,7 @@
               "type": "label",
               "id": "lbl_y2_4x",
               "x": 158,
-              "y": 92,
+              "y": 84,
               "text": "y² = 4x",
               "ms": 300,
               "sm": true
@@ -131,7 +131,7 @@
               "type": "label",
               "id": "lbl_x2_4y",
               "x": 158,
-              "y": 118,
+              "y": 132,
               "text": "x² = 4y",
               "ms": 300,
               "sm": true

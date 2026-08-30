@@ -1,0 +1,215 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_c0_c1_by_2_corollary",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Prove that C₀ + C₁/2 + C₂/3 + … + Cₙ/(n + 1) = (2ⁿ⁺¹ − 1)/(n + 1).",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the sum with ⁿCᵣ",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by n + 1",
+      "marks": 2
+    },
+    {
+      "label": "Use ((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁",
+      "marks": 2
+    },
+    {
+      "label": "Sum the expansion and divide",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.31 — LAQ chapter 3 Binomial Theorem, answer 25 (corollary). Printed appearances: TS 17 — the corollary carries its own year chip on book p.31, separate from answer 25's TS 18, 20 · AP 16, 17. ⚠ THE 1+2+2+2 SPLIT IS OURS, NOT THE BOOK'S — book p.31 prints the corollary with its own full proof and no [N Marks] tags. It is the SAME split with the SAME step ids as the answer-25 card (the x-series), deliberately: this is that proof with x = 1, and the book prints it as a stand-alone question with its own TS 17 chip, so it is a separate card. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The result also follows in one line by putting x = 1 in answer 25; the card proves it directly as the book does, because a paper may ask only this form."
+  },
+  "recall_prompt": "Say how you would prove this — what you multiply the sum by and why, which identity raises the index to n + 1, what the new sum adds up to, and how you divide back.",
+  "insider_note": "After the identity the sum starts at ⁿ⁺¹C₁, so it is 2ⁿ⁺¹ − 1, not 2ⁿ⁺¹. The −1 in the answer is the missing ⁿ⁺¹C₀ = 1 — forget it and the last two marks are gone.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_s",
+        "kind": "equation",
+        "label": "Write the sum with ⁿCᵣ",
+        "marks": 1,
+        "mark_note": "Setting up",
+        "margin_note": "First mark. This is the x-series with x = 1: every term is ⁿCᵣ divided by r + 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let S = C₀ + C₁/2 + C₂/3 + … + Cₙ/(n + 1)",
+          "= ⁿC₀ + (1/2)ⁿC₁ + (1/3)ⁿC₂ + … + (1/(n + 1))ⁿCₙ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum is named S and each Cᵣ is written as ⁿCᵣ with denominator r + 1.",
+          "accept": [
+            "let S be the sum and write each C r as n C r over r plus one",
+            "S equals n C nought plus half n C one plus a third n C two and so on",
+            "name the left side S with the binomial coefficients n C r",
+            "sum ni S ani pettukoni C r ni n C r by r plus one ga rayali",
+            "each term is n C r over r plus one"
+          ],
+          "reject": [
+            "let S be the sum",
+            "write it out"
+          ],
+          "heard_as": [
+            "n C r",
+            "r plus one",
+            "S equals"
+          ]
+        },
+        "why": "Naming the left side S and writing Cᵣ as ⁿCᵣ makes the index n visible, and n is what the next step changes into n + 1.",
+        "common_mistakes": [
+          "Reading the denominators as r instead of r + 1.",
+          "Writing C₁/2 as ⁿC₁/1."
+        ]
+      },
+      {
+        "id": "s2_multiply",
+        "kind": "equation",
+        "label": "Multiply by n + 1",
+        "marks": 2,
+        "mark_note": "(n + 1)S",
+        "margin_note": "Second and third marks. Multiplying by n + 1 puts (n + 1)/(r + 1) in front of each ⁿCᵣ — no x this time.",
+        "lines": [
+          "(n + 1)S = ((n + 1)/1)ⁿC₀ + ((n + 1)/2)ⁿC₁",
+          "  + ((n + 1)/3)ⁿC₂ + … + ((n + 1)/(n + 1))ⁿCₙ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying S by n + 1 gives terms ((n + 1)/(r + 1))·ⁿCᵣ.",
+          "accept": [
+            "multiply by n plus one so each term has n plus one by r plus one in front",
+            "n plus one S equals n plus one by one n C nought plus n plus one by two n C one and so on",
+            "multiply both sides by n plus one",
+            "n plus one tho multiply cheste prathi term lo n plus one by r plus one vasthundi",
+            "the factor n plus one over r plus one appears in every term"
+          ],
+          "reject": [
+            "multiply it",
+            "do the next step"
+          ],
+          "heard_as": [
+            "n plus one",
+            "n plus one S",
+            "n plus one by r plus one"
+          ]
+        },
+        "why": "The denominators 1, 2, 3, …, n + 1 are the r + 1 in ((n + 1)/(r + 1))·ⁿCᵣ. Multiplying by n + 1 makes each term exactly that identity.",
+        "common_mistakes": [
+          "Multiplying only the left side by n + 1.",
+          "Writing the last factor as (n + 1)/n."
+        ]
+      },
+      {
+        "id": "s3_identity",
+        "kind": "equation",
+        "label": "Use ((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁",
+        "marks": 2,
+        "mark_note": "Index raised to n + 1",
+        "margin_note": "Fourth and fifth marks. ((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁ — one row down, one index along. Every term of the sum becomes a coefficient of (1 + x)ⁿ⁺¹.",
+        "lines": [
+          "= ⁿ⁺¹C₁ + ⁿ⁺¹C₂ + ⁿ⁺¹C₃ + … + ⁿ⁺¹Cₙ₊₁",
+          "  [((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each ((n + 1)/(r + 1))·ⁿCᵣ becomes ⁿ⁺¹Cᵣ₊₁, so (n + 1)S = ⁿ⁺¹C₁ + ⁿ⁺¹C₂ + … + ⁿ⁺¹Cₙ₊₁.",
+          "accept": [
+            "n plus one by r plus one times n C r is n plus one C r plus one so the sum becomes n plus one C one plus n plus one C two and so on",
+            "raise the index to n plus one with the identity",
+            "each term becomes a coefficient of one plus x to the n plus one",
+            "identity vadithe prathi term n plus one C r plus one avthundi",
+            "the coefficients become n plus one C one up to n plus one C n plus one"
+          ],
+          "reject": [
+            "use the identity",
+            "apply the formula"
+          ],
+          "heard_as": [
+            "n plus one C r plus one",
+            "n plus one by r plus one",
+            "one row down"
+          ]
+        },
+        "why": "Once every term is ⁿ⁺¹Cᵣ₊₁, the whole sum is the sum of the coefficients of (1 + x)ⁿ⁺¹ with its first term missing — which is what putting x = 1 in the expansion gives.",
+        "common_mistakes": [
+          "Writing ((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ.",
+          "Forgetting that the sum now starts at ⁿ⁺¹C₁, not ⁿ⁺¹C₀."
+        ]
+      },
+      {
+        "id": "s4_sum",
+        "kind": "boxed_final",
+        "label": "Sum the expansion and divide",
+        "marks": 2,
+        "mark_note": "Result",
+        "margin_note": "Sixth and seventh marks. ⁿ⁺¹C₀ + ⁿ⁺¹C₁ + … + ⁿ⁺¹Cₙ₊₁ = 2ⁿ⁺¹, and ⁿ⁺¹C₀ = 1 is missing, so the sum is 2ⁿ⁺¹ − 1.",
+        "lines": [
+          "= 2ⁿ⁺¹ − 1",
+          "  [ⁿ⁺¹C₀ + ⁿ⁺¹C₁ + … + ⁿ⁺¹Cₙ₊₁ = 2ⁿ⁺¹]",
+          {
+            "text": "∴ S = (2ⁿ⁺¹ − 1)/(n + 1)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum equals 2ⁿ⁺¹ − 1, so S = (2ⁿ⁺¹ − 1)/(n + 1).",
+          "accept": [
+            "the sum of all the coefficients is two to the n plus one, minus the missing one, divide by n plus one",
+            "n plus one S equals two to the n plus one minus one",
+            "S equals two to the n plus one minus one over n plus one",
+            "coefficients sum two power n plus one minus one, n plus one tho divide cheste S vasthundi",
+            "sum of the binomial coefficients of one plus x to the n plus one is two to the n plus one"
+          ],
+          "reject": [
+            "sum it",
+            "divide by n plus one"
+          ],
+          "heard_as": [
+            "two to the n plus one",
+            "minus one",
+            "n plus one",
+            "divide"
+          ]
+        },
+        "why": "ⁿ⁺¹C₁ + ⁿ⁺¹C₂ + … + ⁿ⁺¹Cₙ₊₁ is 2ⁿ⁺¹ minus its first term ⁿ⁺¹C₀ = 1. Dividing back by what was multiplied gives S.",
+        "common_mistakes": [
+          "Writing the sum of the coefficients as 2ⁿ instead of 2ⁿ⁺¹.",
+          "Forgetting the −1 for the missing ⁿ⁺¹C₀."
+        ]
+      }
+    ]
+  }
+}

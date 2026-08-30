@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_vsaq_largest_22cr_find_13cr",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ²²Cᵣ is the largest binomial coefficient in the expansion of (1 + x)²², find the value of ¹³Cᵣ.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find r from the largest coefficient",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate ¹³C₁₁",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.84 — VSAQ chapter 17 Binomial Theorem, answer 163. Printed appearances: AP 15, 16, 19, 20 · TS 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q8 of Model Paper 3 (book p.115) and is re-solved in the Bullet Model Paper Q8 block (book p.98) — that second solution agrees with this card. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find ¹³Cᵣ — how the largest coefficient of (1 + x)²² fixes r, and how ¹³C₁₁ is evaluated.",
+  "insider_note": "n = 22 is even, so r = 11, and ¹³C₁₁ is read as ¹³C₂ by symmetry. Computing it from factorials by hand is the long way to the same one mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Binomial Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Find r from the largest coefficient",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. n = 22 is even, so the largest coefficient is the middle one ²²C₁₁; hence r = 11.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "n = 22 is even, so the largest coefficient",
+          "is the middle one, ²²C₁₁",
+          "²²Cᵣ is the largest ⇒ r = 11"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n = 22 is even so the largest coefficient is ²²C₁₁, which gives r = 11.",
+          "accept": [
+            "n is twenty two which is even so the largest coefficient is twenty two C eleven and r is eleven",
+            "the middle coefficient of an even power is the largest so r is n by two which is eleven",
+            "r equals eleven",
+            "twenty two even kabatti largest twenty two C eleven, r eleven",
+            "r is half of twenty two"
+          ],
+          "reject": [
+            "write the formula",
+            "use the general term"
+          ],
+          "heard_as": [
+            "r equals eleven",
+            "twenty two C eleven",
+            "even"
+          ]
+        },
+        "why": "The question gives r only through a fact about (1 + x)²²; recognising the middle coefficient is the whole first mark.",
+        "common_mistakes": [
+          "Taking r = 22.",
+          "Giving two values of r as if n were odd."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate ¹³C₁₁",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. ¹³C₁₁ = ¹³C₂ because 11 + 2 = 13; ¹³C₂ = (13·12)/(1·2) = 78.",
+        "lines": [
+          "¹³Cᵣ = ¹³C₁₁ = ¹³C₂ = (13·12)/(1·2)",
+          {
+            "text": "∴ ¹³Cᵣ = 78",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ¹³C₁₁ = ¹³C₂ = 78.",
+          "accept": [
+            "thirteen C eleven is thirteen C two which is thirteen into twelve by two, seventy eight",
+            "use n C r equals n C n minus r to get thirteen C two",
+            "the answer is seventy eight",
+            "thirteen C eleven ante thirteen C two, seventy eight",
+            "seventy eight"
+          ],
+          "reject": [
+            "simplify",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "seventy eight",
+            "thirteen C two",
+            "thirteen C eleven"
+          ]
+        },
+        "why": "ⁿCᵣ = ⁿCₙ₋ᵣ turns an eleven-factor product into a two-factor one.",
+        "common_mistakes": [
+          "Computing ¹³C₁₁ as 13·12·…·3 over 11! by hand.",
+          "Writing ¹³C₂ = 13·12 = 156."
+        ]
+      }
+    ]
+  }
+}

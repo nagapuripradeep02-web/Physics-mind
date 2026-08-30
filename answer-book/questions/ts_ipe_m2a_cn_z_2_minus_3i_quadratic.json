@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_z_2_minus_3i_quadratic",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If z = 2 − 3i, show that z² − 4z + 13 = 0.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Move the 2 across and square",
+      "marks": 1
+    },
+    {
+      "label": "Expand and rearrange to the given form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.72 — VSAQ chapter 12 Complex Numbers, answer 115. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 19 · TS 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show z satisfies this quadratic without substituting z into it.",
+  "insider_note": "The short route earns both marks: move the 2 across first, so squaring gives (−3i)² = −9 and the i disappears in one line. Squaring z = 2 − 3i as it stands keeps an i term that never cancels.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_square",
+        "kind": "equation",
+        "label": "Isolate the i and square",
+        "marks": 1,
+        "mark_note": "Square",
+        "margin_note": "First mark. Move the 2 to the left so the right side is only −3i, then square: (−3i)² = 9i² = −9. The i is gone.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "z = 2 − 3i ⇒ z − 2 = −3i",
+          "Squaring: (z − 2)² = (−3i)² = 9i² = −9"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That z − 2 = −3i is squared to give (z − 2)² = −9.",
+          "accept": [
+            "move the two across so z minus two is minus three i, then square to get minus nine",
+            "z minus two squared equals minus three i squared equals minus nine",
+            "isolate the imaginary part and square both sides",
+            "z minus two equals minus three i, square cheste minus nine",
+            "square z minus two to remove the i"
+          ],
+          "reject": [
+            "substitute z",
+            "square it"
+          ],
+          "heard_as": [
+            "z minus two",
+            "minus three i",
+            "minus nine",
+            "square",
+            "nine i squared"
+          ]
+        },
+        "why": "Squaring −3i gives a real number, so z is seen to satisfy a real quadratic in one step. Substituting 2 − 3i into z² − 4z + 13 also works but needs an expansion with cross terms.",
+        "common_mistakes": [
+          "Writing (−3i)² = +9.",
+          "Squaring z = 2 − 3i as it stands, which keeps an i term."
+        ]
+      },
+      {
+        "id": "s2_expand",
+        "kind": "boxed_final",
+        "label": "Expand and rearrange",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (z − 2)² = z² − 4z + 4. Move the −9 across: 4 + 9 = 13.",
+        "lines": [
+          "⇒ z² − 4z + 4 = −9",
+          {
+            "text": "∴ z² − 4z + 13 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding gives z² − 4z + 4 = −9, so z² − 4z + 13 = 0.",
+          "accept": [
+            "expand to z squared minus four z plus four equals minus nine and move the nine across to get z squared minus four z plus thirteen equals zero",
+            "z squared minus four z plus four plus nine is zero, that is plus thirteen",
+            "bring minus nine to the left, four plus nine is thirteen",
+            "expand chesi nine ni left ki teeste z square minus four z plus thirteen equals zero",
+            "the quadratic is z squared minus four z plus thirteen equals zero"
+          ],
+          "reject": [
+            "hence proved",
+            "expand"
+          ],
+          "heard_as": [
+            "z squared minus four z",
+            "plus four",
+            "thirteen",
+            "equals zero"
+          ]
+        },
+        "why": "The constant 13 is 4 + 9 — the 4 from squaring the 2 and the 9 from squaring the 3. Seeing where 13 comes from is the check that the answer was reached, not copied.",
+        "common_mistakes": [
+          "Expanding (z − 2)² as z² + 4.",
+          "Writing z² − 4z − 5 = 0 by taking (−3i)² = +9."
+        ]
+      }
+    ]
+  }
+}

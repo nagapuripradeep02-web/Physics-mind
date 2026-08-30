@@ -1,0 +1,282 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_series_1_by_5_find_3x2_6x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If x = 1/5 + (1·3)/(5·10) + (1·3·5)/(5·10·15) + … ∞, then find 3x² + 6x.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Rewrite with factorials",
+      "marks": 2
+    },
+    {
+      "label": "Compare with the standard expansion",
+      "marks": 1
+    },
+    {
+      "label": "Find p, q and y",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate the power",
+      "marks": 1
+    },
+    {
+      "label": "Square and rearrange",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.33 — LAQ chapter 3 Binomial Theorem, answer 27. Printed appearances: AP 17, 18 · TS 16, 19. THE 2+1+2+1+1 SPLIT IS THE BOOK'S: book p.33 prints [2 Marks] against the factorial rewrite, [1 Mark] against the comparison line, [2 Marks] against p, q and y, [1 Mark] against the evaluated power and [1 Mark] against the final line. The SAME split and step ids are used on every infinite-series answer in this unit, deliberately. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q21 of Model Paper 1 (book p.112) and is re-solved in the Bullet Model Paper Q20 & 21 block (book p.107) — that second solution agrees with this card. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find 3x² + 6x — what you add to both sides, what you compare with, how you find p, q and y, and how the value of 1 + x gives the answer.",
+  "insider_note": "Add 1 on both sides first — the printed series has no leading 1 to match the expansion. Finish by squaring 1 + x = √(5/3): the 3x² + 6x asked for appears on its own, with no need to solve for x.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite",
+        "kind": "equation",
+        "label": "Rewrite with factorials",
+        "marks": 2,
+        "mark_note": "Series in standard shape",
+        "margin_note": "First two marks. Each denominator is a product like 5·10·15 = 5³·(1·2·3), so every term becomes (a product)/(k!) times (1/5)ᵏ. The series has no leading 1, so add 1 to both sides first; the formula is then written in y because x is already taken.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given x = 1/5 + (1·3)/(5·10)",
+          "  + (1·3·5)/(5·10·15) + …",
+          "Adding 1 on both sides:",
+          "1 + x = 1 + (1/1!)(1/5) + (1·3/2!)(1/5)²",
+          "  + (1·3·5/3!)(1/5)³ + …"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the series is rewritten so the k-th term is a product over k! times (1/5) to the power k, after adding 1 on both sides so the missing early terms are present.",
+          "accept": [
+            "write each term as a product over k factorial times one by five to the power k and add 1 on both sides",
+            "split each denominator into five to the power k times k factorial",
+            "add 1 to both sides and bring the series to the shape one plus p by one factorial into x by q and so on",
+            "prathi term ni k factorial tho, one by five power k tho rayali, rendu sides ki 1 add cheyali",
+            "rewrite the denominators as powers of five times factorials"
+          ],
+          "reject": [
+            "write the series",
+            "compare with the formula"
+          ],
+          "heard_as": [
+            "factorial",
+            "one by five",
+            "power k",
+            "both sides"
+          ]
+        },
+        "why": "The standard expansion of (1 − y)^(−p/q) has a k! in every denominator and a fixed ratio y/q raised to k. Until the given series is written in that exact shape, p, q and y cannot be read off.",
+        "common_mistakes": [
+          "Forgetting to add 1 on both sides when the series starts late, so the comparison has no 1 to match.",
+          "Writing 5·10·15 as 5·3! instead of 5³·3! — every factor carries a 5.",
+          "Losing the alternating sign when the terms alternate."
+        ]
+      },
+      {
+        "id": "s2_compare",
+        "kind": "equation",
+        "label": "Compare with the standard expansion",
+        "marks": 1,
+        "mark_note": "Standard form",
+        "margin_note": "Third mark, for WRITING the standard expansion beside the series. The examiner looks for the pattern p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!. All plus signs mean the (1 − y) form.",
+        "lines": [
+          "Compare with the standard expansion",
+          {
+            "text": "(1 - y)^{-p/q} = 1 + \\dfrac{p}{1!}\\left(\\dfrac{y}{q}\\right) + \\dfrac{p(p+q)}{2!}\\left(\\dfrac{y}{q}\\right)^2 + \\cdots",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the series is compared with the expansion of (1 − y) to the power minus p by q, whose coefficients are p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!.",
+          "accept": [
+            "compare with the expansion of (1 − y) to the power minus p by q",
+            "match it with one plus p by one factorial into y by q plus p into p plus q by two factorial into y by q squared and so on",
+            "use the standard binomial series with negative fractional index (1 − y) to the power minus p by q",
+            "(1 − y)^(−p/q) formula tho compare cheyali",
+            "the pattern p then p into p plus q over the factorials is the standard series"
+          ],
+          "reject": [
+            "compare it",
+            "use the formula"
+          ],
+          "heard_as": [
+            "minus p by q",
+            "p plus q",
+            "standard expansion",
+            "y by q"
+          ]
+        },
+        "why": "This is the only binomial expansion whose coefficients grow as p, p(p + q), p(p + q)(p + 2q). Naming it turns the rest of the question into reading off three numbers.",
+        "common_mistakes": [
+          "Using the (1 − x) form for an alternating series or the (1 + x) form for an all-plus series.",
+          "Writing p(p + 1) instead of p(p + q) — the step between factors is q, not 1."
+        ]
+      },
+      {
+        "id": "s3_p_q_x",
+        "kind": "equation",
+        "label": "Find p, q and y",
+        "marks": 2,
+        "mark_note": "p, q, y",
+        "margin_note": "Fourth and fifth marks. p is the first factor (1), p + q is the second (3) so q = 2, and y/q equals the common ratio 1/5 so y = q/5 = 2/5.",
+        "lines": [
+          "p = 1, p + q = 3 ⇒ q = 2",
+          "y/q = 1/5 ⇒ y = q/5 = 2/5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p = 1 and p + q = 3 give q = 2, and y/q = 1/5 gives y = two by five.",
+          "accept": [
+            "p is one, p plus q is three so q is two, and y by q is one by five so y is two by five",
+            "the first factor gives p equal to one and the second gives q equal to two",
+            "y by q equals one by five so y equals two by five",
+            "p one, q two vasthai, y by q one by five kabatti y two by five",
+            "read off p from the first numerator and q from the gap between the factors"
+          ],
+          "reject": [
+            "find p and q",
+            "find the values"
+          ],
+          "heard_as": [
+            "p equals",
+            "q equals",
+            "y equals",
+            "two by five"
+          ]
+        },
+        "why": "Three unknowns need three matches: the first numerator fixes p, the second fixes p + q, and the ratio inside the bracket fixes y/q. Nothing else in the series is free.",
+        "common_mistakes": [
+          "Taking y = 1/5 directly — the bracket holds y/q, so y = q × 1/5.",
+          "Reading q from the second factor as a whole instead of as p + q."
+        ]
+      },
+      {
+        "id": "s4_evaluate",
+        "kind": "equation",
+        "label": "Evaluate the power",
+        "marks": 1,
+        "mark_note": "Value of the power",
+        "margin_note": "Sixth mark. Substitute p, q, y into (1 − y)^(−p/q) and simplify the fraction inside the bracket before touching the exponent.",
+        "lines": [
+          {
+            "text": "1 + x = (1 - y)^{-p/q} = \\left(1 - \\tfrac{2}{5}\\right)^{-1/2} = \\left(\\tfrac{3}{5}\\right)^{-1/2} = \\sqrt{\\tfrac{5}{3}}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives one plus x equals root of five by three.",
+          "accept": [
+            "substituting gives one plus x equals root of five by three",
+            "put the values into (1 − y)^(−p/q) and simplify to get one plus x equals root of five by three",
+            "the bracket becomes three by five and the power gives one plus x equals root of five by three",
+            "values substitute cheste one plus x equals root of five by three vasthundi",
+            "simplify the bracket first then apply the negative index"
+          ],
+          "reject": [
+            "substitute",
+            "simplify it"
+          ],
+          "heard_as": [
+            "power",
+            "root",
+            "one plus x equals root of five by three"
+          ]
+        },
+        "why": "A negative index inverts the fraction and a fractional index takes a root. Doing the inversion first keeps the root over a simple fraction.",
+        "common_mistakes": [
+          "Inverting the exponent instead of the fraction when the index is negative.",
+          "Leaving a root in the denominator without a clear final value."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Square and rearrange",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Seventh mark. Square 1 + x = √(5/3), multiply by 3, and the left side is 3 + 6x + 3x². The 3x² + 6x asked for is sitting there.",
+        "lines": [
+          "(1 + x)² = 5/3",
+          "3(1 + 2x + x²) = 5 ⇒ 3 + 6x + 3x² = 5",
+          {
+            "text": "∴ 3x² + 6x = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring 1 + x = √(5/3) and multiplying by 3 gives 3 + 6x + 3x² = 5, so 3x² + 6x = 2.",
+          "accept": [
+            "square both sides to get one plus x squared is five by three then three x squared plus six x is two",
+            "squaring gives three plus six x plus three x squared equals five so the answer is two",
+            "three x squared plus six x equals two",
+            "square chesi three tho multiply cheste three x squared plus six x is two",
+            "the answer is two"
+          ],
+          "reject": [
+            "that gives the answer",
+            "finish it"
+          ],
+          "heard_as": [
+            "squared",
+            "five by three",
+            "equals two",
+            "three x squared"
+          ]
+        },
+        "why": "The question asks for 3x² + 6x, which is 3(1 + x)² − 3. Finding 1 + x as one number is enough; x itself is never needed.",
+        "common_mistakes": [
+          "Solving for x = √(5/3) − 1 and substituting — correct but slow and easy to get wrong.",
+          "Forgetting the 3 when expanding 3(1 + x)²."
+        ]
+      }
+    ]
+  }
+}

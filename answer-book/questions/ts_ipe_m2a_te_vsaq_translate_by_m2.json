@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_vsaq_translate_by_m2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the polynomial equation whose roots are the translates of the roots of the equation x⁴ − 5x³ + 7x² − 4x + 5 = 0 by −2.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Replace x by x + 2",
+      "marks": 1
+    },
+    {
+      "label": "Expand and write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.92 — Star Questions Plus, Theory of Equations banner, answer 196. Printed appearances: AP 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.76–77) prints no [N Marks] tags. It is the 1+1 this publisher prints for a 2-mark VSAQ in its Maths-1A volume (Matrices, book p.82 there): one mark for the relation or substitution that sets the question up, one for the value. The SAME step ids (s1_transform, s2_answer) are used on answers 132, 133, 134, 135 and Star Questions Plus 196, deliberately: one substitution (x → 1/x, x/k, −x or x + h) applied to f(x), then one clearing of fractions or brackets. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q5 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. THE SECTION IS OURS: Star Questions Plus prints no mark cut, so this card is classed by shape — one substitution and one expansion, the same length as the chapter's Section-A answers 132–135 — as a VSAQ at 2 marks (this unit has no SAQ chapter). The book solves it by Horner's process (synthetic division by 2 repeated, remainders 1, −4, 1, 3 read as a₄, a₃, a₂, a₁ and a₀ = 1); the card expands f(x + 2) directly and reaches the same equation, and names Horner's route in the rail. Truth check: both routes give x⁴ + 3x³ + x² − 4x + 1 = 0. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say what you replace x by and why the sign is plus, and how you get the new coefficients.",
+  "insider_note": "Translate by −2 means replace x by x PLUS 2; the sign is the first mark and the one most often reversed.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Theory of Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transform",
+        "kind": "equation",
+        "label": "Replace x by x + 2",
+        "marks": 1,
+        "mark_note": "f(x + 2) = 0",
+        "margin_note": "First mark. A translate by −2 means each new root is (old root − 2), so x = α − 2 ⇒ α = x + 2 and the required equation is f(x + 2) = 0. The sign is the mark: translate by −2 means REPLACE x by x + 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = x⁴ − 5x³ + 7x² − 4x + 5.",
+          "Each new root = old root − 2, so the required",
+          "equation is f(x + 2) = 0:",
+          "(x+2)⁴ − 5(x+2)³ + 7(x+2)² − 4(x+2) + 5 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That translating the roots by −2 means each new root is the old one minus 2, so the required equation is f(x + 2) = 0.",
+          "accept": [
+            "the new roots are the old roots minus two so replace x by x plus two",
+            "the required equation is f of x plus two equals zero",
+            "translate by minus two means put x plus two in place of x",
+            "roots minus two avutayi kabatti x place lo x plus two pettali",
+            "substitute x plus two for x"
+          ],
+          "reject": [
+            "shift it",
+            "use horner"
+          ],
+          "heard_as": [
+            "x plus two",
+            "f of x plus two",
+            "translate",
+            "minus two",
+            "replace x"
+          ]
+        },
+        "why": "If f(α) = 0 then f((α − 2) + 2) = 0, so α − 2 is a root of f(x + 2) = 0. The sign is opposite to the shift, which is the reason for the first mark. The book does this by Horner's repeated synthetic division with 2; direct expansion gives the same equation.",
+        "common_mistakes": [
+          "Replacing x by x − 2, which translates the roots by +2.",
+          "Writing (x + 2)⁴ with wrong binomial coefficients (1, 4, 6, 4, 1)."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Expand and add",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Expand each bracket and add like powers: x³: 8 − 5 = 3; x²: 24 − 30 + 7 = 1; x: 32 − 60 + 28 − 4 = −4; constant: 16 − 40 + 28 − 8 + 5 = 1.",
+        "lines": [
+          "(x + 2)⁴ = x⁴ + 8x³ + 24x² + 32x + 16",
+          "−5(x + 2)³ = −5x³ − 30x² − 60x − 40",
+          "7(x + 2)² = 7x² + 28x + 28",
+          "−4(x + 2) + 5 = −4x − 3",
+          "Adding:",
+          {
+            "text": "∴ x⁴ + 3x³ + x² − 4x + 1 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding the four brackets and adding like powers gives x⁴ + 3x³ + x² − 4x + 1 = 0.",
+          "accept": [
+            "expand each bracket and add, the equation is x four plus three x cube plus x square minus four x plus one",
+            "the answer is x to the four plus three x cubed plus x squared minus four x plus one equals zero",
+            "collect the like powers after expanding",
+            "expand chesi add chesthe x four plus three x cube plus x square minus four x plus one",
+            "Horner's method with two gives the same equation"
+          ],
+          "reject": [
+            "expand it",
+            "simplify"
+          ],
+          "heard_as": [
+            "x four",
+            "three x cube",
+            "minus four x",
+            "plus one",
+            "expand",
+            "horner"
+          ]
+        },
+        "why": "Adding like powers is where the arithmetic is. Horner's process (synthetic division by 2 repeated four times, reading the remainders 1, −4, 1, 3 as the new coefficients from the constant upward) is the shorter exam route and must give the same line.",
+        "common_mistakes": [
+          "A slip in the binomial expansion of (x + 2)⁴ (coefficients 1, 4, 6, 4, 1 times powers of 2: 1, 8, 24, 32, 16).",
+          "Losing the constant −40 + 28 − 8 + 5 + 16 = 1.",
+          "Reading Horner's remainders in the wrong order (the first remainder is the constant term)."
+        ]
+      }
+    ]
+  }
+}

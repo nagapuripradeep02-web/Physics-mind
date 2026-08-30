@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_nc4_210_find_n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ⁿC₄ = 210, find n.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Clear the 4! and factor",
+      "marks": 1
+    },
+    {
+      "label": "Compare and state n",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 16 Permutations & Combinations, answer 141.1. Printed appearances: TS 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_expand, s2_solve) are used on every 'solve for n or r' VSAQ in this unit (answers 138.1 to 142), deliberately: they are one method — write the permutation or combination out, compare or solve — over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find n when n C 4 is 210.",
+  "insider_note": "Clear the 4! first: n(n − 1)(n − 2)(n − 3) = 210 · 24 = 5040, then write 5040 as four consecutive factors, 10 · 9 · 8 · 7. n is the largest factor, 10 — not the smallest.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand",
+        "kind": "equation",
+        "label": "Clear the 4! and factor",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. ⁿC₄ = n(n − 1)(n − 2)(n − 3)/4!. Multiply 210 by 24 to get 5040 = 10 · 9 · 8 · 7.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "ⁿC₄ = n(n − 1)(n − 2)(n − 3)/4! = 210",
+          "n(n − 1)(n − 2)(n − 3) = 210 · 24 = 5040",
+          "5040 = 10 · 9 · 8 · 7"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n C 4 is the product of four consecutive numbers over 4 factorial, so the product equals 210 times 24 = 5040, which is 10 times 9 times 8 times 7.",
+          "accept": [
+            "n C four is n into n minus one into n minus two into n minus three over four factorial, so the product is two ten into twenty four which is five thousand forty, that is ten nine eight seven",
+            "multiply two hundred ten by twenty four to get five thousand forty and write it as ten times nine times eight times seven",
+            "the product of four consecutive numbers is five zero four zero",
+            "two ten into twenty four five thousand forty, adi ten nine eight seven",
+            "clear the four factorial first"
+          ],
+          "reject": [
+            "find n",
+            "use the formula"
+          ],
+          "heard_as": [
+            "four factorial",
+            "twenty four",
+            "five thousand forty",
+            "ten nine eight seven"
+          ]
+        },
+        "why": "A combination is a product of consecutive numbers divided by r!. Multiplying back by 4! recovers the product of consecutive numbers, which can then be matched.",
+        "common_mistakes": [
+          "Dividing 210 by 24 instead of multiplying.",
+          "Using 3! = 6 instead of 4! = 24."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Compare and state n",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The largest factor is 10, so n = 10.",
+        "lines": [
+          "n(n − 1)(n − 2)(n − 3) = 10 · 9 · 8 · 7",
+          {
+            "text": "∴ n = 10",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That comparing the products gives n = 10.",
+          "accept": [
+            "compare with ten nine eight seven so n is ten",
+            "n equals ten",
+            "the largest factor is ten so n is ten",
+            "compare cheste n ten",
+            "n is ten"
+          ],
+          "reject": [
+            "compare",
+            "solve"
+          ],
+          "heard_as": [
+            "n is ten",
+            "ten",
+            "compare"
+          ]
+        },
+        "why": "The product of four consecutive numbers increases with n, so only n = 10 fits; the check ¹⁰C₄ = 210 confirms it.",
+        "common_mistakes": [
+          "Answering n = 7, the smallest factor.",
+          "Forgetting to check that ¹⁰C₄ really is 210."
+        ]
+      }
+    ]
+  }
+}

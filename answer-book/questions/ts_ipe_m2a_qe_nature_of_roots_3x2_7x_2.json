@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_nature_of_roots_3x2_7x_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the nature of the roots of 3x² + 7x + 2 = 0.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find Δ",
+      "marks": 1
+    },
+    {
+      "label": "Nature",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.74 (PDF p.75 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — VSAQ chapter 14 Quadratic Expressions, answer 120.1. Printed appearances: AP 16. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.74–75. 1 (method) + 1 (answer) is the split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). The book's VSAQ chapter header carries ★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find the nature of these roots — say what you compute and what its value tells you.",
+  "insider_note": "Write Δ = 25 as 5², because 'perfect square' is the phrase the examiner reads. The full answer needs both words — rational AND unequal; 'real and unequal' alone is the half answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_discriminant",
+        "kind": "equation",
+        "label": "Find Δ",
+        "marks": 1,
+        "mark_note": "Discriminant",
+        "margin_note": "First mark. a = 3, b = 7, c = 2. Δ = 49 − 24 = 25. Write it as 5² on the page — the examiner is looking for the words 'perfect square'.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here a = 3, b = 7, c = 2",
+          "Δ = b² − 4ac = 7² − 4(3)(2)",
+          "= 49 − 24 = 25 = 5² > 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ = b² − 4ac is computed with a = 3, b = 7, c = 2 and comes to 25, a positive perfect square.",
+          "accept": [
+            "find the discriminant b squared minus four a c which is forty nine minus twenty four equals twenty five",
+            "delta is twenty five which is five squared and positive",
+            "compute b squared minus four a c and it is a perfect square twenty five",
+            "discriminant kanukovali, forty nine minus twenty four is twenty five, perfect square",
+            "delta equals twenty five, positive and a perfect square"
+          ],
+          "reject": [
+            "find delta",
+            "find the roots",
+            "use the formula"
+          ],
+          "heard_as": [
+            "discriminant",
+            "delta",
+            "twenty five",
+            "perfect square",
+            "five squared"
+          ]
+        },
+        "why": "The nature of the roots is decided entirely by the sign and the kind of number Δ is, so Δ is the only computation the question needs.",
+        "common_mistakes": [
+          "Writing 4ac as 4·3 = 12 and forgetting the c.",
+          "Getting 49 − 24 = 35.",
+          "Not noticing 25 is a perfect square."
+        ]
+      },
+      {
+        "id": "s2_nature",
+        "kind": "boxed_final",
+        "label": "Nature",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Δ > 0 gives real and unequal; Δ a perfect square (with rational coefficients) upgrades that to rational. Both words matter: 'rational, unequal'. (The roots are −1/3 and −2.)",
+        "lines": [
+          "Δ > 0 and a perfect square, with",
+          "rational coefficients.",
+          {
+            "text": "∴ roots are rational and unequal",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ > 0 makes the roots real and unequal, and Δ being a perfect square with rational coefficients makes them rational — so the roots are rational and unequal.",
+          "accept": [
+            "delta is positive and a perfect square so the roots are rational and unequal",
+            "positive discriminant means real and distinct, perfect square means rational",
+            "the roots are rational and distinct because twenty five is a perfect square",
+            "delta positive and perfect square kabatti roots rational and unequal",
+            "real, unequal and rational roots"
+          ],
+          "reject": [
+            "the roots are real",
+            "write the nature",
+            "they are unequal"
+          ],
+          "heard_as": [
+            "rational",
+            "unequal",
+            "distinct",
+            "real",
+            "perfect square"
+          ]
+        },
+        "why": "Δ > 0 alone says real and distinct; only a perfect-square Δ makes the square root in the formula rational, and with rational a, b, c the roots are then rational. Stating both facts is what earns the mark.",
+        "common_mistakes": [
+          "Answering only 'real and unequal' and missing 'rational'.",
+          "Answering 'irrational' because a square root appears in the formula.",
+          "Answering 'equal' by mis-reading Δ > 0 as Δ = 0."
+        ]
+      }
+    ]
+  }
+}

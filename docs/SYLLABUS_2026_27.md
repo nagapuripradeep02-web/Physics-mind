@@ -34,6 +34,37 @@ weighting; they still say what was ASKED, not what now weighs most (see units.js
   step marks, page header, and any prose that stated a count; `verification.note` records where
   the eighth mark went. Every one still carries `needs_teacher_verification: true`.
 
+
+## 1b. Second year — Maths 2A keeps the OLD 75-mark paper in 2026-27 (verified 2026-08-29)
+
+The founder asked, on opening Maths 2A, whether the second-year mark scheme had changed for any of
+Physics, Chemistry or Mathematics. Two independent sources say the reform above is FIRST YEAR only:
+
+- **Telangana Today, 28 May 2026** — "TG BIE revises intermediate exam pattern to reduce memorisation
+  burden": the revision is to "the first-year intermediate public examinations question paper
+  pattern" for 2026-27; "the Mathematics I-A and I-B papers will be conducted for a total of 60
+  marks each as against 75 marks in the past"; and "except for Physics, Chemistry, Botany and
+  Zoology, the theory examination pattern has been revised for all subjects."
+  (telanganatoday.com/tg-bie-revises-intermediate-exam-pattern-to-reduce-memorisation-burden)
+- **Resonance Colleges, 15 May 2026** — "Telangana Intermediate Board Revamps Question Paper Marks
+  Pattern 2026": "The examination framework reforms shall apply to second-year students from 2027-28
+  onwards." (resonancecolleges.com/blog/inter-question-paper-revamp)
+- Background: **Deccan Chronicle, 28 Apr 2025** — the board's original plan was first year 2025-26 /
+  second year 2026-27; the government deferred it a year, which is how both cohorts moved to
+  2026-27 / 2027-28.
+
+So a Maths 2A student writing **March 2027** sits the unchanged paper: **A 10×2 = 20 · B any 5 of 7
+×4 = 20 · C any 5 of 7 ×7 = 35 → 75 marks**, which is exactly what the source book prints (Baby
+Bullet-Q Senior Inter Maths-2A, blueprint p.3 "prepared according to the Model Question Paper issued
+by B.I.E.", and all five model papers pp.111–120). Physics-II and Chemistry-II were never revised in
+either year, which is why `physics_2` / `chemistry_2` reuse `ABC_60`.
+
+**Repo effect (2026-08-29):** `PAPER_PATTERNS.mathematics_2a` = `ABC_75_MATHS_PRE_REFORM` (VSAQ 2 ·
+SAQ 4 · LAQ **7**, total 75, `wef: '2026-27'` = the syllabus year the row DESCRIBES, `internal`
+omitted as unsourced). Founder decision: "if same as old for the mathematics, continue for 75 marks
+with old marking scheme." When 2A/2B move to the new shape in 2027-28, every 2A LAQ card is re-cut
+7 → 8 the way the 99 first-year cards were on 2026-08-28.
+
 ## 2. The syllabus (first year, NCERT-aligned, "topics not in JEE/NEET removed")
 
 ### Physics — chapter list VERIFIED, sub-topic deletions NOT

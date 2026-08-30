@@ -1,0 +1,192 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_rv_c_power_k_by_k_factorial",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Random Variables and Probability Distributions"
+  },
+  "chapter": "Random Variables and Probability Distributions",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "A random variable X has the range {1, 2, 3, …}. If P(X = k) = cᵏ/k! for k = 1, 2, 3, …, then find c and P(0 < X < 3).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write ΣP = 1 as a series",
+      "marks": 2
+    },
+    {
+      "label": "Sum the series and find c",
+      "marks": 3
+    },
+    {
+      "label": "Find P(0 < X < 3)",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.43 — LAQ chapter 5 Random Variables, answer 46. (In this part of the scan book page = PDF page − 1: book p.43 was read at PDF p.44, not p.45 as the −2 rule predicts.) Printed appearances: TS 15. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The 2 + 3 + 2 gives 2 for writing ΣP = 1 as an infinite series, 3 for recognising the series as the exponential series and solving for c, and 2 for the two-term probability (the 2 for a two-term probability is the book's own weight, from answer 45 on book p.42). The SAME split and the SAME step ids (s1_sum_series, s2_find_c, s3_prob) are used on the two infinite-range LAQs of this unit (46, 47) deliberately: one method (sum a known series) over two series. The LAQ chapter header (book p.40) carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q24 is the Random Variables slot; the Bullet Model Paper re-solves this question under Q24 on book p.110 with the same c = logₑ 2 — both printings recompute. Notation: c = logₑ 2 (the natural logarithm, also written ln 2) is written the way the book and the 1A cards write it. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find c and P(0 < X < 3) when P(X = k) = cᵏ/k! — what series the probabilities make, which standard series it is, and which terms the probability needs.",
+  "insider_note": "Σ P(X = k) = 1 written as the series c/1! + c²/2! + … is where the first marks sit; the series is eᶜ with its leading 1 missing, so add 1 to BOTH sides to get eᶜ = 2 — and the final answer stays as logₑ 2, never a decimal.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Random Variables · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sum_series",
+        "kind": "equation",
+        "label": "Write ΣP = 1 as a series",
+        "marks": 2,
+        "mark_note": "Series",
+        "margin_note": "First two marks. X has infinitely many values, so ΣP(X = k) = 1 is an infinite series: c/1! + c²/2! + c³/3! + … = 1. Write the general term first and then the series with at least three terms and the dots.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given P(X = k) = cᵏ/k!, k = 1, 2, 3, …",
+          "The probabilities add to 1:",
+          {
+            "text": "ΣP(X = k) = 1",
+            "style": "eq"
+          },
+          "⇒ P(X = 1) + P(X = 2) + P(X = 3) + … = 1",
+          "⇒ c/1! + c²/2! + c³/3! + … = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ΣP(X = k) = 1 becomes the infinite series c/1! + c²/2! + c³/3! + … = 1.",
+          "accept": [
+            "the probabilities add to one so c by one factorial plus c squared by two factorial plus c cubed by three factorial and so on equals one",
+            "sum of P equals one gives an infinite series in c starting from k equals one",
+            "write c over one factorial plus c square over two factorial plus dot dot dot equal to one",
+            "anni probabilities kalipithe one, c by one factorial plus c square by two factorial plus so on equals one",
+            "set the infinite sum of c to the k over k factorial equal to one"
+          ],
+          "reject": [
+            "find c",
+            "add them"
+          ],
+          "heard_as": [
+            "c by one factorial",
+            "c squared by two factorial",
+            "infinite series",
+            "equal to one",
+            "k factorial"
+          ]
+        },
+        "why": "With an infinite range the condition ΣP = 1 is a series, and the whole question is recognising which series. Writing enough terms to see the pattern is what earns these marks.",
+        "common_mistakes": [
+          "Starting the series at k = 0 with a term 1 — the range starts at 1.",
+          "Writing c/1! + c/2! + c/3! without the powers of c.",
+          "Stopping after one or two terms so the pattern cannot be seen."
+        ]
+      },
+      {
+        "id": "s2_find_c",
+        "kind": "equation",
+        "label": "Sum the series and find c",
+        "marks": 3,
+        "mark_note": "c",
+        "margin_note": "Three marks — the main idea. The series is the exponential series with its first term 1 missing: 1 + x/1! + x²/2! + x³/3! + … = eˣ. Add 1 to both sides, so the left side becomes eᶜ and the right side 2. Then c = logₑ 2.",
+        "lines": [
+          "Add 1 to both sides:",
+          "1 + c/1! + c²/2! + c³/3! + … = 1 + 1 = 2",
+          "We know 1 + x/1! + x²/2! + x³/3! + … = eˣ",
+          "⇒ eᶜ = 2",
+          "⇒ c = logₑ 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding 1 turns the left side into the exponential series eᶜ, so eᶜ = 2 and c = logₑ 2.",
+          "accept": [
+            "add one to both sides, the left side is the exponential series e to the c, so e to the c is two and c is log e of two",
+            "the series is e to the x without the first term, so e to the c minus one equals one and c equals natural log two",
+            "recognise the exponential series, e to the c equals two, c is log two to the base e",
+            "one add cheste e power c vastundi, e power c equals two, c equals log e two",
+            "c is the natural logarithm of two"
+          ],
+          "reject": [
+            "find c",
+            "sum the series"
+          ],
+          "heard_as": [
+            "e to the c",
+            "exponential series",
+            "log e two",
+            "natural log",
+            "equals two"
+          ]
+        },
+        "why": "The exponential series is the one standard series whose terms are xᵏ/k!, and the missing first term is the reason for adding 1 to both sides. Once eᶜ = 2 is written, c is a single logarithm.",
+        "common_mistakes": [
+          "Writing eᶜ = 1 by forgetting to add 1 to the right side as well.",
+          "Answering c = 2 or c = log₁₀ 2.",
+          "Trying to sum the series as a geometric series."
+        ]
+      },
+      {
+        "id": "s3_prob",
+        "kind": "boxed_final",
+        "label": "Find P(0 < X < 3)",
+        "marks": 2,
+        "mark_note": "Probability",
+        "margin_note": "Last two marks. 0 < X < 3 on the range {1, 2, 3, …} means X = 1 or 2. Add the two terms c/1! + c²/2! = c + c²/2 and put c = logₑ 2. The answer stays in logarithms; there is no simpler form.",
+        "lines": [
+          "P(0 < X < 3) = P(X = 1) + P(X = 2)",
+          "= c/1! + c²/2! = c + c²/2",
+          "= logₑ 2 + (logₑ 2)²/2",
+          {
+            "text": "∴ c = logₑ 2, P(0 < X < 3) = logₑ 2 + (logₑ 2)²/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(0 < X < 3) = P(X = 1) + P(X = 2) = c + c²/2 = logₑ 2 + (logₑ 2)²/2.",
+          "accept": [
+            "P of zero less than X less than three is P of one plus P of two which is c plus c squared by two with c equal to log e two",
+            "add the first two terms, c plus half c squared, and put c as the natural log of two",
+            "the answer is log e two plus half of log e two squared",
+            "X one leda two, c plus c square by two, c place lo log e two pettali",
+            "the probability is c plus c squared over two"
+          ],
+          "reject": [
+            "find the probability",
+            "add them"
+          ],
+          "heard_as": [
+            "c plus c squared by two",
+            "log e two",
+            "P of one plus P of two",
+            "natural log",
+            "half"
+          ]
+        },
+        "why": "The event keeps the values 1 and 2 of the range, and the probability is the sum of those two terms of the series — the same terms already written in the first step.",
+        "common_mistakes": [
+          "Including X = 0, which is not in the range.",
+          "Writing c²/2! as c², forgetting the 2 in the denominator.",
+          "Replacing logₑ 2 by 0.693 without being asked — keep the exact form."
+        ]
+      }
+    ]
+  }
+}

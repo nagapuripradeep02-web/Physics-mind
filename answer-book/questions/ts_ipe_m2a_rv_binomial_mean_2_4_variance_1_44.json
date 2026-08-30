@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_rv_binomial_mean_2_4_variance_1_44",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Random Variables and Probability Distributions"
+  },
+  "chapter": "Random Variables and Probability Distributions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the mean and variance of a binomial variable X are 2.4 and 1.44 respectively, then find P(1 < X ≤ 4).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find n, p, q",
+      "marks": 1
+    },
+    {
+      "label": "Find P(1 < X ≤ 4)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.88 — VSAQ chapter 19 Random Variables, answer 178. (In this part of the scan book page = PDF page − 1: book p.88 was read at PDF p.89, not p.90 as the −2 rule predicts.) Printed appearances: AP 18 · TS 15, 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.87–88) prints no [N Marks] tags. It is the split this publisher's Maths-1A book prints for a 2-mark VSAQ (1A book p.82, answers 100 and 101: 1 + 1), applied to the two moves of this question. The SAME split and the SAME step ids (s1_find_n_p_q, s2_required_probability) are used on the five binomial VSAQs of this unit (174–178) deliberately: they are one method over different numbers. The three-term sum makes this the heaviest VSAQ in the chapter; the 1 + 1 still holds because the second step is one formula used three times. The VSAQ chapter header (book p.87) carries ★★ and reads '2 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q10 is the Random Variables slot, and this question IS Q10 of the book's Model Paper 4 (book p.117). Book's printed working recomputes: q = 3/5, p = 2/5, n = 6, P(1 < X ≤ 4) = (4860 + 4320 + 2160)/5⁶ = 11340/15625 = 2268/3125. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find P(1 < X ≤ 4) from the mean and variance — how you get q, p and n, and which three terms you add.",
+  "insider_note": "Variance over mean gives q, not p — 1.44/2.4 = 3/5 — and the fractions should be fifths from the start, since every power later is over 5; 1 < X ≤ 4 keeps exactly three terms, X = 2, 3 and 4.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Random Variables · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_n_p_q",
+        "kind": "equation",
+        "label": "Find n, p, q",
+        "marks": 1,
+        "mark_note": "n, p, q",
+        "margin_note": "First mark. Divide variance by mean: q = 1.44/2.4 = 0.6 = 3/5, so p = 2/5, and n = 2.4/(2/5) = 6. Convert to fifths at once — the powers in the next step are all over 5.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given mean np = 2.4 …(1)",
+          "variance npq = 1.44 …(2)",
+          "(2) ÷ (1): q = 1.44/2.4 = 3/5",
+          "⇒ p = 1 − q = 2/5",
+          "np = 2.4 ⇒ n(2/5) = 2.4 ⇒ n = 2.4 × 5/2 = 6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That npq/np gives q = 3/5, so p = 2/5 and n = 6.",
+          "accept": [
+            "divide the variance by the mean to get q three by five, then p is two by five and n is six",
+            "one point four four by two point four is point six so q is three fifths and n is six",
+            "q three by five, p two by five, n six",
+            "npq by np cheste q point six ante three by five, p two by five, n six",
+            "n is six with p two fifths"
+          ],
+          "reject": [
+            "find n",
+            "use the formulas"
+          ],
+          "heard_as": [
+            "n p",
+            "n p q",
+            "three by five",
+            "two by five",
+            "six",
+            "point six"
+          ]
+        },
+        "why": "The two given numbers are two equations in n and p; dividing removes n and gives q. Converting 0.6 to 3/5 before substituting keeps every power a clean fraction.",
+        "common_mistakes": [
+          "Taking 1.44/2.4 as p.",
+          "Writing n = 2.4/0.4 = 6 without showing p.",
+          "Keeping q = 0.6 and p = 0.4 as decimals and then raising decimals to powers."
+        ]
+      },
+      {
+        "id": "s2_required_probability",
+        "kind": "boxed_final",
+        "label": "Find P(1 < X ≤ 4)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 1 < X ≤ 4 keeps X = 2, 3, 4 — three terms. Each is ⁶Cᵣ (3/5)⁶⁻ʳ (2/5)ʳ; put everything over 5⁶ = 15625: 15·81·4 + 20·27·8 + 15·9·16 = 4860 + 4320 + 2160 = 11340. Reduce by 5 to 2268/3125.",
+        "lines": [
+          "P(X = r) = ⁶Cᵣ (3/5)⁶⁻ʳ (2/5)ʳ",
+          "P(1 < X ≤ 4) = P(X = 2) + P(X = 3) + P(X = 4)",
+          "= ⁶C₂ (3/5)⁴ (2/5)² + ⁶C₃ (3/5)³ (2/5)³",
+          "   + ⁶C₄ (3/5)² (2/5)⁴",
+          "= (15 · 81 · 4 + 20 · 27 · 8 + 15 · 9 · 16)/5⁶",
+          "= (4860 + 4320 + 2160)/15625 = 11340/15625",
+          {
+            "text": "∴ P(1 < X ≤ 4) = 2268/3125",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(1 < X ≤ 4) = P(X = 2) + P(X = 3) + P(X = 4) with n = 6, p = 2/5, q = 3/5, which equals 11340/15625 = 2268/3125.",
+          "accept": [
+            "P of one less than X less than or equal to four is P of two plus P of three plus P of four, all over five to the six, which is eleven thousand three forty by fifteen thousand six twenty five equals two two six eight by three one two five",
+            "add the terms for r equals two three and four using six C r q to the six minus r p to the r",
+            "the answer is two thousand two hundred sixty eight by three thousand one hundred twenty five",
+            "X two three four terms add cheyali, six C r into three by five power six minus r into two by five power r, two two six eight by three one two five",
+            "three binomial terms over five to the sixth"
+          ],
+          "reject": [
+            "find the probability",
+            "add the terms"
+          ],
+          "heard_as": [
+            "six C two",
+            "six C three",
+            "six C four",
+            "five to the six",
+            "two two six eight",
+            "three one two five"
+          ]
+        },
+        "why": "The event is three values of X, so the probability is three terms of the same formula. Writing all three over the common denominator 5⁶ turns the sum into whole-number arithmetic.",
+        "common_mistakes": [
+          "Including X = 1 or leaving out X = 4.",
+          "Writing ⁶C₂ = 30 or ⁶C₃ = 15.",
+          "Forgetting to reduce 11340/15625 by 5."
+        ]
+      }
+    ]
+  }
+}

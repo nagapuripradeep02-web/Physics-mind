@@ -1,0 +1,246 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_max_x2_14x_9_over_x2_2x_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the maximum value of the function (x² + 14x + 9)/(x² + 2x + 3) over R.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Quadratic in x",
+      "marks": 1
+    },
+    {
+      "label": "Δ ≥ 0",
+      "marks": 1
+    },
+    {
+      "label": "Solve for y",
+      "marks": 1
+    },
+    {
+      "label": "Range",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.53 (PDF p.54 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — SAQ chapter 8 Quadratic Expressions, answer 64. Printed appearances: AP 18,18 — the chip prints 2018 twice (two AP papers that year); both are kept. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.52–54. It follows the four moves an examiner ticks in this method: form the quadratic in x · write Δ ≥ 0 · solve the inequality in y · state the range. The SAME split and the SAME step ids (s1_quadratic_in_x, s2_discriminant, s3_solve_in_y, s4_range) are used on all five range / maximum / lies-between SAQs in this unit (answers 63.1, 63.2, 64, 65, 66), deliberately: they are one method — cross-multiply, quadratic in x, discriminant ≥ 0, solve the inequality in y — over different numbers. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q12 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). This exact question is Q12 of the book's Model Paper 4 (book p.117). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find the maximum value of this expression — say what you call y, what equation in x you form, what condition x being real gives, and how the maximum comes out at the end.",
+  "insider_note": "Treat y as a constant and set Δ ≥ 0 in x; dividing by −2 REVERSES the inequality. The asked answer is one number, the right end of the interval — not the interval itself, and not the left end that appears first.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Quadratic Expressions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_quadratic_in_x",
+        "kind": "equation",
+        "label": "Quadratic in x",
+        "marks": 1,
+        "mark_note": "Quadratic in x",
+        "margin_note": "First mark. Collect by powers of x: x² gives (y − 1), x gives (2y − 14), the constant is (3y − 9). The denominator x² + 2x + 3 is never zero (Δ = 4 − 12 < 0), so every real x is allowed.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = (x² + 14x + 9)/(x² + 2x + 3)",
+          "⇒ y(x² + 2x + 3) = x² + 14x + 9",
+          "⇒ yx² + 2yx + 3y − x² − 14x − 9 = 0",
+          "⇒ (y − 1)x² + (2y − 14)x + (3y − 9) = 0 … (1)",
+          "(1) is a quadratic in x, and x is real."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression is set equal to y, cross-multiplied, and collected into a quadratic in x: (y − 1)x² + (2y − 14)x + (3y − 9) = 0.",
+          "accept": [
+            "let y equal the expression, cross multiply and collect terms to get a quadratic in x",
+            "put y equal to the fraction, multiply out the denominator and write it as a quadratic in x",
+            "call the expression y and rearrange it into a x squared plus b x plus c equals zero",
+            "expression ni y ani pettukoni cross multiply chesi x lo quadratic rayali"
+          ],
+          "reject": [
+            "find the range",
+            "write the equation",
+            "let y be the expression"
+          ],
+          "heard_as": [
+            "y equals",
+            "cross multiply",
+            "quadratic in x",
+            "x squared",
+            "y minus one",
+            "two y minus fourteen",
+            "three y minus nine"
+          ]
+        },
+        "why": "The maximum value is the largest y for which some real x exists. Writing the fraction as a quadratic in x is what lets the discriminant decide which y are possible.",
+        "common_mistakes": [
+          "Grouping by y instead of by x.",
+          "Losing the minus signs on −14x and −9.",
+          "Not writing that (1) is a quadratic in x with x real."
+        ]
+      },
+      {
+        "id": "s2_discriminant",
+        "kind": "equation",
+        "label": "Δ ≥ 0",
+        "marks": 1,
+        "mark_note": "Discriminant",
+        "margin_note": "Second mark. Pull the 4 out first: (2y − 14)² = 4(y − 7)² and 3y − 9 = 3(y − 3). Then 3(y − 1)(y − 3) = 3y² − 12y + 9, subtracted. The numbers stay small and the arithmetic stays checkable.",
+        "lines": [
+          "∴ Δ = b² − 4ac ≥ 0",
+          "⇒ (2y − 14)² − 4(y − 1)(3y − 9) ≥ 0",
+          "⇒ 4(y − 7)² − 4(y − 1)·3(y − 3) ≥ 0",
+          "⇒ (y − 7)² − 3(y − 1)(y − 3) ≥ 0",
+          "⇒ y² − 14y + 49 − 3y² + 12y − 9 ≥ 0",
+          "⇒ −2y² − 2y + 40 ≥ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x real gives Δ ≥ 0: (2y − 14)² − 4(y − 1)(3y − 9) ≥ 0, which after taking out the common factor 4 simplifies to −2y² − 2y + 40 ≥ 0.",
+          "accept": [
+            "x is real so the discriminant b squared minus four a c must be greater than or equal to zero",
+            "the quadratic in x has real roots so delta is at least zero",
+            "apply b squared minus 4 a c greater than or equal to zero to the quadratic in x",
+            "take out the factor 4 from both terms first, then expand",
+            "x real kabatti delta greater than or equal to zero pettali"
+          ],
+          "reject": [
+            "find delta",
+            "use the discriminant",
+            "solve the quadratic"
+          ],
+          "heard_as": [
+            "discriminant",
+            "delta",
+            "b squared minus four a c",
+            "greater than or equal to zero",
+            "y minus seven squared",
+            "minus two y squared"
+          ]
+        },
+        "why": "x is real, so (1) has a real root and its discriminant is ≥ 0. Removing the common factor 4 before expanding is not a rule, only the way to keep the coefficients small enough to trust.",
+        "common_mistakes": [
+          "Expanding (2y − 14)² and 4(y − 1)(3y − 9) in full and slipping on a coefficient.",
+          "Writing 3(y − 1)(y − 3) as 3y² − 4y + 3 — the 3 multiplies every term.",
+          "Using Δ > 0, which drops the maximum itself."
+        ]
+      },
+      {
+        "id": "s3_solve_in_y",
+        "kind": "equation",
+        "label": "Solve for y",
+        "marks": 1,
+        "mark_note": "Inequality in y",
+        "margin_note": "Third mark. Dividing by −2 REVERSES the inequality. Then y² + y − 20 = (y + 5)(y − 4), and a product ≤ 0 means y is between the roots: from −5 to 4.",
+        "lines": [
+          "⇒ y² + y − 20 ≤ 0",
+          "⇒ (y + 5)(y − 4) ≤ 0",
+          "⇒ −5 ≤ y ≤ 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by −2 reverses the inequality to y² + y − 20 ≤ 0, which factorises as (y + 5)(y − 4) ≤ 0, so −5 ≤ y ≤ 4.",
+          "accept": [
+            "multiply by minus one to make the leading coefficient positive, factorise and read off the interval for y",
+            "factorise the quadratic in y and find where the product is less than or equal to zero",
+            "solve the quadratic inequality in y by factoring",
+            "divide by minus two which flips the sign then factorise as y plus five into y minus four",
+            "y lo quadratic inequality ni factorise chesi y ki interval teeyali"
+          ],
+          "reject": [
+            "solve it",
+            "find y",
+            "factorise"
+          ],
+          "heard_as": [
+            "factorise",
+            "less than or equal to",
+            "between",
+            "interval",
+            "y lies",
+            "y plus five",
+            "y minus four",
+            "minus five",
+            "four"
+          ]
+        },
+        "why": "The possible values of y are exactly the solutions of this inequality. Its two roots are the minimum and the maximum of the expression; the question only asks for the larger one.",
+        "common_mistakes": [
+          "Keeping ≥ after dividing by −2 and answering y ≤ −5 or y ≥ 4.",
+          "Factorising as (y − 5)(y + 4).",
+          "Reporting −5 as the maximum because it was found first."
+        ]
+      },
+      {
+        "id": "s4_range",
+        "kind": "boxed_final",
+        "label": "Range",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The maximum is the right end of the interval, and it is reached: at x = 1 the expression is 24/6 = 4. (The left end −5 is the minimum, reached at x = −2.)",
+        "lines": [
+          "y takes every value from −5 to 4.",
+          {
+            "text": "∴ maximum value = 4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y lies in [−5, 4], so the maximum value of the expression is 4 (reached at x = 1).",
+          "accept": [
+            "the maximum value is four because y lies between minus five and four",
+            "y is at most four so the maximum is four",
+            "the largest value the expression takes is four",
+            "y minus five nunchi four varaku untundi, kabatti maximum four",
+            "the top of the interval is four which is the maximum"
+          ],
+          "reject": [
+            "that is the range",
+            "write the answer",
+            "box it"
+          ],
+          "heard_as": [
+            "maximum",
+            "four",
+            "minus five",
+            "at most"
+          ]
+        },
+        "why": "The largest y for which a real x exists is 4, and Δ = 0 there gives that x (x = 1). So 4 is not just an upper bound — it is a value the expression actually takes. At y = 1 the x² term vanishes and the equation is linear, so the discriminant test does not cover that value — check it on its own: −12x − 6 = 0 gives x = −1/2, and the expression there is 1, so y = 1 is attained and the interval is unbroken.",
+        "common_mistakes": [
+          "Answering with the whole interval when only the maximum was asked.",
+          "Giving 4 without the sentence saying it is the maximum value.",
+          "Answering −5."
+        ]
+      }
+    ]
+  }
+}

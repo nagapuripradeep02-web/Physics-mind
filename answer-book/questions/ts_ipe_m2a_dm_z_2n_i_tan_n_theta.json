@@ -1,0 +1,240 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_z_2n_i_tan_n_theta",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If n is an integer and z = cis θ, then show that (z²ⁿ − 1)/(z²ⁿ + 1) = i tan nθ.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "z²ⁿ by De Moivre's theorem",
+      "marks": 1
+    },
+    {
+      "label": "Reduce the numerator with double angles",
+      "marks": 2
+    },
+    {
+      "label": "Reduce the denominator with double angles",
+      "marks": 2
+    },
+    {
+      "label": "Cancel the common bracket",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.17 — LAQ chapter 1 De Moivre's Theorem, answer 7. Printed appearances: TS 19. ⚠ THE 1+2+2+2 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It weights the two double-angle conversions (numerator, denominator) and the final factor-and-cancel equally, with a single mark for the De Moivre opening; it is patterned on the 2+2+1+2 shape the book prints against answer 2 on book p.15, with the single mark moved to the opening line because here the opening is one line and the reductions are the work. The same step names (s1_de_moivre / s2 … / final) are used across the 'x = cis α' identity answers 3 and 7 of this unit as far as their shapes allow; answer 6 is a single evaluation and stands alone. The book's LAQ chapter header (book p.14) carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q18 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). 2A is still the 75-mark pre-reform paper in 2026-27 (the 60-mark reform is first year only), so the LAQ is authored at 7 marks, not re-cut to 8. No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: numerator 2i sin nθ (cos nθ + i sin nθ), denominator 2 cos nθ (cos nθ + i sin nθ), ratio i tan nθ; the book's answer is correct."
+  },
+  "recall_prompt": "Say how you would prove this — what De Moivre's theorem gives for z²ⁿ, which double-angle identities reduce the numerator and the denominator, and what cancels at the end.",
+  "insider_note": "The one move this question depends on is writing −2 sin² nθ as 2i² sin² nθ. Without it the numerator will not factor and nothing cancels.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "De Moivre's Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_de_moivre",
+        "kind": "equation",
+        "label": "z²ⁿ by De Moivre",
+        "marks": 1,
+        "mark_note": "De Moivre",
+        "margin_note": "First mark. z²ⁿ = cos 2nθ + i sin 2nθ. Write the numerator as cos 2nθ − 1 + i sin 2nθ and the denominator as cos 2nθ + 1 + i sin 2nθ on separate lines; the two reductions that follow take one at a time.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "z = cis θ = cos θ + i sin θ",
+          "z²ⁿ = cos 2nθ + i sin 2nθ  (De Moivre)",
+          "L.H.S. = (z²ⁿ − 1)/(z²ⁿ + 1)",
+          "Numerator: cos 2nθ − 1 + i sin 2nθ",
+          "Denominator: cos 2nθ + 1 + i sin 2nθ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That z to the 2n is cos 2nθ + i sin 2nθ by De Moivre's theorem, and this is put into the numerator and the denominator.",
+          "accept": [
+            "z to the two n is cos two n theta plus i sin two n theta by De Moivre, substitute it in top and bottom",
+            "apply De Moivre to get cis two n theta and write the numerator and denominator",
+            "the power two n goes onto the angle, then put it into the fraction",
+            "De Moivre tho z power two n cis two n theta, daanni fraction lo pettali",
+            "numerator is cos two n theta minus one plus i sin two n theta"
+          ],
+          "reject": [
+            "substitute",
+            "expand z",
+            "use De Moivre"
+          ],
+          "heard_as": [
+            "two n theta",
+            "De Moivre",
+            "numerator",
+            "denominator",
+            "cis two n theta"
+          ]
+        },
+        "why": "De Moivre's theorem turns z²ⁿ into a single cosine and sine of the angle 2nθ. Writing the numerator and the denominator on separate lines sets up the two half-angle reductions that follow.",
+        "common_mistakes": [
+          "Writing z²ⁿ = cos²ⁿ θ + i sin²ⁿ θ, which is false.",
+          "Forgetting the −1 in the numerator or the +1 in the denominator.",
+          "Trying to divide the two cis forms directly without the half-angle step."
+        ]
+      },
+      {
+        "id": "s2_numerator",
+        "kind": "equation",
+        "label": "Reduce the numerator",
+        "marks": 2,
+        "mark_note": "Numerator",
+        "margin_note": "Second and third marks. cos 2nθ − 1 = −2 sin² nθ and sin 2nθ = 2 sin nθ cos nθ. Write the −2 as 2i², and 2i sin nθ comes out leaving cos nθ + i sin nθ inside — the same bracket the denominator will produce.",
+        "lines": [
+          "cos 2nθ − 1 = −2 sin² nθ,",
+          "sin 2nθ = 2 sin nθ cos nθ",
+          "Numerator = −2 sin² nθ + 2i sin nθ cos nθ",
+          "= 2i² sin² nθ + 2i sin nθ cos nθ  (∵ i² = −1)",
+          "= 2i sin nθ (i sin nθ + cos nθ)",
+          "= 2i sin nθ (cos nθ + i sin nθ)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 2nθ − 1 = −2 sin² nθ and sin 2nθ = 2 sin nθ cos nθ, so the numerator factors as 2i sin nθ (cos nθ + i sin nθ).",
+          "accept": [
+            "cos two n theta minus one is minus two sin squared n theta, and the numerator factors to two i sin n theta times cis n theta",
+            "use the double angle formulas, write minus two as two i squared, and take out two i sin n theta",
+            "the numerator becomes two i sin n theta into cos n theta plus i sin n theta",
+            "double angle use chesi two i sin n theta bayataki teeyali, bracket lo cis n theta migulutundi",
+            "minus two sin squared is two i squared sin squared, then factor out two i sin"
+          ],
+          "reject": [
+            "simplify the top",
+            "use the formula",
+            "factor it"
+          ],
+          "heard_as": [
+            "minus two sin squared",
+            "two i sin n theta",
+            "i squared",
+            "double angle",
+            "factor"
+          ]
+        },
+        "why": "The move that makes the fraction cancel is writing −2 as 2i². Then both terms of the numerator share the factor 2i sin nθ, and what is left inside the bracket is exactly cos nθ + i sin nθ, the same bracket the denominator will produce.",
+        "common_mistakes": [
+          "Using cos 2nθ − 1 = 2cos² nθ − 2, which does not factor with the sine term.",
+          "Taking out 2 sin nθ instead of 2i sin nθ and leaving a bracket that does not match the denominator's.",
+          "Writing the bracket as (i sin nθ + cos nθ) and not recognising it as cis nθ."
+        ]
+      },
+      {
+        "id": "s3_denominator",
+        "kind": "equation",
+        "label": "Reduce the denominator",
+        "marks": 2,
+        "mark_note": "Denominator",
+        "margin_note": "Fourth and fifth marks. cos 2nθ + 1 = 2 cos² nθ, so the denominator is 2 cos² nθ + 2i sin nθ cos nθ = 2 cos nθ (cos nθ + i sin nθ). Take out the 2 as well as cos nθ, or it will not cancel.",
+        "lines": [
+          "cos 2nθ + 1 = 2 cos² nθ",
+          "Denominator = 2 cos² nθ + 2i sin nθ cos nθ",
+          "= 2 cos nθ (cos nθ + i sin nθ)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 2nθ + 1 = 2 cos² nθ, so the denominator factors as 2 cos nθ (cos nθ + i sin nθ).",
+          "accept": [
+            "cos two n theta plus one is two cos squared n theta, so the denominator is two cos n theta times cis n theta",
+            "use the double angle formula and take out two cos n theta",
+            "the denominator becomes two cos n theta into cos n theta plus i sin n theta",
+            "one plus cos two n theta two cos squared, two cos n theta bayataki teeste cis n theta migulutundi",
+            "factor two cos n theta from the bottom"
+          ],
+          "reject": [
+            "simplify the bottom",
+            "same for the denominator",
+            "factor it"
+          ],
+          "heard_as": [
+            "two cos squared",
+            "two cos n theta",
+            "denominator",
+            "factor"
+          ]
+        },
+        "why": "1 + cos 2A = 2cos² A is the partner of the numerator's identity. Taking out 2 cos nθ leaves the same bracket cos nθ + i sin nθ, which is what allows the cancellation.",
+        "common_mistakes": [
+          "Using 1 + cos 2nθ = 2 sin² nθ, the wrong identity.",
+          "Taking out only cos nθ and leaving a 2 that then does not cancel.",
+          "Writing the bracket as (cos nθ − i sin nθ) by copying the wrong sign."
+        ]
+      },
+      {
+        "id": "s4_cancel",
+        "kind": "boxed_final",
+        "label": "Cancel and conclude",
+        "marks": 2,
+        "mark_note": "Result",
+        "margin_note": "Sixth and seventh marks. The 2 and the bracket cos nθ + i sin nθ are common to both lines and cancel, leaving i sin nθ / cos nθ = i tan nθ. Keep the i; without it the answer is tan nθ, which is not the right side.",
+        "lines": [
+          {
+            "text": "\\text{L.H.S.} = \\frac{2i\\sin n\\theta\\,(\\cos n\\theta + i\\sin n\\theta)}{2\\cos n\\theta\\,(\\cos n\\theta + i\\sin n\\theta)}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i sin nθ / cos nθ",
+          {
+            "text": "= i tan nθ = R.H.S.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the common bracket (cos nθ + i sin nθ) and the 2 cancel, leaving i sin nθ / cos nθ = i tan nθ.",
+          "accept": [
+            "the bracket cos n theta plus i sin n theta cancels top and bottom leaving i sin over cos which is i tan n theta",
+            "cancel the common factors and we get i tan n theta",
+            "after cancelling the two and the bracket the result is i tan n theta",
+            "common bracket cancel ayyi i sin n theta by cos n theta, that is i tan n theta",
+            "i sin n theta over cos n theta equals i tan n theta which is the right side"
+          ],
+          "reject": [
+            "cancel",
+            "then we get it",
+            "simplify"
+          ],
+          "heard_as": [
+            "cancel",
+            "i tan n theta",
+            "i sin over cos",
+            "right hand side"
+          ]
+        },
+        "why": "Both reductions were aimed at producing the same bracket so that it cancels. What survives is i times sine over cosine, which is i tan nθ — the right-hand side.",
+        "common_mistakes": [
+          "Cancelling the bracket but forgetting to cancel the 2, leaving 2i tan nθ.",
+          "Dropping the i and writing tan nθ.",
+          "Writing sin nθ / cos nθ = cot nθ."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,243 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pf_x4_over_x_minus_1_x_minus_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Partial Fractions"
+  },
+  "chapter": "Partial Fractions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Resolve x⁴/((x − 1)(x − 2)) into partial fractions.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Divide, then set up the form",
+      "marks": 1
+    },
+    {
+      "label": "Clear the denominators",
+      "marks": 1
+    },
+    {
+      "label": "Find the constants",
+      "marks": 1
+    },
+    {
+      "label": "Write the result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 11 Partial Fractions, answer 102. Printed appearances: TS 16, 22. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — this chapter prints no [N Marks] tags against any answer, only tick boxes. The split is the four moves of the method (set up the form · clear the denominators · find the constants · write the result), one mark each, and the SAME split and the SAME step ids (s1_form, s2_identity, s3_constants, s4_result) are used on all fifteen cards of this unit, deliberately: they are one method over different fractions. For the improper fractions the division lives inside s1_form, and for the (x − 3)³ question the substitution x − 3 = y takes the place of the form. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q15 is the Partial Fractions slot (the chapter has no Section A or Section C slot). Model Paper 4 (book p.117) asks exactly this question at Q15. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The book shows the long division in a boxed layout; the card writes the same three subtraction rows as three lines and states the product-plus-remainder identity, which a student can check by expanding. Truth check: expanding (x² − 3x + 2)(x² + 3x + 7) gives x⁴ − 15x + 14, so x⁴ = (x² − 3x + 2)(x² + 3x + 7) + 15x − 14; and putting x = 0 in the remainder identity gives −14 = A(−2) + B(−1) = 2 − 16 = −14 with A = −1, B = 16."
+  },
+  "recall_prompt": "Say how you would resolve x⁴/((x − 1)(x − 2)) into partial fractions — name each move in order, starting with what must be done before the form is written.",
+  "insider_note": "The division must run until the remainder degree drops below 2 — quotient x² + 3x + 7, remainder 15x − 14 — and that quotient returns in the final answer; stopping the division early makes every later constant wrong.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Partial Fractions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Divide, then set up the form",
+        "marks": 1,
+        "mark_note": "Divide and form",
+        "margin_note": "First mark. Degree 4 over degree 2: improper. Divide x⁴ by x² − 3x + 2 in three rows: take away x² times, then 3x times, then 7 times. Quotient x² + 3x + 7, remainder 15x − 14.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Degree 4 ≥ degree 2: improper, so divide.",
+          "(x − 1)(x − 2) = x² − 3x + 2",
+          "x⁴ − x²(x² − 3x + 2) = 3x³ − 2x²",
+          "3x³ − 2x² − 3x(x² − 3x + 2) = 7x² − 6x",
+          "7x² − 6x − 7(x² − 3x + 2) = 15x − 14",
+          "Quotient x² + 3x + 7, remainder 15x − 14.",
+          "x⁴/((x − 1)(x − 2)) = x² + 3x + 7",
+          "+ (15x − 14)/((x − 1)(x − 2))",
+          "Let (15x − 14)/((x − 1)(x − 2))",
+          "= A/(x − 1) + B/(x − 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction is improper, x⁴ divided by x² − 3x + 2 gives quotient x² + 3x + 7 and remainder 15x − 14, and only (15x − 14)/((x − 1)(x − 2)) is written as A/(x − 1) + B/(x − 2).",
+          "accept": [
+            "degree four over degree two so divide first, the quotient is x squared plus three x plus seven and the remainder is fifteen x minus fourteen, then split the remainder as A over x minus one plus B over x minus two",
+            "improper so long divide x to the four by x squared minus three x plus two and resolve only the remainder fifteen x minus fourteen",
+            "divide first then A by x minus 1 plus B by x minus 2 for the remainder",
+            "x power four degree ekkuva kabatti mundu divide, quotient x square plus three x plus seven, remainder fifteen x minus fourteen, daanni A by x minus one plus B by x minus two ga rasali",
+            "write it as a quadratic quotient plus a proper fraction and set up the form for the proper part"
+          ],
+          "reject": [
+            "write the form",
+            "set it up",
+            "partial fractions"
+          ],
+          "heard_as": [
+            "improper",
+            "divide first",
+            "long division",
+            "x squared plus three x plus seven",
+            "fifteen x minus fourteen",
+            "A over x minus one",
+            "B over x minus two"
+          ]
+        },
+        "why": "A fraction with the higher degree on top is not a sum of fractions over the factors; it is a polynomial plus such a sum. The division finds the polynomial x² + 3x + 7, and the remainder over the same denominator is proper.",
+        "common_mistakes": [
+          "Writing A/(x − 1) + B/(x − 2) for x⁴ itself without dividing.",
+          "Stopping the division after one or two rows and taking 7x² − 6x as the remainder; the degree of the remainder must be less than 2.",
+          "A sign error in 7x² − 6x − 7x² + 21x − 14 = 15x − 14, giving −6x + 21x wrongly as 27x."
+        ]
+      },
+      {
+        "id": "s2_identity",
+        "kind": "equation",
+        "label": "Clear the denominators",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "Second mark. Multiply the remainder fraction equation by (x − 1)(x − 2). The quotient stays aside.",
+        "lines": [
+          "Multiply by (x − 1)(x − 2):",
+          "15x − 14 = A(x − 2) + B(x − 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying the remainder equation through gives 15x − 14 = A(x − 2) + B(x − 1).",
+          "accept": [
+            "multiply both sides by x minus one into x minus two to get fifteen x minus fourteen equals A into x minus two plus B into x minus one",
+            "clear the denominators of the remainder fraction to get an identity",
+            "fifteen x minus fourteen equals A into x minus two plus B into x minus one",
+            "remainder fraction ni denominator tho multiply cheste fifteen x minus fourteen equals A into x minus two plus B into x minus one",
+            "remove the fractions from the proper part only"
+          ],
+          "reject": [
+            "multiply",
+            "clear the denominators",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "multiply both sides",
+            "fifteen x minus fourteen",
+            "A into x minus two",
+            "B into x minus one",
+            "identity"
+          ]
+        },
+        "why": "The identity belongs to the proper fraction, so its left side is the remainder 15x − 14. Writing x⁴ there makes every later line wrong.",
+        "common_mistakes": [
+          "Writing x⁴ = A(x − 2) + B(x − 1).",
+          "Pairing A with (x − 1) instead of (x − 2).",
+          "Carrying the quotient into the identity."
+        ]
+      },
+      {
+        "id": "s3_constants",
+        "kind": "equation",
+        "label": "Find the constants",
+        "marks": 1,
+        "mark_note": "A and B",
+        "margin_note": "Third mark. x = 1 gives 1 = −A so A = −1. x = 2 gives 16 = B. Two roots, two constants.",
+        "lines": [
+          "Put x = 1: 1 = A(−1) ⇒ A = −1",
+          "Put x = 2: 16 = B(1) ⇒ B = 16"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 1 gives A = −1 and x = 2 gives B = 16.",
+          "accept": [
+            "put x equals one to get A equals minus one and x equals two to get B equals sixteen",
+            "the roots one and two give A minus one and B sixteen",
+            "A minus one, B sixteen",
+            "x equals one pedithe A minus one, x equals two pedithe B sixteen",
+            "two substitutions give minus one and sixteen"
+          ],
+          "reject": [
+            "find A and B",
+            "find the constants",
+            "substitute"
+          ],
+          "heard_as": [
+            "x equals one",
+            "x equals two",
+            "A is minus one",
+            "B is sixteen",
+            "sixteen"
+          ]
+        },
+        "why": "Each root of a linear factor makes the other term zero and leaves one constant multiplied by a known number. The constants follow directly; no coefficient comparison is needed here.",
+        "common_mistakes": [
+          "Putting x = 1 and writing A(1 − 2) = A instead of −A, giving A = 1.",
+          "Computing 15(2) − 14 as 14 instead of 16.",
+          "Putting x = 1 into x⁴ instead of into 15x − 14."
+        ]
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "Write the result",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The quotient x² + 3x + 7 comes first, then −1/(x − 1) + 16/(x − 2). Write the original fraction on the left.",
+        "lines": [
+          "∴ x⁴/((x − 1)(x − 2))",
+          {
+            "text": "= x² + 3x + 7 − 1/(x − 1) + 16/(x − 2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction equals x² + 3x + 7 − 1/(x − 1) + 16/(x − 2), with the quotient in front.",
+          "accept": [
+            "the answer is x squared plus three x plus seven minus one over x minus one plus sixteen over x minus two",
+            "quotient x squared plus three x plus seven then minus one by x minus one plus sixteen by x minus two",
+            "write the quotient first and then the two fractions",
+            "final answer x square plus three x plus seven minus one by x minus one plus sixteen by x minus two ani rasali",
+            "put the quotient back in front of the partial fractions"
+          ],
+          "reject": [
+            "write the answer",
+            "box it",
+            "final answer"
+          ],
+          "heard_as": [
+            "x squared plus three x plus seven",
+            "minus one over x minus one",
+            "sixteen over x minus two",
+            "quotient in front",
+            "final answer"
+          ]
+        },
+        "why": "The quotient is part of the answer; without it the line resolves only the remainder fraction. The examiner looks for the polynomial and both fractions with their signs.",
+        "common_mistakes": [
+          "Forgetting x² + 3x + 7 in the final line.",
+          "Writing +1/(x − 1) after finding A = −1.",
+          "Not checking: expand (x² − 3x + 2)(x² + 3x + 7) + 15x − 14 and confirm it is x⁴; then put x = 0 in the identity, −14 = 2 − 16."
+        ]
+      }
+    ]
+  }
+}

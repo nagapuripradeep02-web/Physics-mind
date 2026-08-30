@@ -355,7 +355,7 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
-    test.setTimeout(2_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981) and at Maths-2B (~2252; ~2509 once Maths-2A lands). Never trim the sweep.
+    test.setTimeout(2_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981), and at Maths-2A (~2238 entries). Never trim the sweep.
     // Measured: 90s @111q · 126s @130q · 132s @157q · 162s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -389,7 +389,7 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
-    test.setTimeout(2_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981) and at Maths-2B (~2252; ~2509 once Maths-2A lands). Never trim the sweep.
+    test.setTimeout(2_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981), and at Maths-2A (~2238 entries). Never trim the sweep.
     // Measured: 90s @111q · 132s @130q · 132s @157q · 168s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -670,12 +670,7 @@ test('every cut of every question totals exactly its own marks', async ({ page }
     // least N x 0.9 s before any evaluate overhead. RAISE THIS when the book grows —
     // never trim the sweep or the waits to fit, because a shortened sweep silently
     // stops checking the questions it drops.
-    test.setTimeout(3_600_000);   // the WIDEST sweep: questions x cuts. Counted, not estimated, on
-    // 2026-08-29: master is 1981 entries after Botany-II, and it did NOT raise this sweep. At the
-    // file's own 1.05 s/entry slope that is 2080 s against the old 2_400_000 (+15%), but Maths-2A
-    // takes it to 2238 (2350 s, +2%) and Maths-2B to 2509 (2634 s, MINUS 9% — it would time out).
-    // 3_600_000 is +37% at the combined size. The previous raise was made at ~7% headroom and that
-    // was judged too tight afterwards, which is why this one is not sized to just barely fit.
+    test.setTimeout(3_600_000);   // the WIDEST sweep: questions x cuts, and the one master did NOT raise for Botany-II. ~1600 entries with zoology AND Physics-II; 1981 on master; ~2238 with Maths-2A; ~2509 once Maths-2B lands. At the ~1.05 s/entry this file records that is ~39 min for 2A alone against a 40-min budget (+2% headroom) and OVER budget at the combined size — and a timeout is not an assertion, so it fails naming nothing. Raised to 60 min for ~53% headroom. Never trim the sweep.
     // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~1.05 s/question.
     // Raised to 2_400_000 on 2026-08-29. Two papers landed at once — zoology took
     // the bank to ~1340 and Senior Inter Physics adds 256 more — and this sweep had
@@ -1937,7 +1932,7 @@ test('the catalog filters by subject and each section shows its own mark value',
 });
 
 test('a typeset line renders as math, sits on whole rules, and never shows raw TeX', async ({ page }) => {
-    test.setTimeout(360_000);   // fleet sweep — cost grows with every typeset question; raised deliberately at Maths-2B (26 typeset lines, the I_n reduction formulae), and before that
+    test.setTimeout(360_000);   // fleet sweep — cost grows with every typeset question; raised deliberately at Maths-2A (fractional exponents and e^{-λ} lines), as before
                                 // when Maths-1A Unit 3 (Matrices) took the book from 2 typeset questions to 39.
                                 // NEVER trim the sweep instead: .kx-clip is overflow:hidden, so an over-wide
                                 // typeset line is truncated with NO other symptom, and this is the only guard.

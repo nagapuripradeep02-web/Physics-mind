@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_vsaq_omega_sixth_powers_128",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If 1, ω, ω² are the cube roots of unity, show that (1 − ω + ω²)⁶ + (1 + ω − ω²)⁶ = 128.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Reduce each bracket to a multiple of ω",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate the sixth powers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.73 — VSAQ chapter 13 De Moivre's Theorem, answer 118. Printed appearances: TS 16. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on the VSAQ page book p.73. 1+1 (method + evaluation) is the split every 2-mark VSAQ in this bank uses, patterned on the 1A book's printed [1 mark] tags for a 2-mark maths VSAQ (Junior Maths-1A book p.82). The SAME 1+1 split and the SAME step ids (s1_reduce, s2_evaluate) are used on every cube-roots-of-unity (ω) VSAQ in this unit (answers 118, 119 and Star Questions Plus 185–189), deliberately: each is one reduction by 1 + ω + ω² = 0 and ω³ = 1, then one evaluation. The book's VSAQ chapter header (book p.73) carries ★★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q3 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: the two brackets are −2ω and −2ω², so the sum is 64(ω⁶ + ω¹²) = 128; the book's answer is correct. Re-solved in the Bullet Model Paper Q3 (book p.96)."
+  },
+  "recall_prompt": "Say how you would show this — what each bracket reduces to, and how the sixth powers are evaluated.",
+  "insider_note": "Both brackets need the doubling: 1 + ω² = −ω gives −2ω, and 1 + ω = −ω² gives −2ω². The sixth power removes the minus sign and ω⁶ = ω¹² = 1, so each term is 64.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "De Moivre's Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reduce",
+        "kind": "equation",
+        "label": "Reduce each bracket to a multiple of ω",
+        "marks": 1,
+        "mark_note": "Reduce",
+        "margin_note": "First mark. 1 + ω + ω² = 0 gives 1 + ω² = −ω and 1 + ω = −ω². So 1 − ω + ω² = −2ω and 1 + ω − ω² = −2ω²; each bracket has two equal terms, not one.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "1 + ω + ω² = 0 ⇒ 1 + ω² = −ω, 1 + ω = −ω²",
+          "1 − ω + ω² = (1 + ω²) − ω = −ω − ω = −2ω",
+          "1 + ω − ω² = (1 + ω) − ω² = −ω² − ω² = −2ω²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + ω + ω² = 0 and ω³ = 1 are used to reduce 1 − ω + ω² to −2ω and 1 + ω − ω² to −2ω².",
+          "accept": [
+            "use one plus omega plus omega squared equals zero and omega cubed equals one to reduce 1 − ω + ω² to −2ω and 1 + ω − ω² to −2ω²",
+            "replace using the two omega facts, omega cubed is one and the three add to zero",
+            "reduce 1 − ω + ω² to −2ω and 1 + ω − ω² to −2ω² with the cube roots of unity properties",
+            "omega cube one, one plus omega plus omega square zero use chesi 1 − ω + ω² to −2ω and 1 + ω − ω² to −2ω² ni reduce cheyyali",
+            "the sum of the three cube roots is zero, so substitute"
+          ],
+          "reject": [
+            "simplify",
+            "use omega",
+            "reduce"
+          ],
+          "heard_as": [
+            "omega cubed",
+            "one plus omega",
+            "omega squared",
+            "reduce",
+            "cube roots of unity"
+          ]
+        },
+        "why": "Every ω question is the same two facts: ω³ = 1 (so high powers of ω reduce) and 1 + ω + ω² = 0 (so any two of 1, ω, ω² can be replaced by minus the third). The reduction is the mark; the arithmetic after it is short.",
+        "common_mistakes": [
+          "Writing 1 − ω + ω² = 0 by mis-reading the sign in 1 + ω + ω² = 0.",
+          "Reducing to −ω instead of −2ω (forgetting the second −ω).",
+          "Expanding the sixth power by the binomial theorem."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate the sixth powers",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (−2ω)⁶ + (−2ω²)⁶ = 64ω⁶ + 64ω¹² = 64(ω³)² + 64(ω³)⁴ = 64 + 64 = 128. An even power removes the minus sign.",
+        "lines": [
+          "(1 − ω + ω²)⁶ + (1 + ω − ω²)⁶ = (−2ω)⁶ + (−2ω²)⁶",
+          "= 64ω⁶ + 64ω¹² = 64(ω³)² + 64(ω³)⁴",
+          {
+            "text": "= 64 + 64 = 128",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reduced expression is evaluated to 128.",
+          "accept": [
+            "evaluate the reduced form and get 128",
+            "the answer comes to 128",
+            "simplify the powers of omega and the value is 128",
+            "reduce chesaka value 128 vasthundi",
+            "finally it equals 128"
+          ],
+          "reject": [
+            "then we get the answer",
+            "simplify",
+            "calculate"
+          ],
+          "heard_as": [
+            "equals",
+            "the value is",
+            "final answer",
+            "128"
+          ]
+        },
+        "why": "An even power removes the minus sign, 2⁶ = 64, and ω⁶ and ω¹² are powers of ω³ = 1. Everything reduces to numbers.",
+        "common_mistakes": [
+          "Writing (−2ω)⁶ = −64ω⁶, keeping the minus.",
+          "Writing ω⁶ = ω instead of (ω³)² = 1.",
+          "Getting 2⁶ = 32."
+        ]
+      }
+    ]
+  }
+}

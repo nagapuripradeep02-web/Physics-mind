@@ -1,0 +1,373 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_laq_recip_x5_5x4_9x3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Solve the equation x⁵ − 5x⁴ + 9x³ − 9x² + 5x − 1 = 0.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Identify the reciprocal class and the root 1",
+      "marks": 1
+    },
+    {
+      "label": "Divide by (x − 1)",
+      "marks": 1
+    },
+    {
+      "label": "Divide the quotient by x², put x + 1/x = t and solve for t",
+      "marks": 1
+    },
+    {
+      "label": "Roots from t = 3",
+      "marks": 2
+    },
+    {
+      "label": "Roots from t = 1",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.24 — LAQ chapter 2 Theory of Equations, answer 15. Printed appearances: AP 16. THE MARK SPLIT IS THE BOOK'S: the page prints [1 Mark] beside the class-II identification, [1 Mark] beside 'now we solve the SRE' after the division, [1 Mark] beside the t values, [2 Marks] beside the roots from t = 3 and [2 Marks] beside the roots from t = 1 (1+1+1+2+2 = 7); the final 'hence all the five roots' line carries no tag. The card follows the page: the substitution step and the final list carry 0 marks (they are written, not marked separately). The SAME step ids (s1_identify, s2_divide, s3_substitute, s4_solve_t, s5_first_t, s6_second_t, s7_roots) are used on answers 13, 14 and 15, deliberately: one method — remove the root ±1 by synthetic division, then solve the standard reciprocal quotient with x + 1/x = t. The per-step MARKS differ across the three because each page prints its own [N Marks] tags and the card follows its page; a step that the page does not mark separately carries 0 and no red mark. The book writes the substitution letter as y; the card writes t. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q19 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). This question appears in none of the five model papers. Truth check: f(1) = 0 by substitution; the synthetic-division remainder is 0; the five roots add to 1 + 3 + 1 = 5 = −a₁/a₀ and multiply to 1 · 1 · 1 = 1 = −a₅/a₀. Correction to the book: none. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would solve this — which root you take out first and why, how you divide, and how the quotient is solved with t = x + 1/x.",
+  "insider_note": "Four of the seven marks are the two endings; both discriminants (5 and −3) must be written, and the negative one gives i√3, not √3.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Theory of Equations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identify",
+        "kind": "equation",
+        "label": "Class II, odd degree",
+        "marks": 1,
+        "mark_note": "Identify the root 1",
+        "margin_note": "First mark. Odd degree; coefficients 1, −5, 9, −9, 5, −1 change sign end to end: class II, odd degree, so 1 is a root. Substitute to confirm.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Degree n = 5 is odd, and aₖ = −aₙ₋ₖ for every k",
+          "(1, −5, 9, −9, 5, −1: signs flip end to end).",
+          "So this is a reciprocal equation of class II",
+          "and odd degree; x = 1 is always a root of it.",
+          "Check: f(1) = 1 − 5 + 9 − 9 + 5 − 1 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is a reciprocal equation of class II and odd degree, so x = 1 is a root for certain, and that this is confirmed by substitution (f(1) = 0).",
+          "accept": [
+            "it is a reciprocal equation of class II and odd degree so 1 is a root, check it by substituting",
+            "the coefficient pattern tells you 1 is a root before you do anything else",
+            "first note that x equals 1 satisfies the equation because of the reciprocal pattern",
+            "idi class II and odd degree reciprocal equation, kabatti 1 root avutundi, substitute chesi check cheyyali",
+            "the reciprocal class gives the root 1 with no extra work, verify by putting it in"
+          ],
+          "reject": [
+            "divide by x square",
+            "put t",
+            "it is reciprocal"
+          ],
+          "heard_as": [
+            "1",
+            "root",
+            "class one",
+            "class two",
+            "odd degree",
+            "even degree",
+            "reciprocal"
+          ]
+        },
+        "why": "For a reciprocal equation the roots come in pairs x and 1/x. A root that is its own reciprocal must be 1 or −1, and the class (whether aₖ equals aₙ₋ₖ or −aₙ₋ₖ) together with the parity of the degree tells you which of them the equation must contain. Naming it costs one line and saves a whole degree.",
+        "common_mistakes": [
+          "Reading the class from only the first and last coefficients instead of every pair.",
+          "Naming the wrong one of ±1 as the root (class I odd gives −1, class II gives +1).",
+          "Not substituting the root back to confirm it, which the examiner expects to see."
+        ]
+      },
+      {
+        "id": "s2_divide",
+        "kind": "equation",
+        "label": "Divide by (x − 1)",
+        "marks": 1,
+        "mark_note": "Synthetic division",
+        "margin_note": "Second mark. Synthetic division by 1: bring down 1, add each column. Remainder 0; quotient x⁴ − 4x³ + 5x² − 4x + 1, which is reciprocal (1, −4, 5, −4, 1).",
+        "lines": [
+          "Divide f(x) by (x − 1) (synthetic division):",
+          {
+            "text": "1 |  1   −5    9   −9    5   −1",
+            "style": "indent"
+          },
+          {
+            "text": "  |       1   −4    5   −4    1",
+            "style": "indent"
+          },
+          {
+            "text": "     1   −4    5   −4    1    0",
+            "style": "indent"
+          },
+          "Quotient: x⁴ − 4x³ + 5x² − 4x + 1, reciprocal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the polynomial is divided by (x − 1) by synthetic division, with zero remainder, leaving the quotient x⁴ − 4x³ + 5x² − 4x + 1, which is again reciprocal.",
+          "accept": [
+            "divide by (x − 1) using synthetic division, the remainder is zero and the quotient is a reciprocal quartic",
+            "synthetic division by (x − 1) brings the degree down to four",
+            "take out the factor (x − 1) by synthetic division and keep the quotient",
+            "(x − 1) tho synthetic division chesthe remainder zero, quotient reciprocal quartic vasthundi",
+            "remove the known root by dividing and work with the quotient"
+          ],
+          "reject": [
+            "divide it",
+            "factorise",
+            "use the remainder theorem"
+          ],
+          "heard_as": [
+            "synthetic division",
+            "quotient",
+            "remainder zero",
+            "(x − 1)"
+          ]
+        },
+        "why": "The known root is removed by division so that what remains is a STANDARD reciprocal equation of even degree, the only kind the t-substitution handles. Synthetic division also proves the root, because the remainder comes out 0.",
+        "common_mistakes": [
+          "A sign slip in the synthetic division row, so the remainder is not 0 and the quotient is wrong.",
+          "Writing the quotient with one coefficient too many or too few (degree must drop by exactly 1 per division).",
+          "Dividing by (x − 1) when the root is −1, or the reverse."
+        ]
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Put x + 1/x = t",
+        "marks": 0,
+        "margin_note": "No separate mark on the page for this step — its [1 Mark] sits beside the t values in the next step. Divide the quotient by x², group, substitute: (t² − 2) − 4t + 5 = t² − 4t + 3.",
+        "lines": [
+          "Divide x⁴ − 4x³ + 5x² − 4x + 1 = 0 by x²:",
+          "(x² + 1/x²) − 4(x + 1/x) + 5 = 0 … (1)",
+          "Put x + 1/x = t, so x² + 1/x² = t² − 2",
+          "(1) becomes (t² − 2) − 4t + 5 = 0",
+          "t² − 4t + 3 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quotient (a standard reciprocal quartic) is divided by x², and x + 1/x = t with x² + 1/x² = t² − 2 turns it into a quadratic in t.",
+          "accept": [
+            "divide the quotient by x squared, put x plus one by x equal to t, and the squared pair is t squared minus two",
+            "the quartic quotient is reciprocal so divide by x square and substitute t",
+            "group the quotient into x squared plus one by x squared and x plus one by x then put t",
+            "quotient ni x square tho divide chesi x plus one by x ni t ga pettali, t square minus two vasthundi",
+            "the quotient becomes a quadratic in t after the substitution"
+          ],
+          "reject": [
+            "substitute",
+            "put t",
+            "divide"
+          ],
+          "heard_as": [
+            "t squared minus two",
+            "x plus one by x",
+            "divide by x square",
+            "quadratic in t"
+          ]
+        },
+        "why": "The quotient is even-degree and symmetric, so dividing by x² pairs each term with its matching term from the other end and the identity x² + 1/x² = t² − 2 turns four powers of x into one quadratic in t.",
+        "common_mistakes": [
+          "Writing x² + 1/x² = t² and losing the −2.",
+          "Forgetting to multiply the leading coefficient into the −2.",
+          "Substituting in the ORIGINAL equation instead of the quotient."
+        ]
+      },
+      {
+        "id": "s4_solve_t",
+        "kind": "equation",
+        "label": "Solve for t",
+        "marks": 1,
+        "mark_note": "Values of t",
+        "margin_note": "Third mark. t² − 4t + 3 = (t − 3)(t − 1).",
+        "lines": [
+          "(t − 3)(t − 1) = 0",
+          "t = 3 or t = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quadratic in t is factorised (or solved) to give the two values of t.",
+          "accept": [
+            "factorise the quadratic in t and get the two values of t",
+            "solve the t equation by splitting the middle term",
+            "the quadratic in t factors and gives two t values",
+            "t quadratic ni factorise chesi rendu t values teeskovali",
+            "split the middle term of the t equation and read off t"
+          ],
+          "reject": [
+            "solve it",
+            "find t",
+            "factorise"
+          ],
+          "heard_as": [
+            "factorise",
+            "middle term",
+            "t equals",
+            "two values of t"
+          ]
+        },
+        "why": "The t-equation is a plain quadratic, so factorising it is the cheapest way to the two values of t. Each t value will give two x values, so the count of roots (2 × 2 = 4) is checked here before any x is found.",
+        "common_mistakes": [
+          "A sign slip when splitting the middle term.",
+          "Stopping at the two t values as if they were the roots.",
+          "Solving the t-quadratic with the formula and making an arithmetic slip a factorisation would have avoided."
+        ]
+      },
+      {
+        "id": "s5_first_t",
+        "kind": "equation",
+        "label": "t = 3",
+        "marks": 2,
+        "mark_note": "Roots from t = 3",
+        "margin_note": "Two marks. x² − 3x + 1 = 0 has discriminant 9 − 4 = 5; the roots stay as surds.",
+        "lines": [
+          "If t = 3: x + 1/x = 3",
+          "x² + 1 = 3x, so x² − 3x + 1 = 0",
+          "x = (3 ± √(9 − 4))/2 = (3 ± √5)/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That t = 3 is put back into x + 1/x = t, multiplied out to a quadratic in x, and solved to give the roots (3 ± √5)/2.",
+          "accept": [
+            "put t equals 3 back so x plus one by x is 3 multiply by x to get a quadratic and solve it",
+            "x plus one over x equals 3 gives a quadratic in x whose roots are (3 ± √5)/2",
+            "go back from t equals 3 to a quadratic in x and solve",
+            "t equals 3 ni tirigi x plus one by x lo petti quadratic solve cheyyali",
+            "multiply x plus one by x equals 3 through by x and use the quadratic formula"
+          ],
+          "reject": [
+            "solve for x",
+            "put it back",
+            "use the formula"
+          ],
+          "heard_as": [
+            "t equals 3",
+            "x plus one by x",
+            "quadratic formula",
+            "plus or minus",
+            "root"
+          ]
+        },
+        "why": "Each value of t gives two values of x, because x + 1/x = t is a quadratic in x. Solving both t values is what recovers all 5 roots of the original equation — stopping at t answers a different question.",
+        "common_mistakes": [
+          "Forgetting to multiply through by x, so the equation in x is never formed.",
+          "A slip inside the square root: 9 − 4 = 5.",
+          "Not simplifying the surd form of the roots at the end."
+        ]
+      },
+      {
+        "id": "s6_second_t",
+        "kind": "equation",
+        "label": "t = 1",
+        "marks": 2,
+        "mark_note": "Roots from t = 1",
+        "margin_note": "Two marks. x² − x + 1 = 0 has discriminant 1 − 4 = −3, so this pair is complex: √(−3) = i√3.",
+        "lines": [
+          "If t = 1: x + 1/x = 1",
+          "x² + 1 = x, so x² − x + 1 = 0",
+          "x = (1 ± √(1 − 4))/2 = (1 ± i√3)/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That t = 1 is put back into x + 1/x = t, multiplied out to a quadratic in x, and solved to give the roots (1 ± i√3)/2.",
+          "accept": [
+            "put t equals 1 back so x plus one by x is 1 multiply by x to get a quadratic and solve it",
+            "x plus one over x equals 1 gives a quadratic in x whose roots are (1 ± i√3)/2",
+            "go back from t equals 1 to a quadratic in x and solve",
+            "t equals 1 ni tirigi x plus one by x lo petti quadratic solve cheyyali",
+            "multiply x plus one by x equals 1 through by x and use the quadratic formula"
+          ],
+          "reject": [
+            "solve for x",
+            "put it back",
+            "use the formula"
+          ],
+          "heard_as": [
+            "t equals 1",
+            "x plus one by x",
+            "quadratic formula",
+            "plus or minus",
+            "root"
+          ]
+        },
+        "why": "Each value of t gives two values of x, because x + 1/x = t is a quadratic in x. Solving both t values is what recovers all 5 roots of the original equation — stopping at t answers a different question.",
+        "common_mistakes": [
+          "Forgetting to multiply through by x, so the equation in x is never formed.",
+          "A slip inside the square root: 1 − 4 = −3, so the root is i√3, not √3.",
+          "Not simplifying the surd form of the roots at the end."
+        ]
+      },
+      {
+        "id": "s7_roots",
+        "kind": "boxed_final",
+        "label": "All five roots",
+        "marks": 0,
+        "margin_note": "No separate mark on the page for this line, but it is the answer. Five roots for degree 5: 1 from the division, the surd pair, and the complex pair. Their sum is 1 + 3 + 1 = 5 = −a₁/a₀.",
+        "lines": [
+          "The five roots are:",
+          {
+            "text": "1, (3 ± √5)/2, (1 ± i√3)/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That all 5 roots are listed together — the root(s) removed by division AND the roots found through t: 1, (3 ± √5)/2 and (1 ± i√3)/2.",
+          "accept": [
+            "list all 5 roots together, the one taken out at the start and the ones from t",
+            "the roots are 1, (3 ± √5)/2 and (1 ± i√3)/2",
+            "do not forget the root removed by division when writing the final answer",
+            "anni 5 roots ni kalipi raayali, modata teesina root tho paatu",
+            "the final answer collects the roots from both parts of the working"
+          ],
+          "reject": [
+            "the roots are",
+            "write the answer",
+            "box it"
+          ],
+          "heard_as": [
+            "roots are",
+            "5 roots",
+            "all the roots",
+            "minus one",
+            "one"
+          ]
+        },
+        "why": "The equation was split into a linear factor and a quotient; its roots are the roots of BOTH pieces. The final line is where the removed root is most often forgotten, so it is written out with the others.",
+        "common_mistakes": [
+          "Leaving out the root removed by synthetic division.",
+          "Listing the t values among the roots.",
+          "Writing a ± pair as one root and so reporting too few roots."
+        ]
+      }
+    ]
+  }
+}

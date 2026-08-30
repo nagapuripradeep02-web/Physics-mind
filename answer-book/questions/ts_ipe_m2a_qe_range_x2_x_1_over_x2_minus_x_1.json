@@ -1,0 +1,244 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_range_x2_x_1_over_x2_minus_x_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Find the range of (x² + x + 1)/(x² − x + 1) for x ∈ R.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Quadratic in x",
+      "marks": 1
+    },
+    {
+      "label": "Δ ≥ 0",
+      "marks": 1
+    },
+    {
+      "label": "Solve for y",
+      "marks": 1
+    },
+    {
+      "label": "Range",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.52 (PDF p.53 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — SAQ chapter 8 Quadratic Expressions, answer 63.2. Printed appearances: AP 20 · TS 17. ⚠ THE 1+1+1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.52–54. It follows the four moves an examiner ticks in this method: form the quadratic in x · write Δ ≥ 0 · solve the inequality in y · state the range. The SAME split and the SAME step ids (s1_quadratic_in_x, s2_discriminant, s3_solve_in_y, s4_range) are used on all five range / maximum / lies-between SAQs in this unit (answers 63.1, 63.2, 64, 65, 66), deliberately: they are one method — cross-multiply, quadratic in x, discriminant ≥ 0, solve the inequality in y — over different numbers. The book's SAQ chapter header carries ★★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q12 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). This exact question is Q12 of the book's Model Paper 3 (book p.115), and is re-solved as the first Q12 item of the Bullet Model Paper (book p.100) with the same result [1/3, 3]. No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find the range of this expression — say what you call y, what equation you form, what condition you use because x is real, and how you get the answer for y at the end.",
+  "insider_note": "Do not expand the discriminant: 4(y − 1)² is (2y − 2)², and a² − b² factorises the whole condition in one line. Both end values are reached, so the range takes square brackets — test the ends before choosing square or round brackets.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Quadratic Expressions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_quadratic_in_x",
+        "kind": "equation",
+        "label": "Quadratic in x",
+        "marks": 1,
+        "mark_note": "Quadratic in x",
+        "margin_note": "First mark. Both x² terms and both constants collect to (y − 1); the x terms collect to −(y + 1). The denominator x² − x + 1 is never zero (Δ = 1 − 4 < 0), so every real x is allowed.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = (x² + x + 1)/(x² − x + 1)",
+          "⇒ y(x² − x + 1) = x² + x + 1",
+          "⇒ yx² − yx + y − x² − x − 1 = 0",
+          "⇒ (y − 1)x² − (y + 1)x + (y − 1) = 0 … (1)",
+          "(1) is a quadratic in x, and x is real."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression is set equal to y, cross-multiplied, and collected into a quadratic in x: (y − 1)x² − (y + 1)x + (y − 1) = 0.",
+          "accept": [
+            "let y equal the expression, cross multiply and collect terms to get a quadratic in x",
+            "put y equal to the fraction, multiply out the denominator and write it as a quadratic in x",
+            "call the expression y and rearrange it into a x squared plus b x plus c equals zero",
+            "expression ni y ani pettukoni cross multiply chesi x lo quadratic rayali"
+          ],
+          "reject": [
+            "find the range",
+            "write the equation",
+            "let y be the expression"
+          ],
+          "heard_as": [
+            "y equals",
+            "cross multiply",
+            "quadratic in x",
+            "x squared",
+            "y minus one",
+            "y plus one"
+          ]
+        },
+        "why": "Every value y in the range comes from some real x. Rewriting the fraction as a quadratic in x turns the range question into a discriminant question.",
+        "common_mistakes": [
+          "Collecting the x terms as −(y − 1)x — the sign of −x is easy to lose.",
+          "Not writing that (1) is a quadratic in x with x real.",
+          "Dividing through by (y − 1) — it can be zero, and the method does not need it."
+        ]
+      },
+      {
+        "id": "s2_discriminant",
+        "kind": "equation",
+        "label": "Δ ≥ 0",
+        "marks": 1,
+        "mark_note": "Discriminant",
+        "margin_note": "Second mark. Do NOT expand. 4(y − 1)² is (2y − 2)², so the left side is a² − b² = (a + b)(a − b) with a = y + 1 and b = 2y − 2. That gives the factors directly.",
+        "lines": [
+          "∴ Δ = b² − 4ac ≥ 0",
+          "⇒ (y + 1)² − 4(y − 1)² ≥ 0",
+          "⇒ (y + 1)² − (2y − 2)² ≥ 0",
+          "⇒ (y + 1 + 2y − 2)(y + 1 − 2y + 2) ≥ 0",
+          "⇒ (3y − 1)(3 − y) ≥ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x real gives Δ ≥ 0: (y + 1)² − 4(y − 1)² ≥ 0, which is a difference of two squares and factorises to (3y − 1)(3 − y) ≥ 0.",
+          "accept": [
+            "x is real so the discriminant b squared minus four a c must be greater than or equal to zero",
+            "the quadratic in x has real roots so delta is at least zero",
+            "apply b squared minus 4 a c greater than or equal to zero to the quadratic in x",
+            "write 4 y minus 1 squared as 2 y minus 2 squared and use a squared minus b squared",
+            "x real kabatti delta greater than or equal to zero pettali"
+          ],
+          "reject": [
+            "find delta",
+            "use the discriminant",
+            "solve the quadratic"
+          ],
+          "heard_as": [
+            "discriminant",
+            "delta",
+            "b squared minus four a c",
+            "greater than or equal to zero",
+            "difference of two squares",
+            "three y minus one",
+            "three minus y"
+          ]
+        },
+        "why": "The discriminant here is a difference of two squares, and factorising it directly avoids expanding and re-factorising a quadratic. Both routes give the same factors; this one has fewer places to slip.",
+        "common_mistakes": [
+          "Expanding everything and then failing to factorise 3y² − 10y + 3.",
+          "Writing 4(y − 1)² as (4y − 4)².",
+          "Using Δ > 0, which loses the two end values."
+        ]
+      },
+      {
+        "id": "s3_solve_in_y",
+        "kind": "equation",
+        "label": "Solve for y",
+        "marks": 1,
+        "mark_note": "Inequality in y",
+        "margin_note": "Third mark. Replacing (3 − y) by −(y − 3) multiplies the product by −1, so ≥ 0 becomes ≤ 0. A product of two linear factors is ≤ 0 between its roots: 1/3 and 3.",
+        "lines": [
+          "⇒ (3y − 1)(y − 3) ≤ 0",
+          "⇒ 1/3 ≤ y ≤ 3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (3y − 1)(3 − y) ≥ 0 is the same as (3y − 1)(y − 3) ≤ 0, so y lies between the roots 1/3 and 3.",
+          "accept": [
+            "multiply by minus one to make the leading coefficient positive, factorise and read off the interval for y",
+            "factorise the quadratic in y and find where the product is less than or equal to zero",
+            "solve the quadratic inequality in y by factoring",
+            "change 3 minus y to y minus 3 and flip the sign so the product is less than or equal to zero",
+            "y lo quadratic inequality ni factorise chesi y ki interval teeyali"
+          ],
+          "reject": [
+            "solve it",
+            "find y",
+            "factorise"
+          ],
+          "heard_as": [
+            "factorise",
+            "less than or equal to",
+            "between",
+            "interval",
+            "y lies",
+            "one by three",
+            "three",
+            "y minus three"
+          ]
+        },
+        "why": "The factor (3 − y) has a negative y coefficient, so the sign rule 'between the roots' can only be applied after it is written as (y − 3) with the inequality reversed.",
+        "common_mistakes": [
+          "Reading (3y − 1)(3 − y) ≥ 0 as 'outside the roots' — it is between, once the sign of (3 − y) is handled.",
+          "Solving 3y − 1 ≥ 0 and 3 − y ≥ 0 separately and stopping there.",
+          "Writing the roots as 3 and −1/3."
+        ]
+      },
+      {
+        "id": "s4_range",
+        "kind": "boxed_final",
+        "label": "Range",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Both ends are reached: y = 3 at x = 1 (3/1) and y = 1/3 at x = −1 (1/3), so the brackets are square.",
+        "lines": [
+          "y takes every value from 1/3 to 3.",
+          {
+            "text": "∴ range = [1/3, 3]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the range is the closed interval from 1/3 to 3, both ends included.",
+          "accept": [
+            "the range is the closed interval from one third to three",
+            "y lies between one by three and three including both ends",
+            "range is one by three to three with square brackets",
+            "range one by three nunchi three varaku, rendu ends include",
+            "the expression takes every value from a third up to three"
+          ],
+          "reject": [
+            "that is the range",
+            "write the answer",
+            "box it"
+          ],
+          "heard_as": [
+            "one by three",
+            "three",
+            "closed interval",
+            "square bracket",
+            "range"
+          ]
+        },
+        "why": "Δ = 0 at each end value gives a real x there, so the ends belong to the range and the interval is closed. At y = 1 the x² term vanishes and the equation is linear, so the discriminant test does not cover that value — check it on its own: x = 0 gives (0 + 0 + 1)/(0 − 0 + 1) = 1, so y = 1 is attained and the interval is unbroken.",
+        "common_mistakes": [
+          "Writing (1/3, 3) with round brackets.",
+          "Giving 3 as the minimum and 1/3 as the maximum.",
+          "Stopping at the inequality without stating the range."
+        ]
+      }
+    ]
+  }
+}

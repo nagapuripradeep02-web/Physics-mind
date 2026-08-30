@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_arg_product_minus_1_minus_i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If z₁ = −1 and z₂ = −i, then find Arg(z₁z₂).",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write Arg(−1) and Arg(−i)",
+      "marks": 1
+    },
+    {
+      "label": "Add the arguments",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.72 — VSAQ chapter 12 Complex Numbers, answer 111.1. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: TS 19 · AP 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. The card adds a direct check (z₁z₂ = i, Arg i = π/2) that the book does not print; the answer is the same by both routes. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the argument of the product — what the two arguments are and what rule combines them.",
+  "insider_note": "The question is decided by the two starting arguments, and Arg(−i) is the one students get wrong: it is −π/2, not π/2. Then π + (−π/2) = π/2, and the one-line check (−1)(−i) = i confirms it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_args",
+        "kind": "equation",
+        "label": "Write the two arguments",
+        "marks": 1,
+        "mark_note": "Arguments",
+        "margin_note": "First mark. −1 is on the negative real axis, so its argument is π. −i is on the negative imaginary axis, so its argument is −π/2 (principal value).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Arg(−1) = π    and    Arg(−i) = −π/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Arg(−1) = π and Arg(−i) = −π/2.",
+          "accept": [
+            "the argument of minus one is pi and the argument of minus i is minus pi by two",
+            "arg minus one equals pi, arg minus i equals minus pi by two",
+            "minus one is on the negative real axis so pi, minus i is on the negative imaginary axis so minus pi by two",
+            "arg of minus one pi, arg of minus i minus pi by two",
+            "pi and minus pi by two"
+          ],
+          "reject": [
+            "find the arguments",
+            "write arg"
+          ],
+          "heard_as": [
+            "pi",
+            "minus pi by two",
+            "arg",
+            "argument",
+            "minus one",
+            "minus i"
+          ]
+        },
+        "why": "Points on the axes have arguments that are read straight off the picture — no tan is needed. The principal argument lies in (−π, π], which is why −i gets −π/2 and not 3π/2.",
+        "common_mistakes": [
+          "Writing Arg(−1) = 0 or = −π.",
+          "Writing Arg(−i) = π/2 (that is i) or 3π/2 (outside the principal range)."
+        ]
+      },
+      {
+        "id": "s2_add",
+        "kind": "boxed_final",
+        "label": "Add the arguments",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Arg(z₁z₂) = Arg z₁ + Arg z₂ when the sum stays inside (−π, π], which it does here: π − π/2 = π/2. Direct check: z₁z₂ = (−1)(−i) = i, whose argument is π/2.",
+        "lines": [
+          "Arg(z₁z₂) = Arg z₁ + Arg z₂ = π + (−π/2)",
+          {
+            "text": "∴ Arg(z₁z₂) = π/2",
+            "style": "boxed"
+          },
+          "Check: z₁z₂ = (−1)(−i) = i, and Arg i = π/2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the argument of a product is the sum of the arguments, π − π/2 = π/2.",
+          "accept": [
+            "the argument of the product is the sum of the arguments, pi minus pi by two equals pi by two",
+            "add them, pi plus minus pi by two is pi by two",
+            "arg of z one z two equals arg z one plus arg z two which is pi by two",
+            "arguments add avuthai, pi minus pi by two equals pi by two",
+            "the product is i and its argument is pi by two"
+          ],
+          "reject": [
+            "add them",
+            "find the answer"
+          ],
+          "heard_as": [
+            "pi by two",
+            "sum",
+            "add",
+            "arg of the product"
+          ]
+        },
+        "why": "Multiplying complex numbers adds their arguments (and multiplies their moduli). Here the sum π/2 is already in the principal range, so no adjustment by 2π is needed — and the direct product i confirms it.",
+        "common_mistakes": [
+          "Multiplying the arguments instead of adding.",
+          "Writing π + π/2 = 3π/2 by using Arg(−i) = +π/2."
+        ]
+      }
+    ]
+  }
+}

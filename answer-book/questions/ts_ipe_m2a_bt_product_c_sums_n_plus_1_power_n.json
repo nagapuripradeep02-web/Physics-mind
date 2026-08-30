@@ -1,0 +1,218 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_product_c_sums_n_plus_1_power_n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Prove that (C₀ + C₁)·(C₁ + C₂)·(C₂ + C₃)·…·(Cₙ₋₁ + Cₙ) = ((n + 1)ⁿ/n!)·C₁·C₂·…·Cₙ.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Take Cᵣ₋₁ out of each bracket",
+      "marks": 2
+    },
+    {
+      "label": "Simplify each bracket to (n + 1)/r",
+      "marks": 2
+    },
+    {
+      "label": "Multiply the n brackets",
+      "marks": 2
+    },
+    {
+      "label": "Replace C₀ by Cₙ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.95 — Star Questions Plus, Binomial Theorem banner, answer 206. Star Questions Plus prints NO mark cut; folding it into the chapter unit as a 7-mark LAQ is OURS (the 1A backfill decision of 2026-08-22), classed by shape and length — a prove-that identity of LAQ length and the standard 7-mark shape for this chapter. Printed appearances: AP 16. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — Star Questions Plus prints no [N Marks] tags. It is patterned on the one-mark-per-idea tagging on p.27: each bracket factored as Cᵣ₋₁(1 + Cᵣ/Cᵣ₋₁) (2), the ratio Cᵣ/Cᵣ₋₁ = (n − r + 1)/r making each bracket (n + 1)/r (2), the product of the n brackets and of the C's (2), the final line with C₀ = Cₙ = 1 (1). The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7. Binomial Theorem fills TWO of those slots, Q20 and Q21 (blueprint book p.3 and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. ⚠ COUNTER-EVIDENCE, recorded 2026-08-29 by the model-paper back-test and NOT resolved: this card sits on Star Questions Plus p.95, and no paper of the book places this question in a numbered slot, so its section rests on shape alone. Whether a VSAQ chapter routes into that page was not checked, so there is no evidence either way. For it, the mathematics: the method and its length match the chapter's own marked answers of this section, and the book gives this chapter more than one slot of that kind. Both readings are on the record; a Telangana teacher settles it, and needs_teacher_verification is already true."
+  },
+  "recall_prompt": "Say how you would prove this — how you take Cᵣ₋₁ out of each bracket, what 1 + Cᵣ/Cᵣ₋₁ simplifies to, what the product of all the (n + 1)/r factors is, and why C₀C₁…Cₙ₋₁ can be written as C₁C₂…Cₙ.",
+  "insider_note": "Take Cᵣ₋₁ out of every bracket, not Cᵣ — the inverted ratio never simplifies. The last mark is the line C₀ = Cₙ = 1, which turns C₀C₁…Cₙ₋₁ into the C₁C₂…Cₙ the right side shows.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Binomial Theorem · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_factor",
+        "kind": "equation",
+        "label": "Take Cᵣ₋₁ out of each bracket",
+        "marks": 2,
+        "mark_note": "Factoring",
+        "margin_note": "First two marks. Cᵣ₋₁ + Cᵣ = Cᵣ₋₁(1 + Cᵣ/Cᵣ₋₁). Do it to every bracket and collect the C's in front.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S. = (C₀ + C₁)(C₁ + C₂)(C₂ + C₃)…(Cₙ₋₁ + Cₙ)",
+          "= C₀(1 + C₁/C₀)·C₁(1 + C₂/C₁)·…·Cₙ₋₁(1 + Cₙ/Cₙ₋₁)",
+          "= C₀C₁…Cₙ₋₁·(1 + C₁/C₀)(1 + C₂/C₁)…(1 + Cₙ/Cₙ₋₁)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each bracket Cᵣ₋₁ + Cᵣ is written as Cᵣ₋₁(1 + Cᵣ/Cᵣ₋₁), so the left side is C₀C₁…Cₙ₋₁ times a product of brackets (1 + Cᵣ/Cᵣ₋₁).",
+          "accept": [
+            "take C r minus one out of each bracket to get one plus C r by C r minus one, and collect C nought C one up to C n minus one in front",
+            "each factor is C r minus one times one plus the ratio of consecutive coefficients",
+            "factor the first coefficient out of every bracket",
+            "prathi bracket lo C r minus one bayataki teeste one plus C r by C r minus one vasthundi",
+            "the product becomes C nought to C n minus one times brackets of one plus a ratio"
+          ],
+          "reject": [
+            "factor it",
+            "take out the common term"
+          ],
+          "heard_as": [
+            "C r minus one",
+            "one plus",
+            "C r by C r minus one"
+          ]
+        },
+        "why": "A sum of two consecutive coefficients has no product formula, but a RATIO of consecutive coefficients does. Factoring turns every sum into 1 + a ratio.",
+        "common_mistakes": [
+          "Taking out Cᵣ instead of Cᵣ₋₁, which gives the inverted ratio.",
+          "Losing count of how many C's were taken out — there are n, from C₀ to Cₙ₋₁."
+        ]
+      },
+      {
+        "id": "s2_ratio",
+        "kind": "equation",
+        "label": "Simplify each bracket to (n + 1)/r",
+        "marks": 2,
+        "mark_note": "Ratio formula",
+        "margin_note": "Third and fourth marks. ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r, so 1 + (n − r + 1)/r = (n + 1)/r.",
+        "lines": [
+          "Cᵣ/Cᵣ₋₁ = ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r",
+          "1 + Cᵣ/Cᵣ₋₁ = (r + n − r + 1)/r = (n + 1)/r",
+          "So the n brackets are",
+          "(n + 1)/1, (n + 1)/2, …, (n + 1)/n"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Cᵣ/Cᵣ₋₁ = (n − r + 1)/r, so each bracket 1 + Cᵣ/Cᵣ₋₁ = (n + 1)/r.",
+          "accept": [
+            "C r by C r minus one is n minus r plus one by r, add one and the bracket is n plus one by r",
+            "each bracket simplifies to n plus one over r",
+            "the ratio formula gives one plus n minus r plus one by r which is n plus one by r",
+            "ratio formula vadithe prathi bracket n plus one by r avthundi",
+            "the brackets are n plus one by one, n plus one by two, up to n plus one by n"
+          ],
+          "reject": [
+            "simplify the bracket",
+            "use the ratio"
+          ],
+          "heard_as": [
+            "n minus r plus one",
+            "n plus one by r",
+            "n plus one over r"
+          ]
+        },
+        "why": "The r in the denominator and the −r in the numerator cancel when 1 is added, leaving the same numerator n + 1 in every bracket. That is why (n + 1)ⁿ appears.",
+        "common_mistakes": [
+          "Using (n − r)/(r + 1), which is the ratio one index up.",
+          "Adding 1 as (n − r + 1 + 1)/r."
+        ]
+      },
+      {
+        "id": "s3_product",
+        "kind": "equation",
+        "label": "Multiply the n brackets",
+        "marks": 2,
+        "mark_note": "(n + 1)ⁿ/n!",
+        "margin_note": "Fifth and sixth marks. n brackets each with numerator n + 1 give (n + 1)ⁿ; the denominators 1·2·…·n give n!.",
+        "lines": [
+          "L.H.S. = C₀C₁…Cₙ₋₁",
+          "  × ((n + 1)/1)((n + 1)/2)…((n + 1)/n)",
+          "= C₀C₁…Cₙ₋₁·(n + 1)ⁿ/(1·2·…·n)",
+          "= C₀C₁…Cₙ₋₁·(n + 1)ⁿ/n!"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product of the n brackets is (n + 1)ⁿ over 1·2·…·n = n!, so the left side is C₀C₁…Cₙ₋₁·(n + 1)ⁿ/n!.",
+          "accept": [
+            "multiply the n brackets, n plus one to the n on top and one into two into up to n which is n factorial below",
+            "the product of the brackets is n plus one to the n over n factorial",
+            "n factors of n plus one over r give n plus one to the power n by n factorial",
+            "n brackets multiply cheste n plus one power n by n factorial vasthundi",
+            "the denominators one to n multiply to n factorial"
+          ],
+          "reject": [
+            "multiply them",
+            "take the product"
+          ],
+          "heard_as": [
+            "n plus one to the n",
+            "n factorial",
+            "one into two into"
+          ]
+        },
+        "why": "Counting the brackets matters: there are exactly n, from r = 1 to r = n, which gives the power n and the factorial n!.",
+        "common_mistakes": [
+          "Writing (n + 1)ⁿ⁺¹ by counting n + 1 brackets.",
+          "Leaving the product 1·2·…·n unnamed instead of writing n!."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Replace C₀ by Cₙ",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Seventh mark. C₀ = Cₙ = 1, so C₀C₁…Cₙ₋₁ = C₁C₂…Cₙ. That is the only difference between the two sides.",
+        "lines": [
+          "Since C₀ = Cₙ = 1, C₀C₁…Cₙ₋₁ = C₁C₂…Cₙ",
+          {
+            "text": "∴ L.H.S. = ((n + 1)ⁿ/n!)·C₁C₂…Cₙ = R.H.S.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That C₀ = Cₙ = 1 lets C₀C₁…Cₙ₋₁ be written as C₁C₂…Cₙ, which gives the right side.",
+          "accept": [
+            "C nought and C n are both one so the product C nought to C n minus one is the same as C one to C n, giving the right side",
+            "replace C nought by C n since both equal one",
+            "left side equals n plus one to the n by n factorial times C one C two up to C n",
+            "C nought C n rendu one kabatti product C one nunchi C n varaku rayochu",
+            "swap the C nought for a C n and the two sides match"
+          ],
+          "reject": [
+            "hence proved",
+            "they are equal"
+          ],
+          "heard_as": [
+            "C nought equals one",
+            "C n equals one",
+            "C one to C n"
+          ]
+        },
+        "why": "The right side lists C₁ to Cₙ while the left side produced C₀ to Cₙ₋₁; since both end coefficients are 1, the two products are equal.",
+        "common_mistakes": [
+          "Ending with C₀C₁…Cₙ₋₁ and not matching the right side's C₁…Cₙ.",
+          "Claiming C₀ = Cₙ without saying both are 1."
+        ]
+      }
+    ]
+  }
+}

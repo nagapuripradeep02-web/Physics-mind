@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_nc21_nc27_find_50cn",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If ⁿC₂₁ = ⁿC₂₇, then find ⁵⁰Cₙ.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Use ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate ⁵⁰C₄₈",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 16 Permutations & Combinations, answer 143.2. Printed appearances: TS 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_identity, s2_evaluate) are used on every 'ⁿCᵣ = ⁿCₛ' VSAQ in this unit (answers 143.1 to 144.2), deliberately: one identity over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find 50 C n when n C 21 equals n C 27.",
+  "insider_note": "The lower numbers 21 and 27 are unequal, so only the sum branch applies: n = 21 + 27 = 48. The question is finished at ⁵⁰C₄₈ = ⁵⁰C₂ = 1225, not at n — and the C₂ rewrite is what keeps the arithmetic to two factors.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "equation",
+        "label": "Use ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. State the identity. 21 ≠ 27, so n = 21 + 27 = 48.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "ⁿCᵣ = ⁿCₛ ⇒ r = s or r + s = n",
+          "Here 21 ≠ 27, so n = 21 + 27 = 48"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n C r equals n C s means r equals s or r plus s equals n, and since 21 is not 27, n = 48.",
+          "accept": [
+            "n C r equals n C s means r is s or r plus s is n, twenty one is not twenty seven so n is forty eight",
+            "the two lower numbers add to n so n is forty eight",
+            "n is twenty one plus twenty seven which is forty eight",
+            "lower numbers add cheste n forty eight",
+            "use the rule that the lower numbers add up to n"
+          ],
+          "reject": [
+            "use the identity",
+            "find n"
+          ],
+          "heard_as": [
+            "r plus s",
+            "equals n",
+            "forty eight",
+            "twenty one plus twenty seven"
+          ]
+        },
+        "why": "Two different lower numbers give the same ⁿC value only when they add to n, because ⁿCᵣ = ⁿCₙ₋ᵣ. That one line replaces any attempt to expand ⁿC₂₁.",
+        "common_mistakes": [
+          "Writing n = 48 without stating the identity.",
+          "Subtracting instead of adding: 27 − 21 = 6 is not n."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate ⁵⁰C₄₈",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. ⁵⁰C₄₈ = ⁵⁰C₂ = (50 · 49)/(1 · 2) = 1225.",
+        "lines": [
+          "⁵⁰Cₙ = ⁵⁰C₄₈ = ⁵⁰C₂",
+          {
+            "text": "= (50 · 49)/(1 · 2) = 1225",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 50 C 48 is 50 C 2, which is 50 times 49 over 2 = 1225.",
+          "accept": [
+            "fifty C forty eight is fifty C two which is fifty into forty nine by two equals one thousand two hundred twenty five",
+            "twelve twenty five",
+            "fifty C forty eight equals fifty C two equals twelve twenty five",
+            "fifty C forty eight ni fifty C two ga rasi twelve twenty five",
+            "twenty five times forty nine"
+          ],
+          "reject": [
+            "evaluate",
+            "fifty C forty eight"
+          ],
+          "heard_as": [
+            "twelve twenty five",
+            "one thousand two hundred twenty five",
+            "fifty C two",
+            "fifty into forty nine"
+          ]
+        },
+        "why": "ⁿCᵣ = ⁿCₙ₋ᵣ turns 48 factors into 2. The number 1225 is the answer; the symbol ⁵⁰C₄₈ is not.",
+        "common_mistakes": [
+          "Leaving the answer as ⁵⁰C₄₈.",
+          "Computing 50 · 49 = 2450 and forgetting to halve it."
+        ]
+      }
+    ]
+  }
+}

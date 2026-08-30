@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_vsaq_cis_pi_6_fifth_power_i",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find (√3/2 + i/2)⁵ − (√3/2 − i/2)⁵.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the base as cis π/6 and raise to 5",
+      "marks": 1
+    },
+    {
+      "label": "Subtract and evaluate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.90 — Star Questions Plus, De Moivre's Theorem banner, answer 190. Printed appearances: none — this answer carries no year tag. Section OURS: the book's Star Questions Plus pages carry no mark cut; this answer is a short reduction of the same shape as the chapter's 2-mark VSAQs, so it is classed VSAQ (2 marks). This unit has no SAQ chapter, so a 4-mark class was not available. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on book p.90; 1+1 (method + evaluation) is the split every 2-mark VSAQ in this bank uses. The SAME 1+1 split and the SAME step ids (s1_de_moivre, s2_evaluate) are used on the cis-power VSAQs of this unit (answers 116, 117 and Star Questions Plus 190); the (1 ± i) power pair 119.1/119.2 uses s1_mod_amp, s2_de_moivre. Chapter stars: the Star Questions Plus section prints none; the ★★★ carried in the manifest is the De Moivre VSAQ CHAPTER's rank (book p.73), not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q3 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: the base is cis(π/6), the fifth powers are cis(±5π/6), the difference is 2i sin(5π/6) = i; the book's answer is correct."
+  },
+  "recall_prompt": "Say how you would find this — what angle the base is, what De Moivre gives for the fifth powers, and what their difference is.",
+  "insider_note": "Read √3/2 and 1/2 as cos π/6 and sin π/6 and the question is two lines. Two errors cost the marks: taking the angle as π/3, which is the other way round, and making sin(5π/6) negative — it is +1/2, so the answer is i.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "De Moivre's Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_de_moivre",
+        "kind": "equation",
+        "label": "Write the base as cis π/6 and raise to 5",
+        "marks": 1,
+        "mark_note": "De Moivre",
+        "margin_note": "First mark. √3/2 = cos π/6 and 1/2 = sin π/6, so both brackets are cis(±π/6) with modulus 1. De Moivre multiplies the angle by 5, giving cos 5π/6 ± i sin 5π/6.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "√3/2 + i/2 = cos π/6 + i sin π/6",
+          "(√3/2 + i/2)⁵ = cos 5π/6 + i sin 5π/6",
+          "(√3/2 − i/2)⁵ = cos 5π/6 − i sin 5π/6",
+          "(by De Moivre's theorem)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That √3/2 + i/2 is cos π/6 + i sin π/6, so the fifth powers are cos 5π/6 ± i sin 5π/6 by De Moivre.",
+          "accept": [
+            "root three by two plus i by two is cis pi by six, so its fifth power is cis five pi by six and the conjugate gives cos five pi by six minus i sin five pi by six",
+            "recognise cos pi by six and sin pi by six, then De Moivre multiplies the angle by five",
+            "the base is cis pi by six and the power five gives five pi by six",
+            "root three by two i by two ante cis pi by six, De Moivre tho five pi by six",
+            "both brackets become cis plus or minus five pi by six"
+          ],
+          "reject": [
+            "use De Moivre",
+            "raise to five",
+            "write in cis form"
+          ],
+          "heard_as": [
+            "pi by six",
+            "five pi by six",
+            "De Moivre",
+            "cis",
+            "conjugate"
+          ]
+        },
+        "why": "√3/2 and 1/2 are cos π/6 and sin π/6, so both brackets are already cis(±π/6) with modulus 1. De Moivre multiplies the angle by 5; nothing else changes.",
+        "common_mistakes": [
+          "Not recognising √3/2 and 1/2 as cos π/6 and sin π/6, and expanding by the binomial theorem.",
+          "Taking the angle as π/3 (cos π/3 = 1/2, the other way round).",
+          "Writing the second bracket's power with + i sin."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Subtract and evaluate",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Subtracting a number from its conjugate leaves 2i times the imaginary part: 2i sin(5π/6). sin(5π/6) = sin(π/6) = 1/2, so the value is i.",
+        "lines": [
+          "Difference = 2i sin(5π/6) = 2i sin(π − π/6)",
+          {
+            "text": "= 2i sin(π/6) = 2i · 1/2 = i",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reduced expression is evaluated to i.",
+          "accept": [
+            "evaluate the reduced form and get i",
+            "the answer comes to i",
+            "simplify the powers of omega and the value is i",
+            "reduce chesaka value i vasthundi",
+            "finally it equals i"
+          ],
+          "reject": [
+            "then we get the answer",
+            "simplify",
+            "calculate"
+          ],
+          "heard_as": [
+            "equals",
+            "the value is",
+            "final answer",
+            "i"
+          ]
+        },
+        "why": "Subtracting a number from its conjugate leaves 2i times the imaginary part. sin(5π/6) = sin(π/6) = 1/2, so the answer is i.",
+        "common_mistakes": [
+          "Writing the difference as 2cos(5π/6).",
+          "Taking sin(5π/6) = −1/2; the sine is positive in the second quadrant.",
+          "Dropping the i."
+        ]
+      }
+    ]
+  }
+}

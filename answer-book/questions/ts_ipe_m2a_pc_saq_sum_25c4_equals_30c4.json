@@ -1,0 +1,187 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_saq_sum_25c4_equals_30c4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that ²⁵C₄ + Σ ⁽²⁹⁻ʳ⁾C₃ = ³⁰C₄, the sum taken over r = 0, 1, 2, 3, 4.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write out the five terms of the sum",
+      "marks": 1
+    },
+    {
+      "label": "Apply ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ once",
+      "marks": 1
+    },
+    {
+      "label": "Repeat the identity until one term is left",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 9 Permutations & Combinations, answer 68.2. Printed appearances: AP 18 and TS 18. ⚠ THE 1+1+2 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+1+2 split and the SAME step ids (s1_expand_sum, s2_pascal_identity, s3_collapse) are used on both telescoping-sum SAQs in this unit (answers 68.1 and 68.2), deliberately: they are one method over different numbers. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q13 of the book's Model Paper 2 (book p.113). No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would show this sum of combinations equals thirty C four — what you write out first, which identity you use, and how it collapses.",
+  "insider_note": "Write all five terms of the sum first — r = 0 gives ²⁹C₃ and r = 4 gives ²⁵C₃ — then start Pascal at the 25 pair, the only pair with a C₄ partner. Two of the four marks are the written chain ²⁶C₄, ²⁷C₄, ²⁸C₄, ²⁹C₄, ³⁰C₄, ending at \"= R.H.S.\".",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Permutations and Combinations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand_sum",
+        "kind": "equation",
+        "label": "Write out the sum",
+        "marks": 1,
+        "mark_note": "Terms",
+        "margin_note": "First mark. Put r = 0, 1, 2, 3, 4 into ⁽²⁹⁻ʳ⁾C₃ and list the five terms; then place ²⁵C₄ next to ²⁵C₃.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Σ ⁽²⁹⁻ʳ⁾C₃ for r = 0, 1, 2, 3, 4 is",
+          "²⁹C₃ + ²⁸C₃ + ²⁷C₃ + ²⁶C₃ + ²⁵C₃",
+          "L.H.S. = ²⁵C₄ + ²⁵C₃ + ²⁶C₃ + ²⁷C₃",
+          "+ ²⁸C₃ + ²⁹C₃"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sigma is expanded into its five terms ²⁹C₃ down to ²⁵C₃ and written next to ²⁵C₄.",
+          "accept": [
+            "put r equal to zero to four and write twenty nine C three down to twenty five C three",
+            "expand the sigma into five terms and put twenty five C four beside twenty five C three",
+            "write out all five terms of the sum first",
+            "sigma ni expand chesi five terms rayali, twenty five C four pakkana twenty five C three",
+            "list the terms from r equals zero to r equals four"
+          ],
+          "reject": [
+            "use the identity",
+            "add them"
+          ],
+          "heard_as": [
+            "sigma",
+            "twenty nine C three",
+            "twenty five C three",
+            "five terms",
+            "expand"
+          ]
+        },
+        "why": "The identity needs two terms with the same top number and lower numbers one apart. Only after the sum is written out does such a pair — ²⁵C₃ and ²⁵C₄ — appear side by side.",
+        "common_mistakes": [
+          "Writing four terms instead of five — r = 0 gives ²⁹C₃ and r = 4 gives ²⁵C₃.",
+          "Leaving ²⁵C₄ at the far end instead of next to ²⁵C₃."
+        ]
+      },
+      {
+        "id": "s2_pascal_identity",
+        "kind": "equation",
+        "label": "Apply the identity once",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "Second mark. State ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ and use it on the pair with top number 25: ²⁵C₃ + ²⁵C₄ = ²⁶C₄.",
+        "lines": [
+          "Use ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ",
+          "on the pair with the smallest top number:",
+          "²⁵C₄ + ²⁵C₃ = ²⁶C₄"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the identity n C r minus one plus n C r equals n plus one C r is used on ²⁵C₃ + ²⁵C₄ to give ²⁶C₄.",
+          "accept": [
+            "n C r minus one plus n C r is n plus one C r so twenty five C three plus twenty five C four is twenty six C four",
+            "use the Pascal identity on the twenty five pair to get twenty six C four",
+            "combine twenty five C three and twenty five C four into twenty six C four",
+            "twenty five C three plus twenty five C four ni identity tho twenty six C four ga rayali",
+            "the identity turns the pair of twenty fives into twenty six C four"
+          ],
+          "reject": [
+            "write the identity",
+            "simplify"
+          ],
+          "heard_as": [
+            "identity",
+            "n plus one C r",
+            "twenty six C four",
+            "Pascal"
+          ]
+        },
+        "why": "The identity raises the top number by one and keeps the lower number at 4, so each use produces exactly the C₄ term the next C₃ term needs.",
+        "common_mistakes": [
+          "Writing the identity with equal lower numbers — they must differ by one.",
+          "Starting from ²⁹C₃; only the 25 pair has a C₄ partner at the start."
+        ]
+      },
+      {
+        "id": "s3_collapse",
+        "kind": "boxed_final",
+        "label": "Repeat until one term remains",
+        "marks": 2,
+        "mark_note": "Answer",
+        "margin_note": "Two marks. ²⁶C₄ joins ²⁶C₃ to make ²⁷C₄, and so on up to ³⁰C₄. Show every line and end with R.H.S.",
+        "lines": [
+          "²⁶C₄ + ²⁶C₃ = ²⁷C₄",
+          "²⁷C₄ + ²⁷C₃ = ²⁸C₄",
+          "²⁸C₄ + ²⁸C₃ = ²⁹C₄",
+          "²⁹C₄ + ²⁹C₃ = ³⁰C₄ = R.H.S.",
+          {
+            "text": "∴ ²⁵C₄ + Σ ⁽²⁹⁻ʳ⁾C₃ = ³⁰C₄",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the identity is applied again and again — 26, 27, 28, 29 — and the sum collapses to ³⁰C₄, which is the right-hand side.",
+          "accept": [
+            "keep combining twenty six C four with twenty six C three and so on until thirty C four is left",
+            "repeat the identity four more times and it becomes thirty C four which is the right hand side",
+            "the sum collapses step by step to thirty C four",
+            "identity ni repeat cheste thirty C four vasthundi, adi R H S",
+            "twenty seven C four then twenty eight then twenty nine then thirty C four"
+          ],
+          "reject": [
+            "apply the identity",
+            "thirty"
+          ],
+          "heard_as": [
+            "thirty C four",
+            "collapse",
+            "repeat",
+            "right hand side"
+          ]
+        },
+        "why": "Each application removes one term and raises the top number by one; five C₃ terms lift ²⁵C₄ to ³⁰C₄. Ending with \"= R.H.S.\" is what turns the working into a proof.",
+        "common_mistakes": [
+          "Stopping at ²⁹C₄ — the last term ²⁹C₃ still has to be absorbed.",
+          "Changing the lower number to 3 along the way; it stays 4 at every step.",
+          "Never writing \"= R.H.S.\" — a \"show that\" question ends there."
+        ]
+      }
+    ]
+  }
+}

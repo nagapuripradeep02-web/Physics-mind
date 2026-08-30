@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_bt_vsaq_middle_term_3x_by_7_2y",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Binomial Theorem"
+  },
+  "chapter": "Binomial Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the middle term(s) in the expansion of (3x/7 − 2y)¹⁰.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Decide which term is the middle",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.82 — VSAQ chapter 17 Binomial Theorem, answer 158. Printed appearances: AP 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the Binomial Theorem VSAQ pages (book pp.82–84) print no [N Marks] tags. Every 2-mark answer in this chapter has the same two moves — write the general term or the rule that applies (1), then evaluate (1) — so 1+1 with the SAME step ids (s1_setup, s2_evaluate) is used on every VSAQ card of this unit, deliberately. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q8 is the Binomial Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). This exact question is Q8 of Model Paper 1 (book p.111) and is re-solved in the Bullet Model Paper Q8 block (book p.98) — that second solution agrees with this card. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find the middle term — how the parity of n decides how many there are and which one, and what the term comes to with its sign.",
+  "insider_note": "n = 10 is even, so there is ONE middle term, the 6th. (−2y)⁵ keeps its minus — an odd power preserves the sign, and a positive final term shows it was dropped.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Binomial Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Decide which term is the middle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. n = 10 is even, so there is ONE middle term, the (n/2 + 1)-th = 6th.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "n = 10 is even, so there is one middle term,",
+          "the (n/2 + 1)-th = 6th term, T₆",
+          "T₆ = T₅₊₁ = ¹⁰C₅ (3x/7)¹⁰⁻⁵ (−2y)⁵"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n = 10 is even so the single middle term is the 6th, T₆ = ¹⁰C₅ (3x/7)⁵ (−2y)⁵.",
+          "accept": [
+            "n is ten which is even so the middle term is the sixth, ten C five into three x by seven to the five into minus two y to the five",
+            "even n gives one middle term, n by two plus one which is six",
+            "T six is ten C five three x by seven power five minus two y power five",
+            "n ten even kabatti one middle term, sixth term",
+            "the middle term of an even power is the n by two plus one th"
+          ],
+          "reject": [
+            "write the formula",
+            "use the general term"
+          ],
+          "heard_as": [
+            "even",
+            "sixth term",
+            "ten C five",
+            "n by two plus one"
+          ]
+        },
+        "why": "An expansion with n + 1 terms has a single middle only when n + 1 is odd, that is when n is even; it is then the (n/2 + 1)-th term.",
+        "common_mistakes": [
+          "Taking the 5th term as the middle.",
+          "Dropping the minus sign on 2y."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Evaluate",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (−2y)⁵ = −2⁵y⁵ — an odd power keeps the minus. (3/7)⁵ · 2⁵ = (6/7)⁵.",
+        "lines": [
+          "= −¹⁰C₅ (3/7)⁵ · 2⁵ · x⁵y⁵",
+          {
+            "text": "∴ T₆ = −¹⁰C₅ (6/7)⁵ x⁵y⁵",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the middle term is −¹⁰C₅ (6/7)⁵ x⁵y⁵, negative because the power 5 is odd.",
+          "accept": [
+            "minus ten C five into six by seven to the five x to the five y to the five",
+            "the sign is negative because minus two y is raised to an odd power",
+            "three by seven to the five times two to the five is six by seven to the five",
+            "minus ten C five six by seven power five x power five y power five",
+            "the middle term is negative"
+          ],
+          "reject": [
+            "simplify",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "six by seven",
+            "minus",
+            "ten C five",
+            "odd power"
+          ]
+        },
+        "why": "(−2)⁵ is negative and 3⁵·2⁵ = 6⁵, so the two constants collapse into one fraction to the fifth power.",
+        "common_mistakes": [
+          "Writing the term positive.",
+          "Leaving (3/7)⁵ · 2⁵ uncombined when the paper expects (6/7)⁵."
+        ]
+      }
+    ]
+  }
+}

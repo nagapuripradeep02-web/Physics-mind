@@ -1,0 +1,150 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_a_minus_ib_over_a_plus_ib",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the complex number (a − ib)/(a + ib) in the form A + iB.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Multiply above and below by a − ib",
+      "marks": 1
+    },
+    {
+      "label": "Expand and separate A and B",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.70 — VSAQ chapter 12 Complex Numbers, answer 107.1. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: TS 15. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots — this question IS Q1 of the book's Model Paper 2 (book p.113), and the Bullet Model Paper re-solves it on book p.96 with the same working. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would write this quotient in the form A + iB — what you multiply by and what you read off.",
+  "insider_note": "The multiplier is the numerator itself, so the top becomes the single expansion (a − ib)², not four separate products. The second mark is for naming A and B separately — one unsplit fraction is not the form asked.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rationalise",
+        "kind": "equation",
+        "label": "Multiply by the conjugate",
+        "marks": 1,
+        "mark_note": "Rationalise",
+        "margin_note": "First mark. The conjugate of the denominator a + ib is a − ib, which is also the numerator — so the top becomes (a − ib)² and the bottom becomes a² + b².",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "(a − ib)/(a + ib)",
+            "style": "eq"
+          },
+          {
+            "text": "= (a − ib)(a − ib) / ((a + ib)(a − ib))",
+            "style": "indent"
+          },
+          {
+            "text": "= (a − ib)² / (a² + b²)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That numerator and denominator are multiplied by a − ib, the conjugate of the denominator, giving (a − ib)² over a² + b².",
+          "accept": [
+            "multiply top and bottom by a minus i b so the denominator is a squared plus b squared and the numerator is a minus i b squared",
+            "rationalise with the conjugate of the denominator",
+            "the bottom becomes a squared plus b squared and the top becomes a minus i b whole square",
+            "conjugate a minus i b tho multiply cheste denominator a square plus b square",
+            "multiply by the conjugate to make the denominator real"
+          ],
+          "reject": [
+            "rationalise",
+            "simplify"
+          ],
+          "heard_as": [
+            "conjugate",
+            "a minus i b",
+            "a squared plus b squared",
+            "denominator",
+            "rationalise"
+          ]
+        },
+        "why": "(a + ib)(a − ib) = a² − i²b² = a² + b² is real, so after this multiplication the i lives only in the numerator, where it can be separated.",
+        "common_mistakes": [
+          "Multiplying by a + ib, which leaves an i in the denominator.",
+          "Writing the denominator as a² − b²."
+        ]
+      },
+      {
+        "id": "s2_separate",
+        "kind": "boxed_final",
+        "label": "Separate A and B",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Expand (a − ib)² = a² − 2abi + i²b² = (a² − b²) − 2abi, then split over the common denominator.",
+        "lines": [
+          "(a − ib)² = a² − 2abi + i²b² = (a² − b²) − 2abi",
+          {
+            "text": "∴ (a − ib)/(a + ib) = [(a² − b²) − 2abi]/(a² + b²)",
+            "style": "eq"
+          },
+          {
+            "text": "= (a² − b²)/(a² + b²) + i·(−2ab)/(a² + b²)",
+            "style": "boxed"
+          },
+          "so A = (a² − b²)/(a² + b²), B = −2ab/(a² + b²)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding gives A = (a² − b²)/(a² + b²) and B = −2ab/(a² + b²).",
+          "accept": [
+            "expand the square, A is a squared minus b squared over a squared plus b squared and B is minus two a b over a squared plus b squared",
+            "real part a squared minus b squared by a squared plus b squared, imaginary part minus two a b by a squared plus b squared",
+            "the top is a squared minus b squared minus two a b i, split it over the denominator",
+            "square expand chesi real part and imaginary part ni separate ga rayali",
+            "A equals a squared minus b squared over a squared plus b squared and B equals minus two a b over the same"
+          ],
+          "reject": [
+            "expand",
+            "write A and B"
+          ],
+          "heard_as": [
+            "a squared minus b squared",
+            "minus two a b",
+            "a squared plus b squared",
+            "real part",
+            "imaginary part"
+          ]
+        },
+        "why": "The form A + iB needs the fraction split into a real part and a real coefficient of i, each over the real denominator. The minus on B comes from −2abi, not from the denominator.",
+        "common_mistakes": [
+          "Writing i²b² as +b² and getting A = (a² + b²)/(a² + b²) = 1.",
+          "Leaving the answer as one fraction without naming A and B."
+        ]
+      }
+    ]
+  }
+}

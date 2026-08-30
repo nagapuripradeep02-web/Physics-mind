@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_cn_modamp_1_plus_i_root3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Complex Numbers"
+  },
+  "chapter": "Complex Numbers",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Express 1 + i√3 in the modulus-amplitude form.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the modulus r",
+      "marks": 1
+    },
+    {
+      "label": "Find the amplitude θ from the quadrant and write r(cos θ + i sin θ)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.71 — VSAQ chapter 12 Complex Numbers, answer 110.2. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The six modulus-amplitude VSAQs of this unit (110.1–110.6) share the same split and step ids deliberately. The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots — this question IS Q1 of the book's Model Paper 5 (book p.119), and the Bullet Model Paper re-solves it on book p.96 with the same working. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would write a complex number in modulus-amplitude form — what two numbers you need and how the quadrant fixes the angle.",
+  "insider_note": "This is the one first-quadrant question of the modulus-amplitude set, so θ = π/3 needs no adjustment — still write the quadrant sentence, because it is part of the second mark on every question of this form. Keep the r = 2 in front of the bracket.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Complex Numbers · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_modulus",
+        "kind": "equation",
+        "label": "Find r",
+        "marks": 1,
+        "mark_note": "Modulus",
+        "margin_note": "First mark. x = 1, y = √3, so r = √(1 + 3) = 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let 1 + i√3 = x + iy ⇒ x = 1, y = √3",
+          "r = √(x² + y²) = √(1 + 3) = √4 = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 1, y = √3 and the modulus r = √(1 + 3) = 2.",
+          "accept": [
+            "x is one, y is root three, r is root of one plus three which is two",
+            "the modulus is root four equals two",
+            "r equals root x squared plus y squared, that is two",
+            "modulus root four, ante two",
+            "one plus three is four, root of that is two"
+          ],
+          "reject": [
+            "find r",
+            "find the modulus"
+          ],
+          "heard_as": [
+            "two",
+            "root four",
+            "modulus",
+            "r equals"
+          ]
+        },
+        "why": "r is the distance from the origin and goes in front of the bracket. (√3)² = 3, not √3 — the square removes the root.",
+        "common_mistakes": [
+          "Writing (√3)² as √9 or as 9.",
+          "Taking r = 1 + √3."
+        ]
+      },
+      {
+        "id": "s2_amplitude",
+        "kind": "boxed_final",
+        "label": "Find θ and write the form",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. tan θ = √3 and the point (1, √3) is in the first quadrant, so θ = π/3 with no adjustment.",
+        "lines": [
+          "tan θ = y/x = √3/1 = √3",
+          "(1, √3) lies in the first quadrant ⇒ θ = π/3",
+          {
+            "text": "∴ 1 + i√3 = 2(cos(π/3) + i sin(π/3))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan θ = √3 with the point in the first quadrant gives θ = π/3, so the form is 2(cos π/3 + i sin π/3).",
+          "accept": [
+            "tan theta is root three and the point is in the first quadrant so theta is pi by three",
+            "the modulus amplitude form is two times cos pi by three plus i sin pi by three",
+            "first quadrant, theta equals pi by three",
+            "point first quadrant lo undi kabatti theta pi by three",
+            "amplitude pi by three and modulus two"
+          ],
+          "reject": [
+            "find theta",
+            "write the form"
+          ],
+          "heard_as": [
+            "pi by three",
+            "first quadrant",
+            "root three",
+            "tan theta",
+            "cos plus i sin"
+          ]
+        },
+        "why": "In the first quadrant the amplitude is the acute angle itself, so tan⁻¹(√3) = π/3 is the answer with no correction. Writing the quadrant line anyway is good practice — it is the line that earns the mark in the other quadrants.",
+        "common_mistakes": [
+          "Writing θ = 60° when the paper expects radians (both are accepted, but be consistent).",
+          "Forgetting the r = 2 in front of the bracket."
+        ]
+      }
+    ]
+  }
+}

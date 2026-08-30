@@ -1,0 +1,199 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_saq_sum_34c5_telescoping",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Simplify ³⁴C₅ + Σ ⁽³⁸⁻ʳ⁾C₄, the sum taken over r = 0, 1, 2, 3, 4.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write out the five terms of the sum",
+      "marks": 1
+    },
+    {
+      "label": "Apply ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ once",
+      "marks": 1
+    },
+    {
+      "label": "Repeat the identity until one term is left",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.55 — SAQ chapter 9 Permutations & Combinations, answer 68.1. Printed appearances: AP 16, 17, 19, 22 and TS 17. ⚠ THE 1+1+2 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+1+2 split and the SAME step ids (s1_expand_sum, s2_pascal_identity, s3_collapse) are used on both telescoping-sum SAQs in this unit (answers 68.1 and 68.2), deliberately: they are one method over different numbers. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q13 of the book's Model Paper 1 (book p.111) and is re-solved with the same working in the Bullet Model Paper Q13&14 block (book p.101), which agrees with the chapter answer. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would simplify this sum of combinations — what you write out first, which identity you use, and how it collapses.",
+  "insider_note": "The chain must be written line by line — ³⁵C₅, ³⁶C₅, ³⁷C₅, ³⁸C₅, then ³⁹C₅ — because two of the four marks are those lines, and a jump straight from the sum to ³⁹C₅ skips them. Start at the 34 pair, the only pair with a C₅ partner.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Permutations and Combinations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand_sum",
+        "kind": "equation",
+        "label": "Write out the sum",
+        "marks": 1,
+        "mark_note": "Terms",
+        "margin_note": "First mark. Put r = 0, 1, 2, 3, 4 into ⁽³⁸⁻ʳ⁾C₄ and list the five terms. Then place ³⁴C₅ next to ³⁴C₄ — the two with the smallest top number go together.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Σ ⁽³⁸⁻ʳ⁾C₄ for r = 0, 1, 2, 3, 4 is",
+          "³⁸C₄ + ³⁷C₄ + ³⁶C₄ + ³⁵C₄ + ³⁴C₄",
+          "∴ G.E. = ³⁴C₅ + ³⁴C₄ + ³⁵C₄ + ³⁶C₄",
+          "+ ³⁷C₄ + ³⁸C₄"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sigma is expanded into its five terms ³⁸C₄ down to ³⁴C₄ and written next to ³⁴C₅.",
+          "accept": [
+            "put r equal to zero to four and write the five terms thirty eight C four down to thirty four C four",
+            "expand the sigma into thirty eight C four plus thirty seven C four and so on to thirty four C four",
+            "write out all five terms of the sum and put thirty four C five with them",
+            "sigma ni expand chesi five terms rayali, thirty four C five pakkana thirty four C four pettali",
+            "list the terms of the sum from r equals zero to four"
+          ],
+          "reject": [
+            "use the identity",
+            "add them up"
+          ],
+          "heard_as": [
+            "sigma",
+            "thirty eight C four",
+            "thirty four C four",
+            "five terms",
+            "expand"
+          ]
+        },
+        "why": "Nothing can be simplified while the terms are hidden inside a sigma. Written out, the terms ³⁴C₄ and ³⁴C₅ sit side by side and the identity can start.",
+        "common_mistakes": [
+          "Writing four terms instead of five — r = 0 gives ³⁸C₄ and r = 4 gives ³⁴C₄, both included.",
+          "Leaving ³⁴C₅ at the far end instead of next to ³⁴C₄."
+        ]
+      },
+      {
+        "id": "s2_pascal_identity",
+        "kind": "equation",
+        "label": "Apply the identity once",
+        "marks": 1,
+        "mark_note": "Identity",
+        "margin_note": "Second mark. State ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ and use it on the pair with top number 34: ³⁴C₄ + ³⁴C₅ = ³⁵C₅.",
+        "lines": [
+          "Use ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ",
+          "on the pair with the smallest top number:",
+          "³⁴C₅ + ³⁴C₄ = ³⁵C₅"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the identity n C r minus one plus n C r equals n plus one C r is used on ³⁴C₄ + ³⁴C₅ to give ³⁵C₅.",
+          "accept": [
+            "n C r minus one plus n C r is n plus one C r so thirty four C four plus thirty four C five is thirty five C five",
+            "use the Pascal identity on the two terms with thirty four on top to get thirty five C five",
+            "combine thirty four C four and thirty four C five into thirty five C five",
+            "thirty four C four plus thirty four C five ni identity tho thirty five C five ga rayali",
+            "the identity turns the pair of thirty fours into thirty five C five"
+          ],
+          "reject": [
+            "write the identity",
+            "simplify"
+          ],
+          "heard_as": [
+            "identity",
+            "n plus one C r",
+            "thirty five C five",
+            "Pascal"
+          ]
+        },
+        "why": "The identity ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ raises the top number by one while the lower number stays at 5. Each use produces a ³⁵C₅, then ³⁶C₅, and so on — a term of exactly the shape the next pair needs.",
+        "common_mistakes": [
+          "Writing the identity as ⁿCᵣ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ — the two lower numbers must differ by one.",
+          "Starting from ³⁸C₄ instead of the smallest pair; only the pair 34 has a C₅ partner."
+        ]
+      },
+      {
+        "id": "s3_collapse",
+        "kind": "boxed_final",
+        "label": "Repeat until one term remains",
+        "marks": 2,
+        "mark_note": "Answer",
+        "margin_note": "Two marks. The new ³⁵C₅ joins ³⁵C₄ to make ³⁶C₅, and so on up to ³⁹C₅. Show each line; the examiner is paying for the chain, not the last symbol.",
+        "lines": [
+          "³⁵C₅ + ³⁵C₄ = ³⁶C₅",
+          "³⁶C₅ + ³⁶C₄ = ³⁷C₅",
+          "³⁷C₅ + ³⁷C₄ = ³⁸C₅",
+          "³⁸C₅ + ³⁸C₄ = ³⁹C₅",
+          {
+            "text": "∴ ³⁴C₅ + Σ ⁽³⁸⁻ʳ⁾C₄ = ³⁹C₅",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the identity is applied again and again — 35, 36, 37, 38 — and the whole sum collapses to ³⁹C₅.",
+          "accept": [
+            "keep combining thirty five C five with thirty five C four and so on until only thirty nine C five is left",
+            "repeat the identity four more times and the answer is thirty nine C five",
+            "the sum collapses step by step to thirty nine C five",
+            "same identity ni repeat cheste final ga thirty nine C five vasthundi",
+            "thirty six C five then thirty seven then thirty eight then thirty nine C five"
+          ],
+          "reject": [
+            "apply the identity",
+            "thirty nine"
+          ],
+          "heard_as": [
+            "thirty nine C five",
+            "collapse",
+            "repeat",
+            "thirty eight C five"
+          ]
+        },
+        "why": "Every application removes one term and raises the top number by one, so five terms of C₄ lift ³⁴C₅ to ³⁹C₅. The sum was built so that it collapses; writing the chain shows the examiner you know why.",
+        "common_mistakes": [
+          "Stopping at ³⁸C₅ — the last term ³⁸C₄ still has to be absorbed.",
+          "Changing the lower number to 4 along the way; it stays 5 at every step.",
+          "Jumping to ³⁹C₅ with no lines between — the two marks are for the chain."
+        ]
+      }
+    ]
+  }
+}

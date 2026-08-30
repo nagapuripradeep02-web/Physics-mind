@@ -1,0 +1,169 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_rv_binomial_mean_4_variance_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Random Variables and Probability Distributions"
+  },
+  "chapter": "Random Variables and Probability Distributions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The mean and variance of a binomial distribution are 4 and 3 respectively. Find the distribution and find P(X ≥ 1).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find n, p, q",
+      "marks": 1
+    },
+    {
+      "label": "Write the distribution and P(X ≥ 1)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.87 — VSAQ chapter 19 Random Variables, answer 174. (In this part of the scan book page = PDF page − 1: book p.87 was read at PDF p.88, not p.89 as the −2 rule predicts.) Printed appearances: AP 15, 16, 17, 19 · TS 15, 17, 19, 22 — the most-asked VSAQ in the chapter. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.87–88) prints no [N Marks] tags. It is the split this publisher's Maths-1A book prints for a 2-mark VSAQ (1A book p.82, answers 100 and 101: 1 + 1), applied to the two moves of this question. The SAME split and the SAME step ids (s1_find_n_p_q, s2_required_probability) are used on the five binomial VSAQs of this unit (174–178) deliberately: they are one method over different numbers. The VSAQ chapter header (book p.87) carries ★★ and reads '2 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q10 is the Random Variables slot, and this question IS Q10 of the book's Model Paper 1 (book p.111); the Bullet Model Paper re-solves it under Q10 on book p.99 with the same n = 16, p = 1/4, q = 3/4, P(X ≥ 1) = 1 − (3/4)¹⁶. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the distribution and P(X ≥ 1) from the mean and variance — how you get q, p and n, and how the complement gives the probability.",
+  "insider_note": "Two things are asked: the distribution itself, ¹⁶Cᵣ (3/4)¹⁶⁻ʳ (1/4)ʳ, must be written before P(X ≥ 1); and P(X ≥ 1) is the one subtraction 1 − (3/4)¹⁶, never a sum of sixteen terms.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Random Variables · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_n_p_q",
+        "kind": "equation",
+        "label": "Find n, p, q",
+        "marks": 1,
+        "mark_note": "n, p, q",
+        "margin_note": "First mark. Mean = np, variance = npq. Divide: q = npq/np = 3/4, so p = 1/4, and then n = 4/p = 16. Always find q first — the variance-over-mean division gives q, not p.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given mean np = 4, variance npq = 3",
+          "⇒ (np)q = 3 ⇒ 4q = 3 ⇒ q = 3/4",
+          "⇒ p = 1 − q = 1/4",
+          "np = 4 ⇒ n(1/4) = 4 ⇒ n = 16"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That np = 4 and npq = 3 give q = 3/4, p = 1/4 and n = 16.",
+          "accept": [
+            "mean is n p equal to four and variance n p q equal to three so q is three by four p is one by four and n is sixteen",
+            "divide variance by mean to get q, then p is one minus q and n is mean by p",
+            "q three quarters, p a quarter, n sixteen",
+            "npq by np cheste q three by four, p one by four, n sixteen",
+            "n is sixteen with p one fourth"
+          ],
+          "reject": [
+            "find n",
+            "use the formulas"
+          ],
+          "heard_as": [
+            "n p",
+            "n p q",
+            "three by four",
+            "one by four",
+            "sixteen"
+          ]
+        },
+        "why": "A binomial distribution is fixed by n and p, and the two given numbers are exactly two equations in them. Dividing removes n and gives q directly.",
+        "common_mistakes": [
+          "Taking npq/np = p instead of q.",
+          "Writing n = 4 × 4 = 16 without showing np = 4.",
+          "Using p = 3/4 and q = 1/4."
+        ]
+      },
+      {
+        "id": "s2_required_probability",
+        "kind": "boxed_final",
+        "label": "Write the distribution and P(X ≥ 1)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The distribution is P(X = r) = ¹⁶Cᵣ (3/4)¹⁶⁻ʳ (1/4)ʳ. P(X ≥ 1) is 1 − P(X = 0), and P(X = 0) = qⁿ = (3/4)¹⁶. Leave the power as it is.",
+        "lines": [
+          "The distribution is P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ",
+          "= ¹⁶Cᵣ (3/4)¹⁶⁻ʳ (1/4)ʳ, r = 0, 1, 2, …, 16",
+          "P(X ≥ 1) = 1 − P(X = 0) = 1 − qⁿ",
+          {
+            "text": "∴ P(X ≥ 1) = 1 − (3/4)¹⁶",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the distribution is ¹⁶Cᵣ (3/4)¹⁶⁻ʳ (1/4)ʳ and P(X ≥ 1) = 1 − P(X = 0) = 1 − (3/4)¹⁶.",
+          "accept": [
+            "the distribution is sixteen C r into three by four to the sixteen minus r into one by four to the r, and P of X at least one is one minus three by four to the sixteen",
+            "write n C r q to the n minus r p to the r with n sixteen, then one minus q to the n",
+            "P of X greater than or equal to one is one minus P of zero which is one minus three fourths to the sixteenth",
+            "distribution sixteen C r q power sixteen minus r p power r, P X at least one is one minus q power sixteen",
+            "one minus three by four to the power sixteen"
+          ],
+          "reject": [
+            "find the probability",
+            "write the distribution"
+          ],
+          "heard_as": [
+            "sixteen C r",
+            "three by four to the sixteen",
+            "one minus P of zero",
+            "q to the n",
+            "at least one"
+          ]
+        },
+        "why": "P(X ≥ 1) covers sixteen values, but its complement P(X = 0) is one term, and P(X = 0) = qⁿ because every trial must fail. Using the complement is the standard method for an 'at least one' question.",
+        "common_mistakes": [
+          "Computing P(X = 1) instead of P(X ≥ 1).",
+          "Writing P(X = 0) = pⁿ = (1/4)¹⁶.",
+          "Never writing the distribution, which the question asks for."
+        ]
+      }
+    ]
+  }
+}

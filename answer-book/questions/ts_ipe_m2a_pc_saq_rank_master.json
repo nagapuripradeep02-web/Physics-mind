@@ -1,0 +1,216 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_saq_rank_master",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If the letters of the word MASTER are permuted in all possible ways and the words thus formed are arranged in dictionary order, then find the rank of the word MASTER.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the letters in alphabetical order",
+      "marks": 1
+    },
+    {
+      "label": "Count the words that come before",
+      "marks": 2
+    },
+    {
+      "label": "Add up and state the rank",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 9 Permutations & Combinations, answer 73. Printed appearances: AP 15, 17, 18, 19, 20 and TS 16, 17, 19, 22. ⚠ THE 1+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+2+1 shape this bank uses for a 4-mark maths method question (the Maths-1A Matrices SAQ cards, e.g. ts_ipe_m1a_mat_saq_adj_inverse_1_0_2: one mark to set up, two for the main working, one to finish). The SAME 1+2+1 split and the SAME step ids (s1_alphabetical_order, s2_count_words_before, s3_rank) are used on all three dictionary-rank SAQs in this unit (MASTER, PRISON, EAMCET), deliberately: they are one method over different words. The book's SAQ chapter header carries ★★★ and reads '4+4 = 8 Marks'; that star is the CHAPTER's rank, not this question's, and the 4+4 is because Permutations & Combinations holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q13 and Q14 are the two Permutations & Combinations slots; this exact question is Q14 of the book's Model Paper 2 (book p.113) and is re-solved in the Bullet Model Paper Q13&14 block (book p.102), which agrees with the chapter answer (257). No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find the dictionary rank of MASTER — what you write first, how you count the words before it, and how you finish.",
+  "insider_note": "The marks sit in the block table, not in the final addition, and the closing term is +1 for MASTER itself, not a factorial — the words before it count 256, so the rank is one more.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Permutations and Combinations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_alphabetical_order",
+        "kind": "text",
+        "label": "Alphabetical order of the letters",
+        "marks": 1,
+        "mark_note": "Order",
+        "margin_note": "First mark. Six different letters: A, E, M, R, S, T. No repeats, so every count below is a plain factorial.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Letters of MASTER in alphabetical order:",
+          "A, E, M, R, S, T"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the letters of MASTER are first written in alphabetical order: A E M R S T.",
+          "accept": [
+            "write the letters in alphabetical order A E M R S T",
+            "first arrange the letters of MASTER alphabetically",
+            "alphabetical order of the letters is A E M R S T",
+            "letters ni alphabetical order lo rayali, A E M R S T",
+            "sort the letters first, that is what dictionary order means"
+          ],
+          "reject": [
+            "write the letters",
+            "count the words"
+          ],
+          "heard_as": [
+            "alphabetical",
+            "order",
+            "letters",
+            "A E M R S T"
+          ]
+        },
+        "why": "Dictionary order is alphabetical order applied letter by letter. Until the letters are sorted there is no way to say which words come before the given one.",
+        "common_mistakes": [
+          "Writing the letters in the order of the word (M, A, S, T, E, R) instead of alphabetical order.",
+          "Missing a letter — six letters must be listed."
+        ]
+      },
+      {
+        "id": "s2_count_words_before",
+        "kind": "equation",
+        "label": "Count the words before it",
+        "marks": 2,
+        "mark_note": "Counting",
+        "margin_note": "Two marks. Words starting with A or E come first (5! each). Then M A E and M A R (3! each), then M A S E and M A S R (2! each). The next word is MASTER itself.",
+        "lines": [
+          "Words starting with A: 5! = 120",
+          "Words starting with E: 5! = 120",
+          "Words starting with MAE: 3! = 6",
+          "Words starting with MAR: 3! = 6",
+          "Words starting with MASE: 2! = 2",
+          "Words starting with MASR: 2! = 2",
+          "The next word is MASTER itself."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That words starting with A and with E are 5! each, then M A E and M A R are 3! each, then M A S E and M A S R are 2! each, and the next word is MASTER.",
+          "accept": [
+            "words starting with A are one twenty, with E one twenty, then M A E six, M A R six, M A S E two, M A S R two and then MASTER",
+            "count five factorial for A and for E, three factorial for MAE and MAR, two factorial for MASE and MASR",
+            "fix the first letters in turn and count the arrangements of the remaining letters",
+            "A tho E tho five factorial, MAE MAR three factorial, MASE MASR two factorial, tharvatha MASTER",
+            "one twenty plus one twenty plus six plus six plus two plus two before MASTER"
+          ],
+          "reject": [
+            "count the words",
+            "use factorials"
+          ],
+          "heard_as": [
+            "one twenty",
+            "five factorial",
+            "three factorial",
+            "two factorial",
+            "M A E",
+            "M A S E"
+          ]
+        },
+        "why": "Every word that starts with a smaller letter comes before the given word, and once the first letter matches the same argument repeats on the second letter. Each line fixes one more letter and counts the arrangements of the rest.",
+        "common_mistakes": [
+          "Counting words starting with M as a whole block (5!) — M is the first letter of MASTER, so only the M-words before MASTER are counted.",
+          "Skipping M A E and going straight to M A S.",
+          "Counting M A S T as a block before MASTER — after M A S T only E R remain and MASTER is the first of those two."
+        ]
+      },
+      {
+        "id": "s3_rank",
+        "kind": "boxed_final",
+        "label": "Add up and state the rank",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. 120 + 120 + 6 + 6 + 2 + 2 = 256 words come before MASTER, so its rank is 257.",
+        "lines": [
+          "Rank = 2(120) + 2(6) + 2(2) + 1",
+          "= 240 + 12 + 4 + 1",
+          {
+            "text": "∴ rank of MASTER = 257",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the counts are added and one is added for the word itself, giving rank 257.",
+          "accept": [
+            "add two forty, twelve, four and one to get two hundred fifty seven",
+            "the rank is two fifty seven",
+            "two hundred fifty six words come before it so the rank is two fifty seven",
+            "anni add chesi plus one cheste two hundred fifty seven",
+            "two forty plus twelve plus four plus one is two fifty seven"
+          ],
+          "reject": [
+            "add them",
+            "the rank"
+          ],
+          "heard_as": [
+            "two hundred fifty seven",
+            "two fifty seven",
+            "plus one",
+            "rank"
+          ]
+        },
+        "why": "The rank is the position of the word, so it is the number of words before it plus one for the word itself. Forgetting the plus one gives the count of earlier words, not the rank.",
+        "common_mistakes": [
+          "Answering 256 — the count of words before MASTER, not its rank.",
+          "Adding 2! for MASTER itself instead of 1."
+        ]
+      }
+    ]
+  }
+}

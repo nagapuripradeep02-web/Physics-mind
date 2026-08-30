@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pc_vsaq_prove_10c3_10c6_11c4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 5,
+    "name": "Permutations and Combinations"
+  },
+  "chapter": "Permutations and Combinations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that ¹⁰C₃ + ¹⁰C₆ = ¹¹C₄.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Rewrite ¹⁰C₆ as ¹⁰C₄",
+      "marks": 1
+    },
+    {
+      "label": "Apply ⁿCᵣ + ⁿCᵣ₊₁ = ⁽ⁿ⁺¹⁾Cᵣ₊₁",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 16 Permutations & Combinations, answer 145.1. Printed appearances: TS 17 and AP 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this unit's pages (SAQ book pp.55–58, VSAQ book pp.78–81 and Star Questions Plus book p.93 print none). It is patterned on the 1+1 split the same publisher prints against 2-mark VSAQs in its Maths-1A book (1A book p.82, answers 100 and 101). The SAME 1+1 split and the SAME step ids (s1_rewrite, s2_pascal) are used on the three Pascal-identity VSAQs in this unit (answers 145.1, 145.2, 146.1), deliberately: one identity over different numbers. The book's VSAQ chapter header carries ★★★ and reads '2+2 = 4 Marks'; that star is the CHAPTER's rank, not this question's, and the 2+2 is because Permutations & Combinations holds TWO Section-A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q6 and Q7 are the two Permutations & Combinations slots; the question is re-solved in the Bullet Model Paper Q6&7 block (book p.98), which agrees, and is not in the five model papers. No two-book union check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would prove that 10 C 3 plus 10 C 6 equals 11 C 4.",
+  "insider_note": "Pascal needs lower numbers one apart, so the one required move is ¹⁰C₆ = ¹⁰C₄. After it the identity gives ¹¹C₄ in one line — and a prove-that question ends at \"= R.H.S.\", not at the identity.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Permutations and Combinations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite",
+        "kind": "equation",
+        "label": "Rewrite ¹⁰C₆ as ¹⁰C₄",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. ⁿCᵣ = ⁿCₙ₋ᵣ, so ¹⁰C₆ = ¹⁰C₄. Now the two lower numbers differ by one.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "¹⁰C₆ = ¹⁰C₁₀₋₆ = ¹⁰C₄",
+          "L.H.S. = ¹⁰C₃ + ¹⁰C₄"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 10 C 6 is rewritten as 10 C 4 using n C r equals n C n minus r, so the left side is 10 C 3 plus 10 C 4.",
+          "accept": [
+            "ten C six is ten C four because n C r equals n C n minus r, so the left side is ten C three plus ten C four",
+            "change ten C six to ten C four first",
+            "rewrite ten C six as ten C ten minus six which is ten C four",
+            "ten C six ni ten C four ga rayali",
+            "use the complement rule on ten C six"
+          ],
+          "reject": [
+            "use the identity",
+            "add them"
+          ],
+          "heard_as": [
+            "ten C six",
+            "ten C four",
+            "n minus r",
+            "complement"
+          ]
+        },
+        "why": "Pascal's identity needs two lower numbers one apart. 3 and 6 are not; 3 and 4 are. The rewrite is what makes the identity usable.",
+        "common_mistakes": [
+          "Applying Pascal directly to ¹⁰C₃ + ¹⁰C₆ — the lower numbers must differ by one.",
+          "Rewriting ¹⁰C₃ as ¹⁰C₇ instead, which moves further away."
+        ]
+      },
+      {
+        "id": "s2_pascal",
+        "kind": "boxed_final",
+        "label": "Apply ⁿCᵣ + ⁿCᵣ₊₁ = ⁽ⁿ⁺¹⁾Cᵣ₊₁",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. With n = 10 and r = 3 the identity gives ¹¹C₄, which is the right-hand side.",
+        "lines": [
+          "ⁿCᵣ + ⁿCᵣ₊₁ = ⁽ⁿ⁺¹⁾Cᵣ₊₁ with n = 10, r = 3:",
+          {
+            "text": "∴ ¹⁰C₃ + ¹⁰C₆ = ¹¹C₄ = R.H.S.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Pascal's identity n C r plus n C r plus 1 equals n plus 1 C r plus 1 gives 11 C 4, the right-hand side.",
+          "accept": [
+            "n C r plus n C r plus one is n plus one C r plus one so ten C three plus ten C four is eleven C four which is the right hand side",
+            "apply Pascal to get eleven C four",
+            "ten C three plus ten C four equals eleven C four, proved",
+            "Pascal identity tho eleven C four vasthundi, R H S",
+            "the sum of the two is eleven C four"
+          ],
+          "reject": [
+            "apply the identity",
+            "eleven C four"
+          ],
+          "heard_as": [
+            "Pascal",
+            "eleven C four",
+            "n plus one C r plus one",
+            "right hand side"
+          ]
+        },
+        "why": "Pascal's identity is the statement that choosing r + 1 from n + 1 either uses a fixed item or does not. Naming it, with its n and r, is what turns two lines into a proof.",
+        "common_mistakes": [
+          "Writing the identity as ⁿCᵣ + ⁿCᵣ₊₁ = ⁽ⁿ⁺¹⁾Cᵣ, with the wrong lower number on the right.",
+          "Not ending with \"= R.H.S.\" on a \"prove that\" question."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,295 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_md_laq_md_median_grouped_0_60",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Measures of Dispersion"
+  },
+  "chapter": "Measures of Dispersion",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "Find the mean deviation about the median for the following data: Marks 0–10, 10–20, 20–30, 30–40, 40–50, 50–60; Number of boys 6, 8, 14, 16, 4, 2.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Form the cumulative frequency table",
+      "marks": 2
+    },
+    {
+      "label": "Find the median class and the median",
+      "marks": 2
+    },
+    {
+      "label": "Find |xᵢ − M| and fᵢ|xᵢ − M| and their sum",
+      "marks": 2
+    },
+    {
+      "label": "Find the mean deviation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.45 — LAQ chapter 6 Measures of Dispersion, answer 50. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) Printed appearances: AP 19. ⚠ THE 2+2+2+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in chapter 6 (book pp.44–46). It is patterned on the 1A house weighting for a computation LAQ (1A book p.30, applied to the Cramer answers 18.1–18.4): 2 for the cumulative-frequency table, 2 for locating the median and computing M, 2 for the deviation columns and their sum, 1 for the mean deviation. The two mean-deviation-about-the-median LAQs of this unit (answer 50 grouped, answer 51 discrete) share the same split and the same step ids deliberately; on the discrete data the median step is shorter (no interpolation) but it still decides every later number, so it keeps its 2. The chapter header (book p.44) carries ★★ and reads '7 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q22 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question IS Q22 of the book's Model Paper 3 (book p.116, index P45(50)). Every column and every sum was recomputed for this card: cumulative frequencies 6, 14, 28, 44, 48, 50; N/2 = 25 falls in 20–30; M = 20 + (10/14)(25 − 14) = 27.857…, printed 27.86; the deviation column uses the rounded 27.86 (22.86, 12.86, 2.86, 7.14, 17.14, 27.14) and Σfᵢ|xᵢ − M| = 517.16, 517.16/50 = 10.3432, printed 10.34 — the book's table is correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the mean deviation about the median for grouped data — how you find the median class, what the median formula needs, and what you divide at the end.",
+  "insider_note": "In the median formula m is the cumulative frequency of the class BEFORE the median class — here 14, not 28; that single number is where this question is most often lost.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Measures of Dispersion · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cf_table",
+        "kind": "equation",
+        "label": "Cumulative frequency table",
+        "marks": 2,
+        "mark_note": "Table",
+        "margin_note": "First two marks. Columns: class, frequency fᵢ, cumulative frequency c.f. (running total of fᵢ), midpoint xᵢ. The c.f. column is what locates the median class in the next step.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Class      fᵢ     c.f.     xᵢ",
+            "style": "indent"
+          },
+          {
+            "text": "0–10       6      6        5",
+            "style": "indent"
+          },
+          {
+            "text": "10–20      8      14       15",
+            "style": "indent"
+          },
+          {
+            "text": "20–30      14     28       25",
+            "style": "indent"
+          },
+          {
+            "text": "30–40      16     44       35",
+            "style": "indent"
+          },
+          {
+            "text": "40–50      4      48       45",
+            "style": "indent"
+          },
+          {
+            "text": "50–60      2      50       55",
+            "style": "indent"
+          },
+          {
+            "text": "Σfᵢ = 50 = N",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a table of class, frequency, cumulative frequency (6, 14, 28, 44, 48, 50) and midpoint is written, with N = 50.",
+          "accept": [
+            "write the classes with frequency, cumulative frequency six fourteen twenty eight forty four forty eight fifty, and midpoints",
+            "make the cumulative frequency table by adding the frequencies one by one, N is fifty",
+            "the c f column is the running total of f i and the midpoints are five to fifty five",
+            "cumulative frequency table rayali, frequencies okka okkati add chesthu, N fifty",
+            "table with f i, c f and x i columns, total fifty"
+          ],
+          "reject": [
+            "make a table",
+            "write the data",
+            "find the midpoints"
+          ],
+          "heard_as": [
+            "cumulative",
+            "c f",
+            "running total",
+            "fifty",
+            "midpoint"
+          ]
+        },
+        "why": "The median is a position (the N/2-th item), not a value you can read from the frequencies directly. The cumulative frequency turns each class into the range of positions it covers.",
+        "common_mistakes": [
+          "Writing the frequencies again in the c.f. column instead of the running totals.",
+          "Starting the c.f. from the last class.",
+          "Leaving out the midpoint column, which the deviation step needs."
+        ]
+      },
+      {
+        "id": "s2_median",
+        "kind": "equation",
+        "label": "Median class and median",
+        "marks": 2,
+        "mark_note": "Median",
+        "margin_note": "Next two marks. N/2 = 25; the first c.f. that reaches 25 is 28, so 20–30 is the median class. In the formula l = lower limit 20, C = width 10, f = frequency of the median class 14, m = c.f. of the class BEFORE it, 14. 110/14 = 7.857…, written 7.86.",
+        "lines": [
+          "N/2 = 25. The first c.f. ≥ 25 is 28,",
+          "so the median class is 20–30.",
+          "l = 20, C = 10, f = 14,",
+          "m = 14 (the c.f. before the median class)",
+          "Median M = l + (C/f)·(N/2 − m)",
+          "= 20 + (10/14)·(25 − 14) = 20 + 110/14",
+          "= 20 + 7.86 = 27.86"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That N/2 = 25 lies in the class 20–30, and M = l + (C/f)(N/2 − m) = 20 + (10/14)(25 − 14) = 27.86.",
+          "accept": [
+            "N by two is twenty five which falls in twenty to thirty, so median is twenty plus ten by fourteen into twenty five minus fourteen equals twenty seven point eight six",
+            "the median class is twenty to thirty, l twenty, f fourteen, m fourteen, C ten, median twenty seven point eight six",
+            "use l plus C by f into N by two minus m with the class where the cumulative frequency first passes twenty five",
+            "N by two twenty five, twenty to thirty class lo undi, formula pedithe median twenty seven point eight six",
+            "the median works out to twenty seven point eight six"
+          ],
+          "reject": [
+            "find the median",
+            "use the formula",
+            "twenty five"
+          ],
+          "heard_as": [
+            "N by two",
+            "median class",
+            "twenty to thirty",
+            "l plus",
+            "twenty seven point eight six"
+          ]
+        },
+        "why": "Inside the median class the N/2-th item is assumed to sit a fraction (N/2 − m)/f of the way through the class. The formula is that fraction of the width C, added to the lower limit l.",
+        "common_mistakes": [
+          "Taking m as the c.f. OF the median class (28) instead of the one before it (14).",
+          "Taking the median class as the one whose c.f. is nearest to 25 rather than the first one at or above 25.",
+          "Using the midpoint 25 as the median."
+        ]
+      },
+      {
+        "id": "s3_abs_table",
+        "kind": "equation",
+        "label": "Deviations from the median",
+        "marks": 2,
+        "mark_note": "Deviations",
+        "margin_note": "Next two marks. Columns: midpoint xᵢ, frequency fᵢ, |xᵢ − 27.86|, and the product with fᵢ. Every deviation has two decimals because M does. The products are 6 × 22.86 = 137.16 and so on; the sum is 517.16.",
+        "lines": [
+          "With M = 27.86:",
+          {
+            "text": "xᵢ     fᵢ     |xᵢ − M|     fᵢ|xᵢ − M|",
+            "style": "indent"
+          },
+          {
+            "text": "5      6      22.86        137.16",
+            "style": "indent"
+          },
+          {
+            "text": "15     8      12.86        102.88",
+            "style": "indent"
+          },
+          {
+            "text": "25     14     2.86         40.04",
+            "style": "indent"
+          },
+          {
+            "text": "35     16     7.14         114.24",
+            "style": "indent"
+          },
+          {
+            "text": "45     4      17.14        68.56",
+            "style": "indent"
+          },
+          {
+            "text": "55     2      27.14        54.28",
+            "style": "indent"
+          },
+          {
+            "text": "Σfᵢ|xᵢ − M| = 517.16",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each midpoint's absolute deviation from 27.86 is found, multiplied by its frequency, and the products add to 517.16.",
+          "accept": [
+            "subtract twenty seven point eight six from each midpoint, take the absolute value, multiply by f i and add to get five seventeen point one six",
+            "the deviations are twenty two point eight six down to two point eight six and up to twenty seven point one four, weighted sum five hundred seventeen point one six",
+            "find the absolute deviations from the median, weight by frequency, total five seventeen point one six",
+            "prathi midpoint nunchi median teesi mod teesukoni f i tho multiply cheste five seventeen point one six",
+            "sigma f i mod x i minus M is five hundred and seventeen point one six"
+          ],
+          "reject": [
+            "find the deviations",
+            "subtract the median",
+            "fill the table"
+          ],
+          "heard_as": [
+            "mod",
+            "absolute",
+            "twenty seven point eight six",
+            "five seventeen point one six",
+            "five hundred and seventeen"
+          ]
+        },
+        "why": "Mean deviation about the median averages DISTANCES from the median, so signs are dropped. The median, not the mean, is the centre here because the question says so.",
+        "common_mistakes": [
+          "Subtracting from the mean instead of from the median.",
+          "Keeping the signs.",
+          "A multiplication slip: 16 × 7.14 = 114.24, 14 × 2.86 = 40.04."
+        ]
+      },
+      {
+        "id": "s4_md",
+        "kind": "boxed_final",
+        "label": "Mean deviation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. 517.16/50 = 10.3432, written 10.34.",
+        "lines": [
+          "M.D. about the median = Σfᵢ|xᵢ − M|/N",
+          "= 517.16/50 = 10.34",
+          {
+            "text": "∴ M.D. about the median = 10.34",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mean deviation about the median is Σfᵢ|xᵢ − M| divided by N: 517.16/50 = 10.34.",
+          "accept": [
+            "mean deviation is five seventeen point one six by fifty which is ten point three four",
+            "divide the weighted sum by N fifty to get ten point three four",
+            "M D about the median equals sigma f i mod x i minus M by N equals ten point three four",
+            "five seventeen point one six ni fifty tho divide cheste ten point three four",
+            "the answer is ten point three four"
+          ],
+          "reject": [
+            "divide it",
+            "that is the answer",
+            "find the mean deviation"
+          ],
+          "heard_as": [
+            "ten point three four",
+            "by fifty",
+            "M D",
+            "mean deviation"
+          ]
+        },
+        "why": "The mean deviation is the average distance of a boy's mark from the median. The division by N = 50 is what makes it an average.",
+        "common_mistakes": [
+          "Dividing by 6 (the number of classes) instead of 50.",
+          "Stopping at 517.16 without dividing.",
+          "Writing 'about the mean' when the question asked about the median."
+        ]
+      }
+    ]
+  }
+}

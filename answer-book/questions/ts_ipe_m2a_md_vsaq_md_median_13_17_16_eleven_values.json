@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_md_vsaq_md_median_13_17_16_eleven_values",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Measures of Dispersion"
+  },
+  "chapter": "Measures of Dispersion",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the mean deviation about the median for the data 13, 17, 16, 11, 13, 10, 16, 11, 18, 12, 17.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the median",
+      "marks": 1
+    },
+    {
+      "label": "Find the mean deviation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.86 — VSAQ chapter 18 Measures of Dispersion, answer 171.2. (In this part of the scan book page = PDF page − 1: book p.44 is PDF p.45, book p.85 is PDF p.86 — the same −1 offset the Complex Numbers cards record.) The unit table in docs/IPE_MATHS_2A_SOURCE.md lists chapter 18 as answers 168–172; the page shows answer 168 is the last Binomial Theorem VSAQ (book p.84) and chapter 18 runs 169.1–172.2 — eight answers in four twin pairs. Printed appearances: AP 16. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on book pp.85–86. It is patterned on the 1A Matrices VSAQ 1+1 (1A book p.82, answers 100–101 — the one place this book series prints a VSAQ split): 1 for the centre (the mean or the median), 1 for the spread (the mean deviation or the variance). All eight VSAQs of this unit share that shape deliberately, and the twins of each pair share the same step ids. The chapter header (book p.85) carries ★★★ and reads '2 Marks'; that ★★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q9 is the Measures of Dispersion slot on the blueprint and in all five model papers (book pp.111–120). This question is not in the five model papers or the Bullet Model Paper; Q9 is its slot. Recomputed: ascending 10, 11, 11, 12, 13, 13, 16, 16, 17, 17, 18 (eleven values — 10 once, 11 twice, 12 once, 13 twice, 16 twice, 17 twice, 18 once), n = 11 odd, M = the 6th value = 13, |xᵢ − M| in the given order 0, 4, 3, 2, 0, 3, 3, 2, 5, 1, 4, total 27, 27/11 = 2.4545…, printed 2.45 — correct. No Star Questions Plus backfill exists for this chapter — book pp.89–95 carry banners for Complex Numbers, De Moivre, Quadratic Equations, Theory of Equations, Permutations & Combinations and Binomial Theorem only. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the mean deviation about the median for eleven numbers — what you do to the data first, how you pick the median, and what you average at the end.",
+  "insider_note": "Keep every repeated value when sorting, so n stays 11 and the median is the 6th value, 13; the two zero deviations still count, and the divisor stays n = 11.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Measures of Dispersion · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_median",
+        "kind": "equation",
+        "label": "Median",
+        "marks": 1,
+        "mark_note": "Median",
+        "margin_note": "First mark. Eleven values, with repeats — keep every copy when sorting. n = 11 is odd, so the median is the ((11 + 1)/2)th = 6th value in order: 13.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Ascending order:",
+          "10, 11, 11, 12, 13, 13, 16, 16, 17, 17, 18",
+          "n = 11 is odd, so M = the 6th value.",
+          "∴ Median M = 13"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the eleven values are sorted (keeping repeats), n = 11 is odd, and the median is the 6th value, 13.",
+          "accept": [
+            "put the eleven numbers in order keeping the repeats, eleven is odd so the median is the sixth value, thirteen",
+            "sort the data and take the n plus one by two th value, the sixth, which is thirteen",
+            "median is the middle value after sorting, thirteen",
+            "ascending order lo pettite sixth value thirteen, adi median",
+            "the median is thirteen"
+          ],
+          "reject": [
+            "find the median",
+            "the middle one",
+            "sort them"
+          ],
+          "heard_as": [
+            "ascending",
+            "sort",
+            "sixth",
+            "thirteen",
+            "median"
+          ]
+        },
+        "why": "The median is the middle of the ORDERED data. With repeats, each copy keeps its own position; dropping a repeat changes n and moves the middle.",
+        "common_mistakes": [
+          "Dropping repeated values when sorting, so n becomes 7 and the middle moves.",
+          "Counting the middle of the unsorted list.",
+          "Taking the mean (154/11 = 14) instead of the median."
+        ]
+      },
+      {
+        "id": "s2_md",
+        "kind": "boxed_final",
+        "label": "Mean deviation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Absolute deviations from 13, written in the GIVEN order as the book does: 0, 4, 3, 2, 0, 3, 3, 2, 5, 1, 4. Sum 27, divide by n = 11. 27/11 = 2.4545…, written 2.45.",
+        "lines": [
+          "|xᵢ − M| : 0, 4, 3, 2, 0, 3, 3, 2, 5, 1, 4",
+          "Σ|xᵢ − M| = 27",
+          "M.D. = Σ|xᵢ − M|/n = 27/11 = 2.45",
+          {
+            "text": "∴ M.D. about the median = 2.45",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the absolute deviations from 13 add to 27 and 27/11 gives 2.45.",
+          "accept": [
+            "take each number minus thirteen without sign, add to twenty seven, divide by eleven, two point four five",
+            "the absolute deviations from the median add to twenty seven and twenty seven by eleven is two point four five",
+            "mean deviation is sigma mod x i minus M by n equals twenty seven by eleven equals two point four five",
+            "thirteen nunchi deviations mod teesukoni add cheste twenty seven, eleven tho divide cheste two point four five",
+            "the answer is two point four five"
+          ],
+          "reject": [
+            "divide it",
+            "that is the answer",
+            "find the deviations"
+          ],
+          "heard_as": [
+            "mod",
+            "absolute",
+            "twenty seven",
+            "two point four five",
+            "M D"
+          ]
+        },
+        "why": "Mean deviation about the median is the average distance from the median. The two 13's contribute 0 each but still count in n = 11.",
+        "common_mistakes": [
+          "Dividing 27 by 9 after leaving out the two zero terms — the divisor is n = 11.",
+          "Subtracting from the mean 14 instead of from the median 13.",
+          "Writing 2.46 — the book rounds 2.4545… to 2.45."
+        ]
+      }
+    ]
+  }
+}

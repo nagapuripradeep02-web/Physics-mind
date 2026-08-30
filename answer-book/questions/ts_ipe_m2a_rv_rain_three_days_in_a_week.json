@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_rv_rain_three_days_in_a_week",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 10,
+    "name": "Random Variables and Probability Distributions"
+  },
+  "chapter": "Random Variables and Probability Distributions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "On an average, rain falls on 12 days in every 30 days. Find the probability that rain will fall on just 3 days of a given week.",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write n, p, q",
+      "marks": 1
+    },
+    {
+      "label": "Find P(X = 3)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.88 — VSAQ chapter 19 Random Variables, answer 177. (In this part of the scan book page = PDF page − 1: book p.88 was read at PDF p.89, not p.90 as the −2 rule predicts.) Printed appearances: AP 22. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.87–88) prints no [N Marks] tags. It is the split this publisher's Maths-1A book prints for a 2-mark VSAQ (1A book p.82, answers 100 and 101: 1 + 1), applied to the two moves of this question. The SAME split and the SAME step ids (s1_find_n_p_q, s2_required_probability) are used on the five binomial VSAQs of this unit (174–178) deliberately: they are one method over different numbers. The VSAQ chapter header (book p.87) carries ★★ and reads '2 Marks'; that ★★ is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q10 is the Random Variables slot. The book leaves the answer as (35 × 2³ × 3⁴)/5⁷; the card also gives the evaluated fraction 22680/78125 (35 · 8 · 81 = 22680, 5⁷ = 78125). No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the probability of rain on exactly three days of a week — what n, p and q are, and which term of the binomial formula you use.",
+  "insider_note": "n comes from the week — n = 7, never 30 or 12; those two numbers only make p = 12/30 = 2/5, and 'just 3 days' means exactly 3, a single term with r = 3.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Random Variables · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_n_p_q",
+        "kind": "equation",
+        "label": "Write n, p, q",
+        "marks": 1,
+        "mark_note": "n, p, q",
+        "margin_note": "First mark. Success = rain on a day, p = 12/30 = 2/5, q = 3/5. A week is 7 days, so n = 7. 'Just 3 days' means exactly 3, so r = 3.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Success = rain on a day: p = 12/30 = 2/5",
+          "⇒ q = 1 − p = 3/5. A week has n = 7 days.",
+          "X = number of rainy days in the week;",
+          "X is binomial with n = 7, p = 2/5,",
+          "and we need P(X = 3)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p = 12/30 = 2/5, q = 3/5, n = 7 and the required probability is P(X = 3).",
+          "accept": [
+            "p is twelve by thirty which is two by five, q is three by five, n is seven and we need P of X equals three",
+            "rain on a day has probability two fifths, a week is seven trials, exactly three successes",
+            "p two by five, q three by five, n seven, r three",
+            "p twelve by thirty ante two by five, q three by five, week lo seven days, P of three kavali",
+            "binomial with n seven and p two fifths"
+          ],
+          "reject": [
+            "use binomial",
+            "write the formula"
+          ],
+          "heard_as": [
+            "two by five",
+            "three by five",
+            "n equals seven",
+            "twelve by thirty",
+            "exactly three"
+          ]
+        },
+        "why": "Seven days with the same chance of rain is a binomial situation. The word 'just' fixes r = 3 exactly, and reducing 12/30 to 2/5 keeps the powers small.",
+        "common_mistakes": [
+          "Using n = 30 or n = 12 instead of 7.",
+          "Taking p = 3/7 from the question's '3 days of a week'.",
+          "Reading 'just 3' as 'at most 3'."
+        ]
+      },
+      {
+        "id": "s2_required_probability",
+        "kind": "boxed_final",
+        "label": "Find P(X = 3)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. P(X = 3) = ⁷C₃ q⁴ p³ = 35 · (3/5)⁴ · (2/5)³. Keep it as powers: (35 · 3⁴ · 2³)/5⁷. The evaluated value 22680/78125 is optional.",
+        "lines": [
+          "P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ",
+          "P(X = 3) = ⁷C₃ (3/5)⁴ (2/5)³ = 35 · 3⁴ · 2³/5⁷",
+          "= 35 · 81 · 8/78125 = 4536/15625",
+          {
+            "text": "∴ P(X = 3) = (35 · 3⁴ · 2³)/5⁷",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(X = 3) = ⁷C₃ (3/5)⁴ (2/5)³ = (35 · 3⁴ · 2³)/5⁷.",
+          "accept": [
+            "P of three is seven C three into three by five to the four into two by five to the three which is thirty five into three to the four into two cubed over five to the seven",
+            "seven C three is thirty five, times q to the four times p cubed",
+            "the answer is thirty five into eighty one into eight over seventy eight thousand one hundred twenty five",
+            "seven C three into three by five power four into two by five power three, thirty five into three power four into two power three by five power seven",
+            "thirty five times three fourths powers over five to the seventh"
+          ],
+          "reject": [
+            "find the probability",
+            "substitute"
+          ],
+          "heard_as": [
+            "seven C three",
+            "thirty five",
+            "three by five to the four",
+            "two by five to the three",
+            "five to the seven"
+          ]
+        },
+        "why": "Exactly three rainy days out of seven is the r = 3 term. ⁷C₃ = 35 counts which three days, q⁴ covers the four dry days and p³ the three wet ones — every factor has a meaning.",
+        "common_mistakes": [
+          "Writing ⁷C₃ = 21 or 210.",
+          "Putting the power 4 on p and 3 on q.",
+          "Omitting ⁷C₃ altogether."
+        ]
+      }
+    ]
+  }
+}

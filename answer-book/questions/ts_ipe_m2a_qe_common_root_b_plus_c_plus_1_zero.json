@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_common_root_b_plus_c_plus_1_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the equations x² + bx + c = 0 and x² + cx + b = 0 have a common root, then show that b + c + 1 = 0.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Subtract to find α",
+      "marks": 1
+    },
+    {
+      "label": "Substitute",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.75 (PDF p.76 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — VSAQ chapter 14 Quadratic Expressions, answer 126.1. Printed appearances: TS 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.74–75. 1 (method) + 1 (answer) is the split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). The book's VSAQ chapter header carries ★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. The step α = 1 needs b ≠ c (if b = c the two equations are the same equation and share both roots, and the result need not hold); the card writes '(b ≠ c)' on the page — the book does not."
+  },
+  "recall_prompt": "Say how you would show this — say what you do with the two equations to find the common root, and where you put that root afterwards.",
+  "insider_note": "Subtract the two equations so α² cancels: (b − c)(α − 1) = 0 forces α = 1 when b ≠ c. The required line is then one substitution back — stopping at α = 1 leaves the asked result unwritten.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_subtract",
+        "kind": "equation",
+        "label": "Subtract to find α",
+        "marks": 1,
+        "mark_note": "α = 1",
+        "margin_note": "First mark. Neither equation can be solved on its own, so write both with the common root α and SUBTRACT: the α² terms cancel and (b − c)α + (c − b) = 0, i.e. (b − c)(α − 1) = 0. With b ≠ c, α = 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let α be the common root. Then",
+          "α² + bα + c = 0 … (1)",
+          "α² + cα + b = 0 … (2)",
+          "(1) − (2): (b − c)α + (c − b) = 0",
+          "⇒ (b − c)(α − 1) = 0 ⇒ α = 1 (b ≠ c)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That α is put into both equations, the two are subtracted so α² cancels, leaving (b − c)(α − 1) = 0, and since b ≠ c the common root is α = 1.",
+          "accept": [
+            "write alpha in both equations and subtract, alpha squared cancels and b minus c into alpha minus one is zero so alpha is one",
+            "subtracting the two equations gives the common root alpha equals one",
+            "the difference of the two equations factorises as b minus c times alpha minus one",
+            "rendu equations subtract cheste alpha square cancel, b minus c into alpha minus one zero, so alpha one",
+            "since b is not equal to c the common root must be one"
+          ],
+          "reject": [
+            "substitute",
+            "put alpha equals one",
+            "find b plus c"
+          ],
+          "heard_as": [
+            "subtract",
+            "alpha squared cancels",
+            "b minus c",
+            "alpha minus one",
+            "alpha equals one",
+            "b not equal to c"
+          ]
+        },
+        "why": "Neither equation has numbers in it, so neither can be solved alone; subtracting removes the α² and leaves a linear relation, which is the only way to fix the common root.",
+        "common_mistakes": [
+          "Adding the equations instead of subtracting, which keeps the α² term.",
+          "Writing the difference as (b − c)α + (b − c) and getting α = −1.",
+          "Dividing by (b − c) without saying b ≠ c."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Put α = 1 back into either equation: 1 + b + c = 0, which is the required result. One line, but it is the line the question asks for — write it.",
+        "lines": [
+          "Put α = 1 in (1): 1 + b + c = 0",
+          {
+            "text": "∴ b + c + 1 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That α = 1 is substituted back into one of the equations to give 1 + b + c = 0, which is the statement to be shown.",
+          "accept": [
+            "put alpha equals one into the first equation to get one plus b plus c equals zero hence shown",
+            "substitute the common root one back and b plus c plus one is zero",
+            "with alpha one, one squared plus b plus c is zero which is the result",
+            "alpha one ni first equation lo pettithe one plus b plus c zero, hence shown",
+            "b plus c plus one equals zero"
+          ],
+          "reject": [
+            "hence proved",
+            "box it",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "substitute",
+            "one plus b plus c",
+            "b plus c plus one",
+            "hence shown",
+            "equals zero"
+          ]
+        },
+        "why": "α = 1 was derived from both equations together, so it satisfies each; substituting into either one turns the root into the relation between b and c that was asked for.",
+        "common_mistakes": [
+          "Stopping at α = 1 and never substituting.",
+          "Substituting into (1) − (2) again, which gives 0 = 0.",
+          "Writing 1 + b + c = 0 as b + c = 1."
+        ]
+      }
+    ]
+  }
+}

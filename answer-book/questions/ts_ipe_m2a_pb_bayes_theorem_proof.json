@@ -1,0 +1,320 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_bayes_theorem_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "State and prove Bayes' theorem on probability.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State the theorem",
+      "marks": 1
+    },
+    {
+      "label": "Write P(Eₖ|A) from the conditional probability definition",
+      "marks": 2
+    },
+    {
+      "label": "Find P(A) by total probability",
+      "marks": 3
+    },
+    {
+      "label": "Substitute and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.37 — LAQ chapter 4 Probability, answer 35 (PDF p.38: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes; the ±1 drift that doc warns about lands here). Printed appearances: TS 16,17 · AP 15,16,19,20. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against answer 35. It is patterned on answer 36 on the same page (1 + 2 + 4): statement 1, the conditional-probability line 2, the total-probability part 4 (split here as 3 for P(A) = Σ P(Eᵢ)·P(A|Eᵢ) + 1 for the substitution). The book's LAQ chapter header carries ★★★ and reads '7 Marks'; that ★★★ is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section C runs Q18–Q24 at 7 marks each, answer any 5 of 7; Q23 is the Probability slot. This question is Q23 of Model Paper 2 (book p.114) and is re-solved in the Bullet Model Paper Q23 block (book pp.108–109) — that second solution is identical to the chapter answer. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Notation: the book writes the statement's sum with limits i = 1 to n under a Σ. That is the one line in this unit written in KaTeX (the Σ with limits has no honest one-line Unicode form); every other line is plain Unicode and writes the sum as Σ P(Eᵢ)·P(A|Eᵢ) with 'i = 1 to n' in words. The book writes P(A / Eₖ) in the statement and P(A|Eₖ) in the proof; the card uses the bar form P(A|Eₖ) throughout, as the ledger allows."
+  },
+  "recall_prompt": "Say Bayes' theorem — what the events must be, the formula — then say the two ideas of the proof: the conditional probability definition, and total probability for P(A).",
+  "insider_note": "The statement must say mutually exclusive AND exhaustive; the proof must show where P(A) comes from. Writing only the formula earns the statement mark and nothing else.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Probability · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "State the theorem",
+        "marks": 1,
+        "mark_note": "Statement",
+        "margin_note": "First mark. Three conditions belong in the statement: E₁, …, Eₙ mutually exclusive, exhaustive, and A an event with P(A) ≠ 0. Then the formula.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Statement: If E₁, E₂, …, Eₙ are mutually",
+            "style": "normal"
+          },
+          {
+            "text": "exclusive and exhaustive events of a sample",
+            "style": "normal"
+          },
+          {
+            "text": "space S, and A is any event with P(A) ≠ 0, then",
+            "style": "normal"
+          },
+          {
+            "text": "P(E_k|A) = \\dfrac{P(E_k)\\,P(A|E_k)}{\\sum_{i=1}^{n} P(E_i)\\,P(A|E_i)}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "for k = 1, 2, …, n.",
+            "style": "normal"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for mutually exclusive and exhaustive events E₁ to Eₙ and an event A with P(A) ≠ 0, P(Eₖ|A) = P(Eₖ)·P(A|Eₖ) divided by the sum over i of P(Eᵢ)·P(A|Eᵢ).",
+          "accept": [
+            "if E one to E n are mutually exclusive and exhaustive and A is any event then P of E k given A is P E k times P A given E k over the sum of P E i times P A given E i",
+            "the probability of E k given A equals P E k P A given E k divided by the total probability of A",
+            "bayes theorem gives the posterior of E k as its prior times likelihood over the sum of all prior times likelihood",
+            "E one nunchi E n mutually exclusive exhaustive ayithe P of E k given A ante numerator P E k into P A given E k, denominator sum of all",
+            "P of E k given A is P E k P A given E k over sigma P E i P A given E i"
+          ],
+          "reject": [
+            "state bayes theorem",
+            "the formula",
+            "bayes theorem"
+          ],
+          "heard_as": [
+            "mutually exclusive",
+            "exhaustive",
+            "E k given A",
+            "sigma",
+            "bayes"
+          ]
+        },
+        "why": "The theorem turns P(A|Eₖ), which the experiment gives, into P(Eₖ|A), which the question asks. The conditions on the Eᵢ are what make the denominator equal to P(A).",
+        "common_mistakes": [
+          "Leaving out \"mutually exclusive and exhaustive\" — without it P(A) is not the sum.",
+          "Writing the denominator as P(A) with no sum shown.",
+          "Leaving out P(A) ≠ 0, which the division needs."
+        ]
+      },
+      {
+        "id": "s2_conditional",
+        "kind": "equation",
+        "label": "Use conditional probability",
+        "marks": 2,
+        "mark_note": "Definition of P(Eₖ|A)",
+        "margin_note": "Two marks. P(Eₖ|A) = P(Eₖ ∩ A)/P(A) is the definition; the numerator is rewritten by the multiplication theorem as P(Eₖ)·P(A|Eₖ). This is equation (1) and it is what the rest of the proof completes.",
+        "lines": [
+          {
+            "text": "Proof: By the definition of conditional probability,",
+            "style": "normal"
+          },
+          {
+            "text": "P(Eₖ|A) = P(Eₖ ∩ A)/P(A)",
+            "style": "eq"
+          },
+          {
+            "text": "By the multiplication theorem,",
+            "style": "normal"
+          },
+          {
+            "text": "P(Eₖ ∩ A) = P(Eₖ)·P(A|Eₖ)",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(Eₖ|A) = P(Eₖ)·P(A|Eₖ)/P(A)  …(1)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P(Eₖ|A) = P(Eₖ ∩ A)/P(A) by definition, and P(Eₖ ∩ A) = P(Eₖ)·P(A|Eₖ) by the multiplication theorem, giving equation (1).",
+          "accept": [
+            "by definition P of E k given A is P of E k intersection A over P A and the numerator is P E k times P A given E k",
+            "start from the conditional probability definition and use the multiplication theorem on the intersection",
+            "P E k given A equals P E k P A given E k divided by P A which is equation one",
+            "conditional probability definition tho start chesi, intersection ni multiplication theorem tho P E k into P A given E k ga rayali",
+            "write the conditional probability as intersection over P A then expand the intersection"
+          ],
+          "reject": [
+            "use the definition",
+            "equation one",
+            "conditional probability"
+          ],
+          "heard_as": [
+            "E k intersection A",
+            "over P of A",
+            "multiplication theorem",
+            "conditional probability",
+            "P A given E k"
+          ]
+        },
+        "why": "The definition gives a fraction with P(A) below. Everything left to prove is that this P(A) equals the sum in the statement.",
+        "common_mistakes": [
+          "Writing P(Eₖ|A) = P(A|Eₖ) as if the two were equal.",
+          "Not naming the multiplication theorem when rewriting P(Eₖ ∩ A)."
+        ]
+      },
+      {
+        "id": "s3_total_probability",
+        "kind": "equation",
+        "label": "Find P(A) by total probability",
+        "marks": 3,
+        "mark_note": "Total probability",
+        "margin_note": "Three marks — the main step. Because the Eᵢ are exhaustive their union is S, and because they are mutually exclusive the pieces A ∩ Eᵢ are disjoint. So P(A) is the sum of P(A ∩ Eᵢ), and each piece is P(Eᵢ)·P(A|Eᵢ).",
+        "lines": [
+          {
+            "text": "E₁, …, Eₙ are mutually exclusive and exhaustive,",
+            "style": "normal"
+          },
+          {
+            "text": "so E₁ ∪ E₂ ∪ … ∪ Eₙ = S",
+            "style": "eq"
+          },
+          {
+            "text": "and A ∩ E₁, A ∩ E₂, …, A ∩ Eₙ are",
+            "style": "normal"
+          },
+          {
+            "text": "mutually disjoint (their Eᵢ parts do not meet).",
+            "style": "normal"
+          },
+          {
+            "text": "Now A = A ∩ S = A ∩ (E₁ ∪ E₂ ∪ … ∪ Eₙ)",
+            "style": "eq"
+          },
+          {
+            "text": "= (A ∩ E₁) ∪ (A ∩ E₂) ∪ … ∪ (A ∩ Eₙ)",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(A) = P(A ∩ E₁) + … + P(A ∩ Eₙ)",
+            "style": "eq"
+          },
+          {
+            "text": "= Σ P(Eᵢ)·P(A|Eᵢ), i = 1 to n  …(2)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the union of the Eᵢ is S, that the sets A ∩ Eᵢ are disjoint, and so P(A) = Σ P(A ∩ Eᵢ) = Σ P(Eᵢ)·P(A|Eᵢ).",
+          "accept": [
+            "the union of the E i is the whole sample space so A is the union of A intersection E i which are disjoint and P A is the sum of P E i times P A given E i",
+            "write A as A intersection S and split it over the exhaustive events then add the disjoint pieces",
+            "total probability P of A equals sigma P E i P A given E i",
+            "E i lu exhaustive kabatti union S, A ni A intersection E i la ga split chesi, disjoint kabatti add cheyyali",
+            "P A is the sum over i of P A intersection E i since the pieces are mutually exclusive"
+          ],
+          "reject": [
+            "find P of A",
+            "total probability",
+            "add them up"
+          ],
+          "heard_as": [
+            "union is S",
+            "A intersection E i",
+            "disjoint",
+            "sigma",
+            "total probability"
+          ]
+        },
+        "why": "Exhaustive makes the union equal S, so A loses nothing when cut along the Eᵢ; mutually exclusive makes the cut pieces disjoint, so their probabilities add. Both conditions in the statement are used here and nowhere else.",
+        "common_mistakes": [
+          "Writing P(A) = Σ P(A ∩ Eᵢ) without saying why the pieces are disjoint.",
+          "Skipping A = A ∩ S — the line that brings the Eᵢ in.",
+          "Writing P(A ∩ Eᵢ) = P(A)·P(Eᵢ), which needs independence and is not given."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Substitute and conclude",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Put (2) into the denominator of (1). The final line must match the statement exactly.",
+        "lines": [
+          {
+            "text": "Substituting (2) in (1):",
+            "style": "normal"
+          },
+          {
+            "text": "P(Eₖ|A) = P(Eₖ)·P(A|Eₖ) / Σ P(Eᵢ)·P(A|Eᵢ)",
+            "style": "boxed"
+          },
+          {
+            "text": "(the sum over i = 1 to n). Hence proved.",
+            "style": "normal"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting the total-probability expression for P(A) into equation (1) gives the stated formula.",
+          "accept": [
+            "substitute the total probability for P A in equation one and bayes theorem follows",
+            "replace the denominator P A by the sum and we get the formula",
+            "put equation two into equation one hence proved",
+            "equation two ni equation one lo pettithe bayes formula vasthundi",
+            "the denominator becomes sigma P E i P A given E i which is the theorem"
+          ],
+          "reject": [
+            "hence proved",
+            "substitute",
+            "so it is proved"
+          ],
+          "heard_as": [
+            "substitute",
+            "equation two in equation one",
+            "denominator",
+            "hence proved"
+          ]
+        },
+        "why": "Equation (1) already had the right numerator; the theorem is proved the moment its denominator is shown to be the sum.",
+        "common_mistakes": [
+          "Ending at equation (2) without writing the final formula.",
+          "Writing the final denominator as P(A) instead of the sum."
+        ]
+      }
+    ]
+  }
+}

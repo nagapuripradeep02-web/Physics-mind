@@ -1,0 +1,259 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_pb_three_independent_events_find_p_a_b_c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 9,
+    "name": "Probability"
+  },
+  "chapter": "Probability",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If A, B, C are three independent events such that P(A ∩ Bᶜ ∩ Cᶜ) = 1/4, P(Aᶜ ∩ B ∩ Cᶜ) = 1/8, P(Aᶜ ∩ Bᶜ ∩ Cᶜ) = 1/4, then find P(A), P(B) and P(C).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the three products (independence)",
+      "marks": 1
+    },
+    {
+      "label": "Divide (1) by (3) to get P(A) = 1/2",
+      "marks": 1
+    },
+    {
+      "label": "Divide (2) by (3) to get P(B) = 1/3",
+      "marks": 1
+    },
+    {
+      "label": "Use (3) to get P(C) = 1/4",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 10 Probability, answer 87 (PDF p.62: on the Probability pages the scan reads book = PDF − 1, not the − 2 that docs/IPE_MATHS_2A_SOURCE.md assumes). Printed appearances: TS 15 · AP 16 (the answer runs from the foot of book p.61 onto the top of p.62). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on any Probability SAQ page (book pp.59–62). Three values are asked and one set-up is needed: 1 for the three product equations and 1 for each value found, in the book's order (A, then B, then C). The book's SAQ chapter header carries ★★ and reads '4 + 4 = 8 Marks'; that ★★ is the CHAPTER's rank, not this question's, and the 4 + 4 is because Probability holds TWO Section-B slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section B runs Q11–Q17 at 4 marks each, answer any 5 of 7; Q16 and Q17 are the two Probability slots. This question is Q17 of Model Paper 5 (book p.119); it is not in the Bullet Model Paper. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Answers checked: P(A) = 1/2, P(B) = 1/3, P(C) = 1/4; back-substitution (1/2)(2/3)(3/4) = 1/4, (1/2)(1/3)(3/4) = 1/8, (1/2)(2/3)(3/4) = 1/4 — agree with the book."
+  },
+  "recall_prompt": "Say how you would find P(A), P(B), P(C) — how independence turns each given probability into a product, which pairs of equations are divided, and the three values.",
+  "insider_note": "Dividing two equations that share two factors leaves P(X)/P(Xᶜ), and P(X)/(1 − P(X)) = k is a one-line solve. The third value comes from substituting the first two, not from another division.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Probability · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_products",
+        "kind": "equation",
+        "label": "Independence: write products",
+        "marks": 1,
+        "mark_note": "Products",
+        "margin_note": "First mark. Independent events (and their complements) multiply. Number the three equations — the next steps refer to them.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "A, B, C are independent, so each intersection",
+            "style": "normal"
+          },
+          {
+            "text": "is a product:",
+            "style": "normal"
+          },
+          {
+            "text": "P(A)·P(Bᶜ)·P(Cᶜ) = 1/4  …(1)",
+            "style": "eq"
+          },
+          {
+            "text": "P(Aᶜ)·P(B)·P(Cᶜ) = 1/8  …(2)",
+            "style": "eq"
+          },
+          {
+            "text": "P(Aᶜ)·P(Bᶜ)·P(Cᶜ) = 1/4  …(3)",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That by independence each given intersection probability is a product of three factors: (1) P(A)P(Bᶜ)P(Cᶜ) = 1/4, (2) P(Aᶜ)P(B)P(Cᶜ) = 1/8, (3) P(Aᶜ)P(Bᶜ)P(Cᶜ) = 1/4.",
+          "accept": [
+            "independent so each intersection is a product, write the three products equal to a quarter an eighth and a quarter",
+            "P A times P B complement times P C complement is one by four and so on for the other two",
+            "turn the three given probabilities into products of three factors",
+            "independent kabatti prathi intersection product ga rayali, three equations"
+          ],
+          "reject": [
+            "write the equations",
+            "use independence"
+          ],
+          "heard_as": [
+            "product",
+            "independent",
+            "one by four",
+            "one by eight",
+            "three equations"
+          ]
+        },
+        "why": "Independence of A, B, C extends to their complements, which is what allows every intersection given to become a product and the unknowns to separate.",
+        "common_mistakes": [
+          "Writing the complements as 1 − P(A ∩ B ∩ C) or similar instead of products of complements.",
+          "Not numbering the equations, then being unable to say which are divided."
+        ]
+      },
+      {
+        "id": "s2_find_a",
+        "kind": "equation",
+        "label": "(1) ÷ (3): P(A) = 1/2",
+        "marks": 1,
+        "mark_note": "P(A)",
+        "margin_note": "Second mark. (1) and (3) share P(Bᶜ)P(Cᶜ); dividing leaves P(A)/P(Aᶜ) = 1, so P(A) = 1 − P(A).",
+        "lines": [
+          {
+            "text": "(1) ÷ (3): P(A)/P(Aᶜ) = (1/4)/(1/4) = 1",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ P(A) = 1 − P(A) ⇒ 2P(A) = 1 ⇒ P(A) = 1/2",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing (1) by (3) gives P(A)/P(Aᶜ) = 1, so P(A) = 1 − P(A) and P(A) = 1/2.",
+          "accept": [
+            "divide equation one by equation three to get P A over P A complement equals one so P A is half",
+            "the common factors cancel leaving P A equals one minus P A, so half",
+            "P A by one minus P A is one hence P A is one by two",
+            "one ni three tho divide cheste P A by P A complement one, P A half"
+          ],
+          "reject": [
+            "divide them",
+            "find P A"
+          ],
+          "heard_as": [
+            "one by three",
+            "P A complement",
+            "one minus P A",
+            "half"
+          ]
+        },
+        "why": "Two equations that differ in only one factor divide to that factor's ratio, and P(Aᶜ) = 1 − P(A) turns the ratio into an equation in P(A) alone.",
+        "common_mistakes": [
+          "Dividing (1) by (2), which leaves two unknowns.",
+          "Writing P(A)/P(Aᶜ) = 1 and concluding P(A) = 1."
+        ]
+      },
+      {
+        "id": "s3_find_b",
+        "kind": "equation",
+        "label": "(2) ÷ (3): P(B) = 1/3",
+        "marks": 1,
+        "mark_note": "P(B)",
+        "margin_note": "Third mark. (2) and (3) share P(Aᶜ)P(Cᶜ); dividing gives P(B)/P(Bᶜ) = 1/2.",
+        "lines": [
+          {
+            "text": "(2) ÷ (3): P(B)/P(Bᶜ) = (1/8)/(1/4) = 1/2",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ 2P(B) = 1 − P(B) ⇒ 3P(B) = 1 ⇒ P(B) = 1/3",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing (2) by (3) gives P(B)/P(Bᶜ) = 1/2, so 2P(B) = 1 − P(B) and P(B) = 1/3.",
+          "accept": [
+            "divide equation two by three to get P B over P B complement equals half so P B is a third",
+            "two P B equals one minus P B gives one by three",
+            "the ratio is one eighth over one quarter which is half, so P B is one third",
+            "two ni three tho divide cheste P B by P B complement half, P B one by three"
+          ],
+          "reject": [
+            "divide them",
+            "find P B"
+          ],
+          "heard_as": [
+            "two by three",
+            "P B complement",
+            "half",
+            "one by three"
+          ]
+        },
+        "why": "The same move as for P(A), with the ratio 1/2 instead of 1.",
+        "common_mistakes": [
+          "Inverting the ratio and getting P(B) = 2/3.",
+          "Solving 2P(B) = 1 − P(B) as P(B) = 1/2."
+        ]
+      },
+      {
+        "id": "s4_find_c",
+        "kind": "boxed_final",
+        "label": "From (3): P(C) = 1/4",
+        "marks": 1,
+        "mark_note": "P(C)",
+        "margin_note": "Last mark. Put P(Aᶜ) = 1/2 and P(Bᶜ) = 2/3 into (3): (1/3)·P(Cᶜ) = 1/4, so P(Cᶜ) = 3/4.",
+        "lines": [
+          {
+            "text": "From (3): P(Aᶜ)·P(Bᶜ)·P(Cᶜ) = 1/4",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ (1/2)(2/3)·P(Cᶜ) = 1/4 ⇒ (1/3)·P(Cᶜ) = 1/4",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ P(Cᶜ) = 3/4 ⇒ P(C) = 1 − 3/4 = 1/4",
+            "style": "eq"
+          },
+          {
+            "text": "∴ P(A) = 1/2, P(B) = 1/3, P(C) = 1/4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting P(Aᶜ) = 1/2 and P(Bᶜ) = 2/3 into (3) gives P(Cᶜ) = 3/4, so P(C) = 1/4; the three answers are 1/2, 1/3, 1/4.",
+          "accept": [
+            "substitute half and two thirds into equation three to get P C complement three quarters so P C is a quarter",
+            "a third times P C complement is a quarter so P C complement is three by four and P C is one by four",
+            "the answers are half, a third and a quarter",
+            "equation three lo pettithe P C complement 3 by 4, P C 1 by 4"
+          ],
+          "reject": [
+            "find P C",
+            "substitute"
+          ],
+          "heard_as": [
+            "P C complement",
+            "three by four",
+            "one by four",
+            "half a third a quarter"
+          ]
+        },
+        "why": "With two values known, the third equation has one unknown left. The complement is found first because that is what the equation contains.",
+        "common_mistakes": [
+          "Reporting P(Cᶜ) = 3/4 as P(C).",
+          "Substituting P(A) = 1/2 and P(B) = 1/3 instead of their complements into (3)."
+        ]
+      }
+    ]
+  }
+}

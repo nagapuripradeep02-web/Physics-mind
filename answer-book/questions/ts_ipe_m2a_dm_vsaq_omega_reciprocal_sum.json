@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_dm_vsaq_omega_reciprocal_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "De Moivre's Theorem"
+  },
+  "chapter": "De Moivre's Theorem",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If 1, ω, ω² are the cube roots of unity, then prove that 1/(1 + 2ω) + 1/(2 + ω) = 1/(1 + ω).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Simplify the left side to −ω",
+      "marks": 1
+    },
+    {
+      "label": "Simplify the right side and compare",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.90 — Star Questions Plus, De Moivre's Theorem banner, answer 187. Printed appearances: TS 15,17,18. Section OURS: the book's Star Questions Plus pages carry no mark cut; this answer is a short reduction of the same shape as the chapter's 2-mark VSAQs, so it is classed VSAQ (2 marks). This unit has no SAQ chapter, so a 4-mark class was not available. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed on book p.90; 1+1 (method + evaluation) is the split every 2-mark VSAQ in this bank uses. The SAME 1+1 split and the SAME step ids (s1_reduce, s2_evaluate) are used on every cube-roots-of-unity (ω) VSAQ in this unit (answers 118, 119 and Star Questions Plus 185–189), deliberately: each is one reduction by 1 + ω + ω² = 0 and ω³ = 1, then one evaluation. Chapter stars: the Star Questions Plus section prints none; the ★★★ carried in the manifest is the De Moivre VSAQ CHAPTER's rank (book p.73), not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q3 is the De Moivre's Theorem slot (blueprint book p.3 and all five model papers, book pp.111–120). No two-book union check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. Re-derived: L.H.S. = 3(1 + ω)/(3ω) = (1 + ω)/ω = −ω, R.H.S. = 1/(1 + ω) = −1/ω² = −ω; the book's answer is correct."
+  },
+  "recall_prompt": "Say how you would prove this — how the left side reduces, how the right side reduces, and why they are equal.",
+  "insider_note": "Both sides come to −ω, and the question is not finished until the right side is reduced as well. The first mark is spotting that 2 + 5ω + 2ω² = 2(1 + ω + ω²) + 3ω = 3ω.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "De Moivre's Theorem · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reduce",
+        "kind": "equation",
+        "label": "Simplify the left side to −ω",
+        "marks": 1,
+        "mark_note": "Left side",
+        "margin_note": "First mark. Adding the two fractions gives 3(1 + ω) over 2 + 5ω + 2ω². Split that denominator as 2(1 + ω + ω²) + 3ω = 3ω, so the left side is (1 + ω)/ω = −ω²/ω = −ω.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S. = 1/(1 + 2ω) + 1/(2 + ω)",
+          "= [(2 + ω) + (1 + 2ω)] / [(1 + 2ω)(2 + ω)]",
+          "= 3(1 + ω) / (2 + 5ω + 2ω²)",
+          "= 3(1 + ω) / [2(1 + ω + ω²) + 3ω]",
+          "= 3(1 + ω)/(3ω) = (1 + ω)/ω = −ω²/ω = −ω"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + ω + ω² = 0 and ω³ = 1 are used to reduce the left side: the denominator 2 + 5ω + 2ω² to 3ω and 1 + ω to −ω², giving −ω.",
+          "accept": [
+            "use one plus omega plus omega squared equals zero and omega cubed equals one to reduce the left side: the denominator 2 + 5ω + 2ω² to 3ω and 1 + ω to −ω², giving −ω",
+            "replace using the two omega facts, omega cubed is one and the three add to zero",
+            "reduce the left side: the denominator 2 + 5ω + 2ω² to 3ω and 1 + ω to −ω², giving −ω with the cube roots of unity properties",
+            "omega cube one, one plus omega plus omega square zero use chesi the left side: the denominator 2 + 5ω + 2ω² to 3ω and 1 + ω to −ω², giving −ω ni reduce cheyyali",
+            "the sum of the three cube roots is zero, so substitute"
+          ],
+          "reject": [
+            "simplify",
+            "use omega",
+            "reduce"
+          ],
+          "heard_as": [
+            "omega cubed",
+            "one plus omega",
+            "omega squared",
+            "reduce",
+            "cube roots of unity"
+          ]
+        },
+        "why": "Every ω question is the same two facts: ω³ = 1 (so high powers of ω reduce) and 1 + ω + ω² = 0 (so any two of 1, ω, ω² can be replaced by minus the third). The reduction is the mark; the arithmetic after it is short.",
+        "common_mistakes": [
+          "Multiplying out the denominator and not spotting 2(1 + ω + ω²) inside it.",
+          "Writing 1 + ω = ω² instead of −ω².",
+          "Adding the fractions as 1/(3 + 3ω)."
+        ]
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "boxed_final",
+        "label": "Simplify the right side and compare",
+        "marks": 1,
+        "mark_note": "Right side",
+        "margin_note": "Second mark. On the right, 1 + ω = −ω², so 1/(1 + ω) = −1/ω² = −ω/ω³ = −ω. Both sides are −ω; write that line, because the comparison is the mark.",
+        "lines": [
+          "R.H.S. = 1/(1 + ω) = 1/(−ω²) = −ω/ω³ = −ω",
+          {
+            "text": "∴ L.H.S. = R.H.S.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the reduced expression is evaluated to −ω on both sides.",
+          "accept": [
+            "evaluate the reduced form and get −ω on both sides",
+            "the answer comes to −ω on both sides",
+            "simplify the powers of omega and the value is −ω on both sides",
+            "reduce chesaka value −ω on both sides vasthundi",
+            "finally it equals −ω on both sides"
+          ],
+          "reject": [
+            "then we get the answer",
+            "simplify",
+            "calculate"
+          ],
+          "heard_as": [
+            "equals",
+            "the value is",
+            "final answer",
+            "−ω on both sides"
+          ]
+        },
+        "why": "The right side also reduces to −ω once 1 + ω is replaced by −ω² and the fraction is multiplied by ω/ω. Both sides equal, so the identity is proved.",
+        "common_mistakes": [
+          "Leaving 1/(−ω²) unsimplified and not seeing it equals −ω.",
+          "Writing 1/(1 + ω) = 1/(−ω), the wrong replacement.",
+          "Proving only the left side and never touching the right."
+        ]
+      }
+    ]
+  }
+}

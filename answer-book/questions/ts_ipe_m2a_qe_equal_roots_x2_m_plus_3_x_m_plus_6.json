@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_qe_equal_roots_x2_m_plus_3_x_m_plus_6",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Quadratic Expressions"
+  },
+  "chapter": "Quadratic Expressions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "For what values of m will the equation x² + (m + 3)x + (m + 6) = 0 have equal roots?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write Δ = 0",
+      "marks": 1
+    },
+    {
+      "label": "Solve for m",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.75 (PDF p.76 — in this region of the scan the offset is book + 1, not the book + 2 that docs/IPE_MATHS_2A_SOURCE.md states; the page number printed on the page is the authority) — VSAQ chapter 14 Quadratic Expressions, answer 124.2. Printed appearances: none — this answer carries no year tag. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere on book pp.74–75. 1 (method) + 1 (answer) is the split every 2-mark maths VSAQ in this bank uses, patterned on the 1+1 the same publisher prints against its Maths-1A matrices VSAQs (Maths-1A book p.82). The book's VSAQ chapter header carries ★★ and reads '2 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q4 is the Quadratic Expressions slot (blueprint, book p.3, and all five model papers, book pp.111–120). No two-book check and no board back-test exist for this paper — there is no second Maths-2A source in the corpus and answer-book/papers/ holds first-year physics only — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say how you would find m — say what form you put the equation in, what condition equal roots gives, and how you solve it.",
+  "insider_note": "Equal roots means Δ is exactly zero, not ≥ 0, and the question asks for both values of m. They come out with opposite signs — a same-sign pair means the factors were flipped.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Quadratic Expressions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form_delta",
+        "kind": "equation",
+        "label": "Write Δ = 0",
+        "marks": 1,
+        "mark_note": "Δ = 0",
+        "margin_note": "First mark. The equation is already in standard form: a = 1, b = m + 3, c = m + 6. Equal roots means Δ = 0, so (m + 3)² − 4(m + 6) = 0; expand with care, (m + 3)² = m² + 6m + 9.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "a = 1, b = m + 3, c = m + 6",
+          "Equal roots ⇒ Δ = b² − 4ac = 0",
+          "⇒ (m + 3)² − 4(1)(m + 6) = 0",
+          "⇒ m² + 6m + 9 − 4m − 24 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a, b, c are read off as 1, m + 3, m + 6 and equal roots gives b² − 4ac = 0: (m + 3)² − 4(m + 6) = 0, expanding to m² + 6m + 9 − 4m − 24 = 0.",
+          "accept": [
+            "a is one b is m plus three c is m plus six, equal roots so b squared minus four a c is zero",
+            "put m plus three squared minus four into m plus six equal to zero and expand",
+            "the discriminant m plus three whole squared minus four m plus six must be zero",
+            "equal roots kabatti m plus three squared minus four into m plus six zero pettali",
+            "m squared plus six m plus nine minus four m minus twenty four equals zero"
+          ],
+          "reject": [
+            "find delta",
+            "solve for m",
+            "factorise"
+          ],
+          "heard_as": [
+            "equal roots",
+            "discriminant",
+            "m plus three squared",
+            "four into m plus six",
+            "equal to zero"
+          ]
+        },
+        "why": "Equal roots is exactly Δ = 0; with m inside b and c this becomes an equation in m, and that is what the question is really asking to be solved.",
+        "common_mistakes": [
+          "Expanding (m + 3)² as m² + 9.",
+          "Writing 4(m + 6) as 4m + 6.",
+          "Using Δ > 0 — equal roots is exactly zero."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Solve for m",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. m² + 2m − 15 = 0 factorises as (m + 5)(m − 3) = 0. The two answers have opposite signs: m = 3 and m = −5. Both are answers.",
+        "lines": [
+          "⇒ m² + 2m − 15 = 0",
+          "⇒ (m + 5)(m − 3) = 0",
+          {
+            "text": "∴ m = 3 or m = −5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That simplifying gives m² + 2m − 15 = 0, which factorises as (m + 5)(m − 3) = 0, so m = 3 or m = −5.",
+          "accept": [
+            "simplify to m squared plus two m minus fifteen and factorise as m plus five into m minus three so m is three or minus five",
+            "m squared plus two m minus fifteen gives m equals three or minus five",
+            "the two values are three and minus five",
+            "m square plus two m minus fifteen factorise cheste m three leda minus five",
+            "m equals three or m equals minus five"
+          ],
+          "reject": [
+            "solve it",
+            "find m",
+            "factorise"
+          ],
+          "heard_as": [
+            "m plus five",
+            "m minus three",
+            "three or minus five",
+            "m squared plus two m"
+          ]
+        },
+        "why": "Δ = 0 is a quadratic in m, so two values of m give a repeated root. Both are genuine answers, and their signs come from the factorisation, not from guessing.",
+        "common_mistakes": [
+          "Giving m = −3 and m = 5 by flipping the signs of the factors.",
+          "Giving only one of the two values.",
+          "Simplifying 9 − 24 to +15."
+        ]
+      }
+    ]
+  }
+}

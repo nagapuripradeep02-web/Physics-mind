@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2a_te_vsaq_roots_alpha_beta_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2a",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Theory of Equations"
+  },
+  "chapter": "Theory of Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If α, β, 1 are the roots of x³ − 2x² − 5x + 6 = 0, then find α and β.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Sum and product relations",
+      "marks": 1
+    },
+    {
+      "label": "Solve for α and β",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.76 — VSAQ chapter 15 Theory of Equations, answer 131. Printed appearances: AP 16 · TS 17. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — the VSAQ chapter (book pp.76–77) prints no [N Marks] tags. It is the 1+1 this publisher prints for a 2-mark VSAQ in its Maths-1A volume (Matrices, book p.82 there): one mark for the relation or substitution that sets the question up, one for the value. The SAME step ids (s1_relation, s2_answer) are used on answers 127, 128, 130 and 131, deliberately: one root relation (S₁ = −a₁/a₀ or S₃ = −a₃/a₀) read off the coefficients, then one line of arithmetic. The book's chapter header carries ★★★; that star is the CHAPTER's rank, not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, all compulsory; Q5 is the Theory of Equations slot (blueprint, book p.3; all five model papers pp.111–120 agree). Model Paper 4 Q5 (book p.117) is this question; the Bullet Model Paper re-solves it under Q5 on book p.97. CORRECTION TO THE BOOK, recorded not silently fixed: the book prints the equation as x³ − 2x² + 5x + 6 = 0 (book p.76 answer 131, the Bullet Model Paper Q5 block on p.97, and Model Paper 4 Q5 on p.117 — the same misprint in all three places). For that equation 1 is NOT a root: f(1) = 1 − 2 + 5 + 6 = 10 ≠ 0, so the question as printed has no answer, and the book's own working (α + β = 1, αβ = −6, so 3 and −2) does not satisfy it either (3 · (−2) + 3 + (−2) = −5 ≠ +5 = a₂/a₀). The Telugu Akademi textbook question (Exercise 4(a)) reads x³ − 2x² − 5x + 6 = 0, for which 1 is a root (1 − 2 − 5 + 6 = 0) and the book's answer α = 3, β = −2 is exactly right. The card is authored with the −5x equation; the answer 3, −2 is unchanged. Truth check: (x − 1)(x − 3)(x + 2) = x³ − 2x² − 5x + 6. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. No two-book check and no board back-test exist for this paper (no second Maths-2A source in the corpus; answer-book/papers/ holds first-year physics only) — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits."
+  },
+  "recall_prompt": "Say which two relations you would use, what each gives, and how you get the two roots from them.",
+  "insider_note": "The book prints +5x in three places; 1 is not a root of that equation, and the textbook's −5x is the one whose roots are 3 and −2.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Theory of Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "Sum and product",
+        "marks": 1,
+        "mark_note": "S₁ and S₃",
+        "margin_note": "First mark. Two unknown roots need two relations. The sum gives α + β and the product gives αβ, because the third root is 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here a₀ = 1, a₁ = −2, a₂ = −5, a₃ = 6.",
+          "Sum S₁ = −a₁/a₀ = 2: α + β + 1 = 2, so α + β = 1",
+          "Product S₃ = −a₃/a₀ = −6: αβ · 1 = −6, so αβ = −6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum relation gives α + β = 1 and the product relation gives αβ = −6.",
+          "accept": [
+            "sum of roots is two so alpha plus beta is one, product is minus six so alpha beta is minus six",
+            "use the sum and the product, the third root is one, alpha plus beta equals one and alpha beta equals minus six",
+            "two relations for two unknowns, sum one and product minus six",
+            "sum two kabatti alpha plus beta one, product minus six kabatti alpha beta minus six",
+            "alpha plus beta is one and alpha times beta is minus six"
+          ],
+          "reject": [
+            "use the sum",
+            "find alpha and beta"
+          ],
+          "heard_as": [
+            "alpha plus beta",
+            "alpha beta",
+            "sum of roots",
+            "product of roots",
+            "minus six"
+          ]
+        },
+        "why": "Two unknowns need two relations, and the sum and product are the two that stay simple when the third root is 1. They give α + β and αβ, which is exactly what a quadratic needs.",
+        "common_mistakes": [
+          "Writing αβ = 6 (the product is −a₃/a₀ = −6).",
+          "Forgetting to subtract the known root 1 from the sum."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Solve for α, β",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Numbers with sum 1 and product −6 are 3 and −2, the roots of y² − y − 6 = 0. Either order is correct.",
+        "lines": [
+          "α + β = 1 and αβ = −6, so α, β are the roots of",
+          "y² − y − 6 = 0 ⇒ (y − 3)(y + 2) = 0",
+          {
+            "text": "∴ α = 3, β = −2 (or α = −2, β = 3)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That two numbers with sum 1 and product −6 are 3 and −2, so α = 3, β = −2 (in either order).",
+          "accept": [
+            "two numbers with sum one and product minus six are three and minus two",
+            "alpha is three and beta is minus two or the other way round",
+            "solve y squared minus y minus six equals zero to get three and minus two",
+            "sum one product minus six, ante three, minus two",
+            "alpha beta are three and minus two"
+          ],
+          "reject": [
+            "find them",
+            "solve it"
+          ],
+          "heard_as": [
+            "three",
+            "minus two",
+            "y squared minus y minus six",
+            "either order"
+          ]
+        },
+        "why": "Two numbers are fixed by their sum and product: they are the roots of y² − (sum)y + product = 0. Naming them 3 and −2 directly is fine; the quadratic is the general route when guessing fails.",
+        "common_mistakes": [
+          "Giving 3 and 2 (sum 5) or −3 and 2 (sum −1) — check both sum and product.",
+          "Not substituting one root back: f(3) = 27 − 18 − 15 + 6 = 0."
+        ]
+      }
+    ]
+  }
+}
