@@ -119,7 +119,7 @@ const TRACKS: {
     {
         id: 'mpc',
         label: 'MPC',
-        subjects: 'Maths 1A · Maths 1B · Maths 2A · Physics · Chemistry',
+        subjects: 'Maths 1A · Maths 1B · Maths 2A · Maths 2B · Physics · Chemistry',
         years: [
             { id: 'first_year', label: 'First year', stream: 'mpc', note: '' },
             { id: 'second_year', label: 'Second year', stream: 'mpc_2', note: '' },

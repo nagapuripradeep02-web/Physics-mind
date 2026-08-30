@@ -154,3 +154,4 @@ answer-book/dist-*/
 # Scratch output of the answer-book authoring tools (measure_wrap, render_figures):
 # a wrap report and a rendered figure gallery, both regenerated on every run.
 answer-book/tools/out/
+smoke.pid
