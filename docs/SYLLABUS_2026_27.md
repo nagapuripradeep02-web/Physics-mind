@@ -156,6 +156,22 @@ calculus half, plus a ch.0 Prerequisites the paper is unlikely to examine direct
 section structure, despite its description promising it. The 8-mark Section-C finding stands on the
 textbook's own printed model paper (§1), which is the stronger source anyway.
 
+**SECOND PRINTED SOURCE FOR THE 8-MARK LAQ — CONFIRMED 2026-08-30.** The 7→8 re-cut had rested on
+one document. It now rests on two independent ones. The Sri Chaitanya *FAST TRACK IPE for Jr.
+Students* **Mathematics-IB**, typeset for this syllabus, prints the mark on its chapter banners:
+
+- ch.6 `DIRECTION COSINES AND DIRECTION RATIOS` — **`8 Marks`** directly above `Long Answer Questions :`
+- ch.3 `THE STRAIGHT LINE` — **`8M + 2×2M = 12M`** · ch.9 `DIFFERENTIATION` — **`8M + 4M + 2 × 2M = 16M`**
+
+**No `7 Marks` banner appears anywhere in the volume.** Both volumes also close with a model paper of
+the same shape our `PAPER_PATTERNS` already encodes — `MODEL PAPER-IA` and `MODEL PAPER-IB` each run
+**10 VSAQ · 8 SAQ · 3 LAQ** (21 questions). The 1A volume prints no marks number at all, so it
+corroborates the *shape* but not the number; the number comes from 1B.
+
+That book independently confirms the two NEW 1A chapters as well — it opens at `1. SETS & RELATIONS`
+and carries `3. SEQUENCES & SERIES`, both **completely unstarred**, which is what a freshly typeset
+chapter with no exam-frequency history looks like. Provenance, and the rules governing our use of
+that book, are in `docs/ORIGINALITY_MATHS.md`.
 ### Chemistry — OPEN (names)
 "Reduced by around 30 per cent, trimming three chapters" (Telangana Today 26 May 2026). No public
 list. NCERT's own rationalisation dropped States of Matter, Hydrogen, s-Block, p-Block and
