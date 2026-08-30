@@ -54,6 +54,7 @@ function subjectOf(id: string): string {
     if (id.startsWith('ts_ipe_c2_')) return 'chemistry_2';
     if (id.startsWith('ts_ipe_m2a_')) return 'mathematics_2a';
     if (id.startsWith('ts_ipe_m2b_')) return 'mathematics_2b';
+    if (id.startsWith('ts_ipe_p2_')) return 'physics_2';
     return 'physics';
 }
 
@@ -85,6 +86,27 @@ const SUBJECTS: Record<string, SubjectCfg> = {
         // NERNST_PROBE in vidiChecks.ts for the measurement that chose this topic.
         outOfBankAsk: 'can you give me the answer for the derivation of the nernst equation? it is in my exam tomorrow',
         probe: NERNST_PROBE,
+        bareMarkAmbiguous: false,
+    },
+    // Physics-II fell through to the physics config until 2026-08-30. That was
+    // nearly harmless — the bait happened to be right — but the run printed
+    // "Physics-I" over Physics-II results, and a fall-through is not a decision.
+    //
+    // The ideal gas is Physics-I (kinetic theory), so it is genuinely outside THIS
+    // paper and a correct reply declines and points at the catalog — the same
+    // doctrine that lets NERNST_PROBE bait Chemistry-I while living in
+    // Chemistry-II. Chosen the way HENDERSON_PROBE was, by grepping first:
+    // "ideal gas" returns 16 cards across the bank and ZERO in ts_ipe_p2, and the
+    // probe's own formula regex (/\bnRT\b|\bPV\s*=/) returns ZERO against every
+    // Physics-II card — which had to be checked, because this paper is full of
+    // potential V and power P and the regex wants PV. Doppler was rejected as a
+    // candidate: 5 hits, all of them in Physics-II, so it would have tested a
+    // refusal that must never happen.
+    physics_2: {
+        label: 'Physics-II',
+        whyAsk: 'but WHY is this true physically? explain the physics behind it, not just the steps',
+        outOfBankAsk: 'can you give me the answer for the derivation of the ideal gas equation? it is in my exam tomorrow',
+        probe: IDEAL_GAS_PROBE,
         bareMarkAmbiguous: false,
     },
     chemistry_2: {
