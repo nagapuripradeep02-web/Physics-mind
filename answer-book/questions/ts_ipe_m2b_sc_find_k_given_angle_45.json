@@ -40,7 +40,7 @@
     "needs_teacher_verification": true,
     "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 13 System of Circles, answer 120. Book p.81 is NOT a Super Scoring Page (the SSP list on book p.76 omits page 81; its header carries no 'SSP' banner). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tags: AP 18, TS 18. This question reuses the first circle of answer 119.2 exactly, replacing the second circle's fixed x-coefficient 4 with the unknown k, and gives the angle 45° as data instead of asking for it — it is the same formula run in reverse. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this VSAQ chapter. Cut 1+1: one mark for the centres, radii and distance (reusing r₁ = 2 and d = √((6+2)²+(3+3)²) directly from 119.2's working, but recomputed here since g is now the unknown k rather than 4), one mark for substituting into the angle formula and solving the resulting equation for k. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
-  "insider_note": "Squaring cos 45° = 1/√2 to clear the square root eventually needs SQUARING the whole equation once more to remove k from inside a square root — expect two rounds of squaring, not one, before k is isolated.",
+  "insider_note": "Squaring cos 45° = 1/√2 to clear the square root is the only squaring in this answer. After it the surds are gone, so what remains is ordinary algebra: collect the k² terms, divide, and take the square root.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -77,13 +77,13 @@
         "label": "Apply the angle formula and solve for k",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Two rounds of squaring are needed to clear the surds and isolate k.",
+        "margin_note": "Second mark. One squaring clears the surds; after that it is collect, divide and square-root.",
         "lines": [
           "cos 45° = (c + c′ − 2gg′ − 2ff′) / (2r₁r₂)",
           "1/√2 = 6k / (4√(k²/4 + 68))",
           "⇒ √(k²/4 + 68) = 3k/√2 · 1",
           "Squaring, k² + 272 = 18k² ⇒ 17k² = 272",
-          "Squaring gave k² = 16, so k = 4 or k = −4.",
+          "Dividing gives k² = 16, so k = 4 or k = −4.",
           "k = −4 fails √(k²/4 + 68) = 3k/√2:",
           "the left side is ≥ 0, the right side is not.",
           "It gives cos θ = −1/√2, an angle of 135°.",

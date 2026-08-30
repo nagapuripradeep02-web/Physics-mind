@@ -398,9 +398,16 @@
     q.appearances.forEach(function (a) {
       by[a.board === 'ap_ipe' ? 'ap_ipe' : 'ts_ipe'].push(a.year);
     });
+    // De-duplicate per board. A card whose appearances[] lists the same year
+    // twice for one board rendered it twice — 'Asked: AP 2019, 2019' — which reads
+    // to a student as two separate sittings, or as a typo. 18 cards across
+    // Maths-2A and Botany-II carry such a pair (2026-08-30 audit); nothing counts
+    // appearances.length, so the duplicate only ever reached the eye. Fixing it
+    // here rather than in the cards protects every paper, including future ones.
+    var uniq = function (ys) { return ys.filter(function (y, i) { return ys.indexOf(y) === i; }); };
     var parts = [];
-    if (by.ts_ipe.length) parts.push('TS ' + by.ts_ipe.sort().reverse().join(', '));
-    if (by.ap_ipe.length) parts.push('AP ' + by.ap_ipe.sort().reverse().join(', '));
+    if (by.ts_ipe.length) parts.push('TS ' + uniq(by.ts_ipe).sort().reverse().join(', '));
+    if (by.ap_ipe.length) parts.push('AP ' + uniq(by.ap_ipe).sort().reverse().join(', '));
     return 'Asked: ' + parts.join(' · ');
   }
 

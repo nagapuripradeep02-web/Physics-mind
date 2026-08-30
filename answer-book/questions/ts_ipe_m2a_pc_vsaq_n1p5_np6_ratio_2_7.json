@@ -79,7 +79,7 @@
             "cancel"
           ]
         },
-        "why": "ⁿP₆ has one factor more than ⁽ⁿ⁺¹⁾P₅, so after cancelling, the bottom keeps two factors while the top keeps one. That is why this ratio leads to a quadratic where 140.1 led to a linear equation.",
+        "why": "ⁿP₆ has one factor more than ⁽ⁿ⁺¹⁾P₅, so after cancelling, the bottom keeps two factors while the top keeps one. That is why this ratio leads to a quadratic, where the simpler ratio question led to a linear equation.",
         "common_mistakes": [
           "Cancelling (n − 4) as well and reaching a linear equation — ⁿP₆ has six factors, two of which survive.",
           "Writing the surviving denominator as (n − 5)(n − 6)."

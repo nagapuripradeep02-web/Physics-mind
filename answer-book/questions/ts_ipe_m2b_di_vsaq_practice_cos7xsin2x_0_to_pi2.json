@@ -66,7 +66,7 @@
         ],
         "why": "This is the same mixed sinᵐcosⁿ formula used for the answer directly above, applied here with the odd power 7 on cosine and the even power 2 on sine, so K=1.",
         "common_mistakes": [
-          "Copying the value from the neighbouring answer 176 instead of recomputing for this different pair of powers — this is exactly the book's own printed error.",
+          "Copying the value from the neighbouring printed answer instead of recomputing for this different pair of powers — this is exactly the book's own printed error.",
           "Swapping which power is m and which is n."
         ]
       },
@@ -85,7 +85,7 @@
             "style": "boxed"
           }
         ],
-        "why": "The odd power 7 descends as 6·4·2=48, the even power 2 descends as just 1, and the combined (m+n)=9 product descends as 9·7·5·3=945; the product 48/945 simplifies to 16/315 — the book's printed value 8/315 is exactly half this, because it was copied from the neighbouring answer 176 instead of recomputed.",
+        "why": "The odd power 7 descends as 6·4·2=48, the even power 2 descends as just 1, and the combined (m+n)=9 product descends as 9·7·5·3=945; the product 48/945 simplifies to 16/315 — the book's printed value 8/315 is exactly half this, because it was copied from the neighbouring printed answer instead of recomputed.",
         "common_mistakes": [
           "Reporting the book's printed value 8/315, which belongs to a different question.",
           "Missing that (n−1) for n=2 is just the single term 1, not an empty product."
