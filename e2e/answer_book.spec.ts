@@ -355,7 +355,7 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
-    test.setTimeout(2_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981), and at Maths-2A (~2238 entries). Never trim the sweep.
+    test.setTimeout(3_600_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981), at Maths-2A (~2238 entries), and at Maths-2B (2472). Never trim the sweep. The 2472-entry run was MEASURED at 32.8 min against the old 40-min budget — 82% of it, on a budget whose own comment stopped at 2238. One more paper would have timed out, and a timeout is not an assertion: it fails naming nothing. Raised to 60 min, matching the widest sweep below.
     // Measured: 90s @111q · 126s @130q · 132s @157q · 162s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -389,7 +389,7 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
-    test.setTimeout(2_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981), and at Maths-2A (~2238 entries). Never trim the sweep.
+    test.setTimeout(3_600_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981), at Maths-2A (~2238 entries), and at Maths-2B (2472). Never trim the sweep. The 2472-entry run was MEASURED at 32.8 min against the old 40-min budget — 82% of it, on a budget whose own comment stopped at 2238. One more paper would have timed out, and a timeout is not an assertion: it fails naming nothing. Raised to 60 min, matching the widest sweep below.
     // Measured: 90s @111q · 132s @130q · 132s @157q · 168s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
