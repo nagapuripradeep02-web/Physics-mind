@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_1_over_sqrt_sin_inv_x_sqrt_1_minus_x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ {1/[√(Sin⁻¹x)·√(1 − x²)]} dx.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Substitute t = Sin⁻¹x",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and back-substitute for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.88 (PDF page 88) — VSAQ chapter 16 ‘Integration’, answer 155, no SSP banner on this page. Printed appearance: AP 15. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This is the same t=Tan⁻¹x idea from answer 154, one derivative swapped for another — 1/√(1−x²) is the signature derivative of Sin⁻¹x, and the square root over t is just a fractional power of t once substituted.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sub",
+        "kind": "equation",
+        "label": "Substitute t = Sin⁻¹x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put Sin⁻¹x = t ⇒ dx/√(1−x²) = dt",
+          "I = ∫ dt/√t"
+        ],
+        "why": "1/√(1−x²) is the signature derivative of Sin⁻¹x, exactly as 1/(1+x²) is the signature derivative of Tan⁻¹x — the substitution removes the square root and the inverse function together.",
+        "common_mistakes": [
+          "Not recognising 1/√(1−x²) as the derivative of Sin⁻¹x.",
+          "Treating √(Sin⁻¹x) as (Sin⁻¹x)² by mistake, confusing the square root with a square."
+        ],
+        "memory_tip": "1/√(1−x²) is Sin⁻¹x's own derivative, the circular-function twin of 1/(1+x²) for Tan⁻¹x."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate and back-substitute for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ I = 2√(Sin⁻¹x) + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "∫dt/√t = ∫t⁻¹ᐟ²dt = 2√t + c by the power rule, and substituting t=Sin⁻¹x back in gives the final answer as a square root of an inverse sine.",
+        "common_mistakes": [
+          "Missing the factor of 2 in ∫t⁻¹ᐟ²dt = 2t¹ᐟ², writing just √t.",
+          "Forgetting to substitute Sin⁻¹x back in for t."
+        ],
+        "memory_tip": "∫dt/√t = 2√t — always a factor of 2, the same power-rule shortcut as ∫f′/√f dx from the LAQ chapter."
+      }
+    ]
+  }
+}

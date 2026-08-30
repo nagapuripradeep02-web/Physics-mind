@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_laq_cosx_plus_3sinx_plus_7_over_cosx_plus_sinx_plus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫ [(cosx + 3sinx + 7)/(cosx + sinx + 1)] dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the numerator as A·Dr′ + B·Dr + C and solve for A, B, C",
+      "marks": 2
+    },
+    {
+      "label": "Substitute back and split the integral into three parts",
+      "marks": 2
+    },
+    {
+      "label": "Reduce the remaining integral by the tan(x/2) substitution",
+      "marks": 2
+    },
+    {
+      "label": "Combine for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.33 (PDF page 32) — LAQ chapter 3 ‘Integration’, answer 26, no SSP banner and no printed appearance tags on this page. Chapter star rank ★★★ still applies. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Here A multiplies the DERIVATIVE of the denominator (opposite of answer 25, where A multiplied the denominator itself) — the book is free to label the two coefficients either way, so always re-read which one is being solved for rather than assuming the same layout as the previous question.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Integration · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the numerator as A·Dr′ + B·Dr + C and solve for A, B, C",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let cosx+3sinx+7",
+          "= A(−sinx+cosx) + B(cosx+sinx+1) + C",
+          "Coeff of cosx: A+B=1, coeff of sinx:",
+          "−A+B=3, constant: B+C=7",
+          "Solving: A=−1, B=2, C=5"
+        ],
+        "why": "The layout here swaps A and B's roles from answer 25 — A multiplies the denominator's derivative this time — but the method is identical: match sinx, cosx, and the constant term.",
+        "common_mistakes": [
+          "Assuming A multiplies Dr here as it did in answer 25, without re-reading which coefficient this question actually assigns to which part.",
+          "Sign slip solving A+B=1 and −A+B=3 together (adding gives 2B=4, so B=2, then A=1−B=−1)."
+        ],
+        "memory_tip": "A+B=1 and −A+B=3 added together gives 2B=4 directly — the fastest way to solve this particular pair."
+      },
+      {
+        "id": "s2_split",
+        "kind": "equation",
+        "label": "Substitute back and split the integral into three parts",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "I = A∫[Dr′/Dr]dx + B∫1 dx + C∫dx/Dr",
+          "= −log|cosx+sinx+1| + 2x + 5∫dx/(cosx+sinx+1)"
+        ],
+        "why": "With A=−1 multiplying the log term, B=2 multiplying the plain x term, and C=5 left over on the genuine ∫dx/Dr piece, the split works exactly as in answer 25, roles relabelled.",
+        "common_mistakes": [
+          "Putting the wrong sign on the log term — A=−1 makes this term NEGATIVE, unlike answer 25 where the log coefficient was positive.",
+          "Forgetting to carry C=5 as a multiplier on the remaining integral."
+        ],
+        "memory_tip": "A is negative here, so the log term in the final answer is subtracted, not added — check the sign before boxing the result."
+      },
+      {
+        "id": "s3_weierstrass",
+        "kind": "equation",
+        "label": "Reduce the remaining integral by the tan(x/2) substitution",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "Put tan(x/2)=t: cosx+sinx+1",
+          "= [(1−t²)+2t+(1+t²)]/(1+t²) = (2+2t)/(1+t²)",
+          "= 2(1+t)/(1+t²)",
+          "∫dx/(cosx+sinx+1)",
+          "= ∫[2dt/(1+t²)]÷[2(1+t)/(1+t²)]",
+          "= ∫dt/(1+t) = log|1+t|+c"
+        ],
+        "why": "This denominator collapses to the same simple (1+t) form seen in answer 22, since cosx+sinx+1 is algebraically the same shape as 1+sinx+cosx — only the order of the terms differs.",
+        "common_mistakes": [
+          "Not recognising this as the same simplification worked already in answer 22, and re-deriving it with unnecessary extra steps.",
+          "Losing the modulus bars on log|1+t|."
+        ],
+        "memory_tip": "cosx+sinx+1 IS 1+sinx+cosx, just written in a different order — the same (1+t) simplification as answer 22 applies."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Combine for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          "∴ I = −log|cosx+sinx+1| + 2x",
+          {
+            "text": "+ 5log|1+tan(x/2)| + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Multiplying C=5 by the log|1+t| just found and writing t back as tan(x/2) gives the third and final term, completing the answer in x.",
+        "common_mistakes": [
+          "Forgetting to multiply C=5 into the log|1+t| result.",
+          "Combining the two different logs — log|cosx+sinx+1| and log|1+tan(x/2)| — into one, which they cannot be since their arguments are different."
+        ],
+        "memory_tip": "Two DIFFERENT logs appear in this answer — one in x, one in tan(x/2) — they never combine into a single log term."
+      }
+    ]
+  }
+}

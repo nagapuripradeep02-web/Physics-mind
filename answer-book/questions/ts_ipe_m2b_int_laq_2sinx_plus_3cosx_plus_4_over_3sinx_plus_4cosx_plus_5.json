@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_laq_2sinx_plus_3cosx_plus_4_over_3sinx_plus_4cosx_plus_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫ [(2sinx + 3cosx + 4)/(3sinx + 4cosx + 5)] dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the numerator as A·Dr + B·Dr′ + C and solve for A, B, C",
+      "marks": 2
+    },
+    {
+      "label": "Substitute back and split the integral into three parts",
+      "marks": 2
+    },
+    {
+      "label": "Reduce the remaining integral by the tan(x/2) substitution",
+      "marks": 2
+    },
+    {
+      "label": "Combine for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.32 (PDF page 31) — LAQ chapter 3 ‘Integration’, answer 25, no SSP banner and no printed appearance tags on this page (the facing ‘4 STEP TIPS’ box lists the method's own outline — write Nr in terms of Dr, compare coefficients, substitute, integrate the last term — which this card's four steps follow). Chapter star rank ★★★ still applies. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "With a constant term in both the numerator and the denominator, three unknowns A, B, C are needed instead of two — the third equation comes from matching the constant terms on both sides, not from a trig coefficient.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Integration · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the numerator as A·Dr + B·Dr′ + C and solve for A, B, C",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let 2sinx+3cosx+4",
+          "= A(3sinx+4cosx+5) + B(3cosx−4sinx) + C",
+          "Coeff of sinx: 3A−4B=2, coeff of cosx:",
+          "4A+3B=3, constant: 5A+C=4",
+          "Solving: A=18/25, B=1/25, C=2/5"
+        ],
+        "why": "A constant term in the denominator needs a THIRD free constant C on the right, since Dr and Dr′ alone (both built from sinx and cosx) can never reproduce a bare number on their own.",
+        "common_mistakes": [
+          "Using only two unknowns A, B and forgetting C, which cannot balance the constant term 4 on the left.",
+          "Matching the constant equation as 5A=4 instead of 5A+C=4."
+        ],
+        "memory_tip": "Constant term present in Dr ⇒ a third unknown C is needed, matched from the constant-term equation alone."
+      },
+      {
+        "id": "s2_split",
+        "kind": "equation",
+        "label": "Substitute back and split the integral into three parts",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "I = A∫1 dx + B∫[Dr′/Dr]dx + C∫dx/Dr",
+          "= (18/25)x + (1/25)log|3sinx+4cosx+5| +",
+          "(2/5)∫dx/(3sinx+4cosx+5)"
+        ],
+        "why": "Three unknowns give three separate pieces: A pairs with the denominator itself (a plain x term), B pairs with the denominator's derivative (a log term), and C is left multiplying a genuine ∫dx/Dr that still needs its own substitution.",
+        "common_mistakes": [
+          "Trying to integrate C∫dx/Dr the same way as the log term — it is NOT an f′/f form and needs the tan(x/2) substitution instead.",
+          "Mixing up which coefficient (A or B) belongs with which piece."
+        ],
+        "memory_tip": "A goes with plain x, B goes with the log, C is the leftover piece that still needs its own substitution."
+      },
+      {
+        "id": "s3_weierstrass",
+        "kind": "equation",
+        "label": "Reduce the remaining integral by the tan(x/2) substitution",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "Put tan(x/2)=t: 3sinx+4cosx+5",
+          "= [6t+4(1−t²)+5(1+t²)]/(1+t²)",
+          "= (t²+6t+9)/(1+t²) = (t+3)²/(1+t²)",
+          "∫dx/(3sinx+4cosx+5)",
+          "= ∫[2dt/(1+t²)]÷[(t+3)²/(1+t²)]",
+          "= ∫2dt/(t+3)² = −2/(t+3) + c"
+        ],
+        "why": "This particular denominator happens to be a PERFECT square in t, (t+3)², which turns the leftover integral into a simple power-rule antiderivative rather than another log or Tan⁻¹.",
+        "common_mistakes": [
+          "Not spotting that t²+6t+9 factors as a perfect square, and instead trying to complete the square as a sum or difference.",
+          "Sign slip differentiating −1/(t+3) into 1/(t+3)² instead of −1/(t+3)²."
+        ],
+        "memory_tip": "t²+6t+9 = (t+3)² exactly — recognise the perfect square before reaching for the log or Tan⁻¹ formula."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Combine for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          "∴ I = (18/25)x + (1/25)log|3sinx+4cosx+5|",
+          {
+            "text": "− (4/5)/(tan(x/2)+3) + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Multiplying C = 2/5 by the −2/(t+3) just found gives −4/(5(t+3)), and writing t back as tan(x/2) completes the three-term answer in the original variable x.",
+        "common_mistakes": [
+          "Forgetting to multiply C=2/5 into the −2/(t+3) result before adding it to the other two terms.",
+          "Leaving the final term in terms of t instead of tan(x/2)."
+        ],
+        "memory_tip": "(2/5)×(−2/(t+3)) = −4/(5(t+3)) — carry C through the substitution's result, don't just tack it on unmultiplied."
+      }
+    ]
+  }
+}

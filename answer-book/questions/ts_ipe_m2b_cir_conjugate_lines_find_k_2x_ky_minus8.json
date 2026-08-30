@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_conjugate_lines_find_k_2x_ky_minus8",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the value of k if x + y − 5 = 0 and 2x + ky − 8 = 0 are conjugate with respect to the circle x² + y² − 2x − 2y − 1 = 0.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Read off the coefficients and the circle",
+      "marks": 1
+    },
+    {
+      "label": "Write the conjugate lines condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and solve for k",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.107 — the Bullet Model Paper, under \"Q11: CIRCLES\". It is NOT worked in the numbered SAQ chapter, so it is authored here as an extra; the SAQ chapter prints it only as a practice box on book p.53 with the answer k = 2 and the tags TS 15 and AP 15, which are the appearances recorded here. Its SECTION follows the paper slot: the Bullet Model Paper places it at Q11, which is Section B, so it is an SAQ. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: r² = 3, and 3(2 + k) = 3(6 − k) gives k = 2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The unknown sits in the second line here rather than the first, so the two brackets are not symmetric — write the formula out in letters and substitute one number at a time.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Circle · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_read_coefficients",
+        "kind": "equation",
+        "label": "Read off the coefficients and the circle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. n₁ = −5 and n₂ = −8; both constants are negative as written.",
+        "memory_tip": "l, m, n for each line in order, then g, f, c for the circle.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "From the given lines:",
+          "l₁ = 1, m₁ = 1, n₁ = −5",
+          "l₂ = 2, m₂ = k, n₂ = −8",
+          "Circle: x² + y² − 2x − 2y − 1 = 0",
+          "⇒ g = −1, f = −1, c = −1",
+          "r = √(1 + 1 + 1) = √3, so r² = 3"
+        ],
+        "why": "The condition needs r², not r, so stopping at r² = 3 saves writing a surd that would be squared again straight away.",
+        "common_mistakes": [
+          "Taking n₂ = 8 instead of −8.",
+          "Reading g = −2 and f = −2 without halving."
+        ]
+      },
+      {
+        "id": "s2_conjugate_condition",
+        "kind": "equation",
+        "label": "Write the conjugate lines condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Each bracket ends with a minus in front of that line’s n.",
+        "memory_tip": "r²(l₁l₂ + m₁m₂) = (l₁g + m₁f − n₁)(l₂g + m₂f − n₂).",
+        "lines": [
+          "Two lines are conjugate with respect to a",
+          "circle when",
+          "r²(l₁l₂ + m₁m₂) = (l₁g + m₁f − n₁)(l₂g + m₂f − n₂)"
+        ],
+        "why": "The condition says that the pole of each line lies on the other. Writing it in letters first keeps the nine substitutions separate and checkable.",
+        "common_mistakes": [
+          "Adding n₁ and n₂ instead of subtracting them.",
+          "Putting the unknown k into the first bracket, where it does not belong."
+        ]
+      },
+      {
+        "id": "s3_solve_for_k",
+        "kind": "boxed_final",
+        "label": "Substitute and solve for k",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. A factor 3 appears on both sides and cancels.",
+        "memory_tip": "Left side 3(2 + k), right side 3(6 − k). Cancel the 3 and solve.",
+        "lines": [
+          "3[(1)(2) + (1)(k)]",
+          "= [(1)(−1) + (1)(−1) + 5][(2)(−1) + (k)(−1) + 8]",
+          "⇒ 3(2 + k) = (3)(6 − k)",
+          "⇒ 2 + k = 6 − k",
+          "⇒ 2k = 4",
+          {
+            "text": "∴ k = 2",
+            "style": "boxed"
+          }
+        ],
+        "why": "The first bracket is −1 − 1 + 5 = 3 and the second is −2 − k + 8 = 6 − k. The 3 on the left cancels with the 3 on the right, leaving a one-line equation.",
+        "common_mistakes": [
+          "Getting the second bracket as 6 + k by dropping the minus on k.",
+          "Solving 2 + k = 6 − k as k = 4."
+        ]
+      }
+    ]
+  }
+}

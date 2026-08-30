@@ -1,0 +1,237 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_chord_length_8x_2y_minus8_on_x_y_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the length of the chord intercepted by the circle x² + y² − 8x − 2y − 8 = 0 on the line x + y + 1 = 0.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Centre and radius",
+      "marks": 1
+    },
+    {
+      "label": "Perpendicular distance from the centre",
+      "marks": 1
+    },
+    {
+      "label": "Length of the chord",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.50 — SAQ chapter 6 Circle, answer 45.1. It is the first answer of the chapter and sits on a ★★★ SSP (Super Scoring Page): book p.50 carries the SSP banner. Printed appearance tag: TS 16. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: r = 5, p = 3√2 and the chord is 2√7. The same question is re-answered in the Bullet Model Paper (book p.107, Q11 CIRCLES) with identical working, so it is authored once, here. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the figure is included because the right-angled triangle made by r, p and half the chord IS the argument. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The whole answer rests on one right-angled triangle: radius as hypotenuse, perpendicular distance as one side, half the chord as the other — write 2√(r² − p²) as a formula line before substituting anything.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Circle · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_centre_and_radius",
+        "kind": "equation",
+        "label": "Centre and radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Halve the coefficients of x and y, then change the sign for the centre.",
+        "memory_tip": "Centre (−g, −f), radius √(g² + f² − c). The constant is subtracted, so a negative c makes the radius larger.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: x² + y² − 8x − 2y − 8 = 0",
+          "Here g = −4, f = −1, c = −8",
+          "Centre C = (4, 1)",
+          "Radius r = √(16 + 1 + 8) = √25 = 5"
+        ],
+        "why": "The chord formula needs the radius and the distance of the line from the centre, so both centre and radius come first. Here c = −8, so −c is +8.",
+        "common_mistakes": [
+          "Reading g = −8 instead of g = −4.",
+          "Computing √(16 + 1 − 8) = 3 by taking c as +8."
+        ]
+      },
+      {
+        "id": "s2_perpendicular_distance",
+        "kind": "equation",
+        "label": "Perpendicular distance from the centre",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Rationalise 6/√2 to 3√2 now — leaving the root in the denominator makes the next squaring harder to read.",
+        "memory_tip": "p = |ax₁ + by₁ + c| / √(a² + b²), with (x₁, y₁) the centre.",
+        "lines": [
+          "Perpendicular distance from C(4, 1)",
+          "to the line x + y + 1 = 0:",
+          "p = |4 + 1 + 1| / √(1² + 1²)",
+          "= 6/√2 = 6√2/2 = 3√2"
+        ],
+        "why": "The perpendicular from the centre to a chord bisects it, so its length is one side of the right-angled triangle whose hypotenuse is the radius.",
+        "common_mistakes": [
+          "Using the coefficients of the circle instead of the line in √(a² + b²).",
+          "Leaving p as 6/√2 and then squaring it wrongly."
+        ]
+      },
+      {
+        "id": "s3_length_of_chord",
+        "kind": "boxed_final",
+        "label": "Length of the chord",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. p² = (3√2)² = 18, not 6 — squaring a surd squares the number outside as well.",
+        "memory_tip": "Length of chord = 2√(r² − p²). Half the chord, the distance p and the radius r form a right triangle.",
+        "lines": [
+          "Length of the chord = 2√(r² − p²)",
+          "= 2√(5² − (3√2)²)",
+          "= 2√(25 − 18)",
+          {
+            "text": "∴ Length of the chord = 2√7",
+            "style": "boxed"
+          }
+        ],
+        "why": "The perpendicular from the centre bisects the chord, so half the chord is √(r² − p²) by Pythagoras, and the full chord is twice that. Since p = 3√2 < 5 = r, the line does cut the circle.",
+        "common_mistakes": [
+          "Writing (3√2)² as 6.",
+          "Forgetting the factor 2 and answering √7."
+        ]
+      },
+      {
+        "id": "s4_diagram",
+        "kind": "diagram",
+        "label": "The picture",
+        "marks": 0,
+        "margin_note": "No mark of its own; the question does not ask for a diagram. One rough sketch covers every chord question in this chapter.",
+        "memory_tip": "Radius, perpendicular distance and half the chord: a right-angled triangle every time.",
+        "figure": {
+          "id": "cir_chord_1",
+          "width": 400,
+          "height": 230,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cir_chord_1_circle",
+              "d": "M 110 100 A 80 80 0 1 0 270 100 A 80 80 0 1 0 110 100",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cir_chord_1_chord",
+              "d": "M 126 148 L 254 148",
+              "ms": 1830
+            },
+            {
+              "type": "stroke",
+              "id": "cir_chord_1_perp",
+              "d": "M 190 100 L 190 148",
+              "ms": 690,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "cir_chord_1_ra",
+              "d": "M 200 148 L 200 138 L 190 138",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "cir_chord_1_rad",
+              "d": "M 190 100 L 126 148",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "cir_chord_1_dc",
+              "d": "M 186.5 100 A 3.5 3.5 0 1 0 193.5 100 A 3.5 3.5 0 1 0 186.5 100",
+              "ms": 310
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_1_lc",
+              "x": 196,
+              "y": 88,
+              "text": "C",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_1_la",
+              "x": 108,
+              "y": 154,
+              "text": "A",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_1_lb",
+              "x": 262,
+              "y": 154,
+              "text": "B",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_1_ld",
+              "x": 170,
+              "y": 168,
+              "text": "D",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_1_lr",
+              "x": 138,
+              "y": 134,
+              "text": "r",
+              "ms": 400,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_1_lp",
+              "x": 198,
+              "y": 130,
+              "text": "p",
+              "ms": 400,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_1_cap",
+              "x": 24,
+              "y": 220,
+              "text": "p is the distance from C to AB",
+              "ms": 520,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The perpendicular from the centre C to the chord AB meets it at its midpoint D. That makes triangle CDA right-angled at D with hypotenuse r, one side p and the other side half the chord — which is exactly the formula 2√(r² − p²).",
+        "common_mistakes": [
+          "Drawing the perpendicular to a point other than the midpoint of the chord.",
+          "Taking the radius as the whole chord rather than as the hypotenuse."
+        ]
+      }
+    ]
+  }
+}

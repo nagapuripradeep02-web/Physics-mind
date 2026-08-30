@@ -1,0 +1,176 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_concyclic_find_c_2_0_0_1_4_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If (2,0), (0,1), (4,5), (0,c) are concyclic then find c.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "First equation from SA = SB",
+      "marks": 1
+    },
+    {
+      "label": "Second equation from SB = SC",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the centre",
+      "marks": 1
+    },
+    {
+      "label": "Radius, the circle and the value of c",
+      "marks": 4
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.17 — LAQ chapter 1 Circle, answer 4. The mark split 1 + 1 + 1 + 4 IS THE BOOK’S: this answer sits alone on a single-column page and carries printed margin tags — \"1 Mark\" beside equation (1), \"1 Mark\" beside the line that starts the solving, \"1 Mark\" beside the centre, and \"4 Marks\" at the foot of the page against the radius, the circle and the two values of c. The book also flags it \"SUPER CIRCLE Q\". Printed appearance tags: AP 15,17,19,22 and TS 15,17 — the most-asked Circle LAQ in the book. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct; both roots c = 14/3 and c = 1 are genuine. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Two answers are expected here, not one: (c − 17/6)² = 121/36 gives c = 14/3 and c = 1, and c = 1 is the value most students drop because they take only the positive root.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Circle · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_equation",
+        "kind": "equation",
+        "label": "First equation from SA = SB",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First printed mark, tagged \"1 Mark\" in the book beside equation (1).",
+        "memory_tip": "Three known points build the circle; the fourth point carries the unknown c.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A = (2, 0), B = (0, 1), C = (4, 5), D = (0, c)",
+          "Let S(x₁, y₁) be the centre of the circle",
+          "through A, B and C ⇒ SA = SB = SC",
+          "Now SA = SB ⇒ SA² = SB²",
+          "⇒ (x₁−2)² + y₁² = x₁² + (y₁−1)²",
+          "⇒ −4x₁ + 4 = −2y₁ + 1",
+          "⇒ 4x₁ − 2y₁ − 3 = 0 … (1)"
+        ],
+        "why": "Only three of the four points are fully known, so the circle is built from those three. The fourth point is used at the end to find c.",
+        "common_mistakes": [
+          "Trying to use the point (0, c) in the distance equations, which brings in two unknowns at once.",
+          "Sign slip when moving −2y₁ + 1 across the equals sign."
+        ]
+      },
+      {
+        "id": "s2_second_equation",
+        "kind": "equation",
+        "label": "Second equation from SB = SC",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second printed mark, tagged \"1 Mark\". The book pairs B with C, which keeps the numbers small because B has x = 0.",
+        "memory_tip": "B = (0, 1) has a zero coordinate, so pairing with B halves the expansion.",
+        "lines": [
+          "Also SB = SC ⇒ SB² = SC²",
+          "⇒ x₁² + (y₁−1)² = (x₁−4)² + (y₁−5)²",
+          "⇒ −2y₁ + 1 = −8x₁ + 16 − 10y₁ + 25",
+          "⇒ 8x₁ + 8y₁ − 40 = 0",
+          "⇒ x₁ + y₁ − 5 = 0 … (2)"
+        ],
+        "why": "The second perpendicular bisector is needed to fix the centre. Dividing by 8 gives the simplest possible form, which makes the elimination in the next step one line long.",
+        "common_mistakes": [
+          "Expanding (y₁ − 5)² as y₁² − 10y₁ + 5.",
+          "Dividing by 8 but leaving the constant as −40."
+        ]
+      },
+      {
+        "id": "s3_solve_centre",
+        "kind": "equation",
+        "label": "Solve for the centre",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third printed mark, tagged \"1 Mark\". Double (2) so the y coefficients match, then add.",
+        "memory_tip": "Double equation (2) to get 2x₁ + 2y₁ − 10 = 0, then add to (1).",
+        "lines": [
+          "(1): 4x₁ − 2y₁ − 3 = 0",
+          "(2)×2: 2x₁ + 2y₁ − 10 = 0 … (3)",
+          "(1) + (3) ⇒ 6x₁ − 13 = 0 ⇒ x₁ = 13/6",
+          "From (2): y₁ = 5 − 13/6 = 17/6",
+          "∴ Centre S(x₁, y₁) = (13/6, 17/6)"
+        ],
+        "why": "Equation (1) has −2y₁ and equation (2) doubled has +2y₁, so adding removes y₁ at once. The centre has sixths in it, which is expected once a 6 appears in the coefficient.",
+        "common_mistakes": [
+          "Adding (1) and (2) without doubling (2), so y₁ does not cancel.",
+          "Writing 5 − 13/6 as 17/6 with the wrong sign, giving −17/6."
+        ]
+      },
+      {
+        "id": "s4_radius_circle_and_c",
+        "kind": "boxed_final",
+        "label": "Radius, the circle and the value of c",
+        "marks": 4,
+        "mark_note": "Solution",
+        "margin_note": "Four printed marks, tagged \"4 Marks\" at the foot of the page. Radius, circle and both values of c sit in this one block.",
+        "memory_tip": "A square equals a square, so take the plus and the minus root. Two values of c come out.",
+        "lines": [
+          "A = (2, 0) lies on the circle, so r = SA.",
+          "r² = (2 − 13/6)² + (0 − 17/6)²",
+          "= (−1/6)² + (17/6)² = 1/36 + 289/36 = 290/36",
+          "Circle with centre (13/6, 17/6) and r² = 290/36:",
+          "(x − 13/6)² + (y − 17/6)² = 290/36",
+          "Put D(0, c):  (0 − 13/6)² + (c − 17/6)² = 290/36",
+          "⇒ (c − 17/6)² = 290/36 − 169/36 = 121/36",
+          "⇒ c − 17/6 = ±11/6",
+          "⇒ 6c = 17 ± 11 ⇒ 6c = 28 or 6c = 6",
+          {
+            "text": "∴ c = 14/3 or c = 1",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting D(0, c) into the circle gives a square equal to a number, and a square has two square roots. Both give a genuine fourth point on the circle, so both values of c are answers.",
+        "common_mistakes": [
+          "Taking only the positive root and reporting c = 14/3 alone.",
+          "Arithmetic slip on 290 − 169 = 121.",
+          "Cancelling the 36 too early and losing the sixths."
+        ]
+      }
+    ]
+  }
+}

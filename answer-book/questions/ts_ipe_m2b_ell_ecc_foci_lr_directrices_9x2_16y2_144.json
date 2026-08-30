@@ -1,0 +1,180 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_ecc_foci_lr_directrices_9x2_16y2_144",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the eccentricity, coordinates of foci, length of latus rectum and equations of directrices of the ellipse 9x² + 16y² = 144.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016
+    },
+    {
+      "year": 2017
+    },
+    {
+      "year": 2019
+    },
+    {
+      "year": 2020
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Eccentricity",
+      "marks": 1
+    },
+    {
+      "label": "Foci",
+      "marks": 1
+    },
+    {
+      "label": "Length of latus rectum",
+      "marks": 1
+    },
+    {
+      "label": "Equations of directrices",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.57 — SAQ chapter 8 Ellipse, answer 58, the first question of the chapter (LEVEL-I). On a ★★★ SSP (Super Scoring) page — book p.49 lists page 57 among 13 SSP pages, and the chapter-section table on the same page ranks chapter 8 Ellipse ★★★ (the printed chapter banner on p.57 itself shows only ★★, which this card follows the p.49 table over, per the chapter-section-rank rule). Printed appearances: AP 17 · TS 16,17,19,20. The mark split 1+1+1+1 IS THE BOOK'S: each of the four results — eccentricity, foci, latus rectum, directrices — carries its own printed '1 Mark' margin tag and its own tick box. The book combines the two directrix equations onto one line with a single ± sign (√7x = ±16 ⇒ √7x ± 16 = 0); the second combined equation should read √7x ∓ 16 = 0 for the two lines to be independently correct, so this card writes the two directrices as two separate equations instead of copying that shorthand. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5) — 4+4 marks in Section B (paper slots Q13, Q14) and no VSAQ or LAQ chapter for this unit; this is the first of its two SAQ answers. No two-book union check and no board back-test were possible for Maths-2B: there is no second-year TSBIE Basic Learning Material on hand, and the book's own five Guess Papers (pp.118-127) stand in as the orchestrator's back-test at the end of the track. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "All four results use only a, b and e, so get those three numbers right first — a mistake here breaks every one of the four marks, not just one.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_standard_form",
+        "kind": "equation",
+        "label": "Write in standard form",
+        "marks": 0,
+        "margin_note": "No mark of its own — every result below reads a and b off this line.",
+        "memory_tip": "Divide by the number on the right so the equation reads = 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "9x² + 16y² = 144",
+          "Divide by 144: x²/16 + y²/9 = 1",
+          "Here a² = 16, b² = 9, so a > b —",
+          "the ellipse is horizontal."
+        ],
+        "why": "Eccentricity, foci, latus rectum and directrices are all read off a² and b² in the standard form x²/a² + y²/b² = 1, and whether a > b shows which axis carries the foci.",
+        "common_mistakes": [
+          "Using 9 and 16 as a² and b² directly, without dividing by 144 first.",
+          "Not checking a > b before deciding the ellipse is horizontal."
+        ]
+      },
+      {
+        "id": "s2_eccentricity",
+        "kind": "equation",
+        "label": "Eccentricity",
+        "marks": 1,
+        "mark_note": "Eccentricity",
+        "margin_note": "First mark. a = 4, b = 3 from the standard form above.",
+        "memory_tip": "Bigger squared minus smaller squared, square-rooted, over the bigger axis length.",
+        "lines": [
+          "e = √(a² − b²) / a",
+          "= √(16 − 9) / 4",
+          {
+            "text": "e = √7 / 4",
+            "style": "boxed"
+          }
+        ],
+        "why": "For a horizontal ellipse (a > b) the eccentricity is the square root of a² − b², divided by a — not by a² — once the root is taken.",
+        "common_mistakes": [
+          "Leaving a² in the denominator instead of a.",
+          "Subtracting b² − a² instead of a² − b², which gives a negative number under the root."
+        ]
+      },
+      {
+        "id": "s3_foci",
+        "kind": "equation",
+        "label": "Foci",
+        "marks": 1,
+        "mark_note": "Foci",
+        "margin_note": "Second mark. The two 4's in a·e cancel, leaving just √7.",
+        "memory_tip": "Foci sit on the longer axis, at a distance ae from the centre.",
+        "lines": [
+          "Foci = (±ae, 0)",
+          "= (±4 · √7/4, 0)",
+          {
+            "text": "Foci = (±√7, 0)",
+            "style": "boxed"
+          }
+        ],
+        "why": "The foci of a horizontal ellipse lie on the major axis, at distance ae from the centre on each side.",
+        "common_mistakes": [
+          "Placing the foci on the y-axis instead of the x-axis for a horizontal ellipse.",
+          "Using e alone instead of ae for the distance."
+        ]
+      },
+      {
+        "id": "s4_latus_rectum",
+        "kind": "equation",
+        "label": "Length of latus rectum",
+        "marks": 1,
+        "mark_note": "Latus rectum",
+        "margin_note": "Third mark. A short formula — do not overthink it.",
+        "memory_tip": "Latus rectum equals 2 times the smaller square, over the bigger axis length.",
+        "lines": [
+          "Length of latus rectum = 2b² / a",
+          "= 2(9) / 4",
+          {
+            "text": "= 9/2",
+            "style": "boxed"
+          }
+        ],
+        "why": "The latus rectum is the chord through a focus, perpendicular to the major axis; its length depends only on b² and a, never on e directly.",
+        "common_mistakes": [
+          "Writing 2a²/b instead of 2b²/a.",
+          "Forgetting to double b² before dividing by a."
+        ]
+      },
+      {
+        "id": "s5_directrices",
+        "kind": "equation",
+        "label": "Equations of directrices",
+        "marks": 1,
+        "mark_note": "Directrices",
+        "margin_note": "Fourth mark. Two separate vertical lines, one on each side of the centre.",
+        "memory_tip": "Foci use a·e (multiply); directrices use a/e (divide).",
+        "lines": [
+          "Equations of directrices: x = ±a/e",
+          "= ±4 / (√7/4) = ±16/√7",
+          {
+            "text": "√7x − 16 = 0 and √7x + 16 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each directrix is the vertical line x = a/e or x = −a/e for a horizontal ellipse — the reciprocal relation of the focus formula x = ±ae.",
+        "common_mistakes": [
+          "Confusing the directrix formula x = a/e with the focus formula x = ae.",
+          "Writing both directrices as one line with a single ± sign in front of 16, which does not correctly pair a sign with each line."
+        ]
+      }
+    ]
+  }
+}

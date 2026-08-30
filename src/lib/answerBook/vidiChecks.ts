@@ -143,9 +143,13 @@ export const DE_MOIVRE_PROBE: OutOfBankProbe = {
     formula: /cos\s*n\s*(?:θ|theta)|\(\s*cos\s*(?:θ|theta)\s*\+\s*i\s*sin/i,
 };
 
-/** The maths bait for ALL THREE maths papers (1A, 1B, 2A) since 2026-08-29.
- *  Integration by parts is Maths-2B (Integration), outside every maths paper in
- *  the bank. Chosen the same way as HENDERSON_PROBE: grepped across all ~2,080
+/** The maths bait for 1A, 1B and 2A since 2026-08-29 — NOT for 2B, see below.
+ *  Integration by parts is Maths-2B (Integration). It was outside every maths paper
+ *  in the bank when this was written, and it is STILL outside 1A, 1B and 2A — but
+ *  Maths-2B landed on 2026-08-30 and now carries it on 18 cards, so it is no longer
+ *  outside the BANK. It stays correct as those three papers' bait (Vidi must refuse a
+ *  question it does not have open, whoever else holds it) and it must NEVER be 2B's.
+ Chosen the same way as HENDERSON_PROBE: grepped across all ~2,080
  *  questions first — "integration by parts", "definite integral" and "differential
  *  equation" each return ZERO hits (the six cards containing an ∫ are physics
  *  derivations, none of them the by-parts rule). It is a plausible ask for any
@@ -154,6 +158,19 @@ export const DE_MOIVRE_PROBE: OutOfBankProbe = {
 export const INTEGRATION_BY_PARTS_PROBE: OutOfBankProbe = {
     askMatches: /integration\s+by\s+parts|by\s+parts/i,
     formula: /∫\s*u\s*dv|u\s*v\s*[−-]\s*∫\s*v\s*du|\\int\s*u\s*\\?,?\s*dv|uv\s*[−-]\s*(?:∫|\\int)/i,
+};
+
+/** The Maths-2B bait. 2B cannot use INTEGRATION_BY_PARTS_PROBE — by parts IS its own
+ *  Unit 6, on 18 of its cards — and it cannot use DE_MOIVRE_PROBE either, which 2A
+ *  retired when De Moivre entered the bank. Simpson's rule is chosen the way
+ *  HENDERSON_PROBE was: grepped across the whole merged bank first, where "simpson",
+ *  "trapezoidal" and "numerical integration" each return ZERO cards. It is a
+ *  plausible ask for a student holding an integration paper, it is genuinely outside
+ *  the TS IPE syllabus, and it has a formula — so the regex fires on the SUBSTANCE
+ *  (the h/3 rule with its 4-2-4 weights), never on the wording of a refusal. */
+export const SIMPSONS_RULE_PROBE: OutOfBankProbe = {
+    askMatches: /simpson|trapezoidal\s+rule|numerical\s+integration/i,
+    formula: /h\s*\/\s*3|\(h\s*\/\s*3\)|y0\s*\+\s*4\s*y1|4\s*y[₁1]\s*\+\s*2\s*y[₂2]/i,
 };
 
 /** The chemistry bait. Electrochemistry is Chemistry-II — genuinely outside Junior

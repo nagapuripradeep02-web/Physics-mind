@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_sin6xcos4x_0_to_pi2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫₀^(π/2) sin⁶x cos⁴x dx.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "State Walli's formula, noting both powers are even",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and evaluate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.92 — VSAQ chapter 17 'Definite Integrals', answer 177, on a printed Super Scoring Page (SSP 92), the right-hand item of the row containing answer 176 and its Practice Question. Printed appearance: AP 19, 16. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The book itself adds a note here — 'note the factor π/2 (∵ m,n are even)' — because forgetting it is the single most common mistake on this type of question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "State Walli's formula, noting both powers are even",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. m=6 and n=4 are both even — this is the case that needs the π/2 factor.",
+        "memory_tip": "Note the factor π/2 only when BOTH m and n are even — the book itself flags this.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "∫₀^(π/2) sinᵐx cosⁿx dx",
+          "=",
+          "[(m−1)(m−3)···][(n−1)(n−3)···]/[(m+n)(m+n−2)···]",
+          "· K",
+          "Here m=6 and n=4 are BOTH even, so K = π/2"
+        ],
+        "why": "Both powers 6 and 4 are even, so the trailing factor K in the mixed-power Walli formula is π/2 rather than 1 — this is the one case where the extra π/2 appears.",
+        "common_mistakes": [
+          "Setting K=1 by forgetting that BOTH powers being even is what triggers the π/2 factor.",
+          "Confusing this with the previous sin⁵xcos⁴x answer, where m was odd."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Substitute and evaluate",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. 45/3840 simplifies to 3/256, and 3/256 × π/2 = 3π/512.",
+        "memory_tip": "45/3840 reduces by dividing both by 15, giving 3/256 before multiplying by π/2.",
+        "lines": [
+          "= [(5)(3)(1)][(3)(1)]/[(10)(8)(6)(4)(2)] · π/2",
+          "= (15)(3)/3840 · π/2",
+          {
+            "text": "∴ I = 3π/512",
+            "style": "boxed"
+          }
+        ],
+        "why": "The m=6 product descends as 5·3·1=15, the n=4 product descends as 3·1=3, and the combined (m+n)=10 product descends as 10·8·6·4·2=3840; multiplying gives 45/3840, and multiplying by π/2 gives 3π/512 after simplifying.",
+        "common_mistakes": [
+          "Missing a term in the five-term denominator product 10·8·6·4·2.",
+          "Multiplying by π instead of π/2."
+        ]
+      }
+    ]
+  }
+}

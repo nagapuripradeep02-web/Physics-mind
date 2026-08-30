@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_conjugate_points_4_2_and_k_minus3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of k if the points (4,2), (k,−3) are conjugate with respect to the circle x² + y² − 5x + 8y + 6 = 0.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the conjugate points condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and solve for k",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 12 Circle, answer 113.2. It sits on a ★★★ SSP (Super Scoring Page): book p.79 carries the SSP banner. It is the right-hand twin of answer 113.1 and adds the linear terms that the origin-centred twin does not have. Printed appearance tags: TS 17 and AP 19. Every number was re-derived and the book is correct: (3/2)k − 14 = 0 gives k = 28/3. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This circle is not centred at the origin, so the g and f terms are back — and they use the SUM of the coordinates, not the product, which is the one difference from the twin question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write the conjugate points condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Products for the squared terms, sums for the linear terms. Halve −5 and 8 into g and f.",
+        "memory_tip": "S₁₂ = x₁x₂ + y₁y₂ + g(x₁ + x₂) + f(y₁ + y₂) + c.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Two points are conjugate when S₁₂ = 0",
+          "For S ≡ x² + y² − 5x + 8y + 6 = 0:",
+          "g = −5/2, f = 4, c = 6",
+          "S₁₂ = x₁x₂ + y₁y₂ + g(x₁+x₂) + f(y₁+y₂) + c"
+        ],
+        "why": "S₁₂ replaces x² by x₁x₂, y² by y₁y₂, 2gx by g(x₁ + x₂) and 2fy by f(y₁ + y₂). The linear terms use sums because the 2 in 2gx is what splits into the two points.",
+        "common_mistakes": [
+          "Using g(x₁x₂) instead of g(x₁ + x₂).",
+          "Taking g = −5 and f = 8 without halving."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Substitute and solve for k",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. The answer is a fraction, and that is correct; do not round it.",
+        "memory_tip": "4k − 5k/2 is (3/2)k. Collect the k terms before the numbers.",
+        "lines": [
+          "With (x₁, y₁) = (4, 2) and (x₂, y₂) = (k, −3):",
+          "4k + 2(−3) − (5/2)(4 + k) + 4(2 − 3) + 6 = 0",
+          "⇒ 4k − 6 − 10 − (5/2)k − 4 + 6 = 0",
+          "⇒ (3/2)k − 14 = 0 ⇒ 3k = 28",
+          {
+            "text": "∴ k = 28/3",
+            "style": "boxed"
+          }
+        ],
+        "why": "The k terms are 4k and −(5/2)k, which combine to (3/2)k. The numbers are −6 − 10 − 4 + 6 = −14. The answer is a fraction because 28 is not divisible by 3.",
+        "common_mistakes": [
+          "Writing 4k − (5/2)k as (5/2)k.",
+          "Rounding 28/3 to 9."
+        ]
+      }
+    ]
+  }
+}

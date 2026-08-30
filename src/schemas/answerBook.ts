@@ -59,7 +59,16 @@ const ABC_60: PaperSection[] = [
     { key: 'SAQ', section: 'Section B', printed: 8, answer: 6, marks: 4 },
     { key: 'LAQ', section: 'Section C', printed: 3, answer: 2, marks: 8 },
 ];
-/** The pre-reform maths paper — still the SECOND-YEAR shape in 2026-27 (see mathematics_2a). */
+// The pre-reform maths paper - still the SECOND-YEAR shape in 2026-27. The
+// 60-mark re-cut of Maths-1A/1B is FIRST YEAR ONLY: TV9 Telugu, 17 May 2026 —
+// "these reforms apply only to first year this year; they will be implemented
+// for second year from 2027-28". So a Maths-2A/2B student sitting March 2027 is
+// still on A 10x2 all · B any 5 of 7 x4 · C any 5 of 7 x7 = 75, which is also
+// what the Baby Bullet-Q Sr. Maths-2B book prints in its IPE BLUE PRINT (book
+// p.5) and all five model papers (pp.118-127) — docs/IPE_MATHS_2B_SOURCE.md.
+// Reusing ABC_60 here would put every long answer at 8 marks instead of 7: the
+// exact defect the 1A/1B re-cut repaired, reversed. Re-cut to ABC_60 for the
+// 2027-28 cohort, not before.
 const ABC_75_MATHS_PRE_REFORM: PaperSection[] = [
     { key: 'VSAQ', section: 'Section A', printed: 10, answer: 10, marks: 2 },
     { key: 'SAQ', section: 'Section B', printed: 7, answer: 5, marks: 4 },
@@ -106,6 +115,12 @@ export const PAPER_PATTERNS: Record<string, PaperPattern> = {
     // book prints a Botany practical sheet but no mark value for it, and copying the
     // first-year 15 would be inventing a figure.
     botany_2: { label: 'Botany-II', total: 60, sections: ABC_60, wef: '2026-27' },
+
+    // Senior Inter Maths-2B (2026-08-29). The OLD 75-mark shape — see
+    // ABC_75_MATHS_PRE_REFORM above. `internal` is deliberately omitted: second year
+    // carries no activity-based-learning mark in 2026-27, and this number reaches a
+    // student. Maths-2A shares that table (one table, never a copy).
+    mathematics_2b: { label: 'Maths 2B', total: 75, sections: ABC_75_MATHS_PRE_REFORM, wef: '2026-27' },
 };
 /** The marks a question of this qtype carries on this subject's paper. */
 export function paperMarksFor(subject: string, qtype: 'VSAQ' | 'SAQ' | 'LAQ'): number | undefined {
@@ -363,7 +378,7 @@ export const answerBookQuestionSchema = z
         // notebook.js LEGACY_PHYSICS_KEYS remaps exact `physics-N` keys for the
         // 2026-27 first-year renumbering, so second-year chapters filed under
         // `physics` would be silently remapped onto first-year units.
-        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a']),
+        subject: z.enum(['physics', 'chemistry', 'mathematics', 'mathematics_1b', 'botany', 'zoology', 'physics_2', 'chemistry_2', 'botany_2', 'mathematics_2a', 'mathematics_2b']),
         year_cycle: z.enum(['first_year', 'second_year']),
         class_label: z.string().min(1),
         unit: z.object({ number: z.number().int().positive(), name: z.string().min(1) }),

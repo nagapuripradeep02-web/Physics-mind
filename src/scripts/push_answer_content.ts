@@ -35,7 +35,7 @@ const STREAM_SUBJECTS: Record<string, string[]> = {
     // BY HAND: the bundles this pushes are written by that build, so a stream
     // listed in one and not the other either pushes nothing or pushes content
     // the artifact does not serve.
-    mpc_2: ['physics_2', 'chemistry_2', 'mathematics_2a'],
+    mpc_2: ['physics_2', 'chemistry_2', 'mathematics_2a', 'mathematics_2b'],
 };
 // `--stream` takes a COMMA-SEPARATED list, matching build_answer_book.ts since
 // 2026-08-29: one artifact can carry both years, so its bundles live in one

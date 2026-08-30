@@ -1,0 +1,222 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_saq_area_ellipse_deduce_circle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the area of the region bounded by the ellipse x²/a² + y²/b² = 1 is πab. Hence deduce the area of the circle x² + y² = a².",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Solve for y and locate the x-intercept",
+      "marks": 1
+    },
+    {
+      "label": "Integrate over the first quadrant to get πab",
+      "marks": 2
+    },
+    {
+      "label": "Deduce the area of the circle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.102 — Star Q+ share, under the banner 'DEFINITE INTEGRALS-VSAQ', answer 218, the third and last of three area questions on this page, printing a load-bearing figure of the ellipse with the shaded first-quadrant region OAB beside the working — reproduced here because the picture is what makes the '4 times the first-quadrant area' step legible. Printed appearance tags: AP 17 and IPE 14. The IPE 14 tag is a pre-2014 undivided-board appearance and is NOT recorded as an appearance entry (the enum has no value for it) — it is recorded here in prose only. Chapter star rank ★★★ applies (Star Q+ entries take their chapter-section's rank). No margin mark tags are printed, so the 1+2+1 split (across the three marked steps; the figure step itself carries no marks, following the diagram-marks rule) is OURS, patterned on the weight of each stage of the derivation — the integration itself is the heaviest single block. We classify this answer as SAQ shape, not VSAQ, because it is a two-part 'show, hence deduce' derivation matching the 4-mark SAQ form used elsewhere in this book — this classification is OURS. Every number was re-derived and the book is correct: the ellipse area is πab sq. units and the deduced circle area is πa² sq. units. Boundary reading: printed p.100 confirms the Hyperbola Star Q+ share ends at answer 211; printed p.103 confirms the Bullet Model Paper begins at Q1&2 Circles — so this chapter's Star Q+ share is exactly answers 212–218. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). SECTION OVERRULE, recorded deliberately: the book's page banner reads 'DEFINITE INTEGRALS-VSAQ', and its two neighbours on this page (answers 216 and 217) are authored VSAQ/2 accordingly. This one is kept at SAQ/4 because it is a different kind of question — a derivation of the area as 4 times the first-quadrant integral, plus a deduction for the circle — which no 2-mark Section-A slot holds, and no model paper places it in one. A teacher settles it; both readings are stated here so the choice is visible rather than silent. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The book prints this question with an old pre-2014 board tag (IPE 14) alongside its AP 2017 appearance — the IPE tag predates the current TS/AP board split.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Definite Integrals · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Solve for y and locate the x-intercept",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. y = (b/a)√(a²−x²) — the ellipse's y-value is a circle of radius a's y-value, multiplied by the factor b/a.",
+        "memory_tip": "Setting y=0 in the ellipse equation always gives x=±a, the ends of the horizontal (major) axis.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x²/a² + y²/b² = 1 ⇒ y²/b² = 1 − x²/a²",
+          "⇒ y² = b²[(a² − x²)/a²]",
+          "⇒ y = (b/a)√(a² − x²)",
+          "Put y = 0 ⇒ √(a² − x²) = 0 ⇒ x² = a² ⇒ x = a"
+        ],
+        "why": "Solving the ellipse equation for y gives the upper half of the curve as a function of x, and setting y=0 finds where the curve meets the x-axis — at x=a, the semi-major-axis length.",
+        "common_mistakes": [
+          "Losing the factor b/a when solving for y, and writing y=√(a²−x²), which is the equation of a circle of radius a, not the ellipse.",
+          "Taking the x-intercept as x=b instead of x=a."
+        ]
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "See the first-quadrant region OAB",
+        "marks": 0,
+        "margin_note": "The ellipse is symmetric about both axes, so the whole area is 4 times the shaded first-quadrant piece OAB.",
+        "memory_tip": "Any curve symmetric about both axes has its total enclosed area equal to 4 times its first-quadrant area.",
+        "figure": {
+          "id": "ellipse_area_oab",
+          "width": 300,
+          "height": 240,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "axis_x",
+              "d": "M 30 150 L 275 150 M 268 144 L 278 150 L 268 156",
+              "ms": 3830
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y",
+              "d": "M 150 230 L 150 20 M 144 28 L 150 18 L 156 28",
+              "ms": 3330
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 132,
+              "y": 164,
+              "text": "O",
+              "ms": 250,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ellipse_upper",
+              "d": "M 40 150 Q 40 80 150 80 Q 260 80 260 150",
+              "ms": 4210
+            },
+            {
+              "type": "stroke",
+              "id": "ellipse_lower",
+              "d": "M 260 150 Q 260 220 150 220 Q 40 220 40 150",
+              "ms": 4210
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 230,
+              "y": 180,
+              "text": "A(a,0)",
+              "ms": 250,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 156,
+              "y": 72,
+              "text": "B(0,b)",
+              "ms": 250,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "oab_side_oa",
+              "d": "M 150 150 L 260 150",
+              "ms": 1570,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "oab_arc_ab",
+              "d": "M 260 150 Q 260 80 150 80",
+              "ms": 2110,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "oab_side_ob",
+              "d": "M 150 150 L 150 80",
+              "ms": 1000,
+              "pen": "pencil",
+              "wipe": "y"
+            }
+          ]
+        },
+        "why": "By the symmetry of the ellipse about both axes, the full enclosed area is exactly four times the area of the region in the first quadrant bounded by the curve, the x-axis and the y-axis — the picture makes this quartering visible.",
+        "common_mistakes": [
+          "Forgetting the factor of 4 and reporting the first-quadrant area alone as the total area of the ellipse.",
+          "Shading the wrong quadrant or a region that does not match the labelled points O, A, B."
+        ]
+      },
+      {
+        "id": "s3_integrate",
+        "kind": "equation",
+        "label": "Integrate over the first quadrant to get πab",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. (4b/a)(a²/2)(π/2) simplifies step by step: 4/a×a²=4a, then 4a×b/2=2ab, then 2ab×π/2=πab.",
+        "memory_tip": "The final simplification always collapses to πab regardless of a and b individually — a clean, symmetric result.",
+        "lines": [
+          "Required area = 4 (area of OAB)",
+          "= 4∫₀^a y dx = 4∫₀^a (b/a)√(a² − x²) dx",
+          "= (4b/a)[(x/2)√(a²−x²) +",
+          "(a²/2)Sin⁻¹(x/a)]₀^a   [standard formula]",
+          "= (4b/a)[0 + (a²/2)Sin⁻¹(1)]",
+          "= (4b/a)(a²/2)(π/2)",
+          {
+            "text": "∴ Area of the ellipse = πab sq. units",
+            "style": "boxed"
+          }
+        ],
+        "why": "Applying the standard ∫√(a²−x²)dx formula, the algebraic term vanishes at both x=0 (where it's already 0) and x=a (where √(a²−x²)=0), leaving only the inverse-sine term; substituting Sin⁻¹(1)=π/2 and simplifying (4b/a)(a²/2)(π/2) collapses neatly to πab.",
+        "common_mistakes": [
+          "Losing track of the b/a and a²/2 factors while combining them into the final πab.",
+          "Using Sin⁻¹(1)=π instead of the correct π/2."
+        ]
+      },
+      {
+        "id": "s4_deduce",
+        "kind": "boxed_final",
+        "label": "Deduce the area of the circle",
+        "marks": 1,
+        "mark_note": "Deduction",
+        "margin_note": "Last mark. Substituting b=a into πab is the whole deduction — no fresh integration is needed.",
+        "memory_tip": "A circle is an ellipse with equal axes — setting b=a in any ellipse formula gives the matching circle formula.",
+        "lines": [
+          "If b = a, the ellipse x²/a² + y²/b²",
+          "= 1 becomes x²/a² + y²/a² = 1, i.e. x² + y² = a²",
+          "[a circle of radius a]",
+          "Putting b = a in the area formula πab gives",
+          {
+            "text": "∴ Area of the circle is πa² sq. units",
+            "style": "boxed"
+          }
+        ],
+        "why": "A circle is the special case of an ellipse where both semi-axes are equal (b=a); substituting b=a directly into the just-proved formula πab gives πa·a=πa², the familiar area of a circle of radius a.",
+        "common_mistakes": [
+          "Re-deriving the circle's area from scratch instead of simply substituting b=a into the ellipse formula already proved.",
+          "Writing the final circle area as πa instead of πa²."
+        ]
+      }
+    ]
+  }
+}

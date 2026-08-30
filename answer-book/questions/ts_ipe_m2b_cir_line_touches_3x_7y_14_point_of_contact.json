@@ -1,0 +1,255 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_line_touches_3x_7y_14_point_of_contact",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that x + y + 1 = 0 touches the circle x² + y² − 3x + 7y + 14 = 0 and find its point of contact.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Radius of the circle",
+      "marks": 1
+    },
+    {
+      "label": "Perpendicular distance equals the radius",
+      "marks": 1
+    },
+    {
+      "label": "Set up the foot of the perpendicular",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the point of contact",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.51 — SAQ chapter 6 Circle, answer 48. The mark split 1 + 1 + 1 + 1 IS THE BOOK’S: this answer sits on a single-column page and carries printed margin tags — \"1 Mark\" beside the radius, \"1 Mark\" beside the line p = r, \"1 Mark\" beside the sentence naming the point of contact as the foot of the perpendicular, and \"1 Mark\" beside the values of h and k. It is the only printed split in the whole Circle SAQ chapter, and it is what the other SAQ splits in this unit are patterned on. Printed appearance tags: AP 17 and AP 22. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: r = 1/√2 = p, and the point of contact is (2, −3). FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the book prints a small sketch beside this answer. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Two separate things are asked and each carries two of the four marks — showing p = r, and then finding the point. Stopping after p = r loses half the marks.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Circle · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_radius",
+        "kind": "equation",
+        "label": "Radius of the circle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First printed mark, tagged \"1 Mark\" in the book. Both coefficients are odd, so keep everything over 4.",
+        "memory_tip": "g = −3/2 and f = 7/2. Square them as 9/4 and 49/4 and put 14 over 4 as well.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: x² + y² − 3x + 7y + 14 = 0",
+          "Here g = −3/2, f = 7/2, c = 14",
+          "Centre C = (3/2, −7/2)",
+          "r = √(9/4 + 49/4 − 14) = √((9 + 49 − 56)/4)",
+          "= √(2/4) = 1/√2"
+        ],
+        "why": "A line touches a circle when its distance from the centre equals the radius, so the radius is needed before anything can be compared. Writing 14 as 56/4 keeps one denominator.",
+        "common_mistakes": [
+          "Taking g = −3 and f = 7 without halving.",
+          "Writing √(2/4) as 1/2."
+        ]
+      },
+      {
+        "id": "s2_distance_equals_radius",
+        "kind": "equation",
+        "label": "Perpendicular distance equals the radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second printed mark, tagged \"1 Mark\". State p = r in words, not only as an equation.",
+        "memory_tip": "p = r means touching, p > r means the line misses, p < r means it cuts.",
+        "lines": [
+          "Perpendicular distance from C(3/2, −7/2)",
+          "to the line x + y + 1 = 0:",
+          "p = |3/2 − 7/2 + 1| / √(1² + 1²)",
+          "= |(3 − 7 + 2)/2| / √2 = |−1| / √2 = 1/√2",
+          "⇒ p = r",
+          "∴ The line touches the circle."
+        ],
+        "why": "A tangent meets a circle at exactly one point, and that happens exactly when the perpendicular distance from the centre equals the radius. Both come out as 1/√2 here.",
+        "common_mistakes": [
+          "Writing 3/2 − 7/2 as −2 instead of −2/2.",
+          "Reaching p = r but not writing the sentence that the line touches the circle."
+        ]
+      },
+      {
+        "id": "s3_set_up_foot",
+        "kind": "equation",
+        "label": "Set up the foot of the perpendicular",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third printed mark, tagged \"1 Mark\". The sentence naming the point of contact as the foot of the perpendicular is what earns it.",
+        "memory_tip": "Point of contact = foot of the perpendicular from the centre to the tangent.",
+        "lines": [
+          "The point of contact (h, k) is the foot of",
+          "the perpendicular from C(3/2, −7/2)",
+          "to the line x + y + 1 = 0",
+          "(h − x₁)/a = (k − y₁)/b",
+          "= −(ax₁ + by₁ + c)/(a² + b²)",
+          "⇒ (h − 3/2)/1 = (k + 7/2)/1",
+          "= −(3/2 − 7/2 + 1)/(1 + 1)",
+          "⇒ (h − 3/2)/1 = (k + 7/2)/1 = 1/2"
+        ],
+        "why": "The radius drawn to the point of contact is perpendicular to the tangent, so the point of contact is exactly where the perpendicular from the centre meets the line. That turns the geometry into the standard foot-of-perpendicular formula.",
+        "common_mistakes": [
+          "Solving the line and the circle together, which works but is far longer.",
+          "Forgetting the minus sign in front of (ax₁ + by₁ + c)."
+        ]
+      },
+      {
+        "id": "s4_point_of_contact",
+        "kind": "boxed_final",
+        "label": "Solve for the point of contact",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last printed mark, tagged \"1 Mark\". Check the answer by putting it back into the line.",
+        "memory_tip": "Add 1/2 to each side of the two little equations and read h and k off.",
+        "lines": [
+          "h − 3/2 = 1/2 ⇒ h = 3/2 + 1/2 = 2",
+          "k + 7/2 = 1/2 ⇒ k = 1/2 − 7/2 = −3",
+          {
+            "text": "∴ Point of contact is (2, −3)",
+            "style": "boxed"
+          }
+        ],
+        "why": "A quick check: 2 + (−3) + 1 = 0, so (2, −3) is on the line, and 4 + 9 − 6 − 21 + 14 = 0, so it is on the circle as well. A point on both is the point of contact.",
+        "common_mistakes": [
+          "Writing k = 7/2 + 1/2 = 4 by using the wrong sign for the centre.",
+          "Reporting the centre as the point of contact."
+        ]
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "The picture",
+        "marks": 0,
+        "margin_note": "No mark of its own; the question does not ask for a diagram. The book prints one, and it shows why the radius is perpendicular to the tangent.",
+        "memory_tip": "The radius meets the tangent at right angles, so the contact point is the foot of that radius.",
+        "figure": {
+          "id": "cir_tangent_touch_1",
+          "width": 400,
+          "height": 226,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cir_tangent_touch_1_circle",
+              "d": "M 96 108 A 64 64 0 1 0 224 108 A 64 64 0 1 0 96 108",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cir_tangent_touch_1_tan",
+              "d": "M 143 1 L 279 137",
+              "ms": 2750
+            },
+            {
+              "type": "stroke",
+              "id": "cir_tangent_touch_1_rad",
+              "d": "M 160 108 L 205 63",
+              "ms": 910,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cir_tangent_touch_1_ra",
+              "d": "M 193 61 L 203 51 L 213 61",
+              "ms": 400
+            },
+            {
+              "type": "stroke",
+              "id": "cir_tangent_touch_1_dc",
+              "d": "M 156.5 108 A 3.5 3.5 0 1 0 163.5 108 A 3.5 3.5 0 1 0 156.5 108",
+              "ms": 310
+            },
+            {
+              "type": "stroke",
+              "id": "cir_tangent_touch_1_dp",
+              "d": "M 201.5 63 A 3.5 3.5 0 1 0 208.5 63 A 3.5 3.5 0 1 0 201.5 63",
+              "ms": 310
+            },
+            {
+              "type": "label",
+              "id": "cir_tangent_touch_1_lc",
+              "x": 138,
+              "y": 116,
+              "text": "C",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_tangent_touch_1_lp",
+              "x": 209,
+              "y": 47,
+              "text": "P",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_tangent_touch_1_ll",
+              "x": 289,
+              "y": 147,
+              "text": "x + y + 1 = 0",
+              "ms": 520,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cir_tangent_touch_1_lr",
+              "x": 176,
+              "y": 96,
+              "text": "r",
+              "ms": 400,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cir_tangent_touch_1_cap",
+              "x": 24,
+              "y": 214,
+              "text": "p = r, so the line touches at P",
+              "ms": 520,
+              "sm": true
+            }
+          ]
+        },
+        "why": "Because the tangent touches at a single point, the shortest distance from C to the line is the radius itself, drawn to that point. That single picture carries both halves of the question: p = r, and the contact point is the foot of the perpendicular.",
+        "common_mistakes": [
+          "Drawing the line cutting the circle at two points.",
+          "Drawing the radius to a point other than where the line touches."
+        ]
+      }
+    ]
+  }
+}

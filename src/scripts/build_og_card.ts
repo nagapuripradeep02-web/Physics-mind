@@ -29,10 +29,10 @@ const STREAM = streamArg ? streamArg.slice('--stream='.length) : null;
 
 const LABELS: Record<string, { title: string; subjects: string }> = {
     mpc: { title: 'Junior Inter · MPC', subjects: 'Maths · Physics · Chemistry' },
-    // Senior Inter carries Physics-II, Chemistry-II and Maths-2A; Maths 2B is not
+    // Senior Inter carries Physics-II, Chemistry-II, Maths-2A and Maths-2B; every Paper-II is now
     // written, so the card names the papers that exist. It must describe the
     // artifact, not the ambition (see STREAMS.mpc_2 in build_answer_book.ts).
-    mpc_2: { title: 'Senior Inter · MPC', subjects: 'Maths-2A · Physics · Chemistry' },
+    mpc_2: { title: 'Senior Inter · MPC', subjects: 'Maths-2A · Maths-2B · Physics · Chemistry' },
     // BOTH years in one artifact (2026-08-29, founder): answers.viditra.co serves
     // one book and the door routes the student to their year. The card describes
     // the whole artifact, so it names the group and says both years are inside.

@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_dx_over_sqrt_2x_minus1_1_to_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫₁⁵ dx/√(2x − 1).",
+  "appearances": [
+    {
+      "year": 2015
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Integrate using the linear substitution rule",
+      "marks": 1
+    },
+    {
+      "label": "Apply the limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.90 — VSAQ chapter 17 'Definite Integrals', answer 165, the first item on a printed Super Scoring Page (SSP 90), opening the chapter. Printed appearance: TS 15. Chapter star rank ★★★ applies (book p.90 banner ‘★★★ 17. DEFINITE INTEGRALS ★★★’). No margin mark tags are printed anywhere in this two-column VSAQ chapter, so the 1+1 split is OURS, patterned on the 1+1 split already used for this book's other 2-mark VSAQ questions (e.g. the Circle VSAQ chapter). Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∑∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Whenever the argument of a square root is linear in x, the setter usually picks limits so both endpoints give perfect squares — a signal the answer will be a clean integer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_integrate",
+        "kind": "equation",
+        "label": "Integrate using the linear substitution rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The antiderivative of 1/√(ax+b) is (1/a)·2√(ax+b) — here a=2.",
+        "memory_tip": "∫dx/√(ax+b) = (2/a)√(ax+b) + c — a fixed pattern for any linear expression inside a square root.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "I = ∫₁⁵ dx/√(2x − 1)",
+          "∫dx/√(2x−1) = (1/2)·2√(2x−1) = √(2x−1)",
+          "[derivative of 2x−1 is 2]",
+          "∴ I = [√(2x − 1)]₁⁵"
+        ],
+        "why": "For √(ax+b), the antiderivative is (1/a)·2√(ax+b) because differentiating √(ax+b) gives a/(2√(ax+b)); the extra factor 1/a compensates for the constant 2 sitting inside the square root.",
+        "common_mistakes": [
+          "Forgetting the factor 1/2 that comes from the linear substitution 2x−1.",
+          "Writing the antiderivative as √(2x−1)/2 instead of √(2x−1)."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Apply the limits",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. √9 = 3 and √1 = 1 — both perfect squares, so the answer is a whole number.",
+        "memory_tip": "Always substitute the UPPER limit first, then subtract the value at the LOWER limit.",
+        "lines": [
+          "= √(2(5) − 1) − √(2(1) − 1) = √9 − √1",
+          {
+            "text": "∴ I = 3 − 1 = 2",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting the upper limit 5 and the lower limit 1 into √(2x−1) gives √9 and √1, and subtracting the lower value from the upper value gives the final result.",
+        "common_mistakes": [
+          "Computing √(2(1)−1) as √1 = 0 instead of 1.",
+          "Subtracting the limits in the wrong order."
+        ]
+      }
+    ]
+  }
+}

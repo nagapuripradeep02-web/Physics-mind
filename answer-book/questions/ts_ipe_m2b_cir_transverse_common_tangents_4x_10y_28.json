@@ -1,0 +1,260 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_transverse_common_tangents_4x_10y_28",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the equation to the pair of transverse common tangents to the circles x² + y² − 4x − 10y + 28 = 0 and x² + y² + 4x − 6y + 4 = 0.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2019,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Centres and radii",
+      "marks": 1
+    },
+    {
+      "label": "Internal centre of similitude",
+      "marks": 2
+    },
+    {
+      "label": "Pair of tangents from I",
+      "marks": 2
+    },
+    {
+      "label": "Simplify to the pair equation",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 1 Circle, answer 7. Printed appearance tags: AP 19 and TS 17,19. The mark split is OURS, not the book’s: this answer sits on a two-column page with no printed margin tags. It is patterned on the nearest printed split of the same shape in this chapter — book p.16, answer 3, which prints 1 + 1 + 2 + 2 + 1 for the same two-equations-then-centre-then-circle shape, and book p.17, answer 4, which prints 1 + 1 + 1 + 4. Star rank: the book gives the CIRCLE LAQ chapter ★★★ in its LAQ chapter table (book p.13), in the chapter header (book p.14) and in the LAQ hit list header (book p.7), so every Circle LAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Circle holds Q18 and Q19. An LAQ on this paper is 7 marks, never 8 — the 2026-27 move to 8-mark long answers is first year only. Every number was re-derived and the book is correct: I = (1, 9/2), S₁ = −x − y/2 + 7/2, S₁₁ = 1/4, and the pair is 3x² + 4xy − 24x − 4y + 21 = 0 with no y² term, which is correct here and not an omission. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks; the figure is included because the crossing point I is what separates this question from the direct-tangent one. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The final pair has no y² term at all, which looks like a mistake but is not — one of the two tangents is vertical in effect, and a student who \"corrects\" it by inserting a y² term loses the answer.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Circle · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_centres_and_radii",
+        "kind": "equation",
+        "label": "Centres and radii",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Both radii are whole numbers here, so the ratio 1 : 3 is exact.",
+        "memory_tip": "Read g, f, c off each equation; the radius is √(g² + f² − c) every time.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "For x² + y² − 4x − 10y + 28 = 0:",
+          "C₁ = (2, 5), r₁ = √(4 + 25 − 28) = √1 = 1",
+          "For x² + y² + 4x − 6y + 4 = 0:",
+          "C₂ = (−2, 3), r₂ = √(4 + 9 − 4) = √9 = 3"
+        ],
+        "why": "Transverse common tangents cross between the circles, so the circles must lie apart. The centres and radii are what the crossing point is built from.",
+        "common_mistakes": [
+          "Reading g = −4 instead of g = −2 for the first circle.",
+          "Getting r₁ = √57 by adding 28 instead of subtracting it."
+        ]
+      },
+      {
+        "id": "s2_internal_centre",
+        "kind": "equation",
+        "label": "Internal centre of similitude",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Transverse tangents use INTERNAL division — the crossing point sits between the two centres.",
+        "memory_tip": "Transverse tangents cross between the circles, so their meeting point divides C₁C₂ internally.",
+        "lines": [
+          "r₁ : r₂ = 1 : 3",
+          "The internal centre of similitude I divides",
+          "C₁C₂ internally in the ratio 1 : 3",
+          "I = ((1(−2) + 3(2))/(1+3), (1(3) + 3(5))/(1+3))",
+          "= (4/4, 18/4) = (1, 9/2)"
+        ],
+        "why": "Both transverse tangents pass through one point between the circles, and that point divides the line of centres internally in the ratio of the radii. Every later step is measured from it.",
+        "common_mistakes": [
+          "Using external division, which gives the direct tangents.",
+          "Writing 18/4 as 9/4."
+        ]
+      },
+      {
+        "id": "s3_pair_from_i",
+        "kind": "equation",
+        "label": "Pair of tangents from I",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Either circle may be used for S; the first one is chosen because its radius is 1.",
+        "memory_tip": "The pair of tangents from a point to a circle is S₁² = S₁₁ · S. Compute S₁ and S₁₁ separately, then combine.",
+        "lines": [
+          "The pair of tangents from I(x₁, y₁) to",
+          "S = 0 is S₁² = S₁₁ · S",
+          "With S ≡ x²+y²−4x−10y+28 and I = (1, 9/2):",
+          "S₁ = x(1) + y(9/2) − 2(x + 1) − 5(y + 9/2) + 28",
+          "= −x − y/2 + 7/2",
+          "S₁₁ = 1 + 81/4 − 4 − 45 + 28 = 1/4"
+        ],
+        "why": "S₁ is the general form with one point replaced by I, and S₁₁ is S₁ with both points equal to I. Because I lies outside the circle, S₁₁ is positive and the pair is a genuine pair of lines.",
+        "common_mistakes": [
+          "Writing S₁ with g and f not halved, giving −4(x + 1) instead of −2(x + 1).",
+          "Getting S₁₁ = 0 by an arithmetic slip, which would say I is on the circle."
+        ]
+      },
+      {
+        "id": "s4_simplify_pair",
+        "kind": "boxed_final",
+        "label": "Simplify to the pair equation",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Clear the halves first by writing S₁ over 2, then square.",
+        "memory_tip": "Write −x − y/2 + 7/2 as (−2x − y + 7)/2 so the square is a clean quarter.",
+        "lines": [
+          "S₁² = ((−2x − y + 7)/2)² = (2x + y − 7)²/4",
+          "S₁₁ · S = (1/4)(x² + y² − 4x − 10y + 28)",
+          "⇒ (2x + y − 7)² = x² + y² − 4x − 10y + 28",
+          "⇒ 4x² + y² + 49 + 4xy − 28x − 14y",
+          "  = x² + y² − 4x − 10y + 28",
+          {
+            "text": "∴ 3x² + 4xy − 24x − 4y + 21 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "The quarter on each side cancels. The y² terms are equal on both sides and cancel as well, so the final pair has no y² term — that is correct, not an omission, and it says one of the two tangents is parallel to the y-axis in the pair’s coordinate reading.",
+        "common_mistakes": [
+          "Expanding (2x + y − 7)² without the cross terms 4xy, −28x and −14y.",
+          "Inserting a y² term into the final answer because a pair \"should\" have one."
+        ]
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "The picture",
+        "marks": 0,
+        "margin_note": "No mark of its own; the question does not ask for a diagram. Draw it in rough to confirm the division is internal.",
+        "memory_tip": "Transverse tangents cross between the circles. Direct tangents do not.",
+        "figure": {
+          "id": "cir_transverse_tangents_1",
+          "width": 470,
+          "height": 280,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cir_transverse_tangents_1_c1",
+              "d": "M 80 130 A 30 30 0 1 0 140 130 A 30 30 0 1 0 80 130",
+              "ms": 2690
+            },
+            {
+              "type": "stroke",
+              "id": "cir_transverse_tangents_1_c2",
+              "d": "M 270 130 A 60 60 0 1 0 390 130 A 60 60 0 1 0 270 130",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cir_transverse_tangents_1_axis",
+              "d": "M 72 130 L 398 130",
+              "ms": 4500,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cir_transverse_tangents_1_t1",
+              "d": "M 60 75 L 410 232",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cir_transverse_tangents_1_t2",
+              "d": "M 60 185 L 410 28",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cir_transverse_tangents_1_d1",
+              "d": "M 106.5 130 A 3.5 3.5 0 1 0 113.5 130 A 3.5 3.5 0 1 0 106.5 130",
+              "ms": 310
+            },
+            {
+              "type": "stroke",
+              "id": "cir_transverse_tangents_1_d2",
+              "d": "M 326.5 130 A 3.5 3.5 0 1 0 333.5 130 A 3.5 3.5 0 1 0 326.5 130",
+              "ms": 310
+            },
+            {
+              "type": "stroke",
+              "id": "cir_transverse_tangents_1_ds",
+              "d": "M 179.5 130 A 3.5 3.5 0 1 0 186.5 130 A 3.5 3.5 0 1 0 179.5 130",
+              "ms": 310
+            },
+            {
+              "type": "label",
+              "id": "cir_transverse_tangents_1_l1",
+              "x": 102,
+              "y": 154,
+              "text": "C₁",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_transverse_tangents_1_l2",
+              "x": 322,
+              "y": 154,
+              "text": "C₂",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_transverse_tangents_1_ls",
+              "x": 179,
+              "y": 154,
+              "text": "I",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_transverse_tangents_1_cap",
+              "x": 26,
+              "y": 268,
+              "text": "transverse common tangents cross at I",
+              "ms": 520,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The two transverse tangents put the circles on opposite sides of each line, so they must cross between the circles, at I. Seeing that is what fixes the division as internal rather than external.",
+        "common_mistakes": [
+          "Drawing the tangents meeting outside both circles, which is the direct case.",
+          "Drawing circles that overlap, in which case no transverse tangent exists."
+        ]
+      }
+    ]
+  }
+}

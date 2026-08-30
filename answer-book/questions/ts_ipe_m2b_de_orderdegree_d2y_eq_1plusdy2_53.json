@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_orderdegree_d2y_eq_1plusdy2_53",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the order and degree of the differential equation d²y/dx² = [1 + (dy/dx)²]^(5/3).",
+  "appearances": [
+    {
+      "year": 2022,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Cube both sides to remove the fractional power",
+      "marks": 1
+    },
+    {
+      "label": "State the order and degree",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.93 — VSAQ chapter 18 Differential Equations, answer 183, the third and last answer on the page. It sits on a ★★★ SSP page (book p.93 is this chapter's only SSP page). Printed appearance tag: TS 22. The mark split is OURS: this answer prints no margin marks. It is patterned on answers 181 and 182's printed 1+1 shape (clear the fractional power, then state order and degree), since this question follows the identical two-checkpoint method. Star rank: the book's VSAQ chapter table (book p.76) gives the Differential Equations VSAQ chapter ★★, but the chapter header printed on book p.93 shows ★★★ (matching that page's own SSP banner). The two disagree; the TABLE's rank is used, so every Differential Equations VSAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this individual question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Differential Equations holds Q10. This question is not in the Bullet Model Paper's Q10 set (book p.106), which only reuses answers 181, 182, 184 and 185. The book's working was re-derived line by line and is correct throughout, including the degree = 3 result (the exponent on the cubed (d²y/dx²)³ term after clearing the fractional power). Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Here the fractional power sits on the RIGHT side instead of on the highest derivative, but the clearing move is identical — cube both sides — and this time it leaves the highest derivative itself raised to a power greater than 1, so the degree is not 1.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differential Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cube",
+        "kind": "equation",
+        "label": "Cube both sides to remove the fractional power",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Cube both sides to clear the 5/3 power on the right-hand side.",
+        "memory_tip": "A power of 5/3 clears by cubing (raising to the power 3), which turns 5/3 into the whole number 5.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is d²y/dx² = [1 + (dy/dx)²]^(5/3)",
+          "Cubing both sides:",
+          "(d²y/dx²)³ = [1 + (dy/dx)²]^5",
+          "This is now free from fractional powers."
+        ],
+        "why": "Cubing both sides multiplies the exponent 5/3 by 3, giving the whole number 5, so the equation becomes a genuine polynomial in the derivatives with no fractional power left anywhere.",
+        "common_mistakes": [
+          "Squaring instead of cubing, which does not clear a denominator of 3 in the exponent.",
+          "Cubing only the right-hand side and leaving the left side as the plain d²y/dx²."
+        ]
+      },
+      {
+        "id": "s2_state_order_degree",
+        "kind": "boxed_final",
+        "label": "State the order and degree",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. Cubing puts (d²y/dx²)³ on the left, so the highest-order derivative now carries exponent 3.",
+        "memory_tip": "Whenever cubing lands the highest derivative itself inside a cube, the degree is 3, not 1 — read the exponent on the LEFT side here, not the right.",
+        "lines": [
+          "The highest order derivative present is d²y/dx²,",
+          "so the order is 2.",
+          "The exponent on (d²y/dx²)³ in the cleared",
+          "equation is 3,",
+          "so the degree is 3.",
+          {
+            "text": "∴ Order = 2, Degree = 3",
+            "style": "boxed"
+          }
+        ],
+        "why": "Because cubing raised the highest-order derivative itself to the power 3, that 3 is the degree; the order still counts only how many times the equation was differentiated, which stays at 2.",
+        "common_mistakes": [
+          "Reading the degree as 5 by copying the exponent that now sits on the right-hand bracket instead of on d²y/dx² itself.",
+          "Assuming degree is always 1 just because order-and-degree questions often come out that way."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_through_minus2_3_centre_origin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the circle passing through (−2,3) and with centre at (0,0).",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the radius",
+      "marks": 1
+    },
+    {
+      "label": "Write the equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 12 Circle, answer 108.1. Printed appearance tag: TS 15. Every number was re-derived and the book is correct: r² = 13 and the circle is x² + y² = 13. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Because the centre is the origin, r² alone is the answer — taking the square root to write r = √13 and then squaring it back is a wasted step that often introduces an error.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_radius",
+        "kind": "equation",
+        "label": "Find the radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Keep r², not r; the equation of the circle needs the square.",
+        "memory_tip": "Radius = distance from the centre to the given point.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Centre C = (0, 0), point on the circle P = (−2, 3)",
+          "Radius r = CP = √((0 + 2)² + (0 − 3)²)",
+          "= √(4 + 9) = √13"
+        ],
+        "why": "A circle is fixed by its centre and any one point on it, and the radius is the distance between them.",
+        "common_mistakes": [
+          "Using the point as the centre and the centre as the point.",
+          "Writing √(4 + 9) as 2 + 3."
+        ]
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "Write the equation",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Centre at the origin gives the shortest possible form.",
+        "memory_tip": "Centre at the origin: x² + y² = r².",
+        "lines": [
+          "Circle with centre (0, 0) and radius r",
+          "is x² + y² = r²",
+          {
+            "text": "∴ x² + y² = 13",
+            "style": "boxed"
+          }
+        ],
+        "why": "With the centre at the origin the general form loses its linear terms and the equation is simply x² + y² = r². Substituting (−2, 3) gives 4 + 9 = 13, so the point does lie on it.",
+        "common_mistakes": [
+          "Writing x² + y² = √13.",
+          "Adding linear terms that a centred circle does not have."
+        ]
+      }
+    ]
+  }
+}

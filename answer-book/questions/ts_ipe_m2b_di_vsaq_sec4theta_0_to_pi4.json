@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_sec4theta_0_to_pi4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫₀^(π/4) sec⁴θ dθ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split off sec²θ and substitute tanθ=y",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and apply the limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.101 — Star Q+ share, under the banner 'DEFINITE INTEGRALS-VSAQ', answer 213. No year tag is printed. Chapter star rank ★★★ applies (Star Q+ entries take the VSAQ chapter's rank). No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout the VSAQ chapter. The book's page header prints 'DEFINITE INTEGRALS-VSAQ' for the whole 212–218 run; we classify 212–215 as VSAQ shape (single 2-mark evaluations, matching the chapter's own style) and 216–218 as SAQ shape (multi-step AREA derivations warranting the 4-mark form) — this SECTION split is OURS, not printed. Boundary reading: printed p.100 confirms the Hyperbola Star Q+ share ends at answer 211; printed p.103 confirms the Bullet Model Paper begins at Q1&2 Circles — so this chapter's Star Q+ share is exactly answers 212–218. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This substitution — split off sec²θ, then put tanθ=y — is the standard method for any even power of secθ or cosecθ.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Split off sec²θ and substitute tanθ=y",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. sec⁴θ = sec²θ·sec²θ = sec²θ(1+tan²θ) — always split off one sec²θ as the dy piece.",
+        "memory_tip": "Any even power of secθ splits as sec²θ(1+tan²θ)^k — the substitution tanθ=y always works.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "I = ∫₀^(π/4) sec⁴θ dθ",
+          "= ∫₀^(π/4) sec²θ(1 + tan²θ) dθ   [sec²θ",
+          "= 1+tan²θ]",
+          "Put tanθ = y ⇒ sec²θ dθ = dy",
+          "θ = 0 ⇒ y = 0; θ = π/4 ⇒ y = tan(π/4) = 1"
+        ],
+        "why": "Splitting off one factor of sec²θ as the derivative of tanθ turns sec⁴θ into sec²θ(1+tan²θ), a form ready for the substitution tanθ=y, since sec²θdθ is exactly dy.",
+        "common_mistakes": [
+          "Trying to integrate sec⁴θ directly by a standard sec formula that does not exist.",
+          "Forgetting to convert the limits from θ to y after substituting."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate and apply the limits",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. 1 + 1/3 = 4/3 — a straightforward final addition.",
+        "memory_tip": "The upper limit y=1 makes every term in y+y³/3 equal to its own coefficient, since 1ⁿ=1 for any n.",
+        "lines": [
+          "I = ∫₀¹ (1+y²) dy = [y + y³/3]₀¹",
+          {
+            "text": "∴ I = 1 + 1/3 = 4/3",
+            "style": "boxed"
+          }
+        ],
+        "why": "Integrating the polynomial 1+y² term by term gives y+y³/3, and substituting y=1 (the upper limit) and y=0 (the lower limit, contributing nothing) gives 1+1/3.",
+        "common_mistakes": [
+          "Forgetting the y³/3 term and reporting the answer as just 1.",
+          "Adding 1+1/3 incorrectly instead of getting 4/3."
+        ]
+      }
+    ]
+  }
+}

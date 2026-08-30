@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_sin_logx_over_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ [sin(logx)/x] dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute t = logx",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and back-substitute for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.87 (PDF page 87) — VSAQ chapter 16 ‘Integration’, answer 149.1, no SSP banner on this page, no printed appearance tags on this question. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "1/x sitting outside a function of logx is always the substitution trigger t=logx — dx/x becomes dt directly, with no extra algebra needed.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sub",
+        "kind": "equation",
+        "label": "Substitute t = logx",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put logx = t ⇒ (1/x)dx = dt",
+          "I = ∫ sint dt"
+        ],
+        "why": "The factor 1/x dx is EXACTLY dt once t=logx, since d/dx(logx)=1/x — the substitution removes x from the integral completely, leaving a plain function of t.",
+        "common_mistakes": [
+          "Substituting t=logx but forgetting that dx alone (not dx/x) equals dt — it is the WHOLE 1/x dx that becomes dt.",
+          "Trying integration by parts instead of spotting the direct substitution."
+        ],
+        "memory_tip": "1/x next to a function of logx ⇒ t=logx makes dx/x vanish into dt directly — no extra factor needed."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate and back-substitute for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ ∫ [sin(logx)/x] dx = −cos(logx) + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "∫sint dt = −cost + c is the most basic standard integral, and substituting t=logx back in returns the answer to the original variable x.",
+        "common_mistakes": [
+          "Forgetting to substitute logx back in for t in the final answer.",
+          "Sign slip: ∫sint dt = −cost, not +cost."
+        ],
+        "memory_tip": "∫sint dt = −cost — sine integrates to NEGATIVE cosine, always."
+      }
+    ]
+  }
+}

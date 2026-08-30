@@ -18946,6 +18946,2230 @@
           "question_id": "ts_ipe_m2a_rv_binomial_mean_2_4_variance_1_44"
         }
       ]
+    },
+    {
+      "number": 1,
+      "name": "Circle (Maths-2B)",
+      "subject": "mathematics_2b",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Find the equation of the circle passing through the points A(1,2), B(3,−4), C(5,−6).",
+          "question_id": "ts_ipe_m2b_cir_circle_through_1_2_3_minus4_5_minus6"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the equation of the circle passing through the points (3,4), (3,2) and (1,4).",
+          "question_id": "ts_ipe_m2b_cir_circle_through_3_4_3_2_1_4"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the equation of the circle passing through the points (2,1), (5,5), (−6,7).",
+          "question_id": "ts_ipe_m2b_cir_circle_through_2_1_5_5_minus6_7"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Show that the points (1,1), (−6,0), (−2,2) and (−2,−8) are concyclic.",
+          "question_id": "ts_ipe_m2b_cir_concyclic_1_1_minus6_0_minus2_2_minus2_minus8"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "If (2,0), (0,1), (4,5), (0,c) are concyclic then find c.",
+          "question_id": "ts_ipe_m2b_cir_concyclic_find_c_2_0_0_1_4_5"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the equation of the circle passing through (4,1), (6,5) and having the centre on the line 4x + 3y − 24 = 0.",
+          "question_id": "ts_ipe_m2b_cir_centre_on_4x_3y_minus24_through_4_1_6_5"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the equation of the circle which passes through (2,−3), (−4,5) and having the centre on the line 4x + 3y + 1 = 0.",
+          "question_id": "ts_ipe_m2b_cir_centre_on_4x_3y_plus1_through_2_minus3_minus4_5"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Show that the circles x² + y² − 6x − 2y + 1 = 0 and x² + y² + 2x − 8y + 13 = 0 touch each other. Find the point of contact and the equation of the common tangent at their point of contact.",
+          "question_id": "ts_ipe_m2b_cir_touch_externally_6x_2y_plus1"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Show that the circles x² + y² − 6x − 9y + 13 = 0 and x² + y² − 2x − 16y = 0 touch each other. Find the point of contact and the equation of the common tangent at that point.",
+          "question_id": "ts_ipe_m2b_cir_touch_internally_6x_9y_plus13"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Find the equation of direct common tangents to the circles x² + y² + 22x − 4y − 100 = 0 and x² + y² − 22x + 4y + 100 = 0.",
+          "question_id": "ts_ipe_m2b_cir_direct_common_tangents_22x_minus4y"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Find the equation to the pair of transverse common tangents to the circles x² + y² − 4x − 10y + 28 = 0 and x² + y² + 4x − 6y + 4 = 0.",
+          "question_id": "ts_ipe_m2b_cir_transverse_common_tangents_4x_10y_28"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Find all common tangents to the circles x² + y² − 2x − 6y + 6 = 0 and x² + y² = 1.",
+          "question_id": "ts_ipe_m2b_cir_all_common_tangents_2x_6y_6"
+        },
+        {
+          "ref": "laq13",
+          "section": "LAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Find the equation of the circle whose centre lies on the x-axis and passing through (−2,3) and (4,5).",
+          "question_id": "ts_ipe_m2b_cir_centre_on_x_axis_through_minus2_3_4_5"
+        },
+        {
+          "ref": "laq14",
+          "section": "LAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Show that the circles x² + y² − 4x − 6y − 12 = 0 and x² + y² + 6x + 18y + 26 = 0 touch each other. Find the point of contact and the equation of the common tangent at their point of contact.",
+          "question_id": "ts_ipe_m2b_cir_touch_externally_4x_6y_minus12"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Find the length of the chord intercepted by the circle x² + y² − 8x − 2y − 8 = 0 on the line x + y + 1 = 0.",
+          "question_id": "ts_ipe_m2b_cir_chord_length_8x_2y_minus8_on_x_y_1"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Find the length of the chord intercepted by the circle x² + y² − x + 3y − 22 = 0 on the line y = x − 3.",
+          "question_id": "ts_ipe_m2b_cir_chord_length_x_3y_minus22_on_y_x_minus3"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Find the mid point of the chord intercepted by x² + y² − 2x − 10y + 1 = 0 on the line x − 2y + 7 = 0. Also find the length of the chord.",
+          "question_id": "ts_ipe_m2b_cir_midpoint_and_length_of_chord_2x_10y_1"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "If a point P is moving such that the lengths of tangents drawn from P to the circles x² + y² − 4x − 6y − 12 = 0 and x² + y² + 6x + 18y + 26 = 0 are in the ratio 2 : 3, then find the equation of the locus of P.",
+          "question_id": "ts_ipe_m2b_cir_locus_tangent_lengths_ratio_2_3"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "Show that x + y + 1 = 0 touches the circle x² + y² − 3x + 7y + 14 = 0 and find its point of contact.",
+          "question_id": "ts_ipe_m2b_cir_line_touches_3x_7y_14_point_of_contact"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Find the equation of tangent of x² + y² − 2x + 4y = 0 at (3,−1). Also find the equation of the other tangent parallel to it.",
+          "question_id": "ts_ipe_m2b_cir_tangent_at_3_minus1_and_parallel_tangent"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Find the equations of the tangents to the circle x² + y² − 4x + 6y − 12 = 0 and parallel to the line x + y − 8 = 0.",
+          "question_id": "ts_ipe_m2b_cir_tangents_parallel_to_x_y_minus8"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Find the pole of the line x + y + 2 = 0 with respect to the circle x² + y² − 4x + 6y − 12 = 0.",
+          "question_id": "ts_ipe_m2b_cir_pole_of_x_y_2_wrt_4x_6y_minus12"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "Find the pole of the line 3x + 4y − 45 = 0 with respect to the circle x² + y² − 6x − 8y + 5 = 0.",
+          "question_id": "ts_ipe_m2b_cir_pole_of_3x_4y_minus45_wrt_6x_8y_5"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "Find the value of k if kx + 3y − 1 = 0 and 2x + y + 5 = 0 are conjugate with respect to the circle x² + y² − 2x − 4y − 4 = 0.",
+          "question_id": "ts_ipe_m2b_cir_conjugate_lines_find_k_kx_3y_minus1"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 2,
+          "text": "Find the equation of tangent and normal at (3,2) on the circle x² + y² − x − 3y − 4 = 0.",
+          "question_id": "ts_ipe_m2b_cir_tangent_and_normal_at_3_2"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 2,
+          "text": "Find the condition that the tangents drawn from the exterior point (0,0) to S ≡ x² + y² + 2gx + 2fy + c = 0 are perpendicular to each other.",
+          "question_id": "ts_ipe_m2b_cir_perpendicular_tangents_from_origin_condition"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 2,
+          "text": "Find the value of k if x + y − 5 = 0 and 2x + ky − 8 = 0 are conjugate with respect to the circle x² + y² − 2x − 2y − 1 = 0.",
+          "question_id": "ts_ipe_m2b_cir_conjugate_lines_find_k_2x_ky_minus8"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If the circle x² + y² − 4x + 6y + a = 0 has radius 4 then find a.",
+          "question_id": "ts_ipe_m2b_cir_radius_4_find_a"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If x² + y² − 4x + 6y + c = 0 represents a circle with radius 6, find the value of c.",
+          "question_id": "ts_ipe_m2b_cir_radius_6_find_c"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "If x² + y² + 2gx + 2fy = 0 has centre (−4,−3) then find g, f and the radius.",
+          "question_id": "ts_ipe_m2b_cir_centre_minus4_minus3_find_g_f_radius"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If x² + y² + 2gx + 2fy − 12 = 0 is a circle with centre (2,3) then find (g,f) and its radius.",
+          "question_id": "ts_ipe_m2b_cir_centre_2_3_find_g_f_radius"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the value of 'a' if 2x² + ay² − 3x + 2y − 1 = 0 represents a circle, and also find its radius.",
+          "question_id": "ts_ipe_m2b_cir_find_a_2x2_ay2_and_radius"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the values of a, b if ax² + bxy + 3y² − 5x + 2y − 3 = 0 represents a circle. Also find the radius and centre.",
+          "question_id": "ts_ipe_m2b_cir_find_a_b_ax2_bxy_3y2"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the parametric equations of the circle x² + y² − 6x + 4y − 12 = 0.",
+          "question_id": "ts_ipe_m2b_cir_parametric_6x_4y_minus12"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the parametric equations of the circle x² + y² + 6x + 8y − 96 = 0.",
+          "question_id": "ts_ipe_m2b_cir_parametric_6x_8y_minus96"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Obtain the parametric equations of the circle (x − 3)² + (y − 4)² = 8².",
+          "question_id": "ts_ipe_m2b_cir_parametric_centre_3_4_radius_8"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Obtain the parametric equations of the circle 4(x² + y²) = 9.",
+          "question_id": "ts_ipe_m2b_cir_parametric_4x2_4y2_9"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Find the equation of the circle passing through (−2,3) and with centre at (0,0).",
+          "question_id": "ts_ipe_m2b_cir_through_minus2_3_centre_origin"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Find the equation of the circle whose centre is (−1,2) and which passes through (5,6).",
+          "question_id": "ts_ipe_m2b_cir_centre_minus1_2_through_5_6"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Find the equation of the circle passing through the point (−2,14) and concentric with x² + y² − 6x − 4y − 12 = 0.",
+          "question_id": "ts_ipe_m2b_cir_concentric_through_minus2_14"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Find the equation of the circle passing through the point (2,3) and concentric with x² + y² + 8x + 12y + 15 = 0.",
+          "question_id": "ts_ipe_m2b_cir_concentric_through_2_3"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "Find the value of k if the length of the tangent from (5,4) to x² + y² + 2ky = 0 is 1.",
+          "question_id": "ts_ipe_m2b_cir_tangent_length_5_4_is_1_find_k"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 3,
+          "text": "Find the value of k if the length of the tangent from (2,5) to x² + y² − 5x + 4y + k = 0 is √37.",
+          "question_id": "ts_ipe_m2b_cir_tangent_length_2_5_root37_find_k"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 3,
+          "text": "Find the power of the point P(−1,1) with respect to the circle x² + y² − 6x + 4y − 12 = 0.",
+          "question_id": "ts_ipe_m2b_cir_power_of_point_minus1_1"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 3,
+          "text": "Find the length of the tangent from (1,3) to the circle x² + y² − 2x + 4y − 11 = 0.",
+          "question_id": "ts_ipe_m2b_cir_tangent_length_from_1_3"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 3,
+          "text": "Find the value of k if the points (1,3), (2,k) are conjugate with respect to the circle x² + y² = 35.",
+          "question_id": "ts_ipe_m2b_cir_conjugate_points_1_3_and_2_k"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 3,
+          "text": "Find the value of k if the points (4,2), (k,−3) are conjugate with respect to the circle x² + y² − 5x + 8y + 6 = 0.",
+          "question_id": "ts_ipe_m2b_cir_conjugate_points_4_2_and_k_minus3"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 3,
+          "text": "Find the pole of ax + by + c = 0 with respect to x² + y² = r².",
+          "question_id": "ts_ipe_m2b_cir_pole_of_ax_by_c_wrt_x2_y2_r2"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 3,
+          "text": "Find the equation of the polar of (1,−2) with respect to x² + y² − 10x − 10y + 25 = 0.",
+          "question_id": "ts_ipe_m2b_cir_polar_of_1_minus2_wrt_10x_10y_25"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 3,
+          "text": "Find the equation of the circle with (4,2), (1,5) as ends of a diameter.",
+          "question_id": "ts_ipe_m2b_cir_diameter_ends_4_2_and_1_5"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 3,
+          "text": "Write the parametric equations of the circle 2x² + 2y² = 7.",
+          "question_id": "ts_ipe_m2b_cir_parametric_2x2_2y2_7"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 3,
+          "text": "Find the polar of (3,−1) with respect to 2x² + 2y² = 11.",
+          "question_id": "ts_ipe_m2b_cir_polar_of_3_minus1_wrt_2x2_2y2_11"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 3,
+          "text": "Find the length of the intercepts made by the circle x² + y² + 4x − 6y − 5 = 0 on the coordinate axes.",
+          "question_id": "ts_ipe_m2b_cir_intercepts_on_axes_4x_minus6y_minus5"
+        },
+        {
+          "ref": "vsaq27",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 3,
+          "text": "Find the length of the chord formed by x² + y² = a² on the line x cos α + y sin α = p.",
+          "question_id": "ts_ipe_m2b_cir_chord_length_x2_y2_a2_normal_form"
+        },
+        {
+          "ref": "vsaq28",
+          "section": "VSAQ",
+          "number": 28,
+          "stars": 3,
+          "text": "Show that the line 3x − 4y − 25 = 0 touches the circle x² + y² = 25.",
+          "question_id": "ts_ipe_m2b_cir_line_3x_minus4y_minus25_touches_x2_y2_25"
+        },
+        {
+          "ref": "vsaq29",
+          "section": "VSAQ",
+          "number": 29,
+          "stars": 3,
+          "text": "Find the point of contact of the tangent x − 2y − 5 = 0 and the circle x² + y² = 5.",
+          "question_id": "ts_ipe_m2b_cir_point_of_contact_x_minus2y_minus5"
+        },
+        {
+          "ref": "vsaq30",
+          "section": "VSAQ",
+          "number": 30,
+          "stars": 3,
+          "text": "Find the equation of the circle passing through (3,4) and with centre at (−3,4).",
+          "question_id": "ts_ipe_m2b_cir_through_3_4_centre_minus3_4"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "System of Circles (Maths-2B)",
+      "subject": "mathematics_2b",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Find the radical centre of the circles x² + y² − 4x − 6y + 5 = 0, x² + y² − 2x − 4y − 1 = 0, x² + y² − 6x − 2y = 0.",
+          "question_id": "ts_ipe_m2b_sc_radical_centre_three_circles_one"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the radical centre of the circles x² + y² + 4x − 7 = 0, 2x² + 2y² + 3x + 5y − 9 = 0, x² + y² + y = 0.",
+          "question_id": "ts_ipe_m2b_sc_radical_centre_three_circles_two"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the equation and length of the common chord of the two circles x² + y² + 2x + 2y + 1 = 0, x² + y² + 4x + 3y + 2 = 0.",
+          "question_id": "ts_ipe_m2b_sc_common_chord_length_one"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Find the equation and length of the common chord of the two circles x² + y² + 3x + 5y + 4 = 0, x² + y² + 5x + 3y + 4 = 0.",
+          "question_id": "ts_ipe_m2b_sc_common_chord_length_two"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "If x + y = 3 is the equation of the chord AB of the circle x² + y² − 2x + 4y − 8 = 0, find the equation of the circle having AB as diameter.",
+          "question_id": "ts_ipe_m2b_sc_circle_on_chord_as_diameter_one"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If the straight line 2x + 3y = 1 intersects the circle x² + y² = 4 at the points A and B, find the equation of the circle having AB as diameter.",
+          "question_id": "ts_ipe_m2b_sc_circle_on_chord_as_diameter_two"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the equation of the circle passing through the points of intersection of the circles x² + y² − 8x − 6y + 21 = 0, x² + y² − 2x − 15 = 0 and the point (1, 2).",
+          "question_id": "ts_ipe_m2b_sc_circle_through_intersection_and_point"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the equation of the circle which passes through the origin and intersects the circles x² + y² − 4x + 6y + 10 = 0 and x² + y² + 12y + 6 = 0 orthogonally.",
+          "question_id": "ts_ipe_m2b_sc_orthogonal_circle_through_origin"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Find the equation of the circle passing through the point (0, −3) and cutting the circles x² + y² − 6x + 3y + 5 = 0, x² + y² − x − 7y = 0 orthogonally.",
+          "question_id": "ts_ipe_m2b_sc_orthogonal_circle_through_given_point"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Find the equation of the circle passing through the point (1, 1) and cutting orthogonally the circles x² + y² − 8x − 2y + 16 = 0, x² + y² − 4x − 4y − 1 = 0.",
+          "question_id": "ts_ipe_m2b_sc_orthogonal_circle_through_1_1"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Find k if the pair of circles x² + y² − 5x − 14y − 34 = 0, x² + y² + 2x + 4y + k = 0 are orthogonal.",
+          "question_id": "ts_ipe_m2b_sc_orthogonal_find_k_one"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Find k if the pairs of circles x² + y² + 4x + 8 = 0, x² + y² − 16y + k = 0 are orthogonal.",
+          "question_id": "ts_ipe_m2b_sc_orthogonal_find_k_two"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Show that the circles x² + y² − 2x − 2y − 7 = 0, 3x² + 3y² − 8x + 29y = 0 intersect each other orthogonally.",
+          "question_id": "ts_ipe_m2b_sc_show_orthogonal_one"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Show that the circles x² + y² − 2lx + g = 0, x² + y² + 2my − g = 0 intersect each other orthogonally.",
+          "question_id": "ts_ipe_m2b_sc_show_orthogonal_general"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "Find the equation of the radical axis of the circles 2x² + 2y² + 3x + 6y − 5 = 0, 3x² + 3y² − 7x + 8y − 11 = 0.",
+          "question_id": "ts_ipe_m2b_sc_radical_axis_one"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Find the equation of the radical axis of the circles x² + y² + 4x + 6y − 7 = 0, 4(x² + y²) + 8x + 12y − 9 = 0.",
+          "question_id": "ts_ipe_m2b_sc_radical_axis_two"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Show that the angle between the circles x² + y² = a², x² + y² = ax + ay is 3π/4.",
+          "question_id": "ts_ipe_m2b_sc_angle_between_circles_proof"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Find the angle between the circles x² + y² − 12x − 6y + 41 = 0, x² + y² + 4x + 6y − 59 = 0.",
+          "question_id": "ts_ipe_m2b_sc_angle_between_circles_find"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "If the angle between the circles x² + y² − 12x − 6y + 41 = 0, x² + y² + kx + 6y − 59 = 0 is 45° then find k.",
+          "question_id": "ts_ipe_m2b_sc_find_k_given_angle_45"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Find the equation of the common chord of (x − a)² + (y − b)² = c², (x − b)² + (y − a)² = c².",
+          "question_id": "ts_ipe_m2b_sc_common_chord_general_ab"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Find the equation of the circle which passes through the points (2, 0), (0, 2) and is orthogonal to the circle 2x² + 2y² + 5x − 6y + 4 = 0.",
+          "question_id": "ts_ipe_m2b_sc_circle_through_two_points_orthogonal"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "Find k if the pair of circles x² + y² + 2by − k = 0, x² + y² + 2ax + 8 = 0 are orthogonal.",
+          "question_id": "ts_ipe_m2b_sc_orthogonal_find_k_general"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 2,
+          "text": "Find the equation of the radical axis of the circles x² + y² − 3x − 4y + 5 = 0, 3(x² + y²) − 7x + 8y − 11 = 0.",
+          "question_id": "ts_ipe_m2b_sc_radical_axis_three"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Parabola (Maths-2B)",
+      "subject": "mathematics_2b",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Derive the standard form of the parabola.",
+          "question_id": "ts_ipe_m2b_par_standard_form_derivation"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the equation of the parabola passing through the points (−1, 2), (1, −1), (2, 1) and having its axis parallel to the x-axis.",
+          "question_id": "ts_ipe_m2b_par_through_points_axis_parallel_x_v1"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the equation of the parabola passing through the points (−2, 1), (1, 2), (−1, 3) and having its axis parallel to the x-axis.",
+          "question_id": "ts_ipe_m2b_par_through_points_axis_parallel_x_v2"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Find the equation of the parabola whose axis is parallel to the y-axis and passes through the points (4, 5), (−2, 11), (−4, 21).",
+          "question_id": "ts_ipe_m2b_par_through_points_axis_parallel_y"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Show that the equations of common tangents to the circle x² + y² = 2a² and the parabola y² = 8ax are y = ±(x + 2a).",
+          "question_id": "ts_ipe_m2b_par_common_tangents_circle_2a2"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If y₁, y₂, y₃ are the y-coordinates of the vertices of the triangle inscribed in the parabola y² = 4ax then show that the area of the triangle is (1/8a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| square units.",
+          "question_id": "ts_ipe_m2b_par_area_triangle_inscribed_vertices"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Prove that the area of the triangle formed by the tangents at (x₁,y₁), (x₂,y₂), (x₃,y₃) to the parabola y² = 4ax is (1/16a)|(y₁−y₂)(y₂−y₃)(y₃−y₁)| square units.",
+          "question_id": "ts_ipe_m2b_par_area_triangle_tangent_points"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Find the coordinates of the point on the parabola y² = 8x whose focal distance is 10.",
+          "question_id": "ts_ipe_m2b_par_point_focal_distance_y2_8x"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the co-ordinates of the point on the parabola y² = 2x whose focal distance is 5/2.",
+          "question_id": "ts_ipe_m2b_par_point_focal_distance_y2_2x"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the value of k if the line 2y = 5x + k is a tangent to the parabola y² = 6x.",
+          "question_id": "ts_ipe_m2b_par_tangent_k_line_2y_5x_k"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Show that the line 2x − y + 2 = 0 is a tangent to y² = 16x. Find the point of contact.",
+          "question_id": "ts_ipe_m2b_par_tangent_point_of_contact_2x_minus_y_plus2"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the equation of the tangent to the parabola y² = 16x, inclined at 60° to the X-axis.",
+          "question_id": "ts_ipe_m2b_par_tangent_inclined_60_degrees"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "If (1/2, 2) is one extremity of a focal chord of the parabola y² = 8x, find the coordinates of the other extremity.",
+          "question_id": "ts_ipe_m2b_par_focal_chord_other_extremity"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the equation of the parabola whose vertex is (3, −2), focus is (3, 1).",
+          "question_id": "ts_ipe_m2b_par_vertex_focus_upward_3_minus2_3_1"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the equation of the parabola whose vertex is (1, −2), focus is (1, −7).",
+          "question_id": "ts_ipe_m2b_par_vertex_focus_downward_1_minus2_1_minus7"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Find the vertex, focus, equation of the directrix and axis of the parabola y² = 16x.",
+          "question_id": "ts_ipe_m2b_par_vertex_focus_directrix_axis_y2_16x"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Find the equation of the tangent and normal at the positive end of the latus rectum on the parabola y² = 6x.",
+          "question_id": "ts_ipe_m2b_par_tangent_normal_latus_rectum_y2_6x"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Prove that the point on the parabola y² = 4ax, (a > 0), nearest to the focus is its vertex.",
+          "question_id": "ts_ipe_m2b_par_nearest_point_to_focus_is_vertex"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Find the vertex, focus, equation of the directrix and axis of the parabola x² = −4y.",
+          "question_id": "ts_ipe_m2b_par_vertex_focus_directrix_axis_x2_minus4y"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Find the focus, vertex, equation of the directrix and the length of the latus rectum of the parabola y² − x + 4y + 5 = 0.",
+          "question_id": "ts_ipe_m2b_par_focus_vertex_directrix_latus_rectum_y2_minus_x_plus4y_plus5"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Ellipse (Maths-2B)",
+      "subject": "mathematics_2b",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Find the eccentricity, coordinates of foci, length of latus rectum and equations of directrices of the ellipse 9x² + 16y² = 144.",
+          "question_id": "ts_ipe_m2b_ell_ecc_foci_lr_directrices_9x2_16y2_144"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Find the eccentricity, coordinates of foci, length of latus rectum and equations of directrices of the ellipse 9x² + 16y² − 36x + 32y − 92 = 0.",
+          "question_id": "ts_ipe_m2b_ell_ecc_foci_lr_directrices_shifted_center_2_neg1"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the eccentricity, foci and directrices of the ellipse 4x² + y² − 8x + 2y + 1 = 0.",
+          "question_id": "ts_ipe_m2b_ell_ecc_foci_directrices_vertical_4x2_y2"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Find the eccentricity, coordinates of foci of the ellipse 3x² + y² − 6x − 2y − 5 = 0.",
+          "question_id": "ts_ipe_m2b_ell_ecc_foci_vertical_3x2_y2"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Find the equations of the tangents to the ellipse 2x² + y² = 8 which (i) are parallel to x − 2y − 4 = 0, (ii) are perpendicular to x + y + 2 = 0, (iii) make an angle 45° with the x-axis.",
+          "question_id": "ts_ipe_m2b_ell_tangents_parallel_perp_45deg_2x2_y2_8"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the equations of the tangents to 9x² + 16y² = 144, which make equal intercepts on the coordinate axes.",
+          "question_id": "ts_ipe_m2b_ell_tangents_equal_intercepts_9x2_16y2_144"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the equation of the ellipse in the standard form whose distance between foci is 2 and the length of latus rectum is 15/2.",
+          "question_id": "ts_ipe_m2b_ell_standard_form_foci_dist_2_lr_15by2"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the equation of the ellipse in the standard form such that the distance between the foci is 8 and the distance between directrices is 32.",
+          "question_id": "ts_ipe_m2b_ell_standard_form_foci_dist_8_directrix_dist_32"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Find the equation of the ellipse referred to its major, minor axes as the coordinate axes X, Y respectively with latus rectum of length 4 and distance between foci 4√2.",
+          "question_id": "ts_ipe_m2b_ell_standard_form_lr_4_foci_dist_4root2"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Find the equation of ellipse, if focus = (1, −1), e = 2/3 and directrix is x + y + 2 = 0.",
+          "question_id": "ts_ipe_m2b_ell_focus_1_neg1_e_2by3_directrix_xyplus2"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Find the equation of the ellipse whose focus is (1,2), eccentricity is 2/3 & directrix is 2x + 3y + 6 = 0.",
+          "question_id": "ts_ipe_m2b_ell_focus_1_2_e_2by3_directrix_oblique"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Find the equation of ellipse in the standard form, if it passes through the points (−2, 2) and (3, −1).",
+          "question_id": "ts_ipe_m2b_ell_standard_form_through_neg2_2_and_3_neg1"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Find the equation of tangent and normal to the ellipse x² + 8y² − 33 = 0 at (−1, 2).",
+          "question_id": "ts_ipe_m2b_ell_tangent_normal_at_neg1_2"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Find the equation of tangent and normal to the ellipse 9x² + 16y² = 144 at the end of the latus rectum in the first quadrant.",
+          "question_id": "ts_ipe_m2b_ell_tangent_normal_end_latus_rectum"
+        },
+        {
+          "ref": "saq15",
+          "section": "SAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "Show that the points of intersection of the perpendicular tangents to an ellipse lie on a circle.",
+          "question_id": "ts_ipe_m2b_ell_director_circle_perpendicular_tangents"
+        },
+        {
+          "ref": "saq16",
+          "section": "SAQ",
+          "number": 16,
+          "stars": 3,
+          "text": "Show that the locus of the feet of the perpendiculars drawn from either of the foci to any tangent to the ellipse is the auxiliary circle.",
+          "question_id": "ts_ipe_m2b_ell_auxiliary_circle_foot_of_perpendicular"
+        },
+        {
+          "ref": "saq17",
+          "section": "SAQ",
+          "number": 17,
+          "stars": 3,
+          "text": "Find the condition for the line lx + my + n = 0 to be a tangent to the ellipse x²/a² + y²/b² = 1.",
+          "question_id": "ts_ipe_m2b_ell_condition_line_tangent_lmx_n"
+        },
+        {
+          "ref": "saq18",
+          "section": "SAQ",
+          "number": 18,
+          "stars": 3,
+          "text": "If a tangent to the ellipse x²/a² + y²/b² = 1 (a > b) meets its major axis and minor axis at M and N respectively then prove that a²/(CM)² + b²/(CN)² = 1 where C is the centre of the ellipse.",
+          "question_id": "ts_ipe_m2b_ell_tangent_intercepts_cm_cn_identity"
+        },
+        {
+          "ref": "saq19",
+          "section": "SAQ",
+          "number": 19,
+          "stars": 3,
+          "text": "If the normal at one end of a latus rectum of the ellipse x²/a² + y²/b² = 1 with eccentricity e, passes through one end of the minor axis, then show that e⁴ + e² = 1.",
+          "question_id": "ts_ipe_m2b_ell_normal_latus_rectum_minor_axis_e4_e2"
+        },
+        {
+          "ref": "saq20",
+          "section": "SAQ",
+          "number": 20,
+          "stars": 3,
+          "text": "S and T are the foci of an ellipse and B is one end of the minor axis. If STB is an equilateral triangle, then find the eccentricity of the ellipse.",
+          "question_id": "ts_ipe_m2b_ell_stb_equilateral_triangle_eccentricity"
+        },
+        {
+          "ref": "starqp1",
+          "section": "SAQ",
+          "number": 21,
+          "stars": 3,
+          "text": "Find the value of k if 4x + y + k = 0 is a tangent to the ellipse x² + 3y² = 3.",
+          "question_id": "ts_ipe_m2b_ell_tangent_condition_find_k"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Hyperbola (Maths-2B)",
+      "subject": "mathematics_2b",
+      "questions": [
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Find the centre, eccentricity, foci, length of the latus rectum and equations of the directrices of the hyperbola x² − 4y² = 4.",
+          "question_id": "ts_ipe_m2b_hyp_centre_ecc_foci_lr_directrices_x2_minus4y2_4"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Find the centre, eccentricity, foci, length of the latus rectum and equations of the directrices of the hyperbola 16y² − 9x² = 144.",
+          "question_id": "ts_ipe_m2b_hyp_centre_ecc_foci_lr_directrices_16y2_minus9x2_144"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Find the equations of the tangents to the hyperbola x² − 4y² = 4 which (i) are parallel to x + 2y = 0, (ii) are perpendicular to x + 2y = 0.",
+          "question_id": "ts_ipe_m2b_hyp_tangents_parallel_perp_line_x_plus2y_x2_minus4y2_4"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Find the equations of the tangents to the hyperbola 3x² − 4y² = 12 which (i) are parallel to y = x − 7, (ii) are perpendicular to y = x − 7.",
+          "question_id": "ts_ipe_m2b_hyp_tangents_parallel_perp_line_y_eq_x_minus7_3x2_minus4y2_12"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "Prove that the point of intersection of two perpendicular tangents to the hyperbola x²/a² − y²/b² − 1 = 0 lies on the circle x² + y² = a² − b².",
+          "question_id": "ts_ipe_m2b_hyp_director_circle_perpendicular_tangents"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Tangents to the hyperbola x²/a² − y²/b² = 1 make angles θ₁, θ₂ with the transverse axis of the hyperbola. Show that the point of intersection of these tangents lies on the curve 2xy = k(x² − a²) when tanθ₁ + tanθ₂ = k.",
+          "question_id": "ts_ipe_m2b_hyp_locus_2xy_k_x2_minus_a2_tan_theta_sum"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "If e, e₁ are the eccentricities of a hyperbola and its conjugate hyperbola, then prove that 1/e² + 1/e₁² = 1.",
+          "question_id": "ts_ipe_m2b_hyp_conjugate_eccentricity_reciprocal_identity"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "If the eccentricity of a hyperbola is 5/4, then find the eccentricity of its conjugate hyperbola.",
+          "question_id": "ts_ipe_m2b_hyp_conjugate_eccentricity_given_5_by_4"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Find the angle between the asymptotes of the hyperbola x²/a² − y²/b² = 1.",
+          "question_id": "ts_ipe_m2b_hyp_angle_between_asymptotes_general"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "If the angle between the asymptotes of a hyperbola is 30°, then find its eccentricity.",
+          "question_id": "ts_ipe_m2b_hyp_eccentricity_given_asymptote_angle_30deg"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Define rectangular hyperbola and find its eccentricity.",
+          "question_id": "ts_ipe_m2b_hyp_rectangular_hyperbola_define_eccentricity"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Find the product of the lengths of the perpendiculars from any point on the hyperbola x²/16 − y²/9 = 1 to its asymptotes.",
+          "question_id": "ts_ipe_m2b_hyp_product_perpendiculars_to_asymptotes"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Find the equation of the hyperbola whose foci are (±5, 0) and whose transverse axis has length 8.",
+          "question_id": "ts_ipe_m2b_hyp_equation_given_foci_and_transverse_axis_length"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find the value of k if 3x − 4y + k = 0 is a tangent to the hyperbola x² − 4y² = 5.",
+          "question_id": "ts_ipe_m2b_hyp_tangent_find_k_3x_minus4y_plus_k_x2_minus4y2_5"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Find the equation of the normal at θ = π/3 to the hyperbola 3x² − 4y² = 12.",
+          "question_id": "ts_ipe_m2b_hyp_normal_at_theta_pi_by_3_3x2_minus4y2_12"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Find the centre, eccentricity, foci, length of the latus rectum and equations of the directrices of the hyperbola 4(y + 3)² − 9(x − 2)² = 1.",
+          "question_id": "ts_ipe_m2b_hyp_centre_ecc_foci_lr_directrices_shifted_centre"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "name": "Integration (Maths-2B)",
+      "subject": "mathematics_2b",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Obtain the reduction formula for I_n = ∫ sinⁿx dx, n being a positive integer, n ≥ 2, and hence find ∫ sin⁴x dx.",
+          "question_id": "ts_ipe_m2b_int_laq_reduction_sinn_hence_sin4"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Obtain the reduction formula for I_n = ∫ cosⁿx dx and hence find ∫ cos⁴x dx.",
+          "question_id": "ts_ipe_m2b_int_laq_reduction_cosn_hence_cos4"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Evaluate ∫ tanⁿx dx, hence evaluate ∫ tan⁵x dx and ∫ tan⁶x dx.",
+          "question_id": "ts_ipe_m2b_int_laq_reduction_tann_hence_tan5_tan6"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Obtain the reduction formula for I_n = ∫ cotⁿx dx, n being a positive integer, n ≥ 2, and deduce the value of ∫ cot⁴x dx.",
+          "question_id": "ts_ipe_m2b_int_laq_reduction_cotn_hence_cot4"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Obtain the reduction formula for I_n = ∫ secⁿx dx. Hence find ∫ sec⁵x dx.",
+          "question_id": "ts_ipe_m2b_int_laq_reduction_secn_hence_sec5"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Obtain the reduction formula for I_n = ∫ cosecⁿx dx, and hence find ∫ cosec⁵x dx.",
+          "question_id": "ts_ipe_m2b_int_laq_reduction_cscn_hence_csc5"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Evaluate ∫ dx/(x² + x + 1).",
+          "question_id": "ts_ipe_m2b_int_laq_dx_over_x2_plus_x_plus_1"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Evaluate ∫ dx/(3x² + x + 1).",
+          "question_id": "ts_ipe_m2b_int_laq_practice_dx_over_3x2_plus_x_plus_1"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Evaluate ∫ dx/(4x² − 4x − 7).",
+          "question_id": "ts_ipe_m2b_int_laq_dx_over_4x2_minus_4x_minus_7"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Find ∫ dx/(5 − 2x² + 4x).",
+          "question_id": "ts_ipe_m2b_int_laq_practice_dx_over_5_minus_2x2_plus_4x"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Evaluate ∫ dx/(4cosx + 3sinx).",
+          "question_id": "ts_ipe_m2b_int_laq_dx_over_4cosx_plus_3sinx"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Evaluate ∫ [1/(1 + sinx + cosx)] dx.",
+          "question_id": "ts_ipe_m2b_int_laq_dx_over_1_plus_sinx_plus_cosx"
+        },
+        {
+          "ref": "laq13",
+          "section": "LAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Evaluate ∫ dx/(3cosx + 4sinx + 6).",
+          "question_id": "ts_ipe_m2b_int_laq_dx_over_3cosx_plus_4sinx_plus_6"
+        },
+        {
+          "ref": "laq14",
+          "section": "LAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Evaluate ∫ [(9cosx − sinx)/(4sinx + 5cosx)] dx.",
+          "question_id": "ts_ipe_m2b_int_laq_9cosx_minus_sinx_over_4sinx_plus_5cosx"
+        },
+        {
+          "ref": "laq15",
+          "section": "LAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "Evaluate ∫ [(2cosx + 3sinx)/(4cosx + 5sinx)] dx.",
+          "question_id": "ts_ipe_m2b_int_laq_2cosx_plus_3sinx_over_4cosx_plus_5sinx"
+        },
+        {
+          "ref": "laq16",
+          "section": "LAQ",
+          "number": 16,
+          "stars": 3,
+          "text": "Evaluate ∫ [(2sinx + 3cosx + 4)/(3sinx + 4cosx + 5)] dx.",
+          "question_id": "ts_ipe_m2b_int_laq_2sinx_plus_3cosx_plus_4_over_3sinx_plus_4cosx_plus_5"
+        },
+        {
+          "ref": "laq17",
+          "section": "LAQ",
+          "number": 17,
+          "stars": 3,
+          "text": "Evaluate ∫ [(cosx + 3sinx + 7)/(cosx + sinx + 1)] dx.",
+          "question_id": "ts_ipe_m2b_int_laq_cosx_plus_3sinx_plus_7_over_cosx_plus_sinx_plus_1"
+        },
+        {
+          "ref": "laq18",
+          "section": "LAQ",
+          "number": 18,
+          "stars": 3,
+          "text": "Evaluate ∫ [(2x + 5)/√(x² − 2x + 10)] dx.",
+          "question_id": "ts_ipe_m2b_int_laq_2x_plus_5_over_sqrt_x2_minus_2x_plus_10"
+        },
+        {
+          "ref": "laq19",
+          "section": "LAQ",
+          "number": 19,
+          "stars": 3,
+          "text": "Evaluate ∫ [(x + 1)/(x² + 3x + 12)] dx.",
+          "question_id": "ts_ipe_m2b_int_laq_x_plus_1_over_x2_plus_3x_plus_12"
+        },
+        {
+          "ref": "laq20",
+          "section": "LAQ",
+          "number": 20,
+          "stars": 3,
+          "text": "Evaluate ∫ (3x − 2)√(2x² − x + 1) dx.",
+          "question_id": "ts_ipe_m2b_int_laq_3x_minus_2_sqrt_2x2_minus_x_plus_1"
+        },
+        {
+          "ref": "laq21",
+          "section": "LAQ",
+          "number": 21,
+          "stars": 3,
+          "text": "Find ∫ (6x + 5)√(6 − 2x² + x) dx.",
+          "question_id": "ts_ipe_m2b_int_laq_6x_plus_5_sqrt_6_minus_2x2_plus_x"
+        },
+        {
+          "ref": "laq22",
+          "section": "LAQ",
+          "number": 22,
+          "stars": 3,
+          "text": "Evaluate ∫ √[(5 − x)/(x − 2)] dx.",
+          "question_id": "ts_ipe_m2b_int_laq_sqrt_5_minus_x_over_x_minus_2"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Evaluate ∫ eˣ(sinx + cosx) dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_ex_sinx_plus_cosx"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Evaluate ∫ eˣ(secx + secx tanx) dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_ex_secx_plus_secx_tanx"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Evaluate ∫ eˣ(tanx + log secx) dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_ex_tanx_plus_log_secx"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Evaluate ∫ eˣ(1 + tan²x + tanx) dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_ex_1_plus_tan2x_plus_tanx"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Evaluate ∫ eˣ[(1 + x logx)/x] dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_ex_1_plus_xlogx_over_x"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Evaluate ∫ [xeˣ/(x + 1)²] dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_xex_over_x_plus_1_squared"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Evaluate ∫ [1/(1 − x²) + 1/(1 + x²)] dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_1_over_1_minus_x2_plus_1_over_1_plus_x2"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Evaluate ∫ dx/[(x + 1)(x + 2)].",
+          "question_id": "ts_ipe_m2b_int_vsaq_dx_over_x_plus_1_x_plus_2"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Evaluate ∫ sec²x · cosec²x dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_sec2x_csc2x"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Evaluate ∫ dx/(coshx + sinhx).",
+          "question_id": "ts_ipe_m2b_int_vsaq_dx_over_coshx_plus_sinhx"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Evaluate ∫ dx/(1 + cosx).",
+          "question_id": "ts_ipe_m2b_int_vsaq_dx_over_1_plus_cosx"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Evaluate ∫ [(1 + cos²x)/(1 − cos2x)] dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_1_plus_cos2x_over_1_minus_cos2x"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Evaluate ∫ [sin(logx)/x] dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_sin_logx_over_x"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Evaluate ∫ [cot(logx)/x] dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_cot_logx_over_x"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "Evaluate ∫ dx/(x logx).",
+          "question_id": "ts_ipe_m2b_int_vsaq_dx_over_xlogx"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 3,
+          "text": "Evaluate ∫ dx/{x logx [log(logx)]}.",
+          "question_id": "ts_ipe_m2b_int_vsaq_dx_over_xlogx_loglogx"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 3,
+          "text": "Find ∫ [log(1 + x)/(1 + x)] dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_log_1_plus_x_over_1_plus_x"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 3,
+          "text": "Find ∫ [(logx)²/x] dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_logx_squared_over_x"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 3,
+          "text": "Evaluate ∫ [sin(Tan⁻¹x)/(1 + x²)] dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_sin_tan_inv_x_over_1_plus_x2"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 3,
+          "text": "Evaluate ∫ {1/[√(Sin⁻¹x)·√(1 − x²)]} dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_1_over_sqrt_sin_inv_x_sqrt_1_minus_x2"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 3,
+          "text": "Evaluate ∫ {eˣ(1 + x)/cos²(xeˣ)} dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_ex_1_plus_x_over_cos2_xex"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 3,
+          "text": "Evaluate ∫ eˣ sin(eˣ) dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_ex_sin_ex"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 3,
+          "text": "Evaluate ∫ cos³x sinx dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_cos3x_sinx"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 3,
+          "text": "Evaluate ∫ [sin⁴x/cos⁶x] dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_sin4x_over_cos6x"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 3,
+          "text": "Evaluate ∫ [x⁸/(1 + x¹⁸)] dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_x8_over_1_plus_x18"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 3,
+          "text": "Evaluate ∫ dx/(1 + eˣ).",
+          "question_id": "ts_ipe_m2b_int_vsaq_dx_over_1_plus_ex"
+        },
+        {
+          "ref": "vsaq27",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 3,
+          "text": "Evaluate ∫ [logx/x²] dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_logx_over_x2"
+        },
+        {
+          "ref": "vsaq28",
+          "section": "VSAQ",
+          "number": 28,
+          "stars": 3,
+          "text": "Evaluate ∫ eˣ sinx dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_ex_sinx"
+        },
+        {
+          "ref": "vsaq29",
+          "section": "VSAQ",
+          "number": 29,
+          "stars": 3,
+          "text": "Evaluate ∫ cos√x dx.",
+          "question_id": "ts_ipe_m2b_int_vsaq_cos_sqrt_x"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "name": "Definite Integrals (Maths-2B)",
+      "subject": "mathematics_2b",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Evaluate ∫₀^π (x sinx)/(1 + cos²x) dx.",
+          "question_id": "ts_ipe_m2b_di_laq_xsinx_over_1plus_cos2x_0_to_pi"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Evaluate ∫₀^π (x sin³x)/(1 + cos²x) dx.",
+          "question_id": "ts_ipe_m2b_di_laq_xsin3x_over_1plus_cos2x_0_to_pi"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Evaluate ∫₀^π (x sinx)/(1 + sinx) dx.",
+          "question_id": "ts_ipe_m2b_di_laq_xsinx_over_1plus_sinx_0_to_pi"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/2) sin²x/(cosx + sinx) dx.",
+          "question_id": "ts_ipe_m2b_di_laq_sin2x_over_cosx_plus_sinx"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Show that ∫₀^(π/2) x/(sinx + cosx) dx = π/(2√2) log(√2 + 1).",
+          "question_id": "ts_ipe_m2b_di_laq_x_over_sinx_plus_cosx"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/4) log(1 + tanx) dx.",
+          "question_id": "ts_ipe_m2b_di_laq_log_1plus_tanx_0_to_pi4"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Evaluate ∫₀^1 log(1 + x)/(1 + x²) dx.",
+          "question_id": "ts_ipe_m2b_di_laq_log_1plusx_over_1plusx2_0_to_1"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Evaluate ∫ₐ^b √((x − a)(b − x)) dx.",
+          "question_id": "ts_ipe_m2b_di_laq_sqrt_x_minus_a_b_minus_x"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/4) (sinx + cosx)/(9 + 16 sin2x) dx.",
+          "question_id": "ts_ipe_m2b_di_laq_sinx_plus_cosx_over_9plus16sin2x"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/2) (a sinx + b cosx)/(sinx + cosx) dx.",
+          "question_id": "ts_ipe_m2b_di_saq_a_sinx_plus_b_cosx_over_sinx_plus_cosx"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/2) cos^(5/2)x/(sin^(5/2)x + cos^(5/2)x) dx.",
+          "question_id": "ts_ipe_m2b_di_saq_cos_5by2x_over_sin_plus_cos_5by2x"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/2) sin⁵x/(sin⁵x + cos⁵x) dx.",
+          "question_id": "ts_ipe_m2b_di_saq_sin5x_over_sin5x_plus_cos5x"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/2) cos⁵x/(sin⁵x + cos⁵x) dx.",
+          "question_id": "ts_ipe_m2b_di_saq_practice_cos5x_over_sin5x_plus_cos5x"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Evaluate ∫_(π/6)^(π/3) √sinx/(√sinx + √cosx) dx.",
+          "question_id": "ts_ipe_m2b_di_saq_sqrt_sinx_over_sqrt_sinx_plus_sqrt_cosx"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/2) dx/(4 + 5cosx).",
+          "question_id": "ts_ipe_m2b_di_saq_dx_over_4plus5cosx"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Evaluate ∫₀^4 (16 − x²)^(5/2) dx.",
+          "question_id": "ts_ipe_m2b_di_saq_16_minus_x2_5by2_0_to_4"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Find ∫₋ₐ^a x²(a² − x²)^(3/2) dx.",
+          "question_id": "ts_ipe_m2b_di_saq_x2_a2_minus_x2_3by2_neg_a_to_a"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Find the area enclosed by the curves y = x² and y = x³.",
+          "question_id": "ts_ipe_m2b_di_saq_area_y_eq_x2_and_y_eq_x3"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Find the area of the region bounded by the parabolas y² = 4x and x² = 4y.",
+          "question_id": "ts_ipe_m2b_di_saq_area_y2_eq_4x_x2_eq_4y"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Find the area of the region bounded by y² = 4ax and x² = 4by.",
+          "question_id": "ts_ipe_m2b_di_saq_area_y2_eq_4ax_x2_eq_4by"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Show that the area of the region bounded by the ellipse x²/a² + y²/b² = 1 is πab. Hence deduce the area of the circle x² + y² = a².",
+          "question_id": "ts_ipe_m2b_di_saq_area_ellipse_deduce_circle"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 3,
+          "text": "Evaluate ∫₁⁵ dx/√(2x − 1).",
+          "question_id": "ts_ipe_m2b_di_vsaq_dx_over_sqrt_2x_minus1_1_to_5"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 3,
+          "text": "Evaluate ∫₀³ x dx/√(x² + 16).",
+          "question_id": "ts_ipe_m2b_di_vsaq_x_over_sqrt_x2_plus16_0_to_3"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 3,
+          "text": "Evaluate ∫₂³ 2x dx/(1 + x²).",
+          "question_id": "ts_ipe_m2b_di_vsaq_2x_over_1plusx2_2_to_3"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 3,
+          "text": "Evaluate ∫₀^π √(2 + 2cosθ) dθ.",
+          "question_id": "ts_ipe_m2b_di_vsaq_sqrt_2plus2costheta_0_to_pi"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 3,
+          "text": "Evaluate ∫₀¹ x²/(1 + x²) dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_x2_over_1plusx2_0_to_1"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 3,
+          "text": "Evaluate ∫₀⁴ x² dx/(1 + x).",
+          "question_id": "ts_ipe_m2b_di_vsaq_x2_over_1plusx_0_to_4"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 3,
+          "text": "Evaluate ∫₀^a dx/(x² + a²).",
+          "question_id": "ts_ipe_m2b_di_vsaq_dx_over_x2_plusa2_0_to_a"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 3,
+          "text": "Evaluate ∫₀^a √(a² − x²) dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_sqrt_a2_minusx2_0_to_a"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 3,
+          "text": "Evaluate ∫₀² |1 − x| dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_abs_1_minusx_0_to_2"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 3,
+          "text": "Evaluate ∫₀⁴ |2 − x| dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_abs_2_minusx_0_to_4"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/2) sin⁴x dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_sin4x_0_to_pi2"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/2) cos¹¹x dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_cos11x_0_to_pi2"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/2) sin⁷x dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_practice_sin7x_0_to_pi2"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/2) sin⁵x cos⁴x dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_sin5xcos4x_0_to_pi2"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 3,
+          "text": "Find ∫₀^(π/2) cos⁷x sin²x dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_practice_cos7xsin2x_0_to_pi2"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/2) sin⁶x cos⁴x dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_sin6xcos4x_0_to_pi2"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 3,
+          "text": "Evaluate ∫₀^π sin³x cos³x dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_sin3xcos3x_0_to_pi"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 3,
+          "text": "Evaluate the integral from −π/2 to π/2 of sin²x cos⁴x dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_sin2xcos4x_neg_pi2_to_pi2"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(2π) sin⁴x cos⁶x dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_sin4xcos6x_0_to_2pi"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 3,
+          "text": "Find ∫₀^(2π) sin²x cos⁴x dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_sin2xcos4x_0_to_2pi"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 3,
+          "text": "Evaluate ∫₀¹ dx/√(3 − 2x).",
+          "question_id": "ts_ipe_m2b_di_vsaq_dx_over_sqrt_3_minus2x_0_to_1"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 3,
+          "text": "Evaluate ∫₀^(π/4) sec⁴θ dθ.",
+          "question_id": "ts_ipe_m2b_di_vsaq_sec4theta_0_to_pi4"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 3,
+          "text": "Evaluate the integral from −π/2 to π/2 of sin²θ cos⁷θ dθ.",
+          "question_id": "ts_ipe_m2b_di_vsaq_sin2thetacos7theta_neg_pi2_to_pi2"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 3,
+          "text": "Evaluate ∫₀^π x sin⁷x cos⁶x dx.",
+          "question_id": "ts_ipe_m2b_di_vsaq_xsin7xcos6x_0_to_pi"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 3,
+          "text": "Find the area of the region bounded by y = x³ + 3, the x-axis and the lines x = −1, x = 2.",
+          "question_id": "ts_ipe_m2b_di_saq_area_y_eq_x3plus3_neg1_to_2"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 3,
+          "text": "Find the area enclosed between the curve y = x², the x-axis and the lines x = −1, x = 2.",
+          "question_id": "ts_ipe_m2b_di_saq_area_y_eq_x2_neg1_to_2"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "name": "Differential Equations (Maths-2B)",
+      "subject": "mathematics_2b",
+      "questions": [
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Solve (x² + y²)dx = 2xy dy.",
+          "question_id": "ts_ipe_m2b_de_homogeneous_x2y2_dx_2xydy"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Solve (x² − y²)dx − xy dy = 0.",
+          "question_id": "ts_ipe_m2b_de_homogeneous_x2_minus_y2_dx_xydy"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Find the equation of a curve whose gradient is dy/dx = y/x − cos²(y/x), which passes through the point (1, π/4).",
+          "question_id": "ts_ipe_m2b_de_curve_gradient_yx_minus_cos2_yx"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Give the solution of x sin²(y/x)dx = ydx − xdy, which passes through the point (1, π/4).",
+          "question_id": "ts_ipe_m2b_de_curve_xsin2_yx_dx_ydx_minus_xdy"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "Solve (x²y − 2xy²)dx = (x³ − 3x²y)dy.",
+          "question_id": "ts_ipe_m2b_de_homogeneous_x2y_minus_2xy2_dx"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Solve (x³ − 3xy²)dx + (3x²y − y³)dy = 0.",
+          "question_id": "ts_ipe_m2b_de_homogeneous_x3_minus_3xy2_dx"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Solve (y² − 2xy)dx + (2xy − x²)dy = 0.",
+          "question_id": "ts_ipe_m2b_de_homogeneous_y2_minus_2xy_dx"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Solve dy/dx = (y² − 2xy)/(x² − xy).",
+          "question_id": "ts_ipe_m2b_de_homogeneous_y2_minus_2xy_over_x2_minus_xy"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "Solve the differential equation (2x + y + 1)dx + (4x + 2y − 1)dy = 0.",
+          "question_id": "ts_ipe_m2b_de_reducible_2x_y_1_4x_2y_minus1"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "Solve dy/dx = (x − y + 3)/(2x − 2y + 5).",
+          "question_id": "ts_ipe_m2b_de_reducible_x_minus_y_plus3_over_2x_minus2y_plus5"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Solve (xy² + x)dx + (yx² + y)dy = 0.",
+          "question_id": "ts_ipe_m2b_de_separable_xy2_plus_x_dx"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Solve dy/dx − x tan(y − x) = 1.",
+          "question_id": "ts_ipe_m2b_de_substitution_y_minus_x_tan"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Solve dy/dx + y tan x = cos³x.",
+          "question_id": "ts_ipe_m2b_de_linear_y_tanx_eq_cos3x"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Solve dy/dx + y tan x = sin x.",
+          "question_id": "ts_ipe_m2b_de_linear_y_tanx_eq_sinx"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "Solve cos x·dy/dx + y sin x = sec²x.",
+          "question_id": "ts_ipe_m2b_de_linear_cosx_dy_ysinx_sec2x"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Solve dy/dx + y sec x = tan x.",
+          "question_id": "ts_ipe_m2b_de_linear_y_secx_eq_tanx"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Solve (1 + x²)dy/dx + y = e^(Tan⁻¹x).",
+          "question_id": "ts_ipe_m2b_de_linear_1plusx2_dy_y_etaninvx"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Solve dy/dx + 2y/x = 2x².",
+          "question_id": "ts_ipe_m2b_de_linear_y_2y_over_x_eq_2x2"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "Solve (1 + y²)dx = (Tan⁻¹y − x)dy.",
+          "question_id": "ts_ipe_m2b_de_linear_x_in_y_taninvy"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "Solve (x + y + 1)dy/dx = 1.",
+          "question_id": "ts_ipe_m2b_de_linear_xplusyplus1_dydx_eq1"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 2,
+          "text": "Solve x·logx·dy/dx + y = 2logx.",
+          "question_id": "ts_ipe_m2b_de_linear_xlogx_dy_y_eq_2logx"
+        },
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 2,
+          "text": "Find the order and degree of the differential equation [d²y/dx² + (dy/dx)³]^(6/5) = 6y.",
+          "question_id": "ts_ipe_m2b_de_orderdegree_d2y_dy3_pow65"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 2,
+          "text": "Find the order and degree of the differential equation x^(1/2)(d²y/dx²)^(1/3) + x·dy/dx + y = 0.",
+          "question_id": "ts_ipe_m2b_de_orderdegree_x12_d2y13"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 2,
+          "text": "Find the order and degree of the differential equation d²y/dx² = [1 + (dy/dx)²]^(5/3).",
+          "question_id": "ts_ipe_m2b_de_orderdegree_d2y_eq_1plusdy2_53"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 2,
+          "text": "Form the differential equation corresponding to y = Acos3x + Bsin3x, where A and B are parameters.",
+          "question_id": "ts_ipe_m2b_de_formde_acos3x_bsin3x"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 2,
+          "text": "Form the differential equation corresponding to y = cx − 2c², where c is a parameter.",
+          "question_id": "ts_ipe_m2b_de_formde_y_cx_minus2c2"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 2,
+          "text": "Find the order of the differential equation of the family of all circles with their centres at the origin.",
+          "question_id": "ts_ipe_m2b_de_order_circles_centre_origin"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 2,
+          "text": "Find the differential equation corresponding to y = acos(nx + b), where a, b are parameters.",
+          "question_id": "ts_ipe_m2b_de_formde_acos_nxplusb"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 2,
+          "text": "Find the general solution of dy/dx = e^(x+y).",
+          "question_id": "ts_ipe_m2b_de_separable_dydx_exy"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 2,
+          "text": "Solve dy/dx + 1 = e^(x+y).",
+          "question_id": "ts_ipe_m2b_de_substitution_dydx_plus1_exy"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 2,
+          "text": "Solve dy/dx = (1 + y²)/(1 + x²).",
+          "question_id": "ts_ipe_m2b_de_separable_1plusy2_over_1plusx2"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 2,
+          "text": "Solve √(1 − x²)dy + √(1 − y²)dx = 0.",
+          "question_id": "ts_ipe_m2b_de_separable_sqrt1minusx2_sqrt1minusy2"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 2,
+          "text": "Find the general solution of x + y·dy/dx = 0.",
+          "question_id": "ts_ipe_m2b_de_separable_x_plus_ydydx_eq0"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 2,
+          "text": "Find the general solution of dy/dx = 2y/x.",
+          "question_id": "ts_ipe_m2b_de_separable_dydx_eq_2y_over_x"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 2,
+          "text": "Find the I.F. of the differential equation (cosx)dy/dx + y·sinx = tanx by transforming it into linear form.",
+          "question_id": "ts_ipe_m2b_de_findif_cosx_dy_ysinx_tanx"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 2,
+          "text": "Find the I.F. of the differential equation x·dy/dx − y = 2x²sec²2x by transforming it into linear form.",
+          "question_id": "ts_ipe_m2b_de_findif_xdy_minusy_2x2sec22x"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_par_tangent_k_line_2y_5x_k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 3,
+    "name": "Parabola (Maths-2B)"
+  },
+  "chapter": "Parabola",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of k if the line 2y = 5x + k is a tangent to the parabola y² = 6x.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the line in y = mx + c form and find a",
+      "marks": 1
+    },
+    {
+      "label": "Apply the tangential condition and solve for k",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Maths-2B, book p.82 — VSAQ chapter 14 Parabola, answer 122, a full-width single question below the printed twin pair (answers 121.1/121.2). Printed appearances: AP 2018, TS 2018. THE MARK SPLIT IS OURS, same page-format reasoning as the twin pair above it. No two-book union check was possible for Maths-2B (no second-year TSBIE Basic Learning Material is on hand), and no board back-test beyond diffing against this book's own five Guess Papers. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Parabola · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the line in y = mx + c form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, for a = 3/2, m = 5/2 and c = k/2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given parabola y² = 6x ⇒ 4a = 6 ⇒ a = 3/2",
+          "Given line 2y = 5x + k",
+          "⇒ y = (5/2)x + k/2, so m = 5/2, c = k/2"
+        ],
+        "why": "Writing the given line in the standard y = mx + c form is what makes its slope m and intercept c usable in the tangential condition.",
+        "common_mistakes": [
+          "Leaving the line as 2y = 5x + k instead of dividing by 2 to isolate y.",
+          "Reading c as k instead of k/2."
+        ],
+        "memory_tip": "Always divide through until y stands alone — only then do m and c mean what the tangent formula expects."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Apply the tangential condition",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark, for solving c = a/m correctly through to k.",
+        "lines": [
+          "The tangential condition is c = a/m.",
+          "k/2 = (3/2)/(5/2) = 3/5 ⇒ k = 2(3/5) = 6/5",
+          {
+            "text": "∴ k = 6/5",
+            "style": "boxed"
+          }
+        ],
+        "why": "For a line to touch y² = 4ax exactly once, its intercept c must equal a/m — that single condition is what pins down the one unknown, k.",
+        "common_mistakes": [
+          "Using the circle's tangential condition c² = a²(1+m²) here instead of the parabola's c = a/m.",
+          "Forgetting to multiply back by 2 after solving for k/2."
+        ],
+        "memory_tip": "A line touches y² = 4ax exactly when its intercept equals a divided by its slope — c = a/m."
+      }
+    ]
+  },
+  "insider_note": "The parabola's tangential condition c = a/m is much simpler than the circle's — mixing the two up under exam pressure is the most common slip on this question type."
+}

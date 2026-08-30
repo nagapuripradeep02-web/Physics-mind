@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_linear_1plusx2_dy_y_etaninvx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve (1 + x²)dy/dx + y = e^(Tan⁻¹x).",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Rewrite in standard form and identify P",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    },
+    {
+      "label": "Set up the integral and substitute",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.73-74 — SAQ chapter 11 Differential Equations, answer 98. This is the ONLY answer in the whole book that spans a page break: it starts as the fourth answer at the bottom of p.73 (on the ★★★ SSP 73 page) and its working continues onto the top of p.74 (which carries no SSP banner). Printed appearance tags: AP 16,18; TS 15. The mark split is OURS: neither half-page prints margin marks for this answer. It is patterned on answer 94's printed 1+1+1+1 shape, since this answer also has four distinct checkpoints — rewrite to standard form, find the I.F., set up the integral with a substitution, then integrate to the final answer. Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This exact question is also the Bullet Model Paper's Q17 (book p.110), so it is authored once, here, and covers that paper slot. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The integrating factor e^(Tan⁻¹x) multiplies the right side to give e^(2Tan⁻¹x), so the substitution t = Tan⁻¹x is what turns the final integral into a plain ∫e^(2t)dt rather than something left in x.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differential Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite_identify_p",
+        "kind": "equation",
+        "label": "Rewrite in standard form and identify P",
+        "marks": 1,
+        "mark_note": "P and ∫P dx",
+        "margin_note": "One mark. Divide by (1 + x²) to reach the standard linear form.",
+        "memory_tip": "∫1/(1+x²) dx = Tan⁻¹x — one of the standard integrals worth knowing by heart.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is (1 + x²)dy/dx + y = e^(Tan⁻¹x)",
+          "⇒ dy/dx + y·(1/(1 + x²)) = e^(Tan⁻¹x)/(1 + x²)",
+          "This is in the form dy/dx + yP(x) = Q(x).",
+          "Here P = 1/(1 + x²)",
+          "⇒ ∫P dx = ∫1/(1 + x²) dx = Tan⁻¹x"
+        ],
+        "why": "Dividing every term by (1 + x²) makes the coefficient of dy/dx equal to 1, matching the standard linear form, and the resulting P is exactly the standard derivative-of-arctan integral.",
+        "common_mistakes": [
+          "Forgetting to divide the right side e^(Tan⁻¹x) by (1 + x²) as well as the left side.",
+          "Confusing ∫1/(1+x²)dx with ∫1/√(1−x²)dx, which gives Sin⁻¹x instead."
+        ]
+      },
+      {
+        "id": "s2_integrating_factor",
+        "kind": "equation",
+        "label": "Find the integrating factor",
+        "marks": 1,
+        "mark_note": "I.F.",
+        "margin_note": "One mark. I.F. = e^(∫P dx) always.",
+        "memory_tip": "Unlike the trig examples earlier in this chapter, this I.F. does not simplify further — e^(Tan⁻¹x) is already in its simplest form.",
+        "lines": [
+          "∴ I.F. = e^(∫P dx) = e^(Tan⁻¹x)"
+        ],
+        "why": "Since ∫P dx = Tan⁻¹x here rather than a log expression, the integrating factor e^(Tan⁻¹x) does not simplify any further — it stays exactly as it is.",
+        "common_mistakes": [
+          "Trying to simplify e^(Tan⁻¹x) further, as if it were e raised to a log.",
+          "Writing the I.F. as Tan⁻¹x, forgetting the e^(...) wrapper."
+        ]
+      },
+      {
+        "id": "s3_setup_substitute",
+        "kind": "equation",
+        "label": "Set up the integral and substitute",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "One mark. Multiplying two copies of e^(Tan⁻¹x) together gives e^(2Tan⁻¹x); the substitution t = Tan⁻¹x then removes the awkward exponent from the integral.",
+        "memory_tip": "e^A · e^A = e^(2A) — combine matching exponentials before attempting the integral.",
+        "lines": [
+          "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
+          "⇒ y·e^(Tan⁻¹x)",
+          "= ∫e^(Tan⁻¹x)·[e^(Tan⁻¹x)/(1 + x²)] dx",
+          "= ∫e^(2Tan⁻¹x)/(1 + x²) dx",
+          "Put Tan⁻¹x = t ⇒ 1/(1 + x²) dx = dt,",
+          "so the integral becomes ∫e^(2t) dt"
+        ],
+        "why": "Multiplying the integrating factor by Q combines the two exponential terms into e^(2Tan⁻¹x), and substituting t = Tan⁻¹x removes the arctan from the exponent entirely, using the fact that dt is exactly the leftover 1/(1+x²)dx.",
+        "common_mistakes": [
+          "Adding the exponents incorrectly, writing e^(Tan⁻¹x + Tan⁻¹x) as something other than e^(2Tan⁻¹x).",
+          "Forgetting that dt = 1/(1+x²) dx already matches the leftover factor exactly, and trying to substitute a different piece."
+        ]
+      },
+      {
+        "id": "s4_integrate_finish",
+        "kind": "boxed_final",
+        "label": "Integrate and finish",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. ∫e^(2t)dt = (1/2)e^(2t), then substitute t = Tan⁻¹x back in.",
+        "memory_tip": "∫e^(kt)dt = e^(kt)/k for any constant k — here k = 2.",
+        "lines": [
+          "∫e^(2t) dt = (1/2)e^(2t) + c",
+          "So y·e^t = (1/2)e^(2t) + c,",
+          "and putting t = Tan⁻¹x back in:",
+          {
+            "text": "y·e^(Tan⁻¹x) = (1/2)e^(2Tan⁻¹x) + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "The standard rule for integrating an exponential of a constant multiple of t gives (1/2)e^(2t), and substituting t = Tan⁻¹x back in returns the final relation to the original variable x.",
+        "common_mistakes": [
+          "Forgetting the 1/2 factor that comes from integrating e^(2t) rather than e^t.",
+          "Leaving the final answer in terms of t instead of substituting Tan⁻¹x back in."
+        ]
+      }
+    ]
+  }
+}

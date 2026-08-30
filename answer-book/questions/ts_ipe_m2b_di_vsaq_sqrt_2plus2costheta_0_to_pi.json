@@ -1,0 +1,108 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_sqrt_2plus2costheta_0_to_pi",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫₀^π √(2 + 2cosθ) dθ.",
+  "appearances": [
+    {
+      "year": 2022
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2022,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Rewrite using the half-angle identity",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and apply the limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.90 — VSAQ chapter 17 'Definite Integrals', answer 168, on the printed Super Scoring Page (SSP 90), the right-hand twin of answer 167's row. Printed appearance: TS 22 and AP 16, 18, 22. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used elsewhere in this chapter. This integral is re-answered as a Q8&9 item on the Bullet Model Paper, book p.106 — same value, so no separate card is authored for that appearance. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∑∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The half-angle identity 1+cosθ=2cos²(θ/2) is the standard first move whenever a definite integral has √(1+cosθ) or √(2+2cosθ) under the root.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "equation",
+        "label": "Rewrite using the half-angle identity",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. 1+cosθ = 2cos²(θ/2) is the identity that removes the square root cleanly.",
+        "memory_tip": "2 + 2cosθ = 2(1+cosθ) = 4cos²(θ/2) — always factor the 2 out first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "I = ∫₀^π √(2 + 2cosθ) dθ",
+          "= ∫₀^π √(2(1 + cosθ)) dθ",
+          "1 + cosθ = 2cos²(θ/2)   [half-angle identity]",
+          "∴ I = ∫₀^π √(4cos²(θ/2)) dθ",
+          "= ∫₀^π 2cos(θ/2) dθ",
+          "[cos(θ/2) ≥ 0 on 0 ≤ θ ≤ π]"
+        ],
+        "why": "Factoring out 2 and using 1+cosθ = 2cos²(θ/2) turns the square root into a plain cosine, because cos(θ/2) stays non-negative for θ between 0 and π so the square root of its square is itself.",
+        "common_mistakes": [
+          "Using the identity 1 − cosθ = 2sin²(θ/2) by mistake.",
+          "Not checking the sign of cos(θ/2) before removing the square root."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate and apply the limits",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. ∫cos(θ/2)dθ = 2sin(θ/2) + c — the 1/2 inside cos always doubles the outer factor.",
+        "memory_tip": "sin(π/2) = 1 is the standard value to remember here.",
+        "lines": [
+          "I = 2∫₀^π cos(θ/2) dθ = 2·2[sin(θ/2)]₀^π",
+          "= 4(sin(π/2) − sin0)",
+          {
+            "text": "∴ I = 4(1 − 0) = 4",
+            "style": "boxed"
+          }
+        ],
+        "why": "Integrating cos(θ/2) gives 2sin(θ/2) by the reverse chain rule, and evaluating at θ=π gives sin(π/2)=1 while θ=0 gives sin0=0.",
+        "common_mistakes": [
+          "Forgetting the extra factor of 2 that comes from integrating cos(θ/2) rather than cosθ.",
+          "Evaluating sin(π/2) incorrectly as 0 instead of 1."
+        ]
+      }
+    ]
+  }
+}

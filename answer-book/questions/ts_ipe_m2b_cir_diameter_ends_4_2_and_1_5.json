@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_diameter_ends_4_2_and_1_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the circle with (4,2), (1,5) as ends of a diameter.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the diameter form",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and expand",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.97 — Star Questions Plus, answer 199, printed under the banner \"CIRCLES-VSAQ\". The banner names the chapter and the mark cut, but a bank question's section is still OURS: it is classed VSAQ because it is a one-formula question of exactly the kind the VSAQ chapter holds, and the book’s own VSAQ hit list on book p.11 names it as VSAQ 6. Printed appearance tag: AP 19. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Every number was re-derived and the book is correct: the circle is x² + y² − 5x − 7y + 14 = 0. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The diameter form (x − x₁)(x − x₂) + (y − y₁)(y − y₂) = 0 saves finding the centre and the radius at all — using the long route costs time on a 2-mark question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_diameter_form",
+        "kind": "equation",
+        "label": "Write the diameter form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. x with x, y with y — never mix a given x-coordinate into the y bracket.",
+        "memory_tip": "Diameter form: (x − x₁)(x − x₂) + (y − y₁)(y − y₂) = 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The circle with A(x₁, y₁) and B(x₂, y₂) as ends",
+          "of a diameter is",
+          "(x − x₁)(x − x₂) + (y − y₁)(y − y₂) = 0",
+          "Here A = (4, 2), B = (1, 5)"
+        ],
+        "why": "The angle in a semicircle is a right angle, so for any point P on the circle the lines PA and PB are perpendicular. Writing that condition in coordinates gives exactly this product form.",
+        "common_mistakes": [
+          "Writing (x − x₁)(y − y₁) + (x − x₂)(y − y₂) = 0.",
+          "Finding the centre and radius first, which takes far longer."
+        ]
+      },
+      {
+        "id": "s2_expand",
+        "kind": "boxed_final",
+        "label": "Substitute and expand",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Two small expansions and one collection; the constant is 4 + 10 = 14.",
+        "memory_tip": "(x − 4)(x − 1) gives −5x, and (y − 2)(y − 5) gives −7y.",
+        "lines": [
+          "(x − 4)(x − 1) + (y − 2)(y − 5) = 0",
+          "⇒ (x² − 5x + 4) + (y² − 7y + 10) = 0",
+          {
+            "text": "∴ x² + y² − 5x − 7y + 14 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Each bracket expands to a quadratic whose middle coefficient is minus the sum of the two values and whose constant is their product. A check: the centre (5/2, 7/2) is the midpoint of AB, as it must be.",
+        "common_mistakes": [
+          "Getting the middle term as +5x by adding instead of subtracting.",
+          "Multiplying the two brackets together instead of adding them."
+        ]
+      }
+    ]
+  }
+}

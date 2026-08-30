@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_curve_xsin2_yx_dx_ydx_minus_xdy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Give the solution of x sin²(y/x)dx = ydx − xdy, which passes through the point (1, π/4).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rearrange and substitute",
+      "marks": 2
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Return to x and y",
+      "marks": 1
+    },
+    {
+      "label": "Apply the given point and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.45 — LAQ chapter 5 Differential Equations, answer 40.2, the second column of the same page as answer 40.1. Not on an SSP page (this chapter carries no Super Scoring Pages at all). No printed appearance tag next to this answer, so appearances is empty. The mark split is OURS: this chapter prints no margin mark tags. It follows the same five-checkpoint shape as answer 40.1 on the facing column, since both questions ask for a particular curve through the same point (1, π/4), but the first checkpoint here also covers rearranging the equation into dy/dx = … form before the homogeneity check, since the question is stated with dx and dy mixed rather than as a ready-made gradient. Star rank: the Differential Equations LAQ chapter is ★★ on the LAQ chapter table (book p.13); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q24 set (book pp.116-117), which instead answers 39.1, 40.1, 41.1 and 44.2, so this card is chapter practice for the same skill. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The equation is printed with dx and dy mixed on both sides, so the very first mark is for correctly isolating dy/dx = … before anything else — a sign error at this rearranging step invalidates every later line.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differential Equations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rearrange_substitute",
+        "kind": "equation",
+        "label": "Rearrange and substitute",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Collect both dy terms on one side and both dx terms on the other, then divide, before checking homogeneity.",
+        "memory_tip": "Move xdy to the left with x sin²(y/x)dx, and ydx to the right on its own, so dy/dx isolates cleanly.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The given D.E is x sin²(y/x)dx = ydx − xdy",
+          "⇒ xdy = ydx − x sin²(y/x)dx",
+          "⇒ dy/dx = y/x − sin²(y/x) … (1)",
+          "(1) is a homogeneous D.E",
+          "Put y = vx ⇒ dy/dx = v + x·dv/dx",
+          "(1) ⇒ v + x·dv/dx = v − sin²v"
+        ],
+        "why": "The equation is given with dx and dy mixed, so it must first be rearranged into the standard dy/dx = … form; once written that way, the right side depends only on y/x, confirming it is homogeneous and ready for y = vx.",
+        "common_mistakes": [
+          "Losing the minus sign when moving x sin²(y/x)dx across the equals sign.",
+          "Dividing by dx incorrectly and leaving dy/dx = y − x sin²(y/x) without the /x on the first term."
+        ]
+      },
+      {
+        "id": "s2_separate",
+        "kind": "equation",
+        "label": "Separate the variables",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The two v terms cancel, leaving only −sin²v on the right.",
+        "memory_tip": "Whenever the plain v cancels between both sides, what remains is always the part that came from differentiating v.",
+        "lines": [
+          "x·dv/dx = v − sin²v − v = −sin²v",
+          "⇒ −cosec²v dv = dx/x"
+        ],
+        "why": "The two v terms cancel exactly, and dividing both sides by −sin²v and taking the reciprocal turns the equation into −cosec²v dv = dx/x, separated into v-terms and x-terms.",
+        "common_mistakes": [
+          "Missing the v cancellation and carrying an extra term forward.",
+          "Writing 1/sin²v as sin²v instead of cosec²v."
+        ]
+      },
+      {
+        "id": "s3_integrate",
+        "kind": "equation",
+        "label": "Integrate both sides",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. ∫cosec²v dv = −cot v, so the two minus signs together give a plain cot v on the left.",
+        "memory_tip": "cosec²v integrates to −cot v — the leading minus sign in −cosec²v then flips it back to +cot v.",
+        "lines": [
+          "∫ −cosec²v dv = ∫ dx/x",
+          "⇒ cot v = log x + c"
+        ],
+        "why": "cosec²v is the derivative of −cot v, so ∫cosec²v dv = −cot v; with the leading minus sign on the left already in the equation, the two signs cancel and leave a positive cot v.",
+        "common_mistakes": [
+          "Losing track of the two minus signs and writing −cot v = log x + c instead of cot v = log x + c.",
+          "Forgetting the constant of integration."
+        ]
+      },
+      {
+        "id": "s4_back_substitute",
+        "kind": "equation",
+        "label": "Return to x and y",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Substitute v = y/x directly — no rearranging is needed first, since cot v is already isolated.",
+        "memory_tip": "cot v = log x + c is already the general family in v — just replace v by y/x.",
+        "lines": [
+          "⇒ cot v = log x + c … (2)",
+          "Put v = y/x: cot(y/x) = log x + c"
+        ],
+        "why": "With cot v already isolated on one side, the substitution v = y/x carries directly into the family of solutions, giving the general relation in the original variables x and y.",
+        "common_mistakes": [
+          "Writing cot(x/y) instead of cot(y/x), inverting the ratio.",
+          "Re-deriving the equation instead of simply substituting into (2)."
+        ]
+      },
+      {
+        "id": "s5_apply_point",
+        "kind": "boxed_final",
+        "label": "Apply the given point and finish",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. Substitute x = 1, y = π/4 to find c, then state the final particular solution.",
+        "memory_tip": "log 1 = 0 and cot(π/4) = 1 — both simplify away instantly at this point.",
+        "lines": [
+          "If (x, y) = (1, π/4) lies on this curve, then",
+          "cot(π/4) = log 1 + c ⇒ 1 = 0 + c ⇒ c = 1",
+          {
+            "text": "∴ cot(y/x) = log x + 1",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting the given point into the general family (2) fixes the constant c, and putting that value back gives the one curve through (1, π/4) that the question asks for.",
+        "common_mistakes": [
+          "Substituting the point into the un-integrated equation (1) instead of the family (2).",
+          "Writing the final answer with log|x| when the working already used log x for a positive x = 1 point, which is consistent but should not be swapped mid-answer."
+        ]
+      }
+    ]
+  }
+}

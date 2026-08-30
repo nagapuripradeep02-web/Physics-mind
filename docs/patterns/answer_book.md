@@ -1089,3 +1089,123 @@ and cuts only. Today's `appearances[].board` tags are the data foundation for th
 Maths 1A+1B merged into ONE 100M paper (was 75+75; objective questions added; pass 26→35).
 Botany+Zoology merged into one Biology paper (43+42=85, separate booklets). Physics/Chemistry 85M
 each (+20 internal; practicals separate, pass 11; theory pass 29/85 Yr-1).
+
+## Line wrap: measure it DURING authoring, and know that boxed lines are a separate job (Maths-2B, 2026-08-29)
+
+One authored line must equal one ruled row. `npm run measure:wrap -- <prefix>` renders every line in
+real Kalam 26px and reports what wraps. Shipped rates: physics 0.1% · botany 1.3% · Chemistry-I 4.1%
+· Chemistry-II 0.0% · Maths-2A 0.0% · Maths-2B 0.0% (from **20.7%**).
+
+**Maths-2B started at 20.7% — 557 of 2692 lines, five times the worst previously shipped.** The cause
+was uniform across eight unit agents: each chained several algebra steps onto one `lines[]` entry
+(`x·dv/dx = (1−3v²)/(v³−3v) − v = [1 − 3v² − v(v³−3v)]/(v³−3v) = (1−v⁴)/(v³−3v)` measured 1014px
+against a 568px budget). Three things are worth carrying:
+
+1. **The cheap fix is in the unit agent's prompt, not in a retrofit.** Maths-2A measured 0.0% by
+   telling every unit agent the three budgets and requiring it to run `measure:wrap` on its own
+   prefix and reflow before reporting; several came back having fixed 8-28 lines themselves.
+   Retrofitting 653 lines afterwards costs far more, and a character-count proxy cannot find the
+   problem because **the budgets are unequal**: `boxed` 535px · `eq`/`indent` 568px · everything
+   else 624px.
+2. **Splitting mechanically needs a PRIORITY LADDER, not a single rule.** Split at the boundaries a
+   hand actually uses, in this order, dropping to the next tier only when the one above cannot make
+   every piece fit: sentence end → a label colon → a chaining arrow (`⇒`, `∴`) → a dash or comma
+   clause → "compare X **with** Y" → a continuation `=` → a plain word boundary (which
+   `measure_wrap`'s own header sanctions: "reflow at word boundaries, no words changed"). The ladder
+   is not decoration. Splitting at `=` first produced *"This is in the form dy/dx + yP(x)"* /
+   *"= Q(x). Here P = tanx"* — worse than the wrap it fixed — and splitting before the colon left a
+   dangling *"Differentiating (1) w.r.t x: y₁"*.
+3. **`boxed` lines are a different job and cannot be automated.** `measure_wrap` forbids splitting
+   them (a boxed line renders inside a drawn box; splitting gives two boxes for one answer), so after
+   the mechanical pass every survivor was boxed — 41 of them. They need editorial shortening: drop a
+   restatement of the question where the card already defines `I`, move the assembled result onto the
+   working lines above so the box holds only the final term, move an alternative form ("or
+   equivalently 2Tan⁻¹(b/a)") out of the box, drop a preamble the step's own `why` already states.
+   Never drop `+ c`, a modulus bar, `sq. units`, or anything an examiner marks — if it cannot fit
+   without losing something marked, leave it and say so. One line was left 4px over for exactly that
+   reason.
+
+## A figure can contradict the answer it illustrates, and arithmetic catches it (Maths-2B / Maths-2A, 2026-08-29)
+
+Every figure gate checks *drawing hygiene* — label overlap, clipped construction lines, stroke pace.
+**Nothing checks whether the picture asserts what the card proves.** Maths-2B shipped past every gate
+with an equilateral-triangle card whose foci were drawn at the ellipse's vertices — a picture that
+says e = 1 on a card whose answer is e = 1/2 — and a hyperbola director circle drawn beside an
+unrelated arc instead of concentric with it.
+
+**The check is mechanical, and it beats eyesight for this class.** Pull the drawn coordinates out of
+the SVG path data and recompute the quantity the card proves. `answer-book/tools/figcheck_m2b.py` is
+the worked example: it reads each figure's `elements[]`, recovers a conic's centre and radii from its
+two `A` arcs, and asserts the invariant — eccentricity `c/a` off the drawing equals the card's answer,
+the auxiliary circle's radius equals the ellipse's `a`, the ellipse director circle is `√(a²+b²)` and
+outside while the hyperbola's is `√(a²−b²)` and inside (opposite relationships, which is why mixing
+them up is the easy mistake), and two touching circles satisfy `C₁C₂ = r₁+r₂` or `|r₁−r₂|`. Twelve
+invariants, all exact. Maths-2A ran the same idea on its Argand figures by measuring every side and
+diagonal — equal diagonals are what make a square rather than a rhombus, and that is precisely what
+its card turns on.
+
+**Copy the pattern per subject rather than trying to generalise it**: the invariants ARE the
+subject's mathematics, so the file is short, specific and worth writing.
+
+Two supporting facts. `figures:gallery`'s bounds check estimates a label at `8.5 × len × 0.8` where
+real Kalam runs to about **9.8px per character**, so it under-reports by roughly 10% — it passed four
+clipped labels here and one in senior chemistry; a label it calls fine can still be cut off. And a
+label needs **≥ 40 figure units** of vertical clearance from any label whose horizontal extent
+overlaps it. Render every figure and look at it as well: that is how the two wrong geometries were
+found, and no gate would have reported them.
+
+## The independent examiner pass — and why a card's own claim of correctness is worthless (Maths-2B / Maths-2A, 2026-08-29)
+
+Both senior maths papers ran an adversarial re-derivation pass after authoring, and the two results
+together settle something the project had only suspected.
+
+**Maths-2B: 7 of 271 cards were mathematically WRONG and 10 more misleading**, in a paper where every
+unit had already been checked by the agent that wrote it. **Maths-2A: 0 of 257 wrong**, 23 prose
+defects. Same method, different books — so the pass is not guaranteed to find errors, and its value
+is that you cannot know which book you have until you run it.
+
+**A card's own claim of correctness is not evidence, in either direction.** 165 of the 2B cards
+carried a sentence like *"Every number was re-derived and the book is correct: g = −2, f = −3 and the
+radius is 5."* All four of the cards that turned out mathematically wrong carried exactly that claim.
+On the 2A side the inverse appeared: all 23 of its claims held, and its single worst finding sat on a
+card that made **no** claim at all. So the sentence is uncorrelated with correctness both ways. Do not
+reword such claims into hedged versions — that only produces a more carefully worded non-signal.
+**Record WHO checked the card instead**: an unattributed "re-derived" is the author's opinion of their
+own working, and the authoring pass is the party least able to see its own mistake.
+
+**What the errors cluster on.** In 2B they were coefficient-combining and constant-tracking —
+a middle term out by 2√2, another by exactly 2×, a partial-fraction pair swapped, a dropped power of x
+when clearing a denominator. Twice the final boxed answer was RIGHT while an intermediate line was
+wrong, which is how they survived: a self-check that looks at the destination never sees the route,
+and the route is what a student copies. Name the likely cluster for the subject in the prompt rather
+than asking for a general review.
+
+**Recipe that worked:**
+- **Split by mathematical TECHNIQUE, not by unit count.** 2A's series examiner found 8 of its 23
+  findings alone, because series traps cluster; a unit-count split would have scattered them.
+- **Require a CLEAN verdict to name the checks it ran.** Without this an examiner can return a silent
+  green. Bands: WRONG / MISLEADING / THIN / CLEAN.
+- **Give the domain recipe, not "review this":** differentiate every indefinite integral back;
+  substitute every differential-equation solution into its own equation; recompute every conic's
+  a, b, e, foci and directrices from the printed equation and check the orientation BEFORE choosing a
+  formula; test every root of a squared equation against the ORIGINAL unsquared one.
+- **Ask where the examiner initially DISAGREED and the card turned out right** (2A's addition). That
+  section stops a later session re-litigating settled ground — one examiner nearly filed a θ-restriction
+  on `1 + cos θ + i sin θ = 2cos(θ/2)cis(θ/2)`, worked out that De Moivre applies to the `cis` factor
+  whatever the sign of the real scalar, verified it at three angles, and recorded the reasoning.
+- **Demand an honest coverage statement.** 2B's conics examiner reported that only 87 of its 137 cards
+  had a dedicated pass and the other 50 rested on a faster sweep — and supplied the proof that the
+  sweep was unreliable, since it had cleared a card that was wrong in three places. A dedicated pass
+  over those 47 then found nothing further. **An admitted gap is worth more than a complete-looking
+  verdict**, and a card nobody checked must never be counted CLEAN.
+
+**Two defect classes that no gate sees and both papers hit:**
+1. **`common_mistakes` that names the CORRECT move as the error.** 2B had a card whose bullet told
+   students that rejecting an extraneous root was the mistake to avoid, with a `why` defending the
+   wrong root as valid. Read every mistakes entry back against that step's own marked lines.
+2. **A condition parked where the student never sees it.** 2A found an identity `θ = Tan⁻¹(q/p)` that
+   needs `p > 0` — false at p = −3, q = 4 — with the condition filed in `verification.note` while the
+   visible page stated it unconditionally, in a unit whose sibling cards exist to teach that very
+   quadrant rule. **`verification.note` is provenance, not a place to put mathematics a student needs.**
+   Grep for it: a condition word in the note that appears nowhere in the lines, `why`,
+   `common_mistakes`, `memory_tip` or `insider_note` is the signature.

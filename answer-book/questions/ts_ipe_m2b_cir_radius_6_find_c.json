@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_radius_6_find_c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If x² + y² − 4x + 6y + c = 0 represents a circle with radius 6, find the value of c.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Read g, f, c and the radius formula",
+      "marks": 1
+    },
+    {
+      "label": "Square and solve for c",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 12 Circle, answer 103.2. It sits on a ★★★ SSP (Super Scoring Page): book p.77 carries the SSP banner. It is the right-hand twin of answer 103.1 and differs only in the radius. Printed appearance tags: TS 18 and AP 16. Every number was re-derived and the book is correct: c = −23. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This is the same question as its twin with 4 replaced by 6, so a student who has done one should reach the answer in two lines — the bigger radius simply forces a more negative constant.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_read_and_formula",
+        "kind": "equation",
+        "label": "Read g, f, c and the radius formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The letters are different but the circle is the same one as in the twin question.",
+        "memory_tip": "Radius = √(g² + f² − c). Only the constant is unknown.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: x² + y² − 4x + 6y + c = 0",
+          "Here g = −2, f = 3",
+          "Radius = √(g² + f² − c) = √(4 + 9 − c)",
+          "= √(13 − c)"
+        ],
+        "why": "The x and y coefficients are the same as in the previous question, so g² + f² = 13 again. Only the value the radius is set to has changed.",
+        "common_mistakes": [
+          "Writing g² + f² as (−2 + 3)² = 1.",
+          "Using the given radius 6 as g or f."
+        ]
+      },
+      {
+        "id": "s2_square_and_solve",
+        "kind": "boxed_final",
+        "label": "Square and solve for c",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. 6² = 36, so the constant has to be well below zero.",
+        "memory_tip": "Square both sides: 13 − c = 36.",
+        "lines": [
+          "Given radius = 6",
+          "⇒ √(13 − c) = 6",
+          "Squaring both sides: 13 − c = 36",
+          {
+            "text": "∴ c = 13 − 36 = −23",
+            "style": "boxed"
+          }
+        ],
+        "why": "A larger radius needs a larger value of g² + f² − c, and since g² + f² is fixed at 13, c has to fall. That is why the answer is well below zero.",
+        "common_mistakes": [
+          "Writing 6² as 12.",
+          "Solving 13 − c = 36 as c = 23."
+        ]
+      }
+    ]
+  }
+}

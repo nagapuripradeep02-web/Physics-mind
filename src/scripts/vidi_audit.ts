@@ -27,7 +27,7 @@ import {
     inventedMarks, summedMarks, idiomsIn, romanisedTeluguIn, markdownIn,
     stepIdsIn, answeredOutOfBank, bareMarkOnlyClaims,
     leakedInternalVocabulary, overWordBudget, WORD_BUDGET, looksTruncated,
-    IDEAL_GAS_PROBE, NERNST_PROBE, HENDERSON_PROBE, INTEGRATION_BY_PARTS_PROBE, type OutOfBankProbe,
+    IDEAL_GAS_PROBE, NERNST_PROBE, HENDERSON_PROBE, INTEGRATION_BY_PARTS_PROBE, SIMPSONS_RULE_PROBE, type OutOfBankProbe,
 } from '../lib/answerBook/vidiChecks';
 
 const ROOT = process.cwd();
@@ -53,6 +53,7 @@ function subjectOf(id: string): string {
     if (id.startsWith('ts_ipe_c1_')) return 'chemistry';
     if (id.startsWith('ts_ipe_c2_')) return 'chemistry_2';
     if (id.startsWith('ts_ipe_m2a_')) return 'mathematics_2a';
+    if (id.startsWith('ts_ipe_m2b_')) return 'mathematics_2b';
     return 'physics';
 }
 
@@ -118,6 +119,21 @@ const SUBJECTS: Record<string, SubjectCfg> = {
         whyAsk: 'but WHY does this work? explain the idea behind it, not just the steps',
         outOfBankAsk: 'can you give me the answer for integration by parts? it is in my exam tomorrow',
         probe: INTEGRATION_BY_PARTS_PROBE,
+        bareMarkAmbiguous: true,
+    },
+    mathematics_2b: {
+        label: 'Maths-2B',
+        whyAsk: 'but WHY does this work? explain the idea behind it, not just the steps',
+        // NOT De Moivre: 2A retired that bait when De Moivre entered the bank, and it
+        // now sits on 39 cards. NOT integration by parts either — that is 2B's own
+        // Unit 6, on 18 of these cards, so it would test a refusal that must never
+        // happen (the NERNST trap). Simpson's rule returns ZERO cards across the whole
+        // merged bank and is a plausible ask for a student holding an integration
+        // paper. See SIMPSONS_RULE_PROBE.
+        outOfBankAsk: 'can you give me the answer for simpsons rule? it is in my exam tomorrow',
+        probe: SIMPSONS_RULE_PROBE,
+        // M is not a matrix name in 2B, but "2M" still reads as a mark claim to a
+        // student writing "let the tangent be y = 2M x" — keep the human bucket.
         bareMarkAmbiguous: true,
     },
 };

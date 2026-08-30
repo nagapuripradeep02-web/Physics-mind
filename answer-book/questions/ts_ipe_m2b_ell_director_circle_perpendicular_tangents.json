@@ -1,0 +1,219 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_director_circle_perpendicular_tangents",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the points of intersection of the perpendicular tangents to an ellipse lie on a circle.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Set up the tangent through P",
+      "marks": 1
+    },
+    {
+      "label": "Form the quadratic in m",
+      "marks": 1
+    },
+    {
+      "label": "Apply the perpendicularity condition",
+      "marks": 1
+    },
+    {
+      "label": "Conclude the locus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 8 Ellipse, answer 72. NOT on an SSP page. Printed appearance: AP 16 only. Book p.63 prints no margin mark tags for this proof-style question, so the 1+1+1+1 split here is OURS, following the four natural stages of the standard 'product of roots' proof. This same result (director circle x²+y²=a²+b²) is repeated verbatim in the Bullet Model Paper's SAQ Section B (book p.107, under 'Q11: CIRCLES' as a worked model, not under Ellipse) — that repeat is a different chapter's worked example reusing this proof and is not treated as an extra card. A FIGURE is authored for this card — the ellipse, its director circle, and one external point with two perpendicular tangent lines touching the ellipse — because the picture IS the argument here: seeing that the locus point sits on a circle concentric with the ellipse is the entire content of the result being proved. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The name 'director circle' for x² + y² = a² + b² is worth writing on the final boxed line — examiners often award the last mark for naming the result, not just deriving it.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up the tangent through P",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. A tangent with slope m always has the form y = mx ± √(a²m² + b²).",
+        "memory_tip": "Start every 'tangents through a point' proof the same way: write the tangent-with-slope-m formula, then force it through the given point.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the ellipse be S ≡ x²/a² + y²/b² − 1 = 0",
+          "Let P(x₁, y₁) be a point on the locus.",
+          "Tangent with slope m: y = mx ± √(a²m² + b²)",
+          "If it passes through P(x₁, y₁):",
+          "y₁ − mx₁ = ±√(a²m² + b²)"
+        ],
+        "why": "Forcing the general tangent line to pass through the locus point P turns the geometric condition ('a tangent through P') into an algebraic equation relating m to the coordinates of P.",
+        "common_mistakes": [
+          "Substituting P into the ellipse equation itself instead of into the tangent line equation.",
+          "Dropping the ± sign, which represents the fact that two tangents (not one) generally pass through an external point."
+        ]
+      },
+      {
+        "id": "s2_quadratic",
+        "kind": "equation",
+        "label": "Form the quadratic in m",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Squaring removes the root and produces a quadratic whose two roots are the two tangent slopes.",
+        "memory_tip": "Two tangents from one point means: look for a QUADRATIC whose two roots are their two slopes.",
+        "lines": [
+          "Squaring: (y₁ − mx₁)² = a²m² + b²",
+          "⇒ m²(x₁² − a²) − 2mx₁y₁ + (y₁² − b²) = 0 …(1)"
+        ],
+        "why": "Equation (1) is a quadratic in m; its two roots m₁, m₂ are exactly the slopes of the two tangents that pass through P, since each root satisfies the tangency condition.",
+        "common_mistakes": [
+          "Expanding (y₁ − mx₁)² incorrectly and losing the cross term −2mx₁y₁.",
+          "Forgetting that this is now an equation in m (unknown), with x₁, y₁ as fixed constants."
+        ]
+      },
+      {
+        "id": "s3_perpendicular",
+        "kind": "equation",
+        "label": "Apply the perpendicularity condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Perpendicular tangents mean the product of the two roots m₁m₂ = −1.",
+        "memory_tip": "Product of roots of am² + bm + c = 0 is c/a — apply it here with a = (x₁²−a²), c = (y₁²−b²).",
+        "lines": [
+          "If the tangents are perpendicular, m₁m₂ = −1",
+          "Product of roots of (1):",
+          "m₁m₂ = (y₁² − b²) / (x₁² − a²) = −1"
+        ],
+        "why": "Two lines are perpendicular exactly when the product of their slopes is −1; since m₁ and m₂ are the roots of the quadratic in (1), their product is read off directly from the ratio of its constant and leading coefficients.",
+        "common_mistakes": [
+          "Using sum of roots instead of product of roots — perpendicularity is a PRODUCT condition, not a sum.",
+          "Missing the minus sign when writing the ratio of the constant term to the leading coefficient."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude the locus",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Fourth mark. Clear the fraction and simplify — the x₁² and a² terms combine into a circle equation.",
+        "memory_tip": "The director circle is centred at the same centre as the ellipse, with radius √(a² + b²).",
+        "lines": [
+          "y₁² − b² = −(x₁² − a²) ⇒ x₁² + y₁² = a² + b²",
+          {
+            "text": "x² + y² = a² + b² — director circle",
+            "style": "boxed"
+          }
+        ],
+        "why": "Rearranging the perpendicularity equation shows that every point from which the two tangents are perpendicular satisfies x² + y² = a² + b², which is the equation of a circle concentric with the ellipse.",
+        "common_mistakes": [
+          "Stopping at y₁² − b² = a² − x₁² without moving all terms to one side to reveal the circle equation.",
+          "Forgetting to name the result — the locus is called the director circle."
+        ]
+      },
+      {
+        "id": "s5_diagram",
+        "kind": "diagram",
+        "label": "The figure",
+        "marks": 0,
+        "margin_note": "No marks — the question does not ask for a diagram. Drawn because the picture IS the argument here.",
+        "memory_tip": "The director circle is always bigger than the ellipse and shares its centre.",
+        "figure": {
+          "id": "ellipse_director_circle",
+          "width": 320,
+          "height": 260,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "dc_ellipse",
+              "d": "M 75 130 A 85 50 0 1 0 245 130 A 85 50 0 1 0 75 130",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dc_circle",
+              "d": "M 61 130 A 99 99 0 1 0 259 130 A 99 99 0 1 0 61 130",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "dc_tangent_1",
+              "d": "M 236 66 L 170 80",
+              "ms": 960
+            },
+            {
+              "type": "stroke",
+              "id": "dc_tangent_2",
+              "d": "M 236 66 L 243 132",
+              "ms": 950
+            },
+            {
+              "type": "label",
+              "id": "dc_lbl_p",
+              "x": 240,
+              "y": 50,
+              "text": "P",
+              "ms": 400,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "dc_lbl_c",
+              "x": 160,
+              "y": 130,
+              "text": "C",
+              "ms": 400
+            },
+            {
+              "type": "label",
+              "id": "dc_lbl_ellipse",
+              "x": 110,
+              "y": 175,
+              "text": "ellipse",
+              "ms": 400,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "dc_lbl_circle",
+              "x": 160,
+              "y": 245,
+              "text": "director circle",
+              "ms": 400,
+              "sm": true
+            }
+          ]
+        },
+        "why": "P sits on the director circle, and the two tangent lines from P touch the ellipse at right angles to each other — the whole content of the theorem is visible in this one picture.",
+        "common_mistakes": [
+          "Drawing the two tangent lines from P as if they were parallel rather than perpendicular.",
+          "Drawing the circle smaller than or equal to the ellipse — the director circle is always strictly larger."
+        ]
+      }
+    ]
+  }
+}

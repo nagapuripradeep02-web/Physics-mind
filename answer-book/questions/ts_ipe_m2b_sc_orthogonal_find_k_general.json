@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_orthogonal_find_k_general",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find k if the pair of circles x² + y² + 2by − k = 0, x² + y² + 2ax + 8 = 0 are orthogonal.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write g, f, c for both circles",
+      "marks": 1
+    },
+    {
+      "label": "Apply the orthogonal condition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.103 — the Bullet Model Paper's VSAQ Section-A, under the printed heading 'Q3: SYSTEM OF CIRCLES'. No appearance year is printed against any Bullet Model Paper question — this is the book's own compact model paper, not a reprint of a real exam. DIFF AGAINST THE CHAPTER: this question (parameters a, b, k) is DISTINCT from every numbered VSAQ answer 116-120 in this unit's own chapter (pp.80-81) — none of them use general letters a and b in place of numbers — so it is authored here as an extra, per the orchestration rule to author only Bullet Model Paper content that is not already in the numbered chapter. The Model Paper's own Q3 section holds exactly two System of Circles questions on book p.103 (confirmed by reading book p.104, which opens Q4: Parabola / Q5: Hyperbola immediately after); this is the first of the two, the second is ts_ipe_m2b_sc_radical_axis_three. ⚠ THE SECTION IS OURS in the sense that the Model Paper prints it directly under 'VSAQ SECTION-A' with no further sub-label, matching this chapter's own VSAQ shape exactly (a short 2-line orthogonality answer), so it is classed VSAQ with no ambiguity. Chapter star rank taken as the VSAQ section's ★★, per book p.76, since this entry is classed VSAQ. ⚠ THE MARK SPLIT IS OURS — the Bullet Model Paper prints no marks tags at all, only question and bulleted answer. Cut 1+1, matching the shape used throughout this chapter's other VSAQ orthogonality answers. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The answer k = 8 does not depend on a or b at all — a useful check while working: if the letters a and b are still present in the final line, a substitution has gone wrong somewhere.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "System of Circles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_g_f_c",
+        "kind": "equation",
+        "label": "Write g, f, c for both circles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Note g = 0 for the first circle (no x term) and f′ = 0 for the second (no y term).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "From the given circles, we get",
+          "g = 0, f = b, c = −k and",
+          "g′ = a, f′ = 0, c′ = 8"
+        ],
+        "why": "Reading g, f, c off each circle — including the two zero values that come from each circle missing a term — sets up the orthogonality condition correctly.",
+        "common_mistakes": [
+          "Writing g = b instead of g = 0, confusing the coefficient of y (which is 2b, giving f = b) with the missing x term.",
+          "Missing that c = −k, not k, since the circle is printed as '… − k = 0'."
+        ],
+        "memory_tip": "The first circle has no x-term, so g = 0; the second has no y-term, so f′ = 0 — exactly the pairing that makes the next step collapse quickly."
+      },
+      {
+        "id": "s2_orthogonal_condition",
+        "kind": "boxed_final",
+        "label": "Apply the orthogonal condition",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Both cross-product terms vanish, for every a and b.",
+        "lines": [
+          "Orthogonal condition: 2gg′ + 2ff′ = c + c′",
+          "⇒ 2(0)(a) + 2(b)(0) = −k + 8",
+          "⇒ 0 = −k + 8",
+          {
+            "text": "∴ k = 8",
+            "style": "boxed"
+          }
+        ],
+        "why": "Because g = 0 and f′ = 0, both product terms on the left vanish for every value of a and b, leaving a fixed value of k that makes the circles orthogonal no matter what a and b are.",
+        "common_mistakes": [
+          "Trying to solve the equation for a or b as if they were also unknown, when the question only asks for k.",
+          "Sign slip turning 0 = −k + 8 into k = −8 instead of k = 8."
+        ],
+        "memory_tip": "When both cross-product terms vanish, the orthogonality condition collapses to 0 = c + c′ — read k straight off, independent of any other letters in the question."
+      }
+    ]
+  }
+}

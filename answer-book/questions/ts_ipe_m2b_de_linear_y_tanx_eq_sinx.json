@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_linear_y_tanx_eq_sinx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve dy/dx + y tan x = sin x.",
+  "appearances": [
+    {
+      "year": 2016,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Identify P and find ∫P dx",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and finish",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.73 — SAQ chapter 11 Differential Equations, answer 95, the first answer on the page. On a ★★★ SSP (Super Scoring Page): book p.73 carries the SSP 73 banner. Printed appearance tag: TS 16 — no AP tag. The mark split is SOURCED: book p.73 prints '1 Mark' beside the P/∫Pdx line, '1 Mark' beside the I.F. = sec x line, and '2 Marks' beside the final integration line — a 1+1+2 split, one of only five printed splits in this chapter's practice set (the others are 94, 181, 182, 184). Star rank: the Differential Equations SAQ chapter is ★★ on the SAQ chapter table (book p.49); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q17 set (book p.110), so this card is chapter practice for the same linear-equation skill. The book's printed solution ends at 'y.secx = log secx + c' without a separate boxed line — that IS the final answer; the page simply moves straight to the next question. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "secx sinx simplifies to tanx before integrating — cancel the common cos x underneath sec x and inside sin x/cos x rather than integrating sec x sin x as a product.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differential Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identify_p",
+        "kind": "equation",
+        "label": "Identify P and find ∫P dx",
+        "marks": 1,
+        "mark_note": "P and ∫P dx",
+        "margin_note": "One mark. The equation is already in the standard linear form dy/dx + Py = Q.",
+        "memory_tip": "The coefficient of the plain y term, tan x, is P; sin x on its own is Q.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is in the form dy/dx + yP(x) = Q(x).",
+          "This is a linear D.E in y.",
+          "Here P = tan x ⇒ ∫P dx = ∫tan x dx = log sec x"
+        ],
+        "why": "The equation is already written as dy/dx + yP = Q, so identifying P as the coefficient of y and integrating it is the direct first step every linear-equation solution follows.",
+        "common_mistakes": [
+          "Confusing P with Q and taking P = sin x instead of tan x.",
+          "Integrating tan x incorrectly and missing the log sec x form."
+        ]
+      },
+      {
+        "id": "s2_integrating_factor",
+        "kind": "equation",
+        "label": "Find the integrating factor",
+        "marks": 1,
+        "mark_note": "I.F.",
+        "margin_note": "One mark. I.F. = e^(∫P dx) always.",
+        "memory_tip": "e^(log sec x) = sec x — the exponential undoes the log immediately.",
+        "lines": [
+          "∴ I.F. = e^(∫P dx) = e^(log sec x) = sec x"
+        ],
+        "why": "The integrating factor formula e^(∫P dx) applies to every linear equation, and here it simplifies at once because e and log are inverse operations.",
+        "common_mistakes": [
+          "Writing I.F. = sec x + tan x by confusing this with the integrating factor for P = sec x seen elsewhere in the chapter.",
+          "Forgetting the e^(...) step and writing I.F. = log sec x directly."
+        ]
+      },
+      {
+        "id": "s3_integrate_finish",
+        "kind": "boxed_final",
+        "label": "Integrate and finish",
+        "marks": 2,
+        "mark_note": "Result",
+        "margin_note": "Two marks. sec x · sin x simplifies to tan x, which integrates directly to log sec x.",
+        "memory_tip": "sec x sin x = sin x/cos x = tan x — cancel before integrating, not after.",
+        "lines": [
+          "Hence the solution is y·(I.F.) = ∫(I.F.)Q dx",
+          "⇒ y sec x = ∫sec x·sin x dx = ∫tan x dx",
+          {
+            "text": "y sec x = log sec x + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Writing sec x · sin x as tan x turns the right-hand integral into the same standard tan x integral used in step 1, giving the final relation between y, x and the constant directly.",
+        "common_mistakes": [
+          "Trying to integrate sec x · sin x as a product rule instead of simplifying it to tan x first.",
+          "Stopping at y sec x = ∫tan x dx without carrying out the integral to log sec x."
+        ]
+      }
+    ]
+  }
+}

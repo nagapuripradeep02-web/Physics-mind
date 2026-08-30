@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_locus_tangent_lengths_ratio_2_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If a point P is moving such that the lengths of tangents drawn from P to the circles x² + y² − 4x − 6y − 12 = 0 and x² + y² + 6x + 18y + 26 = 0 are in the ratio 2 : 3, then find the equation of the locus of P.",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the ratio condition",
+      "marks": 1
+    },
+    {
+      "label": "Replace each tangent length by S₁₁",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the locus",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.51 — SAQ chapter 6 Circle, answer 47. Printed appearance tags: AP 19 and TS 17. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. Every number was re-derived and the book is correct: 9(PT₁)² = 4(PT₂)² gives 5x² + 5y² − 60x − 126y − 212 = 0, and that has no common factor, so it cannot be reduced further. The two circles here are the same pair that the Bullet Model Paper uses for its touching-circles question on book p.112. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Squaring the ratio is the whole method: PT₁ : PT₂ = 2 : 3 becomes 9(PT₁)² = 4(PT₂)², and the 9 goes with the FIRST circle — putting the 4 there is the single commonest slip on this question.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Circle · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ratio_condition",
+        "kind": "equation",
+        "label": "Write the ratio condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Cross-multiply first, then square; squaring the fraction directly is where the 9 and the 4 get swapped.",
+        "memory_tip": "The length of the tangent from P to S = 0 is √S₁₁. So a ratio of lengths is a ratio of square roots.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P(x₁, y₁) be a point on the locus.",
+          "PT₁ = length of the tangent from P to",
+          "S ≡ x² + y² − 4x − 6y − 12 = 0",
+          "PT₂ = length of the tangent from P to",
+          "S′ ≡ x² + y² + 6x + 18y + 26 = 0",
+          "Given PT₁ : PT₂ = 2 : 3",
+          "⇒ 3 PT₁ = 2 PT₂ ⇒ 9(PT₁)² = 4(PT₂)²"
+        ],
+        "why": "Tangent lengths are square roots, so the condition is squared to remove them. Cross-multiplying before squaring keeps the 9 attached to the first circle and the 4 to the second.",
+        "common_mistakes": [
+          "Squaring 2/3 to 4/9 and then multiplying the wrong side.",
+          "Writing PT₁ = S₁₁ instead of PT₁ = √S₁₁."
+        ]
+      },
+      {
+        "id": "s2_replace_by_s11",
+        "kind": "equation",
+        "label": "Replace each tangent length by S₁₁",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. S₁₁ is just the left side of the circle equation with the point substituted — no halving, no sign change.",
+        "memory_tip": "S₁₁ = x₁² + y₁² + 2gx₁ + 2fy₁ + c. Put the point into the circle as it stands.",
+        "lines": [
+          "(PT₁)² = x₁² + y₁² − 4x₁ − 6y₁ − 12",
+          "(PT₂)² = x₁² + y₁² + 6x₁ + 18y₁ + 26",
+          "⇒ 9[x₁² + y₁² − 4x₁ − 6y₁ − 12]",
+          "  = 4[x₁² + y₁² + 6x₁ + 18y₁ + 26]"
+        ],
+        "why": "The square of the tangent length from an external point is S₁₁, which is the whole left side of the circle equation evaluated at that point. No rearranging is needed.",
+        "common_mistakes": [
+          "Using √(g² + f² − c) instead of S₁₁.",
+          "Halving the coefficients before substituting."
+        ]
+      },
+      {
+        "id": "s3_simplify_locus",
+        "kind": "boxed_final",
+        "label": "Simplify to the locus",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. 9 − 4 = 5 stays in front of x² and y², so this locus is a circle, not a line.",
+        "memory_tip": "9 − 4 = 5, so the second-degree terms survive and the locus is a circle.",
+        "lines": [
+          "⇒ 9x₁² + 9y₁² − 36x₁ − 54y₁ − 108",
+          "  = 4x₁² + 4y₁² + 24x₁ + 72y₁ + 104",
+          "⇒ 5x₁² + 5y₁² − 60x₁ − 126y₁ − 212 = 0",
+          {
+            "text": "∴ Locus: 5x² + 5y² − 60x − 126y − 212 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "The x² and y² terms do not cancel here because the multipliers 9 and 4 differ, so 5x² + 5y² is left and the locus is a circle. Its coefficients 5, 60, 126 and 212 share no common factor, so the equation cannot be reduced.",
+        "common_mistakes": [
+          "Dividing the final answer by 5 and producing fractions.",
+          "Expecting a straight line, as in the locus questions where the multipliers are equal."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_line_3x_minus4y_minus25_touches_x2_y2_25",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that the line 3x − 4y − 25 = 0 touches the circle x² + y² = 25.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the tangential condition",
+      "marks": 1
+    },
+    {
+      "label": "Check both sides",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.97 — Star Questions Plus, answer 204, printed under the banner \"CIRCLES-VSAQ\". The banner names the chapter and the mark cut, but a bank question's section is still OURS: it is classed VSAQ because it is a one-condition check with no derivation, which is the VSAQ shape; the SAQ chapter’s touching question, answer 48, also asks for the point of contact and is therefore longer. No appearance tag is printed beside it. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Every number was re-derived and the book is correct: n² = 625 and r²(l² + m²) = 625. The book writes the right side as 25(3² + (−4²)), which is loose notation for 25(3² + (−4)²); the value 25 inside the bracket is right either way. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The tangential condition n² = r²(l² + m²) avoids the distance formula and its square root entirely, which is why it is the right tool for a 2-mark question.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write the tangential condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Read l, m, n straight from the line as written, signs included.",
+        "memory_tip": "lx + my + n = 0 touches x² + y² = r² when n² = r²(l² + m²).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Compare 3x − 4y − 25 = 0 with lx + my + n = 0",
+          "⇒ l = 3, m = −4, n = −25",
+          "Given circle x² + y² = 25 ⇒ r² = 25",
+          "The line touches the circle when",
+          "n² = r²(l² + m²)"
+        ],
+        "why": "The condition is the distance formula squared: |n|/√(l² + m²) = r becomes n² = r²(l² + m²). Squaring removes both the modulus and the root, so no surd appears anywhere.",
+        "common_mistakes": [
+          "Taking n = 25 instead of −25, which happens to give the same square here but fails elsewhere.",
+          "Using r = 25 instead of r² = 25."
+        ]
+      },
+      {
+        "id": "s2_check",
+        "kind": "boxed_final",
+        "label": "Check both sides",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Compute each side separately and then state the conclusion in words.",
+        "memory_tip": "3² + (−4)² = 25, and 25 × 25 = 625 = 25².",
+        "lines": [
+          "L.H.S = n² = (−25)² = 625",
+          "R.H.S = r²(l² + m²) = 25(3² + (−4)²)",
+          "= 25(9 + 16) = 25(25) = 625",
+          "⇒ L.H.S = R.H.S",
+          {
+            "text": "∴ The given line touches the given circle.",
+            "style": "boxed"
+          }
+        ],
+        "why": "Both sides come to 625, so the condition holds and the line is a tangent. If the left side were larger the line would miss the circle; if smaller, it would cut it at two points.",
+        "common_mistakes": [
+          "Writing (−4)² as −16.",
+          "Showing the two sides are equal but not writing the conclusion."
+        ]
+      }
+    ]
+  }
+}

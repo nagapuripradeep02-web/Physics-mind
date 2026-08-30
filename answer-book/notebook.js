@@ -442,7 +442,8 @@
                      physics_2: 'Physics II',
                      chemistry_2: 'Chemistry II',
                      botany_2: 'Botany-II',
-                     mathematics_2a: 'Maths-2A' };
+                     mathematics_2a: 'Maths-2A',
+                     mathematics_2b: 'Maths-2B' };
   function subjLabel(s) {
     return SUBJ_LABEL[s] || (String(s || '').charAt(0).toUpperCase() + String(s || '').slice(1));
   }
@@ -577,7 +578,7 @@
       display concern, and the notebook header still shows the full name. */
   function chapterLabel(u) {
     return String(u.name || '').replace(
-      /\s*\((?:Chemistry-II|Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B|Maths-2A)\)\s*$/, ''
+      /\s*\((?:Chemistry-II|Chemistry|Physics|Botany|Zoology|Maths-1A|Maths-1B|Maths-2A|Maths-2B)\)\s*$/, ''
     );
   }
 

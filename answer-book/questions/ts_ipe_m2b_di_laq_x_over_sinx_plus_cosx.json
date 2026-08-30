@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_laq_x_over_sinx_plus_cosx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Show that ∫₀^(π/2) x/(sinx + cosx) dx = π/(2√2) log(√2 + 1).",
+  "appearances": [
+    {
+      "year": 2017
+    },
+    {
+      "year": 2020,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Apply the property with a = π/2",
+      "marks": 2
+    },
+    {
+      "label": "Add to reach an x-free integral",
+      "marks": 2
+    },
+    {
+      "label": "Write cosx + sinx as √2 sin(x + π/4)",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate the log limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.41 (PDF page 40) — LAQ chapter 4 'Definite Integrals', answer 35, the book's own 'BABY TIP' box on this page calls it 'VERY SIMILAR TO PREVIOUS SOLUTION' (answer 34, one page earlier). Printed appearance: TS 17, AP 20. Chapter star rank ★★★ applies. No margin mark tags are printed on this single-column page, so the 2+2+2+1 split is OURS, matching the split used for answer 34's near-identical derivation (ts_ipe_m2b_di_laq_sin2x_over_cosx_plus_sinx) and patterned on book p.22 answer 9's printed 2+2+2+1 shape. Boundary reading: printed p.37 (PDF 36) and printed p.44 (PDF 44) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The sub-integral ∫₀^(π/2) dx/(sinx+cosx) that appears here is the same helper integral as the preceding question (sin²x/(cosx+sinx)) — a student who reaches it should recognise the shortcut instead of re-deriving it from scratch.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Definite Integrals · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_property",
+        "kind": "equation",
+        "label": "Apply the property with a = π/2",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks. Only the x in front changes — the denominator is unchanged, just like the previous question.",
+        "memory_tip": "sin(π/2 − x) + cos(π/2 − x) = cosx + sinx = sinx + cosx — the denominator is symmetric, so it never changes under this property.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "I = ∫₀^(π/2) x/(sinx + cosx) dx …(1)",
+          "By x → π/2 − x: I",
+          "= ∫₀^(π/2) (π/2 − x)/(sin(π/2 − x) +",
+          "cos(π/2 − x)) dx",
+          "⇒ I = ∫₀^(π/2) (π/2 − x)/(cosx + sinx) dx …(2)"
+        ],
+        "why": "The denominator sinx + cosx is symmetric under the swap sinx ↔ cosx, so it is unchanged by x → π/2 − x; only the numerator's x becomes π/2 − x, which is what makes the addition step work.",
+        "common_mistakes": [
+          "Forgetting to change x to π/2 − x in the numerator as well as inside sin and cos.",
+          "Writing sin(π/2 − x) + cos(π/2 − x) as sinx − cosx instead of cosx + sinx."
+        ]
+      },
+      {
+        "id": "s2_add",
+        "kind": "equation",
+        "label": "Add to reach an x-free integral",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. x + (π/2 − x) = π/2 is what cancels the x term.",
+        "memory_tip": "x + (π/2 − x) always cancels to a plain π/2 — the same cancellation trick used throughout this chapter.",
+        "lines": [
+          "Adding (1) and (2): 2I",
+          "= ∫₀^(π/2) [x + (π/2 − x)]/(sinx + cosx) dx",
+          "= (π/2)∫₀^(π/2) dx/(sinx + cosx)",
+          "⇒ I = (π/4)∫₀^(π/2) dx/(sinx + cosx)"
+        ],
+        "why": "Adding the two equal forms cancels x and (π/2 − x) down to a plain π/2, leaving the same x-free integral that the preceding question also needed.",
+        "common_mistakes": [
+          "Adding the numerators incorrectly and not getting the constant π/2.",
+          "Losing the factor of 1/2 when isolating I from 2I."
+        ]
+      },
+      {
+        "id": "s3_reduce",
+        "kind": "equation",
+        "label": "Write cosx + sinx as √2 sin(x + π/4)",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks for the R sin(x+α) rewrite and the cosecant integral — identical setup to the previous question.",
+        "memory_tip": "sinx + cosx = √2 sin(x + π/4) — the same rewrite as the previous question, reused here.",
+        "lines": [
+          "sinx + cosx = √2 sin(x + π/4)",
+          "I = (π/(4√2))∫₀^(π/2) cosec(x + π/4) dx",
+          "[∵ ∫cosecθ dθ = log tan(θ/2)]",
+          "= (π/(4√2))[log tan((x + π/4)/2)]₀^(π/2)"
+        ],
+        "why": "The same R sin(x+α) rewrite used in the previous question reduces this integral to the identical cosecant form, only now multiplied by the extra factor of π/2 that came from the numerator.",
+        "common_mistakes": [
+          "Missing the extra π/4 factor that appears here but not in the previous question.",
+          "Forgetting the 1/√2 factors inside the sine sum."
+        ]
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Evaluate the log limits",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. This is exactly the answer the question asks to show — underline it.",
+        "memory_tip": "tan(3π/8) = √2 + 1 and tan(π/8) = √2 − 1 — the same pair used in the previous question.",
+        "lines": [
+          "= (π/(4√2))[log tan(3π/8) − log tan(π/8)]",
+          "= (π/(4√2)) log[(√2 + 1)/(√2 − 1)]",
+          "= (π/(4√2)) log[(√2 + 1)²] = (π/(4√2))·2 log(√2 + 1)",
+          {
+            "text": "∴ I = π/(2√2) · log(√2 + 1)",
+            "style": "boxed"
+          }
+        ],
+        "why": "Rationalising the fraction inside the log gives a perfect square, and log(a²) = 2 log(a) cancels the outer factor of 2 with the 4 in the denominator, leaving exactly the result the question asks to show.",
+        "common_mistakes": [
+          "Not rationalising (√2+1)/(√2−1) before taking the log.",
+          "Arriving at a value that is off from the printed result by a factor of 2 — a sign that the log(a²) = 2log(a) step was skipped."
+        ]
+      }
+    ]
+  }
+}

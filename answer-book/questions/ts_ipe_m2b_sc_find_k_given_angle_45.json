@@ -1,0 +1,104 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_sc_find_k_given_angle_45",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 2,
+    "name": "System of Circles (Maths-2B)"
+  },
+  "chapter": "System of Circles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the angle between the circles x² + y² − 12x − 6y + 41 = 0, x² + y² + kx + 6y − 59 = 0 is 45° then find k.",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find the centres, radii and distance",
+      "marks": 1
+    },
+    {
+      "label": "Apply the angle formula and solve for k",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Sr. Maths-2B (Sri Publishers, Machilipatnam), book p.81 — VSAQ chapter 13 System of Circles, answer 120. Book p.81 is NOT a Super Scoring Page (the SSP list on book p.76 omits page 81; its header carries no 'SSP' banner). Chapter star rank ★★, per the VSAQ section table (book p.76). Printed appearance tags: AP 18, TS 18. This question reuses the first circle of answer 119.2 exactly, replacing the second circle's fixed x-coefficient 4 with the unknown k, and gives the angle 45° as data instead of asking for it — it is the same formula run in reverse. ⚠ THE MARK SPLIT IS OURS — no [N Marks] margin tags are printed in this VSAQ chapter. Cut 1+1: one mark for the centres, radii and distance (reusing r₁ = 2 and d = √((6+2)²+(3+3)²) directly from 119.2's working, but recomputed here since g is now the unknown k rather than 4), one mark for substituting into the angle formula and solving the resulting equation for k. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Neither the two-book union check nor a board back-test was possible for this subject: there is no TSBIE second-year Maths-2B BLM on hand, and answer-book/papers/ holds first-year physics only — the book's own five Guess Papers (pp.118-127) stand in as the back-test instead. Boundary walked both ways: book p.79 ends the Circle VSAQ chapter at answer 115, and book p.82 opens VSAQ chapter 14 Parabola. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each (Q3 = System of Circles, per the QF sheet pp.3-4), answer all 10 (ABC_75). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Squaring cos 45° = 1/√2 to clear the square root eventually needs SQUARING the whole equation once more to remove k from inside a square root — expect two rounds of squaring, not one, before k is isolated.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "System of Circles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_centres_radii_distance",
+        "kind": "equation",
+        "label": "Find the centres, radii and distance",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. g′ is now the unknown k, so both r₂ and d carry k inside a square root.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "From the given circles, g = −6, f = −3, c = 41",
+          "and g′ = k/2, f′ = 3, c′ = −59",
+          "r₁ = √(36 + 9 − 41) = 2",
+          "r₂ = √(k²/4 + 9 + 59) = √(k²/4 + 68)"
+        ],
+        "why": "With one circle's x-coefficient replaced by the unknown k, its own g′ becomes k/2, and every quantity built from it — r₂, and later d — carries k as a variable rather than a fixed number.",
+        "common_mistakes": [
+          "Writing g′ = k instead of k/2 — g′ is always half the coefficient of x.",
+          "Reusing the r₁ = 2 and c = 41 values but forgetting c′ = −59 makes −c′ = +59 inside r₂'s square root."
+        ],
+        "memory_tip": "Only the SECOND circle's parameters change here compared with answer 119.2 — the first circle, and so r₁, are identical to that earlier question."
+      },
+      {
+        "id": "s2_angle_formula_solve_k",
+        "kind": "boxed_final",
+        "label": "Apply the angle formula and solve for k",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Two rounds of squaring are needed to clear the surds and isolate k.",
+        "lines": [
+          "cos 45° = (c + c′ − 2gg′ − 2ff′) / (2r₁r₂)",
+          "1/√2 = 6k / (4√(k²/4 + 68))",
+          "⇒ √(k²/4 + 68) = 3k/√2 · 1",
+          "Squaring, k² + 272 = 18k² ⇒ 17k² = 272",
+          "Squaring gave k² = 16, so k = 4 or k = −4.",
+          "k = −4 fails √(k²/4 + 68) = 3k/√2:",
+          "the left side is ≥ 0, the right side is not.",
+          "It gives cos θ = −1/√2, an angle of 135°.",
+          {
+            "text": "∴ k = 4",
+            "style": "boxed"
+          }
+        ],
+        "why": "Setting cos θ equal to cos 45° = 1/√2 and cross-multiplying leaves k inside a square root, and squaring clears it. The numerator c + c′ − 2gg′ − 2ff′ is LINEAR in k, not squared, so squaring can introduce a root the original equation never had — here k = −4 satisfies k² = 16 but makes the right-hand side of √(k²/4 + 68) = 3k/√2 negative, and puts the circles at 135° instead of 45°. Every root has to be tested against the unsquared equation before it is kept.",
+        "common_mistakes": [
+          "Keeping both roots of k² = 16. k = −4 is extraneous: it makes 3k/√2 negative while the square root beside it cannot be, and it gives an angle of 135°, not 45°.",
+          "Writing the numerator as 3k. With g = −6 and g′ = k/2, −2gg′ = +6k, so c + c′ − 2gg′ − 2ff′ = 6k."
+        ],
+        "memory_tip": "Squaring can create roots. After solving, put each one back into the line BEFORE the squaring and keep only the roots that survive."
+      }
+    ]
+  }
+}

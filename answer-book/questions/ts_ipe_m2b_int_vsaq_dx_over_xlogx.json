@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_vsaq_dx_over_xlogx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫ dx/(x logx).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute t = logx",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and back-substitute for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.87 (PDF page 87) — VSAQ chapter 16 ‘Integration’, answer 150, no printed appearance tags on this question. Chapter star rank ★★★. no printed margin mark tags appear anywhere in the Integration VSAQ chapter (book pp.86-89) — this card's 1+1 split is OURS, the standard 2-mark shape used throughout this book. This card's final answer was re-derived independently and matches the book's printed line, which drops the modulus bars in its very last step even though the middle step correctly carries log|t| — this card keeps log|logx| throughout for correctness (a minor, consistent habit across several of this chapter's final lines, not counted separately as a distinct error each time). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This is the third question in a row using t=logx — spotting 1/x fast is faster than re-deriving the substitution from scratch each time.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Integration · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sub",
+        "kind": "equation",
+        "label": "Substitute t = logx",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Identify",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put logx = t ⇒ (1/x)dx = dt",
+          "I = ∫ dt/t"
+        ],
+        "why": "1/(x logx) dx splits naturally into (1/logx)·(dx/x), and the second factor is exactly dt once t=logx — leaving the most basic ∫dt/t form.",
+        "common_mistakes": [
+          "Trying to integrate 1/(x logx) as a product using integration by parts instead of the direct substitution.",
+          "Missing that dx/x, not dx alone, is what converts to dt."
+        ],
+        "memory_tip": "∫dt/t = log|t| is the single most basic log-form integral in the whole chapter — recognise it immediately."
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Integrate and back-substitute for the final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          {
+            "text": "∴ ∫ dx/(x logx) = log|logx| + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "∫dt/t = log|t| + c, and substituting t=logx back in gives the final answer in x, with the modulus bars kept since logx can be negative for 0<x<1.",
+        "common_mistakes": [
+          "Dropping the modulus bars, which makes the antiderivative undefined for 0<x<1 where logx<0.",
+          "Forgetting to substitute logx back in for t."
+        ],
+        "memory_tip": "Keep |·| on the final log — logx is negative for x between 0 and 1, so the bars are not optional here."
+      }
+    ]
+  }
+}

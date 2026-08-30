@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_concentric_through_minus2_14",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the equation of the circle passing through the point (−2,14) and concentric with x² + y² − 6x − 4y − 12 = 0.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the concentric family",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the point and solve",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.78 — VSAQ chapter 12 Circle, answer 109.1. Printed appearance tag: TS 17. Every number was re-derived and the book is correct: k = −156 and the circle is x² + y² − 6x − 4y − 156 = 0. The same question is re-answered in the Bullet Model Paper (book p.103, Q1 & 2 CIRCLES) with identical working, so it is authored once, here. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Concentric means the same centre, so only the constant term may change — copy the x and y terms exactly and put an unknown k in place of the constant.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_family",
+        "kind": "equation",
+        "label": "Write the concentric family",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Copy −6x and −4y exactly; changing either of them moves the centre.",
+        "memory_tip": "Concentric circles share g and f. Only c changes.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Concentric circles have the same centre,",
+          "so g and f are unchanged and only c differs.",
+          "Required circle: x² + y² − 6x − 4y + k = 0 … (1)"
+        ],
+        "why": "The centre is (−g, −f), so two circles are concentric exactly when they share g and f. Only the constant is free, and it fixes the radius.",
+        "common_mistakes": [
+          "Changing the sign of the x or y term while copying.",
+          "Trying to find the centre first, which is not needed."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute the point and solve",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. 14² = 196, which is the number most often slipped here.",
+        "memory_tip": "Put the point in and solve one linear equation in k.",
+        "lines": [
+          "(1) passes through P(−2, 14)",
+          "⇒ 4 + 196 − 6(−2) − 4(14) + k = 0",
+          "⇒ 4 + 196 + 12 − 56 + k = 0",
+          "⇒ 156 + k = 0 ⇒ k = −156",
+          {
+            "text": "∴ x² + y² − 6x − 4y − 156 = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "A point lies on a circle exactly when it satisfies the equation, so substituting it turns the unknown constant into a one-step calculation.",
+        "common_mistakes": [
+          "Writing −6(−2) as −12.",
+          "Solving 156 + k = 0 as k = 156."
+        ]
+      }
+    ]
+  }
+}

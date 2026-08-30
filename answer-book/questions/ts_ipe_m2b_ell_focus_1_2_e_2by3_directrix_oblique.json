@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_ell_focus_1_2_e_2by3_directrix_oblique",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 4,
+    "name": "Ellipse (Maths-2B)"
+  },
+  "chapter": "Ellipse",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of the ellipse whose focus is (1, 2), eccentricity is 2/3 and directrix is 2x + 3y + 6 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up SP = e·PM",
+      "marks": 1
+    },
+    {
+      "label": "Square and substitute coordinates",
+      "marks": 1
+    },
+    {
+      "label": "Expand both sides",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the final equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 8 Ellipse, answer 68. NOT on an SSP page (book p.49 lists SSP pages 57,58,59,60 for this chapter; page 61 has no SSP banner). No appearance tag is printed beside this question at all — no TS or AP year, which is recorded here as an empty appearances list rather than guessed. Book p.61 prints no margin mark tags, so the 1+1+1+1 split here is OURS, matching the same four-stage focus-directrix shape used for Q67 immediately above it. The book's own working ends with the printed remark 'Note: The above equation represents the equation of an oblique ellipse' — this card keeps that observation, in plain language, as part of the final step's reasoning: the xy term means the ellipse's axes are not parallel to the coordinate axes. Ellipse is an SAQ-ONLY unit on the book's IPE Blue Print (book p.5). No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE BLM on hand; the book's five Guess Papers pp.118-127 are the orchestrator's back-test stand-in). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The book itself flags this ellipse as 'oblique' — naming that in the final line, and saying why (the xy term), shows the examiner the shape of the answer is understood, not just copied.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Ellipse · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up SP = e·PM",
+        "marks": 1,
+        "mark_note": "Setup",
+        "margin_note": "First mark. By the focus-directrix property, the ellipse is the locus of points P with SP = e·PM.",
+        "memory_tip": "SP over PM equals e — write this ratio first, before touching any coordinates.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given: focus S(1, 2), e = 2/3,",
+          "directrix 2x + 3y + 6 = 0",
+          "By the focus-directrix property, SP/PM = e",
+          "⇒ SP = e·PM",
+          "√((x−1)² + (y−2)²) = (2/3) · |2x+3y+6| / √13"
+        ],
+        "why": "The locus of a point whose distance from a fixed point (the focus), divided by its distance from a fixed line (the directrix), is a constant e < 1, is by definition an ellipse.",
+        "common_mistakes": [
+          "Computing √(4+9) as something other than √13 in the denominator.",
+          "Mixing up which point is the focus and which line is the directrix."
+        ]
+      },
+      {
+        "id": "s2_square",
+        "kind": "equation",
+        "label": "Square and substitute coordinates",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Squaring both sides removes the root and the modulus together.",
+        "memory_tip": "e² = 4/9, and 13 in the denominator comes from squaring √13.",
+        "lines": [
+          "Squaring and cross-multiplying:",
+          "117[(x−1)² + (y−2)²] = 4(2x+3y+6)²"
+        ],
+        "why": "Squaring both sides of the equation clears the square root on the left and the modulus on the right; the 117 comes from multiplying (2/3)² = 4/9 by 13, then clearing that fraction.",
+        "common_mistakes": [
+          "Losing track of the 13 when clearing denominators, and multiplying by 9 alone instead of 117.",
+          "Squaring 2/3 as 2/9 instead of 4/9."
+        ]
+      },
+      {
+        "id": "s3_expand",
+        "kind": "equation",
+        "label": "Expand both sides",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Expand (2x+3y+6)² fully — it has three cross terms, not one.",
+        "memory_tip": "A trinomial squared has THREE cross terms: 2·(first·second), 2·(first·third), 2·(second·third).",
+        "lines": [
+          "117(x²−2x+1+y²−4y+4)",
+          "= 4(4x²+9y²+36+12xy+24x+36y)",
+          "117x²+117y²−234x−468y+585",
+          "= 16x²+36y²+48xy+96x+144y+144"
+        ],
+        "why": "(2x + 3y + 6)² expands with three cross terms — 12xy, 24x and 36y — because it is a sum of three parts, not two; missing any one of them changes the final equation.",
+        "common_mistakes": [
+          "Expanding (2x+3y+6)² as if it only had two terms, dropping one of the three cross terms.",
+          "Forgetting to multiply the whole right-hand side by the outer factor of 4."
+        ]
+      },
+      {
+        "id": "s4_simplify",
+        "kind": "boxed_final",
+        "label": "Simplify to the final equation",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Fourth mark. This is an oblique ellipse — its axes are not parallel to the coordinate axes.",
+        "memory_tip": "A nonzero xy term in the final equation always signals an oblique (tilted) conic.",
+        "lines": [
+          "117x²−16x² + 117y²−36y² − 144xy − 234x−96x",
+          "− 468y−144y + 585−144",
+          "= 0",
+          {
+            "text": "101x² − 48xy + 81y² − 330x − 612y + 441 = 0",
+            "style": "boxed"
+          },
+          "This equation represents an oblique ellipse —",
+          "its axes are not parallel to the x- and y-axes."
+        ],
+        "why": "Collecting all terms on one side gives the final second-degree equation; the surviving xy term (−48xy) is the algebraic signature that this ellipse's axes are tilted, not aligned with the coordinate axes.",
+        "common_mistakes": [
+          "Trying to force the answer into x²/a² + y²/b² = 1 form, which is only possible for an axis-aligned ellipse.",
+          "Making an arithmetic slip while collecting the x² or y² coefficients across the two sides."
+        ]
+      }
+    ]
+  }
+}

@@ -3,7 +3,8 @@
  *
  *   npx tsx src/scripts/check_figure_pace.ts                     # report everything (warnings)
  *   npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_z1  # hard-fail on that prefix
- *   npm run check:figure-pace                                    # = the zoology strict run
+ *   npx tsx src/scripts/check_figure_pace.ts --strict ts_ipe_z1,ts_ipe_c2,ts_ipe_m2b   # several
+ *   npm run check:figure-pace                                    # = every retimed subject, strict
  *
  * A figure's drawing speed is authored per element (`ms`) and the player is
  * purely time-based, so a long stroke given a short `ms` visibly RACES — and no

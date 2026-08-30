@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_centre_minus4_minus3_find_g_f_radius",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If x² + y² + 2gx + 2fy = 0 has centre (−4,−3) then find g, f and the radius.",
+  "appearances": [
+    {
+      "year": 2017,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Find g and f from the centre",
+      "marks": 1
+    },
+    {
+      "label": "Find the radius",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.77 — VSAQ chapter 12 Circle, answer 104.1. It sits on a ★★★ SSP (Super Scoring Page): book p.77 carries the SSP banner. Printed appearance tag: AP 17. Every number was re-derived and the book is correct: g = 4, f = 3 and the radius is 5. Note that c = 0 here, so the circle passes through the origin. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "There is no constant term, so c = 0 and the radius is simply √(g² + f²) — which also says the circle passes through the origin, a fact worth writing if the question allows.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_g_and_f",
+        "kind": "equation",
+        "label": "Find g and f from the centre",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The centre is (−g, −f), so read it backwards: change the sign of each coordinate.",
+        "memory_tip": "Centre (−g, −f). Given the centre, flip both signs to get g and f.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: x² + y² + 2gx + 2fy = 0",
+          "Centre = (−g, −f) = (−4, −3)",
+          "⇒ −g = −4 and −f = −3",
+          "∴ g = 4, f = 3"
+        ],
+        "why": "For x² + y² + 2gx + 2fy + c = 0 the centre is (−g, −f). Given the centre, the two signs are simply changed back.",
+        "common_mistakes": [
+          "Writing g = −4 and f = −3 by copying the centre directly.",
+          "Halving the centre coordinates as well."
+        ]
+      },
+      {
+        "id": "s2_radius",
+        "kind": "boxed_final",
+        "label": "Find the radius",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. There is no constant term, so c = 0 and nothing is subtracted.",
+        "memory_tip": "No constant term means c = 0. Then the radius is √(g² + f²).",
+        "lines": [
+          "The equation has no constant term, so c = 0",
+          "Circle is x² + y² + 8x + 6y = 0",
+          "Radius = √(g² + f² − c) = √(16 + 9 − 0)",
+          {
+            "text": "∴ Radius = √25 = 5",
+            "style": "boxed"
+          }
+        ],
+        "why": "With c = 0 the radius is √(g² + f²), which is also the distance from the centre to the origin. That is another way of saying the circle passes through the origin.",
+        "common_mistakes": [
+          "Inventing a constant term because none is printed.",
+          "Writing √(16 + 9) as 4 + 3."
+        ]
+      }
+    ]
+  }
+}

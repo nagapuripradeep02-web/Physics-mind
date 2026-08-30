@@ -1,0 +1,242 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_chord_length_x_3y_minus22_on_y_x_minus3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the length of the chord intercepted by the circle x² + y² − x + 3y − 22 = 0 on the line y = x − 3.",
+  "appearances": [
+    {
+      "year": 2020,
+      "board": "ts_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Centre and radius",
+      "marks": 1
+    },
+    {
+      "label": "Perpendicular distance from the centre",
+      "marks": 1
+    },
+    {
+      "label": "Length of the chord",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.50 — SAQ chapter 6 Circle, answer 45.2. It is the right-hand twin of answer 45.1 on the same ★★★ SSP page (book p.50 carries the SSP banner). Printed appearance tags: TS 20 and an AP tag reading \"AP 16,1…\" whose second year is cut off at the trimmed right edge of the scan, so only AP 2016 is recorded; a reviewer with the physical book should read the rest. The mark split is OURS, not the book’s: this answer sits on a two-column or shared page with no printed margin tags. It is patterned on the one printed split in this chapter — book p.51, answer 48, which prints 1 + 1 + 1 + 1 across a four-move 4-mark answer. Star rank: the book gives the CIRCLE SAQ chapter ★★ in its SAQ chapter table (book p.49), in the chapter header (book p.50) and in the SAQ hit list header (book p.9), so every Circle SAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Circle holds Q11. WHERE THE BOOK STOPS SHORT: its last printed step is 2√(48/2) = 2√24, and the line runs off the trimmed edge of the scan. 2√24 = 4√6, and that simplified form is written here; the book’s 2√24 is the same number, not an error. Everything else was re-derived and is correct: r = 7/√2 and p = 1/√2. FIGURE SCOPE: the question does not say \"draw\", so the diagram step carries NO marks. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The line is given as y = x − 3, not in the ax + by + c = 0 form, so the first move is to rewrite it as x − y − 3 = 0 — using it as given is the commonest way to lose the distance mark here.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Circle · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_centre_and_radius",
+        "kind": "equation",
+        "label": "Centre and radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Both coefficients are odd, so g and f are halves and the radius comes out over √2.",
+        "memory_tip": "Odd coefficients give halves. Put everything over 4 before taking the square root.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given circle: x² + y² − x + 3y − 22 = 0",
+          "Here g = −1/2, f = 3/2, c = −22",
+          "Centre C = (1/2, −3/2)",
+          "r = √(1/4 + 9/4 + 22) = √((1 + 9 + 88)/4)",
+          "= √(98/4) = √(49/2) = 7/√2"
+        ],
+        "why": "Comparing with the general form gives 2g = −1 and 2f = 3. Writing 22 as 88/4 puts every term over the same denominator, so the root is taken once.",
+        "common_mistakes": [
+          "Taking g = −1 and f = 3 without halving.",
+          "Writing √(98/4) as 98/2."
+        ]
+      },
+      {
+        "id": "s2_perpendicular_distance",
+        "kind": "equation",
+        "label": "Perpendicular distance from the centre",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Rewrite y = x − 3 as x − y − 3 = 0 first; the coefficients are then 1 and −1.",
+        "memory_tip": "Move everything to one side before using the distance formula.",
+        "lines": [
+          "Write the line as x − y − 3 = 0",
+          "p = |1/2 − (−3/2) − 3| / √(1² + (−1)²)",
+          "= |(1 + 3 − 6)/2| / √2",
+          "= |−1| / √2 = 1/√2"
+        ],
+        "why": "The distance formula needs the line in the form ax + by + c = 0. Subtracting a negative y-coordinate is where the sign is usually lost: −(−3/2) is +3/2.",
+        "common_mistakes": [
+          "Using y = x − 3 directly and taking a = 1, b = 1.",
+          "Writing −(−3/2) as −3/2."
+        ]
+      },
+      {
+        "id": "s3_length_of_chord",
+        "kind": "boxed_final",
+        "label": "Length of the chord",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Both r² and p² are halves, so they subtract cleanly before the root is taken.",
+        "memory_tip": "r² = 49/2 and p² = 1/2, so r² − p² = 48/2 = 24.",
+        "lines": [
+          "Length of the chord = 2√(r² − p²)",
+          "= 2√(49/2 − 1/2) = 2√(48/2)",
+          "= 2√24 = 2 × 2√6",
+          {
+            "text": "∴ Length of the chord = 4√6",
+            "style": "boxed"
+          }
+        ],
+        "why": "Both squares are halves, so the subtraction is done before the root: 49/2 − 1/2 = 48/2 = 24. Then √24 = 2√6, and the factor 2 outside makes 4√6.",
+        "common_mistakes": [
+          "Writing (7/√2)² as 7/2.",
+          "Leaving the answer as 2√24 without taking out the perfect square 4."
+        ]
+      },
+      {
+        "id": "s4_diagram",
+        "kind": "diagram",
+        "label": "The picture",
+        "marks": 0,
+        "margin_note": "No mark of its own; the question does not ask for a diagram. The same picture serves every chord question.",
+        "memory_tip": "Radius, perpendicular distance and half the chord: a right-angled triangle every time.",
+        "figure": {
+          "id": "cir_chord_2",
+          "width": 400,
+          "height": 230,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "cir_chord_2_circle",
+              "d": "M 110 100 A 80 80 0 1 0 270 100 A 80 80 0 1 0 110 100",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "cir_chord_2_chord",
+              "d": "M 126 148 L 254 148",
+              "ms": 1830
+            },
+            {
+              "type": "stroke",
+              "id": "cir_chord_2_perp",
+              "d": "M 190 100 L 190 148",
+              "ms": 690,
+              "pen": "pencil",
+              "wipe": "y"
+            },
+            {
+              "type": "stroke",
+              "id": "cir_chord_2_ra",
+              "d": "M 200 148 L 200 138 L 190 138",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "cir_chord_2_rad",
+              "d": "M 190 100 L 126 148",
+              "ms": 1140
+            },
+            {
+              "type": "stroke",
+              "id": "cir_chord_2_dc",
+              "d": "M 186.5 100 A 3.5 3.5 0 1 0 193.5 100 A 3.5 3.5 0 1 0 186.5 100",
+              "ms": 310
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_2_lc",
+              "x": 196,
+              "y": 88,
+              "text": "C",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_2_la",
+              "x": 108,
+              "y": 154,
+              "text": "A",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_2_lb",
+              "x": 262,
+              "y": 154,
+              "text": "B",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_2_ld",
+              "x": 170,
+              "y": 168,
+              "text": "D",
+              "ms": 420
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_2_lr",
+              "x": 138,
+              "y": 134,
+              "text": "r",
+              "ms": 400,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_2_lp",
+              "x": 198,
+              "y": 130,
+              "text": "p",
+              "ms": 400,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "cir_chord_2_cap",
+              "x": 24,
+              "y": 220,
+              "text": "half the chord is √(r² − p²)",
+              "ms": 520,
+              "sm": true
+            }
+          ]
+        },
+        "why": "The perpendicular from C to the chord bisects it, so half the chord, p and r form a right-angled triangle. The formula 2√(r² − p²) is Pythagoras applied to that triangle and doubled.",
+        "common_mistakes": [
+          "Placing the perpendicular from a point on the circle instead of from the centre.",
+          "Reading the answer as half the chord rather than the whole chord."
+        ]
+      }
+    ]
+  }
+}

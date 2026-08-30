@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_findif_cosx_dy_ysinx_tanx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the I.F. of the differential equation (cosx)dy/dx + y·sinx = tanx by transforming it into linear form.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rewrite in linear form and identify P",
+      "marks": 1
+    },
+    {
+      "label": "Find the integrating factor",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.95 — VSAQ chapter 18 Differential Equations, answer 194, the fifth answer on the page. Not on an SSP page (this chapter's only SSP page is p.93). No printed appearance tag is legible for this answer. The mark split is OURS: this answer prints no margin marks. It splits at its one natural break — rewrite in linear form and identify P, then find the I.F. — matching the first two checkpoints used across this chapter's SAQ linear-D.E. answers, since this question asks only for the integrating factor, not the full solution. Star rank: the book's VSAQ chapter table (book p.76) gives the Differential Equations VSAQ chapter ★★, but the chapter header printed on book p.93 shows ★★★ (matching that page's own SSP banner). The two disagree; the TABLE's rank is used, so every Differential Equations VSAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this individual question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Differential Equations holds Q10. This question is not in the Bullet Model Paper's Q10 set (book p.106), which only reuses answers 181, 182, 184 and 185. The book's working was re-derived line by line and is correct throughout. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The question stops at the integrating factor — it does not ask for the full solution — so the answer ends the moment I.F. = secx is found, with no integral of Q left to evaluate.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differential Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite_identify_p",
+        "kind": "equation",
+        "label": "Rewrite in linear form and identify P",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Divide throughout by cosx to make the coefficient of dy/dx equal to 1.",
+        "memory_tip": "sinx/cosx = tanx is the simplification that turns the coefficient of y into the plain tanx used as P.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is (cosx)dy/dx + y·sinx = tanx",
+          "⇒ dy/dx + y·(sinx/cosx) = tanx/cosx",
+          "⇒ dy/dx + y·tanx = tanx·secx",
+          "This is in the form dy/dx + yP(x) = Q(x).",
+          "Here P = tanx"
+        ],
+        "why": "Dividing every term by cosx makes the coefficient of dy/dx equal to 1, which is what the standard linear form requires, and simplifies sinx/cosx to the plain tanx that becomes P.",
+        "common_mistakes": [
+          "Dividing only the y term by cosx and forgetting to divide tanx on the right side as well.",
+          "Leaving P as sinx/cosx instead of simplifying it to the standard tanx."
+        ]
+      },
+      {
+        "id": "s2_find_if",
+        "kind": "boxed_final",
+        "label": "Find the integrating factor",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. I.F. = e^(∫P dx); ∫tanx dx = log(secx) is a standard integral.",
+        "memory_tip": "∫tanx dx = log|secx| — always simplifies the I.F. down to a plain trig function once exponentiated.",
+        "lines": [
+          "Here P = tanx ⇒ ∫P dx = ∫tanx dx = log(secx)",
+          {
+            "text": "∴ I.F. = e^(∫P dx) = e^(log(secx)) = secx",
+            "style": "boxed"
+          }
+        ],
+        "why": "The standard integral of tanx is log(secx), and e raised to a log cancels back to the plain expression inside it, so the integrating factor simplifies all the way down to secx.",
+        "common_mistakes": [
+          "Integrating tanx as −log(cosx) and then not simplifying e^(−log(cosx)) correctly to secx.",
+          "Stopping at I.F. = e^(log secx) without simplifying it down to the plain secx."
+        ]
+      }
+    ]
+  }
+}

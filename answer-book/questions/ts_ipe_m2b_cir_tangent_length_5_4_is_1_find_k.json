@@ -1,0 +1,108 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_cir_tangent_length_5_4_is_1_find_k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 1,
+    "name": "Circle (Maths-2B)"
+  },
+  "chapter": "Circle",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of k if the length of the tangent from (5,4) to x² + y² + 2ky = 0 is 1.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2018,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2015,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the tangent length as √S₁₁",
+      "marks": 1
+    },
+    {
+      "label": "Square and solve for k",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.79 — VSAQ chapter 12 Circle, answer 110.1. It sits on a ★★★ SSP (Super Scoring Page): book p.79 carries the SSP banner. Printed appearance tags: AP 15, AP 16, AP 18 and TS 15 — four separate printed years, the most-tagged answer in the Circle VSAQ chapter. Every number was re-derived and the book is correct: 41 + 8k = 1 gives k = −5. The same question is re-answered in the Bullet Model Paper (book p.103, Q1 & 2 CIRCLES) with identical working, so it is authored once, here. The mark split 1 + 1 is OURS, not the book’s: the whole VSAQ chapter is set in two columns and prints no margin tags anywhere. There is no printed 2-mark split in this book to pattern it on, so it splits the answer at its one natural break. Star rank: the book’s VSAQ chapter table (book p.76) and its VSAQ hit list header (book p.11) both give the CIRCLE VSAQ chapter ★★★, but the chapter header printed on book p.77 shows only ★★. The two disagree; the TABLE’s rank is used, so every Circle VSAQ entry takes stars 3. That rank belongs to the CHAPTER, not to this question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Circle holds Q1 and Q2. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book’s five Guess Papers (book pp.118-127) are the only stand-in, and the orchestrator diffs the authored set against them. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "There is no x term and no constant term in the circle, so S₁₁ is short — but the 2k must still be halved into f before anything else, and 2f y₁ then puts the 2 back.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Circle · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tangent_length",
+        "kind": "equation",
+        "label": "Write the tangent length as √S₁₁",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. S₁₁ is the left side of the circle equation with the point substituted, nothing more.",
+        "memory_tip": "Length of the tangent from P to S = 0 is √S₁₁.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Length of the tangent from (5, 4) to",
+          "S ≡ x² + y² + 2ky = 0 is √S₁₁",
+          "Given √S₁₁ = 1",
+          "Squaring both sides: S₁₁ = 1"
+        ],
+        "why": "The square of the tangent length from an external point is S₁₁, the whole left side of the circle equation evaluated at that point. Squaring first removes the root before any substitution.",
+        "common_mistakes": [
+          "Using √(g² + f² − c) in place of S₁₁.",
+          "Forgetting to square and leaving the root in."
+        ]
+      },
+      {
+        "id": "s2_solve_k",
+        "kind": "boxed_final",
+        "label": "Square and solve for k",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. 2k(4) = 8k, so the k term carries a factor 8, not 4.",
+        "memory_tip": "25 + 16 = 41, and 41 + 8k = 1 gives 8k = −40.",
+        "lines": [
+          "S₁₁ = 5² + 4² + 2k(4) = 25 + 16 + 8k",
+          "⇒ 41 + 8k = 1",
+          "⇒ 8k = −40",
+          {
+            "text": "∴ k = −5",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting the point directly into x² + y² + 2ky gives 41 + 8k. Setting that equal to 1 leaves one linear equation, and the answer is negative because 41 is already far above 1.",
+        "common_mistakes": [
+          "Writing 2k(4) as 4k.",
+          "Solving 8k = −40 as k = −40/8 = −4."
+        ]
+      }
+    ]
+  }
+}

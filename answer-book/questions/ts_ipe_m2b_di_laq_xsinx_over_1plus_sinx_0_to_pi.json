@@ -1,0 +1,150 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_laq_xsinx_over_1plus_sinx_0_to_pi",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫₀^π (x sinx)/(1 + sinx) dx.",
+  "appearances": [
+    {
+      "year": 2015,
+      "board": "ap_ipe"
+    },
+    {
+      "year": 2016
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Apply the King's property",
+      "marks": 2
+    },
+    {
+      "label": "Add and split into two integrals",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate ∫dx/(1 + sinx)",
+      "marks": 2
+    },
+    {
+      "label": "Combine for the final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.39 (PDF page 38) — LAQ chapter 4 'Definite Integrals', answer 33, printed alone on a single-column page and marked with a printed 'Excellent Q' tag (a book highlight, not a mark-split signal). Printed appearance: AP 15, TS 16. Chapter star rank ★★★ applies. No margin mark tags are printed on this page, so the 2+2+2+1 split is OURS, patterned on the same four-stage King's-property shape used for answers 32.1/32.2 in this chapter, itself patterned on book p.22 answer 9's printed 2+2+2+1 split. Boundary reading: printed p.37 (PDF 36) and printed p.44 (PDF 44) confirm the chapter's span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The middle step — evaluating ∫₀^π dx/(1+sinx) by multiplying top and bottom by (1−sinx) — is a standalone trick worth memorising on its own; it turns up whenever 1+sinx or 1−sinx sits alone in a denominator.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Definite Integrals · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_property",
+        "kind": "equation",
+        "label": "Apply the King's property",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks. sin(π − x) stays sinx, so only the x out front changes.",
+        "memory_tip": "sin(π − x) = sinx always — the denominator here never changes under this substitution.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "I = ∫₀^π (x sinx)/(1 + sinx) dx …(1)",
+          "By x → π − x:",
+          "I = ∫₀^π (π − x)sin(π − x)/(1 + sin(π − x)) dx",
+          "⇒ I = ∫₀^π (π − x)sinx/(1 + sinx) dx …(2)"
+        ],
+        "why": "sin(π − x) = sinx, so the denominator 1 + sinx is unchanged by the substitution — only the x in the numerator becomes π − x, setting up the cancellation in the next step.",
+        "common_mistakes": [
+          "Writing sin(π − x) as −sinx.",
+          "Forgetting to replace BOTH the x in front and the sinx inside the denominator's argument."
+        ]
+      },
+      {
+        "id": "s2_add",
+        "kind": "equation",
+        "label": "Add and split into two integrals",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. The 1/(1+sinx) split is the setup for the next step's trick.",
+        "memory_tip": "1/(1+sinx) always splits into 1 minus 1/(1+sinx) — write it as [1 + sinx − 1]/(1 + sinx).",
+        "lines": [
+          "Adding (1) and (2):",
+          "2I = π∫₀^π sinx/(1 + sinx) dx",
+          "= π∫₀^π [(1 + sinx − 1)/(1 + sinx)] dx",
+          "= π∫₀^π [1 − 1/(1 + sinx)] dx",
+          "= π∫₀^π 1 dx − π∫₀^π dx/(1 + sinx)",
+          "= π² − π∫₀^π dx/(1 + sinx) …(3)"
+        ],
+        "why": "Writing sinx as (1 + sinx) − 1 splits the fraction into a constant 1 and a leftover 1/(1+sinx) term, turning the integral into two easy pieces: a plain x-integral and one that needs a separate trick.",
+        "common_mistakes": [
+          "Trying to integrate sinx/(1+sinx) directly without the split.",
+          "Losing the overall factor of π when distributing it across the two new integrals."
+        ]
+      },
+      {
+        "id": "s3_reduce",
+        "kind": "equation",
+        "label": "Evaluate ∫dx/(1 + sinx)",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks for this standalone sub-integral.",
+        "memory_tip": "Multiply top and bottom by (1 − sinx) whenever 1 + sinx sits alone in a denominator — it turns cos²x up top.",
+        "lines": [
+          "∫₀^π dx/(1 + sinx)",
+          "= ∫₀^π (1 − sinx)/[(1 + sinx)(1 − sinx)] dx",
+          "= ∫₀^π (1 − sinx)/cos²x dx",
+          "= ∫₀^π (sec²x − secx tanx) dx",
+          "= [tanx − secx]₀^π",
+          "= (tanπ − secπ) − (tan0 − sec0)",
+          "= (0 + 1) − (0 − 1) = 2"
+        ],
+        "why": "Multiplying by (1 − sinx)/(1 − sinx) clears the sinx from the denominator using 1 − sin²x = cos²x, leaving a sum of two standard antiderivatives — tanx and secx — that can be evaluated directly.",
+        "common_mistakes": [
+          "Writing secπ as +1 instead of −1.",
+          "Losing the negative sign when distributing (1 − sinx)/cos²x into sec²x − secx tanx."
+        ]
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Combine for the final answer",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Substitute the value 2 from step 3 back into equation (3).",
+        "memory_tip": "π² minus π times 2 gives π² − 2π — halve it for I.",
+        "lines": [
+          "From (3): 2I = π² − π(2) = π² − 2π",
+          {
+            "text": "∴ I = π²/2 − π",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting the value 2, found in the previous step, back into 2I = π² − π∫dx/(1+sinx) and dividing by 2 gives the final answer directly.",
+        "common_mistakes": [
+          "Forgetting to divide the whole expression by 2 at the end.",
+          "Writing the answer as (π² − 2π)/2 without simplifying to π²/2 − π."
+        ]
+      }
+    ]
+  }
+}

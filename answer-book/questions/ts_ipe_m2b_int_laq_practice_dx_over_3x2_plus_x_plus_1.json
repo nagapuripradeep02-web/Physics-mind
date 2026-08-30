@@ -1,0 +1,163 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_laq_practice_dx_over_3x2_plus_x_plus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫ dx/(3x² + x + 1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take out 3 and complete the square",
+      "marks": 1
+    },
+    {
+      "label": "Identify the standard form and its constant a",
+      "marks": 1
+    },
+    {
+      "label": "State the standard Tan⁻¹ formula",
+      "marks": 2
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 2
+    },
+    {
+      "label": "Final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.29 (PDF page 28) — a ‘PQ’ (Practice Question) box printed directly under LAQ answer 19, in the same INTEGRATION-II sub-section. The book prints ONLY the question and a terse bracketed answer — ‘[Ans: (2/√11)Tan⁻¹((6x+1)/√11)+c]’ — no worked steps at all, so every step here is authored by this card, not transcribed. The book's printed cross-reference ‘☞ P 89(184)’ is a DEAD pointer: printed p.89 holds VSAQ answers 160-164 (Integration chapter), not any question numbered 184 — answer 184 sits on printed p.94, inside the Differential Equations chapter, and has no connection to this question. The book's own sub-heading for this and the next question is printed ‘INTEGRATION-II [to be deleted]’ (book p.29) — the book's own syllabus-deletion marker, not this card's judgement. It is authored here as an ordinary card, and a teacher must confirm whether this sub-section is still examinable before assigning it. This card's mark split follows the same 1+1+2+2+1 shape as the parent answer 19, since the two share an identical method. The final answer was independently re-derived and matches the book's terse printed Ans line exactly. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The book gives no working for a PQ box, only the final answer in brackets — a student is expected to reproduce the FULL method shown in the answer immediately above it, changing only the numbers; that is exactly what this card's steps do.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Integration · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_square",
+        "kind": "equation",
+        "label": "Take out 3 and complete the square",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "3x² + x + 1 = 3[x² + x/3 + 1/3]",
+          "= 3[x² + x/3 + (1/6)² − (1/6)² + 1/3]",
+          "= 3[(x + 1/6)² + 11/36]"
+        ],
+        "why": "With a leading coefficient of 3, that 3 must be factored out FIRST so the bracket starts as x² + … before completing the square inside it — the same move as answer 19, one step earlier.",
+        "common_mistakes": [
+          "Completing the square before factoring out the 3, which uses the wrong half-coefficient.",
+          "Forgetting to multiply the constant 1/3 through correctly when checking −(1/6)² + 1/3 = 11/36."
+        ],
+        "memory_tip": "Leading coefficient not 1? Factor it out FIRST, always, before completing the square."
+      },
+      {
+        "id": "s2_identify",
+        "kind": "equation",
+        "label": "Identify the standard form and its constant a",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          "11/36 = (√11/6)²,",
+          "so 3x²+x+1 = 3[(x+1/6)² + (√11/6)²]",
+          "This matches 3[x²+a²]",
+          "with x written as (x+1/6) and a = √11/6"
+        ],
+        "why": "The 3 sitting outside the bracket stays outside for now — only the bracket itself needs to be matched to the standard x²+a² pattern, with a read off as the square root of the leftover constant.",
+        "common_mistakes": [
+          "Absorbing the 3 into a, giving a wrong value of a.",
+          "Using 11/36 as a instead of its square root √11/6."
+        ],
+        "memory_tip": "The factored-out 3 sits outside the whole integral as 1/3 — it never touches a."
+      },
+      {
+        "id": "s3_formula",
+        "kind": "equation",
+        "label": "State the standard Tan⁻¹ formula",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Standard result",
+        "lines": [
+          {
+            "text": "\\int \\frac{dx}{x^2+a^2} = \\frac{1}{a}\\operatorname{Tan}^{-1}\\left(\\frac{x}{a}\\right) + c",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "why": "The same standard result as answer 19 — once the quadratic is written as (something)² + a², this formula applies no matter what the leading coefficient outside the bracket was.",
+        "common_mistakes": [
+          "Trying to fold the outside factor of 3 into this standard formula instead of keeping it as a separate 1/3 multiplier.",
+          "Misremembering the formula's 1/a coefficient as just 1."
+        ],
+        "memory_tip": "This formula only ever sees the BRACKET, never the factor sitting outside it."
+      },
+      {
+        "id": "s4_substitute",
+        "kind": "equation",
+        "label": "Substitute and simplify",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "∫dx/(3x²+x+1)",
+          "= (1/3)∫dx/[(x+1/6)²+(√11/6)²]",
+          "= (1/3)·(1/(√11/6))Tan⁻¹[(x+1/6)/(√11/6)] + c",
+          "= (1/3)·(6/√11)Tan⁻¹[(x+1/6)/(√11/6)] + c",
+          "= (2/√11)Tan⁻¹[(x+1/6)/(√11/6)] + c"
+        ],
+        "why": "The outside 1/3 multiplies the WHOLE formula, including its own 1/a coefficient — (1/3)(6/√11) collapses to 2/√11, which is exactly the coefficient printed in the book's terse Ans line.",
+        "common_mistakes": [
+          "Forgetting to multiply the outside 1/3 into the formula's own coefficient 1/a.",
+          "Arithmetic slip turning (1/3)(6/√11) into something other than 2/√11."
+        ],
+        "memory_tip": "(1/3) × (6/√11) = 2/√11 — the 3's cancel down to a clean 2 on top."
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          "(x+1/6)/(√11/6) = (6x+1)/√11",
+          "∴ ∫ dx/(3x²+x+1) =",
+          {
+            "text": "(2/√11)Tan⁻¹[(6x+1)/√11] + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Clearing the internal sixths from the Tan⁻¹ argument gives (6x+1)/√11, matching the book's own bracketed Ans line — (2/√11)Tan⁻¹((6x+1)/√11)+c — term for term.",
+        "common_mistakes": [
+          "Leaving the argument as the un-simplified (x+1/6)/(√11/6).",
+          "Writing √11 as 11 by dropping the root."
+        ],
+        "memory_tip": "Multiply top and bottom of the inner fraction by 6 to clear the sixths in one move."
+      }
+    ]
+  }
+}

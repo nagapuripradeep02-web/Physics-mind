@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_substitution_dydx_plus1_exy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Solve dy/dx + 1 = e^(x+y).",
+  "appearances": [
+    {
+      "year": 2018,
+      "board": "ts_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Substitute t = x + y",
+      "marks": 1
+    },
+    {
+      "label": "Integrate and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.94 — VSAQ chapter 18 Differential Equations, answer 189, the sixth and last answer on the page. Not on an SSP page (this chapter's only SSP page is p.93). Printed appearance tag: TS 18. The mark split is OURS: this answer prints no margin marks. It splits at its one natural break — making the substitution t = x + y, then integrating and finishing — the same shape used across this book's substitution answers. Star rank: the book's VSAQ chapter table (book p.76) gives the Differential Equations VSAQ chapter ★★, but the chapter header printed on book p.93 shows ★★★ (matching that page's own SSP banner). The two disagree; the TABLE's rank is used, so every Differential Equations VSAQ entry takes stars 2. That rank belongs to the CHAPTER, not to this individual question. Paper position: Maths-2B Section A runs Q1-Q10 at 2 marks each, all compulsory; Differential Equations holds Q10. This question is not in the Bullet Model Paper's Q10 set (book p.106), which only reuses answers 181, 182, 184 and 185. The book's working was re-derived line by line and is correct throughout, including absorbing the sign into the arbitrary constant to reach e^(−(x+y)) + x + c = 0. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The sum x + y appears both as the argument of the exponential AND is exactly what dy/dx + 1 becomes once t = x + y is introduced — that double appearance is the signal to substitute t = x + y rather than trying to separate x and y directly.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differential Equations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "equation",
+        "label": "Substitute t = x + y",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Put t = x + y, so dt/dx = 1 + dy/dx — exactly the left side of the given equation.",
+        "memory_tip": "Whenever dy/dx + 1 sits next to e^(x+y), recognise dt/dx = 1 + dy/dx for t = x + y and the equation collapses to a single variable.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is dy/dx + 1 = e^(x+y) … (1)",
+          "Put x + y = t. Then 1 + dy/dx = dt/dx",
+          "(1) ⇒ dt/dx = e^t"
+        ],
+        "why": "Setting t = x + y makes dt/dx equal to 1 + dy/dx by the chain rule, which is exactly the left-hand side of the given equation, so the whole equation collapses to a single separable equation in t and x alone.",
+        "common_mistakes": [
+          "Writing dt/dx = dy/dx instead of dt/dx = 1 + dy/dx, forgetting the derivative of x itself contributes 1.",
+          "Trying to separate x and y directly without first spotting the t = x + y substitution."
+        ]
+      },
+      {
+        "id": "s2_integrate_finish",
+        "kind": "boxed_final",
+        "label": "Integrate and finish",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. Separate as e^(−t)dt = dx, integrate to −e^(−t) = x + c, then put t = x + y back in.",
+        "memory_tip": "∫e^(−t)dt = −e^(−t) — the same negative-exponential integral that appears whenever the equation separates into e^(−t)dt = dx.",
+        "lines": [
+          "⇒ dt/e^t = dx ⇒ e^(−t) dt = dx",
+          "⇒ ∫e^(−t) dt = ∫dx ⇒ −e^(−t) = x + c",
+          {
+            "text": "∴ e^(−(x+y)) + x + c = 0",
+            "style": "boxed"
+          }
+        ],
+        "why": "Separating the variables in t and x and integrating gives −e^(−t) = x + c; moving every term to one side and substituting t = x + y back in gives the final relation entirely in the original variables.",
+        "common_mistakes": [
+          "Forgetting to substitute t = x + y back into the final answer and leaving it in terms of t.",
+          "Dropping the minus sign on e^(−t) when moving it across, writing e^(−(x+y)) = x + c instead of e^(−(x+y)) + x + c = 0."
+        ]
+      }
+    ]
+  }
+}

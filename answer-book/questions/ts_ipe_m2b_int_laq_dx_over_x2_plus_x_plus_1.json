@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_int_laq_dx_over_x2_plus_x_plus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 6,
+    "name": "Integration (Maths-2B)"
+  },
+  "chapter": "Integration",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫ dx/(x² + x + 1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Complete the square in the denominator",
+      "marks": 1
+    },
+    {
+      "label": "Identify the standard form and its constant a",
+      "marks": 1
+    },
+    {
+      "label": "State the standard Tan⁻¹ formula",
+      "marks": 2
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 2
+    },
+    {
+      "label": "Final answer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.29 (PDF page 28) — LAQ chapter 3 ‘Integration’, answer 19, no printed appearance tags on this question. No SSP banner on this page; chapter star rank ★★★ still applies (book p.13 chapter table). The book's own sub-heading for this and the next question is printed ‘INTEGRATION-II [to be deleted]’ (book p.29) — the book's own syllabus-deletion marker, not this card's judgement. It is authored here as an ordinary card, and a teacher must confirm whether this sub-section is still examinable before assigning it.no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "This whole method is just three steps in sequence — complete the square, name a, plug into the standard Tan⁻¹ formula — and every other question on this page uses the same three steps with a different quadratic.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Integration · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_square",
+        "kind": "equation",
+        "label": "Complete the square in the denominator",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x² + x + 1 = x² + x + (1/2)² − (1/2)² + 1",
+          "= (x + 1/2)² + 3/4"
+        ],
+        "why": "Adding and subtracting (1/2)² — half the coefficient of x, squared — rewrites the quadratic as a perfect square plus a constant, which is the only form the standard Tan⁻¹ formula accepts.",
+        "common_mistakes": [
+          "Adding (1/2)² without also subtracting it, which changes the value of the expression.",
+          "Using half the coefficient of x² instead of half the coefficient of x."
+        ],
+        "memory_tip": "Half the x-coefficient, squared, added and subtracted — that pair never changes the expression's value."
+      },
+      {
+        "id": "s2_identify",
+        "kind": "equation",
+        "label": "Identify the standard form and its constant a",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Setup",
+        "lines": [
+          "3/4 = (√3/2)²,",
+          "so x² + x + 1 = (x + 1/2)² + (√3/2)²",
+          "This matches x² + a²",
+          "with x written as (x + 1/2) and a = √3/2"
+        ],
+        "why": "Writing the constant 3/4 as a square (√3/2)² makes the match to the standard x² + a² pattern explicit, so the formula for ∫dx/(x²+a²) can be applied directly.",
+        "common_mistakes": [
+          "Using a = 3/4 instead of a = √3/2 — a is the square ROOT of the constant, not the constant itself.",
+          "Forgetting that the ‘x’ in the standard formula is really (x + 1/2) here, not x alone."
+        ],
+        "memory_tip": "a is always the SQUARE ROOT of the constant left over after completing the square."
+      },
+      {
+        "id": "s3_formula",
+        "kind": "equation",
+        "label": "State the standard Tan⁻¹ formula",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Standard result",
+        "lines": [
+          {
+            "text": "\\int \\frac{dx}{x^2+a^2} = \\frac{1}{a}\\operatorname{Tan}^{-1}\\left(\\frac{x}{a}\\right) + c",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "why": "This is a standard, memorised result — every completing-the-square integral in this chapter ends by quoting one of the three standard forms (this one, the log form, or the Sin⁻¹ form).",
+        "common_mistakes": [
+          "Confusing this with the log-form standard integral ∩dx/(x²−a²), which is used for a DIFFERENCE of squares, not a sum.",
+          "Writing Tan⁻¹ with the argument as a/x instead of x/a."
+        ],
+        "memory_tip": "Check the sign in the denominator: x² PLUS a² uses the Tan⁻¹ formula; x² MINUS a² uses the log formula."
+      },
+      {
+        "id": "s4_substitute",
+        "kind": "equation",
+        "label": "Substitute and simplify",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Method",
+        "lines": [
+          "∫dx/(x²+x+1) = ∫dx/[(x+1/2)²+(√3/2)²]",
+          "= (1/(√3/2))Tan⁻¹[(x+1/2)/(√3/2)] + c",
+          "= (2/√3)Tan⁻¹[(x+1/2)/(√3/2)] + c"
+        ],
+        "why": "Substituting x → (x+1/2) and a = √3/2 directly into the standard formula's 1/a and x/a slots gives the answer in terms of (x+1/2); the /2's inside the Tan⁻¹ argument still need clearing.",
+        "common_mistakes": [
+          "Substituting only in the Tan⁻¹ argument and forgetting to also replace 1/a with 2/√3 in front.",
+          "Leaving the answer as 1/(√3/2) without simplifying it to 2/√3."
+        ],
+        "memory_tip": "1 divided by a fraction flips it — 1/(√3/2) = 2/√3, used twice in this line."
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Final answer",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Solution",
+        "lines": [
+          "(x+1/2)/(√3/2) = (2x+1)/√3",
+          "∴ ∫ dx/(x²+x+1) =",
+          {
+            "text": "(2/√3)Tan⁻¹[(2x+1)/√3] + c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Multiplying the numerator and denominator of (x+1/2)/(√3/2) by 2 clears the internal fractions, turning it into the tidy (2x+1)/√3 that examiners expect in the final line.",
+        "common_mistakes": [
+          "Leaving the Tan⁻¹ argument as the un-simplified (x+1/2)/(√3/2) instead of clearing it to (2x+1)/√3.",
+          "Dropping the +c."
+        ],
+        "memory_tip": "Multiply top and bottom of the inner fraction by 2 to clear the halves in one clean move."
+      }
+    ]
+  }
+}

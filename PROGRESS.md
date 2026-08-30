@@ -1,5 +1,122 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📐 SESSION — Senior Inter Maths-2B: the book's EIGHTH subject, 8 units / 271 cards (2026-08-29, `feat/ipe-answerbook-maths-2b`)
+
+**Bottom line: Maths-2B is authored, catalogued and registered — 271 cards over 8 units, taking the bank 1777 → 2048 entries. Three things are worth carrying forward and none of them is a card. The 75-mark paper was VERIFIED rather than inferred, and the same table was built twice on two desks the same day. A rate limit killed five unit agents at once and cost nothing, because every card was already on disk. And two quality problems — 20.7% line wrap and nine defective figures — were invisible to every gate and only turned up by measuring and by looking.**
+
+### The paper: 75 marks, and why that is not the 60 of Maths-1A/1B
+
+The 2026-27 reform moved Maths-1A/1B to 60 written marks with 8-mark long answers. Applying that to
+second year by analogy would have mis-marked all 62 long answers on this paper. It is **first year
+only**: TV9 Telugu, 17 May 2026 — *"ఈ సంస్కరణలు ఈ ఏడాదికి ఫస్టియర్‌కు మాత్రమే వర్తిస్తాయి. 2027-28
+నుంచి సెకండ్‌ ఇయర్‌కీ ఇవి అమలవుతాయి"* (these reforms apply only to first year this year; they reach
+second year from 2027-28), with Newsmeter 15 May 2026 giving the same 60+15 figures for the reformed
+maths paper, careers360's 2026-27 syllabus page (updated 30 Jul 2026) still listing Maths-IIB's eight
+chapters unchanged, and the source book's own blueprint (p.5) and all five model papers cut at
+A 10×2 · B any 5 of 7 ×4 · C any 5 of 7 ×**7** = 75. One contrary Telugu report turned out to be
+about **Andhra Pradesh**, which switched first year a year earlier. Registered as
+`ABC_75_MATHS_PRE_REFORM` with `internal` omitted — second year carries no activity-based-learning
+mark in 2026-27, and that field is printed to students. **When the reform reaches second year in
+2027-28 this paper needs the same 7 → 8 re-cut that 1A/1B had; that is a dated change, not this
+year's.** Proved the row actually gates: a 2B VSAQ at `marks_total: 3` fails `check:cards` naming
+PAPER_PATTERNS, and the same card at 2 passes — an unregistered subject makes `paperMarksFor` return
+`undefined` and switches the gate off for the whole paper, silently.
+
+### The same constant, built twice, on the same day
+
+Maths-2A was authored in a parallel session on another desk, and independently produced the identical
+75-mark section table under a different name (`ABC_75_MATHS_PRE_REFORM` there, `ABC_75` here). That is
+Rule 40a happening in real time. Renamed mine to theirs so the merge is a keep-both of two
+`PAPER_PATTERNS` rows rather than two identical constants — the shared table is the point. Their
+branch also carried a genuine regression I found while diffing: collapsing `package.json`'s duplicated
+`check:figure-pace` key, they left a bare trailing `--strict`, and the parser returns `''` for a flag
+with no value, so `strict` was false for every file and **the figure gate silently gated nothing while
+exiting 0**. Flagged it; they reproduced it, adopted the comma-separated-prefix design used here, and
+went further — a bare `--strict` is now a hard error, exit 2. **A gate an argument slip can switch off
+without saying so is not a gate.**
+
+### A rate limit killed five agents at once and cost nothing
+
+All five running unit agents died together on a session limit. Every card already written was on disk
+and passed `check:cards`, so 112 of them were committed immediately and the units resumed from that
+state. This is the physics_2 lesson holding a second time: **order agents cards-first, and expect to
+finish someone else's chapter.** Circle turned out to be complete at 57 cards but had no manifest
+fragment, so its fragment was rebuilt here from each card's recorded page and answer number,
+cross-checked so that all 57 files are listed exactly once, and verified against pages read directly
+— including the book's own quirk of printing Star Q+ answer 203 before 202.
+
+### The scan is not the book
+
+Printed p.23 was never scanned and printed p.43 was scanned twice, so the two defects cancel to 128
+pages and nothing looks wrong from the page count: **PDF 23-42 are printed 24-43**. Parabola LAQ
+answers 10 and 11 lived on the missing page. Answer 10 is pinned by a guess-paper pointer and the hit
+list and was authored by the book's own three-point method; answer 11 is presumed to be the Bullet
+Model Paper p.113 item, which has no other home in the book. Both cards say so, and every card cites
+printed pages.
+
+### Two quality problems no gate could see
+
+- **Line wrap started at 20.7%** (557 of 2692 lines), five times Chemistry-I's 4.1%, the worst
+  previously shipped — the unit agents chained several algebra steps onto one `lines[]` entry. 653
+  lines were reflowed mechanically, no word changed, at the boundaries a hand actually uses, tried in
+  priority order: sentence end, label colon, chaining arrow, dash or comma clause, "compare X with Y",
+  continuation `=`, and last a plain word boundary (which `measure_wrap`'s own header sanctions). The
+  ladder exists because splitting at `=` first produced *"This is in the form dy/dx + yP(x)"* / *"= Q(x).
+  Here P = tanx"* — worse than the wrap it fixed. **Now 1.2%**, better than every subject shipped
+  except physics. Integration was excluded from the first pass while its agent was still writing, and
+  reflowed after it finished — never edit a file another agent has open.
+  **The cheaper fix, from the 2A desk which measured 0.0%: put the budgets in the unit agent's prompt
+  and make it run `measure:wrap` on its own prefix before reporting.** Retrofitting is far more
+  expensive, and a character-count proxy cannot find the `boxed` ones, whose budget is 535px not 624.
+- **Nine of the 26 figures were defective and every gate passed them.** Four labels clipped off the
+  canvas, three label collisions (the parabola derivation rendered "A(0,0)S(a,0)" as one unreadable
+  run), and two figures whose geometry contradicted the answer they illustrated: the equilateral-triangle
+  card drew the foci at the ellipse's vertices, which reads as e = 1 on a card whose answer is e = 1/2,
+  and the hyperbola's director circle sat beside an unrelated arc instead of concentric with it. Both
+  were rebuilt from the real geometry — the triangle from e = 1/2 (ST = SB = TB = 90 units), the
+  director circle from radius √(a²−b²) with the two tangent slopes solved from the tangency quadratic
+  (m₁m₂ = −1.000, perpendicular by construction rather than by eye). **`figures:gallery`'s bounds check
+  estimates a label at 8.5px per character where real Kalam runs to 9.8, so it under-reports by ~10%
+  and passing it is not evidence** — the same finding the senior-chemistry desk recorded, reproduced
+  here on four more labels.
+  The fixing agent corrected two of my own calls with evidence instead of following them: the auxiliary
+  circle was already concentric (a stray tangent and a mis-placed focus made it look otherwise), and the
+  O/(0,0) overlap I reported was one label all along. Both re-verified by eye.
+
+### Where the book is wrong
+
+Ten findings, each written correctly on the card with the printed claim recorded in that step's `why`
+and in `verification.note`. The two that matter most were caught by differentiating the printed result
+back: **answers 16.1 and 18.2 each drop the leading minus on the first term of the final reduction
+line**, though the line immediately above carries it — only the corrected forms differentiate back to
+sin⁴x and cosec⁵x. And **the practice question under answer 176 prints 8/315 for ∫₀^(π/2) cos⁷x sin²x dx
+when the value is 16/315** — 8/315 is answer 176's own value, copied from the question above it, and it
+carries an AP 22 tag so it would have surfaced in any back-test. Also: a Bullet-Model-Paper solution
+that restates the wrong circle and computes r₂ = 2 before using r₂ = 8 two lines later (final answers
+still correct); the p.69 substitution printed identically to the line above it; five dead or wrong
+`Ans-Page` pointers; a Star Q+ run printed 199, 200, 201, **203, 202**, 204, 205; and a star rank the
+divider and the chapter header disagree on.
+
+### Verification
+
+`tsc` 0 · `build:answers` passes at 2048 entries · `vitest` 443/443 · `check:cards` clean on all 271
+(26 katex lines, all letter-subscripted Iₙ reduction forms) · `check:figure-pace` PASS strict over
+`ts_ipe_c2,ts_ipe_z1,ts_ipe_m2b` · `check:papers` clean · `merge_units.py` validated both directions,
+8 units / 271 entries / 271 files, byte-identical round trip · `measure:wrap` 1.2%. e2e sweeps raised
+for the new fleet size (2048 now, ~2360 once 2A merges): the two 0.9 s/entry sweeps to 2_400_000, the
+widest questions × cuts sweep to 3_000_000, the typeset sweep to 360_000 — matching the 2A branch so
+the merge is one agreement rather than two budgets.
+
+### Not done, deliberately
+
+No PR yet — **2A merges first** by agreement, then this desk merges master and resolves (the constant,
+two `PAPER_PATTERNS` rows, the enum, `SUBJ_LABEL`, the `chapterLabel()` alternation, four Vidi sites,
+`STREAMS.mpc_2` plus its blurb and the og card copy naming BOTH papers, and `STREAM_SUBJECTS`). Not
+deployed — `deploy:answers` is founder-only, Rule 17, and no `mpc_2` deploy target exists. **Both
+structural checks are impossible for this paper and that sentence is on all 271 cards**: there is no
+second maths book to union against and no second-year maths paper in `answer-book/papers/`, so the
+book's own five Guess Papers are the only back-test corpus — a later session must never read "not
+checked" as "checked and clean". The enumeration sweep was not run, so this bank is asked-only.
 ## 📐 SESSION — Maths 2A: the book's SEVENTH subject, and the first paper in the bank whose long answer is NOT 8 marks (2026-08-29, `feat/ipe-answerbook-maths-2a`)
 
 **Bottom line: 257 cards over 10 units take the bank 1,777 → 2,034 questions and complete the senior MPC stream (Physics-II + Chemistry-II + Maths-2A, 853 answers over 44 chapters). The cards are not the interesting part. The founder asked whether the second-year mark scheme had changed, and the answer — verified against two press sources, not inferred — is that it has NOT: Maths 2A still sits the OLD 75-mark paper with 7-mark long answers, while every other subject in the bank is on 8. That single fact had to be registered before a card was written, proven with a negative control, and then found a live defect in the study planner that had been shipping since the maths papers were re-cut.**

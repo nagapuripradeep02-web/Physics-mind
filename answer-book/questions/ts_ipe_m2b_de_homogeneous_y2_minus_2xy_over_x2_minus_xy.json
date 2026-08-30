@@ -1,0 +1,169 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_de_homogeneous_y2_minus_2xy_over_x2_minus_xy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 8,
+    "name": "Differential Equations (Maths-2B)"
+  },
+  "chapter": "Differential Equations",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Solve dy/dx = (y² − 2xy)/(x² − xy).",
+  "appearances": [
+    {
+      "year": 2019,
+      "board": "ap_ipe"
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Recognise homogeneous form and substitute",
+      "marks": 1
+    },
+    {
+      "label": "Separate the variables",
+      "marks": 1
+    },
+    {
+      "label": "Write the partial fractions",
+      "marks": 2
+    },
+    {
+      "label": "Integrate both sides",
+      "marks": 2
+    },
+    {
+      "label": "Final equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, SENIOR INTER MATHS-2B (Sri Publishers, Machilipatnam), book p.47 — LAQ chapter 5 Differential Equations, answer 43, the second answer on the page. Not on an SSP page (this chapter carries no Super Scoring Pages at all). Printed appearance tag: AP 19 — no TS tag. The mark split is OURS: this chapter prints no margin mark tags. It follows the partial-fractions checkpoint shape used for answer 41.2 on the previous page, since this equation also needs the fraction split into two pieces before it can be integrated. Star rank: the Differential Equations LAQ chapter is ★★ on the LAQ chapter table (book p.13); every entry takes stars 2, a chapter-level rank. This question does not appear in the Bullet Model Paper's Q24 set (book pp.116-117), so this card is chapter practice for the same skill. CORRECTED 2026-08-29. The authoring pass recorded here that the working had been \"checked line by line\"; that claim was FALSE at the last step. An independent examiner found x³v²(2v−3) = c⁶ where squaring v√(2v−3) = c³/x³ gives v²(2v−3) = c⁶/x⁶ and clearing therefore needs x⁶. A student following the printed line cannot reach the next one. The boxed relation x³y²(2y − 3x) = c was and is correct — implicit differentiation reproduces dy/dx = (y²−2xy)/(x²−xy) — which is exactly why the error survived a self-check that looked at the destination rather than the route. Neither a two-book union check nor a board back-test was possible for Maths-2B: there is no TSBIE second-year Basic Learning Material on hand, and answer-book/papers/ holds first-year physics only. The book's five Guess Papers (pp.118-127) are the only stand-in. Everything on this card stays a claim until a Telangana IPE teacher confirms it. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The equation is already given as dy/dx = …, so there is no rearranging step here unlike some of the other homogeneous questions in this chapter — go straight to checking the degree and substituting y = vx.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differential Equations · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup_substitute",
+        "kind": "equation",
+        "label": "Recognise homogeneous form and substitute",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Every term is degree 2 in x and y, so the equation is homogeneous.",
+        "memory_tip": "y², xy and x² are all degree 2 — homogeneous of degree 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given D.E is dy/dx",
+          "= (y² − 2xy)/(x² − xy) … (1).",
+          "This is a homogeneous D.E.",
+          "Put y = vx ⇒ dy/dx = v + x·dv/dx",
+          "(1) ⇒ v + x·dv/dx = (v²x² − 2vx²)/(x² − vx²)",
+          "= (v² − 2v)/(1 − v)"
+        ],
+        "why": "Substituting y = vx into a ratio where every term of the numerator and denominator has the same total degree leaves the right side as a function of v alone, which is the test for a homogeneous equation.",
+        "common_mistakes": [
+          "Cancelling x² incorrectly between the numerator and denominator.",
+          "Forgetting to replace dy/dx by v + x·dv/dx on the left before substituting on the right."
+        ]
+      },
+      {
+        "id": "s2_separate",
+        "kind": "equation",
+        "label": "Separate the variables",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Subtract v as a fraction with denominator (1 − v).",
+        "memory_tip": "v(1 − v) = v − v² is the piece that combines with v² − 2v to give 2v² − 3v.",
+        "lines": [
+          "x·dv/dx = (v² − 2v)/(1 − v) − v",
+          "= [v² − 2v − v(1 − v)]/(1 − v)",
+          "= (2v² − 3v)/(1 − v)",
+          "⇒ (1 − v)/(2v² − 3v) dv = dx/x"
+        ],
+        "why": "Writing v as v(1 − v)/(1 − v) puts both terms over the same denominator; expanding v² − 2v − v + v² leaves 2v² − 3v, which is the function of v that separates from dx/x.",
+        "common_mistakes": [
+          "Losing the −v term when expanding v(1 − v) = v − v².",
+          "Sign error combining v² − 2v − v + v² into 2v² − 3v."
+        ]
+      },
+      {
+        "id": "s3_partial_fractions",
+        "kind": "equation",
+        "label": "Write the partial fractions",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Factor the denominator 2v² − 3v as v(2v − 3) before splitting into partial fractions.",
+        "memory_tip": "2v² − 3v = v(2v − 3) — a common-factor pull-out, not a two-bracket factorisation.",
+        "lines": [
+          "2v² − 3v = v(2v − 3)",
+          "Writing (1 − v)/[v(2v − 3)] = A/v + B/(2v − 3)",
+          "and resolving into partial fractions gives A",
+          "= −1/3, B = −1/3"
+        ],
+        "why": "Splitting the fraction into a piece over v and a piece over (2v − 3) turns one hard integral into two easy ones, each matching a standard log-integral shape.",
+        "common_mistakes": [
+          "Factoring 2v² − 3v as (2v − 1)(v − 3), which does not multiply back out correctly.",
+          "Solving for A and B with the wrong sign, since (1 − v) has a leading 1, not −v."
+        ]
+      },
+      {
+        "id": "s4_integrate",
+        "kind": "equation",
+        "label": "Integrate both sides",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Both pieces give logs, but the second needs a compensating factor of 2 for its coefficient.",
+        "memory_tip": "∫1/(2v−3) dv = (1/2)log(2v−3) — always divide by the coefficient of v inside the bracket.",
+        "lines": [
+          "∫ [−1/(3v) − 1/(3(2v − 3))] dv = ∫ dx/x",
+          "⇒ −(1/3)log v − (1/6)log(2v − 3) = log x − log c",
+          "⇒ −(1/3)[log v + (1/2)log(2v − 3)] = log(x/c)"
+        ],
+        "why": "Each partial-fraction piece integrates by the standard rule ∫dv/v = log v, with a factor of 1/2 needed for the second term because its bracket has a coefficient of 2 in front of v.",
+        "common_mistakes": [
+          "Forgetting the extra 1/2 factor needed when the bracket is (2v − 3) rather than (v − 3).",
+          "Losing the overall −1/3 factor shared by both terms."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Final equation",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "The last mark. Multiply by −3, exponentiate, then substitute v = y/x and clear every power of x.",
+        "memory_tip": "log(v√(2v−3)) = log(c/x)³ removes the fraction of logs in one multiplication by −3.",
+        "lines": [
+          "⇒ log(v√(2v − 3)) = −3 log(x/c) = log(c³/x³)",
+          "⇒ v√(2v − 3) = c³/x³",
+          "⇒ x⁶v²(2v − 3) = c⁶, and putting v = y/x:",
+          {
+            "text": "x³y²(2y − 3x) = c",
+            "style": "boxed"
+          }
+        ],
+        "why": "Multiplying by −3 clears the fraction of logs, exponentiating removes the log entirely, and substituting v = y/x with the matching power of x clears every fraction, giving the final whole-number relation with the constant relabelled.",
+        "common_mistakes": [
+          "Squaring only the v√(2v−3) side and forgetting to square the c³/x³ side to match.",
+          "Losing a power of x when clearing v = y/x from inside the square root and the extra x³."
+        ]
+      }
+    ]
+  }
+}

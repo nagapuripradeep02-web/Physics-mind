@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_vsaq_sin4x_0_to_pi2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate ∫₀^(π/2) sin⁴x dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State Walli's formula for even n",
+      "marks": 1
+    },
+    {
+      "label": "Substitute n=4 and evaluate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.91 — VSAQ chapter 17 'Definite Integrals', answer 174, on the same page as answers 171–173.2 (not marked as a Super Scoring Page). No year tag is printed. Chapter star rank ★★★ applies. No margin mark tags are printed, so the 1+1 split is OURS, patterned on the split used throughout this chapter. Boundary reading: printed p.89 confirms the Integration VSAQ chapter ends at answer 164 (∫cos√x dx); printed p.93 confirms the Differential Equations VSAQ chapter begins at answer 181 — so this chapter's answers 165–180.2 are the complete VSAQ Definite Integrals set. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "Walli's formula turns what would otherwise be a repeated reduction-formula derivation into a single substitution — always quote it directly for ∫₀^(π/2) sinⁿx or cosⁿx dx.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Definite Integrals · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "State Walli's formula for even n",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. n=4 is even, so the π/2 factor is included.",
+        "memory_tip": "Even n ⇒ the formula ends in π/2; odd n ⇒ the formula ends in 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "When n is even, ∫₀^(π/2) sinⁿx dx",
+          "= [(n−1)(n−3)···3·1]/[n(n−2)···4·2] · π/2",
+          "[Walli's formula]"
+        ],
+        "why": "Walli's reduction formula gives a closed form for ∫₀^(π/2) sinⁿx dx directly, avoiding a repeated integration-by-parts derivation; an extra factor π/2 appears whenever n is even.",
+        "common_mistakes": [
+          "Using the odd-n version of the formula (which has no trailing π/2) for this even n=4 case.",
+          "Missing a factor in the descending product."
+        ]
+      },
+      {
+        "id": "s2_final",
+        "kind": "boxed_final",
+        "label": "Substitute n=4 and evaluate",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. 3/8 × π/2 = 3π/16 — a direct multiplication once the ratio is found.",
+        "memory_tip": "(n−1)(n−3)··· down to 1 or 2 sits on top; n(n−2)··· down to 1 or 2 sits on the bottom.",
+        "lines": [
+          "∴ ∫₀^(π/2) sin⁴x dx = [(3)(1)]/[(4)(2)] · π/2",
+          "= 3/8 · π/2",
+          {
+            "text": "∴ I = 3π/16",
+            "style": "boxed"
+          }
+        ],
+        "why": "Substituting n=4 into the descending products (3·1) over (4·2) gives 3/8, and multiplying by the extra π/2 factor gives the final value.",
+        "common_mistakes": [
+          "Multiplying 3/8 by π instead of π/2.",
+          "Reversing numerator and denominator of the product ratio."
+        ]
+      }
+    ]
+  }
+}

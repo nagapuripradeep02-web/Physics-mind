@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m2b_di_laq_xsin3x_over_1plus_cos2x_0_to_pi",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_2b",
+  "year_cycle": "second_year",
+  "class_label": "Intermediate II Year (Class 12)",
+  "unit": {
+    "number": 7,
+    "name": "Definite Integrals (Maths-2B)"
+  },
+  "chapter": "Definite Integrals",
+  "qtype": "LAQ",
+  "marks_total": 7,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Evaluate ∫₀^π (x sin³x)/(1 + cos²x) dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply the King's property",
+      "marks": 2
+    },
+    {
+      "label": "Add and expand sin³x",
+      "marks": 2
+    },
+    {
+      "label": "Substitute cosx = t and integrate",
+      "marks": 2
+    },
+    {
+      "label": "Evaluate the limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.38 (PDF page 37) — LAQ chapter 4 'Definite Integrals', answer 32.2, the right-hand twin of answer 32.1 on the same printed Super Scoring Page (SSP 38). A printed appearance tag is present at the right edge of this column but the scan crops it before the digits — only the board letters 'TS' survive legibly, so the year(s) are NOT recorded. Chapter star rank ★★★ applies (book p.13, book p.38 header). No margin mark tags are printed on this two-column page, so the 2+2+2+1 split is OURS, patterned the same way as the twin answer 32.1 (ts_ipe_m2b_di_laq_xsinx_over_1plus_cos2x_0_to_pi) and on book p.22 answer 9's printed 2+2+2+1 shape. Boundary reading: printed p.37 (PDF 36, last Integration LAQ answer) and printed p.44 (PDF 44, Differential Equations LAQ opening) both read directly. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). This integral is re-answered as the second Q23 item on the Bullet Model Paper, book p.115, reaching the same final value π(π−2)/2 by an equivalent route (the book there splits (t²−1)/(1+t²) instead of (1−t²)/(1+t²), a sign-flipped version of the same identity) — no separate card is authored for that appearance. INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
+  },
+  "insider_note": "The book's own printed working reaches the same value through (t²−1)/(1+t²), a sign-flipped version of the split used here — either route lands on π(π−2)/2, so use whichever split is faster to remember.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Definite Integrals · 7 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_property",
+        "kind": "equation",
+        "label": "Apply the King's property",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks. sin³ carries the same sign rule as sin — check it does not flip.",
+        "memory_tip": "sin(π − x) = sinx, so sin³(π − x) = sin³x — cubing an unchanged quantity changes nothing.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "I = ∫₀^π (x sin³x)/(1 + cos²x) dx …(1)",
+          "By x → π − x: I",
+          "= ∫₀^π (π − x)sin³(π − x)/(1 + cos²(π − x)) dx",
+          "⇒ I = ∫₀^π (π − x)sin³x/(1 + cos²x) dx …(2)"
+        ],
+        "why": "sin(π − x) = sinx, so sin³(π − x) = sin³x, and cos²(π − x) = cos²x as before — only the x in the numerator changes to π − x, exactly the setup the addition step needs.",
+        "common_mistakes": [
+          "Writing sin³(π − x) as −sin³x.",
+          "Forgetting that cos²(π − x) = cos²x."
+        ]
+      },
+      {
+        "id": "s2_add",
+        "kind": "equation",
+        "label": "Add and expand sin³x",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two more marks. Expanding sin³x is what makes the cosx = t substitution possible in the next step.",
+        "memory_tip": "sin³x = sin²x·sinx = (1 − cos²x)sinx — always split an odd power of sine this way before substituting cosx = t.",
+        "lines": [
+          "Adding (1) and (2):",
+          "2I = π∫₀^π sin³x/(1 + cos²x) dx",
+          "⇒ I = (π/2)∫₀^π sin³x/(1 + cos²x) dx",
+          "= (π/2)∫₀^π (1 − cos²x)sinx/(1 + cos²x) dx"
+        ],
+        "why": "sin³x = sin²x·sinx = (1 − cos²x)sinx, which turns the integral into a function of cosx multiplied by sinx dx — exactly the form the substitution cosx = t needs.",
+        "common_mistakes": [
+          "Leaving sin³x unexpanded, which blocks the cosx = t substitution.",
+          "Writing sin²x as 1 + cos²x instead of 1 − cos²x."
+        ]
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Substitute cosx = t and integrate",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks for the substitution and splitting the resulting fraction.",
+        "memory_tip": "(1 − t²)/(1 + t²) always splits as 2/(1 + t²) − 1 — memorise this identity, it appears repeatedly in this chapter.",
+        "lines": [
+          "Put cosx = t ⇒ sinx dx = −dt. x = 0",
+          "⇒ t = 1; x = π ⇒ t = −1",
+          "I = (π/2)∫₁^(−1) −(1 − t²)/(1 + t²) dt",
+          "= (π/2)∫₋₁^1 (1 − t²)/(1 + t²) dt",
+          "= (π/2)∫₋₁^1 [2/(1 + t²) − 1] dt",
+          "= (π/2)[2Tan⁻¹t − t]₋₁^1"
+        ],
+        "why": "Splitting (1 − t²)/(1 + t²) as 2/(1 + t²) − 1 turns the integrand into two pieces with easy antiderivatives — Tan⁻¹t and t itself.",
+        "common_mistakes": [
+          "Writing (1 − t²)/(1 + t²) as 1 − t²/(1 + t²) and then failing to combine terms correctly.",
+          "A sign slip when flipping the limits."
+        ]
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Evaluate the limits",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. π(π − 2)/2 is the box the examiner looks for.",
+        "memory_tip": "2Tan⁻¹(1) = π/2 and 2Tan⁻¹(−1) = −π/2 — the same angle pair as every King's-property question in this chapter.",
+        "lines": [
+          "= (π/2){[2Tan⁻¹(1) − 1] − [2Tan⁻¹(−1) − (−1)]}",
+          "= (π/2)[(π/2 − 1) − (−π/2 + 1)] = (π/2)(π − 2)",
+          {
+            "text": "∴ I = π(π − 2)/2",
+            "style": "boxed"
+          }
+        ],
+        "why": "2Tan⁻¹(1) = π/2 and 2Tan⁻¹(−1) = −π/2; substituting both endpoints and simplifying leaves π − 2 inside the bracket, which is then halved by the outer π/2.",
+        "common_mistakes": [
+          "Dropping the −t / +t terms at the two limits.",
+          "Writing the final answer as π²/2 − π/2 instead of the equivalent π(π − 2)/2."
+        ]
+      }
+    ]
+  }
+}
