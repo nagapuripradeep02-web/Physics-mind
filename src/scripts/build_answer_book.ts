@@ -812,8 +812,8 @@ const esc = (s: string) =>
 const metaTitle = streamDef ? `IPE Answer Book — ${streamDef.label}` : 'IPE Answer Book — Telangana';
 const metaDesc = streamDef
     ? `Every Telangana IPE question answered step by step, with the marks for each step. ` +
-      `${streamDef.blurb} — ${streamDef.year.toLowerCase()}. Four chapters free.`
-    : 'Every Telangana IPE question answered step by step, with the marks for each step. Four chapters free.';
+      `${streamDef.blurb} — ${streamDef.year.toLowerCase()}. One chapter free in every subject.`
+    : 'Every Telangana IPE question answered step by step, with the marks for each step. One chapter free in every subject.';
 
 const headMeta = [
     `<title>${esc(metaTitle)} | Viditra</title>`,

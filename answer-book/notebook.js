@@ -3585,7 +3585,7 @@
           'Diagrams that draw themselves, line by line',
           'Vidi explains any step you are stuck on',
           'Memory tips and insider notes on the questions that repeat',
-          'Four chapters stay free — one in each subject'
+          'One chapter in every subject stays free'
         ];
         for (var i = 0; i < items.length; i++) {
           var li = document.createElement('li');
@@ -3602,12 +3602,18 @@
 
     function showLocked(i, cutKey, k) {
       var buttons = [];
-      // Four chapters — one per subject — are free for EVERY student since
-      // 2026-08-27. The old copy here said "you have already used your free
-      // chapter", which under this model tells a student they spent something
-      // they never had. Say what is true: some chapters are free, this one is
-      // not, and here is what the rest costs.
-      var text = 'This chapter is locked. Four chapters are free, one in each subject. '
+      // ONE chapter per subject is free for EVERY student since 2026-08-27. The
+      // old copy here said "you have already used your free chapter", which under
+      // this model tells a student they spent something they never had. Say what
+      // is true: some chapters are free, this one is not, and here is what the
+      // rest costs.
+      //
+      // The count is deliberately NOT stated. It was "Four chapters are free",
+      // which was true only while the book was first year alone: a second-year
+      // student has three subjects and three free chapters, and would have been
+      // told a number they could not find. The per-subject promise is the part
+      // that is true in every year (2026-08-30).
+      var text = 'This chapter is locked. One chapter in every subject is free. '
                + offerLine();
       if (payable()) {
         buttons.push({ label: 'Unlock every chapter — ₹' + priceInfo.price_inr, primary: true, fn: function () { startPayment(i, cutKey); } });
