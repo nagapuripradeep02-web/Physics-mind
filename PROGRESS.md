@@ -87,7 +87,18 @@ resource count as a signal about your own process — detect completion from you
 
 ### Not done, deliberately
 
-No PR yet (E2E finishing) · not deployed — `deploy:answers` is founder-only (Rule 17), and it publishes the JUNIOR book: the senior stream has no worker or route of its own, so nothing about this reaches a student until the founder decides how the second year is served · **both structural checks remain IMPOSSIBLE for this paper** (no second Maths-2A book in the corpus, no second-year maths paper in `answer-book/papers/`) and that sentence is on all 257 cards verbatim · `website/students.html` still says "First year only for now. Second year has not been started yet." — stale since Physics-II shipped, left for the founder because it is marketing copy, not a fact about the artifact.
+**SHIPPED 2026-08-30.** PR #174 merged, and the second year is LIVE at answers.viditra.co — a
+student picks MPC, then first or second year, and second year opens on Physics-II, Chemistry-II and
+Maths-2A. Founder's call on the shape: ONE book with the door routing both years, rather than a
+second domain. That needed `--stream` to take a comma list and the player to lens the catalog by the
+chosen year (PR #175), plus a fix for a remembered choice that opens nothing (PR #176). `ab_content`
+went 40 → 84 rows so the gated build can serve second-year chapters. Verified on the live site: door
+tiles 811/37 and 853/44, both year paths correct, zero page errors.
+**Still open, and deliberately the founder's:** every one of the 44 second-year chapters is
+paywalled — first year gives one free chapter per subject, second year gives none, so a student can
+list 44 and open zero. One `UPDATE ab_content SET free = true WHERE unit_key IN (…)`. And
+`website/students.html` still says "Second year has not been started yet", which is now visibly
+wrong · **both structural checks remain IMPOSSIBLE for this paper** (no second Maths-2A book in the corpus, no second-year maths paper in `answer-book/papers/`) and that sentence is on all 257 cards verbatim · `website/students.html` still says "First year only for now. Second year has not been started yet." — stale since Physics-II shipped, left for the founder because it is marketing copy, not a fact about the artifact.
 
 ## 🧪 SESSION — Senior Chemistry: the book's SIXTH subject and its FIRST second-year paper (2026-08-28, `feat/ipe-answerbook-sr-chemistry`)
 
