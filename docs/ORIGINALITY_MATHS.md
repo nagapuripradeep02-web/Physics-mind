@@ -77,6 +77,32 @@ What a publisher *does* own in such a book is its **compilation** — which ques
 it arranged them, and its priority ranking — together with its **solution prose** and its
 **figures**. The rules in §6 exist to keep us clear of all three.
 
+## 5b. What we then took from that book, and what we did with it — 2026-08-30
+
+255 new cards were authored on 2026-08-30 using the Sri Chaitanya scans. What crossed over, and
+what did not:
+
+| | |
+|---|---|
+| **Taken** | The questions: which mathematics is asked, and its exact values. |
+| **Not taken** | Every solution. The authors were given the question only, were forbidden to open the scans, and solved each one from scratch. |
+| **Not taken** | The mark split. The volume prints a chapter-level marks banner and **no per-step allocation on any answer**, so nothing of ours could have come from it. Every split is this answer book's own and ships `needs_teacher_verification: true`. |
+| **Not taken** | The priority stars. The book ranks these questions; `stars` is 0 on all 255 (R1). |
+| **Not taken** | The arrangement. Chapter 10 is printed as five un-numbered sub-sections; we ship it as one unit ordered by the syllabus. |
+
+The research index in `answer-book/sources/` holds **our restatement of each stem** plus page,
+section and star — never a line of the book's working. `npm run check:originality` enforces all of
+this: the index is scanned for solution markers and over-long stems, the build is checked for any
+path into `sources/`, the built bundle for any trace of it, and every card citing the book must
+carry the boundary sentence and point back at this file.
+
+**Six printed errors were found and are recorded card-by-card rather than silently repaired** — a
+limit point that makes its own question trivial, two mis-bracketed piecewise stems, an interval
+printed `[2, 2]`, a rate given per "mm", a bacteria count in seconds asked at "4 hours", and a
+square root whose own solution uses a cube root. Each card names what the book prints, what we
+authored, and why. That record is itself evidence of independent work: a copy reproduces its
+source's errors.
+
 ## 6. Rules for using the Sri Chaitanya scans (binding on this work)
 
 - **R1 — Their per-question stars are a research signal, never our published ranking.** They may
