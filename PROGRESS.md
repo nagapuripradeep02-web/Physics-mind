@@ -74,11 +74,25 @@ Both were checked against the card rather than taken at face value, and both wer
 
 Five graders read the 2,112 replies of the targeted re-probe.
 
-**Wrong-step is essentially closed.** It produced the audit's only grade-0 replies in round 2 — a
-`whystep` reply explaining a neighbouring step and claiming that step's mark ("This step earns the
-1 mark for the denominator", on a 2-mark division step). Round 3: **0 / 84 and 0 / 86 on Maths-2A**,
-and 6 / 441 across both papers (1.4%), all six on 2B. Naming the step by its number and label,
-instead of handing the model an opaque id, fixed the thing the id was only a symptom of.
+**Wrong-step improved but is NOT closed, and the first number I wrote for it was wrong.** It
+produced the audit's only grade-0 replies in round 2 — a `whystep` reply explaining a neighbouring
+step and claiming that step's mark ("This step earns the 1 mark for the denominator", on a 2-mark
+division step). Two of the three Maths-2A slices came back at 0/84 and 0/86 and I reported it as
+essentially solved; **the third slice then returned 4/85, two of them grade 0.** The honest figure
+is **10 / 526 whystep replies across both papers (1.9%)** — 4/255 on 2A, 6/271 on 2B.
+
+Naming the step by number and label instead of by an opaque id clearly helped, but it did not
+eliminate the class, and there is **no clean before/after here**: round 2's graders were never asked
+to count wrong-step, so round 3 is the first systematic measurement of it and has nothing to be
+compared against. What can be said is that round 2's only zeros were wrong-step, and that round 3's
+surviving cases are four times rarer than its own out-of-bank creep. **Do not generalise a rate from
+a subset of slices — the third slice is exactly where the cases were.**
+
+One further model-side falsehood surfaced in that slice: a `remember` reply asserting "for odd
+degree class II, only −1 is a root", which contradicts the sibling card's own facts. And two
+sub-graders scored structurally identical out-of-bank leaks 1 and 2 — a rubric-application
+inconsistency rather than a rubric change, but it means small per-template means carry grader
+variance.
 
 **And here is where I nearly reported a win that was not one.** My mechanical measure for
 out-of-bank scope creep was "does the reply state a mark value", and it read 7.4% → 5.1% → **1.5%**.
