@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_dy_delta_y_5x2_plus_6x_plus_6",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find dy and Δy for y = 5x² + 6x + 6 when x = 2 and Δx = 0.001.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find dy from the derivative",
+      "marks": 1
+    },
+    {
+      "label": "Find Δy from the exact change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 1(iii), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 1(iii)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for dy and one for Δy, because the question asks for two different numbers. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you get dy, and say what makes Δy a different number.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dy",
+        "kind": "equation",
+        "label": "Find dy from the derivative",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Differentiate first, then multiply by Δx. Writing dy = (dy/dx)·Δx before any number goes in keeps this mark even if the arithmetic slips later.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = 5x² + 6x + 6,  x = 2,  Δx = 0.001",
+          "dy/dx = 10x + 6",
+          "dy = (dy/dx)·Δx = (10x + 6)Δx",
+          "= (10(2) + 6)(0.001) = 26 × 0.001",
+          "∴ dy = 0.026"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy = (dy/dx)·Δx, with the derivative 10x + 6 found first and then multiplied by Δx.",
+          "accept": [
+            "differentiate to get ten x plus six and multiply by delta x",
+            "d y equals d y by d x times delta x",
+            "the derivative at two is twenty six so d y is zero point zero two six",
+            "derivative teesi delta x tho multiply cheyyali",
+            "find d y by d x first then put x equals two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "d y by d x",
+            "ten x plus six",
+            "delta x",
+            "twenty six"
+          ]
+        },
+        "why": "dy is not the change in y. It is the derivative multiplied by Δx — the straight-line estimate of that change — so the mark is for differentiating and then multiplying, in that order.",
+        "common_mistakes": [
+          "Differentiating 5x² as 5x instead of 10x.",
+          "Writing dy = 10x + 6 and leaving out the ·Δx."
+        ],
+        "memory_tip": "dy uses the derivative once. Δy uses the function twice. d for derivative, Δ for difference."
+      },
+      {
+        "id": "s2_delta_y",
+        "kind": "boxed_final",
+        "label": "Find Δy from the exact change",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Keep every decimal place of (2.001)² = 4.004001. Δx is only 0.001 here, so dy and Δy differ in the sixth decimal place — rounding early erases the difference the question is about.",
+        "lines": [
+          "Δy = f(x + Δx) − f(x) = f(2.001) − f(2)",
+          "f(2.001) = 5(2.001)² + 6(2.001) + 6",
+          "= 5(4.004001) + 12.006 + 6 = 20.020005 + 12.006 + 6 = 38.026005",
+          "f(2) = 5(4) + 12 + 6 = 38",
+          "Δy = 38.026005 − 38 = 0.026005",
+          {
+            "text": "∴ dy = 0.026  and  Δy = 0.026005",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δy = f(x + Δx) − f(x) = f(2.001) − f(2) = 0.026005, the exact change.",
+          "accept": [
+            "delta y is f of two point zero zero one minus f of two",
+            "the exact change is zero point zero two six zero zero five",
+            "substitute both values and subtract",
+            "rendu values lo substitute chesi subtract cheyyali",
+            "delta y is the real change and d y is only the estimate"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "f of two point zero zero one",
+            "minus f of two",
+            "exact change",
+            "zero two six zero zero five"
+          ]
+        },
+        "why": "Δy is the real change in y, so the function has to be worked out at both points. With Δx this small the two answers agree to five decimal places, which shows how good the straight-line estimate becomes as Δx shrinks.",
+        "common_mistakes": [
+          "Rounding (2.001)² to 4.004 and losing the 0.000005 difference.",
+          "Stopping at dy when the question asks for both numbers."
+        ],
+        "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down."
+      }
+    ]
+  }
+}

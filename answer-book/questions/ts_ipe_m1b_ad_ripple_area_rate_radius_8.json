@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_ripple_area_rate_radius_8",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "A stone is dropped into a quiet lake and the ripples move out in circles at a speed of 5 cm/sec. At the instant when the radius of the circular ripple is 8 cm, how fast is the enclosed area increasing?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate A = πr² with respect to t",
+      "marks": 1
+    },
+    {
+      "label": "Substitute r = 8 and dr/dt = 5",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.213, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 6. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you would write, say what the speed of 5 cm/sec is the rate of, and say what you differentiate with respect to.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_area_formula",
+        "kind": "equation",
+        "label": "Differentiate A = πr² with respect to t",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The speed of the ripple is the rate at which the radius grows, so it is dr/dt and not an area rate. Naming the given and the asked quantity in that form is where this mark sits.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The ripple is a circle whose radius r grows with time.",
+          "Given: dr/dt = 5 cm/sec.  Asked: dA/dt when r = 8 cm.",
+          "Area enclosed by the ripple:  A = πr²",
+          "Differentiate both sides with respect to time t:",
+          "dA/dt = π·2r·(dr/dt) = 2πr(dr/dt)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the speed 5 cm/sec is dr/dt, and A = πr² differentiated with respect to t gives dA/dt = 2πr(dr/dt).",
+          "accept": [
+            "the speed of the ripple is the rate of change of the radius",
+            "area is pi r squared so d a by d t is two pi r d r by d t",
+            "differentiate the area formula with respect to time",
+            "ripple speed ante d r by d t, area formula differentiate cheyyali",
+            "five centimetres per second is d r by d t",
+            "d a by d t equals two pi r into d r by d t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi r squared",
+            "two pi r",
+            "d r by d t",
+            "d a by d t",
+            "five centimetres per second"
+          ]
+        },
+        "why": "Reading the word \"speed\" as dr/dt is the decision the rest of the answer rests on. Once A = πr² is differentiated with respect to t, the given rate has a place to enter.",
+        "common_mistakes": [
+          "Reading 5 cm/sec as a rate of change of area rather than of radius.",
+          "Differentiating πr² as πr or as 2r, losing the π or the factor 2.",
+          "Using the circumference 2πr as the area formula."
+        ],
+        "memory_tip": "Differentiating A = πr² gives 2πr, which is the circumference — the area grows along its own boundary, so a wider ripple gains area faster."
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute r = 8 and dr/dt = 5",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Substitute only after differentiating. Leave the answer as 80π; the decimal value is extra, and the unit cm²/sec must appear.",
+        "lines": [
+          "Put r = 8 and dr/dt = 5:",
+          "dA/dt = 2π(8)(5) = 80π",
+          {
+            "text": "∴ dA/dt = 80π cm²/sec ≈ 251.33 cm²/sec",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting r = 8 and dr/dt = 5 gives dA/dt = 80π cm²/sec.",
+          "accept": [
+            "substitute r equal to eight and d r by d t equal to five",
+            "two pi into eight into five is eighty pi",
+            "the area increases at eighty pi square centimetres per second",
+            "r equal to eight substitute cheste eighty pi vasthundi",
+            "the answer is eighty pi centimetre square per second",
+            "about two hundred fifty one square centimetres per second"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eighty pi",
+            "two pi into eight into five",
+            "centimetre square per second",
+            "d a by d t"
+          ]
+        },
+        "why": "The answer depends on r, so it is only the rate at that one instant — a ripple of a different radius gains area at a different rate even at the same speed.",
+        "common_mistakes": [
+          "Substituting r = 8 into A = πr² first, which makes A a fixed number.",
+          "Writing 80 and dropping the π.",
+          "Writing the unit as cm/sec instead of cm²/sec."
+        ],
+        "memory_tip": "The answer 80π is 2π × 8 × 5 — the constant, then the radius, then the speed, in the order the formula is written."
+      }
+    ]
+  }
+}

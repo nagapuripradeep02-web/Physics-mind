@@ -1,0 +1,240 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_subnormal_constant_find_k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the value of k so that the length of the subnormal at any point on the curve y = a¹⁻ᵏxᵏ is constant.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate the curve",
+      "marks": 1
+    },
+    {
+      "label": "Write the subnormal at a general point",
+      "marks": 1
+    },
+    {
+      "label": "Set the power of x to zero",
+      "marks": 1
+    },
+    {
+      "label": "State k and check the subnormal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.221, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 9. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. TYPOGRAPHY, NOT A CHANGE OF MEANING: the exponents are set here in superscript form (a¹⁻ᵏxᵏ), the same expression the book prints with a caret. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what the subnormal comes to, and say what condition on the power of x makes it constant.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_derivative",
+        "kind": "equation",
+        "label": "Differentiate the curve",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both a and k are constants, so a¹⁻ᵏ is just a fixed number sitting in front. Only xᵏ is differentiated.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curve:  y = a¹⁻ᵏxᵏ,  where a and k are constants.",
+          "Here a¹⁻ᵏ is a constant multiplier, so",
+          "dy/dx = a¹⁻ᵏ · k xᵏ⁻¹",
+          "∴ m = dy/dx = k a¹⁻ᵏxᵏ⁻¹"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a¹⁻ᵏ is a constant and dy/dx = k a¹⁻ᵏxᵏ⁻¹.",
+          "accept": [
+            "a to the power one minus k is a constant multiplier",
+            "differentiate x to the k to get k x to the k minus one",
+            "dy by dx is k a to the one minus k x to the k minus one",
+            "a to the one minus k constant kabatti daanini differentiate cheyyaledu",
+            "only the x term is differentiated",
+            "use the power rule on x to the k"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus k",
+            "power rule",
+            "x to the k minus one",
+            "constant"
+          ]
+        },
+        "why": "The letter a carries no x in it, so a¹⁻ᵏ is exactly like a fixed number. Treating it as a function of x is the error that turns a two-line derivative into a page of wrong working.",
+        "common_mistakes": [
+          "Differentiating a¹⁻ᵏ as though a were a variable.",
+          "Writing the derivative of xᵏ as xᵏ⁻¹ without the factor k.",
+          "Reading a¹⁻ᵏxᵏ as (ax)ᵏ."
+        ],
+        "memory_tip": "Any letter that is not x is a number: bring the power of x down, reduce it by one, and leave the rest alone."
+      },
+      {
+        "id": "s2_subnormal",
+        "kind": "equation",
+        "label": "Write the subnormal at a general point",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Subnormal = ym. When two powers of the same letter multiply, their indices add — so collect the powers of a and the powers of x separately.",
+        "lines": [
+          "At any point (x, y) on the curve,",
+          "Subnormal = y · (dy/dx) = (a¹⁻ᵏxᵏ)(k a¹⁻ᵏxᵏ⁻¹)",
+          "= k · a¹⁻ᵏ · a¹⁻ᵏ · xᵏ · xᵏ⁻¹",
+          "Adding the indices:  (1 − k) + (1 − k) = 2 − 2k  and  k + (k − 1) = 2k − 1",
+          "∴ Subnormal = k a²⁻²ᵏ x²ᵏ⁻¹"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the subnormal is ym = k a²⁻²ᵏ x²ᵏ⁻¹.",
+          "accept": [
+            "subnormal is y into dy by dx",
+            "add the powers of x to get two k minus one",
+            "add the powers of a to get two minus two k",
+            "y into m rasi powers ni add cheyyali",
+            "the subnormal is k a to the two minus two k x to the two k minus one",
+            "same base so the indices add"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y into m",
+            "two k minus one",
+            "two minus two k",
+            "subnormal"
+          ]
+        },
+        "why": "The subnormal is ym, not y/m. Writing it as a single power of x is what makes the next step a one-line condition instead of a rearrangement.",
+        "common_mistakes": [
+          "Using y/m, which is the subtangent, not the subnormal.",
+          "Multiplying the powers of x instead of adding them.",
+          "Writing the power of x as 2k rather than 2k − 1."
+        ],
+        "memory_tip": "Sub-NORMAL multiplies; sub-TANGENT divides. When two powers of the same letter multiply, their indices add."
+      },
+      {
+        "id": "s3_power_zero",
+        "kind": "equation",
+        "label": "Set the power of x to zero",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Constant means the same at every point, so the expression must contain no x. Since k and a are already constants, the only way is for the power of x to be zero.",
+        "lines": [
+          "Subnormal = k a²⁻²ᵏ x²ᵏ⁻¹",
+          "The factor k a²⁻²ᵏ is a constant. The subnormal is constant at every point only if it does not depend on x.",
+          "So the power of x must be zero:",
+          "2k − 1 = 0",
+          "∴ k = 1/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the subnormal is free of x only when 2k − 1 = 0, giving k = 1/2.",
+          "accept": [
+            "for a constant the power of x must be zero",
+            "two k minus one equals zero",
+            "k is one half",
+            "x power zero ayithe subnormal constant avutundi",
+            "the expression must not depend on x",
+            "x to the power zero is one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two k minus one",
+            "equals zero",
+            "one half",
+            "power of x"
+          ]
+        },
+        "why": "At any point means for every x, so a quantity that changes with x cannot be constant. Setting the index of x to zero is the only condition available, because k and a cannot depend on x.",
+        "common_mistakes": [
+          "Setting the whole expression equal to zero instead of only the power of x.",
+          "Setting 2k − 1 = 1 and getting k = 1.",
+          "Setting the power of a to zero as well, which is not required."
+        ],
+        "memory_tip": "Free of x means the power of x is zero, because x⁰ = 1 for every x."
+      },
+      {
+        "id": "s4_check",
+        "kind": "boxed_final",
+        "label": "State k and check the subnormal",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Put k = 1/2 back in and read the constant value: the subnormal is a/2. The curve becomes y² = ax, the parabola whose subnormal is the same at every point.",
+        "lines": [
+          "Put k = 1/2 in the subnormal:",
+          "2 − 2k = 2 − 1 = 1   and   2k − 1 = 1 − 1 = 0",
+          "Subnormal = (1/2) a¹ x⁰ = (1/2)a = a/2",
+          "This has no x in it, so it is the same at every point.",
+          "Check on the curve itself: k = 1/2 gives y = a¹⁄²x¹⁄², that is y² = ax,",
+          "a parabola, and its subnormal is a/2 at every point.",
+          {
+            "text": "∴ k = 1/2, and the constant length of the subnormal is a/2.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That k = 1/2, and substituting it back gives a subnormal of a/2, with the curve becoming y² = ax.",
+          "accept": [
+            "k is one half",
+            "substitute k back and the subnormal is a by two",
+            "the curve becomes y squared equals a x",
+            "k equals half pettite subnormal a by two vasthundi",
+            "x to the power zero is one so no x is left",
+            "the parabola has a constant subnormal"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one half",
+            "a by two",
+            "y squared equals a x",
+            "parabola"
+          ]
+        },
+        "why": "Substituting the answer back is the check that k = 1/2 really does make the subnormal constant, and it also names the constant value, which the question implies. Recognising y² = ax confirms the standard result that a parabola has a constant subnormal.",
+        "common_mistakes": [
+          "Giving k = 1/2 without stating the value a/2 the subnormal takes.",
+          "Simplifying 2 − 2k with k = 1/2 to 2 instead of 1, so the constant comes out as a²/2.",
+          "Writing the curve as y = ax rather than y² = ax."
+        ],
+        "memory_tip": "Only the parabola y² = 4ax family has a constant subnormal, so k = 1/2 is the power that turns this curve into a parabola."
+      }
+    ]
+  }
+}

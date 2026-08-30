@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_approx_root_65",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the approximate value of √65.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Choose the nearby exact point",
+      "marks": 1
+    },
+    {
+      "label": "Apply the approximation formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 2(iv), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 2(iv)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. DISCREPANCY INSIDE THE SOURCE, RECORDED NOT RESOLVED: the book's question list prints a SQUARE root, √65, and that is the stem we authored and answered. The book's own worked solution for this part appears to use a CUBE root instead. The printed page was checked: the two neighbouring parts, ∛999 and ∛7.8, carry clear cube-root signs and this one does not, so the question as asked is √65. We answer the printed question and note the mismatch here rather than following the book's working or silently changing the stem. A reader who wants the other reading can compute it separately; this card is the square root. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for choosing the nearby exact point and its derivative, one for applying the formula and reading the number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which nearby value you start from, and the formula you then apply.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_choose",
+        "kind": "equation",
+        "label": "Choose the nearby exact point",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the whole choice of method sits here: name x = 64, Δx = 1 and f′(64) = 1/16. An examiner reads this line to see whether the nearest perfect square was found.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = √x. Then f(x + Δx) ≈ f(x) + f′(x)·Δx",
+          "64 is the nearest perfect square to 65, and √64 = 8 exactly",
+          "∴ take x = 64,  Δx = 65 − 64 = 1",
+          "f′(x) = 1/(2√x)",
+          "f′(64) = 1/(2 × 8) = 1/16"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 64 is chosen because √64 = 8 is exact, Δx = 1, and f′(64) = 1/16.",
+          "accept": [
+            "take x equals sixty four because its square root is eight",
+            "the nearest perfect square is sixty four so delta x is one",
+            "f dash of sixty four is one by sixteen",
+            "daggara unna perfect square sixty four teesukovali, delta x one",
+            "start from eight and correct it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixty four",
+            "root sixty four is eight",
+            "delta x is one",
+            "one by sixteen"
+          ]
+        },
+        "why": "The method only works from a point where the function is already known exactly. 64 is the nearest perfect square to 65, so the estimate starts at 8 with no calculator, and Δx = 1 is small next to 64.",
+        "common_mistakes": [
+          "Choosing x = 65 itself, which leaves the square root still unknown.",
+          "Using 64 as a perfect cube and taking f(x) = ∛x, which answers a different question."
+        ],
+        "memory_tip": "For a square root, find the nearest perfect square; for a cube root, the nearest perfect cube. Δx carries whatever is left over."
+      },
+      {
+        "id": "s2_apply",
+        "kind": "boxed_final",
+        "label": "Apply the approximation formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 1/16 = 0.0625 exactly, so this one needs no rounding at all. 65 is above 64, so the correction is added.",
+        "lines": [
+          "√65 = f(64 + 1) ≈ f(64) + f′(64)·(1)",
+          "= 8 + (1/16)(1)",
+          "= 8 + 0.0625",
+          {
+            "text": "∴ √65 ≈ 8.0625",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That √65 ≈ 8 + 1/16 = 8.0625.",
+          "accept": [
+            "eight plus one by sixteen",
+            "eight plus zero point zero six two five",
+            "the answer is eight point zero six two five",
+            "eight ki one by sixteen add cheyyali",
+            "add the correction because sixty five is above sixty four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eight plus",
+            "one by sixteen",
+            "eight point zero six two five",
+            "zero point zero six two five"
+          ]
+        },
+        "why": "f′(x)·Δx is the correction the tangent line at x = 64 predicts. The true value is 8.062258, so this estimate is high by about 0.00024 — the tangent sits slightly above the curve, so a square-root estimate of this kind is always a little large.",
+        "common_mistakes": [
+          "Reading 1/16 as 0.16 or as 0.016.",
+          "Giving 8.06 when the working already provides four decimal places."
+        ],
+        "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so an upward move adds."
+      }
+    ]
+  }
+}

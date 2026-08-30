@@ -1,0 +1,233 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_cylinder_in_sphere_max_curved_surface",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If the curved surface of a right circular cylinder inscribed in a sphere of radius r is maximum, show that the height of the cylinder is √2 r.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Relate the cylinder to the sphere",
+      "marks": 1
+    },
+    {
+      "label": "Write the curved surface in h alone",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate and solve",
+      "marks": 1
+    },
+    {
+      "label": "Confirm the maximum and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.224, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 1. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what equation the sphere gives you, what quantity you would maximise, and how you would prove the value you find is a maximum.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relate_to_sphere",
+        "kind": "equation",
+        "label": "Relate the cylinder to the sphere",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The examiner looks for the right triangle with legs R and h/2 and hypotenuse r. Half the height, not the whole height.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let R be the radius and h the height of the cylinder inscribed in the sphere of radius r.",
+          "The axis of the cylinder passes through the centre of the sphere, so the centre lies at the mid-point of the axis.",
+          "The sphere radius to a rim point, the half-height h/2 and the cylinder radius R form a right triangle:",
+          "R² + (h/2)² = r²   ⇒   R² = r² − h²/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sphere gives R² + (h/2)² = r², so R² = r² − h²/4.",
+          "accept": [
+            "the cylinder radius the half height and the sphere radius make a right triangle",
+            "R squared plus h by two whole squared equals r squared",
+            "use half the height in the right triangle",
+            "sphere radius tho right triangle rasta, h by two vaadali",
+            "write R squared as r squared minus h squared by four",
+            "remove R using the sphere equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "right triangle",
+            "h by two",
+            "r squared",
+            "sphere radius"
+          ]
+        },
+        "why": "The sphere is the constraint. It gives one equation between R and h, and without it the curved surface holds two variables and cannot be differentiated as a function of one.",
+        "common_mistakes": [
+          "Writing R² + h² = r², which uses the full height instead of half of it.",
+          "Treating R as a fixed number and varying only h."
+        ],
+        "memory_tip": "The centre of the sphere sits half-way up the cylinder, so the vertical leg of the right triangle is h/2, never h."
+      },
+      {
+        "id": "s2_surface_in_h",
+        "kind": "equation",
+        "label": "Write the curved surface in h alone",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The examiner looks for the curved surface reduced to one variable. Write one line saying why S² may replace S — because S is positive.",
+        "lines": [
+          "Curved surface area of the cylinder:  S = 2πRh",
+          "S = 2πh√(r² − h²/4)",
+          "S is positive, so S is greatest exactly where S² is greatest. Work with S²:",
+          "S² = 4π²h²(r² − h²/4) = π²(4r²h² − h⁴)",
+          "Let f(h) = 4r²h² − h⁴,  where 0 < h < 2r"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S = 2πRh becomes a function of h alone, and that S² is maximised instead of S because S is positive.",
+          "accept": [
+            "curved surface is two pi R h",
+            "substitute R from the sphere equation to get S in h only",
+            "maximise S squared because S is positive",
+            "S square maximise cheste square root pothundi",
+            "write f of h equal to four r squared h squared minus h to the fourth",
+            "reduce the surface area to one variable h"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two pi R h",
+            "S squared",
+            "square root",
+            "f of h"
+          ]
+        },
+        "why": "Maximising S² instead of S removes the square root, and the two reach their greatest value at the same h because S is positive. Differentiating the root form is allowed but longer and easier to slip on.",
+        "common_mistakes": [
+          "Using the total surface area 2πR(R + h) instead of the curved surface 2πRh.",
+          "Squaring only one factor when forming S²."
+        ],
+        "memory_tip": "Curved surface is the label wrapped round a tin: 2πR times h. The two flat lids are what total surface area adds on top."
+      },
+      {
+        "id": "s3_differentiate",
+        "kind": "equation",
+        "label": "Differentiate and solve",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The examiner looks for f′(h) = 0 solved correctly, with h = 0 discarded and a reason given for discarding it.",
+        "lines": [
+          "f′(h) = 8r²h − 4h³ = 4h(2r² − h²)",
+          "f′(h) = 0   ⇒   4h(2r² − h²) = 0",
+          "h = 0 gives no cylinder, so it is discarded and  2r² − h² = 0",
+          "h² = 2r²   ⇒   h = √2 r      (h > 0, so the negative root is not taken)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(h) = 4h(2r² − h²) = 0 gives h² = 2r², so h = √2 r, after rejecting h = 0.",
+          "accept": [
+            "differentiate and set the derivative equal to zero",
+            "factor out four h and solve two r squared minus h squared equals zero",
+            "h squared is two r squared so h is root two r",
+            "h equal to zero reject cheyyali, cylinder undadu",
+            "take only the positive root because h is a length",
+            "the stationary point is at root two r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "f dash h",
+            "four h",
+            "two r squared",
+            "root two r"
+          ]
+        },
+        "why": "Factorising before solving shows both roots on one line, and h = 0 is discarded because a cylinder of zero height has no curved surface at all.",
+        "common_mistakes": [
+          "Keeping h = 0 as an answer.",
+          "Taking the negative root h = −√2 r, which cannot be a length."
+        ],
+        "memory_tip": "Take the common factor h out first. A stationary-point equation that factors hands you the rejected root and the real root in the same line."
+      },
+      {
+        "id": "s4_second_derivative",
+        "kind": "boxed_final",
+        "label": "Confirm the maximum and conclude",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark, and the one most students lose. Write f″, put h² = 2r² into it, and state the sign. A stationary point is not a maximum until the test says so.",
+        "lines": [
+          "f″(h) = 8r² − 12h²",
+          "At h² = 2r²:  f″ = 8r² − 12(2r²) = 8r² − 24r² = −16r² < 0",
+          "A negative second derivative means the stationary point is a maximum.",
+          "So f is maximum at h = √2 r, and therefore S is maximum at h = √2 r.",
+          {
+            "text": "∴ the curved surface is maximum when the height of the cylinder is h = √2 r",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f″ = 8r² − 12h² is negative at h² = 2r², which proves the value is a maximum, so h = √2 r.",
+          "accept": [
+            "second derivative is negative so it is a maximum",
+            "f double dash equals minus sixteen r squared which is less than zero",
+            "apply the second derivative test before writing the answer",
+            "second derivative negative unte maximum",
+            "the height is root two times r",
+            "confirm it is a maximum and not a minimum"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "second derivative",
+            "negative",
+            "maximum",
+            "root two r"
+          ]
+        },
+        "why": "Setting the derivative to zero only finds where the rate of change stops. It could be a maximum, a minimum or neither, so the second derivative test is a separate step and carries its own mark.",
+        "common_mistakes": [
+          "Stopping at f′(h) = 0 and calling the value a maximum with no test.",
+          "Substituting h = √2 r into f′ instead of f″."
+        ],
+        "memory_tip": "Second derivative negative means the curve bends downward there, so the stationary point is a maximum. Positive means it bends upward, so it is a minimum."
+      }
+    ]
+  }
+}

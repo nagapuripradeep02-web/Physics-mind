@@ -1,0 +1,234 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_cylinder_in_cone_max_curved_surface",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that the radius of the right circular cylinder of greatest curved surface area which can be inscribed in a given cone is half of that of the cone.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Link the cylinder's height to its radius",
+      "marks": 1
+    },
+    {
+      "label": "Write the curved surface in one variable",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate and solve",
+      "marks": 1
+    },
+    {
+      "label": "Confirm the maximum and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.226, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 4. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what similar triangles give you, what you write the curved surface in terms of, and how you prove the value is a maximum.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_similar_triangles",
+        "kind": "equation",
+        "label": "Link the cylinder's height to its radius",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The examiner looks for the similar-triangle ratio written the right way round: h/H = (R − x)/R. A wide cylinder must be short, so h must fall as x rises.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the given cone have radius R and height H, both fixed.",
+          "Let the inscribed cylinder have radius x and height h, with 0 < x < R.",
+          "The top rim of the cylinder lies on the slant surface of the cone.",
+          "Cut the solid through the axis. The small triangle above the cylinder is similar to the whole cone's triangle, so",
+          "h/H = (R − x)/R   ⇒   h = H(R − x)/R"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That similar triangles give h/H = (R − x)/R, so h = H(R − x)/R.",
+          "accept": [
+            "use similar triangles from the axial cross section",
+            "h by H equals R minus x by R",
+            "the height is H into R minus x by R",
+            "similar triangles tho height ni radius tho rasta",
+            "as the cylinder gets wider it gets shorter",
+            "link h to x before writing the surface area"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "similar triangles",
+            "R minus x",
+            "h by H",
+            "cross section"
+          ]
+        },
+        "why": "The cone is the constraint: choosing the cylinder's radius fixes its height. Similar triangles are the only link between x and h, and without it the curved surface holds two variables.",
+        "common_mistakes": [
+          "Writing h/H = x/R, which makes the cylinder tallest when it is widest.",
+          "Assuming the cylinder's height equals the cone's height."
+        ],
+        "memory_tip": "Check the ratio at the two ends: x = 0 must give h = H and x = R must give h = 0. Only h = H(R − x)/R does both."
+      },
+      {
+        "id": "s2_surface_in_x",
+        "kind": "equation",
+        "label": "Write the curved surface in one variable",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. R and H are given constants, so 2πH/R comes out in front and only (Rx − x²) carries the variable. Say that R and H are constants.",
+        "lines": [
+          "Curved surface area of the cylinder:  S = 2πxh",
+          "Substitute h from step 1:",
+          "S(x) = 2πx · H(R − x)/R = (2πH/R)(Rx − x²),   where 0 < x < R",
+          "R and H are fixed by the given cone, so 2πH/R is a positive constant."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S = 2πxh becomes S(x) = (2πH/R)(Rx − x²) after substituting h.",
+          "accept": [
+            "curved surface is two pi x h",
+            "substitute the height so only x is left",
+            "S of x is two pi H by R into R x minus x squared",
+            "h substitute chesi x lo matrame rasta",
+            "R and H are constants of the given cone",
+            "the surface area becomes a quadratic in x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two pi x h",
+            "R x minus x squared",
+            "constant",
+            "quadratic"
+          ]
+        },
+        "why": "The curved surface of a cylinder is 2π times radius times height. Substituting h turns it into a quadratic in x, and a quadratic needs only one differentiation to locate its stationary point.",
+        "common_mistakes": [
+          "Using the total surface area 2πx(x + h) instead of the curved surface 2πxh.",
+          "Treating R or H as a variable and differentiating them."
+        ],
+        "memory_tip": "Curved surface is the label round a tin: 2π times radius times height. Keep every fixed letter outside the bracket so the differentiation is short."
+      },
+      {
+        "id": "s3_differentiate",
+        "kind": "equation",
+        "label": "Differentiate and solve",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Differentiate only the bracket; the constant in front carries through untouched. The answer x = R/2 lies inside 0 < x < R, so it is a usable value.",
+        "lines": [
+          "S′(x) = (2πH/R)(R − 2x)",
+          "S′(x) = 0   ⇒   R − 2x = 0      (since 2πH/R ≠ 0)",
+          "x = R/2",
+          "R/2 lies between 0 and R, so it is inside the allowed range."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S′(x) = (2πH/R)(R − 2x) is zero when x = R/2.",
+          "accept": [
+            "differentiate and set R minus two x equal to zero",
+            "x is R by two",
+            "the constant in front cannot be zero so only the bracket vanishes",
+            "derivative zero pettina x equals R by two vasthundi",
+            "the stationary point is at half the cone radius",
+            "R by two lies inside the allowed range"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "R minus two x",
+            "R by two",
+            "derivative zero",
+            "stationary point"
+          ]
+        },
+        "why": "The constant 2πH/R is positive and can never be zero, so the whole derivative is zero exactly where the bracket is zero. That reduces the work to one linear equation.",
+        "common_mistakes": [
+          "Setting the constant 2πH/R to zero as well.",
+          "Differentiating Rx as R rather than as Rx with R constant, and losing the R."
+        ],
+        "memory_tip": "A positive constant multiplying a function never moves its stationary point, so set only the bracket to zero."
+      },
+      {
+        "id": "s4_confirm",
+        "kind": "boxed_final",
+        "label": "Confirm the maximum and conclude",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. The proof is not finished at x = R/2 — the second derivative test is what shows this is the greatest curved surface. State that H and R are positive so the sign is certain.",
+        "lines": [
+          "S″(x) = (2πH/R)(−2) = −4πH/R",
+          "H and R are positive lengths, so S″(x) < 0 for every x.",
+          "A negative second derivative means the stationary point is a maximum.",
+          "So the curved surface is greatest at x = R/2.",
+          "Then h = H(R − R/2)/R = H/2, and the greatest curved surface is 2π(R/2)(H/2) = πRH/2.",
+          {
+            "text": "∴ the cylinder of greatest curved surface has radius R/2, that is, half the radius of the cone",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S″ = −4πH/R < 0, so x = R/2 gives the greatest curved surface, which is half the cone's radius.",
+          "accept": [
+            "second derivative is minus four pi H by R which is negative",
+            "so R by two gives the maximum curved surface",
+            "the cylinder radius is half the cone radius",
+            "second derivative negative kabatti maximum ani proof",
+            "the height also comes out as half the cone height",
+            "apply the second derivative test to finish the proof"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "second derivative",
+            "minus four pi H by R",
+            "half the cone radius",
+            "maximum"
+          ]
+        },
+        "why": "The question says prove, so the working must show the value is a maximum and not merely a stationary point. The second derivative test is that proof and carries its own mark.",
+        "common_mistakes": [
+          "Stopping at x = R/2 with no test, which proves nothing about it being greatest.",
+          "Claiming the greatest VOLUME cylinder also has radius R/2 — that one has radius 2R/3."
+        ],
+        "memory_tip": "Greatest curved surface gives radius R/2 and height H/2. Greatest volume is a different question with a different answer, radius 2R/3."
+      }
+    ]
+  }
+}

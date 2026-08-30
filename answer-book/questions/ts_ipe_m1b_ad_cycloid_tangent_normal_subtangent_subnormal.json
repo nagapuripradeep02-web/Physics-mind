@@ -1,0 +1,246 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_cycloid_tangent_normal_subtangent_subnormal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "At any point t on the curve x = a(t + sin t), y = a(1 − cos t), find the lengths of the tangent, the normal, the subtangent and the subnormal.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the slope and write y in half-angle form",
+      "marks": 1
+    },
+    {
+      "label": "State the four formulas and find √(1 + m²)",
+      "marks": 1
+    },
+    {
+      "label": "Find the subtangent and the subnormal",
+      "marks": 1
+    },
+    {
+      "label": "Find the lengths of the tangent and the normal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.216, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 3. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question — one mark for each of the four quantities asked for, which is also how the question is worded. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what the slope comes to, name the four formulas you use, and say which half-angle identities you need.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_slope_half_angle",
+        "kind": "equation",
+        "label": "Find the slope and write y in half-angle form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Two half-angle identities do all the simplifying here: 1 + cos t = 2cos²(t/2), 1 − cos t = 2sin²(t/2) and sin t = 2 sin(t/2)cos(t/2). Convert both y and m before going any further.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x = a(t + sin t)  ⇒  dx/dt = a(1 + cos t) = 2a cos²(t/2)",
+          "y = a(1 − cos t)  ⇒  dy/dt = a sin t = 2a sin(t/2)cos(t/2)",
+          "m = dy/dx = (dy/dt)/(dx/dt) = [2a sin(t/2)cos(t/2)]/[2a cos²(t/2)]",
+          "∴ m = tan(t/2)",
+          "Also  y = a(1 − cos t) = 2a sin²(t/2)",
+          "Take 0 < t < π, so sin(t/2) > 0 and cos(t/2) > 0 and every length below is positive."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m = dy/dt over dx/dt = tan(t/2), and that y = 2a sin²(t/2).",
+          "accept": [
+            "differentiate x and y with respect to t and divide",
+            "the slope comes to tan of t by two",
+            "one plus cos t is two cos squared t by two",
+            "half angle formulas use chesi tan t by two ki teesukovali",
+            "y equals two a sin squared t by two",
+            "dy by dt over dx by dt gives the slope"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan t by two",
+            "half angle",
+            "two a sin squared",
+            "dy by dt",
+            "cycloid"
+          ]
+        },
+        "why": "The four quantities all contain y and m, so simplifying both into half-angle form once at the start means the rest of the work is short cancelling instead of long trigonometry.",
+        "common_mistakes": [
+          "Writing dx/dt as a(1 − cos t) by copying the y-derivative pattern.",
+          "Using 1 + cos t = 2sin²(t/2), which is the identity for 1 − cos t.",
+          "Leaving m as sin t/(1 + cos t) and then being unable to simplify sec and tan later."
+        ],
+        "memory_tip": "Minus goes with sine and plus goes with cosine: 1 − cos t = 2sin²(t/2), 1 + cos t = 2cos²(t/2)."
+      },
+      {
+        "id": "s2_formulas",
+        "kind": "equation",
+        "label": "State the four formulas and find √(1 + m²)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The four definitions are worth a mark on their own. 1 + tan²(t/2) = sec²(t/2) is the identity that makes the two lengths simplify.",
+        "lines": [
+          "At a point where the slope is m,",
+          "subtangent = y/m,   subnormal = ym,",
+          "length of tangent = |y√(1 + m²)/m|,   length of normal = |y√(1 + m²)|",
+          "Here m = tan(t/2), so",
+          "1 + m² = 1 + tan²(t/2) = sec²(t/2)",
+          "∴ √(1 + m²) = sec(t/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the four formulas are y/m, ym, |y√(1+m²)/m| and |y√(1+m²)|, and that √(1 + m²) = sec(t/2).",
+          "accept": [
+            "subtangent is y by m and subnormal is y into m",
+            "length of tangent is y root one plus m squared by m",
+            "length of normal is y root one plus m squared",
+            "naalugu formulas rasi root one plus m squared ni sec t by two ga marchali",
+            "one plus tan squared is sec squared",
+            "state all four definitions before substituting"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "subtangent",
+            "subnormal",
+            "y by m",
+            "y into m",
+            "sec t by two"
+          ]
+        },
+        "why": "Students most often lose marks here by mixing up subtangent and subnormal. Writing all four definitions down first, before any substitution, makes the mix-up impossible and earns the mark by itself.",
+        "common_mistakes": [
+          "Swapping subtangent and subnormal, so y/m and ym are used the wrong way round.",
+          "Writing √(1 + m²) as 1 + m.",
+          "Answering only two of the four quantities the question asks for."
+        ],
+        "memory_tip": "Sub-TANGENT goes with the tangent, so m goes underneath as it does in the tangent line; sub-NORMAL goes with the normal, so m multiplies."
+      },
+      {
+        "id": "s3_subtangent_subnormal",
+        "kind": "equation",
+        "label": "Find the subtangent and the subnormal",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. The subtangent simplifies all the way back to a sin t, which is a useful check: it is exactly dy/dt divided by a.",
+        "lines": [
+          "Subtangent = y/m = 2a sin²(t/2)/tan(t/2)",
+          "= 2a sin²(t/2) · cos(t/2)/sin(t/2)",
+          "= 2a sin(t/2)cos(t/2) = a sin t",
+          "Subnormal = ym = 2a sin²(t/2) · tan(t/2)",
+          "= 2a sin³(t/2)/cos(t/2)",
+          "which may also be written as a(1 − cos t)tan(t/2)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the subtangent is a sin t and the subnormal is 2a sin³(t/2)/cos(t/2).",
+          "accept": [
+            "subtangent is y by m which simplifies to a sin t",
+            "subnormal is y into m which is two a sin cubed t by two over cos t by two",
+            "divide two a sin squared by tan t by two",
+            "subtangent a sin t vasthundi and subnormal lo tan undipotundi",
+            "the subnormal can also be written as a into one minus cos t into tan t by two",
+            "two sin t by two cos t by two is sin t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a sin t",
+            "sin cubed",
+            "subtangent",
+            "subnormal",
+            "tan t by two"
+          ]
+        },
+        "why": "Dividing by tan(t/2) is the same as multiplying by cos(t/2)/sin(t/2), which cancels one sine and leaves the double-angle form 2 sin(t/2)cos(t/2) = sin t. Doing the division as a fraction of fractions is where the cancelling is usually missed.",
+        "common_mistakes": [
+          "Multiplying by tan(t/2) for the subtangent instead of dividing.",
+          "Leaving the subtangent as 2a sin²(t/2)/tan(t/2) without simplifying to a sin t.",
+          "Writing 2 sin(t/2)cos(t/2) as sin(t/2) rather than sin t."
+        ],
+        "memory_tip": "Dividing by a tangent flips it to cos over sin, and one sine always cancels."
+      },
+      {
+        "id": "s4_lengths",
+        "kind": "boxed_final",
+        "label": "Find the lengths of the tangent and the normal",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The length of the tangent comes to 2a sin(t/2), which equals √(2ay) — a quick check, since y = 2a sin²(t/2). Present all four answers together in the box.",
+        "lines": [
+          "Length of tangent = |y√(1 + m²)/m| = 2a sin²(t/2)·sec(t/2)/tan(t/2)",
+          "= 2a sin²(t/2) · (1/cos(t/2)) · (cos(t/2)/sin(t/2)) = 2a sin(t/2)",
+          "Length of normal = |y√(1 + m²)| = 2a sin²(t/2)·sec(t/2)",
+          "= 2a sin²(t/2)/cos(t/2) = 2a sin(t/2)tan(t/2)",
+          {
+            "text": "∴ length of tangent = 2a sin(t/2),  length of normal = 2a sin(t/2)tan(t/2),  subtangent = a sin t,  subnormal = 2a sin³(t/2)/cos(t/2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the length of the tangent is 2a sin(t/2) and the length of the normal is 2a sin(t/2)tan(t/2), and that all four answers are given.",
+          "accept": [
+            "length of tangent is two a sin t by two",
+            "length of normal is two a sin t by two into tan t by two",
+            "multiply y by sec t by two and divide by tan t by two",
+            "naalugu answers ni kalipi rayali",
+            "sec by tan simplifies to cos by sin times one by cos",
+            "the length of the tangent squared is two a y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two a sin t by two",
+            "length of tangent",
+            "length of normal",
+            "sec by tan",
+            "all four"
+          ]
+        },
+        "why": "The question names four quantities, so all four must appear in the final answer. A script that gives two of them is a half answer and is marked as one.",
+        "common_mistakes": [
+          "Giving only the subtangent and the subnormal and stopping there.",
+          "Cancelling sec(t/2) against tan(t/2) incorrectly and losing the factor sin(t/2).",
+          "Writing the length of the normal as 2a sin²(t/2), forgetting the sec(t/2) factor."
+        ],
+        "memory_tip": "The two lengths differ by one factor of m: length of normal = m × length of tangent, exactly as subnormal = m² × subtangent."
+      }
+    ]
+  }
+}

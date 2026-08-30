@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_sphere_diameter_40_error",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The diameter of a sphere is measured as 40 cm. If an error of 0.02 cm is made in the measurement, find the approximate errors in the volume and the surface area of the sphere.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Halve the diameter and its error",
+      "marks": 1
+    },
+    {
+      "label": "Substitute r = 20 and dr = 0.01",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.211, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 6. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answers were checked before they were written: the exact volume change is (4/3)π[(20.01)³ − 20³] = 16.008π cm³ against the approximation 16π cm³, and the exact surface-area change is 4π[(20.01)² − 20²] = 1.6004π cm² against 1.6π cm²."
+  },
+  "recall_prompt": "Say how you would do this one — say what the given 0.02 cm is an error in, and what you must do to it first.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_halve_the_error",
+        "kind": "equation",
+        "label": "Halve the diameter and its error",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The DIAMETER is measured, not the radius. Both the 40 and the 0.02 are halved before either formula is used. Marks are lost here more often than in the substitution.",
+        "memory_tip": "Diameter given, radius needed: halve the value AND halve the error. 40 to 20, and 0.02 to 0.01.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let r be the radius of the sphere, so the diameter is 2r.",
+          "2r = 40   ⇒   r = 20 cm",
+          "The error is made in the DIAMETER, so the error in 2r is 0.02 cm.",
+          "2 · dr = 0.02   ⇒   dr = 0.01 cm",
+          "V = (4/3)πr³   ⇒   dV = 4πr² · dr",
+          "S = 4πr²   ⇒   dS = 8πr · dr"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the diameter is given, so r = 20 and dr = 0.01, and that dV = 4πr²·dr and dS = 8πr·dr.",
+          "accept": [
+            "the diameter is given so the radius is twenty and the error is zero point zero one",
+            "halve the error as well, not just the diameter",
+            "d V is four pi r squared d r and d S is eight pi r d r",
+            "diameter icharu kabatti radius twenty, error kooda sagam",
+            "two d r equals zero point zero two so d r is zero point zero one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "diameter",
+            "radius twenty",
+            "zero point zero one",
+            "four pi r squared"
+          ]
+        },
+        "why": "Both formulas are written in r, so every given number must be converted to r first. Since 2r = 40 and 2·dr = 0.02, the error halves exactly as the value does — an error carried across as 0.02 doubles both answers.",
+        "common_mistakes": [
+          "Using dr = 0.02, the diameter error, without halving it.",
+          "Taking r = 40 by reading the diameter as the radius."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute r = 20 and dr = 0.01",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Two answers are wanted, so both must be written. Leaving them in terms of π is accepted; the decimals are added here for the reader.",
+        "memory_tip": "dV uses the surface area 4πr², and dS uses 8πr. Volume error is in cm³, surface-area error in cm².",
+        "lines": [
+          "dV = 4πr² · dr = 4π(20)²(0.01) = 4π(400)(0.01)",
+          "= 16π cm³ ≈ 50.27 cm³",
+          "dS = 8πr · dr = 8π(20)(0.01)",
+          "= 1.6π cm² ≈ 5.03 cm²",
+          {
+            "text": "∴ error in volume ≈ 16π cm³  and  error in surface area ≈ 1.6π cm²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dV = 16π cm³ and dS = 1.6π cm².",
+          "accept": [
+            "the volume error is sixteen pi cubic centimetres",
+            "the surface area error is one point six pi square centimetres",
+            "sixteen pi and one point six pi",
+            "volume error sixteen pi, surface area error one point six pi",
+            "about fifty point two seven and about five point zero three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixteen pi",
+            "one point six pi",
+            "cubic centimetres",
+            "square centimetres"
+          ]
+        },
+        "why": "dV/dr = 4πr² is the surface area itself, which is the reason a thin shell of thickness dr has volume 4πr²·dr. Both answers here are absolute errors and carry units. A percentage question would instead want the relative errors: since V is r³ and S is r², dV/V = 3(dr/r) and dS/S = 2(dr/r) — the exponent multiplies the relative error.",
+        "common_mistakes": [
+          "Answering only for the volume and leaving the surface area out.",
+          "Writing the volume error in cm² and the surface-area error in cm³."
+        ]
+      }
+    ]
+  }
+}

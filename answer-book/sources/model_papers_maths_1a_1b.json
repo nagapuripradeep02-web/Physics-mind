@@ -1,0 +1,69 @@
+{
+  "source_book": "Sri Chaitanya — FAST TRACK IPE for Jr. Students, Mathematics-IA and Mathematics-IB (2026-27 edition)",
+  "internal_only": true,
+  "note": "The two model papers the book prints on its own last pages (MODEL PAPER-IA, book p.132; MODEL PAPER-IB, book p.232). Held as a COVERAGE TEST, not as content: for each question we record which chapter it belongs to and, where our bank answers it, the question_id. Stems are restated in our own wording; the mathematics is exact. No solution content appears here, by policy. These are a coaching publisher's model papers, NOT TSBIE papers - they are evidence of what the book expects to be asked, not of what a board actually asked, and nothing here may be rendered to a student as exam history.",
+  "shape": {
+    "sections": "I. Very Short Answer 1-10 · II. Short Answer 11-18 · III. Long Answer 19-21",
+    "why_it_matters": "10 + 8 + 3 = 21 questions is exactly the ABC_60 shape PAPER_PATTERNS already encodes for mathematics and mathematics_1b, printed independently in both volumes."
+  },
+  "papers": [
+    {
+      "paper": "MODEL PAPER-IA",
+      "subject": "mathematics",
+      "printed_page": 132,
+      "scan": "DocScanner 29 Aug 2026 10-04 pm.pdf scan 73",
+      "questions": [
+        { "n": 1,  "section": "VSAQ", "chapter": "Sets and Relations",                      "stem": "Find the power set of A = {−3, 0, 3}." },
+        { "n": 2,  "section": "VSAQ", "chapter": "Sequences and Series",                    "stem": "Find the 10th term of the A.P. 3, 5, 7, 9, …" },
+        { "n": 3,  "section": "VSAQ", "chapter": "Functions",                               "stem": "If f : R → R and f(x) = (1 − x²)/(1 + x²), show that f(tan θ) = cos 2θ." },
+        { "n": 4,  "section": "VSAQ", "chapter": "Matrices",                                "stem": "Equate two 3×3 matrices and find x, y, z and a." },
+        { "n": 5,  "section": "VSAQ", "chapter": "Matrices",                                "stem": "If the given 3×3 matrix is symmetric, find x." },
+        { "n": 6,  "section": "VSAQ", "chapter": "Addition of Vectors",                     "stem": "If ā = ī − 2j̄, find a vector in the direction of ā with magnitude 7 units." },
+        { "n": 7,  "section": "VSAQ", "chapter": "Trigonometric Ratios and Transformations", "stem": "Find the period of tan(x + 4x + 9x + … + n²x)." },
+        { "n": 8,  "section": "VSAQ", "chapter": "Trigonometric Ratios and Transformations", "stem": "Find the range of 7 cos x − 24 sin x + 5." },
+        { "n": 9,  "section": "VSAQ", "chapter": "Hyperbolic Functions",                    "stem": "If sinh x = 3, show that x = logₑ(3 + √10)." },
+        { "n": 10, "section": "VSAQ", "chapter": "Properties of Triangles",                 "stem": "In triangle ABC with a = 2 cm, b = 3 cm, c = 4 cm, find cos A." },
+        { "n": 11, "section": "SAQ",  "chapter": "Functions",                               "stem": "Given f and g⁻¹ as sets of ordered pairs, show that (g∘f)⁻¹ = f⁻¹∘g⁻¹." },
+        { "n": 12, "section": "SAQ",  "chapter": "Mathematical Induction",                  "stem": "Prove 2 + 7 + 12 + … + (5n − 3) = n(5n − 1)/2 for all n ∈ N by induction." },
+        { "n": 13, "section": "SAQ",  "chapter": "Matrices",                                "stem": "Show that the determinant with rows (bc, b+c, 1), (ca, c+a, 1), (ab, a+b, 1) equals (a−b)(b−c)(c−a)." },
+        { "n": 14, "section": "SAQ",  "chapter": "Product of Vectors",                      "stem": "For non-coplanar ā, b̄, c̄, verify the collinearity of the points with position vectors ā−2b̄+3c̄, 2ā+3b̄−4c̄, −7b̄+10c̄." },
+        { "n": 15, "section": "SAQ",  "chapter": "Product of Vectors",                      "stem": "If ā = 2ī+2j̄−3k̄ and b̄ = 3ī−j̄+2k̄, find the angle between 2ā+b̄ and ā+2b̄." },
+        { "n": 16, "section": "SAQ",  "chapter": "Trigonometric Equations",                 "stem": "Find the general solution of 2sin²θ − 4 = 5cos θ." },
+        { "n": 17, "section": "SAQ",  "chapter": "Inverse Trigonometric Functions",         "stem": "Find the value of sin(cos⁻¹(4/5) + cos⁻¹(12/13))." },
+        { "n": 18, "section": "SAQ",  "chapter": "Properties of Triangles",                 "stem": "In triangle ABC prove (1/r − 1/r₁)(1/r − 1/r₂)(1/r − 1/r₃) = abc/Δ³ = 4R/(r²s²)." },
+        { "n": 19, "section": "LAQ",  "chapter": "Matrices",                                "stem": "Solve 2x − y + 3z = 8, −x + 2y + z = 4, 3x + y − 4z = 0 by the matrix inversion method." },
+        { "n": 20, "section": "LAQ",  "chapter": "Product of Vectors",                      "stem": "For ā = ī−2j̄−3k̄, b̄ = 2ī+j̄−k̄, c̄ = ī+3j̄−2k̄, verify that ā×(b̄×c̄) ≠ (ā×b̄)×c̄." },
+        { "n": 21, "section": "LAQ",  "chapter": "Trigonometric Ratios and Transformations", "stem": "If A, B, C are angles of a triangle, prove sin 2A − sin 2B + sin 2C = 4 cos A sin B cos C." }
+      ]
+    },
+    {
+      "paper": "MODEL PAPER-IB",
+      "subject": "mathematics_1b",
+      "printed_page": 232,
+      "scan": "DocScanner.pdf scan 98",
+      "questions": [
+        { "n": 1,  "section": "VSAQ", "chapter": "The Straight Line",         "stem": "Find x if the slope of the line through (2, 5) and (x, 3) is 2." },
+        { "n": 2,  "section": "VSAQ", "chapter": "The Straight Line",         "stem": "Find the distance between the parallel lines 3x − 4y = 12 and 3x − 4y = 7." },
+        { "n": 3,  "section": "VSAQ", "chapter": "3D-Coordinates",            "stem": "Find the distance of P(3, 2, 4) from the origin." },
+        { "n": 4,  "section": "VSAQ", "chapter": "The Plane",                 "stem": "Reduce the equation of the plane x + 2y − 3z − 6 = 0 to normal form." },
+        { "n": 5,  "section": "VSAQ", "chapter": "Limits and Continuity",     "stem": "Compute lim(x → 1) (2x + 1)/(3x² − 4x + 5)." },
+        { "n": 6,  "section": "VSAQ", "chapter": "Limits and Continuity",     "stem": "Compute lim(x → 0) (e⁷ˣ − 1)/x." },
+        { "n": 7,  "section": "VSAQ", "chapter": "Differentiation",           "stem": "Find the derivative of (x² − 3)(4x³ + 1)." },
+        { "n": 8,  "section": "VSAQ", "chapter": "Differentiation",           "stem": "Find the derivative of tan⁻¹(log x)." },
+        { "n": 9,  "section": "VSAQ", "chapter": "Applications of Derivatives", "stem": "If the side of a square increases by 4%, find the approximate percentage increase in its area." },
+        { "n": 10, "section": "VSAQ", "chapter": "Applications of Derivatives", "stem": "If y = x⁴, find the average rate of change of y between x = 2 and x = 4." },
+        { "n": 11, "section": "SAQ",  "chapter": "Locus",                     "stem": "Find the equation of the locus of a point which forms a triangle of area 2 with A(1, 1) and B(−2, 3)." },
+        { "n": 12, "section": "SAQ",  "chapter": "Transformation of Axes",    "stem": "When the axes are rotated through an angle α, find the transformed equation of x cos α + y sin α − p = 0." },
+        { "n": 13, "section": "SAQ",  "chapter": "Pair of Straight Lines",    "stem": "Find the distance between the pair of parallel lines 9x² − 6xy + y² + 18x − 6y + 8 = 0." },
+        { "n": 14, "section": "SAQ",  "chapter": "Pair of Straight Lines",    "stem": "Find the condition for the chord lx + my = 1 of the circle x² + y² = a² (centre the origin) to subtend a right angle at the origin." },
+        { "n": 15, "section": "SAQ",  "chapter": "Limits and Continuity",     "stem": "Show that f, defined by f(x) = (cos ax − cos bx)/x² for x ≠ 0 and f(0) = (1/2)(b² − a²), is continuous at 0." },
+        { "n": 16, "section": "SAQ",  "chapter": "Differentiation",           "stem": "Find the derivative of ax² + bx + c from the first principle." },
+        { "n": 17, "section": "SAQ",  "chapter": "Applications of Derivatives", "stem": "Find the equation of the tangent and the normal to the curve xy = 10 at (2, 5)." },
+        { "n": 18, "section": "SAQ",  "chapter": "Applications of Derivatives", "stem": "The profit function of a company selling x items per day is P(x) = (150 − x)x − 1000. Find the number of items for maximum profit, and the maximum profit." },
+        { "n": 19, "section": "LAQ",  "chapter": "The Straight Line",         "stem": "If p and q are the lengths of the perpendiculars from the origin to x sec α + y cosec α = a and x cos α − y sin α = a cos 2α, prove that 4p² + q² = a²." },
+        { "n": 20, "section": "LAQ",  "chapter": "D.C's & D.R's",             "stem": "The vertices of a triangle are A(1, 4, 2), B(−2, 1, 2), C(2, 3, −4). Find ∠A, ∠B and ∠C." },
+        { "n": 21, "section": "LAQ",  "chapter": "Differentiation",           "stem": "If y = x√(a² + x²) + a² log(x + √(a² + x²)), prove that dy/dx = 2√(a² + x²)." }
+      ]
+    }
+  ]
+}

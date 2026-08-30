@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_state_rolle_and_lagrange",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "State Rolle's theorem and Lagrange's mean value theorem.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State Rolle's theorem",
+      "marks": 1
+    },
+    {
+      "label": "State Lagrange's mean value theorem",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.228, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark per theorem, since the question names two. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer this — state the conditions each theorem needs and what each one concludes.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rolle",
+        "kind": "text",
+        "label": "State Rolle's theorem",
+        "marks": 1,
+        "mark_note": "Statement",
+        "margin_note": "First mark. The examiner reads for the three conditions and for the conclusion f′(c) = 0. Write the interval against each condition — closed for continuity, open for differentiability.",
+        "memory_tip": "Three conditions, then one conclusion. Closed interval for continuity, open interval for the derivative, equal values at the two ends.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Rolle's theorem: Let f : [a, b] → ℝ be a function such that",
+          "(i) f is continuous on the closed interval [a, b]",
+          "(ii) f is differentiable on the open interval (a, b)",
+          "(iii) f(a) = f(b)",
+          "Then there exists at least one c ∈ (a, b) such that f′(c) = 0.",
+          "Geometrically: between two points of the curve at the same height there is at least one point where the tangent is horizontal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Rolle's theorem needs f continuous on [a, b], differentiable on (a, b) and f(a) = f(b), and then gives at least one c in (a, b) with f′(c) = 0.",
+          "accept": [
+            "f is continuous on the closed interval and differentiable on the open interval and the two end values are equal",
+            "then there is a c between a and b where f dash of c is zero",
+            "continuous, differentiable, f of a equals f of b, so the derivative is zero somewhere inside",
+            "rendu chivara values same aithe madhyalo derivative zero avuthundi",
+            "state the three conditions and then the conclusion f dash c equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "continuous",
+            "differentiable",
+            "f of a equals f of b",
+            "f dash c is zero",
+            "closed interval"
+          ]
+        },
+        "why": "All three conditions carry this mark together. The theorem is false if any one of them is dropped, so a statement that leaves out continuity, or gives the same interval for both conditions, is not the theorem.",
+        "common_mistakes": [
+          "Writing both conditions on the same interval — continuity is on the closed [a, b], differentiability on the open (a, b).",
+          "Leaving out f(a) = f(b), which is the condition that forces the derivative to be zero.",
+          "Writing the conclusion as f(c) = 0 instead of f′(c) = 0."
+        ]
+      },
+      {
+        "id": "s2_lagrange",
+        "kind": "boxed_final",
+        "label": "State Lagrange's mean value theorem",
+        "marks": 1,
+        "mark_note": "Statement",
+        "margin_note": "Second mark. (f(b) − f(a))/(b − a) is the slope of the chord and f′(c) is the slope of the tangent, so equal slopes means the two lines are parallel.",
+        "memory_tip": "Lagrange has two conditions, Rolle has three. Take f(a) = f(b) away from Rolle and the 0 on the right becomes the chord slope.",
+        "lines": [
+          "Lagrange's mean value theorem: Let f : [a, b] → ℝ be a function such that",
+          "(i) f is continuous on the closed interval [a, b]",
+          "(ii) f is differentiable on the open interval (a, b)",
+          "Then there exists at least one c ∈ (a, b) such that f′(c) = (f(b) − f(a))/(b − a).",
+          "Geometrically: there is at least one point at which the tangent is parallel to the chord joining (a, f(a)) and (b, f(b)).",
+          {
+            "text": "∴ Rolle's theorem is the special case f(a) = f(b) of Lagrange's theorem, where the right side becomes 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Lagrange's theorem needs f continuous on [a, b] and differentiable on (a, b), and gives c in (a, b) with f′(c) = (f(b) − f(a))/(b − a), with Rolle's theorem as the case f(a) = f(b).",
+          "accept": [
+            "continuous on the closed interval and differentiable on the open interval gives f dash c equal to f of b minus f of a over b minus a",
+            "the tangent at c is parallel to the chord",
+            "lagrange has only two conditions and the answer is the chord slope",
+            "chord slope ki parallel ga tangent untundi",
+            "rolle is lagrange with f of a equal to f of b"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "mean value",
+            "chord",
+            "parallel",
+            "f of b minus f of a",
+            "b minus a"
+          ]
+        },
+        "why": "Lagrange's theorem drops only the third condition of Rolle's theorem and replaces the conclusion f′(c) = 0 by the chord slope. Naming that link shows the two results are one theorem, and it is the line an examiner looks for when both are asked together.",
+        "common_mistakes": [
+          "Writing the quotient upside down as (b − a)/(f(b) − f(a)).",
+          "Keeping f(a) = f(b) as a condition of Lagrange's theorem, which turns it back into Rolle's theorem.",
+          "Saying the tangent is parallel to the x-axis, which is true for Rolle's theorem but not for Lagrange's."
+        ]
+      }
+    ]
+  }
+}

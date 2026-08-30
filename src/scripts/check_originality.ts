@@ -58,8 +58,14 @@ if (!existsSync(SRCDIR)) {
         try { j = JSON.parse(readFileSync(path, 'utf8')); }
         catch (e) { bad.push(`sources/${f}: invalid JSON — ${(e as Error).message}`); continue; }
         if (j.internal_only !== true) bad.push(`sources/${f}: missing "internal_only": true`);
-        if (!Array.isArray(j.questions)) { bad.push(`sources/${f}: no questions[]`); continue; }
-        for (const q of j.questions) {
+        /* Two shapes live here: a chapter index (questions[] at the top level) and a model-paper
+         * corpus (papers[], each with its own questions[]). Both are research indexes and both
+         * must obey the questions-only rule, so flatten rather than exempt one. */
+        const qs = Array.isArray(j.questions) ? j.questions
+            : Array.isArray(j.papers) ? j.papers.flatMap((p: any) => p.questions ?? [])
+            : null;
+        if (!qs) { bad.push(`sources/${f}: neither questions[] nor papers[].questions[]`); continue; }
+        for (const q of qs) {
             indexed++;
             /* Markers are scanned on the STEM only. The stem is content taken from the book, so a
              * `Sol:` there means working leaked in. `notes` is OUR commentary about the scan, and it
@@ -67,13 +73,13 @@ if (!existsSync(SRCDIR)) {
              * first run flagged exactly that sentence. Length guards notes instead: our own note is a
              * line or two, a pasted solution is not. */
             for (const re of SOLUTION_MARKERS) {
-                if (re.test(q.stem ?? '')) bad.push(`sources/${f} ${q.ref}: stem looks like solution text (${re}) — the index takes questions only`);
+                if (re.test(q.stem ?? '')) bad.push(`sources/${f} ${q.ref ?? ('Q' + q.n)}: stem looks like solution text (${re}) — the index takes questions only`);
             }
             /* A stem far longer than any exam question is the shape of a solution that leaked in. */
-            if ((q.stem ?? '').length > 600) bad.push(`sources/${f} ${q.ref}: stem is ${q.stem.length} chars — too long for a question stem`);
-            if ((q.notes ?? '').length > 400) bad.push(`sources/${f} ${q.ref}: notes is ${q.notes.length} chars — too long for a scan note`);
+            if ((q.stem ?? '').length > 600) bad.push(`sources/${f} ${q.ref ?? ('Q' + q.n)}: stem is ${q.stem.length} chars — too long for a question stem`);
+            if ((q.notes ?? '').length > 400) bad.push(`sources/${f} ${q.ref ?? ('Q' + q.n)}: notes is ${q.notes.length} chars — too long for a scan note`);
         }
-        note(`sources/${f}: ${j.questions.length} questions`);
+        note(`sources/${f}: ${qs.length} questions`);
     }
 }
 
@@ -104,8 +110,14 @@ for (const f of cards) {
         continue;
     }
     citedIds.add(q.question_id);
-    if (!n.includes(BOUNDARY)) bad.push(`${f}: cites ${SOURCE_NAME} but does not record "${BOUNDARY}"`);
-    if (!n.includes(DOSSIER)) bad.push(`${f}: cites ${SOURCE_NAME} but does not point at ${DOSSIER}`);
+        /* Case-insensitive on purpose. The requirement is that the card RECORDS the boundary,
+         * not that it shouts or bolds it: 46 cards wrote ONLY THE QUESTION WAS TAKEN in capitals
+         * to match the exemplar's register, and a case-sensitive match called all 46 a violation
+         * when every one was correct. A gate that fails on typography teaches authors to fight
+         * the gate instead of the rule. */
+        const hay = n.toLowerCase();
+        if (!hay.includes(BOUNDARY.toLowerCase())) bad.push(`${f}: cites ${SOURCE_NAME} but does not record "${BOUNDARY}"`);
+        if (!hay.includes(DOSSIER.toLowerCase())) bad.push(`${f}: cites ${SOURCE_NAME} but does not point at ${DOSSIER}`);
 }
 note(`${citedIds.size} maths card(s) cite ${SOURCE_NAME}; ${indexed} question(s) indexed`);
 

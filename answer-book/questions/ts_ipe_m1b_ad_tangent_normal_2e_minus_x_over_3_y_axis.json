@@ -1,0 +1,241 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_tangent_normal_2e_minus_x_over_3_y_axis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of the tangent and the normal to the curve y = 2e^(−x/3) at the point where the curve meets the y-axis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find where the curve meets the y-axis",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate and find the slope at (0, 2)",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the tangent",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the normal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.222, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 13. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on notation: the stem is reproduced with the book's ASCII exponent, y = 2e^(−x/3); the working writes the same function in real Unicode as 2e⁻ˣ⁄³."
+  },
+  "recall_prompt": "Say how you would do this one — the point is not given, so say how you find it, then say the slope there and how you get the normal.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_the_point",
+        "kind": "equation",
+        "label": "Find where the curve meets the y-axis",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The point is not printed in the question, so finding it is a scoring step in its own right. On the y-axis x = 0, and e⁰ = 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curve:  y = 2e⁻ˣ⁄³",
+          "Every point on the y-axis has x = 0.",
+          "Put x = 0 in the curve:",
+          "y = 2e⁰ = 2(1) = 2",
+          "∴ the curve meets the y-axis at the point (0, 2)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That on the y-axis x = 0, so the point is (0, 2).",
+          "accept": [
+            "on the y axis x is zero",
+            "put x equal to zero into the curve",
+            "e to the zero is one so y is two",
+            "y axis meeda x equal to zero, so point zero comma two",
+            "the point is zero comma two",
+            "the question does not give the point so find it first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equal to zero",
+            "e to the zero",
+            "zero comma two",
+            "y axis"
+          ]
+        },
+        "why": "A tangent and a normal are drawn at a point, and this question names the point by a condition instead of by coordinates. Until x = 0 is substituted there is nothing to substitute into the line formula.",
+        "common_mistakes": [
+          "Setting y = 0 instead of x = 0, which finds the x-axis crossing.",
+          "Writing e⁰ = 0 instead of 1, which gives the point (0, 0).",
+          "Trying to write the tangent before the point is known."
+        ],
+        "memory_tip": "The y-axis is the line x = 0, and the x-axis is the line y = 0. Set the OTHER letter to zero from the axis you are asked about."
+      },
+      {
+        "id": "s2_slope",
+        "kind": "equation",
+        "label": "Differentiate and find the slope at (0, 2)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The chain rule brings out the factor −1/3 from the exponent. Missing that factor is the commonest single error in this question.",
+        "lines": [
+          "Differentiate with respect to x. The chain rule gives the factor −1/3 from the exponent:",
+          "dy/dx = 2 · e⁻ˣ⁄³ · (−1/3)",
+          "= (−2/3)e⁻ˣ⁄³",
+          "At x = 0:   m = (−2/3)e⁰ = (−2/3)(1)",
+          "∴ m = −2/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the chain rule gives dy/dx = (−2/3)e⁻ˣ⁄³, and m = −2/3 at x = 0.",
+          "accept": [
+            "differentiate the exponential and multiply by minus one third",
+            "the chain rule brings out minus one by three",
+            "at x equal to zero the slope is minus two by three",
+            "chain rule vaadi minus one by three bayataki teesukovali",
+            "dy by dx is minus two by three times e power minus x by three",
+            "the slope of the tangent is minus two thirds"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "chain rule",
+            "minus one third",
+            "minus two by three",
+            "e power minus x by three"
+          ]
+        },
+        "why": "The exponent is a function of x, not x itself, so the derivative of that exponent multiplies the exponential. Here that derivative is −1/3.",
+        "common_mistakes": [
+          "Writing dy/dx = 2e⁻ˣ⁄³ and omitting the −1/3 factor from the chain rule.",
+          "Using +1/3, taking the derivative of −x/3 as positive.",
+          "Substituting x = 2 (the y-coordinate) instead of x = 0."
+        ],
+        "memory_tip": "Differentiate the exponential as it stands, then multiply by the derivative of the exponent. Here the exponent −x/3 differentiates to −1/3."
+      },
+      {
+        "id": "s3_tangent",
+        "kind": "equation",
+        "label": "Equation of the tangent",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. x₁ = 0, so the bracket is just x. Multiply by 3 to clear the fraction before collecting the terms.",
+        "lines": [
+          "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          "Here (x₁, y₁) = (0, 2) and m = −2/3:",
+          "y − 2 = (−2/3)(x − 0)",
+          "3(y − 2) = −2x",
+          "3y − 6 = −2x",
+          "∴ 2x + 3y − 6 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point-slope form with (0, 2) and m = −2/3 gives 2x + 3y − 6 = 0.",
+          "accept": [
+            "substitute the point zero comma two and the slope",
+            "multiply both sides by three to clear the fraction",
+            "the tangent is two x plus three y minus six equals zero",
+            "three tho multiply chesi fraction teesestha",
+            "y minus two equals minus two by three x",
+            "three y minus six equals minus two x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x plus three y",
+            "minus six",
+            "clear the fraction",
+            "zero comma two"
+          ]
+        },
+        "why": "Because x₁ = 0, the point-slope form loses one term straight away, so only the fraction has to be cleared before the general form appears.",
+        "common_mistakes": [
+          "Multiplying only the left side by 3.",
+          "Writing 2x + 3y + 6 = 0, losing the sign when moving −6 across.",
+          "Using the point (2, 0) instead of (0, 2)."
+        ],
+        "memory_tip": "When the point sits on the y-axis, x₁ = 0 and the bracket (x − x₁) is simply x."
+      },
+      {
+        "id": "s4_normal",
+        "kind": "boxed_final",
+        "label": "Equation of the normal",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. m = −2/3 is negative, so −1/m is positive: 3/2, not −3/2. Check the boxed normal at (0, 2): 0 − 4 + 4 = 0.",
+        "lines": [
+          "The normal is perpendicular to the tangent at the same point,",
+          "so its slope is −1/m = −1 ÷ (−2/3) = 3/2.",
+          "y − 2 = (3/2)(x − 0)",
+          "2(y − 2) = 3x",
+          "2y − 4 = 3x",
+          {
+            "text": "∴ Tangent: 2x + 3y − 6 = 0     Normal: 3x − 2y + 4 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the normal's slope is −1/m = 3/2, giving 3x − 2y + 4 = 0.",
+          "accept": [
+            "the normal slope is minus one over m",
+            "minus two by three turns into plus three by two",
+            "the normal is three x minus two y plus four equals zero",
+            "fraction ni tirigesi sign marchali",
+            "both lines pass through zero comma two",
+            "the product of the two slopes is minus one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three by two",
+            "three x minus two y",
+            "plus four",
+            "minus one by m"
+          ]
+        },
+        "why": "The tangent and the normal cross at right angles, so the product of their slopes is −1. Here (−2/3)(3/2) = −1, which is the check on the slope before the line is written.",
+        "common_mistakes": [
+          "Writing the normal's slope as −3/2, doing the reciprocal but not the sign change.",
+          "Using 2/3 as the normal's slope, changing the sign but not inverting.",
+          "Writing the normal through the origin because x₁ = 0, and dropping the y-intercept 2."
+        ],
+        "memory_tip": "Multiply the two slopes together as a check. If the answer is not −1, one of them is wrong."
+      }
+    ]
+  }
+}
