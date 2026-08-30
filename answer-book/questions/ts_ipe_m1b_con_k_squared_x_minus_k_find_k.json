@@ -14,7 +14,7 @@
   "qtype": "SAQ",
   "marks_total": 4,
   "paper_section": "Section B",
-  "expected_time_min": 8,
+  "expected_time_min": 9,
   "question_text": "If f, given by f(x) = k²x − k for x ≥ 1 and f(x) = 2 for x < 1, is a continuous function on ℝ, then find the values of k.",
   "appearances": [],
   "mark_split": [

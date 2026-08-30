@@ -14,7 +14,7 @@
   "qtype": "SAQ",
   "marks_total": 4,
   "paper_section": "Section B",
-  "expected_time_min": 8,
+  "expected_time_min": 9,
   "question_text": "Show that the function f, defined by f(x) = (cos ax − cos bx)/x² for x ≠ 0 and f(0) = (1/2)(b² − a²), where a and b are real constants, is continuous at x = 0.",
   "appearances": [],
   "mark_split": [

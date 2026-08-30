@@ -14,7 +14,7 @@
   "qtype": "VSAQ",
   "marks_total": 2,
   "paper_section": "Section A",
-  "expected_time_min": 4,
+  "expected_time_min": 5,
   "question_text": "Evaluate lim(x → ∞) (11x³ − 3x + 4)/(13x³ − 5x² − 7).",
   "appearances": [],
   "mark_split": [

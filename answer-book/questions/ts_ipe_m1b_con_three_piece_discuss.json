@@ -14,7 +14,7 @@
   "qtype": "SAQ",
   "marks_total": 4,
   "paper_section": "Section B",
-  "expected_time_min": 8,
+  "expected_time_min": 9,
   "question_text": "If f is the function defined by f(x) = (x − 1)/(√x − 1) for x > 1, f(x) = 5 − 3x for −2 ≤ x ≤ 1, and f(x) = 6/(x − 10) for x < −2, then discuss the continuity of f.",
   "appearances": [],
   "mark_split": [

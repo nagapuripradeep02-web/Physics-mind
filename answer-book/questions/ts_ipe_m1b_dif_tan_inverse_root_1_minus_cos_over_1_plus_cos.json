@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_tan_inverse_root_1_minus_cos_over_1_plus_cos",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the derivative of tan⁻¹(√((1 − cos x)/(1 + cos x))).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Replace 1 − cos x and 1 + cos x by half-angle forms",
+      "marks": 1
+    },
+    {
+      "label": "Cancel the inverse tangent and differentiate x/2",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.194, chapter 9 DIFFERENTIATION, Very Short Answer question 18(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1/2 was checked against a numerical difference quotient before it was written: on 0 < x < π it reads 0.5000000 at x = 0.6, at x = 1.5 and at x = 2.8. A control was also run outside that range: at x = −0.9 the difference quotient reads −0.5000000, because the square root returns |tan(x/2)|, not tan(x/2) — this is why the range 0 < x < π is written into the solution rather than left out."
+  },
+  "recall_prompt": "Say how you would do this one — name the two half-angle identities you use and what is left inside the inverse tangent.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_half_angle",
+        "kind": "equation",
+        "label": "Replace 1 − cos x and 1 + cos x by half-angle forms",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the step the rest of the answer depends on. The two half-angle identities 1 − cos x = 2sin²(x/2) and 1 + cos x = 2cos²(x/2) turn the fraction under the root into a perfect square, so the square root is removed.",
+        "memory_tip": "Whenever 1 − cos x and 1 + cos x appear together under a root, write both in half-angle form: the 2s cancel and a square is left.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Use the half-angle identities",
+          "1 − cos x = 2sin²(x/2)   and   1 + cos x = 2cos²(x/2)",
+          "∴ (1 − cos x)/(1 + cos x) = 2sin²(x/2) / 2cos²(x/2) = tan²(x/2)",
+          "For 0 < x < π, x/2 lies in (0, π/2), where tan(x/2) > 0, so",
+          "√(tan²(x/2)) = tan(x/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 − cos x = 2sin²(x/2) and 1 + cos x = 2cos²(x/2), so the radicand is tan²(x/2).",
+          "accept": [
+            "one minus cos x is two sin square x by two and one plus cos x is two cos square x by two",
+            "the ratio becomes tan squared x by two so the root gives tan x by two",
+            "use the half angle formulas and the twos cancel",
+            "half angle formulas rasthe tan square x by two vasthundi",
+            "the expression under the root is a perfect square"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "half angle",
+            "two sin square x by two",
+            "tan squared x by two",
+            "root of a square"
+          ]
+        },
+        "why": "Differentiating the printed expression by the chain and quotient rules is long and rarely finishes correctly. The half-angle identities remove the root and the fraction in one line, which is what the first mark is for.",
+        "common_mistakes": [
+          "Using 1 − cos x = 2cos²(x/2), swapping the sine and cosine forms.",
+          "Writing √(tan²(x/2)) as tan(x/2) with no statement of the range, when the square root is |tan(x/2)|."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Cancel the inverse tangent and differentiate x/2",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Tan⁻¹(tan θ) = θ only when θ is inside (−π/2, π/2), and x/2 is, so y is simply x/2. The derivative of x/2 is the constant 1/2.",
+        "memory_tip": "The whole expression reduces to x/2, so the derivative is a constant and no chain rule is needed.",
+        "lines": [
+          "∴ y = Tan⁻¹(tan(x/2))",
+          "x/2 lies in (0, π/2), which is inside the principal range of Tan⁻¹, so",
+          "y = x/2",
+          "Differentiating,",
+          {
+            "text": "∴ dy/dx = 1/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Tan⁻¹(tan(x/2)) = x/2, so the derivative is 1/2.",
+          "accept": [
+            "tan inverse of tan x by two is x by two",
+            "y is just x by two so the derivative is half",
+            "the answer is one by two",
+            "y ante x by two, so derivative half",
+            "differentiate x by two and get one half"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x by two",
+            "one half",
+            "tan inverse tan",
+            "constant"
+          ]
+        },
+        "why": "This mark is for recognising that the answer is a constant. A student who keeps differentiating the original fraction will produce something that only reduces to 1/2 after several more lines.",
+        "common_mistakes": [
+          "Applying the Tan⁻¹ chain rule to tan(x/2) and producing 1/(2(1 + tan²(x/2))) instead of cancelling first.",
+          "Giving the answer as x/2, which is y and not dy/dx."
+        ]
+      }
+    ]
+  }
+}

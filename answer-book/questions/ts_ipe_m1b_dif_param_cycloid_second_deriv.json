@@ -1,0 +1,223 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_param_cycloid_second_deriv",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If x = a(t − sin t) and y = a(1 + cos t), find d²y/dx².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate both with respect to t",
+      "marks": 1
+    },
+    {
+      "label": "Form dy/dx and use half angles",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate dy/dx with respect to t",
+      "marks": 1
+    },
+    {
+      "label": "Divide by dx/dt a second time",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.203, chapter 9 DIFFERENTIATION, Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how many times you divide by dx/dt, and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_derivatives_in_t",
+        "kind": "equation",
+        "label": "Differentiate both with respect to t",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both x and y are given through t, so nothing can be differentiated with respect to x directly. Get dx/dt and dy/dt first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x = a(t − sin t)   ⇒   dx/dt = a(1 − cos t)",
+          "y = a(1 + cos t)   ⇒   dy/dt = −a sin t"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dx/dt = a(1 − cos t) and dy/dt = −a sin t.",
+          "accept": [
+            "differentiate x and y with respect to t first",
+            "dx by dt is a into one minus cos t",
+            "dy by dt is minus a sin t",
+            "modata rendintini t tho differentiate cheyyali",
+            "both are in terms of the parameter t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "dx by dt",
+            "dy by dt",
+            "one minus cos t",
+            "minus a sin t"
+          ]
+        },
+        "why": "This is a parametric pair, so every derivative with respect to x has to be built from derivatives with respect to t.",
+        "common_mistakes": [
+          "Differentiating a(1 + cos t) as +a sin t.",
+          "Writing dx/dt as a(1 + cos t), copying the sign from y."
+        ],
+        "memory_tip": "In dx/dt the −sin t differentiates to −cos t, which builds the bracket 1 − cos t; in dy/dt the +cos t differentiates to −sin t."
+      },
+      {
+        "id": "s2_first_derivative",
+        "kind": "equation",
+        "label": "Form dy/dx and use half angles",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. The half-angle forms are what make the next differentiation short: −cot(t/2) differentiates in one line, −sin t/(1 − cos t) does not.",
+        "lines": [
+          "dy/dx = (dy/dt) / (dx/dt) = −a sin t / [a(1 − cos t)]",
+          "sin t = 2 sin(t/2) cos(t/2)   and   1 − cos t = 2 sin²(t/2)",
+          "dy/dx = −2 sin(t/2) cos(t/2) / [2 sin²(t/2)] = −cot(t/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx simplifies to −cot(t/2) using the half-angle forms.",
+          "accept": [
+            "divide dy by dt by dx by dt to get minus cot t by two",
+            "use sin t equals two sin half t cos half t",
+            "one minus cos t is two sin squared half t",
+            "half angle formulas vaadithe minus cot t by two vasthundi",
+            "the a cancels and the twos cancel"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus cot t by two",
+            "half angle",
+            "two sin squared",
+            "a cancels"
+          ]
+        },
+        "why": "Leaving dy/dx as −sin t/(1 − cos t) forces a quotient rule at the next step. In the half-angle form it is a single cotangent.",
+        "common_mistakes": [
+          "Writing 1 − cos t as 2 cos²(t/2), which is 1 + cos t.",
+          "Giving +cot(t/2) and losing the sign from dy/dt."
+        ],
+        "memory_tip": "1 − cos t = 2 sin²(t/2) and 1 + cos t = 2 cos²(t/2) — the minus goes with the sine."
+      },
+      {
+        "id": "s3_differentiate_dydx",
+        "kind": "equation",
+        "label": "Differentiate dy/dx with respect to t",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. dy/dx is a function of t, not of x, so it can only be differentiated with respect to t. The ½ comes from the inner t/2.",
+        "lines": [
+          "d/dt (dy/dx) = d/dt[−cot(t/2)]",
+          "= cosec²(t/2) · (1/2)",
+          "= ½ cosec²(t/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating −cot(t/2) with respect to t gives ½ cosec²(t/2).",
+          "accept": [
+            "differentiate minus cot half t with respect to t",
+            "the derivative of cot is minus cosec squared so the two minus signs give plus",
+            "the chain rule on t by two gives a factor of half",
+            "cot differentiate cheste minus cosec square, rendu minus lu plus avuthai",
+            "the result is half cosec squared t by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cosec squared",
+            "half",
+            "t by two",
+            "cot derivative"
+          ]
+        },
+        "why": "dy/dx has been written in t, so this differentiation is with respect to t. The chain rule on the inner t/2 supplies the factor ½.",
+        "common_mistakes": [
+          "Dropping the factor ½ from the inner t/2.",
+          "Giving −cosec²(t/2), keeping only one of the two minus signs."
+        ],
+        "memory_tip": "d/dt(cot u) = −cosec²u · du/dt; here u = t/2, so du/dt = ½."
+      },
+      {
+        "id": "s4_divide_again",
+        "kind": "boxed_final",
+        "label": "Divide by dx/dt a second time",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark, and the one most often lost. d²y/dx² is NOT d/dt(dy/dx). The chain rule needs a second division by dx/dt — write that division as its own line.",
+        "lines": [
+          "d²y/dx² = [d/dt (dy/dx)] / (dx/dt)",
+          "= ½ cosec²(t/2) / [a(1 − cos t)]",
+          "= ½ cosec²(t/2) / [2a sin²(t/2)]",
+          {
+            "text": "∴ d²y/dx² = cosec⁴(t/2) / (4a)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dt(dy/dx) is divided by dx/dt a second time, giving d²y/dx² = cosec⁴(t/2)/(4a).",
+          "accept": [
+            "divide by dx by dt a second time",
+            "d two y by d x squared is d by dt of dy by dx divided by dx by dt",
+            "the answer is cosec to the fourth of t by two over four a",
+            "rendo sari kooda dx by dt tho divide cheyyali",
+            "one over four a cosec fourth power t by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "divide again",
+            "dx by dt",
+            "cosec to the fourth",
+            "four a"
+          ]
+        },
+        "why": "d²y/dx² means d/dx of dy/dx, and the only route from d/dt to d/dx is another division by dx/dt. Stopping one division early is the commonest error in this chapter.",
+        "common_mistakes": [
+          "Stopping at ½ cosec²(t/2) and calling it d²y/dx² — the second division by dx/dt is missing.",
+          "Dividing by dy/dt instead of dx/dt."
+        ],
+        "memory_tip": "One division for the first derivative, a second division for the second derivative — one dx/dt per order."
+      }
+    ]
+  }
+}

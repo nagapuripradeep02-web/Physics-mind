@@ -14,7 +14,7 @@
   "qtype": "VSAQ",
   "marks_total": 2,
   "paper_section": "Section A",
-  "expected_time_min": 4,
+  "expected_time_min": 5,
   "question_text": "Evaluate lim(x → ∞) (8|x| + 3x)/(3|x| − 2x).",
   "appearances": [],
   "mark_split": [

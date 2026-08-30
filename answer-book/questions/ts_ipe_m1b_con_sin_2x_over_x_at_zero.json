@@ -14,7 +14,7 @@
   "qtype": "SAQ",
   "marks_total": 4,
   "paper_section": "Section B",
-  "expected_time_min": 8,
+  "expected_time_min": 9,
   "question_text": "Is the function f, defined by f(x) = (sin 2x)/x for x ≠ 0 and f(0) = 1, continuous at 0?",
   "appearances": [],
   "mark_split": [

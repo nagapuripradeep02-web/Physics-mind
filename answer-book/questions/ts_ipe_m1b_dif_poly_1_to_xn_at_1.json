@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_poly_1_to_xn_at_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If f(x) = 1 + x + x² + ⋯ + xⁿ, find f′(1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write f′(x) with a general last term",
+      "marks": 1
+    },
+    {
+      "label": "Set x = 1 and give the answer as a formula in n",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 15(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The formula n(n+1)/2 was checked before it was written: a numerical difference quotient of the polynomial at x = 1 returned 28.000 for n = 7 and 78.000 for n = 12, matching 7 × 8/2 = 28 and 12 × 13/2 = 78. Part (i) of the same book question is the case n = 100, and this formula returns 5050 there."
+  },
+  "recall_prompt": "Say how you would do this one — say what f′(x) looks like in general and why x = 1 leaves only the coefficients.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_general_derivative",
+        "kind": "equation",
+        "label": "Write f′(x) with a general last term",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The working is the same as for a numbered case, but the last term must be carried as nxⁿ⁻¹ rather than a number. Keep the letter n right through — the question asks for a formula, not a value.",
+        "memory_tip": "The number of terms in f′ is n, not n + 1: the constant 1 in f contributes nothing.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = 1 + x + x² + x³ + ⋯ + xⁿ",
+          "Using d/dx(xᵏ) = kxᵏ⁻¹ on each of the n + 1 terms,",
+          "f′(x) = 0 + 1 + 2x + 3x² + ⋯ + nxⁿ⁻¹",
+          "So f′ has exactly n terms, with coefficients 1, 2, 3, …, n."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(x) = 1 + 2x + 3x² + ⋯ + nxⁿ⁻¹, carrying n as a letter.",
+          "accept": [
+            "f dash x is one plus two x plus three x squared up to n x to the n minus one",
+            "keep n as a letter, the last term is n x power n minus one",
+            "the constant gives zero so there are n terms in the derivative",
+            "n ni letter ga ne unchali, last term n x power n minus one",
+            "differentiate every term and the powers drop by one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "n x to the n minus one",
+            "coefficients one to n",
+            "keep n as a letter",
+            "n terms"
+          ]
+        },
+        "why": "A general question is marked on the general line. Replacing n by a chosen number such as 5 answers a different question and earns nothing.",
+        "common_mistakes": [
+          "Writing the last derivative term as nxⁿ instead of nxⁿ⁻¹.",
+          "Saying f′ has n + 1 terms, by counting the constant 1, whose derivative is 0."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Set x = 1 and give the answer as a formula in n",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. At x = 1 every power is 1, so f′(1) is the sum of the coefficients 1, 2, …, n. That sum is the standard result n(n+1)/2 and stays a formula, not a number.",
+        "memory_tip": "Test any general answer on a small case. For n = 3, f′(1) = 1 + 2 + 3 = 6 and n(n+1)/2 = 3 × 4/2 = 6.",
+        "lines": [
+          "Put x = 1. Every power of 1 equals 1, so each term reduces to its coefficient.",
+          "f′(1) = 1 + 2 + 3 + ⋯ + n",
+          "This is the sum of the first n natural numbers.",
+          {
+            "text": "∴ f′(1) = n(n+1)/2",
+            "style": "boxed"
+          },
+          "Check with n = 3: f′(1) = 1 + 2 + 3 = 6 and n(n+1)/2 = 6."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(1) = 1 + 2 + ⋯ + n = n(n+1)/2.",
+          "accept": [
+            "put x equal to one and add one to n",
+            "the answer is n into n plus one by two",
+            "sum of the first n natural numbers",
+            "one nunchi n varaku sum, ante n into n plus one by two",
+            "it stays a formula in n, not a number"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "n into n plus one by two",
+            "sum of first n numbers",
+            "x equals one",
+            "formula in n"
+          ]
+        },
+        "why": "The sum of the first n natural numbers is a standard result the student already has from Maths-1A, so quoting it finishes the question in one line.",
+        "common_mistakes": [
+          "Giving a number such as 5050 when the question carries a general n.",
+          "Using (n−1)n/2, by summing to n − 1 because the last power shown is n − 1."
+        ]
+      }
+    ]
+  }
+}

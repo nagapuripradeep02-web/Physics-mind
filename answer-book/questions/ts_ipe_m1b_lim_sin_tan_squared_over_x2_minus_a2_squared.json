@@ -14,7 +14,7 @@
   "qtype": "VSAQ",
   "marks_total": 2,
   "paper_section": "Section A",
-  "expected_time_min": 4,
+  "expected_time_min": 5,
   "question_text": "Evaluate lim(x → a) (sin(x − a) · tan²(x − a))/((x² − a²)²).",
   "appearances": [],
   "mark_split": [

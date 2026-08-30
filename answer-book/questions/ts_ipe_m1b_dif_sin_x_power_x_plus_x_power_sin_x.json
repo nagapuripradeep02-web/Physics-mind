@@ -1,0 +1,237 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_sin_x_power_x_plus_x_power_sin_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find dy/dx if y = (sin x)ˣ + x^(sin x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split y and take logarithms separately",
+      "marks": 2
+    },
+    {
+      "label": "Differentiate the first term",
+      "marks": 2
+    },
+    {
+      "label": "Differentiate the second term",
+      "marks": 2
+    },
+    {
+      "label": "Add the two derivatives",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.204, chapter 9 DIFFERENTIATION, Long Answer question 2(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question — two marks for the split and the logarithm move, two for each of the two derivatives, two for the sum. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: the boxed derivative agrees with a central difference quotient of (sin x)ˣ + x^(sin x) at x = 1 (1.236532246) and at x = 2 (−0.523278216), to nine decimal places at both points. Both test points have sin x > 0 and x > 0, which is the domain the two logarithms need."
+  },
+  "recall_prompt": "Say how you would solve this — say what you do with the two terms before you differentiate anything, and why.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differentiation · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_and_take_logs",
+        "kind": "text",
+        "label": "Split y and take logarithms separately",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "First two marks. One mark for the split y = u + v, one for saying that logarithms are taken on u and on v one at a time. The logarithm of a sum does not open out, so a single logarithm of the whole of y leads nowhere.",
+        "memory_tip": "Two terms, two logarithms, two derivatives, then add. Never one logarithm for the whole of y.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = u + v,  where u = (sin x)ˣ  and  v = x^(sin x)",
+          "Then dy/dx = du/dx + dv/dx",
+          "In each term the variable x stands in the base and in the power. The power rule needs a constant power and the exponential rule needs a constant base, so neither rule applies to either term.",
+          "So take logarithms of u and of v separately.",
+          "This requires sin x > 0 and x > 0, so that log(sin x) and log x exist."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y is split as u + v and logarithms are taken on each term separately, because x stands in both the base and the power.",
+          "accept": [
+            "put u equals sin x to the power x and v equals x to the power sin x",
+            "take log of each term separately and add the derivatives",
+            "x is in the base and in the power so use logarithmic differentiation",
+            "you cannot take the log of the sum, so split it first",
+            "rendu terms ni separate ga teesukoni log rasta",
+            "log of u and log of v one at a time, then add"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "u plus v",
+            "take log",
+            "separately",
+            "base and power",
+            "sin x to the power x"
+          ]
+        },
+        "why": "A logarithm turns a power into a product, which is the only way to differentiate a term whose base and power both contain x. The split comes first because log(u + v) is not log u + log v.",
+        "common_mistakes": [
+          "Writing log y = log[(sin x)ˣ + x^(sin x)] and then splitting it as log of the first term plus log of the second.",
+          "Using the power rule on (sin x)ˣ as if the power x were a constant.",
+          "Using the exponential rule on x^(sin x) as if the base x were a constant."
+        ]
+      },
+      {
+        "id": "s2_first_term",
+        "kind": "equation",
+        "label": "Differentiate the first term",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. One for log u = x log(sin x), one for the differentiated line. The right side is a product of x and log(sin x), so the product rule is used once.",
+        "memory_tip": "Multiplying back by u is the last move of every logarithmic differentiation. If u is missing from the answer line, a mark is missing with it.",
+        "lines": [
+          "u = (sin x)ˣ",
+          "Taking logarithms,   log u = x · log(sin x)",
+          "Differentiating both sides with respect to x,",
+          "(1/u)(du/dx) = 1 · log(sin x) + x · (cos x)/(sin x)",
+          "(1/u)(du/dx) = log(sin x) + x cot x",
+          "∴ du/dx = (sin x)ˣ [log(sin x) + x cot x]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That log u = x log(sin x), and that differentiating gives du/dx = (sin x)ˣ [log(sin x) + x cot x].",
+          "accept": [
+            "log u is x times log sin x, then use the product rule",
+            "the derivative is sin x to the power x into log sin x plus x cot x",
+            "differentiate both sides and multiply back by u",
+            "cos x by sin x is written as cot x",
+            "log u equals x log sin x ani rasi, product rule vaadatha",
+            "one by u into du by dx equals log sin x plus x cot x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log u",
+            "x log sin x",
+            "product rule",
+            "x cot x",
+            "multiply back by u"
+          ]
+        },
+        "why": "The right side x · log(sin x) is a product, so the product rule applies, and the chain rule on log(sin x) supplies (cos x)/(sin x). Multiplying back by u is what turns (1/u)(du/dx) into du/dx itself.",
+        "common_mistakes": [
+          "Forgetting to multiply back by u = (sin x)ˣ, so the answer is left as a bracket only.",
+          "Differentiating log(sin x) as 1/(sin x) and dropping the cos x that the chain rule supplies."
+        ]
+      },
+      {
+        "id": "s3_second_term",
+        "kind": "equation",
+        "label": "Differentiate the second term",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The product is the other way round here: sin x multiplies log x, so the derivative of the sine comes first and the 1/x comes second.",
+        "memory_tip": "In u the power was x and the base was sin x; in v the two are swapped. Writing log v = sin x · log x puts that swap on the page.",
+        "lines": [
+          "v = x^(sin x)",
+          "Taking logarithms,   log v = sin x · log x",
+          "Differentiating both sides with respect to x,",
+          "(1/v)(dv/dx) = cos x · log x + sin x · (1/x)",
+          "∴ dv/dx = x^(sin x) [cos x · log x + (sin x)/x]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That log v = sin x · log x, and that differentiating gives dv/dx = x^(sin x) [cos x log x + (sin x)/x].",
+          "accept": [
+            "log v is sin x times log x",
+            "the derivative is x to the power sin x into cos x log x plus sin x by x",
+            "product rule again, cos x log x plus sin x over x",
+            "multiply back by v at the end",
+            "log v equals sin x log x, product rule cheste vasthundi",
+            "here the base is x so the second part is one by x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log v",
+            "sin x log x",
+            "cos x log x",
+            "sin x by x",
+            "multiply back by v"
+          ]
+        },
+        "why": "The same method is used a second time, on a product whose two factors are exchanged. Keeping it as a separate line is what stops the two brackets being mixed up when they are added.",
+        "common_mistakes": [
+          "Writing log v = x · log(sin x), which is the first term's logarithm written twice.",
+          "Losing the 1/x that comes from differentiating log x."
+        ]
+      },
+      {
+        "id": "s4_add",
+        "kind": "boxed_final",
+        "label": "Add the two derivatives",
+        "marks": 2,
+        "mark_note": "Answer",
+        "margin_note": "The last two marks. Each bracket must keep its own outside factor. The two brackets share no factor, so this two-bracket form is the final form.",
+        "memory_tip": "Each bracket stays attached to the term it came from: the (sin x)ˣ bracket holds cot x, the x^(sin x) bracket holds log x.",
+        "lines": [
+          "dy/dx = du/dx + dv/dx",
+          {
+            "text": "∴ dy/dx = (sin x)ˣ [log(sin x) + x cot x] + x^(sin x) [cos x · log x + (sin x)/x]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two derivatives are added, each keeping its own outside factor, and that no further simplification is possible.",
+          "accept": [
+            "add the two derivatives to get dy by dx",
+            "sin x power x bracket plus x power sin x bracket",
+            "the answer is the sum of the two results",
+            "each bracket keeps its own factor in front",
+            "rendintini kalipithe dy by dx vasthundi",
+            "no more simplification, that is the final form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "add them",
+            "du by dx plus dv by dx",
+            "two brackets",
+            "final answer"
+          ]
+        },
+        "why": "Differentiation runs term by term over a sum, so the two results are simply added. The two brackets have no common factor, which is the sign that the answer is already in its shortest form.",
+        "common_mistakes": [
+          "Multiplying the two brackets together instead of adding them.",
+          "Putting one factor in front of both brackets, which changes both terms."
+        ]
+      }
+    ]
+  }
+}

@@ -14,7 +14,7 @@
   "qtype": "SAQ",
   "marks_total": 4,
   "paper_section": "Section B",
-  "expected_time_min": 8,
+  "expected_time_min": 9,
   "question_text": "Is the function f, defined by f(x) = x² for x ≤ 1 and f(x) = x for x > 1, continuous on ℝ?",
   "appearances": [],
   "mark_split": [

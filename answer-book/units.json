@@ -7872,6 +7872,661 @@
       ]
     },
     {
+      "number": 9,
+      "name": "Differentiation (Maths-1B)",
+      "subject": "mathematics_1b",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of a²eˣ².",
+          "question_id": "ts_ipe_m1b_dif_a2_e_x_squared",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Find the derivative of 7ˣ³⁺³ˣ.",
+          "question_id": "ts_ipe_m1b_dif_7_power_x3_plus_3x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Find the derivative of sec(√(tan x)).",
+          "question_id": "ts_ipe_m1b_dif_sec_root_tan_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "If y = log(sec x + tan x), find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_log_sec_x_plus_tan_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Find the derivative of (Cot⁻¹(x³))².",
+          "question_id": "ts_ipe_m1b_dif_cot_inverse_x3_squared",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "If f(x) = sin(log x), x > 0, find f′(x).",
+          "question_id": "ts_ipe_m1b_dif_sin_log_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Find the derivative of eˣ(x² + 1).",
+          "question_id": "ts_ipe_m1b_dif_ex_x2_plus_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "If y = Cosec⁻¹(e²ˣ⁺¹), find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_cosec_inverse_e_2x_plus_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "If f(x) = log(tan eˣ), find f′(x).",
+          "question_id": "ts_ipe_m1b_dif_log_tan_e_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Find the derivative of the function Tan⁻¹(log x).",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_log_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "If x²⁄³ + y²⁄³ = a²⁄³, show that dy/dx = −∛(y/x).",
+          "question_id": "ts_ipe_m1b_dif_x_two_thirds_plus_y_two_thirds",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "If y = eᵃ ˢⁱⁿ⁻¹ˣ, prove that dy/dx = ay/√(1 − x²).",
+          "question_id": "ts_ipe_m1b_dif_e_a_sin_inverse_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "If y = log(sin(log x)), find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_log_sin_log_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "If y = sin⁻¹√x, find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_sin_inverse_root_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15i",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "If f(x) = 1 + x + x² + x³ + ⋯ + x¹⁰⁰, find f′(1).",
+          "question_id": "ts_ipe_m1b_dif_poly_1_to_x100_at_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15ii",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "If f(x) = 1 + x + x² + ⋯ + xⁿ, find f′(1).",
+          "question_id": "ts_ipe_m1b_dif_poly_1_to_xn_at_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Find the derivative of xeˣ sin x.",
+          "question_id": "ts_ipe_m1b_dif_x_ex_sin_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "If f(x) = x²2ˣ log x, x > 0, find f′(x).",
+          "question_id": "ts_ipe_m1b_dif_x2_2x_log_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18i",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Find the derivative of y = cos⁻¹(4x³ − 3x).",
+          "question_id": "ts_ipe_m1b_dif_cos_inverse_4x3_minus_3x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18ii",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Find the derivative of tan⁻¹(√((1 − cos x)/(1 + cos x))).",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_root_1_minus_cos_over_1_plus_cos",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19i",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Find the derivative of tan⁻¹((√(1 + x²) − 1)/x).",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_root_1_plus_x2_minus_1_over_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "If y = sin⁻¹(3x − 4x³), find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_sin_inverse_3x_minus_4x3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "If y = sin⁻¹(2x/(1 + x²)), find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_sin_inverse_2x_over_1_plus_x2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "If x = a cos³t and y = a sin³t, find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_x_a_cos3t_y_a_sin3t",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23i",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Find dy/dx if x³ + y³ − 3axy = 0.",
+          "question_id": "ts_ipe_m1b_dif_x3_plus_y3_minus_3axy",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23ii",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Find dy/dx if 2x² − 3xy + y² + x + 2y − 8 = 0.",
+          "question_id": "ts_ipe_m1b_dif_2x2_minus_3xy_plus_y2_implicit",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Find the derivative of xˣ.",
+          "question_id": "ts_ipe_m1b_dif_x_power_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Find the derivative of eˣ with respect to √x.",
+          "question_id": "ts_ipe_m1b_dif_ex_wrt_root_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "If y = aeⁿˣ + be⁻ⁿˣ, show that y″ = n²y.",
+          "question_id": "ts_ipe_m1b_dif_a_enx_plus_b_e_minus_nx_second",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq27",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 0,
+          "text": "Find the second order derivative of y = tan⁻¹(2x/(1 − x²)).",
+          "question_id": "ts_ipe_m1b_dif_second_deriv_tan_inverse_2x_over_1_minus_x2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq28",
+          "section": "VSAQ",
+          "number": 28,
+          "stars": 0,
+          "text": "If y = x + tan x, show that cos²x · d²y/dx² + 2x = 2y.",
+          "question_id": "ts_ipe_m1b_dif_x_plus_tan_x_second",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq29",
+          "section": "VSAQ",
+          "number": 29,
+          "stars": 0,
+          "text": "If y = (2x + 3)/(4x + 5), find y″.",
+          "question_id": "ts_ipe_m1b_dif_2x_plus_3_over_4x_plus_5_second",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq30",
+          "section": "VSAQ",
+          "number": 30,
+          "stars": 0,
+          "text": "If y = log(4x² − 9), find y″.",
+          "question_id": "ts_ipe_m1b_dif_log_4x2_minus_9_second",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq31",
+          "section": "VSAQ",
+          "number": 31,
+          "stars": 0,
+          "text": "If x = tan(e⁻ʸ), prove that dy/dx = −eʸ/(1 + x²).",
+          "question_id": "ts_ipe_m1b_dif_x_tan_e_minus_y",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1i",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of sin 2x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_sin_2x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1ii",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of cos(ax) from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_cos_ax",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1iii",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of tan 2x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_tan_2x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1iv",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of cot x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_cot_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1v",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of sec 3x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_sec_3x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1vi",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of cos²x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_cos_squared_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1vii",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of x sin x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_x_sin_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1viii",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of √(x + 1) from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_root_x_plus_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1ix",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of log x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_log_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "If xʸ = e^(x−y), show that dy/dx = log x/(1 + log x)².",
+          "question_id": "ts_ipe_m1b_dif_xy_equals_e_x_minus_y",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "If y = xʸ, show that dy/dx = y²/(x(1 − log y)) = y²/(x(1 − y log x)).",
+          "question_id": "ts_ipe_m1b_dif_y_equals_x_power_y",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "If sin y = x sin(a + y), show that dy/dx = sin²(a + y)/sin a, where a is not a multiple of π.",
+          "question_id": "ts_ipe_m1b_dif_sin_y_equals_x_sin_a_plus_y",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Find the derivative of the function log[(x² + x + 2)/(x² − x + 2)].",
+          "question_id": "ts_ipe_m1b_dif_log_quadratic_ratio",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Find dy/dx for the function x = a(cos t + t sin t), y = a(sin t − t cos t).",
+          "question_id": "ts_ipe_m1b_dif_param_a_cos_t_plus_t_sin_t",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "If x = 3 cos t − 2 cos³t and y = 3 sin t − 2 sin³t, find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_param_3_cos_t_minus_2_cos3t",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "If y = tan⁻¹√((1 − x)/(1 + x)), |x| < 1, find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_root_1_minus_x_over_1_plus_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Find the derivative of tan⁻¹((3a²x − x³)/(a(a² − 3x²))).",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_3a2x_minus_x3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Find dy/dx for x = a((1 − t²)/(1 + t²)), y = 2bt/(1 + t²).",
+          "question_id": "ts_ipe_m1b_dif_param_1_minus_t2_over_1_plus_t2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "If f(x) = tan⁻¹((√(1 + x²) − 1)/x) and g(x) = tan⁻¹x, differentiate f(x) with respect to g(x).",
+          "question_id": "ts_ipe_m1b_dif_f_wrt_g_tan_inverse_pair",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Find the derivative of tan⁻¹(sec x + tan x).",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_sec_x_plus_tan_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "If y = a cos x + (b + 2x) sin x, show that y″ + y = 4 cos x.",
+          "question_id": "ts_ipe_m1b_dif_a_cos_x_plus_b_plus_2x_sin_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "If y = ax^(n+1) + bx^(−n), prove that x²y″ = n(n + 1)y.",
+          "question_id": "ts_ipe_m1b_dif_ax_n_plus_1_plus_bx_minus_n",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq15",
+          "section": "SAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "If y = a cos(sin x) + b sin(sin x), prove that y₂ + (tan x)y₁ + y cos²x = 0.",
+          "question_id": "ts_ipe_m1b_dif_a_cos_sin_x_plus_b_sin_sin_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq16",
+          "section": "SAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "If x = a(t − sin t) and y = a(1 + cos t), find d²y/dx².",
+          "question_id": "ts_ipe_m1b_dif_param_cycloid_second_deriv",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq17",
+          "section": "SAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "If ay⁴ = (x + b)⁵, show that 5yy″ = (y′)².",
+          "question_id": "ts_ipe_m1b_dif_ay4_equals_x_plus_b_5",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "If √(1 − x²) + √(1 − y²) = a(x − y), show that dy/dx = √((1 − y²)/(1 − x²)).",
+          "question_id": "ts_ipe_m1b_dif_root_1_minus_x2_plus_root_1_minus_y2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2i",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Find dy/dx if y = (sin x)ˣ + x^(sin x).",
+          "question_id": "ts_ipe_m1b_dif_sin_x_power_x_plus_x_power_sin_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2ii",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Find dy/dx if y = x^(tan x) + (sin x)^(cos x).",
+          "question_id": "ts_ipe_m1b_dif_x_power_tan_x_plus_sin_x_power_cos_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "If y = tan⁻¹[(√(1 + x²) + √(1 − x²))/(√(1 + x²) − √(1 − x²))] for 0 < |x| < 1, find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_root_sum_over_difference",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "If y = x√(a² + x²) + a² log(x + √(a² + x²)), prove that dy/dx = 2√(a² + x²).",
+          "question_id": "ts_ipe_m1b_dif_x_root_a2_plus_x2_plus_a2_log",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "If xʸ = yˣ, show that dy/dx = y(x log y − y)/(x(y log x − x)).",
+          "question_id": "ts_ipe_m1b_dif_x_power_y_equals_y_power_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "If x^(log y) = log x, show that dy/dx = (y/x)[(1 − log x log y)/(log x)²].",
+          "question_id": "ts_ipe_m1b_dif_x_power_log_y_equals_log_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "If xʸ + yˣ = aᵇ, show that dy/dx = −[(yx^(y−1) + yˣ log y)/(xʸ log x + xy^(x−1))].",
+          "question_id": "ts_ipe_m1b_dif_x_power_y_plus_y_power_x_equals_ab",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "If f(x) = sin⁻¹√((x − β)/(α − β)) and g(x) = tan⁻¹√((x − β)/(α − x)), show that f′(x) = g′(x), where β < x < α.",
+          "question_id": "ts_ipe_m1b_dif_sin_inverse_and_tan_inverse_equal_derivatives",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "If y = tan⁻¹(2x/(1 − x²)) + tan⁻¹((3x − x³)/(1 − 3x²)) − tan⁻¹((4x − 4x³)/(1 − 6x² + x⁴)), show that dy/dx = 1/(1 + x²).",
+          "question_id": "ts_ipe_m1b_dif_three_tan_inverse_sum_derivative",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Find the derivative dy/dx of the function y = [(1 − 2x)^(2/3)(1 + 3x)^(−3/4)]/[(1 − 6x)^(5/6)(1 + 7x)^(−6/7)].",
+          "question_id": "ts_ipe_m1b_dif_log_diff_fractional_powers",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Find the derivative of f(x) = tan⁻¹(2x/(1 − x²)) with respect to g(x) = sin⁻¹(2x/(1 + x²)).",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_wrt_sin_inverse",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "If a > b > 0 and 0 < x < π, and f(x) = (a² − b²)^(−1/2) cos⁻¹((a cos x + b)/(a + b cos x)), show that f′(x) = 1/(a + b cos x).",
+          "question_id": "ts_ipe_m1b_dif_cos_inverse_a_cos_x_plus_b",
+          "source": "chaitanya_fastrack"
+        }
+      ]
+    },
+    {
       "number": 1,
       "name": "The Living World (Botany)",
       "subject": "botany",

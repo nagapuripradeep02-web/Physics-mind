@@ -14,7 +14,7 @@
   "qtype": "VSAQ",
   "marks_total": 2,
   "paper_section": "Section A",
-  "expected_time_min": 4,
+  "expected_time_min": 5,
   "question_text": "Evaluate lim(x → 0) (sin ax)/(x cos x), for x ≠ 0.",
   "appearances": [],
   "mark_split": [

@@ -14,7 +14,7 @@
   "qtype": "SAQ",
   "marks_total": 4,
   "paper_section": "Section B",
-  "expected_time_min": 8,
+  "expected_time_min": 9,
   "question_text": "Check the continuity of the function f given by f(x) = (x² − 9)/(x² − 2x − 3) for 0 < x < 5 and x ≠ 3, and f(3) = 1.5, at the point x = 3.",
   "appearances": [],
   "mark_split": [

@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_tan_inverse_root_1_plus_x2_minus_1_over_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the derivative of tan⁻¹((√(1 + x²) − 1)/x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Put x = tan θ and reduce the fraction to tan(θ/2)",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate half the inverse tangent",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.194, chapter 9 DIFFERENTIATION, Very Short Answer question 19. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1/(2(1 + x²)) was checked against a numerical difference quotient before it was written: both read 0.2500000 at x = 1, 0.4310345 at x = 0.4, 0.0500000 at x = 3, and 0.1000000 at x = −2. The negative check matters here: unlike the triple-angle questions this result needs no sign restriction, because sec θ stays positive on the whole principal range of Tan⁻¹ — the only excluded point is x = 0, where the printed expression is 0/0."
+  },
+  "recall_prompt": "Say how you would do this one — name the substitution and say what the fraction reduces to.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "equation",
+        "label": "Put x = tan θ and reduce the fraction to tan(θ/2)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the step the rest of the answer depends on. √(1 + x²) is what makes x = tan θ the right substitution: 1 + tan²θ = sec²θ, so the root becomes sec θ and the fraction becomes (1 − cos θ)/sin θ, which is the half-angle form of tan(θ/2).",
+        "memory_tip": "A √(1 + x²) inside an inverse trigonometric function means the substitution x = tan θ, because 1 + tan²θ = sec²θ removes the root.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put x = tan θ, so θ = Tan⁻¹x, with θ in (−π/2, π/2) and x ≠ 0",
+          "√(1 + x²) = √(1 + tan²θ) = √(sec²θ) = sec θ   [sec θ > 0 on this range]",
+          "(√(1 + x²) − 1)/x = (sec θ − 1)/tan θ = ((1/cos θ) − 1)/(sin θ/cos θ) = (1 − cos θ)/sin θ",
+          "Now 1 − cos θ = 2sin²(θ/2) and sin θ = 2 sin(θ/2) cos(θ/2), so",
+          "(1 − cos θ)/sin θ = sin(θ/2)/cos(θ/2) = tan(θ/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = tan θ makes √(1 + x²) equal to sec θ, and the fraction reduces to (1 − cos θ)/sin θ = tan(θ/2).",
+          "accept": [
+            "put x equal to tan theta so the root becomes sec theta",
+            "one plus tan squared theta is sec squared theta",
+            "the fraction becomes one minus cos theta over sin theta which is tan theta by two",
+            "x ki tan theta pettu, appudu root sec theta avuthundi",
+            "half angle formulas give tan of theta by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equals tan theta",
+            "sec theta",
+            "one minus cos theta by sin theta",
+            "tan theta by two"
+          ]
+        },
+        "why": "Differentiating the printed expression with the quotient and chain rules takes several lines and rarely simplifies by hand. The substitution replaces it by a single half-angle in one move, which is why this line carries the method mark.",
+        "common_mistakes": [
+          "Substituting x = sin θ, which leaves √(1 + sin²θ) and does not simplify.",
+          "Writing √(sec²θ) as ±sec θ and losing the sign, when sec θ is positive throughout (−π/2, π/2)."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Differentiate half the inverse tangent",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. θ/2 lies in (−π/4, π/4), inside the principal range of Tan⁻¹, so the inverse tangent cancels and y = (1/2)Tan⁻¹x. Only the constant 1/2 separates this from the standard derivative.",
+        "memory_tip": "The whole expression is half of Tan⁻¹x, so the answer is half the standard derivative 1/(1 + x²).",
+        "lines": [
+          "∴ y = Tan⁻¹(tan(θ/2)) = θ/2, since θ/2 lies in (−π/4, π/4)",
+          "θ = Tan⁻¹x, so y = (1/2) Tan⁻¹x",
+          "We know d/dx(Tan⁻¹x) = 1/(1 + x²)",
+          {
+            "text": "∴ dy/dx = 1/(2(1 + x²))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y = (1/2)Tan⁻¹x, so dy/dx = 1/(2(1 + x²)).",
+          "accept": [
+            "y is half of tan inverse x so the derivative is half of one over one plus x squared",
+            "the answer is one over two into one plus x squared",
+            "tan inverse of tan theta by two is theta by two",
+            "y ante half tan inverse x, so one by two into one plus x square",
+            "half the standard tan inverse derivative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "half tan inverse x",
+            "one plus x squared",
+            "one by two",
+            "theta by two"
+          ]
+        },
+        "why": "The mark is for finishing with the standard derivative of Tan⁻¹x and keeping the 1/2. Losing the half is the commonest way this question is marked down.",
+        "common_mistakes": [
+          "Writing 1/(1 + x²) and losing the factor 1/2 that came from θ/2.",
+          "Writing 1/(2 + x²) by putting the 2 inside the bracket instead of multiplying the whole denominator."
+        ]
+      }
+    ]
+  }
+}

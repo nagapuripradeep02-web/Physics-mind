@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_sin_inverse_2x_over_1_plus_x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If y = sin⁻¹(2x/(1 + x²)), find dy/dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Put x = tan θ and use sin 2θ = 2 tan θ/(1 + tan²θ)",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate 2 Tan⁻¹x",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.195, chapter 9 DIFFERENTIATION, Very Short Answer question 21. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 2/(1 + x²) was checked against a numerical difference quotient before it was written: on the stated range both read 1.6000000 at x = 0.5, 1.3422819 at x = −0.7 and 1.1049724 at x = 0.9. A control was also run OUTSIDE that range: at x = 2 the difference quotient reads −0.4000000, which is −2/(1 + x²) and not the boxed answer — this is why the range −1 ≤ x ≤ 1 is written into the solution rather than left out."
+  },
+  "recall_prompt": "Say how you would do this one — name the substitution and the double-angle identity it produces.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "equation",
+        "label": "Put x = tan θ and use sin 2θ = 2 tan θ/(1 + tan²θ)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the whole question. The 1 + x² in the denominator means the substitution x = tan θ. The expression 2 tan θ/(1 + tan²θ) is the tangent form of sin 2θ, so the inverse sine cancels a double angle here, not a triple one.",
+        "memory_tip": "2x/(1 + x²) is sin 2θ, 2x/(1 − x²) is tan 2θ and (1 − x²)/(1 + x²) is cos 2θ — all three under the same substitution x = tan θ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put x = tan θ, so θ = Tan⁻¹x",
+          "Then 2x/(1 + x²) = 2 tan θ/(1 + tan²θ) = sin 2θ   [double-angle identity]",
+          "∴ y = Sin⁻¹(sin 2θ)",
+          "Take θ in [−π/4, π/4], that is −1 ≤ x ≤ 1. Then 2θ lies in [−π/2, π/2], the principal range of Sin⁻¹, so",
+          "y = 2θ = 2 Tan⁻¹x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = tan θ is substituted and 2 tan θ/(1 + tan²θ) = sin 2θ, so y = 2 Tan⁻¹x.",
+          "accept": [
+            "put x equal to tan theta and use the sine double angle formula",
+            "two tan theta over one plus tan squared theta is sin two theta",
+            "sin inverse of sin two theta is two theta so y is two tan inverse x",
+            "x ki tan theta pettu, appudu sin two theta vasthundi",
+            "the one plus x squared shows it is the tan substitution"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equals tan theta",
+            "sin two theta",
+            "double angle",
+            "two tan inverse x"
+          ]
+        },
+        "why": "The direct quotient-and-chain-rule route leaves √(1 − 4x²/(1 + x²)²), which only simplifies after clearing the fraction and factoring a perfect square. The substitution reaches 2 Tan⁻¹x in one line instead.",
+        "common_mistakes": [
+          "Substituting x = sin θ, which does not match the 1 + x² denominator.",
+          "Reading 2x/(1 + x²) as tan 2θ, which is 2x/(1 − x²) and has a minus sign.",
+          "Omitting the range and writing y = 2 Tan⁻¹x for every x, when the sign is different for x > 1."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Differentiate 2 Tan⁻¹x",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. d/dx(Tan⁻¹x) = 1/(1 + x²), with no square root anywhere. The answer keeps the 2 that came from the double angle.",
+        "memory_tip": "Inverse tangent has 1 + x² and no root; inverse sine has √(1 − x²). The substitution decides which one the answer carries.",
+        "lines": [
+          "y = 2 Tan⁻¹x",
+          "We know d/dx(Tan⁻¹x) = 1/(1 + x²)",
+          "∴ dy/dx = 2 × 1/(1 + x²)",
+          {
+            "text": "∴ dy/dx = 2/(1 + x²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dx(Tan⁻¹x) = 1/(1 + x²), so the answer is 2/(1 + x²).",
+          "accept": [
+            "tan inverse x differentiates to one over one plus x squared",
+            "two times that gives two over one plus x squared",
+            "the answer is two by one plus x square",
+            "tan inverse ki root undadu, so two by one plus x square",
+            "keep the two from the double angle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two by one plus x squared",
+            "tan inverse derivative",
+            "no root",
+            "double angle"
+          ]
+        },
+        "why": "The final form has no square root, and that is the check that the substitution was the tangent one. A root in the answer means the working ended with an inverse sine instead of an inverse tangent.",
+        "common_mistakes": [
+          "Writing 2/√(1 − x²), by finishing with the Sin⁻¹ derivative because the question opened with sin⁻¹.",
+          "Losing the factor 2 and answering 1/(1 + x²)."
+        ]
+      }
+    ]
+  }
+}

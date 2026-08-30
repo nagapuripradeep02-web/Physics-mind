@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_sec_root_tan_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the derivative of sec(√(tan x)).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate the outer sec",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate the root and the tan inside",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 3. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 1.0832934 at x = 0.5 against the boxed expression's 1.0832934, and 5.5313756 at x = 0.9 against 5.5313756."
+  },
+  "recall_prompt": "Say how you would do this one — name the three layers and say which one you differentiate first.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_outer_sec",
+        "kind": "equation",
+        "label": "Differentiate the outer sec",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Name the three layers before writing anything: sec outside, square root in the middle, tan x inside. The outermost layer is differentiated first and the rest is carried along as du/dx.",
+        "memory_tip": "Three layers means three factors in the answer, written in the order sec, root, tan — outermost first, innermost last.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = sec(√(tan x))",
+          "There are three layers: sec is outside, √ is next, and tan x is inside.",
+          "Take u = √(tan x). Then y = sec u and d/dx(sec u) = sec u · tan u · du/dx",
+          "∴ dy/dx = sec(√(tan x))·tan(√(tan x)) · d/dx(√(tan x))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sec is the outermost layer, so the first factor is sec(√(tan x))·tan(√(tan x)), still multiplied by the derivative of √(tan x).",
+          "accept": [
+            "differentiate sec first and carry the rest as du by dx",
+            "sec u differentiates to sec u tan u times du by dx",
+            "there are three layers, sec then root then tan",
+            "sec bayata undi kabatti daanni mundu differentiate cheyyali",
+            "the outermost function is sec so start there"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sec u tan u",
+            "three layers",
+            "outermost",
+            "root tan x"
+          ]
+        },
+        "why": "The chain rule works from the outside inwards, so the order of the factors is decided before any differentiating happens. Starting from tan x instead gives the same three pieces in the wrong arrangement and usually loses the 2√(tan x) denominator.",
+        "common_mistakes": [
+          "Starting from tan x and losing track of which layer is next.",
+          "Writing d/dx(sec u) = sec u tan u and stopping, with no du/dx."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Differentiate the root and the tan inside",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Two pieces sit here: the square root gives 1/(2√(tan x)), and tan x gives sec²x. Both must appear.",
+        "memory_tip": "A square root always leaves its own inside under the line: √v gives 1/(2√v), so √(tan x) leaves 2√(tan x) in the denominator.",
+        "lines": [
+          "For v = tan x,  d/dx(√v) = 1/(2√v) · dv/dx  and  d/dx(tan x) = sec²x",
+          "∴ d/dx(√(tan x)) = sec²x / (2√(tan x))",
+          {
+            "text": "∴ dy/dx = [sec²x · sec(√(tan x)) · tan(√(tan x))] / (2√(tan x))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dx(√(tan x)) = sec²x/(2√(tan x)), giving the final expression with 2√(tan x) in the denominator.",
+          "accept": [
+            "the root gives one over two root tan x and tan x gives sec squared x",
+            "sec squared x over two root tan x is the inner derivative",
+            "two root tan x stays in the denominator",
+            "root vunna kabatti two root tan x kinda vasthundi",
+            "multiply by sec squared x over two root tan x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sec squared x",
+            "two root tan x",
+            "denominator",
+            "inner derivative"
+          ]
+        },
+        "why": "The last two layers are done in one line because each is a standard derivative. Keeping 2√(tan x) in the denominator rather than trying to simplify it is correct — it does not reduce.",
+        "common_mistakes": [
+          "Writing d/dx(√(tan x)) = 1/(2√(tan x)) and losing the sec²x.",
+          "Writing the denominator as 2√x instead of 2√(tan x)."
+        ]
+      }
+    ]
+  }
+}
