@@ -191,13 +191,30 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
     const subjectWord = SUBJECT_WORD[subjectKey];
     const subjectTerms = SUBJECT_TERMS[subjectKey];
 
+    // The ANSWER FACTS list steps as `N. [step_id] Label — NM`. The situation used to
+    // hand the model the raw step_id, and the model echoed it: replies told students to
+    // "skip the last step (s2_compute)". Round 2 (2026-08-30) measured a persona rule
+    // forbidding that and the leak did NOT fall — 4 per 5,280 replies became 9 — so the
+    // rule was withdrawn and the id is simply no longer offered here. A step is named
+    // the way the student sees it: its number and its label.
+    const stepHuman = (facts: string, id: string): string => {
+        for (const line of facts.split('\n')) {
+            const m = line.match(/^\s*(\d+)\.\s*\[([^\]]+)\]\s*([^—-]*)/);
+            if (m && m[2].trim() === id) {
+                const label = m[3].trim();
+                return label ? 'step ' + m[1] + ', "' + label + '"' : 'step ' + m[1];
+            }
+        }
+        return 'the step they are on';
+    };
+
     const situation = [
         'Where the student is right now:',
         '- question: ' + String(body.question_id ?? 'unknown'),
         '- unit: ' + String(body.unit ?? 'unknown'),
         '- answer length on screen: ' + String(body.cut_key ?? 'full'),
         body.plan_status ? '- their study plan: ' + String(body.plan_status).slice(0, 400) : '',
-        body.step_id ? '- the step they last revealed: ' + String(body.step_id) + '. If they ask why THIS step is here, how to remember THIS step, or what it earns, answer about that step and not about the answer as a whole. That id is an internal label the student has never seen, so never write it in your reply — name the step by what it does.' : '- they have not started writing yet',
+        body.step_id ? '- the step they last revealed: ' + stepHuman(rawFacts, String(body.step_id)) + '. If they ask why THIS step is here, how to remember THIS step, or what it earns, answer about that step and not about the answer as a whole.' : '- they have not started writing yet',
         '- the only question you can see is the one named above. If the student asks you for a DIFFERENT question, say you do not have that one open, that you have noted it, and that they can open it from the catalog. Then STOP. Do not outline it, do not name its steps or formulas, do not say which chapter holds it, do not say what an examiner wants in it, and do not give study advice about it — you cannot see it, so anything you add is a guess. Two sentences is the whole reply. You may add one short sentence offering to help with the question that IS open — an offer only, never its steps, its marks or its answer unless they ask for it.',
         walkthroughAsk ? '- reply length: at most three paragraphs, and at most three sentences in each paragraph' : '- reply length: at most 5 sentences, one idea each',
         subjectKey !== 'physics' ? '- subject: this is a ' + SUBJECT_LABEL[subjectKey] + ' question. Its own subject words are the plain words here — ' + subjectTerms + '. Use them.' : '',
