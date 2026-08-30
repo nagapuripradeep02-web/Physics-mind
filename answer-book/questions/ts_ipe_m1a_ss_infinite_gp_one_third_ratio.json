@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_infinite_gp_one_third_ratio",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the sum of the infinite G.P. 1 + 1/3 + 1/9 + 1/27 + … ∞",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find r and check |r| < 1",
+      "marks": 1
+    },
+    {
+      "label": "Substitute a = 1 and r = 1/3",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.21, chapter 3 SEQUENCES & SERIES, Very Short Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this — say what r is, what condition you check, and which formula you use.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Find r and check |r| < 1",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. a = 1, r = 1/3 and the condition |r| < 1 must all appear before the formula is used.",
+        "memory_tip": "The sum to infinity exists only when |r| < 1, so the terms get smaller.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here a = 1 and r = (1/3)/1 = 1/3",
+          "Check on the next pair:  (1/9)/(1/3) = 1/3",
+          "|r| = 1/3 < 1, so the sum to infinity exists",
+          "S∞ = a/(1 − r)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 1, r = 1/3, |r| < 1, and the formula S∞ = a/(1 − r) is stated.",
+          "accept": [
+            "first term one and ratio one third",
+            "the ratio is less than one so the infinite sum exists",
+            "use s infinity equals a by one minus r",
+            "ratio one by three, mod r less than one kabatti sum untundi",
+            "check the modulus of r before using the formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one third",
+            "less than one",
+            "a by one minus r",
+            "sum to infinity"
+          ]
+        },
+        "why": "An infinite G.P. has a sum only when |r| < 1. Stating that condition is part of the method, not an extra remark.",
+        "common_mistakes": [
+          "Using Sₙ = a(1 − rⁿ)/(1 − r) and leaving n in the answer.",
+          "Writing r = 3 by dividing the terms the wrong way round."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute a = 1 and r = 1/3",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 1 − 1/3 = 2/3, and dividing 1 by 2/3 gives 3/2. Leave the answer as the fraction 3/2.",
+        "memory_tip": "One divided by two thirds is three halves.",
+        "lines": [
+          "S∞ = 1/(1 − 1/3)",
+          "= 1/(2/3)",
+          {
+            "text": "∴ S∞ = 3/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 − 1/3 = 2/3 and 1 ÷ (2/3) = 3/2.",
+          "accept": [
+            "one minus one third is two thirds",
+            "one divided by two thirds is three by two",
+            "the sum is three halves",
+            "one by two by three ante three by two",
+            "the answer is one point five as a fraction three by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two thirds",
+            "three by two",
+            "three halves"
+          ]
+        },
+        "why": "Dividing by 2/3 is the same as multiplying by 3/2, which is where the answer comes from. The sum is finite even though the terms never stop.",
+        "common_mistakes": [
+          "Writing the answer as 2/3 by forgetting to invert the denominator.",
+          "Rounding to 1.5 and losing the exact fraction."
+        ]
+      }
+    ]
+  }
+}

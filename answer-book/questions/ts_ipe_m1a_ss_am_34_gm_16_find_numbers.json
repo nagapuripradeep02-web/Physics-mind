@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_am_34_gm_16_find_numbers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The arithmetic mean between two positive numbers is 34 and their geometric mean is 16. Find the numbers.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the two mean conditions",
+      "marks": 1
+    },
+    {
+      "label": "Solve the quadratic equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.23, chapter 3 SEQUENCES & SERIES, Very Short Answer question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what the two means give you about the numbers, and how you turn that into one equation.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mean_conditions",
+        "kind": "equation",
+        "label": "Write the two mean conditions",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both conditions in cleared form: a + b = 68 and ab = 256. Squaring the geometric mean removes the root at once.",
+        "memory_tip": "The arithmetic mean gives the sum, the geometric mean gives the product.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the two positive numbers be a and b",
+          "A.M. = (a + b)/2 = 34  ⇒  a + b = 68",
+          "G.M. = √(ab) = 16  ⇒  ab = 16² = 256"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the A.M. gives a + b = 68 and the G.M. gives ab = 256.",
+          "accept": [
+            "the arithmetic mean gives the sum sixty eight",
+            "square the geometric mean to get the product two fifty six",
+            "a plus b is sixty eight and a b is two fifty six",
+            "A M nunchi sum, G M nunchi product vasthundi",
+            "write both mean conditions before solving"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixty eight",
+            "two hundred fifty six",
+            "sum and product",
+            "square the G M"
+          ]
+        },
+        "why": "The two means give the sum and the product of the numbers, and a sum with a product is exactly what a quadratic equation is built from. No substitution is needed after this.",
+        "common_mistakes": [
+          "Writing a + b = 34 and forgetting to double the arithmetic mean.",
+          "Writing ab = 16 instead of squaring the geometric mean."
+        ]
+      },
+      {
+        "id": "s2_solve_quadratic",
+        "kind": "boxed_final",
+        "label": "Solve the quadratic equation",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Both numbers must be given. √3600 = 60 exactly, so the roots are whole numbers — a fractional answer here means an arithmetic slip.",
+        "memory_tip": "Sum and product go straight into x² − (sum)x + product = 0.",
+        "lines": [
+          "a and b are the roots of  x² − (a + b)x + ab = 0",
+          "x² − 68x + 256 = 0",
+          "x = [68 ± √(68² − 4 × 256)]/2 = [68 ± √(4624 − 1024)]/2",
+          "= [68 ± √3600]/2 = (68 ± 60)/2",
+          {
+            "text": "∴ x = 64 or 4, so the two numbers are 64 and 4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² − 68x + 256 = 0 gives x = 64 and x = 4.",
+          "accept": [
+            "form x squared minus sixty eight x plus two fifty six equals zero",
+            "the roots are sixty four and four",
+            "root of three thousand six hundred is sixty",
+            "quadratic solve cheste sixty four and four vasthay",
+            "check sixty four plus four is sixty eight"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixty four",
+            "four",
+            "three thousand six hundred",
+            "sixty eight x"
+          ]
+        },
+        "why": "Knowing the sum and the product of two numbers gives their quadratic equation directly. Checking is quick: 64 + 4 = 68 and √(64 × 4) = √256 = 16.",
+        "common_mistakes": [
+          "Substituting b = 68 − a and expanding, which is longer and invites a sign slip.",
+          "Giving only one root when the question asks for both numbers."
+        ]
+      }
+    ]
+  }
+}

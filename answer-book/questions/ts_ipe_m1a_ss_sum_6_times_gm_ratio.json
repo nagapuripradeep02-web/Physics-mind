@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_sum_6_times_gm_ratio",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The sum of two numbers a and b is 6 times their geometric mean. Show that the numbers are in the ratio (3 + 2√2) : (3 − 2√2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the condition as a ratio and apply componendo and dividendo",
+      "marks": 1
+    },
+    {
+      "label": "Apply the rule again and square",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.21, chapter 3 SEQUENCES & SERIES, Very Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name the rule you apply and say what perfect squares appear.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_componendo",
+        "kind": "equation",
+        "label": "Write the condition as a ratio and apply componendo and dividendo",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The examiner looks for the ratio written as (a + b)/(2√(ab)) = 3/1 and for the rule named.",
+        "memory_tip": "Componendo and dividendo turns p/q = r/s into (p + q)/(p − q) = (r + s)/(r − s).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given  a + b = 6√(ab)",
+          "So  (a + b)/(2√(ab)) = 3/1",
+          "By componendo and dividendo,",
+          "(a + b + 2√(ab))/(a + b − 2√(ab)) = (3 + 1)/(3 − 1) = 2",
+          "(√a + √b)²/(√a − √b)² = 2  ⇒  (√a + √b)/(√a − √b) = √2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the condition is written as (a + b)/(2√(ab)) = 3/1 and componendo and dividendo gives (√a + √b)/(√a − √b) = √2.",
+          "accept": [
+            "write a plus b over two root a b equals three by one",
+            "apply componendo and dividendo",
+            "a plus b plus two root a b is root a plus root b whole squared",
+            "componendo dividendo apply cheste perfect square vasthundi",
+            "divide by two root a b first then use the rule"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "componendo",
+            "dividendo",
+            "two root a b",
+            "root a plus root b"
+          ]
+        },
+        "why": "Writing the condition as the ratio 3 : 1 sets up componendo and dividendo, and a + b ± 2√(ab) are exactly the perfect squares (√a ± √b)².",
+        "common_mistakes": [
+          "Halving only one side and writing (a + b)/√(ab) = 3.",
+          "Not seeing that a + b + 2√(ab) is (√a + √b)²."
+        ]
+      },
+      {
+        "id": "s2_square",
+        "kind": "boxed_final",
+        "label": "Apply the rule again and square",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Expand carefully: (√2 + 1)² = 2 + 2√2 + 1 = 3 + 2√2, and (√2 − 1)² = 3 − 2√2.",
+        "memory_tip": "(√2 + 1)² = 3 + 2√2 and (√2 − 1)² = 3 − 2√2.",
+        "lines": [
+          "By componendo and dividendo again,",
+          "(√a + √b + √a − √b)/(√a + √b − √a + √b) = (√2 + 1)/(√2 − 1)",
+          "2√a/(2√b) = (√2 + 1)/(√2 − 1)  ⇒  √a/√b = (√2 + 1)/(√2 − 1)",
+          "Squaring:  a/b = (√2 + 1)²/(√2 − 1)² = (3 + 2√2)/(3 − 2√2)",
+          {
+            "text": "∴ a : b = (3 + 2√2) : (3 − 2√2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a second use of componendo and dividendo gives √a/√b = (√2 + 1)/(√2 − 1), and squaring gives the required ratio.",
+          "accept": [
+            "use componendo and dividendo a second time",
+            "root a by root b is root two plus one over root two minus one",
+            "square both sides to get three plus two root two",
+            "malli componendo dividendo apply chesi square cheyyali",
+            "the squares give three plus two root two and three minus two root two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root two plus one",
+            "square both sides",
+            "three plus two root two"
+          ]
+        },
+        "why": "The second use of the rule isolates √a and √b, and squaring removes the roots. Expanding (√2 ± 1)² is what produces the required form.",
+        "common_mistakes": [
+          "Writing (√2 + 1)² = 2 + 1 = 3 and dropping the cross term 2√2.",
+          "Stopping at √a/√b and not squaring to reach a : b."
+        ]
+      }
+    ]
+  }
+}

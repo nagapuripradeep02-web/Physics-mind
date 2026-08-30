@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_gp_which_term_is_320",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which term of the G.P. 5, −10, 20, −40, … is 320?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the nth term of the G.P.",
+      "marks": 1
+    },
+    {
+      "label": "Solve for n and check the sign",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this — say what r is and how the sign of the term decides your answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_nth_term",
+        "kind": "equation",
+        "label": "Write the nth term of the G.P.",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both a = 5 and r = −2 must be written. The minus sign in r is what makes the terms alternate.",
+        "memory_tip": "Divide any term by the one before it: −10 ÷ 5 = −2, so the signs alternate.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here a = 5 and r = −10/5 = −2",
+          "Check on the next pair:  20/(−10) = −2",
+          "For a G.P., the nth term is  aₙ = a rⁿ⁻¹",
+          "Let the nth term be 320:  5(−2)ⁿ⁻¹ = 320"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 5, r = −2 and the equation 5(−2)ⁿ⁻¹ = 320 are written.",
+          "accept": [
+            "first term five and common ratio minus two",
+            "divide the second term by the first to get the ratio",
+            "set a r to the power n minus one equal to three twenty",
+            "ratio minus two, nth term formula rasta",
+            "the ratio is negative so the terms alternate in sign"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "common ratio",
+            "minus two",
+            "n minus one",
+            "three twenty"
+          ]
+        },
+        "why": "The ratio is negative, so the terms alternate in sign. Writing r = −2 rather than 2 is what makes the sign of the answer come out right.",
+        "common_mistakes": [
+          "Taking r = 2 and ignoring the minus signs in the sequence.",
+          "Writing aₙ = a rⁿ, which shifts every term one place."
+        ]
+      },
+      {
+        "id": "s2_solve_n",
+        "kind": "boxed_final",
+        "label": "Solve for n and check the sign",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The power must be even for the term to be positive. (−2)⁶ = +64, so the 7th term is +320.",
+        "memory_tip": "64 = 2⁶, and an even power of a negative number is positive.",
+        "lines": [
+          "(−2)ⁿ⁻¹ = 320/5 = 64",
+          "64 is positive, and 64 = 2⁶, so (−2)ⁿ⁻¹ = (−2)⁶",
+          "n − 1 = 6  ⇒  n = 7",
+          "Check:  a₇ = 5(−2)⁶ = 5 × 64 = 320",
+          {
+            "text": "∴ 320 is the 7th term",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (−2)ⁿ⁻¹ = 64 = (−2)⁶ gives n = 7, and that the even power keeps the term positive.",
+          "accept": [
+            "sixty four is two to the sixth so n minus one is six",
+            "n equals seven",
+            "the sixth power of minus two is plus sixty four",
+            "even power kabatti sign positive, n seven",
+            "three twenty is the seventh term"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two to the sixth",
+            "n equals seven",
+            "seventh term",
+            "even power"
+          ]
+        },
+        "why": "Only an even power of −2 can give a positive 64, so n − 1 must be even. The check confirms the term is +320 and not −320.",
+        "common_mistakes": [
+          "Answering n = 6 by solving rⁿ = 64 instead of rⁿ⁻¹ = 64.",
+          "Saying no term equals 320 because the ratio is negative."
+        ]
+      }
+    ]
+  }
+}

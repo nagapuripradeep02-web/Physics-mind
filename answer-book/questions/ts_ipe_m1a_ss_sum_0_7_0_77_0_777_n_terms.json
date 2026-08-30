@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_sum_0_7_0_77_0_777_n_terms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the sum to n terms of the sequence 0.7, 0.77, 0.777, …",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take out 7/9 and write each term as 1 minus a power of 1/10",
+      "marks": 1
+    },
+    {
+      "label": "Sum the geometric part",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.22, chapter 3 SEQUENCES & SERIES, Very Short Answer question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you multiply and divide by, and which part of the working is the geometric series.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_seven_ninths",
+        "kind": "equation",
+        "label": "Take out 7/9 and write each term as 1 minus a power of 1/10",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The ×(7/9) move is the method mark. Write the bracket as 1 minus a power of one tenth before summing anything.",
+        "memory_tip": "Nine times 0.1 is 0.9, and 0.9 is 1 − 0.1, which is why 9 is the number to bring in.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Sₙ = 0.7 + 0.77 + 0.777 + … to n terms",
+          "= 7(0.1 + 0.11 + 0.111 + …) = (7/9)(0.9 + 0.99 + 0.999 + …)",
+          "= (7/9)[(1 − 1/10) + (1 − 1/10²) + … + (1 − 1/10ⁿ)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 7/9 is taken out so each term becomes 1 minus a power of 1/10.",
+          "accept": [
+            "take out seven by nine to turn point seven into point nine",
+            "write each term as one minus a power of one tenth",
+            "multiply and divide by nine",
+            "seven by nine bayataki teesi, one minus one tenth power ga rayali",
+            "the given terms are not in G P so they must be rewritten"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "seven by nine",
+            "point nine nine",
+            "one minus",
+            "one tenth"
+          ]
+        },
+        "why": "Multiplying and dividing by 9 turns 0.1, 0.11, 0.111 into 0.9, 0.99, 0.999, and each of those is 1 minus a power of 1/10. That is what makes a geometric series appear, because the terms as given are not in G.P. at all.",
+        "common_mistakes": [
+          "Treating 0.7, 0.77, 0.777 as a G.P. and dividing 0.77 by 0.7 to look for a ratio.",
+          "Taking out 7/10 instead of 7/9, which leaves 1, 1.1, 1.11 and still no G.P."
+        ]
+      },
+      {
+        "id": "s2_sum_gp_part",
+        "kind": "boxed_final",
+        "label": "Sum the geometric part",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Both pieces must appear: the n from the ones, and the finite G.P. sum. Either boxed form is a complete answer.",
+        "memory_tip": "n ones minus a shrinking G.P., all multiplied by 7/9.",
+        "lines": [
+          "= (7/9)[n − (1/10 + 1/10² + … + 1/10ⁿ)]",
+          "The bracketed series is a G.P. with a = 1/10 and r = 1/10, so its sum is",
+          "(1/10)(1 − (1/10)ⁿ)/(1 − 1/10) = (1/9)(1 − (1/10)ⁿ)",
+          {
+            "text": "∴ Sₙ = (7/9)[n − (1/9)(1 − (1/10)ⁿ)] = (7/81)[9n − 1 + (1/10)ⁿ]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the n ones give n and the rest is a finite G.P. of ratio 1/10, giving Sₙ = (7/81)[9n − 1 + (1/10)ⁿ].",
+          "accept": [
+            "the ones add to n and the rest is a G P with ratio one tenth",
+            "use the finite sum formula a into one minus r to the n over one minus r",
+            "the answer is seven by eighty one into nine n minus one plus one by ten to the n",
+            "n ones plus G P sum, seven by eighty one bayata untundi",
+            "check with n equals one and you get point seven"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "seven by eighty one",
+            "nine n minus one",
+            "one tenth to the n",
+            "finite G P"
+          ]
+        },
+        "why": "The n ones add to n, and what is left is a finite G.P. of ratio 1/10. Putting n = 1 gives (7/81)(9 − 1 + 0.1) = 0.7, which checks the whole answer in one line.",
+        "common_mistakes": [
+          "Using the infinite sum a/(1 − r) when the question asks for n terms.",
+          "Losing the n and writing only the geometric part as the answer."
+        ]
+      }
+    ]
+  }
+}

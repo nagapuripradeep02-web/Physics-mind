@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_ap_35th_term_69_sum_69",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The 35th term of an A.P. is 69. Find the sum of its first 69 terms.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write S₆₉ in terms of the 35th term",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the given 35th term",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this — say what S₆₉ turns into and why you never need a and d separately.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_link_sum_to_term",
+        "kind": "equation",
+        "label": "Write S₆₉ in terms of the 35th term",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. 68d is exactly twice 34d, so the bracket is twice the 35th term. Do not try to solve for a and d.",
+        "memory_tip": "69 terms, and the 35th is the middle one: the sum is 69 times that middle term.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given  a₃₅ = a + 34d = 69",
+          "Sum of the first n terms:  Sₙ = n/2 [2a + (n − 1)d]",
+          "S₆₉ = 69/2 [2a + 68d]",
+          "= 69/2 × 2(a + 34d) = 69(a + 34d)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S₆₉ = 69/2[2a + 68d] = 69(a + 34d), which is 69 times the 35th term.",
+          "accept": [
+            "write the sum formula and take two common outside the bracket",
+            "sixty eight d is twice thirty four d",
+            "the sum of sixty nine terms is sixty nine times the thirty fifth term",
+            "sum formula rasi, bracket lo a plus thirty four d vasthundi",
+            "i do not need a and d separately"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sum formula",
+            "thirty fifth term",
+            "sixty nine",
+            "two into a plus thirty four d"
+          ]
+        },
+        "why": "The bracket 2a + 68d is exactly 2(a + 34d), so the whole sum collapses to 69 × a₃₅. Finding a and d is impossible here, and also unnecessary.",
+        "common_mistakes": [
+          "Trying to solve a + 34d = 69 for a and d, which has no unique solution.",
+          "Writing Sₙ = n/2 [2a + nd] and losing the match with a + 34d."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute the given 35th term",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 69² = 4761. The answer coming out as a perfect square is the sign that the short route was taken.",
+        "memory_tip": "S₆₉ = 69 × 69 = 4761.",
+        "lines": [
+          "S₆₉ = 69 × (a + 34d)",
+          "= 69 × 69",
+          {
+            "text": "∴ S₆₉ = 4761",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a + 34d = 69 is substituted to give S₆₉ = 69 × 69 = 4761.",
+          "accept": [
+            "sixty nine times sixty nine is four thousand seven hundred sixty one",
+            "substitute the thirty fifth term as sixty nine",
+            "the sum is sixty nine squared",
+            "sixty nine into sixty nine, four seven six one",
+            "the answer is four thousand seven hundred and sixty one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixty nine squared",
+            "four seven six one",
+            "four thousand seven hundred sixty one"
+          ]
+        },
+        "why": "One given number is used once, and 69 × 69 = 4761 completes the answer without ever needing a value for a or d.",
+        "common_mistakes": [
+          "Slipping in the arithmetic of 69 × 69.",
+          "Halving a second time and writing 4761/2."
+        ]
+      }
+    ]
+  }
+}

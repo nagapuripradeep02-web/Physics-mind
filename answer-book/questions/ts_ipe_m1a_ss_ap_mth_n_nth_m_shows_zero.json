@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_ap_mth_n_nth_m_shows_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The mth term of an A.P. is n and the nth term is m. Show that the (m + n)th term is zero.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the two given terms and find d",
+      "marks": 1
+    },
+    {
+      "label": "Find a and the (m + n)th term",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 2. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say what you do with the two given equations and what d comes out as.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_d",
+        "kind": "equation",
+        "label": "Write the two given terms and find d",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The subtraction is the move being marked. Say m ≠ n before cancelling (m − n).",
+        "memory_tip": "Two equations, one subtraction: a is removed and d = −1 is left.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a be the first term and d the common difference.",
+          "a + (m − 1)d = n  … (1)",
+          "a + (n − 1)d = m  … (2)",
+          "(1) − (2):  (m − n)d = n − m = −(m − n)",
+          "Since m ≠ n, divide by (m − n):  d = −1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That subtracting the two equations removes a and gives d = −1.",
+          "accept": [
+            "subtract the two equations so a goes away",
+            "m minus n times d equals n minus m so d is minus one",
+            "write both terms then subtract to get the common difference",
+            "rendu equations subtract cheste d minus one vasthundi",
+            "the common difference comes out as minus one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "subtract",
+            "common difference",
+            "minus one",
+            "m minus n"
+          ]
+        },
+        "why": "Subtracting the two equations removes a in one line and leaves d alone, which is the only unknown that can be found from what is given.",
+        "common_mistakes": [
+          "Adding the two equations instead of subtracting, which keeps a in the working.",
+          "Cancelling (m − n) without stating m ≠ n."
+        ]
+      },
+      {
+        "id": "s2_term_zero",
+        "kind": "boxed_final",
+        "label": "Find a and the (m + n)th term",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. a = m + n − 1 must be found first, and the last line must show the two equal parts cancelling.",
+        "memory_tip": "a = m + n − 1 and d = −1, so the term is (m + n − 1) minus itself.",
+        "lines": [
+          "Put d = −1 in (1):  a − (m − 1) = n",
+          "a = n + m − 1 = m + n − 1",
+          "(m + n)th term = a + (m + n − 1)d",
+          "= (m + n − 1) + (m + n − 1)(−1)",
+          {
+            "text": "∴ the (m + n)th term = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = m + n − 1, so the (m + n)th term is (m + n − 1) − (m + n − 1) = 0.",
+          "accept": [
+            "first term is m plus n minus one",
+            "substitute d equals minus one to find a",
+            "the m plus n term becomes m plus n minus one minus itself",
+            "a m plus n minus one ravali, appudu term zero",
+            "the two parts cancel so the term is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "m plus n minus one",
+            "cancel",
+            "zero",
+            "first term"
+          ]
+        },
+        "why": "Both parts of the final line carry the factor (m + n − 1), and d = −1 makes the second part its exact negative, so the sum is zero for every m and n.",
+        "common_mistakes": [
+          "Getting a = n − m + 1 by dropping a sign when d = −1 is substituted.",
+          "Stopping at d = −1 and claiming the result without finding a."
+        ]
+      }
+    ]
+  }
+}

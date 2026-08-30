@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_one_gm_two_am_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If one geometric mean g and two arithmetic means p and q are inserted between two numbers, show that g² = (2p − q)(2q − p).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write what the two means say",
+      "marks": 1
+    },
+    {
+      "label": "Simplify 2p − q and 2q − p",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.23, chapter 3 SEQUENCES & SERIES, Very Short Answer question 23. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which progression a, p, q, b are in, and what g² equals.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mean_conditions",
+        "kind": "equation",
+        "label": "Write what the two means say",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The examiner wants g² = ab and the four-term A.P. a, p, q, b named. Everything after this is expanding brackets.",
+        "memory_tip": "Two arithmetic means between the numbers make a chain of four terms with one common difference.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the two numbers be a and b",
+          "g is the geometric mean between a and b, so g² = ab",
+          "p and q are two arithmetic means, so a, p, q, b are in A.P.",
+          "Let d be the common difference. Then p = a + d,  q = a + 2d,  b = a + 3d"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That g² = ab, and that a, p, q, b form a four-term A.P. with p = a + d, q = a + 2d, b = a + 3d.",
+          "accept": [
+            "g squared is a b because g is the geometric mean",
+            "a p q b are in arithmetic progression",
+            "write p as a plus d and q as a plus two d",
+            "rendu arithmetic means unte a p q b A P lo untay",
+            "the two means make four terms with one common difference"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "g squared is a b",
+            "a p q b",
+            "A P",
+            "common difference"
+          ]
+        },
+        "why": "Two arithmetic means inserted between a and b make a four-term A.P., so p and q are both fixed by a single common difference. Writing that down turns the identity into ordinary algebra.",
+        "common_mistakes": [
+          "Treating p and q as two separate arithmetic means of a and b, each equal to (a + b)/2.",
+          "Putting a, p, q, b in G.P. instead of A.P., which is the condition for the geometric means question."
+        ]
+      },
+      {
+        "id": "s2_simplify",
+        "kind": "boxed_final",
+        "label": "Simplify 2p − q and 2q − p",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Both simplifications and the closing line ab = g². Show the d terms cancelling — that is the working the examiner reads.",
+        "memory_tip": "2p − q gives back the first number and 2q − p gives back the second.",
+        "lines": [
+          "2p − q = 2(a + d) − (a + 2d) = 2a + 2d − a − 2d = a",
+          "2q − p = 2(a + 2d) − (a + d) = 2a + 4d − a − d = a + 3d = b",
+          "So (2p − q)(2q − p) = ab = g²",
+          {
+            "text": "∴ g² = (2p − q)(2q − p)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2p − q = a and 2q − p = b, so their product is ab, which equals g².",
+          "accept": [
+            "two p minus q simplifies to a",
+            "two q minus p simplifies to b",
+            "the d terms cancel in both brackets",
+            "d cancel ipoyi a and b vasthay",
+            "their product is a b which is g squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two p minus q",
+            "two q minus p",
+            "a b",
+            "d cancels"
+          ]
+        },
+        "why": "The combinations 2p − q and 2q − p are built so that the d terms cancel and the two original numbers come back. Their product is ab, which the first step already named as g².",
+        "common_mistakes": [
+          "Dropping the bracket and writing 2a + 2d − a + 2d, which leaves a stray 4d.",
+          "Stopping at ab without the closing line that ab = g²."
+        ]
+      }
+    ]
+  }
+}

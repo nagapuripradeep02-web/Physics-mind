@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_parallel_lines_equivalence",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that the relation \"parallel\", defined on the set of all straight lines in a plane, is an equivalence relation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Show the relation is reflexive and symmetric",
+      "marks": 1
+    },
+    {
+      "label": "Show it is transitive and state the conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.6, chapter 1 SETS & RELATIONS, Very Short Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. ⚠ ONE CONVENTION IS CHOSEN AND STATED IN THE ANSWER: a line is taken to be parallel to itself, which is the convention Class-11 books use here. Under the other convention, where parallel lines must be distinct, the relation is NOT reflexive and NOT transitive, so the answer would be different. The answer names the convention on the page rather than assuming it silently."
+  },
+  "recall_prompt": "Say how you would answer this — name the three properties you check, and say what convention you use for the word parallel.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reflexive_symmetric",
+        "kind": "text",
+        "label": "Show the relation is reflexive and symmetric",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Name the convention before the reflexive check, because the reflexive check depends on it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let L be the set of all straight lines in a plane and let R = {(l, m) : l ∈ L, m ∈ L, l ∥ m}.",
+          "Use the usual convention that a line is parallel to itself, so two lines are parallel exactly when they have the same direction.",
+          "Reflexive: l ∥ l for every line l ∈ L, so (l, l) ∈ R.",
+          "Symmetric: if l ∥ m then l and m have the same direction, so m ∥ l and (m, l) ∈ R."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a line is taken to be parallel to itself, giving reflexivity, and that same direction works both ways, giving symmetry.",
+          "accept": [
+            "a line is parallel to itself so the relation is reflexive",
+            "parallel means same direction and that works both ways so it is symmetric",
+            "if l is parallel to m then m is parallel to l",
+            "oke line daani tho ne parallel ani teesukuntam, so reflexive",
+            "state the convention first then check reflexive and symmetric"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "parallel to itself",
+            "reflexive",
+            "symmetric",
+            "same direction"
+          ]
+        },
+        "why": "Reflexivity holds only because of the convention that a line is parallel to itself. If parallel lines were required to be distinct, no pair (l, l) would belong to R and the relation would fail at the first property.",
+        "common_mistakes": [
+          "Taking \"parallel\" to mean \"distinct lines that never meet\", which makes the relation fail to be reflexive.",
+          "Proving symmetry with one drawn example instead of for any two lines l and m.",
+          "Checking the properties on a pair of lines rather than on the whole set L."
+        ],
+        "memory_tip": "Parallel lines are the lines with the same direction, and \"same direction\" behaves in the same way as equality."
+      },
+      {
+        "id": "s2_transitive",
+        "kind": "boxed_final",
+        "label": "Show it is transitive and state the conclusion",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The last line has to use the words \"equivalence relation\"; three checks with no conclusion is an incomplete answer.",
+        "lines": [
+          "Transitive: let l ∥ m and m ∥ n, where l, m, n ∈ L.",
+          "Then l has the direction of m, and m has the direction of n.",
+          "So l and n have the same direction, that is l ∥ n and (l, n) ∈ R.",
+          {
+            "text": "∴ R is reflexive, symmetric and transitive, so \"parallel\" is an equivalence relation on L.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That l ∥ m and m ∥ n force l and n to share m's direction, so l ∥ n, and that the relation is therefore an equivalence relation.",
+          "accept": [
+            "if l is parallel to m and m is parallel to n then l is parallel to n",
+            "the same direction is passed from l to m to n",
+            "all three properties hold so it is an equivalence relation",
+            "moodu properties satisfy avuthayi kabatti equivalence relation",
+            "conclude by naming it an equivalence relation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "transitive",
+            "l parallel n",
+            "equivalence relation",
+            "all three"
+          ]
+        },
+        "why": "Both l and n have the same direction as m, so they have the same direction as each other, and transitivity takes one line of work. It also needs the same convention: without it, l ∥ m and m ∥ l would force l ∥ l, which that convention denies.",
+        "common_mistakes": [
+          "Stopping after the three checks and never stating that R is an equivalence relation.",
+          "Arguing transitivity only from \"the lines never meet\", which does not by itself rule out l and n being the same line.",
+          "Checking only two of the three properties."
+        ],
+        "memory_tip": "Check reflexive, symmetric, transitive in that order every time, then write the conclusion as a full sentence."
+      }
+    ]
+  }
+}

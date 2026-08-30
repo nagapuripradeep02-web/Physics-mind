@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_relation_2x_plus_y_41_properties",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Let R be the relation defined on the set of all natural numbers N by R = {(x, y) : x, y ∈ N, 2x + y = 41}. Find R and check whether it is (i) reflexive, (ii) symmetric and (iii) transitive.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find R and its 20 ordered pairs",
+      "marks": 1
+    },
+    {
+      "label": "Test the three properties",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.6, chapter 1 SETS & RELATIONS, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE ON THE CONVENTION: N is taken as {1, 2, 3, …}, which is the Telangana Intermediate convention, giving x = 1 to 20 and 20 pairs. If a syllabus counted 0 as a natural number the list would gain (0, 41) and hold 21 pairs, but all three verdicts below would be unchanged. The three counterexamples were each checked by substitution: 2(1) + 1 = 3, 2(39) + 1 = 79, and 2(12) + 7 = 31, none of which is 41."
+  },
+  "recall_prompt": "Say how you would answer this — say how you bound x, and what you would produce to settle each of the three properties.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_r",
+        "kind": "equation",
+        "label": "Find R and its 20 ordered pairs",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The bound x ≤ 20 and at least the first and the last pair must be on the page.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take N = {1, 2, 3, …}. From 2x + y = 41, y = 41 − 2x.",
+          "y ∈ N needs 41 − 2x ≥ 1, that is 2x ≤ 40, so x ≤ 20. Also x ≥ 1.",
+          "So x = 1, 2, 3, …, 20 and R has 20 ordered pairs.",
+          "R = {(1, 39), (2, 37), (3, 35), …, (19, 3), (20, 1)}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y = 41 − 2x must stay in N, which forces x ≤ 20, giving the 20 pairs from (1, 39) to (20, 1).",
+          "accept": [
+            "make y the subject and require y to be at least one so x is at most twenty",
+            "x runs from one to twenty so there are twenty pairs",
+            "the pairs start at one thirty nine and end at twenty one",
+            "y equals forty one minus two x, y natural kavali kabatti x twenty varaku",
+            "list R as ordered pairs not as an equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "forty one minus two x",
+            "x at most twenty",
+            "twenty pairs",
+            "one thirty nine"
+          ]
+        },
+        "why": "y has to be a natural number, and that single requirement is what stops x at 20. Without it the equation would give an endless list, and R would not be a set of pairs that can be written down.",
+        "common_mistakes": [
+          "Letting x run past 20, which gives y = −1 and other values outside N.",
+          "Taking x = 0, which is not in N under the convention N = {1, 2, 3, …}.",
+          "Writing R as the equation 2x + y = 41 instead of as a set of ordered pairs."
+        ],
+        "memory_tip": "Make y the subject, then push x up until y would drop below 1 — that is where the list stops."
+      },
+      {
+        "id": "s2_properties",
+        "kind": "boxed_final",
+        "label": "Test the three properties",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Each verdict needs its own counterexample written out; a bare \"not reflexive\" earns nothing.",
+        "lines": [
+          "(i) Reflexive: (x, x) ∈ R would need 2x + x = 41, so x = 41/3, which is not in N.",
+          "For example 2(1) + 1 = 3 ≠ 41, so (1, 1) ∉ R. Hence R is not reflexive.",
+          "(ii) Symmetric: (1, 39) ∈ R, but 2(39) + 1 = 79 ≠ 41, so (39, 1) ∉ R.",
+          "Hence R is not symmetric.",
+          "(iii) Transitive: (12, 17) ∈ R and (17, 7) ∈ R, but 2(12) + 7 = 31 ≠ 41,",
+          "so (12, 7) ∉ R. Hence R is not transitive.",
+          {
+            "text": "∴ R is neither reflexive, nor symmetric, nor transitive.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one counterexample rejects each property: (1, 1) for reflexive, (39, 1) for symmetric, and the chain (12, 17), (17, 7) with (12, 7) missing for transitive.",
+          "accept": [
+            "no pair of the form x x works because three x equals forty one has no natural solution",
+            "one thirty nine is in R but thirty nine one is not so it is not symmetric",
+            "twelve seventeen and seventeen seven are in R but twelve seven is not",
+            "prathi property ki oka counterexample chupinchali",
+            "none of the three properties holds"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "not reflexive",
+            "one thirty nine",
+            "thirty nine one",
+            "twelve seventeen",
+            "counterexample"
+          ]
+        },
+        "why": "One counterexample settles each property, and each counterexample must use pairs that really are in R. For transitivity that means finding a chain (x, y) and (y, z) both inside R first, which is why 17 is used twice.",
+        "common_mistakes": [
+          "Calling R symmetric because 2x + y = 41 looks balanced; the coefficients 2 and 1 are different, so swapping x and y changes the sum.",
+          "Testing reflexivity with a pair such as (1, 39) instead of a pair of the form (x, x).",
+          "Calling R transitive without first finding a chain (x, y) and (y, z) that both lie in R."
+        ],
+        "memory_tip": "To reject a property you need one pair; to accept it you must argue for every pair."
+      }
+    ]
+  }
+}

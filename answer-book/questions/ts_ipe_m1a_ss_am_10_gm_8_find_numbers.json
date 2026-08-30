@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_am_10_gm_8_find_numbers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The A.M. and the G.M. of two positive numbers are 10 and 8 respectively. Find the numbers.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Turn the A.M. and the G.M. into a sum and a product",
+      "marks": 1
+    },
+    {
+      "label": "Form and solve the quadratic",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.21, chapter 3 SEQUENCES & SERIES, Very Short Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this — say what the A.M. and the G.M. give you, and what equation you build from them.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sum_product",
+        "kind": "equation",
+        "label": "Turn the A.M. and the G.M. into a sum and a product",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both a + b = 20 and ab = 64 must be written. Squaring the G.M. is the step most often missed.",
+        "memory_tip": "The A.M. gives the sum, the G.M. gives the product.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the two numbers be a and b.",
+          "A.M. = (a + b)/2 = 10  ⇒  a + b = 20",
+          "G.M. = √(ab) = 8  ⇒  ab = 64"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the A.M. gives a + b = 20 and the G.M. gives ab = 64.",
+          "accept": [
+            "a m gives the sum twenty",
+            "square the g m to get the product sixty four",
+            "sum is twenty and product is sixty four",
+            "a m nunchi sum, g m nunchi product vasthundi",
+            "double the arithmetic mean and square the geometric mean"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sum twenty",
+            "product sixty four",
+            "square the g m"
+          ]
+        },
+        "why": "The A.M. gives the sum and the G.M. gives the product, which are exactly the two quantities a quadratic equation is built from.",
+        "common_mistakes": [
+          "Writing ab = 8 by not squaring the G.M.",
+          "Writing a + b = 10 by not doubling the A.M."
+        ]
+      },
+      {
+        "id": "s2_quadratic",
+        "kind": "boxed_final",
+        "label": "Form and solve the quadratic",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Check both conditions: (4 + 16)/2 = 10 and √(4 × 16) = √64 = 8.",
+        "memory_tip": "x² − (sum)x + product = 0 is the equation whose roots are the two numbers.",
+        "lines": [
+          "a and b are the roots of  x² − (a + b)x + ab = 0",
+          "x² − 20x + 64 = 0",
+          "(x − 4)(x − 16) = 0  ⇒  x = 4  or  x = 16",
+          {
+            "text": "∴ the two numbers are 4 and 16",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² − 20x + 64 = 0 factorises to give the numbers 4 and 16.",
+          "accept": [
+            "form x squared minus twenty x plus sixty four equals zero",
+            "the roots are four and sixteen",
+            "use x squared minus sum x plus product equals zero",
+            "quadratic rasi solve cheste four and sixteen",
+            "the two numbers are four and sixteen"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x squared minus twenty x",
+            "sixty four",
+            "four and sixteen"
+          ]
+        },
+        "why": "Two numbers with a known sum and product are the roots of x² − (sum)x + product = 0, so one quadratic finds both at once.",
+        "common_mistakes": [
+          "Writing x² + 20x + 64 = 0 with the wrong sign on the middle term.",
+          "Factorising as (x − 8)(x − 8), which fits the product but not the sum."
+        ]
+      }
+    ]
+  }
+}

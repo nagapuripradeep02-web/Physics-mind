@@ -4031,104 +4031,234 @@
           "section": "VSAQ",
           "number": 1,
           "stars": 0,
-          "text": "Sets and their representation",
-          "source": "syllabus_2026_27"
+          "text": "Write A = {−3, −2, −1, 0, 1, 2, 3} in set-builder form.",
+          "question_id": "ts_ipe_m1a_sr_set_builder_form",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq2",
           "section": "VSAQ",
           "number": 2,
           "stars": 0,
-          "text": "The empty set",
-          "source": "syllabus_2026_27"
+          "text": "Find the power set of A = {−3, 0, 3}.",
+          "question_id": "ts_ipe_m1a_sr_power_set_minus3_0_3",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq3",
           "section": "VSAQ",
           "number": 3,
           "stars": 0,
-          "text": "Finite and infinite sets",
-          "source": "syllabus_2026_27"
+          "text": "If A = {1, 2, 3, 4, 5, 6, 7}, B = {2, 4, 6, 7, 8, 11} and C = {1, 3, 5, 7, 9}, find (i) A ∩ B, (ii) A ∩ C, (iii) B ∩ C and (iv) A ∩ B ∩ C.",
+          "question_id": "ts_ipe_m1a_sr_intersections_three_sets",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq4",
           "section": "VSAQ",
           "number": 4,
           "stars": 0,
-          "text": "Equal sets",
-          "source": "syllabus_2026_27"
+          "text": "If A = {1, 2, 3}, B = {2, 3} and C = {3, 4, 7}, find (A × B) ∩ (A × C).",
+          "question_id": "ts_ipe_m1a_sr_cartesian_product_intersection",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq5",
           "section": "VSAQ",
           "number": 5,
           "stars": 0,
-          "text": "Subsets",
-          "source": "syllabus_2026_27"
+          "text": "If A = {0, 1, 3, 5}, B = {1, 2, 4, 7} and C = {1, 2, 3, 5, 8}, show that (A ∩ C) ∪ B = (A ∪ B) ∩ (C ∪ B).",
+          "question_id": "ts_ipe_m1a_sr_distributive_union_over_intersection",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq6",
           "section": "VSAQ",
           "number": 6,
           "stars": 0,
-          "text": "Intervals as subsets of R",
-          "source": "syllabus_2026_27"
+          "text": "If A = {1, 2, 3}, B = {2, 3, 4} and C = {3, 4, 5, 6}, find A − (B − C).",
+          "question_id": "ts_ipe_m1a_sr_a_minus_b_minus_c",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq7",
           "section": "VSAQ",
           "number": 7,
           "stars": 0,
-          "text": "Venn diagrams",
-          "source": "syllabus_2026_27"
+          "text": "If U = {1, 2, 3, 4, 5, 6, 7}, A = {1, 2, 3} and B = {3, 5, 6}, show that (i) (A ∪ B)′ = A′ ∩ B′ and (ii) (A ∩ B)′ = A′ ∪ B′.",
+          "question_id": "ts_ipe_m1a_sr_de_morgan_universal_1_to_7",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq8",
           "section": "VSAQ",
           "number": 8,
           "stars": 0,
-          "text": "Operations on sets",
-          "source": "syllabus_2026_27"
+          "text": "Let A = {1, 2, 5, 7, 9} and let R be the relation defined on A by x R y if and only if x = y. Find the ordered pairs that belong to R, and find (i) the domain of R and (ii) the range of R.",
+          "question_id": "ts_ipe_m1a_sr_relation_x_equals_y_domain_range",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq9",
           "section": "VSAQ",
           "number": 9,
           "stars": 0,
-          "text": "Complement of a set",
-          "source": "syllabus_2026_27"
+          "text": "If A = {0, 1, 2, 3, 4, 5}, B = {0, 1, 2, 3, 4} and R is the relation from A to B given by x + y = 5, x ∈ A, y ∈ B, list the ordered pairs that belong to R, and find (i) the domain of R, (ii) the range of R and (iii) the codomain of R.",
+          "question_id": "ts_ipe_m1a_sr_relation_x_plus_y_5_domain_range_codomain",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq10",
           "section": "VSAQ",
           "number": 10,
           "stars": 0,
-          "text": "Cartesian product of sets",
-          "source": "syllabus_2026_27"
+          "text": "Show that the relation \"parallel\", defined on the set of all straight lines in a plane, is an equivalence relation.",
+          "question_id": "ts_ipe_m1a_sr_parallel_lines_equivalence",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq11",
           "section": "VSAQ",
           "number": 11,
           "stars": 0,
-          "text": "Relations",
-          "source": "syllabus_2026_27"
+          "text": "Let R be the relation defined on the set of all natural numbers N by R = {(x, y) : x, y ∈ N, 2x + y = 41}. Find R and check whether it is (i) reflexive, (ii) symmetric and (iii) transitive.",
+          "question_id": "ts_ipe_m1a_sr_relation_2x_plus_y_41_properties",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq12",
           "section": "VSAQ",
           "number": 12,
           "stars": 0,
-          "text": "Types of relations",
-          "source": "syllabus_2026_27"
+          "text": "Define a set. Define the cardinality of a finite set.",
+          "question_id": "ts_ipe_m1a_sr_define_set_and_cardinality",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq13",
           "section": "VSAQ",
           "number": 13,
           "stars": 0,
-          "text": "Equivalence relation",
-          "source": "syllabus_2026_27"
+          "text": "Define the power set of a set.",
+          "question_id": "ts_ipe_m1a_sr_define_power_set",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Define the symmetric difference of two sets.",
+          "question_id": "ts_ipe_m1a_sr_define_symmetric_difference",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Let A = {1, 2, 3}. Find (i) |A|, (ii) |P(A)|, (iii) all the subsets of A and (iv) the power set of A.",
+          "question_id": "ts_ipe_m1a_sr_subsets_and_power_set_of_1_2_3",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "If P(A) has 512 elements, find the number of elements in A.",
+          "question_id": "ts_ipe_m1a_sr_power_set_512_elements",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "If A = {a, b, c, d, e} and B = {a, c, f, g, h}, find the symmetric difference of A and B.",
+          "question_id": "ts_ipe_m1a_sr_symmetric_difference_abcde_acfgh",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "If U = {1, 2, 3, 4, 5, 6, 7, 8, 9}, A = {2, 4, 6} and B = {3, 5, 7}, show that (i) (A ∪ B)′ = A′ ∩ B′ and (ii) (A ∩ B)′ = A′ ∪ B′.",
+          "question_id": "ts_ipe_m1a_sr_de_morgan_universal_1_to_9",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Define the Cartesian product of two sets.",
+          "question_id": "ts_ipe_m1a_sr_define_cartesian_product",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "If A = {2, 3, 4}, B = {4, 5} and C = {5, 6, 7}, find (i) A × (B ∪ C), (ii) A × (B ∩ C) and (iii) (A × B) ∪ (A × C).",
+          "question_id": "ts_ipe_m1a_sr_cartesian_product_over_union_intersection",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Define a relation from one set to another.",
+          "question_id": "ts_ipe_m1a_sr_define_relation",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Define a reflexive relation.",
+          "question_id": "ts_ipe_m1a_sr_define_reflexive_relation",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Define a symmetric relation.",
+          "question_id": "ts_ipe_m1a_sr_define_symmetric_relation",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Define a transitive relation.",
+          "question_id": "ts_ipe_m1a_sr_define_transitive_relation",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Define an equivalence relation.",
+          "question_id": "ts_ipe_m1a_sr_define_equivalence_relation",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "If the relation R : A → B, where A = {1, 2, 3} and B = {1, 3, 6}, is defined by R = {(x, y) : x < y, x ∈ A and y ∈ B}, find R.",
+          "question_id": "ts_ipe_m1a_sr_relation_x_less_than_y",
+          "source": "enumerated"
         }
       ]
     },
@@ -4357,40 +4487,225 @@
           "section": "VSAQ",
           "number": 1,
           "stars": 0,
-          "text": "Sequences",
-          "source": "syllabus_2026_27"
+          "text": "Find the 10th term of the A.P. 3, 5, 7, 9, …",
+          "question_id": "ts_ipe_m1a_ss_ap_10th_term_3_5_7_9",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq2",
           "section": "VSAQ",
           "number": 2,
           "stars": 0,
-          "text": "Series",
-          "source": "syllabus_2026_27"
+          "text": "The mth term of an A.P. is n and the nth term is m. Show that the (m + n)th term is zero.",
+          "question_id": "ts_ipe_m1a_ss_ap_mth_n_nth_m_shows_zero",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq3",
           "section": "VSAQ",
           "number": 3,
           "stars": 0,
-          "text": "Arithmetic progression (A.P.)",
-          "source": "syllabus_2026_27"
+          "text": "The 35th term of an A.P. is 69. Find the sum of its first 69 terms.",
+          "question_id": "ts_ipe_m1a_ss_ap_35th_term_69_sum_69",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq4",
           "section": "VSAQ",
           "number": 4,
           "stars": 0,
-          "text": "Geometric progression (G.P.)",
-          "source": "syllabus_2026_27"
+          "text": "Which term of the G.P. 5, −10, 20, −40, … is 320?",
+          "question_id": "ts_ipe_m1a_ss_gp_which_term_is_320",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq5",
           "section": "VSAQ",
           "number": 5,
           "stars": 0,
-          "text": "Relation between A.M. and G.M.",
-          "source": "syllabus_2026_27"
+          "text": "Three numbers are in G.P. Their sum is 43 and their product is 216. Find the numbers in proper order.",
+          "question_id": "ts_ipe_m1a_ss_gp_three_numbers_sum_43_product_216",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Find the sum to n terms of the sequence 8, 88, 888, …",
+          "question_id": "ts_ipe_m1a_ss_sum_8_88_888_n_terms",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Find the sum of the infinite G.P. 1 + 1/3 + 1/9 + 1/27 + … ∞",
+          "question_id": "ts_ipe_m1a_ss_infinite_gp_one_third_ratio",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "The A.M. and the G.M. of two positive numbers are 10 and 8 respectively. Find the numbers.",
+          "question_id": "ts_ipe_m1a_ss_am_10_gm_8_find_numbers",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "The sum of two numbers a and b is 6 times their geometric mean. Show that the numbers are in the ratio (3 + 2√2) : (3 − 2√2).",
+          "question_id": "ts_ipe_m1a_ss_sum_6_times_gm_ratio",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "If the A.M. and the G.M. between two numbers are in the ratio m : n, prove that the numbers are in the ratio m + √(m² − n²) : m − √(m² − n²).",
+          "question_id": "ts_ipe_m1a_ss_am_gm_ratio_m_n",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "The common difference of an A.P. is 3 and the 15th term is 37. Find the second term.",
+          "question_id": "ts_ipe_m1a_ss_ap_cd_3_15th_term_37_second_term",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "If the mth term of an A.P. is 1/n and the nth term is 1/m, show that the (mn)th term is 1.",
+          "question_id": "ts_ipe_m1a_ss_ap_mth_1_over_n_nth_1_over_m",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Find the sum of 2 + 3 + 5 + 6 + 8 + 9 + … to 2n terms.",
+          "question_id": "ts_ipe_m1a_ss_sum_2_3_5_6_8_9_2n_terms",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Insert five arithmetic means between 8 and 26.",
+          "question_id": "ts_ipe_m1a_ss_insert_five_am_between_8_and_26",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Find the 5th term of the G.P. 4, 8, 16, …",
+          "question_id": "ts_ipe_m1a_ss_gp_5th_term_4_8_16",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "The third term of a geometric progression is 4. Find the product of the first five terms.",
+          "question_id": "ts_ipe_m1a_ss_gp_third_term_4_product_first_five",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Find the sum to n terms of the sequence 0.7, 0.77, 0.777, …",
+          "question_id": "ts_ipe_m1a_ss_sum_0_7_0_77_0_777_n_terms",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Find the sum of the infinite terms of the G.P. 1/3, −2/9, 4/27, −8/81, …",
+          "question_id": "ts_ipe_m1a_ss_infinite_gp_one_third_minus_two_ninths",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Find the sum 1 + 2/2 + 3/2² + 4/2³ + … to ∞.",
+          "question_id": "ts_ipe_m1a_ss_infinite_sum_n_over_2_power",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "The sum of an infinite geometric series is 1/3 and its first term is 1/4. Find the G.P.",
+          "question_id": "ts_ipe_m1a_ss_infinite_gp_sum_one_third_first_one_fourth",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Insert three geometric means between 1 and 81.",
+          "question_id": "ts_ipe_m1a_ss_insert_three_gm_between_1_and_81",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "The arithmetic mean between two positive numbers is 34 and their geometric mean is 16. Find the numbers.",
+          "question_id": "ts_ipe_m1a_ss_am_34_gm_16_find_numbers",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "If one geometric mean g and two arithmetic means p and q are inserted between two numbers, show that g² = (2p − q)(2q − p).",
+          "question_id": "ts_ipe_m1a_ss_one_gm_two_am_identity",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Let x be the arithmetic mean and let y, z be the two geometric means between any two positive numbers. Show that y³ + z³ = 2xyz.",
+          "question_id": "ts_ipe_m1a_ss_am_x_two_gm_y_z_identity",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Find the sum to n terms of the series 1·2 + 2·3 + 3·4 + …",
+          "question_id": "ts_ipe_m1a_ss_sum_1_2_2_3_3_4_n_terms",
+          "source": "enumerated"
         }
       ]
     },

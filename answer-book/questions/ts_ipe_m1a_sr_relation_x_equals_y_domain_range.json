@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_relation_x_equals_y_domain_range",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Let A = {1, 2, 5, 7, 9} and let R be the relation defined on A by x R y if and only if x = y. Find the ordered pairs that belong to R, and find (i) the domain of R and (ii) the range of R.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "List the ordered pairs of R",
+      "marks": 1
+    },
+    {
+      "label": "Write the domain and the range",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which pairs the condition x = y allows, and where the domain and the range are read from.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pairs",
+        "kind": "equation",
+        "label": "List the ordered pairs of R",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. All five pairs must be on the page; one missing pair costs the mark.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A = {1, 2, 5, 7, 9} and R = {(x, y) : x ∈ A, y ∈ A, x = y}",
+          "A pair belongs to R only when its two members are the same number.",
+          "So pair each member of A with itself:",
+          "R = {(1, 1), (2, 2), (5, 5), (7, 7), (9, 9)}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = y allows only the pairs of a member with itself, giving five pairs.",
+          "accept": [
+            "each member is related only to itself so the pairs are one one two two and so on",
+            "x equals y means pair every element with itself",
+            "there are five ordered pairs, one for each member of A",
+            "prathi element ni daani tho ne jodinchali, five pairs vasthayi",
+            "R is the identity relation on A"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equals y",
+            "one one",
+            "with itself",
+            "five pairs"
+          ]
+        },
+        "why": "The condition x = y admits only pairs in which a member of A stands with itself, so R has exactly as many pairs as A has members. This relation is called the identity relation on A.",
+        "common_mistakes": [
+          "Listing pairs such as (1, 2) that do not satisfy x = y.",
+          "Writing the members 1, 2, 5, 7, 9 instead of the ordered pairs (1, 1), (2, 2) and so on.",
+          "Giving all 25 pairs of A × A."
+        ],
+        "memory_tip": "x = y pairs every member with itself and with nothing else, so R has one pair per member of A."
+      },
+      {
+        "id": "s2_domain_range",
+        "kind": "boxed_final",
+        "label": "Write the domain and the range",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Answer (i) and (ii) separately, even though the two sets turn out to be the same here.",
+        "lines": [
+          "The domain of R is the set of first members of its pairs.",
+          "The range of R is the set of second members of its pairs.",
+          {
+            "text": "∴ (i) domain of R = {1, 2, 5, 7, 9} = A   and   (ii) range of R = {1, 2, 5, 7, 9} = A",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both the domain and the range are {1, 2, 5, 7, 9}, that is A itself.",
+          "accept": [
+            "domain is the first coordinates and range is the second coordinates",
+            "both come out as the whole set A",
+            "domain equals range equals one two five seven nine",
+            "domain modati coordinates, range rendava coordinates, rendu A ne",
+            "every member of A appears in both, so both are A"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "domain",
+            "range",
+            "first members",
+            "whole set A"
+          ]
+        },
+        "why": "Every member of A appears as a first coordinate and also as a second coordinate, so the domain and the range are both the whole of A.",
+        "common_mistakes": [
+          "Giving the domain as A × A rather than as a set of numbers.",
+          "Leaving a member such as 9 out of one of the two sets.",
+          "Writing the range as a single number instead of a set."
+        ],
+        "memory_tip": "Domain is read down the left of the pairs and range down the right — first coordinates, then second coordinates."
+      }
+    ]
+  }
+}

@@ -61,12 +61,17 @@ if (!existsSync(SRCDIR)) {
         if (!Array.isArray(j.questions)) { bad.push(`sources/${f}: no questions[]`); continue; }
         for (const q of j.questions) {
             indexed++;
-            const hay = `${q.stem ?? ''}\n${q.notes ?? ''}`;
+            /* Markers are scanned on the STEM only. The stem is content taken from the book, so a
+             * `Sol:` there means working leaked in. `notes` is OUR commentary about the scan, and it
+             * legitimately mentions the marker to record that a solution block was NOT copied - the
+             * first run flagged exactly that sentence. Length guards notes instead: our own note is a
+             * line or two, a pasted solution is not. */
             for (const re of SOLUTION_MARKERS) {
-                if (re.test(hay)) bad.push(`sources/${f} ${q.ref}: looks like solution text (${re}) — the index takes questions only`);
+                if (re.test(q.stem ?? '')) bad.push(`sources/${f} ${q.ref}: stem looks like solution text (${re}) — the index takes questions only`);
             }
             /* A stem far longer than any exam question is the shape of a solution that leaked in. */
             if ((q.stem ?? '').length > 600) bad.push(`sources/${f} ${q.ref}: stem is ${q.stem.length} chars — too long for a question stem`);
+            if ((q.notes ?? '').length > 400) bad.push(`sources/${f} ${q.ref}: notes is ${q.notes.length} chars — too long for a scan note`);
         }
         note(`sources/${f}: ${j.questions.length} questions`);
     }

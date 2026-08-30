@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_define_power_set",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the power set of a set.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the definition",
+      "marks": 1
+    },
+    {
+      "label": "Give an example and the count of subsets",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.6, chapter 1 SETS & RELATIONS, Very Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question; on a definition question the second mark is carried by a worked example, which is how a two-mark definition is answered in full. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Related card in the same unit: ts_ipe_m1a_sr_power_set_minus3_0_3 asks for a particular power set; this one asks for the definition, so the two are not duplicates."
+  },
+  "recall_prompt": "Say the definition of the power set, and give one example together with the number of subsets.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "State the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. The words \"the set of all subsets\" and the symbol P(A) are both wanted.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A be a set. The set of all subsets of A is called the power set of A, and is written P(A).",
+          "In set-builder form, P(A) = {X : X ⊆ A}.",
+          "Every power set contains ∅ and A itself, because ∅ ⊆ A and A ⊆ A."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the power set of A is the set of all subsets of A, written P(A).",
+          "accept": [
+            "the power set is the set of all subsets of A",
+            "it is written P of A and equals the set of all X such that X is a subset of A",
+            "it always contains the empty set and A itself",
+            "power set ante A yokka anni subsets tho unna set",
+            "its members are subsets, not elements"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "power set",
+            "all subsets",
+            "P of A",
+            "empty set"
+          ]
+        },
+        "why": "The definition is about subsets, not elements, so every member of P(A) is itself a set. That distinction is the whole of the first mark, and it is what makes {a} ∈ P(A) correct while a ∈ P(A) is wrong.",
+        "common_mistakes": [
+          "Saying P(A) is the set of elements of A.",
+          "Writing a ∈ P(A) for an element a of A, when the correct statement is {a} ∈ P(A).",
+          "Leaving out the symbol P(A) and giving only words."
+        ],
+        "memory_tip": "Power set means \"all the subsets\", so its members are sets and are written inside their own braces."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Give an example and the count of subsets",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. One worked example plus the count 2ⁿ finishes a two-mark definition question.",
+        "lines": [
+          "Take A = {a, b}. Its subsets are ∅, {a}, {b} and {a, b}.",
+          "So P(A) = {∅, {a}, {b}, {a, b}} and n(P(A)) = 4 = 2².",
+          "In general, if A is finite with n(A) = n, then n(P(A)) = 2ⁿ.",
+          {
+            "text": "∴ P(A) = {X : X ⊆ A},  and n(P(A)) = 2ⁿ when n(A) = n",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a small example is given, such as A = {a, b} with four subsets, and that a set with n elements has 2 to the power n subsets.",
+          "accept": [
+            "for a set with two elements there are four subsets",
+            "P of a b is empty set, a, b and a b",
+            "a set with n elements has two to the power n subsets",
+            "rendu elements unte naalugu subsets, two power n",
+            "give a small example and the count two power n"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two power n",
+            "four subsets",
+            "a and b",
+            "example"
+          ]
+        },
+        "why": "A small example shows at once that the members of P(A) are sets, and it lets the count 2ⁿ be checked on the page instead of being quoted from memory.",
+        "common_mistakes": [
+          "Leaving ∅ or A itself out of the list of subsets.",
+          "Writing n(P(A)) = n² instead of 2ⁿ.",
+          "Choosing an example with so many elements that the list cannot be completed."
+        ],
+        "memory_tip": "Each element is either kept or dropped, so there are 2 choices per element and 2ⁿ subsets in all."
+      }
+    ]
+  }
+}

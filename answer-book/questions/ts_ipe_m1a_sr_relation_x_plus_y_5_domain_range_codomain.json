@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_relation_x_plus_y_5_domain_range_codomain",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A = {0, 1, 2, 3, 4, 5}, B = {0, 1, 2, 3, 4} and R is the relation from A to B given by x + y = 5, x ∈ A, y ∈ B, list the ordered pairs that belong to R, and find (i) the domain of R, (ii) the range of R and (iii) the codomain of R.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "List the pairs that satisfy x + y = 5",
+      "marks": 1
+    },
+    {
+      "label": "Write the domain, the range and the codomain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.6, chapter 1 SETS & RELATIONS, Very Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. All three parts (i)–(iii) stay on one card because they are read off the same list of pairs."
+  },
+  "recall_prompt": "Say how you would do this one — say how you test each x, and what the difference is between the range and the codomain.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pairs",
+        "kind": "equation",
+        "label": "List the pairs that satisfy x + y = 5",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Show the line y = 5 − x, then test each x of A. The rejected value x = 0 is worth writing down.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x + y = 5 gives y = 5 − x. Take each x ∈ A and keep the pair only if y ∈ B.",
+          "x = 0 → y = 5, and 5 ∉ B, so (0, 5) is rejected.",
+          "x = 1, 2, 3, 4, 5 → y = 4, 3, 2, 1, 0, and all of these are in B.",
+          "R = {(1, 4), (2, 3), (3, 2), (4, 1), (5, 0)}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y = 5 − x is tested for each x in A and only y values inside B are kept, giving five pairs.",
+          "accept": [
+            "make y the subject and check each x of A against B",
+            "x equals zero gives y equals five which is not in B so it is dropped",
+            "the pairs are one four two three three two four one and five zero",
+            "y equals five minus x rasi, B lo unte matrame teesukovali",
+            "five pairs because x equals zero fails"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y equals five minus x",
+            "not in B",
+            "five pairs",
+            "one four"
+          ]
+        },
+        "why": "R is a relation from A to B, so a pair counts only when x lies in A and y lies in B. That second condition is what removes x = 0, since 5 is not a member of B.",
+        "common_mistakes": [
+          "Keeping the pair (0, 5); 5 is in A but not in B, so it cannot be a second coordinate.",
+          "Reading x + y = 5 as y = x + 5.",
+          "Missing (5, 0), because 0 is wrongly thought to be outside B."
+        ],
+        "memory_tip": "Rearrange to y = 5 − x, then run x through A and keep only the y values that B contains."
+      },
+      {
+        "id": "s2_dom_ran_codom",
+        "kind": "boxed_final",
+        "label": "Write the domain, the range and the codomain",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Three separate answers are asked for, so label them (i), (ii) and (iii).",
+        "lines": [
+          "Domain = the set of first members of the pairs.",
+          "Range = the set of second members of the pairs.",
+          "Codomain = B, the set the relation goes into, whether or not every member is used.",
+          {
+            "text": "∴ (i) domain = {1, 2, 3, 4, 5}   (ii) range = {0, 1, 2, 3, 4}   (iii) codomain = {0, 1, 2, 3, 4}",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the domain is {1, 2, 3, 4, 5}, the range is {0, 1, 2, 3, 4} and the codomain is B.",
+          "accept": [
+            "domain is one to five, range is zero to four, codomain is B",
+            "the codomain is the whole of B given in the question",
+            "here the range happens to fill the codomain",
+            "domain range pairs nunchi, codomain matram B ne",
+            "zero is not in the domain because x equals zero was rejected"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "domain",
+            "range",
+            "codomain",
+            "B",
+            "one to five"
+          ]
+        },
+        "why": "The codomain is the whole of B by definition, while the range is only the part of B actually reached. Here every member of B is reached, so the two sets agree, but they are answering different questions.",
+        "common_mistakes": [
+          "Giving the codomain as A.",
+          "Including 0 in the domain, when x = 0 gave no pair.",
+          "Saying the range and the codomain are always equal; they agree here only because every member of B is used."
+        ],
+        "memory_tip": "Domain and range are read off the pairs; the codomain is given in the question as B."
+      }
+    ]
+  }
+}
