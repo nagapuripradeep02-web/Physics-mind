@@ -132,15 +132,18 @@ async function handle(raw: string, res: import('http').ServerResponse): Promise<
     if (!question) { res.writeHead(400, CORS); res.end(JSON.stringify({ error: 'empty question' })); return; }
 
     const rawFacts = String(body.tutor_context ?? '');
-    // The slice below is silent by construction, so say it out loud. Measured max
-    // across the whole bank is 7,687 chars; a context that crosses 10,000 would lose
-    // its TAIL STEPS and un-ground the model with no visible symptom.
-    if (rawFacts.length > 9_000) {
+    // The slice below is silent by construction, so say it out loud. The widest
+    // context in the bank measures 10,421 chars (Physics-II, torque on a loop) — it
+    // was 7,687 when this cap was first set at 10,000, and four cards had quietly
+    // crossed it by 2026-08-30, losing their last step's supporting text on the live
+    // site with no visible symptom. The cap is a ceiling, not a pad: raising it costs
+    // nothing on the contexts already below it. Re-measure before adding a paper.
+    if (rawFacts.length > 12_000) {
         console.warn('answerbook_vidi_chat: tutor_context ' + rawFacts.length +
-            ' chars for ' + String(body.question_id ?? '?') + ' — near the 10,000 slice');
+            ' chars for ' + String(body.question_id ?? '?') + ' — near the 14,000 slice');
     }
     const system = PERSONA + '\n\nANSWER FACTS (the truth for this question):\n' +
-        rawFacts.slice(0, 10_000);
+        rawFacts.slice(0, 14_000);
     // Per-request steering sits NEXT TO the question, where the model actually
     // obeys it: the persona's own 5-sentence cap was ignored on 71% of "explain
     // the physics" asks and the Telugu term rule on ~half of Telugu asks (audit

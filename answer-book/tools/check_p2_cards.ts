@@ -14,7 +14,7 @@
  */
 import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join } from 'path';
-import { answerBookQuestionSchema } from '../../src/schemas/answerBook';
+import { answerBookQuestionSchema, paperMarksFor } from '../../src/schemas/answerBook';
 // The HOUSE Rule-41 list, imported not copied — the same one build_answer_book.ts
 // uses and the same one the shakedown grades Vidi's replies with. This tool kept
 // a private word list at first, which is how it ended up with a DIFFERENT
@@ -37,6 +37,7 @@ const PREFIX = process.argv[2] ?? 'ts_ipe_p2_';
 
 type Row = { file: string; msg: string };
 const errors: Row[] = [];
+let expectedSubject: string | null = null;
 const warns: Row[] = [];
 
 // [dir, filename] pairs, so an error can name where the card actually lives.
@@ -81,18 +82,35 @@ for (const [dir, f] of files) {
     ids.add(id);
 
     // header
-    if (q.subject !== 'physics_2') errors.push({ file: f, msg: `subject "${q.subject}" ≠ physics_2` });
+    // Every card under one prefix must share a subject. Derived from the first card
+    // seen rather than pinned to physics_2: this tool takes a prefix, and pinning the
+    // subject made it reject every other paper outright — which, together with the LAQ
+    // marks hardcoded to 8, had it reporting 64 failures on a correctly-cut Maths-2A.
+    // It still catches what it was written to catch: a stray card under the wrong prefix.
+    if (expectedSubject === null) expectedSubject = q.subject;
+    else if (q.subject !== expectedSubject) {
+        errors.push({ file: f, msg: `subject "${q.subject}" ≠ "${expectedSubject}" (the subject the rest of this prefix uses)` });
+    }
     if (q.year_cycle !== 'second_year') errors.push({ file: f, msg: `year_cycle "${q.year_cycle}" ≠ second_year` });
     if (q.board !== 'ts_ipe') errors.push({ file: f, msg: `board "${q.board}" ≠ ts_ipe` });
     if (!/II Year|Class 12/.test(q.class_label ?? '')) {
         errors.push({ file: f, msg: `class_label "${q.class_label}" does not name second year` });
     }
 
-    // marks: the paper's own shape, checked here because PAPER_PATTERNS is not
-    // on this branch yet and its gate is a silent no-op for an unknown subject.
-    const want = q.qtype === 'VSAQ' ? 2 : q.qtype === 'SAQ' ? 4 : 8;
+    // marks: read the paper's OWN row, never a hardcoded shape. This used to say
+    // LAQ = 8 because PAPER_PATTERNS did not exist on the branch it was written on.
+    // Once the 7-mark maths papers landed that hardcode made this tool fail CLOSED
+    // and WRONG — 64 false failures on Maths-2A and 62 on 2B, one per long answer,
+    // every one of them correctly cut. An unregistered subject still yields
+    // undefined, and the check is skipped rather than guessed at, which matches how
+    // the build's own gate behaves.
+    const want = paperMarksFor(q.subject, q.qtype);
     const section = q.qtype === 'VSAQ' ? 'Section A' : q.qtype === 'SAQ' ? 'Section B' : 'Section C';
-    if (q.marks_total !== want) errors.push({ file: f, msg: `${q.qtype} is ${want}M on this paper, card says ${q.marks_total}` });
+    if (want === undefined) {
+        errors.push({ file: f, msg: `subject "${q.subject}" has no PAPER_PATTERNS row — marks unchecked` });
+    } else if (q.marks_total !== want) {
+        errors.push({ file: f, msg: `${q.qtype} is ${want}M on this paper, card says ${q.marks_total}` });
+    }
     if (q.paper_section !== section) errors.push({ file: f, msg: `${q.qtype} sits in ${section}, card says "${q.paper_section}"` });
 
     const stepSum = q.answer.steps.reduce((a: number, s: any) => a + (s.marks ?? 0), 0);

@@ -33,10 +33,12 @@ const DIST = join(process.cwd(), 'answer-book', 'dist', 'index.html');
 const OUT_DIR = join(process.cwd(), '.answerbook_logs');
 const OUT = join(OUT_DIR, 'vidi_contexts.json');
 
-// The server slices ANSWER FACTS at 10,000 chars, silently. Anything past this
-// warn line is one authoring pass away from losing its tail steps.
-const SLICE = 10_000;
-const WARN_AT = 9_000;
+// The server slices ANSWER FACTS at 14,000 chars, silently. Anything past the warn
+// line is one authoring pass away from losing its tail steps. These two MUST track
+// the server: a mismatch either reports a truncation that is not happening or misses
+// one that is. Widest in the bank on 2026-08-30: 10,421.
+const SLICE = 14_000;
+const WARN_AT = 12_000;
 
 async function main() {
     if (!existsSync(DIST)) {
