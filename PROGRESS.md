@@ -1,5 +1,124 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📐 SESSION — Maths-2B ships, and the first Vidi audit of the two senior maths papers (2026-08-30, `master`)
+
+**Bottom line: Maths-2B is live at answers.viditra.co — second year went 44 → 52 chapters and 853 → 1,124 answers — and both senior maths papers went through the Vidi audit for the first time. 12,672 graded replies over three rounds, 37 independent graders, the frozen rubric. 2A scored 9.94/10 and 2B 9.90, the highest of any paper measured, with ZERO harmful replies in the 5,280 of round 1. Two cards were genuinely wrong and both reached a student. And the round that was supposed to be the before/after measured nothing of the kind — its local mirror never started, and a curl 200 from the old process was taken as proof that it had.**
+
+### Maths-2B was finished, pushed, and never merged
+
+The desk sat 23 commits ahead of `origin/master` with no PR. Everything else in the book was on master; this one paper was not, so `mathematics_2b` appeared nowhere on the live site. PR #179, clean fast-forward, CI green.
+
+Two things the branch had registered everywhere except where a student looks first:
+
+- **`TRACKS[0].subjects`** — the group tile on the door, the first screen a student meets, still read *"Maths 1A · Maths 1B · Maths 2A · Physics · Chemistry"*. The `mpc_2` year cell and its blurb were already correct, which is exactly why this was easy to miss: the tile that was wrong is the one no year owns.
+- **`smoke.pid`**, a Playwright pid file committed by accident and the only permanently dirty file in the worktree.
+
+Deployed in the documented order — `content:push` BEFORE the site, because the gated artifact fetches per-unit content from `ab_content` and a catalog listing eight chapters the table does not hold gives a student eight chapters that open empty. `ab_content` 84 → 92 rows; the 84 existing bundles were proven byte-identical before the push, so exactly the eight new ones changed. Integration (`mathematics_2b-6`) set free, keeping *"One chapter in every subject is free"* true in both years — eight free chapters now, four per year.
+
+**Verified against the live site, not the artifact.** A real browser walk of both door years passed 15 of 15: the door meets a fresh device, the MPC tile now names Maths 2B and counts 89 chapters, the second-year cell opens on *"Physics II · Chemistry II · Maths-2A · Maths-2B"*, Integration reads **Free · 51 of 51 ready**, a reload keeps the remembered year, first year does not leak 2B, zero page errors. The e2e suite structurally cannot test the door — it runs the unstreamed build where `PM_TRACKS` is null.
+
+### The audit: 9.94 and 9.90, and zero harmful replies
+
+528 grounding contexts × the 10-ask battery = 5,280 live replies per round against the local mirror, ten graders per paper, the rubric frozen in `vidi_slice.ts`.
+
+| | replies | mean | 3 | 2 | 1 | 0 |
+|---|---|---|---|---|---|---|
+| Maths-2A | 2,570 | 2.983 = **9.94/10** | 2,535 | 26 | 9 | **0** |
+| Maths-2B | 2,710 | 2.971 = **9.90/10** | ~2,630 | ~70 | 8 | **0** |
+
+Physics-I finished 9.85, Chemistry-I 9.78, Maths-1A 9.67. Cross-subject comparison is weaker evidence than a same-corpus before/after — different grader panels — but zero harmful replies in 5,280 is a hard number, and every grader re-derived the ANSWER FACTS arithmetic independently and found no 2A card mathematically wrong, matching the examiner pass that found zero wrong in 257.
+
+### Two cards were wrong, and both reached a student
+
+Neither is visible to any structural gate; both sit in the explanation layer Vidi is grounded on.
+
+- **`ts_ipe_m2b_di_laq_sqrt_x_minus_a_b_minus_x`** claimed its answer π(b−a)²/8 is *"one quarter"* of the area of the circle of diameter (b−a). That circle has radius (b−a)/2 and area π(b−a)²/4, so the answer is **half** of it — which the same sentence already says by calling it a semicircle. The card contradicted itself in one line, and the model repeated the wrong half verbatim when a student asked how to remember it, handing over a false sanity-check.
+- **`ts_ipe_m2b_sc_find_k_given_angle_45`** promised *"two rounds of squaring, not one"* in its insider note and again in a margin note, and labelled a division *"Squaring gave k² = 16"*. The algebra squares exactly once: `17k² = 272` then `k² = 16` is a division, and `k = ±4` is a square root. A grounding that insists on a step the working does not contain invites the model to explain it anyway — and the `mistakes` reply duly invented a rationale for the squaring that never happens.
+
+**Three pointers a student cannot follow** were also fixed — *"the neighbouring answer 176"*, *"the earlier answer 98"*, *"where 140.1 led to a linear equation"*. These are the source book's answer numbers, and the product never shows them. Generalising what three graders caught in replies, a scan found **43 such sites across 35 cards in five papers**; they are listed in `docs/notes/answer_book_crossref_cleanup.md` rather than rewritten, because each pointer has to be replaced by the thing it points at, which needs reading rather than a regex.
+
+**`Asked: AP 2019, 2019`.** `askedLine` never de-duplicated, so a card listing one board-year twice printed it twice — to a student that reads as two sittings, or as a typo. Eighteen cards do this, across Maths-2A and Botany-II. Nothing counts `appearances.length`, so the duplicate only ever reached the eye, which is why the fix belongs in the shared renderer and not in eighteen cards: it covers every paper including the ones not written yet. Negative-controlled — genuinely distinct years still print in full.
+
+### The round that measured nothing, and why it turned out to be the most useful one
+
+Round 2 was supposed to be the after. Its mirror never started: the port was still held by round 1's process, and the liveness check — a `curl` returning 200 — was answered by that old process. So round 2 ran the OLD persona with the NEW cards, and the two "results" it produced were both wrong readings that had to be retracted: a step-id leak that appeared to double, and an out-of-bank improvement that appeared real.
+
+What it actually produced is the thing a single before/after never has: **two runs of identical configuration, 5,280 replies each, at temperature 0.7 — a measured noise band.**
+
+| | persona | step-id leak | outofbank states a mark value |
+|---|---|---|---|
+| round 1 | old | 4 / 1584 (0.25%) | 39 / 528 (7.4%) |
+| round 2 | old — same config | 9 / 1584 (0.57%) | 27 / 528 (5.1%) |
+| **round 3** | **fixed** | **0 / 1584 (0.00%)** | **8 / 528 (1.5%)** |
+
+Rounds 1 and 2 bracket the noise; round 3 falls below both on both measures. That is the bar the accident set, and it is a far stronger claim than a single before/after could have made. **A liveness check must read the server's own startup line — a status code can be answered by the wrong process.**
+
+### The persona fix that did not work, and the structural one that did
+
+The step-id leak — replies telling students to *"skip the last step (s2_compute)"* — was first attacked with a rule: *"never write it in your reply."* Measured, that rule's round was the worse of the two old-persona rounds. So it was **withdrawn** rather than left in place unproven, and the id stopped being offered instead: the situation block now says `step 7, "All six roots"` in place of `s7_roots`, read out of the ANSWER FACTS the model already has, falling back to *"the step they are on"* and never to a raw id. Leak went to 0 of 1,584.
+
+The out-of-bank fix was a boundary, not a ban. The line already said *"Two sentences is the whole reply. You may then offer the question that IS open"* — and "offer" was read as permission to answer it in full, once signing off *"Good luck with your exam tomorrow — you have prepared well"* to a student who had not touched the question. It now grants one sentence, an offer only.
+
+### A check that was wrong, and withdrawn
+
+A mechanical wrong-step detector was written for the defect that produced the only grade-0 replies — a `whystep` reply that explains a neighbouring step and attaches its mark ("This step earns the 1 mark for the denominator" on a 2-mark division step). Validated against the cases graders had named by hand, it reached **3 of 5 recall while firing on 13% where readers found about 1%** — a twelve-fold over-fire. It is **withdrawn**, and its apparent round-over-round improvement is discarded with it. Graders remain the only instrument for wrong-step. A green run from a broken check implies a safety it cannot provide.
+
+### Two grader claims that did not survive checking
+
+Both were checked against the card rather than taken at face value, and both were wrong:
+- *"176 is a corrupted numeral"* — it is a real neighbouring printed answer number. The defect is the opaque pointer, not a corruption.
+- *"`te_laq_recip_6x6_25x5`'s mark split contradicts its steps, summing to 6 not 7"* — the split sums to 7, the steps sum to 7, and the six scoring steps map one-to-one onto the six buckets. `s3_substitute` is 1M, not the 0M claimed. A sweep of all 528 cards in both papers found **zero** split/step misalignments.
+
+
+### Round 3, read by graders: wrong-step solved, scope creep cut but alive
+
+Five graders read the 2,112 replies of the targeted re-probe.
+
+**Wrong-step is essentially closed.** It produced the audit's only grade-0 replies in round 2 — a
+`whystep` reply explaining a neighbouring step and claiming that step's mark ("This step earns the
+1 mark for the denominator", on a 2-mark division step). Round 3: **0 / 84 and 0 / 86 on Maths-2A**,
+and 6 / 441 across both papers (1.4%), all six on 2B. Naming the step by its number and label,
+instead of handing the model an opaque id, fixed the thing the id was only a symptom of.
+
+**And here is where I nearly reported a win that was not one.** My mechanical measure for
+out-of-bank scope creep was "does the reply state a mark value", and it read 7.4% → 5.1% → **1.5%**.
+The graders read the same round at **10–24%**. The narrow measure had gone narrow exactly the way a
+defect metric does: the model stopped naming marks and kept handing over the answer. The broader
+proxy already in the same script tells the true story, and the accidental duplicate round makes it
+airtight:
+
+| out-of-bank behaviour | R1 old | R2 old (same config) | R3 fixed |
+|---|---|---|---|
+| states a mark value (narrow) | 7.4% | 5.1% | 1.5% |
+| **quotes an equation** (broad) | 28.0% | 28.4% | **10.8%** |
+| median words | 58 | 58 | 52 |
+
+A noise band 0.4 points wide, and the fixed run 17 points below it. So the honest claim is that the
+behaviour **fell by roughly two thirds and did not go away** — Vidi still declines correctly and then
+volunteers the open question's final answer in about one reply in ten. **Trap 5 from the maths round,
+reproduced by me: the metric that says you succeeded lies the same way the one that says the model
+failed does. Report the measure that matches what a reader sees.**
+
+Also named by round-3 graders and not fixed: `remember` padding is the largest volume issue on 2B
+(46% of remember replies scored 2) — pure length and scope, never once a correctness error. Vidi
+reaches for neighbouring steps' authored tips as well as the one the student has open.
+
+### The maths papers have no memory tips at all
+
+Measured across the whole bank: **Maths-1A 0/801 steps, Maths-1B 0/367, Maths-2A 0/768. Maths-2B is 828/828.** Every physics, chemistry, botany and zoology paper is at 100%. The `"How to remember?"` chip renders only `if (s && s.memory_tip)` (`notebook.js:5033`), so **the chip has never appeared for a student on three of the four maths papers** — 1,936 steps across 615 cards, both years, all live.
+
+A prediction was made before the run and it was wrong: 2A's tip-free `remember` did not score below 2B's. It scored at or above it, and 2B's `remember` was in places its weakest template, because Vidi reaches for the adjacent step's authored tip. Two reasons that is not evidence tips do not matter — the rubric grades against the ANSWER FACTS, so an improvised tip that no fact contradicts cannot be marked down; and the missing chip is invisible to reply-grading entirely. **Reported as a wrong prediction, not quietly dropped.**
+
+### Also found, not fixed
+
+- **Four cards exceed the 10,000-char grounding slice** — three Physics-II, one Chemistry-II. The dump script warns that "tail steps are being dropped"; checked, no whole step is lost, only 154–421 characters off the last step's supporting text. The warning overstates it. Live, and outside the maths scope of this session.
+- **`check_p2_cards.ts` hardcodes `LAQ → 8` marks** rather than reading `PAPER_PATTERNS`, so pointing it at either 7-mark maths paper reports 64 and 62 false failures. Its own comment's premise ("PAPER_PATTERNS is not on this branch yet") has expired.
+- Both 40-minute fleet sweeps were raised to 60. The 2,472-entry run was **measured at 32.8 minutes** against the old budget — 82% of it, on a budget whose comment stopped at 2,238 entries. One more paper would have timed out, and a Playwright timeout is not an assertion: it fails naming nothing.
+
+### Cost
+
+12,672 live replies for **₹247.55** (round 1 ₹144.66, round 2 ₹63.71, round 3 ₹39.18). Round 2 cost less than half of round 1 for the same call count — the byte-stable context keeps DeepSeek's prompt cache warm across runs.
+
 ## 📐 SESSION — Senior Inter Maths-2B: the book's EIGHTH subject, 8 units / 271 cards (2026-08-29, `feat/ipe-answerbook-maths-2b`)
 
 **Bottom line: Maths-2B is authored, catalogued and registered — 271 cards over 8 units, taking the bank 1777 → 2048 entries. Three things are worth carrying forward and none of them is a card. The 75-mark paper was VERIFIED rather than inferred, and the same table was built twice on two desks the same day. A rate limit killed five unit agents at once and cost nothing, because every card was already on disk. And two quality problems — 20.7% line wrap and nine defective figures — were invisible to every gate and only turned up by measuring and by looking.**
