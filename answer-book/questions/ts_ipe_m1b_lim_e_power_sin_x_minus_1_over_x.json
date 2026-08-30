@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_e_power_sin_x_minus_1_over_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate lim(x → 0) (e^(sin x) − 1)/x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Multiply and divide by sin x",
+      "marks": 1
+    },
+    {
+      "label": "Apply the two standard limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 15. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1 was checked numerically before it was written: the expression reads 1.00005 at x = 10⁻⁴ and 0.99995 at x = −10⁻⁴, closing on 1 from both sides."
+  },
+  "recall_prompt": "Say how you would do this one — say what you multiply and divide by, and why that is allowed here.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_multiply_divide",
+        "kind": "equation",
+        "label": "Multiply and divide by sin x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The standard limit is (eᵗ − 1)/t, so the denominator must be made to match the power. Here the power is sin x, so sin x is the quantity that must appear underneath.",
+        "memory_tip": "Whatever sits in the power of e must also sit in the denominator. Supply it, and pay for it with a second fraction.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Putting x = 0 gives 0/0, so the expression is rewritten first.",
+          "For x close to 0 with x ≠ 0 we have sin x ≠ 0, so we may multiply and divide by sin x.",
+          "(e^(sin x) − 1)/x = [(e^(sin x) − 1)/sin x] · [(sin x)/x]",
+          "∴ lim(x → 0) (e^(sin x) − 1)/x = lim(x → 0) (e^(sin x) − 1)/sin x · lim(x → 0) (sin x)/x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression is multiplied and divided by sin x, which is allowed because sin x ≠ 0 near 0 apart from at 0 itself.",
+          "accept": [
+            "multiply and divide by sin x",
+            "put sin x underneath so it matches the power of e",
+            "sin x is not zero near zero except at zero, so dividing is allowed",
+            "sin x tho multiply chesi divide cheyyali",
+            "break it into e power sin x minus one over sin x times sin x over x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "multiply and divide",
+            "sin x",
+            "not zero",
+            "power of e"
+          ]
+        },
+        "why": "The standard limit is (eᵗ − 1)/t → 1, so the denominator has to carry the same quantity as the power. A limit at 0 only looks at values with x ≠ 0, and for those x near 0 the value sin x is not zero, so dividing by sin x is legal there. This is the reason the multiply-and-divide is allowed and not a division by zero.",
+        "common_mistakes": [
+          "Multiplying and dividing by x instead of sin x, which leaves the power and the denominator unmatched.",
+          "Writing (e^(sin x) − 1)/x = (eˣ − 1)/x by dropping the sine from the power."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply the two standard limits",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Say that sin x → 0 as x → 0, so the first factor is the standard limit with t = sin x. Both factors are 1, so the product is 1.",
+        "memory_tip": "Both factors are worth 1, so the answer is 1 × 1.",
+        "lines": [
+          "As x → 0, sin x → 0. Put t = sin x, then t → 0.",
+          "lim(x → 0) (e^(sin x) − 1)/sin x = lim(t → 0) (eᵗ − 1)/t = 1",
+          "and  lim(x → 0) (sin x)/x = 1",
+          "= 1 · 1",
+          {
+            "text": "∴ lim(x → 0) (e^(sin x) − 1)/x = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with t = sin x the first factor is 1 and sin x/x is 1, so the answer is 1.",
+          "accept": [
+            "put t equals sin x so it becomes e power t minus one over t which is one",
+            "both factors are one so the answer is one",
+            "sin x tends to zero so the first part is the standard limit",
+            "sin x ni t ga teesukunte answer one vasthundi",
+            "the value is one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "t equals sin x",
+            "e power t minus one",
+            "one",
+            "sin x by x"
+          ]
+        },
+        "why": "The substitution t = sin x is what turns the first factor into the standard limit. Stating that t → 0 as x → 0 is the part that makes the substitution valid, and it is what the examiner looks for.",
+        "common_mistakes": [
+          "Writing the first factor as 1 without saying that sin x → 0.",
+          "Multiplying the two factors and giving 2 instead of 1."
+        ]
+      }
+    ]
+  }
+}

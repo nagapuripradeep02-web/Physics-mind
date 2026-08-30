@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_abs_x_minus_2_left",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that lim(x → 2⁻) |x − 2|/(x − 2) = −1.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write |x − 2| for x < 2",
+      "marks": 1
+    },
+    {
+      "label": "Cancel (x − 2)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Short & Very Short Answer question 24. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. This is a 'show that' question, so the value −1 is given and the marks are for the method that reaches it, not for producing a number; the split puts one mark on removing the modulus with the correct sign for x < 2 and one on the cancellation. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically before authoring: the expression is exactly −1 at x = 1.99, 1.999, 1.9999, 1.99999 and 1.999999, and exactly +1 at the mirror points above 2 — the contrast that makes this a one-sided question."
+  },
+  "recall_prompt": "Say how you would show this — say what |x − 2| becomes for x < 2 and why that sign is the one to use.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_remove_modulus",
+        "kind": "text",
+        "label": "Write |x − 2| for x < 2",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The sign is the whole question. x → 2⁻ means x approaches 2 through values LESS than 2, so x − 2 is negative and the modulus changes the sign.",
+        "memory_tip": "|t| = t when t is positive and −t when t is negative. Left of 2 means x − 2 is negative, so the minus is the one that applies.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "By definition, |t| = t when t ≥ 0 and |t| = −t when t < 0.",
+          "x → 2⁻ means x approaches 2 through values with x < 2.",
+          "For x < 2 we have x − 2 < 0, so |x − 2| = −(x − 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x → 2⁻ means x < 2, so x − 2 is negative and |x − 2| = −(x − 2).",
+          "accept": [
+            "x tends to two from the left so x is less than two",
+            "x minus two is negative so the modulus is minus of x minus two",
+            "mod of a negative number is the negative of it",
+            "x rendu kanna thakkuva kabatti x minus two negative avuthundi",
+            "left hand limit means x is below two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "from the left",
+            "less than two",
+            "negative",
+            "minus of x minus two"
+          ]
+        },
+        "why": "The modulus cannot be removed until the sign of x − 2 is known, and only the side of the approach settles it. This is the one-sided part of the question, so stating x < 2 in words is what earns the mark.",
+        "common_mistakes": [
+          "Writing |x − 2| = x − 2, which is the rule for the right-hand side.",
+          "Substituting x = 2 and writing 0/0, which the modulus question is not asking for."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Cancel (x − 2)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The expression is equal to −1 at every x < 2, not only in the limit, so the limit is −1. On the right of 2 the same working gives +1.",
+        "memory_tip": "Left of the point gives −1, right of the point gives +1. The two sides disagree, which is why the limit at 2 itself does not exist.",
+        "lines": [
+          "For x < 2 we also have x ≠ 2, so (x − 2) ≠ 0 and may be cancelled:",
+          "|x − 2|/(x − 2) = −(x − 2)/(x − 2) = −1",
+          "This holds for every x < 2, so the value stays −1 as x approaches 2 from the left.",
+          {
+            "text": "∴ lim(x → 2⁻) |x − 2|/(x − 2) = −1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That −(x − 2)/(x − 2) cancels to −1 for every x < 2, so the left-hand limit is −1.",
+          "accept": [
+            "minus x minus two over x minus two cancels to minus one",
+            "the value is minus one for every x below two",
+            "so the left hand limit is minus one",
+            "cancel cheste minus one vasthundi",
+            "it is a constant minus one on the left side"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus one",
+            "cancel",
+            "left hand limit",
+            "constant"
+          ]
+        },
+        "why": "The value −1 is given, so the marks are for the reasoning that reaches it. After the modulus is removed the expression is the constant −1 on the whole left side, and a constant function has that constant as its limit.",
+        "common_mistakes": [
+          "Cancelling to +1 by dropping the minus sign taken out of the modulus.",
+          "Saying the limit does not exist — that is true at x = 2 two-sided, but the question asks only for the left-hand limit."
+        ]
+      }
+    ]
+  }
+}

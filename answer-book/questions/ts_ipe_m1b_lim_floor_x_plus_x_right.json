@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_floor_x_plus_x_right",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate lim(x → 2⁺) ([x] + x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find [x] just above 2",
+      "marks": 1
+    },
+    {
+      "label": "Add and take the limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Very Short Answer question 27, part (i). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what [x] equals just above 2, and why.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_floor_above_two",
+        "kind": "text",
+        "label": "Find [x] just above 2",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The mark is for naming the value of [x] on the interval 2 < x < 3, with a reason — not for the arithmetic that follows.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "[x] is the greatest integer function: [x] is the greatest integer less than or equal to x.",
+          "x → 2⁺ means x takes values slightly greater than 2, that is 2 < x < 3.",
+          "For every such x,  [x] = 2",
+          "(for example [2.1] = 2 and [2.001] = 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for 2 < x < 3 the greatest integer function [x] has the constant value 2.",
+          "accept": [
+            "just above two the greatest integer is two",
+            "between two and three the floor value stays two",
+            "x is a little more than two so bracket x is two",
+            "two ki kontha paiki unte bracket x equals two",
+            "the greatest integer below x is two on that side"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "greatest integer",
+            "bracket x",
+            "two point zero one",
+            "just above two"
+          ]
+        },
+        "why": "Between two consecutive integers the greatest integer function is constant, so on the whole interval 2 < x < 3 it equals 2. Fixing that value is the entire method.",
+        "common_mistakes": [
+          "Writing [x] = 3 by rounding 2.001 up instead of taking the integer below.",
+          "Treating [x] as continuous and writing lim [x] = [lim x] without checking the side."
+        ],
+        "memory_tip": "The greatest integer function steps down to the integer at or below x, so just above 2 it is still 2."
+      },
+      {
+        "id": "s2_add_and_limit",
+        "kind": "boxed_final",
+        "label": "Add and take the limit",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Box 4. The two one-sided limits differ — 4 on the right and 3 on the left — so lim(x → 2) ([x] + x) does not exist. One line saying so is worth writing.",
+        "lines": [
+          "So for 2 < x < 3,  [x] + x = 2 + x",
+          "lim(x → 2⁺) ([x] + x) = lim(x → 2⁺) (2 + x)",
+          "= 2 + 2",
+          {
+            "text": "∴ lim(x → 2⁺) ([x] + x) = 4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression becomes 2 + x, whose limit at 2 is 4.",
+          "accept": [
+            "two plus x gives four as x approaches two",
+            "the floor part is two and x approaches two so the sum is four",
+            "the right hand limit is four",
+            "two plus two equals four ani vasthundi",
+            "the answer is four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four",
+            "two plus two",
+            "right hand limit",
+            "two plus x"
+          ]
+        },
+        "why": "With [x] replaced by the constant 2 the expression is 2 + x, which is continuous, so the limit is its value at x = 2.",
+        "common_mistakes": [
+          "Giving 3, which is the LEFT-hand limit, where [x] = 1.",
+          "Leaving the answer as [2] + 2 without evaluating it."
+        ],
+        "memory_tip": "Above 2 the step has already been taken, so [x] gives 2 and x gives 2."
+      }
+    ]
+  }
+}

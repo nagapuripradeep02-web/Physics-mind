@@ -1,0 +1,224 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_con_x2_and_x_on_r",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Is the function f, defined by f(x) = x² for x ≤ 1 and f(x) = x for x > 1, continuous on ℝ?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check each piece on its own interval",
+      "marks": 1
+    },
+    {
+      "label": "Find the left limit and f(1)",
+      "marks": 1
+    },
+    {
+      "label": "Find the right limit at 1",
+      "marks": 1
+    },
+    {
+      "label": "Conclude for the whole real line",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.191, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question. The question asks about the WHOLE real line, so the split gives the open intervals a mark of their own rather than folding them into the junction test: a student who checks only x = 1 has answered a narrower question than the one that was set. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE ON THE ANSWER: f IS continuous on ℝ — the left limit, f(1) and the right limit at the join are all 1. Verified numerically from both sides before the card was written."
+  },
+  "recall_prompt": "Say how you would do this one — say which single point you would check, and say why checking that one point settles the whole real line.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Limits and Continuity · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_check_each_piece",
+        "kind": "text",
+        "label": "Check each piece on its own interval",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The question asks about ℝ, not about one point, so the two open intervals must be dealt with before the join. Both pieces are polynomials, which is the shortest possible reason.",
+        "memory_tip": "Every polynomial is continuous at every real number, so a piecewise function built from polynomials can only fail where the pieces meet.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given f(x) = x²   for x ≤ 1,   and f(x) = x   for x > 1",
+          "For x < 1:  f(x) = x² is a polynomial, so f is continuous on (−∞, 1).",
+          "For x > 1:  f(x) = x is a polynomial, so f is continuous on (1, ∞).",
+          "The two formulas meet at x = 1, so that single point is all that is left to check."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both pieces are polynomials and so are continuous on their own open intervals, leaving only x = 1 to check.",
+          "accept": [
+            "both pieces are polynomials so they are continuous on their own intervals",
+            "x squared and x are polynomials, only the join at one is left",
+            "check x equals one, everywhere else is a polynomial",
+            "rendu polynomials so join daggara matrame check cheyyali",
+            "the only point to test is where the two formulas meet"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "both are polynomials",
+            "only at x equals one",
+            "the join",
+            "continuous on the intervals"
+          ]
+        },
+        "why": "The question is about the whole of ℝ, so the answer must account for every real number. Clearing the two open intervals in one line reduces the rest of the work to a single junction test.",
+        "common_mistakes": [
+          "Testing x = 1 and stopping, without saying anything about the rest of the line.",
+          "Assuming a piecewise function must be discontinuous somewhere just because it is written in two parts."
+        ]
+      },
+      {
+        "id": "s2_left_limit_and_value",
+        "kind": "equation",
+        "label": "Find the left limit and f(1)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The condition x ≤ 1 carries the equals sign, so x = 1 belongs to the x² piece and f(1) = 1² = 1. Take the value from the correct piece before comparing anything.",
+        "memory_tip": "The piece whose inequality carries the equals sign owns the join, so it supplies the value there.",
+        "lines": [
+          "At x = 1:",
+          "lim(x → 1⁻) f(x) = lim(x → 1⁻) x² = 1² = 1",
+          "f(1) = 1² = 1      (x = 1 satisfies x ≤ 1, so the value comes from the x² piece)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the left limit is 1² = 1 and f(1) = 1² = 1, because x = 1 belongs to the piece x ≤ 1.",
+          "accept": [
+            "the left limit is one squared which is one",
+            "f of one comes from x squared because one satisfies x less than or equal to one",
+            "left limit and the value at one are both one",
+            "x equals one, x squared piece ki chendhutundi so f of one is one",
+            "left side gives one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one squared is one",
+            "f of one is one",
+            "left limit",
+            "less than or equal to"
+          ]
+        },
+        "why": "x² is a polynomial, so its limit is found by substitution. The mark is for reading the correct piece for both the left limit and the value at the point.",
+        "common_mistakes": [
+          "Taking f(1) = 1 from the piece x > 1, which does not include 1.",
+          "Writing 1² as 2 by treating the square as a doubling."
+        ]
+      },
+      {
+        "id": "s3_right_limit",
+        "kind": "equation",
+        "label": "Find the right limit at 1",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The right limit uses the x piece. All three numbers come out as 1, which is the whole reason this function is continuous at the join.",
+        "memory_tip": "x² and x are equal at exactly two places, x = 0 and x = 1, and the join here is at one of them — that is why the pieces fit.",
+        "lines": [
+          "lim(x → 1⁺) f(x) = lim(x → 1⁺) x = 1",
+          "∴ lim(x → 1⁻) f(x) = f(1) = lim(x → 1⁺) f(x) = 1",
+          "The two formulas take the same value at x = 1, since 1² = 1, so f is continuous at x = 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the right limit is 1 as well, so the left limit, the value and the right limit are all equal to 1 and f is continuous at 1.",
+          "accept": [
+            "the right limit is one so all three are equal",
+            "x squared and x both give one at x equals one",
+            "left limit value and right limit are all one so it is continuous there",
+            "right limit kooda one, so continuous at one",
+            "the two formulas agree at the join"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "right limit is one",
+            "all three are one",
+            "they agree",
+            "continuous at one"
+          ]
+        },
+        "why": "The two pieces are different functions but they take the same value at x = 1, so the graph joins without a break. That agreement is what the three equal numbers record.",
+        "common_mistakes": [
+          "Using x² for the right limit as well, which happens to give 1 and hides the real check.",
+          "Concluding a break exists because the formulas are different, without comparing their values at 1."
+        ]
+      },
+      {
+        "id": "s4_conclude_on_r",
+        "kind": "boxed_final",
+        "label": "Conclude for the whole real line",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. Say why one point settles ℝ: the two open intervals and the single point x = 1 together are every real number, so nothing is left untested.",
+        "memory_tip": "(−∞, 1) together with {1} and (1, ∞) is the whole of ℝ — three sets, no gaps, so three checks finish the question.",
+        "lines": [
+          "f is continuous on (−∞, 1), continuous at x = 1, and continuous on (1, ∞).",
+          "These three sets together are the whole real line, so no real number is left unchecked.",
+          {
+            "text": "∴ Yes, f is continuous on ℝ",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two open intervals plus the point x = 1 make up all of ℝ, so f is continuous on ℝ.",
+          "accept": [
+            "yes f is continuous on the whole real line",
+            "the two intervals and the point one cover every real number",
+            "nothing is left to check so it is continuous on R",
+            "moodu kalipithe whole real line, so f is continuous on R",
+            "it is continuous everywhere"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "continuous on R",
+            "the whole real line",
+            "yes",
+            "nothing left"
+          ]
+        },
+        "why": "A claim about ℝ needs a reason that covers ℝ. Listing the three sets that were checked and noting that their union is the real line is that reason, and it takes one line.",
+        "common_mistakes": [
+          "Answering yes on the strength of the x = 1 check alone.",
+          "Leaving out the point x = 1 itself when listing what has been covered, so the union is not the whole line."
+        ]
+      }
+    ]
+  }
+}

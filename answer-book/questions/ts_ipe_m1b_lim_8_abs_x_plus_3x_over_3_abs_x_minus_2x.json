@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_8_abs_x_plus_3x_over_3_abs_x_minus_2x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate lim(x → ∞) (8|x| + 3x)/(3|x| − 2x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use |x| = x for large x",
+      "marks": 1
+    },
+    {
+      "label": "Cancel x and read the value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Very Short Answer question 26. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what |x| becomes as x increases without bound, and what cancels afterwards.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_modulus_large_x",
+        "kind": "equation",
+        "label": "Use |x| = x for large x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Say \"x > 0, so |x| = x\" in words. Without that line the working looks as if the modulus was ignored.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x → ∞ means x takes larger and larger positive values, so x > 0.",
+          "For x > 0,  |x| = x",
+          "∴ 8|x| + 3x = 8x + 3x = 11x",
+          "and 3|x| − 2x = 3x − 2x = x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x is positive as x → ∞, so |x| = x, making the numerator 11x and the denominator x.",
+          "accept": [
+            "as x goes to infinity x is positive so mod x is x",
+            "the top becomes eleven x and the bottom becomes x",
+            "remove the modulus with the positive rule first",
+            "infinity ki potunnam kabatti mod x equals x",
+            "eight x plus three x is eleven x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "mod x",
+            "infinity",
+            "eleven x",
+            "x positive"
+          ]
+        },
+        "why": "The modulus must be removed before any cancelling, and which rule applies is fixed by the sign of x. As x increases without bound x is positive, so |x| = x.",
+        "common_mistakes": [
+          "Cancelling |x| against x without first stating that x > 0.",
+          "Using |x| = −x, which belongs to x → −∞."
+        ],
+        "memory_tip": "Infinity lies on the positive side of the number line, so the modulus bars come off with a plus sign."
+      },
+      {
+        "id": "s2_cancel_x",
+        "kind": "boxed_final",
+        "label": "Cancel x and read the value",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Box 11. Worth knowing the contrast: at x → −∞ the same expression gives 1, so the two ends do not agree.",
+        "lines": [
+          "lim(x → ∞) (8|x| + 3x)/(3|x| − 2x) = lim(x → ∞) 11x/x",
+          "= lim(x → ∞) 11   (x ≠ 0)",
+          {
+            "text": "∴ lim(x → ∞) (8|x| + 3x)/(3|x| − 2x) = 11",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x cancels between 11x and x, leaving the constant 11.",
+          "accept": [
+            "eleven x over x cancels to eleven",
+            "the x cancels and the value is eleven",
+            "it is a constant eleven for every positive x",
+            "x cancel ayipoyi eleven migulutundi",
+            "the answer is eleven"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eleven",
+            "x cancels",
+            "eleven x over x",
+            "constant"
+          ]
+        },
+        "why": "After the modulus is removed both lines are multiples of x, so x cancels and the expression is the constant 11 for every x > 0. The limit is that constant.",
+        "common_mistakes": [
+          "Giving 1, which is the value at x → −∞ where |x| = −x makes it (−5x)/(−5x).",
+          "Dividing by x² instead of x and reporting 0."
+        ],
+        "memory_tip": "Eleven over one: the top adds 8 + 3 and the bottom subtracts 3 − 2."
+      }
+    ]
+  }
+}

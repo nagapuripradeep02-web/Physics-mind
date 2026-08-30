@@ -101,6 +101,28 @@ it arranged them, and its priority ranking — together with its **solution pros
   holds our own restatement of each stem plus page/section/star, for diffing only. It is
   git-ignored out of the built bundle and never read by `build_answer_book.ts`.
 
+## 6b. What this scope deliberately leaves out — measured, not estimated
+
+`check:originality` is scoped to mathematics by founder decision (2026-08-30). Running it unscoped
+is what measured the rest, and the number belongs on the record rather than in a footnote:
+
+| Subject | Cards citing Sri Chaitanya |
+|---|---|
+| Zoology | 190 |
+| Chemistry | 148 |
+| Botany | 115 |
+| Physics | 68 |
+| **Total** | **521** |
+
+Those four subjects were authored **from** a Sri Chaitanya title — the *Junior Phy & Chem Fastrack*
+and its siblings — and they **do** republish that book's priority stars in `units.json`, which the
+live product renders. That is a larger exposure than anything in mathematics, where our bank came
+from a different publisher entirely.
+
+R1 is not enforced there yet. The gate prints this count on every run rather than filtering it away,
+because a number that stops being printed stops being true. Bringing those subjects in scope is a
+founder decision, not a tidy-up: it means recomputing a displayed priority signal for 521 cards.
+
 ## 7. The reverse question: did their edition take anything from ours?
 
 **We have no evidence that it did, and we should not claim it.** A full read of all 226 scanned

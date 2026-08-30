@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_sin_pi_cos2_x_over_x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate lim(x → 0) sin(π cos² x)/x².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rewrite the angle using sin(π − θ) = sin θ",
+      "marks": 1
+    },
+    {
+      "label": "Use lim(θ → 0) sin θ/θ = 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.188, chapter 8 LIMITS, Very Short Answer question 32. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which identity turns the angle into a small one, and which standard limit finishes it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reduce_angle",
+        "kind": "equation",
+        "label": "Rewrite the angle using sin(π − θ) = sin θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The reduction sin(π − θ) = sin θ is the step that makes a standard limit usable; write it as a named identity.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "At x = 0 the numerator is sin π = 0 and the denominator is 0, so the form is 0/0.",
+          "cos²x = 1 − sin²x,  so  π cos²x = π(1 − sin²x) = π − π sin²x",
+          "Using sin(π − θ) = sin θ  with  θ = π sin²x :",
+          "∴ sin(π cos²x) = sin(π − π sin²x) = sin(π sin²x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²x = 1 − sin²x and sin(π − θ) = sin θ turn sin(π cos²x) into sin(π sin²x).",
+          "accept": [
+            "use cos squared equals one minus sine squared then sin pi minus theta is sin theta",
+            "the angle becomes pi sine squared x",
+            "replace pi cos squared x by pi minus pi sine squared x",
+            "sin pi minus theta equals sin theta ni vaadali",
+            "convert it into sine of pi sine squared x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi cos squared",
+            "sin pi minus theta",
+            "pi sine squared x",
+            "one minus sine squared"
+          ]
+        },
+        "why": "Substitution gives the indeterminate form 0/0. Rewriting the angle as π sin²x makes the small quantity explicit, and only then can the standard limit lim(θ → 0) sin θ/θ = 1 be used.",
+        "common_mistakes": [
+          "Writing sin(π − θ) = −sin θ, which is the rule for sin(π + θ).",
+          "Writing cos²x = 1 + sin²x instead of 1 − sin²x."
+        ],
+        "memory_tip": "Sine is positive in the second quadrant and sin(π − θ) = sin θ, so subtracting the angle from π leaves the sine unchanged."
+      },
+      {
+        "id": "s2_standard_limit",
+        "kind": "boxed_final",
+        "label": "Use lim(θ → 0) sin θ/θ = 1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Box π. Checked numerically: at x = 0.001 the expression is 3.14159 to five decimal places.",
+        "lines": [
+          "sin(π sin²x)/x² = [sin(π sin²x)/(π sin²x)] · π · ((sin x)/x)²",
+          "As x → 0,  π sin²x → 0, so the first bracket → 1, and (sin x)/x → 1",
+          "∴ limit = 1 · π · 1² = π",
+          {
+            "text": "∴ lim(x → 0) sin(π cos²x)/x² = π",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying and dividing by π sin²x gives 1 · π · 1², so the limit is π.",
+          "accept": [
+            "multiply and divide by pi sine squared x and use the standard limit",
+            "each sine over its own angle gives one so the answer is pi",
+            "the limit is pi",
+            "pi sine square x tho multiply and divide cheste pi vasthundi",
+            "sine theta by theta is one so we are left with pi"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi",
+            "sine theta by theta",
+            "standard limit",
+            "multiply and divide"
+          ]
+        },
+        "why": "Both factors come from the standard limit lim(θ → 0) sin θ/θ = 1 — once for the outer sine with θ = π sin²x, and once for (sin x)/x. The π is what is left over.",
+        "common_mistakes": [
+          "Cancelling the sine symbols and writing π cos²x/x².",
+          "Giving 1, by losing the factor π that comes out of π sin²x/x²."
+        ],
+        "memory_tip": "Multiply and divide by the angle π sin²x, so every sine stands over its own angle."
+      }
+    ]
+  }
+}

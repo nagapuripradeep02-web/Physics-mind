@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_con_cos_ax_minus_cos_bx_at_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that the function f, defined by f(x) = (cos ax − cos bx)/x² for x ≠ 0 and f(0) = (1/2)(b² − a²), where a and b are real constants, is continuous at x = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the continuity test at 0",
+      "marks": 1
+    },
+    {
+      "label": "Change the difference of cosines to a product",
+      "marks": 1
+    },
+    {
+      "label": "Apply the standard sine limit",
+      "marks": 1
+    },
+    {
+      "label": "Compare the limit with f(0)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.189, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question — state the test, work the limit in its two named moves, compare with the given value. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what continuity at 0 asks you to check, and name the identity and the standard limit you would use to get the limit.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Limits and Continuity · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_state_the_test",
+        "kind": "text",
+        "label": "State the continuity test at 0",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write the test as lim(x → 0) f(x) = f(0) before any algebra. At x = 0 the quotient is the indeterminate form 0/0, so the limit has to be worked out and cannot be reached by substituting 0.",
+        "memory_tip": "Continuity at a point is three things in one line: the limit exists, the value exists, and the two are equal.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given f(x) = (cos ax − cos bx)/x²   for x ≠ 0,   and f(0) = ½(b² − a²)",
+          "f is continuous at x = 0 if   lim(x → 0) f(x) = f(0)",
+          "One single formula covers both sides of 0, so one two-sided limit settles the question.",
+          "Putting x = 0 in (cos ax − cos bx)/x² gives 0/0, an indeterminate form, so the limit must be worked out."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That continuity at 0 means lim(x → 0) f(x) must equal f(0), and that direct substitution gives 0/0.",
+          "accept": [
+            "continuity at zero means the limit equals f of zero",
+            "check whether the limit as x tends to zero is the same as f zero",
+            "state the test first, limit equals value",
+            "limit x tends to zero, f of zero ki samanam avvali",
+            "substituting zero gives zero by zero so the limit has to be worked"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "limit equals f of zero",
+            "continuous at zero",
+            "limit as x tends to zero",
+            "zero by zero"
+          ]
+        },
+        "why": "Naming the test first splits the question into two separate pieces of work — find the limit, then compare it with the given value — and each piece carries its own marks.",
+        "common_mistakes": [
+          "Checking only that f(0) exists and stopping there.",
+          "Substituting x = 0 into (cos ax − cos bx)/x² and writing 0 as the limit."
+        ]
+      },
+      {
+        "id": "s2_difference_to_product",
+        "kind": "equation",
+        "label": "Change the difference of cosines to a product",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Name the identity as you use it. The order (D − C)/2 inside the second sine is what fixes the sign, and the sign decides whether the answer comes out (b² − a²)/2 or its negative.",
+        "memory_tip": "Two cosines subtracted give two sines multiplied, and the second sine takes the second angle first: (D − C)/2.",
+        "lines": [
+          "For x ≠ 0,   f(x) = (cos ax − cos bx)/x²",
+          "Use the identity   cos C − cos D = 2 sin((C + D)/2) · sin((D − C)/2)",
+          "Take C = ax and D = bx. Then",
+          "cos ax − cos bx = 2 sin((a + b)x/2) · sin((b − a)x/2)",
+          "∴ f(x) = 2 sin((a + b)x/2) · sin((b − a)x/2) / x²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos C − cos D is rewritten as 2 sin((C + D)/2) sin((D − C)/2) with C = ax and D = bx.",
+          "accept": [
+            "use the cos C minus cos D identity to make it a product of two sines",
+            "change the difference of cosines into two sines multiplied",
+            "cos ax minus cos bx is two sin of a plus b x by two into sin of b minus a x by two",
+            "cosines difference ni product ga marchali",
+            "apply the sum to product formula for the two cosines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos C minus cos D",
+            "two sine into sine",
+            "sum to product",
+            "a plus b by two"
+          ]
+        },
+        "why": "The product form puts one sine above for each factor of x below, which is exactly the shape the standard sine limit needs. The quotient of cosines has no such shape.",
+        "common_mistakes": [
+          "Writing cos C − cos D = 2 sin((C + D)/2) sin((C − D)/2), which reverses the sign of the answer.",
+          "Using the sum formula for cos C + cos D instead of the difference formula."
+        ]
+      },
+      {
+        "id": "s3_standard_limit",
+        "kind": "equation",
+        "label": "Apply the standard sine limit",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Each bracket is forced into the exact form sin(angle)/(same angle) before the standard limit is quoted. The constants taken outside are what build (b² − a²)/2.",
+        "memory_tip": "sin(kx)/x tends to k, not to 1 — the constant multiplying x comes outside.",
+        "lines": [
+          "lim(x → 0) f(x) = lim(x → 0) 2 · [sin((a + b)x/2) / x] · [sin((b − a)x/2) / x]",
+          "Multiply and divide the first bracket by (a + b)/2 and the second by (b − a)/2:",
+          "= 2 · ((a + b)/2) · ((b − a)/2) · lim(x → 0) [sin((a + b)x/2) / ((a + b)x/2)] · [sin((b − a)x/2) / ((b − a)x/2)]",
+          "Standard limit:   lim(θ → 0) (sin θ)/θ = 1,   so each bracket tends to 1",
+          "= 2 · ((a + b)/2) · ((b − a)/2) = (a + b)(b − a)/2 = (b² − a²)/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each sine is matched to its own angle so lim(θ → 0) (sin θ)/θ = 1 applies, leaving 2 · ((a+b)/2) · ((b−a)/2) = (b² − a²)/2.",
+          "accept": [
+            "make each bracket sine of the angle over the same angle and use sin theta by theta equals one",
+            "multiply and divide by half of a plus b and half of b minus a",
+            "the standard limit sin theta by theta is one gives b squared minus a squared by two",
+            "sin theta by theta equals one use chesi constants bayata teeyali",
+            "the constants come out and both sine brackets become one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin theta by theta",
+            "equals one",
+            "multiply and divide",
+            "b squared minus a squared by two"
+          ]
+        },
+        "why": "The standard limit lim(θ → 0) (sin θ)/θ = 1 applies only when the angle inside the sine is the same as the expression below it, so each bracket has to be adjusted to that exact form first.",
+        "common_mistakes": [
+          "Quoting sin θ/θ = 1 without first making the denominator match the angle.",
+          "Losing the factor 2 that came out of the cosine identity."
+        ]
+      },
+      {
+        "id": "s4_compare_with_f0",
+        "kind": "boxed_final",
+        "label": "Compare the limit with f(0)",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. Write the comparison line in full. A student who finds the limit and never says that it equals f(0) has not answered the question that was asked.",
+        "memory_tip": "The final line of every continuity proof is the same sentence: limit equals value, so f is continuous there.",
+        "lines": [
+          "From above,   lim(x → 0) f(x) = (b² − a²)/2",
+          "It is given that   f(0) = ½(b² − a²) = (b² − a²)/2",
+          "∴ lim(x → 0) f(x) = f(0)",
+          {
+            "text": "∴ f is continuous at x = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the limit (b² − a²)/2 equals the given f(0), so f is continuous at 0.",
+          "accept": [
+            "the limit equals the given value so f is continuous at zero",
+            "b squared minus a squared by two is exactly f of zero",
+            "limit and value match so it is continuous",
+            "limit and f of zero rendu same, so continuous",
+            "compare the limit with the given f zero and they agree"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "limit equals f of zero",
+            "continuous at zero",
+            "they are equal",
+            "b squared minus a squared"
+          ]
+        },
+        "why": "The question is settled by comparing two numbers: the limit that was computed and the value that was given. They are equal, so the definition of continuity is met.",
+        "common_mistakes": [
+          "Stopping at the limit and never writing the comparison with f(0).",
+          "Reading ½(b² − a²) as ½b² − a²."
+        ]
+      }
+    ]
+  }
+}

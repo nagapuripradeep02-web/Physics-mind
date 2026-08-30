@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_sin_tan_squared_over_x2_minus_a2_squared",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate lim(x → a) (sin(x − a) · tan²(x − a))/((x² − a²)²).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Count the powers of (x − a)",
+      "marks": 1
+    },
+    {
+      "label": "Apply the standard limits and substitute",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.185, chapter 8 LIMITS, Short & Very Short Answer question 11. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how many powers of (x − a) sit above and below, and what is left over.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_count_the_powers",
+        "kind": "equation",
+        "label": "Count the powers of (x − a)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Above: sin gives one power and tan² gives two, so three in all. Below: (x² − a²)² = (x − a)²(x + a)² gives only two. One power of (x − a) is therefore left in the numerator.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "At x = a both the numerator and the denominator are 0, so the form is 0/0. Take a ≠ 0.",
+          "The numerator sin(x − a) · tan²(x − a) behaves like (x − a)³ near x = a: three powers.",
+          "The denominator is  (x² − a²)² = (x − a)²(x + a)²:  two powers of (x − a).",
+          "So write the expression as",
+          "[sin(x − a)/(x − a)] · [tan(x − a)/(x − a)]² · (x − a)/(x + a)²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator carries three powers of (x − a) and the denominator two, leaving one power of (x − a) over.",
+          "accept": [
+            "three powers on top and two below so one x minus a is left over",
+            "sin gives one power and tan squared gives two",
+            "x squared minus a squared all squared has only two factors of x minus a",
+            "paiki moodu powers, kinda rendu powers, oka x minus a migulutundi",
+            "count the orders before cancelling"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three powers",
+            "two powers",
+            "left over",
+            "x minus a"
+          ]
+        },
+        "why": "Whether such a limit is a number or 0 is settled entirely by the count of factors, so counting before cancelling is what decides the whole answer. Here the count is 3 above against 2 below.",
+        "common_mistakes": [
+          "Reading (x² − a²)² as carrying four powers of (x − a).",
+          "Cancelling all three powers above against the two below and answering 1/(2a)²."
+        ],
+        "memory_tip": "Square the factorisation first: (x² − a²)² = (x − a)²(x + a)². Only then are the two powers of (x − a) visible."
+      },
+      {
+        "id": "s2_apply_and_substitute",
+        "kind": "boxed_final",
+        "label": "Apply the standard limits and substitute",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The two bracketed quotients tend to 1, and the leftover factor (x − a)/(x + a)² tends to 0/(2a)². The answer is 0.",
+        "lines": [
+          "As x → a, the angle (x − a) → 0, so",
+          "lim sin(x − a)/(x − a) = 1   and   lim [tan(x − a)/(x − a)]² = 1² = 1",
+          "The remaining factor is continuous at x = a, so substitute x = a:",
+          "(x − a)/(x + a)² → 0/(2a)² = 0",
+          "∴ the limit = 1 · 1 · 0",
+          {
+            "text": "∴ lim(x → a) (sin(x − a) · tan²(x − a))/((x² − a²)²) = 0,  a ≠ 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both standard limits give 1 and the leftover factor (x − a)/(x + a)² tends to 0, so the limit is 0.",
+          "accept": [
+            "the two brackets are one and the leftover x minus a goes to zero",
+            "the answer is zero",
+            "the extra power of x minus a makes the whole thing vanish",
+            "migilina x minus a zero avuthundi kabatti answer zero",
+            "the limit is zero because the top has a higher order"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "zero",
+            "leftover",
+            "higher order",
+            "goes to zero"
+          ]
+        },
+        "why": "The numerator is of higher order than the denominator, so the quotient is driven to 0 rather than to a finite non-zero value. The value checks numerically: with a = 2 the expression is 0.000625 at x = 2.01 and 0.0000625 at x = 2.001, falling by a factor of ten each time, exactly as (x − a)/(2a)² = (x − a)/16 does.",
+        "common_mistakes": [
+          "Answering 1/(4a²) by cancelling one power of (x − a) too many.",
+          "Writing the answer as 1/(2a)³ by copying the pattern of the simpler tangent question."
+        ],
+        "memory_tip": "When the numerator carries more powers of (x − a) than the denominator, the limit is 0. Only equal counts give a non-zero number."
+      }
+    ]
+  }
+}

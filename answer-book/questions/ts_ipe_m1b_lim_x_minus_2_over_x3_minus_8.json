@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_x_minus_2_over_x3_minus_8",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate lim(x → 2) (x − 2)/(x³ − 8).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Factorise x³ − 8 as a difference of cubes",
+      "marks": 1
+    },
+    {
+      "label": "Cancel (x − 2) and substitute",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Short & Very Short Answer question 21. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 1/12 was checked numerically before it was written: the expression reads 0.0833292 at x = 2.0001 and 0.0833375 at x = 1.9999, against 1/12 = 0.0833333."
+  },
+  "recall_prompt": "Say how you would do this one — name the identity you use on the denominator and what cancels.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_difference_of_cubes",
+        "kind": "equation",
+        "label": "Factorise x³ − 8 as a difference of cubes",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. 8 is 2³, so the denominator is a difference of cubes. Write the identity a³ − b³ = (a − b)(a² + ab + b²) before using it.",
+        "memory_tip": "Difference of CUBES keeps the same sign in the bracket: a³ − b³ gives (a − b) times (a² + ab + b²), all plus inside.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Putting x = 2 gives 0/(8 − 8) = 0/0, so the denominator is factorised.",
+          "We know a³ − b³ = (a − b)(a² + ab + b²)",
+          "Put a = x, b = 2, then  x³ − 8 = x³ − 2³ = (x − 2)(x² + 2x + 4)",
+          "∴ lim(x → 2) (x − 2)/(x³ − 8) = lim(x → 2) (x − 2)/[(x − 2)(x² + 2x + 4)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x³ − 8 = (x − 2)(x² + 2x + 4) by the difference of cubes identity.",
+          "accept": [
+            "x cubed minus eight is x minus two into x squared plus two x plus four",
+            "use a cubed minus b cubed with a equals x and b equals two",
+            "eight is two cubed so it is a difference of cubes",
+            "x cube minus eight ni difference of cubes ga rayali",
+            "the denominator factorises with x minus two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x cubed minus eight",
+            "difference of cubes",
+            "x squared plus two x plus four",
+            "x minus two"
+          ]
+        },
+        "why": "Both parts are zero at x = 2, so (x − 2) is a factor of the denominator as well. The difference of cubes identity is the fastest way to pull it out, and it leaves a quadratic that is not zero at 2.",
+        "common_mistakes": [
+          "Writing x³ − 8 = (x − 2)³.",
+          "Giving the second bracket as x² − 2x + 4, which is the difference-of-cubes bracket with the wrong sign."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Cancel (x − 2) and substitute",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. After cancelling, the numerator is 1, not 0 — write the 1 in. The quadratic below is 12 at x = 2.",
+        "memory_tip": "Cancelling a whole numerator leaves 1 above, never 0.",
+        "lines": [
+          "As x → 2 we have x ≠ 2, so (x − 2) may be cancelled:",
+          "= lim(x → 2) 1/(x² + 2x + 4)",
+          "= 1/(2² + 2(2) + 4) = 1/(4 + 4 + 4)",
+          {
+            "text": "∴ lim(x → 2) (x − 2)/(x³ − 8) = 1/12",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (x − 2) cancels leaving 1/(x² + 2x + 4), and x = 2 gives 1/12.",
+          "accept": [
+            "cancel x minus two and one is left on top",
+            "put x equals two in x squared plus two x plus four to get twelve",
+            "the answer is one by twelve",
+            "x minus two cancel chesthe pina one migulutundi, answer one by twelve",
+            "four plus four plus four is twelve"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by twelve",
+            "cancel",
+            "four plus four plus four",
+            "twelve"
+          ]
+        },
+        "why": "A limit as x → 2 uses only values of x other than 2, so (x − 2) is not zero and may be divided out. What remains is defined at 2, so substitution finishes the question.",
+        "common_mistakes": [
+          "Writing 0 above after cancelling and giving the answer as 0.",
+          "Adding 4 + 2 + 4 = 10 by forgetting to double the 2 in 2x."
+        ]
+      }
+    ]
+  }
+}

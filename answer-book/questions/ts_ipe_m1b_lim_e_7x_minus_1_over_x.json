@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_e_7x_minus_1_over_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate lim(x → 0) (e⁷ˣ − 1)/x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Multiply and divide by 7",
+      "marks": 1
+    },
+    {
+      "label": "Apply (eᵗ − 1)/t → 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 16. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 7 was checked numerically before it was written: the expression reads 7.000245 at x = 10⁻⁵ and 6.999755 at x = −10⁻⁵, closing on 7 from both sides."
+  },
+  "recall_prompt": "Say how you would do this one — say what you multiply and divide by, and which standard limit finishes it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_make_7x",
+        "kind": "equation",
+        "label": "Multiply and divide by 7",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The power is 7x, so the denominator must be 7x as well. Multiplying and dividing by 7 supplies it without changing the value.",
+        "memory_tip": "The number in the power comes out in front. Put 7x below, take 7 outside.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Putting x = 0 gives 0/0, so the expression is rewritten first.",
+          "The power is 7x, so the denominator is made 7x:",
+          "(e⁷ˣ − 1)/x = 7 · (e⁷ˣ − 1)/(7x)",
+          "∴ lim(x → 0) (e⁷ˣ − 1)/x = 7 · lim(x → 0) (e⁷ˣ − 1)/(7x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression is multiplied and divided by 7 so the denominator becomes 7x, matching the power.",
+          "accept": [
+            "multiply and divide by seven so the bottom becomes seven x",
+            "make the denominator match the power seven x",
+            "take seven outside and keep seven x below",
+            "seven tho multiply chesi divide cheyyali, kinda seven x ravali",
+            "the denominator must be the same as the power"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "multiply and divide by seven",
+            "seven x",
+            "power",
+            "denominator"
+          ]
+        },
+        "why": "The standard limit is (eᵗ − 1)/t → 1, and it only applies when the denominator is exactly the power. Multiplying and dividing by 7 changes nothing in value but puts the expression in that shape.",
+        "common_mistakes": [
+          "Writing the answer as 1 by treating (e⁷ˣ − 1)/x as already standard.",
+          "Dividing by 7 outside as well, which cancels the factor that should be kept."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply (eᵗ − 1)/t → 1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Put t = 7x and say that t → 0 as x → 0. The limit is then 1, and the 7 outside is the answer.",
+        "memory_tip": "For (e^(kx) − 1)/x the answer is just k. Here k is 7.",
+        "lines": [
+          "Put t = 7x. As x → 0, t → 0.",
+          "lim(x → 0) (e⁷ˣ − 1)/(7x) = lim(t → 0) (eᵗ − 1)/t = 1",
+          "= 7 · 1",
+          {
+            "text": "∴ lim(x → 0) (e⁷ˣ − 1)/x = 7",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with t = 7x the standard limit gives 1, so the value is 7.",
+          "accept": [
+            "put t equals seven x and the standard limit gives one",
+            "so the answer is seven",
+            "e power t minus one over t is one, seven stays outside",
+            "t equals seven x pettite answer seven",
+            "the value is seven"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "t equals seven x",
+            "seven",
+            "e power t minus one",
+            "one"
+          ]
+        },
+        "why": "Naming the substitution and saying t → 0 is what makes the standard limit apply. The 7 was taken outside at the previous step, so it is untouched by the limit and stands as the answer.",
+        "common_mistakes": [
+          "Giving 1 as the answer by forgetting the 7 taken outside.",
+          "Writing e⁷ as the answer by substituting x = 1 instead of taking a limit."
+        ]
+      }
+    ]
+  }
+}

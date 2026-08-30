@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_log_1_plus_5x_over_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate lim(x → 0) log(1 + 5x)/x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Multiply and divide by 5",
+      "marks": 1
+    },
+    {
+      "label": "Apply log(1 + t)/t → 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 18. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 5 was checked numerically before it was written: the expression reads 4.999875 at x = 10⁻⁴ and 5.000125 at x = −10⁻⁴, closing on 5 from both sides. As everywhere in this chapter, log means the natural logarithm logₑ; the standard limit is false for base 10."
+  },
+  "recall_prompt": "Say how you would do this one — say what you multiply and divide by, and which standard limit finishes it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_make_5x",
+        "kind": "equation",
+        "label": "Multiply and divide by 5",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The standard limit is log(1 + t)/t, so the denominator must carry the same 5x that sits beside the 1. Multiplying and dividing by 5 supplies it.",
+        "memory_tip": "The number sitting with x inside the logarithm comes out in front. Put 5x below, take 5 outside.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here log means the natural logarithm logₑ.",
+          "Putting x = 0 gives log 1 / 0 = 0/0, so the expression is rewritten first.",
+          "log(1 + 5x)/x = 5 · log(1 + 5x)/(5x)",
+          "∴ lim(x → 0) log(1 + 5x)/x = 5 · lim(x → 0) log(1 + 5x)/(5x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression is multiplied and divided by 5 so the denominator becomes 5x, matching the 5x inside the logarithm.",
+          "accept": [
+            "multiply and divide by five so the bottom becomes five x",
+            "make the denominator the same as the term inside the log",
+            "take five outside and keep five x below",
+            "five tho multiply chesi divide cheyyali, kinda five x ravali",
+            "the denominator must match five x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "multiply and divide by five",
+            "five x",
+            "log",
+            "denominator"
+          ]
+        },
+        "why": "The standard limit log(1 + t)/t → 1 only applies when the denominator is exactly the quantity added to 1 inside the logarithm. Multiplying and dividing by 5 changes nothing in value but puts the expression in that shape.",
+        "common_mistakes": [
+          "Giving the answer as 1 by treating log(1 + 5x)/x as already standard.",
+          "Writing log(1 + 5x) = 5 log(1 + x), which is not a logarithm law."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply log(1 + t)/t → 1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Put t = 5x and say that t → 0 as x → 0. The limit is then 1, and the 5 taken outside is the answer.",
+        "memory_tip": "For log(1 + kx)/x the answer is just k. Here k is 5.",
+        "lines": [
+          "Put t = 5x. As x → 0, t → 0.",
+          "lim(x → 0) log(1 + 5x)/(5x) = lim(t → 0) log(1 + t)/t = 1",
+          "= 5 · 1",
+          {
+            "text": "∴ lim(x → 0) log(1 + 5x)/x = 5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with t = 5x the standard limit gives 1, so the value is 5.",
+          "accept": [
+            "put t equals five x and the standard limit gives one",
+            "so the answer is five",
+            "log one plus t over t is one, five stays outside",
+            "t equals five x pettite answer five",
+            "the value is five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "t equals five x",
+            "five",
+            "log one plus t",
+            "one"
+          ]
+        },
+        "why": "Naming the substitution and saying t → 0 is what makes the standard limit apply. The 5 was taken outside at the previous step, so it is untouched by the limit and stands as the answer.",
+        "common_mistakes": [
+          "Giving 1 as the answer by forgetting the 5 taken outside.",
+          "Using base 10 for the logarithm, for which the standard limit is not 1."
+        ]
+      }
+    ]
+  }
+}

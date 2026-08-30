@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_x2_plus_5x_plus_2_over_2x2_minus_5x_plus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate lim(x → ∞) (x² + 5x + 2)/(2x² − 5x + 1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Divide throughout by x²",
+      "marks": 1
+    },
+    {
+      "label": "Let each 1/x term approach 0",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Very Short Answer question 28. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which power of x you divide by, and what happens to the remaining terms.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_divide_by_x2",
+        "kind": "equation",
+        "label": "Divide throughout by x²",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Name the highest power and divide by it. Writing \"∞/∞\" on its own earns nothing.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "As x → ∞ both lines increase without bound, so this is the indeterminate form ∞/∞.",
+          "The highest power of x present is x². Divide every term of both lines by x² (x ≠ 0):",
+          "(x² + 5x + 2)/(2x² − 5x + 1) = (1 + 5/x + 2/x²)/(2 − 5/x + 1/x²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator and denominator are each divided by x², the highest power of x.",
+          "accept": [
+            "divide the top and the bottom by x squared",
+            "x squared is the highest power so divide by it",
+            "take x squared common from both lines",
+            "x square tho rendu lines ni divide cheyyali",
+            "divide throughout by the highest power of x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x squared",
+            "highest power",
+            "divide throughout",
+            "infinity by infinity"
+          ]
+        },
+        "why": "Substitution gives the indeterminate form ∞/∞. Dividing by the highest power turns every remaining term into one of the form c/xⁿ, and each of those approaches 0, so the value can then be read off.",
+        "common_mistakes": [
+          "Substituting x = ∞ directly and writing ∞/∞ = 1.",
+          "Dividing by x instead of x², which leaves an x in both lines."
+        ],
+        "memory_tip": "The same highest power on both lines means the answer is the ratio of the two leading coefficients."
+      },
+      {
+        "id": "s2_terms_to_zero",
+        "kind": "boxed_final",
+        "label": "Let each 1/x term approach 0",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Box 1/2 — the coefficient of x² on top over the coefficient of x² below.",
+        "lines": [
+          "As x → ∞:  5/x → 0,  2/x² → 0,  1/x² → 0",
+          "∴ limit = (1 + 0 + 0)/(2 − 0 + 0) = 1/2",
+          {
+            "text": "∴ lim(x → ∞) (x² + 5x + 2)/(2x² − 5x + 1) = 1/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every term of the form c/xⁿ approaches 0, leaving 1/2.",
+          "accept": [
+            "all the one over x terms go to zero leaving one over two",
+            "the answer is one half",
+            "only the x squared coefficients survive so it is one by two",
+            "one by x terms zero ayipothayi, one by two vasthundi",
+            "the limit is zero point five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by two",
+            "one half",
+            "go to zero",
+            "zero point five"
+          ]
+        },
+        "why": "Each term of the form c/xⁿ approaches 0 as x increases without bound, so only the two leading coefficients remain.",
+        "common_mistakes": [
+          "Giving 2, by writing the ratio of coefficients upside down.",
+          "Keeping 5/x in the final answer instead of letting it approach 0."
+        ],
+        "memory_tip": "Coefficient of x² on top over coefficient of x² below: 1 over 2."
+      }
+    ]
+  }
+}

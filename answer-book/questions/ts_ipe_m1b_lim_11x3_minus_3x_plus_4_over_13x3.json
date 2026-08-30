@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_11x3_minus_3x_plus_4_over_13x3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate lim(x → ∞) (11x³ − 3x + 4)/(13x³ − 5x² − 7).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Divide throughout by x³",
+      "marks": 1
+    },
+    {
+      "label": "Let each 1/x term approach 0",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.188, chapter 8 LIMITS, Very Short Answer question 29. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which power of x you divide by, and which terms are left at the end.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_divide_by_x3",
+        "kind": "equation",
+        "label": "Divide throughout by x³",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both lines are cubic, so x³ is the divisor. Show the divided form before letting anything approach 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "As x → ∞ both lines increase without bound, so this is the indeterminate form ∞/∞.",
+          "The highest power of x present is x³. Divide every term of both lines by x³ (x ≠ 0):",
+          "(11x³ − 3x + 4)/(13x³ − 5x² − 7) = (11 − 3/x² + 4/x³)/(13 − 5/x − 7/x³)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both lines are divided by x³, the highest power of x.",
+          "accept": [
+            "divide the top and the bottom by x cubed",
+            "x cubed is the highest power so divide by it",
+            "take x cube common from both lines",
+            "x cube tho rendu lines ni divide cheyyali",
+            "divide throughout by the highest power which is x cubed"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x cubed",
+            "x cube",
+            "highest power",
+            "divide throughout"
+          ]
+        },
+        "why": "Direct substitution gives ∞/∞. Dividing by x³ leaves a constant plus terms of the form c/xⁿ on each line, and every such term approaches 0.",
+        "common_mistakes": [
+          "Dividing by x² and leaving an x in both lines.",
+          "Dividing only the numerator by x³ and leaving the denominator as it is."
+        ],
+        "memory_tip": "A cube on top and a cube below: divide by the cube."
+      },
+      {
+        "id": "s2_terms_to_zero",
+        "kind": "boxed_final",
+        "label": "Let each 1/x term approach 0",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Box 11/13. It does not reduce — 11 and 13 are both prime, so the fraction is already in lowest terms.",
+        "lines": [
+          "As x → ∞:  3/x² → 0,  4/x³ → 0,  5/x → 0,  7/x³ → 0",
+          "∴ limit = (11 − 0 + 0)/(13 − 0 − 0) = 11/13",
+          {
+            "text": "∴ lim(x → ∞) (11x³ − 3x + 4)/(13x³ − 5x² − 7) = 11/13",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the remaining terms approach 0, leaving the ratio 11/13.",
+          "accept": [
+            "everything with x in the denominator goes to zero leaving eleven over thirteen",
+            "the answer is eleven by thirteen",
+            "only the x cubed coefficients matter",
+            "eleven by thirteen ye answer",
+            "the ratio of the leading coefficients is eleven over thirteen"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eleven by thirteen",
+            "eleven over thirteen",
+            "leading coefficients",
+            "go to zero"
+          ]
+        },
+        "why": "Only the leading terms survive, so the value is the ratio of the coefficients of x³.",
+        "common_mistakes": [
+          "Giving 13/11 by inverting the ratio.",
+          "Trying to reduce 11/13 further; 11 and 13 have no common factor."
+        ],
+        "memory_tip": "Only the x³ coefficients matter: 11 over 13."
+      }
+    ]
+  }
+}

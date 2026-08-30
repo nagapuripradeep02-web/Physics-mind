@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_root_x_plus_1_minus_root_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate lim(x → ∞) (√(x + 1) − √x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Multiply by the conjugate",
+      "marks": 1
+    },
+    {
+      "label": "Let x increase without bound",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.188, chapter 8 LIMITS, Very Short Answer question 33. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you multiply by, and what the numerator becomes.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conjugate",
+        "kind": "equation",
+        "label": "Multiply by the conjugate",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Rationalising is the method mark. The examiner wants the conjugate written and the numerator reduced to 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "As x → ∞ both √(x + 1) and √x increase without bound, so the form is ∞ − ∞.",
+          "Multiply and divide by the conjugate √(x + 1) + √x :",
+          "√(x + 1) − √x = [(√(x + 1) − √x)(√(x + 1) + √x)]/(√(x + 1) + √x)",
+          "= [(x + 1) − x]/(√(x + 1) + √x) = 1/(√(x + 1) + √x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying by the conjugate √(x + 1) + √x turns the difference into 1/(√(x + 1) + √x).",
+          "accept": [
+            "multiply and divide by root x plus one plus root x",
+            "rationalise using the conjugate so the top becomes one",
+            "a minus b times a plus b removes both roots from the top",
+            "conjugate tho multiply and divide cheyyali",
+            "the numerator becomes x plus one minus x which is one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "conjugate",
+            "rationalise",
+            "root x plus one",
+            "a minus b a plus b"
+          ]
+        },
+        "why": "The difference of two square roots is turned into a single fraction by (a − b)(a + b) = a² − b², which removes both roots from the numerator. The form ∞ − ∞ cannot be evaluated by substitution.",
+        "common_mistakes": [
+          "Writing √(x + 1) − √x = √1 = 1; a square root does not split across addition.",
+          "Claiming ∞ − ∞ = 0 with no working, which earns nothing even though the answer is 0."
+        ],
+        "memory_tip": "A difference of square roots is rationalised by their sum: the roots then cancel on the top."
+      },
+      {
+        "id": "s2_denominator_grows",
+        "kind": "boxed_final",
+        "label": "Let x increase without bound",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Box 0. The numerator stays fixed at 1 while the denominator increases without bound, so the quotient approaches 0.",
+        "lines": [
+          "As x → ∞,  √(x + 1) → ∞  and  √x → ∞,  so  √(x + 1) + √x → ∞",
+          "∴ 1/(√(x + 1) + √x) → 0",
+          {
+            "text": "∴ lim(x → ∞) (√(x + 1) − √x) = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the denominator increases without bound while the numerator stays 1, so the limit is 0.",
+          "accept": [
+            "the denominator increases without bound so one over it goes to zero",
+            "one divided by something very large approaches zero",
+            "the two roots get closer together so the difference is zero",
+            "denominator peddadi ayipothundi kabatti zero",
+            "the limit is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "zero",
+            "one over",
+            "denominator",
+            "without bound"
+          ]
+        },
+        "why": "A fixed numerator over a denominator that increases without bound approaches 0. The two square roots get closer together as x increases, so their difference approaches 0.",
+        "common_mistakes": [
+          "Giving 1, the numerator, without dividing by the denominator.",
+          "Reading the rationalised form upside down and giving ∞."
+        ],
+        "memory_tip": "1 divided by a quantity that increases without bound approaches 0."
+      }
+    ]
+  }
+}

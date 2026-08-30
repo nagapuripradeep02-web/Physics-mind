@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_x2_minus_8x_plus_15_over_x2_minus_9",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Evaluate lim(x → 3) (x² − 8x + 15)/(x² − 9).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Factorise both parts",
+      "marks": 1
+    },
+    {
+      "label": "Cancel (x − 3) and substitute",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 19. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer −1/3 was checked numerically before it was written: the expression reads −0.333311 at x = 3.0001 and −0.333356 at x = 2.9999, closing on −0.333333 from both sides."
+  },
+  "recall_prompt": "Say how you would do this one — say what each part factorises into and what cancels.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_factorise",
+        "kind": "equation",
+        "label": "Factorise both parts",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both parts vanish at x = 3, so (x − 3) is a factor of each. Split the middle term of the numerator: −8x = −3x − 5x.",
+        "memory_tip": "Both parts are zero at x = 3, so (x − 3) must divide both. Look for it before doing anything else.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Putting x = 3 gives (9 − 24 + 15)/(9 − 9) = 0/0, so both parts are factorised.",
+          "x² − 8x + 15 = x² − 3x − 5x + 15 = x(x − 3) − 5(x − 3) = (x − 3)(x − 5)",
+          "x² − 9 = x² − 3² = (x − 3)(x + 3)",
+          "∴ lim(x → 3) (x² − 8x + 15)/(x² − 9) = lim(x → 3) (x − 3)(x − 5)/[(x − 3)(x + 3)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator is (x − 3)(x − 5) and the denominator is (x − 3)(x + 3).",
+          "accept": [
+            "the top factorises into x minus three into x minus five",
+            "the bottom is a difference of squares, x minus three into x plus three",
+            "both have x minus three as a factor because both are zero at three",
+            "rendintiki kooda x minus three factor untundi",
+            "factorise the numerator and the denominator first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x minus three",
+            "x minus five",
+            "x plus three",
+            "factorise"
+          ]
+        },
+        "why": "The 0/0 form is caused by the factor (x − 3) sitting in both parts. Factorising is what brings that shared factor into the open so it can be removed; nothing can be substituted until it is gone.",
+        "common_mistakes": [
+          "Splitting the middle term as −4x − 4x, which does not give the product 15.",
+          "Writing x² − 9 as (x − 3)², which is x² − 6x + 9."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Cancel (x − 3) and substitute",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Say x ≠ 3 before cancelling — a limit at 3 never uses the value at 3, which is what makes the cancelling legal.",
+        "memory_tip": "Cancel first, substitute second. Substituting before cancelling gives 0/0 again.",
+        "lines": [
+          "As x → 3 we have x ≠ 3, so (x − 3) may be cancelled:",
+          "= lim(x → 3) (x − 5)/(x + 3)",
+          "= (3 − 5)/(3 + 3) = −2/6",
+          {
+            "text": "∴ lim(x → 3) (x² − 8x + 15)/(x² − 9) = −1/3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (x − 3) cancels since x ≠ 3, and substituting x = 3 gives −2/6 = −1/3.",
+          "accept": [
+            "cancel x minus three because x is not equal to three",
+            "then put x equals three to get minus two by six",
+            "the answer is minus one third",
+            "x minus three cancel chesi three substitute cheste minus one by three",
+            "minus two over six reduces to minus one third"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cancel",
+            "minus one third",
+            "minus two by six",
+            "x is not three"
+          ]
+        },
+        "why": "A limit as x → 3 only looks at values of x other than 3, so (x − 3) is not zero and may be divided out. Once it is gone the remaining expression is defined at 3 and direct substitution is valid.",
+        "common_mistakes": [
+          "Cancelling without saying x ≠ 3, which reads as dividing by zero.",
+          "Leaving the answer as −2/6 instead of reducing it to −1/3."
+        ]
+      }
+    ]
+  }
+}
