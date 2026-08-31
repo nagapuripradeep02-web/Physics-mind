@@ -57,10 +57,11 @@
             "render": "katex",
             "style": "eq"
           },
+          "Each off-diagonal entry cancels:",
+          "−cos α sin α + sin α cos α = 0.",
           {
-            "text": "AA^{T} = \\begin{bmatrix} \\cos^{2}\\alpha + \\sin^{2}\\alpha & -\\cos\\alpha\\sin\\alpha + \\sin\\alpha\\cos\\alpha \\\\ -\\sin\\alpha\\cos\\alpha + \\cos\\alpha\\sin\\alpha & \\sin^{2}\\alpha + \\cos^{2}\\alpha \\end{bmatrix}",
-            "render": "katex",
-            "style": "eq"
+            "text": "AA^{T} = \\begin{bmatrix} \\cos^{2}\\alpha + \\sin^{2}\\alpha & 0 \\\\ 0 & \\sin^{2}\\alpha + \\cos^{2}\\alpha \\end{bmatrix}",
+            "render": "katex"
           },
           {
             "text": "= \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} = I",
@@ -104,10 +105,11 @@
         "margin_note": "Second mark. AᵀA has to be computed separately — matrix multiplication is not commutative in general, so AAᵀ = I does not by itself prove AᵀA = I.",
         "memory_tip": "Both products give I, so Aᵀ is the inverse of A. A matrix with this property is called orthogonal.",
         "lines": [
+          "Each off-diagonal entry cancels:",
+          "cos α sin α − sin α cos α = 0.",
           {
-            "text": "A^{T}A = \\begin{bmatrix} \\cos^{2}\\alpha + \\sin^{2}\\alpha & \\cos\\alpha\\sin\\alpha - \\sin\\alpha\\cos\\alpha \\\\ \\sin\\alpha\\cos\\alpha - \\cos\\alpha\\sin\\alpha & \\sin^{2}\\alpha + \\cos^{2}\\alpha \\end{bmatrix}",
-            "render": "katex",
-            "style": "eq"
+            "text": "A^{T}A = \\begin{bmatrix} \\cos^{2}\\alpha + \\sin^{2}\\alpha & 0 \\\\ 0 & \\sin^{2}\\alpha + \\cos^{2}\\alpha \\end{bmatrix}",
+            "render": "katex"
           },
           {
             "text": "= \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix} = I",

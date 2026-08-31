@@ -98,9 +98,12 @@
         "lines": [
           "N is 1×3 and P is 3×1, so NP is 1×1.",
           {
-            "text": "NP = \\begin{bmatrix} 120(80) + 96(60) + 120(40) \\end{bmatrix} = \\begin{bmatrix} 9600 + 5760 + 4800 \\end{bmatrix}",
-            "render": "katex",
-            "style": "eq"
+            "text": "NP = \\begin{bmatrix} 120(80) + 96(60) + 120(40) \\end{bmatrix}",
+            "render": "katex"
+          },
+          {
+            "text": "= \\begin{bmatrix} 9600 + 5760 + 4800 \\end{bmatrix}",
+            "render": "katex"
           },
           {
             "text": "∴ total value = 20160 money units",
