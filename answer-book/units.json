@@ -5548,7 +5548,7 @@
           "section": "SAQ",
           "number": 8,
           "stars": 3,
-          "text": "Find a unit vector perpendicular to the plane determined by the points P(1, −1, 2), Q(2, 0, −1) and R(0, 2, −1).",
+          "text": "Find a unit vector perpendicular to the plane determined by the points P(1, −1, 2), Q(2, 0, −1) and R(0, 2, 1).",
           "question_id": "ts_ipe_m1a_pv_sqp_unit_normal_pqr"
         },
         {
@@ -7203,7 +7203,7 @@
           "section": "LAQ",
           "number": 12,
           "stars": 3,
-          "text": "Find the condition for the lines joining to the points of intersection of the circle x²+y²=a² and the line lx+my=1 to coincide.",
+          "text": "Find the condition for the lines joining the origin to the points of intersection of the circle x²+y²=a² and the line lx+my=1 to coincide.",
           "question_id": "ts_ipe_m1b_pl_chord_coincident_condition"
         },
         {
@@ -7440,7 +7440,7 @@
           "section": "VSAQ",
           "number": 7,
           "stars": 3,
-          "text": "Find a traid of d.c's of the normal to the plane x+2y+2z−4=0.",
+          "text": "Find a triad of d.c's of the normal to the plane x+2y+2z−4=0.",
           "question_id": "ts_ipe_m1b_pln_dcs_of_normal"
         },
         {
