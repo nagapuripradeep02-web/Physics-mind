@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_no_k_two_distinct_roots",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Show that there is no real number k for which the equation x² − 3x + k = 0 has two distinct roots in [0, 1].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Assume two roots and apply Rolle's theorem",
+      "marks": 1
+    },
+    {
+      "label": "Reach the contradiction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.231, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 12. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box; we ship the chapter as ONE unit, so the sub-section is named above instead of a sub-chapter number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what you assume at the start, which theorem you apply, and where the contradiction appears.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_assume_two_roots",
+        "kind": "text",
+        "label": "Assume two roots and apply Rolle's theorem",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Nothing here is computed. The mark is for the assumption plus the correct application of Rolle's theorem to the interval [α, β] formed by the two assumed roots.",
+        "memory_tip": "Two roots of the same function are two points with equal values, which is exactly the condition Rolle's theorem needs.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = x² − 3x + k.",
+          "Suppose, if possible, that for some real k the equation f(x) = 0 has two distinct roots α and β in [0, 1], with α < β.",
+          "f is a polynomial, so it is continuous on [α, β] and differentiable on (α, β).",
+          "Also f(α) = 0 and f(β) = 0, so f(α) = f(β).",
+          "All three conditions of Rolle's theorem hold, so there is a c in (α, β) with f′(c) = 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That we assume two distinct roots α, β in [0, 1] and apply Rolle's theorem on [α, β], since f(α) = f(β) = 0.",
+          "accept": [
+            "assume there are two distinct roots alpha and beta in zero to one",
+            "f of alpha and f of beta are both zero so rolle's theorem applies",
+            "suppose such a k exists and apply rolle between the two roots",
+            "the two roots give equal function values so rolle gives a point where the derivative is zero",
+            "rendu roots unnayi ani anukoni rolle apply chestha",
+            "start by assuming the opposite of what is asked"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "assume",
+            "alpha",
+            "beta",
+            "rolle",
+            "two roots"
+          ]
+        },
+        "why": "The question asks you to show that something does NOT exist, and there is no k to compute, so the proof runs by contradiction: assume such a k exists and show the assumption cannot hold. Rolle's theorem is the right tool because two roots of the same function are two points with equal values.",
+        "common_mistakes": [
+          "Trying to find a value of k instead of assuming one exists.",
+          "Using the discriminant 9 − 4k > 0 alone, which shows the roots are distinct but says nothing about where they lie."
+        ]
+      },
+      {
+        "id": "s2_contradiction",
+        "kind": "boxed_final",
+        "label": "Reach the contradiction",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The chain (α, β) ⊆ (0, 1) is the line the proof depends on — without it, c = 3/2 is just a number and contradicts nothing.",
+        "memory_tip": "f′(x) = 2x − 3 is zero only at x = 3/2, and 3/2 is outside [0, 1]. That single fact is the whole proof.",
+        "lines": [
+          "f′(x) = 2x − 3",
+          "f′(c) = 0 ⇒ 2c − 3 = 0 ⇒ c = 3/2",
+          "But 0 ≤ α < c < β ≤ 1, so c lies in (0, 1) and therefore c < 1.",
+          "This contradicts c = 3/2, since 3/2 > 1.",
+          "So the assumption is false.",
+          {
+            "text": "∴ there is no real number k for which x² − 3x + k = 0 has two distinct roots in [0, 1]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(c) = 0 forces c = 3/2, which cannot lie in (0, 1), so the assumption fails and no such k exists.",
+          "accept": [
+            "two c minus three equals zero gives c equal to three by two",
+            "three by two is bigger than one so it cannot be inside zero to one",
+            "that contradicts rolle's theorem so no such k exists",
+            "the derivative is zero only at one point five which is outside the interval",
+            "c three by two vasthundi, kaani adi zero one lo ledu, so contradiction",
+            "the assumption is false so no real k works"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three by two",
+            "contradiction",
+            "outside",
+            "no such k",
+            "one point five"
+          ]
+        },
+        "why": "The value c = 3/2 does not depend on k at all, which is why no choice of k can rescue the assumption. That is what makes the statement true for every real k rather than for most of them.",
+        "common_mistakes": [
+          "Stating c = 3/2 without saying why c had to lie in (0, 1).",
+          "Concluding that k has no real value at all, when the claim is only about roots lying inside [0, 1]."
+        ]
+      }
+    ]
+  }
+}

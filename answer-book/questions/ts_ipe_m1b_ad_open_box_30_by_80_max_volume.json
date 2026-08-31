@@ -1,0 +1,238 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_open_box_30_by_80_max_volume",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "From a rectangular sheet of dimensions 30 cm × 80 cm, four equal squares of side x cm are removed at the corners, and the sides are then turned up so as to form an open rectangular box. Find the value of x so that the volume of the box is the greatest.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the volume in x",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate and solve V′(x) = 0",
+      "marks": 1
+    },
+    {
+      "label": "Reject the root outside the domain",
+      "marks": 1
+    },
+    {
+      "label": "Confirm the maximum",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.225, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 2. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what the three dimensions of the box are in terms of x, what range x can take, and what you do with the second root.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_volume_in_x",
+        "kind": "equation",
+        "label": "Write the volume in x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The examiner looks for the two bracket factors 30 − 2x and 80 − 2x with height x. Write the domain 0 < x < 15 on the same line — the rejection later depends on it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A square of side x is cut from each of the four corners and the flaps are turned up.",
+          "Each side of the sheet loses a square at BOTH ends, so each side loses 2x.",
+          "Length = 80 − 2x,  breadth = 30 − 2x,  height = x",
+          "V(x) = x(30 − 2x)(80 − 2x)",
+          "= x(2400 − 220x + 4x²) = 4x³ − 220x² + 2400x",
+          "Every dimension must be positive: x > 0 and 30 − 2x > 0, so the domain is 0 < x < 15."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the box measures x by (30 − 2x) by (80 − 2x), so V = x(30 − 2x)(80 − 2x), with 0 < x < 15.",
+          "accept": [
+            "each side loses two x because a square is cut at both ends",
+            "volume is x into thirty minus two x into eighty minus two x",
+            "the height of the box is x itself",
+            "rendu vaipula square kosthunnam kabatti two x thagguthundi",
+            "x must lie between zero and fifteen",
+            "write the volume as a cubic in x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "thirty minus two x",
+            "eighty minus two x",
+            "height x",
+            "zero to fifteen"
+          ]
+        },
+        "why": "The cut removes x from each end of every side, so each dimension loses 2x, not x. Writing the domain now is what turns the rejection in step 3 into a reasoned move rather than a guess.",
+        "common_mistakes": [
+          "Subtracting x instead of 2x from each side of the sheet.",
+          "Leaving the domain unwritten, so the root x = 30 cannot be rejected with a reason.",
+          "Forgetting that x itself is the height of the box."
+        ],
+        "memory_tip": "Each side loses a square at both ends, so subtract 2x. The shorter side 30 sets the limit, which is why x must stay below 15."
+      },
+      {
+        "id": "s2_differentiate",
+        "kind": "equation",
+        "label": "Differentiate and solve V′(x) = 0",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Expand before differentiating — the product rule on three factors is where most slips happen. Take the factor 4 out of V′ before using the quadratic formula.",
+        "lines": [
+          "V′(x) = 12x² − 440x + 2400 = 4(3x² − 110x + 600)",
+          "V′(x) = 0   ⇒   3x² − 110x + 600 = 0",
+          "x = [110 ± √(110² − 4·3·600)] / (2·3)",
+          "= [110 ± √(12100 − 7200)] / 6 = [110 ± √4900] / 6 = (110 ± 70)/6",
+          "x = 180/6 = 30   or   x = 40/6 = 20/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That V′(x) = 4(3x² − 110x + 600) and solving it gives x = 30 and x = 20/3.",
+          "accept": [
+            "expand first and then differentiate the cubic",
+            "three x squared minus one ten x plus six hundred equals zero",
+            "the discriminant is four thousand nine hundred so the root is seventy",
+            "quadratic formula use chesi rendu roots teesukovali",
+            "the two roots are thirty and twenty by three",
+            "set the first derivative equal to zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twelve x squared",
+            "four forty x",
+            "root four thousand nine hundred",
+            "twenty by three"
+          ]
+        },
+        "why": "Expanding first turns a triple product into an ordinary cubic, so one differentiation gives a quadratic that the standard formula solves. The common factor 4 comes out to keep the numbers small.",
+        "common_mistakes": [
+          "Applying the product rule to three factors and dropping one term.",
+          "Dividing V′ by 4 but forgetting to divide the 2400 as well."
+        ],
+        "memory_tip": "Multiply out before you differentiate. A cubic in one line is faster and safer than a product rule over three brackets."
+      },
+      {
+        "id": "s3_reject_root",
+        "kind": "text",
+        "label": "Reject the root outside the domain",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark, and it is a real mark, not a formality. The examiner looks for the reason, not just the word rejected — say which dimension turns negative.",
+        "lines": [
+          "The domain found in step 1 is 0 < x < 15, so test both roots against it.",
+          "If x = 30, then the breadth is 30 − 2(30) = −30 cm, a negative length. No box exists, so this root is rejected.",
+          "If x = 20/3 ≈ 6.67, then the breadth is 50/3 ≈ 16.67 cm and the length is 200/3 ≈ 66.67 cm, both positive.",
+          "∴ x = 20/3 is the only usable root."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 30 is rejected because it makes the breadth 30 − 2x negative, leaving x = 20/3 as the only usable root.",
+          "accept": [
+            "x equal to thirty makes the breadth negative so reject it",
+            "only twenty by three lies between zero and fifteen",
+            "a side cannot be a negative length",
+            "thirty teesukunte breadth negative avuthundi kabatti reject",
+            "check both roots against the domain",
+            "the physical range rules out the larger root"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "reject thirty",
+            "negative breadth",
+            "twenty by three",
+            "domain"
+          ]
+        },
+        "why": "Calculus finds every stationary point of the algebraic formula, including ones the physical situation does not allow. Naming the dimension that turns negative is what shows the rejection is reasoned.",
+        "common_mistakes": [
+          "Reporting both roots as answers.",
+          "Rejecting x = 30 with no reason written down.",
+          "Choosing the larger root because larger x looks like a larger box."
+        ],
+        "memory_tip": "Test every root against the domain you wrote in step 1. A root that makes any side negative describes no box."
+      },
+      {
+        "id": "s4_confirm_maximum",
+        "kind": "boxed_final",
+        "label": "Confirm the maximum",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. The second derivative test is what makes this a maximum rather than a minimum. Put the number in and state the sign.",
+        "lines": [
+          "V″(x) = 24x − 440",
+          "At x = 20/3:  V″ = 24(20/3) − 440 = 160 − 440 = −280 < 0",
+          "A negative second derivative means the volume is maximum at this value.",
+          "Greatest volume = (20/3)(50/3)(200/3) = 200000/27 ≈ 7407.41 cm³",
+          "Check: x = 6 gives 7344 cm³ and x = 7 gives 7392 cm³, both less.",
+          {
+            "text": "∴ x = 20/3 cm ≈ 6.67 cm gives the greatest volume",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That V″(20/3) = −280 < 0, so x = 20/3 cm gives the greatest volume.",
+          "accept": [
+            "second derivative is minus two eighty which is negative",
+            "so the volume is maximum at twenty by three",
+            "apply the second derivative test before writing the answer",
+            "second derivative negative unte maximum ani proof",
+            "x is twenty by three centimetres",
+            "the greatest volume is about seven thousand four hundred cubic centimetres"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twenty four x minus four forty",
+            "minus two eighty",
+            "maximum",
+            "twenty by three"
+          ]
+        },
+        "why": "Setting V′ to zero only locates where the volume stops changing. The sign of V″ is what proves this point is the greatest volume and not the least, so it is a step in its own right.",
+        "common_mistakes": [
+          "Stopping at x = 20/3 with no second derivative test.",
+          "Writing x = 6.67 as the exact answer instead of the fraction 20/3."
+        ],
+        "memory_tip": "Second derivative negative means the graph bends downward there, so the point is the highest point of the curve."
+      }
+    ]
+  }
+}

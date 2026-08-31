@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_define_set_and_cardinality",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define a set. Define the cardinality of a finite set.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Define a set",
+      "marks": 1
+    },
+    {
+      "label": "Define the cardinality of a finite set",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.6, chapter 1 SETS & RELATIONS, Very Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Here the 1+1 also matches the question itself, which asks for two definitions. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the two definitions in your own words, and give one short example for the second one.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define_set",
+        "kind": "text",
+        "label": "Define a set",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. The words \"well-defined\" and \"distinct\" are what the examiner reads for; a bare \"a collection of objects\" is not the definition.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A set is a well-defined collection of distinct objects.",
+          "\"Well-defined\" means that for any given object it can be decided, without doubt, whether that object belongs to the collection or not.",
+          "The objects of a set are called its elements. If x is an element of A we write x ∈ A; if it is not, we write x ∉ A.",
+          "For example, {2, 4, 6, 8} is a set, but \"the tall students of a class\" is not, because \"tall\" fixes no clear test."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a set is a well-defined collection of distinct objects, with \"well-defined\" meaning membership can be decided for any object.",
+          "accept": [
+            "a set is a well defined collection of distinct objects",
+            "well defined means you can always tell whether an object is in it or not",
+            "the objects in a set are called elements and we write x belongs to A",
+            "set ante well defined collection of distinct objects",
+            "a collection where membership can be decided without doubt"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "well defined",
+            "collection",
+            "distinct objects",
+            "elements"
+          ]
+        },
+        "why": "The two words \"well-defined\" and \"distinct\" carry the whole mark, because they are what separate a set from any other collection. A collection such as \"the tall students of a class\" fails the test, since membership cannot be decided.",
+        "common_mistakes": [
+          "Writing only \"a collection of objects\" and leaving out \"well-defined\".",
+          "Listing a repeated object, as in {1, 1, 2}, which is the same set as {1, 2}.",
+          "Using ∈ between two sets, where ⊆ is meant."
+        ],
+        "memory_tip": "A collection is a set when the question \"is this object in it?\" has one clear answer for every object."
+      },
+      {
+        "id": "s2_define_cardinality",
+        "kind": "boxed_final",
+        "label": "Define the cardinality of a finite set",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Second mark. Give the symbol n(A) and one short example; a definition without the symbol reads incomplete.",
+        "lines": [
+          "A set is finite when its elements can be counted and the counting comes to an end.",
+          "The number of distinct elements in a finite set A is called the cardinality, or the cardinal number, of A, and is written n(A).",
+          "For example, if A = {2, 4, 6, 8} then n(A) = 4, and n(∅) = 0.",
+          {
+            "text": "∴ n(A) = the number of distinct elements of the finite set A.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cardinality of a finite set A is the number of distinct elements in it, written n(A).",
+          "accept": [
+            "the cardinality is the number of distinct elements in the set",
+            "it is written n of A and it is a whole number",
+            "for the set two four six eight the cardinality is four",
+            "finite set lo unna distinct elements count ne cardinality",
+            "n of the empty set is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cardinality",
+            "n of A",
+            "number of elements",
+            "cardinal number"
+          ]
+        },
+        "why": "Cardinality counts distinct elements only, which is why writing a member twice does not change n(A). It is a whole number, so the answer says how many elements there are, not which ones.",
+        "common_mistakes": [
+          "Writing n(∅) = 1; the empty set has no elements, so n(∅) = 0.",
+          "Confusing n(A) with the number of subsets of A, which is 2 raised to the power n(A).",
+          "Giving the answer as a set, such as n(A) = {2, 4, 6, 8}, instead of a number."
+        ],
+        "memory_tip": "n(A) is a count, so the answer to a cardinality question is always a number and never a set."
+      }
+    ]
+  }
+}

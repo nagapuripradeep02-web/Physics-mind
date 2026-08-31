@@ -15,7 +15,7 @@
   "marks_total": 2,
   "paper_section": "Section A",
   "expected_time_min": 5,
-  "question_text": "Find a traid of d.c's of the normal to the plane x+2y+2z−4=0.",
+  "question_text": "Find a triad of d.c's of the normal to the plane x+2y+2z−4=0.",
   "appearances": [
     {
       "year": 2016
@@ -90,7 +90,7 @@
         "why": "A plane's equation carries its normal direction in its coefficients, so no geometry is needed — only normalising. The ± is there because a normal points BOTH ways out of the plane.",
         "common_mistakes": [
           "Using the constant term d as one of the ratios.",
-          "Omitting the ±, which the word 'traid' in the question is asking about."
+          "Omitting the ±, which the word 'triad' in the question is asking about."
         ]
       },
       {

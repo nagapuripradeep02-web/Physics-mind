@@ -1,0 +1,183 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_first_principle_cot_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the derivative of cot x from the first principle with respect to x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the first principle",
+      "marks": 1
+    },
+    {
+      "label": "Combine and simplify the top",
+      "marks": 2
+    },
+    {
+      "label": "Take the limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(iv). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what the numerator becomes, and where the minus sign comes from.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_principle",
+        "kind": "equation",
+        "label": "State the first principle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. cot x is defined where sin x ≠ 0, so keep x away from 0, π, 2π and so on. Write the limit line first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = cot x, where sin x ≠ 0",
+          "By the first principle,",
+          "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "= lim(h → 0) [cot(x + h) − cot x]/h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first principle is written down with f(x) = cot x.",
+          "accept": [
+            "write the first principle with f of x equal to cot x",
+            "take the limit of cot x plus h minus cot x over h",
+            "start from the definition of the derivative",
+            "first principle rasta, cot x plus h minus cot x by h",
+            "the derivative is the limit of the difference quotient"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "first principle",
+            "cot x plus h",
+            "over h"
+          ]
+        },
+        "why": "The definition is the marked move, and stating the condition sin x ≠ 0 shows the answer −cosec²x is being claimed only where cot x exists.",
+        "common_mistakes": [
+          "Writing cot(x + h) as cot x + cot h.",
+          "Quoting −cosec²x from the standard table with no limit work."
+        ],
+        "memory_tip": "Open with the definition; the identities come afterwards."
+      },
+      {
+        "id": "s2_combine_and_simplify",
+        "kind": "equation",
+        "label": "Combine and simplify the top",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks: one for the common denominator, one for seeing the top collapse to −sin h. The minus is produced by the order of subtraction, not put in by hand.",
+        "lines": [
+          "cot θ = cos θ/sin θ, so",
+          "cot(x + h) − cot x",
+          "= cos(x+h)/sin(x+h) − cos x/sin x",
+          "Numerator = cos(x+h) sin x − cos x sin(x+h)",
+          "= sin(x − (x + h)) = sin(−h) = −sin h",
+          "Denominator = sin(x + h) sin x",
+          "f′(x) = lim(h → 0) (−sin h)/[h sin(x+h) sin x]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both cotangents are written as cos over sin, combined over sin(x + h) sin x, and the numerator becomes sin(−h) = −sin h.",
+          "accept": [
+            "write cot as cos by sin and take a common denominator",
+            "the numerator is sin of x minus x plus h which is minus sin h",
+            "the top becomes sin of minus h so it is minus sin h",
+            "cot ni cos by sin ga rasi common denominator teesukovali",
+            "the denominator is sin of x plus h into sin x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos by sin",
+            "minus sin h",
+            "common denominator",
+            "sin of minus h"
+          ]
+        },
+        "why": "sin A cos B − cos A sin B = sin(A − B) applies here with A = x and B = x + h, so the angle difference is −h. Getting the minus this way keeps it honest instead of guessed at the end.",
+        "common_mistakes": [
+          "Subtracting the two products the other way round and losing the minus sign.",
+          "Writing sin(−h) as sin h.",
+          "Trying cot A − cot B = cot(A − B), which is not an identity."
+        ],
+        "memory_tip": "cot is cos over sin, so the top comes out as sin of (first angle minus second). Here that is x − (x + h) = −h."
+      },
+      {
+        "id": "s3_answer",
+        "kind": "boxed_final",
+        "label": "Take the limit",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. sin²x sits in the denominator, so the answer is −cosec²x. Write the cosec form: that is the form the answer key uses.",
+        "lines": [
+          "Split it as −(sin h)/h · 1/[sin(x+h) sin x]",
+          "As h → 0, (sin h)/h → 1 and sin(x + h) → sin x",
+          "f′(x) = −1/(sin x · sin x) = −1/sin²x",
+          {
+            "text": "∴ d/dx (cot x) = −cosec²x",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the limit gives −1/sin²x, which is −cosec²x.",
+          "accept": [
+            "sin h by h goes to one so the answer is minus one by sin squared x",
+            "the answer is minus cosec squared x",
+            "derivative of cot x is minus cosec square x",
+            "minus cosec square x answer vasthundi",
+            "one over sin squared x is cosec squared x so it is minus cosec squared x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus cosec squared x",
+            "sin squared x",
+            "sin h by h"
+          ]
+        },
+        "why": "Once the top is −sin h, the expression splits into the standard limit and a factor that is continuous at h = 0. Each is then read off separately.",
+        "common_mistakes": [
+          "Giving +cosec²x, which is the sign of the derivative of tan x carried over by mistake.",
+          "Writing −sec²x instead of −cosec²x."
+        ],
+        "memory_tip": "One over sine is cosec. sin²x underneath becomes cosec²x on top, with the minus kept."
+      }
+    ]
+  }
+}

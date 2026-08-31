@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_sphere_radius_7_to_7_02",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The radius of a sphere is increased from 7 cm to 7.02 cm. Find the approximate increase in the volume of the sphere.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write dV = 4πr² · dr",
+      "marks": 1
+    },
+    {
+      "label": "Substitute r = 7 and dr = 0.02",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.211, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 7. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked before it was written: the exact increase (4/3)π[(7.02)³ − 7³] = 3.9312π cm³ against the approximation 3.92π cm³, a difference of under 0.3%."
+  },
+  "recall_prompt": "Say how you would do this one — say what dr is here, and what the derivative of the volume formula turns out to be.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dv_formula",
+        "kind": "equation",
+        "label": "Write dV = 4πr² · dr",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The radius is given directly this time, so no halving is needed: dr is simply 7.02 − 7. The 3 from the power cancels the 3 in the denominator.",
+        "memory_tip": "Differentiating (4/3)πr³ gives 4πr², which is the surface-area formula.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let r be the radius and V = (4/3)πr³ the volume of the sphere.",
+          "Here r = 7 cm and dr = 7.02 − 7 = 0.02 cm",
+          "dV/dr = (4/3)π · 3r² = 4πr²",
+          "∴ dV = 4πr² · dr"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r = 7, dr = 0.02, and that differentiating V = (4/3)πr³ gives dV = 4πr²·dr.",
+          "accept": [
+            "r is seven and d r is zero point zero two",
+            "differentiate four by three pi r cubed to get four pi r squared",
+            "d V equals four pi r squared d r",
+            "edu radius, zero point zero two d r, differentiate cheste four pi r square",
+            "the three cancels and leaves four pi r squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four pi r squared",
+            "zero point zero two",
+            "seven",
+            "r cubed"
+          ]
+        },
+        "why": "dV = (dV/dr)·dr is the approximation being used. The derivative of (4/3)πr³ is 4πr², so the whole question reduces to one substitution once this line is on the page.",
+        "common_mistakes": [
+          "Taking dr = 7.02 instead of the difference 0.02.",
+          "Leaving the (4/3) in front and writing dV = (4/3)πr²·dr."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute r = 7 and dr = 0.02",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 4 × 49 × 0.02 = 3.92, so the answer is 3.92π cm³. Keep π in the answer; the decimal is an extra, not a replacement.",
+        "memory_tip": "4 × 49 = 196, and 196 × 0.02 = 3.92. The unit is cm³ because it is a volume.",
+        "lines": [
+          "dV = 4πr² · dr = 4π(7)²(0.02)",
+          "= 4π(49)(0.02)",
+          "= 3.92π cm³",
+          "Taking π ≈ 3.1416, dV ≈ 12.32 cm³",
+          {
+            "text": "∴ the volume increases by approximately 3.92π cm³ ≈ 12.32 cm³",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives dV = 3.92π cm³, about 12.32 cm³.",
+          "accept": [
+            "four pi into forty nine into zero point zero two is three point nine two pi",
+            "the volume increases by three point nine two pi cubic centimetres",
+            "about twelve point three two cubic centimetres",
+            "three point nine two pi cubic centimetres vasthundi",
+            "d V is three point nine two pi"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three point nine two pi",
+            "cubic centimetres",
+            "forty nine",
+            "twelve point three two"
+          ]
+        },
+        "why": "The exact increase is (4/3)π[(7.02)³ − 7³] = 3.9312π cm³, and the approximation gives 3.92π cm³. They agree to three figures because dr = 0.02 is small compared with r = 7, which is the condition the method needs. The answer here is the change itself, in cm³; had a percentage been asked, the relative form dV/V = 3(dr/r) would be used, because the volume is r to the power 3.",
+        "common_mistakes": [
+          "Writing the unit as cm² instead of cm³.",
+          "Computing the two full volumes and subtracting, which is exact but is not what 'approximate' asks for."
+        ]
+      }
+    ]
+  }
+}

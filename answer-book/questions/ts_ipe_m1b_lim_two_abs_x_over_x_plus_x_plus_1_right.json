@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_two_abs_x_over_x_plus_x_plus_1_right",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Show that lim(x → 0⁺) (2|x|/x + x + 1) = 3.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use |x| = x on the right side",
+      "marks": 1
+    },
+    {
+      "label": "Substitute x = 0",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Very Short Answer question 25. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what the modulus becomes on the side you are approaching from, and what is left to substitute.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_remove_modulus",
+        "kind": "equation",
+        "label": "Use |x| = x on the right side",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. State |x| = x for x > 0 before cancelling anything. The examiner is checking that the one-sided arrow was read.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x → 0⁺ means x approaches 0 through values greater than 0.",
+          "For x > 0,  |x| = x",
+          "∴ 2|x|/x = 2x/x = 2   (x ≠ 0, so the cancellation is allowed)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for x > 0 the modulus gives |x| = x, so the term 2|x|/x is the constant 2.",
+          "accept": [
+            "on the right side x is positive so mod x equals x",
+            "the first term becomes two x over x which is two",
+            "x is greater than zero so the modulus comes off unchanged",
+            "right hand limit kabatti mod x equals x, so two vasthundi",
+            "remove the modulus using x positive and get two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "mod x",
+            "right hand limit",
+            "x positive",
+            "two x over x"
+          ]
+        },
+        "why": "The side of approach decides the whole question. On the right side x is positive, so |x| = x and the first term is simply the constant 2.",
+        "common_mistakes": [
+          "Writing |x| = −x, which is the rule for the LEFT side.",
+          "Cancelling x/x at x = 0 itself; a limit only uses values with x ≠ 0."
+        ],
+        "memory_tip": "Read the small plus sign first: plus means x stays on the positive side, so the modulus bars come off unchanged."
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute x = 0",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Box the 3. The two-sided limit does not exist here — the left-hand value is −1 — so keep the ⁺ on every line.",
+        "lines": [
+          "So for x > 0 the expression is  2 + x + 1 = x + 3",
+          "lim(x → 0⁺) (2|x|/x + x + 1) = lim(x → 0⁺) (x + 3)",
+          "= 0 + 3",
+          {
+            "text": "∴ lim(x → 0⁺) (2|x|/x + x + 1) = 3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression reduces to x + 3 and its limit at 0 is 3.",
+          "accept": [
+            "what is left is x plus three so the limit is three",
+            "substitute zero into x plus three and get three",
+            "two plus zero plus one is three",
+            "x plus three lo zero pettina three vasthundi",
+            "the answer is three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x plus three",
+            "three",
+            "substitute zero",
+            "two plus one"
+          ]
+        },
+        "why": "Once the modulus is removed the expression is the polynomial x + 3, which is continuous, so the limit is its value at x = 0.",
+        "common_mistakes": [
+          "Giving 1, by dropping the 2 that came from the modulus term.",
+          "Giving −1, which is the LEFT-hand limit, where 2|x|/x = −2."
+        ],
+        "memory_tip": "The 3 is 2 from the modulus term plus 1 from the constant; the x term contributes nothing at 0."
+      }
+    ]
+  }
+}

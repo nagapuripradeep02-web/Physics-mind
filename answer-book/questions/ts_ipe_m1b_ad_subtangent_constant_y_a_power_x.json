@@ -1,0 +1,235 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_subtangent_constant_y_a_power_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the length of the subtangent at any point on the curve y = aˣ (a > 0) is constant.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State what the subtangent is",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate y = aˣ",
+      "marks": 1
+    },
+    {
+      "label": "Write dy/dx as y logₑa",
+      "marks": 1
+    },
+    {
+      "label": "The subtangent is 1/logₑa",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.224, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 21. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on the stem: the printed condition is a > 0 only, and the working adds a ≠ 1. It has to: at a = 1 the curve is the horizontal line y = 1, dy/dx = 0 and logₑ1 = 0, so y/m is not defined and there is no subtangent to measure. The question itself was not changed."
+  },
+  "recall_prompt": "Say how you would show this — say the formula for the subtangent, what aˣ differentiates to, and what is left after you divide.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_state_subtangent",
+        "kind": "text",
+        "label": "State what the subtangent is",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The subtangent DIVIDES by the slope. Stating the formula first is what separates this question from the subnormal question, which multiplies.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curve:   y = aˣ,   a > 0 and a ≠ 1.",
+          "At a point (x, y) on a curve, with m = dy/dx:",
+          "length of the subtangent = y/m",
+          "So the question asks for the value of y ÷ (dy/dx)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the length of the subtangent is y divided by dy/dx.",
+          "accept": [
+            "the subtangent is y divided by the slope",
+            "subtangent equals y by dy by dx",
+            "write the formula for the subtangent first",
+            "subtangent ante y by m",
+            "it divides by the slope, it does not multiply",
+            "the question asks for y over dy by dx"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y by m",
+            "subtangent",
+            "divided by the slope",
+            "y over dy by dx"
+          ]
+        },
+        "why": "The subtangent and the subnormal use the same two quantities in opposite ways, so naming the formula at the start fixes which one this answer is building. Here the division is what removes y from the result.",
+        "common_mistakes": [
+          "Using ym, the subnormal, in place of y/m.",
+          "Using the length of the tangent y√(1 + m²)/m, which carries an extra root.",
+          "Starting to differentiate before naming the length asked for."
+        ],
+        "memory_tip": "Subtangent divides, subnormal multiplies. The one that divides is the one that can lose y altogether."
+      },
+      {
+        "id": "s2_differentiate",
+        "kind": "equation",
+        "label": "Differentiate y = aˣ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. aˣ is a constant raised to a variable power, so the power rule does NOT apply. The standard derivative is aˣ logₑa.",
+        "lines": [
+          "Here the base a is a constant and the index x is the variable,",
+          "so the power rule does not apply. The standard result is used:",
+          "d(aˣ)/dx = aˣ logₑa",
+          "∴ dy/dx = aˣ logₑa"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the derivative of aˣ is aˣ logₑa.",
+          "accept": [
+            "a to the x differentiates to a to the x times log a",
+            "the base is constant and the power is the variable",
+            "use the standard result for a to the x",
+            "a power x ni differentiate cheste a power x log a",
+            "the power rule does not apply here",
+            "log a to the base e multiplies the exponential"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a power x",
+            "log a",
+            "natural log",
+            "standard result"
+          ]
+        },
+        "why": "In xⁿ the base varies and the index is fixed; in aˣ it is the other way round, so a different rule is needed. Rewriting aˣ with base e, as the exponential of x logₑa, and using the chain rule gives the same aˣ logₑa.",
+        "common_mistakes": [
+          "Using the power rule and writing x·aˣ⁻¹.",
+          "Writing the derivative as aˣ only, leaving out the logₑa factor.",
+          "Writing aˣ log a with the log to base 10 instead of base e."
+        ],
+        "memory_tip": "For xⁿ the power comes down; for aˣ a logarithm comes out. The variable in the index always produces a log."
+      },
+      {
+        "id": "s3_in_terms_of_y",
+        "kind": "equation",
+        "label": "Write dy/dx as y logₑa",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Replacing aˣ by y is the move that makes the division cancel. Without it the answer still comes out, but with an extra line of cancelling aˣ against aˣ.",
+        "lines": [
+          "The curve itself says aˣ = y, so replace aˣ in the derivative:",
+          "m = dy/dx = y logₑa"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That aˣ is y itself, so dy/dx = y logₑa.",
+          "accept": [
+            "a to the x is y so the derivative is y log a",
+            "replace a power x by y",
+            "dy by dx equals y times log a",
+            "a power x ante y ye kabatti dy by dx equals y log a",
+            "the derivative is the curve times log a",
+            "write the slope in terms of y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y log a",
+            "a power x is y",
+            "in terms of y",
+            "slope"
+          ]
+        },
+        "why": "The subtangent formula divides y by m, so writing m with a y in it is what allows the two y's to cancel. This is the same step used on y = b eˣ⁄ᵃ, where the slope becomes y/a.",
+        "common_mistakes": [
+          "Leaving the slope as aˣ logₑa and dividing aˣ by aˣ later, which works but takes an extra line.",
+          "Writing m = y + logₑa, adding instead of multiplying.",
+          "Writing m = logₑy, replacing the wrong part of the expression."
+        ],
+        "memory_tip": "An exponential curve is its own derivative up to a constant. For y = aˣ that constant is logₑa, so m = y logₑa."
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "The subtangent is 1/logₑa",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. y cancels, so nothing about the point is left. Say that in words — a \"show that it is constant\" answer is not complete until the absence of x and y is stated.",
+        "lines": [
+          "Length of the subtangent = y/m",
+          "= y ÷ (y logₑa)",
+          "= 1/logₑa",
+          "logₑa is a fixed number once the base a is fixed, and no x or y is left.",
+          "So the subtangent has the same value at every point of the curve.",
+          {
+            "text": "∴ the length of the subtangent = 1/logₑa, a constant",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y/m = y ÷ (y logₑa) = 1/logₑa, which contains no x or y and is therefore constant.",
+          "accept": [
+            "divide y by y log a and the y cancels",
+            "the subtangent is one by log a",
+            "there is no x or y left so it is constant",
+            "y cancel ayipoyi one by log a migulutundi",
+            "log a is fixed for a fixed base",
+            "the length is the same at every point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by log a",
+            "y cancels",
+            "constant",
+            "no x or y"
+          ]
+        },
+        "why": "Dividing y by y logₑa removes y completely, leaving a number built only from the base of the exponential. That is what makes the length the same wherever the point is taken.",
+        "common_mistakes": [
+          "Writing the answer as logₑa instead of 1/logₑa, inverting it the wrong way.",
+          "Writing y/logₑa, cancelling only one of the two y's.",
+          "Giving the value without saying that it does not depend on the point."
+        ],
+        "memory_tip": "y over y log a leaves one over log a. The y disappears, and only the base decides the answer."
+      }
+    ]
+  }
+}

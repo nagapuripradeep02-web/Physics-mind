@@ -11,10 +11,10 @@
     "name": "Trigonometric Ratios and Transformations"
   },
   "chapter": "Trigonometric Ratios and Transformations",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 8,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
   "question_text": "Prove that tanA + cotA = 2 cosec2A.",
   "appearances": [
     {
@@ -23,14 +23,6 @@
     }
   ],
   "mark_split": [
-    {
-      "label": "Write both as fractions",
-      "marks": 1
-    },
-    {
-      "label": "Add over a common denominator",
-      "marks": 1
-    },
     {
       "label": "Introduce the double angle",
       "marks": 1
@@ -43,23 +35,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 63.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18. The book pairs it with 63.2 and notes \"First 2 same\" — the two differ only in a sign. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 63.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 18. The book pairs it with 63.2 and notes \"First 2 same\" — the two differ only in a sign. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 45 i. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the double angle step and on the closing line, and the remaining steps stay on the page as unmarked working. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "Trigonometric Ratios · 4 marks"
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
     ],
     "steps": [
       {
         "id": "s1_write_both_as_fractions",
         "kind": "equation",
         "label": "Write both as fractions",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "First mark. tan and cot are both ratios of sine and cosine. Writing them out is what lets them be added over a common denominator.",
-        "memory_tip": "tan and cot are both ratios of sine and cosine — write them out to add over a common denominator.",
+        "marks": 0,
+        "margin_note": "tan and cot are both ratios of sine and cosine. Writing them out is what lets them be added over a common denominator.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,16 +84,15 @@
         "common_mistakes": [
           "Leaving tan and cot as they are and looking for a formula.",
           "Writing cot A as 1/cos A."
-        ]
+        ],
+        "memory_tip": "tan and cot are both ratios of sine and cosine — write them out to add over a common denominator."
       },
       {
         "id": "s2_add_over_a_common_denomi",
         "kind": "equation",
         "label": "Add over a common denominator",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "Second mark. The numerator becomes sin²A + cos²A, which is 1 — the identity that makes this whole question short.",
-        "memory_tip": "The numerator is sin²A + cos²A, which is 1 — the identity that makes this short.",
+        "marks": 0,
+        "margin_note": "The numerator becomes sin²A + cos²A, which is 1 — the identity that makes this whole question short.",
         "lines": [
           "= (sin²A + cos²A)/(sinA cosA)",
           "= 1/(sinA cosA)   [∵ sin²A + cos²A = 1]"
@@ -134,7 +123,8 @@
         "common_mistakes": [
           "Adding the numerators without a common denominator.",
           "Writing sin²A + cos²A as sin2A."
-        ]
+        ],
+        "memory_tip": "The numerator is sin²A + cos²A, which is 1 — the identity that makes this short."
       },
       {
         "id": "s3_introduce_the_double_ang",
@@ -142,8 +132,7 @@
         "label": "Introduce the double angle",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. The answer is in 2A, so a 2A has to be manufactured. Multiplying top and bottom by 2 turns 2 sinA cosA into sin2A.",
-        "memory_tip": "The answer is in 2A, so manufacture one: doubling top and bottom turns 2 sinA cosA into sin2A.",
+        "margin_note": "First mark. The answer is in 2A, so a 2A has to be manufactured. Multiplying top and bottom by 2 turns 2 sinA cosA into sin2A.",
         "lines": [
           "= 2/(2 sinA cosA)",
           "= 2/sin2A   [∵ sin2A = 2 sinA cosA]"
@@ -174,7 +163,8 @@
         "common_mistakes": [
           "Multiplying only the denominator by 2.",
           "Writing sinA cosA = sin2A without the 2."
-        ]
+        ],
+        "memory_tip": "The answer is in 2A, so manufacture one: doubling top and bottom turns 2 sinA cosA into sin2A."
       },
       {
         "id": "s4_convert_to_cosec",
@@ -183,7 +173,6 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. 1/sin is cosec, so 2/sin2A is 2 cosec2A. Name the reciprocal rather than leaving the fraction.",
-        "memory_tip": "1/sin is cosec, so 2/sin2A is 2 cosec 2A. Name the reciprocal.",
         "lines": [
           {
             "text": "= 2 cosec2A = R.H.S",
@@ -215,7 +204,8 @@
         "common_mistakes": [
           "Leaving the answer as 2/sin2A.",
           "Writing sec instead of cosec."
-        ]
+        ],
+        "memory_tip": "1/sin is cosec, so 2/sin2A is 2 cosec 2A. Name the reciprocal."
       }
     ]
   }

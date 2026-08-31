@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_log_sec_x_plus_tan_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If y = log(sec x + tan x), find dy/dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply the log chain rule",
+      "marks": 1
+    },
+    {
+      "label": "Take sec x common and cancel",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 4. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer sec x was checked numerically before it was written: the central difference quotient reads 1.0467516 at x = 0.3 against sec(0.3) = 1.0467516, and 1.8508157 at x = 1 against sec(1) = 1.8508157."
+  },
+  "recall_prompt": "Say how you would do this one — say what you differentiate first and what cancels at the end.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_log_chain",
+        "kind": "equation",
+        "label": "Apply the log chain rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. log u differentiates to (1/u)·du/dx. Both terms inside must be differentiated: sec x gives sec x tan x and tan x gives sec²x.",
+        "memory_tip": "The bracket inside the log becomes the denominator, written out unchanged; its derivative is what goes on top.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = log(sec x + tan x),  where log is the natural logarithm.",
+          "For u = sec x + tan x,  d/dx(log u) = (1/u) · du/dx",
+          "du/dx = d/dx(sec x) + d/dx(tan x) = sec x tan x + sec²x",
+          "∴ dy/dx = (sec x tan x + sec²x)/(sec x + tan x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dx(log u) = (1/u)·du/dx, with du/dx = sec x tan x + sec²x over the denominator sec x + tan x.",
+          "accept": [
+            "log u differentiates to one over u times du by dx",
+            "the bracket goes to the denominator and its derivative goes on top",
+            "sec x gives sec x tan x and tan x gives sec squared x",
+            "log lo unna bracket kinda vasthundi, daani derivative paina",
+            "one by sec x plus tan x times the derivative of the bracket"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one over u",
+            "sec x tan x",
+            "sec squared x",
+            "denominator"
+          ]
+        },
+        "why": "Both derivatives inside the bracket are standard results, so this line is fully earned by quoting them correctly. Writing the fraction before simplifying also protects the mark if the cancelling is then missed.",
+        "common_mistakes": [
+          "Writing d/dx(sec x) = sec²x, confusing it with the derivative of tan x.",
+          "Differentiating the denominator as well, as though it were a quotient."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Take sec x common and cancel",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. sec x is a common factor of both numerator terms. Once it is taken out, the bracket that remains is exactly the denominator, so it cancels.",
+        "memory_tip": "This is a standard result worth knowing on sight: log(sec x + tan x) differentiates to sec x, with nothing left over.",
+        "lines": [
+          "Take sec x common in the numerator:",
+          "sec x tan x + sec²x = sec x(tan x + sec x)",
+          "∴ dy/dx = sec x(sec x + tan x)/(sec x + tan x)",
+          {
+            "text": "∴ dy/dx = sec x",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sec x is taken common, the bracket cancels with the denominator, and dy/dx = sec x.",
+          "accept": [
+            "take sec x common and the bracket cancels",
+            "the answer is sec x",
+            "numerator becomes sec x into sec x plus tan x so it cancels",
+            "sec x common teeste bracket cancel avuthundi",
+            "everything cancels and only sec x is left"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sec x common",
+            "cancels",
+            "sec x",
+            "bracket"
+          ]
+        },
+        "why": "The cancelling is what makes this a two-mark question rather than a messy one. An answer left as the unsimplified fraction is not wrong, but the examiner is looking for the clean sec x.",
+        "common_mistakes": [
+          "Stopping at the unsimplified fraction and not taking sec x common.",
+          "Cancelling sec x with sec x in the denominator instead of cancelling the whole bracket."
+        ]
+      }
+    ]
+  }
+}

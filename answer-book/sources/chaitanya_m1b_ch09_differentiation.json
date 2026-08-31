@@ -1,0 +1,386 @@
+{
+  "source_book": "Sri Chaitanya — FAST TRACK IPE for Jr. Students, Mathematics-IB (2026-27 edition)",
+  "scan_file": "DocScanner.pdf",
+  "scan_sha256": "e1156b3681735d955213ff1df1a965c81c20cea765242036d1203d1c5c881c16",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring. Stems restated in our own wording; the mathematics is exact. No solution content from the source book appears in this file, by policy.",
+  "chapter": { "number": 9, "printed_title": "DIFFERENTIATION" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null,
+      "stars": 1, "printed_page": 192, "scan_page": 58,
+      "stem": "Find the derivative of a²e^(x²).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null,
+      "stars": 3, "printed_page": 192, "scan_page": 58,
+      "stem": "Find the derivative of 7^(x³+3x).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null,
+      "stars": 3, "printed_page": 192, "scan_page": 58,
+      "stem": "Find the derivative of sec(√(tan x)).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null,
+      "stars": 3, "printed_page": 192, "scan_page": 58,
+      "stem": "If y = log(sec x + tan x), find dy/dx.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null,
+      "stars": 1, "printed_page": 192, "scan_page": 58,
+      "stem": "Find the derivative of (cot⁻¹(x³))².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null,
+      "stars": 3, "printed_page": 192, "scan_page": 58,
+      "stem": "If f(x) = sin(log x), x > 0, find f′(x).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null,
+      "stars": 1, "printed_page": 192, "scan_page": 58,
+      "stem": "Find the derivative of eˣ(x² + 1).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null,
+      "stars": 3, "printed_page": 192, "scan_page": 58,
+      "stem": "If y = cosec⁻¹(e^(2x+1)), find dy/dx.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null,
+      "stars": 0, "printed_page": 193, "scan_page": 59,
+      "stem": "If f(x) = log(tan eˣ), find f′(x).",
+      "appearance_years": [],
+      "notes": "Scan 59 has its left margin cropped, so the question number is clipped and a leading star prefix, if any, is not visible. Recorded as 0 stars; verify against a clean copy before relying on the star count." },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null,
+      "stars": 0, "printed_page": 193, "scan_page": 59,
+      "stem": "Find the derivative of the function tan⁻¹(log x).",
+      "appearance_years": [],
+      "notes": "Scan 59 left margin cropped — a leading star prefix, if any, is not visible. Recorded as 0 stars." },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null,
+      "stars": 0, "printed_page": 193, "scan_page": 59,
+      "stem": "If x^(2/3) + y^(2/3) = a^(2/3), show that dy/dx = −∛(y/x).",
+      "appearance_years": [],
+      "notes": "Scan 59 left margin cropped — a leading star prefix, if any, is not visible. Recorded as 0 stars." },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null,
+      "stars": 1, "printed_page": 193, "scan_page": 59,
+      "stem": "If y = e^(a sin⁻¹x), prove that dy/dx = ay/√(1 − x²).",
+      "appearance_years": [],
+      "notes": "Scan 59 left margin cropped; the single star is read through the crop and could be more than one." },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null,
+      "stars": 1, "printed_page": 193, "scan_page": 59,
+      "stem": "If y = log(sin(log x)), find dy/dx.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null,
+      "stars": 0, "printed_page": 193, "scan_page": 59,
+      "stem": "If y = sin⁻¹√x, find dy/dx.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15i", "section": "VSAQ", "number": 15, "part": "i",
+      "stars": 3, "printed_page": 193, "scan_page": 59,
+      "stem": "If f(x) = 1 + x + x² + x³ + ⋯ + x¹⁰⁰, find f′(1).",
+      "appearance_years": [],
+      "notes": "The stars are printed on the sub-part (15.***i)), not on the question number." },
+
+    { "ref": "vsaq15ii", "section": "VSAQ", "number": 15, "part": "ii",
+      "stars": 1, "printed_page": 193, "scan_page": 59,
+      "stem": "If f(x) = 1 + x + x² + ⋯ + xⁿ, find f′(1).",
+      "appearance_years": [],
+      "notes": "The star is printed on the sub-part (*ii))." },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null,
+      "stars": 3, "printed_page": 194, "scan_page": 60,
+      "stem": "Find the derivative of xeˣ sin x.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null,
+      "stars": 1, "printed_page": 194, "scan_page": 60,
+      "stem": "If f(x) = x²2ˣ log x, x > 0, find f′(x).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq18i", "section": "VSAQ", "number": 18, "part": "i",
+      "stars": 1, "printed_page": 194, "scan_page": 60,
+      "stem": "Find the derivative of y = cos⁻¹(4x³ − 3x).",
+      "appearance_years": [],
+      "notes": "The star is printed on the sub-part (*i))." },
+
+    { "ref": "vsaq18ii", "section": "VSAQ", "number": 18, "part": "ii",
+      "stars": 1, "printed_page": 194, "scan_page": 60,
+      "stem": "Find the derivative of tan⁻¹(√((1 − cos x)/(1 + cos x))).",
+      "appearance_years": [],
+      "notes": "The star is printed on the sub-part (*ii))." },
+
+    { "ref": "vsaq19i", "section": "VSAQ", "number": 19, "part": "i",
+      "stars": 1, "printed_page": 194, "scan_page": 60,
+      "stem": "Find the derivative of tan⁻¹((√(1 + x²) − 1)/x).",
+      "appearance_years": [],
+      "notes": "Question 19 is printed with a sub-part label \"i)\" but has no \"ii)\" — the single part is the whole question. The star sits on the sub-part." },
+
+    { "ref": "vsaq20", "section": "VSAQ", "number": 20, "part": null,
+      "stars": 3, "printed_page": 194, "scan_page": 60,
+      "stem": "If y = sin⁻¹(3x − 4x³), find dy/dx.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq21", "section": "VSAQ", "number": 21, "part": null,
+      "stars": 3, "printed_page": 195, "scan_page": 61,
+      "stem": "If y = sin⁻¹(2x/(1 + x²)), find dy/dx.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq22", "section": "VSAQ", "number": 22, "part": null,
+      "stars": 3, "printed_page": 195, "scan_page": 61,
+      "stem": "If x = a cos³t and y = a sin³t, find dy/dx.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq23i", "section": "VSAQ", "number": 23, "part": "i",
+      "stars": 1, "printed_page": 195, "scan_page": 61,
+      "stem": "Find dy/dx if x³ + y³ − 3axy = 0.",
+      "appearance_years": [],
+      "notes": "The star is printed on the sub-part (*(i))." },
+
+    { "ref": "vsaq23ii", "section": "VSAQ", "number": 23, "part": "ii",
+      "stars": 3, "printed_page": 195, "scan_page": 61,
+      "stem": "Find dy/dx if 2x² − 3xy + y² + x + 2y − 8 = 0.",
+      "appearance_years": [],
+      "notes": "The stars are printed on the sub-part (***(ii))." },
+
+    { "ref": "vsaq24", "section": "VSAQ", "number": 24, "part": null,
+      "stars": 1, "printed_page": 195, "scan_page": 61,
+      "stem": "Find the derivative of xˣ.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq25", "section": "VSAQ", "number": 25, "part": null,
+      "stars": 1, "printed_page": 195, "scan_page": 61,
+      "stem": "Find the derivative of eˣ with respect to √x.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq26", "section": "VSAQ", "number": 26, "part": null,
+      "stars": 3, "printed_page": 195, "scan_page": 61,
+      "stem": "If y = ae^(nx) + be^(−nx), show that y″ = n²y.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq27", "section": "VSAQ", "number": 27, "part": null,
+      "stars": 3, "printed_page": 196, "scan_page": 62,
+      "stem": "Find the second order derivative of y = tan⁻¹(2x/(1 − x²)).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq28", "section": "VSAQ", "number": 28, "part": null,
+      "stars": 3, "printed_page": 196, "scan_page": 62,
+      "stem": "If y = x + tan x, show that cos²x · d²y/dx² + 2x = 2y.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq29", "section": "VSAQ", "number": 29, "part": null,
+      "stars": 0, "printed_page": 196, "scan_page": 62,
+      "stem": "If y = (2x + 3)/(4x + 5), find y″.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq30", "section": "VSAQ", "number": 30, "part": null,
+      "stars": 0, "printed_page": 196, "scan_page": 62,
+      "stem": "If y = log(4x² − 9), find y″.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq31", "section": "VSAQ", "number": 31, "part": null,
+      "stars": 3, "printed_page": 197, "scan_page": 63,
+      "stem": "If x = tan(e^(−y)), prove that dy/dx = −eʸ/(1 + x²).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1i", "section": "SAQ", "number": 1, "part": "i",
+      "stars": 3, "printed_page": 197, "scan_page": 63,
+      "stem": "Find the derivative of sin 2x from the first principle with respect to x.",
+      "appearance_years": ["Mar-2018(AP)", "2015(TS)", "2016", "2010", "2002"],
+      "notes": "Question 1 carries one shared instruction (\"Find the derivative of the following functions from the first principle w.r to x\") over nine sub-parts; each is emitted separately. The appearance-year tag is printed on this sub-part only." },
+
+    { "ref": "saq1ii", "section": "SAQ", "number": 1, "part": "ii",
+      "stars": 3, "printed_page": 197, "scan_page": 63,
+      "stem": "Find the derivative of cos(ax) from the first principle with respect to x.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1iii", "section": "SAQ", "number": 1, "part": "iii",
+      "stars": 3, "printed_page": 197, "scan_page": 63,
+      "stem": "Find the derivative of tan 2x from the first principle with respect to x.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1iv", "section": "SAQ", "number": 1, "part": "iv",
+      "stars": 3, "printed_page": 197, "scan_page": 63,
+      "stem": "Find the derivative of cot x from the first principle with respect to x.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1v", "section": "SAQ", "number": 1, "part": "v",
+      "stars": 3, "printed_page": 197, "scan_page": 63,
+      "stem": "Find the derivative of sec 3x from the first principle with respect to x.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1vi", "section": "SAQ", "number": 1, "part": "vi",
+      "stars": 3, "printed_page": 197, "scan_page": 63,
+      "stem": "Find the derivative of cos²x from the first principle with respect to x.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1vii", "section": "SAQ", "number": 1, "part": "vii",
+      "stars": 3, "printed_page": 197, "scan_page": 63,
+      "stem": "Find the derivative of x sin x from the first principle with respect to x.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1viii", "section": "SAQ", "number": 1, "part": "viii",
+      "stars": 1, "printed_page": 197, "scan_page": 63,
+      "stem": "Find the derivative of √(x + 1) from the first principle with respect to x.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1ix", "section": "SAQ", "number": 1, "part": "ix",
+      "stars": 1, "printed_page": 197, "scan_page": 63,
+      "stem": "Find the derivative of log x from the first principle with respect to x.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq2", "section": "SAQ", "number": 2, "part": null,
+      "stars": 3, "printed_page": 199, "scan_page": 65,
+      "stem": "If xʸ = e^(x−y), show that dy/dx = log x/(1 + log x)².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq3", "section": "SAQ", "number": 3, "part": null,
+      "stars": 1, "printed_page": 200, "scan_page": 66,
+      "stem": "If y = xʸ, show that dy/dx = y²/(x(1 − log y)) = y²/(x(1 − y log x)).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq4", "section": "SAQ", "number": 4, "part": null,
+      "stars": 3, "printed_page": 200, "scan_page": 66,
+      "stem": "If sin y = x sin(a + y), show that dy/dx = sin²(a + y)/sin a, where a is not a multiple of π.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq5", "section": "SAQ", "number": 5, "part": null,
+      "stars": 1, "printed_page": 200, "scan_page": 66,
+      "stem": "Find the derivative of the function log[(x² + x + 2)/(x² − x + 2)].",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq6", "section": "SAQ", "number": 6, "part": null,
+      "stars": 1, "printed_page": 200, "scan_page": 66,
+      "stem": "Find dy/dx for the function x = a(cos t + t sin t), y = a(sin t − t cos t).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq7", "section": "SAQ", "number": 7, "part": null,
+      "stars": 0, "printed_page": 201, "scan_page": 67,
+      "stem": "If x = 3 cos t − 2 cos³t and y = 3 sin t − 2 sin³t, find dy/dx.",
+      "appearance_years": [],
+      "notes": "Scan 67 has its left margin cropped, so a leading star prefix on this question number, if any, is not visible. Recorded as 0 stars." },
+
+    { "ref": "saq8", "section": "SAQ", "number": 8, "part": null,
+      "stars": 0, "printed_page": 201, "scan_page": 67,
+      "stem": "If y = tan⁻¹√((1 − x)/(1 + x)), |x| < 1, find dy/dx.",
+      "appearance_years": [],
+      "notes": "Scan 67 left margin cropped — a leading star prefix, if any, is not visible. Recorded as 0 stars." },
+
+    { "ref": "saq9", "section": "SAQ", "number": 9, "part": null,
+      "stars": 0, "printed_page": 201, "scan_page": 67,
+      "stem": "Find the derivative of tan⁻¹((3a²x − x³)/(a(a² − 3x²))).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq10", "section": "SAQ", "number": 10, "part": null,
+      "stars": 0, "printed_page": 201, "scan_page": 67,
+      "stem": "Find dy/dx for x = a((1 − t²)/(1 + t²)), y = 2bt/(1 + t²).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq11", "section": "SAQ", "number": 11, "part": null,
+      "stars": 3, "printed_page": 202, "scan_page": 68,
+      "stem": "If f(x) = tan⁻¹((√(1 + x²) − 1)/x) and g(x) = tan⁻¹x, differentiate f(x) with respect to g(x).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq12", "section": "SAQ", "number": 12, "part": null,
+      "stars": 3, "printed_page": 202, "scan_page": 68,
+      "stem": "Find the derivative of tan⁻¹(sec x + tan x).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq13", "section": "SAQ", "number": 13, "part": null,
+      "stars": 1, "printed_page": 202, "scan_page": 68,
+      "stem": "If y = a cos x + (b + 2x) sin x, show that y″ + y = 4 cos x.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq14", "section": "SAQ", "number": 14, "part": null,
+      "stars": 3, "printed_page": 203, "scan_page": 69,
+      "stem": "If y = ax^(n+1) + bx^(−n), prove that x²y″ = n(n + 1)y.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq15", "section": "SAQ", "number": 15, "part": null,
+      "stars": 3, "printed_page": 203, "scan_page": 69,
+      "stem": "If y = a cos(sin x) + b sin(sin x), prove that y₂ + (tan x)y₁ + y cos²x = 0.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq16", "section": "SAQ", "number": 16, "part": null,
+      "stars": 1, "printed_page": 203, "scan_page": 69,
+      "stem": "If x = a(t − sin t) and y = a(1 + cos t), find d²y/dx².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq17", "section": "SAQ", "number": 17, "part": null,
+      "stars": 3, "printed_page": 203, "scan_page": 69,
+      "stem": "If ay⁴ = (x + b)⁵, show that 5yy″ = (y′)².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq1", "section": "LAQ", "number": 1, "part": null,
+      "stars": 3, "printed_page": 203, "scan_page": 69,
+      "stem": "If √(1 − x²) + √(1 − y²) = a(x − y), show that dy/dx = √((1 − y²)/(1 − x²)).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq2i", "section": "LAQ", "number": 2, "part": "i",
+      "stars": 0, "printed_page": 204, "scan_page": 70,
+      "stem": "Find dy/dx if y = (sin x)ˣ + x^(sin x).",
+      "appearance_years": [],
+      "notes": "Question 2 carries one shared instruction (\"Find dy/dx if\") over two sub-parts; the stars sit on the sub-parts, and this one is unstarred." },
+
+    { "ref": "laq2ii", "section": "LAQ", "number": 2, "part": "ii",
+      "stars": 3, "printed_page": 204, "scan_page": 70,
+      "stem": "Find dy/dx if y = x^(tan x) + (sin x)^(cos x).",
+      "appearance_years": [],
+      "notes": "The stars are printed on the sub-part (***ii))." },
+
+    { "ref": "laq3", "section": "LAQ", "number": 3, "part": null,
+      "stars": 3, "printed_page": 205, "scan_page": 71,
+      "stem": "If y = tan⁻¹[(√(1 + x²) + √(1 − x²))/(√(1 + x²) − √(1 − x²))] for 0 < |x| < 1, find dy/dx.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq4", "section": "LAQ", "number": 4, "part": null,
+      "stars": 3, "printed_page": 205, "scan_page": 71,
+      "stem": "If y = x√(a² + x²) + a² log(x + √(a² + x²)), prove that dy/dx = 2√(a² + x²).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq5", "section": "LAQ", "number": 5, "part": null,
+      "stars": 1, "printed_page": 205, "scan_page": 71,
+      "stem": "If xʸ = yˣ, show that dy/dx = y(x log y − y)/(x(y log x − x)).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq6", "section": "LAQ", "number": 6, "part": null,
+      "stars": 0, "printed_page": 206, "scan_page": 72,
+      "stem": "If x^(log y) = log x, show that dy/dx = (y/x)[(1 − log x log y)/(log x)²].",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq7", "section": "LAQ", "number": 7, "part": null,
+      "stars": 3, "printed_page": 206, "scan_page": 72,
+      "stem": "If xʸ + yˣ = aᵇ, show that dy/dx = −[(yx^(y−1) + yˣ log y)/(xʸ log x + xy^(x−1))].",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq8", "section": "LAQ", "number": 8, "part": null,
+      "stars": 3, "printed_page": 206, "scan_page": 72,
+      "stem": "If f(x) = sin⁻¹√((x − β)/(α − β)) and g(x) = tan⁻¹√((x − β)/(α − x)), show that f′(x) = g′(x), where β < x < α.",
+      "appearance_years": [],
+      "notes": "The printed g(x) radicand runs into the page edge on scan 72; read as (x − β)/(α − x)." },
+
+    { "ref": "laq9", "section": "LAQ", "number": 9, "part": null,
+      "stars": 3, "printed_page": 207, "scan_page": 73,
+      "stem": "If y = tan⁻¹(2x/(1 − x²)) + tan⁻¹((3x − x³)/(1 − 3x²)) − tan⁻¹((4x − 4x³)/(1 − 6x² + x⁴)), show that dy/dx = 1/(1 + x²).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq10", "section": "LAQ", "number": 10, "part": null,
+      "stars": 1, "printed_page": 207, "scan_page": 73,
+      "stem": "Find the derivative dy/dx of the function y = [(1 − 2x)^(2/3)(1 + 3x)^(−3/4)]/[(1 − 6x)^(5/6)(1 + 7x)^(−6/7)].",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq11", "section": "LAQ", "number": 11, "part": null,
+      "stars": 3, "printed_page": 208, "scan_page": 74,
+      "stem": "Find the derivative of f(x) = tan⁻¹(2x/(1 − x²)) with respect to g(x) = sin⁻¹(2x/(1 + x²)).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq12", "section": "LAQ", "number": 12, "part": null,
+      "stars": 1, "printed_page": 208, "scan_page": 74,
+      "stem": "If a > b > 0 and 0 < x < π, and f(x) = (a² − b²)^(−1/2) cos⁻¹((a cos x + b)/(a + b cos x)), show that f′(x) = 1/(a + b cos x).",
+      "appearance_years": [], "notes": null }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_define_reflexive_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define a reflexive relation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the definition",
+      "marks": 1
+    },
+    {
+      "label": "Check it on an example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.8, chapter 1 SETS & RELATIONS, Very Short Answer question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer this — give the definition with its quantifier, and say what your example has to be checked against.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "State the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. The words for every a ∈ A carry the definition. One missing pair (a, a) is enough to make the relation not reflexive, so the condition must be stated for all of A.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let R be a relation on a set A, that is R ⊆ A × A.",
+          "R is called reflexive if",
+          "(a, a) ∈ R  for every a ∈ A",
+          "So every element of A must be related to itself."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R on A is reflexive when (a, a) ∈ R for every a ∈ A.",
+          "accept": [
+            "a comma a is in R for every a in A",
+            "every element is related to itself",
+            "all the pairs a a must be in the relation",
+            "prathi element tanaki tanu related ga undali",
+            "reflexive means a R a holds for all a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a comma a",
+            "every a",
+            "related to itself",
+            "reflexive"
+          ]
+        },
+        "why": "Reflexive is a condition on all of A, not on part of it, so the quantifier is the part being marked. A definition that says some a instead of every a describes a different and much weaker property.",
+        "memory_tip": "Reflexive means every element is related to itself — look for the full list (1,1), (2,2), (3,3).",
+        "common_mistakes": [
+          "Writing (a, a) ∈ R for some a ∈ A, which is a far weaker condition.",
+          "Writing a R b ⇒ b R a, which is symmetric, not reflexive.",
+          "Stating the condition without saying R is a relation on one set A."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Check it on an example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Second mark. Check the elements of A one at a time. The extra pair (1, 3) is allowed — a reflexive relation may hold more pairs than the (a, a) ones.",
+        "lines": [
+          "Take A = {1, 2, 3} and",
+          "R = {(1, 1), (2, 2), (3, 3), (1, 3)}",
+          "Check each element of A in turn:",
+          "1 gives (1, 1) ∈ R,   2 gives (2, 2) ∈ R,   3 gives (3, 3) ∈ R",
+          {
+            "text": "∴ R is a reflexive relation on A.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every element of A is checked and its (a, a) pair is found in R, so R is reflexive.",
+          "accept": [
+            "one one two two and three three are all in R so it is reflexive",
+            "check every element of A one by one",
+            "the extra pair one three does not stop it being reflexive",
+            "moodu elements ki kuda a a pairs unnayi kabatti reflexive",
+            "all three self pairs are present"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one one",
+            "two two",
+            "three three",
+            "reflexive",
+            "extra pair"
+          ]
+        },
+        "why": "The example shows the definition asks only for the pairs (a, a) to be present. Nothing is said about the other pairs, so (1, 3) sitting in R does not affect the answer.",
+        "memory_tip": "Read down the elements of A, not down the list of pairs — a missing element is easier to see that way.",
+        "common_mistakes": [
+          "Thinking (1, 3) must be matched by (3, 1) before R can be reflexive.",
+          "Checking two elements of A and stopping before the third.",
+          "Calling R reflexive when it holds (1, 1) and (2, 2) but the set A also contains 3."
+        ]
+      }
+    ]
+  }
+}

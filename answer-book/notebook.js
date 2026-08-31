@@ -392,6 +392,19 @@
   /** "Asked: TS 2012, 2004 · AP 2026" from a question's appearances[]. Board absent
       = TS (the historical meaning). Empty appearances → null (no line, never "Asked:"
       with nothing after it). */
+  /* A source whose book ASKS the question but prints no per-step mark split, and
+     whose priority stars we deliberately do not republish (docs/ORIGINALITY_MATHS.md
+     R1). Both facts matter downstream and neither existing branch stated them:
+     'enumerated' says the book does not contain the question (false here), and the
+     default says the mark split is the book's (false here — it is ours). Vidi prints
+     both to students, so getting this wrong launders an authored split as a sourced
+     one, which is the defect four graders named as the highest-value one in the
+     round-2 corpus. For these sources `stars: 0` means NOT PUBLISHED, not 'the book
+     gave it no star'. */
+  var UNSPLIT_SOURCES = { chaitanya_fastrack: 1 };
+  function bookPrintsSplit(e) { return !!e && e.source !== 'enumerated' && !UNSPLIT_SOURCES[e.source]; }
+  function starsArePublished(e) { return bookPrintsSplit(e); }
+
   function askedLine(q) {
     if (!q || !q.appearances || !q.appearances.length) return null;
     var by = { ts_ipe: [], ap_ipe: [] };
@@ -5202,6 +5215,8 @@
       if (e) {
         out.push(e.source === 'enumerated'
           ? 'STARS: none — this question is PREDICTED BY THIS ANSWER BOOK. The source book does not ask it, so there is no frequency rank and no exam history to report. If you must name who expects it, say this answer book or this card — never the book, which does not contain the question.'
+          : !starsArePublished(e)
+          ? 'STARS: none published. The source book does rank this question, but this answer book does not republish that ranking, so there is no frequency rank to report. Do NOT say the book gives it no star — say no frequency rank is published for it.'
           : 'STARS: ' + e.stars + ' of 3 — the source book’s frequency rank (3 = asked very often, 0 = the book gives it no star). Frequency rank and exam history are separate facts: report each only from the line that states it.'
           + (asked ? ' An Asked line below gives this question’s exam history.'
                    : ' No Asked line is given for this question, so the book records no exam years for it — say that plainly rather than concluding it was never asked.'));
@@ -5224,6 +5239,8 @@
       if (question.verification && question.verification.needs_teacher_verification) {
         out.push(e && e.source === 'enumerated'
           ? 'VERIFICATION: this mark split was authored by THIS ANSWER BOOK for a predicted question; it was not copied from the source book, which does not contain the question, and no board teacher has confirmed it. Call it this answer book’s split or this card’s split — never the book’s.'
+          : e && !bookPrintsSplit(e)
+          ? 'VERIFICATION: the source book asks this question but prints NO per-step mark split for it, so this split was authored by THIS ANSWER BOOK and no board teacher has confirmed it. Call it this answer book’s split or this card’s split — never the book’s.'
           : 'VERIFICATION: this mark split is the source book’s, not yet confirmed by a board teacher.');
       }
       // One examiner-insight sentence. It already opens the deterministic

@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_ex_minus_sin_x_minus_1_over_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 0) (eˣ − sin x − 1)/x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split into two standard limits",
+      "marks": 1
+    },
+    {
+      "label": "Apply both limits and subtract",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 14. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 0 was checked numerically before it was written: the expression reads 5.0003 × 10⁻⁵ at x = 10⁻⁴ and −5.00 × 10⁻⁵ at x = −10⁻⁴, approaching 0 from both sides."
+  },
+  "recall_prompt": "Say how you would do this one — say how you break the numerator up and which two standard limits you use.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split",
+        "kind": "equation",
+        "label": "Split into two standard limits",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Group the numerator as (eˣ − 1) and (sin x), not as eˣ and (sin x + 1). The −1 belongs with eˣ, because eˣ − 1 is the standard form.",
+        "memory_tip": "The lone −1 in the numerator is there to pair with eˣ. Keep them together and both pieces become standard limits.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Putting x = 0 gives 0/0, so the numerator is regrouped first.",
+          "eˣ − sin x − 1 = (eˣ − 1) − sin x",
+          "∴ lim(x → 0) (eˣ − sin x − 1)/x = lim(x → 0) (eˣ − 1)/x − lim(x → 0) (sin x)/x",
+          "Both of these limits exist, so the difference may be taken term by term."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator is regrouped as (eˣ − 1) − sin x, giving (eˣ − 1)/x minus sin x/x.",
+          "accept": [
+            "keep e to the x minus one together and sin x separate",
+            "split it into e power x minus one by x and sin x by x",
+            "regroup the numerator so the minus one goes with e to the x",
+            "e power x minus one ni kalipi rasi, sin x ni veru chesi rayali",
+            "two standard limits, e power x minus one over x and sin x over x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "e power x minus one",
+            "sin x by x",
+            "split",
+            "two standard limits"
+          ]
+        },
+        "why": "Direct substitution gives 0/0. Splitting a limit into a difference is only allowed when each piece has a limit of its own, and both pieces here are the standard limits the chapter is built on, so the split is safe and each piece is already known.",
+        "common_mistakes": [
+          "Grouping as eˣ − (sin x + 1), which leaves neither piece in standard form.",
+          "Splitting the fraction but writing the second piece as sin x, not sin x/x."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Apply both limits and subtract",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Both standard limits equal 1, so the answer is 1 − 1 = 0. Write the two limits out before subtracting — the mark is for using them, not for the zero alone.",
+        "memory_tip": "Both standard limits here are worth exactly 1, so the answer is the difference of two ones.",
+        "lines": [
+          "We know lim(x → 0) (eˣ − 1)/x = 1  and  lim(x → 0) (sin x)/x = 1",
+          "= 1 − 1",
+          {
+            "text": "∴ lim(x → 0) (eˣ − sin x − 1)/x = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both standard limits equal 1, so the value is 1 − 1 = 0.",
+          "accept": [
+            "both limits are one so one minus one is zero",
+            "e power x minus one by x is one and sin x by x is one",
+            "the answer is zero",
+            "rendu limits one, kaabatti answer zero",
+            "one minus one gives zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus one",
+            "zero",
+            "both are one",
+            "standard limit"
+          ]
+        },
+        "why": "Quoting both standard limits is what earns this mark. A bare 0 with no working could have come from substituting x = 0 into the numerator, which is not a valid method.",
+        "common_mistakes": [
+          "Writing 1 + 1 = 2 by missing the minus sign in front of sin x.",
+          "Giving the answer as 0 with no working, so the method mark is lost."
+        ]
+      }
+    ]
+  }
+}

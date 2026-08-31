@@ -11,49 +11,44 @@
     "name": "Pair of Straight Lines"
   },
   "chapter": "Pair of Straight Lines",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 15,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "Find the condition for the chord lx+my=1 of the circle x²+y²=a² to subtend a right angle at the origin.",
   "appearances": [],
   "mark_split": [
-    {
-      "label": "Write the chord and the circle",
-      "marks": 1
-    },
     {
       "label": "Homogenise the circle",
       "marks": 1
     },
     {
       "label": "Collect the coefficients",
-      "marks": 3
+      "marks": 1
     },
     {
       "label": "Apply the right-angle condition",
-      "marks": 3
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 15 PQ, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this practice question. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is well founded rather than guessed: the two homogenisation answers that ARE tagged (answer 12 on book p.24, printed 1+1+2+1+2, and answer 15 on p.26, printed 1+1+1+1+1+2) fix the shape for this exact method, and this answer is cut to match — a mark for clearing the line to '= 1', a mark for the homogenised equation, two for the algebra, and the rest for the closing condition. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS, checked against the book's own printed answer. Precedent: Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Apply the right-angle condition."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.26 — LAQ chapter 2 Pair of Straight Lines (the HOMOGENISATION run, book pp.24-26), answer 15 PQ, on a ★★★ SSP (Super Scoring Page). No appearance years are printed against this practice question. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is well founded rather than guessed: the two homogenisation answers that ARE tagged (answer 12 on book p.24, printed 1+1+2+1+2, and answer 15 on p.26, printed 1+1+1+1+1+2) fix the shape for this exact method, and this answer is cut to match — a mark for clearing the line to '= 1', a mark for the homogenised equation, two for the algebra, and the rest for the closing condition. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS, checked against the book's own printed answer. Precedent: Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Apply the right-angle condition. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the steps now carry 0+1+1+2 instead of 1+1+3+3 — restating the given chord and circle earns no mark of its own at 4 marks. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would solve this — say what subtending a right angle at the origin means for the homogenised pair.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Pair of Straight Lines · 8 marks"
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_write_the_chord_and_circle",
         "kind": "equation",
         "label": "Write the chord and the circle",
-        "marks": 1,
-        "margin_note": "First mark. The chord is already given as lx + my = 1 — exactly the '= 1' form homogenisation needs — so no clearing is required here, unlike the earlier questions in the run.",
-        "memory_tip": "The chord is already in the = 1 form that homogenisation needs.",
+        "marks": 0,
+        "margin_note": "No mark of its own. The chord is already given as lx + my = 1 — exactly the '= 1' form homogenisation needs — so no clearing is required here, unlike the earlier questions in the run.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,15 +84,14 @@
           "Rearranging the chord unnecessarily and introducing a sign error.",
           "Leaving the circle as x² + y² = a² and forgetting to move a² across."
         ],
-        "mark_note": "Method"
+        "memory_tip": "The chord is already in the = 1 form that homogenisation needs."
       },
       {
         "id": "s2_homogenise",
         "kind": "equation",
         "label": "Homogenise the circle",
         "marks": 1,
-        "margin_note": "Second mark. The circle has no linear term at all, so only the constant needs raising — multiply −a² by (lx + my)², the chord squared.",
-        "memory_tip": "No linear term in the circle, so only the constant is raised — multiply −a² by (lx + my)².",
+        "margin_note": "First mark. The circle has no linear term at all, so only the constant needs raising — multiply −a² by (lx + my)², the chord squared.",
         "lines": [
           "From (1) & (2), the homogenised equation is",
           "x² + y² − a²(1)² = 0",
@@ -130,15 +124,15 @@
           "Multiplying the x² and y² terms by the chord as well.",
           "Multiplying the constant by the chord only once."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "No linear term in the circle, so only the constant is raised — multiply −a² by (lx + my)²."
       },
       {
         "id": "s3_collect",
         "kind": "equation",
         "label": "Collect the coefficients",
-        "marks": 3,
-        "margin_note": "Two marks. Expand the square and group by x², y² and xy. Each coefficient carries an a² and the letters l and m, which is what the closing condition will compare.",
-        "memory_tip": "Group by x², y² and xy; every coefficient carries an a².",
+        "marks": 1,
+        "margin_note": "One mark. Expand the square and group by x², y² and xy. Each coefficient carries an a² and the letters l and m, which is what the closing condition will compare.",
         "lines": [
           "⇒ x² + y² − a²(l²x² + m²y² + 2lmxy) = 0",
           "⇒ x²(1 − a²l²) + y²(1 − a²m²) − 2a²lm·xy = 0"
@@ -170,15 +164,15 @@
           "Forgetting the 2 in the 2lmxy cross term.",
           "Dropping a² from one of the three coefficients."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Group by x², y² and xy; every coefficient carries an a²."
       },
       {
         "id": "s4_apply_the_condition",
         "kind": "boxed_final",
         "label": "Apply the right-angle condition",
-        "marks": 3,
-        "margin_note": "The last three marks. 'Subtends a right angle at the origin' is a statement about the two lines from the origin — which is precisely the homogenised pair — so the condition is a + b = 0, the same one used three times earlier in this run.",
-        "memory_tip": "A right angle at the ORIGIN is about the homogenised pair, so the condition is a + b = 0.",
+        "marks": 2,
+        "margin_note": "The last two marks. 'Subtends a right angle at the origin' is a statement about the two lines from the origin — which is precisely the homogenised pair — so the condition is a + b = 0, the same one used three times earlier in this run.",
         "lines": [
           "The chord subtends a right angle AT THE ORIGIN, and the homogenised pair is exactly the pair of lines from the origin to the chord's ends — so that pair must be perpendicular:",
           "Coeff. x² + Coeff. y² = 0",
@@ -216,7 +210,8 @@
           "Using h² = ab, which is the coincident condition from the facing answer.",
           "Forgetting that the two 1's add to 2."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "A right angle at the ORIGIN is about the homogenised pair, so the condition is a + b = 0."
       }
     ]
   }

@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_define_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define a relation from one set to another.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the definition",
+      "marks": 1
+    },
+    {
+      "label": "Show a relation from A to B",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.8, chapter 1 SETS & RELATIONS, Very Short Answer question 21. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer this — give the definition in one line, and say what your example must show before it counts.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "State the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. The one line that earns it is R ⊆ A × B. Say which set comes first — a relation from A to B is not the same as a relation from B to A.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A and B be two non-empty sets.",
+          "A relation R from A to B is any subset of the Cartesian product A × B.",
+          "R ⊆ A × B",
+          "If (a, b) ∈ R we write a R b and say a is related to b.",
+          "The set of all first entries in R is the domain of R, and the set of all second entries is the range of R."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a relation from A to B is a subset of A × B.",
+          "accept": [
+            "a relation from A to B is a subset of A cross B",
+            "any set of ordered pairs taken from A cross B",
+            "R is contained in A cross B",
+            "relation ante A cross B lo oka subset",
+            "pick some of the ordered pairs of the product"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "subset",
+            "A cross B",
+            "ordered pairs",
+            "relation from A to B"
+          ]
+        },
+        "why": "Everything else about relations rests on this one line. Reflexive, symmetric and transitive are all conditions on which pairs the subset contains, so the subset statement has to come first.",
+        "memory_tip": "A relation is a chosen part of A × B — write the whole product, then keep some of the pairs.",
+        "common_mistakes": [
+          "Saying a relation is a subset of A ∪ B instead of A × B.",
+          "Leaving out the direction, so it is not clear which set the first entries come from.",
+          "Describing a relation as a rule only, without saying it is a set of ordered pairs."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Show a relation from A to B",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Second mark. Write A × B in full first, then point at the subset. That shows the relation was chosen from the product rather than written down from nothing.",
+        "lines": [
+          "Take A = {1, 2} and B = {3, 4}.",
+          "A × B = {(1, 3), (1, 4), (2, 3), (2, 4)}",
+          "Any subset of this is a relation from A to B. For example:",
+          {
+            "text": "∴ R = {(1, 3), (2, 4)} is a relation from A to B, with domain {1, 2} and range {3, 4}.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A × B is written out and a subset of it is named as the relation, with its domain and range.",
+          "accept": [
+            "write A cross B first then take a subset like one three and two four",
+            "any subset of the product is a relation",
+            "the domain is the first entries and the range is the second entries",
+            "modata A cross B rasi andulo subset theeskovali",
+            "R is one three and two four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "A cross B",
+            "subset",
+            "domain",
+            "range",
+            "one three"
+          ]
+        },
+        "why": "A relation is defined by being a subset, so the example is only complete when the product it sits inside is also on the page. Naming the domain and range shows the pairs have been read the right way round.",
+        "memory_tip": "Write the whole product first, then keep the pairs you want — those kept pairs are the relation.",
+        "common_mistakes": [
+          "Giving a pair such as (3, 1), whose first entry is in B, so it is not in A × B at all.",
+          "Saying A × B is the only relation from A to B, when every subset of it is one.",
+          "Giving the domain as A when some element of A appears in no pair."
+        ]
+      }
+    ]
+  }
+}

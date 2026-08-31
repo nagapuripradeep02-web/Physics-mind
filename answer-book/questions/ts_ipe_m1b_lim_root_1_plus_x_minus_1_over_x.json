@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_root_1_plus_x_minus_1_over_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 0) (√(1 + x) − 1)/x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Multiply by the conjugate",
+      "marks": 1
+    },
+    {
+      "label": "Cancel x and substitute",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.184, chapter 8 LIMITS, Short & Very Short Answer question 1. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what form the expression takes at x = 0 and what you multiply above and below by.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conjugate",
+        "kind": "equation",
+        "label": "Multiply by the conjugate",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Name the 0/0 indeterminate form, then multiply the numerator and the denominator by √(1 + x) + 1. The examiner looks for the conjugate line.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "At x = 0, √(1 + x) − 1 = 0 and x = 0, so the expression is of the indeterminate form 0/0.",
+          "Multiply the numerator and the denominator by the conjugate √(1 + x) + 1.",
+          "lim(x → 0) (√(1 + x) − 1)/x",
+          "= lim(x → 0) [(√(1 + x) − 1)(√(1 + x) + 1)] / [x(√(1 + x) + 1)]",
+          "= lim(x → 0) (1 + x − 1) / [x(√(1 + x) + 1)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the form is 0/0 and that the numerator and denominator are multiplied by the conjugate √(1 + x) + 1.",
+          "accept": [
+            "it is zero by zero so multiply by the conjugate root one plus x plus one",
+            "rationalise the numerator using the conjugate",
+            "multiply above and below by root one plus x plus one",
+            "conjugate tho numerator ni multiply cheyyali",
+            "the numerator becomes one plus x minus one which is x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "conjugate",
+            "zero by zero",
+            "root one plus x",
+            "rationalise"
+          ]
+        },
+        "why": "Substituting x = 0 gives 0/0, which is not a value, so the expression has to be rewritten before the limit can be read. The conjugate turns the numerator into (1 + x) − 1 = x, and that x is what cancels the x below.",
+        "common_mistakes": [
+          "Writing 0/0 as the answer instead of rewriting the expression.",
+          "Multiplying only the numerator by the conjugate and leaving the denominator as x."
+        ],
+        "memory_tip": "A square root minus a number over x is a conjugate question every time: multiply above and below by the same bracket with the middle sign changed."
+      },
+      {
+        "id": "s2_cancel_and_substitute",
+        "kind": "boxed_final",
+        "label": "Cancel x and substitute",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. After the x cancels the form is no longer 0/0, so x = 0 may be substituted. Show the cancelled line before substituting.",
+        "lines": [
+          "= lim(x → 0) x / [x(√(1 + x) + 1)]",
+          "= lim(x → 0) 1/(√(1 + x) + 1)",
+          "This expression is defined at x = 0, so substitute x = 0.",
+          "= 1/(√1 + 1) = 1/2",
+          {
+            "text": "∴ lim(x → 0) (√(1 + x) − 1)/x = 1/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the x cancels, leaving 1/(√(1 + x) + 1), and substituting x = 0 gives 1/2.",
+          "accept": [
+            "the x cancels and one over root one plus x plus one gives one half",
+            "substitute zero to get one over one plus one",
+            "the answer is one by two",
+            "x cancel ayyaka zero substitute cheste one by two",
+            "the limit is half"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one half",
+            "one by two",
+            "cancels",
+            "substitute zero"
+          ]
+        },
+        "why": "Only the cancellation removes the indeterminate form; substitution is valid after it and not before. The value checks numerically: at x = 0.0001 the expression is 0.49999.",
+        "common_mistakes": [
+          "Substituting x = 0 before cancelling and writing 0/0 again.",
+          "Dropping the + 1 in the denominator and giving 1 as the answer."
+        ],
+        "memory_tip": "The denominator ends as √1 + 1 = 2, so this standard result is 1/2. Store it: (√(1 + x) − 1)/x → 1/2 as x → 0."
+      }
+    ]
+  }
+}

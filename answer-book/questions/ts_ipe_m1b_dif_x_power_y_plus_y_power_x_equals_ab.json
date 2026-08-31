@@ -1,0 +1,285 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_x_power_y_plus_y_power_x_equals_ab",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If xʸ + yˣ = aᵇ, show that dy/dx = −[(yx^(y−1) + yˣ log y)/(xʸ log x + xy^(x−1))].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split the left side and use that the right side is constant",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate the first term",
+      "marks": 2
+    },
+    {
+      "label": "Differentiate the second term",
+      "marks": 2
+    },
+    {
+      "label": "Add the two derivatives and collect dy/dx",
+      "marks": 2
+    },
+    {
+      "label": "Make dy/dx the subject",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.206, chapter 9 DIFFERENTIATION, Long Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question, cut on the moves this working takes: one mark for the setup, two for each of the two logarithmic derivatives, two for adding and collecting, one for the final rearrangement. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing, and the working lands on the printed target exactly, including the leading minus sign. It was also checked numerically at the point (x, y) = (2, 3), where xʸ + yˣ = 8 + 9 = 17: the printed formula gives −1.895814136, and solving xʸ + yˣ = 17 for y near x = 2 and taking a central difference quotient gives the same value to nine decimal places."
+  },
+  "recall_prompt": "Say how you would prove this — say what the right side of the equation tells you, and what you do with the two terms on the left.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differentiation · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "Split the left side and use that the right side is constant",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. a and b are constants, so aᵇ is a fixed number and its derivative is zero. That single observation is what makes the whole sum equal to zero at the end.",
+        "memory_tip": "a and b carry no x, so aᵇ is just a number. The derivative of a number is 0, and that 0 is what the two derivatives must add up to.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given  xʸ + yˣ = aᵇ",
+          "Let u = xʸ and v = yˣ, so that u + v = aᵇ.",
+          "a and b are constants, so aᵇ is a constant and its derivative is zero.",
+          "∴ du/dx + dv/dx = 0      …(1)",
+          "Each of u and v has x in the base and in the power, so take logarithms of u and of v separately. This needs x > 0 and y > 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the right side is a constant whose derivative is zero, and that the two terms on the left are treated separately by logarithms.",
+          "accept": [
+            "a to the power b is a constant so its derivative is zero",
+            "let u be x to the power y and v be y to the power x",
+            "the two derivatives add up to zero",
+            "take log of each term separately, not of the sum",
+            "a power b constant kabatti derivative zero avuthundi",
+            "differentiate both sides and the right side gives nothing"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "constant",
+            "derivative is zero",
+            "u plus v",
+            "separately",
+            "a power b"
+          ]
+        },
+        "why": "Reading aᵇ as a constant is the step that turns the problem into a single equation in dy/dx. Splitting into u and v is needed because a logarithm changes a power into a product but does nothing to a sum.",
+        "common_mistakes": [
+          "Taking log of the whole left side as log(xʸ) + log(yˣ), which is log of a product, not of a sum.",
+          "Treating aᵇ as a variable and differentiating it to something other than zero."
+        ]
+      },
+      {
+        "id": "s2_first_term",
+        "kind": "equation",
+        "label": "Differentiate the first term",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. y is a function of x, so differentiating y log x needs the product rule and gives a dy/dx. Note xʸ · (1/x) = x^(y−1), which is where that power in the printed answer comes from.",
+        "memory_tip": "xʸ divided by x is x^(y−1). Reducing the power by one here is what makes the answer match the printed form.",
+        "lines": [
+          "u = xʸ",
+          "Taking logarithms,   log u = y log x",
+          "Differentiating both sides with respect to x,",
+          "(1/u)(du/dx) = log x · (dy/dx) + y · (1/x)",
+          "du/dx = xʸ [ log x · (dy/dx) + y/x ]",
+          "∴ du/dx = xʸ log x · (dy/dx) + yx^(y−1)      …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That log u = y log x, and that differentiating gives du/dx = xʸ log x (dy/dx) + y x^(y−1).",
+          "accept": [
+            "log u is y log x, then product rule",
+            "one by u into du by dx is log x dy by dx plus y by x",
+            "x to the power y divided by x is x to the power y minus one",
+            "multiply back by x to the power y",
+            "log u equals y log x rasi product rule cheyyali",
+            "the first part carries dy by dx and the second does not"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log u",
+            "y log x",
+            "product rule",
+            "x power y minus one",
+            "dy by dx"
+          ]
+        },
+        "why": "The logarithm turns xʸ into the product y log x, where both factors depend on x. The product rule then produces one term with dy/dx and one without, which is exactly the separation the final rearrangement needs.",
+        "common_mistakes": [
+          "Differentiating y log x as if y were a constant, so the dy/dx term is missing.",
+          "Leaving y·xʸ/x unsimplified, so the answer never reaches the printed x^(y−1)."
+        ]
+      },
+      {
+        "id": "s3_second_term",
+        "kind": "equation",
+        "label": "Differentiate the second term",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The roles are reversed here: the plain term comes from log y and the dy/dx term from x(1/y). Note yˣ · (x/y) = x y^(x−1).",
+        "memory_tip": "In u the dy/dx was multiplied by log x; in v it is multiplied by x/y. Swapping which factor carries dy/dx is the only difference between the two steps.",
+        "lines": [
+          "v = yˣ",
+          "Taking logarithms,   log v = x log y",
+          "Differentiating both sides with respect to x,",
+          "(1/v)(dv/dx) = 1 · log y + x · (1/y)(dy/dx)",
+          "dv/dx = yˣ [ log y + (x/y)(dy/dx) ]",
+          "∴ dv/dx = yˣ log y + xy^(x−1) · (dy/dx)      …(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That log v = x log y, and that differentiating gives dv/dx = yˣ log y + x y^(x−1)(dy/dx).",
+          "accept": [
+            "log v is x log y, then product rule",
+            "one by v into dv by dx is log y plus x by y into dy by dx",
+            "y to the power x times x by y is x times y to the power x minus one",
+            "multiply back by y to the power x",
+            "log v equals x log y ani rasi product rule vaadali",
+            "here the dy by dx is multiplied by x by y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log v",
+            "x log y",
+            "x by y",
+            "y power x minus one",
+            "dy by dx"
+          ]
+        },
+        "why": "The same method applied to yˣ gives a product with the factors exchanged, so this time the dy/dx term comes from the second factor. Writing it as a separate numbered line keeps the two dy/dx terms apart until they are collected.",
+        "common_mistakes": [
+          "Writing log v = y log x, which repeats the first term's logarithm.",
+          "Leaving yˣ·(x/y) unsimplified, so the answer never reaches the printed y^(x−1)."
+        ]
+      },
+      {
+        "id": "s4_add_and_collect",
+        "kind": "equation",
+        "label": "Add the two derivatives and collect dy/dx",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Add (2) and (3) and set the sum to zero, then take dy/dx outside a bracket. Two terms carry dy/dx and two do not, so the sort is clean.",
+        "memory_tip": "Sort the four terms into two piles: the ones with dy/dx and the ones without. The first pile forms the bracket, the second pile crosses over.",
+        "lines": [
+          "Adding (2) and (3) and using (1),",
+          "xʸ log x · (dy/dx) + yx^(y−1) + yˣ log y + xy^(x−1) · (dy/dx) = 0",
+          "Collecting the dy/dx terms,",
+          "∴ (dy/dx)[xʸ log x + xy^(x−1)] = −[yx^(y−1) + yˣ log y]      …(4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two derivatives are added and set to zero, and dy/dx is taken outside a bracket.",
+          "accept": [
+            "add both derivatives and put the sum equal to zero",
+            "take dy by dx common from the two terms that have it",
+            "the other two terms move to the right with a minus sign",
+            "x power y log x plus x y power x minus one multiplies dy by dx",
+            "dy by dx unna terms ni common teesukovali",
+            "four terms, two with dy by dx and two without"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "add them",
+            "equal to zero",
+            "take common",
+            "bracket",
+            "minus sign"
+          ]
+        },
+        "why": "The whole equation is linear in dy/dx, so once the four terms are on one side the only work left is to gather the two that carry dy/dx. The minus sign on the right appears here, not at the end.",
+        "common_mistakes": [
+          "Setting the sum equal to aᵇ instead of to zero.",
+          "Losing the minus sign when the two plain terms are moved across the equals sign."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Make dy/dx the subject",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Divide by the bracket. The minus sign applies to the whole fraction, so write it outside the square bracket exactly as the question does.",
+        "memory_tip": "The bracket that multiplied dy/dx becomes the denominator; the terms that crossed over become the numerator, all under one minus sign.",
+        "lines": [
+          "Dividing both sides of (4) by [xʸ log x + xy^(x−1)],",
+          {
+            "text": "∴ dy/dx = −[(yx^(y−1) + yˣ log y)/(xʸ log x + xy^(x−1))]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by the bracket gives the printed answer, with the minus sign in front of the whole fraction.",
+          "accept": [
+            "divide by the bracket to get dy by dx alone",
+            "the bracket becomes the denominator",
+            "the minus sign stays in front of the whole fraction",
+            "numerator is y x power y minus one plus y power x log y",
+            "bracket tho divide cheste answer vasthundi",
+            "denominator is x power y log x plus x y power x minus one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "divide",
+            "denominator",
+            "minus in front",
+            "final answer"
+          ]
+        },
+        "why": "The question states the answer, so the mark is for landing on that exact arrangement: the minus outside, the two log-free and log-carrying terms in the right places, and the bracket from step (4) underneath.",
+        "common_mistakes": [
+          "Dropping the minus sign, which reverses the sign of the whole derivative.",
+          "Exchanging the numerator and the denominator, so the answer is the reciprocal."
+        ]
+      }
+    ]
+  }
+}

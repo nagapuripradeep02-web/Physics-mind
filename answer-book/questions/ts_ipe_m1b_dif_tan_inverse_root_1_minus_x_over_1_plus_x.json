@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_tan_inverse_root_1_minus_x_over_1_plus_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If y = tan⁻¹√((1 − x)/(1 + x)), |x| < 1, find dy/dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute x = cos 2θ",
+      "marks": 1
+    },
+    {
+      "label": "Simplify the square root to tan θ",
+      "marks": 1
+    },
+    {
+      "label": "Reduce y to half of cos⁻¹x",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.201, chapter 9 DIFFERENTIATION, Short Answer question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: the reduction y = ½cos⁻¹x was confirmed numerically at x = 0.5, x = −0.3 and x = 0.9, and −1/(2√(1 − x²)) matched a central difference quotient at all three (−0.57735027, −0.52414242, −1.14707867). The |x| < 1 restriction printed in the stem is genuine and is used in the card: at x = −1 the fraction under the square root is undefined, and at x = ±1 the derivative of cos⁻¹x does not exist."
+  },
+  "recall_prompt": "Say how you would solve this — say what you substitute for x, and what the square root becomes after that.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "text",
+        "label": "Substitute x = cos 2θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Choosing cos 2θ rather than sin θ or tan θ is the whole decision here. It is chosen because 1 − cos 2θ and 1 + cos 2θ are both perfect squares, which is what removes the square root.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = tan⁻¹√((1 − x)/(1 + x)),  where |x| < 1",
+          "Put x = cos 2θ,  so that 2θ = cos⁻¹x  and  θ = ½cos⁻¹x",
+          "Since |x| < 1, cos⁻¹x lies in (0, π), so 2θ lies in (0, π) and θ lies in (0, π/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x is replaced by cos 2θ, so that θ = ½cos⁻¹x.",
+          "accept": [
+            "put x equal to cos two theta",
+            "substitute cos two theta for x",
+            "then theta is half of cos inverse x",
+            "x ni cos two theta ga substitute cheyyali",
+            "use a cosine of a double angle substitution",
+            "choose the substitution that makes the bracket a perfect square"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos two theta",
+            "substitute",
+            "half of cos inverse",
+            "theta"
+          ]
+        },
+        "why": "Differentiating the expression as it stands needs the chain rule three times, on the inverse tangent, the square root and the quotient. The substitution replaces all of that with two half-angle identities and one differentiation.",
+        "common_mistakes": [
+          "Substituting x = cos θ instead of cos 2θ, which leaves half-angles and does not simplify.",
+          "Differentiating directly with three nested chain rules, which is correct but long and easily lost."
+        ],
+        "memory_tip": "When 1 − x and 1 + x both appear, put x = cos 2θ. The two half-angle identities then turn the pair into 2sin²θ and 2cos²θ."
+      },
+      {
+        "id": "s2_simplify_surd",
+        "kind": "equation",
+        "label": "Simplify the square root to tan θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Quote both half-angle identities. Say why the square root is +tan θ and not ±tan θ: θ lies in (0, π/2), so tan θ is positive there.",
+        "lines": [
+          "1 − cos 2θ = 2sin²θ   and   1 + cos 2θ = 2cos²θ",
+          "√((1 − x)/(1 + x)) = √(2sin²θ/2cos²θ) = √(tan²θ) = |tan θ|",
+          "θ lies in (0, π/2), so tan θ > 0",
+          "∴ √((1 − x)/(1 + x)) = tan θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the half-angle identities turn the fraction into tan²θ, so the square root is tan θ.",
+          "accept": [
+            "one minus cos two theta is two sin squared theta",
+            "one plus cos two theta is two cos squared theta",
+            "the ratio becomes tan squared theta so the root is tan theta",
+            "rendu identities use cheste tan squared theta vasthundi",
+            "the twos cancel and sine over cosine is tangent",
+            "tan theta is positive because theta is in the first quadrant"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two sin squared",
+            "two cos squared",
+            "tan squared theta",
+            "root of tan squared"
+          ]
+        },
+        "why": "√(tan²θ) is |tan θ|, not tan θ, in general. The range of θ fixed in step 1 is what allows the modulus to be dropped, so the two parts of the working depend on each other.",
+        "common_mistakes": [
+          "Writing √(tan²θ) as tan θ without checking the sign, which is only true because θ is in (0, π/2).",
+          "Mixing the identities up and using 1 − cos 2θ = 2cos²θ."
+        ],
+        "memory_tip": "Remember the pair by which function survives: 1 MINUS cos 2θ keeps the SINE, 1 PLUS cos 2θ keeps the COSINE."
+      },
+      {
+        "id": "s3_reduce",
+        "kind": "equation",
+        "label": "Reduce y to half of cos⁻¹x",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. tan⁻¹(tan θ) = θ only when θ is inside (−π/2, π/2). That was established in step 1, so this line is justified and not assumed.",
+        "lines": [
+          "y = tan⁻¹(tan θ)",
+          "θ lies in (0, π/2), which is inside the principal range (−π/2, π/2) of tan⁻¹, so",
+          "y = θ",
+          "∴ y = ½cos⁻¹x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan⁻¹(tan θ) = θ, so y = ½cos⁻¹x.",
+          "accept": [
+            "tan inverse of tan theta is theta",
+            "y is theta which is half cos inverse x",
+            "the whole expression reduces to half of cos inverse x",
+            "y equals half cos inverse x ga marutundi",
+            "the inverse and the function cancel because theta is in the principal range",
+            "substitute theta back in terms of x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan inverse tan theta",
+            "half cos inverse",
+            "principal range",
+            "theta"
+          ]
+        },
+        "why": "The whole point of the substitution is that a complicated inverse tangent becomes a simple inverse cosine. Once y = ½cos⁻¹x is written, the question is a one-line differentiation.",
+        "common_mistakes": [
+          "Writing y = θ without checking that θ lies in the principal range of tan⁻¹.",
+          "Forgetting the factor ½ and writing y = cos⁻¹x."
+        ],
+        "memory_tip": "The 2 in cos 2θ becomes the ½ in the answer. Track it from the substitution to the last line."
+      },
+      {
+        "id": "s4_differentiate",
+        "kind": "boxed_final",
+        "label": "Differentiate",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The minus sign belongs to cos⁻¹x and must survive to the final line. The answer is negative for every |x| < 1, which agrees with y decreasing as x increases.",
+        "lines": [
+          "d/dx (cos⁻¹x) = −1/√(1 − x²),  valid for |x| < 1",
+          "dy/dx = ½ · (−1/√(1 − x²))",
+          {
+            "text": "∴ dy/dx = −1/(2√(1 − x²))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating ½cos⁻¹x gives −1/(2√(1 − x²)).",
+          "accept": [
+            "derivative of cos inverse x is minus one by root one minus x squared",
+            "half of that is minus one by two root one minus x squared",
+            "the answer is negative",
+            "minus one by two root one minus x square vasthundi",
+            "keep the minus sign from cos inverse",
+            "the restriction mod x less than one keeps the root real and non zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus one by two",
+            "root one minus x squared",
+            "cos inverse derivative",
+            "negative"
+          ]
+        },
+        "why": "The restriction |x| < 1 printed in the question is what makes this line valid: at x = ±1 the denominator is zero and the derivative does not exist, and at x = −1 the original fraction is undefined as well.",
+        "common_mistakes": [
+          "Dropping the minus sign by using the derivative of sin⁻¹x instead of cos⁻¹x.",
+          "Writing the 2 inside the square root as √(2(1 − x²))."
+        ],
+        "memory_tip": "sin⁻¹ and cos⁻¹ have the same derivative apart from the sign. This answer came from cos⁻¹, so it is the negative one."
+      }
+    ]
+  }
+}

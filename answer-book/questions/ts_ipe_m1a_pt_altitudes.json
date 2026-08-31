@@ -11,10 +11,10 @@
     "name": "Properties of Triangles"
   },
   "chapter": "Properties of Triangles",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 14,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "If p₁, p₂, p₃ are the altitudes of a △ABC, then show that (i) 1/p₁ + 1/p₂ + 1/p₃ = 1/r, (ii) 1/p₁ + 1/p₂ − 1/p₃ = 1/r₃, and (iii) p₁p₂p₃ = (abc)²/(8R³) = 8Δ³/(abc).",
   "appearances": [
     {
@@ -25,41 +25,40 @@
   "mark_split": [
     {
       "label": "Express each altitude",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Prove part (i)",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Prove part (ii)",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Prove part (iii)",
-      "marks": 2
+      "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.49 — LAQ chapter 6 Properties of Triangles, answer 39. Printed appearances: TS 18. THREE results from one setup. All three follow from a single observation — each altitude is 2Δ divided by its own base — so that is established once and then used three times. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. FIGURE: the book prints one against this answer — triangle ABC with the altitude from A dropped onto BC, its right angle marked and the base named a (book p.49). It is the ONLY figure in the Properties of Triangles chapter, and it is redrawn as its own step because pairing each altitude with the side it is dropped onto is what all three parts rest on. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Prove part (iii)\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.49 — LAQ chapter 6 Properties of Triangles, answer 39. Printed appearances: TS 18. THREE results from one setup. All three follow from a single observation — each altitude is 2Δ divided by its own base — so that is established once and then used three times. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. FIGURE: the book prints one against this answer — triangle ABC with the altitude from A dropped onto BC, its right angle marked and the base named a (book p.49). It is the ONLY figure in the Properties of Triangles chapter, and it is redrawn as its own step because pairing each altitude with the side it is dropped onto is what all three parts rest on. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Prove part (iii)\" step. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter as 16 Very Short Answer questions and 11 Short Answer questions, lists this one among the short answers (SAQ 3 I), and prints no long-answer block for it at all. Only the question was taken; the boundary is recorded in docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Properties of Triangles · 8 marks"
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_express_each_altitude",
         "kind": "equation",
         "label": "Express each altitude",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks, and the whole setup. The area can be computed from any side and its altitude, so Δ = ½ a p₁ — which rearranges to p₁ = 2Δ/a. The other two follow by symmetry.",
-        "memory_tip": "Area from any side and its own height: Δ = ½ a p₁, so p₁ = 2Δ/a. The other two follow by symmetry.",
+        "margin_note": "One mark, and the whole setup. The area can be computed from any side and its altitude, so Δ = ½ a p₁ — which rearranges to p₁ = 2Δ/a. The other two follow by symmetry.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,7 +95,8 @@
         "common_mistakes": [
           "Writing p₁ = Δ/a without the 2.",
           "Pairing p₁ with the wrong side."
-        ]
+        ],
+        "memory_tip": "Area from any side and its own height: Δ = ½ a p₁, so p₁ = 2Δ/a. The other two follow by symmetry."
       },
       {
         "id": "s1b_figure",
@@ -104,7 +104,6 @@
         "label": "Draw the triangle",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. The altitude p₁ is the HEIGHT onto BC, and BC is the base a — the picture is what pairs each altitude with the side it is dropped onto, which is the whole content of Δ = ½ a p₁.",
-        "memory_tip": "The picture pairs each altitude with the side it is dropped onto — that pairing is the whole content.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That triangle ABC is sketched with the altitude from A drawn onto BC, its right angle marked and the base named a. Naming the drawing is full credit — it cannot be spoken.",
@@ -215,16 +214,16 @@
               "sm": true
             }
           ]
-        }
+        },
+        "memory_tip": "The picture pairs each altitude with the side it is dropped onto — that pairing is the whole content."
       },
       {
         "id": "s2_prove_part_i",
         "kind": "equation",
         "label": "Prove part (i)",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks. The three reciprocals share 1/(2Δ), and a + b + c is 2s — so the sum becomes s/Δ, which is 1/r.",
-        "memory_tip": "The three reciprocals share 1/(2Δ), and a + b + c = 2s, so the sum is s/Δ = 1/r.",
+        "margin_note": "One mark. The three reciprocals share 1/(2Δ), and a + b + c is 2s — so the sum becomes s/Δ, which is 1/r.",
         "lines": [
           "(i) 1/p₁ + 1/p₂ + 1/p₃ = a/(2Δ) + b/(2Δ) + c/(2Δ)",
           "= (a+b+c)/(2Δ) = 2s/(2Δ) = s/Δ",
@@ -256,16 +255,16 @@
         "common_mistakes": [
           "Forgetting that a + b + c = 2s.",
           "Writing r = s/Δ upside down."
-        ]
+        ],
+        "memory_tip": "The three reciprocals share 1/(2Δ), and a + b + c = 2s, so the sum is s/Δ = 1/r."
       },
       {
         "id": "s3_prove_part_ii",
         "kind": "equation",
         "label": "Prove part (ii)",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two more marks. The same sum with a minus on the third: a + b − c is 2s − 2c = 2(s−c), and Δ/(s−c) is r₃.",
-        "memory_tip": "With a minus on the third: a + b − c = 2s − 2c = 2(s − c), and Δ/(s − c) is r₃.",
+        "margin_note": "One more mark. The same sum with a minus on the third: a + b − c is 2s − 2c = 2(s−c), and Δ/(s−c) is r₃.",
         "lines": [
           "(ii) 1/p₁ + 1/p₂ − 1/p₃ = (a + b − c)/(2Δ)",
           "= (a+b+c−2c)/(2Δ) = (2s − 2c)/(2Δ)",
@@ -297,16 +296,16 @@
         "common_mistakes": [
           "Not spotting a + b − c = 2(s−c).",
           "Pairing the minus with r₁ instead of r₃."
-        ]
+        ],
+        "memory_tip": "With a minus on the third: a + b − c = 2s − 2c = 2(s − c), and Δ/(s − c) is r₃."
       },
       {
         "id": "s4_prove_part_iii",
         "kind": "boxed_final",
         "label": "Prove part (iii)",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last two marks. Multiply the three altitudes, then convert using abc = 4RΔ to reach the second form.",
-        "memory_tip": "Multiply the three altitudes, then convert using abc = 4RΔ to reach the second form.",
+        "margin_note": "The last mark. Multiply the three altitudes, then convert using abc = 4RΔ to reach the second form.",
         "lines": [
           "(iii) p₁p₂p₃ = (2Δ/a)(2Δ/b)(2Δ/c) = 8Δ³/(abc)",
           "Also Δ = abc/(4R) ⇒ 8Δ³/(abc) = 8/(abc) · (abc/4R)³",
@@ -342,7 +341,8 @@
         "common_mistakes": [
           "Giving only one of the two forms.",
           "Cubing 4R as 12R³ instead of 64R³."
-        ]
+        ],
+        "memory_tip": "Multiply the three altitudes, then convert using abc = 4RΔ to reach the second form."
       }
     ]
   }

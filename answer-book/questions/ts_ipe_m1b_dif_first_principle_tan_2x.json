@@ -1,0 +1,228 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_first_principle_tan_2x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the derivative of tan 2x from the first principle with respect to x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the first principle",
+      "marks": 1
+    },
+    {
+      "label": "Write it as one fraction",
+      "marks": 1
+    },
+    {
+      "label": "Recognise sin 2h on top",
+      "marks": 1
+    },
+    {
+      "label": "Take the limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(iii). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you do with the two tangents before any limit is taken.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_principle",
+        "kind": "equation",
+        "label": "State the first principle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. tan 2(x + h) is tan(2x + 2h). Expand the inside angle on the same line so the next step has something to combine.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = tan 2x",
+          "By the first principle,",
+          "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "= lim(h → 0) [tan(2x + 2h) − tan 2x]/h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first principle is written with f(x) = tan 2x and the angle expanded as 2x + 2h.",
+          "accept": [
+            "write the first principle for tan two x",
+            "substitute x plus h so the angle is two x plus two h",
+            "take the limit of tan two x plus two h minus tan two x over h",
+            "first principle rasi tan two x plus two h ani rasta",
+            "the derivative is the limit of the difference quotient"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "first principle",
+            "tan two x plus two h",
+            "over h"
+          ]
+        },
+        "why": "The definition earns the mark. tan has no subtraction identity of its own, so the working has to start here and then move to sines and cosines.",
+        "common_mistakes": [
+          "Writing tan(2x + 2h) as tan 2x + tan 2h.",
+          "Quoting 2 sec²2x from the chain rule with no limit work."
+        ],
+        "memory_tip": "First principle first, always: f(x + h) minus f(x), all over h."
+      },
+      {
+        "id": "s2_one_fraction",
+        "kind": "equation",
+        "label": "Write it as one fraction",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Two tangents can only be subtracted once they sit over one denominator. The examiner is looking for that single fraction.",
+        "lines": [
+          "tan θ = sin θ/cos θ, so the numerator is",
+          "sin(2x + 2h)/cos(2x + 2h) − sin 2x/cos 2x",
+          "Numerator = sin(2x+2h) cos 2x",
+          "− cos(2x+2h) sin 2x",
+          "Denominator = cos(2x + 2h) cos 2x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both tangents are written as sine over cosine and combined over the common denominator cos(2x + 2h) cos 2x.",
+          "accept": [
+            "write tan as sin by cos and take a common denominator",
+            "combine the two fractions over cos of two x plus two h into cos two x",
+            "cross multiply the two tangent fractions into one",
+            "tan ni sin by cos ga rasi common denominator teesukovali",
+            "put both terms over a single denominator"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin by cos",
+            "common denominator",
+            "one fraction",
+            "cross multiply"
+          ]
+        },
+        "why": "There is no useful identity for tan A − tan B here. Written as sine over cosine and combined, the numerator turns into a sine of a difference, which is what removes x from the top.",
+        "common_mistakes": [
+          "Using tan A − tan B = tan(A − B), which is not an identity.",
+          "Combining the numerators but leaving two separate denominators."
+        ],
+        "memory_tip": "For tan and cot the first move is always the same: sine over cosine, then one common denominator."
+      },
+      {
+        "id": "s3_numerator_sin",
+        "kind": "equation",
+        "label": "Recognise sin 2h on top",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The whole numerator collapses to sin 2h. x has left the top, so everything that still depends on x is in the denominator.",
+        "lines": [
+          "sin A cos B − cos A sin B = sin(A − B), so with",
+          "A = 2x + 2h and B = 2x,",
+          "Numerator = sin((2x + 2h) − 2x) = sin 2h",
+          "so f′(x) = lim(h → 0)",
+          "(sin 2h)/[h cos(2x + 2h) cos 2x]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator is sin A cos B − cos A sin B = sin(A − B) and collapses to sin 2h.",
+          "accept": [
+            "the numerator is sin of a minus b which is sin two h",
+            "use sin a cos b minus cos a sin b equals sin a minus b",
+            "the top becomes sin two h and the x goes away",
+            "numerator sin two h ga vasthundi",
+            "recognise the compound angle formula on top"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin two h",
+            "sin a minus b",
+            "numerator",
+            "compound angle"
+          ]
+        },
+        "why": "The numerator is exactly the expansion of sin(A − B). Recognising it removes x from the top in one line, which is what makes the limit possible at all.",
+        "common_mistakes": [
+          "Reading the numerator as sin(A + B) and getting sin(4x + 2h).",
+          "Expanding the four products separately instead of matching them to the identity."
+        ],
+        "memory_tip": "sin A cos B − cos A sin B is sin(A − B): the sign between the terms is the sign inside the bracket."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "Take the limit",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The 2 appears because sin 2h is divided by h and not by 2h. Supplying that missing 2 is where this mark is usually lost.",
+        "lines": [
+          "Write (sin 2h)/h = 2 · (sin 2h)/(2h)",
+          "As h → 0, (sin 2h)/(2h) → 1 and",
+          "cos(2x + 2h) → cos 2x, so",
+          "f′(x) = 2/(cos 2x · cos 2x) = 2/cos²2x",
+          {
+            "text": "∴ d/dx (tan 2x) = 2 sec²2x",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (sin 2h)/h is written as 2(sin 2h)/(2h) so the standard limit applies, giving 2 sec²2x.",
+          "accept": [
+            "sin two h over h is two times sin two h over two h",
+            "the standard limit gives one so the answer is two sec squared two x",
+            "derivative of tan two x is two sec squared two x",
+            "two sec square two x answer vasthundi",
+            "multiply and divide by two to use the standard limit"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two sec squared two x",
+            "sin two h by two h",
+            "standard limit"
+          ]
+        },
+        "why": "The standard limit needs the same angle above and below. Writing (sin 2h)/h as 2(sin 2h)/(2h) supplies the missing 2, and that 2 is the derivative of the inside angle 2x.",
+        "common_mistakes": [
+          "Writing (sin 2h)/h → 1 and losing the factor 2.",
+          "Stopping at 2/cos²2x when the answer key expects 2 sec²2x."
+        ],
+        "memory_tip": "sin 2h over h is 2 times sin 2h over 2h. Put the 2 in the moment you split it."
+      }
+    ]
+  }
+}

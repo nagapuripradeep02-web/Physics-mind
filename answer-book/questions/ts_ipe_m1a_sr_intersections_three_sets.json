@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_intersections_three_sets",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A = {1, 2, 3, 4, 5, 6, 7}, B = {2, 4, 6, 7, 8, 11} and C = {1, 3, 5, 7, 9}, find (i) A ∩ B, (ii) A ∩ C, (iii) B ∩ C and (iv) A ∩ B ∩ C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the three pairwise intersections",
+      "marks": 1
+    },
+    {
+      "label": "Find the intersection of all three sets",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The question carries four parts (i)–(iv); they are answered on one card because the fourth part is built from the first, and splitting them would ask a student to open two pages for one exam question."
+  },
+  "recall_prompt": "Say how you would do this one — say what ∩ asks you to keep, and how you would get the last part from the earlier ones.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pairwise",
+        "kind": "equation",
+        "label": "Find the three pairwise intersections",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. All three parts (i), (ii) and (iii) share this mark, so number each answer and give each its own line.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A = {1, 2, 3, 4, 5, 6, 7},  B = {2, 4, 6, 7, 8, 11},  C = {1, 3, 5, 7, 9}",
+          "A ∩ B keeps only the members that are in A and also in B.",
+          "(i) A ∩ B = {2, 4, 6, 7}",
+          "(ii) A ∩ C = {1, 3, 5, 7}",
+          "(iii) B ∩ C = {7}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the intersection keeps the common members, giving {2, 4, 6, 7}, {1, 3, 5, 7} and {7}.",
+          "accept": [
+            "intersection keeps only the members in both sets",
+            "A cap B is two four six seven and A cap C is one three five seven",
+            "B cap C is just seven",
+            "rendu sets lo unde common elements matrame teesukovali",
+            "check each member of the smaller set against the other set"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "intersection",
+            "common members",
+            "two four six seven",
+            "only seven"
+          ]
+        },
+        "why": "Each intersection is read off by testing the members of the shorter set against the longer one, so nothing has to be computed and the answers can be written straight down.",
+        "common_mistakes": [
+          "Giving the union {1, 2, 3, 4, 5, 6, 7, 8, 11} in place of A ∩ B.",
+          "Keeping 8 or 11 in A ∩ B — both are in B but neither is in A.",
+          "Writing B ∩ C = ∅ after missing 7, which is a member of both."
+        ],
+        "memory_tip": "∩ has the shape of the letter n — read it as 'and', the members that both sets hold."
+      },
+      {
+        "id": "s2_triple",
+        "kind": "boxed_final",
+        "label": "Find the intersection of all three sets",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Show the line (A ∩ B) ∩ C before the answer, so the method is on the page and not only the result.",
+        "lines": [
+          "A ∩ B ∩ C = (A ∩ B) ∩ C, so use the answer to part (i).",
+          "= {2, 4, 6, 7} ∩ {1, 3, 5, 7, 9}",
+          {
+            "text": "∴ (iv) A ∩ B ∩ C = {7}",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A ∩ B is intersected with C to give {7}.",
+          "accept": [
+            "take A cap B from part one and intersect it with C",
+            "the only member in all three sets is seven",
+            "seven is the answer because it is in A and B and C",
+            "modati answer ni C tho intersect cheste seven vasthundi",
+            "intersect two of them first then the third"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "all three",
+            "seven",
+            "A cap B cap C",
+            "intersect again"
+          ]
+        },
+        "why": "Intersection is associative, so any two sets may be taken first. Reusing the answer to part (i) saves testing all seven members of A a second time.",
+        "common_mistakes": [
+          "Intersecting A with B ∪ C instead of with B ∩ C.",
+          "Writing the answer as the number 7 rather than as the set {7}.",
+          "Starting again from A, B and C and dropping 7 by mistake."
+        ],
+        "memory_tip": "Intersect any two sets first, then bring in the third — the order does not change the answer."
+      }
+    ]
+  }
+}

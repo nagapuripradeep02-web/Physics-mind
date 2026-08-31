@@ -1,0 +1,243 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_tangent_normal_y4_ax3_at_a_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of the tangent and the normal to the curve y⁴ = ax³ at (a, a).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check the point and differentiate implicitly",
+      "marks": 1
+    },
+    {
+      "label": "Slope of the tangent at (a, a)",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the tangent",
+      "marks": 1
+    },
+    {
+      "label": "Equation of the normal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.222, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 11(iii). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. One further note on the stem: the printed question does not state a ≠ 0. The working here says so, because at a = 0 the curve is y⁴ = 0 and the point (a, a) is the origin, where the slope 3ax²/(4y³) is not defined. Nothing was changed in the question itself."
+  },
+  "recall_prompt": "Say how you would do this one — say how you differentiate y⁴ = ax³, what the slope works out to at (a, a), and what happens to the letter a in the answer.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_check_and_differentiate",
+        "kind": "equation",
+        "label": "Check the point and differentiate implicitly",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The dy/dx factor on the left is what the examiner looks for. Without it the line differentiates the wrong equation and every later mark follows the error.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curve:  y⁴ = ax³   (a ≠ 0)",
+          "Check the point: at (a, a),",
+          "LHS = a⁴   and   RHS = a(a³) = a⁴,",
+          "so (a, a) lies on the curve for every value of a.",
+          "y is not given in terms of x, so differentiate both sides with respect to x.",
+          "The chain rule attaches dy/dx to y⁴:",
+          "4y³ (dy/dx) = 3ax²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sides are differentiated with respect to x, giving 4y³(dy/dx) = 3ax².",
+          "accept": [
+            "differentiate both sides with respect to x",
+            "y to the fourth gives four y cubed times dy by dx",
+            "a is a constant so a x cubed gives three a x squared",
+            "implicit differentiation cheyyali, dy by dx attach avuthundi",
+            "check first that a to the fourth equals a times a cubed",
+            "four y cubed dy by dx equals three a x squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four y cubed",
+            "dy by dx",
+            "three a x squared",
+            "implicit"
+          ]
+        },
+        "why": "y is not written in terms of x, so implicit differentiation is the shortest route. Taking a fourth root first would give y = (ax³)¹⁄⁴ and a much longer differentiation for the same slope.",
+        "common_mistakes": [
+          "Differentiating y⁴ to 4y³ and omitting the dy/dx factor.",
+          "Treating a as a variable and using the product rule on ax³.",
+          "Differentiating with respect to y on one side and x on the other."
+        ],
+        "memory_tip": "Every time a y is differentiated with respect to x, a dy/dx is attached to it. The x terms get nothing extra."
+      },
+      {
+        "id": "s2_slope",
+        "kind": "equation",
+        "label": "Slope of the tangent at (a, a)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Substitute BOTH x = a and y = a. All three a's cancel and m = 3/4 — a plain number, with no a left in it.",
+        "lines": [
+          "Make dy/dx the subject:",
+          "dy/dx = 3ax²/(4y³)",
+          "At the point (a, a), put x = a and y = a:",
+          "m = 3a(a²)/(4a³) = 3a³/(4a³)",
+          "∴ m = 3/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting x = a and y = a makes the a's cancel and gives m = 3/4.",
+          "accept": [
+            "substitute x equal to a and y equal to a",
+            "a cubed cancels top and bottom",
+            "the slope of the tangent is three by four",
+            "a cubed cancel avuthundi, three by four vasthundi",
+            "the slope has no a left in it",
+            "m is three quarters"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three by four",
+            "a cubed cancels",
+            "x equal to a",
+            "three quarters"
+          ]
+        },
+        "why": "a³ cancels between numerator and denominator, so the slope is a pure number: the tangent has the same direction whatever the size of a. That cancelling is the check that the substitution was done correctly.",
+        "common_mistakes": [
+          "Cancelling only one a and leaving m = 3a/4.",
+          "Substituting x = a but leaving y in the answer.",
+          "Writing m = 4/3, which is the reciprocal and belongs to the normal."
+        ],
+        "memory_tip": "Both coordinates of the point are a, so every a in dy/dx becomes the same letter and cancels. A pure number is the expected result."
+      },
+      {
+        "id": "s3_tangent",
+        "kind": "equation",
+        "label": "Equation of the tangent",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. a stays in the equation of the line even though it has left the slope — the point (a, a) still depends on it. Check: 3a − 4a + a = 0.",
+        "lines": [
+          "Tangent at (x₁, y₁) with slope m:   y − y₁ = m(x − x₁)",
+          "Here (x₁, y₁) = (a, a) and m = 3/4:",
+          "y − a = (3/4)(x − a)",
+          "4(y − a) = 3(x − a)",
+          "4y − 4a = 3x − 3a",
+          "∴ 3x − 4y + a = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point-slope form with (a, a) and m = 3/4 gives 3x − 4y + a = 0.",
+          "accept": [
+            "use y minus a equals three by four into x minus a",
+            "multiply both sides by four to clear the fraction",
+            "the tangent is three x minus four y plus a equals zero",
+            "point a comma a tho point slope form rasta",
+            "four y minus four a equals three x minus three a",
+            "the letter a stays in the line but not in the slope"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three x minus four y",
+            "plus a",
+            "x minus a",
+            "clear the fraction"
+          ]
+        },
+        "why": "The slope no longer contains a, but the point does, so the line's constant term carries the a. Collecting −4a + 3a to a single +a is where the a survives.",
+        "common_mistakes": [
+          "Collecting −4a + 3a as −a and writing 3x − 4y − a = 0.",
+          "Dropping a altogether because it cancelled in the slope.",
+          "Multiplying only the left side by 4."
+        ],
+        "memory_tip": "a cancelled in the slope but not in the point, so expect exactly one a in the final line."
+      },
+      {
+        "id": "s4_normal",
+        "kind": "boxed_final",
+        "label": "Equation of the normal",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. The normal's slope is −1/m = −4/3, so the reciprocal AND the sign both change. Check at (a, a): 4a + 3a − 7a = 0.",
+        "lines": [
+          "The normal is perpendicular to the tangent at the same point,",
+          "so its slope is −1/m = −4/3.",
+          "y − a = (−4/3)(x − a)",
+          "3(y − a) = −4(x − a)",
+          "3y − 3a = −4x + 4a",
+          {
+            "text": "∴ Tangent: 3x − 4y + a = 0     Normal: 4x + 3y − 7a = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the normal's slope is −4/3, giving 4x + 3y − 7a = 0.",
+          "accept": [
+            "the normal slope is minus four by three",
+            "turn three by four over and change the sign",
+            "the normal is four x plus three y minus seven a equals zero",
+            "minus one by m ante minus four by three",
+            "three a plus four a gives seven a on the right",
+            "the normal passes through a comma a as well"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus four by three",
+            "four x plus three y",
+            "seven a",
+            "perpendicular"
+          ]
+        },
+        "why": "The normal's slope is the negative reciprocal of 3/4. The constant term collects −3a and −4a into −7a, which is the arithmetic step most often slipped here.",
+        "common_mistakes": [
+          "Writing the normal's slope as 4/3, inverting without the sign change.",
+          "Collecting the a terms to −a instead of −7a.",
+          "Using the tangent's slope 3/4 in the normal by copying the previous line."
+        ],
+        "memory_tip": "Tangent slope 3/4 turns over to 4/3 and the sign changes to minus. The two lines then have slopes whose product is −1."
+      }
+    ]
+  }
+}

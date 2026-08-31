@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_root_a_plus_2x_minus_root_3x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → a) (√(a + 2x) − √(3x))/(√(3a + x) − 2√x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rationalise both lines",
+      "marks": 1
+    },
+    {
+      "label": "Cancel (a − x) and put x = a",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.189, chapter 8 LIMITS, Very Short Answer question 35. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how many conjugates you need and what factor cancels.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_conjugates",
+        "kind": "equation",
+        "label": "Rationalise both lines",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Two conjugates are needed, one for each line. The factor (a − x) appearing above and below is the check that the working is right.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take a > 0, so that every square root is defined for x near a.",
+          "At x = a the numerator is √(3a) − √(3a) = 0 and the denominator is √(4a) − 2√a = 0, so the form is 0/0.",
+          "Multiply above and below by (√(a + 2x) + √(3x)) and by (√(3a + x) + 2√x):",
+          "numerator: (√(a + 2x))² − (√(3x))² = (a + 2x) − 3x = a − x",
+          "denominator: (√(3a + x))² − (2√x)² = (3a + x) − 4x = 3(a − x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both the numerator and the denominator are rationalised, giving the factors (a − x) and 3(a − x).",
+          "accept": [
+            "rationalise the top and the bottom with their own conjugates",
+            "two conjugates are needed one for each line",
+            "the top gives a minus x and the bottom gives three times a minus x",
+            "pai kinda rendintiki conjugate tho multiply cheyyali",
+            "multiply above and below by both conjugates"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "conjugate",
+            "rationalise",
+            "a minus x",
+            "three a minus x"
+          ]
+        },
+        "why": "Both lines are 0 at x = a, so nothing can be read by substitution. Each difference of square roots is removed by its own conjugate, and the same factor (a − x) then appears above and below, ready to cancel.",
+        "common_mistakes": [
+          "Rationalising only the numerator, which leaves 0 in the denominator.",
+          "Writing (√(3a + x))² − (2√x)² as (3a + x) − 2x; the 2 must be squared as well."
+        ],
+        "memory_tip": "One conjugate for each difference of roots: the top needs its own and so does the bottom."
+      },
+      {
+        "id": "s2_cancel_and_substitute",
+        "kind": "boxed_final",
+        "label": "Cancel (a − x) and put x = a",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Box 2√3/9. The √a cancels, so the answer is the same pure number for every a > 0.",
+        "lines": [
+          "So the expression = [(a − x)(√(3a + x) + 2√x)] / [3(a − x)(√(a + 2x) + √(3x))]",
+          "= (√(3a + x) + 2√x) / (3(√(a + 2x) + √(3x)))   (x ≠ a, so (a − x) cancels)",
+          "Now put x = a:  = (√(4a) + 2√a)/(3(√(3a) + √(3a)))",
+          "= (2√a + 2√a)/(6√(3a)) = 4√a/(6√(3a)) = 2/(3√3)",
+          {
+            "text": "∴ lim(x → a) (√(a + 2x) − √(3x))/(√(3a + x) − 2√x) = 2/(3√3) = 2√3/9   (a > 0)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (a − x) cancels, and substituting x = a gives 4√a/(6√(3a)) = 2√3/9.",
+          "accept": [
+            "cancel a minus x and then substitute x equals a",
+            "you get four root a over six root three a which is two root three over nine",
+            "the answer is two by three root three",
+            "a minus x cancel chesi x equals a pettali",
+            "root a cancels so the answer does not depend on a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two root three by nine",
+            "two by three root three",
+            "a minus x cancels",
+            "root four a"
+          ]
+        },
+        "why": "Cancelling (a − x) is allowed because x ≠ a throughout the limit process. After the cancellation the expression is continuous at x = a, so its value there is the limit.",
+        "common_mistakes": [
+          "Cancelling (a − x) against 3(a − x) and writing 3 instead of 1/3.",
+          "Writing √(4a) as 4√a instead of 2√a."
+        ],
+        "memory_tip": "After both conjugates the value is 4√a over 6√(3a): the √a cancels and 2 over 3√3 is left."
+      }
+    ]
+  }
+}

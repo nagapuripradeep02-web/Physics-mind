@@ -2652,9 +2652,13 @@ test('Maths-1A is on the 2026-27 numbering with its two new chapters listed', as
     });
     expect(r.n).toBe(12);
     expect(r.u1).toContain('Sets and Relations');
-    expect(r.u1ready).toBe(0);                       // announced, not written yet
     expect(r.u3).toContain('Sequences and Series');
-    expect(r.u3ready).toBe(0);
+    // Both were coming-soon placeholders whose rows carried syllabus topic names rather than
+    // questions; authored 2026-08-30 (26 and 25 cards). Asserted as "answered at all" rather
+    // than a count, so adding cards later cannot fail this test for the wrong reason - what it
+    // is really guarding is the 2026-27 numbering and that both chapters are present.
+    expect(r.u1ready).toBeGreaterThan(0);
+    expect(r.u3ready).toBeGreaterThan(0);
     // the book says "and", not the old "upto"
     expect(r.u8).toContain('Trigonometric Ratios and Transformations');
     // NOT removed, despite a circular proposing it — see docs/SYLLABUS_2026_27.md

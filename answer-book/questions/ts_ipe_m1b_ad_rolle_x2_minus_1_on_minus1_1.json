@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_rolle_x2_minus_1_on_minus1_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Verify Rolle's theorem for the function f(x) = x² − 1 on [−1, 1].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Test the conditions on [−1, 1]",
+      "marks": 1
+    },
+    {
+      "label": "Solve f′(c) = 0 inside (−1, 1)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.228, chapter 10 APPLICATIONS OF DERIVATIVES, the ROLLE'S AND LAGRANGE'S THEOREM sub-section, Very Short Answer question 2(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for the three conditions, one for producing c. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and we ship it as ONE unit, so the sub-section is named above. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what the two end values are, and where the derivative is zero.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_test_conditions",
+        "kind": "equation",
+        "label": "Test the conditions on [−1, 1]",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both ends give 0 because −1 and 1 are the two roots of x² − 1. Write the substitution for each end separately.",
+        "memory_tip": "When the endpoints of the interval are the two roots of the function, f(a) = f(b) = 0 — but the line still has to be written.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = x² − 1 is a polynomial function, so",
+          "(i) f is continuous on the closed interval [−1, 1]",
+          "(ii) f is differentiable on the open interval (−1, 1)",
+          "(iii) f(−1) = (−1)² − 1 = 1 − 1 = 0  and  f(1) = 1² − 1 = 1 − 1 = 0",
+          "∴ f(−1) = f(1) = 0, so Rolle's theorem applies on [−1, 1]."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is a polynomial, continuous on [−1, 1] and differentiable on (−1, 1), and that f(−1) = f(1) = 0 because the endpoints are the roots.",
+          "accept": [
+            "the two endpoints are the roots so both end values are zero",
+            "f of minus one is zero and f of one is zero",
+            "polynomial, so continuous on the closed interval and differentiable on the open one",
+            "rendu ends roots kabatti zero vasthundi",
+            "one minus one is zero at both ends"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "roots",
+            "both zero",
+            "one minus one",
+            "polynomial",
+            "differentiable"
+          ]
+        },
+        "why": "Both end values are 0 here because −1 and 1 are exactly the roots of x² − 1. Rolle's theorem is often set on an interval whose ends are two roots of the function, and this question is that shape at its simplest.",
+        "common_mistakes": [
+          "Reading (−1)² as −1, which gives f(−1) = −2 and breaks the third condition.",
+          "Assuming the two ends must agree because the interval is symmetric, instead of evaluating f at both."
+        ]
+      },
+      {
+        "id": "s2_solve_c",
+        "kind": "boxed_final",
+        "label": "Solve f′(c) = 0 inside (−1, 1)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. c must be strictly inside — the theorem never allows c = a or c = b. State the inequality −1 < 0 < 1.",
+        "memory_tip": "Between two roots of a differentiable function the derivative is zero somewhere, and here that point is the lowest point of the parabola.",
+        "lines": [
+          "f′(x) = 2x",
+          "f′(c) = 0  ⇒  2c = 0  ⇒  c = 0",
+          "−1 < 0 < 1, so c = 0 lies in the open interval (−1, 1)",
+          {
+            "text": "∴ Rolle's theorem is verified, with c = 0 ∈ (−1, 1)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(x) = 2x gives c = 0, and that 0 lies strictly between −1 and 1.",
+          "accept": [
+            "two c equals zero so c is zero and it is strictly inside",
+            "the derivative is two x and it vanishes at zero",
+            "c is zero, which is between minus one and one",
+            "c zero vasthundi, adi interval lopala undi",
+            "the turning point is at x equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x",
+            "zero",
+            "strictly inside",
+            "between minus one and one"
+          ]
+        },
+        "why": "Between two roots of a differentiable function the derivative must be zero at least once, and that is exactly what Rolle's theorem states. Here the single point where it happens is c = 0.",
+        "common_mistakes": [
+          "Giving c = ±1, which are the endpoints; c must lie strictly inside the interval.",
+          "Writing c = 0 without the inequality −1 < 0 < 1 that places it inside."
+        ]
+      }
+    ]
+  }
+}

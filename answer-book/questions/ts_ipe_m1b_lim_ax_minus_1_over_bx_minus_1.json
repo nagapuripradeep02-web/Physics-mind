@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_ax_minus_1_over_bx_minus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 0) (aˣ − 1)/(bˣ − 1), where a > 0, b > 0 and b ≠ 1.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Divide above and below by x",
+      "marks": 1
+    },
+    {
+      "label": "Take the ratio of the two logarithms",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.184, chapter 8 LIMITS, Short & Very Short Answer question 4. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you divide by and what the standard limit lim(x → 0) (aˣ − 1)/x equals.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_divide_by_x",
+        "kind": "equation",
+        "label": "Divide above and below by x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The same standard limit is used twice, once with a and once with b. Quote it before substituting either letter.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "At x = 0, aˣ − 1 = 0 and bˣ − 1 = 0, so the expression is of the indeterminate form 0/0.",
+          "For x ≠ 0 divide the numerator and the denominator by x.",
+          "lim(x → 0) (aˣ − 1)/(bˣ − 1)  =  lim(x → 0) [(aˣ − 1)/x] / [(bˣ − 1)/x]",
+          "The standard limit is  lim(x → 0) (aˣ − 1)/x = logₑa  for a > 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both parts are divided by x so that the standard limit lim(x → 0) (aˣ − 1)/x = logₑa can be used on each.",
+          "accept": [
+            "divide the top and the bottom by x and use a to the x minus one over x is log a",
+            "the same standard limit is used with a and then with b",
+            "both go to zero so divide each by x first",
+            "x tho divide cheste rendu standard limits avuthayi",
+            "quote the a to the x minus one over x formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "divide by x",
+            "log a",
+            "standard limit",
+            "a to the x minus one"
+          ]
+        },
+        "why": "The denominator is also 0 at x = 0, so the standard limit cannot be applied to the fraction as it stands. Dividing both parts by x makes each one an instance of the same known limit.",
+        "common_mistakes": [
+          "Cancelling the −1 in the numerator against the −1 in the denominator.",
+          "Writing the answer as aˣ/bˣ or as a/b."
+        ],
+        "memory_tip": "One formula covers both lines: lim (aˣ − 1)/x = logₑa. Read the base, write its natural logarithm."
+      },
+      {
+        "id": "s2_ratio",
+        "kind": "boxed_final",
+        "label": "Take the ratio of the two logarithms",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. b ≠ 1 is what makes logₑb ≠ 0, so the quotient rule for limits may be used. The answer is also written as the logarithm of a to the base b, by the change-of-base rule.",
+        "lines": [
+          "Since b ≠ 1, logₑb ≠ 0, so the limit of the quotient is the quotient of the limits.",
+          "= logₑa / logₑb",
+          {
+            "text": "∴ lim(x → 0) (aˣ − 1)/(bˣ − 1) = logₑa / logₑb",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is logₑa divided by logₑb, which is log to the base b of a.",
+          "accept": [
+            "log a divided by log b",
+            "the answer is log a by log b to the base e",
+            "it is log of a to the base b",
+            "log a by log b vasthundi",
+            "the ratio of the two natural logarithms"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "log a by log b",
+            "log a",
+            "log b",
+            "base b"
+          ]
+        },
+        "why": "b ≠ 1 is stated in the question exactly so that logₑb is not 0 and the division is allowed. The value checks numerically: with a = 4 and b = 2 the answer is logₑ4/logₑ2 = 2, and at x = 0.00001 the expression is 2.000007.",
+        "common_mistakes": [
+          "Writing logₑ(a/b) instead of logₑa / logₑb.",
+          "Leaving out the condition b ≠ 1 that keeps the denominator non-zero."
+        ],
+        "memory_tip": "A ratio of two natural logarithms is a change of base: logₑa / logₑb is the logarithm of a to the base b. That is the compact form of the answer."
+      }
+    ]
+  }
+}

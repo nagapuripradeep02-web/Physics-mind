@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_point_on_y_2x2_rate",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "A point P is moving on the curve y = 2x². The x-coordinate of P is increasing at the rate of 4 units/sec. Find the rate at which the y-coordinate is increasing when the point is at (2, 8).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate y = 2x² with respect to t",
+      "marks": 1
+    },
+    {
+      "label": "Substitute x = 2 and dx/dt = 4",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.212, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 5. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the chain rule form you would write, and say which two numbers you put into it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_chain_rule",
+        "kind": "equation",
+        "label": "Differentiate y = 2x² with respect to t",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both x and y change with time, so the curve equation is differentiated with respect to t and not with respect to x. The chain rule line dy/dt = (dy/dx)(dx/dt) is what earns this mark.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given: dx/dt = 4 units/sec.  Asked: dy/dt at the point (2, 8).",
+          "P moves on the curve  y = 2x²",
+          "Differentiate both sides with respect to time t:",
+          "dy/dt = (dy/dx)(dx/dt)",
+          "dy/dx = 4x,  so  dy/dt = 4x(dx/dt)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y = 2x² is differentiated with respect to t, giving dy/dt = 4x(dx/dt) by the chain rule.",
+          "accept": [
+            "differentiate the curve with respect to time using the chain rule",
+            "d y by d t equals d y by d x into d x by d t",
+            "the derivative of two x squared is four x",
+            "chain rule use chesi time tho differentiate cheyyali",
+            "d y by d t is four x into d x by d t",
+            "both coordinates change with time so differentiate with respect to t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "chain rule",
+            "d y by d t",
+            "four x",
+            "d x by d t",
+            "two x squared"
+          ]
+        },
+        "why": "The point moves along the curve, so x and y are both functions of time. The chain rule is what carries the given rate dx/dt through the curve equation to the asked rate dy/dt.",
+        "common_mistakes": [
+          "Stopping at dy/dx = 4x and giving 8 as the answer, which is a slope and not a rate.",
+          "Differentiating 2x² as 2x instead of 4x.",
+          "Leaving out the dx/dt factor, which is where the given rate 4 enters."
+        ],
+        "memory_tip": "The chain rule reads left to right with dx cancelling: dy/dt = (dy/dx)(dx/dt). Write it in that order every time and the missing factor cannot be dropped."
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute x = 2 and dx/dt = 4",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The point (2, 8) fixes x = 2; the y-value 8 is only a check that the point lies on the curve, since 2(2²) = 8. The unit units/sec is part of the answer.",
+        "lines": [
+          "The point (2, 8) lies on the curve, since 2(2²) = 8, so x = 2 there.",
+          "dy/dt = 4x(dx/dt) = 4(2)(4)",
+          {
+            "text": "∴ dy/dt = 32 units/sec",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting x = 2 and dx/dt = 4 into dy/dt = 4x(dx/dt) gives 32 units/sec.",
+          "accept": [
+            "substitute x equal to two and d x by d t equal to four",
+            "four into two into four is thirty two",
+            "the y coordinate increases at thirty two units per second",
+            "x equal to two substitute cheste thirty two vasthundi",
+            "the answer is thirty two units per second",
+            "only the x value is needed from the point"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "thirty two",
+            "units per second",
+            "x equals two",
+            "four into two into four"
+          ]
+        },
+        "why": "Only the x-coordinate of the point is needed, because dy/dt = 4x(dx/dt) contains x and no y. Checking that 2(2²) = 8 confirms the given point really is on the curve.",
+        "common_mistakes": [
+          "Substituting y = 8 in place of x = 2.",
+          "Multiplying 4 × 2 and forgetting the second 4, giving 8.",
+          "Writing 32 with no unit."
+        ],
+        "memory_tip": "In dy/dt = 4x(dx/dt) there is no y, so from the point (2, 8) only the 2 is used and the 8 is just the check."
+      }
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_infinite_gp_one_third_minus_two_ninths",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the sum of the infinite terms of the G.P. 1/3, −2/9, 4/27, −8/81, …",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find a and r and check that |r| < 1",
+      "marks": 1
+    },
+    {
+      "label": "Substitute in a/(1 − r)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.23, chapter 3 SEQUENCES & SERIES, Very Short Answer question 18. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what the common ratio is, sign included, and what has to be true before the infinite sum formula can be used.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ratio_and_condition",
+        "kind": "equation",
+        "label": "Find a and r and check that |r| < 1",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both the negative ratio and the |r| < 1 check earn it. Divide the second term by the first, never the first by the second.",
+        "memory_tip": "Signs that alternate mean r is negative; the size of r decides whether the infinite sum exists.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "For the G.P. 1/3, −2/9, 4/27, −8/81, …",
+          "a = 1/3  and  r = (−2/9) ÷ (1/3) = (−2/9) × 3 = −2/3",
+          "|r| = 2/3 < 1, so the infinite sum exists and S∞ = a/(1 − r)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 1/3, r = −2/3, and |r| < 1 so S∞ = a/(1 − r) may be used.",
+          "accept": [
+            "the first term is one third and the ratio is minus two thirds",
+            "divide the second term by the first to get the ratio",
+            "the terms alternate in sign so r is negative",
+            "modulus r one kanna thakkuva unte sum untundi",
+            "check the modulus of r is less than one before using the formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus two thirds",
+            "one third",
+            "modulus r less than one",
+            "common ratio"
+          ]
+        },
+        "why": "The sign of r has to be carried, because the terms alternate. The condition |r| < 1 is what allows the infinite sum formula to be used at all, so it is written before the formula.",
+        "common_mistakes": [
+          "Taking r as +2/3 and losing the alternating signs.",
+          "Using a/(1 − r) without stating that |r| < 1."
+        ]
+      },
+      {
+        "id": "s2_infinite_sum",
+        "kind": "boxed_final",
+        "label": "Substitute in a/(1 − r)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The double negative in 1 − r is where marks are lost. The answer is positive and smaller than the first term, which is a fair check.",
+        "memory_tip": "Subtracting a negative ratio makes the denominator larger than 1.",
+        "lines": [
+          "S∞ = a/(1 − r) = (1/3)/(1 − (−2/3))",
+          "= (1/3)/(1 + 2/3) = (1/3)/(5/3)",
+          "= (1/3) × (3/5)",
+          {
+            "text": "∴ S∞ = 1/5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 − (−2/3) = 5/3, so S∞ = (1/3) ÷ (5/3) = 1/5.",
+          "accept": [
+            "one minus minus two thirds is five thirds",
+            "one third divided by five thirds is one fifth",
+            "the two minus signs make a plus in the denominator",
+            "minus minus plus avuthundi, so five by three vasthundi",
+            "the sum is one fifth"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "five thirds",
+            "one fifth",
+            "minus minus",
+            "one third"
+          ]
+        },
+        "why": "1 − (−2/3) becomes 1 + 2/3 = 5/3, because the two minus signs make a plus. Dividing by 5/3 is the same as multiplying by 3/5, and the 3s cancel.",
+        "common_mistakes": [
+          "Writing 1 − 2/3 = 1/3 and getting 1 as the sum.",
+          "Leaving the answer as one fraction divided by another instead of simplifying."
+        ]
+      }
+    ]
+  }
+}

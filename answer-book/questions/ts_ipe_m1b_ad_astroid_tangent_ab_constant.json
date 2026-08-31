@@ -1,0 +1,246 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_astroid_tangent_ab_constant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If the tangent at any point on the curve x²⁄³ + y²⁄³ = a²⁄³ intersects the coordinate axes in A and B, show that the length AB is a constant.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take a general point in parametric form",
+      "marks": 1
+    },
+    {
+      "label": "Find the slope of the tangent",
+      "marks": 1
+    },
+    {
+      "label": "Write the tangent and read off A and B",
+      "marks": 1
+    },
+    {
+      "label": "Find AB and show it is free of θ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.215, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 1. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. TYPOGRAPHY, NOT A CHANGE OF MEANING: the two-thirds powers are set here in superscript form (x²⁄³), the same expression the book prints with a caret. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what point you take on the curve, how you get the two intercepts, and what has to happen to θ at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parametric_point",
+        "kind": "equation",
+        "label": "Take a general point in parametric form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The question says at ANY point, so the point must be general. The parametric form removes the two-thirds powers before any differentiation starts, which is why it is written first even though the question never mentions θ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The curve is x²⁄³ + y²⁄³ = a²⁄³.",
+          "Take the general point P = (a cos³θ, a sin³θ) on the curve.",
+          "Check that P lies on it:",
+          "(a cos³θ)²⁄³ + (a sin³θ)²⁄³ = a²⁄³cos²θ + a²⁄³sin²θ",
+          "= a²⁄³(cos²θ + sin²θ) = a²⁄³",
+          "So P is a point of the curve for every value of θ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a general point is taken as (a cos³θ, a sin³θ) and it satisfies the curve.",
+          "accept": [
+            "take the parametric point a cos cubed theta comma a sin cubed theta",
+            "use the parametric form so the two thirds powers disappear",
+            "take a general point on the curve with a parameter theta",
+            "parametric point teesukoni curve meeda undi ani chupinchali",
+            "put x equal to a cos cubed theta and y equal to a sin cubed theta",
+            "verify the point satisfies the equation of the curve"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "parametric",
+            "a cos cubed theta",
+            "a sin cubed theta",
+            "general point",
+            "theta"
+          ]
+        },
+        "why": "Raising a cos³θ to the power 2/3 leaves cos²θ, so the awkward index disappears in one line. Working with x and y directly needs implicit differentiation with x⁻¹⁄³ terms, which is longer and harder to keep clean.",
+        "common_mistakes": [
+          "Taking a numbered point with fixed values, which proves nothing about ANY point.",
+          "Writing the point as (a cos²θ, a sin²θ), which does not satisfy the curve.",
+          "Skipping the check that P lies on the curve."
+        ],
+        "memory_tip": "The power on the curve is 2/3, so the power inside the point is 3 — the cube inside cancels the two-thirds outside."
+      },
+      {
+        "id": "s2_slope",
+        "kind": "equation",
+        "label": "Find the slope of the tangent",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Differentiate x and y separately with respect to θ, then divide. The factor 3a cancels, so the slope depends only on θ.",
+        "lines": [
+          "x = a cos³θ  ⇒  dx/dθ = 3a cos²θ · (−sinθ) = −3a cos²θ sinθ",
+          "y = a sin³θ  ⇒  dy/dθ = 3a sin²θ · cosθ",
+          "dy/dx = (dy/dθ)/(dx/dθ) = (3a sin²θ cosθ)/(−3a cos²θ sinθ)",
+          "= −sinθ/cosθ",
+          "∴ slope of the tangent  m = −tanθ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx is dy/dθ divided by dx/dθ and comes to −tanθ.",
+          "accept": [
+            "differentiate x and y with respect to theta and divide",
+            "dy by dx equals dy by d theta over dx by d theta",
+            "the slope is minus tan theta",
+            "theta tho differentiate chesi divide cheyyali",
+            "three a cancels and minus tan theta is left",
+            "chain rule through the parameter theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "dy by d theta",
+            "dx by d theta",
+            "minus tan theta",
+            "slope"
+          ]
+        },
+        "why": "For a curve given by a parameter, dy/dx is the ratio of the two θ-derivatives. Writing dy/dθ alone and calling it the slope is the most common error at this line.",
+        "common_mistakes": [
+          "Dividing dx/dθ by dy/dθ, which turns the slope upside down.",
+          "Losing the minus sign that comes from differentiating cos³θ.",
+          "Calling dy/dθ the slope of the tangent."
+        ],
+        "memory_tip": "Top over bottom, both with respect to θ: dy/dθ goes above, dx/dθ goes below."
+      },
+      {
+        "id": "s3_tangent_intercepts",
+        "kind": "equation",
+        "label": "Write the tangent and read off A and B",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Reduce the tangent to intercept form x/A + y/B = 1. Once it is in that form the two intercepts are read straight off with no further working.",
+        "lines": [
+          "Tangent at P:  y − a sin³θ = −tanθ (x − a cos³θ)",
+          "Multiply both sides by cosθ:",
+          "y cosθ − a sin³θ cosθ = −x sinθ + a sinθ cos³θ",
+          "x sinθ + y cosθ = a sinθ cos³θ + a sin³θ cosθ",
+          "= a sinθ cosθ (cos²θ + sin²θ) = a sinθ cosθ",
+          "Divide by a sinθ cosθ:   x/(a cosθ) + y/(a sinθ) = 1",
+          "This is the intercept form, so the tangent meets the axes at",
+          "A = (a cosθ, 0)   and   B = (0, a sinθ)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the tangent reduces to x/(a cosθ) + y/(a sinθ) = 1, so A = (a cosθ, 0) and B = (0, a sinθ).",
+          "accept": [
+            "write the tangent and put it in intercept form",
+            "x over a cos theta plus y over a sin theta equals one",
+            "the x intercept is a cos theta and the y intercept is a sin theta",
+            "intercept form lo pettite A and B direct ga vasthayi",
+            "put y equal to zero for A and x equal to zero for B",
+            "the right side simplifies to a sin theta cos theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "intercept form",
+            "a cos theta",
+            "a sin theta",
+            "tangent",
+            "equals one"
+          ]
+        },
+        "why": "The identity cos²θ + sin²θ = 1 collapses the whole right side to a sinθ cosθ in one line, and dividing by it produces intercept form directly. Putting y = 0 and x = 0 into the unsimplified tangent gives the same two intercepts but takes twice the algebra.",
+        "common_mistakes": [
+          "Forgetting to multiply through by cosθ, so tanθ stays and the algebra does not close.",
+          "Reading the intercepts as a sinθ and a cosθ, with the two swapped.",
+          "Dividing by a sinθ cosθ but leaving the right side as something other than 1."
+        ],
+        "memory_tip": "Intercept form is x/A + y/B = 1, so whatever sits under x is the x-intercept and whatever sits under y is the y-intercept."
+      },
+      {
+        "id": "s4_length_ab",
+        "kind": "boxed_final",
+        "label": "Find AB and show it is free of θ",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The examiner is looking for θ to disappear. Stopping at √(a²cos²θ + a²sin²θ) does not answer the question, because the question asks for a constant.",
+        "lines": [
+          "A = (a cosθ, 0),   B = (0, a sinθ)",
+          "AB = √((a cosθ − 0)² + (0 − a sinθ)²)",
+          "= √(a²cos²θ + a²sin²θ)",
+          "= √(a²(cos²θ + sin²θ)) = √(a²) = |a|",
+          {
+            "text": "∴ AB = |a|, which contains no θ — the length AB is the same at every point of the curve, so it is a constant.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AB = |a| because cos²θ + sin²θ = 1 removes θ, so the length is constant.",
+          "accept": [
+            "use the distance formula and cos squared plus sin squared is one",
+            "A B comes to mod a which has no theta in it",
+            "the length is a so it is the same at every point",
+            "theta poyi kevalam a migulutundi so it is constant",
+            "distance between a cos theta zero and zero a sin theta is a",
+            "the answer does not depend on the point chosen"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "distance formula",
+            "cos squared plus sin squared",
+            "mod a",
+            "constant",
+            "no theta"
+          ]
+        },
+        "why": "A constant means free of the parameter. The identity cos²θ + sin²θ = 1 is what removes θ, and saying so is the sentence that finishes the proof.",
+        "common_mistakes": [
+          "Writing √(a²) as a and losing the modulus when a could be negative.",
+          "Leaving the answer as √(a²cos²θ + a²sin²θ) and calling it constant without simplifying.",
+          "Using the distance formula between P and A instead of between A and B."
+        ],
+        "memory_tip": "A sits on the x-axis and B sits on the y-axis, so AB is the hypotenuse of a right triangle with legs a cosθ and a sinθ — and that hypotenuse is a."
+      }
+    ]
+  }
+}

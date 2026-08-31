@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_log_sin_log_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If y = log(sin(log x)), find dy/dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate the three layers in order",
+      "marks": 1
+    },
+    {
+      "label": "Write the ratio as a cotangent",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 13. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer cot(log x)/x was checked against a numerical difference quotient before it was written: at x = 2 both read 0.6019449, and at x = 3 both read 0.1702388. Here log means logₑ, the convention of this paper."
+  },
+  "recall_prompt": "Say how you would do this one — name the layers you differentiate and the order you take them in.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_chain",
+        "kind": "equation",
+        "label": "Differentiate the three layers in order",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. There are three layers here, not two: the outer log, then sin, then the inner log x. Differentiate the outermost first and keep the inner part unchanged inside it.",
+        "memory_tip": "Count the layers before starting. Three layers means three factors multiplied together, so a missing factor is easy to notice.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = log(sin(log x)) is a function of a function of a function.",
+          "By the chain rule, differentiate the outer log first:",
+          "dy/dx = [1/sin(log x)] · d/dx[sin(log x)]",
+          "d/dx[sin(log x)] = cos(log x) · d/dx(log x) = cos(log x) · (1/x)",
+          "∴ dy/dx = [1/sin(log x)] · cos(log x) · (1/x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the chain rule is applied three times: 1/sin(log x), then cos(log x), then 1/x.",
+          "accept": [
+            "chain rule three times, one over sin log x then cos log x then one by x",
+            "differentiate the outer log first and keep sin log x inside",
+            "outer log gives one over sin log x, then sin gives cos log x, then log x gives one by x",
+            "chain rule moodu sarlu apply cheyyali, chivariki one by x",
+            "three layers so three factors multiplied"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "chain rule",
+            "one over sin log x",
+            "cos log x",
+            "one by x",
+            "three layers"
+          ]
+        },
+        "why": "The mark is for the chain rule itself, so writing all three factors before simplifying anything secures it even if the tidying afterwards slips.",
+        "common_mistakes": [
+          "Stopping after two factors and leaving out the 1/x from the inner log x.",
+          "Writing the outer derivative as 1/log(sin(log x)) instead of 1/sin(log x)."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Write the ratio as a cotangent",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. cos of an angle over sin of the same angle is cot of that angle, and the angle here is log x. The 1/x stays outside as a separate factor.",
+        "memory_tip": "cos over sin of the same angle is always cot, whatever the angle is written as.",
+        "lines": [
+          "cos(log x)/sin(log x) = cot(log x)",
+          "∴ dy/dx = cot(log x) · (1/x)",
+          {
+            "text": "∴ dy/dx = cot(log x)/x",
+            "style": "boxed"
+          },
+          "This working needs sin(log x) > 0, that is 0 < log x < π."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(log x)/sin(log x) is cot(log x), giving dy/dx = cot(log x)/x.",
+          "accept": [
+            "cos over sin is cot so the answer is cot log x by x",
+            "the answer is cot of log x divided by x",
+            "combine cos log x and sin log x into cot log x",
+            "cos by sin ante cot, so cot log x by x vasthundi",
+            "cot log x over x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cot log x",
+            "by x",
+            "cos over sin",
+            "cot"
+          ]
+        },
+        "why": "The examiner expects the compact form. Leaving cos(log x)/sin(log x) unwritten as cot is not wrong, but the cotangent form is the one the answer key carries.",
+        "common_mistakes": [
+          "Writing tan(log x)/x by taking the ratio the wrong way up.",
+          "Putting the x inside the cotangent as cot(log x/x)."
+        ]
+      }
+    ]
+  }
+}

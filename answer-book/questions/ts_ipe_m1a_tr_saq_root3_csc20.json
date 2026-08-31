@@ -11,10 +11,10 @@
     "name": "Trigonometric Ratios and Transformations"
   },
   "chapter": "Trigonometric Ratios and Transformations",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 8,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
   "question_text": "Show that √3 cosec20° − sec20° = 4.",
   "appearances": [
     {
@@ -24,15 +24,7 @@
   ],
   "mark_split": [
     {
-      "label": "Write as fractions and combine",
-      "marks": 1
-    },
-    {
       "label": "Take 2 out to make known angles",
-      "marks": 1
-    },
-    {
-      "label": "Apply sin(A−B)",
       "marks": 1
     },
     {
@@ -43,23 +35,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 64.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17. The twin of 64.1 with the √3 on the other term, so the known angles come out as 60° rather than 30°. The book notes the second half is \"same to same\". ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 64.2, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17. The twin of 64.1 with the √3 on the other term, so the known angles come out as 60° rather than 30°. The book notes the second half is \"same to same\". ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 42 iii. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the step that takes the 2 out and on the closing cancellation, and the remaining steps stay on the page as unmarked working. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "Trigonometric Ratios · 4 marks"
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
     ],
     "steps": [
       {
         "id": "s1_write_as_fractions_and_c",
         "kind": "equation",
         "label": "Write as fractions and combine",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "First mark. cosec and sec are reciprocals, so write them out and combine over one denominator.",
-        "memory_tip": "cosec and sec are reciprocals — write them out and combine over one denominator.",
+        "marks": 0,
+        "margin_note": "cosec and sec are reciprocals, so write them out and combine over one denominator.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,7 +85,8 @@
         "common_mistakes": [
           "Writing cosec as 1/cos.",
           "Losing the √3 when combining."
-        ]
+        ],
+        "memory_tip": "cosec and sec are reciprocals — write them out and combine over one denominator."
       },
       {
         "id": "s2_take_2_out_to_make_known",
@@ -103,8 +94,7 @@
         "label": "Take 2 out to make known angles",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. This time √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the twin.",
-        "memory_tip": "Here √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the sin10° twin.",
+        "margin_note": "First mark. This time √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the twin.",
         "lines": [
           "= 2[(√3/2)cos20° − (1/2)sin20°] / (sin20° cos20°)",
           "= 2[sin60° cos20° − cos60° sin20°] / (sin20° cos20°)"
@@ -135,16 +125,15 @@
         "common_mistakes": [
           "Copying the twin and using 30°.",
           "Not factoring the 2 out first."
-        ]
+        ],
+        "memory_tip": "Here √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the sin10° twin."
       },
       {
         "id": "s3_apply_sin_a_b",
         "kind": "equation",
         "label": "Apply sin(A−B)",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "Third mark. The numerator collapses to 2 sin 40°.",
-        "memory_tip": "The numerator collapses to 2 sin 40°.",
+        "marks": 0,
+        "margin_note": "The numerator collapses to 2 sin 40°.",
         "lines": [
           "= 2 sin(60° − 20°) / (sin20° cos20°)",
           "= 2 sin40° / (sin20° cos20°)"
@@ -174,7 +163,8 @@
         "common_mistakes": [
           "Using sin(A+B) and getting sin 80°.",
           "Reversing the subtraction."
-        ]
+        ],
+        "memory_tip": "The numerator collapses to 2 sin 40°."
       },
       {
         "id": "s4_expand_sin40_and_cancel",
@@ -183,7 +173,6 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. sin40° = 2 sin20° cos20°, the denominator exactly — so it cancels and leaves 4.",
-        "memory_tip": "sin40° = 2 sin20° cos20°, exactly the denominator — it cancels and leaves 4.",
         "lines": [
           "= 2(2 sin20° cos20°) / (sin20° cos20°)",
           {
@@ -216,7 +205,8 @@
         "common_mistakes": [
           "Cancelling before expanding.",
           "Finishing with 2."
-        ]
+        ],
+        "memory_tip": "sin40° = 2 sin20° cos20°, exactly the denominator — it cancels and leaves 4."
       }
     ]
   }

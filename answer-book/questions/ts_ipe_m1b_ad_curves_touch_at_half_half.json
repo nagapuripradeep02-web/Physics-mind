@@ -1,0 +1,240 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_curves_touch_at_half_half",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the curves 6x² − 5x + 2y = 0 and 4x² + 8y² = 3 touch each other at (1/2, 1/2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check the point lies on both curves",
+      "marks": 1
+    },
+    {
+      "label": "Find the slope of the first curve there",
+      "marks": 1
+    },
+    {
+      "label": "Find the slope of the second curve there",
+      "marks": 1
+    },
+    {
+      "label": "Show the two slopes are equal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.218, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 6. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question; the point is given in the stem, so the first mark goes to verifying it rather than to finding it. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you check first about the given point, and say what touch each other means in terms of the slopes.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_verify_point",
+        "kind": "equation",
+        "label": "Check the point lies on both curves",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Touching is a statement about a COMMON point, so the point has to be shown to be on both curves before any slope is found. This is a scoring line, not a formality.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curves:  6x² − 5x + 2y = 0   …(i)   and   4x² + 8y² = 3   …(ii)",
+          "Put x = 1/2, y = 1/2 in (i):",
+          "6(1/4) − 5(1/2) + 2(1/2) = 3/2 − 5/2 + 1 = 0  ✓",
+          "Put x = 1/2, y = 1/2 in (ii):",
+          "4(1/4) + 8(1/4) = 1 + 2 = 3  ✓",
+          "∴ P(1/2, 1/2) lies on both curves, so it is a common point."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (1/2, 1/2) is substituted into both equations and satisfies both, so it is a common point.",
+          "accept": [
+            "substitute half and half into both equations first",
+            "check the point lies on both curves",
+            "six into one fourth minus five into half plus one is zero",
+            "point rendu curves meeda undi ani mundu verify cheyyali",
+            "four into one fourth plus eight into one fourth is three",
+            "it is a common point so the curves meet there"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "common point",
+            "satisfies both",
+            "half comma half"
+          ]
+        },
+        "why": "Equal slopes at two different points would say nothing at all. Touching means the curves share a point AND share the tangent there, so the shared point is half the statement being proved.",
+        "common_mistakes": [
+          "Going straight to the derivatives without checking the point.",
+          "Checking the point on one curve only.",
+          "Arithmetic slip with 6(1/4) written as 6/2 instead of 3/2."
+        ],
+        "memory_tip": "Touching needs two things: the same point and the same slope. Prove them in that order."
+      },
+      {
+        "id": "s2_slope_first",
+        "kind": "equation",
+        "label": "Find the slope of the first curve there",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. In (i) the y-term is 2y, so its derivative is simply 2·dy/dx. The slope comes out in x alone, so only x = 1/2 is needed.",
+        "lines": [
+          "Differentiate (i) with respect to x:",
+          "12x − 5 + 2 (dy/dx) = 0",
+          "dy/dx = (5 − 12x)/2",
+          "At P(1/2, 1/2):  m₁ = (5 − 12(1/2))/2 = (5 − 6)/2",
+          "∴ m₁ = −1/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating 6x² − 5x + 2y = 0 gives dy/dx = (5 − 12x)/2, so m₁ = −1/2 at x = 1/2.",
+          "accept": [
+            "differentiate the first curve to get twelve x minus five plus two dy by dx",
+            "dy by dx is five minus twelve x by two",
+            "m one is minus one half",
+            "modati curve slope x meeda maatrame aadhaarapadutundi",
+            "put x equal to half to get minus half",
+            "five minus six by two is minus one by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twelve x minus five",
+            "five minus twelve x",
+            "m one",
+            "minus half"
+          ]
+        },
+        "why": "The first curve is already solved for y up to a factor, so its slope depends on x only. That makes the check quick and independent of the y-coordinate.",
+        "common_mistakes": [
+          "Differentiating 2y as 2 without the dy/dx factor.",
+          "Writing dy/dx = (12x − 5)/2 with the sign reversed.",
+          "Differentiating 6x² as 6x."
+        ],
+        "memory_tip": "Every y-term picks up dy/dx behind it; every pure x-term does not."
+      },
+      {
+        "id": "s3_slope_second",
+        "kind": "equation",
+        "label": "Find the slope of the second curve there",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Here 8y² differentiates to 16y·dy/dx. Cancelling the 8 gives the compact form −x/(2y), which is fastest to evaluate.",
+        "lines": [
+          "Differentiate (ii) with respect to x:",
+          "8x + 16y (dy/dx) = 0",
+          "dy/dx = −8x/(16y) = −x/(2y)",
+          "At P(1/2, 1/2):  m₂ = −(1/2)/(2 · 1/2) = −(1/2)/1",
+          "∴ m₂ = −1/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating 4x² + 8y² = 3 gives dy/dx = −x/(2y), so m₂ = −1/2 at (1/2, 1/2).",
+          "accept": [
+            "differentiate the second curve to get eight x plus sixteen y dy by dx",
+            "dy by dx is minus x by two y",
+            "m two is minus one half",
+            "rendava curve slope minus x by two y vasthundi",
+            "eight by sixteen cancels to one by two",
+            "substitute half and half to get minus half"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixteen y",
+            "minus x by two y",
+            "m two",
+            "minus half"
+          ]
+        },
+        "why": "This curve is an ellipse and its slope needs both coordinates, so the y-value from step 1 is used here. Simplifying −8x/(16y) before substituting avoids a fraction inside a fraction.",
+        "common_mistakes": [
+          "Differentiating 8y² as 8y·dy/dx instead of 16y·dy/dx.",
+          "Forgetting that the derivative of the constant 3 is 0.",
+          "Writing the slope as −2x/y by cancelling the wrong way."
+        ],
+        "memory_tip": "For Ax² + By² = C the slope is −Ax/(By): here A = 4 and B = 8, so it is −4x/(8y) = −x/(2y)."
+      },
+      {
+        "id": "s4_touch",
+        "kind": "boxed_final",
+        "label": "Show the two slopes are equal",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Touch each other means the curves share the point AND share the tangent, that is m₁ = m₂. State both halves of the conclusion.",
+        "lines": [
+          "Two curves touch each other at a common point when their slopes there are equal.",
+          "m₁ = −1/2  and  m₂ = −1/2, so  m₁ = m₂",
+          "The common tangent at P(1/2, 1/2) is",
+          "y − 1/2 = −(1/2)(x − 1/2)  ⇒  2x + 4y = 3",
+          {
+            "text": "∴ P(1/2, 1/2) lies on both curves and both have slope −1/2 there, so the curves touch each other at (1/2, 1/2).",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m₁ = m₂ = −1/2, so the curves have the same tangent at the common point and therefore touch.",
+          "accept": [
+            "both slopes are minus one half so they are equal",
+            "touching means the slopes are equal at the common point",
+            "the curves have the same tangent there",
+            "rendu slopes same kabatti curves touch avutayi",
+            "equal slopes plus a common point means they touch",
+            "the common tangent is two x plus four y equals three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "equal slopes",
+            "same tangent",
+            "touch",
+            "minus half"
+          ]
+        },
+        "why": "Equal slopes alone would only mean the tangents are parallel. Together with the common point from step 1, equal slopes mean one shared tangent line, which is what touching is.",
+        "common_mistakes": [
+          "Using m₁m₂ = −1, which is the test for cutting at right angles, not for touching.",
+          "Concluding from equal slopes alone without mentioning the common point.",
+          "Putting the two slopes into the angle formula and reporting θ = 0 without saying what it means."
+        ],
+        "memory_tip": "Same point and same slope means one tangent serves both curves — that single shared tangent is what touching means."
+      }
+    ]
+  }
+}

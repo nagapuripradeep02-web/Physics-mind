@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_sin_y_equals_x_sin_a_plus_y",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If sin y = x sin(a + y), show that dy/dx = sin²(a + y)/sin a, where a is not a multiple of π.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Make x the subject",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate x with respect to y",
+      "marks": 1
+    },
+    {
+      "label": "Use the sine difference formula",
+      "marks": 1
+    },
+    {
+      "label": "Invert to get dy/dx",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.200, chapter 9 DIFFERENTIATION, Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: with a = 0.7 the relation sin y = x sin(a + y) was solved numerically for y at x = 0.4 and x = 0.8, and sin²(a + y)/sin a matched a central difference quotient in both cases (1.17530895 and 1.54766082). The step order is deliberate — finding dx/dy and inverting is the short route, and the card says so, because choosing that direction is the skill this question tests."
+  },
+  "recall_prompt": "Say how you would solve this — say which variable you differentiate with respect to, and why that direction is chosen.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_make_x_subject",
+        "kind": "text",
+        "label": "Make x the subject",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Choosing the direction is the whole skill in this question. x is already a single term, so it comes out in one move; y is inside two different sines and cannot be separated at all.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given sin y = x sin(a + y), where a is a constant",
+          "x can be separated in one step, but y cannot be separated from the two sines at all.",
+          "So find dx/dy first and invert at the end, rather than differentiating the given relation with respect to x.",
+          "∴ x = sin y/sin(a + y)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x is made the subject as x = sin y/sin(a + y), so that dx/dy can be found first.",
+          "accept": [
+            "write x as sin y by sin a plus y",
+            "make x the subject and differentiate with respect to y",
+            "find dx by dy first and then invert",
+            "x ni subject cheyyali, sin y by sin a plus y",
+            "y cannot be separated so differentiate the other way round",
+            "take x alone on one side first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "make x the subject",
+            "sin y by sin a plus y",
+            "dx by dy",
+            "other way round"
+          ]
+        },
+        "why": "Differentiating sin y = x sin(a + y) with respect to x needs the product rule on the right and leaves dy/dx in two places, which then has to be collected. Making x the subject avoids all of that, because x stands alone and only the right side needs differentiating.",
+        "common_mistakes": [
+          "Differentiating the given relation with respect to x, which is correct but far longer and often abandoned halfway.",
+          "Treating a as a variable and differentiating sin(a + y) as if a changed."
+        ],
+        "memory_tip": "Differentiate with respect to whichever variable is already alone. Here that is x, so the first derivative found is dx/dy, not dy/dx."
+      },
+      {
+        "id": "s2_quotient_rule",
+        "kind": "equation",
+        "label": "Differentiate x with respect to y",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. a is a constant, so d/dy of sin(a + y) is cos(a + y) with no extra factor. Write the quotient rule out in full — the four terms in the numerator are needed for the next step.",
+        "lines": [
+          "Differentiate with respect to y by the quotient rule, taking u = sin y and v = sin(a + y):",
+          "du/dy = cos y  and  dv/dy = cos(a + y)",
+          "dx/dy = [sin(a + y)·cos y − sin y·cos(a + y)]/sin²(a + y)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quotient rule gives dx/dy = [sin(a + y)cos y − sin y cos(a + y)]/sin²(a + y).",
+          "accept": [
+            "apply the quotient rule with respect to y",
+            "derivative of sin a plus y with respect to y is cos a plus y",
+            "denominator becomes sin squared a plus y",
+            "quotient rule y meeda apply cheyyali",
+            "v du minus u dv over v squared with u equal to sin y",
+            "differentiate the fraction treating a as a constant"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "quotient rule",
+            "cos a plus y",
+            "sin squared",
+            "with respect to y"
+          ]
+        },
+        "why": "a is a fixed angle, so sin(a + y) differentiates to cos(a + y) with respect to y. The numerator is left unexpanded on purpose, because in that exact order it is a standard trigonometric expansion.",
+        "common_mistakes": [
+          "Differentiating with respect to x by mistake and writing cos(a + y)(dy/dx) in a working that is meant to be in y alone.",
+          "Reversing the numerator to sin y cos(a + y) − sin(a + y) cos y, which gives −sin a and the wrong sign."
+        ],
+        "memory_tip": "Leave the numerator as it stands. Four trigonometric terms in the order sin·cos − cos·sin are always about to become a single sine."
+      },
+      {
+        "id": "s3_sine_difference",
+        "kind": "equation",
+        "label": "Use the sine difference formula",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. The examiner looks for the named identity sin A cos B − cos A sin B = sin(A − B) with A = a + y and B = y. The y cancels inside the sine and only the constant a survives.",
+        "lines": [
+          "The numerator is the expansion of the sine of a difference:",
+          "sin A cos B − cos A sin B = sin(A − B), with A = a + y and B = y",
+          "sin(a + y)cos y − cos(a + y)sin y = sin((a + y) − y) = sin a",
+          "∴ dx/dy = sin a/sin²(a + y)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator is sin((a + y) − y) = sin a, so dx/dy = sin a/sin²(a + y).",
+          "accept": [
+            "the numerator is sin of a plus y minus y which is sin a",
+            "use sin A cos B minus cos A sin B equals sin A minus B",
+            "the y cancels inside the sine and sin a is left",
+            "numerator lo sin a plus y minus y vasthundi ante sin a",
+            "compound angle formula gives sin a",
+            "apply the sine subtraction formula to the top"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin a",
+            "sin A minus B",
+            "compound angle",
+            "y cancels"
+          ]
+        },
+        "why": "Without the compound angle formula the numerator stays as four trigonometric terms and nothing simplifies. Recognising it as sin((a + y) − y) reduces the whole numerator to the constant sin a in one line.",
+        "common_mistakes": [
+          "Expanding sin(a + y) and cos(a + y) term by term, which fills a page and rarely reaches sin a.",
+          "Writing the numerator as sin(a + 2y) by adding the angles instead of subtracting them."
+        ],
+        "memory_tip": "Match the pattern before expanding anything: sin·cos − cos·sin is a sine of a DIFFERENCE, and here the difference is (a + y) − y = a."
+      },
+      {
+        "id": "s4_invert",
+        "kind": "boxed_final",
+        "label": "Invert to get dy/dx",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. State why sin a ≠ 0 before inverting. The condition given in the question, that a is not a multiple of π, is exactly what makes the reciprocal legal — sin(nπ) = 0 for every integer n.",
+        "lines": [
+          "a is not a multiple of π, so sin a ≠ 0 and therefore dx/dy ≠ 0.",
+          "A non-zero derivative may be inverted: dy/dx = 1/(dx/dy)",
+          "dy/dx = 1/[sin a/sin²(a + y)]",
+          {
+            "text": "∴ dy/dx = sin²(a + y)/sin a",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx is the reciprocal of dx/dy, and that sin a ≠ 0 because a is not a multiple of π.",
+          "accept": [
+            "dy by dx is one over dx by dy",
+            "turn the fraction upside down to get sin squared a plus y by sin a",
+            "sin a is not zero because a is not a multiple of pi",
+            "reciprocal teesukunte answer vasthundi",
+            "invert dx by dy at the end",
+            "the condition on a keeps the denominator non zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "reciprocal",
+            "one over",
+            "sin a not zero",
+            "multiple of pi"
+          ]
+        },
+        "why": "dy/dx = 1/(dx/dy) holds only where dx/dy is not zero. Here dx/dy = sin a/sin²(a + y), which is zero exactly when sin a = 0, so the condition printed in the question is what makes the final line valid rather than a decoration.",
+        "common_mistakes": [
+          "Inverting without saying why sin a ≠ 0, which is the one condition the question states.",
+          "Writing the answer as sin a/sin²(a + y), which is dx/dy and not dy/dx."
+        ],
+        "memory_tip": "The answer is the previous line turned upside down. Check the sine that ends up in the denominator is sin a, the constant one."
+      }
+    ]
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_cos_inverse_a_cos_x_plus_b",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "If a > b > 0 and 0 < x < π, and f(x) = (a² − b²)^(−1/2) cos⁻¹((a cos x + b)/(a + b cos x)), show that f′(x) = 1/(a + b cos x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute the half angle form of cos x",
+      "marks": 1
+    },
+    {
+      "label": "Simplify the inverse cosine argument",
+      "marks": 2
+    },
+    {
+      "label": "Turn the inverse cosine into an inverse tangent",
+      "marks": 2
+    },
+    {
+      "label": "Differentiate",
+      "marks": 2
+    },
+    {
+      "label": "Simplify back to a + b cos x",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.208, chapter 9 DIFFERENTIATION, Long Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. STEM: the printed constraint line reached this desk garbled, as \"0 < π > x\", which is not a usable condition. The stem was authored as 0 < x < π. That is the condition the working actually requires and the only reading consistent with the rest of the question: it makes sin x > 0, which is what removes the modulus from √(sin²x) in the differentiation, and it makes tan(x/2) > 0, which is what puts the half angle inside the principal range. The book was not otherwise consulted and no printed solution was read. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section C question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing, in two parts and with three parameter pairs, (a, b) = (3, 1), (5, 2) and (2, 1.5). First the half angle identity: Cos⁻¹((a cos x + b)/(a + b cos x)) and 2 Tan⁻¹(√((a − b)/(a + b))·tan(x/2)) agreed to nine decimal places at x = 1 and x = 2 for every pair. Then the derivative: f was differentiated as a central difference quotient at x = 0.5, 1, 2 and 2.8, and all twelve values matched 1/(a + b cos x) — for example a = 3, b = 1, x = 1 gives 0.282461754 both ways, and a = 2, b = 1.5, x = 2.8 gives 1.704545971 both ways."
+  },
+  "recall_prompt": "Say how you would solve this — say what you substitute for cos x, and what the inverse cosine turns into.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Differentiation · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_half_angle",
+        "kind": "text",
+        "label": "Substitute the half angle form of cos x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Note the two facts the given conditions supply: a + b cos x is never zero because a > b > 0, and tan(x/2) is positive because 0 < x < π. Both are used later.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given f(x) = (a² − b²)^(−1/2) · Cos⁻¹((a cos x + b)/(a + b cos x)),  with a > b > 0 and 0 < x < π.",
+          "a > b > 0 gives a + b cos x ≥ a − b > 0, so the denominator is never zero and a² − b² > 0.",
+          "0 < x < π gives 0 < x/2 < π/2, so tan(x/2) > 0.",
+          "Put t = tan(x/2). The half angle form of the cosine is",
+          "cos x = (1 − t²)/(1 + t²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That t = tan(x/2) is introduced and cos x is written as (1 − t²)/(1 + t²).",
+          "accept": [
+            "put t equal to tan x by two",
+            "cos x is one minus t squared over one plus t squared",
+            "use the half angle substitution",
+            "tan x by two ni t ga teesukovali",
+            "write cos x in terms of the half angle",
+            "a plus b cos x is never zero because a is bigger than b"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan x by two",
+            "half angle",
+            "one minus t squared",
+            "one plus t squared"
+          ]
+        },
+        "why": "The argument of the inverse cosine is a ratio of two expressions that are linear in cos x. Writing cos x in the half angle form makes both of them ratios with the same denominator 1 + t², which then cancels, and that is what reveals the standard form underneath.",
+        "common_mistakes": [
+          "Differentiating the quotient as it stands with the quotient rule inside a Cos⁻¹, which is much longer and where most sign errors happen.",
+          "Using cos x = 1 − 2sin²(x/2), which halves the angle but does not put both parts over the same denominator."
+        ],
+        "memory_tip": "The half angle substitution t = tan(x/2) turns any expression built from sin x and cos x into a ratio of polynomials in t. It is the standard move when cos x appears both on top and underneath."
+      },
+      {
+        "id": "s2_simplify_argument",
+        "kind": "equation",
+        "label": "Simplify the inverse cosine argument",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. The 1 + t² cancels between the top and the bottom, and then dividing by a + b is what produces the single constant k. Define k on this line — the rest of the answer uses it.",
+        "lines": [
+          "a cos x + b = a(1 − t²)/(1 + t²) + b = [a(1 − t²) + b(1 + t²)]/(1 + t²) = [(a + b) − (a − b)t²]/(1 + t²)",
+          "a + b cos x = a + b(1 − t²)/(1 + t²) = [a(1 + t²) + b(1 − t²)]/(1 + t²) = [(a + b) + (a − b)t²]/(1 + t²)",
+          "The factor 1 + t² cancels in the ratio:",
+          "(a cos x + b)/(a + b cos x) = [(a + b) − (a − b)t²]/[(a + b) + (a − b)t²]",
+          "Divide the top and the bottom by a + b, and write  k = √((a − b)/(a + b)),  so that k² = (a − b)/(a + b) and k > 0:",
+          "∴ (a cos x + b)/(a + b cos x) = (1 − k²t²)/(1 + k²t²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the argument becomes (1 − k²t²)/(1 + k²t²), where k = √((a − b)/(a + b)).",
+          "accept": [
+            "one plus t squared cancels from the top and the bottom",
+            "the argument becomes one minus k squared t squared over one plus k squared t squared",
+            "k squared is a minus b over a plus b",
+            "one plus t square cancel ayipothundi",
+            "divide both parts by a plus b to get the constant k",
+            "collect the a plus b and a minus b terms"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus t squared cancels",
+            "k squared",
+            "a minus b over a plus b",
+            "one minus k squared t squared"
+          ]
+        },
+        "why": "Grouping the terms as (a + b) and (a − b) rather than leaving them as a and b separately is what makes the same constant appear on the top and the bottom. Once it does, one division turns the whole argument into the shape (1 − s²)/(1 + s²), which has a known inverse cosine.",
+        "common_mistakes": [
+          "Cancelling 1 + t² from only one of the two expressions, so the ratio is wrong by a factor of 1 + t².",
+          "Collecting the terms as a(1 − t²) + b(1 + t²) = (a + b) + (b − a)t² and then losing track of which sign belongs on top."
+        ],
+        "memory_tip": "Both lines regroup into a plus b and a minus b. The minus sign sits with the t² term on top and with nothing on the bottom, which is the only difference between the two."
+      },
+      {
+        "id": "s3_to_tan_inverse",
+        "kind": "equation",
+        "label": "Turn the inverse cosine into an inverse tangent",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks, and the heart of the answer. Derive Cos⁻¹((1 − s²)/(1 + s²)) = 2 Tan⁻¹s rather than quoting it, and say why 2φ lies in [0, π].",
+        "lines": [
+          "Write s = kt = k tan(x/2). k > 0 and t > 0, so s > 0.",
+          "Put s = tan φ with 0 < φ < π/2. Then",
+          "(1 − s²)/(1 + s²) = (1 − tan²φ)/(1 + tan²φ) = (1 − tan²φ)/sec²φ = cos²φ − sin²φ = cos 2φ",
+          "0 < φ < π/2 gives 0 < 2φ < π, which is inside [0, π], the principal range of Cos⁻¹, so",
+          "Cos⁻¹((1 − s²)/(1 + s²)) = Cos⁻¹(cos 2φ) = 2φ = 2 Tan⁻¹s",
+          "∴ f(x) = (2/√(a² − b²)) · Tan⁻¹(k tan(x/2)),  where k = √((a − b)/(a + b))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Cos⁻¹((1 − s²)/(1 + s²)) = 2 Tan⁻¹s, so f = (2/√(a² − b²))·Tan⁻¹(k tan(x/2)).",
+          "accept": [
+            "one minus s squared over one plus s squared is cos two phi",
+            "cos inverse of that is two tan inverse s",
+            "put s equal to tan phi and use the double angle form of cosine",
+            "cos inverse ni two tan inverse ga marchali",
+            "two phi lies between zero and pi so it is in the principal range",
+            "f becomes two by root a squared minus b squared times tan inverse of k tan x by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two tan inverse",
+            "cos two phi",
+            "tan phi",
+            "principal range",
+            "k tan x by two"
+          ]
+        },
+        "why": "An inverse cosine of a fraction is hard to differentiate, while an inverse tangent of a single expression is a standard derivative. The substitution s = tan φ turns the fraction into cos 2φ, so the inverse cosine returns 2φ and the whole thing becomes 2 Tan⁻¹s.",
+        "common_mistakes": [
+          "Quoting Cos⁻¹((1 − s²)/(1 + s²)) = 2 Tan⁻¹s with no derivation and no range check, so the method marks are not earned.",
+          "Writing (1 − tan²φ)/(1 + tan²φ) as tan 2φ, which needs a 2 tan φ on top and is a different formula."
+        ],
+        "memory_tip": "The three companions are cos 2φ = (1 − t²)/(1 + t²), sin 2φ = 2t/(1 + t²) and tan 2φ = 2t/(1 − t²), where t = tan φ. Only the cosine one has 1 minus t² on top."
+      },
+      {
+        "id": "s4_differentiate",
+        "kind": "equation",
+        "label": "Differentiate",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Two chain rule factors are needed: k from the constant, and ½ sec²(x/2) from the half angle. Missing the one half is the most common loss on this question.",
+        "lines": [
+          "Differentiate f(x) = (2/√(a² − b²)) · Tan⁻¹(k tan(x/2)) with respect to x.",
+          "d/dx[Tan⁻¹u] = (1/(1 + u²))·(du/dx), here with u = k tan(x/2) and du/dx = k·½ sec²(x/2):",
+          "f′(x) = (2/√(a² − b²)) · [1/(1 + k²tan²(x/2))] · k · ½ sec²(x/2)",
+          "∴ f′(x) = (k/√(a² − b²)) · sec²(x/2)/(1 + k²tan²(x/2))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating gives f′(x) = (k/√(a² − b²))·sec²(x/2)/(1 + k²tan²(x/2)).",
+          "accept": [
+            "derivative of tan inverse u is one over one plus u squared times du by dx",
+            "the inner derivative is k times half sec squared x by two",
+            "the two and the half cancel",
+            "chain rule apply chesi half sec square x by two teesukovali",
+            "differentiate the tan inverse and keep the constant outside",
+            "sec squared x by two over one plus k squared tan squared x by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sec squared x by two",
+            "one plus k squared tan squared",
+            "chain rule",
+            "half"
+          ]
+        },
+        "why": "The chain rule is applied twice over: once for the inverse tangent and once for tan(x/2), whose derivative carries the factor one half. The 2 in front of the inverse tangent cancels that one half, which is why the constant in the answer is just k/√(a² − b²).",
+        "common_mistakes": [
+          "Writing d/dx[tan(x/2)] as sec²(x/2) and dropping the factor one half, which doubles the answer.",
+          "Squaring only the tangent and not the k in the denominator, giving 1 + tan²(x/2) instead of 1 + k²tan²(x/2)."
+        ],
+        "memory_tip": "Every half angle brings a one half out with it. Here the 2 already sitting in front is exactly what it cancels."
+      },
+      {
+        "id": "s5_simplify_back",
+        "kind": "boxed_final",
+        "label": "Simplify back to a + b cos x",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Multiplying the top and the bottom by cos²(x/2) is the move that removes the secant; then a cos² + a sin² gives a, and b cos² − b sin² gives b cos x. Both constants cancel to leave 1.",
+        "lines": [
+          "Multiply the top and the bottom of the fraction by cos²(x/2):",
+          "sec²(x/2)/(1 + k²tan²(x/2)) = 1/(cos²(x/2) + k²sin²(x/2))",
+          "Multiply the top and the bottom by a + b, using k²(a + b) = a − b:",
+          "= (a + b)/[(a + b)cos²(x/2) + (a − b)sin²(x/2)]",
+          "(a + b)cos²(x/2) + (a − b)sin²(x/2) = a[cos²(x/2) + sin²(x/2)] + b[cos²(x/2) − sin²(x/2)] = a + b cos x",
+          "k(a + b) = √((a − b)/(a + b))·(a + b) = √((a − b)(a + b)) = √(a² − b²), so the constant in front is √(a² − b²)/√(a² − b²) = 1.",
+          {
+            "text": "∴ f′(x) = 1/(a + b cos x)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the denominator simplifies to a + b cos x and the constants cancel, giving f′(x) = 1/(a + b cos x).",
+          "accept": [
+            "multiply top and bottom by cos squared x by two",
+            "a plus b cos squared plus a minus b sin squared is a plus b cos x",
+            "k times a plus b is root a squared minus b squared so the constant is one",
+            "cos square x by two tho multiply cheste sec pothundi",
+            "the constants cancel and only one over a plus b cos x is left",
+            "cos squared minus sin squared is cos x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos squared x by two",
+            "a plus b cos x",
+            "constants cancel",
+            "root a squared minus b squared"
+          ]
+        },
+        "why": "The two half angle identities cos²(x/2) + sin²(x/2) = 1 and cos²(x/2) − sin²(x/2) = cos x are what rebuild a + b cos x from the pieces. The constant in front reduces to exactly 1, which is why the awkward factor (a² − b²)^(−1/2) was placed in the question in the first place.",
+        "common_mistakes": [
+          "Leaving the answer in terms of tan(x/2) and stopping, when the question asks for a result in cos x.",
+          "Writing k(a + b) as (a − b) instead of √((a − b)(a + b)), so the constant does not cancel to 1."
+        ],
+        "memory_tip": "Group by a and by b, not by cosine and sine. The a group gives 1 and the b group gives cos x, which rebuilds a + b cos x in one line."
+      }
+    ]
+  }
+}

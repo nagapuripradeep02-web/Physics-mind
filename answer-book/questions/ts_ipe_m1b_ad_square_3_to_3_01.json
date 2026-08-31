@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_square_3_to_3_01",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The side of a square is increased from 3 cm to 3.01 cm. Find the approximate increase in the area of the square.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write dA = 2x · dx",
+      "marks": 1
+    },
+    {
+      "label": "Substitute x = 3 and dx = 0.01",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.211, chapter 10 APPLICATIONS OF DERIVATIVES, the ERRORS AND APPROXIMATIONS sub-section, Very Short Answer question 5. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box, and the question numbering restarts in each, so the sub-section is named here; we ship the chapter as ONE unit, ordered by the syllabus. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks, printed over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked before it was written: the exact increase (3.01)² − 3² = 0.0601 cm² against the approximation 0.06 cm², the gap being the dropped term (dx)² = 0.0001."
+  },
+  "recall_prompt": "Say how you would do this one — say what dx is here, and which formula turns it into a change in area.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_da_formula",
+        "kind": "equation",
+        "label": "Write dA = 2x · dx",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Read the two numbers off the question first: 3 is x, and the difference 0.01 is dx. The question asks for a change in area, so this one stays in cm², not a percentage.",
+        "memory_tip": "dx is the difference between the two sides given, never the second side itself.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let x be the side of the square and A = x² its area.",
+          "Here x = 3 cm and dx = 3.01 − 3 = 0.01 cm",
+          "A = x²   ⇒   dA/dx = 2x",
+          "∴ dA = 2x · dx"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 3, dx = 0.01, and that differentiating A = x² gives dA = 2x·dx.",
+          "accept": [
+            "x is three and d x is zero point zero one",
+            "differentiate area equals x squared to get d A equals two x d x",
+            "the difference of the two sides is d x",
+            "moodu x, tedaa zero point zero one d x",
+            "take d x as three point zero one minus three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x d x",
+            "zero point zero one",
+            "three",
+            "x squared"
+          ]
+        },
+        "why": "dA = (dA/dx)·dx is the approximation being used, so the derivative must be written before any number is put in. Identifying dx as the difference 0.01, not as 3.01, is what makes the substitution correct.",
+        "common_mistakes": [
+          "Taking dx = 3.01 instead of the difference 0.01.",
+          "Using dA/A here, which gives a ratio when the question asks for an area in cm²."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute x = 3 and dx = 0.01",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The unit is cm², because an area is asked for. The exact value 0.0601 is worth writing beside it — it shows what the word 'approximate' in the question is doing.",
+        "memory_tip": "2 × 3 × 0.01 = 0.06. The exact answer 0.0601 is one ten-thousandth away from it.",
+        "lines": [
+          "dA = 2x · dx = 2(3)(0.01)",
+          "= 0.06",
+          "Exact increase = (3.01)² − 3² = 9.0601 − 9 = 0.0601 cm², so 0.06 cm² is close to it.",
+          {
+            "text": "∴ the area increases by approximately 0.06 cm²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives dA = 2(3)(0.01) = 0.06 cm².",
+          "accept": [
+            "two into three into zero point zero one is zero point zero six",
+            "the area increases by zero point zero six centimetre square",
+            "d A is zero point zero six",
+            "rendu into moodu into zero point zero one, zero point zero six",
+            "the approximate increase is zero point zero six square centimetres"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "zero point zero six",
+            "centimetre square",
+            "two into three",
+            "increase"
+          ]
+        },
+        "why": "The exact increase is 0.0601 cm² and the approximation gives 0.06 cm². The difference is (dx)² = 0.0001, the one term the linear approximation drops — which is why the method is accurate when dx is small. This question asks for the change itself, so the answer keeps its unit; dividing by A instead would give the relative error dA/A, which is what a percentage question asks for.",
+        "common_mistakes": [
+          "Writing the unit as cm instead of cm².",
+          "Giving 9.0601 or 0.0601, which answers a different question from the one asked."
+        ]
+      }
+    ]
+  }
+}

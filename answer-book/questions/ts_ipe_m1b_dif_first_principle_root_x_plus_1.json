@@ -1,0 +1,180 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_first_principle_root_x_plus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the derivative of √(x + 1) from the first principle with respect to x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the first principle",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by the conjugate",
+      "marks": 2
+    },
+    {
+      "label": "Take the limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(viii). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you multiply by, and why the h then cancels.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_principle",
+        "kind": "equation",
+        "label": "State the first principle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Substituting gives √((x + h) + 1) = √(x + h + 1). Put h inside the root before doing anything else.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = √(x + 1), where x > −1",
+          "By the first principle,",
+          "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "= lim(h → 0) [√(x + h + 1) − √(x + 1)]/h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first principle is written with f(x) = √(x + 1) and f(x + h) = √(x + h + 1).",
+          "accept": [
+            "write the first principle with f of x equal to root x plus one",
+            "f of x plus h is root of x plus h plus one",
+            "take the limit of root x plus h plus one minus root x plus one over h",
+            "first principle rasta, root x plus h plus one ani rasta",
+            "start from the definition of the derivative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root x plus one",
+            "x plus h plus one",
+            "first principle"
+          ]
+        },
+        "why": "The definition is the marked move. The whole of x + 1 sits under the root, so x + h + 1 does too — writing it any other way loses the question.",
+        "common_mistakes": [
+          "Writing √(x + h + 1) as √(x + 1) + √h.",
+          "Substituting h in place of x + h."
+        ],
+        "memory_tip": "The whole of x + 1 sits under the root, so x + h + 1 does too."
+      },
+      {
+        "id": "s2_conjugate",
+        "kind": "equation",
+        "label": "Multiply by the conjugate",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks: one for choosing the conjugate, one for the h cancelling. (√a − √b)(√a + √b) = a − b is what removes the roots from the top.",
+        "lines": [
+          "Putting h = 0 here gives 0/0, so simplify first.",
+          "Multiply top and bottom by √(x+h+1) + √(x+1):",
+          "Numerator = (x + h + 1) − (x + 1) = h",
+          "f′(x) = lim(h → 0) h/[h(√(x+h+1) + √(x+1))]",
+          "= lim(h → 0) 1/(√(x + h + 1) + √(x + 1))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quotient is multiplied above and below by the conjugate √(x+h+1) + √(x+1), the top becomes h, and the h cancels.",
+          "accept": [
+            "multiply top and bottom by the conjugate of the two roots",
+            "root a minus root b times root a plus root b is a minus b",
+            "the numerator becomes h and it cancels with the h below",
+            "conjugate tho multiply cheste roots poyi h migulutundi",
+            "rationalise the numerator so the h cancels"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "conjugate",
+            "rationalise",
+            "h cancels",
+            "a minus b"
+          ]
+        },
+        "why": "Putting h = 0 in the original quotient gives 0/0, so the h below has to be removed first. The conjugate turns the top into a − b, where the two x + 1 terms cancel and only h is left.",
+        "common_mistakes": [
+          "Multiplying by √(x+h+1) − √(x+1), the same expression again, which does not clear the roots.",
+          "Cancelling h before the numerator has been simplified to h.",
+          "Subtracting only part of the bracket and writing x + h + 1 − x + 1."
+        ],
+        "memory_tip": "A difference of two square roots on top: multiply by the same two roots added. The roots then go."
+      },
+      {
+        "id": "s3_answer",
+        "kind": "boxed_final",
+        "label": "Take the limit",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The two roots are now equal, so they add to 2√(x + 1). The answer holds for x > −1, where the root is defined.",
+        "lines": [
+          "As h → 0, √(x + h + 1) → √(x + 1), so",
+          "f′(x) = 1/(√(x + 1) + √(x + 1))",
+          {
+            "text": "∴ d/dx √(x + 1) = 1/(2√(x + 1))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two equal roots add to 2√(x + 1), giving 1/(2√(x + 1)).",
+          "accept": [
+            "the two roots become equal so they add to two root x plus one",
+            "the answer is one by two root x plus one",
+            "derivative of root x plus one is one over two root x plus one",
+            "one by two root x plus one answer vasthundi",
+            "put h equal to zero in the denominator"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two root x plus one",
+            "one by two root",
+            "h equal to zero"
+          ]
+        },
+        "why": "Once h has cancelled, the expression is continuous at h = 0, so the limit is simply its value there.",
+        "common_mistakes": [
+          "Writing 1/√(x + 1) and forgetting that the two roots add.",
+          "Writing 2/√(x + 1), with the 2 on the wrong side of the fraction."
+        ],
+        "memory_tip": "Two equal roots add, they do not multiply: √a + √a = 2√a."
+      }
+    ]
+  }
+}

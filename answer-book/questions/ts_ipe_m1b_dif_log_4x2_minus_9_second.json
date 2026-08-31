@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_log_4x2_minus_9_second",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If y = log(4x² − 9), find y″.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split the logarithm and differentiate once",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate a second time",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.196, chapter 9 DIFFERENTIATION, Very Short Answer question 30. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written, and the split form and the single-fraction form were checked against each other: at x = 2 the second difference quotient reads −4.081632676, the split form −4.081632653 and the combined form −4.081632653; at x = 3 all three read −0.49382716; at x = −2.5, on the other half of the domain, all three read −1.0625. Domain: 4x² − 9 > 0, so x > 3/2 or x < −3/2. On x > 3/2 both factors 2x − 3 and 2x + 3 are positive and the split is direct; for x < −3/2 both are negative, so the split is written with absolute values and the derivative is unchanged."
+  },
+  "recall_prompt": "Say how you would do this one — say what you do to 4x² − 9 before differentiating, and why that makes the second derivative shorter.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_and_first",
+        "kind": "equation",
+        "label": "Split the logarithm and differentiate once",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Either route is accepted; differentiating directly gives dy/dx = 8x/(4x² − 9), which is the same thing. Domain: 4x² − 9 > 0, so x > 3/2 or x < −3/2.",
+        "memory_tip": "A difference of two squares inside a logarithm becomes two logarithms added. Factorise before differentiating, not after.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "4x² − 9 = (2x − 3)(2x + 3), and the logarithm of a product is the sum of the logarithms.",
+          "∴ y = log(2x − 3) + log(2x + 3),  4x² − 9 > 0",
+          "Differentiate once, using the chain rule on each term:",
+          "dy/dx = 2/(2x − 3) + 2/(2x + 3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 4x² − 9 is factorised and the logarithm split into log(2x − 3) + log(2x + 3), giving dy/dx = 2/(2x − 3) + 2/(2x + 3).",
+          "accept": [
+            "factorise four x squared minus nine into two x minus three and two x plus three",
+            "log of a product splits into a sum of logs",
+            "the first derivative is two over two x minus three plus two over two x plus three",
+            "modata factorise chesi rendu logs ga rayali",
+            "differentiating directly gives eight x over four x squared minus nine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "factorise",
+            "two logs",
+            "two x minus three",
+            "two x plus three"
+          ]
+        },
+        "why": "Differentiating log(4x² − 9) directly gives 8x/(4x² − 9), and the second derivative then needs the quotient rule on that. Splitting first replaces one quotient rule with two simple powers.",
+        "common_mistakes": [
+          "Writing log(4x² − 9) as log 4x² − log 9, which is not a valid split.",
+          "Writing d/dx log(2x − 3) as 1/(2x − 3), losing the inner 2."
+        ]
+      },
+      {
+        "id": "s2_second_derivative",
+        "kind": "boxed_final",
+        "label": "Differentiate a second time",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Either form is a complete answer. Check at x = 2: −4/1 − 4/49 = −4.0816, and the numerical second derivative there is −4.0816 as well.",
+        "memory_tip": "Both terms have the same shape, so differentiate one and copy the pattern with the sign inside changed.",
+        "lines": [
+          "Write each term as a power:  dy/dx = 2(2x − 3)⁻¹ + 2(2x + 3)⁻¹",
+          "Differentiate again by the chain rule on each:",
+          "d²y/dx² = 2 · (−1)(2x − 3)⁻² · 2 + 2 · (−1)(2x + 3)⁻² · 2",
+          {
+            "text": "∴ y″ = −4/(2x − 3)² − 4/(2x + 3)² = −8(4x² + 9)/(4x² − 9)²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each term differentiates to −4 over its own square, giving y″ = −4/(2x − 3)² − 4/(2x + 3)².",
+          "accept": [
+            "each term gives minus four over its square",
+            "the second derivative is minus four over two x minus three squared minus four over two x plus three squared",
+            "over a common denominator it is minus eight into four x squared plus nine over four x squared minus nine squared",
+            "rendu terms nunchi minus four ostundi",
+            "both terms are negative so the second derivative is negative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus four",
+            "two x minus three squared",
+            "common denominator",
+            "minus eight"
+          ]
+        },
+        "why": "Both terms differentiate the same way, so the second derivative comes out in a single line. Putting the two over a common denominator gives the single-fraction form, which is the same answer written differently.",
+        "common_mistakes": [
+          "Writing +4/(2x − 3)² + 4/(2x + 3)², missing the minus that comes from the power −1.",
+          "Forgetting the inner 2 on each term and writing −1/(2x − 3)² − 1/(2x + 3)²."
+        ]
+      }
+    ]
+  }
+}

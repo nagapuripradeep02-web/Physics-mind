@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_log_quadratic_ratio",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the derivative of the function log[(x² + x + 2)/(x² − x + 2)].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split the logarithm of the quotient",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate each logarithm",
+      "marks": 1
+    },
+    {
+      "label": "Combine over a common denominator",
+      "marks": 1
+    },
+    {
+      "label": "Write the simplified derivative",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.200, chapter 9 DIFFERENTIATION, Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: 2(2 − x²)/(x⁴ + 3x² + 4) matched a central difference quotient at x = 1 (0.25), x = 2.5 (−0.13751264) and x = −0.6 (0.62960688), and the factorisation (x² + x + 2)(x² − x + 2) = x⁴ + 3x² + 4 was checked at the same three values. Both quadratics have negative discriminant, so each is positive for every real x and the logarithm is defined on the whole real line."
+  },
+  "recall_prompt": "Say how you would solve this — say what you do to the logarithm before differentiating anything.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_log",
+        "kind": "equation",
+        "label": "Split the logarithm of the quotient",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Split before differentiating, not after. Both quadratics have discriminant −7, so each is positive for every real x and the logarithm is defined everywhere.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = log[(x² + x + 2)/(x² − x + 2)]",
+          "Use log(P/Q) = log P − log Q before differentiating:",
+          "∴ y = log(x² + x + 2) − log(x² − x + 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the logarithm of the quotient is split as log(x² + x + 2) − log(x² − x + 2) before differentiating.",
+          "accept": [
+            "log of a quotient is the difference of the logs",
+            "split the log first then differentiate",
+            "log p by q equals log p minus log q",
+            "modata log ni split cheyyali",
+            "separate the numerator and denominator logarithms",
+            "break the single log into two logs"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "split the log",
+            "log p minus log q",
+            "difference of logs",
+            "before differentiating"
+          ]
+        },
+        "why": "Differentiating the quotient inside the logarithm would need the chain rule and the quotient rule together. Splitting first replaces both with two independent chain-rule terms, which is shorter and much easier to check.",
+        "common_mistakes": [
+          "Writing log(P/Q) as log P/log Q, which is not a logarithm law.",
+          "Applying the quotient rule inside the logarithm first, which makes the algebra several times longer."
+        ],
+        "memory_tip": "A logarithm turns division into subtraction. Use that law before differentiating, never after."
+      },
+      {
+        "id": "s2_differentiate",
+        "kind": "equation",
+        "label": "Differentiate each logarithm",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Each term is derivative-of-the-inside over the inside. Watch the sign in the second numerator: the derivative of x² − x + 2 is 2x − 1, not 2x + 1.",
+        "lines": [
+          "d/dx [log u] = (1/u)(du/dx), applied to each term:",
+          "dy/dx = (2x + 1)/(x² + x + 2) − (2x − 1)/(x² − x + 2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each logarithm differentiates to its inside derivative over its inside, giving (2x + 1)/(x² + x + 2) − (2x − 1)/(x² − x + 2).",
+          "accept": [
+            "derivative of log u is one by u into du by dx",
+            "two x plus one over x squared plus x plus two minus two x minus one over x squared minus x plus two",
+            "differentiate each log separately using the chain rule",
+            "prathi log ki inside derivative by inside rayali",
+            "top is the derivative of the bracket, bottom is the bracket",
+            "apply the chain rule to both logarithms"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by u",
+            "du by dx",
+            "two x plus one",
+            "two x minus one"
+          ]
+        },
+        "why": "Each term is now a logarithm of a single quadratic, so the chain rule gives the inside derivative over the inside. The minus sign from the split carries through to the second whole fraction, not just to its numerator.",
+        "common_mistakes": [
+          "Differentiating x² − x + 2 as 2x + 1 by copying the first bracket's derivative.",
+          "Applying the minus sign to only part of the second fraction."
+        ],
+        "memory_tip": "For log of a bracket: bottom is the bracket copied down, top is that bracket differentiated. Two terms, same pattern twice."
+      },
+      {
+        "id": "s3_common_denominator",
+        "kind": "equation",
+        "label": "Combine over a common denominator",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. Take the denominator as (x² + 2) + x times (x² + 2) − x. That is a difference of two squares and gives x⁴ + 3x² + 4 in one line, instead of four products.",
+        "lines": [
+          "dy/dx = [(2x + 1)(x² − x + 2) − (2x − 1)(x² + x + 2)]/[(x² + x + 2)(x² − x + 2)]",
+          "Numerator = (2x³ − x² + 3x + 2) − (2x³ + x² + 3x − 2) = 4 − 2x²",
+          "Denominator = [(x² + 2) + x][(x² + 2) − x] = (x² + 2)² − x² = x⁴ + 3x² + 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two fractions are combined, the numerator simplifies to 4 − 2x² and the denominator to x⁴ + 3x² + 4.",
+          "accept": [
+            "take the common denominator and cross multiply the numerators",
+            "the cubic terms and the three x terms cancel leaving four minus two x squared",
+            "denominator is a difference of squares so it is x to the four plus three x squared plus four",
+            "common denominator teesukoni numerator simplify cheyyali",
+            "write the denominator as x squared plus two whole squared minus x squared",
+            "combine the two fractions into one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "common denominator",
+            "difference of squares",
+            "four minus two x squared",
+            "x to the four"
+          ]
+        },
+        "why": "The 2x³ terms and the 3x terms are identical in both products, so they cancel and only the x² and constant terms survive. Seeing the denominator as (x² + 2)² − x² avoids multiplying two quadratics out term by term.",
+        "common_mistakes": [
+          "Dropping the bracket and subtracting only the first term of the second product, which leaves stray x² and constant terms.",
+          "Multiplying the denominator out term by term and losing a sign in the middle."
+        ],
+        "memory_tip": "The two quadratics differ only by the sign of x, so they are (something + x) and (something − x) — always a difference of two squares."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "Write the simplified derivative",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Take the 2 out of the numerator so the answer is in lowest terms. Check at x = 1: the derivative is 2(2 − 1)/8 = 1/4, and y = log 2 there.",
+        "lines": [
+          "dy/dx = (4 − 2x²)/(x⁴ + 3x² + 4)",
+          "Taking 2 out of the numerator:",
+          {
+            "text": "∴ dy/dx = 2(2 − x²)/(x⁴ + 3x² + 4)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the derivative is 2(2 − x²)/(x⁴ + 3x² + 4).",
+          "accept": [
+            "the answer is two into two minus x squared over x to the four plus three x squared plus four",
+            "take two common in the numerator",
+            "four minus two x squared over x power four plus three x squared plus four",
+            "numerator lo two common teesi rayali",
+            "the derivative is zero when x squared is two",
+            "write the final answer in lowest terms"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two minus x squared",
+            "x to the four",
+            "plus three x squared",
+            "final answer"
+          ]
+        },
+        "why": "The numerator and denominator share no common factor once the 2 is taken out, so this is the simplest form. It also shows the derivative is zero only at x = ±√2, which is a quick check that the working is sensible.",
+        "common_mistakes": [
+          "Cancelling the 2 in the numerator against the 4 in the denominator, which are not factors of the whole expressions.",
+          "Leaving the denominator as a product of two quadratics when the question asks for the derivative in its simplest form."
+        ],
+        "memory_tip": "Check at x = 0: the answer gives 2(2)/4 = 1, and the function itself is log(2/2) = 0 there. One substitution like this catches a lost sign."
+      }
+    ]
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_x_minus_3_over_root_x2_minus_9",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Show that lim(x → 3) (x − 3)/√(x² − 9) = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split the square root into two roots",
+      "marks": 1
+    },
+    {
+      "label": "Cancel √(x − 3) and substitute",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.187, chapter 8 LIMITS, Short & Very Short Answer question 22. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. This is a 'show that' question, so the value 0 is given and the marks are for the method that reaches it, not for producing a number; the split puts one mark on the root split and one on the cancellation and substitution. The split follows the shape this bank uses for a Maths-1B Section A question. NOTE ON DOMAIN, recorded rather than resolved silently: √(x² − 9) is real only when x ≥ 3 or x ≤ −3, so near 3 the expression exists only for x > 3 and the limit is necessarily the right-hand one. The card says so in plain words; a Telangana teacher may prefer the bare two-line working without that sentence. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically before authoring: the expression reads 0.00408 at x = 3.0001 and 0.000408 at x = 3.000001, decreasing towards 0, and is not defined for x < 3."
+  },
+  "recall_prompt": "Say how you would show this — say how you split the square root and what is left after cancelling.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_root",
+        "kind": "equation",
+        "label": "Split the square root into two roots",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Factorise inside the root first, then split it. √(x² − 9) is real only for x > 3 near 3, so both x − 3 and x + 3 are positive and the split is valid.",
+        "memory_tip": "Factorise inside the root before splitting it. A root of a product is the product of the roots when both parts are positive.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Putting x = 3 gives 0/√0 = 0/0, so the expression is rewritten first.",
+          "√(x² − 9) is real only when x ≥ 3 or x ≤ −3, so near 3 we take x > 3.",
+          "Then x − 3 > 0 and x + 3 > 0, so",
+          "√(x² − 9) = √[(x − 3)(x + 3)] = √(x − 3) · √(x + 3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² − 9 is factorised inside the root and the root is split as √(x − 3) · √(x + 3).",
+          "accept": [
+            "factorise inside the root as x minus three into x plus three",
+            "split the root into root x minus three times root x plus three",
+            "x is greater than three here so both parts are positive",
+            "root lopala factorise chesi rendu roots ga vidagottali",
+            "root of a product is the product of the roots"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root x minus three",
+            "root x plus three",
+            "split the root",
+            "factorise inside"
+          ]
+        },
+        "why": "The numerator carries (x − 3) and the denominator carries only √(x − 3), so they cannot be cancelled while the root is in one piece. Splitting the root brings out the √(x − 3) that the cancellation needs.",
+        "common_mistakes": [
+          "Writing √(x² − 9) = x − 3, taking the root of each term separately.",
+          "Cancelling (x − 3) against √(x² − 9) directly, which is not a common factor."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Cancel √(x − 3) and substitute",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. x − 3 = √(x − 3) · √(x − 3), so one root cancels and one root is left above. That surviving √(x − 3) is what goes to 0.",
+        "memory_tip": "x − 3 is √(x − 3) squared. Cancel one copy and one copy stays on top.",
+        "lines": [
+          "For x > 3,  x − 3 = √(x − 3) · √(x − 3), and as x → 3 we have x ≠ 3, so √(x − 3) ≠ 0 and may be cancelled:",
+          "lim(x → 3) (x − 3)/√(x² − 9) = lim(x → 3) [√(x − 3) · √(x − 3)] / [√(x − 3) · √(x + 3)]",
+          "= lim(x → 3) √(x − 3)/√(x + 3)",
+          "= √(3 − 3)/√(3 + 3) = 0/√6",
+          {
+            "text": "∴ lim(x → 3) (x − 3)/√(x² − 9) = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x − 3 is written as √(x − 3) squared, one root cancels, and √(x − 3)/√(x + 3) goes to 0/√6 = 0.",
+          "accept": [
+            "write x minus three as root x minus three squared and cancel one",
+            "what is left is root x minus three over root x plus three",
+            "the top goes to zero and the bottom goes to root six so the answer is zero",
+            "okka root cancel avuthundi, migilina root x minus three zero ki velthundi",
+            "zero over root six is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root x minus three",
+            "root six",
+            "zero",
+            "cancel"
+          ]
+        },
+        "why": "The value 0 is given, so the marks are for the method that reaches it. The working must show a denominator that does not go to 0 at the end — √6 — because 0 divided by 0 would prove nothing.",
+        "common_mistakes": [
+          "Cancelling both roots and writing the answer as 1.",
+          "Stopping at 0/0 and claiming the value is 0 without cancelling first."
+        ]
+      }
+    ]
+  }
+}

@@ -11,10 +11,10 @@
     "name": "Trigonometric Ratios and Transformations"
   },
   "chapter": "Trigonometric Ratios and Transformations",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 8,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
   "question_text": "Prove that (1 + cos(π/10))(1 + cos(3π/10))(1 + cos(7π/10))(1 + cos(9π/10)) = 1/16.",
   "appearances": [
     {
@@ -36,15 +36,7 @@
   ],
   "mark_split": [
     {
-      "label": "Convert to degrees and reduce",
-      "marks": 1
-    },
-    {
       "label": "Pair into differences of squares",
-      "marks": 1
-    },
-    {
-      "label": "Substitute the exact values",
       "marks": 1
     },
     {
@@ -55,23 +47,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 10 T-Ratios upto Transformations, answer 68. Printed appearances: AP 15 · TS 15 · AP 19 · TS 19 — four printed tags, the most-asked SAQ in this chapter. The same structure as answer 67, but it finishes with the exact values of sin18° and sin54° rather than a double angle. Those two values are worth memorising: (√5 − 1)/4 and (√5 + 1)/4. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 10 T-Ratios upto Transformations, answer 68. Printed appearances: AP 15 · TS 15 · AP 19 · TS 19 — four printed tags, the most-asked SAQ in this chapter. The same structure as answer 67, but it finishes with the exact values of sin18° and sin54° rather than a double angle. Those two values are worth memorising: (√5 − 1)/4 and (√5 + 1)/4. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 37. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the pairing step and on the closing line, and the remaining steps stay on the page as unmarked working. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "Trigonometric Ratios · 4 marks"
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
     ],
     "steps": [
       {
         "id": "s1_convert_to_degrees_and_r",
         "kind": "equation",
         "label": "Convert to degrees and reduce",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "First mark. Degrees are easier here because 18° and 54° are the standard angles whose exact sines are known. The last two come out negative.",
-        "memory_tip": "Degrees are easier: 18° and 54° have known exact sines. The last two reduce negative.",
+        "marks": 0,
+        "margin_note": "Degrees are easier here because 18° and 54° are the standard angles whose exact sines are known. The last two come out negative.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,7 +97,8 @@
         "common_mistakes": [
           "Staying in radians and missing the standard values.",
           "Getting cos 126° positive."
-        ]
+        ],
+        "memory_tip": "Degrees are easier: 18° and 54° have known exact sines. The last two reduce negative."
       },
       {
         "id": "s2_pair_into_differences_of",
@@ -115,8 +106,7 @@
         "label": "Pair into differences of squares",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. Same pairing as answer 67 — each plus bracket with its own minus partner.",
-        "memory_tip": "Each plus bracket with its own minus partner, giving 1 − cos² = sin².",
+        "margin_note": "First mark. Same pairing as answer 67 — each plus bracket with its own minus partner.",
         "lines": [
           "L.H.S = (1 + cos18°)(1 + cos54°)(1 − cos54°)(1 − cos18°)",
           "= (1 − cos²18°)(1 − cos²54°)",
@@ -147,16 +137,15 @@
         "common_mistakes": [
           "Pairing in the written order.",
           "Writing 1 − cos² as cos²."
-        ]
+        ],
+        "memory_tip": "Each plus bracket with its own minus partner, giving 1 − cos² = sin²."
       },
       {
         "id": "s3_substitute_the_exact_val",
         "kind": "equation",
         "label": "Substitute the exact values",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "Third mark. sin18° = (√5 − 1)/4 and sin54° = (√5 + 1)/4. These are standard results and are quoted, not derived.",
-        "memory_tip": "sin18° = (√5 − 1)/4 and sin54° = (√5 + 1)/4 — standard results, quoted not derived.",
+        "marks": 0,
+        "margin_note": "sin18° = (√5 − 1)/4 and sin54° = (√5 + 1)/4. These are standard results and are quoted, not derived.",
         "lines": [
           "sin18° = (√5 − 1)/4,  sin54° = (√5 + 1)/4",
           "= [(√5 − 1)/4]² [(√5 + 1)/4]²"
@@ -187,7 +176,8 @@
         "common_mistakes": [
           "Trying to derive the values instead of quoting them.",
           "Swapping the two values."
-        ]
+        ],
+        "memory_tip": "sin18° = (√5 − 1)/4 and sin54° = (√5 + 1)/4 — standard results, quoted not derived."
       },
       {
         "id": "s4_multiply_out_and_simplif",
@@ -196,7 +186,6 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Group the two conjugates together first: (√5 − 1)(√5 + 1) is 5 − 1 = 4, and the surds vanish.",
-        "memory_tip": "Group the CONJUGATES first: (√5 − 1)(√5 + 1) = 4, and the surds vanish.",
         "lines": [
           "= [(√5 − 1)(√5 + 1)/16]²",
           "= [(5 − 1)/16]² = [4/16]²",
@@ -231,7 +220,8 @@
         "common_mistakes": [
           "Squaring each bracket before multiplying.",
           "Finishing at 1/4."
-        ]
+        ],
+        "memory_tip": "Group the CONJUGATES first: (√5 − 1)(√5 + 1) = 4, and the surds vanish."
       }
     ]
   }
