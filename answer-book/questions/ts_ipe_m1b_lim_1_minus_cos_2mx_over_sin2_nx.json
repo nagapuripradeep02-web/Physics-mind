@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_1_minus_cos_2mx_over_sin2_nx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 0) (1 − cos 2mx)/sin² nx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Replace 1 − cos 2mx by 2sin² mx",
+      "marks": 1
+    },
+    {
+      "label": "Divide by x² and use sin θ/θ → 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.186, chapter 8 LIMITS, Short & Very Short Answer question 13. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 2m²/n² was checked numerically before it was written: with m = 3, n = 2 the expression reads 4.49999 at x = 10⁻⁴ against 2m²/n² = 4.5, and it was checked again at m = 1, n = 5 and at m = 2.5, n = −4 from the left."
+  },
+  "recall_prompt": "Say how you would do this one — name the identity you use on the numerator and the standard limit that finishes it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_identity",
+        "kind": "equation",
+        "label": "Replace 1 − cos 2mx by 2sin² mx",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The mark is for the identity. Write 1 − cos 2θ = 2sin²θ on its own line before touching the given expression, so the examiner sees where the sine in the numerator came from.",
+        "memory_tip": "1 − cos of a DOUBLE angle gives 2 sin² of the half of it. The double angle here is 2mx, so the half is mx.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Putting x = 0 gives 0/0, so the expression must be rewritten first.",
+          "We know 1 − cos 2θ = 2sin²θ",
+          "Put θ = mx, then 1 − cos 2mx = 2sin²(mx)",
+          "∴ lim(x → 0) (1 − cos 2mx)/sin² nx = lim(x → 0) 2sin²(mx)/sin²(nx)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 − cos 2mx is replaced by 2sin²(mx) using 1 − cos 2θ = 2sin²θ.",
+          "accept": [
+            "one minus cos two m x is two sin squared m x",
+            "use the identity one minus cos two theta equals two sin squared theta",
+            "change the numerator into a sine first",
+            "numerator ni two sin square m x ga marchali",
+            "the top becomes two sin squared of m x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus cos",
+            "two sin squared",
+            "m x",
+            "identity"
+          ]
+        },
+        "why": "Direct substitution gives 0/0, so the expression has to be rewritten before any value is put in. The identity turns the numerator into a sine, and then both the top and the bottom are sines, which one standard limit can handle.",
+        "common_mistakes": [
+          "Writing 1 − cos 2mx = 2sin²(2mx), doubling the angle twice.",
+          "Substituting x = 0 straight away and writing 0/0 as the answer."
+        ]
+      },
+      {
+        "id": "s2_standard_limit",
+        "kind": "boxed_final",
+        "label": "Divide by x² and use sin θ/θ → 1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Divide the top and the bottom by x² so that each sine sits over its own angle. The m² and n² left behind are the whole answer.",
+        "memory_tip": "sin(kx)/x → k, so a squared sine over x² gives k². Two sines, two squares: 2m² over n².",
+        "lines": [
+          "Divide the numerator and the denominator by x²:",
+          "= 2 · lim(x → 0) [sin(mx)/x]² / [sin(nx)/x]²",
+          "= 2 · [m · lim(x → 0) sin(mx)/(mx)]² / [n · lim(x → 0) sin(nx)/(nx)]²",
+          "= 2 · (m · 1)² / (n · 1)²",
+          {
+            "text": "∴ lim(x → 0) (1 − cos 2mx)/sin² nx = 2m²/n²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by x² and using sin θ/θ → 1 leaves 2m²/n².",
+          "accept": [
+            "divide by x squared and use sin theta over theta tends to one",
+            "the answer is two m squared over n squared",
+            "each sine goes over its own angle and m and n come out squared",
+            "x square tho divide chesi two m square by n square vasthundi",
+            "two m squared divided by n squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "divide by x squared",
+            "two m squared",
+            "n squared",
+            "sin theta by theta"
+          ]
+        },
+        "why": "sin θ/θ → 1 can only be used when the sine sits over its own angle, so mx must be supplied under sin(mx) and nx under sin(nx). Each supply brings out a factor m or n, and squaring gives m² and n².",
+        "common_mistakes": [
+          "Cancelling the sines directly and writing the answer as 2m/n.",
+          "Forgetting the squares and leaving 2m/n after dividing by x."
+        ]
+      }
+    ]
+  }
+}

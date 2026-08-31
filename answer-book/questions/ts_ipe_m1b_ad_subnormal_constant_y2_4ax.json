@@ -1,0 +1,189 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_subnormal_constant_y2_4ax",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the length of the subnormal at any point on the curve y² = 4ax is a constant.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State what the subnormal is",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate y² = 4ax",
+      "marks": 2
+    },
+    {
+      "label": "The subnormal is 2a",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.224, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 20. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show this — say the formula for the subnormal, how you differentiate y² = 4ax, and why the answer counts as a constant.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_state_subnormal",
+        "kind": "text",
+        "label": "State what the subnormal is",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The question is about the PRODUCT y·(dy/dx), so writing that formula first shows the examiner which of the four lengths is being used.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curve:   y² = 4ax   (a parabola).",
+          "At a point (x, y) on a curve, with m = dy/dx:",
+          "length of the subnormal = y · m",
+          "So the whole question is about the value of the product y(dy/dx)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the length of the subnormal is y times dy/dx.",
+          "accept": [
+            "the subnormal is y times the slope",
+            "subnormal equals y into dy by dx",
+            "write the formula for the subnormal first",
+            "subnormal ante y into dy by dx",
+            "the question is about the product of y and the slope",
+            "it is y m not y by m"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y into m",
+            "subnormal",
+            "y dy by dx",
+            "product"
+          ]
+        },
+        "why": "Naming the formula before any working sets the target: the product y(dy/dx) is exactly what the next step produces, so the derivative need never be made the subject on its own.",
+        "common_mistakes": [
+          "Using y/m, which is the subtangent, in place of ym.",
+          "Using the length of the normal y√(1 + m²) instead of the subnormal.",
+          "Starting to differentiate before naming which length is wanted."
+        ],
+        "memory_tip": "Subnormal multiplies, subtangent divides. Write down which one the question names before differentiating."
+      },
+      {
+        "id": "s2_differentiate",
+        "kind": "equation",
+        "label": "Differentiate y² = 4ax",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks: one for the implicit differentiation with the dy/dx factor, one for reading y(dy/dx) = 2a straight off it without making dy/dx the subject.",
+        "lines": [
+          "y is not given in terms of x, so differentiate both sides with respect to x.",
+          "The chain rule attaches dy/dx to y²:",
+          "2y (dy/dx) = 4a",
+          "Divide both sides by 2:",
+          "y (dy/dx) = 2a",
+          "The left side is exactly y · m."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating gives 2y(dy/dx) = 4a, so y(dy/dx) = 2a.",
+          "accept": [
+            "differentiate both sides with respect to x",
+            "y squared gives two y dy by dx",
+            "divide by two to get y dy by dx equals two a",
+            "implicit differentiation cheste two y dy by dx equals four a",
+            "the left side is already y times the slope",
+            "no need to make dy by dx the subject"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two y dy by dx",
+            "four a",
+            "two a",
+            "implicit"
+          ]
+        },
+        "why": "The product y(dy/dx) appears on its own after one division, so making dy/dx the subject and multiplying by y again would be two extra lines for the same result. Implicit differentiation gives the wanted product directly.",
+        "common_mistakes": [
+          "Differentiating y² to 2y and omitting the dy/dx factor.",
+          "Writing dy/dx = 2a/y and then forgetting to multiply back by y.",
+          "Treating a as a variable and differentiating 4ax with the product rule."
+        ],
+        "memory_tip": "Differentiating y² gives 2y·dy/dx, which already contains the product the subnormal needs. One division by 2 finishes it."
+      },
+      {
+        "id": "s3_conclude",
+        "kind": "boxed_final",
+        "label": "The subnormal is 2a",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. Saying WHY 2a counts as a constant is part of the answer: it contains neither x nor y, so it has the same value at every point.",
+        "lines": [
+          "Length of the subnormal = y · m = 2a",
+          "2a contains no x and no y, and a is fixed by the curve.",
+          "So the subnormal has the same value at every point of the parabola.",
+          {
+            "text": "∴ the length of the subnormal = 2a, a constant",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the subnormal equals 2a, which has no x or y in it and is therefore constant.",
+          "accept": [
+            "the subnormal is two a",
+            "there is no x or y left so it is a constant",
+            "the value is the same at every point of the parabola",
+            "x or y ledu kabatti constant",
+            "two a is fixed for the curve",
+            "the length does not depend on the point chosen"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two a",
+            "constant",
+            "no x or y",
+            "every point"
+          ]
+        },
+        "why": "A \"show that it is constant\" question is answered only when the result is shown to be free of the variables. 2a is built from the curve's own constant, so the same length is measured wherever the point sits on the parabola.",
+        "common_mistakes": [
+          "Stopping at 2y(dy/dx) = 4a without dividing, and giving 4a.",
+          "Writing 2a/y, dividing by y instead of using the product.",
+          "Giving the value 2a but not stating that it is free of x and y."
+        ],
+        "memory_tip": "For y² = 4ax the subnormal is 2a — half of the 4a in the equation. It is the same at every point, near the vertex or far from it."
+      }
+    ]
+  }
+}

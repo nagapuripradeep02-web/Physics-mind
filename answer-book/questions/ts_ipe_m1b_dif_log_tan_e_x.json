@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_log_tan_e_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If f(x) = log(tan eˣ), find f′(x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate the outer log",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate tan eˣ and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 9. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 2.1995003 at x = 0 and 3.7973654 at x = 0.2; eˣsec²(eˣ)/tan(eˣ) gives 2.1995003 and 3.7973654 at the same two points, and the tidied form 2eˣ·Cosec(2eˣ) gives the identical pair, so both printed forms are the same number."
+  },
+  "recall_prompt": "Say how you would do this one — name the three layers in order and say what each one contributes.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_outer_log",
+        "kind": "equation",
+        "label": "Differentiate the outer log",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Three layers: log outside, tan next, eˣ innermost. The log contributes 1/(tan eˣ) and nothing else on this line.",
+        "memory_tip": "Whatever sits inside the log becomes the denominator, written out exactly as it stands — here that is tan eˣ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = log(tan eˣ), where log is the natural logarithm.",
+          "There are three layers: log outside, tan next, eˣ inside.",
+          "Take u = tan eˣ. Then d/dx(log u) = (1/u) · du/dx",
+          "∴ f′(x) = (1/tan eˣ) · d/dx(tan eˣ)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That log is the outermost layer, so f′(x) = (1/tan eˣ) times the derivative of tan eˣ.",
+          "accept": [
+            "log u gives one over u times du by dx",
+            "tan e power x goes to the denominator",
+            "there are three layers, log then tan then e power x",
+            "log lo unnadi kinda vasthundi, tan e power x",
+            "start with one over tan e power x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one over tan",
+            "three layers",
+            "e power x",
+            "du by dx"
+          ]
+        },
+        "why": "Naming the layers in order fixes the shape of the answer before any derivative is computed. Doing the eˣ first is the usual way the tan layer is then forgotten.",
+        "common_mistakes": [
+          "Writing the denominator as tan x instead of tan eˣ.",
+          "Writing 1/(tan eˣ) alone, with no further derivative attached."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Differentiate tan eˣ and finish",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Two pieces sit here: tan gives sec²(eˣ), and the innermost eˣ gives eˣ again. Both forms of the final answer are accepted.",
+        "memory_tip": "eˣ is its own derivative, so the innermost layer appears again as a multiplying factor.",
+        "lines": [
+          "d/dx(tan eˣ) = sec²(eˣ) · d/dx(eˣ) = eˣ·sec²(eˣ)",
+          "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ)",
+          "This may be tidied, since sec²θ/tan θ = 1/(sin θ cos θ) = 2/sin 2θ",
+          {
+            "text": "∴ f′(x) = eˣ·sec²(eˣ)/tan(eˣ) = 2eˣ·Cosec(2eˣ)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dx(tan eˣ) = eˣsec²(eˣ), giving f′(x) = eˣsec²(eˣ)/tan(eˣ).",
+          "accept": [
+            "tan gives sec squared and e power x gives e power x again",
+            "the answer is e power x sec squared e power x over tan e power x",
+            "it can also be written as two e power x cosec two e power x",
+            "tan ki sec square, e power x ki e power x ne",
+            "multiply by e power x sec squared e power x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sec squared",
+            "e power x",
+            "tan e power x",
+            "cosec two e power x"
+          ]
+        },
+        "why": "The first form is the direct result of the chain rule and is a complete answer on its own. The second form is shorter and shows the sec²θ/tan θ identity, so either is worth full marks.",
+        "common_mistakes": [
+          "Writing d/dx(tan eˣ) = sec²(eˣ) and losing the eˣ factor.",
+          "Writing sec²x rather than sec²(eˣ), which changes the function."
+        ]
+      }
+    ]
+  }
+}

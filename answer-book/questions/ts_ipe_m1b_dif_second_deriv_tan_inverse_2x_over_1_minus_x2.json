@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_second_deriv_tan_inverse_2x_over_1_minus_x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the second order derivative of y = tan⁻¹(2x/(1 − x²)).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Simplify with x = tan θ and differentiate once",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate a second time",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.196, chapter 9 DIFFERENTIATION, Very Short Answer question 27. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. BRANCH, checked rather than assumed: the identity Tan⁻¹(2x/(1 − x²)) = 2 Tan⁻¹x holds only for |x| < 1 — at x = 0.3 both sides read 0.5829135890, but at x = 2 the left side reads −0.9272952180 while 2 Tan⁻¹x reads 2.214297436, a difference of exactly π. The two branches differ by a CONSTANT, so the derivatives below are correct for every x except ±1, where 2x/(1 − x²) is not defined. The answers were checked numerically before they were written: at x = 0.3 the second difference quotient reads −1.010015993 against −4x/(1 + x²)² = −1.010015992; at x = −0.6 it reads 1.297577867 against 1.297577855; and even at x = 2, outside the identity's range, it reads −0.3200000043 against −0.32."
+  },
+  "recall_prompt": "Say how you would do this one — say what substitution you make, what the expression simplifies to, and where that simplification is valid.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute_and_first",
+        "kind": "equation",
+        "label": "Simplify with x = tan θ and differentiate once",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. State |x| < 1: the step Tan⁻¹(tan 2θ) = 2θ needs 2θ to lie between −π/2 and π/2. Outside that range the two sides differ by π, a constant, so the derivatives are still the same.",
+        "memory_tip": "2 tan θ/(1 − tan²θ) is the tan 2θ formula written backwards. Whenever you see 2x over 1 − x², put x = tan θ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put x = tan θ,  so θ = Tan⁻¹x",
+          "2x/(1 − x²) = 2 tan θ/(1 − tan²θ) = tan 2θ",
+          "∴ y = Tan⁻¹(tan 2θ) = 2θ = 2 Tan⁻¹x,  for |x| < 1",
+          "Differentiating once,  dy/dx = 2 · 1/(1 + x²) = 2/(1 + x²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting x = tan θ turns the expression into tan 2θ, so y = 2 Tan⁻¹x for |x| < 1 and dy/dx = 2/(1 + x²).",
+          "accept": [
+            "put x equals tan theta and it becomes tan two theta",
+            "the whole thing simplifies to two tan inverse x",
+            "so the first derivative is two over one plus x squared",
+            "x equals tan theta pettite tan two theta avuthundi",
+            "this simplification is valid for mod x less than one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equals tan theta",
+            "tan two theta",
+            "two tan inverse x",
+            "two over one plus x squared"
+          ]
+        },
+        "why": "The quotient rule on 2x/(1 − x²) followed by the chain rule through the inverse tangent gives the same first derivative, but it takes far more algebra and has to be done again for the second derivative. The substitution reduces the whole function to 2 Tan⁻¹x in three lines.",
+        "common_mistakes": [
+          "Using the quotient rule directly and dropping a factor of 2 in the algebra.",
+          "Writing y = 2 Tan⁻¹x for every x, with no restriction on the range."
+        ]
+      },
+      {
+        "id": "s2_second_derivative",
+        "kind": "boxed_final",
+        "label": "Differentiate a second time",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. x ≠ ±1 because 2x/(1 − x²) is not defined there. Check the sign: y″ is 0 at x = 0, negative for x > 0 and positive for x < 0.",
+        "memory_tip": "One power down, one minus sign from the power −1, and the inner 2x: (−1) × 2 × 2x gives −4x on top.",
+        "lines": [
+          "Write the first derivative as a power:  dy/dx = 2(1 + x²)⁻¹",
+          "Differentiate again by the chain rule:",
+          "d²y/dx² = 2 · (−1)(1 + x²)⁻² · 2x",
+          {
+            "text": "∴ y″ = −4x/(1 + x²)²,  x ≠ ±1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating 2(1 + x²)⁻¹ by the chain rule gives y″ = −4x/(1 + x²)².",
+          "accept": [
+            "write it as two into one plus x squared to the power minus one",
+            "differentiate again by the chain rule",
+            "the second derivative is minus four x over one plus x squared whole squared",
+            "chain rule tho malli differentiate cheste minus four x vasthundi",
+            "the inner derivative two x comes out"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus four x",
+            "one plus x squared whole squared",
+            "chain rule",
+            "power minus one"
+          ]
+        },
+        "why": "Writing 2/(1 + x²) as 2(1 + x²)⁻¹ replaces the quotient rule with the chain rule on a power, which is shorter and has one less place to make a sign slip.",
+        "common_mistakes": [
+          "Forgetting the inner derivative 2x, which gives −2/(1 + x²)².",
+          "Losing the minus sign that comes from the power −1."
+        ]
+      }
+    ]
+  }
+}

@@ -11,20 +11,16 @@
     "name": "Trigonometric Ratios and Transformations"
   },
   "chapter": "Trigonometric Ratios and Transformations",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 8,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
   "question_text": "Show that cot(π/16) · cot(2π/16) · cot(3π/16) · … · cot(7π/16) = 1.",
   "appearances": [],
   "mark_split": [
     {
-      "label": "Pair from the two ends",
-      "marks": 1
-    },
-    {
       "label": "Rewrite each larger angle",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Use cot θ · tan θ = 1",
@@ -34,23 +30,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.109 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 172. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: none — this answer carries no year tag. Seven factors, and they pair off from the two ends. Each outer pair multiplies to 1, and the middle factor cot(4π/16) = cot(π/4) is 1 on its own. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.109 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 172. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: none — this answer carries no year tag. Seven factors, and they pair off from the two ends. Each outer pair multiplies to 1, and the middle factor cot(4π/16) = cot(π/4) is 1 on its own. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 33. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the complement rewriting and on the closing line, and the opening pairing stays on the page as unmarked working. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would do this one — name each move in order.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "Trigonometric Ratios upto Transformations · 4 marks"
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
     ],
     "steps": [
       {
         "id": "s1_pair_from_the_two_ends",
         "kind": "equation",
         "label": "Pair from the two ends",
-        "marks": 1,
-        "mark_note": "Pairing",
-        "margin_note": "First mark. Write all seven factors, then bracket the first with the last, the second with the sixth, the third with the fifth — leaving the fourth alone.",
-        "memory_tip": "Write all seven factors, then bracket first with last, second with sixth, third with fifth — the fourth stands alone.",
+        "marks": 0,
+        "margin_note": "Write all seven factors, then bracket the first with the last, the second with the sixth, the third with the fifth — leaving the fourth alone.",
         "lines": [
           {
             "text": "Sol:",
@@ -87,16 +81,16 @@
         "common_mistakes": [
           "Pairing adjacent factors.",
           "Losing the middle factor while bracketing."
-        ]
+        ],
+        "memory_tip": "Write all seven factors, then bracket first with last, second with sixth, third with fifth — the fourth stands alone."
       },
       {
         "id": "s2_rewrite_each_larger_angle",
         "kind": "equation",
         "label": "Rewrite each larger angle",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Complements",
-        "margin_note": "Half the marks. In each pair the larger angle is π/2 minus the smaller — for example 7π/16 = (8π − π)/16 = π/2 − π/16.",
-        "memory_tip": "In each pair the larger angle is π/2 minus the smaller, and cot(π/2 − θ) = tan θ.",
+        "margin_note": "First mark. In each pair the larger angle is π/2 minus the smaller — for example 7π/16 = (8π − π)/16 = π/2 − π/16.",
         "lines": [
           "7π/16 = (8π − π)/16 = π/2 − π/16",
           "6π/16 = (8π − 2π)/16 = π/2 − 2π/16",
@@ -132,7 +126,8 @@
         "common_mistakes": [
           "Writing cot(π/2 − θ) as cot θ.",
           "Forgetting the middle factor is 1."
-        ]
+        ],
+        "memory_tip": "In each pair the larger angle is π/2 minus the smaller, and cot(π/2 − θ) = tan θ."
       },
       {
         "id": "s3_use_cot_tan_1",
@@ -141,7 +136,6 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. Each bracket is a cotangent times its own tangent, which is 1 — so the product of three 1s and the middle 1 is 1.",
-        "memory_tip": "Each bracket is a cotangent times its OWN tangent, which is 1. The middle term cot(π/4) is 1 too.",
         "lines": [
           "cot θ · tan θ = 1 for each pair.",
           "∴ L.H.S = 1 · 1 · 1 · 1 = 1 = R.H.S",
@@ -176,7 +170,8 @@
         "common_mistakes": [
           "Trying to evaluate each cotangent numerically.",
           "Writing cot θ · tan θ as tan²θ."
-        ]
+        ],
+        "memory_tip": "Each bracket is a cotangent times its OWN tangent, which is 1. The middle term cot(π/4) is 1 too."
       }
     ]
   },

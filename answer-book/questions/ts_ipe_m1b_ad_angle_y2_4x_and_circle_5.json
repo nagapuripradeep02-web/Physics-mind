@@ -1,0 +1,192 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_angle_y2_4x_and_circle_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the angle between the curves y² = 4x and x² + y² = 5.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the point of intersection",
+      "marks": 2
+    },
+    {
+      "label": "Find both slopes there",
+      "marks": 1
+    },
+    {
+      "label": "Apply the angle formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.217, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 5(i). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the point of intersection because a wrong point makes both later steps worthless. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you find where the curves meet, which root you reject and why, and what formula gives the angle.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_intersection",
+        "kind": "equation",
+        "label": "Find the point of intersection",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks, and the two most often lost. Substitute y² = 4x into the circle so only x is left. The root x = −5 has to be rejected in writing, not silently — y² = 4x forces x ≥ 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curves:  y² = 4x   …(i)   and   x² + y² = 5   …(ii)",
+          "Put y² = 4x into (ii):",
+          "x² + 4x = 5   ⇒   x² + 4x − 5 = 0",
+          "(x + 5)(x − 1) = 0   ⇒   x = −5 or x = 1",
+          "From (i), y² = 4x ≥ 0, so x cannot be negative. Reject x = −5.",
+          "x = 1  ⇒  y² = 4  ⇒  y = ±2",
+          "∴ the curves meet at P(1, 2) and at (1, −2). Work at P(1, 2)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting y² = 4x into the circle gives x² + 4x − 5 = 0, x = 1 (rejecting x = −5), so the point is (1, 2).",
+          "accept": [
+            "substitute y squared equal to four x into the circle",
+            "x squared plus four x minus five equals zero",
+            "x is one because minus five makes y squared negative",
+            "y square equals four x kabatti x negative undaledu",
+            "the point of intersection is one comma two",
+            "factorise into x plus five into x minus one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "x squared plus four x minus five",
+            "reject minus five",
+            "one comma two"
+          ]
+        },
+        "why": "The angle between two curves is the angle between their tangents at a point they share, so nothing can be differentiated usefully until that point is known. Rejecting x = −5 with a stated reason is part of the method mark.",
+        "common_mistakes": [
+          "Keeping x = −5 and producing a second angle at a point that does not exist.",
+          "Substituting x = y²/4 into the circle, which gives a quartic and much longer work.",
+          "Solving x² + 4x − 5 = 0 as (x − 5)(x + 1) = 0."
+        ],
+        "memory_tip": "Substitute whichever square is already isolated — here y² is given free, so it goes straight into the circle."
+      },
+      {
+        "id": "s2_slopes",
+        "kind": "equation",
+        "label": "Find both slopes there",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Differentiate each curve implicitly and substitute the point AFTER differentiating. Label the two slopes m₁ and m₂ so the next line is easy to read.",
+        "lines": [
+          "From (i):  2y (dy/dx) = 4  ⇒  dy/dx = 2/y",
+          "At P(1, 2):  m₁ = 2/2 = 1",
+          "From (ii):  2x + 2y (dy/dx) = 0  ⇒  dy/dx = −x/y",
+          "At P(1, 2):  m₂ = −1/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m₁ = 2/y = 1 for the parabola and m₂ = −x/y = −1/2 for the circle at (1, 2).",
+          "accept": [
+            "differentiate the parabola to get two by y",
+            "differentiate the circle to get minus x by y",
+            "m one is one and m two is minus one half",
+            "point ni substitute cheyyali differentiate chesina taruvata",
+            "the circle slope is minus x over y",
+            "slope of the parabola at one comma two is one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two by y",
+            "minus x by y",
+            "m one",
+            "m two",
+            "minus half"
+          ]
+        },
+        "why": "Both curves pass through the same point, but each has its own tangent there. Two separate derivatives, each evaluated at the same point, is what the angle formula needs.",
+        "common_mistakes": [
+          "Substituting the point into the curve before differentiating, which leaves a number with no derivative.",
+          "Writing the circle slope as x/y and losing the minus sign.",
+          "Using the point (1, −2) for one slope and (1, 2) for the other."
+        ],
+        "memory_tip": "For x² + y² = r² the slope is always −x/y, because the tangent is perpendicular to the radius."
+      },
+      {
+        "id": "s3_angle",
+        "kind": "boxed_final",
+        "label": "Apply the angle formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The modulus keeps the acute angle, which is the one asked for. Give the exact form Tan⁻¹3 and the degree value beside it.",
+        "lines": [
+          "If θ is the angle between the curves at P, then",
+          "tanθ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "= |(1 − (−1/2))/(1 + (1)(−1/2))|",
+          "= |(3/2)/(1/2)| = 3",
+          {
+            "text": "∴ θ = Tan⁻¹(3) ≈ 71°34′",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tanθ = |(m₁ − m₂)/(1 + m₁m₂)| = 3, so θ = Tan⁻¹3.",
+          "accept": [
+            "tan theta is mod of m one minus m two by one plus m one m two",
+            "three by two divided by one half is three",
+            "the angle is tan inverse three",
+            "formula lo substitute cheste tan theta three vasthundi",
+            "theta is about seventy one degrees thirty four minutes",
+            "the modulus gives the acute angle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan theta",
+            "tan inverse three",
+            "seventy one",
+            "one plus m one m two"
+          ]
+        },
+        "why": "The angle between two curves is defined as the angle between their tangents, and the tangent-of-difference formula for two straight lines applies directly once both slopes are known.",
+        "common_mistakes": [
+          "Writing 1 − m₁m₂ in the denominator instead of 1 + m₁m₂.",
+          "Dropping the modulus and reporting a negative tangent value.",
+          "Leaving the answer as tanθ = 3 without stating θ = Tan⁻¹3."
+        ],
+        "memory_tip": "Difference on top, one plus the product underneath — the same formula as the angle between two straight lines."
+      }
+    ]
+  }
+}

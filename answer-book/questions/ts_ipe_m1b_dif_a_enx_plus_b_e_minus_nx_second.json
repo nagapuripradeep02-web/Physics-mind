@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_a_enx_plus_b_e_minus_nx_second",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If y = aeⁿˣ + be⁻ⁿˣ, show that y″ = n²y.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate twice",
+      "marks": 1
+    },
+    {
+      "label": "Take n² out and compare with y",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.195, chapter 9 DIFFERENTIATION, Very Short Answer question 26. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. Notation only: the exponents are set as Unicode superscripts (aeⁿˣ, be⁻ⁿˣ) to match the rest of this bank; the stem's mathematics is unchanged. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The identity y″ = n²y was checked numerically before it was written, against a second difference quotient: with a = 2, b = 3, n = 4, x = 0.3 the numerical y″ reads 120.7010653 against n²y = 120.7010637; with a = 1, b = −1, n = 2, x = 1.2 it reads 43.72983398 against 43.72983371; with a = 5, b = 0.5, n = 1.5, x = −0.8 it reads 7.123566448 against 7.123566422. The small differences are the step size of the numerical formula, not a difference in the mathematics."
+  },
+  "recall_prompt": "Say how you would do this one — say how many times you differentiate, and what you take out at the end.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate_twice",
+        "kind": "equation",
+        "label": "Differentiate twice",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Each differentiation of eⁿˣ brings out a factor n, and each differentiation of e⁻ⁿˣ brings out a factor −n. Do them one at a time and write both lines out.",
+        "memory_tip": "Differentiating e to a power leaves behind the derivative of that power. Here that is n on one term and −n on the other, and −n twice gives +n².",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = aeⁿˣ + be⁻ⁿˣ",
+          "Differentiating once, by the chain rule on each term:",
+          "y′ = an eⁿˣ + b(−n) e⁻ⁿˣ = an eⁿˣ − bn e⁻ⁿˣ",
+          "Differentiating again:",
+          "y″ = an² eⁿˣ − bn(−n) e⁻ⁿˣ = an² eⁿˣ + bn² e⁻ⁿˣ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating twice gives y″ = an²eⁿˣ + bn²e⁻ⁿˣ, with the chain rule bringing out n and −n.",
+          "accept": [
+            "differentiate twice using the chain rule on each term",
+            "each e to the n x gives an n and each e to the minus n x gives a minus n",
+            "y double dash is a n squared e power n x plus b n squared e power minus n x",
+            "rendu sarlu differentiate cheyyali, minus n rendu sarlu plus n squared avuthundi",
+            "the minus n appears twice so the second term turns positive"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "differentiate twice",
+            "chain rule",
+            "n squared",
+            "minus n twice"
+          ]
+        },
+        "why": "The target is a statement about the second derivative, so both derivatives have to be written before anything can be compared. Showing the first derivative separately is what earns this mark.",
+        "common_mistakes": [
+          "Writing y′ = a eⁿˣ − b e⁻ⁿˣ and leaving the factor n out.",
+          "Keeping the second term negative in y″, forgetting that (−n) × (−n) = n²."
+        ]
+      },
+      {
+        "id": "s2_factor_and_compare",
+        "kind": "boxed_final",
+        "label": "Take n² out and compare with y",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. A 'show that' question is only finished when the required form is written. The last line must name y, not just the bracket that equals it.",
+        "memory_tip": "Both terms of y″ carry the same factor n². Take it out and what is left is exactly the y you started with.",
+        "lines": [
+          "Both terms of y″ carry the factor n², so take it out:",
+          "y″ = n²(a eⁿˣ + b e⁻ⁿˣ)",
+          "The bracket is the original y.",
+          {
+            "text": "∴ y″ = n²y",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n² is common to both terms of y″, and the bracket left behind is the original y, so y″ = n²y.",
+          "accept": [
+            "take n squared common from both terms",
+            "the bracket that is left is the original y",
+            "so y double dash equals n squared y",
+            "n squared ni common teesthe migiledi y ye",
+            "compare the bracket with the given y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "take n squared common",
+            "n squared y",
+            "same as y",
+            "bracket"
+          ]
+        },
+        "why": "The mark is for recognising the bracket as the original y rather than expanding anything further. The result holds for every a and b, which is why no values are needed.",
+        "common_mistakes": [
+          "Taking n out instead of n² and writing y″ = ny.",
+          "Stopping at n²(aeⁿˣ + be⁻ⁿˣ) without saying that the bracket is y."
+        ]
+      }
+    ]
+  }
+}

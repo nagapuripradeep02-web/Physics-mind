@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_tan_inverse_log_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the derivative of the function Tan⁻¹(log x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply the Tan⁻¹ rule",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate log x and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 10. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 0.28029553 at x = 2.2 against 1/(x[1 + (log x)²]) = 0.28029553, and 0.05570580 at x = 5 against 0.05570580. The book prints the stem with a lower-case tan⁻¹; this bank writes principal-value inverse functions with a capital, so the stem here reads Tan⁻¹."
+  },
+  "recall_prompt": "Say how you would do this one — say what goes into the 1 + u² and what the inner derivative is.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tan_inverse_rule",
+        "kind": "equation",
+        "label": "Apply the Tan⁻¹ rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The u in 1 + u² is the whole inside function, log x, so the denominator is 1 + (log x)². It is not 1 + x².",
+        "memory_tip": "Whatever sits inside Tan⁻¹ is squared and added to 1. Copy the inside part exactly, then square it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = Tan⁻¹(log x), where log is the natural logarithm and x > 0.",
+          "Take u = log x. Then d/dx(Tan⁻¹u) = 1/(1 + u²) · du/dx",
+          "∴ dy/dx = 1/(1 + (log x)²) · d/dx(log x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dx(Tan⁻¹u) = 1/(1 + u²)·du/dx with u = log x, so the denominator is 1 + (log x)².",
+          "accept": [
+            "tan inverse u gives one over one plus u squared times du by dx",
+            "the denominator is one plus log x whole squared",
+            "u is log x so square log x not x",
+            "lopala unnadi log x, adi square cheyyali",
+            "one over one plus log x squared to start"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus u squared",
+            "log x squared",
+            "tan inverse",
+            "du by dx"
+          ]
+        },
+        "why": "Substituting the inside function into 1 + u² is the whole method mark. Writing 1 + x² is the standard slip and gives the derivative of a different function.",
+        "common_mistakes": [
+          "Writing the denominator as 1 + x² instead of 1 + (log x)².",
+          "Writing 1 + log x² , which squares x rather than log x."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Differentiate log x and finish",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. d/dx(log x) = 1/x, so an x joins the denominator. Both factors go under the line together.",
+        "memory_tip": "A log inside always produces a factor 1/x, so the final denominator carries an x as well as the bracket.",
+        "lines": [
+          "d/dx(log x) = 1/x",
+          "∴ dy/dx = 1/(1 + (log x)²) · (1/x)",
+          {
+            "text": "∴ d/dx[Tan⁻¹(log x)] = 1/(x[1 + (log x)²])",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That d/dx(log x) = 1/x, giving 1/(x[1 + (log x)²]).",
+          "accept": [
+            "log x differentiates to one by x",
+            "the answer is one over x into one plus log x whole squared",
+            "the x goes into the denominator with the bracket",
+            "log x ki one by x, kaabatti x kinda vasthundi",
+            "multiply by one over x at the end"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by x",
+            "denominator",
+            "one plus log x squared",
+            "log derivative"
+          ]
+        },
+        "why": "The 1/x is the second mark on its own. Without it the expression is the derivative with respect to log x, not with respect to x.",
+        "common_mistakes": [
+          "Leaving out the 1/x factor.",
+          "Putting the x in the numerator instead of the denominator."
+        ]
+      }
+    ]
+  }
+}

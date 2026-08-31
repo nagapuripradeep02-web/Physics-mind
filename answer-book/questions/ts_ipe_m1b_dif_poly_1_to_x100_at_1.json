@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_poly_1_to_x100_at_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If f(x) = 1 + x + x² + x³ + ⋯ + x¹⁰⁰, find f′(1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate term by term",
+      "marks": 1
+    },
+    {
+      "label": "Put x = 1 and add 1 to 100",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.193, chapter 9 DIFFERENTIATION, Very Short Answer question 15(i). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 5050 was checked before it was written: the derivative sum 1 + 2 + ⋯ + 100 was added directly and returned 5050, and a numerical difference quotient of the whole 101-term polynomial at x = 1 returned 5050.0004, the small excess being the curvature of a degree-100 polynomial over the step used."
+  },
+  "recall_prompt": "Say how you would do this one — say what each term becomes after differentiating and what happens when you put x = 1.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_term_by_term",
+        "kind": "equation",
+        "label": "Differentiate term by term",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Differentiate the sum one term at a time using d/dx(xⁿ) = nxⁿ⁻¹. The constant 1 at the front differentiates to 0, so the derivative starts at 1, not at 0 + 1 + 1.",
+        "memory_tip": "Every power drops by one and the old power comes down in front, so the coefficients of f′ read 1, 2, 3 up to 100.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = 1 + x + x² + x³ + ⋯ + x¹⁰⁰",
+          "Using d/dx(xⁿ) = nxⁿ⁻¹ on each term,",
+          "f′(x) = 0 + 1 + 2x + 3x² + ⋯ + 100x⁹⁹"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That term-by-term differentiation gives f′(x) = 1 + 2x + 3x² + ⋯ + 100x⁹⁹, with the constant giving 0.",
+          "accept": [
+            "differentiate each term so it becomes one plus two x plus three x squared up to hundred x to the ninety nine",
+            "power comes down in front and drops by one",
+            "the constant one differentiates to zero",
+            "prathi term ni differentiate cheste one plus two x plus three x square vasthundi",
+            "the coefficients become one two three up to hundred"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "term by term",
+            "power comes down",
+            "hundred x to the ninety nine",
+            "constant gives zero"
+          ]
+        },
+        "why": "Writing the derivative in full, with its first three terms and its last term, shows the pattern the second step depends on. Skipping straight to a number leaves nothing to mark.",
+        "common_mistakes": [
+          "Writing the last term as 100x¹⁰⁰, forgetting that the power drops to 99.",
+          "Keeping the leading 1 in f′(x), so the sum comes out one too large."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Put x = 1 and add 1 to 100",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. At x = 1 every power of x is 1, so each term is just its own coefficient. The sum of the first n natural numbers is n(n+1)/2, with n = 100 here.",
+        "memory_tip": "1 raised to any power is 1, so putting x = 1 leaves only the coefficients to add.",
+        "lines": [
+          "Put x = 1. Every power of 1 equals 1, so each term reduces to its coefficient.",
+          "f′(1) = 1 + 2 + 3 + ⋯ + 100",
+          "Sum of the first n natural numbers = n(n+1)/2, with n = 100",
+          "= (100 × 101)/2 = 10100/2",
+          {
+            "text": "∴ f′(1) = 5050",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at x = 1 the derivative is 1 + 2 + ⋯ + 100 = 100 × 101/2 = 5050.",
+          "accept": [
+            "put x equal to one so it becomes one plus two up to hundred",
+            "sum of first hundred natural numbers is hundred into hundred one by two",
+            "the answer is five thousand and fifty",
+            "one nunchi hundred varaku sum cheste five thousand fifty vasthundi",
+            "use n into n plus one by two with n equal to hundred"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equals one",
+            "sum of natural numbers",
+            "five thousand fifty",
+            "hundred into hundred one by two"
+          ]
+        },
+        "why": "The sum formula is the whole point of the question. Adding 1 to 100 by hand would work but cannot be finished inside the four minutes a 2-mark question allows.",
+        "common_mistakes": [
+          "Trying to add 1 + 2 + ⋯ + 100 one number at a time and running out of time.",
+          "Using n(n+1)/2 with n = 99, because the last derivative term shows x⁹⁹."
+        ]
+      }
+    ]
+  }
+}

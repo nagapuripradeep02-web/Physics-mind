@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_cos_ax_minus_cos_bx_over_x2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 0) (cos ax − cos bx)/x².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use the sum-to-product identity",
+      "marks": 1
+    },
+    {
+      "label": "Apply lim sin θ / θ = 1 twice",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.184, chapter 8 LIMITS, Short & Very Short Answer question 6. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which identity you use on the numerator and how you get two standard limits out of x².",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sum_to_product",
+        "kind": "equation",
+        "label": "Use the sum-to-product identity",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Watch the order: cos C − cos D = 2 sin((C + D)/2) sin((D − C)/2), so the second sine takes D minus C, not C minus D. That order fixes the sign of the answer.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "At x = 0 the numerator is 1 − 1 = 0 and x² = 0, so the form is 0/0.",
+          "Use  cos C − cos D = 2 sin((C + D)/2) · sin((D − C)/2)  with C = ax and D = bx.",
+          "(C + D)/2 = (a + b)x/2   and   (D − C)/2 = (b − a)x/2",
+          "∴ cos ax − cos bx = 2 sin((a + b)x/2) · sin((b − a)x/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos C − cos D = 2 sin((C+D)/2) sin((D−C)/2) is applied, giving 2 sin((a+b)x/2) sin((b−a)x/2).",
+          "accept": [
+            "use cos c minus cos d equals two sin half sum into sin d minus c by two",
+            "the numerator becomes two sin a plus b x by two into sin b minus a x by two",
+            "apply the sum to product formula for cosines",
+            "cos c minus cos d formula vaadali, rendu sines vasthayi",
+            "convert the difference of cosines into a product of two sines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos c minus cos d",
+            "two sin",
+            "half sum",
+            "b minus a"
+          ]
+        },
+        "why": "The numerator has to become a product of two factors, each of order x, before it can be matched against x². Each sine then supplies one power of x.",
+        "common_mistakes": [
+          "Writing sin((C − D)/2) instead of sin((D − C)/2), which reverses the sign of the answer.",
+          "Using the sin C − sin D identity, which produces a cosine and only one sine."
+        ],
+        "memory_tip": "For cosines the identity gives two sines. Keep the order of the question: cos ax comes first, so the second bracket is (b − a)x/2."
+      },
+      {
+        "id": "s2_two_standard_limits",
+        "kind": "boxed_final",
+        "label": "Apply lim sin θ / θ = 1 twice",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Split x² as x · x and give one x to each sine. Each bracket then needs its own half-angle coefficient outside.",
+        "lines": [
+          "Write x² = x · x and give one x to each sine.",
+          "(cos ax − cos bx)/x² = 2 · [sin((a + b)x/2) / ((a + b)x/2)] · ((a + b)/2) · [sin((b − a)x/2) / ((b − a)x/2)] · ((b − a)/2)",
+          "Each bracketed quotient tends to 1 as x → 0, so",
+          "= 2 · ((a + b)/2) · ((b − a)/2) = (a + b)(b − a)/2",
+          {
+            "text": "∴ lim(x → 0) (cos ax − cos bx)/x² = (b² − a²)/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each sine is matched with its own angle to give 1, leaving 2 · ((a+b)/2) · ((b−a)/2) = (b² − a²)/2.",
+          "accept": [
+            "each sine over its own angle is one so the answer is b squared minus a squared by two",
+            "the constants left are a plus b by two and b minus a by two",
+            "the answer is b square minus a square over two",
+            "b square minus a square by two vasthundi",
+            "split x squared as x into x and use sin theta by theta twice"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "b squared minus a squared",
+            "by two",
+            "sin theta by theta",
+            "twice"
+          ]
+        },
+        "why": "Each sine contributes one power of x, so x² is exactly used up and a finite value is left. The order of the answer checks against a simple case: putting a = 0 gives (1 − cos bx)/x² = b²/2, and (b² − 0)/2 = b²/2. Numerically, with a = 3 and b = 5 the value is 8, matching (25 − 9)/2.",
+        "common_mistakes": [
+          "Giving (a² − b²)/2, the correct size with the wrong sign.",
+          "Forgetting the half-angle coefficients and answering 2(a + b)(b − a)."
+        ],
+        "memory_tip": "The alternative route gives the same check: (cos ax − 1)/x² → −a²/2 and (1 − cos bx)/x² → b²/2, and adding them gives (b² − a²)/2."
+      }
+    ]
+  }
+}

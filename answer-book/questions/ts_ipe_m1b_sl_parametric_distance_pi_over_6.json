@@ -11,10 +11,10 @@
     "name": "The Straight Line"
   },
   "chapter": "The Straight Line",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 9,
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
   "question_text": "A straight line through Q(√3,2) makes an angle π/6 with the positive direction of the X-axis. If the straight line intersects the line √3x−4y+8=0 at P, find the distance PQ.",
   "appearances": [
     {
@@ -28,27 +28,27 @@
     },
     {
       "label": "Write the parametric point",
-      "marks": 1
+      "marks": 2
     },
     {
       "label": "Put it on the line",
-      "marks": 1
+      "marks": 3
     },
     {
       "label": "Solve for r",
-      "marks": 1
+      "marks": 2
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 The Straight Line, answer 58.2, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.63 — SAQ chapter 9 The Straight Line, answer 58.2, on a ★★★ SSP (Super Scoring Page). Printed appearance: TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now LAQ at 8 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Long Answer Question 17, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become eight, at 1 + 2 + 3 + 2. The extra four went where the work is: three on substituting P into the given line and reducing to one equation in r, which is the only real algebra here, two on building the parametric point and two on the distance itself. Writing the angle down stays at one mark because the question states it. Still unverified until a Telangana IPE teacher confirms it. AUTHOR DOUBT, recorded rather than hidden: at 8 marks this answer is short, and its first step is close to free — the question hands over the angle. The work in it reads closer to four or five marks, and it is filed long on the book’s section placement alone. If a Telangana IPE teacher confirms the placement, the right repair is to EXTEND the answer, not to spread these eight marks thinner."
   },
   "recall_prompt": "Say how you would solve this — say what the parametric form gives you, and what r means at the end.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "The Straight Line · 4 marks"
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
     ],
     "steps": [
       {
@@ -57,7 +57,6 @@
         "label": "Find the angle",
         "marks": 1,
         "margin_note": "First mark. The parametric form needs an ANGLE, not a slope, so convert whatever the question gives into θ before anything else.",
-        "memory_tip": "The parametric form needs an ANGLE, not a slope — convert whatever is given into θ first.",
         "lines": [
           {
             "text": "Sol:",
@@ -92,15 +91,15 @@
           "Using the slope directly in place of cosθ and sinθ.",
           "Taking θ as the angle with the Y-axis."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The parametric form needs an ANGLE, not a slope — convert whatever is given into θ first."
       },
       {
         "id": "s2_parametric_point",
         "kind": "equation",
         "label": "Write the parametric point",
-        "marks": 1,
-        "margin_note": "Second mark. Any point at distance r from Q along the line is (x₁ + r cosθ, y₁ + r sinθ). Writing P this way turns an unknown POINT into a single unknown NUMBER.",
-        "memory_tip": "A point at distance r along the line is (x₁ + r cos θ, y₁ + r sin θ) — an unknown POINT becomes one unknown NUMBER.",
+        "marks": 2,
+        "margin_note": "The next two marks. Any point at distance r from Q along the line is (x₁ + r cosθ, y₁ + r sinθ). Writing P this way turns an unknown POINT into a single unknown NUMBER.",
         "lines": [
           "Given point Q(x₁, y₁) = (√3, 2) and distance PQ = r, then",
           "P = (x₁ + r cosθ, y₁ + r sinθ)",
@@ -135,15 +134,15 @@
           "Swapping cosθ and sinθ between the two coordinates.",
           "Leaving r out of one of the two coordinates."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "A point at distance r along the line is (x₁ + r cos θ, y₁ + r sin θ) — an unknown POINT becomes one unknown NUMBER."
       },
       {
         "id": "s3_put_on_the_line",
         "kind": "equation",
         "label": "Put it on the line",
-        "marks": 1,
-        "margin_note": "Third mark. P is stated to lie on the given line, so its coordinates satisfy that equation. Substituting produces one equation in r alone.",
-        "memory_tip": "P lies on the given line, so substituting produces one equation in r alone.",
+        "marks": 3,
+        "margin_note": "The next three marks. P is stated to lie on the given line, so its coordinates satisfy that equation. Substituting produces one equation in r alone.",
         "lines": [
           "But P lies on the line √3x − 4y + 8 = 0",
           "⇒ √3(√3 + √3r/2) − 4(2 + r/2) + 8 = 0",
@@ -177,15 +176,15 @@
           "Substituting into the wrong line.",
           "Forgetting to distribute a coefficient across both parts of a coordinate."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "P lies on the given line, so substituting produces one equation in r alone."
       },
       {
         "id": "s4_solve_for_r",
         "kind": "boxed_final",
         "label": "Solve for r",
-        "marks": 1,
-        "margin_note": "Last mark. The distance PQ IS r, so solving for r finishes the question with no extra work.",
-        "memory_tip": "The distance PQ IS r, so solving for r finishes the question.",
+        "marks": 2,
+        "margin_note": "The last two marks. The distance PQ IS r, so solving for r finishes the question with no extra work.",
         "lines": [
           {
             "text": "∴ r/2 = 3  ⇒  Distance PQ = r = 6",
@@ -218,7 +217,8 @@
           "Finding P's coordinates and then applying the distance formula, which wastes time.",
           "Leaving r negative when the question asks for a distance."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "The distance PQ IS r, so solving for r finishes the question."
       }
     ]
   },

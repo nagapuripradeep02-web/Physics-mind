@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_tan_inverse_3a2x_minus_x3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the derivative of tan⁻¹((3a²x − x³)/(a(a² − 3x²))).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute x = a tan θ",
+      "marks": 1
+    },
+    {
+      "label": "Reduce the fraction to tan 3θ",
+      "marks": 1
+    },
+    {
+      "label": "Write y as 3 tan⁻¹(x/a)",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.201, chapter 9 DIFFERENTIATION, Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The mathematics was checked independently before writing: the reduction y = 3tan⁻¹(x/a) was confirmed numerically for a = 2 and a = 3 at x = 0.5 and x = 1, and 3a/(a² + x²) matched a central difference quotient at all four points (1.41176471, 1.20000000, 0.97297297, 0.90000000). ONE HONEST LIMIT, checked rather than assumed: tan⁻¹(tan 3θ) = 3θ needs |3θ| < π/2, that is |x| < a/√3. Beyond that the two sides differ by exactly π — verified at a = 2, x = 1.5 and x = 2.5 — which is a constant on each interval, so the DERIVATIVE 3a/(a² + x²) is still correct wherever the given expression is defined. The card states this rather than presenting the reduction as unconditional."
+  },
+  "recall_prompt": "Say how you would solve this — say what you substitute for x, and which identity turns the fraction into a single tangent.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "text",
+        "label": "Substitute x = a tan θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The a in x = a tan θ is what makes every a cancel in the next step. Substituting x = tan θ without the a leaves the constants behind and the fraction does not reduce.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = tan⁻¹((3a²x − x³)/(a(a² − 3x²)))",
+          "Put x = a tan θ,  so that tan θ = x/a  and  θ = tan⁻¹(x/a)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x is replaced by a tan θ, so that θ = tan⁻¹(x/a).",
+          "accept": [
+            "put x equal to a tan theta",
+            "substitute a tan theta for x",
+            "then theta is tan inverse of x by a",
+            "x ni a tan theta ga substitute cheyyali",
+            "use a tangent substitution with the a included",
+            "the a must be part of the substitution"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a tan theta",
+            "substitute",
+            "tan inverse x by a",
+            "theta"
+          ]
+        },
+        "why": "The expression has the shape of a tangent triple-angle formula, but with a's mixed in to keep every term the same degree. Putting x = a tan θ is what strips those a's out and shows the shape.",
+        "common_mistakes": [
+          "Substituting x = tan θ without the factor a, so the a's do not cancel.",
+          "Trying the quotient rule and the chain rule directly, which gives a correct but very long derivative that is hard to simplify."
+        ],
+        "memory_tip": "Terms in x and a³ appear as 3a²x, x³, a³ and 3ax². Every term has total degree three, which is the sign that x = a tan θ will clear the a's."
+      },
+      {
+        "id": "s2_triple_angle",
+        "kind": "equation",
+        "label": "Reduce the fraction to tan 3θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Name the identity: tan 3θ = (3tan θ − tan³θ)/(1 − 3tan²θ). The examiner is looking for that name, not just for the algebra.",
+        "lines": [
+          "Numerator = 3a²(a tan θ) − (a tan θ)³ = a³(3tan θ − tan³θ)",
+          "Denominator = a(a² − 3a²tan²θ) = a³(1 − 3tan²θ)",
+          "So the fraction = (3tan θ − tan³θ)/(1 − 3tan²θ) = tan 3θ",
+          "[tangent triple angle formula: tan 3θ = (3tan θ − tan³θ)/(1 − 3tan²θ)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both a³ factors cancel and the fraction is tan 3θ by the tangent triple angle formula.",
+          "accept": [
+            "a cubed comes out of the top and the bottom and cancels",
+            "three tan theta minus tan cubed theta over one minus three tan squared theta is tan three theta",
+            "use the triple angle formula for tangent",
+            "tan three theta formula apply cheyyali",
+            "the whole fraction becomes tan of three theta",
+            "the constants cancel leaving a pure tangent expression"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan three theta",
+            "triple angle",
+            "a cubed cancels",
+            "three tan minus tan cubed"
+          ]
+        },
+        "why": "Both numerator and denominator carry a factor a³, so the constant disappears completely and the fraction depends only on θ. What is left is exactly the standard expansion of tan 3θ.",
+        "common_mistakes": [
+          "Expanding (a tan θ)³ as a tan³θ and losing two factors of a, so the a's do not cancel.",
+          "Confusing the tangent triple angle formula with the sine or cosine one."
+        ],
+        "memory_tip": "The tangent triple angle formula has 3 and 1 in the two odd places: 3tan − tan³ on top, 1 − 3tan² below."
+      },
+      {
+        "id": "s3_reduce",
+        "kind": "equation",
+        "label": "Write y as 3 tan⁻¹(x/a)",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. tan⁻¹(tan 3θ) = 3θ holds exactly while |3θ| < π/2, that is |x| < a/√3. Outside that range the two differ by π, which is a constant, so the derivative found in the next step is unchanged.",
+        "lines": [
+          "y = tan⁻¹(tan 3θ) = 3θ",
+          "and θ = tan⁻¹(x/a), so",
+          "∴ y = 3 tan⁻¹(x/a)",
+          "(For |x| ≥ a/√3 the two sides differ by the constant π, which does not change the derivative.)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y = 3θ = 3 tan⁻¹(x/a).",
+          "accept": [
+            "tan inverse of tan three theta is three theta",
+            "y is three times tan inverse of x by a",
+            "substitute theta back in terms of x",
+            "y equals three tan inverse x by a ga marutundi",
+            "the inverse and the tangent cancel leaving three theta",
+            "the three from the triple angle becomes the three in front"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three theta",
+            "tan inverse x by a",
+            "three times",
+            "substitute back"
+          ]
+        },
+        "why": "This is where the question becomes short. A cubic inside an inverse tangent has turned into three times a simple inverse tangent, and the rest is one application of the standard derivative.",
+        "common_mistakes": [
+          "Losing the factor 3 and writing y = tan⁻¹(x/a).",
+          "Writing y = 3 tan⁻¹(x) and dropping the a inside."
+        ],
+        "memory_tip": "The 3 in tan 3θ moves out in front of the inverse tangent. That single 3 is what makes the final answer 3a and not a."
+      },
+      {
+        "id": "s4_differentiate",
+        "kind": "boxed_final",
+        "label": "Differentiate",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Multiply top and bottom by a² to clear the inner fraction. One a cancels against the 1/a from the chain rule, so a single a is left on top.",
+        "lines": [
+          "d/dx [tan⁻¹u] = (1/(1 + u²))(du/dx),  with u = x/a and du/dx = 1/a",
+          "dy/dx = 3 · [1/(1 + x²/a²)] · (1/a)",
+          "= 3 · [a²/(a² + x²)] · (1/a)",
+          {
+            "text": "∴ dy/dx = 3a/(a² + x²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating 3 tan⁻¹(x/a) gives 3a/(a² + x²).",
+          "accept": [
+            "derivative of tan inverse u is one by one plus u squared into du by dx",
+            "multiply top and bottom by a squared",
+            "the answer is three a by a squared plus x squared",
+            "three a by a square plus x square vasthundi",
+            "one a cancels with the one by a from the chain rule",
+            "the final answer has a single a in the numerator"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three a",
+            "a squared plus x squared",
+            "tan inverse derivative",
+            "one plus u squared"
+          ]
+        },
+        "why": "Clearing the inner fraction turns 1/(1 + x²/a²) into a²/(a² + x²), and that a² divided by the a from du/dx leaves one a. A quick check on the answer: doubling both a and x halves 3a/(a² + x²), which is what a derivative must do when the whole picture is scaled up.",
+        "common_mistakes": [
+          "Leaving the answer as 3/(a(1 + x²/a²)) without clearing the inner fraction.",
+          "Cancelling both a's and writing 3/(a² + x²)."
+        ],
+        "memory_tip": "This is the standard result d/dx tan⁻¹(x/a) = a/(a² + x²), multiplied by the 3 carried down from the triple angle."
+      }
+    ]
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_ex_x2_plus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the derivative of eˣ(x² + 1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply the product rule",
+      "marks": 1
+    },
+    {
+      "label": "Take eˣ common and tidy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.192, chapter 9 DIFFERENTIATION, Very Short Answer question 7. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked numerically before it was written: the central difference quotient reads 2.9239764 at x = 0.4 against eˣ(x + 1)² = 2.9239764, and 66.501505 at x = 2 against 66.501505."
+  },
+  "recall_prompt": "Say how you would do this one — say which rule applies and what the final expression tidies to.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_product_rule",
+        "kind": "equation",
+        "label": "Apply the product rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This is a product of two functions written side by side, not one function inside another, so the product rule applies and not the chain rule.",
+        "memory_tip": "Two separate functions multiplied means the product rule: first times the derivative of the second, plus second times the derivative of the first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = eˣ(x² + 1). This is a product, so take u = eˣ and v = x² + 1",
+          "d/dx(uv) = u · dv/dx + v · du/dx",
+          "du/dx = eˣ  and  dv/dx = 2x",
+          "∴ dy/dx = eˣ(2x) + (x² + 1)eˣ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product rule is used with u = eˣ and v = x² + 1, giving eˣ(2x) + (x² + 1)eˣ.",
+          "accept": [
+            "use the product rule because two functions are multiplied",
+            "first into derivative of second plus second into derivative of first",
+            "e power x times two x plus x squared plus one times e power x",
+            "rendu functions multiply avuthunnayi kabatti product rule",
+            "u dv by dx plus v du by dx"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "product rule",
+            "two x",
+            "e power x",
+            "u v"
+          ]
+        },
+        "why": "Choosing the right rule is the mark. eˣ is not inside (x² + 1) and (x² + 1) is not inside eˣ — they simply multiply — so the chain rule has nothing to act on here.",
+        "common_mistakes": [
+          "Differentiating each factor separately and writing eˣ · 2x as the whole answer.",
+          "Using the chain rule as though (x² + 1) were the exponent."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Take eˣ common and tidy",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. eˣ is a factor of both terms. What is left is x² + 2x + 1, which is a perfect square, so the answer can be written as eˣ(x + 1)².",
+        "memory_tip": "x² + 2x + 1 is (x + 1)². Spotting the perfect square turns a three-term bracket into a short final line.",
+        "lines": [
+          "Take eˣ common:",
+          "dy/dx = eˣ(2x + x² + 1) = eˣ(x² + 2x + 1)",
+          "x² + 2x + 1 = (x + 1)²",
+          {
+            "text": "∴ d/dx[eˣ(x² + 1)] = eˣ(x + 1)²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That eˣ is taken common to give eˣ(x² + 2x + 1), and that x² + 2x + 1 = (x + 1)².",
+          "accept": [
+            "take e power x common and the bracket is x squared plus two x plus one",
+            "x squared plus two x plus one is x plus one whole squared",
+            "the answer is e power x into x plus one whole square",
+            "e power x common teeste x plus one whole square vasthundi",
+            "it is a perfect square so write it as x plus one squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x plus one whole squared",
+            "perfect square",
+            "e power x common",
+            "two x plus one"
+          ]
+        },
+        "why": "Both forms are correct, but the perfect square is the shortest true statement of the answer and shows the working was carried to the end.",
+        "common_mistakes": [
+          "Adding the terms as eˣ(2x + x²) and dropping the 1.",
+          "Writing (x + 1)² as x² + 1 when expanding back to check."
+        ]
+      }
+    ]
+  }
+}

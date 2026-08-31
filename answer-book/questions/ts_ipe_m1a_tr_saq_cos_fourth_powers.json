@@ -11,20 +11,16 @@
     "name": "Trigonometric Ratios and Transformations"
   },
   "chapter": "Trigonometric Ratios and Transformations",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 8,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
   "question_text": "Show that cos⁴(π/8) + cos⁴(3π/8) + cos⁴(5π/8) + cos⁴(7π/8) = 3/2.",
   "appearances": [],
   "mark_split": [
     {
-      "label": "Reduce the four angles to two",
-      "marks": 1
-    },
-    {
       "label": "Group and use a² + b²",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Turn the product into sin(π/4)",
@@ -34,23 +30,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.66 — SAQ chapter 10 T-Ratios upto Transformations, answer 66.2. Printed appearances: none — this answer carries no year tag. The twin of 66.1 with cosines. Two of the reductions carry a MINUS sign this time — but every term is raised to the FOURTH power, so the signs vanish and the answer is identical. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.66 — SAQ chapter 10 T-Ratios upto Transformations, answer 66.2. Printed appearances: none — this answer carries no year tag. The twin of 66.1 with cosines. Two of the reductions carry a MINUS sign this time — but every term is raised to the FOURTH power, so the signs vanish and the answer is identical. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 34. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the grouping step and on the closing line, and the opening reduction stays on the page as unmarked working. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "Trigonometric Ratios · 4 marks"
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
     ],
     "steps": [
       {
         "id": "s1_reduce_the_four_angles_t",
         "kind": "equation",
         "label": "Reduce the four angles to two",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "First mark. Note the minus signs on two of the reductions. They matter for the working and vanish at the fourth power — say so rather than dropping them silently.",
-        "memory_tip": "Two reductions come out NEGATIVE. Say so — the signs vanish only at the fourth power.",
+        "marks": 0,
+        "margin_note": "Note the minus signs on two of the reductions. They matter for the working and vanish at the fourth power — say so rather than dropping them silently.",
         "lines": [
           {
             "text": "Sol:",
@@ -86,16 +80,16 @@
         "common_mistakes": [
           "Dropping the minus signs without saying why they do not matter.",
           "Assuming the answer must differ from the twin because of the signs."
-        ]
+        ],
+        "memory_tip": "Two reductions come out NEGATIVE. Say so — the signs vanish only at the fourth power."
       },
       {
         "id": "s2_group_and_use_a_b",
         "kind": "equation",
         "label": "Group and use a² + b²",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Half the marks. After the fourth powers kill the signs, the expression is 2[sin⁴ + cos⁴] — identical to the twin from here on.",
-        "memory_tip": "(−x)⁴ = x⁴, so the four terms become 2[sin⁴ + cos⁴], then a² + b² = (a+b)² − 2ab on the squares.",
+        "margin_note": "First mark. After the fourth powers kill the signs, the expression is 2[sin⁴ + cos⁴] — identical to the twin from here on.",
         "lines": [
           "L.H.S = cos⁴(π/8) + sin⁴(π/8) + sin⁴(π/8) + cos⁴(π/8)",
           "  [∵ (−x)⁴ = x⁴]",
@@ -128,7 +122,8 @@
         "common_mistakes": [
           "Carrying the minus signs into the fourth powers.",
           "Expanding the fourth powers directly."
-        ]
+        ],
+        "memory_tip": "(−x)⁴ = x⁴, so the four terms become 2[sin⁴ + cos⁴], then a² + b² = (a+b)² − 2ab on the squares."
       },
       {
         "id": "s3_turn_the_product_into_si",
@@ -137,7 +132,6 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Identical finish to the twin, and the same answer.",
-        "memory_tip": "4sin²cos² is (2 sin cos)² = sin²(π/4) = 1/2, so the answer is 2 − 1/2.",
         "lines": [
           "= 2 − [2 sin(π/8) cos(π/8)]²",
           "= 2 − [sin(π/4)]² = 2 − 1/2",
@@ -172,7 +166,8 @@
         "common_mistakes": [
           "Expecting a different answer from the twin and going back to hunt.",
           "Writing sin(π/4) = 1/2."
-        ]
+        ],
+        "memory_tip": "4sin²cos² is (2 sin cos)² = sin²(π/4) = 1/2, so the answer is 2 − 1/2."
       }
     ]
   },

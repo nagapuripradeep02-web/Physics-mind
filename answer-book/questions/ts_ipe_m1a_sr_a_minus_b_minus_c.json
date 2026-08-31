@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_a_minus_b_minus_c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A = {1, 2, 3}, B = {2, 3, 4} and C = {3, 4, 5, 6}, find A − (B − C).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Work out the bracket B − C",
+      "marks": 1
+    },
+    {
+      "label": "Take that set away from A",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which part you work out first and why the order matters.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bracket",
+        "kind": "equation",
+        "label": "Work out the bracket B − C",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The bracket is the whole of this mark. Write B − C = {2} on its own line.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "B − C is the set of members of B that are not in C.",
+          "B = {2, 3, 4},  C = {3, 4, 5, 6}",
+          "3 and 4 are in C, but 2 is not, so B − C = {2}."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That B − C keeps the members of B not in C, giving {2}.",
+          "accept": [
+            "B minus C keeps what B has and C does not, that is two",
+            "remove three and four from B, only two is left",
+            "the bracket comes to the set two",
+            "B lo unna, C lo leni elements matrame teesukovali",
+            "B minus C equals the set containing two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "B minus C",
+            "not in C",
+            "only two",
+            "bracket"
+          ]
+        },
+        "why": "Set difference is not associative, so the bracket must be done first. Reading the question left to right as (A − B) − C would give {1}, a different set.",
+        "common_mistakes": [
+          "Writing B − C = {5, 6}, which is C − B.",
+          "Writing B − C = ∅ after assuming every member of B lies in C.",
+          "Working out A − B first and ignoring the bracket."
+        ],
+        "memory_tip": "B − C starts from B and crosses out anything C also holds, so the answer is always part of B."
+      },
+      {
+        "id": "s2_outer",
+        "kind": "boxed_final",
+        "label": "Take that set away from A",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Show the line A − {2} before the answer, so both moves are on the page.",
+        "lines": [
+          "A − (B − C) = {1, 2, 3} − {2}",
+          "Remove 2 from A; 1 and 3 remain.",
+          {
+            "text": "∴ A − (B − C) = {1, 3}",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That removing {2} from A leaves {1, 3}.",
+          "accept": [
+            "take two out of A and one and three are left",
+            "A minus the set two gives one three",
+            "the answer is the set one three",
+            "A nunchi two teesestey one and three migulutayi",
+            "only members of A can appear so the answer is one and three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "A minus",
+            "one three",
+            "remove two",
+            "answer"
+          ]
+        },
+        "why": "Only members of A can survive a difference that starts with A, and 2 is the single member of A that also lies in B − C.",
+        "common_mistakes": [
+          "Doing (A − B) − C instead, which gives {1} and is a different set.",
+          "Including 4, 5 or 6 in the answer; nothing outside A can appear in A − (B − C).",
+          "Removing 3 as well, because 3 is in B."
+        ],
+        "memory_tip": "Sets are subtracted from the inside bracket outwards, the same order as in ordinary arithmetic."
+      }
+    ]
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_define_transitive_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define a transitive relation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the definition",
+      "marks": 1
+    },
+    {
+      "label": "Check it on an example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.8, chapter 1 SETS & RELATIONS, Very Short Answer question 24. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer this — give the definition with all three letters in it, and say what you look for in your example.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "State the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. Three letters are needed, a, b and c, and the middle letter b must appear in both given pairs. Write the whole implication on one line.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let R be a relation on a set A, that is R ⊆ A × A.",
+          "R is called transitive if, for all a, b, c ∈ A,",
+          "(a, b) ∈ R  and  (b, c) ∈ R   ⇒   (a, c) ∈ R",
+          "So if a is related to b and b is related to c, then a is related to c."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (a, b) ∈ R and (b, c) ∈ R together imply (a, c) ∈ R.",
+          "accept": [
+            "a b in R and b c in R implies a c in R",
+            "if a is related to b and b to c then a is related to c",
+            "two pairs joined at the middle element give a third pair",
+            "a b and b c unte a c kuda undali",
+            "the middle element b is shared by both pairs"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a b and b c",
+            "a c",
+            "middle element",
+            "transitive"
+          ]
+        },
+        "why": "Transitivity is about two pairs joined at a shared middle element producing a third pair. Without that shared b the statement cannot be written, so the three letters are what earn the mark.",
+        "memory_tip": "a to b and b to c gives a to c — the middle letter b drops out.",
+        "common_mistakes": [
+          "Writing (a, b) ∈ R ⇒ (a, c) ∈ R, with no second pair to join to.",
+          "Using only two letters, so the chain cannot be written at all.",
+          "Writing the conclusion as (c, a) ∈ R, which reverses the pair."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Check it on an example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Second mark. Look for pairs where the second entry of one is the first entry of another, and check that the joined pair is in R. Every such join must be checked, not just one.",
+        "lines": [
+          "Take A = {1, 2, 3} and",
+          "R = {(1, 2), (2, 3), (1, 3)}",
+          "Look for a pair whose second entry starts another pair:",
+          "(1, 2) and (2, 3) join at 2, and (1, 3) ∈ R.",
+          "No pair starts with 3, so there is no other join to check.",
+          {
+            "text": "∴ R is a transitive relation on A.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the only join is (1,2) with (2,3), and (1,3) is in R, so R is transitive.",
+          "accept": [
+            "one two and two three join to give one three which is in R",
+            "look for pairs that join at a shared number",
+            "there is only one chain to check here",
+            "one two and two three kalisi one three isthundi adi R lo undi",
+            "no pair begins with three so nothing else to check"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one two",
+            "two three",
+            "one three",
+            "join",
+            "transitive"
+          ]
+        },
+        "why": "A relation is transitive only when every join closes, so the example must be small enough for all the joins to be listed. Saying that no pair starts with 3 is part of the check, not an aside.",
+        "memory_tip": "Scan the list for a pair whose second entry is another pair's first entry — those are the only joins to check.",
+        "common_mistakes": [
+          "Leaving (1, 3) out of R, which would make the relation not transitive.",
+          "Checking one join and stopping while other joins remain.",
+          "Reading (1, 2) and (3, 2) as a join, when the shared number is in the wrong position."
+        ]
+      }
+    ]
+  }
+}

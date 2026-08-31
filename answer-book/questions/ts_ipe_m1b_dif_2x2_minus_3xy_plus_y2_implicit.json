@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_2x2_minus_3xy_plus_y2_implicit",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find dy/dx if 2x² − 3xy + y² + x + 2y − 8 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate every term with respect to x",
+      "marks": 1
+    },
+    {
+      "label": "Collect the dy/dx terms and solve",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.195, chapter 9 DIFFERENTIATION, Very Short Answer question 23(ii). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer (3y − 4x − 1)/(2y − 3x + 2) was checked numerically before it was written: at x = 1 the curve has y = 2.791287847, where the numerical difference quotient reads 0.7362373837 against the formula's 0.7362373842; on the lower branch at x = 1, y = −1.791287847, both read 2.263762616; and at x = 0, y = 2, both read 0.8333333333."
+  },
+  "recall_prompt": "Say how you would do this one — say what you differentiate with respect to, and which single term needs the product rule.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate_implicitly",
+        "kind": "equation",
+        "label": "Differentiate every term with respect to x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Six terms, so work along the equation left to right and differentiate each one before simplifying. Only 3xy needs the product rule; the constant 8 differentiates to 0.",
+        "memory_tip": "Every y you differentiate leaves a dy/dx attached to it. Here that happens three times: in y², in 2y, and inside the product 3xy.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y is not given in terms of x on its own, so differentiate implicitly, term by term, with respect to x.",
+          "The term 3xy is a product of x and y, so it needs the product rule.",
+          "4x − 3[ y · 1 + x · (dy/dx) ] + 2y(dy/dx) + 1 + 2(dy/dx) = 0",
+          "4x − 3y − 3x(dy/dx) + 2y(dy/dx) + 1 + 2(dy/dx) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every term is differentiated with respect to x, with the product rule on 3xy and a dy/dx from y² and from 2y.",
+          "accept": [
+            "differentiate each term with respect to x treating y as a function of x",
+            "only the three x y term needs the product rule",
+            "y squared gives two y d y by d x",
+            "prati term ni x tho differentiate cheyyali, three x y ki product rule",
+            "the constant eight differentiates to zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "implicit",
+            "product rule",
+            "two y d y by d x",
+            "term by term"
+          ]
+        },
+        "why": "This is a conic, and solving it for y would bring in a square root that then has to be differentiated. Implicit differentiation avoids that and takes three lines.",
+        "common_mistakes": [
+          "Writing d/dx(3xy) as 3y, which drops the 3x · dy/dx half of the product rule.",
+          "Differentiating 2y as 2 and losing the dy/dx factor."
+        ]
+      },
+      {
+        "id": "s2_collect_and_solve",
+        "kind": "boxed_final",
+        "label": "Collect the dy/dx terms and solve",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Three terms carry dy/dx: −3x, +2y and +2. Take them together, move the rest across, then divide.",
+        "memory_tip": "The bracket that multiplies dy/dx is 2y − 3x + 2, and what is left over is 3y − 4x − 1. Group first, divide last.",
+        "lines": [
+          "Collect the dy/dx terms on one side:",
+          "(−3x + 2y + 2)(dy/dx) = 3y − 4x − 1",
+          {
+            "text": "∴ dy/dx = (3y − 4x − 1)/(2y − 3x + 2),  2y − 3x + 2 ≠ 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three dy/dx terms are collected, giving dy/dx = (3y − 4x − 1)/(2y − 3x + 2).",
+          "accept": [
+            "collect the d y by d x terms and divide by the bracket",
+            "d y by d x is three y minus four x minus one over two y minus three x plus two",
+            "take two y minus three x plus two common",
+            "d y by d x terms ni kalipi divide cheyyali",
+            "the answer still contains y, which is expected here"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "collect",
+            "three y minus four x minus one",
+            "two y minus three x plus two",
+            "divide"
+          ]
+        },
+        "why": "Three separate terms carry dy/dx, so the mark is for gathering all three and none of the others. Missing the lone +2(dy/dx) is the usual way this answer comes out wrong.",
+        "common_mistakes": [
+          "Leaving the +2(dy/dx) term on the other side, giving 2y − 3x as the denominator.",
+          "Sign slips when the terms 4x, −3y and +1 are moved across."
+        ]
+      }
+    ]
+  }
+}

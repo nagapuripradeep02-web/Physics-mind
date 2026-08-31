@@ -11,46 +11,45 @@
     "name": "Properties of Triangles"
   },
   "chapter": "Properties of Triangles",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 13,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "In a △ABC, show that (a+b+c)²/(a²+b²+c²) = (cot(A/2) + cot(B/2) + cot(C/2))/(cotA + cotB + cotC).",
   "appearances": [],
   "mark_split": [
     {
       "label": "Simplify the numerator",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Simplify the denominator",
-      "marks": 3
+      "marks": 2
     },
     {
       "label": "Divide and simplify",
-      "marks": 3
+      "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.46 — LAQ chapter 6 Properties of Triangles, answer 35. Printed appearances: none — this answer carries no year tag. Worked from the RIGHT side, because that is the side with something to simplify. Its numerator and denominator are computed separately and then divided. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Divide and simplify\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.46 — LAQ chapter 6 Properties of Triangles, answer 35. Printed appearances: none — this answer carries no year tag. Worked from the RIGHT side, because that is the side with something to simplify. Its numerator and denominator are computed separately and then divided. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Divide and simplify\" step. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter as 16 Very Short Answer questions and 11 Short Answer questions, lists this one among the short answers (SAQ 4), and prints no long-answer block for it at all. Only the question was taken; the boundary is recorded in docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Properties of Triangles · 8 marks"
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_simplify_the_numerator",
         "kind": "equation",
         "label": "Simplify the numerator",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks. cot(A/2) = s(s−a)/Δ is a standard result. The three terms share s/Δ, and the brackets add to 3s − 2s = s.",
-        "memory_tip": "cot(A/2) = s(s − a)/Δ. The three share s/Δ, and the brackets add to 3s − 2s = s.",
+        "margin_note": "One of the four marks. cot(A/2) = s(s−a)/Δ is a standard result. The three terms share s/Δ, and the brackets add to 3s − 2s = s.",
         "lines": [
           {
             "text": "Sol:",
@@ -87,16 +86,16 @@
         "common_mistakes": [
           "Writing a + b + c as s rather than 2s.",
           "Using cot A instead of cot(A/2)."
-        ]
+        ],
+        "memory_tip": "cot(A/2) = s(s − a)/Δ. The three share s/Δ, and the brackets add to 3s − 2s = s."
       },
       {
         "id": "s2_simplify_the_denominator",
         "kind": "equation",
         "label": "Simplify the denominator",
-        "marks": 3,
+        "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Three marks — the longer half. Use cot = cos/sin, then the cosine rule on each numerator and Δ = ½bc sinA on each denominator. Everything lands over 4Δ.",
-        "memory_tip": "cot = cos/sin, then the cosine rule on top and Δ = ½bc sinA below. Everything lands over 4Δ.",
+        "margin_note": "Two marks — the longer half. Use cot = cos/sin, then the cosine rule on each numerator and Δ = ½bc sinA on each denominator. Everything lands over 4Δ.",
         "lines": [
           "In R.H.S, denominator = cotA + cotB + cotC",
           "= cosA/sinA + cosB/sinB + cosC/sinC",
@@ -131,16 +130,16 @@
         "common_mistakes": [
           "Forgetting that 2bc sinA is 4Δ, not 2Δ.",
           "Mis-cancelling the squared terms."
-        ]
+        ],
+        "memory_tip": "cot = cos/sin, then the cosine rule on top and Δ = ½bc sinA below. Everything lands over 4Δ."
       },
       {
         "id": "s3_divide_and_simplify",
         "kind": "boxed_final",
         "label": "Divide and simplify",
-        "marks": 3,
+        "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "The last three marks. Divide (1) by (2). The Δ cancels, and 4s² is (2s)² — which is (a+b+c)².",
-        "memory_tip": "The Δ cancels, and 4s² is (2s)² — which is (a + b + c)².",
+        "margin_note": "The last mark. Divide (1) by (2). The Δ cancels, and 4s² is (2s)² — which is (a+b+c)².",
         "lines": [
           "From (1) and (2), R.H.S = (s²/Δ) ÷ ((a²+b²+c²)/(4Δ))",
           "= 4s²/(a²+b²+c²)",
@@ -176,7 +175,8 @@
         "common_mistakes": [
           "Leaving the answer as 4s².",
           "Multiplying by the second fraction instead of dividing."
-        ]
+        ],
+        "memory_tip": "The Δ cancels, and 4s² is (2s)² — which is (a + b + c)²."
       }
     ]
   },

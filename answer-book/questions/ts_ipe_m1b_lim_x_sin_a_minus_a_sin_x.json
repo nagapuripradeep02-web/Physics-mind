@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_x_sin_a_minus_a_sin_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → a) (x sin a − a sin x)/(x − a).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Add and subtract a sin a",
+      "marks": 1
+    },
+    {
+      "label": "Apply the two limits separately",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.185, chapter 8 LIMITS, Short & Very Short Answer question 8. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you add and subtract in the numerator and what the two pieces then become.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_add_and_subtract",
+        "kind": "equation",
+        "label": "Add and subtract a sin a",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. a sin a is added and subtracted so the numerator splits into one piece containing (x − a) and one piece containing (sin x − sin a). Show both pieces before dividing.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "At x = a the numerator is a sin a − a sin a = 0 and x − a = 0, so the form is 0/0.",
+          "Add and subtract a sin a in the numerator.",
+          "x sin a − a sin x = (x sin a − a sin a) + (a sin a − a sin x)",
+          "= sin a (x − a) − a (sin x − sin a)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a sin a is added and subtracted, splitting the numerator into sin a (x − a) − a(sin x − sin a).",
+          "accept": [
+            "add and subtract a sin a in the numerator",
+            "split it into sin a into x minus a and minus a into sin x minus sin a",
+            "introduce a sin a so both pieces have a common factor",
+            "a sin a ni add chesi subtract cheyyali",
+            "break the numerator into two parts using a sin a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "add and subtract",
+            "a sin a",
+            "sin x minus sin a",
+            "split"
+          ]
+        },
+        "why": "Neither x sin a nor a sin x alone has a factor of (x − a). Adding and subtracting a sin a manufactures one factor of (x − a) directly and turns the rest into sin x − sin a, which is the first-principles difference for sin x at x = a.",
+        "common_mistakes": [
+          "Adding and subtracting x sin x, which leaves neither piece in a usable form.",
+          "Cancelling x against a somewhere in the numerator."
+        ],
+        "memory_tip": "The added term copies the first term with x replaced by a: x sin a becomes a sin a. That is what creates the factor (x − a)."
+      },
+      {
+        "id": "s2_two_limits",
+        "kind": "boxed_final",
+        "label": "Apply the two limits separately",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The first piece cancels to the constant sin a; the second piece is the first-principles derivative of sin x at x = a, which is cos a. Keep the minus sign in front of it.",
+        "lines": [
+          "Divide both pieces by (x − a):",
+          "(x sin a − a sin x)/(x − a) = sin a − a · [(sin x − sin a)/(x − a)]",
+          "Now  lim(x → a) (sin x − sin a)/(x − a) = cos a,  the derivative of sin x at x = a.",
+          "∴ the limit = sin a − a cos a",
+          {
+            "text": "∴ lim(x → a) (x sin a − a sin x)/(x − a) = sin a − a cos a",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first piece gives sin a, the second gives a cos a with a minus sign, so the answer is sin a − a cos a.",
+          "accept": [
+            "the first part is sin a and the second is a cos a with a minus",
+            "sin x minus sin a over x minus a tends to cos a",
+            "the answer is sin a minus a cos a",
+            "sin a minus a cos a vasthundi",
+            "that second limit is the derivative of sin at a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin a minus a cos a",
+            "cos a",
+            "derivative of sin",
+            "minus"
+          ]
+        },
+        "why": "The second limit is the definition of the derivative of sin x at x = a, and it can also be obtained from sin x − sin a = 2 cos((x + a)/2) sin((x − a)/2). The value checks numerically: with a = 2.5 the answer is 2.60133, and at x = 2.500001 the expression is 2.60133.",
+        "common_mistakes": [
+          "Giving a cos a − sin a, the correct terms with the signs reversed.",
+          "Writing the second limit as sin a instead of cos a."
+        ],
+        "memory_tip": "Read the answer off the question: sin a comes from the sin a term, and a cos a from the a sin x term with the minus it already carries."
+      }
+    ]
+  }
+}

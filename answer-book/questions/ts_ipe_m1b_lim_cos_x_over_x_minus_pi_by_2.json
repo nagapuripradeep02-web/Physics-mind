@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_cos_x_over_x_minus_pi_by_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → π/2) (cos x)/(x − π/2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute x = π/2 + h",
+      "marks": 1
+    },
+    {
+      "label": "Apply lim sin h / h = 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.185, chapter 8 LIMITS, Short & Very Short Answer question 7. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what substitution you make and why the point has to be moved to 0.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "equation",
+        "label": "Substitute x = π/2 + h",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The standard limit sin h / h = 1 is stated at 0, so the point x = π/2 has to be shifted to 0. Writing x = π/2 + h does exactly that.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "At x = π/2, cos x = 0 and x − π/2 = 0, so the form is 0/0.",
+          "The standard limit lim(θ → 0) sin θ / θ = 1 is stated at 0, so shift the point to 0.",
+          "Put  x = π/2 + h.  Then x → π/2 means h → 0, and x − π/2 = h.",
+          "cos x = cos(π/2 + h) = −sin h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = π/2 + h is substituted so that h → 0, with cos(π/2 + h) = −sin h and x − π/2 = h.",
+          "accept": [
+            "put x equals pi by two plus h so h goes to zero",
+            "substitute so that the point moves to zero",
+            "cos of pi by two plus h is minus sin h",
+            "x ni pi by two plus h ga rasi h zero ki teesukellali",
+            "shift the variable because the standard limit is stated at zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi by two plus h",
+            "h tends to zero",
+            "minus sin h",
+            "substitute"
+          ]
+        },
+        "why": "Every standard trigonometric limit in the syllabus is written with the variable approaching 0. A limit at π/2 has to be moved there first; the substitution is the move, and it also makes the denominator the single letter h.",
+        "common_mistakes": [
+          "Using cos(π/2 + h) = sin h and losing the minus sign.",
+          "Substituting x = π/2 − h and then forgetting that the denominator becomes −h."
+        ],
+        "memory_tip": "cos(π/2 + h) = −sin h: the cosine becomes a sine at a quarter turn, and past π/2 the cosine is negative, which is where the minus comes from."
+      },
+      {
+        "id": "s2_standard_limit",
+        "kind": "boxed_final",
+        "label": "Apply lim sin h / h = 1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The minus sign stays outside the limit. The answer is −1, not 1.",
+        "lines": [
+          "lim(x → π/2) (cos x)/(x − π/2) = lim(h → 0) (−sin h)/h",
+          "= − lim(h → 0) sin h / h",
+          "= −(1)",
+          {
+            "text": "∴ lim(x → π/2) (cos x)/(x − π/2) = −1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the limit becomes −sin h / h, whose limit is −1.",
+          "accept": [
+            "minus sin h over h tends to minus one",
+            "the answer is minus one",
+            "sin h by h is one so with the minus it is minus one",
+            "minus one vasthundi",
+            "the limit equals negative one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus one",
+            "sin h by h",
+            "negative one"
+          ]
+        },
+        "why": "The sign is the whole content of the answer here, and it comes from cos(π/2 + h) = −sin h. The value checks numerically: at x = π/2 + 0.00001 the expression is −1.000000, and it is also −1 from the left.",
+        "common_mistakes": [
+          "Giving +1 by dropping the minus sign from cos(π/2 + h).",
+          "Substituting x = π/2 directly and writing 0/0 as the answer."
+        ],
+        "memory_tip": "The answer is the derivative of cos x at x = π/2, which is −sin(π/2) = −1. That is a quick way to check the sign."
+      }
+    ]
+  }
+}

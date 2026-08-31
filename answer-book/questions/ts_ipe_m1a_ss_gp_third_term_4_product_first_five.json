@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_gp_third_term_4_product_first_five",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The third term of a geometric progression is 4. Find the product of the first five terms.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the five terms about the middle one",
+      "marks": 1
+    },
+    {
+      "label": "Multiply the five terms",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.22, chapter 3 SEQUENCES & SERIES, Very Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you would name the five terms, and why the common ratio never has to be found.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_symmetric_terms",
+        "kind": "equation",
+        "label": "Write the five terms about the middle one",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The symmetric naming is the whole method. The examiner is looking for the middle term called a and set equal to 4.",
+        "memory_tip": "Put the known middle term in the middle: two terms below it and two above.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the first five terms of the G.P. be",
+          "a/r²,  a/r,  a,  ar,  ar²",
+          "The third term is the middle one, so a = 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the five terms are written as a/r², a/r, a, ar, ar² so the middle term a = 4.",
+          "accept": [
+            "take the five terms as a by r squared up to a r squared",
+            "name the middle term a and set it equal to four",
+            "write the terms symmetrically about the third term",
+            "middle term ni a anukoni, a equals four pettali",
+            "two terms below and two terms above the third term"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "middle term",
+            "a by r squared",
+            "a r squared",
+            "four"
+          ]
+        },
+        "why": "Naming the middle term a makes the five terms symmetric about it, so the powers of r cancel in pairs when they are multiplied. Writing them as a, ar, ar², ar³, ar⁴ instead leaves r¹⁰ still to be removed.",
+        "common_mistakes": [
+          "Writing the terms as a, ar, ar², ar³, ar⁴, which leaves two unknowns and no way to remove r.",
+          "Reading \"third term\" as ar³ instead of ar²."
+        ]
+      },
+      {
+        "id": "s2_product",
+        "kind": "boxed_final",
+        "label": "Multiply the five terms",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Show that the powers of r add to zero — that line is the reason no value of r is ever needed.",
+        "memory_tip": "The powers −2, −1, 0, 1, 2 add to zero, so only the middle term is left.",
+        "lines": [
+          "Product = (a/r²)(a/r)(a)(ar)(ar²)",
+          "The powers of r are −2, −1, 0, 1, 2 and they add to 0",
+          "So the product = a⁵ = 4⁵",
+          {
+            "text": "∴ The product of the first five terms is 1024",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the powers of r cancel, so the product is a⁵ = 4⁵ = 1024.",
+          "accept": [
+            "the r terms cancel and the product is a to the fifth",
+            "four to the power five is one thousand and twenty four",
+            "the powers of r add up to zero",
+            "r cancel ipoddi, so a power five vasthundi",
+            "the answer is one zero two four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a to the fifth",
+            "four to the five",
+            "one thousand twenty four",
+            "r cancels"
+          ]
+        },
+        "why": "The powers of r add to −2 − 1 + 0 + 1 + 2 = 0, so the ratio disappears and the product is the middle term raised to the fifth power. The answer therefore does not depend on r at all.",
+        "common_mistakes": [
+          "Trying to find r first, which the question never gives and the answer never needs.",
+          "Giving 4 × 5 = 20 in place of 4⁵."
+        ]
+      }
+    ]
+  }
+}

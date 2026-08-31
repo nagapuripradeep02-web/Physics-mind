@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_approx_cos_60_deg_5_min",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the approximate value of cos(60° 5′).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Choose 60° and convert 5′ to radians",
+      "marks": 1
+    },
+    {
+      "label": "Apply the approximation formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 2(iii), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 2(iii)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. PRINTED STEM: the book sets the angle as cos(60⁰.5¹) — a superscript zero for the degree sign and a superscript one for the minute mark, which is that volume's typesetting of 60 degrees 5 minutes. We authored the stem as cos(60° 5′), the same angle written with the proper degree and minute signs. Nothing else in the question was changed, and the source is recorded here rather than corrected silently. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for choosing 60° and converting 5′ to radians, one for applying the formula and reading the number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which nearby angle you start from, what you do with the 5 minutes, and the formula you then apply.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_choose",
+        "kind": "equation",
+        "label": "Choose 60° and convert 5′ to radians",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the whole choice of method sits here: 60° is the nearby angle with an exact cosine, and Δx = 5′ must be turned into radians before it is used. The radian conversion is the step most answers leave out.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = cos x. Then f(x + Δx) ≈ f(x) + f′(x)·Δx",
+          "60° is the nearby angle with an exact cosine: cos 60° = 1/2",
+          "∴ take x = 60°,  Δx = 5′",
+          "5′ = (5/60)° = (1/12)°",
+          "In radians, Δx = (1/12) × (π/180) = π/2160 ≈ 0.0014544",
+          "f′(x) = −sin x,  so f′(60°) = −sin 60° = −√3/2 = −0.8660"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 60° is chosen because cos 60° = 1/2 is exact, that Δx = 5′ is converted to π/2160 radians, and that f′(x) = −sin x.",
+          "accept": [
+            "take sixty degrees because cos sixty is half",
+            "five minutes is five by sixty degrees and then multiply by pi by one eighty",
+            "delta x is pi by two one six zero radians",
+            "five minutes ni radians loki convert cheyyali",
+            "the derivative of cos x is minus sin x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixty degrees",
+            "five minutes",
+            "pi by two one six zero",
+            "minus sin x"
+          ]
+        },
+        "why": "The derivative formula f′(x) = −sin x holds only when x is measured in radians, so Δx has to be converted before it is multiplied by anything. 5′ is one twelfth of a degree, which is π/2160 radians — a small step, which is what makes the estimate accurate.",
+        "common_mistakes": [
+          "Using Δx = 5, or Δx = 1/12, and never converting to radians.",
+          "Taking 5′ as 5 seconds or as 0.05°, instead of 5/60 of a degree."
+        ],
+        "memory_tip": "Minutes to degrees, then degrees to radians: divide by 60, then multiply by π/180. Two conversions, never one."
+      },
+      {
+        "id": "s2_apply",
+        "kind": "boxed_final",
+        "label": "Apply the approximation formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The derivative is negative, so the correction is subtracted: cosine falls as the angle grows past 60°, and the answer must come out just below 0.5.",
+        "lines": [
+          "cos(60° 5′) ≈ cos 60° + (−sin 60°)(π/2160)",
+          "= 0.5 − (0.8660)(0.0014544)",
+          "= 0.5 − 0.0012595",
+          "= 0.4987405",
+          {
+            "text": "∴ cos(60° 5′) ≈ 0.4987",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(60° 5′) ≈ 0.5 − (√3/2)(π/2160) = 0.4987.",
+          "accept": [
+            "half minus root three by two times pi by two one six zero",
+            "zero point five minus zero point zero zero one two six",
+            "the answer is zero point four nine eight seven",
+            "half lo chinna value subtract cheyyali",
+            "it is slightly less than half because cosine decreases"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "zero point five minus",
+            "root three by two",
+            "zero point four nine eight seven",
+            "pi by two one six zero"
+          ]
+        },
+        "why": "f′(x)·Δx is the correction the tangent line at 60° predicts, and it is negative because cosine decreases through this angle. The true value is 0.4987399, so the estimate is high by less than a millionth.",
+        "common_mistakes": [
+          "Adding the correction and giving an answer above 0.5, which cosine cannot be just past 60°.",
+          "Using cos 60° = √3/2 and sin 60° = 1/2, with the two values swapped."
+        ],
+        "memory_tip": "New value ≈ old value + slope × step. Here the slope is negative, so the answer drops below 0.5."
+      }
+    ]
+  }
+}

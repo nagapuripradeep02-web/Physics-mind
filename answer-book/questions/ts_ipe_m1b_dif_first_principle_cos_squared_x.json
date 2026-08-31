@@ -1,0 +1,225 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_first_principle_cos_squared_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the derivative of cos²x from the first principle with respect to x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the first principle",
+      "marks": 1
+    },
+    {
+      "label": "Use cos²A − cos²B",
+      "marks": 1
+    },
+    {
+      "label": "Arrange sin h over h",
+      "marks": 1
+    },
+    {
+      "label": "Take the limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(vi). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the identity that turns a difference of two squared cosines into a product.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_principle",
+        "kind": "equation",
+        "label": "State the first principle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. cos²(x + h) means (cos(x + h))² — the cosine of x + h, then squared.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = cos²x",
+          "By the first principle,",
+          "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "= lim(h → 0) [cos²(x + h) − cos²x]/h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first principle is written with f(x) = cos²x and f(x + h) = cos²(x + h).",
+          "accept": [
+            "write the first principle with f of x equal to cos squared x",
+            "f of x plus h is cos of x plus h whole squared",
+            "take the limit of cos squared x plus h minus cos squared x over h",
+            "first principle rasta, cos square of x plus h ani rasta",
+            "start from the definition of the derivative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos squared x",
+            "x plus h whole squared",
+            "first principle"
+          ]
+        },
+        "why": "The definition is the marked move, and writing f(x + h) correctly as (cos(x + h))² is what keeps the next step available.",
+        "common_mistakes": [
+          "Reading cos²x as cos(x²).",
+          "Writing cos²(x + h) as cos²x + cos²h."
+        ],
+        "memory_tip": "cos²x is the cosine first, the square second. Substitute x + h into the angle, then square."
+      },
+      {
+        "id": "s2_identity",
+        "kind": "equation",
+        "label": "Use cos²A − cos²B",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. This identity comes from sin(A + B) sin(A − B) = sin²A − sin²B together with sin²θ = 1 − cos²θ. Learn it as it stands: it saves three lines here.",
+        "lines": [
+          "cos²A − cos²B = −sin(A + B) sin(A − B)",
+          "Here A = x + h and B = x, so",
+          "A + B = 2x + h  and  A − B = h",
+          "cos²(x + h) − cos²x = −sin(2x + h) sin h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²A − cos²B = −sin(A + B) sin(A − B) is applied with A = x + h and B = x, giving −sin(2x + h) sin h.",
+          "accept": [
+            "use cos squared a minus cos squared b equals minus sin a plus b sin a minus b",
+            "the difference of the two squared cosines becomes a product of two sines",
+            "a plus b is two x plus h and a minus b is h",
+            "cos square minus cos square formula apply cheyyali",
+            "the numerator becomes minus sin of two x plus h into sin h"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos squared a minus cos squared b",
+            "sin a plus b",
+            "two x plus h",
+            "sin h"
+          ]
+        },
+        "why": "The identity turns a difference of squares into one product in a single line. Factorising as (cos A − cos B)(cos A + cos B) and then using sum-to-product reaches the same place but costs three more lines.",
+        "common_mistakes": [
+          "Using +sin(A + B) sin(A − B), which equals sin²A − sin²B, not cos²A − cos²B.",
+          "Squaring the sum-to-product form of cos A − cos B instead of using this identity."
+        ],
+        "memory_tip": "cos²A − cos²B = −sin(A+B) sin(A−B): sines on the right, one minus in front."
+      },
+      {
+        "id": "s3_standard_limit",
+        "kind": "equation",
+        "label": "Arrange sin h over h",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. No adjusting factor is needed here — the sine angle is already h. Say so, because the examiner wants the standard limit named.",
+        "lines": [
+          "f′(x) = lim(h → 0) [−sin(2x + h) sin h]/h",
+          "= lim(h → 0) −sin(2x + h) · (sin h)/h",
+          "The angle h matches the denominator, so",
+          "lim(h → 0) (sin h)/h = 1 applies directly"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product is separated so (sin h)/h stands alone, and the standard limit is named.",
+          "accept": [
+            "separate sin h over h and use the standard limit",
+            "limit of sin h by h is one as h tends to zero",
+            "the sine angle is already h so no adjustment is needed",
+            "sin h by h standard limit one avuthundi",
+            "split the product before taking limits"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin h by h",
+            "standard limit",
+            "separate",
+            "equals one"
+          ]
+        },
+        "why": "The product splits into a factor that is continuous at h = 0 and a factor that is the standard limit, so each can be evaluated on its own.",
+        "common_mistakes": [
+          "Cancelling sin h against h as though they were equal.",
+          "Letting h → 0 inside sin(2x + h) while still keeping h in sin h."
+        ],
+        "memory_tip": "Split the product first, then take limits one factor at a time."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "Take the limit",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. −sin 2x is the compact form. It equals 2 cos x × (−sin x), which is the chain-rule answer — a quick check that the limit work is right.",
+        "lines": [
+          "As h → 0, sin(2x + h) → sin 2x and (sin h)/h → 1",
+          "f′(x) = −sin 2x · 1",
+          "Check: −sin 2x = 2 cos x · (−sin x)",
+          {
+            "text": "∴ d/dx (cos²x) = −sin 2x",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the limit gives −sin 2x.",
+          "accept": [
+            "the answer is minus sin two x",
+            "sin of two x plus h tends to sin two x so it is minus sin two x",
+            "minus sin two x is the same as minus two sin x cos x",
+            "answer minus sin two x vasthundi",
+            "derivative of cos squared x is minus sin two x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus sin two x",
+            "two sin x cos x",
+            "sin two x"
+          ]
+        },
+        "why": "The double angle appears because A + B was 2x + h. Checking that −sin 2x equals −2 sin x cos x confirms the identity was used the right way round.",
+        "common_mistakes": [
+          "Giving +sin 2x by dropping the minus from the identity.",
+          "Treating −2 sin x cos x as a different answer from −sin 2x."
+        ],
+        "memory_tip": "The answer is −sin 2x. The double angle comes from A + B = 2x + h."
+      }
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_sin_x_minus_1_over_x2_minus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 1) sin(x − 1)/(x² − 1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Factor x² − 1",
+      "marks": 1
+    },
+    {
+      "label": "Apply lim sin θ / θ = 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.185, chapter 8 LIMITS, Short & Very Short Answer question 9. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you factor the denominator and which factor pairs with the sine.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_factor",
+        "kind": "equation",
+        "label": "Factor x² − 1",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. x² − 1 = (x − 1)(x + 1). The (x − 1) is the factor that matches the angle inside the sine; the (x + 1) is an ordinary factor that is simply substituted at the end.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "At x = 1, sin(x − 1) = sin 0 = 0 and x² − 1 = 0, so the form is 0/0.",
+          "Factor the denominator:  x² − 1 = (x − 1)(x + 1).",
+          "sin(x − 1)/(x² − 1) = [sin(x − 1)/(x − 1)] · [1/(x + 1)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x² − 1 is factored as (x − 1)(x + 1) so that (x − 1) pairs with sin(x − 1).",
+          "accept": [
+            "factor x squared minus one as x minus one into x plus one",
+            "pair x minus one with the sine and keep x plus one separate",
+            "split it into sin x minus one over x minus one times one over x plus one",
+            "x square minus one ni x minus one into x plus one ga factor cheyyali",
+            "use the difference of squares on the denominator"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x minus one into x plus one",
+            "factor",
+            "difference of squares",
+            "pair"
+          ]
+        },
+        "why": "The standard limit needs the same expression inside the sine and underneath it. Factoring is what produces an (x − 1) underneath to pair with the (x − 1) inside the sine.",
+        "common_mistakes": [
+          "Cancelling sin(x − 1) against (x − 1) as though the sine were a multiplier.",
+          "Factoring x² − 1 as (x − 1)² ."
+        ],
+        "memory_tip": "Whatever sits inside the sine must appear as a factor underneath. Here that is x − 1, so factor the denominator to produce it."
+      },
+      {
+        "id": "s2_standard_limit",
+        "kind": "boxed_final",
+        "label": "Apply lim sin θ / θ = 1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. As x → 1 the angle x − 1 → 0, so the first bracket tends to 1; the second bracket is continuous at x = 1 and is substituted.",
+        "lines": [
+          "As x → 1, the angle (x − 1) → 0, so lim(x → 1) sin(x − 1)/(x − 1) = 1.",
+          "The factor 1/(x + 1) is defined at x = 1, so substitute x = 1: 1/(1 + 1) = 1/2.",
+          "= 1 · 1/2",
+          {
+            "text": "∴ lim(x → 1) sin(x − 1)/(x² − 1) = 1/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(x − 1)/(x − 1) → 1 and 1/(x + 1) → 1/2, so the answer is 1/2.",
+          "accept": [
+            "the sine part is one and one over x plus one is one half",
+            "the answer is one by two",
+            "sin x minus one over x minus one tends to one",
+            "one by two vasthundi",
+            "substituting x equals one in x plus one gives two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one half",
+            "one by two",
+            "tends to one",
+            "x plus one"
+          ]
+        },
+        "why": "The two factors are handled by different rules: one by the standard limit, one by substitution, because only the first is indeterminate. The value checks numerically: at x = 1.00001 the expression is 0.4999975.",
+        "common_mistakes": [
+          "Answering 1 by forgetting the 1/(x + 1) factor.",
+          "Substituting x = 1 into x + 1 and writing 1 instead of 2."
+        ],
+        "memory_tip": "The answer is always 1 divided by the leftover factor at the point. Here the leftover is x + 1 = 2, so the answer is 1/2."
+      }
+    ]
+  }
+}

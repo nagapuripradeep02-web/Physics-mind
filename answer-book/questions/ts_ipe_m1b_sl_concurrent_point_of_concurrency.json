@@ -11,10 +11,10 @@
     "name": "The Straight Line"
   },
   "chapter": "The Straight Line",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 9,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
   "question_text": "Show that the lines 2x+y−3=0, 3x+2y−2=0 and 2x−3y−23=0 are concurrent and find the point of concurrency.",
   "appearances": [
     {
@@ -28,24 +28,20 @@
       "marks": 1
     },
     {
-      "label": "Write the point of intersection",
-      "marks": 1
-    },
-    {
       "label": "Substitute into the third line",
-      "marks": 2
+      "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 9 The Straight Line, answer 55 PQ, on a ★★★ SSP (Super Scoring Page). Printed appearance: AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed beside the worked answer with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS, checked against the book's own printed answer. Precedent: Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. AI content check 2026-08-25: explanation text corrected (marks and written lines untouched)."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.61 — SAQ chapter 9 The Straight Line, answer 55 PQ, on a ★★★ SSP (Super Scoring Page). Printed appearance: AP 18. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: the SAME CHAPTER prints 1+1+2 on answer 59 (book p.63), and this answer is cut to the same shape — the two setting-up moves at one mark each and the closing work at two. Where an answer's own shape is four equal moves instead, 1+1+1+1 is used and this note says so. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. ⚠ THIS IS THE BOOK'S PRACTICE QUESTION ('PQ'), posed beside the worked answer with ONLY ITS FINAL ANSWER PRINTED and no worked solution. THE WORKING BELOW IS OURS, checked against the book's own printed answer. Precedent: Maths-1A Unit 2 laq8. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. AI content check 2026-08-25: explanation text corrected (marks and written lines untouched). RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Very Short Answer Question 33 ii, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become two, at 1 + 0 + 1, with the point-of-intersection line carried unmarked as a statement of what the first mark produced. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would solve this — say which two lines you would solve first and why, and what concurrency lets you do with the third.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "The Straight Line · 4 marks"
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
     ],
     "steps": [
       {
@@ -54,7 +50,6 @@
         "label": "Solve two of the lines",
         "marks": 1,
         "margin_note": "First mark. Concurrent means all three lines pass through ONE point. Solve any two of them and that point can be found outright.",
-        "memory_tip": "Concurrent means all three pass through ONE point — solve any two of them for it.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,15 +88,15 @@
           "Trying to handle all three equations at once instead of taking a pair first.",
           "Slip in the cross-multiplication denominators."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Concurrent means all three pass through ONE point — solve any two of them for it."
       },
       {
         "id": "s2_point_of_intersection",
         "kind": "equation",
         "label": "Write the point of intersection",
-        "marks": 1,
-        "margin_note": "Second mark. State the point plainly — it is the point every one of the three lines must pass through.",
-        "memory_tip": "State the point; it is the candidate every line must satisfy.",
+        "marks": 0,
+        "margin_note": "State the point plainly — it is the point every one of the three lines must pass through.",
         "lines": [
           "∴ Point of intersection is P(4, −5)"
         ],
@@ -131,15 +126,14 @@
           "Writing the coordinates the wrong way round.",
           "Leaving the point as a pair of fractions without simplifying."
         ],
-        "mark_note": "Method"
+        "memory_tip": "State the point; it is the candidate every line must satisfy."
       },
       {
         "id": "s3_substitute_third",
         "kind": "boxed_final",
         "label": "Substitute into the third line",
-        "marks": 2,
-        "margin_note": "The last two marks. Because the point lies on the first two lines, putting it into the third must give zero. That zero IS the proof of concurrency.",
-        "memory_tip": "The point already lies on the first two, so a zero from the third IS the proof.",
+        "marks": 1,
+        "margin_note": "The last mark. Because the point lies on the first two lines, putting it into the third must give zero. That zero IS the proof of concurrency.",
         "lines": [
           "To show the lines are concurrent, P(4, −5) must lie on (3):",
           "2(4) − 3(−5) − 23 = 8 + 15 − 23 = 0",
@@ -176,7 +170,8 @@
           "Substituting into one of the two lines already used, which gives 0 = 0 and proves nothing.",
           "Sign slip when the point has a negative coordinate."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "The point already lies on the first two, so a zero from the third IS the proof."
       }
     ]
   },

@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_first_principle_x_sin_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the derivative of x sin x from the first principle with respect to x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the first principle",
+      "marks": 1
+    },
+    {
+      "label": "Split the numerator in two",
+      "marks": 1
+    },
+    {
+      "label": "Use sin C − sin D",
+      "marks": 1
+    },
+    {
+      "label": "Take the limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.197, chapter 9 DIFFERENTIATION, Short Answer question 1(vii). **Only the question was taken. The solution, the step order and the mark split are this answer book’s own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK’S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The book sets ONE shared instruction over nine sub-parts, so the stem here is that instruction written out for this sub-part alone; nothing in it was altered, and the question now reads on its own. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you break the numerator into two parts and what each part gives.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_principle",
+        "kind": "equation",
+        "label": "State the first principle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both factors change when x becomes x + h — the x in front and the angle inside the sine. Substitute into both.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = x sin x",
+          "By the first principle,",
+          "f′(x) = lim(h → 0) [f(x + h) − f(x)]/h",
+          "= lim(h → 0) [(x+h) sin(x+h) − x sin x]/h"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first principle is written with f(x) = x sin x and f(x + h) = (x + h) sin(x + h).",
+          "accept": [
+            "write the first principle with f of x equal to x sin x",
+            "f of x plus h is x plus h into sin of x plus h",
+            "substitute x plus h in both the front factor and the angle",
+            "first principle rasta, x plus h into sin x plus h ani rasta",
+            "take the limit of the difference quotient"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x sin x",
+            "x plus h into sin x plus h",
+            "first principle"
+          ]
+        },
+        "why": "The definition is the marked move. This is a product of two functions, so x + h has to replace x in both of them, not only inside the sine.",
+        "common_mistakes": [
+          "Substituting x + h into the sine only and leaving the front factor as x.",
+          "Using the product rule, which is not a first-principle answer."
+        ],
+        "memory_tip": "Replace x by x + h in every place x appears, front factor included."
+      },
+      {
+        "id": "s2_split",
+        "kind": "equation",
+        "label": "Split the numerator in two",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Expanding (x + h) sin(x + h) is what separates the two pieces. In the second piece the h cancels the h below at once, so it needs no identity at all.",
+        "lines": [
+          "(x + h) sin(x + h) = x sin(x + h) + h sin(x + h)",
+          "so the numerator is",
+          "x[sin(x + h) − sin x] + h sin(x + h)",
+          "f′(x) = lim(h → 0) x[sin(x+h) − sin x]/h",
+          "+ lim(h → 0) sin(x + h)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (x + h) sin(x + h) is expanded and regrouped as x[sin(x + h) − sin x] + h sin(x + h).",
+          "accept": [
+            "expand x plus h into sin x plus h and group the two x terms",
+            "the numerator is x times the difference of sines plus h sin x plus h",
+            "the h in the second part cancels the h in the denominator",
+            "bracket expand cheste rendu parts vasthayi",
+            "break it into a sine difference part and a leftover part"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "expand the bracket",
+            "two parts",
+            "h sin x plus h",
+            "difference of sines"
+          ]
+        },
+        "why": "Split this way, one piece carries a difference of sines that the identity handles and the other has its h cancel straight away. Both then have limits that can be read off.",
+        "common_mistakes": [
+          "Splitting as x sin x + h sin h, which is not what (x + h) sin(x + h) expands to.",
+          "Writing the second piece as sin x instead of sin(x + h)."
+        ],
+        "memory_tip": "Expand the bracket, then group the two x terms together and leave the h term on its own."
+      },
+      {
+        "id": "s3_sum_to_product",
+        "kind": "equation",
+        "label": "Use sin C − sin D",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The 2 in front of the identity is exactly what turns (sin(h/2))/h into (sin(h/2))/(h/2), so the standard limit applies with nothing left over.",
+        "lines": [
+          "sin(x + h) − sin x = 2 cos(x + h/2) sin(h/2)",
+          "so the first part is",
+          "x · 2 cos(x + h/2) · (sin(h/2))/h",
+          "= x cos(x + h/2) · (sin(h/2))/(h/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(x + h) − sin x = 2 cos(x + h/2) sin(h/2), and the 2 makes the denominator h/2 so the standard limit applies.",
+          "accept": [
+            "use sin c minus sin d to get two cos of x plus h by two into sin h by two",
+            "the two in front makes the denominator h by two",
+            "sin h by two over h by two tends to one",
+            "sin minus sin formula apply cheste two cos sin vasthundi",
+            "apply the sum to product formula to the sine difference"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin c minus sin d",
+            "h by two",
+            "two cos",
+            "standard limit"
+          ]
+        },
+        "why": "The sine angle is h/2, not h, so the denominator has to become h/2 as well. The 2 that the identity produces does exactly that, with no extra factor to carry.",
+        "common_mistakes": [
+          "Using lim (sin(h/2))/h = 1, which is 1/2, not 1.",
+          "Halving the first angle too and writing cos(x/2 + h/2)."
+        ],
+        "memory_tip": "The 2 from sin C − sin D pairs with the h/2 inside the sine. Together they make the standard limit exact."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "Take the limit",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Both pieces contribute: x cos x from the sine difference and sin x from the leftover term. Dropping the second is the usual loss here.",
+        "lines": [
+          "As h → 0, cos(x + h/2) → cos x and",
+          "(sin(h/2))/(h/2) → 1, while sin(x + h) → sin x",
+          "f′(x) = x cos x + sin x",
+          {
+            "text": "∴ d/dx (x sin x) = sin x + x cos x",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two limits give x cos x and sin x, so the answer is sin x + x cos x.",
+          "accept": [
+            "the answer is sin x plus x cos x",
+            "the first part gives x cos x and the second gives sin x",
+            "derivative of x sin x is sin x plus x cos x",
+            "sin x plus x cos x answer vasthundi",
+            "both parts contribute one term each"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin x plus x cos x",
+            "x cos x",
+            "two terms"
+          ]
+        },
+        "why": "The answer matches the product rule result, which is the check worth making: the first principle must reproduce it, and here it does.",
+        "common_mistakes": [
+          "Giving x cos x only and losing the sin x term.",
+          "Giving cos x + x sin x, with the two functions swapped."
+        ],
+        "memory_tip": "Two pieces, two terms: sin x from the leftover part, x cos x from the sine difference."
+      }
+    ]
+  }
+}

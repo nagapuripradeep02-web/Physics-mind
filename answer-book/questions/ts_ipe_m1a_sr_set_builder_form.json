@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_set_builder_form",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write A = {−3, −2, −1, 0, 1, 2, 3} in set-builder form.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Read the property the members share",
+      "marks": 1
+    },
+    {
+      "label": "Write the set-builder form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.5, chapter 1 SETS & RELATIONS, Very Short Answer question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what the members have in common and how you would write it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_property",
+        "kind": "text",
+        "label": "Read the property the members share",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both halves of the property are needed: the set the members are drawn from, and the two bounds.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A = {−3, −2, −1, 0, 1, 2, 3}",
+          "Every member of A is an integer, and the members run from −3 up to 3 with none missing.",
+          "So the property shared by the members is: x ∈ Z and −3 ≤ x ≤ 3."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every member is an integer lying between −3 and 3, both ends included.",
+          "accept": [
+            "all the members are integers from minus three to three",
+            "the property is x is an integer and minus three is less than or equal to x less than or equal to three",
+            "they are the integers with absolute value at most three",
+            "anni integers, minus three nunchi three varaku",
+            "say the common property of the members"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "integers",
+            "minus three to three",
+            "less than or equal to",
+            "property"
+          ]
+        },
+        "why": "Set-builder form replaces the list by one property, so the property has to pick out these seven members and nothing else. Naming the set of integers is half of that, and the bounds are the other half.",
+        "common_mistakes": [
+          "Saying only that the members run from −3 to 3 and leaving out that they are integers.",
+          "Reading the list as the natural numbers, which drops the negative members and 0."
+        ],
+        "memory_tip": "Ask two questions of the list: what kind of number is every member, and where does the list start and stop."
+      },
+      {
+        "id": "s2_write_form",
+        "kind": "boxed_final",
+        "label": "Write the set-builder form",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The colon is read as the words 'such that'. Keep both conditions inside the braces.",
+        "lines": [
+          "Set-builder form writes a set as {x : the property x satisfies}.",
+          "Here the property has two parts, x ∈ Z and −3 ≤ x ≤ 3.",
+          {
+            "text": "∴ A = {x : x ∈ Z, −3 ≤ x ≤ 3}",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A is written as {x : x ∈ Z, −3 ≤ x ≤ 3}.",
+          "accept": [
+            "A is the set of all x such that x is an integer and minus three is less than or equal to x less than or equal to three",
+            "write it as x colon x belongs to Z comma minus three to three",
+            "the set of all integers x with modulus x at most three",
+            "set builder form lo x belongs to Z ani rasi bounds cheppali",
+            "A equals set of x such that x is an integer between minus three and three inclusive"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "set of all x such that",
+            "x belongs to Z",
+            "minus three",
+            "less than or equal"
+          ]
+        },
+        "why": "Both conditions must stay inside the braces, because either one alone describes a different set: x ∈ Z alone gives every integer, and the bounds alone give every number between −3 and 3.",
+        "common_mistakes": [
+          "Writing A = {x : −3 ≤ x ≤ 3} without x ∈ Z, which then includes fractions such as 1/2.",
+          "Using strict inequalities, A = {x : x ∈ Z, −3 < x < 3}, which drops −3 and 3.",
+          "Writing A = {x : x ∈ N, −3 ≤ x ≤ 3}, which has no negative members."
+        ],
+        "memory_tip": "Read the braces aloud: 'the set of all x such that ...'. If the sentence does not name a kind of number, a condition is missing."
+      }
+    ]
+  }
+}

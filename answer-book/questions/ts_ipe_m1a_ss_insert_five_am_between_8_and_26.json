@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_insert_five_am_between_8_and_26",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Insert five arithmetic means between 8 and 26.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Count the terms and find the common difference",
+      "marks": 1
+    },
+    {
+      "label": "Write the five means",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.22, chapter 3 SEQUENCES & SERIES, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how many terms the A.P. has and how you get the common difference.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_common_difference",
+        "kind": "equation",
+        "label": "Count the terms and find the common difference",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The examiner wants the term count stated: five means give seven terms, so 26 is the 7th term and equals a + 6d.",
+        "memory_tip": "Two ends plus five means make seven terms, so the gap is counted six times.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Inserting five arithmetic means between 8 and 26 gives 7 terms in A.P.",
+          "Here a = 8 and the 7th term is 26",
+          "a + 6d = 26  ⇒  8 + 6d = 26  ⇒  6d = 18  ⇒  d = 3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That five means make seven terms, so 8 + 6d = 26 and d = 3.",
+          "accept": [
+            "five means between two numbers make seven terms",
+            "twenty six is the seventh term so eight plus six d equals twenty six",
+            "the common difference comes out as three",
+            "aidu means unte seven terms, so d equals three vasthundi",
+            "find d from the seventh term"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "seven terms",
+            "six d",
+            "common difference",
+            "twenty six"
+          ]
+        },
+        "why": "The five means sit between the two given numbers, so the A.P. has 5 + 2 = 7 terms. Once 26 is named as the 7th term, the one unknown d comes out of a single equation.",
+        "common_mistakes": [
+          "Taking 26 as the 5th term instead of the 7th.",
+          "Writing a + 5d = 26, which counts only the means and leaves out one gap."
+        ]
+      },
+      {
+        "id": "s2_write_means",
+        "kind": "boxed_final",
+        "label": "Write the five means",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. All five values must be listed. Ending at 23 and seeing that 23 + 3 = 26 is the check the examiner expects you to have made.",
+        "memory_tip": "Keep adding 3 to 8 until you reach 26; the numbers you pass on the way are the means.",
+        "lines": [
+          "The means are the 2nd to the 6th terms, got by adding d = 3 each time:",
+          "8 + 3 = 11,  11 + 3 = 14,  14 + 3 = 17,  17 + 3 = 20,  20 + 3 = 23",
+          "Check: 23 + 3 = 26, the last term",
+          {
+            "text": "∴ The five arithmetic means are 11, 14, 17, 20, 23",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding 3 repeatedly from 8 gives the means 11, 14, 17, 20, 23.",
+          "accept": [
+            "add three each time starting from eight",
+            "eleven fourteen seventeen twenty and twenty three",
+            "the means are the second to the sixth terms",
+            "moodu add chesukuntu vellali, eleven fourteen seventeen twenty twenty three",
+            "check that twenty three plus three is twenty six"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eleven",
+            "fourteen",
+            "seventeen",
+            "twenty three",
+            "add three"
+          ]
+        },
+        "why": "Adding d repeatedly is quicker than working out a + nd five separate times, and the check costs nothing: one more 3 after 23 lands exactly on 26.",
+        "common_mistakes": [
+          "Listing 8 and 26 among the means, which gives seven values instead of five.",
+          "Stopping after four means because the counting was started at 8."
+        ]
+      }
+    ]
+  }
+}

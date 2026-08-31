@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_subsets_and_power_set_of_1_2_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Let A = {1, 2, 3}. Find (i) |A|, (ii) |P(A)|, (iii) all the subsets of A and (iv) the power set of A.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Count the elements and the subsets",
+      "marks": 1
+    },
+    {
+      "label": "List the subsets and write the power set",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.7, chapter 1 SETS & RELATIONS, Very Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The question prints four parts; all four are answered inside this one card, since together they are a single 2-mark answer."
+  },
+  "recall_prompt": "Say how you would answer this — say how you get the two counts, and how you would order the list of subsets.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_counts",
+        "kind": "equation",
+        "label": "Count the elements and the subsets",
+        "marks": 1,
+        "mark_note": "Counts",
+        "margin_note": "First mark. Parts (i) and (ii) both sit here. State the rule |P(A)| = 2ⁿ before using it, so the 8 is seen to come from a rule and not from counting a list.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A = {1, 2, 3}",
+          "(i) A has 3 elements, so |A| = 3",
+          "(ii) A set with n elements has 2ⁿ subsets, so",
+          "|P(A)| = 2³ = 8"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |A| = 3 and that |P(A)| = 2³ = 8 from the rule 2ⁿ.",
+          "accept": [
+            "A has three elements so the power set has two cubed which is eight",
+            "the number of subsets is two to the power n",
+            "count the elements first then use two power n",
+            "two power three ante eight subsets vasthayi",
+            "three elements and eight subsets"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two power three",
+            "eight",
+            "three elements",
+            "two to the n"
+          ]
+        },
+        "why": "The count 8 is what the list in part (iii) is checked against. Writing the rule first means the two answers are produced independently and can disagree, which is how a missing subset is caught.",
+        "memory_tip": "Each element is either in a subset or out of it, so 2 choices per element gives 2ⁿ.",
+        "common_mistakes": [
+          "Writing |P(A)| = 3² = 9 instead of 2³ = 8, with the base and the power swapped.",
+          "Giving |A| as the number of subsets rather than the number of elements."
+        ]
+      },
+      {
+        "id": "s2_list",
+        "kind": "boxed_final",
+        "label": "List the subsets and write the power set",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Parts (iii) and (iv) are the same eight objects named two ways: (iii) asks for the subsets themselves, (iv) asks for the one set that holds them as its elements. Write the list once and put braces around it for (iv).",
+        "lines": [
+          "(iii) The subsets of A are",
+          "∅,  {1},  {2},  {3},  {1, 2},  {1, 3},  {2, 3},  {1, 2, 3}",
+          "That is 1 + 3 + 3 + 1 = 8 subsets, which agrees with (ii).",
+          "(iv) The power set is the set whose elements are exactly those eight subsets.",
+          {
+            "text": "∴ P(A) = { ∅, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3} }",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the eight subsets are listed, and that P(A) is the set holding those same eight subsets.",
+          "accept": [
+            "empty set the three single element sets the three pairs and A itself",
+            "list them by size one three three one",
+            "the power set is the same list put inside braces",
+            "subsets anni rasi vaatini braces lo pedithe power set",
+            "eight subsets and the power set is the set of them"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "empty set",
+            "singletons",
+            "pairs",
+            "power set",
+            "braces"
+          ]
+        },
+        "why": "Ordering the list by size makes the count 1 + 3 + 3 + 1 visible on the page, so the list can be checked against part (ii) without recounting. Part (iv) then costs one line, because the objects are already written.",
+        "memory_tip": "List by size: the empty set, then the singletons, then the pairs, then the whole set.",
+        "common_mistakes": [
+          "Leaving out ∅ or leaving out A itself, which gives only 6 subsets.",
+          "Writing P(A) = {1, 2, 3} — dropping the inner braces makes it a set of numbers, not a set of sets.",
+          "Repeating the whole list twice for (iii) and (iv) instead of naming it once."
+        ]
+      }
+    ]
+  }
+}

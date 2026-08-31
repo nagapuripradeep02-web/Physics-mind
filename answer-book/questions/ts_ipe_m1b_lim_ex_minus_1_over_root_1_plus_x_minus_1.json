@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_lim_ex_minus_1_over_root_1_plus_x_minus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Evaluate lim(x → 0) (eˣ − 1)/(√(1 + x) − 1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Divide above and below by x",
+      "marks": 1
+    },
+    {
+      "label": "Take the ratio of the two standard limits",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.184, chapter 8 LIMITS, Short & Very Short Answer question 3. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 × 2M = 4M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what you divide by and which two standard limits you then use.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Limits and Continuity · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_divide_by_x",
+        "kind": "equation",
+        "label": "Divide above and below by x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both parts are 0 at x = 0, so neither is a standard limit on its own. Dividing both by x makes each one a standard limit.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "At x = 0, eˣ − 1 = 0 and √(1 + x) − 1 = 0, so the expression is of the indeterminate form 0/0.",
+          "For x ≠ 0 divide the numerator and the denominator by x.",
+          "lim(x → 0) (eˣ − 1)/(√(1 + x) − 1)  =  lim(x → 0) [(eˣ − 1)/x] / [(√(1 + x) − 1)/x]",
+          "The two standard limits are",
+          "lim(x → 0) (eˣ − 1)/x = 1   and   lim(x → 0) (√(1 + x) − 1)/x = 1/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator and denominator are each divided by x so that both become standard limits.",
+          "accept": [
+            "divide the top and the bottom by x so both become standard limits",
+            "both parts go to zero so divide each by x",
+            "use e to the x minus one over x is one and root one plus x minus one over x is half",
+            "rendinni x tho divide cheste standard limits vasthayi",
+            "split it into two standard limits by dividing by x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "divide by x",
+            "standard limit",
+            "e to the x minus one",
+            "one half"
+          ]
+        },
+        "why": "The denominator is also 0 at x = 0, so this is a ratio of two 0/0 pieces. Dividing each by x is what turns them into the two standard limits the syllabus states.",
+        "common_mistakes": [
+          "Treating the denominator as a constant and answering 1.",
+          "Dividing only the numerator by x and forgetting the denominator."
+        ],
+        "memory_tip": "lim (eˣ − 1)/x = 1 is the a = e case of lim (aˣ − 1)/x = logₑa, because logₑe = 1. One formula, not two."
+      },
+      {
+        "id": "s2_ratio",
+        "kind": "boxed_final",
+        "label": "Take the ratio of the two standard limits",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Both limits exist and the lower one, 1/2, is not 0, so the quotient rule applies. Dividing by 1/2 is multiplying by 2.",
+        "lines": [
+          "Both limits exist and the denominator limit 1/2 is not 0, so the limit of the quotient is the quotient of the limits.",
+          "= 1 / (1/2)",
+          {
+            "text": "∴ lim(x → 0) (eˣ − 1)/(√(1 + x) − 1) = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is 1 divided by 1/2, that is 2.",
+          "accept": [
+            "one divided by half gives two",
+            "the answer is two",
+            "dividing by one half multiplies by two",
+            "one by half ante rendu",
+            "the limit equals two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two",
+            "divided by half",
+            "one by half"
+          ]
+        },
+        "why": "The quotient rule for limits needs both limits to exist and the lower one to be non-zero, and both conditions hold here. The value checks numerically: at x = 0.00001 the expression is 2.000015.",
+        "common_mistakes": [
+          "Multiplying by 1/2 instead of dividing by it, giving 1/2.",
+          "Giving 1 by using the numerator limit only."
+        ],
+        "memory_tip": "Dividing by 1/2 doubles the number, and the top limit here is 1, so the answer is simply 2."
+      }
+    ]
+  }
+}

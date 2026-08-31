@@ -11,10 +11,10 @@
     "name": "Mathematical Induction"
   },
   "chapter": "Mathematical Induction",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 12,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "Using the principle of finite Mathematical Induction, prove that (1 + 3/1)(1 + 5/4)(1 + 7/9) … (1 + (2n+1)/n²) = (n+1)², for all n ∈ N.",
   "appearances": [
     {
@@ -23,10 +23,6 @@
     }
   ],
   "mark_split": [
-    {
-      "label": "Write the nth factor and the statement",
-      "marks": 1
-    },
     {
       "label": "Verify S(1)",
       "marks": 1
@@ -37,7 +33,7 @@
     },
     {
       "label": "Prove S(k+1)",
-      "marks": 4
+      "marks": 1
     },
     {
       "label": "Conclude by P.M.I.",
@@ -47,23 +43,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.99 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 145. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: Mathematical Induction is an LAQ-ONLY unit, so the section is fixed by the unit rather than inferred. Printed appearances: TS 19. A PRODUCT rather than a sum — so the inductive step MULTIPLIES by the next factor where every other answer in this unit adds a term. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular 1x7 for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Prove S(k+1)."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.99 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 145. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: Mathematical Induction is an LAQ-ONLY unit, so the section is fixed by the unit rather than inferred. Printed appearances: TS 19. A PRODUCT rather than a sum — so the inductive step MULTIPLIES by the next factor where every other answer in this unit adds a term. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular 1x7 for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SUPERSEDED 2026-08-31 by the RE-CUT sentence at the end of this note — re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Prove S(k+1). RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition) prints this chapter under a Short Answer Questions banner and prints no long-answer block for it at all. Only the question was taken from a source book; the solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved — the four induction moves (base case, hypothesis, inductive step, conclusion) now carry 1 mark each and the opening statement step carries 0. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would do this one — name each move in order.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Mathematical Induction · 8 marks"
+      "Section B — Short Answer Question",
+      "Mathematical Induction · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_write_the_nth_factor_and_t",
         "kind": "equation",
         "label": "Write the nth factor and the statement",
-        "marks": 1,
-        "mark_note": "nth factor",
-        "margin_note": "First mark. The denominators are 1, 4, 9 — the squares — so the nth factor is 1 + (2n+1)/n².",
-        "memory_tip": "The denominators 1, 4, 9 are the squares, so the nth factor is 1 + (2n+1)/n² = (n+1)²/n².",
+        "marks": 0,
+        "margin_note": "Unmarked setup at 4 marks, but never skip it — the denominators are 1, 4, 9, the squares, so the nth factor is 1 + (2n+1)/n².",
         "lines": [
           {
             "text": "Sol:",
@@ -99,7 +93,8 @@
         "common_mistakes": [
           "Not simplifying the factor and working with the fraction as given.",
           "Writing the denominators as n rather than n²."
-        ]
+        ],
+        "memory_tip": "The denominators 1, 4, 9 are the squares, so the nth factor is 1 + (2n+1)/n² = (n+1)²/n²."
       },
       {
         "id": "s2_verify_s_1",
@@ -107,8 +102,7 @@
         "label": "Verify S(1)",
         "marks": 1,
         "mark_note": "Base case",
-        "margin_note": "Second mark. n = 1 gives the single factor 1 + 3/1 = 4, and (1+1)² = 4.",
-        "memory_tip": "n = 1 gives the single factor 1 + 3/1 = 4, and (1 + 1)² = 4.",
+        "margin_note": "First mark. n = 1 gives the single factor 1 + 3/1 = 4, and (1+1)² = 4.",
         "lines": [
           "For n = 1: L.H.S = 1 + 3/1 = 4",
           "R.H.S = (1+1)² = 2² = 4",
@@ -139,7 +133,8 @@
         "common_mistakes": [
           "Multiplying two factors for n = 1.",
           "Skipping the base case."
-        ]
+        ],
+        "memory_tip": "n = 1 gives the single factor 1 + 3/1 = 4, and (1 + 1)² = 4."
       },
       {
         "id": "s3_assume_s_k",
@@ -147,8 +142,7 @@
         "label": "Assume S(k)",
         "marks": 1,
         "mark_note": "Hypothesis",
-        "margin_note": "Third mark. The hypothesis, written as a numbered equation.",
-        "memory_tip": "The hypothesis, written as a numbered equation.",
+        "margin_note": "Second mark. The hypothesis, written as a numbered equation.",
         "lines": [
           "Assume S(k) is true for some k ∈ N:",
           "(1 + 3/1)(1 + 5/4) … (1 + (2k+1)/k²) = (k+1)²   …(1)"
@@ -178,16 +172,16 @@
         "common_mistakes": [
           "Assuming S(k+1).",
           "Writing the hypothesis with n instead of k."
-        ]
+        ],
+        "memory_tip": "The hypothesis, written as a numbered equation."
       },
       {
         "id": "s4_prove_s_k_1",
         "kind": "equation",
         "label": "Prove S(k+1)",
-        "marks": 4,
+        "marks": 1,
         "mark_note": "Inductive step",
-        "margin_note": "Four marks. MULTIPLY both sides by the (k+1)th factor, which is (k+2)²/(k+1)². The (k+1)² cancels against the hypothesis exactly.",
-        "memory_tip": "This is a PRODUCT, so MULTIPLY both sides by (k+2)²/(k+1)². The (k+1)² cancels exactly.",
+        "margin_note": "Third mark, and the longest step on the page. MULTIPLY both sides by the (k+1)th factor, which is (k+2)²/(k+1)². The (k+1)² cancels against the hypothesis exactly.",
         "lines": [
           "The (k+1)th factor is (1 + (2k+3)/(k+1)²) = (k+2)²/(k+1)²",
           "Multiplying both sides of (1) by it:",
@@ -221,7 +215,8 @@
         "common_mistakes": [
           "Adding the next factor instead of multiplying.",
           "Writing the (k+1)th factor with k in place of k+1."
-        ]
+        ],
+        "memory_tip": "This is a PRODUCT, so MULTIPLY both sides by (k+2)²/(k+1)². The (k+1)² cancels exactly."
       },
       {
         "id": "s5_conclude_by_p_m_i",
@@ -230,7 +225,6 @@
         "marks": 1,
         "mark_note": "P.M.I.",
         "margin_note": "Last mark. Name the principle.",
-        "memory_tip": "Name the principle in one sentence.",
         "lines": [
           "S(1) is true, and S(k) true ⇒ S(k+1) true.",
           {
@@ -263,7 +257,8 @@
         "common_mistakes": [
           "Omitting the conclusion.",
           "Writing \"hence proved\" alone."
-        ]
+        ],
+        "memory_tip": "Name the principle in one sentence."
       }
     ]
   },

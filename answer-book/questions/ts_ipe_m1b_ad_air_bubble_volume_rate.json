@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_air_bubble_volume_rate",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The radius of an air bubble is increasing at the rate of 1/2 cm/sec. At what rate is the volume of the bubble increasing when the radius is 1 cm?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate V = (4/3)πr³ with respect to t",
+      "marks": 1
+    },
+    {
+      "label": "Substitute r = 1 and dr/dt = 1/2",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.213, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 9. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you would write, say which rate is given and which one is asked for, and say what you differentiate with respect to.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sphere_volume_rate",
+        "kind": "equation",
+        "label": "Differentiate V = (4/3)πr³ with respect to t",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. An air bubble is a sphere, so V = (4/3)πr³. Here dr/dt is the one that is given and dV/dt is the unknown — the opposite way round to the balloon question.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "An air bubble is a sphere, so let r be its radius at time t.",
+          "Given: dr/dt = 1/2 cm/sec.  Asked: dV/dt when r = 1 cm.",
+          "Volume of a sphere:  V = (4/3)πr³",
+          "Differentiate both sides with respect to time t:",
+          "dV/dt = (4/3)π·3r²·(dr/dt) = 4πr²(dr/dt)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bubble is a sphere with V = (4/3)πr³, and differentiating with respect to t gives dV/dt = 4πr²(dr/dt).",
+          "accept": [
+            "a bubble is a sphere so volume is four by three pi r cubed",
+            "differentiate with respect to time to get four pi r squared d r by d t",
+            "half a centimetre per second is d r by d t and d v by d t is asked",
+            "bubble ante sphere, volume formula rasi differentiate cheyyali",
+            "d v by d t equals four pi r squared into d r by d t",
+            "the three cancels the three in the denominator"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four by three pi r cubed",
+            "four pi r squared",
+            "d v by d t",
+            "d r by d t",
+            "half"
+          ]
+        },
+        "why": "This is the same relation dV/dt = 4πr²(dr/dt) as the balloon question, used in the opposite direction: there dr/dt was the unknown, here dV/dt is.",
+        "common_mistakes": [
+          "Using the surface area 4πr² as the volume formula.",
+          "Differentiating r³ as r² without the factor 3, which loses the cancellation.",
+          "Treating 1/2 cm/sec as a volume rate."
+        ],
+        "memory_tip": "Differentiating the sphere's volume gives its surface area, 4πr² — write that one line and both the balloon question and this one are already half done."
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute r = 1 and dr/dt = 1/2",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Here the unknown dV/dt is already alone on the left, so this is a direct substitution with no rearranging. Keep the answer as 2π and write cm³/sec.",
+        "lines": [
+          "Put r = 1 and dr/dt = 1/2:",
+          "dV/dt = 4π(1²)(1/2) = 4π × 1/2 = 2π",
+          {
+            "text": "∴ dV/dt = 2π cm³/sec ≈ 6.28 cm³/sec",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting r = 1 and dr/dt = 1/2 gives dV/dt = 2π cm³/sec.",
+          "accept": [
+            "four pi into one into half is two pi",
+            "the volume increases at two pi cubic centimetres per second",
+            "substitute r equal to one and d r by d t equal to half",
+            "r equal to one substitute cheste two pi vasthundi",
+            "the answer is two pi centimetre cube per second",
+            "about six point two eight cubic centimetres per second"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two pi",
+            "four pi into half",
+            "cubic centimetres per second",
+            "d v by d t"
+          ]
+        },
+        "why": "dV/dt is already the subject of the equation, so no rearranging is needed. The unit is cm³/sec because a volume changing per second is a volume rate.",
+        "common_mistakes": [
+          "Writing 4π as the answer by forgetting to multiply by 1/2.",
+          "Dividing by 1/2 instead of multiplying, which gives 8π.",
+          "Giving the unit as cm²/sec instead of cm³/sec."
+        ],
+        "memory_tip": "With r = 1 the r² factor is just 1, so the whole answer is 4π halved, which is 2π."
+      }
+    ]
+  }
+}

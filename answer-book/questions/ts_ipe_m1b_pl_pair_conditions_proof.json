@@ -11,10 +11,10 @@
     "name": "Pair of Straight Lines"
   },
   "chapter": "Pair of Straight Lines",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 15,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "If ax²+2hxy+by²+2gx+2fy+c=0 represents a pair of lines then prove that (a) Δ = abc+2fgh−af²−bg²−ch² = 0 (b) h²≥ab, f²≥bc, g²≥ac.",
   "appearances": [
     {
@@ -32,27 +32,27 @@
     },
     {
       "label": "Build 8fgh from the dictionary",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Reduce it to the Δ condition",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Prove the inequalities",
-      "marks": 3
+      "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.22 — LAQ chapter 2 Pair of Straight Lines, answer 10. Printed appearances: AP M-16 · TS M-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Prove the inequalities."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.22 — LAQ chapter 2 Pair of Straight Lines, answer 10. Printed appearances: AP M-16 · TS M-16. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Prove the inequalities. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the four steps now carry 1+1+1+1 instead of 1+2+2+3. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — say what you multiply together for part (a), and what makes the inequalities in (b) true.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Pair of Straight Lines · 8 marks"
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
     ],
     "steps": [
       {
@@ -61,7 +61,6 @@
         "label": "Split the pair and match coefficients",
         "marks": 1,
         "margin_note": "First mark. A general pair splits into two general lines, each with its own constant — six coefficients matched against six.",
-        "memory_tip": "A general pair splits into two general lines, each with its own constant — six coefficients against six.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,15 +98,15 @@
           "Pairing the cross terms with the same subscript twice.",
           "Forgetting that h, g and f are each HALF the matched quantity."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "A general pair splits into two general lines, each with its own constant — six coefficients against six."
       },
       {
         "id": "s2_build_8fgh",
         "kind": "equation",
         "label": "Build 8fgh from the dictionary",
-        "marks": 2,
-        "margin_note": "Two marks. Multiply the three doubled coefficients together. Every term of the expansion is a product of six letters, and regrouping is what turns it into something recognisable.",
-        "memory_tip": "Multiply the three doubled coefficients. Every term is a product of six letters; regrouping is the work.",
+        "marks": 1,
+        "margin_note": "One mark. Multiply the three doubled coefficients together. Every term of the expansion is a product of six letters, and regrouping is what turns it into something recognisable.",
         "lines": [
           "(a) (2h)(2g)(2f) = (l₁m₂ + l₂m₁)(l₁n₂ + l₂n₁)(m₁n₂ + m₂n₁)",
           "On multiplying and regrouping, we get",
@@ -140,15 +139,15 @@
           "Multiplying h, g and f rather than 2h, 2g and 2f.",
           "Losing the final term 2l₁l₂m₁m₂n₁n₂."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Multiply the three doubled coefficients. Every term is a product of six letters; regrouping is the work."
       },
       {
         "id": "s3_reduce",
         "kind": "equation",
         "label": "Reduce it to the Δ condition",
-        "marks": 2,
-        "margin_note": "Two marks. Each bracket becomes (sum)² − 2(product), and every one of those is already in the dictionary — so the whole expression converts into a, b, c, f, g, h in one pass.",
-        "memory_tip": "Each bracket becomes (sum)² − 2(product), and every one of those is already in the dictionary.",
+        "marks": 1,
+        "margin_note": "One mark. Each bracket becomes (sum)² − 2(product), and every one of those is already in the dictionary — so the whole expression converts into a, b, c, f, g, h in one pass.",
         "lines": [
           "= l₁l₂[(m₁n₂ + m₂n₁)² − 2m₁m₂n₁n₂] + m₁m₂[(n₁l₂ + n₂l₁)² − 2n₁n₂l₁l₂]",
           "   + n₁n₂[(l₁m₂ + l₂m₁)² − 2l₁l₂m₁m₂] + 2l₁l₂m₁m₂n₁n₂",
@@ -187,15 +186,15 @@
           "Forgetting to divide the whole line by 4 at the end.",
           "Sign slip when moving abc across."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Each bracket becomes (sum)² − 2(product), and every one of those is already in the dictionary."
       },
       {
         "id": "s4_inequalities",
         "kind": "boxed_final",
         "label": "Prove the inequalities",
-        "marks": 3,
-        "margin_note": "The last three marks. h² − ab turns out to be a perfect square divided by 4 — and a square is never negative, which is the entire argument.",
-        "memory_tip": "h² − ab is a perfect square over 4 — and a square is never negative. That IS the argument.",
+        "marks": 1,
+        "margin_note": "The last mark. h² − ab turns out to be a perfect square divided by 4 — and a square is never negative, which is the entire argument.",
         "lines": [
           "(b) h² − ab = [(l₁m₂ + l₂m₁)/2]² − l₁l₂m₁m₂",
           "= [(l₁m₂ + l₂m₁)² − 4l₁l₂m₁m₂]/4",
@@ -233,7 +232,8 @@
           "Claiming strict inequality h² > ab, which fails when the lines are parallel.",
           "Forgetting the division by 4 when writing h from 2h."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "h² − ab is a perfect square over 4 — and a square is never negative. That IS the argument."
       }
     ]
   },

@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_x_a_cos3t_y_a_sin3t",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If x = a cos³t and y = a sin³t, find dy/dx.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate x and y with respect to t",
+      "marks": 1
+    },
+    {
+      "label": "Divide to get dy/dx",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.195, chapter 9 DIFFERENTIATION, Very Short Answer question 22. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer −tan t was checked numerically before it was written: with a = 2 and t = 0.7 the difference quotient (dy/dt)/(dx/dt) reads −0.8422883805 against −tan(0.7) = −0.8422883805; with a = 5 and t = 1.1 it reads −1.964759657 against −1.964759657; with a = 3 and t = −0.4 it reads 0.4227932188 against 0.4227932187. The value is the same for every a, as the cancellation predicts."
+  },
+  "recall_prompt": "Say how you would do this one — say what you differentiate with respect to first, and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate_wrt_t",
+        "kind": "equation",
+        "label": "Differentiate x and y with respect to t",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Name the parametric rule before differentiating anything. The chain rule is used twice in each line — the cube first, then the trigonometric function inside it.",
+        "memory_tip": "Both derivatives read the same way: 3a, the square of the same function, then the derivative of that function. Only cos t brings a minus sign with it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x and y are both given in terms of t, so use the parametric rule",
+          "dy/dx = (dy/dt)/(dx/dt)",
+          "x = a cos³t  ⇒  dx/dt = 3a cos²t · (−sin t) = −3a cos²t sin t",
+          "y = a sin³t  ⇒  dy/dt = 3a sin²t · (cos t) = 3a sin²t cos t"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx = (dy/dt)/(dx/dt), with dx/dt = −3a cos²t sin t and dy/dt = 3a sin²t cos t.",
+          "accept": [
+            "differentiate both x and y with respect to t first",
+            "use the parametric rule d y by d t over d x by d t",
+            "d x by d t is minus three a cos squared t sin t",
+            "rendintini t tho differentiate cheyyali, tarvata divide cheyyali",
+            "d y by d t is three a sin squared t cos t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "with respect to t",
+            "parametric",
+            "three a cos squared t sin t",
+            "chain rule"
+          ]
+        },
+        "why": "There is no equation linking x and y directly, so neither can be differentiated with respect to the other. The parameter t is the only link between them, so both are differentiated with respect to t first.",
+        "common_mistakes": [
+          "Writing dx/dt as 3a cos²t, which leaves out the derivative of cos t inside.",
+          "Dropping the minus sign that comes from differentiating cos t."
+        ]
+      },
+      {
+        "id": "s2_divide",
+        "kind": "boxed_final",
+        "label": "Divide to get dy/dx",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Write the fraction out before cancelling — the mark is for the division, not for the two words −tan t on their own.",
+        "memory_tip": "Everything cancels except one sin t over one cos t, so the whole answer is −tan t.",
+        "lines": [
+          "dy/dx = (dy/dt)/(dx/dt) = (3a sin²t cos t)/(−3a cos²t sin t)",
+          "The factor 3a cancels, and one sin t and one cos t cancel as well.",
+          "= −(sin t)/(cos t)",
+          {
+            "text": "∴ dy/dx = −tan t",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing dy/dt by dx/dt cancels 3a, sin t and cos t and leaves −tan t.",
+          "accept": [
+            "divide d y by d t by d x by d t",
+            "the three a cancels and it becomes minus tan t",
+            "sin t over cos t with a minus sign",
+            "a cancel aipothundi, answer minus tan t",
+            "the answer is minus tan t"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus tan t",
+            "cancels",
+            "divide",
+            "sin over cos"
+          ]
+        },
+        "why": "Every a cancels, so the answer depends only on t and not on the size of the curve. That cancellation is the check that both derivatives were taken correctly.",
+        "common_mistakes": [
+          "Dividing dx/dt by dy/dt instead, which gives −cot t.",
+          "Leaving a in the final answer, when every a has already cancelled."
+        ]
+      }
+    ]
+  }
+}

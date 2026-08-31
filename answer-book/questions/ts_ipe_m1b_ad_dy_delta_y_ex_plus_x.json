@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_dy_delta_y_ex_plus_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find dy and Δy for y = eˣ + x when x = 5 and Δx = 0.02.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find dy from the derivative",
+      "marks": 1
+    },
+    {
+      "label": "Find Δy from the exact change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 1(iv), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 1(iv)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for dy and one for Δy, because the question asks for two different numbers. ONE TYPESET LINE: the exact change needs the number e raised to the power 5.02, and a decimal exponent has no honest one-line Unicode form, so that single line carries render \"katex\". Every other line on the card is plain. Both answers are also given in terms of e⁵, since the exponential does not cancel out of either one. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. TYPOGRAPHY: the exact-change line was first set with KaTeX because a decimal exponent has no Unicode superscript form. It is now written e^(5.02) in the caret form this bank already uses for compound exponents (e^(−y), e^(∫P dx), e^(−Eₐ/RT) and 74 others), so the chapter carries no typeset lines at all — every typeset line is a small break in the handwriting look."
+  },
+  "recall_prompt": "Say how you would do this one — say how you get dy, and say what makes Δy a different number.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dy",
+        "kind": "equation",
+        "label": "Find dy from the derivative",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The derivative of eˣ is eˣ itself, so dy/dx = eˣ + 1. Give the answer both ways — the exact form 0.02(e⁵ + 1) and the decimal — because the exponential does not cancel.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "y = eˣ + x,  x = 5,  Δx = 0.02",
+          "dy/dx = eˣ + 1",
+          "dy = (dy/dx)·Δx = (eˣ + 1)Δx",
+          "= (e⁵ + 1)(0.02) = 0.02e⁵ + 0.02",
+          "e⁵ = 148.4132, so dy = 0.02(148.4132) + 0.02 = 2.9683 + 0.02",
+          "∴ dy = 0.02(e⁵ + 1) ≈ 2.9883"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dy/dx = eˣ + 1, so dy = (e⁵ + 1)(0.02), which is about 2.9883.",
+          "accept": [
+            "the derivative of e to the x is e to the x so d y by d x is e to the x plus one",
+            "d y is e power five plus one times zero point zero two",
+            "leave it in terms of e power five and also give the decimal",
+            "e power x derivative e power x ye, delta x tho multiply cheyyali",
+            "d y is about two point nine eight eight three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "e to the x",
+            "e power five",
+            "plus one",
+            "two point nine eight eight"
+          ]
+        },
+        "why": "The derivative of eˣ is eˣ, so nothing cancels and e⁵ stays in the answer. Writing dy = (e⁵ + 1)(0.02) earns the mark on its own; the decimal is the reading of that exact value.",
+        "common_mistakes": [
+          "Differentiating eˣ as x·eˣ⁻¹, using the power rule on an exponential.",
+          "Dropping the +1 that comes from differentiating the second term x."
+        ],
+        "memory_tip": "dy uses the derivative once. Δy uses the function twice. d for derivative, Δ for difference."
+      },
+      {
+        "id": "s2_delta_y",
+        "kind": "boxed_final",
+        "label": "Find Δy from the exact change",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The two x terms give a clean +0.02, so the whole difference sits in the exponential part. Here dy and Δy differ by about 0.03 — much wider than in the polynomial parts, because eˣ curves sharply at x = 5.",
+        "lines": [
+          "Δy = f(x + Δx) − f(x) = f(5.02) − f(5)",
+          "Δy = (e^(5.02) + 5.02) − (e⁵ + 5) = e^(5.02) − e⁵ + 0.02",
+          "= 151.4113 − 148.4132 + 0.02",
+          "= 2.9981 + 0.02",
+          {
+            "text": "∴ dy = 0.02(e⁵ + 1) ≈ 2.9883  and  Δy ≈ 3.0181",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δy = f(5.02) − f(5), which leaves e raised to 5.02 minus e⁵ plus 0.02, about 3.0181.",
+          "accept": [
+            "delta y is f of five point zero two minus f of five",
+            "the two x terms leave plus zero point zero two",
+            "e power five point zero two minus e power five plus zero point zero two",
+            "rendu values lo substitute chesi subtract cheyyali",
+            "delta y is about three point zero one eight one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "f of five point zero two",
+            "minus f of five",
+            "e power five point zero two",
+            "three point zero one eight"
+          ]
+        },
+        "why": "Δy is the real change in y, so the function is worked out at both points. The gap between dy and Δy is about 0.0299 here, far wider than in the polynomial parts, because a straight line is a poorer stand-in for a curve that is rising as steeply as eˣ does at x = 5.",
+        "common_mistakes": [
+          "Writing e raised to 5.02 as e⁵ plus e raised to 0.02 — those two powers multiply, they do not add.",
+          "Stopping at dy when the question asks for both numbers."
+        ],
+        "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down."
+      }
+    ]
+  }
+}

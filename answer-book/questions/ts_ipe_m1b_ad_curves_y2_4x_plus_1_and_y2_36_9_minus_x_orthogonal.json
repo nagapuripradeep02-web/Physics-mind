@@ -1,0 +1,192 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_curves_y2_4x_plus_1_and_y2_36_9_minus_x_orthogonal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the curves y² = 4(x + 1) and y² = 36(9 − x) intersect orthogonally.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the points of intersection",
+      "marks": 2
+    },
+    {
+      "label": "Find both slopes at those points",
+      "marks": 1
+    },
+    {
+      "label": "Show the product of the slopes is −1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.217, chapter 10 APPLICATIONS OF DERIVATIVES, the TANGENTS AND NORMALS sub-section, Short Answer question 4. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4M over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question, weighted 2 on the point of intersection because a wrong point makes both later steps worthless. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say how you find where the two curves meet, and say what orthogonally means in terms of the slopes.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_points_of_intersection",
+        "kind": "equation",
+        "label": "Find the points of intersection",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks, and the two that are most often lost. Both curves give y² in terms of x, so equating the two right sides removes y in one line. Orthogonality is a statement about a COMMON point, so the point must come first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given curves:  y² = 4(x + 1)   …(i)   and   y² = 36(9 − x)   …(ii)",
+          "At a common point both right sides are equal:",
+          "4(x + 1) = 36(9 − x)",
+          "4x + 4 = 324 − 36x",
+          "40x = 320  ⇒  x = 8",
+          "From (i):  y² = 4(8 + 1) = 36  ⇒  y = ±6",
+          "∴ the curves meet at P(8, 6) and Q(8, −6)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equating 4(x + 1) and 36(9 − x) gives x = 8, and then y = ±6, so the curves meet at (8, 6) and (8, −6).",
+          "accept": [
+            "equate the two expressions for y squared and solve for x",
+            "four x plus four equals three twenty four minus thirty six x",
+            "x is eight and y is plus or minus six",
+            "rendu curves ki y square same kabatti equate cheyyali",
+            "the curves meet at eight comma six and eight comma minus six",
+            "solve the two equations simultaneously first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "equate",
+            "x equals eight",
+            "plus or minus six",
+            "point of intersection"
+          ]
+        },
+        "why": "Two curves are orthogonal at a point they share, so no slope means anything until the shared point is known. Both equations are already solved for y², which is why eliminating y is the shorter route.",
+        "common_mistakes": [
+          "Guessing or assuming a point of intersection instead of solving for it.",
+          "Taking only y = 6 and never checking the second point y = −6.",
+          "Sign error in 4x + 4 = 324 − 36x, giving 32x = 320 and x = 10."
+        ],
+        "memory_tip": "Both equations start with y², so set the two right sides equal — y disappears without any squaring or substitution."
+      },
+      {
+        "id": "s2_slopes",
+        "kind": "equation",
+        "label": "Find both slopes at those points",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Differentiate each curve implicitly and keep the slope in terms of y, because the common points differ only in y. Note the sign: the second curve has −x inside the bracket.",
+        "lines": [
+          "From (i):  2y (dy/dx) = 4  ⇒  m₁ = dy/dx = 2/y",
+          "From (ii): 2y (dy/dx) = −36  ⇒  m₂ = dy/dx = −18/y",
+          "At P(8, 6):   m₁ = 2/6 = 1/3,   m₂ = −18/6 = −3",
+          "At Q(8, −6):  m₁ = −1/3,   m₂ = 3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m₁ = 2/y and m₂ = −18/y, so at (8, 6) the slopes are 1/3 and −3.",
+          "accept": [
+            "differentiate both curves implicitly with respect to x",
+            "m one is two by y and m two is minus eighteen by y",
+            "at eight comma six the slopes are one third and minus three",
+            "implicit differentiation chesi y lo slopes rayali",
+            "the second curve gives minus thirty six on the right",
+            "two y dy by dx equals four for the first curve"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two by y",
+            "minus eighteen by y",
+            "one third",
+            "minus three",
+            "implicit"
+          ]
+        },
+        "why": "Differentiating 36(9 − x) gives −36, not 36. That single minus sign is what makes the product of the slopes negative, so losing it turns an orthogonal pair into a non-orthogonal one.",
+        "common_mistakes": [
+          "Differentiating 36(9 − x) as +36 and losing the minus sign.",
+          "Cancelling 2y into 4 as y/2 rather than 2/y.",
+          "Substituting x = 8 into a slope that contains only y."
+        ],
+        "memory_tip": "Both curves are y² = something, so both differentiate to 2y·dy/dx = that something's derivative — only the right side changes."
+      },
+      {
+        "id": "s3_product_minus_one",
+        "kind": "boxed_final",
+        "label": "Show the product of the slopes is −1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. Orthogonal means the tangents are perpendicular, that is m₁m₂ = −1. Show it at both common points so the proof covers the whole intersection.",
+        "lines": [
+          "Two curves cut orthogonally at a common point when m₁m₂ = −1 there.",
+          "At P(8, 6):   m₁m₂ = (1/3)(−3) = −1",
+          "At Q(8, −6):  m₁m₂ = (−1/3)(3) = −1",
+          "In general, m₁m₂ = (2/y)(−18/y) = −36/y² = −36/36 = −1 (since y² = 36).",
+          {
+            "text": "∴ m₁m₂ = −1 at every common point, so the curves y² = 4(x + 1) and y² = 36(9 − x) intersect orthogonally.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That orthogonal means m₁m₂ = −1, and the product is −1 at both common points.",
+          "accept": [
+            "orthogonal means the product of the slopes is minus one",
+            "one third into minus three is minus one",
+            "the tangents are perpendicular at the common point",
+            "m one m two equals minus one kabatti orthogonal",
+            "minus thirty six by y squared is minus one because y squared is thirty six",
+            "check it at both points of intersection"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus one",
+            "orthogonal",
+            "perpendicular",
+            "product of slopes"
+          ]
+        },
+        "why": "Orthogonal is a condition on the tangents at the shared point, not on the curves as a whole. Writing the general product −36/y² and then using y² = 36 shows the result holds at both points in one line.",
+        "common_mistakes": [
+          "Checking m₁m₂ = −1 at only one of the two common points.",
+          "Using tanθ = |(m₁ − m₂)/(1 + m₁m₂)|, which has 1 + m₁m₂ = 0 in the denominator here and is undefined.",
+          "Writing the condition as m₁m₂ = 1 or m₁ = −m₂."
+        ],
+        "memory_tip": "Perpendicular slopes multiply to −1, exactly as in straight lines — at the shared point each curve has the direction of its own tangent."
+      }
+    ]
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_absolute_extrema_x_plus_sin_2x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the absolute maximum value and the absolute minimum value of the function f(x) = x + sin 2x in [0, π].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate and set the derivative to zero",
+      "marks": 1
+    },
+    {
+      "label": "Find every critical point inside the interval",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate f at the critical points and at both endpoints",
+      "marks": 1
+    },
+    {
+      "label": "Compare the values and state both extrema",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.227, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 7. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which points you must evaluate the function at on a closed interval, and say whether the second derivative test is needed here.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate and set the derivative to zero",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. State that f is continuous on the closed interval — that is what guarantees an absolute maximum and an absolute minimum exist. The chain rule gives the factor 2 in 2cos 2x.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = x + sin 2x on the closed interval [0, π].",
+          "f is continuous on [0, π] and differentiable on (0, π), so an absolute maximum and an absolute minimum both exist on this interval.",
+          "f′(x) = 1 + 2cos 2x",
+          "For critical points, put f′(x) = 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(x) = 1 + 2cos 2x, and that critical points come from f′(x) = 0.",
+          "accept": [
+            "differentiate x plus sin two x",
+            "the derivative is one plus two cos two x",
+            "the chain rule gives the extra two",
+            "sin two x differentiate cheste two cos two x vasthundi",
+            "set the first derivative equal to zero",
+            "f is continuous on the closed interval so both extrema exist"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus two cos two x",
+            "chain rule",
+            "critical points",
+            "continuous"
+          ]
+        },
+        "why": "An absolute extremum on a closed interval sits either at a point where the derivative is zero or at an endpoint. Differentiating is how the first group is found.",
+        "common_mistakes": [
+          "Writing f′(x) = 1 + cos 2x and dropping the chain rule factor 2.",
+          "Differentiating sin 2x as cos x."
+        ],
+        "memory_tip": "The derivative of sin 2x carries the inside derivative out in front: 2cos 2x. The 2 is the chain rule showing itself."
+      },
+      {
+        "id": "s2_critical_points",
+        "kind": "equation",
+        "label": "Find every critical point inside the interval",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Convert the range for x into a range for 2x first. Missing the second solution 4π/3 is the usual slip here.",
+        "lines": [
+          "1 + 2cos 2x = 0   ⇒   cos 2x = −1/2",
+          "x lies in [0, π], so 2x lies in [0, 2π].",
+          "In [0, 2π] the equation cos 2x = −1/2 has the solutions",
+          "2x = 2π/3   and   2x = 4π/3",
+          "∴ x = π/3  and  x = 2π/3 are the critical points, and both lie in [0, π]."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 2x = −1/2 with 2x in [0, 2π] gives 2x = 2π/3 and 4π/3, so x = π/3 and x = 2π/3.",
+          "accept": [
+            "cos two x equals minus half",
+            "two x lies between zero and two pi",
+            "the solutions are two pi by three and four pi by three",
+            "x range ni two x range ga marchali",
+            "the critical points are pi by three and two pi by three",
+            "cosine is negative in the second and third quadrants"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos two x",
+            "minus half",
+            "pi by three",
+            "two pi by three"
+          ]
+        },
+        "why": "Doubling the variable doubles the range, so [0, π] for x becomes [0, 2π] for 2x. Working in the 2x range is what shows there are two solutions here rather than one.",
+        "common_mistakes": [
+          "Finding only 2x = 2π/3 and missing 2x = 4π/3.",
+          "Solving cos x = −1/2 instead of cos 2x = −1/2, giving x = 2π/3 alone."
+        ],
+        "memory_tip": "Solve for the whole angle 2x first, over its own doubled range, and divide by 2 only at the end."
+      },
+      {
+        "id": "s3_evaluate",
+        "kind": "equation",
+        "label": "Evaluate f at the critical points and at both endpoints",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Both endpoints must appear in the list. Leaving out f(0) and f(π) is the classic error on this type, and here it changes both answers.",
+        "lines": [
+          "For an absolute extremum on a closed interval, evaluate f at every critical point AND at both endpoints.",
+          "f(0) = 0 + sin 0 = 0",
+          "f(π/3) = π/3 + sin(2π/3) = π/3 + √3/2 ≈ 1.9132",
+          "f(2π/3) = 2π/3 + sin(4π/3) = 2π/3 − √3/2 ≈ 1.2284",
+          "f(π) = π + sin 2π = π + 0 = π ≈ 3.1416"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is evaluated at x = 0, π/3, 2π/3 and π, giving 0, π/3 + √3/2, 2π/3 − √3/2 and π.",
+          "accept": [
+            "evaluate at the critical points and at both endpoints",
+            "f of zero is zero and f of pi is pi",
+            "sin four pi by three is minus root three by two",
+            "rendu endpoints kooda check cheyyali",
+            "make a list of four values",
+            "f of pi by three is pi by three plus root three by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "endpoints",
+            "f of zero",
+            "f of pi",
+            "root three by two"
+          ]
+        },
+        "why": "An absolute extremum on a closed interval is not the same as a local one. The largest and smallest values can sit at an endpoint, where the derivative need not be zero at all, so the endpoints must be tested.",
+        "common_mistakes": [
+          "Testing only the critical points and never the endpoints.",
+          "Writing sin(4π/3) as +√3/2 instead of −√3/2."
+        ],
+        "memory_tip": "On a closed interval the answer list always has two more entries than there are critical points — one for each endpoint."
+      },
+      {
+        "id": "s4_compare",
+        "kind": "boxed_final",
+        "label": "Compare the values and state both extrema",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. Both extrema here sit at the endpoints. A student who compared only the two critical values would answer 1.9132 and 1.2284, and both would be wrong.",
+        "lines": [
+          "Compare the four values:  0,  1.9132,  1.2284,  3.1416",
+          "The largest is π, reached at x = π.",
+          "The smallest is 0, reached at x = 0.",
+          "Both extreme values occur at the ENDPOINTS, not at either critical point.",
+          {
+            "text": "∴ absolute maximum = π at x = π,  and absolute minimum = 0 at x = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the largest of the four values is π at x = π and the smallest is 0 at x = 0.",
+          "accept": [
+            "the absolute maximum is pi at x equal to pi",
+            "the absolute minimum is zero at x equal to zero",
+            "compare all four values and pick the largest and smallest",
+            "rendu answers endpoints daggara vasthayi",
+            "both extreme values are at the endpoints here",
+            "the critical points give neither the largest nor the smallest value"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "absolute maximum",
+            "absolute minimum",
+            "pi",
+            "zero"
+          ]
+        },
+        "why": "The absolute extrema are simply the largest and smallest members of the list. No second derivative test is needed on a closed interval — comparing the values is the complete method.",
+        "common_mistakes": [
+          "Applying the second derivative test and reporting a local extremum as the absolute one.",
+          "Giving the x values instead of the function values as the maximum and minimum."
+        ],
+        "memory_tip": "Absolute extrema on a closed interval are found by comparing a LIST, not by a sign test. Build the list, then read off the largest and the smallest."
+      }
+    ]
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_x_ex_sin_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the derivative of xeˣ sin x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the three-factor product rule",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the three derivatives and take eˣ out",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.194, chapter 9 DIFFERENTIATION, Very Short Answer question 16. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer eˣ[(1 + x) sin x + x cos x] was checked against a numerical difference quotient before it was written: at x = 0.7 both read 3.2835438, at x = 1.3 both read 9.4078283, and at x = −0.5 both read −0.4115335."
+  },
+  "recall_prompt": "Say how you would do this one — say which rule you use for three factors and what the three terms look like.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Differentiation · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "equation",
+        "label": "State the three-factor product rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write the rule for three factors before touching this question. Each term differentiates exactly one factor and leaves the other two unchanged, so there are three terms and no more.",
+        "memory_tip": "Three factors give three terms, and in each term only one factor carries a prime.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "For three functions u, v, w the product rule reads",
+          "d/dx(uvw) = u′vw + uv′w + uvw′",
+          "Take u = x,  v = eˣ,  w = sin x",
+          "Then u′ = 1,  v′ = eˣ,  w′ = cos x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three-factor product rule d/dx(uvw) = u′vw + uv′w + uvw′ is used with u = x, v = eˣ, w = sin x.",
+          "accept": [
+            "use the product rule for three functions u v w",
+            "u dash v w plus u v dash w plus u v w dash",
+            "take u as x, v as e power x and w as sin x",
+            "moodu functions unnappudu moodu terms vasthayi",
+            "three factors so three terms, one prime in each"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "product rule",
+            "u dash v w",
+            "three functions",
+            "e power x",
+            "sin x"
+          ]
+        },
+        "why": "The rule stated in full is worth a mark on its own, and naming u, v, w with their derivatives first prevents a factor being differentiated twice in the same term.",
+        "common_mistakes": [
+          "Using the two-factor rule and producing only two terms.",
+          "Differentiating two factors in the same term, for example writing 1 · eˣ · cos x."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute the three derivatives and take eˣ out",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. eˣ appears in all three terms, so it comes out as a common factor. Inside the bracket, sin x appears twice and groups as (1 + x) sin x.",
+        "memory_tip": "eˣ is its own derivative, so it appears in all three terms and can be taken out of the whole answer.",
+        "lines": [
+          "d/dx(xeˣ sin x) = (1)eˣ sin x + x(eˣ) sin x + xeˣ(cos x)",
+          "= eˣ sin x + xeˣ sin x + xeˣ cos x",
+          "Take eˣ common from all three terms:",
+          "= eˣ[sin x + x sin x + x cos x]",
+          {
+            "text": "∴ d/dx(xeˣ sin x) = eˣ[(1 + x) sin x + x cos x]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives eˣ sin x + xeˣ sin x + xeˣ cos x, which factors as eˣ[(1 + x) sin x + x cos x].",
+          "accept": [
+            "e power x sin x plus x e power x sin x plus x e power x cos x",
+            "take e power x common from all three terms",
+            "the answer is e power x into bracket one plus x sin x plus x cos x",
+            "e power x ni common teesukunte answer vasthundi",
+            "group the two sin x terms as one plus x sin x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "e power x common",
+            "one plus x sin x",
+            "x cos x",
+            "three terms"
+          ]
+        },
+        "why": "Factoring eˣ out is what turns three long terms into the short printed form, and it also makes a sign slip visible because every term inside the bracket is positive.",
+        "common_mistakes": [
+          "Writing d/dx(eˣ) as xeˣ⁻¹, treating eˣ as a power of x.",
+          "Leaving the answer as three unfactored terms and losing the tidy form the key expects."
+        ]
+      }
+    ]
+  }
+}

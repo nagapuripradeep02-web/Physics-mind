@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_cone_water_height_rate_12cm_6cm",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "A container is in the shape of an inverted cone of height 12 cm and radius 6 cm at the top. It is filled with water at the rate of 12 cm³/sec. What is the rate of change of the height of the water level when the tank is filled to 8 cm?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write V in terms of h alone",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate and put h = 8",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.212, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 2. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you would write first, say what you do about the radius, and say what you differentiate with respect to.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_v_in_terms_of_h",
+        "kind": "equation",
+        "label": "Write V in terms of h alone",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Here the top radius is half the height, so r = h/2. Getting this ratio and using it to remove r is the whole of the first mark; the examiner looks for the line r = h/2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given: dV/dt = 12 cm³/sec.  Asked: dh/dt when h = 8 cm.",
+          "Let r be the radius and h the height of the water cone at time t.",
+          "Volume of a cone:  V = (1/3)πr²h",
+          "The water cone and the full cone are similar, so",
+          "r/h = 6/12 = 1/2   ⇒   r = h/2",
+          "∴ V = (1/3)π(h/2)²h = (1/3)π(h²/4)h = πh³/12"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That similar triangles give r = h/2, so V becomes πh³/12 in h alone.",
+          "accept": [
+            "use similar triangles so r is h by two",
+            "the radius is half the height in this cone",
+            "remove r first and write volume only in terms of h",
+            "similar triangles tho r ni h by two ga rasta",
+            "substitute r equal to h by two into the cone volume",
+            "volume becomes pi h cubed by twelve"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "similar triangles",
+            "h by two",
+            "six by twelve",
+            "pi h cubed by twelve",
+            "cone volume"
+          ]
+        },
+        "why": "The question asks for dh/dt, so V must be a function of h only. Differentiating V = (1/3)πr²h as it stands brings in dr/dt, a rate the question never gives.",
+        "common_mistakes": [
+          "Treating the radius as a fixed 6 cm and writing V = 12πh.",
+          "Writing r/h = 12/6 instead of 6/12, which doubles the radius instead of halving it.",
+          "Differentiating before removing r, which leaves two unknown rates in one equation."
+        ],
+        "memory_tip": "Read the ratio off the FULL cone once: top radius over full height. In this one that ratio is 6/12 = 1/2, so r is half of h at every level."
+      },
+      {
+        "id": "s2_differentiate_and_substitute",
+        "kind": "boxed_final",
+        "label": "Differentiate and put h = 8",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Differentiate with respect to TIME, then substitute h = 8. The unit cm/sec belongs inside the box — a rate written without its unit is not a complete answer.",
+        "lines": [
+          "Differentiate both sides with respect to time t:",
+          "dV/dt = (π/12)·3h²·(dh/dt) = (πh²/4)(dh/dt)",
+          "Put h = 8 and dV/dt = 12:",
+          "12 = (π(8²)/4)(dh/dt) = (64π/4)(dh/dt) = 16π(dh/dt)",
+          "dh/dt = 12/(16π) = 3/(4π)",
+          {
+            "text": "∴ dh/dt = 3/(4π) cm/sec ≈ 0.24 cm/sec",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating with respect to t and putting h = 8 gives dh/dt = 3/(4π) cm/sec.",
+          "accept": [
+            "differentiate with respect to time and substitute h equal to eight",
+            "twelve equals sixteen pi times dh by dt",
+            "the answer is three by four pi centimetres per second",
+            "time tho differentiate chesi h equal to eight substitute cheyyali",
+            "solve for dh by dt and write the unit",
+            "dh by dt is three over four pi"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "with respect to time",
+            "sixteen pi",
+            "three by four pi",
+            "centimetres per second",
+            "chain rule"
+          ]
+        },
+        "why": "Differentiation is with respect to t, so the chain rule attaches dh/dt to the h³ term. Reducing 12/16π to 3/4π costs one line and is expected in the final form.",
+        "common_mistakes": [
+          "Putting h = 8 into V before differentiating, which gives dV/dt = 0.",
+          "Dropping the dh/dt factor that the chain rule produces.",
+          "Leaving 12/(16π) unreduced, or writing the answer with no unit."
+        ],
+        "memory_tip": "Differentiate first, substitute second — a number put in early has no derivative left to give."
+      }
+    ]
+  }
+}

@@ -11,10 +11,10 @@
     "name": "The Straight Line"
   },
   "chapter": "The Straight Line",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 9,
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
   "question_text": "Transform the equation x/a + y/b = 1 into normal form. If the perpendicular distance of the straight line from the Origin is p then deduce that 1/p² = 1/a² + 1/b².",
   "appearances": [
     {
@@ -28,27 +28,27 @@
     },
     {
       "label": "Divide by √(a²+b²)",
-      "marks": 1
+      "marks": 2
     },
     {
       "label": "Read off cosα, sinα and p",
-      "marks": 1
+      "marks": 2
     },
     {
       "label": "Deduce the result",
-      "marks": 1
+      "marks": 3
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 The Straight Line, answer 61. Printed appearance: TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's one printed split is 1+1+2 on answer 59 (book p.63); this answer's own shape is four roughly equal moves rather than two short ones and a long one, so it is cut 1+1+1+1. Both shapes total the 4 marks the chapter header prints. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.64 — SAQ chapter 9 The Straight Line, answer 61. Printed appearance: TS 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's one printed split is 1+1+2 on answer 59 (book p.63); this answer's own shape is four roughly equal moves rather than two short ones and a long one, so it is cut 1+1+1+1. Both shapes total the 4 marks the chapter header prints. Paper position: Maths-1B Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: The Straight Line is the FIRST Maths-1B unit to occupy ALL THREE sections of the paper — the book's IPE Blue Print (book p.3) gives it 2+2 marks in Section A, 4 in Section B and 7 in Section C, 15 in all, tying Differentiation as the highest-scoring unit on the paper. It therefore has three separate chapters in this book: LAQ chapter 1 (book pp.14-18), SAQ chapter 9 (pp.61-64) and VSAQ chapter 14 (pp.79-82). All three boundaries were walked: p.19 opens Pair of Straight Lines, p.65 opens Limits & Continuity, and p.83 opens 3-D Coordinates. The book's separate STAR QUESTIONS PLUS bank (pp.104-108) contributes three more, answers 182-184, authored here as sqp1-sqp3. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now LAQ at 8 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IB 2026-27 edition files this chapter under the banner 8M + 2 × 2M = 12M, asks this question as Long Answer Question 15, and prints no short-answer block for it at all. Only the question was taken; the working, the mark split and every note here are ours (docs/ORIGINALITY_MATHS.md). The mathematics and the steps are unchanged; only the mark scheme moved — the four marks become eight, at 1 + 2 + 2 + 3. The question makes two separate demands, so the marks follow them: five for the transformation into normal form (clearing the fractions, the divide, and the term-by-term comparison that produces cosα, sinα and p) and three for the deduction that closes it. This is the one card of the four raised here that reads long on its own weight, because it asks for two results rather than one. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would solve this — say what you divide by to reach normal form, and what you do to p at the end.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "The Straight Line · 4 marks"
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
     ],
     "steps": [
       {
@@ -57,7 +57,6 @@
         "label": "Clear the fractions",
         "marks": 1,
         "margin_note": "First mark. Normal form has no fractions, so the intercept form is cleared to ax + by = c shape before anything else.",
-        "memory_tip": "Normal form has NO fractions, so clear the intercept form to ax + by = c shape first.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,15 +92,15 @@
           "Multiplying only one term by ab.",
           "Writing ax + by = ab with a and b swapped."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Normal form has NO fractions, so clear the intercept form to ax + by = c shape first."
       },
       {
         "id": "s2_divide",
         "kind": "equation",
         "label": "Divide by √(a²+b²)",
-        "marks": 1,
-        "margin_note": "Second mark. Normal form needs the coefficients of x and y to square-and-add to 1, which is exactly what dividing by √(a²+b²) arranges.",
-        "memory_tip": "Divide by √(a²+b²) so the x and y coefficients square-and-add to 1.",
+        "marks": 2,
+        "margin_note": "The next two marks. Normal form needs the coefficients of x and y to square-and-add to 1, which is exactly what dividing by √(a²+b²) arranges.",
         "lines": [
           "On dividing by √(a² + b²), we get",
           "bx/√(a²+b²) + ay/√(a²+b²) = ab/√(a²+b²)"
@@ -133,15 +132,15 @@
           "Dividing by a + b instead of √(a² + b²).",
           "Dividing only the left side."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Divide by √(a²+b²) so the x and y coefficients square-and-add to 1."
       },
       {
         "id": "s3_read_off",
         "kind": "equation",
         "label": "Read off cosα, sinα and p",
-        "marks": 1,
-        "margin_note": "Third mark. Compare with xcosα + ysinα = p term by term. Note that cosα takes b and sinα takes a — the letters cross over, because the x-intercept is a but the x-coefficient is b.",
-        "memory_tip": "The letters CROSS OVER: cos α takes b and sin α takes a, because the x-intercept is a but the x-coefficient is b.",
+        "marks": 2,
+        "margin_note": "Two more marks. Compare with xcosα + ysinα = p term by term. Note that cosα takes b and sinα takes a — the letters cross over, because the x-intercept is a but the x-coefficient is b.",
         "lines": [
           "This is in the normal form  xcosα + ysinα = p,  where",
           "cosα = b/√(a²+b²),   sinα = a/√(a²+b²)   and   p = ab/√(a²+b²)"
@@ -173,15 +172,15 @@
           "Assigning cosα = a/√(a²+b²), with a and b the wrong way round.",
           "Forgetting to state p separately."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The letters CROSS OVER: cos α takes b and sin α takes a, because the x-intercept is a but the x-coefficient is b."
       },
       {
         "id": "s4_deduce",
         "kind": "boxed_final",
         "label": "Deduce the result",
-        "marks": 1,
-        "margin_note": "Last mark. Square p, invert it, and split the single fraction into two — the a² and b² separate because the numerator is a product.",
-        "memory_tip": "Square p, invert, and split the fraction — a² and b² separate because the numerator is a product.",
+        "marks": 3,
+        "margin_note": "The last three marks. Square p, invert it, and split the single fraction into two — the a² and b² separate because the numerator is a product.",
         "lines": [
           "So, p = ab/√(a²+b²)  ⇒  p² = a²b²/(a²+b²)",
           "⇒ 1/p² = (a² + b²)/(a²b²) = a²/(a²b²) + b²/(a²b²)",
@@ -217,7 +216,8 @@
           "Writing 1/p² = 1/(a² + b²) without inverting properly.",
           "Cancelling a² against a²b² incorrectly."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Square p, invert, and split the fraction — a² and b² separate because the numerator is a product."
       }
     ]
   },

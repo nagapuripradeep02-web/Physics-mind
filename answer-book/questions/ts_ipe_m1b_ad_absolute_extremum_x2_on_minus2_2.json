@@ -1,0 +1,186 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_absolute_extremum_x2_on_minus2_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the absolute extremum of f(x) = x² defined on [−2, 2].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the critical point",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate f at the critical point and at both endpoints",
+      "marks": 2
+    },
+    {
+      "label": "Compare the values and state both extrema",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.227, chapter 10 APPLICATIONS OF DERIVATIVES, the MAXIMA AND MINIMA sub-section, Short Answer question 9. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; we ship the whole chapter as ONE unit. DEFECTIVE PRINTED STEM, RECORDED NOT SILENTLY CORRECTED: the book prints the interval as [2, 2]. That is a single point, so the function takes exactly one value on it and no meaningful absolute maximum or minimum can be asked of it; the book's own working, as recorded when this question was sourced, uses [−2, 2]. The stem authored above therefore reads [−2, 2], matching that working rather than the misprint. A teacher checking this card against the book will see [2, 2] on the page — the difference is deliberate and is logged here rather than repaired in silence. ONLY THE QUESTION WAS TAKEN — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this sub-section) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which points you must test on a closed interval, and say how many places the maximum value is reached at here.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Applications of Derivatives · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_critical_point",
+        "kind": "equation",
+        "label": "Find the critical point",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. State that f is continuous on the closed interval — that is what guarantees the absolute maximum and minimum exist. Then check the critical point actually lies inside the interval.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = x² on the closed interval [−2, 2].",
+          "f is continuous on [−2, 2] and differentiable on (−2, 2), so an absolute maximum and an absolute minimum both exist on this interval.",
+          "f′(x) = 2x",
+          "f′(x) = 0   ⇒   2x = 0   ⇒   x = 0",
+          "x = 0 lies inside [−2, 2], so it is a critical point to be tested."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f′(x) = 2x is zero only at x = 0, which lies inside [−2, 2].",
+          "accept": [
+            "differentiate x squared to get two x",
+            "two x equals zero gives x equal to zero",
+            "the only critical point is at the origin",
+            "derivative zero pettina x zero vasthundi",
+            "zero lies inside the interval so it must be tested",
+            "f is continuous on the closed interval"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x",
+            "x equals zero",
+            "critical point",
+            "inside the interval"
+          ]
+        },
+        "why": "An absolute extremum on a closed interval sits either where the derivative is zero or at an endpoint. Differentiating finds the first group, and there is only one such point here.",
+        "common_mistakes": [
+          "Differentiating x² as x.",
+          "Reporting x = ±2 as critical points, when they are endpoints rather than points where f′ = 0."
+        ],
+        "memory_tip": "A critical point is where the derivative is zero. An endpoint is not a critical point, but it still has to be tested."
+      },
+      {
+        "id": "s2_evaluate",
+        "kind": "equation",
+        "label": "Evaluate f at the critical point and at both endpoints",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. BOTH endpoints must appear. Forgetting them is the classic error on this question type, and here it would remove the maximum from the list altogether.",
+        "lines": [
+          "For an absolute extremum on a closed interval, evaluate f at every critical point AND at both endpoints.",
+          "At the critical point:   f(0) = 0² = 0",
+          "At the left endpoint:    f(−2) = (−2)² = 4",
+          "At the right endpoint:   f(2) = 2² = 4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f(0) = 0, f(−2) = 4 and f(2) = 4 — the critical point and both endpoints.",
+          "accept": [
+            "evaluate at the critical point and at both endpoints",
+            "f of zero is zero",
+            "f of minus two and f of two are both four",
+            "rendu endpoints daggara kooda value teesukovali",
+            "minus two whole squared is plus four",
+            "make a list of the three values"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "f of zero",
+            "f of minus two",
+            "f of two",
+            "four"
+          ]
+        },
+        "why": "An absolute extremum is not the same as a local one. The largest value can sit at an endpoint, where the derivative need not be zero at all, so the endpoints must be in the list.",
+        "common_mistakes": [
+          "Testing only x = 0 and reporting no maximum at all.",
+          "Writing f(−2) = −4, by squaring only the 2 and keeping the minus sign."
+        ],
+        "memory_tip": "Square the whole negative number, brackets included: (−2)² = 4, not −4. The bracket is what carries the sign into the square."
+      },
+      {
+        "id": "s3_compare",
+        "kind": "boxed_final",
+        "label": "Compare the values and state both extrema",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. Say that the maximum is reached at BOTH endpoints. An absolute maximum is a single VALUE but it may be attained at more than one point.",
+        "lines": [
+          "Compare the list:  0,  4,  4",
+          "The smallest value is 0, reached at the interior point x = 0.",
+          "The largest value is 4, and it is reached at BOTH endpoints, x = −2 and x = 2.",
+          "So the minimum comes from the critical point and the maximum comes from the endpoints.",
+          {
+            "text": "∴ absolute minimum = 0 at x = 0,  and absolute maximum = 4 at x = −2 and at x = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the absolute minimum is 0 at x = 0 and the absolute maximum is 4, reached at both x = −2 and x = 2.",
+          "accept": [
+            "the absolute minimum is zero at x equal to zero",
+            "the absolute maximum is four",
+            "the maximum happens at both endpoints",
+            "maximum rendu endpoints daggara vasthundi",
+            "minimum is from the critical point and maximum from the ends",
+            "compare the three values and pick the largest and smallest"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "absolute minimum",
+            "absolute maximum",
+            "zero",
+            "four"
+          ]
+        },
+        "why": "The absolute extrema are the largest and smallest members of the list. No second derivative test is needed on a closed interval — comparing the values is the complete method.",
+        "common_mistakes": [
+          "Naming only x = 2 for the maximum and leaving out x = −2.",
+          "Giving x = 0 as the minimum value instead of f(0) = 0 as the value."
+        ],
+        "memory_tip": "The maximum VALUE is one number, but the points where it is reached can be several. Report the value first, then every x that gives it."
+      }
+    ]
+  }
+}

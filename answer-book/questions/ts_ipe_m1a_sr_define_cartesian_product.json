@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_define_cartesian_product",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the Cartesian product of two sets.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the definition",
+      "marks": 1
+    },
+    {
+      "label": "Show it on an example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.7, chapter 1 SETS & RELATIONS, Very Short Answer question 19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer this — give the definition in set form, and say what your example would show.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "State the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. The set-builder line A × B = {(a, b) : a ∈ A and b ∈ B} earns it. The word ordered must be there — a definition without it is incomplete.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A and B be two non-empty sets.",
+          "The Cartesian product of A and B, written A × B, is the set of all ordered pairs",
+          "whose first entry is taken from A and whose second entry is taken from B.",
+          "A × B = {(a, b) : a ∈ A and b ∈ B}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A × B is the set of all ordered pairs (a, b) with a ∈ A and b ∈ B.",
+          "accept": [
+            "A cross B is the set of all ordered pairs a comma b with a in A and b in B",
+            "every element of A paired with every element of B",
+            "the set of ordered pairs first from A second from B",
+            "A lo prathi element ni B lo prathi element tho pair cheyyali",
+            "state it as a set of ordered pairs"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "ordered pairs",
+            "A cross B",
+            "first from A",
+            "second from B"
+          ]
+        },
+        "why": "The word ordered is the whole of the definition: (1, 2) and (2, 1) are different elements of a Cartesian product, and that is what makes A × B different from B × A.",
+        "memory_tip": "The first entry always comes from the first set — that is why it is A × B and not B × A.",
+        "common_mistakes": [
+          "Leaving out the word ordered, so the definition would treat (a, b) and (b, a) as the same.",
+          "Writing A × B = {a, b : a ∈ A, b ∈ B}, which is a set of elements rather than a set of pairs."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Show it on an example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Second mark. Four pairs, each in round brackets. The examiner checks that every element of A has been paired with every element of B, and that the count matches n(A) · n(B).",
+        "lines": [
+          "Take A = {1, 2} and B = {x, y}.",
+          "Pair each element of A with each element of B:",
+          "n(A × B) = n(A) · n(B) = 2 × 2 = 4",
+          {
+            "text": "∴ A × B = {(1, x), (1, y), (2, x), (2, y)}",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a small example is worked out in full, giving all four ordered pairs.",
+          "accept": [
+            "take A as one two and B as x y and write all four pairs",
+            "one with x one with y two with x two with y",
+            "the number of pairs is two times two which is four",
+            "prathi element ni prathi element tho kalipi four pairs rasta",
+            "list every pair with the first entry from A"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four pairs",
+            "one x",
+            "two y",
+            "two times two"
+          ]
+        },
+        "why": "The example is only complete when every pairing is present, so the count n(A) · n(B) = 4 is written beside it as the check. Reversing the sets here would give B × A = {(x, 1), (x, 2), (y, 1), (y, 2)}, a different set.",
+        "memory_tip": "Take the first element of A with every element of B, then the second element of A with every element of B.",
+        "common_mistakes": [
+          "Writing the pairs with curly brackets, which makes each pair a set and loses the order.",
+          "Writing only (1, x) and (2, y), one pair per element instead of all four.",
+          "Giving B × A instead of A × B."
+        ]
+      }
+    ]
+  }
+}

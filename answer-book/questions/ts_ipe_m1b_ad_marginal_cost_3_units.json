@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_marginal_cost_3_units",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The total cost C(x) in rupees of producing x units of an item is C(x) = 0.005x³ − 0.02x² + 30x + 500. Find the marginal cost when 3 units are produced. (Marginal cost is the rate of change of total cost.)",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Differentiate the cost function",
+      "marks": 1
+    },
+    {
+      "label": "Substitute x = 3",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.213, chapter 10 APPLICATIONS OF DERIVATIVES, the RATE MEASURE sub-section, Very Short Answer question 10(i). Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and each sub-section restarts its own numbering, so the sub-section is named here; this bank ships the whole chapter as ONE unit. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what the word marginal tells you to do, and what you substitute at the end.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_differentiate",
+        "kind": "equation",
+        "label": "Differentiate the cost function",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. This is a rate measure question. Differentiate term by term and keep the decimals exact: 0.005 × 3 = 0.015 and 0.02 × 2 = 0.04. The constant 500 differentiates to 0.",
+        "memory_tip": "Marginal means derivative. Marginal cost is dC/dx and marginal revenue is dR/dx — the word marginal is the instruction to differentiate.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "This is a rate measure question. Marginal cost is the rate of change of total cost,",
+          "so marginal cost = dC/dx.",
+          "C(x) = 0.005x³ − 0.02x² + 30x + 500",
+          "dC/dx = 0.005(3x²) − 0.02(2x) + 30",
+          "= 0.015x² − 0.04x + 30"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That marginal cost is dC/dx, and that differentiating C(x) gives 0.015x² − 0.04x + 30.",
+          "accept": [
+            "marginal cost is the derivative of the cost function",
+            "differentiate C of x to get zero point zero one five x squared minus zero point zero four x plus thirty",
+            "marginal cost means d C by d x",
+            "marginal cost ante derivative, so differentiate cheyyali",
+            "differentiate the cost first, the five hundred goes to zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "marginal cost",
+            "d C by d x",
+            "derivative",
+            "zero point zero one five"
+          ]
+        },
+        "why": "The question defines marginal cost for you as a rate of change, so the whole method is one differentiation. Writing dC/dx and differentiating earns the method mark even before any number is substituted.",
+        "common_mistakes": [
+          "Substituting x = 3 into C(x) itself, which gives the total cost 589.955 and not the rate.",
+          "Dropping a decimal place, writing 0.015x² as 0.15x².",
+          "Keeping the 500, which differentiates to 0."
+        ]
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute x = 3",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 0.135 − 0.12 = 0.015, so the answer is 30.015 and not 30. Write the unit: rupees per unit.",
+        "memory_tip": "Check the size before writing: the 30x term alone contributes 30 and the two small terms almost cancel, so the answer must sit just above 30.",
+        "lines": [
+          "At x = 3,",
+          "dC/dx = 0.015(3)² − 0.04(3) + 30",
+          "= 0.015(9) − 0.12 + 30",
+          "= 0.135 − 0.12 + 30",
+          {
+            "text": "∴ marginal cost when 3 units are produced = 30.015 rupees per unit",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting x = 3 gives 30.015 rupees per unit.",
+          "accept": [
+            "put x equals three and get thirty point zero one five rupees per unit",
+            "zero point one three five minus zero point one two plus thirty",
+            "the marginal cost is thirty point zero one five rupees",
+            "three substitute cheste thirty point zero one five vasthundi",
+            "the answer is just above thirty rupees per unit"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "thirty point zero one five",
+            "rupees per unit",
+            "x equals three",
+            "zero point one three five"
+          ]
+        },
+        "why": "The answer is a rate, so it carries the unit rupees per unit of output. The two small terms nearly cancel, which is why the value sits just above 30.",
+        "common_mistakes": [
+          "Writing 30 and losing the 0.015.",
+          "Rounding to 30.02 when the question asks for no rounding.",
+          "Leaving the answer with no unit."
+        ]
+      }
+    ]
+  }
+}

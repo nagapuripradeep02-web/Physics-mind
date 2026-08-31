@@ -1,0 +1,227 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_con_k_squared_x_minus_k_find_k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Limits and Continuity"
+  },
+  "chapter": "Limits and Continuity",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If f, given by f(x) = k²x − k for x ≥ 1 and f(x) = 2 for x < 1, is a continuous function on ℝ, then find the values of k.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the only point that needs checking",
+      "marks": 1
+    },
+    {
+      "label": "Write the two one-sided limits and f(1)",
+      "marks": 1
+    },
+    {
+      "label": "Match the two pieces at x = 1",
+      "marks": 1
+    },
+    {
+      "label": "Solve the quadratic in k",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.190, chapter 8 LIMITS AND CONTINUITY, the CONTINUITY sub-section, Short Answer question 3 (the SECOND question printed under that number). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (4 Marks over this CONTINUITY sub-section) but no per-step allocation on any answer. The 1+1+1+1 shape follows the shape this bank uses for a Maths-1B Section B question. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. ⚠ A PRINTED NUMBERING DEFECT, RECORDED NOT CORRECTED: the book prints the number 3 TWICE in this CONTINUITY sub-section — once on p.189 for the (x² − 9)/(x² − 2x − 3) question (card ts_ipe_m1b_con_x2_minus_9_over_x2_minus_2x_minus_3_at_3) and again on p.190 for this one. The sub-section therefore holds SEVEN questions under the printed numbers 1 to 6. Every card in this slice cites the printed number it carries, so two cards cite question 3; this one is the p.190 occurrence. No renumbering has been invented, because a made-up number 7 would not match anything a student can find in the book."
+  },
+  "recall_prompt": "Say how you would do this one — say which single point decides it, and what equation in k you would end up solving.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Limits and Continuity · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name_the_point",
+        "kind": "text",
+        "label": "Name the only point that needs checking",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Continuity is given, k is not — so the work runs backwards. Say why only x = 1 matters: away from 1 each piece is a constant or a polynomial, and those are continuous for every k.",
+        "memory_tip": "For a two-piece function, every value of k is safe except at the join — so the join is the only equation you ever get.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given f(x) = k²x − k   for x ≥ 1,   and f(x) = 2   for x < 1",
+          "For x < 1, f is the constant 2, which is continuous for every value of k.",
+          "For x > 1, f is the polynomial k²x − k, which is continuous for every value of k.",
+          "So f can fail to be continuous only where the two pieces meet, at x = 1.",
+          "f is continuous on ℝ ⇒ f is continuous at x = 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both pieces are continuous on their own intervals for any k, so only the joining point x = 1 gives a condition.",
+          "accept": [
+            "each piece is continuous on its own side so only x equals one matters",
+            "the constant and the polynomial are continuous everywhere, only the join is left",
+            "check continuity at x equals one, that is the only point",
+            "rendu pieces already continuous, join daggara matrame check cheyyali",
+            "the only condition comes from the point where the two formulas meet"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "only at x equals one",
+            "the join",
+            "polynomial is continuous",
+            "constant is continuous"
+          ]
+        },
+        "why": "This question gives the continuity and asks for k, so the single point where continuity can fail is the single place an equation in k can come from. Saying that is what earns the first mark.",
+        "common_mistakes": [
+          "Trying to impose a condition at points other than x = 1.",
+          "Assuming continuity fails somewhere else because k appears in the formula."
+        ]
+      },
+      {
+        "id": "s2_limits_and_value",
+        "kind": "equation",
+        "label": "Write the two one-sided limits and f(1)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Note which piece owns x = 1: the condition is x ≥ 1, so f(1) comes from k²x − k, not from the constant 2. Getting that wrong reverses the whole equation.",
+        "memory_tip": "The piece whose inequality carries the equals sign is the piece that gives the value at the join.",
+        "lines": [
+          "Left limit:   lim(x → 1⁻) f(x) = lim(x → 1⁻) 2 = 2",
+          "Value at 1:   x = 1 satisfies x ≥ 1, so f(1) = k²(1) − k = k² − k",
+          "Right limit:   lim(x → 1⁺) f(x) = lim(x → 1⁺) (k²x − k) = k²(1) − k = k² − k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the left limit is 2, and that f(1) and the right limit are both k² − k because x = 1 belongs to the piece x ≥ 1.",
+          "accept": [
+            "left limit is two and the right limit is k squared minus k",
+            "f of one comes from k squared x minus k because one satisfies x greater than or equal to one",
+            "left side gives two, right side and the value give k squared minus k",
+            "left limit two, right limit k square minus k",
+            "x equals one belongs to the second piece so f of one is k squared minus k"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "left limit is two",
+            "k squared minus k",
+            "f of one",
+            "right limit"
+          ]
+        },
+        "why": "Writing all three quantities separately makes the next line a simple equation, and it forces the decision about which piece owns the point x = 1 to be made explicitly.",
+        "common_mistakes": [
+          "Taking f(1) = 2 from the piece x < 1, when that piece does not include 1.",
+          "Substituting x = 1 into k²x − k as k² − k and then writing it as k(k − 1) too early, before the equation is set up."
+        ]
+      },
+      {
+        "id": "s3_match_the_pieces",
+        "kind": "equation",
+        "label": "Match the two pieces at x = 1",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The right limit already equals f(1), so the three-part condition collapses to one equation. Say that, rather than leaving two identical expressions on the page.",
+        "memory_tip": "Continuity at a join is one equation: left limit = right limit = value. When the value comes from the right piece, only the left limit is a new condition.",
+        "lines": [
+          "f is continuous at x = 1  ⇒  lim(x → 1⁻) f(x) = f(1) = lim(x → 1⁺) f(x)",
+          "The right limit is already equal to f(1), so the only new condition is",
+          "2 = k² − k",
+          "⇒ k² − k − 2 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equating the left limit 2 with k² − k gives the quadratic k² − k − 2 = 0.",
+          "accept": [
+            "set two equal to k squared minus k",
+            "equate the left limit and the value to get k squared minus k minus two equals zero",
+            "the continuity condition gives a quadratic in k",
+            "two ni k square minus k tho equate cheyyali",
+            "k squared minus k minus two equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two equals k squared minus k",
+            "k squared minus k minus two",
+            "equate",
+            "quadratic in k"
+          ]
+        },
+        "why": "The equation in k is produced by the continuity condition itself, so this line is where the given information is actually used.",
+        "common_mistakes": [
+          "Writing k² − k = 0 by forgetting to bring the 2 across.",
+          "Setting the derivative of the two pieces equal instead of the values — that is differentiability, not continuity."
+        ]
+      },
+      {
+        "id": "s4_solve_for_k",
+        "kind": "boxed_final",
+        "label": "Solve the quadratic in k",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. There are TWO answers and both are valid — no condition in the question rules either out. Checking each one back in f(1) takes one line and proves both.",
+        "memory_tip": "A quadratic condition usually means two answers; report both unless the question gives a reason to drop one.",
+        "lines": [
+          "k² − k − 2 = 0   ⇒   k² − 2k + k − 2 = 0",
+          "⇒ k(k − 2) + 1(k − 2) = 0   ⇒   (k − 2)(k + 1) = 0",
+          "Check: k = 2 gives f(1) = 4 − 2 = 2; k = −1 gives f(1) = 1 + 1 = 2. Both match the left limit 2.",
+          {
+            "text": "∴ k = 2  or  k = −1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That k² − k − 2 = 0 factorises as (k − 2)(k + 1) = 0, giving k = 2 and k = −1, and that both are accepted.",
+          "accept": [
+            "factorise to k minus two into k plus one so k is two or minus one",
+            "the two values are two and minus one",
+            "both roots work so give both answers",
+            "k rendu values, two and minus one",
+            "solve the quadratic, k equals two or k equals minus one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "k minus two into k plus one",
+            "two or minus one",
+            "both values",
+            "k equals two"
+          ]
+        },
+        "why": "Both roots satisfy the one condition the question imposes, so both are answers. Substituting each back into f(1) is a cheap check that costs one line.",
+        "common_mistakes": [
+          "Giving only k = 2 and dropping the negative root.",
+          "Factorising k² − k − 2 as (k + 2)(k − 1), which multiplies out to k² + k − 2."
+        ]
+      }
+    ]
+  }
+}

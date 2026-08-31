@@ -11,10 +11,10 @@
     "name": "Properties of Triangles"
   },
   "chapter": "Properties of Triangles",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 12,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
   "question_text": "If a = (b − c) sec θ, then prove that tan θ = (2√(bc)/(b−c)) sin(A/2).",
   "appearances": [
     {
@@ -28,42 +28,32 @@
   ],
   "mark_split": [
     {
-      "label": "Square the given relation",
-      "marks": 2
-    },
-    {
-      "label": "Expand and use the cosine rule",
-      "marks": 2
-    },
-    {
       "label": "Introduce the half angle",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Take the square root",
-      "marks": 2
+      "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.45 — LAQ chapter 6 Properties of Triangles, answer 34.2. Printed appearances: AP 18 · TS 16. The third of the family, and the one that differs. A MINUS sign runs through it — b − c instead of b + c — and it ends in a SINE half angle, because the identity it needs is 1 − cos A = 2sin²(A/2). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Take the square root\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.45 — LAQ chapter 6 Properties of Triangles, answer 34.2. Printed appearances: AP 18 · TS 16. The third of the family, and the one that differs. A MINUS sign runs through it — b − c instead of b + c — and it ends in a SINE half angle, because the identity it needs is 1 − cos A = 2sin²(A/2). ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Take the square root\" step. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter as 16 Very Short Answer questions and 11 Short Answer questions, lists this one among the very short ones (VSAQ 2 i), and prints no long-answer block for it at all. Only the question was taken; the boundary is recorded in docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved. The two marks sit on the half-angle substitution and the final line; the earlier steps are kept in full at zero marks. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Properties of Triangles · 8 marks"
+      "Section A — Very Short Answer Question",
+      "Properties of Triangles · 2 marks"
     ],
     "steps": [
       {
         "id": "s1_square_the_given_relation",
         "kind": "equation",
         "label": "Square the given relation",
-        "marks": 2,
-        "mark_note": "Method",
-        "margin_note": "Two marks. sec and tan are the pair here, so the identity is sec²θ − tan²θ = 1 rather than the Pythagorean one.",
-        "memory_tip": "sec and tan are the pair here, so the identity is sec²θ − tan²θ = 1.",
+        "marks": 0,
+        "margin_note": "No separate mark at this length. sec and tan are the pair here, so the identity is sec²θ − tan²θ = 1 rather than the Pythagorean one.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,16 +90,15 @@
         "common_mistakes": [
           "Using 1 − sec²θ.",
           "Trying to convert to sines and cosines first."
-        ]
+        ],
+        "memory_tip": "sec and tan are the pair here, so the identity is sec²θ − tan²θ = 1."
       },
       {
         "id": "s2_expand_and_use_the_cosine_",
         "kind": "equation",
         "label": "Expand and use the cosine rule",
-        "marks": 2,
-        "mark_note": "Method",
-        "margin_note": "Two more marks. Note the ORDER: a² comes first now, so the bracket is 2bc MINUS the cosine-rule term, not plus.",
-        "memory_tip": "Note the ORDER: a² comes first, so the bracket is 2bc MINUS the cosine-rule term.",
+        "marks": 0,
+        "margin_note": "No separate mark at this length. Note the ORDER: a² comes first now, so the bracket is 2bc MINUS the cosine-rule term, not plus.",
         "lines": [
           "= (a² − (b² + c² − 2bc))/(b−c)²",
           "= (2bc − (b² + c² − a²))/(b−c)²",
@@ -141,16 +130,16 @@
         "common_mistakes": [
           "Writing (b−c)² as b² − c².",
           "Losing a sign and finishing with a cosine half angle."
-        ]
+        ],
+        "memory_tip": "Note the ORDER: a² comes first, so the bracket is 2bc MINUS the cosine-rule term."
       },
       {
         "id": "s3_introduce_the_half_angle",
         "kind": "equation",
         "label": "Introduce the half angle",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two more marks, and the point of difference. A MINUS in front of cos A means the SINE half-angle identity: 1 − cos A = 2sin²(A/2).",
-        "memory_tip": "A MINUS in front of cos A calls for the SINE half-angle: 1 − cos A = 2sin²(A/2).",
+        "margin_note": "One of the two marks, and the point of difference. A MINUS in front of cos A means the SINE half-angle identity: 1 − cos A = 2sin²(A/2).",
         "lines": [
           "= 2bc(1 − cos A)/(b−c)²",
           "= 2bc · 2sin²(A/2)/(b−c)²   [∵ 1 − cosA = 2sin²(A/2)]",
@@ -182,16 +171,16 @@
         "common_mistakes": [
           "Using the cosine half-angle form out of habit.",
           "Missing that the sign changed from the twins."
-        ]
+        ],
+        "memory_tip": "A MINUS in front of cos A calls for the SINE half-angle: 1 − cos A = 2sin²(A/2)."
       },
       {
         "id": "s4_take_the_square_root",
         "kind": "boxed_final",
         "label": "Take the square root",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last two marks. Same finish as the twins, but the answer carries sin(A/2) over b − c.",
-        "memory_tip": "Everything under the root is a perfect square. The answer carries sin(A/2) over b − c.",
+        "margin_note": "The last mark. Same finish as the twins, but the answer carries sin(A/2) over b − c.",
         "lines": [
           "∴ tan θ = √(4bc sin²(A/2)/(b−c)²)",
           {
@@ -225,7 +214,8 @@
         "common_mistakes": [
           "Writing cos(A/2) by copying the twins.",
           "Writing b + c in the denominator."
-        ]
+        ],
+        "memory_tip": "Everything under the root is a perfect square. The answer carries sin(A/2) over b − c."
       }
     ]
   },

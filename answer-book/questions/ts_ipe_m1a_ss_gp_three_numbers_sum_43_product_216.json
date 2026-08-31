@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_gp_three_numbers_sum_43_product_216",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Three numbers are in G.P. Their sum is 43 and their product is 216. Find the numbers in proper order.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take the numbers as a/r, a, ar",
+      "marks": 1
+    },
+    {
+      "label": "Solve for r and list the numbers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.20, chapter 3 SEQUENCES & SERIES, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would set up the three numbers, and say why that choice makes the product easy.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_set_up",
+        "kind": "equation",
+        "label": "Take the numbers as a/r, a, ar",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The choice of a/r, a, ar is the marked move, because r cancels in the product and a = 6 follows in one line.",
+        "memory_tip": "Three numbers in G.P. with the product given: write a/r, a, ar so the r cancels.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the three numbers be  a/r,  a,  ar",
+          "Product:  (a/r)(a)(ar) = a³ = 216  ⇒  a = 6",
+          "Sum:  6/r + 6 + 6r = 43  ⇒  6/r + 6r = 37",
+          "Multiply through by r:  6 + 6r² = 37r",
+          "6r² − 37r + 6 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numbers are taken as a/r, a, ar, the product gives a = 6, and the sum gives 6r² − 37r + 6 = 0.",
+          "accept": [
+            "take the numbers as a by r, a and a r",
+            "the product is a cubed so a is six",
+            "writing them this way makes the ratio cancel in the product",
+            "a by r, a, a r ga teesukovali, product lo r cancel",
+            "the sum gives a quadratic in r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a by r",
+            "a cubed",
+            "two hundred sixteen",
+            "six",
+            "quadratic"
+          ]
+        },
+        "why": "Choosing a/r, a, ar makes the product a³ because r cancels. That gives a immediately and leaves only r unknown in the sum.",
+        "common_mistakes": [
+          "Taking the numbers as a, ar, ar², which makes the product a³r³ and leaves two unknowns.",
+          "Forgetting to multiply the whole sum equation by r before forming the quadratic."
+        ]
+      },
+      {
+        "id": "s2_solve_r",
+        "kind": "boxed_final",
+        "label": "Solve for r and list the numbers",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Check both conditions: 1 + 6 + 36 = 43 and 1 × 6 × 36 = 216. Either order is a correct answer.",
+        "memory_tip": "The two roots 6 and 1/6 are reciprocals, so the same list only reverses.",
+        "lines": [
+          "6r² − 36r − r + 6 = 0",
+          "6r(r − 6) − 1(r − 6) = 0  ⇒  (r − 6)(6r − 1) = 0",
+          "r = 6  or  r = 1/6",
+          "r = 6 gives  6/6, 6, 6(6)  =  1, 6, 36",
+          "r = 1/6 gives the same three numbers reversed: 36, 6, 1",
+          {
+            "text": "∴ the numbers are 1, 6, 36  (or 36, 6, 1 in the reverse order)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r = 6 or 1/6, giving the numbers 1, 6, 36 in one order or 36, 6, 1 in the other.",
+          "accept": [
+            "the quadratic factorises to r minus six into six r minus one",
+            "r is six or one by six",
+            "the numbers are one six and thirty six",
+            "one, six, thirty six vasthai, reverse kuda correct",
+            "both roots give the same three numbers in opposite order"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "r equals six",
+            "one by six",
+            "one six thirty six",
+            "reverse order"
+          ]
+        },
+        "why": "The two roots are reciprocals of each other, so they give the same three numbers read forwards and backwards. Both orders satisfy the sum and the product.",
+        "common_mistakes": [
+          "Reporting only r = 6 and saying the other root fails.",
+          "Splitting the middle term with the wrong signs and getting r = −6."
+        ]
+      }
+    ]
+  }
+}

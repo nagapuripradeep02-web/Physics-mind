@@ -1,5 +1,59 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📐 SESSION — Maths 1B's calculus half, and what a competitor's book actually proves (2026-08-30, `feat/ipe-answerbook-maths-1ab-gap`)
+
+**Bottom line: 255 new cards. Maths-1B went from 7 units to 10 — Limits and Continuity, Differentiation and Applications of Derivatives did not exist in the product at all, which is roughly a third of that paper. The two Maths-1A chapters added for the 2026-27 syllabus stopped being placeholders whose "questions" were syllabus topic labels. And the question that started the session — whether Sri Chaitanya could claim we copied them — turned out to have a strong answer that points somewhere nobody was looking.**
+
+### The founder's question, answered with evidence rather than assurance
+
+Three phone scans of the Sri Chaitanya *FAST TRACK IPE* Maths-1A and 1B volumes arrived, typeset for the new syllabus. The worry was that the college could say our answer book was lifted from theirs.
+
+**Our maths bank was never built from a Sri Chaitanya book.** It came from the Baby Bullet-Q (Sri Publishers, Machilipatnam), declared in `IPE_MATHS_1A_SOURCE.md` on 2026-08-21 and `IPE_MATHS_1B_SOURCE.md` on 2026-08-24. Zero of the 358 maths cards mention Chaitanya. All 358 were first committed 21–24 August; the scans reached the machine on 30 August. That ordering is reproducible from the repository alone, and it was captured and committed **before** any of the new work started — `docs/ORIGINALITY_MATHS.md` plus a hashed 358-row table in `docs/evidence/`.
+
+**Running the new gate unscoped is what found the real exposure.** 521 non-maths cards cite Sri Chaitanya — zoology 190, chemistry 148, botany 115, physics 68 — and those subjects **do** republish that book's priority stars in `units.json`, which the live product renders. A publisher's star ranking is the most distinctive thing it owns. `check:originality` prints that count on every run rather than filtering it away, because a number that stops being printed stops being true. Bringing those subjects in scope is a founder decision, not a tidy-up.
+
+**On "did they copy us": no evidence, and the file says so.** 226 pages contain none of this book's distinctive features — no mark splits at all in the 1A volume, no step architecture, no common-mistakes rail. No scan includes a copyright page, so the edition is undated in our hands.
+
+### The player would have lied about every new card
+
+Vidi's gloss on a mark split had two branches: a *predicted* question ("this split is ours"), or anything else ("this mark split is the source book's"). Neither is true for a question the book **asks** but prints **no per-step allocation** for — which is every one of the 204 new 1B cards. Shipping it as the default would have laundered an authored split as a sourced one, the defect four graders named the highest-value one in the round-2 corpus. There is now a third branch. The stars gloss got the same treatment: for these sources `stars: 0` means NOT PUBLISHED, not "the book gave it no star". An undefined manifest entry still falls through to the old wording, so no existing subject changes behaviour.
+
+### The source book is wrong six times, and its own solutions prove it
+
+Recorded on the cards, never silently fixed:
+
+- **Limits Q20** is printed `lim(x→2)` of (2x²−7x−4)/((2x−1)(√x−2)) — not an indeterminate form at 2. The numerator factors as (2x+1)(x−4) and **the book's own working rationalises √x−2**, which only cancels at 4. Authored at x→4 (36/7).
+- Two mis-bracketed Continuity stems. The (x²−9)/(x²−2x−3) reading is self-confirming: it collapses to (x+3)/(x+1), exactly the 1.5 the book gives for f(3).
+- An interval printed `[2, 2]` whose own working uses `[−2, 2]`; a rate given as "2 cubic metre/**mm**"; a bacteria count in seconds asked at "4 hours"; `log_e^x` for logₑ x; and a `√65` whose own solution appears to use a cube root.
+
+### backtest:maths, and the four gaps enumeration cannot see
+
+Mathematics had no back-test — physics diffs against seven real TSBIE papers, but we hold no maths paper corpus, so the only coverage claim available was "everything the book lists is authored", which is a claim about the **list**, not about a paper. Both volumes print a full 21-question model paper on their last page: a free, independent test set assembled by someone else choosing what to examine. **42 of 42 now land on a chapter the bank answers.**
+
+It earned its place on the first run by finding four gaps where *every question involved is already authored — just at the wrong length*:
+
+| Model paper asks | Bank holds |
+|---|---|
+| Properties of Triangles at 2 marks | 12 SAQ + 11 LAQ, no VSAQ |
+| Functions at 4 marks | 20 VSAQ + 6 LAQ, no SAQ |
+| Mathematical Induction at 4 marks | all 10 at 8 marks |
+| Pair of Straight Lines at 4 marks | all 15 at 8 marks |
+
+Two independent sources now disagree with our section labels, which came from a third book. **A student revising Section B for Pair of Straight Lines finds nothing there.** The script prints these as THIN rather than failing — the section a question is asked at is the paper-setter's call — and its header is explicit that these are a coaching publisher's model papers, evidence about coverage and never about exam history.
+
+### Two things no gate checks, and one correction to my own instructions
+
+- **`expected_time_min` was wrong on 102 cards.** Maths-1B is uniform at VSAQ 5 / SAQ 9 / LAQ 15 across all 108 existing cards; the authoring brief said 4 and 8. An agent caught it by comparing its output against **the cards next to it** rather than against the brief it was handed. That is the only way this class of drift surfaces.
+- **A brief instruction was simply wrong.** It told an agent to reject a root outside the interval when verifying Rolle for (x²−1)(x−2) on [−1, 2]. Both roots of 3x²−4x−1, that is (2 ± √7)/3 ≈ 1.549 and −0.215, lie strictly inside. The agent checked instead of complying and recorded that the stem's singular "the point" does not match the mathematics.
+- **Two gate fixes, both the gate's fault.** `check:originality` matched the boundary sentence case-sensitively and called 46 correct cards violations for writing it in capitals — a gate that fails on typography teaches authors to fight the gate instead of the rule. And it assumed one index shape, so the model-paper corpus now flattens rather than being exempted from the questions-only rule.
+
+### Verification
+
+`build:answers` 2,727 cards / 130 units, all ten Maths-1B units ready · `check:cards` 255/255 · `check:originality` passes · `backtest:maths` 42/42 · `tsc` 0 · `vitest` 443/443 · Playwright suite launched detached.
+
+**Not done, and deliberately:** the ~60–80 scattered gaps in the chapters that already exist (Product of Vectors 55 vs 32, The Straight Line 67 vs 44, and the four section-label conflicts above). The founder's order was new chapters first, then everything.
+
+**Still needed from the founder:** the Telugu Akademi Maths 1A/1B textbooks (not on this disk — the only maths PDFs present are the TOSS 311 volumes, already established as the wrong book), a photo of both Fastrack **copyright pages**, and a re-scan of **printed page 173** of the 1B volume, which the scan skips along with one worked solution.
 ## 📐 SESSION (part 2) — the first Vidi audit of Physics-II and Chemistry-II (2026-08-30, `master`)
 
 **Bottom line: both second-year science papers were audited for the first time — 5,960 replies, ten graders, the frozen rubric. Physics-II 9.86/10, Chemistry-II 9.96/10. Two real chemistry errors were found and fixed, both caught because the card contradicted ITSELF. Two constants sized for a smaller bank were found and raised, one of which was silently cutting four live cards' last step. And one accident makes every score in this file read differently: the same 520 replies were graded twice, independently, and came back 3.000 and 2.930 — a spread six times larger than the between-paper gaps I had been reporting as findings.**

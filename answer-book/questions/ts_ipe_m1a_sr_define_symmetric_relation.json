@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_sr_define_symmetric_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Sets and Relations"
+  },
+  "chapter": "Sets and Relations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define a symmetric relation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the definition",
+      "marks": 1
+    },
+    {
+      "label": "Check it on an example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.8, chapter 1 SETS & RELATIONS, Very Short Answer question 23. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sets and Relations is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer this — give the definition as an implication, and say what you check in your example.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sets and Relations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "State the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. Write it as an implication with the arrow. Symmetric does not ask for every pair to be in R, only that each pair already in R has its reverse in R.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let R be a relation on a set A, that is R ⊆ A × A.",
+          "R is called symmetric if, for all a, b ∈ A,",
+          "(a, b) ∈ R  ⇒  (b, a) ∈ R",
+          "So whenever a is related to b, b is also related to a."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R is symmetric when (a, b) ∈ R implies (b, a) ∈ R for all a, b in A.",
+          "accept": [
+            "if a b is in R then b a is also in R",
+            "every pair can be reversed and is still in the relation",
+            "a related to b implies b related to a",
+            "a b unte b a kuda undali ante symmetric",
+            "write it as an implication with the arrow"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a b implies b a",
+            "reverse",
+            "symmetric",
+            "arrow"
+          ]
+        },
+        "why": "The condition is checked only on the pairs that are already in R, so the implication form is what a marker looks for. Writing it as a plain and would force R to hold every pair of A × A.",
+        "memory_tip": "Symmetric means every pair can be read backwards and is still in R.",
+        "common_mistakes": [
+          "Writing (a, b) ∈ R and (b, a) ∈ R for all a, b, which makes R the whole of A × A.",
+          "Confusing it with reflexive by writing (a, a) ∈ R.",
+          "Writing the arrow the wrong way, so nothing is required of the pairs in R."
+        ]
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Check it on an example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Second mark. Reverse each pair in the list and look for it. This R is symmetric but not reflexive, since (1, 1) and (2, 2) are missing — the two properties are separate.",
+        "lines": [
+          "Take A = {1, 2, 3} and",
+          "R = {(1, 2), (2, 1), (3, 3)}",
+          "Reverse each pair and look for it in R:",
+          "(1, 2) ∈ R and (2, 1) ∈ R;   (2, 1) ∈ R and (1, 2) ∈ R;   (3, 3) ∈ R and its reverse is itself.",
+          {
+            "text": "∴ R is a symmetric relation on A.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each pair of R is reversed and found in R, so R is symmetric.",
+          "accept": [
+            "one two and two one are both there so it is symmetric",
+            "reverse every pair and check it is still in R",
+            "three three reversed is itself so it is fine",
+            "prathi pair ni reverse chesi choodali",
+            "this one is symmetric but not reflexive"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one two",
+            "two one",
+            "three three",
+            "reverse",
+            "symmetric"
+          ]
+        },
+        "why": "Choosing a relation that is symmetric without being reflexive shows the definition has been read as it stands. A pair such as (3, 3) is its own reverse, so it never breaks symmetry.",
+        "memory_tip": "A pair (a, a) is its own reverse, so it can never spoil symmetry.",
+        "common_mistakes": [
+          "Adding (1, 1) and (2, 2) to R because the list appears incomplete.",
+          "Claiming (3, 3) breaks symmetry, when its reverse is the same pair.",
+          "Checking one pair and stopping before the rest of the list."
+        ]
+      }
+    ]
+  }
+}

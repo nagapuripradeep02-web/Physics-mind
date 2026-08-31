@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_ad_approx_cbrt_999",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Applications of Derivatives"
+  },
+  "chapter": "Applications of Derivatives",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the approximate value of ∛999.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Choose the nearby exact point",
+      "marks": 1
+    },
+    {
+      "label": "Apply the approximation formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.209, chapter 10 APPLICATIONS OF DERIVATIVES, Very Short Answer question 2(i), in the ERRORS AND APPROXIMATIONS sub-section. Chapter 10 is printed as five un-numbered sub-sections inside one chapter box and the book restarts its question numbering in each sub-section, so \"question 2(i)\" is that sub-section's number and not the chapter's; we ship the five sub-sections as ONE unit, ordered by the syllabus. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (2 Marks) over this sub-section but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section A question — one mark for choosing the nearby exact point and its derivative, one for applying the formula and reading the number. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say which nearby value you start from, and the formula you then apply.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Applications of Derivatives · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_choose",
+        "kind": "equation",
+        "label": "Choose the nearby exact point",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark, and the whole choice of method sits here: name x = 1000, Δx = −1 and f′(1000) = 1/300. An examiner reads this line to see whether the nearest perfect cube was found.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let f(x) = ∛x. Then f(x + Δx) ≈ f(x) + f′(x)·Δx",
+          "1000 is the nearest perfect cube to 999, and ∛1000 = 10 exactly",
+          "∴ take x = 1000,  Δx = 999 − 1000 = −1",
+          "f′(x) = 1/(3(∛x)²)",
+          "f′(1000) = 1/(3(10)²) = 1/300"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = 1000 is chosen because ∛1000 = 10 is exact, Δx = −1, and f′(1000) = 1/300.",
+          "accept": [
+            "take x equals one thousand because its cube root is ten",
+            "the nearest perfect cube is one thousand so delta x is minus one",
+            "f dash of one thousand is one by three hundred",
+            "daggara unna perfect cube thousand teesukovali, delta x minus one",
+            "start from ten and correct it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one thousand",
+            "cube root of thousand is ten",
+            "minus one",
+            "one by three hundred"
+          ]
+        },
+        "why": "The method only works from a point where the function is already known exactly. 1000 is the nearest perfect cube to 999, so the estimate starts at 10 with no calculator, and Δx = −1 is very small next to 1000.",
+        "common_mistakes": [
+          "Choosing x = 999 itself, which leaves the cube root still unknown.",
+          "Writing Δx = 1 instead of −1, since 999 is below 1000."
+        ],
+        "memory_tip": "For a cube root, find the nearest whole number whose cube you know; for a square root, the nearest perfect square. Δx carries whatever is left over."
+      },
+      {
+        "id": "s2_apply",
+        "kind": "boxed_final",
+        "label": "Apply the approximation formula",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The correction is 1/300 multiplied by −1, so it is subtracted from 10, not added. A student who writes 10.0033 has used the wrong sign of Δx.",
+        "lines": [
+          "∛999 = f(1000 + (−1)) ≈ f(1000) + f′(1000)·(−1)",
+          "= 10 + (1/300)(−1)",
+          "= 10 − 0.003333…",
+          "= 9.996667",
+          {
+            "text": "∴ ∛999 ≈ 9.9967",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ∛999 ≈ 10 − 1/300 = 9.9967.",
+          "accept": [
+            "ten minus one by three hundred",
+            "ten minus zero point zero zero three three three",
+            "the answer is nine point nine nine six seven",
+            "ten lo one by three hundred subtract cheyyali",
+            "subtract the correction because delta x is negative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "ten minus",
+            "one by three hundred",
+            "nine point nine nine six seven",
+            "zero point zero zero three three"
+          ]
+        },
+        "why": "f′(x)·Δx is the correction the tangent line at x = 1000 predicts. The true value is 9.9966656, so this estimate is high by about 0.000001 — the correction is reliable because Δx = −1 is tiny next to 1000.",
+        "common_mistakes": [
+          "Adding the correction instead of subtracting it, giving 10.0033.",
+          "Reading 1/300 as 0.0333 instead of 0.003333."
+        ],
+        "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so a downward move subtracts."
+      }
+    ]
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "source_book": "Sri Chaitanya — FAST TRACK IPE for Jr. Students, Mathematics-IA (2026-27 edition)",
+  "scan_file": "DocScanner 29 Aug 2026 10-04 pm.pdf",
+  "scan_sha256": "6c279cf902e12bf4dff6529292ae6b1e3f7797f7c88220e9da6f3722616a5ab6",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring. Stems restated in our own wording; the mathematics is exact. No solution content from the source book appears in this file, by policy. Vectors are written with plain letters (a, b, c, i, j, k) and named point-pairs (OA, AB) rather than overbars; the book prints them with overbars.",
+  "chapter": { "number": 6, "printed_title": "ADDITION OF VECTORS" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 3,
+      "printed_page": 60, "scan_page": 1,
+      "stem": "If a = 2i + 5j + k and b = 4i + mj + nk are collinear, find m and n.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 3,
+      "printed_page": 60, "scan_page": 1,
+      "stem": "If the vectors −3i + 4j + λk and μi + 8j + 6k are collinear, find λ and μ.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 1,
+      "printed_page": 60, "scan_page": 1,
+      "stem": "Find the unit vector in the direction of the vector a = 2i + 3j + k.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 1,
+      "printed_page": 60, "scan_page": 1,
+      "stem": "Find a unit vector in the direction of the sum of the vectors a = 2i + 2j − 5k and b = 2i + j + 3k.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 3,
+      "printed_page": 60, "scan_page": 1,
+      "stem": "Let a = 2i + 4j − 5k, b = i + j + k and c = j + 2k. Find the unit vector in the direction opposite to a + b + c.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 3,
+      "printed_page": 60, "scan_page": 1,
+      "stem": "If OA = i + j + k, AB = 3i − 2j + k, BC = i + 2j − k and CD = 2i + j + 3k, find the vector OD.",
+      "appearance_years": [],
+      "notes": "PRINTED DEFECT (probable). The book prints BC = i + 2j − k, and its answer follows that value. The Telugu Akademi exercise this question comes from uses BC = i + 2j − 2k, which is also what our bank card holds. Founder decision needed on which value to keep." },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 3,
+      "printed_page": 60, "scan_page": 1,
+      "stem": "Find the vector equation of the line joining the points 2i + j + 3k and −4i + 3j − k.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 60, "scan_page": 1,
+      "stem": "Find the vector equation of the plane passing through the points (0, 0, 0), (0, 5, 0) and (2, 0, 1).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 1,
+      "printed_page": 61, "scan_page": 2,
+      "stem": "Find the vector equation of the plane passing through the points i − 2j + 5k, −5j − k and −3i + 5j.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 3,
+      "printed_page": 61, "scan_page": 2,
+      "stem": "The points A, B and C have position vectors −2i + j − k, −4i + 2j + 2k and 6i − 3j − 13k respectively, and AB = λ AC. Find the value of λ.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 3,
+      "printed_page": 61, "scan_page": 2,
+      "stem": "ABCDE is a pentagon. If the sum of the vectors AB, AE, BC, DC, ED and AC is λ AC, find the value of λ.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 1,
+      "printed_page": 61, "scan_page": 2,
+      "stem": "Find the position vector of the point C on AB produced such that AC = 3AB, where a and b are the position vectors of A and B respectively.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 1,
+      "printed_page": 61, "scan_page": 2,
+      "stem": "Show that the points whose position vectors are −2a + 3b + 5c, a + 2b + 3c and 7a − c are collinear, where a, b, c are non-coplanar vectors.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 61, "scan_page": 2,
+      "stem": "If a, b, c are the position vectors of the vertices A, B, C respectively of triangle ABC, find the vector equation of the median through the vertex A.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 62, "scan_page": 3,
+      "stem": "Find a vector in the direction of the vector a = i − 2j that has magnitude 7 units.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 3,
+      "printed_page": 62, "scan_page": 3,
+      "stem": "If G is the centroid of triangle ABC, show that GA + GB + GC = 0.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1i", "section": "SAQ", "number": 1, "part": "i", "stars": 3,
+      "printed_page": 62, "scan_page": 3,
+      "stem": "If a, b, c are non-coplanar, prove that the four points −a + 4b − 3c, 3a + 2b − 5c, −3a + 8b − 5c and −3a + 2b + c are coplanar.",
+      "appearance_years": [],
+      "notes": "Printed with FOUR stars (****i), the only four-star mark in this chapter; recorded as 3 because the scale here is 0–3. Q1 carries one shared instruction (\"prove that the four points are coplanar\") over four independent point sets, so each set is emitted as its own object." },
+
+    { "ref": "saq1ii", "section": "SAQ", "number": 1, "part": "ii", "stars": 3,
+      "printed_page": 62, "scan_page": 3,
+      "stem": "Prove that the four points 4i + 5j + k, −j − k, 3i + 9j + 4k and −4i + 4j + 4k are coplanar.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1iii", "section": "SAQ", "number": 1, "part": "iii", "stars": 3,
+      "printed_page": 62, "scan_page": 3,
+      "stem": "If a, b, c are non-coplanar, prove that the four points 6a + 2b − c, 2a − b + 3c, −a + 2b − 4c and −12a − b − 3c are coplanar.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1iv", "section": "SAQ", "number": 1, "part": "iv", "stars": 2,
+      "printed_page": 63, "scan_page": 4,
+      "stem": "If a, b, c are non-coplanar vectors, prove that 2a + 3b − c, a − 2b + 3c, 3a + 4b − 2c and a − 6b + 6c are coplanar.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq2i", "section": "SAQ", "number": 2, "part": "i", "stars": 0,
+      "printed_page": 63, "scan_page": 4,
+      "stem": "If a, b, c are non-coplanar, test the collinearity of the points a − 2b + 3c, 2a + 3b − 4c and −7b + 10c.",
+      "appearance_years": [],
+      "notes": "Star prefix falls in the scanned gutter and could not be read; recorded as 0 rather than guessed upward. Q2 carries one shared instruction (\"test the collinearity of the given points\") over two independent point sets." },
+
+    { "ref": "saq2ii", "section": "SAQ", "number": 2, "part": "ii", "stars": 0,
+      "printed_page": 63, "scan_page": 4,
+      "stem": "If a, b, c are non-coplanar, test the collinearity of the points 3a − 4b + 3c, −4a + 5b − 6c and 4a − 7b + 6c.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq3", "section": "SAQ", "number": 3, "part": null, "stars": 3,
+      "printed_page": 63, "scan_page": 4,
+      "stem": "If the points whose position vectors are 3i − 2j − k, 2i + 3j − 4k, −i + j + 2k and 4i + 5j + λk are coplanar, prove that λ = −146/17.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq4", "section": "SAQ", "number": 4, "part": null, "stars": 3,
+      "printed_page": 64, "scan_page": 5,
+      "stem": "If A, B, C, D, E, F is a regular hexagon with centre O, show that AB + AC + AD + AE + AF = 3AD = 6AO.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq5i", "section": "SAQ", "number": 5, "part": "i", "stars": 3,
+      "printed_page": 64, "scan_page": 5,
+      "stem": "In triangle ABC, O is the circumcentre and H is the orthocentre. Show that OA + OB + OC = OH.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq5ii", "section": "SAQ", "number": 5, "part": "ii", "stars": 3,
+      "printed_page": 64, "scan_page": 5,
+      "stem": "In triangle ABC, O is the circumcentre and H is the orthocentre. Show that HA + HB + HC = 2HO.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq6i", "section": "SAQ", "number": 6, "part": "i", "stars": 0,
+      "printed_page": 64, "scan_page": 5,
+      "stem": "Show that the points A(2i − j + k), B(i − 3j − 5k) and C(3i − 4j − 4k) are the vertices of a right-angled triangle.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq6ii", "section": "SAQ", "number": 6, "part": "ii", "stars": 0,
+      "printed_page": 64, "scan_page": 5,
+      "stem": "Is the triangle formed by the vectors 3i + 5j + 2k, 2i − 3j − 5k and −5i − 2j + 3k equilateral? Explain.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq6iii", "section": "SAQ", "number": 6, "part": "iii", "stars": 1,
+      "printed_page": 64, "scan_page": 5,
+      "stem": "Find the angles made by the straight line passing through the points (1, −3, 2) and (3, −5, 1) with the coordinate axes.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq7", "section": "SAQ", "number": 7, "part": null, "stars": 2,
+      "printed_page": 65, "scan_page": 6,
+      "stem": "Show that the line joining the points 6a − 4b + 4c and −4c, and the line joining the pair of points −a − 2b − 3c and a + 2b − 5c, intersect at the point −4c, where a, b, c are non-coplanar vectors.",
+      "appearance_years": [],
+      "notes": "Star prefix is partly cut by the scanned gutter; two stars are legible, a third may be lost. Recorded as 2 rather than guessed upward." },
+
+    { "ref": "saq8", "section": "SAQ", "number": 8, "part": null, "stars": 3,
+      "printed_page": 65, "scan_page": 6,
+      "stem": "Using the vector method, prove that in the two-dimensional plane the equation of the line whose intercepts on the axes are a and b is x/a + y/b = 1.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq9", "section": "SAQ", "number": 9, "part": null, "stars": 1,
+      "printed_page": 65, "scan_page": 6,
+      "stem": "Find the point of intersection of the line r = 2a + b + t(b − c) and the plane r = a + x(b + c) + y(a + 2b − c), where a, b, c are non-coplanar vectors.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq10", "section": "SAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 66, "scan_page": 7,
+      "stem": "In triangle ABC, a, b, c are the position vectors of the vertices A, B and C. Prove that the position vector of the centroid is (1/3)(a + b + c).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq11", "section": "SAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 66, "scan_page": 7,
+      "stem": "If a, b, c are non-coplanar, find the point of intersection of the straight line passing through the points 2a + 3b − c and 3a + 4b − 2c with the line through the points a − 2b + 3c and a − 6b + 6c.",
+      "appearance_years": [], "notes": null }
+  ]
+}

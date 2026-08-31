@@ -4031,104 +4031,234 @@
           "section": "VSAQ",
           "number": 1,
           "stars": 0,
-          "text": "Sets and their representation",
-          "source": "syllabus_2026_27"
+          "text": "Write A = {−3, −2, −1, 0, 1, 2, 3} in set-builder form.",
+          "question_id": "ts_ipe_m1a_sr_set_builder_form",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq2",
           "section": "VSAQ",
           "number": 2,
           "stars": 0,
-          "text": "The empty set",
-          "source": "syllabus_2026_27"
+          "text": "Find the power set of A = {−3, 0, 3}.",
+          "question_id": "ts_ipe_m1a_sr_power_set_minus3_0_3",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq3",
           "section": "VSAQ",
           "number": 3,
           "stars": 0,
-          "text": "Finite and infinite sets",
-          "source": "syllabus_2026_27"
+          "text": "If A = {1, 2, 3, 4, 5, 6, 7}, B = {2, 4, 6, 7, 8, 11} and C = {1, 3, 5, 7, 9}, find (i) A ∩ B, (ii) A ∩ C, (iii) B ∩ C and (iv) A ∩ B ∩ C.",
+          "question_id": "ts_ipe_m1a_sr_intersections_three_sets",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq4",
           "section": "VSAQ",
           "number": 4,
           "stars": 0,
-          "text": "Equal sets",
-          "source": "syllabus_2026_27"
+          "text": "If A = {1, 2, 3}, B = {2, 3} and C = {3, 4, 7}, find (A × B) ∩ (A × C).",
+          "question_id": "ts_ipe_m1a_sr_cartesian_product_intersection",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq5",
           "section": "VSAQ",
           "number": 5,
           "stars": 0,
-          "text": "Subsets",
-          "source": "syllabus_2026_27"
+          "text": "If A = {0, 1, 3, 5}, B = {1, 2, 4, 7} and C = {1, 2, 3, 5, 8}, show that (A ∩ C) ∪ B = (A ∪ B) ∩ (C ∪ B).",
+          "question_id": "ts_ipe_m1a_sr_distributive_union_over_intersection",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq6",
           "section": "VSAQ",
           "number": 6,
           "stars": 0,
-          "text": "Intervals as subsets of R",
-          "source": "syllabus_2026_27"
+          "text": "If A = {1, 2, 3}, B = {2, 3, 4} and C = {3, 4, 5, 6}, find A − (B − C).",
+          "question_id": "ts_ipe_m1a_sr_a_minus_b_minus_c",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq7",
           "section": "VSAQ",
           "number": 7,
           "stars": 0,
-          "text": "Venn diagrams",
-          "source": "syllabus_2026_27"
+          "text": "If U = {1, 2, 3, 4, 5, 6, 7}, A = {1, 2, 3} and B = {3, 5, 6}, show that (i) (A ∪ B)′ = A′ ∩ B′ and (ii) (A ∩ B)′ = A′ ∪ B′.",
+          "question_id": "ts_ipe_m1a_sr_de_morgan_universal_1_to_7",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq8",
           "section": "VSAQ",
           "number": 8,
           "stars": 0,
-          "text": "Operations on sets",
-          "source": "syllabus_2026_27"
+          "text": "Let A = {1, 2, 5, 7, 9} and let R be the relation defined on A by x R y if and only if x = y. Find the ordered pairs that belong to R, and find (i) the domain of R and (ii) the range of R.",
+          "question_id": "ts_ipe_m1a_sr_relation_x_equals_y_domain_range",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq9",
           "section": "VSAQ",
           "number": 9,
           "stars": 0,
-          "text": "Complement of a set",
-          "source": "syllabus_2026_27"
+          "text": "If A = {0, 1, 2, 3, 4, 5}, B = {0, 1, 2, 3, 4} and R is the relation from A to B given by x + y = 5, x ∈ A, y ∈ B, list the ordered pairs that belong to R, and find (i) the domain of R, (ii) the range of R and (iii) the codomain of R.",
+          "question_id": "ts_ipe_m1a_sr_relation_x_plus_y_5_domain_range_codomain",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq10",
           "section": "VSAQ",
           "number": 10,
           "stars": 0,
-          "text": "Cartesian product of sets",
-          "source": "syllabus_2026_27"
+          "text": "Show that the relation \"parallel\", defined on the set of all straight lines in a plane, is an equivalence relation.",
+          "question_id": "ts_ipe_m1a_sr_parallel_lines_equivalence",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq11",
           "section": "VSAQ",
           "number": 11,
           "stars": 0,
-          "text": "Relations",
-          "source": "syllabus_2026_27"
+          "text": "Let R be the relation defined on the set of all natural numbers N by R = {(x, y) : x, y ∈ N, 2x + y = 41}. Find R and check whether it is (i) reflexive, (ii) symmetric and (iii) transitive.",
+          "question_id": "ts_ipe_m1a_sr_relation_2x_plus_y_41_properties",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq12",
           "section": "VSAQ",
           "number": 12,
           "stars": 0,
-          "text": "Types of relations",
-          "source": "syllabus_2026_27"
+          "text": "Define a set. Define the cardinality of a finite set.",
+          "question_id": "ts_ipe_m1a_sr_define_set_and_cardinality",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq13",
           "section": "VSAQ",
           "number": 13,
           "stars": 0,
-          "text": "Equivalence relation",
-          "source": "syllabus_2026_27"
+          "text": "Define the power set of a set.",
+          "question_id": "ts_ipe_m1a_sr_define_power_set",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Define the symmetric difference of two sets.",
+          "question_id": "ts_ipe_m1a_sr_define_symmetric_difference",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Let A = {1, 2, 3}. Find (i) |A|, (ii) |P(A)|, (iii) all the subsets of A and (iv) the power set of A.",
+          "question_id": "ts_ipe_m1a_sr_subsets_and_power_set_of_1_2_3",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "If P(A) has 512 elements, find the number of elements in A.",
+          "question_id": "ts_ipe_m1a_sr_power_set_512_elements",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "If A = {a, b, c, d, e} and B = {a, c, f, g, h}, find the symmetric difference of A and B.",
+          "question_id": "ts_ipe_m1a_sr_symmetric_difference_abcde_acfgh",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "If U = {1, 2, 3, 4, 5, 6, 7, 8, 9}, A = {2, 4, 6} and B = {3, 5, 7}, show that (i) (A ∪ B)′ = A′ ∩ B′ and (ii) (A ∩ B)′ = A′ ∪ B′.",
+          "question_id": "ts_ipe_m1a_sr_de_morgan_universal_1_to_9",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Define the Cartesian product of two sets.",
+          "question_id": "ts_ipe_m1a_sr_define_cartesian_product",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "If A = {2, 3, 4}, B = {4, 5} and C = {5, 6, 7}, find (i) A × (B ∪ C), (ii) A × (B ∩ C) and (iii) (A × B) ∪ (A × C).",
+          "question_id": "ts_ipe_m1a_sr_cartesian_product_over_union_intersection",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Define a relation from one set to another.",
+          "question_id": "ts_ipe_m1a_sr_define_relation",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Define a reflexive relation.",
+          "question_id": "ts_ipe_m1a_sr_define_reflexive_relation",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Define a symmetric relation.",
+          "question_id": "ts_ipe_m1a_sr_define_symmetric_relation",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Define a transitive relation.",
+          "question_id": "ts_ipe_m1a_sr_define_transitive_relation",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Define an equivalence relation.",
+          "question_id": "ts_ipe_m1a_sr_define_equivalence_relation",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "If the relation R : A → B, where A = {1, 2, 3} and B = {1, 3, 6}, is defined by R = {(x, y) : x < y, x ∈ A and y ∈ B}, find R.",
+          "question_id": "ts_ipe_m1a_sr_relation_x_less_than_y",
+          "source": "enumerated"
         }
       ]
     },
@@ -4357,40 +4487,225 @@
           "section": "VSAQ",
           "number": 1,
           "stars": 0,
-          "text": "Sequences",
-          "source": "syllabus_2026_27"
+          "text": "Find the 10th term of the A.P. 3, 5, 7, 9, …",
+          "question_id": "ts_ipe_m1a_ss_ap_10th_term_3_5_7_9",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq2",
           "section": "VSAQ",
           "number": 2,
           "stars": 0,
-          "text": "Series",
-          "source": "syllabus_2026_27"
+          "text": "The mth term of an A.P. is n and the nth term is m. Show that the (m + n)th term is zero.",
+          "question_id": "ts_ipe_m1a_ss_ap_mth_n_nth_m_shows_zero",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq3",
           "section": "VSAQ",
           "number": 3,
           "stars": 0,
-          "text": "Arithmetic progression (A.P.)",
-          "source": "syllabus_2026_27"
+          "text": "The 35th term of an A.P. is 69. Find the sum of its first 69 terms.",
+          "question_id": "ts_ipe_m1a_ss_ap_35th_term_69_sum_69",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq4",
           "section": "VSAQ",
           "number": 4,
           "stars": 0,
-          "text": "Geometric progression (G.P.)",
-          "source": "syllabus_2026_27"
+          "text": "Which term of the G.P. 5, −10, 20, −40, … is 320?",
+          "question_id": "ts_ipe_m1a_ss_gp_which_term_is_320",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq5",
           "section": "VSAQ",
           "number": 5,
           "stars": 0,
-          "text": "Relation between A.M. and G.M.",
-          "source": "syllabus_2026_27"
+          "text": "Three numbers are in G.P. Their sum is 43 and their product is 216. Find the numbers in proper order.",
+          "question_id": "ts_ipe_m1a_ss_gp_three_numbers_sum_43_product_216",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Find the sum to n terms of the sequence 8, 88, 888, …",
+          "question_id": "ts_ipe_m1a_ss_sum_8_88_888_n_terms",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Find the sum of the infinite G.P. 1 + 1/3 + 1/9 + 1/27 + … ∞",
+          "question_id": "ts_ipe_m1a_ss_infinite_gp_one_third_ratio",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "The A.M. and the G.M. of two positive numbers are 10 and 8 respectively. Find the numbers.",
+          "question_id": "ts_ipe_m1a_ss_am_10_gm_8_find_numbers",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "The sum of two numbers a and b is 6 times their geometric mean. Show that the numbers are in the ratio (3 + 2√2) : (3 − 2√2).",
+          "question_id": "ts_ipe_m1a_ss_sum_6_times_gm_ratio",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "If the A.M. and the G.M. between two numbers are in the ratio m : n, prove that the numbers are in the ratio m + √(m² − n²) : m − √(m² − n²).",
+          "question_id": "ts_ipe_m1a_ss_am_gm_ratio_m_n",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "The common difference of an A.P. is 3 and the 15th term is 37. Find the second term.",
+          "question_id": "ts_ipe_m1a_ss_ap_cd_3_15th_term_37_second_term",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "If the mth term of an A.P. is 1/n and the nth term is 1/m, show that the (mn)th term is 1.",
+          "question_id": "ts_ipe_m1a_ss_ap_mth_1_over_n_nth_1_over_m",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Find the sum of 2 + 3 + 5 + 6 + 8 + 9 + … to 2n terms.",
+          "question_id": "ts_ipe_m1a_ss_sum_2_3_5_6_8_9_2n_terms",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Insert five arithmetic means between 8 and 26.",
+          "question_id": "ts_ipe_m1a_ss_insert_five_am_between_8_and_26",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Find the 5th term of the G.P. 4, 8, 16, …",
+          "question_id": "ts_ipe_m1a_ss_gp_5th_term_4_8_16",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "The third term of a geometric progression is 4. Find the product of the first five terms.",
+          "question_id": "ts_ipe_m1a_ss_gp_third_term_4_product_first_five",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Find the sum to n terms of the sequence 0.7, 0.77, 0.777, …",
+          "question_id": "ts_ipe_m1a_ss_sum_0_7_0_77_0_777_n_terms",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Find the sum of the infinite terms of the G.P. 1/3, −2/9, 4/27, −8/81, …",
+          "question_id": "ts_ipe_m1a_ss_infinite_gp_one_third_minus_two_ninths",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Find the sum 1 + 2/2 + 3/2² + 4/2³ + … to ∞.",
+          "question_id": "ts_ipe_m1a_ss_infinite_sum_n_over_2_power",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "The sum of an infinite geometric series is 1/3 and its first term is 1/4. Find the G.P.",
+          "question_id": "ts_ipe_m1a_ss_infinite_gp_sum_one_third_first_one_fourth",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Insert three geometric means between 1 and 81.",
+          "question_id": "ts_ipe_m1a_ss_insert_three_gm_between_1_and_81",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "The arithmetic mean between two positive numbers is 34 and their geometric mean is 16. Find the numbers.",
+          "question_id": "ts_ipe_m1a_ss_am_34_gm_16_find_numbers",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "If one geometric mean g and two arithmetic means p and q are inserted between two numbers, show that g² = (2p − q)(2q − p).",
+          "question_id": "ts_ipe_m1a_ss_one_gm_two_am_identity",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Let x be the arithmetic mean and let y, z be the two geometric means between any two positive numbers. Show that y³ + z³ = 2xyz.",
+          "question_id": "ts_ipe_m1a_ss_am_x_two_gm_y_z_identity",
+          "source": "enumerated"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Find the sum to n terms of the series 1·2 + 2·3 + 3·4 + …",
+          "question_id": "ts_ipe_m1a_ss_sum_1_2_2_3_3_4_n_terms",
+          "source": "enumerated"
         }
       ]
     },
@@ -4401,81 +4716,81 @@
       "questions": [
         {
           "ref": "laq1",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 1,
-          "stars": 3,
+          "stars": 0,
           "text": "Using the principle of finite Mathematical Induction prove that 1·2·3 + 2·3·4 + 3·4·5 + … upto n terms = n(n+1)(n+2)(n+3)/4, ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_sum_n_np1_np2"
         },
         {
           "ref": "laq2",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 2,
-          "stars": 3,
+          "stars": 0,
           "text": "Using the principle of finite Mathematical Induction prove that 1² + (1² + 2²) + (1² + 2² + 3²) + … n terms = n(n+1)²(n+2)/12, ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_sum_of_squares_series"
         },
         {
           "ref": "laq3",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 3,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that 1/(1·3) + 1/(3·5) + 1/(5·7) + … + n terms = n/(2n+1), ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_sum_reciprocal_odd_pairs"
         },
         {
           "ref": "laq4",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 4,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that 1/(1·4) + 1/(4·7) + 1/(7·10) + … + n terms = n/(3n+1), ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_sum_reciprocal_step_three"
         },
         {
           "ref": "laq5",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 5,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that 1³/1 + (1³ + 2³)/(1 + 3) + (1³ + 2³ + 3³)/(1 + 3 + 5) + … n terms = (n/24)(2n² + 9n + 13), ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_sum_cubes_over_odds"
         },
         {
           "ref": "laq6",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 6,
-          "stars": 3,
+          "stars": 0,
           "text": "By Mathematical Induction, show that 49ⁿ + 16n − 1 is divisible by 64 for all positive integers n.",
           "question_id": "ts_ipe_m1a_mi_divisible_49n_16n_minus_1"
         },
         {
           "ref": "laq7",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 7,
-          "stars": 3,
+          "stars": 0,
           "text": "Using the principle of Mathematical Induction, prove that 3·5⁽²ⁿ⁺¹⁾ + 2⁽³ⁿ⁺¹⁾ is divisible by 17, ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_divisible_3_5_2n1_2_3n1"
         },
         {
           "ref": "laq8",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 8,
-          "stars": 3,
+          "stars": 0,
           "text": "Using P.M.I, show that 2·4⁽²ⁿ⁺¹⁾ + 3⁽³ⁿ⁺¹⁾ is divisible by 11, ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_divisible_2_4_2n1_3_3n1"
         },
         {
           "ref": "laq9",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 9,
-          "stars": 3,
+          "stars": 0,
           "text": "Using the principle of finite Mathematical Induction, prove that a + ar + ar² + … upto n terms = a(rⁿ − 1)/(r − 1), for r ≠ 1.",
           "question_id": "ts_ipe_m1a_mi_sqp_gp_sum"
         },
         {
           "ref": "laq10",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 10,
-          "stars": 3,
+          "stars": 0,
           "text": "Using the principle of finite Mathematical Induction, prove that (1 + 3/1)(1 + 5/4)(1 + 7/9) … (1 + (2n+1)/n²) = (n+1)², for all n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_sqp_product_squares"
         }
@@ -5233,7 +5548,7 @@
           "section": "SAQ",
           "number": 8,
           "stars": 3,
-          "text": "Find a unit vector perpendicular to the plane determined by the points P(1, −1, 2), Q(2, 0, −1) and R(0, 2, −1).",
+          "text": "Find a unit vector perpendicular to the plane determined by the points P(1, −1, 2), Q(2, 0, −1) and R(0, 2, 1).",
           "question_id": "ts_ipe_m1a_pv_sqp_unit_normal_pqr"
         },
         {
@@ -5477,57 +5792,57 @@
         },
         {
           "ref": "saq1",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 1,
-          "stars": 2,
+          "stars": 0,
           "text": "Prove that tanA + cotA = 2 cosec2A.",
           "question_id": "ts_ipe_m1a_tr_saq_tan_plus_cot"
         },
         {
           "ref": "saq2",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 2,
-          "stars": 2,
+          "stars": 0,
           "text": "Prove that cotA − tanA = 2 cot2A.",
           "question_id": "ts_ipe_m1a_tr_saq_cot_minus_tan"
         },
         {
           "ref": "saq3",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 3,
-          "stars": 2,
+          "stars": 0,
           "text": "Show that 1/sin10° − √3/cos10° = 4.",
           "question_id": "ts_ipe_m1a_tr_saq_one_over_sin10"
         },
         {
           "ref": "saq4",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 4,
-          "stars": 2,
+          "stars": 0,
           "text": "Show that √3 cosec20° − sec20° = 4.",
           "question_id": "ts_ipe_m1a_tr_saq_root3_csc20"
         },
         {
           "ref": "saq5",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 5,
-          "stars": 2,
+          "stars": 0,
           "text": "If tanθ = b/a, then prove that a cos2θ + b sin2θ = a.",
           "question_id": "ts_ipe_m1a_tr_saq_acos2t_bsin2t"
         },
         {
           "ref": "saq6",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 6,
-          "stars": 2,
+          "stars": 0,
           "text": "Show that sin⁴(π/8) + sin⁴(3π/8) + sin⁴(5π/8) + sin⁴(7π/8) = 3/2.",
           "question_id": "ts_ipe_m1a_tr_saq_sin_fourth_powers"
         },
         {
           "ref": "saq7",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 7,
-          "stars": 2,
+          "stars": 0,
           "text": "Show that cos⁴(π/8) + cos⁴(3π/8) + cos⁴(5π/8) + cos⁴(7π/8) = 3/2.",
           "question_id": "ts_ipe_m1a_tr_saq_cos_fourth_powers"
         },
@@ -5541,25 +5856,25 @@
         },
         {
           "ref": "saq9",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 9,
-          "stars": 2,
+          "stars": 0,
           "text": "Prove that (1 + cos(π/10))(1 + cos(3π/10))(1 + cos(7π/10))(1 + cos(9π/10)) = 1/16.",
           "question_id": "ts_ipe_m1a_tr_saq_product_pi_ten"
         },
         {
           "ref": "saq10",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 10,
-          "stars": 2,
+          "stars": 0,
           "text": "Prove that cosA · cos2A · cos4A · cos8A = sin16A / (16 sinA).",
           "question_id": "ts_ipe_m1a_tr_saq_cos_a_2a_4a_8a"
         },
         {
           "ref": "saq11",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 11,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that cot(π/16) · cot(2π/16) · cot(3π/16) · … · cot(7π/16) = 1.",
           "question_id": "ts_ipe_m1a_tr_sqp_cot_product_one"
         },
@@ -5573,9 +5888,9 @@
         },
         {
           "ref": "saq13",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 13,
-          "stars": 3,
+          "stars": 0,
           "text": "Prove that cos²(π/8) + cos²(3π/8) + cos²(5π/8) + cos²(7π/8) = 2.",
           "question_id": "ts_ipe_m1a_tr_sqp_cos_sq_eighths"
         },
@@ -6065,57 +6380,57 @@
       "questions": [
         {
           "ref": "laq1",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 1,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, if r₁ = 8, r₂ = 12 and r₃ = 24, then find a, b and c.",
           "question_id": "ts_ipe_m1a_pt_find_abc_from_r"
         },
         {
           "ref": "laq2",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 2,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, if r₁ = 2, r₂ = 3, r₃ = 6 and r = 1, then prove that a = 3, b = 4 and c = 5.",
           "question_id": "ts_ipe_m1a_pt_prove_345"
         },
         {
           "ref": "laq3",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 3,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, if a = 13, b = 14 and c = 15, then show that R = 65/8, r = 4, r₁ = 21/2, r₂ = 12 and r₃ = 14.",
           "question_id": "ts_ipe_m1a_pt_13_14_15"
         },
         {
           "ref": "laq4",
-          "section": "LAQ",
+          "section": "VSAQ",
           "number": 4,
-          "stars": 3,
+          "stars": 0,
           "text": "If a = (b + c) cos θ, then prove that sin θ = (2√(bc)/(b+c)) cos(A/2).",
           "question_id": "ts_ipe_m1a_pt_a_eq_b_plus_c_cos"
         },
         {
           "ref": "laq5",
-          "section": "LAQ",
+          "section": "VSAQ",
           "number": 5,
-          "stars": 3,
+          "stars": 0,
           "text": "If sin θ = a/(b + c), then show that cos θ = (2√(bc)/(b+c)) cos(A/2).",
           "question_id": "ts_ipe_m1a_pt_sin_theta_a_over_b_plus_c"
         },
         {
           "ref": "laq6",
-          "section": "LAQ",
+          "section": "VSAQ",
           "number": 6,
-          "stars": 3,
+          "stars": 0,
           "text": "If a = (b − c) sec θ, then prove that tan θ = (2√(bc)/(b−c)) sin(A/2).",
           "question_id": "ts_ipe_m1a_pt_a_eq_b_minus_c_sec"
         },
         {
           "ref": "laq7",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 7,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, show that (a+b+c)²/(a²+b²+c²) = (cot(A/2) + cot(B/2) + cot(C/2))/(cotA + cotB + cotC).",
           "question_id": "ts_ipe_m1a_pt_cot_half_ratio"
         },
@@ -6137,41 +6452,41 @@
         },
         {
           "ref": "laq10",
-          "section": "LAQ",
+          "section": "VSAQ",
           "number": 10,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, if a : b : c = 7 : 8 : 9, then show that cos A : cos B : cos C = 14 : 11 : 6.",
           "question_id": "ts_ipe_m1a_pt_ratio_789"
         },
         {
           "ref": "laq11",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 11,
-          "stars": 3,
+          "stars": 0,
           "text": "If p₁, p₂, p₃ are the altitudes of a △ABC, then show that (i) 1/p₁ + 1/p₂ + 1/p₃ = 1/r, (ii) 1/p₁ + 1/p₂ − 1/p₃ = 1/r₃, and (iii) p₁p₂p₃ = (abc)²/(8R³) = 8Δ³/(abc).",
           "question_id": "ts_ipe_m1a_pt_altitudes"
         },
         {
           "ref": "saq1",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 1,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, prove that cot(A/2) + cot(B/2) + cot(C/2) = s²/Δ.",
           "question_id": "ts_ipe_m1a_pt_saq_cot_half_sum"
         },
         {
           "ref": "saq2",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 2,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, prove that cot A + cot B + cot C = (a² + b² + c²)/(4Δ).",
           "question_id": "ts_ipe_m1a_pt_saq_cot_sum"
         },
         {
           "ref": "saq3",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 3,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, show that cosA/a + cosB/b + cosC/c = (a² + b² + c²)/(2abc).",
           "question_id": "ts_ipe_m1a_pt_saq_cos_over_a"
         },
@@ -6201,25 +6516,25 @@
         },
         {
           "ref": "saq7",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 7,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, show that a² cot A + b² cot B + c² cot C = abc/R.",
           "question_id": "ts_ipe_m1a_pt_saq_a_sq_cot"
         },
         {
           "ref": "saq8",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 8,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, if 1/(a+c) + 1/(b+c) = 3/(a+b+c), then show that C = 60°.",
           "question_id": "ts_ipe_m1a_pt_saq_c_is_60"
         },
         {
           "ref": "saq9",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 9,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, show that 1/r² + 1/r₁² + 1/r₂² + 1/r₃² = (a² + b² + c²)/Δ².",
           "question_id": "ts_ipe_m1a_pt_saq_reciprocal_squares"
         },
@@ -6534,49 +6849,49 @@
         },
         {
           "ref": "saq1",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 13,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the value of k, if the lines 2x−3y+k=0, 3x−4y−13=0, 8x−11y−33=0 are concurrent.",
           "question_id": "ts_ipe_m1b_sl_concurrent_find_k"
         },
         {
           "ref": "saq2",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 14,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the value of p, if the lines 3x+4y=5, 2x+3y=4, px+4y=6 are concurrent.",
           "question_id": "ts_ipe_m1b_sl_concurrent_find_p"
         },
         {
           "ref": "saq3",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 15,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that the lines 2x+y−3=0, 3x+2y−2=0 and 2x−3y−23=0 are concurrent and find the point of concurrency.",
           "question_id": "ts_ipe_m1b_sl_concurrent_point_of_concurrency"
         },
         {
           "ref": "saq4",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 16,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the equation of the straight line parallel to the line 3x+4y=7 and passing through the point of intersection of the lines x−2y−3=0 and x+3y−6=0.",
           "question_id": "ts_ipe_m1b_sl_parallel_through_intersection"
         },
         {
           "ref": "saq5",
-          "section": "SAQ",
+          "section": "LAQ",
           "number": 17,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the equation of the line passing through the point of intersection of 2x+3y=1, 3x+4y=6 and perpendicular to the line 5x−2y=7.",
           "question_id": "ts_ipe_m1b_sl_perpendicular_through_intersection"
         },
         {
           "ref": "saq6",
-          "section": "SAQ",
+          "section": "LAQ",
           "number": 18,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the value of k if the angle between the straight lines 4x−y+7=0, kx−5y−9=0 is 45°.",
           "question_id": "ts_ipe_m1b_sl_angle_45_find_k"
         },
@@ -6590,33 +6905,33 @@
         },
         {
           "ref": "saq8",
-          "section": "SAQ",
+          "section": "LAQ",
           "number": 20,
-          "stars": 3,
+          "stars": 0,
           "text": "A straight line through Q(√3,2) makes an angle π/6 with the positive direction of the X-axis. If the straight line intersects the line √3x−4y+8=0 at P, find the distance PQ.",
           "question_id": "ts_ipe_m1b_sl_parametric_distance_pi_over_6"
         },
         {
           "ref": "saq9",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 21,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the points on the line 3x−4y−1=0 which are at a distance of 5 units from the point (3,2).",
           "question_id": "ts_ipe_m1b_sl_points_at_distance_five"
         },
         {
           "ref": "saq10",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 22,
-          "stars": 3,
+          "stars": 0,
           "text": "If the straight lines ax+by+c=0, bx+cy+a=0 and cx+ay+b=0 are concurrent, then prove that a³+b³+c³=3abc.",
           "question_id": "ts_ipe_m1b_sl_concurrent_cubes_proof"
         },
         {
           "ref": "saq11",
-          "section": "SAQ",
+          "section": "LAQ",
           "number": 23,
-          "stars": 3,
+          "stars": 0,
           "text": "Transform the equation x/a + y/b = 1 into normal form. If the perpendicular distance of the straight line from the Origin is p then deduce that 1/p² = 1/a² + 1/b².",
           "question_id": "ts_ipe_m1b_sl_normal_form_intercepts"
         },
@@ -6797,121 +7112,121 @@
       "questions": [
         {
           "ref": "laq1",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 1,
-          "stars": 3,
+          "stars": 0,
           "text": "If the equation ax²+2hxy+by²=0 represents a pair of lines then prove that the equation of the pair of angular bisectors is h(x²−y²)−(a−b)xy=0.",
           "question_id": "ts_ipe_m1b_pl_angular_bisectors_proof"
         },
         {
           "ref": "laq2",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 2,
-          "stars": 3,
+          "stars": 0,
           "text": "Prove that the area of the triangle formed by the pair of lines ax²+2hxy+by²=0 and lx+my+n=0 is n²√(h²−ab) : |am²−2hlm+bl²|.",
           "question_id": "ts_ipe_m1b_pl_area_triangle_proof"
         },
         {
           "ref": "laq3",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 3,
-          "stars": 3,
+          "stars": 0,
           "text": "Prove that the product of the perpendiculars from (α,β) to the pair of lines ax²+2hxy+by²=0 is |aα²+2hαβ+bβ²| : √((a−b)²+4h²).",
           "question_id": "ts_ipe_m1b_pl_product_perpendiculars_proof"
         },
         {
           "ref": "laq4",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 4,
-          "stars": 3,
+          "stars": 0,
           "text": "If ax²+2hxy+by²+2gx+2fy+c=0 represents two parallel lines then prove that (i) h²=ab (ii) af²=bg² (iii) the distance between the parallel lines is 2√((g²−ac)/(a(a+b))) or 2√((f²−bc)/(b(a+b))).",
           "question_id": "ts_ipe_m1b_pl_parallel_lines_conditions_proof"
         },
         {
           "ref": "laq5",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 5,
-          "stars": 3,
+          "stars": 0,
           "text": "If ax²+2hxy+by²+2gx+2fy+c=0 represents a pair of lines then prove that (a) Δ = abc+2fgh−af²−bg²−ch² = 0 (b) h²≥ab, f²≥bc, g²≥ac.",
           "question_id": "ts_ipe_m1b_pl_pair_conditions_proof"
         },
         {
           "ref": "laq6",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 6,
-          "stars": 3,
+          "stars": 0,
           "text": "Prove that the equation 3x²+7xy+2y²+5x+5y+2=0 represents a pair of straight lines and find the coordinates of the point of intersection.",
           "question_id": "ts_ipe_m1b_pl_check_3x2_7xy_2y2"
         },
         {
           "ref": "laq7",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 7,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that the equation 2x²−13xy−7y²+x+23y−6=0 represents a pair of straight lines. Also find the angle between them and the coordinates of the point of intersection.",
           "question_id": "ts_ipe_m1b_pl_check_2x2_minus_13xy"
         },
         {
           "ref": "laq8",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 8,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the angle between the lines joining the origin to the points of intersection of the curve x²+2xy+y²+2x+2y−5=0 and the line 3x−y+1=0.",
           "question_id": "ts_ipe_m1b_pl_homog_angle_3x_minus_y_plus_1"
         },
         {
           "ref": "laq9",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 9,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that the lines joining the origin with the points of intersection of the curve 7x²−4xy+8y²+2x−4y−8=0 with the line 3x−y=2 are mutually perpendicular.",
           "question_id": "ts_ipe_m1b_pl_homog_perpendicular_7x2_minus_4xy"
         },
         {
           "ref": "laq10",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 10,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that the lines joining the origin to the points of intersection of the curve x²−xy+y²+3x+3y−2=0 and the straight line x−y−√2=0 are mutually perpendicular.",
           "question_id": "ts_ipe_m1b_pl_homog_perpendicular_x2_minus_xy"
         },
         {
           "ref": "laq11",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 11,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the value of k, if the lines joining the origin with the points of intersection of the curve 2x²−2xy+3y²+2x−y−1=0 and the line x+2y=k are mutually perpendicular.",
           "question_id": "ts_ipe_m1b_pl_homog_find_k_perpendicular"
         },
         {
           "ref": "laq12",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 12,
-          "stars": 3,
-          "text": "Find the condition for the lines joining to the points of intersection of the circle x²+y²=a² and the line lx+my=1 to coincide.",
+          "stars": 0,
+          "text": "Find the condition for the lines joining the origin to the points of intersection of the circle x²+y²=a² and the line lx+my=1 to coincide.",
           "question_id": "ts_ipe_m1b_pl_chord_coincident_condition"
         },
         {
           "ref": "laq13",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 13,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the condition for the chord lx+my=1 of the circle x²+y²=a² to subtend a right angle at the origin.",
           "question_id": "ts_ipe_m1b_pl_chord_right_angle_condition"
         },
         {
           "ref": "sqp1",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 14,
-          "stars": 3,
+          "stars": 0,
           "text": "Prove that the product of the perpendicular distances from the origin to the pair of straight lines represented by ax²+2hxy+by²+2gx+2fy+c=0 is |c| : √((a−b)²+4h²).",
           "question_id": "ts_ipe_m1b_pl_sqp_product_perpendiculars_origin"
         },
         {
           "ref": "sqp2",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 15,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the centroid and area of the triangle formed by the lines 3x²−4xy+y²=0, 2x−y=6.",
           "question_id": "ts_ipe_m1b_pl_sqp_centroid_and_area"
         }
@@ -7125,7 +7440,7 @@
           "section": "VSAQ",
           "number": 7,
           "stars": 3,
-          "text": "Find a traid of d.c's of the normal to the plane x+2y+2z−4=0.",
+          "text": "Find a triad of d.c's of the normal to the plane x+2y+2z−4=0.",
           "question_id": "ts_ipe_m1b_pln_dcs_of_normal"
         },
         {
@@ -7159,6 +7474,1863 @@
           "stars": 3,
           "text": "Find the equation of the plane passing through the point (1,2,−3) and parallel to the plane 2x−3y+6z=0.",
           "question_id": "ts_ipe_m1b_pln_parallel_through_1_2_minus3"
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "name": "Limits and Continuity (Maths-1B)",
+      "subject": "mathematics_1b",
+      "questions": [
+        {
+          "ref": "sv1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) (√(1 + x) − 1)/x.",
+          "question_id": "ts_ipe_m1b_lim_root_1_plus_x_minus_1_over_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) (3ˣ − 1)/(√(1 + x) − 1).",
+          "question_id": "ts_ipe_m1b_lim_3x_minus_1_over_root_1_plus_x_minus_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) (eˣ − 1)/(√(1 + x) − 1).",
+          "question_id": "ts_ipe_m1b_lim_ex_minus_1_over_root_1_plus_x_minus_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) (aˣ − 1)/(bˣ − 1), where a > 0, b > 0 and b ≠ 1.",
+          "question_id": "ts_ipe_m1b_lim_ax_minus_1_over_bx_minus_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) (sin(a + bx) − sin(a − bx))/x.",
+          "question_id": "ts_ipe_m1b_lim_sin_a_plus_bx_minus_sin_a_minus_bx",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) (cos ax − cos bx)/x².",
+          "question_id": "ts_ipe_m1b_lim_cos_ax_minus_cos_bx_over_x2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Evaluate lim(x → π/2) (cos x)/(x − π/2).",
+          "question_id": "ts_ipe_m1b_lim_cos_x_over_x_minus_pi_by_2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Evaluate lim(x → a) (x sin a − a sin x)/(x − a).",
+          "question_id": "ts_ipe_m1b_lim_x_sin_a_minus_a_sin_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Evaluate lim(x → 1) sin(x − 1)/(x² − 1).",
+          "question_id": "ts_ipe_m1b_lim_sin_x_minus_1_over_x2_minus_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Evaluate lim(x → a) tan(x − a)/(x² − a²).",
+          "question_id": "ts_ipe_m1b_lim_tan_x_minus_a_over_x2_minus_a2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Evaluate lim(x → a) (sin(x − a) · tan²(x − a))/((x² − a²)²).",
+          "question_id": "ts_ipe_m1b_lim_sin_tan_squared_over_x2_minus_a2_squared",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) (sin ax)/(x cos x), for x ≠ 0.",
+          "question_id": "ts_ipe_m1b_lim_sin_ax_over_x_cos_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) (1 − cos 2mx)/sin² nx.",
+          "question_id": "ts_ipe_m1b_lim_1_minus_cos_2mx_over_sin2_nx",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) (eˣ − sin x − 1)/x.",
+          "question_id": "ts_ipe_m1b_lim_ex_minus_sin_x_minus_1_over_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) (e^(sin x) − 1)/x.",
+          "question_id": "ts_ipe_m1b_lim_e_power_sin_x_minus_1_over_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) (e⁷ˣ − 1)/x.",
+          "question_id": "ts_ipe_m1b_lim_e_7x_minus_1_over_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) (e^(x+3) − e³)/x.",
+          "question_id": "ts_ipe_m1b_lim_e_x_plus_3_minus_e3_over_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) log(1 + 5x)/x.",
+          "question_id": "ts_ipe_m1b_lim_log_1_plus_5x_over_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Evaluate lim(x → 3) (x² − 8x + 15)/(x² − 9).",
+          "question_id": "ts_ipe_m1b_lim_x2_minus_8x_plus_15_over_x2_minus_9",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Evaluate lim(x → 4) (2x² − 7x − 4)/((2x − 1)(√x − 2)).",
+          "question_id": "ts_ipe_m1b_lim_2x2_minus_7x_minus_4_over_root_x_minus_2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Evaluate lim(x → 2) (x − 2)/(x³ − 8).",
+          "question_id": "ts_ipe_m1b_lim_x_minus_2_over_x3_minus_8",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Show that lim(x → 3) (x − 3)/√(x² − 9) = 0.",
+          "question_id": "ts_ipe_m1b_lim_x_minus_3_over_root_x2_minus_9",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Evaluate lim(x → 2) (1/(x − 2) − 4/(x² − 4)).",
+          "question_id": "ts_ipe_m1b_lim_one_over_x_minus_2_minus_four_over_x2_minus_4",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Show that lim(x → 2⁻) |x − 2|/(x − 2) = −1.",
+          "question_id": "ts_ipe_m1b_lim_abs_x_minus_2_left",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Show that lim(x → 0⁺) (2|x|/x + x + 1) = 3.",
+          "question_id": "ts_ipe_m1b_lim_two_abs_x_over_x_plus_x_plus_1_right",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "Evaluate lim(x → ∞) (8|x| + 3x)/(3|x| − 2x).",
+          "question_id": "ts_ipe_m1b_lim_8_abs_x_plus_3x_over_3_abs_x_minus_2x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv27i",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 0,
+          "text": "Evaluate lim(x → 2⁺) ([x] + x).",
+          "question_id": "ts_ipe_m1b_lim_floor_x_plus_x_right",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv27ii",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 0,
+          "text": "Evaluate lim(x → 2⁻) ([x] + x).",
+          "question_id": "ts_ipe_m1b_lim_floor_x_plus_x_left",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv28",
+          "section": "VSAQ",
+          "number": 28,
+          "stars": 0,
+          "text": "Evaluate lim(x → ∞) (x² + 5x + 2)/(2x² − 5x + 1).",
+          "question_id": "ts_ipe_m1b_lim_x2_plus_5x_plus_2_over_2x2_minus_5x_plus_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv29",
+          "section": "VSAQ",
+          "number": 29,
+          "stars": 0,
+          "text": "Evaluate lim(x → ∞) (11x³ − 3x + 4)/(13x³ − 5x² − 7).",
+          "question_id": "ts_ipe_m1b_lim_11x3_minus_3x_plus_4_over_13x3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv30",
+          "section": "VSAQ",
+          "number": 30,
+          "stars": 0,
+          "text": "Evaluate lim(x → ∞) (x² − sin x)/(x² − 2).",
+          "question_id": "ts_ipe_m1b_lim_x2_minus_sin_x_over_x2_minus_2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv31",
+          "section": "VSAQ",
+          "number": 31,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) x² sin(1/x).",
+          "question_id": "ts_ipe_m1b_lim_x2_sin_one_over_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv32",
+          "section": "VSAQ",
+          "number": 32,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) sin(π cos² x)/x².",
+          "question_id": "ts_ipe_m1b_lim_sin_pi_cos2_x_over_x2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv33",
+          "section": "VSAQ",
+          "number": 33,
+          "stars": 0,
+          "text": "Evaluate lim(x → ∞) (√(x + 1) − √x).",
+          "question_id": "ts_ipe_m1b_lim_root_x_plus_1_minus_root_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv34",
+          "section": "VSAQ",
+          "number": 34,
+          "stars": 0,
+          "text": "Evaluate lim(x → 0) (∛(1 + x) − ∛(1 − x))/x.",
+          "question_id": "ts_ipe_m1b_lim_cbrt_1_plus_x_minus_cbrt_1_minus_x_over_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sv35",
+          "section": "VSAQ",
+          "number": 35,
+          "stars": 0,
+          "text": "Evaluate lim(x → a) (√(a + 2x) − √(3x))/(√(3a + x) − 2√x).",
+          "question_id": "ts_ipe_m1b_lim_root_a_plus_2x_minus_root_3x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sa1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Show that the function f, defined by f(x) = (cos ax − cos bx)/x² for x ≠ 0 and f(0) = (1/2)(b² − a²), where a and b are real constants, is continuous at x = 0.",
+          "question_id": "ts_ipe_m1b_con_cos_ax_minus_cos_bx_at_zero",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sa2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Is the function f, defined by f(x) = (sin 2x)/x for x ≠ 0 and f(0) = 1, continuous at 0?",
+          "question_id": "ts_ipe_m1b_con_sin_2x_over_x_at_zero",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sa3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Check the continuity of the function f given by f(x) = (x² − 9)/(x² − 2x − 3) for 0 < x < 5 and x ≠ 3, and f(3) = 1.5, at the point x = 3.",
+          "question_id": "ts_ipe_m1b_con_x2_minus_9_over_x2_minus_2x_minus_3_at_3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sa3b",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "If f, given by f(x) = k²x − k for x ≥ 1 and f(x) = 2 for x < 1, is a continuous function on ℝ, then find the values of k.",
+          "question_id": "ts_ipe_m1b_con_k_squared_x_minus_k_find_k",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sa4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Check the continuity of the following function at x = 2: f(x) = (x² − 4)/2 for 0 < x < 2, f(2) = 0, and f(x) = 2 − 8x⁻³ for x > 2.",
+          "question_id": "ts_ipe_m1b_con_piecewise_at_2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sa5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "If f is the function defined by f(x) = (x − 1)/(√x − 1) for x > 1, f(x) = 5 − 3x for −2 ≤ x ≤ 1, and f(x) = 6/(x − 10) for x < −2, then discuss the continuity of f.",
+          "question_id": "ts_ipe_m1b_con_three_piece_discuss",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "sa6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Is the function f, defined by f(x) = x² for x ≤ 1 and f(x) = x for x > 1, continuous on ℝ?",
+          "question_id": "ts_ipe_m1b_con_x2_and_x_on_r",
+          "source": "chaitanya_fastrack"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "name": "Differentiation (Maths-1B)",
+      "subject": "mathematics_1b",
+      "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of a²eˣ².",
+          "question_id": "ts_ipe_m1b_dif_a2_e_x_squared",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Find the derivative of 7ˣ³⁺³ˣ.",
+          "question_id": "ts_ipe_m1b_dif_7_power_x3_plus_3x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Find the derivative of sec(√(tan x)).",
+          "question_id": "ts_ipe_m1b_dif_sec_root_tan_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "If y = log(sec x + tan x), find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_log_sec_x_plus_tan_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Find the derivative of (Cot⁻¹(x³))².",
+          "question_id": "ts_ipe_m1b_dif_cot_inverse_x3_squared",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "If f(x) = sin(log x), x > 0, find f′(x).",
+          "question_id": "ts_ipe_m1b_dif_sin_log_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Find the derivative of eˣ(x² + 1).",
+          "question_id": "ts_ipe_m1b_dif_ex_x2_plus_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "If y = Cosec⁻¹(e²ˣ⁺¹), find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_cosec_inverse_e_2x_plus_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "If f(x) = log(tan eˣ), find f′(x).",
+          "question_id": "ts_ipe_m1b_dif_log_tan_e_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Find the derivative of the function Tan⁻¹(log x).",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_log_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "If x²⁄³ + y²⁄³ = a²⁄³, show that dy/dx = −∛(y/x).",
+          "question_id": "ts_ipe_m1b_dif_x_two_thirds_plus_y_two_thirds",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "If y = eᵃ ˢⁱⁿ⁻¹ˣ, prove that dy/dx = ay/√(1 − x²).",
+          "question_id": "ts_ipe_m1b_dif_e_a_sin_inverse_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "If y = log(sin(log x)), find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_log_sin_log_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "If y = sin⁻¹√x, find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_sin_inverse_root_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15i",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "If f(x) = 1 + x + x² + x³ + ⋯ + x¹⁰⁰, find f′(1).",
+          "question_id": "ts_ipe_m1b_dif_poly_1_to_x100_at_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15ii",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "If f(x) = 1 + x + x² + ⋯ + xⁿ, find f′(1).",
+          "question_id": "ts_ipe_m1b_dif_poly_1_to_xn_at_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Find the derivative of xeˣ sin x.",
+          "question_id": "ts_ipe_m1b_dif_x_ex_sin_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "If f(x) = x²2ˣ log x, x > 0, find f′(x).",
+          "question_id": "ts_ipe_m1b_dif_x2_2x_log_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18i",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Find the derivative of y = cos⁻¹(4x³ − 3x).",
+          "question_id": "ts_ipe_m1b_dif_cos_inverse_4x3_minus_3x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18ii",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Find the derivative of tan⁻¹(√((1 − cos x)/(1 + cos x))).",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_root_1_minus_cos_over_1_plus_cos",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19i",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Find the derivative of tan⁻¹((√(1 + x²) − 1)/x).",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_root_1_plus_x2_minus_1_over_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "If y = sin⁻¹(3x − 4x³), find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_sin_inverse_3x_minus_4x3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "If y = sin⁻¹(2x/(1 + x²)), find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_sin_inverse_2x_over_1_plus_x2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "If x = a cos³t and y = a sin³t, find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_x_a_cos3t_y_a_sin3t",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23i",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Find dy/dx if x³ + y³ − 3axy = 0.",
+          "question_id": "ts_ipe_m1b_dif_x3_plus_y3_minus_3axy",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23ii",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Find dy/dx if 2x² − 3xy + y² + x + 2y − 8 = 0.",
+          "question_id": "ts_ipe_m1b_dif_2x2_minus_3xy_plus_y2_implicit",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Find the derivative of xˣ.",
+          "question_id": "ts_ipe_m1b_dif_x_power_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Find the derivative of eˣ with respect to √x.",
+          "question_id": "ts_ipe_m1b_dif_ex_wrt_root_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "If y = aeⁿˣ + be⁻ⁿˣ, show that y″ = n²y.",
+          "question_id": "ts_ipe_m1b_dif_a_enx_plus_b_e_minus_nx_second",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq27",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 0,
+          "text": "Find the second order derivative of y = tan⁻¹(2x/(1 − x²)).",
+          "question_id": "ts_ipe_m1b_dif_second_deriv_tan_inverse_2x_over_1_minus_x2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq28",
+          "section": "VSAQ",
+          "number": 28,
+          "stars": 0,
+          "text": "If y = x + tan x, show that cos²x · d²y/dx² + 2x = 2y.",
+          "question_id": "ts_ipe_m1b_dif_x_plus_tan_x_second",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq29",
+          "section": "VSAQ",
+          "number": 29,
+          "stars": 0,
+          "text": "If y = (2x + 3)/(4x + 5), find y″.",
+          "question_id": "ts_ipe_m1b_dif_2x_plus_3_over_4x_plus_5_second",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq30",
+          "section": "VSAQ",
+          "number": 30,
+          "stars": 0,
+          "text": "If y = log(4x² − 9), find y″.",
+          "question_id": "ts_ipe_m1b_dif_log_4x2_minus_9_second",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq31",
+          "section": "VSAQ",
+          "number": 31,
+          "stars": 0,
+          "text": "If x = tan(e⁻ʸ), prove that dy/dx = −eʸ/(1 + x²).",
+          "question_id": "ts_ipe_m1b_dif_x_tan_e_minus_y",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1i",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of sin 2x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_sin_2x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1ii",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of cos(ax) from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_cos_ax",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1iii",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of tan 2x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_tan_2x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1iv",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of cot x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_cot_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1v",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of sec 3x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_sec_3x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1vi",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of cos²x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_cos_squared_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1vii",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of x sin x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_x_sin_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1viii",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of √(x + 1) from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_root_x_plus_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1ix",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find the derivative of log x from the first principle with respect to x.",
+          "question_id": "ts_ipe_m1b_dif_first_principle_log_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "If xʸ = e^(x−y), show that dy/dx = log x/(1 + log x)².",
+          "question_id": "ts_ipe_m1b_dif_xy_equals_e_x_minus_y",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "If y = xʸ, show that dy/dx = y²/(x(1 − log y)) = y²/(x(1 − y log x)).",
+          "question_id": "ts_ipe_m1b_dif_y_equals_x_power_y",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "If sin y = x sin(a + y), show that dy/dx = sin²(a + y)/sin a, where a is not a multiple of π.",
+          "question_id": "ts_ipe_m1b_dif_sin_y_equals_x_sin_a_plus_y",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Find the derivative of the function log[(x² + x + 2)/(x² − x + 2)].",
+          "question_id": "ts_ipe_m1b_dif_log_quadratic_ratio",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Find dy/dx for the function x = a(cos t + t sin t), y = a(sin t − t cos t).",
+          "question_id": "ts_ipe_m1b_dif_param_a_cos_t_plus_t_sin_t",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "If x = 3 cos t − 2 cos³t and y = 3 sin t − 2 sin³t, find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_param_3_cos_t_minus_2_cos3t",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "If y = tan⁻¹√((1 − x)/(1 + x)), |x| < 1, find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_root_1_minus_x_over_1_plus_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Find the derivative of tan⁻¹((3a²x − x³)/(a(a² − 3x²))).",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_3a2x_minus_x3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Find dy/dx for x = a((1 − t²)/(1 + t²)), y = 2bt/(1 + t²).",
+          "question_id": "ts_ipe_m1b_dif_param_1_minus_t2_over_1_plus_t2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "If f(x) = tan⁻¹((√(1 + x²) − 1)/x) and g(x) = tan⁻¹x, differentiate f(x) with respect to g(x).",
+          "question_id": "ts_ipe_m1b_dif_f_wrt_g_tan_inverse_pair",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Find the derivative of tan⁻¹(sec x + tan x).",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_sec_x_plus_tan_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "If y = a cos x + (b + 2x) sin x, show that y″ + y = 4 cos x.",
+          "question_id": "ts_ipe_m1b_dif_a_cos_x_plus_b_plus_2x_sin_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "If y = ax^(n+1) + bx^(−n), prove that x²y″ = n(n + 1)y.",
+          "question_id": "ts_ipe_m1b_dif_ax_n_plus_1_plus_bx_minus_n",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq15",
+          "section": "SAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "If y = a cos(sin x) + b sin(sin x), prove that y₂ + (tan x)y₁ + y cos²x = 0.",
+          "question_id": "ts_ipe_m1b_dif_a_cos_sin_x_plus_b_sin_sin_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq16",
+          "section": "SAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "If x = a(t − sin t) and y = a(1 + cos t), find d²y/dx².",
+          "question_id": "ts_ipe_m1b_dif_param_cycloid_second_deriv",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq17",
+          "section": "SAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "If ay⁴ = (x + b)⁵, show that 5yy″ = (y′)².",
+          "question_id": "ts_ipe_m1b_dif_ay4_equals_x_plus_b_5",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "If √(1 − x²) + √(1 − y²) = a(x − y), show that dy/dx = √((1 − y²)/(1 − x²)).",
+          "question_id": "ts_ipe_m1b_dif_root_1_minus_x2_plus_root_1_minus_y2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2i",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Find dy/dx if y = (sin x)ˣ + x^(sin x).",
+          "question_id": "ts_ipe_m1b_dif_sin_x_power_x_plus_x_power_sin_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2ii",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Find dy/dx if y = x^(tan x) + (sin x)^(cos x).",
+          "question_id": "ts_ipe_m1b_dif_x_power_tan_x_plus_sin_x_power_cos_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "If y = tan⁻¹[(√(1 + x²) + √(1 − x²))/(√(1 + x²) − √(1 − x²))] for 0 < |x| < 1, find dy/dx.",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_root_sum_over_difference",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "If y = x√(a² + x²) + a² log(x + √(a² + x²)), prove that dy/dx = 2√(a² + x²).",
+          "question_id": "ts_ipe_m1b_dif_x_root_a2_plus_x2_plus_a2_log",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "If xʸ = yˣ, show that dy/dx = y(x log y − y)/(x(y log x − x)).",
+          "question_id": "ts_ipe_m1b_dif_x_power_y_equals_y_power_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "If x^(log y) = log x, show that dy/dx = (y/x)[(1 − log x log y)/(log x)²].",
+          "question_id": "ts_ipe_m1b_dif_x_power_log_y_equals_log_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "If xʸ + yˣ = aᵇ, show that dy/dx = −[(yx^(y−1) + yˣ log y)/(xʸ log x + xy^(x−1))].",
+          "question_id": "ts_ipe_m1b_dif_x_power_y_plus_y_power_x_equals_ab",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "If f(x) = sin⁻¹√((x − β)/(α − β)) and g(x) = tan⁻¹√((x − β)/(α − x)), show that f′(x) = g′(x), where β < x < α.",
+          "question_id": "ts_ipe_m1b_dif_sin_inverse_and_tan_inverse_equal_derivatives",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "If y = tan⁻¹(2x/(1 − x²)) + tan⁻¹((3x − x³)/(1 − 3x²)) − tan⁻¹((4x − 4x³)/(1 − 6x² + x⁴)), show that dy/dx = 1/(1 + x²).",
+          "question_id": "ts_ipe_m1b_dif_three_tan_inverse_sum_derivative",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Find the derivative dy/dx of the function y = [(1 − 2x)^(2/3)(1 + 3x)^(−3/4)]/[(1 − 6x)^(5/6)(1 + 7x)^(−6/7)].",
+          "question_id": "ts_ipe_m1b_dif_log_diff_fractional_powers",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Find the derivative of f(x) = tan⁻¹(2x/(1 − x²)) with respect to g(x) = sin⁻¹(2x/(1 + x²)).",
+          "question_id": "ts_ipe_m1b_dif_tan_inverse_wrt_sin_inverse",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "If a > b > 0 and 0 < x < π, and f(x) = (a² − b²)^(−1/2) cos⁻¹((a cos x + b)/(a + b cos x)), show that f′(x) = 1/(a + b cos x).",
+          "question_id": "ts_ipe_m1b_dif_cos_inverse_a_cos_x_plus_b",
+          "source": "chaitanya_fastrack"
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "name": "Applications of Derivatives (Maths-1B)",
+      "subject": "mathematics_1b",
+      "questions": [
+        {
+          "ref": "ea1i",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find dy and Δy for y = x² + 3x + 6 when x = 10 and Δx = 0.01.",
+          "question_id": "ts_ipe_m1b_ad_dy_delta_y_x2_plus_3x_plus_6",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea1ii",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find dy and Δy for y = x² + x when x = 10 and Δx = 0.1.",
+          "question_id": "ts_ipe_m1b_ad_dy_delta_y_x2_plus_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea1iii",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find dy and Δy for y = 5x² + 6x + 6 when x = 2 and Δx = 0.001.",
+          "question_id": "ts_ipe_m1b_ad_dy_delta_y_5x2_plus_6x_plus_6",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea1iv",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find dy and Δy for y = eˣ + x when x = 5 and Δx = 0.02.",
+          "question_id": "ts_ipe_m1b_ad_dy_delta_y_ex_plus_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea1v",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Find dy and Δy for y = 1/(x + 2) when x = 8 and Δx = 0.02.",
+          "question_id": "ts_ipe_m1b_ad_dy_delta_y_one_over_x_plus_2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea2i",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Find the approximate value of ∛999.",
+          "question_id": "ts_ipe_m1b_ad_approx_cbrt_999",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea2ii",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Find the approximate value of √82.",
+          "question_id": "ts_ipe_m1b_ad_approx_root_82",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea2iii",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Find the approximate value of cos(60° 5′).",
+          "question_id": "ts_ipe_m1b_ad_approx_cos_60_deg_5_min",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea2iv",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Find the approximate value of √65.",
+          "question_id": "ts_ipe_m1b_ad_approx_root_65",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea2v",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Find the approximate value of ∛7.8.",
+          "question_id": "ts_ipe_m1b_ad_approx_cbrt_7_8",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "The side of a square increases by 4%. Find the percentage change in the area of the square.",
+          "question_id": "ts_ipe_m1b_ad_square_side_up_4_percent",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "The time T of one complete oscillation of a simple pendulum of length l is given by T = 2π√(l/g), where g is the gravitational constant. Find the approximate percentage error in T when the percentage error in l is 1%.",
+          "question_id": "ts_ipe_m1b_ad_pendulum_percentage_error",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "The side of a square is increased from 3 cm to 3.01 cm. Find the approximate increase in the area of the square.",
+          "question_id": "ts_ipe_m1b_ad_square_3_to_3_01",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "The diameter of a sphere is measured as 40 cm. If an error of 0.02 cm is made in the measurement, find the approximate errors in the volume and the surface area of the sphere.",
+          "question_id": "ts_ipe_m1b_ad_sphere_diameter_40_error",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "The radius of a sphere is increased from 7 cm to 7.02 cm. Find the approximate increase in the volume of the sphere.",
+          "question_id": "ts_ipe_m1b_ad_sphere_radius_7_to_7_02",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Define the relative error and the percentage error of a variable y.",
+          "question_id": "ts_ipe_m1b_ad_define_relative_and_percentage_error",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "ea9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "If y = f(x) = k xⁿ, show that the approximate relative error in y is n times the relative error in x, where n and k are constants.",
+          "question_id": "ts_ipe_m1b_ad_kxn_relative_error",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "A container is in the shape of an inverted cone of height 8 m and radius 6 m at the top. It is filled with water at the rate of 2 cubic metres per minute. How fast is the height of the water changing when the level is 4 m?",
+          "question_id": "ts_ipe_m1b_ad_cone_water_height_rate_8m_6m",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "A container is in the shape of an inverted cone of height 12 cm and radius 6 cm at the top. It is filled with water at the rate of 12 cm³/sec. What is the rate of change of the height of the water level when the tank is filled to 8 cm?",
+          "question_id": "ts_ipe_m1b_ad_cone_water_height_rate_12cm_6cm",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "The volume of a cube is increasing at the rate of 9 cubic cm/sec. How fast is the surface area increasing when the length of an edge is 10 cm?",
+          "question_id": "ts_ipe_m1b_ad_cube_surface_rate_volume_9",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "The volume of a cube is increasing at the rate of 8 cm³/sec. How fast is the surface area increasing when the length of a side is 12 cm?",
+          "question_id": "ts_ipe_m1b_ad_cube_surface_rate_volume_8",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "A point P is moving on the curve y = 2x². The x-coordinate of P is increasing at the rate of 4 units/sec. Find the rate at which the y-coordinate is increasing when the point is at (2, 8).",
+          "question_id": "ts_ipe_m1b_ad_point_on_y_2x2_rate",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "A stone is dropped into a quiet lake and the ripples move out in circles at a speed of 5 cm/sec. At the instant when the radius of the circular ripple is 8 cm, how fast is the enclosed area increasing?",
+          "question_id": "ts_ipe_m1b_ad_ripple_area_rate_radius_8",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "The radius of a circle is increasing at the rate of 0.7 cm/sec. What is the rate of increase of its circumference?",
+          "question_id": "ts_ipe_m1b_ad_circle_circumference_rate",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "A balloon which always remains spherical on inflation is being inflated by pumping in 900 cubic centimetres of gas per second. Find the rate at which the radius of the balloon increases when the radius is 15 cm.",
+          "question_id": "ts_ipe_m1b_ad_balloon_radius_rate_900",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "The radius of an air bubble is increasing at the rate of 1/2 cm/sec. At what rate is the volume of the bubble increasing when the radius is 1 cm?",
+          "question_id": "ts_ipe_m1b_ad_air_bubble_volume_rate",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm10i",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "The total cost C(x) in rupees of producing x units of an item is C(x) = 0.005x³ − 0.02x² + 30x + 500. Find the marginal cost when 3 units are produced. (Marginal cost is the rate of change of total cost.)",
+          "question_id": "ts_ipe_m1b_ad_marginal_cost_3_units",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm10ii",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "The total revenue in rupees from the sale of x units of a product is R(x) = 3x² + 36x + 5. Find the marginal revenue at x = 5. (Marginal revenue is the rate of change of total revenue.)",
+          "question_id": "ts_ipe_m1b_ad_marginal_revenue_x_5",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm11i",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "A kind of bacteria grows so that at time t seconds there are t³⁄² bacteria. Find the rate of growth at time t = 4 seconds.",
+          "question_id": "ts_ipe_m1b_ad_bacteria_t_three_halves_rate",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm11ii",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "A kind of bacteria grows as t³ (t in seconds). At what time is the rate of growth of the bacteria 300 bacteria per second?",
+          "question_id": "ts_ipe_m1b_ad_bacteria_t_cubed_rate_300",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "A particle is moving along a line according to S = 4t³ − 3t² + 5t − 1, where S is measured in metres and t in seconds. Find the velocity and the acceleration at time t. At what time is the acceleration zero?",
+          "question_id": "ts_ipe_m1b_ad_particle_s_4t3_minus_3t2_acceleration_zero",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "A particle moving along a straight line has the relation S = t³ + 2t + 3 connecting the distance S described by the particle in time t. Find the velocity and the acceleration of the particle at t = 4 sec.",
+          "question_id": "ts_ipe_m1b_ad_particle_s_t3_plus_2t_plus_3_at_4",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "The displacement of a particle travelling in a straight line in t seconds is S = 45t + 11t² − t³. Find the time at which the particle comes to rest.",
+          "question_id": "ts_ipe_m1b_ad_particle_45t_plus_11t2_minus_t3_rest",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "The distance-time formula for the motion of a particle along a straight line is S = t³ − 9t² + 24t − 18. Find when and where the velocity is zero.",
+          "question_id": "ts_ipe_m1b_ad_particle_t3_minus_9t2_velocity_zero",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "A particle is moving in a straight line so that after t seconds its distance s (in cm) from a fixed point on the line is s = f(t) = 8t + t³. Find (i) the velocity at time t = 2 sec, (ii) the initial velocity, and (iii) the acceleration at t = 2 sec.",
+          "question_id": "ts_ipe_m1b_ad_particle_8t_plus_t3_velocity_acceleration",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rm17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Find the average rate of change of s = f(t) = 2t² + 3 between t = 2 and t = 4.",
+          "question_id": "ts_ipe_m1b_ad_average_rate_2t2_plus_3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "If the tangent at any point on the curve x²⁄³ + y²⁄³ = a²⁄³ intersects the coordinate axes in A and B, show that the length AB is a constant.",
+          "question_id": "ts_ipe_m1b_ad_astroid_tangent_ab_constant",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Show that the equation of the tangent to the curve √x + √y = √a at the point (x₁, y₁) is x·x₁⁻¹⁄² + y·y₁⁻¹⁄² = a¹⁄².",
+          "question_id": "ts_ipe_m1b_ad_tangent_root_x_plus_root_y_equals_root_a",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "At any point t on the curve x = a(t + sin t), y = a(1 − cos t), find the lengths of the tangent, the normal, the subtangent and the subnormal.",
+          "question_id": "ts_ipe_m1b_ad_cycloid_tangent_normal_subtangent_subnormal",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Show that the curves y² = 4(x + 1) and y² = 36(9 − x) intersect orthogonally.",
+          "question_id": "ts_ipe_m1b_ad_curves_y2_4x_plus_1_and_y2_36_9_minus_x_orthogonal",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn5i",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Find the angle between the curves y² = 4x and x² + y² = 5.",
+          "question_id": "ts_ipe_m1b_ad_angle_y2_4x_and_circle_5",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn5ii",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Find the angle between the curves y² = 8x and 4x² + y² = 32.",
+          "question_id": "ts_ipe_m1b_ad_angle_y2_8x_and_ellipse_32",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Show that the curves 6x² − 5x + 2y = 0 and 4x² + 8y² = 3 touch each other at (1/2, 1/2).",
+          "question_id": "ts_ipe_m1b_ad_curves_touch_at_half_half",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn7i",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Find the angle between the curves xy = 2 and x² + 4y = 0.",
+          "question_id": "ts_ipe_m1b_ad_angle_xy_2_and_x2_plus_4y",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn7ii",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Find the angle between the curves 2y² − 9x = 0 and 3x² + 4y = 0 in the fourth quadrant.",
+          "question_id": "ts_ipe_m1b_ad_angle_2y2_9x_and_3x2_4y_fourth_quadrant",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn7iii",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Find the angle between the curves x + y + 2 = 0 and x² + y² − 10y = 0.",
+          "question_id": "ts_ipe_m1b_ad_angle_line_and_circle_x2_y2_10y",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn7iv",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Find the angle between the curves x² + 3y = 3 and x² − y² + 25 = 0.",
+          "question_id": "ts_ipe_m1b_ad_angle_x2_3y_3_and_x2_minus_y2_25",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Show that the square of the length of the subtangent at any point on the curve by² = (x + a)³ varies with the length of the subnormal at that point.",
+          "question_id": "ts_ipe_m1b_ad_subtangent_squared_varies_subnormal",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Find the value of k so that the length of the subnormal at any point on the curve y = a¹⁻ᵏxᵏ is constant.",
+          "question_id": "ts_ipe_m1b_ad_subnormal_constant_find_k",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Find the equations of the tangent and the normal to the curve y = x⁴ − 6x³ + 13x² − 10x + 5 at (0, 5).",
+          "question_id": "ts_ipe_m1b_ad_tangent_normal_quartic_at_0_5",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn11i",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Find the equations of the tangent and the normal to the curve xy = 10 at (2, 5).",
+          "question_id": "ts_ipe_m1b_ad_tangent_normal_xy_10_at_2_5",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn11ii",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Find the equation of the tangent and the normal to the curve y = 5x⁴ at the point (1, 5).",
+          "question_id": "ts_ipe_m1b_ad_tangent_normal_y_5x4_at_1_5",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn11iii",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Find the equation of the tangent and the normal to the curve y⁴ = ax³ at (a, a).",
+          "question_id": "ts_ipe_m1b_ad_tangent_normal_y4_ax3_at_a_a",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Show that the tangent at any point θ on the curve x = c sec θ, y = c tan θ is y sin θ = x − c cos θ.",
+          "question_id": "ts_ipe_m1b_ad_tangent_sec_tan_curve",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Find the equation of the tangent and the normal to the curve y = 2e^(−x/3) at the point where the curve meets the y-axis.",
+          "question_id": "ts_ipe_m1b_ad_tangent_normal_2e_minus_x_over_3_y_axis",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Find the lengths of the normal and the subnormal at a point on the curve y = (a/2)(e^(x/a) + e^(−x/a)).",
+          "question_id": "ts_ipe_m1b_ad_normal_subnormal_catenary",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn15",
+          "section": "SAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Show that at any point (x, y) on the curve y = b e^(x/a): (i) the length of the subtangent is constant, and (ii) the length of the subnormal is y²/a.",
+          "question_id": "ts_ipe_m1b_ad_subtangent_constant_subnormal_y2_over_a",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn16",
+          "section": "SAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Find the lengths of the subtangent and the subnormal to the curve y = b sin(x/a) at any point.",
+          "question_id": "ts_ipe_m1b_ad_subtangent_subnormal_b_sin_x_over_a",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn17",
+          "section": "SAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Find the equations of the normal to the curve y = x² − 4x + 2 at (4, 2).",
+          "question_id": "ts_ipe_m1b_ad_normal_y_x2_minus_4x_plus_2_at_4_2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn18",
+          "section": "SAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Find the equations of the tangent and the normal to the curve y = x³ + 4x² at (−1, 3).",
+          "question_id": "ts_ipe_m1b_ad_tangent_normal_x3_plus_4x2_at_minus1_3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn19",
+          "section": "SAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Find the slope of the normal to the curve x = a cos³θ, y = a sin³θ at θ = π/4.",
+          "question_id": "ts_ipe_m1b_ad_slope_normal_astroid_at_pi_over_4",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn20",
+          "section": "SAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Show that the length of the subnormal at any point on the curve y² = 4ax is a constant.",
+          "question_id": "ts_ipe_m1b_ad_subnormal_constant_y2_4ax",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "tn21",
+          "section": "SAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Show that the length of the subtangent at any point on the curve y = aˣ (a > 0) is constant.",
+          "question_id": "ts_ipe_m1b_ad_subtangent_constant_y_a_power_x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "mm1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "If the curved surface of a right circular cylinder inscribed in a sphere of radius r is maximum, show that the height of the cylinder is √2 r.",
+          "question_id": "ts_ipe_m1b_ad_cylinder_in_sphere_max_curved_surface",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "mm2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "From a rectangular sheet of dimensions 30 cm × 80 cm, four equal squares of side x cm are removed at the corners, and the sides are then turned up so as to form an open rectangular box. Find the value of x so that the volume of the box is the greatest.",
+          "question_id": "ts_ipe_m1b_ad_open_box_30_by_80_max_volume",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "mm3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Find the maximum area of the rectangle that can be formed with a fixed perimeter 20.",
+          "question_id": "ts_ipe_m1b_ad_max_area_rectangle_perimeter_20",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "mm4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Prove that the radius of the right circular cylinder of greatest curved surface area which can be inscribed in a given cone is half of that of the cone.",
+          "question_id": "ts_ipe_m1b_ad_cylinder_in_cone_max_curved_surface",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "mm5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Find two positive integers x and y such that x + y = 60 and xy³ is maximum.",
+          "question_id": "ts_ipe_m1b_ad_two_integers_sum_60_xy3_max",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "mm6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Find two positive numbers whose sum is 15, so that the sum of their squares is minimum.",
+          "question_id": "ts_ipe_m1b_ad_two_numbers_sum_15_min_sum_squares",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "mm7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Find the absolute maximum value and the absolute minimum value of the function f(x) = x + sin 2x in [0, π].",
+          "question_id": "ts_ipe_m1b_ad_absolute_extrema_x_plus_sin_2x",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "mm8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "The profit function P(x) of a company selling x items per day is given by P(x) = (150 − x)x − 1600. Find the number of items that the company should sell to get the maximum profit. Also find the maximum profit.",
+          "question_id": "ts_ipe_m1b_ad_profit_150_minus_x_max",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "mm9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Find the absolute extremum of f(x) = x² defined on [−2, 2].",
+          "question_id": "ts_ipe_m1b_ad_absolute_extremum_x2_on_minus2_2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "mm10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Find the intervals on which f(x) = x² − 3x + 8 is increasing or decreasing.",
+          "question_id": "ts_ipe_m1b_ad_intervals_increasing_decreasing_x2_minus_3x_plus_8",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "State Rolle's theorem and Lagrange's mean value theorem.",
+          "question_id": "ts_ipe_m1b_ad_state_rolle_and_lagrange",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl2i",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Verify Rolle's theorem for the function f(x) = x² + 4 in [−3, 3].",
+          "question_id": "ts_ipe_m1b_ad_rolle_x2_plus_4_on_minus3_3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl2ii",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Verify Rolle's theorem for the function f(x) = x² − 1 on [−1, 1].",
+          "question_id": "ts_ipe_m1b_ad_rolle_x2_minus_1_on_minus1_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl2iii",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Verify Rolle's theorem for the function f(x) = sin x − sin 2x on [0, π].",
+          "question_id": "ts_ipe_m1b_ad_rolle_sin_x_minus_sin_2x_on_0_pi",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Verify Rolle's theorem for the function (x² − 1)(x − 2) on [−1, 2]. Find the point in the interval where the derivative vanishes.",
+          "question_id": "ts_ipe_m1b_ad_rolle_x2_minus_1_x_minus_2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Let f(x) = (x − 1)(x − 2)(x − 3). Prove that there is more than one c in (1, 3) such that f′(c) = 0.",
+          "question_id": "ts_ipe_m1b_ad_more_than_one_c_cubic",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Verify Rolle's theorem for f(x) = x(x + 3)e^(−x/2) on [−3, 0].",
+          "question_id": "ts_ipe_m1b_ad_rolle_x_x_plus_3_e_minus_x_over_2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Verify Rolle's theorem for the function log(x² + 2) − log 3 on (−1, 1).",
+          "question_id": "ts_ipe_m1b_ad_rolle_log_x2_plus_2_minus_log_3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "It is given that Rolle's theorem holds for the function f(x) = x³ + bx² + ax on [1, 3] with c = 2 + 1/√3. Find the values of a and b.",
+          "question_id": "ts_ipe_m1b_ad_rolle_holds_find_a_and_b",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl8i",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Verify the conditions of Lagrange's mean value theorem for x² − 1 on [2, 3], and find a point c in the interval as stated by the theorem.",
+          "question_id": "ts_ipe_m1b_ad_lmvt_x2_minus_1_on_2_3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl8ii",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Verify the conditions of Lagrange's mean value theorem for sin x − sin 2x on [0, π], and find a point c in the interval as stated by the theorem.",
+          "question_id": "ts_ipe_m1b_ad_lmvt_sin_x_minus_sin_2x_on_0_pi",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Verify the Lagrange's mean value theorem for the function logₑ x on [1, 2].",
+          "question_id": "ts_ipe_m1b_ad_lmvt_log_x_on_1_2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl10i",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Find c so that f′(c) = (f(b) − f(a))/(b − a) for f(x) = x² − 3x − 1, a = −11/7, b = 13/7.",
+          "question_id": "ts_ipe_m1b_ad_find_c_x2_minus_3x_minus_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl10ii",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Find c so that f′(c) = (f(b) − f(a))/(b − a) for f(x) = eˣ, a = 0, b = 1.",
+          "question_id": "ts_ipe_m1b_ad_find_c_ex_on_0_1",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "On the curve y = x², find a point at which the tangent is parallel to the chord joining (0, 0) and (1, 1).",
+          "question_id": "ts_ipe_m1b_ad_tangent_parallel_chord_y_x2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "rl12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Show that there is no real number k for which the equation x² − 3x + k = 0 has two distinct roots in [0, 1].",
+          "question_id": "ts_ipe_m1b_ad_no_k_two_distinct_roots",
+          "source": "chaitanya_fastrack"
         }
       ]
     },

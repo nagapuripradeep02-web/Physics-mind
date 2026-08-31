@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_ap_mth_1_over_n_nth_1_over_m",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the mth term of an A.P. is 1/n and the nth term is 1/m, show that the (mn)th term is 1.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Subtract the two equations to find d",
+      "marks": 1
+    },
+    {
+      "label": "Find a and the (mn)th term",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.21, chapter 3 SEQUENCES & SERIES, Very Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say what you get for d, and what you notice about a.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_d",
+        "kind": "equation",
+        "label": "Subtract the two equations to find d",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Combine 1/n − 1/m over the common denominator mn before cancelling. Say m ≠ n before dividing.",
+        "memory_tip": "1/n − 1/m = (m − n)/(mn), so the same (m − n) appears on both sides.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a be the first term and d the common difference.",
+          "a + (m − 1)d = 1/n  … (1)",
+          "a + (n − 1)d = 1/m  … (2)",
+          "(1) − (2):  (m − n)d = 1/n − 1/m = (m − n)/(mn)",
+          "Since m ≠ n, divide by (m − n):  d = 1/(mn)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That subtracting the two equations gives (m − n)d = (m − n)/(mn), so d = 1/(mn).",
+          "accept": [
+            "subtract the two equations to remove a",
+            "one by n minus one by m is m minus n over m n",
+            "the common difference is one by m n",
+            "rendu subtract cheste d one by m n vasthundi",
+            "the m minus n cancels from both sides"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "subtract",
+            "one by m n",
+            "common denominator",
+            "m minus n"
+          ]
+        },
+        "why": "The right side 1/n − 1/m becomes (m − n)/(mn), and the same factor m − n stands on the left, so it cancels and leaves d directly.",
+        "common_mistakes": [
+          "Writing 1/n − 1/m = (n − m)/(mn) with the subtraction reversed.",
+          "Writing 1/n − 1/m = 1/(n − m)."
+        ]
+      },
+      {
+        "id": "s2_term_one",
+        "kind": "boxed_final",
+        "label": "Find a and the (mn)th term",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Write 1/n as m/(mn) first, so both fractions have the same denominator. a and d come out equal.",
+        "memory_tip": "a = d = 1/(mn), so the (mn)th term is mn lots of 1/(mn), which is 1.",
+        "lines": [
+          "Put d = 1/(mn) in (1):  a + (m − 1)/(mn) = 1/n = m/(mn)",
+          "a = m/(mn) − (m − 1)/(mn) = (m − m + 1)/(mn) = 1/(mn)",
+          "(mn)th term = a + (mn − 1)d",
+          "= 1/(mn) + (mn − 1)/(mn) = mn/(mn)",
+          {
+            "text": "∴ the (mn)th term = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 1/(mn), so the (mn)th term is 1/(mn) + (mn − 1)/(mn) = 1.",
+          "accept": [
+            "the first term is also one by m n",
+            "substitute d back to find a",
+            "one by m n plus m n minus one by m n is one",
+            "a kuda one by m n, so term one avuthundi",
+            "a and d are equal so the m n term is one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by m n",
+            "first term",
+            "equals one",
+            "m n minus one"
+          ]
+        },
+        "why": "Here a and d both work out to 1/(mn), so the (mn)th term is mn copies of 1/(mn). That is why the answer is exactly 1.",
+        "common_mistakes": [
+          "Assuming a = d without showing it from equation (1).",
+          "Writing 1/n as 1/(mn) when putting the two fractions over one denominator."
+        ]
+      }
+    ]
+  }
+}

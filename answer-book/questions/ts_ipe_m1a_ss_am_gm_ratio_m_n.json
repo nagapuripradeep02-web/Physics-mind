@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_ss_am_gm_ratio_m_n",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "Sequences and Series"
+  },
+  "chapter": "Sequences and Series",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the A.M. and the G.M. between two numbers are in the ratio m : n, prove that the numbers are in the ratio m + √(m² − n²) : m − √(m² − n²).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the ratio and apply componendo and dividendo",
+      "marks": 1
+    },
+    {
+      "label": "Apply the rule again and square",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.21, chapter 3 SEQUENCES & SERIES, Very Short Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no mark allocation anywhere, on any banner or any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question. Sequences and Series is NEW to the 2026-27 Telangana syllabus, so this question has never appeared on a board paper — appearances[] is empty and the catalog marks the row predicted. The source book leaves this whole chapter unstarred, which is what a freshly typeset chapter with no exam history looks like. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name the rule you use twice and say what appears under the square root.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Sequences and Series · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_componendo",
+        "kind": "equation",
+        "label": "Write the ratio and apply componendo and dividendo",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both the ratio (a + b)/(2√(ab)) = m/n and the named rule must be written before the square root is taken.",
+        "memory_tip": "a + b ± 2√(ab) = (√a ± √b)², which is why componendo and dividendo is used here.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the two numbers be a and b.",
+          "A.M. : G.M. = m : n  ⇒  (a + b)/(2√(ab)) = m/n",
+          "By componendo and dividendo,",
+          "(a + b + 2√(ab))/(a + b − 2√(ab)) = (m + n)/(m − n)",
+          "(√a + √b)²/(√a − √b)² = (m + n)/(m − n)",
+          "(√a + √b)/(√a − √b) = √(m + n)/√(m − n)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (a + b)/(2√(ab)) = m/n, and componendo and dividendo gives (√a + √b)/(√a − √b) = √(m + n)/√(m − n).",
+          "accept": [
+            "a m by g m is a plus b over two root a b",
+            "apply componendo and dividendo to get perfect squares",
+            "take the square root of both sides after the rule",
+            "componendo dividendo tho perfect square vasthundi",
+            "the ratio becomes m plus n over m minus n"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "componendo",
+            "two root a b",
+            "m plus n",
+            "m minus n"
+          ]
+        },
+        "why": "Adding and subtracting 2√(ab) turns both sides of the ratio into perfect squares, so the square root can be taken cleanly.",
+        "common_mistakes": [
+          "Writing (a + b)/√(ab) = m/n and losing the 2 in the denominator.",
+          "Taking the square root of only one side of the ratio."
+        ]
+      },
+      {
+        "id": "s2_square",
+        "kind": "boxed_final",
+        "label": "Apply the rule again and square",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. (m + n)(m − n) = m² − n² is what sits under the root, and the factor 2 cancels from top and bottom.",
+        "memory_tip": "(m + n) + (m − n) = 2m, and the cross term contains √(m² − n²).",
+        "lines": [
+          "By componendo and dividendo again,",
+          "√a/√b = (√(m + n) + √(m − n))/(√(m + n) − √(m − n))",
+          "Squaring both sides,",
+          "a/b = [(m + n) + (m − n) + 2√((m + n)(m − n))] / [(m + n) + (m − n) − 2√((m + n)(m − n))]",
+          "= (2m + 2√(m² − n²))/(2m − 2√(m² − n²))",
+          {
+            "text": "∴ a : b = m + √(m² − n²) : m − √(m² − n²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring gives 2m ± 2√(m² − n²), and the 2 cancels to leave the required ratio.",
+          "accept": [
+            "apply the rule a second time then square",
+            "m plus n plus m minus n is two m",
+            "the cross term is two root m squared minus n squared",
+            "square cheste two m plus two root m square minus n square",
+            "the two cancels from numerator and denominator"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two m",
+            "m squared minus n squared",
+            "cross term",
+            "square both sides"
+          ]
+        },
+        "why": "Squaring adds the two brackets to 2m and leaves the cross term 2√((m + n)(m − n)) = 2√(m² − n²). The common factor 2 then cancels.",
+        "common_mistakes": [
+          "Writing the cross term as 2√(m + n) + 2√(m − n) instead of one root of the product.",
+          "Replacing √(m² − n²) with m − n, which is not equal to it."
+        ]
+      }
+    ]
+  }
+}

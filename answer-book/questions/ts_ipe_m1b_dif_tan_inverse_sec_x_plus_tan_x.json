@@ -1,0 +1,224 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_dif_tan_inverse_sec_x_plus_tan_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Differentiation"
+  },
+  "chapter": "Differentiation",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the derivative of tan⁻¹(sec x + tan x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Combine the bracket over cos x",
+      "marks": 1
+    },
+    {
+      "label": "Write both parts in half angles",
+      "marks": 1
+    },
+    {
+      "label": "Recognise tan(π/4 + x/2)",
+      "marks": 1
+    },
+    {
+      "label": "Differentiate the simple form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.202, chapter 9 DIFFERENTIATION, Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a CHAPTER-level marks banner (8M + 4M + 2 × 2M = 16M) but no per-step allocation on any answer. The split follows the shape this bank uses for a Maths-1B Section B question. The printed stem gives no interval; the answer states the range −π/2 < x < π/2, on which sec x and tan x are defined and the principal value of the inverse tangent equals π/4 + x/2. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8 under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — say what sec x + tan x simplifies to before you differentiate.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Differentiation · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_combine_bracket",
+        "kind": "equation",
+        "label": "Combine the bracket over cos x",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Simplifying before differentiating is the method being tested. A quotient-rule attempt on the original bracket reaches the same answer only after a page of algebra.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = Tan⁻¹(sec x + tan x)",
+          "sec x + tan x = 1/cos x + sin x/cos x = (1 + sin x) / cos x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sec x + tan x is first written as the single fraction (1 + sin x)/cos x.",
+          "accept": [
+            "write sec x plus tan x as one plus sin x over cos x",
+            "simplify the bracket before differentiating",
+            "both terms have cos x in the denominator so combine them",
+            "sec x plus tan x ni one plus sin x by cos x ga rayali",
+            "take cos x common in the denominator"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sec x plus tan x",
+            "one plus sin x",
+            "over cos x",
+            "simplify first"
+          ]
+        },
+        "why": "Differentiating the bracket as it stands needs the derivative of sec x + tan x inside a quotient. One line of algebra removes all of that work.",
+        "common_mistakes": [
+          "Differentiating Tan⁻¹(sec x + tan x) directly with the chain rule and stopping at an unsimplified expression.",
+          "Writing sec x as cos x rather than 1/cos x."
+        ],
+        "memory_tip": "Whenever an inverse trigonometric function has a bracket, simplify the bracket first and differentiate last."
+      },
+      {
+        "id": "s2_half_angles",
+        "kind": "equation",
+        "label": "Write both parts in half angles",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. 1 + sin x is a perfect square in the half angles, and cos x factorises with the same bracket — that shared factor is what cancels.",
+        "lines": [
+          "1 + sin x = cos²(x/2) + sin²(x/2) + 2 sin(x/2) cos(x/2) = (cos(x/2) + sin(x/2))²",
+          "cos x = cos²(x/2) − sin²(x/2) = (cos(x/2) + sin(x/2))(cos(x/2) − sin(x/2))",
+          "(1 + sin x)/cos x = (cos(x/2) + sin(x/2)) / (cos(x/2) − sin(x/2))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + sin x = (cos(x/2) + sin(x/2))², cos x factorises with the same bracket, and one factor cancels.",
+          "accept": [
+            "one plus sin x is cos half x plus sin half x whole squared",
+            "cos x factorises into the sum and the difference of the half angles",
+            "the common bracket cancels leaving sum over difference",
+            "one plus sin x perfect square avuthundi half angles lo",
+            "use sin squared plus cos squared equals one to build the square"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "half angle",
+            "perfect square",
+            "cos half x",
+            "sin half x",
+            "cancels"
+          ]
+        },
+        "why": "Writing 1 as sin²(x/2) + cos²(x/2) turns 1 + sin x into a perfect square, and cos x carries the same bracket as a factor, so the fraction shortens by one cancellation.",
+        "common_mistakes": [
+          "Writing cos x as cos²(x/2) + sin²(x/2), which equals 1, instead of the difference.",
+          "Forgetting the middle term 2 sin(x/2) cos(x/2) when expanding the square."
+        ],
+        "memory_tip": "sin x = 2 sin(x/2) cos(x/2) is the middle term of the square, so 1 + sin x is always a perfect square."
+      },
+      {
+        "id": "s3_recognise_tan_sum",
+        "kind": "equation",
+        "label": "Recognise tan(π/4 + x/2)",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Third mark. This is the identity the question is built on. For −π/2 < x < π/2 the angle π/4 + x/2 lies in (0, π/2), inside the principal range, so the inverse tangent cancels the tangent exactly.",
+        "lines": [
+          "Divide numerator and denominator by cos(x/2):",
+          "= (1 + tan(x/2)) / (1 − tan(x/2)) = tan(π/4 + x/2),  since tan(π/4) = 1",
+          "For −π/2 < x < π/2, the angle π/4 + x/2 lies in (0, π/2), so",
+          "y = Tan⁻¹(tan(π/4 + x/2)) = π/4 + x/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction is tan(π/4 + x/2), so y = π/4 + x/2 on the stated interval.",
+          "accept": [
+            "one plus tan half x over one minus tan half x is tan of pi by four plus x by two",
+            "the whole bracket is the tangent of pi by four plus half x",
+            "y becomes pi by four plus x by two",
+            "tan of pi by four plus x by two vasthundi",
+            "the inverse tangent cancels the tangent inside the principal range"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi by four",
+            "x by two",
+            "tan addition formula",
+            "principal range"
+          ]
+        },
+        "why": "tan(A + B) with A = π/4 gives exactly (1 + tan B)/(1 − tan B), so the whole bracket is a single tangent and the inverse tangent removes it.",
+        "common_mistakes": [
+          "Reading (1 + tan(x/2))/(1 − tan(x/2)) as tan(π/4) + tan(x/2).",
+          "Cancelling the inverse tangent without checking the angle lies in the principal range."
+        ],
+        "memory_tip": "tan(π/4) = 1, so any fraction of the form (1 + tan B)/(1 − tan B) is tan(π/4 + B)."
+      },
+      {
+        "id": "s4_differentiate",
+        "kind": "boxed_final",
+        "label": "Differentiate the simple form",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. π/4 is a constant and differentiates to 0, so the whole derivative comes from x/2.",
+        "lines": [
+          "y = π/4 + x/2, and π/4 is a constant",
+          "dy/dx = 0 + 1/2",
+          {
+            "text": "∴ dy/dx = 1/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That differentiating π/4 + x/2 gives 1/2.",
+          "accept": [
+            "pi by four is a constant so the derivative is one half",
+            "the answer is one by two",
+            "only x by two differentiates and it gives half",
+            "pi by four constant kabatti derivative one by two",
+            "the derivative is a constant one half"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one half",
+            "one by two",
+            "constant",
+            "pi by four"
+          ]
+        },
+        "why": "After the simplification the function is a straight line in x, so its derivative is the constant slope 1/2 — no trigonometric term survives.",
+        "common_mistakes": [
+          "Differentiating π/4 as π/4 rather than 0.",
+          "Giving 2 instead of 1/2 by differentiating x/2 as 2x."
+        ],
+        "memory_tip": "Check with two values: y(0) = π/4 and y(π/2) = π/2, and the rise π/4 over the run π/2 is 1/2."
+      }
+    ]
+  }
+}
