@@ -144,5 +144,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The trace uses the principal diagonal only — the other six entries are there as a distraction. 1 + (−1) + 1 = 1, and that middle minus sign is easily dropped."
 }

@@ -144,5 +144,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The short route is b(x − x₁) − a(y − y₁) = 0, which swaps the coefficients and flips one sign — no reciprocal needed. The point's y is −3, so that bracket is (y + 3)."
 }

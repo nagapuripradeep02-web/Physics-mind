@@ -282,5 +282,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Substituting l = −(m + n) makes the n² terms cancel, leaving 2m(m + n) = 0 — a factorisation that needs no middle-term splitting. Both roots matter, and the two lines come out at exactly 60°."
 }

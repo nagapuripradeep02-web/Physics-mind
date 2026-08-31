@@ -219,5 +219,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Write the cosecant and secant as fractions first, then take 2 out so √3/2 and ½ become sin60° and cos60°. sin40° then cancels against 2 sin20° cos20°."
 }

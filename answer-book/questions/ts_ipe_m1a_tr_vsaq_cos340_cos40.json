@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Reduce all three angles to 20° and 40° first; the minus sign coming out of sin200° is what turns the sum into cos(A+B). Without that reduction the identity stays invisible."
 }

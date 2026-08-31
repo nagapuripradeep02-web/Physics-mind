@@ -273,5 +273,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Find both APs first: 2n − 1 and 2n + 1. In the step, k(2k+3) + 1 factorises as (2k+1)(k+1), and cancelling that against the denominator is the only real move."
 }

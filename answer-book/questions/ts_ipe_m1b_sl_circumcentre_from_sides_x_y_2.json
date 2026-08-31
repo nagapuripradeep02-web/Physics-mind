@@ -385,5 +385,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The vertices have to be found first — that is two marks before the circumcentre work even begins. Both equations that follow carry a common factor, so divide it out before solving the pair."
 }

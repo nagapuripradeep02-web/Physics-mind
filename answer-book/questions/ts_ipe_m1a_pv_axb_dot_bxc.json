@@ -277,5 +277,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "b appears in both brackets, but they are still two separate cross products. The last step is a DOT product, so the answer is the single number −54 and not a vector."
 }

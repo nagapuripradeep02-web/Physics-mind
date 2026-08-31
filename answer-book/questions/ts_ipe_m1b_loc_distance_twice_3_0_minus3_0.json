@@ -217,5 +217,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "PA = 2PB squares to PA² = 4PB², not 2PB² — the 2 is squared as well. The whole right bracket takes the 4, both the x and the y part, and the finish divides through by the common 3."
 }

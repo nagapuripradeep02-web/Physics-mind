@@ -230,5 +230,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Divide throughout by cos²θ — with no term free of θ, that is what turns this into a quadratic in tanθ. One root is a standard angle and one is not, so Tan⁻¹(1/2) stays in the answer."
 }

@@ -137,5 +137,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Normal form needs p > 0, so multiply through by −1 BEFORE dividing; dividing first gives a negative p and earns nothing. Both cosα and sinα then come out negative, which puts α in the third quadrant."
 }

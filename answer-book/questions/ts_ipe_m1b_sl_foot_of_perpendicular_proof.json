@@ -324,5 +324,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The whole proof turns on naming the common ratio r, which gives h = x₁ + ar and k = y₁ + br. Q lies ON the line, so substituting those produces r directly — no distance formula is needed anywhere."
 }

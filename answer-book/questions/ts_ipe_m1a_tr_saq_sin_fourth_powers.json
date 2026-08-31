@@ -182,5 +182,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Reduce all four angles to π/8, where two of them become cosines. a⁴ + b⁴ = (a²+b²)² − 2a²b² is the identity, and 2 sin cos = sin(π/4) closes it at 3/2."
 }

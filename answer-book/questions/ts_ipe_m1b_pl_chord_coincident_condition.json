@@ -231,5 +231,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Homogenise by replacing the constant a² with a²(lx + my)², then apply h² = ab, because coincident lines are the equal-root case. The a⁴l²m² cancels on both sides, leaving a²(l² + m²) = 1."
 }

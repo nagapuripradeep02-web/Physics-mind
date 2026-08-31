@@ -126,5 +126,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Add position by position; the sizes match, so nothing else is required. Two entries involve a negative, 8 − 4 and 5 − 1, and those are the ones to check."
 }

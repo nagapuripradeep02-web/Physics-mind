@@ -127,5 +127,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Factorise before deciding anything: (x − 1)(x − 2) ≥ 0 holds OUTSIDE the roots, so the answer is two rays. Closed brackets, since a plain root permits zero."
 }

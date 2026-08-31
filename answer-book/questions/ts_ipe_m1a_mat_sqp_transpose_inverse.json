@@ -186,5 +186,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Transpose FIRST and then invert that — the cofactors of A′ are not the cofactors of A rearranged. |A′| = 1, so the inverse is simply the adjoint."
 }

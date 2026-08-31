@@ -175,5 +175,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Reduce all four angles to π/8 first; the two minus signs vanish under a fourth power. Then a⁴ + b⁴ needs (a²+b²)² − 2a²b², and 2 sin cos = sin(π/4) finishes it."
 }

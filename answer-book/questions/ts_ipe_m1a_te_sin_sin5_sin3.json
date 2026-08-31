@@ -228,5 +228,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Pair sin5θ − sin3θ, not sinθ + sin5θ, so that sinθ survives as the common factor. The sinθ = 0 branch gives nothing because 0 < θ < π is OPEN, and the interval means values must be listed."
 }

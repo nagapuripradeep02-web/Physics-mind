@@ -223,5 +223,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Double the 8.5 first so the determinant equals 17 and the ½ is cleared. The modulus then gives ±17, so TWO lines survive — the answer is their product, and reporting a single branch loses the last mark."
 }

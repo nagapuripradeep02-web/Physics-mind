@@ -132,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Root in the denominator means strictly greater than zero, so the brackets stay open. The product is positive here, so x lies OUTSIDE −a and a — the opposite of the 1 − x² version."
 }

@@ -322,5 +322,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "R₁ − R₂ produces a leading 1 with no fractions, which is worth doing before anything else. The numbers grow large in the middle but come back to 3, 1 and 1."
 }

@@ -147,5 +147,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Divide top and bottom by cos9° so that tan45° = 1 appears and the tan(A+B) form emerges. tan54° = cot36° is the last step, using 54° = 90° − 36°."
 }

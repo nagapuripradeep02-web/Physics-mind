@@ -233,5 +233,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The transformed equation is given, so the substitution runs backwards: X = (x + y)/√2 and Y = (y − x)/√2, never x in terms of X. Then (x + y)(y − x) = y² − x², and the xy terms cancel out."
 }

@@ -223,5 +223,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Do not simplify the point of intersection: the common denominator ca − b² cancels the moment it goes into the third line. What survives is 3abc − (a³ + b³ + c³) = 0, which is already the result."
 }

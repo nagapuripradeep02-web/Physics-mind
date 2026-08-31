@@ -403,5 +403,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Square both sides straight away — the x² and y² terms cancel every time, so no root ever survives. Two linear equations are left, and subtracting them here removes x in a single step."
 }

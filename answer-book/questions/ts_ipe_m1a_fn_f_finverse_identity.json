@@ -303,5 +303,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both parts need the DOMAIN check before the values — that is half the structure the marks follow. Watch which identity belongs to which side: fof⁻¹ lands in B, so it equals I_B and never I_A."
 }

@@ -138,5 +138,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The longest distance must be the SUM: BC = 3√11 is the biggest here, so the check is AB + AC = BC, not AB + BC. Simplify every surd to a multiple of √11 or the pattern stays hidden."
 }

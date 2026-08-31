@@ -225,5 +225,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The slope is available before the point is, so read −3/4 off the given line first. Parallel keeps that slope unchanged, and the final line divides through by 5 to reach 3x + 4y − 15 = 0."
 }

@@ -351,5 +351,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Choose a UNIT cube with one corner at the origin so every component is 1 or −1. The two diagonals differ in a single sign, which is what leaves 1 + 1 − 1 = 1 over 3."
 }

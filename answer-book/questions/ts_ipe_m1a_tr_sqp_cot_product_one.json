@@ -179,5 +179,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Pair the terms from the two ENDS: 7π/16 = π/2 − π/16, so each pair becomes cot θ · tan θ = 1. The middle term cot(π/4) is 1 on its own."
 }

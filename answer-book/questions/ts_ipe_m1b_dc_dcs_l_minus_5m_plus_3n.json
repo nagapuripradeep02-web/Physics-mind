@@ -279,5 +279,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Substituting l = 5m − 3n leaves 30(6m² − 7mn + 2n²) = 0, so take the 30 out before factorising. The question asks for direction COSINES, so divide each triple by its own root, √14 and √6, not by a shared one."
 }

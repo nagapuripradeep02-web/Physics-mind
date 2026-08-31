@@ -141,5 +141,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Make the right side positive first, so it reads −x − y = 1 before dividing by √2. Both ratios are −1/√2, giving α = 225°; naming a first-quadrant angle for two negative values is the usual error."
 }

@@ -287,5 +287,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both bracketings appear here and they give different answers, 5√14 against 3√6. That difference is the point of the question, so compute each from its own cross product."
 }

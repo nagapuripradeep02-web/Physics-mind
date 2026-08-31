@@ -132,5 +132,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Sum zero means the intercepts are a and −a, so the form collapses to x − y = a. The point gives a = −1, and the answer is x − y + 1 = 0 — write the line, not just the value of a."
 }

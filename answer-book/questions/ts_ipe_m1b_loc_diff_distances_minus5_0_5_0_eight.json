@@ -231,5 +231,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Isolate PA before squaring or a PA·PB cross term survives. The −160x appears on both sides and cancels; miss that and the x² coefficient comes out wrong. Opposite signs at the end mean a hyperbola, never an ellipse."
 }

@@ -336,5 +336,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The lines are already in r = a + tb form, so a, b, c and d read straight off. |b × d| = 12 divides 108 exactly, and the whole-number answer is the sign it went right."
 }

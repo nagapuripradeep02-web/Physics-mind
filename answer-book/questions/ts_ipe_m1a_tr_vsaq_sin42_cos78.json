@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Turn cos78° into sin12° using 78° = 90° − 12°, so both terms are sines and the identity applies. sin54° = (√5 + 1)/4 has to be quoted from memory."
 }

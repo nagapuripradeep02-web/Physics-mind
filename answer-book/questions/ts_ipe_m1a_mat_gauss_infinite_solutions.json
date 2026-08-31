@@ -295,5 +295,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Column 2 goes to zero at the same time as column 1, and that is the tell: the last row becomes all zeros. Infinitely many solutions follow, so introduce a parameter k and write x, y, z in terms of it."
 }

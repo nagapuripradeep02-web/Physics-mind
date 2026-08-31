@@ -342,5 +342,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The whole proof rests on two hexagon facts: AE = BD and AF = CD. Swapping those turns the five terms into three copies of AD, and O being the midpoint of AD then gives the 6AO."
 }

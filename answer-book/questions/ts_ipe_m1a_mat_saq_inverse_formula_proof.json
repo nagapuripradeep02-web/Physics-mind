@@ -307,5 +307,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The whole proof is one product, A·(Adj A). Diagonal entries pair a row with its OWN cofactors and give det A; the others pair a row with a different row's and give 0."
 }

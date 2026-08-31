@@ -141,5 +141,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Same setup as its partner question: intercepts a and −a give x − y = a. Here the point gives a = −6, so the line is x − y + 6 = 0, and the sign flip on moving a across is where it is lost."
 }

@@ -177,5 +177,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Expand (b − a) × (c − a) and use a×a = 0 together with the sign flip −b×a = a×b. All three of the given terms then appear, and that is the whole proof."
 }

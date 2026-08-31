@@ -231,5 +231,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Write each line as x sinα − y cosα, so both denominators are already 1 — the slope form will not bisect cleanly. Keep the ±, let SQUARING remove it, then sin²A − sin²B = sin(A+B)sin(A−B) brings back a, b and h."
 }

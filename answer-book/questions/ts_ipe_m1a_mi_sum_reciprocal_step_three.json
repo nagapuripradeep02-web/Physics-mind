@@ -276,5 +276,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The same shape as the 1/(1·3) question but with d = 3, so the APs are 3n − 2 and 3n + 1. The step needs 3k² + 4k + 1 = (3k+1)(k+1) so that the (3k+1) cancels."
 }

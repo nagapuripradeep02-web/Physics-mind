@@ -231,5 +231,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Set only the XY coefficient to zero, not the whole transformed equation — that single line is what the proof turns on. Keep the ½ at the end, and answer the a = b case the question names; that case is the fourth mark."
 }

@@ -248,5 +248,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Double the 9 first so the determinant equals 18 and the ½ is cleared. The modulus gives ±18, so both lines survive: the answer is (5x − 2y − 37)(5x − 2y − 1) = 0, not whichever branch came out first."
 }

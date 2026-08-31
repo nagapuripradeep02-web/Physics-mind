@@ -224,5 +224,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "2PC² is twice the square, not (2PC)². The x² and y² terms cancel on both sides at once, so keep both, and the last mark is dividing 14x − 14y + 8 = 0 by 2 to reach the printed answer."
 }

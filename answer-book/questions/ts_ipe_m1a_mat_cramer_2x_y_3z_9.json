@@ -350,5 +350,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Four determinants are needed, and Δ must come first — if it were 0, Cramer's rule would not apply at all. Every Δ here is negative, so all three divisions give positive answers."
 }

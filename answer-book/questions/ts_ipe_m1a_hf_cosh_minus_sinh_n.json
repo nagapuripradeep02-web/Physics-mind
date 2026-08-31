@@ -139,5 +139,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The bracket collapses before the power is touched: cosh x − sinh x is simply e⁻ˣ. Expanding it with the binomial theorem is a long road to the same place and usually does not arrive."
 }

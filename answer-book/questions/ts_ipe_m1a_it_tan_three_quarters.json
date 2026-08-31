@@ -172,5 +172,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two different formulas are needed here: the PLUS form for the first pair, then the MINUS form for the subtraction, where the denominator becomes 1 + xy. Both parts come to 425, giving Tan⁻¹(1)."
 }

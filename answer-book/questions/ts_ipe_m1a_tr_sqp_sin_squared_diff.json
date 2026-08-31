@@ -137,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "sin²A − sin²B = sin(A+B)sin(A−B) turns the half-degrees into 105° and 60°, both workable. Expanding 105° as 60° + 45° is then the only step left."
 }

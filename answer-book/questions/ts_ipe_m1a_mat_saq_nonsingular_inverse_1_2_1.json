@@ -208,5 +208,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Non-singular just means det A ≠ 0, so the determinant does double duty: it answers the first half and divides in the second. It is −4, so every sign flips."
 }

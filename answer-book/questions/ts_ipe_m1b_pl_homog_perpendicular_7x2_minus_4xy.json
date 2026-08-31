@@ -226,5 +226,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Divide the line by 2 so the right side is 1, and remember the squared term picks up 2² = 4 underneath. Nothing needs solving: coeff x² + coeff y² = −8 + 8 = 0 is the entire proof."
 }

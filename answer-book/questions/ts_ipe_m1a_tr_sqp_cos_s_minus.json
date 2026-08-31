@@ -267,5 +267,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Four terms, so pair them as the first two and the last two — cos S pairs with cos(S−C). Both pairs reduce using 2S − A − B = C, and one more application finishes it."
 }

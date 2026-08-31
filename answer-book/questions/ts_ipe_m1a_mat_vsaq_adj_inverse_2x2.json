@@ -139,5 +139,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "For a 2×2 the adjoint SWAPS the diagonal entries and flips the signs of the other two. |A| = 24, so every entry of the inverse is a fraction."
 }

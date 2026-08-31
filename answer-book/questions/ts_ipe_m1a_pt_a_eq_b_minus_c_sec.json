@@ -228,5 +228,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Square first and use sec²θ − tan²θ = 1 — working with sec θ directly leads nowhere. The (b−c)² expansion leaves 2bc(1 − cos A), and 1 − cos A = 2sin²(A/2)."
 }

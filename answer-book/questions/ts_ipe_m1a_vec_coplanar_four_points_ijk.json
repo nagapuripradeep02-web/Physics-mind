@@ -233,5 +233,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The i, j, k wrapping changes nothing: treat this exactly like the non-coplanar a, b, c questions. Take all three differences from P and show that the determinant is zero."
 }

@@ -231,5 +231,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Parallel means the two factors share l and m and differ only in the constant; that one line makes all three parts fall out. The distance needs |n₁ − n₂| via (n₁+n₂)² − 4n₁n₂, and both forms are asked for."
 }

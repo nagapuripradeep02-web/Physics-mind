@@ -279,5 +279,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The two identities are not interchangeable: I_A goes on the RIGHT of f and I_B on the left, because only that way do the domains match. Writing foI_B is not a small slip — it is undefined."
 }

@@ -183,5 +183,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Solve the two complete lines first and keep the one carrying p for last. The cross-multiplication denominator comes out as 1 here, so the point (−1, 2) drops out cleanly and gives p = 2."
 }

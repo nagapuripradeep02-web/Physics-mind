@@ -132,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Group as (r₁ + r₂) and (r₃ − r), not in the order written. The two brackets then combine into one sine of (A+B+C)/2 = 90°, so the answer is simply 4R."
 }

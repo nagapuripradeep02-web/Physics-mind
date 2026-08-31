@@ -223,5 +223,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Convert 2Tan⁻¹(1/3) into Cos⁻¹((1 − x²)/(1 + x²)) = Cos⁻¹(4/5), which is chosen to match the 4/5 already present. Then Sin⁻¹x + Cos⁻¹x = π/2 finishes it in a single line."
 }

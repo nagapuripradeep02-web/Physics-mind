@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Divide by the magnitude, never by the number of components. √14 does not simplify, so leave the answer as a single fraction over √14."
 }

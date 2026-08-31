@@ -135,5 +135,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Convert every side to 2R sin by the sine rule so the whole thing becomes trigonometric. The key identity is Σsin2A = 4 sinA sinB sinC, which holds only in a triangle."
 }

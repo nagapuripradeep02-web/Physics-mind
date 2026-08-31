@@ -136,5 +136,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Use Δ = c²/(2|ab|) with the line written as 3x + 4y − a = 0, so c = −a and c² = a². Since a² = 144 both signs are answers, a = ±12, and giving only 12 loses the second mark."
 }

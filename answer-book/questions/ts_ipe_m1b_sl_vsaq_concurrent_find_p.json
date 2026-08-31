@@ -143,5 +143,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "x + p = 0 and y + 2 = 0 each fix one coordinate, so the meeting point (−p, −2) reads straight off with no simultaneous equations. Substitute it into the THIRD line, not into one of the first two."
 }

@@ -259,5 +259,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Rearrange the assumption to isolate the first term, 2·4^(2k+1) = 11q − 3^(3k+1), before substituting. The powers step up by 16 and 27, and 27 − 16 = 11 is precisely what makes the remainder vanish."
 }

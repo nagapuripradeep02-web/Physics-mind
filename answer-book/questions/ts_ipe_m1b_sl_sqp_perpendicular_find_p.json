@@ -135,5 +135,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "m₂ = −7/(−p) = 7/p, so the double negative leaves it positive. The product is −1, not +1, and the two minus signs then cancel to give p = 3 rather than −3."
 }

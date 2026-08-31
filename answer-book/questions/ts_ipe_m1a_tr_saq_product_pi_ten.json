@@ -234,5 +234,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The last two cosines are the negatives of the first two, so the four brackets pair into differences of squares. sin18° and sin54° then multiply to give (5 − 1)/16."
 }

@@ -135,5 +135,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Start from the RIGHT side and work down to cosh 2x — starting from the left leaves you expanding e²ˣ with nothing to cancel against. The +2 inside is exactly what the −1 removes."
 }

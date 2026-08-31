@@ -128,5 +128,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "2f doubles each image while f² squares it, so the two answers differ wherever the image is not 0 or 2. Squaring makes every image positive, and that is the quick visible check."
 }

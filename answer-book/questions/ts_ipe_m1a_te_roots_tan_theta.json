@@ -199,5 +199,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Write cos2θ and sin2θ in terms of tanθ so the whole equation becomes a quadratic in tanθ. Both parts are then sum and product of roots, and the last part drops out of the tan(A+B) formula."
 }

@@ -272,5 +272,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The nth term is ar^(k−1), not ar^k — getting that index wrong makes the inductive step fail even with perfect algebra. State r ≠ 1, since the formula divides by r − 1."
 }

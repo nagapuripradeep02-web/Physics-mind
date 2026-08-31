@@ -267,5 +267,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two standard sums are needed before the induction begins: cubes give n²(n+1)²/4 and the odd numbers sum to n², so the nth term reduces to (n+1)²/4. Skipping that makes the inductive step unmanageable."
 }

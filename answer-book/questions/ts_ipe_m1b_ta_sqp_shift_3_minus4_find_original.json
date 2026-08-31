@@ -222,5 +222,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The transformed equation is given, so X = x − 3 and Y = y + 4 — the shift subtracts, and the −4 turns into y + 4. Expand the two brackets and collect the constants as 9 + 16 − 4 = 21."
 }

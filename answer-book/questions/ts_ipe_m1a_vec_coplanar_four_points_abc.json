@@ -258,5 +258,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "All three differences must start from P. The rows come out as 4, −2, −2 and its two rotations, so the determinant is symmetric — a quick check that the differences were taken correctly."
 }

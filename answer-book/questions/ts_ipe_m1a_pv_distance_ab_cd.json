@@ -326,5 +326,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Points are given, not lines, so build the direction vectors AB and CD first. a − c comes out as −4j alone, so the dot product has only one surviving term."
 }

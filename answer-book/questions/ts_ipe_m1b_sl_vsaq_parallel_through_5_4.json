@@ -136,5 +136,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The short route skips the slope completely: a parallel line through (x₁, y₁) is a(x − x₁) + b(y − y₁) = 0, so 2(x − 5) + 3(y − 4) = 0 reaches the answer with no fractions at all."
 }

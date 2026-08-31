@@ -279,5 +279,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "One squared sine is subtracted, so the identity needed is sin²A − cos²B = −cos(A+B)cos(A−B), leading minus included. Everything after that follows the usual pattern."
 }

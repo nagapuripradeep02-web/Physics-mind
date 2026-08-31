@@ -128,5 +128,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The root sits in a DENOMINATOR, so the inside must be > 0 and not ≥ 0 — the brackets are open and ±1 are excluded. A negative product means x lies between the roots."
 }

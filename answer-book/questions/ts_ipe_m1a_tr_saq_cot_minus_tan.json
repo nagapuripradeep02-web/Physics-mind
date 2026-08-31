@@ -217,5 +217,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Write both as fractions over sinA cosA, and the numerator becomes cos2A directly. Doubling top and bottom is what turns sinA cosA into sin2A."
 }

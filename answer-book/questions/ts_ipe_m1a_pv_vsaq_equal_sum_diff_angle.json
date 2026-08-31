@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Square both sides so the cross terms survive: |a+b|² and |a−b|² differ only in the sign of 2a·b. Everything else cancels, leaving a·b = 0 and a right angle."
 }

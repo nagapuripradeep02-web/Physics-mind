@@ -241,5 +241,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "det A = 27 = 3³, which is why the adjoint comes out as exactly 3Aᵀ. Once that is shown, A⁻¹ = 3Aᵀ/27 = Aᵀ/9 with no further cofactor work."
 }

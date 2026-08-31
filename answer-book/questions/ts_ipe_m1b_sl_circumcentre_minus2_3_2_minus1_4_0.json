@@ -403,5 +403,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Squaring removes the roots and the x², y² terms cancel, leaving x − y + 1 = 0 and 4x + 2y − 11 = 0. Substituting the first into the second beats elimination here, and the answer is a pair of halves."
 }

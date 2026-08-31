@@ -139,5 +139,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Quote Tanh⁻¹x = (1/2)logₑ((1 + x)/(1 − x)) and substitute. The ½ in front belongs to the formula and is not something to cancel, and (3/2)/(1/2) simplifies to 3 before the log is touched."
 }

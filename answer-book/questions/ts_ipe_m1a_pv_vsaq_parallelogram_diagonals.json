@@ -141,5 +141,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The DIAGONALS are given, not the sides, so the area is HALF the cross product. Using the full magnitude doubles the answer; take the factor 2 out early to keep the surd simple."
 }

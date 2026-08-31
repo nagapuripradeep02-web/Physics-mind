@@ -203,5 +203,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "det A = 1, so the inverse equals the adjoint outright. The zeros in the middle row keep the cofactor arithmetic short, but the transpose step still applies."
 }

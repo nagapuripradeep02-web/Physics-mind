@@ -147,5 +147,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Multiply out A² symbolically and set EVERY entry to zero, not just one. The top-left is already 0 whatever k is; the other three all give k = −2, and that agreement is the check."
 }

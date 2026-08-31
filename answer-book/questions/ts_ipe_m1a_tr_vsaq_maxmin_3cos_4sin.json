@@ -139,5 +139,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Only √(a² + b²) matters, so 3 and 4 give 5 whichever function they sit on. With no constant term the two answers are symmetric: 5 and −5."
 }

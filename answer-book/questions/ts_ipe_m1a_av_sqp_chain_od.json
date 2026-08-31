@@ -138,5 +138,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The vectors chain head to tail, so OD is simply the sum of all four — there is no subtraction anywhere. Add component by component and the three sums come to 7, 2 and 3."
 }

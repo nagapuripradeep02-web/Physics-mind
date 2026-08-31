@@ -142,5 +142,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Write c as 0i + j + 2k so that no component is missed in the sum. The magnitude comes to exactly 7, so the fraction is clean, and OPPOSITE means the whole thing takes a minus sign."
 }

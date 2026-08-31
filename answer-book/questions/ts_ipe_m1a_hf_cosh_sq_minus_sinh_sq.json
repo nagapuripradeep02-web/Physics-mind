@@ -129,5 +129,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Do not expand both squares — use (a + b)² − (a − b)² = 4ab, so the whole thing is 4·eˣ·e⁻ˣ/4 = e⁰. The proof is two lines once that identity is spotted."
 }

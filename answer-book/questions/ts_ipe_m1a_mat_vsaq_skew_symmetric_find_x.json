@@ -140,5 +140,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Skew symmetric means A = −Aᵀ, so mirror entries are NEGATIVES of each other: x = −(−2) = 2. The all-zero diagonal is the visible sign of skew symmetry."
 }

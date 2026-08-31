@@ -137,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "2π/k = 2/3 gives k = 3π, so the answer is sin(3πx). A period smaller than 2π means k must be bigger than 1, which is the sanity check."
 }

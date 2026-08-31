@@ -134,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "TWO points, so the form is r = (1 − t)a + tb, with the two weights adding to 1. Using r = a + tb here would treat the second point as a direction, which it is not."
 }

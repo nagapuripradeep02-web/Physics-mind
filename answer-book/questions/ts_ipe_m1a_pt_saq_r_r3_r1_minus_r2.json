@@ -142,5 +142,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Group as (r₃ + r₁) and (r − r₂) so that cos(B/2) and sin(B/2) come out as factors. (A+C)/2 = 90° − B/2 is the substitution that makes both brackets collapse."
 }

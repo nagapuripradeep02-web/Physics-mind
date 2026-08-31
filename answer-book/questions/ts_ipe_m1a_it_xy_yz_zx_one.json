@@ -181,5 +181,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Move one angle across: A + B = π/2 − C, so tan(A + B) = cot C = 1/z. Cross-multiplying and collecting gives the result with no inverse functions left anywhere."
 }

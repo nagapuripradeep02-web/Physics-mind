@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Keep the coefficients 2, −3 and 6 exactly as they are — only the constant is free. The point's z is −3, so the bracket is (z + 3), and that sign is where the +22 is usually lost."
 }

@@ -190,5 +190,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Do not compute A⁻¹ at all. A⁻¹ = A³ is the same statement as A⁴ = I, so square A twice — two multiplications instead of an inverse."
 }

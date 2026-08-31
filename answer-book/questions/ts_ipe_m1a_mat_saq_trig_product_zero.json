@@ -201,5 +201,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Use θ = π/2 + φ to rewrite the FIRST matrix entirely in φ — comparing two different angles directly gets nowhere. cos θ = −sin φ, and that minus sign is what cancels everything."
 }

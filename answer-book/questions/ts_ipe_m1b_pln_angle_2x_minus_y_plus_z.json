@@ -140,5 +140,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Keep both sums of squares under one root: √(6 × 6) = 6, which gives the clean cos θ = 1/2 and θ = 60°. The modulus is what keeps the angle acute, and that is the angle asked for."
 }

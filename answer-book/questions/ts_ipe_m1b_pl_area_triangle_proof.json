@@ -369,5 +369,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Only the SUM and PRODUCT of the slopes are needed, never the slopes themselves: m₁ + m₂ = −2h/b, m₁m₂ = a/b. Write m₂ − m₁ as √((m₁+m₂)² − 4m₁m₂), and the b cancels top and bottom at the end."
 }

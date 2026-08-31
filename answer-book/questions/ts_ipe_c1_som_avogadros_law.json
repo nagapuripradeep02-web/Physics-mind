@@ -79,5 +79,6 @@
         "margin_note": "The 22.4 L line ties this law to the gram molar volume question of the same chapter; that 22.4 L is at the older STP of 0 °C and 1 atm (at 0 °C and 1 bar the value is 22.7 L)."
       }
     ]
-  }
+  },
+  "insider_note": "The question says state, but the mathematical form is a separate mark, so V ∝ n has to appear beside the words. Both halves are one line each and nothing longer is rewarded."
 }

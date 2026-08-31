@@ -274,5 +274,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The vertices are given as consecutive, so AC and BD are the diagonals while AB and CD are sides. Equating the midpoints of the sides instead is what makes this question come out wrong."
 }

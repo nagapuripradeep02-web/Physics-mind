@@ -340,5 +340,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Add the rows into R₁ TWICE — once to bring out the 2, and again after the row subtractions to restore a, b, c. The two −1s taken out at the end cancel each other."
 }

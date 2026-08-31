@@ -262,5 +262,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Convert one sin² into 1 − cos² so a cos² − sin² pair forms. The bracket ends as a DIFFERENCE of cosines, which gives sin(A/2)sin(B/2) rather than cosines."
 }

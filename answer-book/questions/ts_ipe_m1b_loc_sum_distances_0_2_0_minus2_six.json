@@ -222,5 +222,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Isolate PA before squaring or a cross term survives. Both fixed points sit on the y-axis, so the x² terms cancel and (a + b)² − (a − b)² = 4ab leaves 36 + 8y. The 36y then cancels on both sides."
 }

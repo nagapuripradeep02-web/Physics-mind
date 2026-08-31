@@ -136,5 +136,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Multiply and divide by 2 to use 2cosA cosB = cos(A+B) + cos(A−B). cos36° = (√5 + 1)/4 has to be quoted — it is not one of the standard-triangle values."
 }

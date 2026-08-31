@@ -181,5 +181,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both edge vectors must start at P. The cross product carries a common factor 4, which cancels against |PQ × PR| = 4√6 and leaves a clean answer."
 }

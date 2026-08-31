@@ -212,5 +212,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The hypotenuse is named in the question, so its two ends are the fixed points and the right angle sits at the third vertex: AB² = 72 is a plain number on the right. Divide by the common 2 at the end."
 }

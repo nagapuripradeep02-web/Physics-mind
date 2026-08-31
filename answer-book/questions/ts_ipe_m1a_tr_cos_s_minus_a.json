@@ -266,5 +266,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The condition gives (S−A) + (S−B) = C, not 180°, and that substitution replaces the usual angle-sum step. Then cosθ = 2cos²(θ/2) − 1 supplies the −1 in the answer."
 }

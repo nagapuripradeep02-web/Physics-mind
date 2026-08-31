@@ -230,5 +230,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The third vertex is the ORIGIN, where the homogeneous pair meets; miss it and there is no triangle. With O at the origin the shortcut ½|x₁y₂ − x₂y₁| gives the area, much quicker than the full determinant."
 }

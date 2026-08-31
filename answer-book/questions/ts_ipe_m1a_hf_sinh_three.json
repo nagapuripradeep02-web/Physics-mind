@@ -141,5 +141,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Quote Sinh⁻¹x = logₑ(x + √(x² + 1)) and substitute; no rearranging of exponentials is wanted. The root gives √10, not √8, because it is x² + 1 and not x² − 1."
 }

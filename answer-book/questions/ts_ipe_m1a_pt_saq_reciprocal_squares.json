@@ -140,5 +140,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Write each reciprocal over Δ so the whole sum becomes one fraction. Expanding gives 4s² − 2s(a+b+c), and a + b + c = 2s makes those two terms cancel exactly."
 }

@@ -310,5 +310,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The same system as the Cramer and Gauss-Jordan versions, but the method asked for is the inverse: X = A⁻¹D. Multiply in that order — D A⁻¹ is not even defined."
 }

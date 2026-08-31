@@ -276,5 +276,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "h, g and f are all halves here, so work over a denominator of 4 rather than decimalising. Three things are marked: Δ = 0, the point of intersection, and the angle from tanθ = 2√(h² − ab)/|a + b|."
 }

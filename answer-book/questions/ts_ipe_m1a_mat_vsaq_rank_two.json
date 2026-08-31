@@ -147,5 +147,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Show the 3×3 determinant is 0 FIRST, then produce one non-zero 2×2 minor. Both halves are needed: the zero rules out 3, the non-zero establishes 2."
 }

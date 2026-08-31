@@ -219,5 +219,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "It is a quadratic in cot x, so factorise before converting anything. Turning cot into tan afterwards makes both roots standard angles, and the range 0 < x < π/2 means one value each, not a general solution."
 }

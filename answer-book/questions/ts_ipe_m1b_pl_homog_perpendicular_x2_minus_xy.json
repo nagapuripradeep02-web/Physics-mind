@@ -230,5 +230,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The divisor is √2, so the squared term brings a plain 2 while the linear terms keep their √2 — clear the line by √2 in one go. Then 3 − 3 = 0 finishes it, and the √2 xy term never matters."
 }

@@ -226,5 +226,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Use cos²(A/2) = (1 + cos A)/2 to split the sum into (a+b+c)/2 and a cosine part. The first is s at once, and Σsin2A = 4 sinA sinB sinC finishes the rest."
 }

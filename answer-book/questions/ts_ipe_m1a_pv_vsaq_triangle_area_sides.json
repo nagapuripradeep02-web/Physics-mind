@@ -134,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both vectors lie in the xy-plane, so only the k component of the cross product survives and the i and j entries are 0. It is a triangle, so halve it: 41/2."
 }

@@ -424,5 +424,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Take a, b and c out of the COLUMNS first, which is where the abc comes from. Column subtractions then leave (b − a) and (c − a) as the remaining common factors."
 }

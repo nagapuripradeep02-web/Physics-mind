@@ -225,5 +225,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Convert to degrees and write 108° and 162° as 90° + 18° and 90° + 72°. cos(90° + θ) = −sinθ, and the squares remove the sign, leaving two Pythagorean pairs."
 }

@@ -135,5 +135,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A negative sine allows Q₃ or Q₄, and 'not in the third' fixes Q₄, where cos is positive. cot then inherits the sine's minus sign, so it is −√8 while cos stays positive."
 }

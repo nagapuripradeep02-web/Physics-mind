@@ -128,5 +128,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A plain square root allows zero, so the brackets are CLOSED and [−4, 4] includes both ends. The negative product puts x between the roots rather than outside them."
 }

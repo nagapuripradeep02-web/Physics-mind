@@ -223,5 +223,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Slope 1 means θ = 45°, so cosθ and sinθ are both 1/√2 and the two r-terms add. Leave the answer as 2√2 — the parametric r IS the distance, so no distance formula is needed at the end."
 }

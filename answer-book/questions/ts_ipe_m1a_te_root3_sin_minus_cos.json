@@ -229,5 +229,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The minus sign makes this a sin(A − B), so it collapses to sin(θ − π/6) = sin(π/4). The sine general solution is nπ + (−1)ⁿα, which is NOT the same form as the cosine one."
 }

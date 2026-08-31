@@ -129,5 +129,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The simplification gives tan56°, but that is only the reference angle. The third-quadrant condition then adds 180°, so the answer is 236° and not 56°."
 }

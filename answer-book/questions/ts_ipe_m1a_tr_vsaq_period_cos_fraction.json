@@ -128,5 +128,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Split the fraction first so the coefficient of x is visible as 4/5. Dividing 2π by a fraction means multiplying by its reciprocal, which gives 5π/2."
 }

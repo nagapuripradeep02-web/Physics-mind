@@ -275,5 +275,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Pair the first two, then use cos2C = 2cos²C − 1, which is where the −1 comes from. cos(180° − θ) = −cosθ is needed twice, and both minus signs matter."
 }

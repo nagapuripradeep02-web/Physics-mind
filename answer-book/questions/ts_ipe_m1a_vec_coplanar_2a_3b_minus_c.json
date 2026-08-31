@@ -242,5 +242,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Take all the differences from ONE point: PQ, PR and PS every one starting at P. The determinant of their coefficients must be zero, and the [a b c] factor is carried along, never evaluated."
 }

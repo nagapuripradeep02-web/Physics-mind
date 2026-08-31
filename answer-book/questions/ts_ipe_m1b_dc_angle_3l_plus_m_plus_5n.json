@@ -287,5 +287,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Eliminate using the LINEAR relation — rearranging the second-degree one brings in a square root. It factorises to (l + n)(l + 2n) = 0, and both factors are needed: one line each, and it takes two lines to make an angle."
 }

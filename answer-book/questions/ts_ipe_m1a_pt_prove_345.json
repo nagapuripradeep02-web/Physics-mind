@@ -180,5 +180,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "r is given here, so Δ = √(r r₁ r₂ r₃) = 6 comes straight out and s = 6. Each side then follows from its own ex-radius, and 3 + 4 + 5 = 2s confirms it."
 }

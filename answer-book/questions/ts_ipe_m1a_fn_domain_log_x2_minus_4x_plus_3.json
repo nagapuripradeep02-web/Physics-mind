@@ -138,5 +138,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A logarithm needs its argument strictly POSITIVE, so the brackets are open and 1 and 3 are excluded. A product of two factors being positive means x lies OUTSIDE the roots, never between them."
 }

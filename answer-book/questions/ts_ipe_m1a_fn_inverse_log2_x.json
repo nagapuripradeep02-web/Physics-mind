@@ -121,5 +121,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A logarithm inverts to a POWER: log₂x = y means x = 2ʸ, so f⁻¹(x) = 2ˣ. No algebra is needed here — it is the definition read backwards."
 }

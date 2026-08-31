@@ -235,5 +235,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both quoted results are needed and they point at different functions: gof being one-one gives f one-one, but the onto half must come from fog, not from gof. Part (ii) is then a separate domain-and-value proof."
 }

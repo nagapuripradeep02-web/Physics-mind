@@ -276,5 +276,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Four vectors and three cross products, taken in order: a×b first, then c×d, then cross those two. a×b comes out as −5(i + j + k), so take the 5 out early."
 }

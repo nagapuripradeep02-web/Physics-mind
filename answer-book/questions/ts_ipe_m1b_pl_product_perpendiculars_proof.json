@@ -232,5 +232,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Multiply the two distances, never add them, and keep both roots under one. The denominator regroups as (l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)² = (a − b)² + 4h²; writing (a + b)² there is the standard error."
 }

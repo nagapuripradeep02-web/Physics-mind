@@ -136,5 +136,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The x² is POSITIVE here, so the expression is ≥ 0 outside the roots — the answer is two rays, not the interval [−5, 5]. That sign flip is the whole difference from the 16 − x² question."
 }

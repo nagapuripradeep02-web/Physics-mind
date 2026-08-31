@@ -180,5 +180,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Solve the two lines WITHOUT the unknown first — using a line that carries k leaves k inside the point and doubles the work. The point (11, 5) then gives k = −7 in a single substitution."
 }

@@ -236,5 +236,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Multiply 2h, 2g and 2f together, not h, g and f — that 8 is what gets divided out at the end. Part (b) is short: h² − ab becomes (l₁m₂ − l₂m₁)²/4, so the inequality is ≥ and never strict."
 }

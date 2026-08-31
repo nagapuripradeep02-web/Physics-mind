@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both compositions collapse to x, and that is the point: these two functions are inverses of each other. Getting x for one and something else for the other means an arithmetic slip, not a real asymmetry."
 }

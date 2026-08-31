@@ -141,5 +141,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The XZ-plane is y = 0, so the y-coordinates give the ratio: −y₁ : y₂ = −3 : 2. Keep the minus sign — it marks external division, and dropping it moves the point entirely."
 }

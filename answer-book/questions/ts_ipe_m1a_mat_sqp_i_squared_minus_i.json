@@ -140,5 +140,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A is diagonal, so A² simply squares each diagonal entry. (−i)² = i² = −1 as well, which is why both entries agree and the result is −I rather than I."
 }

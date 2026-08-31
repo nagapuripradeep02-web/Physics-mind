@@ -370,5 +370,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Two altitudes are enough — working out the third is wasted time. Each altitude uses the slope of the OPPOSITE side, inverted and negated; taking a side through the vertex itself is the standard error."
 }

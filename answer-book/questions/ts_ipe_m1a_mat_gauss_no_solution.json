@@ -298,5 +298,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The last row reduces to 0 = −1, which is impossible — and that IS the answer, not an error to go back and correct. Two earlier rows already said z = 2 and z = 1, the same contradiction."
 }

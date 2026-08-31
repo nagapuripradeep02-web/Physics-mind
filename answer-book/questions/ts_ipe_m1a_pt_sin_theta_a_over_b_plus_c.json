@@ -227,5 +227,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Squaring leaves cos²θ, and the cosine rule turns (b+c)² − a² into 2bc(1 + cos A). The finish is the same as the a = (b+c)cos θ question; only the starting ratio differs."
 }

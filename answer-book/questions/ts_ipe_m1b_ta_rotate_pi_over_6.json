@@ -228,5 +228,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "At 30° the halves make the denominator 4, not 2, and it is cleared only at the end. Every √3 XY group must cancel; if any XY survives, the 2√3 was not distributed across both parts of the product."
 }

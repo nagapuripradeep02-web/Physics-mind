@@ -144,5 +144,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Transpose B FIRST, then multiply — AB is not even defined without it. The final transpose only flips the 2×2 result, so the arithmetic is done just once."
 }

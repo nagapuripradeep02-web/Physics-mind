@@ -262,5 +262,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The powers step up by 25 and 8, and 25 − 8 = 17 is what makes this work — that subtraction is the whole idea. Isolate 3·5^(2k+1) from the assumption first, then substitute it in."
 }

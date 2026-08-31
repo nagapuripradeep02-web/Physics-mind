@@ -273,5 +273,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Isolate 49ᵏ = 64q − 16k + 1 first. The 16k terms then combine as −16k(49 − 1) = −768k, and 768 = 64 × 12 is what leaves a whole number inside the bracket."
 }

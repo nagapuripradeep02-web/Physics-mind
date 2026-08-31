@@ -266,5 +266,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The move is to expand (c×a) × (a×b) treating c×a as a single vector. [c a a] = 0 because a repeats, and the cyclic property then turns both remaining factors into [a b c]."
 }

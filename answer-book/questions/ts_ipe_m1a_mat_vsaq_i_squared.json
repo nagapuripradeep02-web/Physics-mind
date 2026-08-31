@@ -138,5 +138,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both diagonal entries are i, so both square to −1 and A² = −I. The answer is the negative identity matrix, not the zero matrix."
 }

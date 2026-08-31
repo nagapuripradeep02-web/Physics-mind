@@ -89,5 +89,6 @@
         "margin_note": "The qp = ΔH line is what makes the definition useful."
       }
     ]
-  }
+  },
+  "insider_note": "Half of this question is never asked out loud: the second mark is why enthalpy is worth defining at all, qp = ΔH. A textbook-perfect definition with H = U + pV and nothing after it scores one."
 }

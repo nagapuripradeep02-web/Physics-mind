@@ -242,5 +242,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "All three differences must start from the same point. PR here has no b component, so the middle entry is 0 — a zero in the determinant is a help, not a sign of error."
 }

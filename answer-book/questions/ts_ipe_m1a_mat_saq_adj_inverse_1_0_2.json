@@ -203,5 +203,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Adj A is the TRANSPOSE of the cofactor matrix — stopping at the cofactors is the standard lost mark. det A = 3, so every entry of the inverse is a third."
 }

@@ -263,5 +263,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Group the LAST two terms so that sin²B − sin²C = sin(B+C)sin(B−C) applies. sin(B+C) = sinA then makes sinA a common factor, and the bracket becomes a sum of sines."
 }

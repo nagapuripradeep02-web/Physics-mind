@@ -140,5 +140,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The order REVERSES: (AB)′ = B′A′, never A′B′, which would not even be defined here. Both sides have to be computed separately and shown equal."
 }

@@ -220,5 +220,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Clear the fractions to bx + ay = ab first, so the divisor is √(a² + b²) — note that a and b have swapped places by then. The deduction is only squaring p and inverting; there is no need to start again."
 }

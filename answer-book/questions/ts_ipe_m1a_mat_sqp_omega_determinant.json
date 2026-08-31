@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Do not expand anything. Adding all three columns into C₁ makes every entry 1 + ω + ω² = 0, and a column of zeros ends the question in two lines."
 }

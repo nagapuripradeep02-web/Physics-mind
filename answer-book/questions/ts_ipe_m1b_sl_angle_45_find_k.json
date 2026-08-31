@@ -227,5 +227,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "tan45° = 1 turns the formula into |5 + 4k| = |20 − k|, so the modulus opens into TWO equations. Both k = 3 and k = −25/3 are answers; stopping at the whole number loses the last mark."
 }

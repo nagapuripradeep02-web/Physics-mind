@@ -341,5 +341,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Δ₁ comes out as 0, so x = 0 — a zero numerator is a perfectly good answer and not a sign that the method failed. Only Δ = 0 would block Cramer's rule."
 }

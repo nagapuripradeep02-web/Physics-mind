@@ -221,5 +221,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both edge vectors have to start at the same vertex. The cross product is −3i − 3j − 3k, so the magnitude is 3√3 and the triangle halves it to 3√3/2."
 }

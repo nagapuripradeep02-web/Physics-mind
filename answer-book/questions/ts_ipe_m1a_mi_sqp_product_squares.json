@@ -266,5 +266,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Simplify the general factor to (n+1)²/n² BEFORE the induction starts; left as 1 + (2n+1)/n² it will not multiply cleanly. The (k+1)² then cancels, and that cancellation is the whole step."
 }

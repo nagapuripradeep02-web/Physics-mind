@@ -137,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Divide by −2, not 2, so the right side becomes 1. Two of the intercepts then come out negative, and the intercept is the denominator: the x-intercept is −1/2, not −2."
 }

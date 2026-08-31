@@ -216,5 +216,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Reduce the last two angles so they pair as (1 + x)(1 − x) with the first two. That leaves sin²·sin², and sin(3π/8) = cos(π/8) turns it into the double-angle form."
 }

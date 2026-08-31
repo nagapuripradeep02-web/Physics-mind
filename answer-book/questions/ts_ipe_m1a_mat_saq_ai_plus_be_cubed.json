@@ -209,5 +209,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Add first to get the single matrix with a, b on top and 0, a below, then cube that. A binomial expansion in I and E would need E² = O justified separately."
 }

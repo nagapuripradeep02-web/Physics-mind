@@ -465,5 +465,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Put one corner at the origin, not the centre, or every coordinate turns into a half. Choose two body diagonals such as OP and CL, never face diagonals, and the a² cancels to leave Cos⁻¹(1/3) — never 90°."
 }

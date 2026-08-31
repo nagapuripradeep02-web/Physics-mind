@@ -138,5 +138,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The slope gives the angle with the X-axis, 60°, which is not what was asked. Subtract from 90°, not 180°: the answer is 30°, and stopping at 60° is the standard way this second mark goes."
 }

@@ -142,5 +142,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Scale each matrix before subtracting, and keep the order written: 3B − 2A, not 2A − 3B. Every entry would flip sign the other way round."
 }

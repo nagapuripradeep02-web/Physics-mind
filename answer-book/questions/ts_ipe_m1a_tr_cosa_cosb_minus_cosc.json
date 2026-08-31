@@ -276,5 +276,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The MINUS on cosC changes which half-angle form is needed: use cosθ = 1 − 2sin²(θ/2). The bracket then becomes a SUM of cosines, which yields cos(A/2)cos(B/2)."
 }

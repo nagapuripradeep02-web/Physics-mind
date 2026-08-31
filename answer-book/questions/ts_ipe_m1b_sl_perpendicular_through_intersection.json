@@ -219,5 +219,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Take the slope from the third line first: 5/2 inverts to −2/5. The cross-multiplication denominator is −1, so both coordinates change sign, and that is where P(14, −9) is usually lost."
 }

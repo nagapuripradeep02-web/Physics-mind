@@ -210,5 +210,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A is symmetric with a repeating pattern, so A² comes out as 9 on the diagonal and 8 everywhere else. Only two checks are then needed: 9 − 4 − 5 and 8 − 8 − 0."
 }

@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The constant SHIFTS both answers: max = c + 13 and min = c − 13 with c = −13. That gives 0 and −26, so a maximum of zero is correct here."
 }

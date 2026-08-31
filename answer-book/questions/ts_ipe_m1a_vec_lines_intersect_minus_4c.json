@@ -232,5 +232,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The a and c coefficients give 6t − 2s = −1 and 8t + 2s = 1, which ADD to remove s at once. t = 0 means the intersection is the first point itself, which is what was to be shown."
 }

@@ -155,5 +155,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "One point and one direction, so the form is r = a + tb: the point is added, the direction is scaled. The two-point form does not apply here, as there is no second position vector."
 }

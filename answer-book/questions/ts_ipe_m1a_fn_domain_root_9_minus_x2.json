@@ -137,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The same shape as the 16 − x² question with the roots at ±3. A plain root allows equality, so the answer is the closed interval [−3, 3]."
 }

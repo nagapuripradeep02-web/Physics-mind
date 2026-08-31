@@ -218,5 +218,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Adding over sinA cosA makes the numerator sin²A + cos²A = 1 at once. Doubling top and bottom then turns the denominator into sin2A."
 }

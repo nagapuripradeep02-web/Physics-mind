@@ -129,5 +129,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Write 42° and 78° as 60° ∓ 18° so they pair into 2cos60°cos18°, and 162° as 180° − 18°. The 2 × ½ leaves exactly one cos18° to cancel the other."
 }

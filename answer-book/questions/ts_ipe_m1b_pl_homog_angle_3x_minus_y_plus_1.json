@@ -231,5 +231,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The line rearranges to 3x − y = −1, so the divisor is −1 and every substituted term flips sign; that is where this one is lost. Then use cosθ = |a + b|/√((a − b)² + (2h)²), not the tan form."
 }

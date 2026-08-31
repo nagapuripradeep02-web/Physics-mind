@@ -142,5 +142,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Expand along the first row, where two of the three entries are 0, so only the leading 1 contributes. That reduces the whole determinant to 3x + 24."
 }

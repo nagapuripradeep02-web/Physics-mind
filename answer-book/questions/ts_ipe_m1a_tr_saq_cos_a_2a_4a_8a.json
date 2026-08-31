@@ -178,5 +178,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Multiply and divide by 2⁴sinA so that each 2 sin·cos collapses into the next sine. The 16 in the answer IS that 2⁴, so it has to be introduced at the start, not found at the end."
 }

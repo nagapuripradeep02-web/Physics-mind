@@ -188,5 +188,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Isolate the cosθ term BEFORE squaring, so only one squaring is needed and cos²θ becomes 1 − sin²θ. Nothing is actually solved here — the answers are just the sum and product of the roots."
 }

@@ -128,5 +128,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Substitute both points into L and take −L₁₁ : L₂₂. Both values are negative here, so the ratio comes out −5 : 6 — a negative ratio means the line misses the segment, and it is not an error."
 }

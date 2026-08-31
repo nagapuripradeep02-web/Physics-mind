@@ -179,5 +179,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Two things are asked: prove concurrency and name the point. Plain elimination is quicker than cross-multiplication with these numbers, and the proof is not finished until (4, −5) is shown to satisfy the third line."
 }

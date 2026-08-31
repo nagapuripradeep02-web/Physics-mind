@@ -301,5 +301,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The same system as the Cramer and Gauss-Jordan versions, but the inverse is the method asked for. det A = 136 divides all three products exactly, and 408/136 = 3 is the check."
 }

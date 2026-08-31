@@ -324,5 +324,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Build the diagonals from the sides first: AC = AB + AD and BD = AD − AB. The dot product is negative, so the angle is obtuse, and that minus sign belongs in the answer."
 }

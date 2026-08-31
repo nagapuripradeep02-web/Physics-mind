@@ -149,5 +149,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Equal intercepts means ONE unknown, a and a, so the intercept form collapses to x + y = a in a single step. The point gives a = 1; stopping at the value without writing the line loses the mark."
 }

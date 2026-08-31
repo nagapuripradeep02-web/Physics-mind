@@ -266,5 +266,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The condition is A + B + C = 0, so sin(A+B) = −sinC — that minus is the whole reason the answer is negative. Otherwise the working matches the triangle version exactly."
 }

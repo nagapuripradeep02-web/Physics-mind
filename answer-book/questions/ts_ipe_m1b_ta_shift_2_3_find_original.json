@@ -230,5 +230,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The transformed equation is given, so the substitution reverses: X = x − 2 and Y = y − 3, never x = X + 2. Substitute inside the XY product as well, and the quadratic part comes out unchanged."
 }

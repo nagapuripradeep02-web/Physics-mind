@@ -219,5 +219,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Identical homogenising to the coincident-chord question; only the final condition differs. A right angle at the origin means coeff x² + coeff y² = 0, giving a²(l² + m²) = 2, not the 1 that coincidence gives."
 }

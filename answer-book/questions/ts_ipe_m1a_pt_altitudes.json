@@ -345,5 +345,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Everything follows from p₁ = 2Δ/a, so write that first and the three parts become arithmetic. Part (ii) needs a + b − c = 2s − 2c, which is where the (s−c) comes from."
 }

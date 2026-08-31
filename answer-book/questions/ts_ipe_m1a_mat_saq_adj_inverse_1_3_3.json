@@ -203,5 +203,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "det A = 1, so the inverse and the adjoint are the SAME matrix and no division is needed. The cofactor matrix still has to be transposed before that, though."
 }

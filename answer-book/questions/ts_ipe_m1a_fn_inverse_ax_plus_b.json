@@ -126,5 +126,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The condition a ≠ 0 is stated because the division needs it, so carry it through into the answer. The method is the same as the numerical version: solve for x, rename at the end."
 }

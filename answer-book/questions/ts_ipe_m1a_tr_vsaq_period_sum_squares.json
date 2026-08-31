@@ -144,5 +144,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The coefficients are 1², 2², …, n², so sum them with n(n+1)(2n+1)/6 before anything else. It is a TANGENT, so the period is π/k and not 2π/k."
 }

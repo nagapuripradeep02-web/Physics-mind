@@ -334,5 +334,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Add all three COLUMNS into C₁ and every entry becomes 2(a+b+c) — the 2 in the answer comes from there, not from the final expansion. Row subtractions then leave a diagonal."
 }

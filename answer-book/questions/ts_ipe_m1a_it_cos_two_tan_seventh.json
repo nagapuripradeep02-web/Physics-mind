@@ -180,5 +180,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both sides are double angles, so use cos2A = (1 − tan²A)/(1 + tan²A) and sin2A = 2tanA/(1 + tan²A) — no square roots are needed anywhere. Both sides come to 24/25."
 }

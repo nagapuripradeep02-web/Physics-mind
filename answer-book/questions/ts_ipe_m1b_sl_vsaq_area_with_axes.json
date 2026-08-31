@@ -135,5 +135,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The shortcut Δ = c²/(2|ab|) does this in one line — the intercepts never need to be found. The modulus matters because b = −4 here, and the 2 in the denominator is the piece usually dropped."
 }

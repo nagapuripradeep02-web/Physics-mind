@@ -138,5 +138,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "tan110° reduces through 90° + 20°, so it becomes −cot20° = −1/λ, NOT −tan20°. That reciprocal is what produces the λ² in the answer."
 }

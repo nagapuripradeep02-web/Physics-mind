@@ -285,5 +285,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Components are the safe route here, because the letters in (c·a)b − (c·b)a are easy to swap. Note that c sits OUTSIDE the bracket on the left, so both dot products start with c."
 }

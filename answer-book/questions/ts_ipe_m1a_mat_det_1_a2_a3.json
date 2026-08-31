@@ -387,5 +387,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Do R₂ − R₁ and R₃ − R₁ first so that a whole column becomes zeros. Then b² − a² and b³ − a³ both carry (b − a), which is what comes out as the common factor."
 }

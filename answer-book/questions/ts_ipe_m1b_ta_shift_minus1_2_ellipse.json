@@ -222,5 +222,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Same shift as its circle partner, but here the linear terms do NOT vanish — the answer keeps −8X + 8Y. Getting zero for them means the 2 in front of x² was dropped while expanding the bracket."
 }

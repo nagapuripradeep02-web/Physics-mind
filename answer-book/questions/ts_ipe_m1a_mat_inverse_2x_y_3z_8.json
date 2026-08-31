@@ -310,5 +310,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A is symmetric here, so its cofactor matrix is symmetric too and the transpose changes nothing — a useful check. All three entries of A⁻¹D come to −76, giving x = y = z = 2."
 }

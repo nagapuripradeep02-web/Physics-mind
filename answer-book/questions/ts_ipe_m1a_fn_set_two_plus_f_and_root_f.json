@@ -124,5 +124,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "√f drops every pair whose image is negative, so two of the three pairs vanish and the answer is a SMALLER set. Writing √(−3) as a value is exactly the error this question is set to catch."
 }

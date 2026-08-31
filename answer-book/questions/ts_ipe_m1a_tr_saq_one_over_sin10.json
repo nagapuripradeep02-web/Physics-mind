@@ -230,5 +230,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Combine over one denominator, then take 2 out so that ½ and √3/2 become sin30° and cos30°. The sin(A−B) form gives sin20°, which then cancels against the denominator."
 }

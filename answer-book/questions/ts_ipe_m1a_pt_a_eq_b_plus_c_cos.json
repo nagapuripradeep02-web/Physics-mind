@@ -226,5 +226,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The PLUS version: squaring leaves 2bc(1 + cos A), and 1 + cos A = 2cos²(A/2). That sign inside the bracket is the only difference from the (b − c) sec θ question."
 }

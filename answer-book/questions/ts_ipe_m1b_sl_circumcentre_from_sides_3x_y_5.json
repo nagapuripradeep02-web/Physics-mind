@@ -385,5 +385,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Sides are given here, not vertices, so two of the eight marks go on solving the lines in pairs FIRST. Only then does SA = SB apply; trying to use the line equations directly gets nowhere."
 }

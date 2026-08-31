@@ -147,5 +147,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "cosh x = 5/2 is legal because cosh never drops below 1, and here sinh x = √(cosh²x − 1), the identity used the other way round. The √21 stays in sinh 2x; a tidy whole number is not expected."
 }

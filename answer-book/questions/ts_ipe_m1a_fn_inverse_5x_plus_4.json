@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Set f(x) = y, solve for x, and swap the letter only at the very end — swapping too early is what produces 5y + 4 instead of (x − 4)/5."
 }

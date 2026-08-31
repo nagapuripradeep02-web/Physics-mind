@@ -267,5 +267,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The condition gives (S−A) + (S−B) = C, replacing the usual 180° step. There is no −1 in this answer, because sinC = 2sin(C/2)cos(C/2) needs no constant term."
 }

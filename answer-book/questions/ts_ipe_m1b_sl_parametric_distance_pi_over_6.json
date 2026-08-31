@@ -221,5 +221,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Write P as (x₁ + r cosθ, y₁ + r sinθ) and put it on the line — solving the two lines for P and then measuring is far longer. The 8 and the −8 cancel, leaving r = 6."
 }

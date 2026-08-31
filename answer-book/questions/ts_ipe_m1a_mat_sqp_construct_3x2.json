@@ -146,5 +146,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "3×2 means i runs 1 to 3 while j only runs 1 to 2 — building a 2×3 instead is the usual error. The 3j makes the second column use 3 and 6, not 1 and 2."
 }

@@ -229,5 +229,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The constants have to be matched as well: n₁n₂ = c is what makes the numerator collapse to |c|. The denominator is the same (a − b)² + 4h² as the (α, β) version, so the two proofs differ only at the top."
 }

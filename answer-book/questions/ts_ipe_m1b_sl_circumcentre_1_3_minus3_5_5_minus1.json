@@ -401,5 +401,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The answer (−8, −10) sits well outside the triangle, which is correct for an obtuse one — a distant answer is not a sign of error. Check it by confirming SA² = SB² = SC² = 250 rather than by redoing the algebra."
 }

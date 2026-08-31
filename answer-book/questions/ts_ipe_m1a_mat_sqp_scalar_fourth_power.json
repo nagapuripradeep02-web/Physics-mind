@@ -138,5 +138,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Write A as 3I first, and then A⁴ = 3⁴I = 81I. Multiplying the matrix out four separate times reaches the same place after far more work."
 }

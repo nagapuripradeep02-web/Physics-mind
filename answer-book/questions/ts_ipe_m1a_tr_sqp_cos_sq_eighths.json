@@ -176,5 +176,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Reduce each angle to π/8; squaring removes both minus signs, so no sign tracking is needed after that. The four terms then pair into 1 + 1."
 }
