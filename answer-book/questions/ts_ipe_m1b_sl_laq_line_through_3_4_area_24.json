@@ -91,7 +91,7 @@
         },
         "why": "The intercept form carries both unknowns the question talks about, so both conditions can be written down straight away without any change of variable.",
         "common_mistakes": [
-          "Starting from y = mx + c, which hides the intercepts.",
+          "Starting from y = mx + c, which does not show the intercepts.",
           "Allowing p or q to be negative, which leaves the first quadrant."
         ],
         "mark_note": "Method",

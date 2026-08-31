@@ -176,7 +176,7 @@
         "why": "Uniqueness cannot be shown by looking at the pair already built. It has to start from an arbitrary pair that works, and then force that pair to be the one already built.",
         "common_mistakes": [
           "Skipping uniqueness entirely, although the stem says \"uniquely\".",
-          "Writing Aᵀ = P + Q, which forgets that Q changes sign under transposing."
+          "Writing Aᵀ = P + Q, which drops the sign change on Q under transposing."
         ]
       },
       {

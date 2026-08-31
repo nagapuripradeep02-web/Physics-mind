@@ -54,7 +54,7 @@
         "marks": 1,
         "mark_note": "Magnitude",
         "margin_note": "First mark. Square each component with its sign. (−6)² is +36, so the minus does not survive into the magnitude — it survives only into cos β.",
-        "memory_tip": "Squaring kills the minus sign here: (−6)² = 36, and √49 = 7 exactly.",
+        "memory_tip": "Squaring removes the minus sign here: (−6)² = 36, and √49 = 7 exactly.",
         "lines": [
           {
             "text": "Sol:",

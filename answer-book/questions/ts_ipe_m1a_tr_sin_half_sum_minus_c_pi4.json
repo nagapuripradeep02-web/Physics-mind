@@ -106,7 +106,7 @@
         "lines": [
           "L.H.S = sin(A/2) + sin(B/2) − sin(C/2)",
           "= 2 sin((A+B)/4) cos((A−B)/4) − sin(C/2)",
-          "  [∵ sinC + sinD = 2 sin((C+D)/2) cos((C−D)/2)]",
+          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
           "Also C/2 = π/2 − (π−C)/2",
           "⇒  sin(C/2) = cos((π−C)/2)",
           "  [∵ sin(π/2 − θ) = cosθ]",
@@ -240,8 +240,8 @@
         "lines": [
           "= −1 + 2 sin((π−C)/4)",
           "    × 2 cos((π−A)/4) cos((π−B)/4)",
-          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
-          "  [(C+D)/2 = (π−B)/4, (C−D)/2 = −(π−A)/4]",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
+          "  [(p+q)/2 = (π−B)/4, (p−q)/2 = −(π−A)/4]",
           "= −1 + 4 cos((π−A)/4) cos((π−B)/4) sin((π−C)/4)",
           {
             "text": "∴ L.H.S = R.H.S",

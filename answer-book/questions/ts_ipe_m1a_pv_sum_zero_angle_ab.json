@@ -90,7 +90,7 @@
         },
         "why": "Only the lengths are known, and a length reaches the dot product through its square. Isolating c puts the pair a, b together, which is where the wanted angle lives.",
         "common_mistakes": [
-          "Writing c = a + b and losing the minus sign, though squaring hides it here.",
+          "Writing c = a + b and losing the minus sign, though squaring gives the same result either way here.",
           "Isolating a instead of c, which puts the wanted angle inside the wrong bracket."
         ]
       },

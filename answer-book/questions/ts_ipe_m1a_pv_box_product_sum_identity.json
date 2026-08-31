@@ -96,7 +96,7 @@
         "label": "Dot and drop the zero terms",
         "marks": 2,
         "mark_note": "Dot product",
-        "margin_note": "Half the marks. Six terms come out and four die. Show the six before crossing them out.",
+        "margin_note": "Half the marks. Six terms come out and four are zero. Show the six before crossing them out.",
         "memory_tip": "Six terms, four of them repeat a vector and vanish. Two are left.",
         "lines": [
           "Dot with (b + c):",

@@ -105,7 +105,7 @@
         "lines": [
           "L.H.S = cos A + cos B + cos C",
           "= 2 cos((A+B)/2) cos((A−B)/2) + cos C",
-          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
           "= 2 cos((A+B)/2) cos((A−B)/2) + 1 − 2sin²(C/2)",
           "  [∵ cos2θ = 1 − 2sin²θ]"
         ],
@@ -228,7 +228,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. The difference of the two cosines becomes a product of two half-angle sines and the proof is finished. Write \"= R.H.S\" so the examiner can see the last line reaches the right-hand side.",
-        "memory_tip": "With C = (A−B)/2 and D = (A+B)/2 the formula gives exactly 2 sin(A/2) sin(B/2).",
+        "memory_tip": "Applying cos p + cos q with p = (A−B)/2 and q = (A+B)/2 gives exactly 2 sin(A/2) sin(B/2).",
         "lines": [
           "= 1 + 2 sin(C/2) (2 sin(A/2) sin(B/2))",
           "  [∵ cosC − cosD = 2 sin((C+D)/2) sin((D−C)/2)]",

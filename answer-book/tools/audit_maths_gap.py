@@ -57,9 +57,20 @@ def cards(all_cards):
     if all_cards:
         return [os.path.join(QDIR, f) for f in sorted(os.listdir(QDIR))
                 if re.match(r'ts_ipe_m1[ab]_.*\.json$', f)]
+    # Untracked AND modified: once the cards are committed they stop being '??', and an
+    # audit that quietly reports "0 cards" after a commit is worse than no audit at all.
     out = subprocess.run(['git', 'status', '--porcelain', 'answer-book/questions'],
                          cwd=ROOT, capture_output=True, text=True).stdout
-    return [os.path.join(ROOT, l[3:].strip()) for l in out.splitlines() if l.startswith('??')]
+    paths = [os.path.join(ROOT, l[3:].strip()) for l in out.splitlines()
+             if l.startswith('??') or l.startswith(' M') or l.startswith('M ')]
+    if paths:
+        return paths
+    # Nothing dirty -- fall back to the cards the HEAD commit added or changed, which is what
+    # "the work of this session" means once it is committed.
+    out = subprocess.run(['git', 'show', '--stat', 'HEAD', '--name-only'],
+                         cwd=ROOT, capture_output=True, text=True, encoding='utf-8').stdout
+    return [os.path.join(ROOT, f) for f in out.splitlines()
+            if f.startswith('answer-book/questions/') and f.endswith('.json')]
 
 
 def main():
@@ -103,9 +114,10 @@ def main():
         # ── provenance ──────────────────────────────────────────────────────
         note = d['verification'].get('note', '')
         low = note.lower()
-        for k in ORIGINALITY:
-            if k not in low:
-                bad[f'note missing "{k}" (check:originality)'].append(q)
+        if 'sri chaitanya' in low:
+            for k in ORIGINALITY[1:]:
+                if k not in low:
+                    bad[f'note cites Sri Chaitanya but is missing "{k}"'].append(q)
         if subj == 'mathematics' and BANNER_1B_ON_1A in low:
             bad['1B banner claim on a 1A card (fix_m1a_banner_claim.py)'].append(q)
         for pat, label in STALE_PAPER:

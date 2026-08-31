@@ -227,7 +227,7 @@
             "one term"
           ]
         },
-        "why": "Expanding along a line of zeros kills two of the three terms before any arithmetic is done. Choosing that line is the difference between three 2×2 determinants and one.",
+        "why": "Expanding along a line of zeros removes two of the three terms before any arithmetic is done. Choosing that line is the difference between three 2×2 determinants and one.",
         "common_mistakes": [
           "Expanding along the first row, which needs three 2×2 determinants.",
           "Giving the surviving term a minus sign; position (3, 3) is plus.",

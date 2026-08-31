@@ -92,7 +92,7 @@
         "label": "Work out the three averages",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Take one column at a time. Three of the four x values and one of the z values are negative, so add the signed numbers carefully.",
+        "margin_note": "Second mark. Take one column at a time. Two of the four x values and one of the z values are negative, so add the signed numbers carefully.",
         "memory_tip": "Do one column at a time. The x and z columns both come to 1, so both give 1/4.",
         "lines": [
           "x-coordinate = (2 − 3 − 1 + 3)/4 = 1/4",

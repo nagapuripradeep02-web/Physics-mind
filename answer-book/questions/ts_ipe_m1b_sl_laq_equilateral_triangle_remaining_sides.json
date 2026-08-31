@@ -176,7 +176,7 @@
             "two sides"
           ]
         },
-        "why": "The modulus hides two equations, and here both of them are wanted — the triangle has two remaining sides, not one.",
+        "why": "The modulus stands for two equations, and here both of them are wanted — the triangle has two remaining sides, not one.",
         "common_mistakes": [
           "Dropping the ± and finding only one side.",
           "Opening the modulus on only one of the two brackets."

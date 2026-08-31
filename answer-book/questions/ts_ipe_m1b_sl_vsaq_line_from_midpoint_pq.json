@@ -126,7 +126,7 @@
             "multiply by two"
           ]
         },
-        "why": "If p or q were 0 the midpoint would lie on an axis, which would force both A and B to the origin, and no such triangle or segment exists. That is why both must be non-zero.",
+        "why": "If p or q were 0 one intercept would be 0, so the line would pass through the origin and the intercept form x/a + y/b = 1 could not be written at all. That is why both must be non-zero.",
         "common_mistakes": [
           "Leaving the answer as x/(2p) + y/(2q) = 1 when the tidier form is asked for.",
           "Multiplying only the left side by 2 and writing x/p + y/q = 1."

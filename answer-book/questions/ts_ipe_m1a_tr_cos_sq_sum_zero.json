@@ -151,7 +151,7 @@
         "memory_tip": "The 2 from the formula cancels the 1/2 outside, so the fraction goes in one move.",
         "lines": [
           "cos2A + cos2B = 2 cos(A+B) cos(A−B)",
-          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
           "= 1 + cos(A+B) cos(A−B) + cos²C"
         ],
         "recall": {

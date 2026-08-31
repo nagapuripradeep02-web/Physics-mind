@@ -131,7 +131,7 @@
             "difference"
           ]
         },
-        "why": "Collinearity is a statement about direction, and direction lives in the vector joining two of the points. AB is the reference direction that the next step is compared against.",
+        "why": "Collinearity is a statement about direction, and direction is carried by the vector joining two of the points. AB is the reference direction that the next step is compared against.",
         "common_mistakes": [
           "Subtracting the wrong way round; it is OB − OA, not OA − OB.",
           "A sign slip on the b term, where the subtracted coefficient is already negative."

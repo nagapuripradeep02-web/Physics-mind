@@ -225,7 +225,7 @@
         },
         "why": "cos²(C/2) = s(s−c)/(ab) is the standard half-angle formula, and the condition has just fixed that ratio at one half — which forces cos C to be zero, and inside a triangle only 90° has a zero cosine.",
         "common_mistakes": [
-          "Using sin²(C/2) = (s−a)(s−b)/(ab) here by mistake.",
+          "Mixing the two half-angle formulas up: cos²(C/2) uses s(s−c), sin²(C/2) uses (s−a)(s−b).",
           "Reading cos²(C/2) = ½ as C = 45° — the HALF angle is 45°, so C is 90°."
         ]
       }

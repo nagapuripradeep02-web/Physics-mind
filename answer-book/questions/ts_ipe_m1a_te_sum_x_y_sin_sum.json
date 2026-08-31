@@ -187,7 +187,7 @@
         "label": "Solve the pair",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last mark. Add (1) and (3) for x, then take y from (1). Only n = 0 gives values inside one turn, and the two signs give the same pair with x and y exchanged.",
+        "margin_note": "Last mark. Add (1) and (3) for x, then take y from (1). The stem sets no interval, so the general family above is the full answer; n = 0 gives the pair in [0, 2π) that a board answer quotes, and the two signs give that same pair with x and y exchanged.",
         "memory_tip": "Add the sum and the difference to get 2x. The ± only swaps x and y, so the answer is one pair.",
         "lines": [
           "Adding (1) and (3):",

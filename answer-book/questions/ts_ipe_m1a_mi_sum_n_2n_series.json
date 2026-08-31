@@ -85,7 +85,7 @@
             "power of two"
           ]
         },
-        "why": "The first term is written as 2, which hides the fact that it is 2·2⁰. Writing all three given terms with their powers of 2 shown is what makes the pattern readable.",
+        "why": "The first term is written as 2, which does not show that it is 2·2⁰. Writing all three given terms with their powers of 2 shown is what makes the pattern readable.",
         "common_mistakes": [
           "Reading the nth term as n·2ⁿ⁻¹, which gives 1, 2·2, 3·2² and not the printed series.",
           "Reading the power of 2 as n instead of n − 1, so the first term comes out as 4."

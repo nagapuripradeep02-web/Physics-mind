@@ -98,7 +98,7 @@
             "zeros"
           ]
         },
-        "why": "A row operation of this kind does not change the value of a determinant. It is chosen here because the third column is constant, so subtracting neighbouring rows kills two entries and leaves only one term in the expansion.",
+        "why": "A row operation of this kind does not change the value of a determinant. It is chosen here because the third column is constant, so subtracting neighbouring rows makes two entries zero and leaves only one term in the expansion.",
         "common_mistakes": [
           "Subtracting in the wrong direction, which flips the sign of the final answer.",
           "Simplifying (b+c) − (c+a) to b − a and then taking out (a − b) without the minus sign."

@@ -91,7 +91,7 @@
           "Leaving out the word square.",
           "Requiring the diagonal entries to be non-zero, which is not part of the definition."
         ],
-        "memory_tip": "Upper triangular: the numbers live in the upper triangle, so the zeros are below the diagonal."
+        "memory_tip": "Upper triangular: the numbers sit in the upper triangle, so the zeros are below the diagonal."
       },
       {
         "id": "s2_lower",

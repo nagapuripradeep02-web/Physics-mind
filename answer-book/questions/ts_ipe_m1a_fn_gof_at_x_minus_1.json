@@ -83,7 +83,7 @@
         "why": "In gof the function written on the right acts first, and here its input is the whole of x − 1. Writing f(x − 1) = 3x − 5 fixes what g will receive.",
         "common_mistakes": [
           "Applying g first, which computes (fog)(x − 1) and gives a different expression.",
-          "Writing 3(x − 1) − 2 as 3x − 1 by multiplying only the x by 3."
+          "Writing 3(x − 1) − 2 as 3x − 3 − 2 correctly and then slipping to 3x − 1 instead of 3x − 5."
         ]
       },
       {

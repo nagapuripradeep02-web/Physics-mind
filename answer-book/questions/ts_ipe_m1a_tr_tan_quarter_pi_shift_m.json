@@ -71,7 +71,8 @@
           "Given sin(α+β)/cos(α−β) = (1−m)/(1+m)",
           "α − β is not an odd multiple of π/2,",
           "so cos(α−β) ≠ 0. Also 1 + m ≠ 0.",
-          "Take cos(π/4 − α) ≠ 0, cos(π/4 − β) ≠ 0."
+          "Take cos(π/4 − α) ≠ 0, cos(π/4 − β) ≠ 0,",
+          "and cos(π/4 + β) ≠ 0 so the right side exists."
         ],
         "recall": {
           "credit": "say_it",

@@ -191,7 +191,7 @@
         "label": "Compare the two angles",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Say why equal tangents give equal angles here: both angles lie in a triangle and both tangents are positive, so both are acute.",
+        "margin_note": "One mark. Say why equal tangents give equal angles here: the modulus in the angle formula returns the acute angle at each vertex, so ∠A and ∠B are both acute and equal tangents force them equal.",
         "lines": [
           "tan A = tan B = 1/2",
           "A and B are angles of a triangle, and both",
@@ -221,12 +221,12 @@
             "same angle"
           ]
         },
-        "why": "Equal tangents alone do not force equal angles, so the range has to be pinned down first — inside a triangle, and acute, leaves only one angle with tangent 1/2.",
+        "why": "Equal tangents alone do not force equal angles, so the range has to be pinned down first. The modulus in the angle formula returns the acute angle at each vertex, and only one acute angle has tangent 1/2.",
         "common_mistakes": [
           "Writing ∠A = ∠B from tan A = tan B without saying both are acute.",
           "Claiming the triangle is equilateral because two angles agree."
         ],
-        "memory_tip": "Equal tangents give equal angles only once the range is fixed. Inside a triangle with a positive tangent means acute, and that fixes it."
+        "memory_tip": "Equal tangents give equal angles only once the range is fixed. The modulus makes each angle the acute one, and that fixes it."
       },
       {
         "id": "s5_conclude",

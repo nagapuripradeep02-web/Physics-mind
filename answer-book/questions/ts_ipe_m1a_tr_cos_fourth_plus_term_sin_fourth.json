@@ -79,7 +79,7 @@
             "bracket"
           ]
         },
-        "why": "The bracket is written with sec α only to hide sin²α. Replacing 1/sec²α by cos²α turns it into 1 − cos²α, which is sin²α, and the left side becomes a plain expression in sin α and cos α. Writing sec α at all is what makes cos α ≠ 0 part of the statement.",
+        "why": "The bracket is written with sec α instead of showing sin²α directly. Replacing 1/sec²α by cos²α turns it into 1 − cos²α, which is sin²α, and the left side becomes a plain expression in sin α and cos α. Writing sec α at all is what makes cos α ≠ 0 part of the statement.",
         "common_mistakes": [
           "Reading 1/sec²α as sec²α.",
           "Using sec α without noting that cos α must not be 0."

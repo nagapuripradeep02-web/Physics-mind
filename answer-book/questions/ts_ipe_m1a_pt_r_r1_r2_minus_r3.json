@@ -87,7 +87,7 @@
         },
         "why": "The answer contains cos C, so the four radii must be grouped in a way that keeps C to the end. (r₁ + r₂) shares 4R cos(C/2) and (r − r₃) shares 4R sin(C/2).",
         "common_mistakes": [
-          "Grouping (r + r₁) and (r₂ − r₃), which leaves no common half-angle.",
+          "Expanding all four radii into their 4R half-angle forms at once, instead of pairing them first.",
           "Swapping r₂ and r₃ — r₂ keeps sin(B/2), r₃ keeps sin(C/2)."
         ]
       },

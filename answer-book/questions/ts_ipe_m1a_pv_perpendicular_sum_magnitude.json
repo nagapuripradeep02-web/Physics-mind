@@ -218,7 +218,7 @@
             "four plus nine plus sixteen"
           ]
         },
-        "why": "The condition in the question exists only to kill the cross terms. Once they are gone the three lengths behave like the sides of a box, and the answer is the length of its long diagonal.",
+        "why": "The condition in the question exists only to make the cross terms zero. Once they are gone the three lengths behave like the sides of a box, and the answer is the length of its long diagonal.",
         "common_mistakes": [
           "Giving 29 as the final answer instead of √29.",
           "Writing √29 as 2 + 3 + 4 = 9 by adding the lengths."

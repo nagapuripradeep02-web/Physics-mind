@@ -106,7 +106,7 @@
           "L.H.S = sin 2A − sin 2B + sin 2C",
           "= sin 2A + sin 2C − sin 2B",
           "= 2 sin((2A+2C)/2) cos((2A−2C)/2) − sin 2B",
-          "  [∵ sinC + sinD = 2 sin((C+D)/2) cos((C−D)/2)]",
+          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
           "= 2 sin(A+C) cos(A−C) − 2 sinB cosB",
           "  [∵ sin2θ = 2 sinθ cosθ]"
         ],
@@ -177,7 +177,7 @@
         },
         "why": "sin(180° − θ) = sin θ is what turns sin(A+C) into sin B. Without the condition the two terms would share no factor.",
         "common_mistakes": [
-          "Writing sin(180° − B) = −sin B, which is the cosine rule not the sine one.",
+          "Writing sin(180° − B) = −sin B. The minus belongs to cosine: cos(180° − B) = −cos B, but sin(180° − B) = +sin B.",
           "Forgetting to use the condition at all."
         ]
       },

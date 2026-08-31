@@ -155,7 +155,7 @@
             "eliminate"
           ]
         },
-        "why": "Gauss-Jordan works one column at a time, and it always wants a 1 at the pivot first. Chasing zeros before you have that 1 is what forces fractions into the working.",
+        "why": "Gauss-Jordan works one column at a time, and it needs a 1 at the pivot first. Making zeros before you have that 1 is what forces fractions into the working.",
         "common_mistakes": [
           "Clearing the column with a pivot that is not 1, which forces fractions into every later row.",
           "Applying an operation to only part of a row — every entry moves, including the constant.",

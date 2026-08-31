@@ -110,7 +110,7 @@
         "lines": [
           "L.H.S = (cos2A + cos2B) + cos2C",
           "= 2 cos(A+B) cos(A−B) + cos2C",
-          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]"
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]"
         ],
         "recall": {
           "credit": "say_it",

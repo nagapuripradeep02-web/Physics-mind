@@ -98,7 +98,7 @@
         "marks": 2,
         "mark_note": "Expansion",
         "margin_note": "Half the marks. Split one slot at a time and cross out every bracket that repeats a vector.",
-        "memory_tip": "Eight terms come out, four of them repeat a vector and die. Four are left.",
+        "memory_tip": "Eight terms come out, four of them repeat a vector and are zero. Four are left.",
         "lines": [
           "The box product is linear in each slot,",
           "and a bracket with a repeated vector is 0.",

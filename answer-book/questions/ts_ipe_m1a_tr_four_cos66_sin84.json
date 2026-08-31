@@ -45,8 +45,8 @@
         "label": "Turn the sum into a product",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. cos66° = sin24°, then sinC + sinD = 2 sin((C+D)/2) cos((C−D)/2) with C = 84° and D = 24°, giving half sum 54° and half difference 30°.",
-        "memory_tip": "Turn cos66° into sin24° first, then use sinC + sinD = 2 sin((C+D)/2) cos((C−D)/2).",
+        "margin_note": "First mark. cos66° = sin24°, then sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2) with C = 84° and D = 24°, giving half sum 54° and half difference 30°.",
+        "memory_tip": "Turn cos66° into sin24° first, then use sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2).",
         "lines": [
           {
             "text": "Sol:",
@@ -54,7 +54,7 @@
           },
           "cos66° = sin(90° − 66°) = sin24°",
           "L.H.S = 4(sin84° + sin24°)",
-          "  [∵ sinC + sinD = 2 sin((C+D)/2) cos((C−D)/2)]",
+          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
           "= 8 sin54° cos30°"
         ],
         "recall": {

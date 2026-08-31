@@ -106,7 +106,7 @@
         "lines": [
           "L.H.S = sinA + sinB + sinC",
           "= 2 sin((A+B)/2) cos((A−B)/2) + sinC",
-          "  [∵ sinC + sinD = 2 sin((C+D)/2) cos((C−D)/2)]",
+          "  [∵ sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2)]",
           "Also sinC = 2 sin(C/2) cos(C/2)",
           "  [∵ sin2θ = 2 sinθ cosθ]"
         ],
@@ -233,7 +233,7 @@
         "memory_tip": "cos((A−B)/2) + cos((A+B)/2) = 2 cos(A/2) cos(B/2). The two 2s multiply to give the 4.",
         "lines": [
           "= 2 cos(C/2) · 2 cos(A/2) cos(B/2)",
-          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]",
           {
             "text": "= 4 cos(A/2) cos(B/2) cos(C/2) = R.H.S",
             "style": "boxed"

@@ -263,7 +263,7 @@
             "A minus B over two"
           ]
         },
-        "why": "An even power kills the sign, so both terms are the same and simply double. Writing the answer back in (A − B)/2 is what the question asked for.",
+        "why": "An even power removes the sign, so both terms are the same and simply double. Writing the answer back in (A − B)/2 is what the question asked for.",
         "common_mistakes": [
           "Leaving the answer in x without saying x = (A − B)/2.",
           "Writing cotⁿ((A−B)/2) and losing the factor 2."

@@ -146,8 +146,8 @@
         "label": "Find 4Bᵀ",
         "marks": 1,
         "mark_note": "4Bᵀ",
-        "margin_note": "Third mark. Scale the transpose, not B. Multiplying B by 4 and transposing afterwards gives the same matrix here, but scaling the wrong matrix first is how the entries end up in the wrong places.",
-        "memory_tip": "Scale Bᵀ, not B. Work from the matrix you have just written, not from the original.",
+        "margin_note": "Third mark. Multiply every entry of Bᵀ by 4. Scaling first and transposing afterwards gives exactly the same matrix, since (kB)ᵀ = kBᵀ for any scalar k — the reason to work from Bᵀ is simply that it is already written down.",
+        "memory_tip": "Multiply every entry of Bᵀ by 4. Scaling before or after transposing gives the same matrix, so work from the Bᵀ already on the page.",
         "lines": [
           "4Bᵀ multiplies every entry of Bᵀ by 4.",
           {
@@ -179,7 +179,7 @@
         },
         "why": "The question asks for 4Bᵀ, so the scalar acts on the transpose that has already been written. Keeping this as its own step means the final subtraction is between two finished matrices.",
         "common_mistakes": [
-          "Scaling B and then transposing from memory, so the entries land in the wrong positions.",
+          "Transposing from memory instead of reading Bᵀ off the page, so the entries land in the wrong positions.",
           "Writing 4(5) as 9 by adding instead of multiplying."
         ]
       },

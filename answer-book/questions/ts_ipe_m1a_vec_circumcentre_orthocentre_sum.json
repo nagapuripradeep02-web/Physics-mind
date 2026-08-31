@@ -53,7 +53,7 @@
         "label": "Name the point P",
         "marks": 1,
         "mark_note": "Set-up",
-        "margin_note": "First mark. Do not chase H directly. Give the sum OA + OB + OC a name, P, and then prove P is the orthocentre. Also write down what circumcentre means, because the equal radii are used twice below.",
+        "margin_note": "First mark. Do not work towards H directly. Give the sum OA + OB + OC a name, P, and then prove P is the orthocentre. Also write down what circumcentre means, because the equal radii are used twice below.",
         "memory_tip": "Name the sum P first, then prove P is H. Circumcentre means the three distances |OA|, |OB|, |OC| are equal.",
         "lines": [
           {
@@ -232,7 +232,7 @@
             "OH"
           ]
         },
-        "why": "The orthocentre is defined as the common point of the altitudes, so a point proved to lie on two of them has to be it. Everything before this step was about the vectors; this step turns it into the statement the question asked for.",
+        "why": "The three altitudes of a triangle are concurrent, and their common point is the orthocentre. That theorem is what lets a point proved to lie on two altitudes be named H. Everything before this step was about the vectors; this step turns it into the statement the question asked for.",
         "common_mistakes": [
           "Stopping after the second altitude without saying P = H.",
           "Checking only one altitude, which leaves P anywhere on that line."
