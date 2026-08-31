@@ -90,7 +90,8 @@
         "common_mistakes": [
           "Leaving the line as ax + by + c = 0 and multiplying by it directly.",
           "Dividing by the wrong constant and losing a sign."
-        ]
+        ],
+        "memory_tip": "Rearrange the line so it reads (something)/(constant) = 1. Nothing works until it is in that form."
       },
       {
         "id": "s2_homogenise",
@@ -131,7 +132,8 @@
           "Multiplying the constant by the bracket only once.",
           "Multiplying the second-degree terms as well, which raises them to degree four."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Raise every term to degree two: linear terms times that 1 ONCE, the constant TWICE."
       },
       {
         "id": "s3_simplify",
@@ -173,7 +175,8 @@
           "A constant term surviving, which means the squaring was missed.",
           "Sign slip when expanding a squared bracket."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The result must have NO constant and no linear term — if either survives, a term was raised wrongly."
       },
       {
         "id": "s4_apply_the_condition",
@@ -219,7 +222,8 @@
           "Using h instead of 2h in the square root.",
           "Forgetting the modulus and producing a negative cosine."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Write the cos θ formula out before substituting; the formula itself carries a mark."
       }
     ]
   }

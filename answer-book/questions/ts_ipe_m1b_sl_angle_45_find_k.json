@@ -97,7 +97,8 @@
           "Reading the slope of 4x − y + 7 = 0 as −4 by forgetting the sign of b.",
           "Writing m₂ as −k/5."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Read both slopes off the coefficients as −a/b; the second carries the unknown."
       },
       {
         "id": "s2_angle_formula",
@@ -137,7 +138,8 @@
           "Using sinθ or cosθ instead of tanθ.",
           "Writing the denominator as 1 − m₁m₂."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "tan θ = |(m₁ − m₂)/(1 + m₁m₂)|, and at 45° the tangent is 1, so the modulus equals 1."
       },
       {
         "id": "s3_open_the_modulus",
@@ -177,7 +179,8 @@
           "Dropping the ± and finding only one value of k.",
           "Multiplying out the fractions incorrectly and losing the 5."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Clear the fractions inside FIRST, then open the modulus as ±. That ± is why there are two answers."
       },
       {
         "id": "s4_solve_both_branches",
@@ -220,7 +223,8 @@
           "Reporting only k = 3.",
           "Sign slip when distributing the minus over (20 − k)."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Solve each branch separately and report BOTH values."
       }
     ]
   }

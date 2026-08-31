@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Counting",
         "margin_note": "First mark. I-N-T-E-R-M-E-D-I-A-T-E: 12 letters. E appears 3 times, I twice, T twice; the rest once.",
+        "memory_tip": "Write it out: I-N-T-E-R-M-E-D-I-A-T-E. Three repeat groups — E three times, I twice, T twice.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 12!/(3!·2!·2!) = 479001600/24 = 1,99,58,400.",
+        "memory_tip": "12!/(3!·2!·2!) = 1,99,58,400. The divisor is a product of factorials, not (3+2+2)!.",
         "lines": [
           "Arrangements = n!/(p!·q!·r!)",
           {

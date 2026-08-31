@@ -68,6 +68,7 @@
         "marks": 2,
         "mark_note": "Set-up",
         "margin_note": "First and second marks. Put z = sin π/8 + i cos π/8. Then 1/z = (sin π/8 − i cos π/8)/(sin² π/8 + cos² π/8) = sin π/8 − i cos π/8, so the number in the denominator is 1/z and the two brackets are 1 + z and 1 + 1/z.",
+        "memory_tip": "sin² + cos² = 1, so 1/z is simply sin π/8 − i cos π/8. The denominator's number is the reciprocal of the numerator's.",
         "lines": [
           {
             "text": "Sol:",
@@ -115,6 +116,7 @@
         "marks": 2,
         "mark_note": "Reduce",
         "margin_note": "Third and fourth marks. 1 + 1/z = (z + 1)/z, so (1 + z) divided by it leaves z. The whole expression is z to the power 8/3 and nothing more.",
+        "memory_tip": "1 + 1/z = (z + 1)/z, so (1 + z) divided by it leaves z. The whole expression is z^(8/3).",
         "lines": [
           "The given expression",
           {
@@ -159,6 +161,7 @@
         "marks": 1,
         "mark_note": "Cis form",
         "margin_note": "Fifth mark. z is written sine first, so use cos(π/2 − π/8) = sin π/8 and sin(π/2 − π/8) = cos π/8 to swap them: z = cos(3π/8) + i sin(3π/8). De Moivre needs the cosine first and the sine second.",
+        "memory_tip": "z is written sine first. Swap with cos(π/2 − π/8), so the angle becomes 3π/8.",
         "lines": [
           "z = sin π/8 + i cos π/8",
           "= cos(π/2 − π/8) + i sin(π/2 − π/8)",
@@ -200,6 +203,7 @@
         "marks": 2,
         "mark_note": "Result",
         "margin_note": "Sixth and seventh marks. The angle becomes (8/3) · (3π/8) = π, so the value is cos π + i sin π = −1 + i(0). A fractional power has several values; this is the one the question asks for.",
+        "memory_tip": "(8/3) · (3π/8) = π, so the value is cos π + i sin π = −1.",
         "lines": [
           {
             "text": "z^{8/3} = \\left[\\cos\\tfrac{3\\pi}{8} + i\\sin\\tfrac{3\\pi}{8}\\right]^{8/3}",

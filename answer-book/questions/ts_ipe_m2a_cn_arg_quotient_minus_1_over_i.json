@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Arguments",
         "margin_note": "First mark. −1 is on the negative real axis, argument π. i is on the positive imaginary axis, argument π/2.",
+        "memory_tip": "−1 is half a turn, argument π. i is a quarter turn up, argument π/2.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Arg(z₁/z₂) = Arg z₁ − Arg z₂ = π − π/2 = π/2, already in the principal range. Direct check: −1/i = −i/i² = i, argument π/2.",
+        "memory_tip": "A quotient SUBTRACTS, in the order given: π − π/2 = π/2. Check: −1/i = i.",
         "lines": [
           "Arg(z₁/z₂) = Arg z₁ − Arg z₂ = π − π/2",
           {

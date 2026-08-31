@@ -90,7 +90,8 @@
         "common_mistakes": [
           "Taking h as the whole xy coefficient instead of half of it.",
           "Getting the sign of a negative coefficient wrong."
-        ]
+        ],
+        "memory_tip": "Read off all six coefficients first, halving the doubled ones."
       },
       {
         "id": "s2_delta",
@@ -131,7 +132,8 @@
           "Dropping one of the five terms of Δ.",
           "Arithmetic slip with the quarters that come from halved coefficients."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is zero exactly when the equation factors into two lines."
       },
       {
         "id": "s3_inequalities",
@@ -172,7 +174,8 @@
           "Stopping at Δ = 0 and declaring the answer.",
           "Testing only one of the three inequalities."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The three inequalities confirm the factors are real, not complex. All four conditions together settle it."
       },
       {
         "id": "s4_point",
@@ -218,7 +221,8 @@
           "Swapping the two numerators between x and y.",
           "Using ab + h² in the denominator."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "The intersection comes from a formula in the same six coefficients — nothing needs solving."
       }
     ]
   }

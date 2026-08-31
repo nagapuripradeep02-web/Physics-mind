@@ -81,7 +81,8 @@
         "common_mistakes": [
           "Pairing adjacent factors.",
           "Losing the middle factor while bracketing."
-        ]
+        ],
+        "memory_tip": "Write all seven factors, then bracket first with last, second with sixth, third with fifth — the fourth stands alone."
       },
       {
         "id": "s2_rewrite_each_larger_angle",
@@ -125,7 +126,8 @@
         "common_mistakes": [
           "Writing cot(π/2 − θ) as cot θ.",
           "Forgetting the middle factor is 1."
-        ]
+        ],
+        "memory_tip": "In each pair the larger angle is π/2 minus the smaller, and cot(π/2 − θ) = tan θ."
       },
       {
         "id": "s3_use_cot_tan_1",
@@ -168,7 +170,8 @@
         "common_mistakes": [
           "Trying to evaluate each cotangent numerically.",
           "Writing cot θ · tan θ as tan²θ."
-        ]
+        ],
+        "memory_tip": "Each bracket is a cotangent times its OWN tangent, which is 1. The middle term cot(π/4) is 1 too."
       }
     ]
   }

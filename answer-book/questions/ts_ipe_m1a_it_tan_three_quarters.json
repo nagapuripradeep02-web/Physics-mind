@@ -50,6 +50,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Addition formula for the first pair. Both parts land over 20, giving Tan⁻¹(27/11).",
+        "memory_tip": "Addition formula for the first pair; both parts land over 20, giving Tan⁻¹(27/11).",
         "lines": [
           {
             "text": "Sol:",
@@ -93,6 +94,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark, and the difference from the twin. Tan⁻¹x − Tan⁻¹y = Tan⁻¹((x−y)/(1+xy)) — note the PLUS in the denominator.",
+        "memory_tip": "The DIFFERENCE formula has a PLUS in the denominator: (x − y)/(1 + xy).",
         "lines": [
           "We know Tan⁻¹x − Tan⁻¹y = Tan⁻¹((x−y)/(1+xy))",
           "∴ L.H.S = Tan⁻¹(27/11) − Tan⁻¹(8/19)",
@@ -134,6 +136,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. 425/425 is 1, so the answer is Tan⁻¹(1) = π/4 — the same landing as the twin.",
+        "memory_tip": "425/425 is 1, so the answer is Tan⁻¹(1) = π/4.",
         "lines": [
           "= Tan⁻¹(1) = π/4",
           {

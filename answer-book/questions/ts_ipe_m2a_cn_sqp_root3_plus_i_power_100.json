@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Modulus",
         "margin_note": "First mark. |√3 + i| = √(3 + 1) = 2, so the left side has modulus 2¹⁰⁰. On the right, 2⁹⁹ is a positive real number and comes out of the modulus unchanged.",
+        "memory_tip": "|zⁿ| = |z|ⁿ. Since |√3 + i| = 2, the left side is 2¹⁰⁰ — no expansion and no De Moivre.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Divide by 2⁹⁹: 2¹⁰⁰/2⁹⁹ = 2. Then square.",
+        "memory_tip": "2¹⁰⁰/2⁹⁹ = 2¹ = 2. Then square both sides: a² + b² = 4.",
         "lines": [
           "⇒ √(a² + b²) = 2¹⁰⁰/2⁹⁹ = 2",
           "Squaring both sides:",

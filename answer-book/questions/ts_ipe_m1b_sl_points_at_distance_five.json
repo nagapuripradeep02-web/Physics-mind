@@ -91,7 +91,8 @@
           "Taking cosθ = 3/5 and sinθ = 4/5, with the two swapped.",
           "Trying to find θ itself instead of just its cosine and sine."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The parametric form needs cos θ and sin θ. From tan θ = 3/4 the 3-4-5 triangle gives both with no calculator."
       },
       {
         "id": "s2_parametric_point",
@@ -132,7 +133,8 @@
         "common_mistakes": [
           "Using only + and finding one point.",
           "Multiplying 5 by cosθ and sinθ the wrong way round."
-        ]
+        ],
+        "memory_tip": "The two points sit on EITHER side, so write the ± into the parametric form from the start."
       },
       {
         "id": "s3_state_both_points",
@@ -175,7 +177,8 @@
           "Mixing the signs and reporting (7, −1) or (−1, 5).",
           "Reporting only one of the two points."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Take the signs TOGETHER — both plus, then both minus. Mixing them gives points off the line."
       }
     ]
   }

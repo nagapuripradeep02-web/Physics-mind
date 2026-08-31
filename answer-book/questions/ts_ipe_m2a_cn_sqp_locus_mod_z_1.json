@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Modulus",
         "margin_note": "First mark. |z| is the distance of the point (x, y) from the origin, √(x² + y²). Set it equal to 1.",
+        "memory_tip": "|z| is the distance of (x, y) from the origin, √(x² + y²).",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Square both sides. The equation is a circle with centre at the origin and radius 1.",
+        "memory_tip": "Square both sides: x² + y² = 1, the circle of radius 1 about the origin. No root in the final line.",
         "lines": [
           "Squaring: x² + y² = 1",
           {

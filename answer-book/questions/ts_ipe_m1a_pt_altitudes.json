@@ -95,7 +95,8 @@
         "common_mistakes": [
           "Writing p₁ = Δ/a without the 2.",
           "Pairing p₁ with the wrong side."
-        ]
+        ],
+        "memory_tip": "Area from any side and its own height: Δ = ½ a p₁, so p₁ = 2Δ/a. The other two follow by symmetry."
       },
       {
         "id": "s1b_figure",
@@ -213,7 +214,8 @@
               "sm": true
             }
           ]
-        }
+        },
+        "memory_tip": "The picture pairs each altitude with the side it is dropped onto — that pairing is the whole content."
       },
       {
         "id": "s2_prove_part_i",
@@ -253,7 +255,8 @@
         "common_mistakes": [
           "Forgetting that a + b + c = 2s.",
           "Writing r = s/Δ upside down."
-        ]
+        ],
+        "memory_tip": "The three reciprocals share 1/(2Δ), and a + b + c = 2s, so the sum is s/Δ = 1/r."
       },
       {
         "id": "s3_prove_part_ii",
@@ -293,7 +296,8 @@
         "common_mistakes": [
           "Not spotting a + b − c = 2(s−c).",
           "Pairing the minus with r₁ instead of r₃."
-        ]
+        ],
+        "memory_tip": "With a minus on the third: a + b − c = 2s − 2c = 2(s − c), and Δ/(s − c) is r₃."
       },
       {
         "id": "s4_prove_part_iii",
@@ -337,7 +341,8 @@
         "common_mistakes": [
           "Giving only one of the two forms.",
           "Cubing 4R as 12R³ instead of 64R³."
-        ]
+        ],
+        "memory_tip": "Multiply the three altitudes, then convert using abc = 4RΔ to reach the second form."
       }
     ]
   }

@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Conjugate rule",
         "margin_note": "First mark. The conjugate is the reflection in the real axis, so its argument is the negative of the original's: if the conjugate has argument π/5, then z₁ has argument −π/5.",
+        "memory_tip": "A conjugate reflects in the real axis, so its argument is the negative. Conjugate π/5 means z₁ has −π/5.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,6 +105,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. −π/5 + π/3 over the common denominator 15: −3π/15 + 5π/15 = 2π/15.",
+        "memory_tip": "−3π/15 + 5π/15 = 2π/15. An answer of 8π/15 means the conjugate was ignored.",
         "lines": [
           "Arg z₁ + Arg z₂ = −π/5 + π/3",
           "= (−3π + 5π)/15",

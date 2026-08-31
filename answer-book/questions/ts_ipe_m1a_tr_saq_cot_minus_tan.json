@@ -84,7 +84,8 @@
         "common_mistakes": [
           "Subtracting the wrong way round.",
           "Writing tan A as cos A / sin A."
-        ]
+        ],
+        "memory_tip": "Reduce everything to sine and cosine first."
       },
       {
         "id": "s2_subtract_over_a_common_d",
@@ -122,7 +123,8 @@
         "common_mistakes": [
           "Writing cos²A − sin²A = 1.",
           "Getting sin²A − cos²A and picking up a sign."
-        ]
+        ],
+        "memory_tip": "The numerator is cos²A − sin²A, a DIFFERENCE — and that is exactly cos 2A."
       },
       {
         "id": "s3_introduce_the_double_ang",
@@ -160,7 +162,8 @@
         "common_mistakes": [
           "Doubling only one side of the fraction.",
           "Losing the cos 2A on top."
-        ]
+        ],
+        "memory_tip": "Double top and bottom so the denominator becomes sin 2A."
       },
       {
         "id": "s4_convert_to_cot",
@@ -200,7 +203,8 @@
         "common_mistakes": [
           "Writing tan instead of cot.",
           "Leaving the answer as a fraction."
-        ]
+        ],
+        "memory_tip": "cos over sin is cot, so the answer is 2 cot 2A."
       }
     ]
   }

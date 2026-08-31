@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Multiplying cis numbers adds the angles, so xyz = cis(A + B + C), and in a triangle A + B + C = 180°. Both lines have to be on the page.",
+        "memory_tip": "A product of cis numbers adds the angles, and in a triangle A + B + C = 180°. Both lines are needed.",
         "lines": [
           {
             "text": "Sol:",
@@ -112,6 +113,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. cos 180° = −1 and sin 180° = 0, so xyz = −1 + i(0) = −1. Write the i(0) to show the imaginary part was checked.",
+        "memory_tip": "cos 180° = −1 and sin 180° = 0, so xyz = −1. Write the i(0) to show the imaginary part was checked.",
         "lines": [
           "= cis 180° = cos 180° + i sin 180°",
           {

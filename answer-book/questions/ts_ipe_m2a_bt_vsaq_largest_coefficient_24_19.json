@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Part (i)",
         "margin_note": "First mark. For even n the largest binomial coefficient is the middle one, ⁿC with lower index n/2.",
+        "memory_tip": "Even n has ONE largest coefficient, the middle one with lower index n/2.",
         "lines": [
           {
             "text": "Sol:",
@@ -88,6 +89,7 @@
         "marks": 1,
         "mark_note": "Part (ii)",
         "margin_note": "Second mark. For odd n the two middle coefficients are equal and both are largest.",
+        "memory_tip": "Odd n has TWO equal largest coefficients. Give both ¹⁹C₉ and ¹⁹C₁₀.",
         "lines": [
           "(ii) n = 19 is odd, so the two middle coefficients",
           "are equal and largest: ¹⁹C₉ = ¹⁹C₁₀",

@@ -86,7 +86,8 @@
         "common_mistakes": [
           "Writing a + b + c as s rather than 2s.",
           "Using cot A instead of cot(A/2)."
-        ]
+        ],
+        "memory_tip": "cot(A/2) = s(s − a)/Δ. The three share s/Δ, and the brackets add to 3s − 2s = s."
       },
       {
         "id": "s2_simplify_the_denominator",
@@ -129,7 +130,8 @@
         "common_mistakes": [
           "Forgetting that 2bc sinA is 4Δ, not 2Δ.",
           "Mis-cancelling the squared terms."
-        ]
+        ],
+        "memory_tip": "cot = cos/sin, then the cosine rule on top and Δ = ½bc sinA below. Everything lands over 4Δ."
       },
       {
         "id": "s3_divide_and_simplify",
@@ -173,7 +175,8 @@
         "common_mistakes": [
           "Leaving the answer as 4s².",
           "Multiplying by the second fraction instead of dividing."
-        ]
+        ],
+        "memory_tip": "The Δ cancels, and 4s² is (2s)² — which is (a + b + c)²."
       }
     ]
   }

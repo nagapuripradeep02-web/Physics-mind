@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Half the marks. a = 2R sinA turns a² cotA into 4R² sin²A · cosA/sinA — and one sine cancels, leaving 2R²(2 sinA cosA), which is a double angle.",
+        "memory_tip": "a = 2R sinA makes a² cotA into 4R² sin²A · cosA/sinA; one sine cancels, leaving a double angle.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "The other half. sin2A + sin2B + sin2C = 4 sinA sinB sinC in any triangle; then each sine goes back to a side through the sine rule.",
+        "memory_tip": "Σsin2A = 4 sinA sinB sinC in any triangle; then each sine goes back to a side by the sine rule.",
         "lines": [
           "= 2R²(4 sinA sinB sinC)   [∵ in a △, Σsin2A = 4 sinA sinB sinC]",
           "= (1/R)(2R sinA)(2R sinB)(2R sinC)   [regrouping 8R³ as 8R³/R × 1]",

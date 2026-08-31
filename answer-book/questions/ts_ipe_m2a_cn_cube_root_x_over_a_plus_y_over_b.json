@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Cube",
         "margin_note": "First mark. A cube root on the left is removed by cubing both sides. From here the question is an expansion and a comparison — the root never appears again.",
+        "memory_tip": "The power 1/3 is a cube root, so cube both sides. The root never appears again.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Expansion",
         "margin_note": "Second mark. Use (p − q)³ = p³ − 3p²q + 3pq² − q³ with p = a, q = ib. Then i² = −1 and i³ = −i. Collect the real terms and the i terms separately.",
+        "memory_tip": "(p − q)³ with q = ib. Then i² = −1 and i³ = −i move terms between the real group and the i group.",
         "lines": [
           "(a − ib)³ = a³ − 3a²(ib) + 3a(ib)² − (ib)³",
           "= a³ − 3a²bi + 3ab²i² − b³i³",
@@ -154,6 +156,7 @@
         "marks": 1,
         "mark_note": "Comparison",
         "margin_note": "Third mark. Two complex numbers are equal only when both parts match. The real parts give x, the imaginary parts give y — watch the minus in front of iy on the left.",
+        "memory_tip": "The left side is x − iy, so −y matches the i coefficient. Divide x by a and y by b, never crossed.",
         "lines": [
           "Comparing real parts:",
           {
@@ -203,6 +206,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. Add the two fractions, collect a² with a² and b² with b², and take out the 4.",
+        "memory_tip": "(a² − 3b²) + (3a² − b²) = 4a² − 4b². Take the 4 out to match the form asked.",
         "lines": [
           "x/a + y/b = (a² − 3b²) + (3a² − b²)",
           "= 4a² − 4b²",

@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. Put z = x + iy in and group each of the top and bottom as (real) + i(imaginary). The −i on top joins the y; the −1 below joins the x.",
+        "memory_tip": "The −i on top joins the y; the −1 below joins the x. Group each as (real) + i(imaginary).",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 2,
         "mark_note": "Real and imaginary parts",
         "margin_note": "Half the marks. The conjugate of the denominator is (x − 1) − iy. The denominator becomes (x − 1)² + y², a real number; the numerator's real part is x(x − 1) + y(y − 1) and it is the only thing needed next.",
+        "memory_tip": "The conjugate of (x − 1) + iy is (x − 1) − iy. Only the numerator's real part is needed.",
         "lines": [
           "Multiply above and below by (x − 1) − iy:",
           {
@@ -162,6 +164,7 @@
         "marks": 1,
         "mark_note": "Locus",
         "margin_note": "Last mark. Purely imaginary means the real part is 0. The denominator is positive, so only the numerator has to vanish.",
+        "memory_tip": "Purely imaginary means the REAL part is 0. The denominator is positive, so only the numerator must vanish.",
         "lines": [
           "(z − i)/(z − 1) is purely imaginary",
           "⇒ real part = 0",

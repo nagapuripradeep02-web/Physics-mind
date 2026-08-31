@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The 7th term is Tᵣ₊₁ with r = 6: ¹⁴C₆ times the first entry to the power 14 − 6 times the second to the power 6.",
+        "memory_tip": "The 7th term takes r = 6: ¹⁴C₆ times the first entry to the power 8, the second to the power 6.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 4⁸/2⁶ = 2¹⁶/2⁶ = 2¹⁰ = 4⁵, and x¹²/x²⁴ = 1/x¹².",
+        "memory_tip": "Work the constants in base 2: 4⁸/2⁶ = 2¹⁰ = 4⁵. The x¹² lands in the DENOMINATOR.",
         "lines": [
           "= ¹⁴C₆ · (4⁸/x²⁴) · (x¹²/2⁶) = ¹⁴C₆ · 4⁸/(2⁶ x¹²)",
           "4⁸/2⁶ = 2¹⁶/2⁶ = 2¹⁰ = 4⁵",

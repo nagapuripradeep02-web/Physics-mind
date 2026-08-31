@@ -93,7 +93,8 @@
         "common_mistakes": [
           "Using n² as the nth term instead of the SUM of squares up to n.",
           "Misremembering the sum of squares as n(n+1)/2, which is the sum of the first n numbers."
-        ]
+        ],
+        "memory_tip": "Each term is itself a sum of squares, so the nth term is n(n+1)(2n+1)/6 before S(n) can be written."
       },
       {
         "id": "s2_base",
@@ -134,7 +135,8 @@
         "common_mistakes": [
           "Skipping the arithmetic and writing 'clearly true'.",
           "Substituting into the nth-term formula instead of the statement."
-        ]
+        ],
+        "memory_tip": "At n = 1 both sides come to 1: the left is 1², the right is 12/12."
       },
       {
         "id": "s3_assume",
@@ -175,7 +177,8 @@
         "common_mistakes": [
           "Assuming the statement for ALL k, which assumes what is being proved.",
           "Not numbering the line, so Step 3 cannot cite it."
-        ]
+        ],
+        "memory_tip": "Assume for k and number the line (1)."
       },
       {
         "id": "s4_inductive",
@@ -221,7 +224,8 @@
           "Getting the (k+1)th term wrong: replace n by k+1 in n(n+1)(2n+1)/6, which gives 2k+3, not 2k+1.",
           "Failing to bring both fractions to the same denominator before adding.",
           "Leaving k² + 5k + 6 unfactorised, so R.H.S never appears."
-        ]
+        ],
+        "memory_tip": "Write the (k+1)th term first, put everything over 12, then factor out (k+1)(k+2). k² + 5k + 6 = (k+2)(k+3)."
       },
       {
         "id": "s5_conclude",
@@ -260,7 +264,8 @@
         "common_mistakes": [
           "Writing only 'hence proved' and never naming the principle.",
           "Claiming it for all real numbers instead of all n ∈ N."
-        ]
+        ],
+        "memory_tip": "Name the principle — one line, one mark."
       }
     ]
   }

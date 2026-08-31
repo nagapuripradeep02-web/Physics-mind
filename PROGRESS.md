@@ -54,6 +54,98 @@ Two independent sources now disagree with our section labels, which came from a 
 **Not done, and deliberately:** the ~60–80 scattered gaps in the chapters that already exist (Product of Vectors 55 vs 32, The Straight Line 67 vs 44, and the four section-label conflicts above). The founder's order was new chapters first, then everything.
 
 **Still needed from the founder:** the Telugu Akademi Maths 1A/1B textbooks (not on this disk — the only maths PDFs present are the TOSS 311 volumes, already established as the wrong book), a photo of both Fastrack **copyright pages**, and a re-scan of **printed page 173** of the 1B volume, which the scan skips along with one worked solution.
+## 📐 SESSION (part 2) — the first Vidi audit of Physics-II and Chemistry-II (2026-08-30, `master`)
+
+**Bottom line: both second-year science papers were audited for the first time — 5,960 replies, ten graders, the frozen rubric. Physics-II 9.86/10, Chemistry-II 9.96/10. Two real chemistry errors were found and fixed, both caught because the card contradicted ITSELF. Two constants sized for a smaller bank were found and raised, one of which was silently cutting four live cards' last step. And one accident makes every score in this file read differently: the same 520 replies were graded twice, independently, and came back 3.000 and 2.930 — a spread six times larger than the between-paper gaps I had been reporting as findings.**
+
+### What is live right now
+
+`answers.viditra.co` — Worker version `5f0d5e73`, second year at **52 chapters / 1,124 answers**, eight free chapters (one per subject in both years). Edge Function `answerbook-vidi-chat` redeployed twice this session: once for the persona fixes, once for the 14,000-char slice. `ab_content` at 92 units / 1,921 questions. **Do not redeploy blindly — check `git status` in the same breath, the build reads the working tree.**
+
+### The audit
+
+596 contexts × the 10-ask battery. Physics-II 2,560 replies, Chemistry-II 3,400.
+
+| | replies | mean | 0s | grounding defects |
+|---|---|---|---|---|
+| Physics-II | 2,560 | 2.958 = **9.86/10** | 2 | none |
+| Chemistry-II | ~3,400 | 2.989 = **9.96/10** | 5 (all guard-reply, infra) | **2, both fixed** |
+
+Mechanically: **zero critical flags on either paper** — no step-id leaks, no mark inventions, no truncations. 39 flags in 2,560 (Physics-II) and 29 in 3,400 (Chemistry-II), almost all `OVER_BUDGET` and `MARKDOWN`.
+
+### The two chemistry errors, and why they were findable
+
+Both were caught by the card disagreeing with itself, which is the signature worth teaching the next auditor to look for.
+
+- **`ts_ipe_c2_ocn_amines_with_nitrous_acid`** wrote the aliphatic diazotisation as `+ HCl → … + H₂O` (LHS H6 O2 Cl1, RHS H5 O1 Cl2 — does not balance) while the **aromatic step one line above** had `+ 2HCl → … + 2H₂O` correctly. Same reaction, same reagent, same card.
+- **`ts_ipe_c2_akc_oxidation_products_of_carbonyl_compounds`** stated Popoff's rule as "the carbonyl group stays with the **smaller** alkyl group", then four steps later concluded the **phenyl** (larger) side keeps it and gives benzoic acid. Read literally the printed rule predicts acetic acid. Acetophenone → benzoic acid is the certain half, so the rule line was what was backwards. Restated as which **bond** breaks, and **flagged for the teacher gate rather than asserted** — both directions circulate in Indian texts and what matters is the wording the board expects.
+
+Neither had reached a student in the transcript. That is luck, not safety: the next student to ask "what is Popoff's rule" would have had it backwards from the grounding.
+
+### Two constants sized for a bank that has since grown
+
+Same class as the e2e sweep budgets raised earlier today.
+
+- **The ANSWER FACTS slice.** Cut at 10,000 chars, silently. Its comment recorded why that was safe — *"measured max across the whole bank is 7,687 chars"*. It is **10,421** now, and four cards had crossed it (3 Physics-II, 1 Chemistry-II), losing their last step's supporting text on the live site with no symptom. Raised to 14,000 (warn 12,000) in the Edge Function, its byte-identical mirror, and `dump_vidi_contexts.ts` — which must track the server or its gate reports a truncation that is not happening, or misses one that is. **The slice is a ceiling, not a pad**: the 2,468 contexts already below it are unchanged. Verified live on the widest card — the function now answers about its final step (`i = Kθ`, `K = C/nAB`), the exact text that was being cut.
+- **`check_p2_cards.ts` had TWO hardcodes**, `LAQ = 8` and `subject = physics_2`, and together they made it worse than no check: pointed at either senior maths paper it reported 64 and 62 failures, one per long answer, every one correctly cut at 7. It now reads `paperMarksFor` and derives the subject from the cards. **This is the inverse of the PAPER_PATTERNS trap already recorded** — that one fails OPEN, silently skipping an unknown subject; this failed CLOSED and WRONG. Negative-controlled: a prefix spanning 2A and 2B still fails, exit 1.
+
+### THE MEASUREMENT LESSON — read this before quoting any score in this file
+
+**Physics-II slice 02 was graded twice by accident, independently, on the identical 520 replies. One returned 3.000. The other returned 2.930.** That 0.07 spread on one slice is **six times** the Maths-2A vs Maths-2B gap (0.012) that the earlier entry reports as a difference between papers.
+
+So the reliable output of this method is the **enumerated defects** — grounding errors, wrong-step counts, out-of-bank counts — each of which can be checked against the card. The third-decimal means are not. Every paper measured today sits at ~9.9/10 and the differences between them are inside grader noise. Say "flat" and name the defects.
+
+**Five grader claims did not survive checking against the card this session**, so check every one before acting: a "corrupted numeral 176" that was a real book answer number; a mark split said to sum to 6 that sums to 7; a "cm to m" mistakes line that already says the ratio is unit-invariant; a "wavelength contradiction" where the card was correctly correcting its book; and a wrong-step rate generalised from two of three slices that the third contradicted.
+
+### Also confirmed
+
+The structural step-id fix **holds on papers it was never tuned on** — 0 leaks in all 5,960 replies. And Physics-II's cards are actively **correcting their source book** rather than inheriting from it: swapped transistor arrows, a wrong Doppler application, √70 printed as 8.27 (it is 8.37 — copying it gives 517 Hz instead of 523), beryllium wrongly listed as a control-rod absorber, a 0.025 MeV→eV slip, a meter-bridge ratio printed 6/2 with a spurious unit. Graders re-derived each and confirmed all are genuine fixes.
+
+### Session totals
+
+**18,632 live replies, ₹390.32**, across four papers and five rounds. Commits: `83f8b76e` `f5948fe2` `0630a8fe` (this half) on top of `42cf9048` `39c76c85` `07a7ca31` `1217ddc3` `9a4ad013` `76f14e26`.
+
+---
+
+## ▶ NEXT SESSION'S FIRST TASK — backfill the maths memory tips
+
+**The gap.** Measured across the whole bank:
+
+| paper | cards | steps | `memory_tip` |
+|---|---|---|---|
+| Maths-1A (`ts_ipe_m1a`) | 250 | 801 | **0** |
+| Maths-1B (`ts_ipe_m1b`) | 108 | 367 | **0** |
+| Maths-2A (`ts_ipe_m2a`) | 257 | 768 | **0** |
+| Maths-2B (`ts_ipe_m2b`) | 271 | 828 | 828 (100%) |
+| every physics / chemistry / botany / zoology paper | — | — | 100% |
+
+**Why it matters.** `answer-book/notebook.js:5033` renders the chip only `if (s && s.memory_tip)`. So **the "How to remember?" chip has never appeared for a student on three of the four maths papers** — 1,936 steps, 615 cards, both years, all live. It is a whole Vidi feature that is simply absent, and no gate reports it because the field is optional.
+
+**Do NOT expect this to move the audit score.** It was predicted to and did not: 2A's tip-free `remember` scored at or above 2B's. Two reasons, both worth keeping in mind — the rubric grades against the ANSWER FACTS, so an improvised tip that no fact contradicts cannot be marked down; and the missing chip is invisible to reply-grading entirely. **The case for doing this is the dead chip, not the score.**
+
+**How.**
+1. Exemplar: any `ts_ipe_m2b_*` card — 828/828, and graders reported the model reliably uses the authored tip rather than improvising.
+2. Playbook: `docs/PHYSICS_BACKFILL_START_HERE.md` (the 599-string physics backfill). Its §3 bar is the one to hold.
+3. **`memory_tip` is ALL-OR-NONE per question** — a half-filled card fails `npm run build:answers`. Author every step of a card or none.
+4. Per-unit agents, one unit each. Each runs `npx tsx src/scripts/check_cards.ts --prefix ts_ipe_m1a` on its own prefix before reporting.
+5. **Never let a fix agent write its changelog into `why`** — `why` is student-facing and handed to the model. Revision history goes in `verification.note`.
+6. Suggested order: **Maths-2A first** (257 cards, second year, freshest in the bank and already audited), then 1A, then 1B.
+
+**Recommended: pilot ONE unit and show the founder the tips before spending the fleet on 615 cards.**
+
+**Verify + ship:** `check:cards` per prefix → `npx tsc --noEmit` → `npm run build:answers` (it prints per-unit `memory_tip` coverage, which is the progress meter) → `npm run measure:wrap -- <prefix>` → `content:push:mpc-both` → `deploy:answers`. No Edge Function redeploy needed for card content.
+
+### Open, not started
+
+1. **Out-of-bank scope creep, fleet-wide ~10–16%.** Vidi declines the off-paper ask correctly, then volunteers the open question's answer unasked. **The cause is a clause added this session**: the situation block grants "one short sentence offering to help with the question that IS open", and the model reads the grant as licence. Deleting the grant is a one-line change in BOTH persona copies, but it is shared by all eight subjects including the live first-year book, so measure it — a targeted `--only=outofbank` probe over four papers is ~1,100 calls, about ₹15, plus a few graders. **All three mechanical proxies for this defect under-detect it (0.6%–10.8% against readers' 10–16%); graders are the only instrument.**
+2. **43 book-answer cross-references across 35 cards in five papers** — "as in answer 22", pointing at numbers the product never shows. Listed in `docs/notes/answer_book_crossref_cleanup.md`. Three were fixed; the rest need reading, not a regex.
+3. **Wrong-step ~1.9% (maths), 0–4% (physics/chemistry).** Improved by naming the step instead of handing over an id; not closed.
+4. **~15 replies emit literal `**bold**`**, which renders as raw asterisks in the chat UI. Mostly Telugu replies.
+5. **Botany and Zoology have no `SUBJECTS` entry in `vidi_audit.ts`** — they fall through to `physics` and would take the ideal-gas bait. Fix before auditing either.
+6. **`ts_ipe_c2_df_ambidentate_ligand`** labels the N-bound SCN⁻ form "thiocyanato-N"; IUPAC calls it *isothiocyanato*. Both conventions appear in Indian texts — a teacher should rule, not an agent.
+7. **12 guard-reply non-answers** from transient DeepSeek failures during the runs (0.2%). Availability, not content.
+8. **Two harmful Physics-II replies with CORRECT grounding** — an inverted gauss/tesla conversion and a log-midpoint the card's own mistakes line warns against. **Both re-ran 0/6**, predicates positive-controlled on the originals, so they are stochastic at temperature 0.7, not traps. Nothing to fix in the cards; any mitigation is a temperature or output-check decision.
+9. **The teacher gate is still owed on everything** — `verification.status` is `unverified` across the bank, and the Popoff wording is now explicitly queued for it.
 
 ## 📐 SESSION — Maths-2B ships, and the first Vidi audit of the two senior maths papers (2026-08-30, `master`)
 

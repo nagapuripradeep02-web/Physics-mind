@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The multiplicative inverse of z is 1/z. Multiply above and below by the conjugate 7 − 24i so the denominator becomes 7² + 24².",
+        "memory_tip": "The multiplicative inverse is 1/z. The conjugate is only the multiplier that clears the denominator.",
         "lines": [
           {
             "text": "Sol:",
@@ -114,6 +115,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 49 + 576 = 625. Write the answer with the real and imaginary parts separated.",
+        "memory_tip": "49 + 576 = 625, from the 7, 24, 25 triple. Split the answer into a real part and an imaginary part.",
         "lines": [
           "= (7 − 24i) / (49 + 576) = (7 − 24i)/625",
           {

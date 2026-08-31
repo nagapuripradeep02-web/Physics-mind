@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The coefficient of cos is NEGATIVE here — carry the minus, and note the square removes it anyway.",
+        "memory_tip": "The cosine coefficient is NEGATIVE here — carry the minus, though squaring removes it anyway.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Same as the twin — and the same answers, because the amplitude is the same.",
+        "memory_tip": "Same answers as the plus version, because the amplitude √(a² + b²) is the same.",
         "lines": [
           "Maximum = c + √(a²+b²) = 0 + 5 = 5",
           "Minimum = c − √(a²+b²) = 0 − 5 = −5",

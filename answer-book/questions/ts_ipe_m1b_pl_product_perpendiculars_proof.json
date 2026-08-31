@@ -104,7 +104,8 @@
           "Using the slope form, which cannot handle a line with no y-term.",
           "Writing 2h = l₁m₁ + l₂m₂ instead of the cross pairing."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Split in the homogeneous form l₁x + m₁y — the form the distance formula expects."
       },
       {
         "id": "s2_both_distances",
@@ -142,7 +143,8 @@
           "Including a constant term that is not there.",
           "Putting α and β into the denominator."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Each line passes through the origin, so there is no constant: the distance is |lα + mβ| over the root."
       },
       {
         "id": "s3_multiply",
@@ -182,7 +184,8 @@
           "Adding the two distances instead of multiplying.",
           "Forgetting that the two middle terms combine into the 2h group."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Multiply the two fractions and expand both parts into the products the dictionary knows."
       },
       {
         "id": "s4_convert",
@@ -225,7 +228,8 @@
           "Writing the denominator as (a + b)² + 4h².",
           "Forgetting the modulus on the numerator."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Add and subtract 2l₁l₂m₁m₂ in the denominator so it becomes a difference of squares plus a square."
       }
     ]
   }

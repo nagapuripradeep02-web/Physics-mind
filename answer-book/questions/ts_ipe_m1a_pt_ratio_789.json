@@ -88,7 +88,8 @@
         "common_mistakes": [
           "Taking a = 7, b = 8, c = 9 directly, which is only one case.",
           "Using a different constant for each side."
-        ]
+        ],
+        "memory_tip": "A ratio fixes the sides only up to scale, so write a = 7k, b = 8k, c = 9k. The k cancels later."
       },
       {
         "id": "s2_find_cos_a",
@@ -129,7 +130,8 @@
         "common_mistakes": [
           "Forgetting to square the k.",
           "Subtracting the wrong side: for cos A it is a² that is subtracted."
-        ]
+        ],
+        "memory_tip": "The cosine rule, with k² cancelling top and bottom. Every cosine works the same way."
       },
       {
         "id": "s3_find_cos_b_and_cos_c",
@@ -167,7 +169,8 @@
         "common_mistakes": [
           "Subtracting a² every time.",
           "Not cancelling the fractions."
-        ]
+        ],
+        "memory_tip": "Rotate which side is SUBTRACTED: b² for cos B, c² for cos C."
       },
       {
         "id": "s4_form_the_ratio",
@@ -212,7 +215,8 @@
         "common_mistakes": [
           "Multiplying only some of the terms.",
           "Leaving the answer as fractions."
-        ]
+        ],
+        "memory_tip": "The denominators 3, 21 and 7 all divide 21, so multiplying every term by 21 clears them at once."
       }
     ]
   }

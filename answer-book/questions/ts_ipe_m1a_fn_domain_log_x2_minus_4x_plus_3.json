@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "memory_tip": "A logarithm needs its input STRICTLY positive: > 0, not ≥ 0.",
         "lines": [
           "f(x) is defined when x² − 4x + 3 > 0",
           "⇒ (x − 1)(x − 3) > 0"
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Domain",
         "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "Round brackets at 1 and 3, where the log is undefined. The middle interval is where the input is negative.",
         "lines": [
           "⇒ x ∈ (−∞, 1) ∪ (3, ∞)",
           "∴ Domain = (−∞, 1) ∪ (3, ∞)"

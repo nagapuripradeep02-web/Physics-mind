@@ -80,11 +80,11 @@
           "The same reagent converts an aliphatic",
           "1° amine into an alkanediazonium salt.",
           {
-            "text": "CH₃NH₂ + NaNO₂ + HCl →",
+            "text": "CH₃NH₂ + NaNO₂ + 2HCl →",
             "style": "eq"
           },
           {
-            "text": "CH₃N₂⁺Cl⁻ + NaCl + H₂O",
+            "text": "CH₃N₂⁺Cl⁻ + NaCl + 2H₂O",
             "style": "indent"
           },
           "This salt is unstable even at 273 K and",

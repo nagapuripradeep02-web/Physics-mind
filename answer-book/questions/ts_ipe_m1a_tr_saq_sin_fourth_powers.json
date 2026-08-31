@@ -85,7 +85,8 @@
         "common_mistakes": [
           "Trying to evaluate each fourth power separately.",
           "Getting sin(5π/8) = −cos(π/8) and losing the symmetry."
-        ]
+        ],
+        "memory_tip": "3π/8 and 5π/8 both reduce to cos(π/8), and 7π/8 to sin(π/8) — four terms are really two, twice each."
       },
       {
         "id": "s2_group_and_use_a_b",
@@ -127,7 +128,8 @@
         "common_mistakes": [
           "Trying to expand the fourth powers directly.",
           "Applying the identity to sin and cos rather than to their squares."
-        ]
+        ],
+        "memory_tip": "a⁴ + b⁴ is handled by a² + b² = (a+b)² − 2ab applied to the SQUARES."
       },
       {
         "id": "s3_turn_the_product_into_si",
@@ -171,7 +173,8 @@
         "common_mistakes": [
           "Leaving 4sin²cos² unsimplified.",
           "Writing sin(π/4) = 1/2 instead of 1/√2."
-        ]
+        ],
+        "memory_tip": "4sin²cos² is (2 sin cos)² = sin²(π/4), and sin(π/4) = 1/√2, so the square is 1/2."
       }
     ]
   }

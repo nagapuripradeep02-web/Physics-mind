@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. For a 2×2 there is a shortcut worth learning: swap the two diagonal entries, and change the sign of the other two. No nine cofactors needed.",
+        "memory_tip": "The 2×2 shortcut: SWAP the diagonal entries and change the sign of the other two. No nine cofactors.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Divide every entry by 24 and simplify each fraction: 6/24 = 1/4, 3/24 = 1/8, −4/24 = −1/6, 2/24 = 1/12.",
+        "memory_tip": "Divide every entry by 24 and simplify each fraction separately.",
         "lines": [
           {
             "text": "A^{-1} = \\frac{1}{24}\\begin{bmatrix} 6 & 3 \\\\ -4 & 2 \\end{bmatrix}",

@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Skew symmetric means A = −Aᵀ — the SAME as symmetric but with a minus sign, which is also why every diagonal entry has to be 0.",
+        "memory_tip": "Skew symmetric means A = −Aᵀ — which is also why every diagonal entry has to be 0.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. In −Aᵀ the (3,2) entry is −(the (2,3) entry of A) = −(−2) = 2. Setting that equal to x gives the answer.",
+        "memory_tip": "In −Aᵀ the (3,2) entry is −(the (2,3) entry) = −(−2) = 2.",
         "lines": [
           "A = −Aᵀ, so the (3,2) entry of A equals",
           "minus the (2,3) entry of A:",

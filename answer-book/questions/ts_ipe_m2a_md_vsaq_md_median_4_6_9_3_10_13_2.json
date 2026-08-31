@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Median",
         "margin_note": "First mark. The data is not in order, so sort it first. n = 7 is odd, so the median is the single middle value, the 4th of seven: 6.",
+        "memory_tip": "Sort before reading the middle. The 4th value as given is 3; the 4th value in order is 6.",
         "lines": [
           {
             "text": "Sol:",
@@ -115,6 +116,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Absolute deviations from 6, in the sorted order: 4, 3, 2, 0, 3, 4, 7. Sum 23, divide by n = 7. 23/7 = 3.2857…, written 3.29.",
+        "memory_tip": "Deviations are taken from the median 6, never from the mean. 23/7 = 3.2857…, written 3.29.",
         "lines": [
           "|xᵢ − M| : 4, 3, 2, 0, 3, 4, 7",
           "M.D. = Σ|xᵢ − M|/n",

@@ -94,7 +94,8 @@
           "Using the slope form m₁x − y, which cannot express an angle bisector cleanly.",
           "Losing the minus sign in 2h = −sin(α + β)."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Write the pair in the ANGLE form x sinα − y cosα, because bisectors are about angles."
       },
       {
         "id": "s2_bisector_equation",
@@ -134,7 +135,8 @@
           "Dropping the ± and proving only one bisector.",
           "Forgetting that the denominators simplify to 1 and carrying them along."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "A point on a bisector is EQUALLY far from both lines, so set the two distances equal with a ±."
       },
       {
         "id": "s3_square_and_collect",
@@ -178,7 +180,8 @@
           "Squaring only one side.",
           "Forgetting that squaring is what legitimately removes the ±."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Squaring removes the ±. Use sin 2θ on the cross terms so everything becomes differences of squares."
       },
       {
         "id": "s4_substitute_back",
@@ -224,7 +227,8 @@
           "Expanding cos(α+β) as cosαcosβ + sinαsinβ.",
           "Cancelling sin(α−β) without noting it appears on both sides."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Turn both brackets into products so (1) applies; the common sin(α−β) then cancels."
       }
     ]
   }

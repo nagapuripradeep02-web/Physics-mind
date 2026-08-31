@@ -64,6 +64,7 @@
         "marks": 2,
         "mark_note": "Mod-amp form",
         "margin_note": "First and second marks. With x = p and y = q, r = √(p² + q²) and tan θ = q/p, so θ = Tan⁻¹(q/p). Name θ here; the final answer is written in terms of it.",
+        "memory_tip": "r = √(p² + q²) and θ = Tan⁻¹(q/p), which needs p > 0. Name θ here; the answer is written in terms of it.",
         "lines": [
           {
             "text": "Sol:",
@@ -113,6 +114,7 @@
         "marks": 2,
         "mark_note": "De Moivre",
         "margin_note": "Third and fourth marks. A 1/n power divides the angle, so the cosine and the sine take θ/n. The modulus is (p² + q²) to the power 1/2 raised again to 1/n, so its exponent is 1/2n and not 1/n.",
+        "memory_tip": "A 1/n power DIVIDES the angle. The modulus already carries a square root, so its exponent is 1/2n, not 1/n.",
         "lines": [
           {
             "text": "(p+iq)^{1/n} = \\left[(p^2+q^2)^{1/2}(\\cos\\theta + i\\sin\\theta)\\right]^{1/n}",
@@ -163,6 +165,7 @@
         "marks": 1,
         "mark_note": "Conjugate",
         "margin_note": "Fifth mark. p − iq is the conjugate of p + iq, so this root carries the same modulus factor with the sine sign reversed. Label it (2); nothing is recomputed.",
+        "memory_tip": "p − iq is the conjugate, so the same modulus factor with the sine sign reversed.",
         "lines": [
           "Similarly,",
           {
@@ -207,6 +210,7 @@
         "marks": 2,
         "mark_note": "Result",
         "margin_note": "Sixth and seventh marks. Adding (1) and (2) cancels the i sin terms and doubles the cosine: 2(p² + q²) to the power 1/2n, times cos(θ/n). Replace θ by Tan⁻¹(q/p), which is the form the question asks for.",
+        "memory_tip": "Adding doubles the cosine. Replace θ by Tan⁻¹(q/p) — that is the form the question asks for.",
         "lines": [
           "Adding (1) and (2):",
           {

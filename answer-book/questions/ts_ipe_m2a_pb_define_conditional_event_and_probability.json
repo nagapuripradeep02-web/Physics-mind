@@ -60,6 +60,7 @@
         "marks": 2,
         "mark_note": "Definition",
         "margin_note": "Two marks. Name the two events, say that A has already occurred, and give the notation B|A.",
+        "memory_tip": "Words, not a formula: name both events, say A has already occurred, give the notation B|A.",
         "lines": [
           {
             "text": "Sol:",
@@ -115,6 +116,7 @@
         "marks": 2,
         "mark_note": "Formula",
         "margin_note": "Two marks. The formula and its condition P(A) ≠ 0 together.",
+        "memory_tip": "Divide by P(A), the event that already happened — and write the condition P(A) ≠ 0 with it.",
         "lines": [
           {
             "text": "Conditional probability: the probability of the",

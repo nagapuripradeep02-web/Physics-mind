@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. ¹²Pᵣ = 12 · 11 · 10 · … with r factors. Divide 1320 by 12, then 11, then 10 until 1 is reached.",
+        "memory_tip": "¹²Pᵣ starts at 12 and counts down, so divide 1320 by 12, then 11, then 10.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Three factors, so ¹²Pᵣ = ¹²P₃ and r = 3.",
+        "memory_tip": "r is the NUMBER of factors, three, not the last factor 10.",
         "lines": [
           "Three factors, so ¹²Pᵣ = ¹²P₃",
           {

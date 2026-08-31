@@ -55,6 +55,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. One angle arrives by its sine, the other by its cosine — so the missing ratio is found the other way round in each case. Both are 3-4-5 style triangles.",
+        "memory_tip": "One angle arrives by its sine, the other by its cosine, so the missing ratio is found the other way round each time.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. The target is a Cos⁻¹, so the cosine formula is the one to use — and note the MINUS between the two products, where the sine formula had a plus.",
+        "memory_tip": "The target is a Cos⁻¹, so use cos(A + B) — with a MINUS between the two products.",
         "lines": [
           "cos(α + β) = cosα cosβ − sinα sinβ",
           "= (4/5)(12/13) − (3/5)(5/13)",
@@ -142,6 +144,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. cos(α+β) = 33/65 means α+β = Cos⁻¹(33/65).",
+        "memory_tip": "cos(α + β) = 33/65 means α + β = Cos⁻¹(33/65), not Sin⁻¹.",
         "lines": [
           "cos(α + β) = 33/65",
           "⇒ α + β = Cos⁻¹(33/65)",

@@ -71,6 +71,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. State the formula before using it. Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x+y)/(1−xy)) — both the numerator and the denominator land over 10, and the 10s cancel.",
+        "memory_tip": "Take two at a time, never all three at once. Both parts land over 10 and the 10s cancel.",
         "lines": [
           {
             "text": "Sol:",
@@ -116,6 +117,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. Same formula again, now with 7/9 and 1/8. Both parts land over 72, and 65/72 over 65/72 is exactly 1.",
+        "memory_tip": "Same formula again with 7/9 and 1/8. Both parts land over 72, and 65/72 over 65/72 is exactly 1.",
         "lines": [
           "∴ L.H.S = Tan⁻¹(7/9) + Tan⁻¹(1/8)",
           "= Tan⁻¹((7/9 + 1/8)/(1 − (7/9)(1/8)))",
@@ -157,6 +159,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Tan⁻¹(1) is π/4, since tan(π/4) = 1. Name the standard value rather than leaving it as an inverse.",
+        "memory_tip": "Tan⁻¹(1) = π/4, since tan(π/4) = 1. Name the standard value.",
         "lines": [
           "Tan⁻¹(1) = π/4   [∵ tan(π/4) = 1]",
           {

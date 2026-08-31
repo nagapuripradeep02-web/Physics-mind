@@ -95,7 +95,8 @@
         "common_mistakes": [
           "Writing the nth term as arⁿ.",
           "Not stating S(n) explicitly."
-        ]
+        ],
+        "memory_tip": "The nth term is arⁿ⁻¹ — note the n − 1, because the first term carries no r at all."
       },
       {
         "id": "s2_verify_s_1",
@@ -135,7 +136,8 @@
         "common_mistakes": [
           "Skipping the base case.",
           "Not noticing the (r−1) cancels."
-        ]
+        ],
+        "memory_tip": "At n = 1 the right side is a(r − 1)/(r − 1), and the brackets cancel exactly to a."
       },
       {
         "id": "s3_assume_s_k",
@@ -174,7 +176,8 @@
         "common_mistakes": [
           "Assuming S(n) rather than S(k).",
           "Assuming what has to be proved."
-        ]
+        ],
+        "memory_tip": "Write the hypothesis as a numbered equation; the next step leans on it entirely."
       },
       {
         "id": "s4_prove_s_k_1",
@@ -217,7 +220,8 @@
         "common_mistakes": [
           "Adding ar^(k+1) instead of ar^k.",
           "Not putting the two terms over a common denominator."
-        ]
+        ],
+        "memory_tip": "Add the (k+1)th term arᵏ to BOTH sides, then combine over (r − 1) — the arᵏ terms cancel."
       },
       {
         "id": "s5_conclude_by_p_m_i",
@@ -259,7 +263,8 @@
         "common_mistakes": [
           "Stopping after the inductive step.",
           "Writing \"hence proved\" without naming the principle."
-        ]
+        ],
+        "memory_tip": "Both halves are done, so name the principle. That sentence is the mark."
       }
     ]
   }

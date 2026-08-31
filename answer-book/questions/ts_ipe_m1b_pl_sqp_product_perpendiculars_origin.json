@@ -99,7 +99,8 @@
           "Forgetting that the constants also have to be matched.",
           "Pairing the cross terms with the same subscript."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "A general pair splits into two lines each with its OWN constant — those constants do the work."
       },
       {
         "id": "s2_both_distances",
@@ -138,7 +139,8 @@
           "Carrying α and β through when the point is the origin.",
           "Forgetting the modulus signs."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "From the ORIGIN the formula collapses: putting (0,0) in leaves only |n|."
       },
       {
         "id": "s3_multiply",
@@ -179,7 +181,8 @@
           "Adding rather than multiplying the two distances.",
           "Forgetting to multiply the two roots under one square root."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The numerator is n₁n₂ straight away; only the denominator needs work."
       },
       {
         "id": "s4_convert",
@@ -222,7 +225,8 @@
           "Writing (a + b)² instead of (a − b)².",
           "Writing 2h² instead of 4h²."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Add and subtract 2l₁l₂m₁m₂ under the root so it regroups into a difference of squares plus a square."
       }
     ]
   }

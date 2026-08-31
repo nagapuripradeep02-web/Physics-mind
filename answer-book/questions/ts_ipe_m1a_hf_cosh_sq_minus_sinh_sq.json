@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Write both squares over a common denominator of 4, so the numerator becomes a difference of two squares.",
+        "memory_tip": "Put both squares over the common denominator 4, so the numerator is a difference of two squares.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The shortcut does the whole job: with a = eˣ and b = e⁻ˣ the numerator is 4·eˣ·e⁻ˣ, and eˣ·e⁻ˣ is e⁰ = 1.",
+        "memory_tip": "(a + b)² − (a − b)² = 4ab, with a = eˣ and b = e⁻ˣ. Then eˣ·e⁻ˣ = e⁰ = 1.",
         "lines": [
           "= (4 · eˣ · e⁻ˣ) / 4   [∵ (a+b)² − (a−b)² = 4ab]",
           "= eˣ · e⁻ˣ = e⁰",

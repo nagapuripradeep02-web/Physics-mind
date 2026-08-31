@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "The five cosine values",
         "margin_note": "One mark for the five standard cosine values. These are table values — write them exactly, not as decimals.",
+        "memory_tip": "Five standard cosine values, written exactly as surds and fractions — not as decimals.",
         "lines": [
           "f(0) = cos 0 = 1",
           "f(π/6) = cos π/6 = √3/2",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "The set B",
         "margin_note": "The second mark is the SET. Surjection means B is exactly the range; no value repeats here.",
+        "memory_tip": "Surjection means B IS the range, so B = f(A). Here no value repeats.",
         "lines": [
           "f is a surjection ⇒ B = f(A)",
           "B = {1, √3/2, 1/√2, 1/2, 0}"

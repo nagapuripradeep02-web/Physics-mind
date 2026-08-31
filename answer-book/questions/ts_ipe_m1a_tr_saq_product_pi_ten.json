@@ -97,7 +97,8 @@
         "common_mistakes": [
           "Staying in radians and missing the standard values.",
           "Getting cos 126° positive."
-        ]
+        ],
+        "memory_tip": "Degrees are easier: 18° and 54° have known exact sines. The last two reduce negative."
       },
       {
         "id": "s2_pair_into_differences_of",
@@ -136,7 +137,8 @@
         "common_mistakes": [
           "Pairing in the written order.",
           "Writing 1 − cos² as cos²."
-        ]
+        ],
+        "memory_tip": "Each plus bracket with its own minus partner, giving 1 − cos² = sin²."
       },
       {
         "id": "s3_substitute_the_exact_val",
@@ -174,7 +176,8 @@
         "common_mistakes": [
           "Trying to derive the values instead of quoting them.",
           "Swapping the two values."
-        ]
+        ],
+        "memory_tip": "sin18° = (√5 − 1)/4 and sin54° = (√5 + 1)/4 — standard results, quoted not derived."
       },
       {
         "id": "s4_multiply_out_and_simplif",
@@ -217,7 +220,8 @@
         "common_mistakes": [
           "Squaring each bracket before multiplying.",
           "Finishing at 1/4."
-        ]
+        ],
+        "memory_tip": "Group the CONJUGATES first: (√5 − 1)(√5 + 1) = 4, and the surds vanish."
       }
     ]
   }

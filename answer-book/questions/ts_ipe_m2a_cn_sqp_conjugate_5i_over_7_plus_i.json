@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Simplify",
         "margin_note": "First mark. Multiply above and below by 7 − i. The denominator becomes 49 + 1 = 50; the numerator 35i − 5i² = 5 + 35i.",
+        "memory_tip": "−5i² = +5, so the numerator is 5 + 35i. Cancel the 5 to get (1 + 7i)/10.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Keep the real part 1/10, flip the imaginary part.",
+        "memory_tip": "Flip only the i part. The real denominator 10 is left alone.",
         "lines": [
           "The conjugate of a + ib is a − ib.",
           {

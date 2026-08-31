@@ -53,6 +53,7 @@
         "label": "Make the constant positive",
         "marks": 1,
         "margin_note": "First mark. Normal form is xcosα + ysinα = p with p POSITIVE, so before dividing, arrange the equation so the number on the right is greater than zero — multiply through by −1 if it is not.",
+        "memory_tip": "Arrange the equation so the number on the right is greater than zero before dividing.",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "label": "Divide and read off",
         "marks": 1,
         "margin_note": "Second mark. Divide through by √(a²+b²) so the coefficients square-and-add to 1, then name the angle whose cosine and sine they are.",
+        "memory_tip": "Divide by √(a²+b²); the coefficients are then the cosine and sine of the normal's angle.",
         "lines": [
           "On dividing by √((−1)² + (−1)²) = √2, we get",
           "−(1/√2)x − (1/√2)y = 1/√2",

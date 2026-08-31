@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. n = 17 is odd, so there are TWO middle terms: the (n + 1)/2 = 9th and the next, the 10th.",
+        "memory_tip": "n = 17 is odd, so there are TWO middle terms, the 9th and the 10th.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,6 +90,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. T₉ has r = 8, T₁₀ has r = 9. Powers of x: 2·9 + 3·8 = 42 and 2·8 + 3·9 = 43.",
+        "memory_tip": "T₉ has r = 8 and T₁₀ has r = 9, each with its own ¹⁷Cᵣ. Powers of x: 42 and 43.",
         "lines": [
           "T₉ = ¹⁷C₈ (4x²)⁹ (5x³)⁸ = ¹⁷C₈ · 4⁹ · 5⁸ · x⁴²",
           "T₁₀ = ¹⁷C₉ (4x²)⁸ (5x³)⁹ = ¹⁷C₉ · 4⁸ · 5⁹ · x⁴³",

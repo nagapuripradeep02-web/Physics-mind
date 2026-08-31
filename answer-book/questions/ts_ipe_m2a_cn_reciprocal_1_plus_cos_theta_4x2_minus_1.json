@@ -80,6 +80,7 @@
         "marks": 1,
         "mark_note": "Half angles",
         "margin_note": "First mark. The two identities 1 + cos θ = 2cos²(θ/2) and sin θ = 2 sin(θ/2) cos(θ/2) share the factor 2cos(θ/2). Taking it out is the key step of the question.",
+        "memory_tip": "1 + cos θ = 2cos²(θ/2) and sin θ = 2 sin(θ/2) cos(θ/2) share the factor 2cos(θ/2). Take it out of both.",
         "lines": [
           {
             "text": "Sol:",
@@ -129,6 +130,7 @@
         "marks": 2,
         "mark_note": "Division",
         "margin_note": "Half the marks. Multiply above and below by cos(θ/2) − i sin(θ/2). The bracket product is cos² + sin² = 1, so only 2cos(θ/2) is left underneath, and it cancels the cos(θ/2) on top of the real part.",
+        "memory_tip": "(cos A + i sin A)(cos A − i sin A) = 1, so only 2cos(θ/2) is left underneath.",
         "lines": [
           "x + iy = 1 / (2cos(θ/2)[cos(θ/2) + i sin(θ/2)])",
           "Multiply above and below by",
@@ -187,6 +189,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Only x is needed. Read it off, square, and rearrange into the form asked.",
+        "memory_tip": "x = 1/2 for every θ. Only x is needed — square it and rearrange, and leave y alone.",
         "lines": [
           "Equating real parts: x = 1/2 ⇒ 2x = 1",
           "⇒ (2x)² = 1 ⇒ 4x² = 1",

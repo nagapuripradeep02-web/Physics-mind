@@ -72,6 +72,7 @@
         "marks": 1,
         "mark_note": "Quadratic in x",
         "margin_note": "First mark. The x terms collect to −5yx − x = −(5y + 1)x; the constant is 9y. The denominator x² − 5x + 9 is never zero (Δ = 25 − 36 < 0), so every real x is allowed.",
+        "memory_tip": "The x terms collect to −5yx − x = −(5y + 1)x, and the constant is 9y.",
         "lines": [
           {
             "text": "Sol:",
@@ -121,6 +122,7 @@
         "marks": 1,
         "mark_note": "Discriminant",
         "margin_note": "Second mark. a = y, b = −(5y + 1), c = 9y. Squaring removes the minus on b, and 4ac = 36y². Then 25y² − 36y² = −11y².",
+        "memory_tip": "Squaring removes the minus on b, and 4ac = 36y². Then 25y² − 36y² = −11y².",
         "lines": [
           "∴ Δ = b² − 4ac ≥ 0",
           "⇒ (5y + 1)² − 4(y)(9y) ≥ 0",
@@ -165,6 +167,7 @@
         "marks": 1,
         "mark_note": "Inequality in y",
         "margin_note": "Third mark. Multiplying by −1 REVERSES the inequality. Split −10y as −11y + y so the pairs factorise. A product ≤ 0 means y is between the roots: −1/11 and 1.",
+        "memory_tip": "Multiplying by −1 reverses the inequality. Split −10y as −11y + y so the pairs factorise.",
         "lines": [
           "⇒ 11y² − 10y − 1 ≤ 0",
           "⇒ 11y² − 11y + y − 1 ≤ 0",
@@ -212,6 +215,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. Both bounds are reached: y = 1 at x = 3 and y = −1/11 at x = −3, so 'lies between' here includes the ends. Finish with the sentence the question asked for, in the question's own words.",
+        "memory_tip": "Both bounds are reached — y = 1 at x = 3, y = −1/11 at x = −3 — so end with the question's own sentence.",
         "lines": [
           "So the expression lies between −1/11 and 1.",
           {

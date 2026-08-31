@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "A squared",
         "margin_note": "First mark. Multiply row by column. Watch the negative entries — row 1 against column 2 is 1(−2) + (−2)(1) + 1(−1) = −5, and a dropped minus here quietly ruins A³ as well.",
+        "memory_tip": "Multiply row by column, watching the negatives: row 1 against column 2 is 1(−2) + (−2)(1) + 1(−1) = −5.",
         "lines": [
           {
             "text": "Sol:",
@@ -109,6 +110,7 @@
         "marks": 2,
         "mark_note": "A cubed",
         "margin_note": "Half the marks. A³ = A²·A — use the matrix just found, not A three times over. Nine more row-by-column products, and the numbers are larger now.",
+        "memory_tip": "A³ = A²·A — use the matrix just found, not A three times over.",
         "lines": [
           {
             "text": "A^3 = A^2 \\cdot A = \\begin{bmatrix} 4 & -5 & 4 \\\\ -3 & 2 & -2 \\\\ 6 & -8 & 5 \\end{bmatrix}\\begin{bmatrix} 1 & -2 & 1 \\\\ 0 & 1 & -1 \\\\ 3 & -1 & 1 \\end{bmatrix}",
@@ -159,6 +161,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. Write out 3A², A and 3I, then subtract entry by entry. Every one of the nine entries must come to zero — check a few in full rather than assuming the pattern.",
+        "memory_tip": "Write out 3A², A and 3I, then subtract entry by entry. All nine entries must come to zero.",
         "lines": [
           "A³ − 3A² − A − 3I, entry by entry:",
           "Top-left:  16 − 12 − 1 − 3 = 0",

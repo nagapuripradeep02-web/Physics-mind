@@ -76,6 +76,7 @@
         "marks": 1,
         "mark_note": "Assume the roots",
         "margin_note": "First mark. The condition 2β = α + γ is the A.P. condition, so the a − d, a, a + d form applies. Every coefficient here is positive, so both sums carry a minus sign.",
+        "memory_tip": "'Half the sum of the other two' means 2β = α + γ — that IS the A.P. condition. Use a − d, a, a + d.",
         "lines": [
           {
             "text": "Sol:",
@@ -121,6 +122,7 @@
         "marks": 1,
         "mark_note": "S₁ = −a₁/a₀",
         "margin_note": "Second mark. S₁ = −a₁/a₀ = −81/18 = −9/2. The two d's cancel, so the left side is just 3a.",
+        "memory_tip": "Every coefficient is positive here, so S₁ = −81/18 = −9/2 comes out negative. Keep the minus.",
         "lines": [
           "Sum of roots S₁ = −a₁/a₀:",
           "(a − d) + a + (a + d) = −81/18 = −9/2"
@@ -161,6 +163,7 @@
         "marks": 1,
         "mark_note": "a",
         "margin_note": "Third mark. 3a = −9/2 gives a = −3/2, the middle root.",
+        "memory_tip": "3a = −9/2 gives a = −3/2, the middle root.",
         "lines": [
           "3a = −9/2, so a = −3/2"
         ],
@@ -196,6 +199,7 @@
         "marks": 1,
         "mark_note": "S₃ = −a₃/a₀",
         "margin_note": "Fourth mark. S₃ = −a₃/a₀ = −60/18 = −10/3. (a − d)(a + d) is a difference of squares, so the product is a(a² − d²).",
+        "memory_tip": "S₃ = −a₃/a₀ = −60/18 = −10/3, and the product is a(a² − d²).",
         "lines": [
           "Product of roots S₃ = −a₃/a₀:",
           "(a − d)·a·(a + d) = −60/18 = −10/3",
@@ -237,6 +241,7 @@
         "marks": 1,
         "mark_note": "d",
         "margin_note": "Fifth mark. Put a = −3/2 in, divide out the a, and solve for d². d = ±1/6; either sign gives the same three roots.",
+        "memory_tip": "d² = 9/4 − 20/9 = 1/36, so d = ±1/6. A small d — all three roots sit close together.",
         "lines": [
           "(−3/2)(9/4 − d²) = −10/3",
           "9/4 − d² = −10/3 × (−2/3) = 20/9",
@@ -278,6 +283,7 @@
         "marks": 2,
         "mark_note": "Roots",
         "margin_note": "Last two marks. Substitute a and d back; the three numbers must have equal gaps and must add to the sum found in step 2.",
+        "memory_tip": "Substitute back: −5/3, −3/2, −4/3. All three negative, with equal gaps of 1/6.",
         "lines": [
           "Take d = 1/6 (d = −1/6 gives the same three roots):",
           "a − d = −3/2 − 1/6 = −10/6 = −5/3",

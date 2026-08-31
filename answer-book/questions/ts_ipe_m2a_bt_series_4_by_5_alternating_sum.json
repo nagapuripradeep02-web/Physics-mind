@@ -64,6 +64,7 @@
         "marks": 2,
         "mark_note": "Series in standard shape",
         "margin_note": "First two marks. Each denominator is a product like 5·10·15 = 5³·(1·2·3), so every term becomes (a product)/(k!) times (1/5)ᵏ. This series already starts with 1, so nothing has to be added. The signs alternate, so the (1 + x) form is the one to compare with.",
+        "memory_tip": "5·10·15 = 5³·3!. This series already starts with 1, so add nothing — but note the signs alternate.",
         "lines": [
           {
             "text": "Sol:",
@@ -109,6 +110,7 @@
         "marks": 1,
         "mark_note": "Standard form",
         "margin_note": "Third mark, for WRITING the standard expansion beside the series. The examiner looks for the pattern p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!. Alternating signs mean the (1 + x) form.",
+        "memory_tip": "Alternating signs mean the (1 + x) form. Using (1 − x) gives a wrong base before any arithmetic.",
         "lines": [
           "Compare with the standard expansion",
           {
@@ -151,6 +153,7 @@
         "marks": 2,
         "mark_note": "p, q, x",
         "margin_note": "Fourth and fifth marks. p is the first factor (4), p + q is the second (7) so q = 3, and x/q equals the common ratio 1/5 so x = q/5 = 3/5.",
+        "memory_tip": "The numerators 4, 7, 10 step by 3, so q = 3 and x = q/5 = 3/5, not 1/5.",
         "lines": [
           "p = 4, p + q = 7 ⇒ q = 3",
           "x/q = 1/5 ⇒ x = q/5 = 3/5"
@@ -189,6 +192,7 @@
         "marks": 1,
         "mark_note": "Value of the power",
         "margin_note": "Sixth mark. Substitute p, q, x into (1 + x)^(−p/q) and simplify the fraction inside the bracket before touching the exponent.",
+        "memory_tip": "(8/5) to the power −4/3 inverts to (5/8) to the power 4/3.",
         "lines": [
           {
             "text": "S = (1 + x)^{-p/q} = \\left(1 + \\tfrac{3}{5}\\right)^{-4/3} = \\left(\\tfrac{8}{5}\\right)^{-4/3} = \\left(\\tfrac{5}{8}\\right)^{4/3}",
@@ -229,6 +233,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Seventh mark. 8 = 2³, so 8 to the power 4/3 is 2⁴ = 16; 5 to the power 4/3 is 5·∛5, which the book writes as ∛625.",
+        "memory_tip": "8 = 2³, so 8 to the power 4/3 is 2⁴ = 16. The answer is 5∛5/16.",
         "lines": [
           {
             "text": "= \\dfrac{5^{4/3}}{(2^3)^{4/3}} = \\dfrac{5^{4/3}}{2^4}",

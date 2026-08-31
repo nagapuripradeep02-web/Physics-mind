@@ -55,6 +55,7 @@
         "marks": 2,
         "mark_note": "P + Q",
         "margin_note": "First two marks. Odd terms are the 1st, 3rd, 5th… — they carry EVEN powers of a (a⁰, a², a⁴). Even terms carry odd powers of a.",
+        "memory_tip": "Odd TERMS carry EVEN powers of a — the 1st, 3rd, 5th hold a⁰, a², a⁴. P starts with ⁿC₀xⁿ.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "P − Q",
         "margin_note": "Third mark. Replace a by −a: even powers of a are unchanged, odd powers change sign.",
+        "memory_tip": "Replace a by −a: even powers keep their sign, odd powers flip. So (x − a)ⁿ = P − Q.",
         "lines": [
           "(x − a)ⁿ = ⁿC₀xⁿ − ⁿC₁xⁿ⁻¹a + ⁿC₂xⁿ⁻²a²",
           "  − ⁿC₃xⁿ⁻³a³ + … + ⁿCₙ(−a)ⁿ",
@@ -140,6 +142,7 @@
         "marks": 2,
         "mark_note": "P² − Q²",
         "margin_note": "Fourth and fifth marks. (P + Q)(P − Q) = P² − Q² on one side, (x + a)ⁿ(x − a)ⁿ = ((x + a)(x − a))ⁿ on the other.",
+        "memory_tip": "P² − Q² = (P + Q)(P − Q) = (x + a)ⁿ(x − a)ⁿ = (x² − a²)ⁿ. The index stays n, not 2n.",
         "lines": [
           "(i) P² − Q² = (P + Q)(P − Q)",
           "= (x + a)ⁿ(x − a)ⁿ   [from (1), (2)]",
@@ -178,6 +181,7 @@
         "marks": 2,
         "mark_note": "4PQ",
         "margin_note": "Sixth and seventh marks. (P + Q)² − (P − Q)² = 4PQ is the identity; then substitute (1) and (2).",
+        "memory_tip": "(P + Q)² − (P − Q)² = 4PQ. Squaring (x + a)ⁿ doubles the index to 2n.",
         "lines": [
           "(ii) 4PQ = (P + Q)² − (P − Q)²",
           "= [(x + a)ⁿ]² − [(x − a)ⁿ]²",

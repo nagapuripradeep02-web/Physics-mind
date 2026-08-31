@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Arguments",
         "margin_note": "First mark. −1 is on the negative real axis, so its argument is π. −i is on the negative imaginary axis, so its argument is −π/2 (principal value).",
+        "memory_tip": "−1 lies on the negative real axis, argument π. −i lies below, argument −π/2, never +π/2.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Arg(z₁z₂) = Arg z₁ + Arg z₂ when the sum stays inside (−π, π], which it does here: π − π/2 = π/2. Direct check: z₁z₂ = (−1)(−i) = i, whose argument is π/2.",
+        "memory_tip": "A product ADDS arguments: π + (−π/2) = π/2. Check by multiplying: (−1)(−i) = i.",
         "lines": [
           "Arg(z₁z₂) = Arg z₁ + Arg z₂ = π + (−π/2)",
           {

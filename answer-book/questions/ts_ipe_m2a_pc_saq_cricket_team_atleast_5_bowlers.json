@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Cases",
         "margin_note": "First mark. There are only 6 bowlers, so \"at least 5\" means exactly 5 or exactly 6. The batsmen fill the rest of the 11.",
+        "memory_tip": "Only 6 bowlers exist, so 'at least 5' is exactly two cases: 5 or 6. The batsmen fill the rest of the 11.",
         "lines": [
           {
             "text": "Sol:",
@@ -112,6 +113,7 @@
         "marks": 2,
         "mark_note": "Counting",
         "margin_note": "Two marks. Each case is a choice of bowlers times a choice of batsmen — multiply within a case. ⁷C₅ = ⁷C₂ = 21 saves arithmetic.",
+        "memory_tip": "Multiply inside a case, add between cases. ⁷C₅ = ⁷C₂ = 21, not the 35 of ⁷C₃.",
         "lines": [
           "Case 1: ⁶C₅ · ⁷C₆ = 6 · 7 = 42",
           "Case 2: ⁶C₆ · ⁷C₅ = 1 · 21 = 21",
@@ -153,6 +155,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. The two cases are alternatives, so add them: 42 + 21 = 63.",
+        "memory_tip": "The two cases are alternatives, so add them: 42 + 21 = 63.",
         "lines": [
           {
             "text": "∴ number of ways = 42 + 21 = 63",

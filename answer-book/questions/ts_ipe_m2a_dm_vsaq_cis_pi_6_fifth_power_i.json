@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "De Moivre",
         "margin_note": "First mark. √3/2 = cos π/6 and 1/2 = sin π/6, so both brackets are cis(±π/6) with modulus 1. De Moivre multiplies the angle by 5, giving cos 5π/6 ± i sin 5π/6.",
+        "memory_tip": "√3/2 = cos π/6 and 1/2 = sin π/6 — that way round, not π/3. De Moivre then multiplies the angle by 5.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Subtracting a number from its conjugate leaves 2i times the imaginary part: 2i sin(5π/6). sin(5π/6) = sin(π/6) = 1/2, so the value is i.",
+        "memory_tip": "A number minus its conjugate is 2i times the imaginary part. sin(5π/6) = +1/2, so the answer is i.",
         "lines": [
           "Difference = 2i sin(5π/6) = 2i sin(π − π/6)",
           {

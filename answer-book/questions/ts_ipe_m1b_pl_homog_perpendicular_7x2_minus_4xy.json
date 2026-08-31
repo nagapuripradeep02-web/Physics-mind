@@ -90,7 +90,8 @@
         "common_mistakes": [
           "Leaving the line as ax + by + c = 0 and multiplying by it directly.",
           "Dividing by the wrong constant and losing a sign."
-        ]
+        ],
+        "memory_tip": "Divide through so the line reads = 1 — the method needs that form."
       },
       {
         "id": "s2_homogenise",
@@ -131,7 +132,8 @@
           "Multiplying the constant by the bracket only once.",
           "Multiplying the second-degree terms as well, which raises them to degree four."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Linear terms times the 1 once, the constant twice."
       },
       {
         "id": "s3_simplify",
@@ -172,7 +174,8 @@
           "A constant term surviving, which means the squaring was missed.",
           "Sign slip when expanding a squared bracket."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "A surviving constant or linear term means something was homogenised wrongly."
       },
       {
         "id": "s4_apply_the_condition",
@@ -214,7 +217,8 @@
           "Including the xy coefficient in the sum.",
           "Concluding perpendicular from a + b = 1 or any value other than zero."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Perpendicular through the origin means coefficient of x² plus coefficient of y² is ZERO. The cross term is unused."
       }
     ]
   }

@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. A game needs 2 of the 30 students, and A playing B is the same game as B playing A — order does not matter: ³⁰C₂.",
+        "memory_tip": "One game is one PAIR. A playing B is the same game as B playing A, so use ³⁰C₂.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ³⁰C₂ = 30 × 29/2 = 15 × 29 = 435.",
+        "memory_tip": "³⁰C₂ = 30 × 29/2 = 15 × 29 = 435. An answer of 870 counted every game twice.",
         "lines": [
           "³⁰C₂ = (30 · 29)/2 = 15 · 29",
           {

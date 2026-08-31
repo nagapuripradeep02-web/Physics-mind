@@ -94,7 +94,8 @@
         "common_mistakes": [
           "Leaving the line as ax + by + c = 0 and multiplying by it directly.",
           "Dividing by the wrong constant and losing a sign."
-        ]
+        ],
+        "memory_tip": "Rearrange to (something)/(constant) = 1 first, even when the constant is a surd."
       },
       {
         "id": "s2_homogenise",
@@ -135,7 +136,8 @@
           "Multiplying the constant by the bracket only once.",
           "Multiplying the second-degree terms as well, which raises them to degree four."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Linear terms once, the constant twice; leave the second-degree terms alone."
       },
       {
         "id": "s3_simplify",
@@ -176,7 +178,8 @@
           "A constant term surviving, which means the squaring was missed.",
           "Sign slip when expanding a squared bracket."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The collected result must be purely second degree."
       },
       {
         "id": "s4_apply_the_condition",
@@ -218,7 +221,8 @@
           "Including the xy coefficient in the sum.",
           "Concluding perpendicular from a + b = 1 or any value other than zero."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "a + b = 0 is the whole test. Nothing else needs computing."
       }
     ]
   }

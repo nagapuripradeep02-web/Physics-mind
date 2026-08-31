@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. 160° reduces to −tan20° = −λ; 110° is 90° + 20°, which gives −cot20° = −1/λ. Both are now in λ.",
+        "memory_tip": "160° gives −tan20° = −λ; 110° is 90° + 20°, giving −cot20° = −1/λ.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The denominator becomes 1 + 1 = 2, and the numerator combines over λ — giving the required form directly.",
+        "memory_tip": "The denominator becomes 1 + 1 = 2, and the numerator combines over λ.",
         "lines": [
           "L.H.S = (−λ − (−1/λ)) / (1 + (−λ)(−1/λ))",
           "= (1/λ − λ)/(1 + 1)",

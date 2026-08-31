@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Identify A, B, C",
         "margin_note": "First mark. Capital A, B, C so they are not confused with the a, b, c inside them. B carries the minus sign: B = −2(a² − bc). The condition c² ≠ ab is what makes A ≠ 0, so the equation is really a quadratic.",
+        "memory_tip": "Use capital A, B, C so they are not confused with the a, b, c inside them. B carries the minus.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Δ = 0",
         "margin_note": "Second mark. Equal roots means the discriminant is exactly zero, not ≥ 0. Squaring B removes its minus sign, and every term carries a factor 4 that can be divided out at once.",
+        "memory_tip": "Equal roots means Δ is exactly 0, not ≥ 0. Every term carries a 4 — divide it out at once.",
         "lines": [
           "Roots are equal ⇒ Δ = B² − 4AC = 0",
           "⇒ [−2(a² − bc)]² − 4(c² − ab)(b² − ac) = 0",
@@ -149,6 +151,7 @@
         "marks": 1,
         "mark_note": "Expand",
         "margin_note": "Third mark. (a² − bc)² = a⁴ − 2a²bc + b²c². The product (c² − ab)(b² − ac) = b²c² − ac³ − ab³ + a²bc. The b²c² terms cancel and the a²bc terms combine to −3a²bc. Every surviving term has a factor a.",
+        "memory_tip": "The b²c² terms cancel and the a²bc terms combine to −3a²bc. Every survivor has a factor a.",
         "lines": [
           "⇒ a⁴ − 2a²bc + b²c²",
           "   − (b²c² − ac³ − ab³ + a²bc) = 0",
@@ -194,6 +197,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. A product is zero when either factor is zero, and BOTH cases are part of the answer: a = 0, or the bracket is zero, which is a³ + b³ + c³ = 3abc. Write both.",
+        "memory_tip": "A product is zero when either factor is, so both cases are the answer. Never divide by a.",
         "lines": [
           "⇒ a = 0 or a³ + b³ + c³ − 3abc = 0",
           {

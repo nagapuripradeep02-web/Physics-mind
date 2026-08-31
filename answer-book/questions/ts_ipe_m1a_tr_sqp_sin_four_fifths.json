@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Quadrant",
         "margin_note": "First mark. sin θ = 4/5 is positive, so θ is in Q1 or Q2. Q1 is ruled out, leaving Q2 — where cos θ is negative.",
+        "memory_tip": "sin positive means Q1 or Q2; Q1 is ruled out, so Q2 — where cos is NEGATIVE.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Value",
         "margin_note": "Second mark. cos²θ = 1 − 16/25 = 9/25, so cos θ = ±3/5 — and the quadrant picks the minus.",
+        "memory_tip": "cos²θ = 9/25 gives ±3/5, and the quadrant picks the minus.",
         "lines": [
           "cos²θ = 1 − sin²θ = 1 − (4/5)² = 1 − 16/25",
           "= 9/25 ⇒ cos θ = ±3/5",

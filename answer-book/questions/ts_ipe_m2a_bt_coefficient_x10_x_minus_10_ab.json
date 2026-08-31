@@ -76,6 +76,7 @@
         "marks": 1,
         "mark_note": "Tᵣ₊₁ of (ax² + 1/(bx))¹¹",
         "margin_note": "First mark. Collect the powers of x: (x²)¹¹⁻ʳ gives x²²⁻²ʳ and (1/x)ʳ gives x⁻ʳ, so the power is 22 − 3r.",
+        "memory_tip": "(x²)¹¹⁻ʳ gives x²²⁻²ʳ and (1/x)ʳ gives x⁻ʳ, so the power is 22 − 3r.",
         "lines": [
           {
             "text": "Sol:",
@@ -119,6 +120,7 @@
         "marks": 1,
         "mark_note": "r = 4",
         "margin_note": "Second mark. Set the power equal to 10.",
+        "memory_tip": "Set the power equal to 10, not to 0 — this is not the term-independent question.",
         "lines": [
           "For x¹⁰: 22 − 3r = 10 ⇒ 3r = 12 ⇒ r = 4"
         ],
@@ -154,6 +156,7 @@
         "marks": 1,
         "mark_note": "First coefficient",
         "margin_note": "Third mark. Put r = 4 into (1) and drop the x.",
+        "memory_tip": "Keep ¹¹C₄ unevaluated. It is going to cancel, so turning it into 330 wastes the chance.",
         "lines": [
           "From (1), the coefficient of x¹⁰ is",
           "¹¹C₄ a⁷/b⁴ …(2)"
@@ -190,6 +193,7 @@
         "marks": 1,
         "mark_note": "Tᵣ₊₁ of (ax − 1/(bx²))¹¹",
         "margin_note": "Fourth mark. The minus sign gives (−1)ʳ; the powers of x are x¹¹⁻ʳ and x⁻²ʳ, so the power is 11 − 3r.",
+        "memory_tip": "The minus in the bracket gives (−1)ʳ, and x⁻²ʳ makes the power 11 − 3r.",
         "lines": [
           "In (ax − 1/(bx²))¹¹, the general term is",
           "Tᵣ₊₁ = ¹¹Cᵣ (ax)¹¹⁻ʳ (−1/(bx²))ʳ",
@@ -228,6 +232,7 @@
         "marks": 1,
         "mark_note": "r = 7",
         "margin_note": "Fifth mark. Set the power equal to −10.",
+        "memory_tip": "A negative power needs a LARGER r: 11 − 3r = −10 gives r = 7.",
         "lines": [
           "For x⁻¹⁰: 11 − 3r = −10 ⇒ 3r = 21 ⇒ r = 7"
         ],
@@ -263,6 +268,7 @@
         "marks": 1,
         "mark_note": "Second coefficient",
         "margin_note": "Sixth mark. r = 7 is odd, so (−1)⁷ = −1.",
+        "memory_tip": "r = 7 is odd, so (−1)⁷ = −1. That minus is what makes the answer ab = −1.",
         "lines": [
           "From (3), the coefficient of x⁻¹⁰ is",
           "(−1)⁷ ¹¹C₇ a⁴/b⁷ = −¹¹C₇ a⁴/b⁷ …(4)"
@@ -301,6 +307,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Seventh mark. ¹¹C₄ = ¹¹C₇ because 4 + 7 = 11, so they cancel. Then a³b³ = −1 and, for real a and b, ab = −1.",
+        "memory_tip": "¹¹C₄ = ¹¹C₇ because 4 + 7 = 11, so both cancel. Then a³b³ = −1 gives ab = −1.",
         "lines": [
           "Given the two coefficients are equal, from (2), (4):",
           "¹¹C₄ a⁷/b⁴ = −¹¹C₇ a⁴/b⁷   [¹¹C₄ = ¹¹C₇]",

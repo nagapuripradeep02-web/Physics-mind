@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Δ = 0",
         "margin_note": "First mark. The equation is already in standard form: a = 1, b = m + 3, c = m + 6. Equal roots means Δ = 0, so (m + 3)² − 4(m + 6) = 0; expand with care, (m + 3)² = m² + 6m + 9.",
+        "memory_tip": "Already in standard form: a = 1, b = m + 3, c = m + 6. Expand (m + 3)² = m² + 6m + 9 in full.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. m² + 2m − 15 = 0 factorises as (m + 5)(m − 3) = 0. The two answers have opposite signs: m = 3 and m = −5. Both are answers.",
+        "memory_tip": "m² + 2m − 15 = (m + 5)(m − 3). The two answers have OPPOSITE signs: 3 and −5.",
         "lines": [
           "⇒ m² + 2m − 15 = 0",
           "⇒ (m + 5)(m − 3) = 0",

@@ -78,7 +78,8 @@
         "common_mistakes": [
           "Writing 3π/8 as π/2 + π/8.",
           "Leaving 3π/8 alone and looking for its value."
-        ]
+        ],
+        "memory_tip": "3π/8 = π/2 − π/8, and cos(π/2 − θ) = sin θ."
       },
       {
         "id": "s2_rewrite_5_8_and_7_8",
@@ -119,7 +120,8 @@
         "common_mistakes": [
           "Applying π/2 − θ to all three angles.",
           "Writing cos(π − θ) = cos θ."
-        ]
+        ],
+        "memory_tip": "5π/8 is π/2 PLUS π/8 (giving −sin), and 7π/8 is π MINUS π/8 (giving −cos)."
       },
       {
         "id": "s3_square_and_pair",
@@ -165,7 +167,8 @@
         "common_mistakes": [
           "Keeping the minus signs.",
           "Trying to evaluate cos(π/8) numerically."
-        ]
+        ],
+        "memory_tip": "Squaring removes both minus signs, and the four terms fall into two Pythagorean pairs."
       }
     ]
   }

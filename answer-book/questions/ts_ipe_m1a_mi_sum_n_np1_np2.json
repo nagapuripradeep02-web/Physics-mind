@@ -93,7 +93,8 @@
         "common_mistakes": [
           "Writing the nth term as n(n+1) and dropping the third factor.",
           "Starting the pattern at 1·2 instead of 1·2·3."
-        ]
+        ],
+        "memory_tip": "The nth term is n(n+1)(n+2) — three consecutive factors. Write S(n) out in full before proving anything."
       },
       {
         "id": "s2_base",
@@ -134,7 +135,8 @@
         "common_mistakes": [
           "Asserting S(1) is true without computing both sides.",
           "Substituting n = 1 into only one side."
-        ]
+        ],
+        "memory_tip": "Compute BOTH sides separately: 1·2·3 = 6 and 24/4 = 6. Do not just assert equality."
       },
       {
         "id": "s3_assume",
@@ -175,7 +177,8 @@
         "common_mistakes": [
           "Assuming the statement for ALL k, which assumes what is being proved.",
           "Not numbering the line, so Step 3 cannot cite it."
-        ]
+        ],
+        "memory_tip": "Assume for k and number the line (1) — Step 3 quotes it."
       },
       {
         "id": "s4_inductive",
@@ -220,7 +223,8 @@
           "Adding the wrong next term — it is (k+1)(k+2)(k+3), not (k+1)(k+2).",
           "Expanding everything instead of factorising, which leaves a cubic that will not simplify.",
           "Never writing = R.H.S, so the step stops short of what was to be shown."
-        ]
+        ],
+        "memory_tip": "Add (k+1)(k+2)(k+3) to both sides, then take it out as a common factor: k + 4 is what is left."
       },
       {
         "id": "s5_conclude",
@@ -259,7 +263,8 @@
         "common_mistakes": [
           "Writing only 'hence proved' and never naming the principle.",
           "Claiming it for all real numbers instead of all n ∈ N."
-        ]
+        ],
+        "memory_tip": "The closing sentence names the principle and is worth a full mark."
       }
     ]
   }

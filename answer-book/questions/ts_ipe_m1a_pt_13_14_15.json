@@ -106,7 +106,8 @@
         "common_mistakes": [
           "Taking s = 42 without halving.",
           "Adding two sides only."
-        ]
+        ],
+        "memory_tip": "2s = a + b + c, so s = 21. Everything downstream needs s — give it its own line."
       },
       {
         "id": "s2_find_by_heron",
@@ -147,7 +148,8 @@
         "common_mistakes": [
           "Multiplying to 7056 and then struggling with the root.",
           "Using s−a = 13 instead of 21−13."
-        ]
+        ],
+        "memory_tip": "Group the factors into perfect squares, 3² × 4² × 7², rather than multiplying out to 7056."
       },
       {
         "id": "s3_find_r",
@@ -184,7 +186,8 @@
         "common_mistakes": [
           "Using 2Δ instead of 4Δ.",
           "Cancelling wrongly and getting 65/4."
-        ]
+        ],
+        "memory_tip": "R = abc/(4Δ), the circumradius. 65/8 does not simplify further."
       },
       {
         "id": "s4_find_r",
@@ -220,7 +223,8 @@
         "common_mistakes": [
           "Using s/Δ upside down.",
           "Reusing R's formula."
-        ]
+        ],
+        "memory_tip": "r = Δ/s, the in-radius and the simplest of the five."
       },
       {
         "id": "s5_find_r",
@@ -256,7 +260,8 @@
         "common_mistakes": [
           "Using s − b under r₁.",
           "Leaving 84/8 uncancelled."
-        ]
+        ],
+        "memory_tip": "r₁ = Δ/(s − a) — same shape as r, with s − a underneath."
       },
       {
         "id": "s6_find_r",
@@ -292,7 +297,8 @@
         "common_mistakes": [
           "Using s − a again.",
           "Arithmetic slip on 21 − 14."
-        ]
+        ],
+        "memory_tip": "Same again with s − b: r₂ = Δ/(s − b)."
       },
       {
         "id": "s7_find_r_and_conclude",
@@ -334,7 +340,8 @@
         "common_mistakes": [
           "Reporting only r₃ at the end.",
           "Arithmetic slip on 21 − 15."
-        ]
+        ],
+        "memory_tip": "Same with s − c, then state all FIVE together as the question asked."
       }
     ]
   }

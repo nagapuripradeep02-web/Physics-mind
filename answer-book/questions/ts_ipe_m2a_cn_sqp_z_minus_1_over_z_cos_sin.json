@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Reciprocal",
         "margin_note": "First mark. The ordered pair (cos θ, sin θ) is the complex number cos θ + i sin θ. Its reciprocal is found by the conjugate; since cos²θ + sin²θ = 1 the denominator is 1 and 1/z is simply cos θ − i sin θ.",
+        "memory_tip": "The pair (cos θ, sin θ) is cos θ + i sin θ. Its modulus is 1, so 1/z is just its conjugate.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The cos θ terms cancel; the sin θ terms add.",
+        "memory_tip": "The cos terms cancel and the sin terms add: 2i sin θ. It is z + 1/z that gives 2cos θ.",
         "lines": [
           "z − 1/z = (cos θ + i sin θ) − (cos θ − i sin θ)",
           {

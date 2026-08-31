@@ -99,7 +99,8 @@
           "Writing m₁ + m₂ = 2h/b without the minus sign.",
           "Dividing by a instead of b."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The pair passes through the ORIGIN, so O is one vertex for free. Split the pair in slope form."
       },
       {
         "id": "s1b_figure",
@@ -230,7 +231,8 @@
               "sm": true
             }
           ]
-        }
+        },
+        "memory_tip": "The picture makes it visible that only TWO vertices have to be found."
       },
       {
         "id": "s2_find_vertex_a",
@@ -273,7 +275,8 @@
           "Solving the given line against itself.",
           "Sign slip in one of the three cross-multiplication denominators."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Solve the given line against the first of the pair by cross-multiplication, keeping everything in letters."
       },
       {
         "id": "s3_vertex_b_and_area",
@@ -315,7 +318,8 @@
           "Using the full three-vertex determinant and mis-expanding it.",
           "Losing the n² when multiplying the two numerators."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "With O at the origin the area collapses to ½|x₁y₂ − x₂y₁| — no third coordinate needed."
       },
       {
         "id": "s4_convert",
@@ -361,7 +365,8 @@
           "Writing m₂ − m₁ = (m₁+m₂) − 2m₁m₂.",
           "Forgetting that b appears in both numerator and denominator and cancels."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "m₂ − m₁ is not in the dictionary, but (m₁+m₂)² − 4m₁m₂ is — so SQUARE the difference first."
       }
     ]
   }

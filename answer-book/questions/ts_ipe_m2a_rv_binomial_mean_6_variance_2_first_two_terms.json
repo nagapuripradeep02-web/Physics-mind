@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "n, p, q",
         "margin_note": "First mark. q = variance/mean = 2/6 = 1/3, p = 2/3, n = 6/p = 9. The 'first two terms' are P(X = 0) and P(X = 1), so n, p and q must be found before either can be written.",
+        "memory_tip": "q = 2/6 = 1/3, p = 2/3, n = 6/p = 9. The 'first two terms' are P(X = 0) and P(X = 1).",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. P(X = 0) = ⁹C₀ q⁹ = (1/3)⁹ = 1/3⁹. P(X = 1) = ⁹C₁ q⁸ p = 9 · (1/3)⁸ · (2/3) = 18/3⁹ = 2/3⁷. Cancel the 9 against 3² — that is why the power drops from 9 to 7.",
+        "memory_tip": "In P(X = 1) the ⁹C₁ = 9 cancels 3², so the power drops from 3⁹ to 3⁷.",
         "lines": [
           "P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ = ⁹Cᵣ (1/3)⁹⁻ʳ (2/3)ʳ",
           "(i) P(X = 0) = ⁹C₀ (1/3)⁹ = 1/3⁹",

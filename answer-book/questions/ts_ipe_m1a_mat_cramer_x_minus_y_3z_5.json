@@ -67,6 +67,7 @@
         "marks": 1,
         "mark_note": "Matrix form",
         "margin_note": "First mark. A holds the coefficients in x, y, z order, X holds the unknowns, D holds the right-hand sides. Line the equations up in x, y, z order before building A — a missing term is the commonest error in the whole question.",
+        "memory_tip": "Write the equations in x, y, z order first, then read off A, X and D.",
         "lines": [
           {
             "text": "Sol:",
@@ -115,6 +116,7 @@
         "marks": 1,
         "mark_note": "Δ",
         "margin_note": "Second mark. Δ is 40 and non-zero, so the rule applies. One of the constants is 0, which shortens the later expansions but does NOT mean a column can be skipped.",
+        "memory_tip": "Δ = 40, non-zero, so the rule applies. A zero among the CONSTANTS does not stop anything.",
         "lines": [
           {
             "text": "\\Delta = \\det A = \\begin{vmatrix} 1 & -1 & 3 \\\\ 4 & 2 & -1 \\\\ 1 & 3 & 1 \\end{vmatrix}",
@@ -161,6 +163,7 @@
         "marks": 1,
         "mark_note": "Δ₁",
         "margin_note": "Third mark. Δ₁ is Δ with the FIRST column replaced by the constants. Columns 2 and 3 are untouched. Replace, never insert.",
+        "memory_tip": "Δ₁ replaces the first column with the constants — replace, never insert.",
         "lines": [
           "Replace C₁ of Δ by the constants:",
           {
@@ -206,6 +209,7 @@
         "marks": 1,
         "mark_note": "Δ₂",
         "margin_note": "Fourth mark. Same move, second column. Column 1 goes back to the coefficients of x — a common slip is to leave the constants there from the previous step.",
+        "memory_tip": "Second column now, with column 1 restored to the x coefficients.",
         "lines": [
           "Replace C₂ of Δ by the constants:",
           {
@@ -250,6 +254,7 @@
         "marks": 1,
         "mark_note": "Δ₃",
         "margin_note": "Fifth mark. Last one — third column replaced, the other two back to the coefficients.",
+        "memory_tip": "Third column replaced, the other two back to normal.",
         "lines": [
           "Replace C₃ of Δ by the constants:",
           {
@@ -294,6 +299,7 @@
         "marks": 3,
         "mark_note": "Solution",
         "margin_note": "The last three marks. Δ₁ comes out as 0, so x = 0. That is a real answer, not a failure — it is Δ, not Δ₁, that must be non-zero for the rule to work.",
+        "memory_tip": "Δ₁ = 0 gives x = 0 — a real answer. It is Δ, not Δ₁, that must be non-zero.",
         "lines": [
           "By Cramer's rule:",
           "x = Δ₁/Δ = 0/40 = 0",

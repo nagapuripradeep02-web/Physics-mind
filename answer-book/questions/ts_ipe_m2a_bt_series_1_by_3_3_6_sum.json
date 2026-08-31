@@ -64,6 +64,7 @@
         "marks": 2,
         "mark_note": "Series in standard shape",
         "margin_note": "First two marks. Each denominator is a product like 5·10·15 = 5³·(1·2·3), so every term becomes (a product)/(k!) times (1/3)ᵏ. This series already starts with 1 and 1/3, so nothing has to be added.",
+        "memory_tip": "3·6·9 = 3³·3!, so each term is (a product)/k! times (1/3)ᵏ. This series already starts with 1 and 1/3 — add nothing.",
         "lines": [
           {
             "text": "Sol:",
@@ -109,6 +110,7 @@
         "marks": 1,
         "mark_note": "Standard form",
         "margin_note": "Third mark, for WRITING the standard expansion beside the series. The examiner looks for the pattern p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!. All plus signs mean the (1 − x) form.",
+        "memory_tip": "All plus signs mean the (1 − x) form. Write the standard expansion beside the series.",
         "lines": [
           "Compare with the standard expansion",
           {
@@ -151,6 +153,7 @@
         "marks": 2,
         "mark_note": "p, q, x",
         "margin_note": "Fourth and fifth marks. p is the first factor (1), p + q is the second (3) so q = 2, and x/q equals the common ratio 1/3 so x = q/3 = 2/3.",
+        "memory_tip": "p = 1, p + q = 3 so q = 2. The bracket holds x/q, so x = q/3 = 2/3, not 1/3.",
         "lines": [
           "p = 1, p + q = 3 ⇒ q = 2",
           "x/q = 1/3 ⇒ x = q/3 = 2/3"
@@ -189,6 +192,7 @@
         "marks": 1,
         "mark_note": "Value of the power",
         "margin_note": "Sixth mark. Substitute p, q, x into (1 − x)^(−p/q) and simplify the fraction inside the bracket before touching the exponent.",
+        "memory_tip": "Invert the fraction first: (1/3) to the power −1/2 is 3 to the power 1/2.",
         "lines": [
           {
             "text": "S = (1 - x)^{-p/q} = \\left(1 - \\tfrac{2}{3}\\right)^{-1/2} = \\left(\\tfrac{1}{3}\\right)^{-1/2} = 3^{1/2}",
@@ -229,6 +233,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Seventh mark. 3 to the power half is √3 — write it as a root, not as a decimal.",
+        "memory_tip": "Leave it as √3. A decimal is not the expected final form.",
         "lines": [
           {
             "text": "∴ S = √3",

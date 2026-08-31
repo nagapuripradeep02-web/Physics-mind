@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "The matrix",
         "margin_note": "First mark. aI puts a on the diagonal; bE puts b in the top-right corner only. Adding them gives one upper-triangular matrix, and from here the question is ordinary multiplication.",
+        "memory_tip": "aI puts a on the diagonal, bE puts b in the top-right corner only — an upper-triangular matrix.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 2,
         "mark_note": "Left-hand side",
         "margin_note": "Half the marks. Square it first, then multiply by the matrix once more. The top-right entry grows a·b + b·a = 2ab, then a²b + 2ab·a = 3a²b — that 3 is the whole point of the question.",
+        "memory_tip": "Square first, then multiply once more. The top-right grows 2ab, then 3a²b — the coefficient of the answer.",
         "lines": [
           {
             "text": "\\begin{bmatrix} a & b \\\\ 0 & a \\end{bmatrix}^2 = \\begin{bmatrix} a^2 & 2ab \\\\ 0 & a^2 \\end{bmatrix}",
@@ -158,6 +160,7 @@
         "marks": 1,
         "mark_note": "Comparison",
         "margin_note": "Last mark. Build a³I + 3a²bE the same way aI + bE was built, then say the two matrices are equal. Both sides must be written out — a proof compares two things, it does not just produce one.",
+        "memory_tip": "Build a³I + 3a²bE the same way, then say the two are equal. Both sides must be written out.",
         "lines": [
           {
             "text": "a^3I + 3a^2bE = \\begin{bmatrix} a^3 & 0 \\\\ 0 & a^3 \\end{bmatrix} + \\begin{bmatrix} 0 & 3a^2b \\\\ 0 & 0 \\end{bmatrix}",

@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. An injection sends the 5 elements of A to 5 DIFFERENT elements of B. Choosing and assigning 5 different images from 7 is ⁷P₅.",
+        "memory_tip": "Different images AND which element gets which — that is an arrangement, ⁷P₅, not ⁷C₅.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ⁷P₅ = 7·6·5·4·3 = 2520.",
+        "memory_tip": "⁷P₅ = 7·6·5·4·3 = 2520. Five factors, counting down from 7.",
         "lines": [
           "⁷P₅ = 7 · 6 · 5 · 4 · 3",
           {

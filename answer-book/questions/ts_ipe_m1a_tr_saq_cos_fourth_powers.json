@@ -80,7 +80,8 @@
         "common_mistakes": [
           "Dropping the minus signs without saying why they do not matter.",
           "Assuming the answer must differ from the twin because of the signs."
-        ]
+        ],
+        "memory_tip": "Two reductions come out NEGATIVE. Say so — the signs vanish only at the fourth power."
       },
       {
         "id": "s2_group_and_use_a_b",
@@ -121,7 +122,8 @@
         "common_mistakes": [
           "Carrying the minus signs into the fourth powers.",
           "Expanding the fourth powers directly."
-        ]
+        ],
+        "memory_tip": "(−x)⁴ = x⁴, so the four terms become 2[sin⁴ + cos⁴], then a² + b² = (a+b)² − 2ab on the squares."
       },
       {
         "id": "s3_turn_the_product_into_si",
@@ -164,7 +166,8 @@
         "common_mistakes": [
           "Expecting a different answer from the twin and going back to hunt.",
           "Writing sin(π/4) = 1/2."
-        ]
+        ],
+        "memory_tip": "4sin²cos² is (2 sin cos)² = sin²(π/4) = 1/2, so the answer is 2 − 1/2."
       }
     ]
   }

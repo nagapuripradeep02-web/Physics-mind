@@ -60,6 +60,7 @@
         "marks": 2,
         "mark_note": "k",
         "margin_note": "First two marks. The table mixes decimals and k's. Add the decimals (0.1 + 0.2 + 0.3 = 0.6) and the k's (k + 2k + k = 4k) separately, set 4k + 0.6 = 1, and k = 0.1. Work in decimals throughout — the whole table is in decimals.",
+        "memory_tip": "Add the decimals (0.6) and the k terms (4k) separately. Count 2k as two, so it is 4k not 3k.",
         "lines": [
           {
             "text": "Sol:",
@@ -118,6 +119,7 @@
         "marks": 2,
         "mark_note": "Mean",
         "margin_note": "Two marks, even though the question does not ask for the mean — the variance formula needs μ². Negative values give negative products: (−2)(0.1) = −0.2 and (−1)(k) = −k. Collect: 4k + 0.4 = 0.8.",
+        "memory_tip": "The question does not ask for the mean, but the variance needs it. Keep the minus signs: (−2)(0.1) = −0.2.",
         "lines": [
           {
             "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
@@ -164,6 +166,7 @@
         "marks": 3,
         "mark_note": "Variance",
         "margin_note": "Three marks. Square each value first — (−2)² = 4, (−1)² = 1, so every squared term is positive — multiply by its probability, add, then subtract μ² = 0.64. The k terms are k + 2k + 9k = 12k = 1.2.",
+        "memory_tip": "Square each value FIRST, so every squared term is positive. Then subtract μ² = 0.64, not μ.",
         "lines": [
           {
             "text": "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²",

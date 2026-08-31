@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "De Moivre",
         "margin_note": "First mark. z²ⁿ = cos 2nθ + i sin 2nθ. Write the numerator as cos 2nθ − 1 + i sin 2nθ and the denominator as cos 2nθ + 1 + i sin 2nθ on separate lines; the two reductions that follow take one at a time.",
+        "memory_tip": "z²ⁿ = cos 2nθ + i sin 2nθ. Write the numerator and the denominator on separate lines.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 2,
         "mark_note": "Numerator",
         "margin_note": "Second and third marks. cos 2nθ − 1 = −2 sin² nθ and sin 2nθ = 2 sin nθ cos nθ. Write the −2 as 2i², and 2i sin nθ comes out leaving cos nθ + i sin nθ inside — the same bracket the denominator will produce.",
+        "memory_tip": "Write the −2 as 2i². Then 2i sin nθ comes out, leaving cos nθ + i sin nθ inside.",
         "lines": [
           "cos 2nθ − 1 = −2 sin² nθ,",
           "sin 2nθ = 2 sin nθ cos nθ",
@@ -153,6 +155,7 @@
         "marks": 2,
         "mark_note": "Denominator",
         "margin_note": "Fourth and fifth marks. cos 2nθ + 1 = 2 cos² nθ, so the denominator is 2 cos² nθ + 2i sin nθ cos nθ = 2 cos nθ (cos nθ + i sin nθ). Take out the 2 as well as cos nθ, or it will not cancel.",
+        "memory_tip": "cos 2nθ + 1 = 2cos²nθ. Take out the 2 as well as cos nθ, or it will not cancel.",
         "lines": [
           "cos 2nθ + 1 = 2 cos² nθ",
           "Denominator = 2 cos² nθ + 2i sin nθ cos nθ",
@@ -194,6 +197,7 @@
         "marks": 2,
         "mark_note": "Result",
         "margin_note": "Sixth and seventh marks. The 2 and the bracket cos nθ + i sin nθ are common to both lines and cancel, leaving i sin nθ / cos nθ = i tan nθ. Keep the i; without it the answer is tan nθ, which is not the right side.",
+        "memory_tip": "The 2 and the bracket are common to both lines. What survives is i sin nθ / cos nθ = i tan nθ.",
         "lines": [
           {
             "text": "\\text{L.H.S.} = \\frac{2i\\sin n\\theta\\,(\\cos n\\theta + i\\sin n\\theta)}{2\\cos n\\theta\\,(\\cos n\\theta + i\\sin n\\theta)}",

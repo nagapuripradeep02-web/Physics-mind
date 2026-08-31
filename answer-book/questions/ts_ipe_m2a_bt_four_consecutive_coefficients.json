@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Setting up",
         "margin_note": "First mark. Four consecutive coefficients of (1 + x)ⁿ are ⁿCᵣ, ⁿCᵣ₊₁, ⁿCᵣ₊₂, ⁿCᵣ₊₃ for some r.",
+        "memory_tip": "Four consecutive coefficients start at a general r: ⁿCᵣ to ⁿCᵣ₊₃, never at ⁿC₁.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 3,
         "mark_note": "L.H.S. = 2(r + 2)/(n + 1)",
         "margin_note": "Second to fourth marks. Two identities: ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ₊₁, and ⁿ⁺¹Cᵣ₊₁ = ((n + 1)/(r + 1))·ⁿCᵣ. Together they turn ⁿCᵣ/(ⁿCᵣ + ⁿCᵣ₊₁) into (r + 1)/(n + 1).",
+        "memory_tip": "Two identities: ⁿCᵣ + ⁿCᵣ₊₁ = ⁿ⁺¹Cᵣ₊₁, and ⁿ⁺¹Cᵣ₊₁ = ((n + 1)/(r + 1))·ⁿCᵣ. Together they give (r + 1)/(n + 1).",
         "lines": [
           "L.H.S. = ⁿCᵣ/(ⁿCᵣ + ⁿCᵣ₊₁) + ⁿCᵣ₊₂/(ⁿCᵣ₊₂ + ⁿCᵣ₊₃)",
           "= ⁿCᵣ/ⁿ⁺¹Cᵣ₊₁ + ⁿCᵣ₊₂/ⁿ⁺¹Cᵣ₊₃",
@@ -149,6 +151,7 @@
         "marks": 2,
         "mark_note": "R.H.S. = 2(r + 2)/(n + 1)",
         "margin_note": "Fifth and sixth marks. The same two identities, one index higher: a₂ + a₃ = ⁿ⁺¹Cᵣ₊₂ = ((n + 1)/(r + 2))·ⁿCᵣ₊₁.",
+        "memory_tip": "Same two identities one index higher, and keep the factor 2 in front.",
         "lines": [
           "R.H.S. = 2·ⁿCᵣ₊₁/(ⁿCᵣ₊₁ + ⁿCᵣ₊₂) = 2·ⁿCᵣ₊₁/ⁿ⁺¹Cᵣ₊₂",
           "= 2·ⁿCᵣ₊₁ / (((n + 1)/(r + 2))·ⁿCᵣ₊₁)",
@@ -187,6 +190,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Seventh mark. (1) and (2) are the same expression — say so in one line.",
+        "memory_tip": "(1) and (2) are the same expression — write that line, or the last mark is lost.",
         "lines": [
           {
             "text": "From (1) and (2), L.H.S. = R.H.S.",

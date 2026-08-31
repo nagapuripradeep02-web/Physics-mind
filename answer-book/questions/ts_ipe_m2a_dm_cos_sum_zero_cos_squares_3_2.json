@@ -80,6 +80,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. Put a = cis α, b = cis β, c = cis γ; the two given sums are the real and imaginary parts of a + b + c, so a + b + c = 0 + i(0) = 0. Show both parts — writing a + b + c = 0 straight away skips what earns the mark.",
+        "memory_tip": "a + b + c = 0 because the given sums are its real and imaginary parts. Write both parts out.",
         "lines": [
           {
             "text": "Sol:",
@@ -126,6 +127,7 @@
         "marks": 1,
         "mark_note": "Square",
         "margin_note": "Second mark. Squaring gives a² + b² + c² + 2(ab + bc + ca) = 0, and ab + bc + ca = abc(1/a + 1/b + 1/c). Since 1/a = cis(−α), that reciprocal sum is the given data with the sine sign reversed, so it is 0 and the cross term goes.",
+        "memory_tip": "Squaring brings in a², b², c². Rewrite ab + bc + ca as abc(1/a + 1/b + 1/c), which the given data makes 0.",
         "lines": [
           "a + b + c = 0 ⇒ (a + b + c)² = 0",
           "⇒ a² + b² + c² + 2(ab + bc + ca) = 0",
@@ -172,6 +174,7 @@
         "marks": 1,
         "mark_note": "Real parts",
         "margin_note": "Third mark. a² = cis 2α by De Moivre, so a² + b² + c² = 0 reads cis 2α + cis 2β + cis 2γ = 0. Equate real parts for cos 2α + cos 2β + cos 2γ = 0, and label it (1) — both remaining steps use it.",
+        "memory_tip": "a² = cis 2α, so a² + b² + c² = 0 is a statement about doubled angles. Label the real part (1).",
         "lines": [
           "∴ a² + b² + c² = 0",
           "⇒ cis 2α + cis 2β + cis 2γ = 0  (De Moivre)",
@@ -217,6 +220,7 @@
         "marks": 2,
         "mark_note": "cos² result",
         "margin_note": "Fourth and fifth marks. Put cos 2θ = 2cos² θ − 1 into (1): the three −1 terms give 2(cos² α + cos² β + cos² γ) − 3 = 0. Divide by 2 for 3/2.",
+        "memory_tip": "cos 2θ = 2cos²θ − 1. The three −1 terms give 2Σcos² = 3, so Σcos² = 3/2.",
         "lines": [
           "(1) ⇒ (2cos² α − 1) + (2cos² β − 1)",
           "+ (2cos² γ − 1) = 0  (∵ cos 2θ = 2cos² θ − 1)",
@@ -262,6 +266,7 @@
         "marks": 2,
         "mark_note": "sin² result",
         "margin_note": "Sixth and seventh marks. The same equation (1) with the other form, cos 2θ = 1 − 2sin² θ, gives 3 − 2(sin² α + sin² β + sin² γ) = 0. The marks are for showing this second identity, not for subtracting the first result from 3.",
+        "memory_tip": "The same equation (1), other form: cos 2θ = 1 − 2sin²θ. The mark is showing this identity, not subtracting from 3.",
         "lines": [
           "Again (1) ⇒ (1 − 2sin² α) + (1 − 2sin² β)",
           "+ (1 − 2sin² γ) = 0  (∵ cos 2θ = 1 − 2sin² θ)",

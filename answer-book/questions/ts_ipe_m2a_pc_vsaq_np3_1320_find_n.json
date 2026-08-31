@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. ⁿP₃ is a product of 3 consecutive whole numbers counting down from n. Break 1320 into such a product: 12 · 11 · 10.",
+        "memory_tip": "ⁿP₃ is three CONSECUTIVE factors, so break 1320 that way: 12 · 11 · 10.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ⁿP₃ = ¹²P₃, so n = 12.",
+        "memory_tip": "n is the largest factor, 12, not the smallest.",
         "lines": [
           "Comparing ⁿP₃ with ¹²P₃:",
           {

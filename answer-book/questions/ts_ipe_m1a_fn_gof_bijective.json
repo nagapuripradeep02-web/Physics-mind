@@ -62,6 +62,7 @@
         "label": "Write what is given",
         "marks": 0,
         "margin_note": "This earns no mark by itself, but it names the two properties the whole proof uses. Write it first so every later step has something to point back to.",
+        "memory_tip": "Name the TWO properties the proof uses — one one and onto — so every later step can point back.",
         "lines": [
           {
             "text": "Given:",
@@ -114,6 +115,7 @@
         "marks": 3,
         "mark_note": "One one",
         "margin_note": "Three of the eight marks. Take two elements with the same image and work backwards through g first, then f. Quote the reason in brackets at each step — the reasons are what the examiner marks.",
+        "memory_tip": "The outer function is g, so peel g off FIRST, then f. Quote the reason in brackets at each step.",
         "lines": [
           {
             "text": "(i) To prove gof: A→C is one one",
@@ -167,6 +169,7 @@
         "marks": 5,
         "mark_note": "Onto",
         "margin_note": "Five of the eight marks — the bigger half. Start from any c in C and walk backwards: g onto gives you b, then f onto gives you a. Finish by showing that this a really does map to c.",
+        "memory_tip": "Start from any c in C and walk BACKWARDS: g onto gives b, then f onto gives a. Starting at a proves nothing.",
         "lines": [
           {
             "text": "(ii) To prove gof: A→C is onto",
@@ -222,6 +225,7 @@
         "label": "Conclude bijective",
         "marks": 0,
         "margin_note": "No separate mark, but write it. The question asked for bijective, so the last line must say bijective — both halves named together.",
+        "memory_tip": "The question asked for bijective, so the last line must say bijective, naming both halves.",
         "lines": [
           "gof: A→C is one one and onto.",
           "∴ gof: A→C is a bijective function."

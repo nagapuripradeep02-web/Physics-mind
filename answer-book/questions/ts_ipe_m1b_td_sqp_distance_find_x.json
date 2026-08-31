@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Put both points into the 3D distance formula and set it equal to 9. Squaring both sides at once clears the root before any expansion.",
+        "memory_tip": "Set the distance formula equal to 9 and square BOTH sides at once, clearing the root before expanding.",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Isolate the bracket and take the square root — remembering that a square root gives PLUS OR MINUS, which is why there are two answers.",
+        "memory_tip": "A square root gives PLUS OR MINUS, which is why there are two answers.",
         "lines": [
           "⇒ (x−5)² + 72 = 81  ⇒  (x−5)² = 81 − 72 = 9 = 3²",
           "⇒ x − 5 = ±3",

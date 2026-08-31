@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The two lower numbers 2r − 1 and 2r + 4 can never be equal (they differ by 5), so they must add to 15.",
+        "memory_tip": "The two lower numbers differ by 5, so they can never be equal — only the sum branch is left.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 4r + 3 = 15 gives r = 3. Check: ¹⁵C₅ = ¹⁵C₁₀, and 5 + 10 = 15.",
+        "memory_tip": "The lower numbers add to the UPPER number 15: 4r + 3 = 15, r = 3. Check ¹⁵C₅ = ¹⁵C₁₀.",
         "lines": [
           "4r + 3 = 15 ⇒ 4r = 12",
           {

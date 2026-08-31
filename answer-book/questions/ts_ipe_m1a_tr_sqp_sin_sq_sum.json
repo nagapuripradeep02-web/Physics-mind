@@ -63,6 +63,7 @@
         "marks": 2,
         "mark_note": "Difference of squares",
         "margin_note": "Two of the eight marks. Bracket sin²B − sin²C — the two that differ in sign — and apply sin²A − sin²B = sin(A+B) sin(A−B).",
+        "memory_tip": "Bracket the two that DIFFER in sign, sin²B − sin²C, and use sin²X − sin²Y = sin(X+Y)sin(X−Y).",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 2,
         "mark_note": "Angle sum",
         "margin_note": "Two marks (third and fourth). From A + B + C = 180°, B + C = 180° − A, and sin(180° − A) = sin A.",
+        "memory_tip": "B + C = 180° − A, and sin(180° − A) = sin A.",
         "lines": [
           "B + C = 180° − A",
           "⇒ sin(B + C) = sin(180° − A) = sin A",
@@ -146,6 +148,7 @@
         "marks": 1,
         "mark_note": "Factor",
         "margin_note": "Fourth mark. Both terms now carry sin A, so factor it out — everything that follows happens inside the bracket.",
+        "memory_tip": "Both terms now carry sin A, so factor it out; everything else happens inside the bracket.",
         "lines": [
           "L.H.S = sin A [sin A + sin(B − C)]"
         ],
@@ -183,6 +186,7 @@
         "marks": 2,
         "mark_note": "Second substitution",
         "margin_note": "Two marks. Inside the bracket, write sin A back as sin(B+C) — the reverse of step 2, so both terms become sines of B and C.",
+        "memory_tip": "Inside the bracket write sin A back as sin(B+C) — the reverse of step 2.",
         "lines": [
           "Inside the bracket, sin A = sin(180° − (B + C))",
           "= sin(B + C)",
@@ -222,6 +226,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. sin(X+Y) + sin(X−Y) = 2 sin X cos Y with X = B, Y = C gives 2 sin B cos C.",
+        "memory_tip": "sin(X+Y) + sin(X−Y) = 2 sinX cosY with X = B, Y = C.",
         "lines": [
           "sin(B + C) + sin(B − C) = 2 sin B cos C",
           "L.H.S = sin A · 2 sin B cos C",

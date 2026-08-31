@@ -91,7 +91,8 @@
         "common_mistakes": [
           "Adding the fractions by adding numerators and denominators.",
           "Cross-multiplying before combining."
-        ]
+        ],
+        "memory_tip": "Combine the left over one denominator and cross-multiply. Nothing trigonometric happens yet."
       },
       {
         "id": "s2_expand_and_simplify",
@@ -130,7 +131,8 @@
         "common_mistakes": [
           "Slipping a sign while expanding.",
           "Stopping before everything cancels."
-        ]
+        ],
+        "memory_tip": "Everything cancels except a² + b² − c² = ab — a pure side relation with no fractions."
       },
       {
         "id": "s3_apply_the_cosine_rule",
@@ -174,7 +176,8 @@
         "common_mistakes": [
           "Stopping at a² + b² − c² = ab.",
           "Writing cos C = 1/2 and giving C = 30°."
-        ]
+        ],
+        "memory_tip": "Divide by 2ab: the left becomes cos C exactly, the right becomes 1/2."
       }
     ]
   }

@@ -88,7 +88,8 @@
           "Trying to handle all three equations at once instead of taking a pair first.",
           "Slip in the cross-multiplication denominators."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Concurrent means all three pass through ONE point — solve any two of them for it."
       },
       {
         "id": "s2_point_of_intersection",
@@ -124,7 +125,8 @@
         "common_mistakes": [
           "Writing the coordinates the wrong way round.",
           "Leaving the point as a pair of fractions without simplifying."
-        ]
+        ],
+        "memory_tip": "State the point; it is the candidate every line must satisfy."
       },
       {
         "id": "s3_substitute_third",
@@ -168,7 +170,8 @@
           "Substituting into one of the two lines already used, which gives 0 = 0 and proves nothing.",
           "Sign slip when the point has a negative coordinate."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "The point already lies on the first two, so a zero from the third IS the proof."
       }
     ]
   }

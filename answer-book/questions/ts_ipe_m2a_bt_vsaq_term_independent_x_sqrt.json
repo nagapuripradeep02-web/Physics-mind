@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. √(x/3) = (x/3) to the power 1/2, so the power of x is (10 − r)/2 − 2r. Set it to zero.",
+        "memory_tip": "The square root halves the power, so x carries (10 − r)/2 − 2r. Set that whole expression to zero.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. r = 2: ¹⁰C₂ = 45, (1/3)⁴ = 1/81, (3/2)² = 9/4.",
+        "memory_tip": "r = 2: ¹⁰C₂ = 45, (1/3)⁴ = 1/81, (3/2)² = 9/4, giving 5/4.",
         "lines": [
           "T₃ = ¹⁰C₂ (1/3)⁴ (3/2)² = 45 · (1/81) · (9/4)",
           {

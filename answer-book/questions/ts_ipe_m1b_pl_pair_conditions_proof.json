@@ -98,7 +98,8 @@
           "Pairing the cross terms with the same subscript twice.",
           "Forgetting that h, g and f are each HALF the matched quantity."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "A general pair splits into two general lines, each with its own constant — six coefficients against six."
       },
       {
         "id": "s2_build_8fgh",
@@ -138,7 +139,8 @@
           "Multiplying h, g and f rather than 2h, 2g and 2f.",
           "Losing the final term 2l₁l₂m₁m₂n₁n₂."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Multiply the three doubled coefficients. Every term is a product of six letters; regrouping is the work."
       },
       {
         "id": "s3_reduce",
@@ -184,7 +186,8 @@
           "Forgetting to divide the whole line by 4 at the end.",
           "Sign slip when moving abc across."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Each bracket becomes (sum)² − 2(product), and every one of those is already in the dictionary."
       },
       {
         "id": "s4_inequalities",
@@ -229,7 +232,8 @@
           "Claiming strict inequality h² > ab, which fails when the lines are parallel.",
           "Forgetting the division by 4 when writing h from 2h."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "h² − ab is a perfect square over 4 — and a square is never negative. That IS the argument."
       }
     ]
   }

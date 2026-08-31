@@ -90,7 +90,8 @@
         "common_mistakes": [
           "Re-deriving r from the reciprocal formula unnecessarily.",
           "Writing √36 as 18."
-        ]
+        ],
+        "memory_tip": "r is given here, so Δ = √(r r₁ r₂ r₃) can be used at once — no reciprocal step needed."
       },
       {
         "id": "s2_find_each_side_from_its_ex",
@@ -132,7 +133,8 @@
         "common_mistakes": [
           "Reporting s − a as the side.",
           "Pairing the wrong ex-radius with a side."
-        ]
+        ],
+        "memory_tip": "The pairing is fixed: r₁ with a, r₂ with b, r₃ with c."
       },
       {
         "id": "s3_conclude",
@@ -174,7 +176,8 @@
         "common_mistakes": [
           "Skipping the check.",
           "Giving the sides in the wrong order."
-        ]
+        ],
+        "memory_tip": "Check against 2s, and note the shape — 3, 4, 5 is the right-angled triangle."
       }
     ]
   }

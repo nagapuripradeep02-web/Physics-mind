@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. The +1 on top joins x; the +i below joins iy. Write each of numerator and denominator as (real) + i(imaginary).",
+        "memory_tip": "The +1 on top joins x; the +i below joins iy. Write each line as (real) + i(imaginary).",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 2,
         "mark_note": "Real and imaginary parts",
         "margin_note": "Half the marks. The conjugate of the denominator is x − i(y + 1). The denominator becomes x² + (y + 1)²; the real part of the numerator is x(x + 1) + y(y + 1).",
+        "memory_tip": "The conjugate of x + i(y + 1) is x − i(y + 1). The numerator's imaginary part is never used.",
         "lines": [
           "Multiply above and below by x − i(y + 1):",
           {
@@ -162,6 +164,7 @@
         "marks": 1,
         "mark_note": "Locus",
         "margin_note": "Last mark. Set the real part to 1, cross-multiply, and the squares cancel — the locus is a straight line.",
+        "memory_tip": "Real part = 1 here, not 0. Both x² and y² cancel, so the locus is the line x − y = 1, with z ≠ −i.",
         "lines": [
           "Real part = 1",
           "⇒ x² + y² + x + y = x² + (y + 1)²",

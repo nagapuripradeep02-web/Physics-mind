@@ -88,7 +88,8 @@
         "common_mistakes": [
           "Trying to factorise the pair before substituting, which is more work.",
           "Forgetting that the origin is a vertex."
-        ]
+        ],
+        "memory_tip": "Both lines of the pair pass through the ORIGIN, so O is automatically the third vertex."
       },
       {
         "id": "s2_both_vertices",
@@ -133,7 +134,8 @@
           "Losing the +36 when expanding (2x − 6)².",
           "Taking only the positive root and finding one vertex."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Substituting collapses the pair to one quadratic in x, whose two roots give the two vertices."
       },
       {
         "id": "s3_centroid",
@@ -174,7 +176,8 @@
           "Averaging only the two non-origin vertices.",
           "Dividing by 2 instead of 3."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The plain average of the three vertices — and with the origin among them, two numbers are zero."
       },
       {
         "id": "s4_area",
@@ -218,7 +221,8 @@
           "Reporting the area as −36 by dropping the modulus.",
           "Using all three vertices in a determinant and mis-expanding it."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "With a vertex at the origin the determinant collapses to ½|x₁y₂ − x₂y₁|."
       }
     ]
   }

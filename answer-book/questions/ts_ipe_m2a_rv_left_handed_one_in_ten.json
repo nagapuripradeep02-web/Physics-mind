@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "n, p, q",
         "margin_note": "First mark. Each person is one trial; success = left-handed, p = 0.1 = 1/10, q = 9/10; the group of 10 gives n = 10. Write all three before the formula.",
+        "memory_tip": "Each person is one trial: p = 0.1 = 1/10, q = 9/10, and the group of 10 gives n = 10.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. P(X = 1) = ¹⁰C₁ q⁹ p = 10 · (9/10)⁹ · (1/10). The 10 cancels the 1/10, leaving (9/10)⁹.",
+        "memory_tip": "The ¹⁰C₁ = 10 cancels the 1/10, leaving exactly (9/10)⁹. Say you read it as EXACTLY one.",
         "lines": [
           "P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ",
           "P(X = 1) = ¹⁰C₁ (9/10)⁹ (1/10)¹",

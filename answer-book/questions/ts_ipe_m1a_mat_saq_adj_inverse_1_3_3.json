@@ -50,6 +50,7 @@
         "marks": 1,
         "mark_note": "Determinant",
         "margin_note": "First mark. det A comes to 1. Any non-zero value would do, but a determinant of exactly 1 makes the last step painless, so it is worth computing carefully before starting the nine cofactors.",
+        "memory_tip": "det A = 1, which makes the last step painless — worth computing carefully.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 2,
         "mark_note": "Cofactors",
         "margin_note": "Half the marks, and nine small determinants. Delete the entry’s own row and column, take the 2×2 determinant of what is left, then apply the sign board + − + / − + − / + − +. Work along the rows in order so none is missed.",
+        "memory_tip": "Nine small determinants: delete the row and column, take the 2×2, apply the sign.",
         "lines": [
           "Delete each entry’s row and column, take the 2×2",
           "determinant, then apply + − + / − + − / + − +:",
@@ -152,6 +154,7 @@
         "marks": 1,
         "mark_note": "Adjoint and inverse",
         "margin_note": "Last mark. det A is 1, so dividing by it changes nothing and A⁻¹ is the adjoint itself. Write the division line anyway — the examiner is marking the method, and a question where det A happens to be 1 is not a question where the step disappears.",
+        "memory_tip": "det A is 1, so A⁻¹ IS the adjoint. Write the division line anyway — the method is marked.",
         "lines": [
           "Adj A is the TRANSPOSE of the cofactor matrix:",
           {

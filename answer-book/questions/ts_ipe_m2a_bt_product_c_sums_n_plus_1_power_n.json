@@ -60,6 +60,7 @@
         "marks": 2,
         "mark_note": "Factoring",
         "margin_note": "First two marks. Cᵣ₋₁ + Cᵣ = Cᵣ₋₁(1 + Cᵣ/Cᵣ₋₁). Do it to every bracket and collect the C's in front.",
+        "memory_tip": "Take Cᵣ₋₁ out of each bracket, not Cᵣ. A RATIO of consecutive coefficients has a formula; a sum does not.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 2,
         "mark_note": "Ratio formula",
         "margin_note": "Third and fourth marks. ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r, so 1 + (n − r + 1)/r = (n + 1)/r.",
+        "memory_tip": "ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r, so 1 + that is (n + 1)/r. The same numerator every time.",
         "lines": [
           "Cᵣ/Cᵣ₋₁ = ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r",
           "1 + Cᵣ/Cᵣ₋₁ = (r + n − r + 1)/r = (n + 1)/r",
@@ -141,6 +143,7 @@
         "marks": 2,
         "mark_note": "(n + 1)ⁿ/n!",
         "margin_note": "Fifth and sixth marks. n brackets each with numerator n + 1 give (n + 1)ⁿ; the denominators 1·2·…·n give n!.",
+        "memory_tip": "Count the brackets: exactly n of them, so (n + 1)ⁿ on top and 1·2·…·n = n! below.",
         "lines": [
           "L.H.S. = C₀C₁…Cₙ₋₁",
           "  × ((n + 1)/1)((n + 1)/2)…((n + 1)/n)",
@@ -180,6 +183,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Seventh mark. C₀ = Cₙ = 1, so C₀C₁…Cₙ₋₁ = C₁C₂…Cₙ. That is the only difference between the two sides.",
+        "memory_tip": "C₀ = Cₙ = 1, so C₀C₁…Cₙ₋₁ equals C₁C₂…Cₙ. That is the only difference between the two sides.",
         "lines": [
           "Since C₀ = Cₙ = 1, C₀C₁…Cₙ₋₁ = C₁C₂…Cₙ",
           {

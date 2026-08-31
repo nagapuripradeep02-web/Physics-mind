@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Counting",
         "margin_note": "First mark. Seven digits: 2 three times, 3 twice, 4 twice. No zero, so every arrangement counts.",
+        "memory_tip": "2 three times, 3 twice, 4 twice. No zero, so there is no leading-digit case to remove.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 7!/(3!·2!·2!) = 5040/24 = 210.",
+        "memory_tip": "7!/(3!·2!·2!) = 5040/24 = 210. One factorial per repeated digit.",
         "lines": [
           "Numbers = n!/(p!·q!·r!) = 7!/(3!·2!·2!)",
           {

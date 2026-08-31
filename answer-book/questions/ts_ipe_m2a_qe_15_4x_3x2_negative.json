@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Roots and sign of a",
         "margin_note": "First mark. Rewrite as −3x² + 4x + 15, so a = −3 < 0. The roots come from 3x² − 4x − 15 = (3x + 5)(x − 3) = 0: x = −5/3 and 3. Rule: outside the roots the expression has the sign of a, which is negative.",
+        "memory_tip": "Rewrite in descending powers: a = −3 < 0. Outside the roots the expression takes the sign of a.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Negative for x < −5/3 or x > 3. In interval form (−∞, −5/3) ∪ (3, ∞), round brackets because at the roots the expression is zero, not negative.",
+        "memory_tip": "Negative for x < −5/3 or x > 3. Round brackets — at a root the value is zero, not negative.",
         "lines": [
           "⇒ 15 + 4x − 3x² < 0 for x < −5/3 or x > 3",
           {

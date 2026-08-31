@@ -74,6 +74,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Two relations are given, one linear and one of second degree. Make one letter the subject of the LINEAR one — it is always the easier to rearrange.",
+        "memory_tip": "Rearrange the linear relation first — it is the easier one.",
         "lines": [
           {
             "text": "Sol:",
@@ -117,6 +118,7 @@
         "marks": 3,
         "mark_note": "Method",
         "margin_note": "Three marks. Substituting leaves one homogeneous quadratic in two letters. It always factors, and each factor is one of the two lines.",
+        "memory_tip": "Substituting leaves one homogeneous quadratic, which always factors.",
         "lines": [
           "Solving (1) & (2) we get",
           "mn − 2n(−m − n) − 2m(−m − n) = 0",
@@ -162,6 +164,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Two marks. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "memory_tip": "First factor back into the linear relation, then clear the common letter.",
         "lines": [
           "Case (i): Put m = −n/2 in (1), then",
           "l = −(−n/2) − n = n/2 − n = −n/2   ∴ l = −n/2",
@@ -203,6 +206,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Two marks. The same work on the second factor. The two lines the question asks about are these two.",
+        "memory_tip": "Same again on the second factor.",
         "lines": [
           "Case (ii): Put m = −2n in (1), then",
           "l = −(−2n) − n = 2n − n = n   ∴ l = n",
@@ -244,6 +248,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. Direction ratios are enough to fix a direction, but the question asks for direction COSINES — so each triple is divided by the square root of the sum of its squares.",
+        "memory_tip": "Direction RATIOS are not enough — divide each triple by the root of its sum of squares for cosines.",
         "lines": [
           "On dividing (3) by √(1² + 1² + (−2)²) = √(1 + 1 + 4) = √6, we get",
           "d.c's of L₁ = (1/√6, 1/√6, −2/√6)",

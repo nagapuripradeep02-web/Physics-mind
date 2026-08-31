@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "n, p, q",
         "margin_note": "First mark. Success = rain on a day, p = 12/30 = 2/5, q = 3/5. A week is 7 days, so n = 7. 'Just 3 days' means exactly 3, so r = 3.",
+        "memory_tip": "n comes from the WEEK: n = 7. The 12 and 30 only make p = 12/30 = 2/5.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. P(X = 3) = ⁷C₃ q⁴ p³ = 35 · (3/5)⁴ · (2/5)³. Keep it as powers: (35 · 3⁴ · 2³)/5⁷. The evaluated value 22680/78125 is optional.",
+        "memory_tip": "'Just 3 days' is exactly 3, one term: ⁷C₃ (3/5)⁴ (2/5)³ = (35 · 3⁴ · 2³)/5⁷.",
         "lines": [
           "P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ",
           "P(X = 3) = ⁷C₃ (3/5)⁴ (2/5)³ = 35 · 3⁴ · 2³/5⁷",

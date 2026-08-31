@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Rationalise",
         "margin_note": "First mark. The conjugate of the denominator a + ib is a − ib, which is also the numerator — so the top becomes (a − ib)² and the bottom becomes a² + b².",
+        "memory_tip": "The conjugate a − ib is the numerator itself, so the top becomes one square and the bottom a² + b².",
         "lines": [
           {
             "text": "Sol:",
@@ -105,6 +106,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Expand (a − ib)² = a² − 2abi + i²b² = (a² − b²) − 2abi, then split over the common denominator.",
+        "memory_tip": "i²b² = −b², so (a − ib)² = (a² − b²) − 2abi. The minus belongs to B, not to the denominator.",
         "lines": [
           "(a − ib)² = a² − 2abi + i²b² = (a² − b²) − 2abi",
           {

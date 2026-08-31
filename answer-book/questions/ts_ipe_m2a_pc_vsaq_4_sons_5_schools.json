@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The first son has 5 choices, the second 4 (a different school), then 3, then 2: an arrangement of 4 schools out of 5, ⁵P₄.",
+        "memory_tip": "Which son goes where matters and no school repeats, so it is an arrangement: ⁵P₄.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ⁵P₄ = 5·4·3·2 = 120.",
+        "memory_tip": "⁵P₄ = 5·4·3·2 = 120. Four factors counting down from 5.",
         "lines": [
           "⁵P₄ = 5 · 4 · 3 · 2",
           {

@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Denominator",
         "margin_note": "First mark. z₁ is already in the form a + ib, so all the work is on z₂. Start with its denominator: (1 − 2i)² = 1 − 4i + 4i² = −3 − 4i.",
+        "memory_tip": "(1 − 2i)² is an ordinary (p − q)²: 1 − 4i + 4i² = −3 − 4i. The middle term is not optional.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 2,
         "mark_note": "Division",
         "margin_note": "Half the marks. Divide by multiplying top and bottom by the conjugate of the denominator, 3 − 4i. The bottom becomes 3² + 4² = 25 — the same 25 as in z₁, which is the first sign the answer is coming out right.",
+        "memory_tip": "Multiply top and bottom by 3 − 4i. The bottom becomes 3² + 4² = 25 — the same 25 as in z₁.",
         "lines": [
           "Multiply above and below by 3 − 4i:",
           {
@@ -155,6 +157,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. The conjugate changes only the sign of the i term. Write the conjugate of z₂ and point at z₁.",
+        "memory_tip": "Conjugation flips only the i sign. Write the conjugate of z₂ and point at z₁ by name.",
         "lines": [
           "Conjugate of z₂ = (2 − 11i)/25 is (2 + 11i)/25 = z₁.",
           {

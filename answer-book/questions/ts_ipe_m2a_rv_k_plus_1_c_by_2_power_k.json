@@ -56,6 +56,7 @@
         "marks": 2,
         "mark_note": "Series",
         "margin_note": "First two marks. The range starts at k = 0, so the first term is (0 + 1)c/2⁰ = c. Write four terms and the dots, then take c outside: c[1 + 2(1/2) + 3(1/2)² + 4(1/2)³ + …] = 1. The coefficients 1, 2, 3, 4 identify the series used in the next step.",
+        "memory_tip": "The range starts at k = 0, so the first term is (0 + 1)c/2⁰ = c. Take c outside the bracket.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 3,
         "mark_note": "c",
         "margin_note": "Three marks — the main idea. 1 + 2x + 3x² + 4x³ + … = (1 − x)⁻² for |x| < 1. With x = 1/2 the bracket is (1/2)⁻² = 2² = 4, so 4c = 1 and c = 1/4.",
+        "memory_tip": "The coefficients 1, 2, 3, 4 mean 1 + 2x + 3x² + … = (1 − x)⁻², not the geometric series. (1/2)⁻² = 4.",
         "lines": [
           "We know, for |x| < 1:",
           "1 + 2x + 3x² + 4x³ + … = (1 − x)⁻²",
@@ -151,6 +153,7 @@
         "marks": 2,
         "mark_note": "Probability",
         "margin_note": "Last two marks. 1 < X < 3 on the range 0, 1, 2, … keeps only X = 2. P(X = 2) = (2 + 1)c/2² = 3c/4, and with c = 1/4 that is 3/16.",
+        "memory_tip": "1 < X < 3 keeps only X = 2, so P = (2 + 1)c/2² = 3c/4 = 3/16.",
         "lines": [
           "P(1 < X < 3) = P(X = 2)",
           "= (2 + 1)c/2² = 3c/4",

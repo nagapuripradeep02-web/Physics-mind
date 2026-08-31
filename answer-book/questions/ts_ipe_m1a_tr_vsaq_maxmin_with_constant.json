@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. This one HAS a constant, and it is −13. It shifts both answers down by 13, so it cannot be ignored.",
+        "memory_tip": "This one HAS a constant, c = −13, and it shifts both answers down. It cannot be ignored.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The constant shifts everything down: max = −13 + 13 = 0 and min = −13 − 13 = −26. The function never rises above zero.",
+        "memory_tip": "−13 + 13 = 0 and −13 − 13 = −26: the function never rises above zero.",
         "lines": [
           "Maximum = c + √(a²+b²) = −13 + 13 = 0",
           "Minimum = c − √(a²+b²) = −13 − 13 = −26",

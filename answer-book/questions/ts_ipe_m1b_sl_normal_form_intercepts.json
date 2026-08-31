@@ -92,7 +92,8 @@
           "Multiplying only one term by ab.",
           "Writing ax + by = ab with a and b swapped."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Normal form has NO fractions, so clear the intercept form to ax + by = c shape first."
       },
       {
         "id": "s2_divide",
@@ -131,7 +132,8 @@
           "Dividing by a + b instead of √(a² + b²).",
           "Dividing only the left side."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Divide by √(a²+b²) so the x and y coefficients square-and-add to 1."
       },
       {
         "id": "s3_read_off",
@@ -170,7 +172,8 @@
           "Assigning cosα = a/√(a²+b²), with a and b the wrong way round.",
           "Forgetting to state p separately."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The letters CROSS OVER: cos α takes b and sin α takes a, because the x-intercept is a but the x-coefficient is b."
       },
       {
         "id": "s4_deduce",
@@ -213,7 +216,8 @@
           "Writing 1/p² = 1/(a² + b²) without inverting properly.",
           "Cancelling a² against a²b² incorrectly."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Square p, invert, and split the fraction — a² and b² separate because the numerator is a product."
       }
     ]
   }

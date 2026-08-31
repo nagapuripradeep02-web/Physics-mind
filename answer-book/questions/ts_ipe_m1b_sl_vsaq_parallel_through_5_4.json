@@ -45,6 +45,7 @@
         "label": "Find the required slope",
         "marks": 1,
         "margin_note": "First mark. Read the given line's slope off its coefficients as −a/b, then keep it, because parallel lines share a slope.",
+        "memory_tip": "Read the given slope off as −a/b and KEEP it — parallel lines share a slope.",
         "lines": [
           {
             "text": "Sol:",
@@ -88,6 +89,7 @@
         "label": "Write the line through the point",
         "marks": 1,
         "margin_note": "Second mark. Point-slope form, then clear the fraction and collect. The book also prints a one-line shortcut for this shape, given below.",
+        "memory_tip": "Point-slope form, then clear the fraction and collect.",
         "lines": [
           "Parallel line through (5, 4) with slope −2/3 is  y − y₁ = m(x − x₁)",
           "⇒ y − 4 = (−2/3)(x − 5)",

@@ -87,7 +87,8 @@
           "Using n(n+1)/2 for the sum of cubes; that is the sum of the first n numbers.",
           "Taking the denominator as the sum of the first n numbers rather than the first n ODD numbers.",
           "Forgetting to cancel n², leaving an unusable term."
-        ]
+        ],
+        "memory_tip": "Top and bottom each need their own standard formula: n²(n+1)²/4 over n², which cancels to (n+1)²/4."
       },
       {
         "id": "s2_base",
@@ -127,7 +128,8 @@
         "common_mistakes": [
           "Slipping on 2(1)² + 9(1) + 13 and getting something other than 24.",
           "Asserting the base case without the arithmetic."
-        ]
+        ],
+        "memory_tip": "Both sides come to 1: the left is 1³/1, the right is 24/24."
       },
       {
         "id": "s3_assume",
@@ -167,7 +169,8 @@
         "common_mistakes": [
           "Assuming the statement for ALL k, which assumes what is being proved.",
           "Not numbering the line, so Step 3 cannot cite it."
-        ]
+        ],
+        "memory_tip": "Assume for k and NUMBER the line (1) — Step 3 quotes it, so it must be labelled."
       },
       {
         "id": "s4_inductive",
@@ -215,7 +218,8 @@
           "Trying to factorise and giving up when nothing comes out.",
           "Expanding only the left side and asserting it matches.",
           "Arithmetic slips in 6(k+2)² = 6k² + 24k + 24."
-        ]
+        ],
+        "memory_tip": "These two sides will not factorise into each other, so EXPAND both and show the same cubic."
       },
       {
         "id": "s5_conclude",
@@ -254,7 +258,8 @@
         "common_mistakes": [
           "Writing only 'hence proved' and never naming the principle.",
           "Claiming it for all real numbers instead of all n ∈ N."
-        ]
+        ],
+        "memory_tip": "One line naming the principle, worth a full mark."
       }
     ]
   }

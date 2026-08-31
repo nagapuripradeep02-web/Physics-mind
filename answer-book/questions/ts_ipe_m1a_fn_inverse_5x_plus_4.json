@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Solve for x",
         "margin_note": "One mark for the method: put f(x) = y, then make x the subject. Write the swap line — it is what the examiner marks.",
+        "memory_tip": "Put f(x) = y, then make x the subject. Write the swap line — that is what is marked.",
         "lines": [
           "Take f(x) = y ⇒ x = f⁻¹(y)",
           "5x + 4 = y ⇒ 5x = y − 4",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "The inverse function",
         "margin_note": "The second mark is the finished function. Rename the variable back to x so the answer is a function of x.",
+        "memory_tip": "Rename back to x so the answer is a function of x: (x − 4)/5.",
         "lines": [
           "⇒ f⁻¹(y) = (y − 4)/5",
           "∴ f⁻¹(x) = (x − 4)/5"

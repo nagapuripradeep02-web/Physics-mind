@@ -83,7 +83,8 @@
         "common_mistakes": [
           "Rearranging the chord unnecessarily and introducing a sign error.",
           "Leaving the circle as x² + y² = a² and forgetting to move a² across."
-        ]
+        ],
+        "memory_tip": "The chord is already in the = 1 form that homogenisation needs."
       },
       {
         "id": "s2_homogenise",
@@ -123,7 +124,8 @@
           "Multiplying the x² and y² terms by the chord as well.",
           "Multiplying the constant by the chord only once."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "No linear term in the circle, so only the constant is raised — multiply −a² by (lx + my)²."
       },
       {
         "id": "s3_collect",
@@ -162,7 +164,8 @@
           "Forgetting the 2 in the 2lmxy cross term.",
           "Dropping a² from one of the three coefficients."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Group by x², y² and xy; every coefficient carries an a²."
       },
       {
         "id": "s4_apply_the_condition",
@@ -207,7 +210,8 @@
           "Using h² = ab, which is the coincident condition from the facing answer.",
           "Forgetting that the two 1's add to 2."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "A right angle at the ORIGIN is about the homogenised pair, so the condition is a + b = 0."
       }
     ]
   }

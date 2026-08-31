@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "λ",
         "margin_note": "First mark. Write the Poisson formula, set P(X = 1) = P(X = 2), and cancel the common factor e⁻λ: λ/1! = λ²/2! gives λ² = 2λ, so λ = 2 (λ = 0 is not allowed — a Poisson parameter is positive).",
+        "memory_tip": "Cancel the common e⁻λ: λ/1! = λ²/2! gives λ = 2. Reject λ = 0 — a Poisson parameter is positive.",
         "lines": [
           {
             "text": "Sol:",
@@ -115,6 +116,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Put λ = 2 and r = 5: e⁻² · 2⁵/5! = 32e⁻²/120 = 4e⁻²/15. Leaving e⁻²·2⁵/5! unsimplified is accepted; do not replace e⁻² by a decimal.",
+        "memory_tip": "e⁻² · 2⁵/5! = 32e⁻²/120 = 4e⁻²/15. Leave e⁻² as it is; do not use a decimal.",
         "lines": [
           "P(X = 5) = e⁻² · 2⁵/5! = 32e⁻²/120",
           {

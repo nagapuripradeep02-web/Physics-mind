@@ -84,7 +84,8 @@
         "common_mistakes": [
           "Taking the negative reciprocal when the lines are parallel.",
           "Reading the slope as −b/a."
-        ]
+        ],
+        "memory_tip": "PARALLEL means the same slope, fixed before any point is known. Read it off as −a/b."
       },
       {
         "id": "s2_solve_for_point",
@@ -125,7 +126,8 @@
           "Solving the wrong pair of lines.",
           "Slip in the cross-multiplication denominators."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Solve the OTHER pair of lines for the point. This half is independent of the slope work."
       },
       {
         "id": "s3_point_slope",
@@ -167,7 +169,8 @@
         "common_mistakes": [
           "Using the slope-intercept form and having to find c separately.",
           "Swapping x₁ and y₁ in the formula."
-        ]
+        ],
+        "memory_tip": "With a point and a slope, y − y₁ = m(x − x₁) writes the line in one line."
       },
       {
         "id": "s4_simplify",
@@ -208,7 +211,8 @@
           "Leaving fractions in the final answer.",
           "Sign slip when multiplying through by a denominator."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Clear the fractions and collect into ax + by + c = 0."
       }
     ]
   }

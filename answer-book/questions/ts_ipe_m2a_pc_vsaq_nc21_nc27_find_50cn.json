@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. State the identity. 21 ≠ 27, so n = 21 + 27 = 48.",
+        "memory_tip": "21 ≠ 27, so only the sum branch applies: n = 21 + 27 = 48. Add, never subtract.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ⁵⁰C₄₈ = ⁵⁰C₂ = (50 · 49)/(1 · 2) = 1225.",
+        "memory_tip": "The question asked for ⁵⁰Cₙ, not n. ⁵⁰C₄₈ = ⁵⁰C₂ = 1225.",
         "lines": [
           "⁵⁰Cₙ = ⁵⁰C₄₈ = ⁵⁰C₂",
           {

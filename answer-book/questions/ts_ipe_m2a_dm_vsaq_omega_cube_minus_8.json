@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Reduce",
         "margin_note": "First mark. From 1 + ω + ω² = 0 comes 1 + ω² = −ω, so 1 − ω + ω² = −ω − ω = −2ω. Two −ω terms, not one.",
+        "memory_tip": "1 + ω² = −ω, and the bracket's own −ω adds to it: 1 − ω + ω² = −2ω. Two terms, not one.",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (−2ω)³ = −8ω³ and ω³ = 1, so the value is −8. An odd power keeps the minus sign.",
+        "memory_tip": "(−2ω)³ = −8ω³ and ω³ = 1. An odd power keeps the minus sign.",
         "lines": [
           "(1 − ω + ω²)³ = (−2ω)³ = −8ω³",
           {

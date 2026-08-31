@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Inner bracket",
         "margin_note": "First mark. The i component comes out as 0 here — write the 0 rather than leaving a gap, or the next determinant will be misaligned.",
+        "memory_tip": "The i component is 0 here — write the 0 rather than leaving a gap, or the next determinant misaligns.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 2,
         "mark_note": "The product",
         "margin_note": "Half the marks. a on the first row, the bracket result on the second. The zero in the second row kills one product in each expansion.",
+        "memory_tip": "a on the first row, the bracket result on the second. The zero kills one product in each expansion.",
         "lines": [
           {
             "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 2 & 3 & 4 \\\\ 0 & -2 & -2 \\end{vmatrix}",
@@ -152,6 +154,7 @@
         "marks": 1,
         "mark_note": "Verification",
         "margin_note": "Last mark, and it needs real working. Two vectors are perpendicular exactly when their dot product is zero — so compute the dot product and show it vanishes.",
+        "memory_tip": "Perpendicular means the DOT product is zero, so compute it and show it vanishes.",
         "lines": [
           "Two vectors are perpendicular when their dot",
           "product is zero.",

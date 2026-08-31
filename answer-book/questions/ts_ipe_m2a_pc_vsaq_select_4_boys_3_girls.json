@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Boys from boys, girls from girls: ⁸C₄ and ⁵C₃. Both selections are made, so the counts multiply.",
+        "memory_tip": "Boys from boys, girls from girls: ⁸C₄ and ⁵C₃. Both are chosen, so the counts multiply.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 70 × 10 = 700.",
+        "memory_tip": "70 × 10 = 700. Adding gives 80, and ¹³C₇ ignores the split the question fixes.",
         "lines": [
           "Required = ⁸C₄ · ⁵C₃ = 70 · 10",
           {

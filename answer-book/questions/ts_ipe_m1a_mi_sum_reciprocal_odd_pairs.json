@@ -95,7 +95,8 @@
         "common_mistakes": [
           "Writing the nth term as 1/(n(n+2)), which fits the first term by accident and fails at the second.",
           "Taking d = 1 instead of 2 for a sequence of odd numbers."
-        ]
+        ],
+        "memory_tip": "Two A.P.s with d = 2: the first gives 2n − 1 and the second 2n + 1. The nth term is their reciprocal product."
       },
       {
         "id": "s2_base",
@@ -135,7 +136,8 @@
         "common_mistakes": [
           "Writing the right side as 1/2 by forgetting to substitute n = 1 fully.",
           "Skipping the check entirely."
-        ]
+        ],
+        "memory_tip": "Both sides come to one third."
       },
       {
         "id": "s3_assume",
@@ -175,7 +177,8 @@
         "common_mistakes": [
           "Assuming the statement for ALL k, which assumes what is being proved.",
           "Not numbering the line, so Step 3 cannot cite it."
-        ]
+        ],
+        "memory_tip": "Assume for k and number the line (1) so Step 3 can quote it."
       },
       {
         "id": "s4_inductive",
@@ -221,7 +224,8 @@
           "Not factorising 2k² + 3k + 1, so nothing cancels.",
           "Stopping at (k+1)/(2k+3) without showing it equals the formula at k+1.",
           "Using (2k+1)(2k+3) wrongly as the (k+1)th denominator — check by replacing n with k+1."
-        ]
+        ],
+        "memory_tip": "Add the (k+1)th term over the common denominator; 2k² + 3k + 1 = (2k+1)(k+1) is what cancels."
       },
       {
         "id": "s5_conclude",
@@ -260,7 +264,8 @@
         "common_mistakes": [
           "Writing only 'hence proved' and never naming the principle.",
           "Claiming it for all real numbers instead of all n ∈ N."
-        ]
+        ],
+        "memory_tip": "One sentence naming the principle, worth a full mark."
       }
     ]
   }

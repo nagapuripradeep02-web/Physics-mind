@@ -81,7 +81,8 @@
         "common_mistakes": [
           "Reading 2·4 as the decimal two point four.",
           "Leaving it in words."
-        ]
+        ],
+        "memory_tip": "Turn 'divisible by 11' into an EQUATION: equal to 11q with q an integer. Nothing can be substituted otherwise."
       },
       {
         "id": "s2_base",
@@ -122,7 +123,8 @@
         "common_mistakes": [
           "Exponent slip: at n = 1, 2n+1 is 3 and 3n+1 is 4.",
           "Writing 209 without showing the factor 11."
-        ]
+        ],
+        "memory_tip": "At n = 1 the powers are 4³ and 3⁴: 128 + 81 = 209 = 11 × 19. Name the multiple."
       },
       {
         "id": "s3_assume",
@@ -162,7 +164,8 @@
         "common_mistakes": [
           "Assuming it for all k.",
           "Rearranging for the wrong power, which makes the last step messier."
-        ]
+        ],
+        "memory_tip": "Assume for k, number the line, and rearrange to isolate the FIRST power — that is what Step 3 substitutes."
       },
       {
         "id": "s4_inductive",
@@ -208,7 +211,8 @@
           "Growth factors wrong: 4⁽²ᵏ⁺³⁾ is 16 × 4⁽²ᵏ⁺¹⁾ and 3⁽³ᵏ⁺⁴⁾ is 27 × 3⁽³ᵏ⁺¹⁾.",
           "Substituting for both powers, leaving nothing to collect.",
           "Not saying the final bracket is an integer."
-        ]
+        ],
+        "memory_tip": "The powers grow by 4² = 16 and 3³ = 27, and 27 − 16 = 11 is exactly what finishes it."
       },
       {
         "id": "s5_conclude",
@@ -246,7 +250,8 @@
         "why": "The two proved statements are about n = 1 and about a step. Only the principle turns them into every n.",
         "common_mistakes": [
           "Writing 'hence proved' without naming the principle."
-        ]
+        ],
+        "memory_tip": "One sentence naming the principle is a whole mark. Write it."
       }
     ]
   }

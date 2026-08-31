@@ -91,7 +91,8 @@
           "Using the slope directly in place of cosθ and sinθ.",
           "Taking θ as the angle with the Y-axis."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The parametric form needs an ANGLE, not a slope — convert whatever is given into θ first."
       },
       {
         "id": "s2_parametric_point",
@@ -133,7 +134,8 @@
           "Swapping cosθ and sinθ between the two coordinates.",
           "Leaving r out of one of the two coordinates."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "A point at distance r along the line is (x₁ + r cos θ, y₁ + r sin θ) — an unknown POINT becomes one unknown NUMBER."
       },
       {
         "id": "s3_put_on_the_line",
@@ -174,7 +176,8 @@
           "Substituting into the wrong line.",
           "Forgetting to distribute a coefficient across both parts of a coordinate."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "P lies on the given line, so substituting produces one equation in r alone."
       },
       {
         "id": "s4_solve_for_r",
@@ -214,7 +217,8 @@
           "Finding P's coordinates and then applying the distance formula, which wastes time.",
           "Leaving r negative when the question asks for a distance."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "The distance PQ IS r, so solving for r finishes the question."
       }
     ]
   }

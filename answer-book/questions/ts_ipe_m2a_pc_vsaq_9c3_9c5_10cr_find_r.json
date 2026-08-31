@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. ⁹C₅ = ⁹C₄, then ⁹C₃ + ⁹C₄ = ¹⁰C₄ by ⁿCᵣ + ⁿCᵣ₊₁ = ⁽ⁿ⁺¹⁾Cᵣ₊₁.",
+        "memory_tip": "3 and 5 are two apart, so rewrite ⁹C₅ as ⁹C₄ first. Then Pascal gives ¹⁰C₄.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. r = 4, and also r = 10 − 4 = 6, because ¹⁰C₄ = ¹⁰C₆. The book prints only r = 4.",
+        "memory_tip": "¹⁰C₄ = ¹⁰C₆, so r = 4 OR r = 6. The book prints only r = 4.",
         "lines": [
           "¹⁰Cᵣ = ¹⁰C₄ ⇒ r = 4",
           "or r = 10 − 4 = 6, since ¹⁰C₄ = ¹⁰C₆",

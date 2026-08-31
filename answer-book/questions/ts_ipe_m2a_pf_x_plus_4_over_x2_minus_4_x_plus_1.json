@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Form",
         "margin_note": "First mark. x² − 4 is a difference of squares, so the denominator has THREE different linear factors: (x + 2), (x − 2), (x + 1). Three factors, three constants.",
+        "memory_tip": "x² − 4 is a difference of squares, so it SPLITS: three different linear factors, three constants.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Identity",
         "margin_note": "Second mark. Multiply by all three factors. Each constant keeps the two factors that are NOT its own. The C term keeps (x + 2)(x − 2), which is x² − 4 again.",
+        "memory_tip": "Each constant keeps the two factors that are not its own. The C term keeps (x + 2)(x − 2).",
         "lines": [
           "Multiply by (x + 2)(x − 2)(x + 1):",
           "x + 4 = A(x − 2)(x + 1) + B(x + 2)(x + 1)",
@@ -146,6 +148,7 @@
         "marks": 1,
         "mark_note": "A, B and C",
         "margin_note": "Third mark. Three roots, three substitutions: x = −2 for A, x = 2 for B, x = −1 for C. Each one makes the other two terms zero. Watch the signs in the brackets.",
+        "memory_tip": "Three roots, three substitutions: −2, 2, −1. Watch the signs — (−2 − 2)(−2 + 1) = (−4)(−1) = +4.",
         "lines": [
           "Put x = −2: 2 = A(−4)(−1) ⇒ A = 1/2",
           "Put x = 2: 6 = B(4)(3) ⇒ B = 1/2",
@@ -189,6 +192,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. A = 1/2 over (x + 2) is written as 1/(2(x + 2)); the 2 goes into the denominator. The minus on C becomes a minus between the fractions.",
+        "memory_tip": "A = 1/2 over (x + 2) is written 1/(2(x + 2)), with the 2 inside the denominator. Check x = 0: 4 = −1 + 1 + 4.",
         "lines": [
           "∴ (x + 4)/((x² − 4)(x + 1))",
           {

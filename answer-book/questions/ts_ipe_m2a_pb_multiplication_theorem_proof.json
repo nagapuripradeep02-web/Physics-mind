@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Statement",
         "margin_note": "First mark. Name the events, state both non-zero conditions, and write both forms of the product.",
+        "memory_tip": "Both non-zero conditions belong in the statement, and both forms of the product.",
         "lines": [
           {
             "text": "Sol:",
@@ -116,6 +117,7 @@
         "marks": 1,
         "mark_note": "(1)",
         "margin_note": "Second mark. P(B|A) = P(A ∩ B)/P(A), allowed because P(A) ≠ 0; multiply across.",
+        "memory_tip": "P(B|A) = P(A ∩ B)/P(A) — divide by the event that already happened. Then multiply across.",
         "lines": [
           {
             "text": "Proof: By the definition of conditional probability,",
@@ -162,6 +164,7 @@
         "marks": 1,
         "mark_note": "(2)",
         "margin_note": "Third mark. The same definition with the roles swapped, allowed because P(B) ≠ 0.",
+        "memory_tip": "The same definition with the roles swapped, allowed because P(B) ≠ 0.",
         "lines": [
           {
             "text": "Again, by the definition of conditional probability,",
@@ -208,6 +211,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Both equal P(A ∩ B), so they equal each other.",
+        "memory_tip": "Both expressions equal P(A ∩ B), so they equal each other. Write that line.",
         "lines": [
           {
             "text": "From (1) and (2),",

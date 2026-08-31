@@ -90,7 +90,8 @@
         "common_mistakes": [
           "Using 1 − sec²θ.",
           "Trying to convert to sines and cosines first."
-        ]
+        ],
+        "memory_tip": "sec and tan are the pair here, so the identity is sec²θ − tan²θ = 1."
       },
       {
         "id": "s2_expand_and_use_the_cosine_",
@@ -129,7 +130,8 @@
         "common_mistakes": [
           "Writing (b−c)² as b² − c².",
           "Losing a sign and finishing with a cosine half angle."
-        ]
+        ],
+        "memory_tip": "Note the ORDER: a² comes first, so the bracket is 2bc MINUS the cosine-rule term."
       },
       {
         "id": "s3_introduce_the_half_angle",
@@ -169,7 +171,8 @@
         "common_mistakes": [
           "Using the cosine half-angle form out of habit.",
           "Missing that the sign changed from the twins."
-        ]
+        ],
+        "memory_tip": "A MINUS in front of cos A calls for the SINE half-angle: 1 − cos A = 2sin²(A/2)."
       },
       {
         "id": "s4_take_the_square_root",
@@ -211,7 +214,8 @@
         "common_mistakes": [
           "Writing cos(A/2) by copying the twins.",
           "Writing b + c in the denominator."
-        ]
+        ],
+        "memory_tip": "Everything under the root is a perfect square. The answer carries sin(A/2) over b − c."
       }
     ]
   }

@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "(gof)(x)",
         "margin_note": "One mark. f acts first here, so substitute 2x − 1 into g and simplify all the way.",
+        "memory_tip": "In gof, f acts FIRST: substitute 2x − 1 into g and simplify all the way.",
         "lines": [
           "(gof)(x) = g[f(x)] = g(2x − 1)",
           "= ((2x − 1) + 1)/2 = 2x/2 = x"
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "(fog)(x)",
         "margin_note": "The second mark. Now g acts first. Both answers are x, which is the point of the question.",
+        "memory_tip": "Now g acts first. Both come to x — the two functions undo each other, which is the point.",
         "lines": [
           "(fog)(x) = f[g(x)] = f((x + 1)/2)",
           "= 2((x + 1)/2) − 1 = x + 1 − 1 = x",

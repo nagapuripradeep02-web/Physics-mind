@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "α + β and αβ",
         "margin_note": "First mark. Two relations, written before anything else: α + β = −b/a and αβ = c/a. The minus sign belongs to the SUM only.",
+        "memory_tip": "α + β = −b/a and αβ = c/a. The minus belongs to the SUM only.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. α² + β² = (α + β)² − 2αβ. Substitute: (−b/a)² = b²/a² and 2(c/a) = 2c/a = 2ac/a². The common denominator is a².",
+        "memory_tip": "α² + β² = (α + β)² − 2αβ. Over the common denominator a², the 2c/a becomes 2ac/a².",
         "lines": [
           "α² + β² = (α + β)² − 2αβ",
           "= (−b/a)² − 2(c/a)",

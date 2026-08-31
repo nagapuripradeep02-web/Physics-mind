@@ -84,7 +84,8 @@
         "common_mistakes": [
           "Leaving tan and cot as they are and looking for a formula.",
           "Writing cot A as 1/cos A."
-        ]
+        ],
+        "memory_tip": "tan and cot are both ratios of sine and cosine — write them out to add over a common denominator."
       },
       {
         "id": "s2_add_over_a_common_denomi",
@@ -122,7 +123,8 @@
         "common_mistakes": [
           "Adding the numerators without a common denominator.",
           "Writing sin²A + cos²A as sin2A."
-        ]
+        ],
+        "memory_tip": "The numerator is sin²A + cos²A, which is 1 — the identity that makes this short."
       },
       {
         "id": "s3_introduce_the_double_ang",
@@ -161,7 +163,8 @@
         "common_mistakes": [
           "Multiplying only the denominator by 2.",
           "Writing sinA cosA = sin2A without the 2."
-        ]
+        ],
+        "memory_tip": "The answer is in 2A, so manufacture one: doubling top and bottom turns 2 sinA cosA into sin2A."
       },
       {
         "id": "s4_convert_to_cosec",
@@ -201,7 +204,8 @@
         "common_mistakes": [
           "Leaving the answer as 2/sin2A.",
           "Writing sec instead of cosec."
-        ]
+        ],
+        "memory_tip": "1/sin is cosec, so 2/sin2A is 2 cosec 2A. Name the reciprocal."
       }
     ]
   }

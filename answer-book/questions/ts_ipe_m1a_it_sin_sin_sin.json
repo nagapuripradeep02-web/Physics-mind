@@ -55,6 +55,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Call each inverse an angle, then get the missing ratio from sin²+cos²=1. The fast exam route is to sketch the right triangle: sinα = 4/5 means opposite 4, hypotenuse 5, so the third side is 3 and cosα = 3/5.",
+        "memory_tip": "Sketch the right triangle: sinα = 4/5 means opposite 4, hypotenuse 5, third side 3. Never add the fractions.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. Both angles are given by their SINES, and the target is a Sin⁻¹ — so the sine addition formula is the right one to reach for.",
+        "memory_tip": "Both angles come by their sines and the target is a Sin⁻¹, so use sinα cosβ + cosα sinβ — crossed, not matched.",
         "lines": [
           "sin(α + β) = sinα cosβ + cosα sinβ",
           "= (4/5)(24/25) + (3/5)(7/25)",
@@ -144,6 +146,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. sin(α+β) = 117/125 means α+β is the angle whose sine is 117/125 — which is exactly Sin⁻¹(117/125). Write that line; the computation alone is not the proof.",
+        "memory_tip": "sin(α + β) = 117/125 means α + β = Sin⁻¹(117/125). The computation alone is not the proof.",
         "lines": [
           "sin(α + β) = 117/125",
           "⇒ α + β = Sin⁻¹(117/125)",

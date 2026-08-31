@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Cube roots",
         "margin_note": "First mark. (x − 1)³ = −8 = (−2)³, so x − 1 = −2 times a cube root of 1: x − 1 = −2, −2ω, −2ω². A cubic has three roots, so all three cube roots of 1 are used.",
+        "memory_tip": "−8 = (−2)³, so x − 1 = −2 times each cube root of 1: −2, −2ω, −2ω². A cubic has three roots.",
         "lines": [
           {
             "text": "Sol:",
@@ -92,6 +93,7 @@
         "marks": 1,
         "mark_note": "Roots",
         "margin_note": "Second mark. Add 1 to each value: x = −1, 1 − 2ω, 1 − 2ω². Three values of x − 1 give three roots.",
+        "memory_tip": "Add the 1 back to every value: x = −1, 1 − 2ω, 1 − 2ω².",
         "lines": [
           {
             "text": "x = −1, 1 − 2ω, 1 − 2ω²",

@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Counting",
         "margin_note": "First mark. 3 × 4 = 12 books; the 4 copies of each title are alike, so three groups of 4.",
+        "memory_tip": "3 × 4 = 12 books, in three groups of 4 alike. Count the repeats before reaching for a formula.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 12!/(4!·4!·4!) = 479001600/13824 = 34,650.",
+        "memory_tip": "One 4! per title, three times over: 12!/(4!·4!·4!) = 34,650.",
         "lines": [
           "Arrangements = n!/(p!·q!·r!)",
           {

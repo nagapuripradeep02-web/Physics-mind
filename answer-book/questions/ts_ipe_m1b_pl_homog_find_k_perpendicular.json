@@ -101,7 +101,8 @@
         "common_mistakes": [
           "Leaving the line as ax + by + c = 0 and multiplying by it directly.",
           "Dividing by the wrong constant and losing a sign."
-        ]
+        ],
+        "memory_tip": "Divide by k so the line reads = 1 before anything else."
       },
       {
         "id": "s2_homogenise",
@@ -142,7 +143,8 @@
           "Multiplying the constant by the bracket only once.",
           "Multiplying the second-degree terms as well, which raises them to degree four."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Linear terms multiplied by the 1 once, the constant twice; second-degree terms left alone."
       },
       {
         "id": "s3_simplify",
@@ -182,7 +184,8 @@
           "A constant term surviving, which means the squaring was missed.",
           "Sign slip when expanding a squared bracket."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "No constant and no linear term may survive the collection."
       },
       {
         "id": "s4_apply_the_condition",
@@ -227,7 +230,8 @@
           "Reporting only k = 1.",
           "Including the xy coefficient in the condition."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Adding the two squared coefficients kills every k-term except the squares. The xy coefficient is never used."
       }
     ]
   }

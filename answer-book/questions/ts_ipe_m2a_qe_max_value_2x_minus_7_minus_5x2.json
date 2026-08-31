@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Which one it is",
         "margin_note": "First mark. Rewrite in descending powers first: −5x² + 2x − 7, so a = −5, b = 2, c = −7. a < 0 means the graph opens downward, so there is a highest point and no lowest — a MAXIMUM.",
+        "memory_tip": "Rewrite in descending powers: a = −5 < 0, so there is a maximum and no minimum.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Maximum = (4ac − b²)/(4a) = (4(−5)(−7) − 4)/(−20) = 136/(−20) = −34/5. The maximum value is NEGATIVE: the whole expression is below the axis (a < 0 and b² − 4ac = 4 − 140 < 0), so its highest point is still negative. The maximum occurs at x = −b/2a = 1/5.",
+        "memory_tip": "(4ac − b²)/(4a), with 4ac = +140. The maximum is NEGATIVE, −34/5 — do not 'correct' the sign.",
         "lines": [
           "Maximum value = (4ac − b²)/(4a)",
           "= (4(−5)(−7) − 2²)/(4(−5))",

@@ -70,6 +70,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Two relations are given, one linear and one of second degree. Make one letter the subject of the LINEAR one — it is always the easier to rearrange.",
+        "memory_tip": "Rearrange the LINEAR relation first — one letter as the subject.",
         "lines": [
           {
             "text": "Sol:",
@@ -113,6 +114,7 @@
         "marks": 3,
         "mark_note": "Method",
         "margin_note": "Three marks. Substituting leaves one homogeneous quadratic in two letters. It always factors, and each factor is one of the two lines.",
+        "memory_tip": "Substituting gives one homogeneous quadratic in two letters, which factors into the two lines.",
         "lines": [
           "Solving (1) & (2) we get",
           "[−(m + n)]² + m² − n² = 0",
@@ -156,6 +158,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Two marks. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "memory_tip": "Put the first factor back into the linear relation and clear the common letter for whole numbers.",
         "lines": [
           "Case (i): Put m = 0 in (1), then",
           "l = −(0 + n) = −n   ∴ l = −n",
@@ -197,6 +200,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Two marks. The same work on the second factor. The two lines the question asks about are these two.",
+        "memory_tip": "Repeat on the second factor. Those two lines are what the question is about.",
         "lines": [
           "Case (ii): Put m = −n in (1), then",
           "l = −(−n + n) = 0   ∴ l = 0",
@@ -238,6 +242,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. With one direction ratio triple for each line, the cosine of the angle between them comes straight from the standard formula.",
+        "memory_tip": "The standard cosine formula on the two direction-ratio triples.",
         "lines": [
           "If θ is the angle between the lines then from (3), (4), we get",
           "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",

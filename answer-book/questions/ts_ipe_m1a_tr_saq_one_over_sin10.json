@@ -92,7 +92,8 @@
         "common_mistakes": [
           "Subtracting the numerators without a common denominator.",
           "Losing the √3 when combining."
-        ]
+        ],
+        "memory_tip": "One fraction, so the numerator can be worked as a single expression."
       },
       {
         "id": "s2_take_2_out_to_make_known",
@@ -132,7 +133,8 @@
         "common_mistakes": [
           "Failing to take the 2 out and never seeing the known values.",
           "Matching 1/2 to cos 30° instead of sin 30°."
-        ]
+        ],
+        "memory_tip": "Taking 2 out makes the coefficients 1/2 and √3/2 — which are sin 30° and cos 30°."
       },
       {
         "id": "s3_apply_sin_a_b",
@@ -170,7 +172,8 @@
         "common_mistakes": [
           "Using sin(A+B) and getting sin 40°.",
           "Getting the order backwards as sin(10° − 30°)."
-        ]
+        ],
+        "memory_tip": "sinA cosB − cosA sinB = sin(A−B), so the numerator collapses to 2 sin20°."
       },
       {
         "id": "s4_expand_sin20_and_cancel",
@@ -213,7 +216,8 @@
         "common_mistakes": [
           "Cancelling before expanding sin 20°.",
           "Getting 2 instead of 4 by dropping one of the twos."
-        ]
+        ],
+        "memory_tip": "sin20° = 2 sin10° cos10°, which IS the denominator — everything cancels and 4 survives."
       }
     ]
   }

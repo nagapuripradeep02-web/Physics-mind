@@ -87,7 +87,8 @@
         "common_mistakes": [
           "Taking the square root too early.",
           "Writing 1 − a²/(b+c)² as (1 − a²)/(b+c)²."
-        ]
+        ],
+        "memory_tip": "The target is a sine and the condition a cosine, so the bridge is sin² = 1 − cos²."
       },
       {
         "id": "s2_expand_and_use_the_cosine_",
@@ -127,7 +128,8 @@
         "common_mistakes": [
           "Expanding but never grouping the b² + c² − a² together.",
           "Writing the cosine rule upside down."
-        ]
+        ],
+        "memory_tip": "Expand (b + c)², then spot b² + c² − a² inside — that is 2bc cos A and it brings the angle in."
       },
       {
         "id": "s3_introduce_the_half_angle",
@@ -167,7 +169,8 @@
         "common_mistakes": [
           "Using 1 − cos A = 2sin²(A/2) here, which is the wrong half of the pair.",
           "Losing a factor of 2."
-        ]
+        ],
+        "memory_tip": "A PLUS in front of cos A calls for the COSINE half-angle: 1 + cos A = 2cos²(A/2)."
       },
       {
         "id": "s4_take_the_square_root",
@@ -209,7 +212,8 @@
         "common_mistakes": [
           "Writing √(4bc) as 4√(bc).",
           "Leaving the answer squared."
-        ]
+        ],
+        "memory_tip": "Everything under the root is a perfect square, so the root is exact and sin θ is taken positive."
       }
     ]
   }

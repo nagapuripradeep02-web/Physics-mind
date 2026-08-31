@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. Name the events with the letters the question uses; the problem is \"solved\" when A ∪ B occurs.",
+        "memory_tip": "'Solved' means at least one of them solves it — that is the union A ∪ B.",
         "lines": [
           {
             "text": "Sol:",
@@ -122,6 +123,7 @@
         "marks": 1,
         "mark_note": "Complements",
         "margin_note": "Second mark. P(Aᶜ) = 1 − 1/3 = 2/3 and P(Bᶜ) = 1 − 1/4 = 3/4: the chances each one fails.",
+        "memory_tip": "The chance each one fails: 1 − 1/3 = 2/3 and 1 − 1/4 = 3/4.",
         "lines": [
           {
             "text": "P(Aᶜ) = 1 − 1/3 = 2/3,  P(Bᶜ) = 1 − 1/4 = 3/4",
@@ -160,6 +162,7 @@
         "marks": 2,
         "mark_note": "Answer",
         "margin_note": "Two marks. P(A ∪ B) = 1 − P(Aᶜ ∩ Bᶜ); the complements of independent events are independent, so P(Aᶜ ∩ Bᶜ) = (2/3)(3/4) = 1/2.",
+        "memory_tip": "1 − P(both fail) is the short route: 1 − (2/3)(3/4) = 1 − 1/2 = 1/2.",
         "lines": [
           {
             "text": "The problem is solved if at least one solves it:",

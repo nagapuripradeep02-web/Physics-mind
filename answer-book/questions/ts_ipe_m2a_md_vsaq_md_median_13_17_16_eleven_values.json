@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Median",
         "margin_note": "First mark. Eleven values, with repeats — keep every copy when sorting. n = 11 is odd, so the median is the ((11 + 1)/2)th = 6th value in order: 13.",
+        "memory_tip": "Odd n: the median is the ((n + 1)/2)th sorted value, the 6th of 11. Keep every repeat when sorting.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Absolute deviations from 13, written in the GIVEN order as the book does: 0, 4, 3, 2, 0, 3, 3, 2, 5, 1, 4. Sum 27, divide by n = 11. 27/11 = 2.4545…, written 2.45.",
+        "memory_tip": "The two zero deviations still count: divide 27 by n = 11, not by 9. 27/11 = 2.45.",
         "lines": [
           "|xᵢ − M| : 0, 4, 3, 2, 0, 3, 3, 2, 5, 1, 4",
           "Σ|xᵢ − M| = 27",

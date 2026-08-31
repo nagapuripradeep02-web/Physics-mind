@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Δ = 0",
         "margin_note": "First mark. Expand −m(2x − 8) = −2mx + 8m and collect: x² − 2mx + (8m − 15) = 0. Then a = 1, b = −2m, c = 8m − 15, and equal roots means Δ = b² − 4ac = 0.",
+        "memory_tip": "Expand −m(2x − 8) = −2mx + 8m first: the constant is 8m − 15, not −15.",
         "lines": [
           {
             "text": "Sol:",
@@ -113,6 +114,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Divide by 4: m² − 8m + 15 = 0, which factorises as (m − 3)(m − 5) = 0. Both values are answers — the question says 'values'.",
+        "memory_tip": "Divide by 4: m² − 8m + 15 = (m − 3)(m − 5). The question says 'values' — give both.",
         "lines": [
           "⇒ m² − 8m + 15 = 0",
           "⇒ (m − 3)(m − 5) = 0",

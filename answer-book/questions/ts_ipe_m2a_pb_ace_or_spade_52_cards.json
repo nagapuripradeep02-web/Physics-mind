@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. One card from 52, so n(S) = ⁵²C₁ = 52. Name the two events before counting anything.",
+        "memory_tip": "One card from 52, so n(S) = 52. Name both events before counting anything.",
         "lines": [
           {
             "text": "Sol:",
@@ -118,6 +119,7 @@
         "marks": 2,
         "mark_note": "Values",
         "margin_note": "Two marks. 13 spades, 4 aces, and ONE card that is both — the ace of spades. n(E₁ ∩ E₂) = 1 is the value most often missed.",
+        "memory_tip": "13 spades, 4 aces, and ONE card that is both — the ace of spades. n(E₁ ∩ E₂) = 1, never 0.",
         "lines": [
           {
             "text": "n(E₁) = ¹³C₁ = 13   (13 spades)",
@@ -177,6 +179,7 @@
         "marks": 3,
         "mark_note": "Addition theorem",
         "margin_note": "Three marks. Write the theorem in symbols first, then substitute. The theorem line with the minus term is what an examiner looks for.",
+        "memory_tip": "Write the theorem in symbols first, then substitute. The minus term is what the examiner looks for.",
         "lines": [
           {
             "text": "By the addition theorem,",
@@ -230,6 +233,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. 16/52 reduces by 4 to 4/13. Leave the answer as a reduced fraction.",
+        "memory_tip": "16/52 reduces by 4 to 4/13. Leave it as a reduced fraction.",
         "lines": [
           {
             "text": "∴ P(ace or spade) = 16/52 = 4/13",

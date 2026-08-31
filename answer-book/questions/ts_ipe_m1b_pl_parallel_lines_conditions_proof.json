@@ -98,7 +98,8 @@
           "Using different coefficients in the two factors, which describes intersecting lines.",
           "Writing h = 2lm instead of h = lm."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "PARALLEL lines share their x and y coefficients and differ only in the CONSTANT — same l and m in both."
       },
       {
         "id": "s2_prove_h2_ab",
@@ -136,7 +137,8 @@
           "Squaring 2h rather than h.",
           "Concluding h² > ab, which describes two distinct intersecting lines."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Straight from the dictionary: h is lm, and a and b are l² and m²."
       },
       {
         "id": "s3_prove_af2_bg2",
@@ -178,7 +180,8 @@
           "Forgetting the division by 2 when writing f and g from 2f and 2g.",
           "Pairing a with g² instead of f²."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Both f and g carry the same (n₁ + n₂), so each side produces the same expression."
       },
       {
         "id": "s4_distance",
@@ -224,7 +227,8 @@
           "Using n₁ + n₂ where |n₁ − n₂| is needed.",
           "Giving only one of the two equivalent forms."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "The distance is |n₁ − n₂| over √(l² + m²), and |n₁ − n₂| comes from its SQUARE."
       }
     ]
   }

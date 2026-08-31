@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Intercept form needs 1 on the right, so the constant term goes across first and every term is then divided by it.",
+        "memory_tip": "The constant is already on the right, so divide every term by 9 to make it 1.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,6 +90,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Once each term reads x over something, that something IS the intercept on that axis. Take care with signs — a negative intercept is perfectly normal.",
+        "memory_tip": "Read each denominator as the intercept: 9, −3 and 9/2.",
         "lines": [
           "⇒ x/9 + y/(−3) + z/(9/2) = 1",
           "which is in the intercept form  x/a + y/b + z/c = 1",

@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Degrees",
         "margin_note": "First mark. π radians is 180°, so π/10 is 18°. The four angles are 18°, 72°, 108° and 162°.",
+        "memory_tip": "π radians is 180°, so the four angles are 18°, 72°, 108° and 162°.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Shift",
         "margin_note": "Second mark. 108° = 90° + 18° and 162° = 90° + 72° — each larger angle is 90° more than one of the smaller two.",
+        "memory_tip": "Each larger angle is 90° MORE than one of the smaller two.",
         "lines": [
           "108° = 90° + 18°,  162° = 90° + 72°",
           "L.H.S = cos²18° + cos²72°",
@@ -143,6 +145,7 @@
         "marks": 1,
         "mark_note": "Conversion",
         "margin_note": "Third mark. The shift turns each cosine into a negative sine — and the SQUARE removes the minus sign entirely.",
+        "memory_tip": "cos(90° + θ) = −sin θ, and the SQUARE removes the minus entirely.",
         "lines": [
           "cos(90° + θ) = −sin θ, and squaring removes the sign:",
           "cos²(90° + 18°) = sin²18°",
@@ -184,6 +187,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. Regroup so each pair shares an angle: cos²18° + sin²18° = 1 and cos²72° + sin²72° = 1.",
+        "memory_tip": "Regroup so each pair shares an angle: cos² + sin² of the same angle is 1.",
         "lines": [
           "= (cos²18° + sin²18°) + (cos²72° + sin²72°)",
           "= 1 + 1 = 2 = R.H.S",

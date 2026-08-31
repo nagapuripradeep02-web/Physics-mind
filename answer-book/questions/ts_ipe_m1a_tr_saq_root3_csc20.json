@@ -85,7 +85,8 @@
         "common_mistakes": [
           "Writing cosec as 1/cos.",
           "Losing the √3 when combining."
-        ]
+        ],
+        "memory_tip": "cosec and sec are reciprocals — write them out and combine over one denominator."
       },
       {
         "id": "s2_take_2_out_to_make_known",
@@ -124,7 +125,8 @@
         "common_mistakes": [
           "Copying the twin and using 30°.",
           "Not factoring the 2 out first."
-        ]
+        ],
+        "memory_tip": "Here √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the sin10° twin."
       },
       {
         "id": "s3_apply_sin_a_b",
@@ -161,7 +163,8 @@
         "common_mistakes": [
           "Using sin(A+B) and getting sin 80°.",
           "Reversing the subtraction."
-        ]
+        ],
+        "memory_tip": "The numerator collapses to 2 sin 40°."
       },
       {
         "id": "s4_expand_sin40_and_cancel",
@@ -202,7 +205,8 @@
         "common_mistakes": [
           "Cancelling before expanding.",
           "Finishing with 2."
-        ]
+        ],
+        "memory_tip": "sin40° = 2 sin20° cos20°, exactly the denominator — it cancels and leaves 4."
       }
     ]
   }

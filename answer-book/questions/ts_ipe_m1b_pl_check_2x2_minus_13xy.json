@@ -89,7 +89,8 @@
         "common_mistakes": [
           "Taking h as the whole xy coefficient instead of half of it.",
           "Getting the sign of a negative coefficient wrong."
-        ]
+        ],
+        "memory_tip": "Read all six of a, h, b, g, f, c off first, HALVING the ones the standard form doubles."
       },
       {
         "id": "s2_delta",
@@ -131,7 +132,8 @@
           "Dropping one of the five terms of Δ.",
           "Arithmetic slip with the quarters that come from halved coefficients."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is the master test: zero exactly when it factors into two lines."
       },
       {
         "id": "s3_inequalities",
@@ -172,7 +174,8 @@
           "Stopping at Δ = 0 and declaring the answer.",
           "Testing only one of the three inequalities."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL."
       },
       {
         "id": "s4_point",
@@ -219,7 +222,8 @@
           "Swapping the two numerators between x and y.",
           "Using ab + h² in the denominator."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "A formula in the same six coefficients gives the meeting point — no factorising, no solving."
       },
       {
         "id": "s5_angle_between_them",
@@ -263,7 +267,8 @@
           "Using cosθ's formula with 2h when tanθ's formula wants h² − ab.",
           "Giving the answer as Tan⁻¹(3) when the book states it as a cosine."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "tan θ = 2√(h² − ab)/|a + b|, reusing the h² − ab already computed."
       }
     ]
   }

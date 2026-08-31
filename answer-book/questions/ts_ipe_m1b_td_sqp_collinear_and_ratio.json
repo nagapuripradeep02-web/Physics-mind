@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Take the three points in pairs and apply the distance formula, which in three dimensions carries a third squared difference. Leave every answer in surd form.",
+        "memory_tip": "All three squared differences are equal within each pair here, so each distance is a multiple of √3.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Three points are collinear exactly when the two SHORTER distances add to the longest — the middle point then lies on the segment joining the other two.",
+        "memory_tip": "AB + BC = CA proves collinear, and the ratio is AB : BC = 2√3 : 4√3 = 1 : 2.",
         "lines": [
           "Now, AB + BC = 2√3 + 4√3 = 6√3 = CA",
           "∴ A, B, C are collinear",

@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The permutation form of Pascal: ⁽ⁿ⁻¹⁾Pᵣ + r·⁽ⁿ⁻¹⁾Pᵣ₋₁ = ⁿPᵣ. Here n − 1 = 12 and r = 5.",
+        "memory_tip": "The permutation form carries a coefficient: ⁽ⁿ⁻¹⁾Pᵣ + r·⁽ⁿ⁻¹⁾Pᵣ₋₁ = ⁿPᵣ. The 5 in front IS the r.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ¹³P₅ = ¹³Pᵣ, so r = 5. Check: 95040 + 5 · 11880 = 154440 = 13·12·11·10·9.",
+        "memory_tip": "r matches the FIRST term, so r = 5, not the 4 of the second. Check: 95040 + 59400 = 154440.",
         "lines": [
           "¹³P₅ = ¹³Pᵣ",
           "Check: 95040 + 5 · 11880 = 154440 = ¹³P₅",

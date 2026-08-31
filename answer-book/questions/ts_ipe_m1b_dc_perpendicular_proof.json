@@ -63,6 +63,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks, and the move that makes this question different from its neighbours. The two lines are NEVER found — only the PRODUCTS of their direction ratios are needed, and those come from the quadratics' roots. Divide through by n² to get a quadratic in m/n.",
+        "memory_tip": "The two lines are NEVER found here — only the PRODUCTS of their ratios are needed.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "One mark. For ax² + bx + c = 0 the product of the roots is c/a. The two roots here are m₁/n₁ and m₂/n₂, so their product gives m₁m₂ against n₁n₂.",
+        "memory_tip": "For ax² + bx + c = 0 the product of roots is c/a, and the roots here are m₁/n₁ and m₂/n₂.",
         "lines": [
           "This is a quadratic equation in m/n; its roots are taken as  m₁/n₁,  m₂/n₂",
           "Product of roots  (m₁/n₁)(m₂/n₂) = c/a = −3/5",
@@ -149,6 +151,7 @@
         "marks": 3,
         "mark_note": "Method",
         "margin_note": "Three marks. The same move with a different letter removed, giving a second quadratic whose roots are l₁/m₁ and l₂/m₂.",
+        "memory_tip": "The same move with a different letter removed, giving roots l₁/m₁ and l₂/m₂.",
         "lines": [
           "From (1), n = −(l + m)",
           "Substituting this value of n in (2), we get  −2m(l + m) − 3l(l + m) − 5lm = 0",
@@ -193,6 +196,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. Chain (3) and (4) into one string of equal fractions, call the common value k, and add. Two lines are perpendicular exactly when that sum is zero.",
+        "memory_tip": "Chain the results into one string of equal fractions, call it k, and add. Zero means perpendicular.",
         "lines": [
           "From (3) and (4), we get  l₁l₂/2 = m₁m₂/3 = n₁n₂/(−5) = k  (say)",
           "⇒ l₁l₂ = 2k,  m₁m₂ = 3k,  n₁n₂ = −5k",

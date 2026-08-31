@@ -89,7 +89,8 @@
           "Using the same slope, which would give a parallel line instead.",
           "Reading the slope as −b/a."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "PERPENDICULAR means flip and negate the given slope, before any point is known."
       },
       {
         "id": "s2_solve_for_point",
@@ -130,7 +131,8 @@
           "Solving the wrong pair of lines.",
           "Slip in the cross-multiplication denominators."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Solve the other pair for the point — independent of the slope work."
       },
       {
         "id": "s3_point_slope",
@@ -171,7 +173,8 @@
           "Using the slope-intercept form and having to find c separately.",
           "Swapping x₁ and y₁ in the formula."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "y − y₁ = m(x − x₁) with the point and slope just found."
       },
       {
         "id": "s4_simplify",
@@ -212,7 +215,8 @@
           "Leaving fractions in the final answer.",
           "Sign slip when multiplying through by a denominator."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Clear fractions and collect into ax + by + c = 0."
       }
     ]
   }

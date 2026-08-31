@@ -45,6 +45,7 @@
         "label": "Evaluate L at both points",
         "marks": 1,
         "margin_note": "First mark. Write L for the left-hand side of the line, then put each of the two points into it. L₁₁ and L₂₂ are the two values obtained.",
+        "memory_tip": "Substitute each point into the line's left-hand side to get L₁₁ and L₂₂.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "label": "Write the ratio",
         "marks": 1,
         "margin_note": "Second mark. The required ratio is −L₁₁ : L₂₂ = −(−7) : 14 = 1 : 2. That is POSITIVE, so the division is internal. A negative ratio would mean external division, which is a real answer and not an error.",
+        "memory_tip": "−L₁₁ : L₂₂ = 1 : 2 here, positive, so the division is INTERNAL.",
         "lines": [
           "Required ratio is  −L₁₁ : L₂₂",
           {

@@ -58,6 +58,7 @@
         "marks": 2,
         "mark_note": "Sum to product",
         "margin_note": "Two of the eight marks. sin A + sin B = 2 sin((A+B)/2) cos((A−B)/2), with sin C left outside for now.",
+        "memory_tip": "Group sin A + sin B and leave −sin C outside for now.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Angle sum",
         "margin_note": "Third mark. (A+B)/2 = 90° − C/2, and sin(90° − θ) = cos θ.",
+        "memory_tip": "(A+B)/2 = 90° − C/2, and sin(90° − θ) = cos θ.",
         "lines": [
           "(A + B)/2 = 90° − C/2",
           "⇒ sin((A+B)/2) = sin(90° − C/2) = cos(C/2)",
@@ -140,6 +142,7 @@
         "marks": 2,
         "mark_note": "Double angle",
         "margin_note": "Two marks. sin C = 2 sin(C/2) cos(C/2), so both terms carry 2 cos(C/2) — take it out.",
+        "memory_tip": "sin C = 2 sin(C/2) cos(C/2), so both terms carry 2 cos(C/2) — take it out.",
         "lines": [
           "sin C = 2 sin(C/2) cos(C/2)",
           "L.H.S = 2 cos(C/2) cos((A−B)/2)",
@@ -181,6 +184,7 @@
         "marks": 2,
         "mark_note": "Second substitution",
         "margin_note": "Two marks (sixth and seventh). Inside the bracket, sin(C/2) = sin(90° − (A+B)/2) = cos((A+B)/2) — so both terms are cosines.",
+        "memory_tip": "Inside the bracket sin(C/2) = cos((A+B)/2), so both terms become cosines.",
         "lines": [
           "Inside the bracket, C/2 = 90° − (A+B)/2, so",
           "sin(C/2) = sin(90° − (A+B)/2) = cos((A+B)/2)",
@@ -220,6 +224,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. cos X − cos Y with X = (A−B)/2, Y = (A+B)/2 gives 2 sin(A/2) sin(B/2).",
+        "memory_tip": "cos X − cos Y with X = (A−B)/2, Y = (A+B)/2 gives 2 sin(A/2) sin(B/2).",
         "lines": [
           "cos((A−B)/2) − cos((A+B)/2) = 2 sin(A/2) sin(B/2)",
           "L.H.S = 2 cos(C/2) · 2 sin(A/2) sin(B/2)",

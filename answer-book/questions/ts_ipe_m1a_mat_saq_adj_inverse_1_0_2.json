@@ -50,6 +50,7 @@
         "marks": 1,
         "mark_note": "Determinant",
         "margin_note": "First mark. det A comes to 3. Expanding along the top row is easiest here because the middle entry is 0, which kills one of the three terms outright.",
+        "memory_tip": "det A = 3. Expand along the top row — the middle 0 kills one of the three terms.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 2,
         "mark_note": "Cofactors",
         "margin_note": "Half the marks, and nine small determinants. Delete the entry’s own row and column, take the 2×2 determinant of what is left, then apply the sign board + − + / − + − / + − +. Work along the rows in order so none is missed.",
+        "memory_tip": "Delete the entry's own row and column, take the 2×2 determinant, then apply the sign board.",
         "lines": [
           "Delete each entry’s row and column, take the 2×2",
           "determinant, then apply + − + / − + − / + − +:",
@@ -152,6 +154,7 @@
         "marks": 1,
         "mark_note": "Adjoint and inverse",
         "margin_note": "Last mark. det A is 3, so every entry of the adjoint is divided by 3 and the inverse carries thirds. Leaving the answer as one-third times the adjoint is also acceptable and is less error-prone than writing nine fractions.",
+        "memory_tip": "Transpose, then divide by 3 — so the inverse carries thirds.",
         "lines": [
           "Adj A is the TRANSPOSE of the cofactor matrix:",
           {

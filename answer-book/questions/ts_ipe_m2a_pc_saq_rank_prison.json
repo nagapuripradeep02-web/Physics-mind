@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Order",
         "margin_note": "First mark. Six different letters: I, N, O, P, R, S. No repeats, so every count below is a plain factorial.",
+        "memory_tip": "Sort first: I, N, O, P, R, S. O comes BEFORE P — placing it after shifts every block.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 2,
         "mark_note": "Counting",
         "margin_note": "Two marks. Three letters (I, N, O) come before P: 5! each. With P fixed, three letters (I, N, O) come before R: 4! each. With P R fixed, I is the smallest so no block; with P R I fixed, N and O come before S: 2! each. With P R I S fixed, N comes before O: 1!.",
+        "memory_tip": "After P R is fixed there is no block, because I is the smallest letter left. Do not invent one.",
         "lines": [
           "Words starting with I, N, O: 3 × 5! = 360",
           "Words starting with PI, PN, PO: 3 × 4! = 72",
@@ -147,6 +149,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. 360 + 72 + 2 + 2 + 1 = 437 words come before PRISON, so its rank is 438.",
+        "memory_tip": "437 words come before PRISON, so the rank is 438. Keep both single-word terms.",
         "lines": [
           "Rank = 3(120) + 3(24) + 2 + 2 + 1 + 1",
           "= 360 + 72 + 4 + 1 + 1",

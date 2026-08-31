@@ -61,6 +61,7 @@
         "label": "Take the locus point",
         "marks": 0,
         "margin_note": "No mark of its own. Both fixed points lie on the x-axis, symmetric about the origin — the y-terms will cancel later because of it.",
+        "memory_tip": "Both fixed points lie on the x-axis, symmetric about the origin — that is why the y-terms cancel.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. A modulus means the difference may be taken either way round, so the ± is carried from here on. It disappears at the final squaring, which is why the answer is still one curve.",
+        "memory_tip": "A modulus means either order, so carry the ± from here. It disappears at the final squaring.",
         "lines": [
           "Given condition: |PA − PB| = 8",
           "⇒ PA − PB = ±8   ⇒   PA = ±8 + PB",
@@ -145,6 +147,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Both fixed points have y = 0, so the y² terms are identical and cancel outright, leaving a difference of two squares in x. Dividing by 4 keeps the numbers small.",
+        "memory_tip": "The y² terms are identical and cancel, leaving a difference of two squares in x.",
         "lines": [
           "⇒ ±16 PB = 64 + [(x−5)² + (y−0)²] − [(x+5)² + (y−0)²]",
           "⇒ ±16 PB = 64 + (x−5)² − (x+5)²",
@@ -187,6 +190,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. Squaring kills the ±, which is why a two-way condition still gives one curve. The x² and y² signs come out OPPOSITE — a hyperbola.",
+        "memory_tip": "Squaring kills the ±, which is why a two-way condition still gives ONE curve — a hyperbola.",
         "lines": [
           "Squaring on both sides:  16 PB² = (16 − 5x)²",
           "⇒ 16[(x−5)² + y²] = 256 + 25x² − 160x",

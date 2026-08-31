@@ -92,7 +92,8 @@
           "Trying to solve a pair that contains the unknown.",
           "Slip in the cross-multiplication denominators."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Solve the two lines that carry no unknown."
       },
       {
         "id": "s2_point_of_intersection",
@@ -128,7 +129,8 @@
         "common_mistakes": [
           "Writing the coordinates the wrong way round.",
           "Leaving the point as a pair of fractions without simplifying."
-        ]
+        ],
+        "memory_tip": "That point is where all three must pass."
       },
       {
         "id": "s3_substitute_third",
@@ -172,7 +174,8 @@
           "Substituting into one of the two lines already used, which gives 0 = 0.",
           "Sign slip when the point has a negative coordinate."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Substituting into the third gives zero, which fixes p."
       }
     ]
   }

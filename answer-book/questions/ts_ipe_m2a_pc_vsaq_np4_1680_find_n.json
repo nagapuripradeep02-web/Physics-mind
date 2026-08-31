@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. ⁿP₄ is a product of 4 consecutive whole numbers counting down from n. 1680 = 8 · 7 · 6 · 5.",
+        "memory_tip": "ⁿP₄ is FOUR consecutive factors: 1680 = 8 · 7 · 6 · 5.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,6 +90,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. n(n − 1)(n − 2)(n − 3) = 8 · 7 · 6 · 5, so n = 8.",
+        "memory_tip": "n is the largest factor, 8, not the 5 at the other end.",
         "lines": [
           "n(n − 1)(n − 2)(n − 3) = 8 · 7 · 6 · 5",
           {

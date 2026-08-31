@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Modulus",
         "margin_note": "First mark. x = −1, y = −1. Both squares are 1, so r = √2.",
+        "memory_tip": "Both coordinates are −1 and both squares are +1, so r = √2. A modulus is never negative.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,6 +90,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. tan θ = 1, but (−1, −1) is in the THIRD quadrant, so the principal amplitude is θ = −π + π/4 = −3π/4, not π/4 and not 3π/4. Check: √2 cos(−3π/4) = −1 and √2 sin(−3π/4) = −1.",
+        "memory_tip": "tan θ = 1, but (−1, −1) is in the THIRD quadrant: θ = −π + π/4 = −3π/4. The book's 3π/4 gives −1 + i.",
         "lines": [
           "tan θ = y/x = (−1)/(−1) = 1",
           "(−1, −1) lies in the third quadrant",

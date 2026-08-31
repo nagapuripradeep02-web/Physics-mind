@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Modulus",
         "margin_note": "First mark. a = −5 (negative), b = 12. The square of −5 is +25, so r = √(25 + 144) = 13 — the 5, 12, 13 triple.",
+        "memory_tip": "(−5)² = +25, so r = √(25 + 144) = 13 — the 5, 12, 13 triple.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. b > 0, so the two parts share a sign. r + a = 13 + (−5) = 8 and r − a = 13 − (−5) = 18; halved, 4 and 9.",
+        "memory_tip": "Carry the sign on a: r + a = 13 − 5 = 8 and r − a = 13 + 5 = 18, halving to 4 and 9.",
         "lines": [
           "For b > 0:",
           {

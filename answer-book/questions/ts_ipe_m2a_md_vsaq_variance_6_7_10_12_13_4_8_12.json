@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Mean",
         "margin_note": "First mark. Eight values, sum 72, mean 9. n = 8 is the divisor in both steps.",
+        "memory_tip": "72/8 = 9. Variance is spread about the mean, so the mean comes before any squaring.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Deviations from 9 (signs kept), squared: 9, 4, 1, 9, 16, 25, 1, 9. Sum 74, divide by n = 8. 74/8 = 9.25. Only the variance is asked — no square root.",
+        "memory_tip": "Square the deviations, so 74 and not the 22 the unsquared ones give. Variance only — no square root here.",
         "lines": [
           "xᵢ − x̄ : −3, −2, 1, 3, 4, −5, −1, 3",
           "(xᵢ − x̄)² : 9, 4, 1, 9, 16, 25, 1, 9",

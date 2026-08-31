@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Take the three points in pairs and apply the distance formula, which in three dimensions carries a third squared difference. Leave every answer in surd form.",
+        "memory_tip": "All three come to √6 — the same three numbers 1, 1, 4 in a different order each time.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. All three distances come out the SAME, which is the definition of an equilateral triangle. Nothing further needs computing.",
+        "memory_tip": "All three EQUAL is the definition of equilateral. Nothing further needs computing.",
         "lines": [
           "∴ AB = BC = AC",
           {

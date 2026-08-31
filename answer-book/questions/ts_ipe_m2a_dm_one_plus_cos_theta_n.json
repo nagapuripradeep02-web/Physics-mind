@@ -64,6 +64,7 @@
         "marks": 2,
         "mark_note": "Half-angle form",
         "margin_note": "First and second marks. 1 + cos θ = 2cos²(θ/2) and sin θ = 2 sin(θ/2) cos(θ/2), so 2cos(θ/2) comes out as a common factor and leaves cos(θ/2) + i sin(θ/2). Here r is the expression 2cos(θ/2), not a number from a square root.",
+        "memory_tip": "1 + cos θ = 2cos²(θ/2) and sin θ = 2 sin(θ/2) cos(θ/2). Here r is the expression 2cos(θ/2), not a number.",
         "lines": [
           {
             "text": "Sol:",
@@ -110,6 +111,7 @@
         "marks": 2,
         "mark_note": "De Moivre",
         "margin_note": "Third and fourth marks. Raising to n gives 2ⁿ cosⁿ(θ/2) outside and cos(nθ/2) + i sin(nθ/2) inside. The n on cos(θ/2) sits outside the bracket and the n on the angle sits inside; they are two separate places.",
+        "memory_tip": "Two separate n's: the one on cos(θ/2) sits outside the bracket, the one on the angle sits inside.",
         "lines": [
           "(1 + cos θ + i sin θ)ⁿ",
           "= 2ⁿ cosⁿ(θ/2) [cos(θ/2) + i sin(θ/2)]ⁿ",
@@ -153,6 +155,7 @@
         "marks": 1,
         "mark_note": "Conjugate",
         "margin_note": "Fifth mark. The second bracket is the conjugate of the first, so it carries the same 2ⁿ cosⁿ(θ/2) with the sine sign reversed. Label it (2); nothing is recomputed.",
+        "memory_tip": "Same 2ⁿ cosⁿ(θ/2), only the sine sign flips. Nothing is recomputed.",
         "lines": [
           "Similarly,",
           "(1 + cos θ − i sin θ)ⁿ",
@@ -194,6 +197,7 @@
         "marks": 2,
         "mark_note": "Result",
         "margin_note": "Sixth and seventh marks. Adding (1) and (2) cancels the i sin terms and doubles the cosine: 2ⁿ cosⁿ(θ/2) · 2 cos(nθ/2). Combine 2ⁿ · 2 into 2ⁿ⁺¹.",
+        "memory_tip": "Conjugates add to twice the real part. Combine 2ⁿ · 2 into 2ⁿ⁺¹.",
         "lines": [
           "Adding (1) and (2):",
           "(1 + cos θ + i sin θ)ⁿ + (1 + cos θ − i sin θ)ⁿ",

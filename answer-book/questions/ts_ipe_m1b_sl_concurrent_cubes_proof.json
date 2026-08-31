@@ -87,7 +87,8 @@
           "Mismatching which coefficient pairs with which in the cross-multiplication.",
           "Losing a sign in one of the three denominators."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "No numbers, but the method is unchanged: solve two lines by cross-multiplication, carrying the letters."
       },
       {
         "id": "s2_point_of_intersection",
@@ -124,7 +125,8 @@
         "common_mistakes": [
           "Assigning the numerators to the wrong coordinates.",
           "Cancelling the denominator too early."
-        ]
+        ],
+        "memory_tip": "Both coordinates share the denominator ca − b², which clears on substitution."
       },
       {
         "id": "s3_substitute_third",
@@ -163,7 +165,8 @@
         "common_mistakes": [
           "Substituting into (1) or (2), which gives 0 = 0 and proves nothing.",
           "Forgetting to multiply the standalone b by the denominator."
-        ]
+        ],
+        "memory_tip": "Concurrent means P lies on the third line too, so substituting must give ZERO."
       },
       {
         "id": "s4_simplify",
@@ -206,7 +209,8 @@
           "Treating cab, abc and bca as different terms.",
           "Leaving the answer as 3abc − (a³+b³+c³) = 0 without stating the required form."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "The three mixed terms are all abc, and the three cubes collect on the other side."
       }
     ]
   }

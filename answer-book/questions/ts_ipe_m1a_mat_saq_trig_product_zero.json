@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Angle condition",
         "margin_note": "First mark, and the idea of the whole question. Two different angles cannot be multiplied together usefully — so use the given condition to write everything in ONE angle before touching the matrices.",
+        "memory_tip": "Two DIFFERENT angles cannot be multiplied usefully — use the condition to write both in one angle.",
         "lines": [
           {
             "text": "Sol:",
@@ -105,6 +106,7 @@
         "marks": 1,
         "mark_note": "Substitution",
         "margin_note": "Second mark. cos²θ becomes sin²φ, sin²θ becomes cos²φ, and the off-diagonal cosθ sinθ becomes (−sin φ)(cos φ) — negative. That single minus is what makes the whole product vanish.",
+        "memory_tip": "cos²θ becomes sin²φ, and the off-diagonal becomes (−sinφ)(cosφ) — that single minus does the work.",
         "lines": [
           "cos²θ = sin²φ,  sin²θ = cos²φ,",
           "cos θ sin θ = (−sin φ)(cos φ) = −sin φ cos φ",
@@ -155,6 +157,7 @@
         "marks": 2,
         "mark_note": "Product is O",
         "margin_note": "Half the marks. Multiply row by column. Each entry is a difference of two identical products, so each cancels to zero — write at least two of them out in full to show it is cancellation and not luck.",
+        "memory_tip": "Each entry is a difference of two identical products, so each cancels to zero.",
         "lines": [
           "Multiplying row by column:",
           "Entry (1,1):  sin²φ cos²φ − sin²φ cos²φ = 0",

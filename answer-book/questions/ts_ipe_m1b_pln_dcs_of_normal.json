@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The coefficients of x, y and z ARE direction ratios of the normal — that is what the equation of a plane encodes. Turning them into cosines needs one division.",
+        "memory_tip": "The coefficients of x, y, z ARE direction ratios of the normal — one division turns them into cosines.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. The numbers here were chosen so the root is exactly 3, giving a clean triple.",
+        "memory_tip": "1 + 4 + 4 = 9, so the root is exactly 3 and the triple is clean. Keep the ±.",
         "lines": [
           "∴ d.c's of x + 2y + 2z − 4 = 0 are",
           "±( 1/√(1+4+4),  2/√(1+4+4),  2/√(1+4+4) )",

@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The coefficient of x is hidden inside the fraction, so split it out before the formula can be applied: (4x+9)/5 is (4/5)x + 9/5.",
+        "memory_tip": "The coefficient of x is hidden inside the fraction: (4x + 9)/5 is (4/5)x + 9/5. Split it out first.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,6 +90,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Dividing by a fraction is multiplying by its reciprocal, so 2π ÷ (4/5) is 2π × 5/4.",
+        "memory_tip": "Dividing by a fraction means multiplying by its reciprocal: 2π ÷ (4/5) = 2π × 5/4.",
         "lines": [
           "Here k = 4/5",
           "Period = 2π/(4/5) = 2π × 5/4 = 10π/4",

@@ -93,7 +93,8 @@
         "common_mistakes": [
           "Rearranging the chord unnecessarily and introducing a sign error.",
           "Leaving the circle as x² + y² = a² and forgetting to move a² across."
-        ]
+        ],
+        "memory_tip": "The chord already reads = 1, exactly the form homogenisation needs — no clearing required."
       },
       {
         "id": "s2_homogenise",
@@ -133,7 +134,8 @@
           "Multiplying the x² and y² terms by the chord as well.",
           "Multiplying the constant by the chord only once."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "The circle has no linear term, so only the CONSTANT needs raising: multiply −a² by the chord squared."
       },
       {
         "id": "s3_collect",
@@ -173,7 +175,8 @@
           "Forgetting the 2 in the 2lmxy cross term.",
           "Dropping a² from one of the three coefficients."
         ],
-        "mark_note": "Method"
+        "mark_note": "Method",
+        "memory_tip": "Expand and group by x², y² and xy. Each coefficient carries an a² and the letters l, m."
       },
       {
         "id": "s4_apply_the_condition",
@@ -219,7 +222,8 @@
           "Using h² > ab, which is the condition for two DISTINCT lines.",
           "Forgetting that both sides carry a⁴l²m², so it cancels."
         ],
-        "mark_note": "Solution"
+        "mark_note": "Solution",
+        "memory_tip": "Coincident lines mean h² = ab — the equal-roots condition for the pair."
       }
     ]
   }

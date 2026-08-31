@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Divide and form",
         "margin_note": "First mark. Degree 3 on top, degree 3 below: improper, but the quotient is only a constant, the ratio of the leading coefficients 1/2. So write 1/2 plus the usual form for (2x − 1)(x − 1)²: A over (2x − 1), B over (x − 1), C over (x − 1)².",
+        "memory_tip": "Improper, and the leading coefficients 1 and 2 give the constant 1/2 in front. The repeated factor still needs B/(x − 1).",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Identity",
         "margin_note": "Second mark. Multiply by (2x − 1)(x − 1)². The 1/2 keeps the whole denominator, A keeps (x − 1)², B keeps (2x − 1)(x − 1), C keeps (2x − 1).",
+        "memory_tip": "The 1/2 keeps the whole denominator; A keeps (x − 1)², B keeps (2x − 1)(x − 1), C keeps (2x − 1).",
         "lines": [
           "Multiply by (2x − 1)(x − 1)²:",
           "x³ = (1/2)(2x − 1)(x − 1)² + A(x − 1)²",
@@ -149,6 +151,7 @@
         "marks": 1,
         "mark_note": "A, B and C",
         "margin_note": "Third mark. x = 1/2 makes every term except A zero: 1/8 = A/4. x = 1 leaves only C: 1 = C. Then x = 0 gives one equation in A, B, C, which is B once A and C are known.",
+        "memory_tip": "The root of 2x − 1 is x = 1/2, not 1. There (1/2 − 1)² = 1/4, so 1/8 = A/4.",
         "lines": [
           "Put x = 1/2: 1/8 = A(1/4) ⇒ A = 1/2",
           "Put x = 1: 1 = C(1) ⇒ C = 1",
@@ -194,6 +197,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. The constant 1/2 comes first, then A = 1/2 over (2x − 1) becomes 1/(2(2x − 1)), then 1/(x − 1) and 1/(x − 1)². Four terms; the result is too long for one box, so the constants are boxed under it.",
+        "memory_tip": "Four terms: 1/2 first, then A = 1/2 over (2x − 1) written as 1/(2(2x − 1)).",
         "lines": [
           "∴ x³/((2x − 1)(x − 1)²)",
           "= 1/2 + 1/(2(2x − 1)) + 1/(x − 1) + 1/(x − 1)²",

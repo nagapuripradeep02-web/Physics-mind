@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Rearranged the other way this time: sinh x = √(cosh²x − 1) — a MINUS, because the identity is cosh² − sinh² = 1.",
+        "memory_tip": "cosh x is given, so sinh x = √(cosh²x − 1) — a MINUS, from cosh² − sinh² = 1.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Same two formulas as the twin. The surd survives into sinh2x but cancels out of cosh2x, since only the squares appear there.",
+        "memory_tip": "cosh 2x = cosh²x + sinh²x uses only the squares, so the surd cancels there but survives in sinh 2x.",
         "lines": [
           "cosh 2x = cosh²x + sinh²x = 25/4 + 21/4 = 46/4 = 23/2",
           "sinh 2x = 2 sinh x cosh x = 2(√21/2)(5/2) = 5√21/2",

@@ -107,7 +107,8 @@
         "common_mistakes": [
           "Adding r₁ + r₂ + r₃ directly instead of their reciprocals.",
           "Forgetting to invert at the end, giving r = 1/4."
-        ]
+        ],
+        "memory_tip": "1/r = 1/r₁ + 1/r₂ + 1/r₃ — a standard result, quoted rather than derived."
       },
       {
         "id": "s2_find_and_s",
@@ -149,7 +150,8 @@
         "common_mistakes": [
           "Multiplying the four radii out before factorising.",
           "Using s = rΔ instead of Δ/r."
-        ]
+        ],
+        "memory_tip": "Δ = √(r r₁ r₂ r₃) turns four radii into an area; then s = Δ/r follows from r = Δ/s."
       },
       {
         "id": "s3_find_each_side_from_its_ex",
@@ -191,7 +193,8 @@
         "common_mistakes": [
           "Pairing r₁ with b or c.",
           "Computing s − a and reporting it as a."
-        ]
+        ],
+        "memory_tip": "Each ex-radius names ONE side: r₁ gives s − a, and s is known, so a follows."
       },
       {
         "id": "s4_state_the_sides",
@@ -233,7 +236,8 @@
         "common_mistakes": [
           "Reporting s − a values as the sides.",
           "Skipping the check and missing an arithmetic error."
-        ]
+        ],
+        "memory_tip": "Check a + b + c = 2s: 12 + 16 + 20 = 48 = 2 × 24."
       }
     ]
   }

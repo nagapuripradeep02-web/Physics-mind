@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "memory_tip": "No root here — only the denominator matters. Find where it is ZERO: x = 1, 2, 3.",
         "lines": [
           "f(x) is not defined when",
           "(x − 1)(x − 2)(x − 3) = 0",
@@ -92,6 +93,7 @@
         "marks": 1,
         "mark_note": "Domain",
         "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "Remove those three points from R. The numerator plays no part.",
         "lines": [
           "∴ Domain = R − {1, 2, 3}"
         ],

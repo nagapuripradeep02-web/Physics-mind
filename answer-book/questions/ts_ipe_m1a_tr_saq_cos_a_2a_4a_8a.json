@@ -86,7 +86,8 @@
         "common_mistakes": [
           "Multiplying by sinA without dividing, which changes the expression.",
           "Introducing only one 2 instead of four."
-        ]
+        ],
+        "memory_tip": "There is no sinA on the left, so introduce one — multiplied AND divided, which changes nothing."
       },
       {
         "id": "s2_apply_the_double_angle_r",
@@ -128,7 +129,8 @@
         "common_mistakes": [
           "Running out of 2s partway through.",
           "Applying the formula to the wrong pair."
-        ]
+        ],
+        "memory_tip": "sin2θ = 2 sinθ cosθ applied four times: sinA becomes sin2A, then sin4A, sin8A, sin16A."
       },
       {
         "id": "s3_state_the_result",
@@ -167,7 +169,8 @@
         "common_mistakes": [
           "Writing 8 sinA by miscounting the 2s.",
           "Leaving the answer as a product."
-        ]
+        ],
+        "memory_tip": "The 2⁴ in the denominator is the 16. Write the final identity out."
       }
     ]
   }
