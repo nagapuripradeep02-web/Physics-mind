@@ -92,7 +92,7 @@
         "label": "Differentiate both and divide",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. x > 0 is stated because √x has no derivative at x = 0. Dividing by 1/(2√x) multiplies by 2√x, so the answer is larger than eˣ, never smaller.",
+        "margin_note": "Second mark. x > 0 is stated because √x has no derivative at x = 0. Dividing by 1/(2√x) multiplies by 2√x, which is larger than 1 once x > 1/4 and smaller below it.",
         "memory_tip": "The 2 in the answer comes from turning 1/(2√x) upside down. A half underneath becomes a two on top.",
         "lines": [
           "du/dv = (du/dx)/(dv/dx) = eˣ ÷ 1/(2√x)",
@@ -125,7 +125,7 @@
             "flip"
           ]
         },
-        "why": "The fraction underneath is smaller than 1 near x = 0, so dividing by it must make the answer larger than eˣ. Checking that direction finds a fraction that has been turned the wrong way.",
+        "why": "Dividing by 1/(2√x) is the same as multiplying by 2√x, so the answer is eˣ scaled by 2√x. Checking that the scaling factor is 2√x and not 1/(2√x) finds a fraction that has been turned the wrong way.",
         "common_mistakes": [
           "Multiplying by 1/(2√x) instead of dividing, which gives eˣ/(2√x).",
           "Writing 2√x · eˣ as 2√(x eˣ), putting eˣ inside the square root."

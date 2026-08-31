@@ -10,6 +10,10 @@ claims to be checked.
 
 *(This file is written incrementally, group by group.)*
 
+**The tally, the consolidated findings table, the "I disagreed" section and the coverage
+statement are in the `# Summary` section at the end.** The six group sections between here and
+there carry the per-card evidence.
+
 ---
 
 ## Group 1 — First principles (9 cards)
@@ -462,4 +466,279 @@ carefully and states no condition anywhere the student can read it. Mathematics 
   stated in `lines`.
 
 **Group 5 verdict: 13 CLEAN, 1 THIN, 0 WRONG, 0 MISLEADING.**
+
+---
+
+## Group 6 — Multiple-angle inverse trig and logarithmic differentiation (14 cards)
+
+Every reduction of the form `Inverse(f(nθ)) = nθ` was checked for its branch, and the derivative was
+then verified against sympy plus a central difference at two or three points — including, where the
+card claims a *different* branch exists, a point on that other branch.
+
+| card | claimed | pt 1 (sym / claim / CD) | pt 2 |
+|---|---|---|---|
+| `sin_inverse_2x_over_1_plus_x2` | 2/(1+x²) on \|x\| ≤ 1 | x=0.4: 1.72413793103448 / same / 1.724137931036 | x=−0.8: 1.21951219512195 / same / 1.219512195338 |
+| `sin_inverse_3x_minus_4x3` | 3/√(1−x²) on \|x\| ≤ ½ | x=0.3: 3.14485451016575 / same / 3.144854510029 | x=−0.45: 3.35935506573513 / same / 3.359355065902 |
+| `tan_inverse_3a2x_minus_x3` | 3a/(a²+x²) | a=3, x=0.5: 0.972972972972973 / same / 0.9729729730235 | x=1.2: 0.862068965517241 / same / 0.8620689654348 |
+| `second_deriv_tan_inverse_2x_over_1_minus_x2` | y″ = −4x/(1+x²)² | x=0.3: −1.01001599191987 / same / −1.010015991953 | x=−0.6: 1.29757785467128 / same / 1.297577854609 |
+| `sin_inverse_and_tan_inverse_equal_derivatives` | f′ = g′ = 1/(2√((x−β)(α−x))) | α=5, β=1, x=1.6: f′ 0.350070021007002, g′ 0.350070021007002, claim same | x=3.0: 0.25 / 0.25 / 0.25; x=4.4: 0.350070021007003 all three |
+| `three_tan_inverse_sum_derivative` | 1/(1+x²) | x=0.2: 0.961538461538461 / same / 0.9615384614359 | x=0.35: 0.890868596881960 / same; x=−0.3: 0.917431192660552 / …550 |
+| `tan_inverse_root_1_minus_cos_over_1_plus_cos` | 1/2 | x=0.6: 0.500000000000000 / same / 0.5000000000421 | x=2.5: 0.500000000000000 / same / 0.5000000000699 |
+| `tan_inverse_root_1_minus_x_over_1_plus_x` | −1/(2√(1−x²)) | x=0.3: −0.524142418360959 / same / −0.5241424183011 | x=−0.7: −0.700140042014005 / same / −0.7001400420537 |
+| `tan_inverse_root_1_plus_x2_minus_1_over_x` | 1/(2(1+x²)) | x=0.6: 0.367647058823530 / …529 / 0.3676470588798 | x=−1.4: 0.168918918918919 / same / 0.1689189188525 |
+| `tan_inverse_root_sum_over_difference` | −x/√(1−x⁴) | x=0.4: −0.405220449236554 / same / −0.4052204491956 | x=0.85: −1.22944135274031 / same; x=−0.5: +0.516397779494322 / same |
+| `tan_inverse_sec_x_plus_tan_x` | 1/2 | x=0.2: 0.5 / 0.5 / 0.5000000000144 | x=−1.0: 0.5 / 0.5 / 0.4999999999311; x=1.4: 0.5 / 0.5 / 0.4999999999589 |
+| `sin_x_power_x_plus_x_power_sin_x` | (sinx)ˣ[log sin x + x cot x] + x^(sinx)[cos x·log x + sinx/x] | 0 symbolically; x=0.7: 0.802250576606243 / same / 0.8022505766370 | x=2.0: −0.523278215750616 / same / −0.5232782158693 |
+| `x_power_tan_x_plus_sin_x_power_cos_x` | x^(tanx)[sec²x·log x + tanx/x] + (sinx)^(cosx)[cos x cot x − sin x·log sin x] | 0 symbolically; x=0.6: 1.22924366998569 / same / 1.229243670187 | x=2.5: 2.65093278991713 / same / 2.650932790171 |
+| `x_power_x` | xˣ(1 + log x) | 0 symbolically; x=0.5: 0.216977709452274 / same / 0.2169777094108 | x=2.0: 6.77258872223978 / same / 6.772588722503; x=3.4: 142.599908142095 / same / 142.5999081661 |
+
+### FINDING — `ts_ipe_m1b_dif_three_tan_inverse_sum_derivative` — **MISLEADING** (low severity)
+
+Step `s3_triple`, second `common_mistakes` bullet: *"Writing the formula as
+(3 tan θ + tan³θ)/(1 + 3 tan²θ), **which are the signs of tan of a sum** and not of tan 3θ."*
+
+The bullet correctly identifies a wrong formula. Its stated reason is false. The tangent
+sum formula is
+
+    tan(A + B) = (tan A + tan B) / (1 − tan A tan B)
+
+— verified symbolically (`tan(A+B) − (tA+tB)/(1 − tA·tB)` simplifies to **0**). Its numerator sign
+is `+` but its **denominator sign is MINUS**. The `+ / +` pattern the bullet describes belongs to no
+standard tangent formula at all; it is the **hyperbolic** tangent's:
+`tanh 3u = (3T + T³)/(1 + 3T²)` with `T = tanh u` — checked numerically at u = 0.4, both sides
+**0.833654607012155**.
+
+This matters because the minus sign in the denominator of `tan(A + B)` is itself one of the most
+frequently examined details in the syllabus, and this sentence tells a Class-11 student that
+`tan(A + B)` has a plus there. Correct replacement: "…which is the tan 3θ formula with both signs
+flipped; tan(A + B) has a plus on top but a **minus** underneath." Nothing else on this card is
+wrong.
+
+### CLEAN in this group, with the checks named
+
+- **`sin_inverse_2x_over_1_plus_x2`** — CLEAN. Reduction `2x/(1+x²) = sin 2θ` under `x = tan θ`
+  correct, range `θ ∈ [−π/4, π/4] ⟺ x ∈ [−1, 1]` correct, and the range is in `lines`. The third
+  bullet — "the sign is different for x > 1" — I checked rather than assumed: at **x = 2** the true
+  derivative is **−0.4** and `−2/(1+x²) = −0.4`, so the sign really does flip. Checked at a negative
+  point too.
+- **`sin_inverse_3x_minus_4x3`** — CLEAN. `3 sin θ − 4 sin³θ = sin 3θ`; range
+  `θ ∈ [−π/6, π/6] ⟺ x ∈ [−1/2, 1/2]`, stated in `lines`. Its branch warning checked at
+  **x = 0.7**: the true derivative is **−4.20084025208** and `−3/√(1−x²)` is **−4.20084025208** —
+  the flip is real. The bullet that `sin 3θ = 4sin³θ − 3 sin θ` is "the cosine pattern with the
+  wrong function" is right (`cos 3θ = 4cos³θ − 3cos θ`).
+- **`tan_inverse_3a2x_minus_x3`** — CLEAN. `x = a tan θ` clears `a³` from both numerator and
+  denominator, leaving exactly `tan 3θ`; `y = 3 tan⁻¹(x/a)`; `dy/dx = 3a/(a²+x²)`. The branch note
+  is exact: `|3θ| < π/2 ⟺ |x| < a/√3`, and outside it the two differ by the constant π (so the
+  derivative is unchanged) — I confirmed the arithmetic `tan(π/6) = 1/√3`. The s4 `why` scaling
+  check is also true: doubling a and x from (3, 1.2) to (6, 2.4) takes **0.862068965517** to
+  **0.431034482759**, exactly half.
+- **`second_deriv_tan_inverse_2x_over_1_minus_x2`** — CLEAN. `y = 2 Tan⁻¹x` on `|x| < 1` with the
+  restriction stated in `lines`; `y″ = −4x/(1+x²)²`; and the margin's sign description (zero at
+  x = 0, negative for x > 0, positive for x < 0) is right — checked at x = 0.3 (−1.01) and
+  x = −0.6 (+1.30). `x ≠ ±1` is written beside the boxed answer.
+- **`sin_inverse_and_tan_inverse_equal_derivatives`** — CLEAN, and unusually careful. The
+  substitution `x − β = (α−β)sin²θ` forces `α − x = (α−β)cos²θ`, so f reduces to `Sin⁻¹|sin θ|` and
+  g to `Tan⁻¹|tan θ|`; **the card handles the modulus explicitly in both steps** and justifies
+  dropping it from `0 < θ < π/2`, which is exactly the step most answers skip. Step 4's logic —
+  equal on an *interval* ⟹ equal derivatives — is correctly stated, and the margin insists on "every
+  point", not one point. Step 5's common value verified: with α = 5, β = 1 I computed f′ and g′
+  independently at x = 1.6, 3.0 and 4.4 and they agree with each other, with the claimed
+  `1/(2√((x−β)(α−x)))`, and with both central differences (e.g. x = 3: all three read 0.25).
+- **`tan_inverse_root_1_minus_cos_over_1_plus_cos`** — CLEAN. `(1−cos x)/(1+cos x) = tan²(x/2)`;
+  the card writes `√(tan²(x/2)) = |tan(x/2)|` and states the range `0 < x < π` that removes the
+  modulus — in `lines`. Derivative 1/2 confirmed at x = 0.6 and x = 2.5.
+- **`tan_inverse_root_1_minus_x_over_1_plus_x`** — CLEAN. `x = cos 2θ` (not `cos θ`); both
+  half-angle identities used the right way round; the modulus on `√(tan²θ)` handled with a reason;
+  `y = ½cos⁻¹x` and `dy/dx = −1/(2√(1−x²))`. Checked at a negative x too, since the minus sign is
+  the whole risk here.
+- **`tan_inverse_root_1_plus_x2_minus_1_over_x`** — CLEAN. Same reduction as the
+  `f_wrt_g_tan_inverse_pair` card and consistent with it: `(sec θ − 1)/tan θ = tan(θ/2)`, so
+  `y = ½Tan⁻¹x`. `x ≠ 0` is stated in `lines`, and the range argument `θ/2 ∈ (−π/4, π/4)` is given.
+  Checked at a negative x (−1.4) as well.
+- **`tan_inverse_root_sum_over_difference`** — CLEAN, and its restriction reasoning is right at both
+  ends: `|x| < 1` for `1 − x² ≥ 0`, and `x ≠ 0` because the denominator vanishes there — both in
+  `lines`. Substituting on **x²** (not x) is the correct choice; `θ ∈ (0, π/4)` makes both
+  `√2 cos θ` and `√2 sin θ` positive; `(1+tan θ)/(1−tan θ) = tan(π/4 + θ)` with `π/4 + θ ∈
+  (π/4, π/2)` inside the principal range. Final `−x/√(1−x⁴)`. Because the reduction goes through x²
+  the answer is **odd** while y is **even** — I checked a negative point deliberately (x = −0.5
+  gives **+0.516397779494322**, matching), since an author who mishandled the x² substitution would
+  get the sign wrong exactly there.
+- **`tan_inverse_sec_x_plus_tan_x`** — CLEAN. `sec x + tan x = (1+sin x)/cos x`; `1 + sin x =
+  (cos(x/2)+sin(x/2))²` and `cos x = (cos(x/2)+sin(x/2))(cos(x/2)−sin(x/2))` — the shared bracket
+  really does cancel; `(1+tan(x/2))/(1−tan(x/2)) = tan(π/4 + x/2)`; derivative 1/2, confirmed at
+  three points including a negative one. *Observation, not banded:* the s4 `memory_tip` checks the
+  slope with "y(0) = π/4 and y(π/2) = π/2", but `x = π/2` is outside the card's own stated interval
+  `−π/2 < x < π/2` and the original function does not exist there (sympy returns `zoo` for both
+  `sec(π/2)` and `tan(π/2)`; the value π/2 is the one-sided **limit**, which sympy confirms). Unlike
+  the `y = x` check flagged in Group 3, this check does discriminate — a wrong slope would fail it —
+  and it lands on the right answer, so the harm is small; the honest phrasing is "as x → π/2⁻".
+- **`sin_x_power_x_plus_x_power_sin_x`** — CLEAN. Split before logging (the card explicitly warns
+  that `log(u+v) ≠ log u + log v`); `log u = x log(sin x)` and `log v = sin x·log x` are the right
+  way round, not duplicated; both brackets multiplied back by their own factor. Symbolic difference
+  **0**. Domain `x > 0` and `sin x > 0` stated in `lines`.
+- **`x_power_tan_x_plus_sin_x_power_cos_x`** — CLEAN. `d/dx(tan x) = sec²x` (the bullet warning
+  against `sec x tan x` is well aimed); the second term's minus sign from `d/dx(cos x)` survives to
+  the boxed line; `cos²x/sin x = cos x cot x` (not `cot²x`, as its own bullet says). Symbolic
+  difference **0**. Domain `x > 0` and `sin x > 0` stated in `lines`.
+- **`x_power_x`** — CLEAN. Logarithmic differentiation, `(1/y)y′ = 1 + log x`, multiplied back.
+  Symbolic difference **0**; checked at x = 0.5, 2.0 and 3.4 with central differences. `x > 0` is in
+  the very first line of the working. Both step-1 bullets correctly name the two rules that do
+  *not* apply, and the step-2 margin's check ("at x = 1 the derivative is 1") is right.
+
+**Group 6 verdict: 13 CLEAN, 1 MISLEADING, 0 WRONG, 0 THIN.**
+
+---
+
+# Summary
+
+## Tally by band — 72 of 72 cards
+
+| band | count | cards |
+|---|---|---|
+| **WRONG** | **0** | — |
+| **MISLEADING** | **4** | `ex_wrt_root_x`, `root_1_minus_x2_plus_root_1_minus_y2`, `x3_plus_y3_minus_3axy`, `three_tan_inverse_sum_derivative` |
+| **THIN** | **3** | `log_sec_x_plus_tan_x`, `log_tan_e_x`, `sec_root_tan_x` |
+| **CLEAN** | **65** | listed group by group above |
+
+**Not one card is mathematically wrong.** Every boxed derivative in all 72 cards survived an
+independent sympy re-derivation and a central-difference cross-check. That is a materially better
+result than the comparable run recorded in `docs/patterns/answer_book.md` (7 of 271 WRONG), and it
+also differs in kind from the companion 29-card pass: the four MISLEADING findings here are all
+*prose defects beside correct mathematics*, which is the shape that pass predicted, but three of the
+four sit in a **check or mnemonic the student is invited to apply**, not in a descriptive sentence.
+
+## Every finding, in one table
+
+| card | band | exact location | what it says | what it should say | numeric evidence |
+|---|---|---|---|---|---|
+| `ts_ipe_m1b_dif_ex_wrt_root_x` | MISLEADING | step `s2_divide`, `why` | "The fraction underneath is smaller than 1 near x = 0, so dividing by it must make the answer larger than eˣ." | `1/(2√x) → +∞` as `x → 0⁺`; it is below 1 only for `x > 1/4`. Dividing by it multiplies by `2√x`, which **shrinks** the answer when `x < 1/4`. | at x = 0.04: `1/(2√x) = 2.5`; answer `2√x·eˣ = 0.416324309676955` vs `eˣ = 1.04081077419` |
+| `ts_ipe_m1b_dif_ex_wrt_root_x` | MISLEADING | step `s2_divide`, `margin_note` | "…so the answer is larger than eˣ, never smaller." | Larger only for `x > 1/4`; equal at `x = 1/4`; smaller below. | same numbers; crossover exactly at x = 1/4 |
+| `ts_ipe_m1b_dif_root_1_minus_x2_plus_root_1_minus_y2` | MISLEADING | step `s5_differentiate`, `margin_note` | "The two roots must end the right way round… Check by putting y = x, which gives dy/dx = 1." | The check is symmetric — the inverted answer also gives 1 — so it cannot detect the named error; and `y = x` is not on the curve (`2√(1−x²) = 0 ⇒ x = ±1`, where the expression is 0/0). Check at a real point on the curve instead. | a = 2, x = 0.5, y = −0.392820323028: correct **1.0618802153517** = true slope **1.0618802153517**; inverted **0.94172580442022** |
+| `ts_ipe_m1b_dif_x3_plus_y3_minus_3axy` | MISLEADING (low) | step `s2_collect_and_solve`, `memory_tip` | "The numerator and the denominator have the same shape with x and y exchanged: ay − x² over y² − ax." | The denominator is **minus** the numerator with x and y exchanged. The true symmetry is that swapping x and y in the whole fraction gives the **reciprocal**. | a = 1.75: correct at x = 1 is **0.387760969269**, mnemonic-literal `(ay−x²)/(ax−y²)` is **−0.387760969269**; at x = 2, **0.907782301977** vs **−0.907782301977**; full swap at x = 2 gives **1.10158569717** = `1/(dy/dx)` |
+| `ts_ipe_m1b_dif_three_tan_inverse_sum_derivative` | MISLEADING (low) | step `s3_triple`, 2nd `common_mistakes` bullet | "(3 tan θ + tan³θ)/(1 + 3 tan²θ), which are the signs of tan of a sum" | `tan(A+B) = (tan A + tan B)/(1 − tan A·tan B)` — the denominator carries a **minus**. The `+/+` pattern is `tanh 3u`, not any tangent formula. | `tan(A+B) − (tA+tB)/(1−tA·tB)` simplifies to **0**; `tanh(3u)` at u = 0.4 = **0.833654607012155** = `(3T+T³)/(1+3T²)` |
+| `ts_ipe_m1b_dif_log_sec_x_plus_tan_x` | THIN | whole card | no condition on x anywhere the student reads | needs `sec x + tan x > 0`, i.e. `cos x > 0`; step 2 also cancels that bracket, so it must be non-zero | at x = 2, 3, 4 rad the bracket is **−4.5880378249839**, **−1.1526552089822717**, **−0.3720643741168197** — the function does not exist there |
+| `ts_ipe_m1b_dif_log_tan_e_x` | THIN | whole card | no condition on x | needs `tan eˣ > 0`; the `cosec` form additionally needs `sin(2eˣ) ≠ 0` | mathematics exact (`sec²θ/tan θ − 2 cosec 2θ = 0`), only the domain is missing |
+| `ts_ipe_m1b_dif_sec_root_tan_x` | THIN | whole card | no condition on x | needs `tan x > 0` (strictly, for the `2√(tan x)` denominator), i.e. `kπ < x < kπ + π/2` | mathematics exact (symbolic 0 at x = 0.4 and x = 1.0 with CD) |
+
+Three sibling log cards in the same unit **do** state their condition
+(`log_4x2_minus_9_second`, `log_diff_fractional_powers`, `log_sin_log_x`), so the three THIN cards
+are an inconsistency inside the unit rather than a house convention.
+
+## Checks that came back clean across the whole corpus
+
+- **No `common_mistakes` bullet names a correct move as an error.** The companion pass found six in
+  one batch; I found zero in 72 cards. Several bullets *do* flag a correct-but-unsimplified form
+  (e.g. `sec_3x`: "Stopping at 3 sin 3x/cos²3x, which is right but not in the expected form"), but
+  every one of those says so explicitly rather than calling the mathematics wrong.
+- **Every quotient-rule numerator is `u′v − uv′`, never reversed.** Checked on
+  `sin_y_equals_x_sin_a_plus_y`, `xy_equals_e_x_minus_y`, `log_quadratic_ratio`,
+  `ay4_equals_x_plus_b_5`, `x_root_a2_plus_x2_plus_a2_log` and `param_1_minus_t2_over_1_plus_t2`.
+- **Every parametric division is the right way up.** The finite-difference *slope* `ΔY/ΔX` was used
+  precisely because an inverted `(dx/dt)/(dy/dt)` fails it immediately; all five parametric cards
+  passed.
+- **Every logarithmic-differentiation card carries both terms of the log-derivative** and multiplies
+  back by y: `x_power_x`, `sin_x_power_x_plus_x_power_sin_x`,
+  `x_power_tan_x_plus_sin_x_power_cos_x`, `log_diff_fractional_powers`, `x_power_y_equals_y_power_x`,
+  `x_power_y_plus_y_power_x_equals_ab`, `y_equals_x_power_y`, `x_power_log_y_equals_log_x`,
+  `ay4_equals_x_plus_b_5`.
+- **Every first-principles card evaluates the limit rather than asserting it**, and in each one the
+  `h` genuinely cancels before the limit is taken.
+- **Branch and principal-range arguments are present and correct wherever they matter.** The
+  multiple-angle inverse-trig cards state their intervals in `lines`, and the four cards that claim
+  a *different* branch exists elsewhere (`cos_inverse_4x3_minus_3x`, `sin_inverse_2x_over_1_plus_x2`,
+  `sin_inverse_3x_minus_4x3`, `tan_inverse_wrt_sin_inverse`) are all right about it — I verified each
+  flip numerically on the other branch.
+
+## Where I disagreed with a card and the card turned out to be right
+
+1. **`param_cycloid_second_deriv` — the sign of `cosec⁴(t/2)/(4a)`.** I flagged this as a copied
+   textbook error, because the cycloid result every reference carries is
+   `d²y/dx² = −1/(4a sin⁴(t/2))`, i.e. **negative**. What changed my mind: this question's curve is
+   `y = a(1 + cos t)`, not the standard `y = a(1 − cos t)`. Re-deriving from the card's own
+   parametrisation gives `dy/dx = −cot(t/2)`, `d/dt(dy/dx) = +½cosec²(t/2)`, and after the second
+   division by `dx/dt`, `+cosec⁴(t/2)/(4a)`. Symbolic difference 0; numeric +7.76508757539322 at
+   t = 0.8. The card is right and the familiar sign is the one that does not apply.
+2. **`root_1_minus_x2…` s5 bullet "makes the answer come out as 1".** I first read this as a
+   fabricated consequence — dropping the `dy/dx` factor leaves no `dy/dx` to solve for at all. Then
+   I worked it through: dropping it leaves `1/√(1−x²) = 1/√(1−y²)`, i.e. `√(1−y²)/√(1−x²) = 1`, so
+   the claimed answer really does collapse to 1. The bullet is right — and noticing why is what
+   exposed the *other* defect on that card, since the margin note two lines above recommends
+   checking that you get 1.
+3. **`xy_equals_e_x_minus_y` s4 margin, "log x is not a factor of (1 + log x)".** I had this written
+   up as a MISLEADING finding — the fact needed is the converse, that `(1 + log x)` is not a factor
+   of `log x`. On checking, *both* statements are true (neither divides the other as polynomials in
+   `log x`) and the conclusion drawn is correct, so nothing false reaches the student. Downgraded to
+   an observation.
+4. **`three_tan_inverse_sum_derivative` s2 tip, "the count in the numerator matches the multiple of
+   the angle in every one of these three formulas".** This looked like a pattern asserted from three
+   examples. It is a theorem: the numerator of `tan nθ` is `C(n,1)t − C(n,3)t³ + …`, whose leading
+   coefficient is n. Confirmed on `tan 5θ = (5t − 10t³ + t⁵)/(1 − 10t² + 5t⁴)`.
+5. **`log_diff_fractional_powers`, the domain `−1/7 < x < 1/6`.** I expected a coaching-book-derived
+   card to state a sloppy or over-wide interval. `solve([1−2x>0, 1+3x>0, 1−6x>0, 1+7x>0])` returns
+   exactly `(−1/7 < x) & (x < 1/6)`.
+6. **`cos_inverse_4x3_minus_3x`, the bullet that the sign differs on `−1/2 < x < 1/2`.** I assumed
+   this was a hand-wave. At x = 0.2 the true derivative is **+3.06186217848** and `+3/√(1−x²)` is
+   **+3.06186217848** — the card is exactly right about where and how the branch changes.
+7. **`tan_inverse_3a2x_minus_x3` s4, "doubling both a and x halves 3a/(a²+x²)".** Read as a
+   plausible-sounding aside; it is a real scaling argument and the numbers confirm it
+   (0.862068965517 → 0.431034482759).
+8. **`x_power_y_equals_y_power_x`.** My first numeric probe at x = 2.5 returned `y = 2.5` and
+   `dy/dx = 1.0`, which told me nothing — the root-finder had landed on the trivial branch `y = x`,
+   where many wrong formulas also give 1. I re-ran on the non-trivial branch (x = 3,
+   y = 2.4780526802883, claim and finite difference both **−0.72717897733087**) before calling it
+   clean. Recording this because a single lazy probe on that curve is a false pass waiting to happen.
+
+## Coverage statement — honest
+
+**All 72 cards received a dedicated pass. None was swept.** For every card I:
+
+- read the complete card (question, every `lines` entry of every step, plus every `why`,
+  `memory_tip`, `margin_note` and `common_mistakes` bullet) from a full JSON dump — not a sampled
+  view;
+- re-derived the mathematics independently in sympy from the `question_text`, never from the card's
+  working;
+- evaluated the card's claim and my own at **two** numeric points — a third wherever a branch, a
+  sign, or a negative argument made one worth having — and ran a central difference `h = 1e-5`
+  (or `1e-6`, and `1e-8` in mpmath at 25 digits for the implicit and root-found curves) at those
+  points.
+
+Deliberate methodological choices, so they can be audited:
+
+- **`verification.note` was never used as evidence.** I read the notes only after forming a verdict,
+  and only to check whether a note contradicted what I had found. None did.
+- **Implicit cards were checked at points genuinely on the curve**, obtained by root-finding
+  `y(x)` at 25-digit precision, so the finite difference measures the real slope of the real curve,
+  not of an algebraic rearrangement.
+- **"Show that" cards have no derivative to compare**, so for those I constructed the actual
+  solution and evaluated the asserted identity's residual (e.g. `5yy″ − (y′)²` → 0;
+  `y₂ + tan x·y₁ + y cos²x` → 1.4e−16 and 2.2e−16).
+- **Three cards were checked on their off-interval branch as well**, because the card claims the
+  answer changes there.
+
+Gaps I am declaring rather than papering over:
+
+1. **I checked correctness, not the mark split.** `mark_split`, per-step `marks`, `marks_total`,
+   `qtype` and `expected_time_min` were outside this pass. Every card's own `verification.note`
+   says the split is this book's work and unverified by a Telangana IPE teacher; I did nothing to
+   change that status either way.
+2. **Domain conditions were judged card by card, not by a mechanical rule.** I banded THIN only
+   where a condition is absent entirely *and* the function fails on large intervals a student would
+   naturally test. Two further cards carry a weaker version of the same issue and are recorded as
+   observations rather than bands, with my reasoning stated so a stricter reader can promote them:
+   `a_cos_sin_x_plus_b_sin_sin_x` (the identity needs `cos x ≠ 0`, though the printed `tan x`
+   announces it) and `log_sin_log_x` (states `0 < log x < π` as an equivalence when
+   `sin(log x) > 0` also holds on `2kπ < log x < (2k+1)π` — at `x = e^{2.5π} ≈ 2575.97`,
+   `sin(log x) = 1.0`).
+3. **Rule 41 plain-language register was not audited, and the `recall` speech fields were only
+   counted, not judged.** One measurable thing I did stop to quantify, because it was visible on
+   nearly every card: **58 of the 72 cards** carry Telugu–English code-mixed strings in
+   `recall.accept` (of 1,229 accept strings in total) — e.g. `x_power_x`: "base kooda x, power kooda
+   x, so log teesukovali" and "y tho multiply chesi x power x rayali";
+   `2x2_minus_3xy_plus_y2_implicit`: "prati term ni x tho differentiate cheyyali". These are
+   speech-recognition *acceptance* patterns, not text a student is shown, so code-mix there may well
+   be deliberate — but it sits against the English-only product decision (Rule 30i) and against the
+   "plain English, never Hinglish" line in the authoring SOP, and I have not established which
+   intent applies. Flagging it as a question for the founder, not as a finding.
+4. **I did not compare these cards against the source book.** Originality and provenance
+   (`docs/ORIGINALITY_MATHS.md`) were out of scope.
 

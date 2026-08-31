@@ -241,7 +241,7 @@
         "label": "Differentiate both sides",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Last mark. The two roots must end the right way round: the y root on top, the x root underneath. Check by putting y = x, which gives dy/dx = 1.",
+        "margin_note": "Last mark. The two roots must end the right way round: the y root on top, the x root underneath. Check by putting a = 0, where the curve gives y = ±x and dy/dx must come out as ∓ the ratio of the two roots.",
         "lines": [
           "Differentiate Sin⁻¹x − Sin⁻¹y = 2 Cot⁻¹a with respect to x, taking y as a function of x:",
           "1/√(1 − x²) − (1/√(1 − y²))·(dy/dx) = 0",

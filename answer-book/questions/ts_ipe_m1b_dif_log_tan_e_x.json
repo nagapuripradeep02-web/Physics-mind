@@ -53,6 +53,7 @@
             "style": "heading"
           },
           "f(x) = log(tan eˣ), where log is the natural logarithm.",
+          "Here tan eˣ > 0, so the logarithm is defined.",
           "There are three layers: log outside, tan next, eˣ inside.",
           "Take u = tan eˣ. Then d/dx(log u) = (1/u) · du/dx",
           "∴ f′(x) = (1/tan eˣ) · d/dx(tan eˣ)"

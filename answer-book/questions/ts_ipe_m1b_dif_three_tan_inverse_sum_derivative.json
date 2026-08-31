@@ -178,7 +178,7 @@
         },
         "why": "The numerator 3x − x³ and the denominator 1 − 3x² are the two halves of the tangent triple angle formula, and no other standard formula has that pair. Recognising it replaces a quotient rule on a cubic over a quadratic.",
         "common_mistakes": [
-          "Writing the formula as (3 tan θ + tan³θ)/(1 + 3 tan²θ), which are the signs of tan of a sum and not of tan 3θ.",
+          "Writing the formula as (3 tan θ + tan³θ)/(1 + 3 tan²θ). Both signs are wrong: tan 3θ carries a minus above and below.",
           "Swapping the two threes, giving (3x − x³)/(1 − x²) or (x − 3x³)/(1 − 3x²)."
         ],
         "memory_tip": "In tan 3θ the odd power sits on top and the even power sits underneath, and the 3 appears once in each. The minus sign appears in both places too."

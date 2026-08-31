@@ -53,6 +53,7 @@
             "style": "heading"
           },
           "y = log(sec x + tan x),  where log is the natural logarithm.",
+          "Here sec x + tan x > 0, so cos x > 0.",
           "For u = sec x + tan x,  d/dx(log u) = (1/u) · du/dx",
           "du/dx = d/dx(sec x) + d/dx(tan x) = sec x tan x + sec²x",
           "∴ dy/dx = (sec x tan x + sec²x)/(sec x + tan x)"
