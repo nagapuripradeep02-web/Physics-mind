@@ -131,7 +131,7 @@
         "why": "This area comes out to exactly half of answer 14's area for the same three parameters, because the extra factor of 1/2 sitting in front of the determinant here has no counterpart in the earlier proof — that is also why the denominator here is 16a instead of 8a.",
         "common_mistakes": [
           "Reusing answer 14's final denominator of 8a instead of the 16a that the extra 1/2 here produces.",
-          "Dropping the absolute value bars again, the same slip as in answer 14."
+          "Dropping the absolute value bars again — the same slip as in the area formula step."
         ],
         "memory_tip": "This triangle (from tangents) is always half the area of the triangle in answer 14 (from the points themselves) for the same three parameters — 16a instead of 8a."
       }

@@ -189,7 +189,7 @@
         "label": "Take 2 cos(C/2) common",
         "marks": 1,
         "mark_note": "Factor",
-        "margin_note": "Sixth mark. Both pairs have 2 cos(C/2), so pull it out — leaving a sum of two cosines inside.",
+        "margin_note": "Seventh mark. Both pairs have 2 cos(C/2), so pull it out — leaving a sum of two cosines inside.",
         "memory_tip": "Both pairs share 2 cos(C/2) — pull it out, leaving a SUM of two cosines inside.",
         "lines": [
           "L.H.S = 2 cos(C/2) cos((A−B)/2)",

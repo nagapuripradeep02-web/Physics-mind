@@ -81,7 +81,7 @@
             "twenty seven over twenty"
           ]
         },
-        "why": "This is the same first pair as answer 75 arrived at, by a different route — 27/11 turns up repeatedly in this chapter.",
+        "why": "The same first pair can be reached by a different route — 27/11 turns up repeatedly in this chapter.",
         "common_mistakes": [
           "Using the difference formula on the first pair.",
           "Getting the denominator as 1 + xy."

@@ -125,7 +125,7 @@
             "ten minus four"
           ]
         },
-        "why": "Matching ¹⁰Cᵣ = ¹⁰C₄ is the same ⁿCᵣ = ⁿCₛ situation as answer 143.1: r = 4 OR r + 4 = 10. Both make the equation true, so both are answers.",
+        "why": "Matching ¹⁰Cᵣ = ¹⁰C₄ is the standard ⁿCᵣ = ⁿCₛ situation: r = 4 OR r + 4 = 10. Both make the equation true, so both are answers.",
         "common_mistakes": [
           "Answering r = 4 only, as the book does.",
           "Answering r = 6 only."

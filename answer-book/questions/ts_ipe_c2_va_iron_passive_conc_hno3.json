@@ -54,7 +54,7 @@
           },
           "The nitric acid is reduced to NO₂."
         ],
-        "why": "The reaction is a redox reaction: iron is oxidised and the acid is reduced. The book (book p.83, VSAQ 13) prints this as Fe + 2HNO₃ → FeO + H₂O + 2NO₂. That equation balances, but FeO is iron(II) oxide and concentrated nitric acid is too strong an oxidising agent to stop at the +2 state. The film that actually forms is Fe₃O₄, in which iron is present as both Fe(II) and Fe(III), so Fe₃O₄ is written here.",
+        "why": "The reaction is a redox reaction: iron is oxidised and the acid is reduced. Some books print this as Fe + 2HNO₃ → FeO + H₂O + 2NO₂. That equation balances, but FeO is iron(II) oxide and concentrated nitric acid is too strong an oxidising agent to stop at the +2 state. The film that actually forms is Fe₃O₄, in which iron is present as both Fe(II) and Fe(III), so Fe₃O₄ is written here.",
         "common_mistakes": [
           "Writing that no reaction happens at all. A reaction does happen; it stops after a very thin layer has formed.",
           "Writing the reduction product as NO. Concentrated nitric acid gives NO₂; dilute nitric acid gives NO."

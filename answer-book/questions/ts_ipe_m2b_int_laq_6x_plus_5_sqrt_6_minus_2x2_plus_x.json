@@ -73,7 +73,7 @@
           "Coeff of x: −4A=6 ⇒ A=−3/2; constant:",
           "A+B=5 ⇒ B=13/2"
         ],
-        "why": "The same A·Dr′+B split as answer 29, applied to a quadratic that DECREASES for large x (the −2x² term), which is what gives A a negative value here.",
+        "why": "The same A·Dr′+B split, applied to a quadratic that DECREASES for large x (the −2x² term), which is what gives A a negative value here.",
         "common_mistakes": [
           "Missing the minus sign in d/dx(6−2x²+x) = −4x+1, and instead differentiating as if the leading term were +2x².",
           "Sign slip solving A+B=5 for B once A=−3/2 is known."
@@ -97,7 +97,7 @@
           "(−3/2)·(2/3)(6−2x²+x)^{3/2}",
           "= −(6−2x²+x)^{3/2}"
         ],
-        "why": "The same f′(x)√f(x) power-rule shortcut as answer 29 handles the A-part; the minus sign on A carries through cleanly to give a NEGATIVE leading term this time.",
+        "why": "The same f′(x)√f(x) power-rule shortcut handles the A-part; the minus sign on A carries through cleanly to give a NEGATIVE leading term this time.",
         "common_mistakes": [
           "Losing the negative sign carried from A=−3/2, which makes this term positive instead of negative.",
           "Missing the exponent 3/2."
@@ -125,7 +125,7 @@
           "Completing the square into the wrong sign pattern, writing u²−a² (undefined for most x) instead of a²−u².",
           "Confusing Sin⁻¹ with sinh⁻¹ — they are DIFFERENT standard results for opposite sign patterns under the root."
         ],
-        "memory_tip": "Negative x² coefficient under a root ⇒ bounded a²−u² ⇒ Sin⁻¹ (capital S, circular). Positive ⇒ sinh⁻¹ (small s, hyperbolic), as in answer 29."
+        "memory_tip": "Negative x² coefficient under a root ⇒ bounded a²−u² ⇒ Sin⁻¹ (capital S, circular). Positive ⇒ sinh⁻¹ (small s, hyperbolic)."
       },
       {
         "id": "s4_final",

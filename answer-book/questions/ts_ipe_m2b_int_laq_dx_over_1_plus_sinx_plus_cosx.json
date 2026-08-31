@@ -63,7 +63,7 @@
           "Put tan(x/2) = t ⇒ sinx = 2t/(1+t²),",
           "cosx = (1−t²)/(1+t²), dx = 2dt/(1+t²)"
         ],
-        "why": "The same universal substitution as answer 21 — it works on any rational function of sinx and cosx, including one with a constant term (the 1) added in, as here.",
+        "why": "The same universal substitution t = tan(x/2) — it works on any rational function of sinx and cosx, including one with a constant term (the 1) added in, as here.",
         "common_mistakes": [
           "Misremembering the sign inside (1−t²) for cosx.",
           "Forgetting to also convert the constant 1 to (1+t²)/(1+t²) before combining terms."

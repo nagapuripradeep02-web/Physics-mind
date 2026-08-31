@@ -131,7 +131,7 @@
             "substitute"
           ]
         },
-        "why": "The product of the two tangents is (−λ)(−1/λ) = 1 exactly, which is what makes the denominator a clean 2 — the same mechanism as answers 132.1 and 132.2.",
+        "why": "The product of the two tangents is (−λ)(−1/λ) = 1 exactly, which is what makes the denominator a clean 2.",
         "common_mistakes": [
           "Getting the denominator as 1 − 1 = 0.",
           "Failing to combine the numerator over a common denominator."

@@ -186,7 +186,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
         "memory_tip": "Take 2 sinC out, then use cos(180° − θ) = −cos θ so the bracket becomes a difference.",
         "lines": [
           "= 2 sinC [cos(A−B) + cosC]",

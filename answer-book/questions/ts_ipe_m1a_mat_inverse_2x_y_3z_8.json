@@ -211,7 +211,7 @@
         "label": "Transpose to get Adj A",
         "marks": 1,
         "mark_note": "Adjoint and inverse",
-        "margin_note": "Fourth mark, and the step most often skipped. Adj A is the TRANSPOSE of the cofactor matrix — rows become columns. Then A⁻¹ is Adj A divided by det A.",
+        "margin_note": "Sixth mark, and the step most often skipped. Adj A is the TRANSPOSE of the cofactor matrix — rows become columns. Then A⁻¹ is Adj A divided by det A.",
         "memory_tip": "Adj A is the TRANSPOSE of the cofactor matrix — the step most often skipped. Then divide by det A.",
         "lines": [
           "Adj A is the transpose of the cofactor matrix:",

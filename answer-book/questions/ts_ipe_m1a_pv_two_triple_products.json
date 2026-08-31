@@ -195,7 +195,7 @@
         "label": "Find b×c",
         "marks": 2,
         "mark_note": "Combine",
-        "margin_note": "One mark. Second part now — a DIFFERENT inner bracket. Here the bracket is on the right, so b×c is what gets computed first.",
+        "margin_note": "Two marks. Second part now — a DIFFERENT inner bracket. Here the bracket is on the right, so b×c is what gets computed first.",
         "memory_tip": "Second part has a DIFFERENT inner bracket — on the right, so b×c comes first.",
         "lines": [
           "For the second part the bracket is b×c:",

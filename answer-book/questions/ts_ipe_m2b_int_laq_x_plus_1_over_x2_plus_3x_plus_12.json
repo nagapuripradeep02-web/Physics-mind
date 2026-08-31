@@ -72,7 +72,7 @@
           "Coeff of x: 2A=1 ⇒ A=1/2; constant:",
           "3A+B=1 ⇒ B=−1/2"
         ],
-        "why": "The same A·Dr′+B pattern as answer 27, now over a plain quadratic denominator with no root — the split is identical, only the final integration of each piece differs.",
+        "why": "The same A·Dr′+B pattern, now over a plain quadratic denominator with no root — the split is identical, only the final integration of each piece differs.",
         "common_mistakes": [
           "Forgetting A comes out as a fraction (1/2) here — it need not always be a whole number.",
           "Sign slip: 3(1/2)+B=1 gives B=1−3/2=−1/2, not +1/2."

@@ -62,9 +62,9 @@
           "Put tan(x/2) = t ⇒ sinx = 2t/(1+t²),",
           "cosx = (1−t²)/(1+t²), dx = 2dt/(1+t²)"
         ],
-        "why": "The same universal substitution as answers 21 and 22, now applied to a denominator that also carries a constant term.",
+        "why": "The same universal substitution t = tan(x/2), now applied to a denominator that also carries a constant term.",
         "common_mistakes": [
-          "Forgetting the constant 6 needs the common denominator (1+t²) too, exactly as in answer 22.",
+          "Forgetting the constant 6 needs the common denominator (1+t²) too, exactly as the sinx and cosx terms do.",
           "Sign error copying the cosx formula."
         ],
         "memory_tip": "Every term in the denominator — trig ratios AND any constant — goes over the same (1+t²)."

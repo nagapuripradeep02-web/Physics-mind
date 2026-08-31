@@ -171,7 +171,7 @@
             "product"
           ]
         },
-        "why": "This is exactly Unit 6 answer 27.1, quoted rather than re-proved — and r = 4R sin(A/2)sin(B/2)sin(C/2) rearranges to give the product directly.",
+        "why": "This is exactly the identity Σsin²(A/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2), proved in the Trigonometric Ratios chapter and quoted rather than re-proved — and r = 4R sin(A/2)sin(B/2)sin(C/2) rearranges to give the product directly.",
         "common_mistakes": [
           "Re-proving the identity from scratch.",
           "Writing the product as r/(2R)."

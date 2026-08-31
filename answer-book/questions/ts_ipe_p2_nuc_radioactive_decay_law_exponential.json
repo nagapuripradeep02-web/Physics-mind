@@ -242,7 +242,7 @@
             "style": "eq"
           }
         ],
-        "margin_note": "Fourth mark. The initial condition t = 0, N = N₀ fixes C.",
+        "margin_note": "Sixth mark. The initial condition t = 0, N = N₀ fixes C.",
         "why": "C carries the whole memory of how much material was there at the start; the rest of the equation is the same for every sample of the substance.",
         "common_mistakes": [
           "Taking C = 0. That is only true if N₀ = 1.",

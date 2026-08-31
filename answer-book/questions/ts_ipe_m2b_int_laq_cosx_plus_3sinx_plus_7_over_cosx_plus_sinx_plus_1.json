@@ -83,9 +83,9 @@
           "I = A∫[Dr′/Dr]dx + B∫1 dx + C∫dx/Dr",
           "= −log|cosx+sinx+1| + 2x + 5∫dx/(cosx+sinx+1)"
         ],
-        "why": "With A=−1 multiplying the log term, B=2 multiplying the plain x term, and C=5 left over on the genuine ∫dx/Dr piece, the split works exactly as in answer 25, roles relabelled.",
+        "why": "With A=−1 multiplying the log term, B=2 multiplying the plain x term, and C=5 left over on the genuine ∫dx/Dr piece, the split works exactly as in the earlier three-part example, roles relabelled.",
         "common_mistakes": [
-          "Putting the wrong sign on the log term — A=−1 makes this term NEGATIVE, unlike answer 25 where the log coefficient was positive.",
+          "Putting the wrong sign on the log term — A=−1 makes this term NEGATIVE, unlike the earlier example where the log coefficient was positive.",
           "Forgetting to carry C=5 as a multiplier on the remaining integral."
         ],
         "memory_tip": "A is negative here, so the log term in the final answer is subtracted, not added — check the sign before boxing the result."
@@ -110,7 +110,7 @@
           "Not recognising this as the same simplification worked already in answer 22, and re-deriving it with unnecessary extra steps.",
           "Losing the modulus bars on log|1+t|."
         ],
-        "memory_tip": "cosx+sinx+1 IS 1+sinx+cosx, just written in a different order — the same (1+t) simplification as answer 22 applies."
+        "memory_tip": "cosx+sinx+1 IS 1+sinx+cosx, just written in a different order — the same (1+t) simplification applies."
       },
       {
         "id": "s4_final",

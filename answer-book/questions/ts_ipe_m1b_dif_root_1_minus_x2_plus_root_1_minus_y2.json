@@ -141,10 +141,10 @@
         },
         "why": "In product form both sides carry the same factor 2 cos((A + B)/2), and that shared factor is what makes the next line short. Expanding cos A, cos B, sin A and sin B separately instead leaves nothing that cancels.",
         "common_mistakes": [
-          "Writing sin C − sin D = 2 sin((C − D)/2) cos((C + D)/2) with the two half angles swapped, which puts the sine on the wrong half.",
+          "Writing sin C − sin D = 2 sin((C + D)/2) cos((C − D)/2), which puts the sine on the half sum. That is the formula for sin C + sin D.",
           "Using the product form on cos A + cos B but expanding sin A − sin B term by term, so the common factor never appears."
         ],
-        "memory_tip": "Cosine plus cosine keeps two cosines. Sine minus sine keeps a cosine first and a sine second. In both forms the half sum comes before the half difference."
+        "memory_tip": "Cosine plus cosine keeps two cosines. Sine minus sine takes the cosine of the half sum and the sine of the half difference."
       },
       {
         "id": "s3_cancel",

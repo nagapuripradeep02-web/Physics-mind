@@ -164,7 +164,7 @@
         "label": "Take 2(a+b+c) common",
         "marks": 1,
         "mark_note": "Common factor",
-        "margin_note": "Third mark. Column 1 is now 2(a+b+c) three times over, so that factor comes out and column 1 becomes 1, 1, 1.",
+        "margin_note": "Fourth mark. Column 1 is now 2(a+b+c) three times over, so that factor comes out and column 1 becomes 1, 1, 1.",
         "memory_tip": "2(a+b+c) comes out of column 1, leaving it as 1, 1, 1.",
         "lines": [
           "Taking 2(a+b+c) common from C₁:",
@@ -255,7 +255,7 @@
         "label": "Expand along the first column",
         "marks": 1,
         "mark_note": "Expansion",
-        "margin_note": "Sixth mark. Column 1 is 1, 0, 0 so only one term survives, and its minor is a 2×2 with zeros off the diagonal — its value is just the product of the diagonal.",
+        "margin_note": "Seventh mark. Column 1 is 1, 0, 0 so only one term survives, and its minor is a 2×2 with zeros off the diagonal — its value is just the product of the diagonal.",
         "memory_tip": "Column 1 is 1, 0, 0, so one term survives and its minor has zeros off the diagonal.",
         "lines": [
           "Expanding along C₁:",

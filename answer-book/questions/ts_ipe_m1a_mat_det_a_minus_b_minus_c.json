@@ -244,7 +244,7 @@
         "label": "Expand along the first row",
         "marks": 1,
         "mark_note": "Expansion",
-        "margin_note": "Sixth mark. The top row is 1, 0, 0 so only one term survives, and its minor has zeros off the diagonal — its value is the product of the two diagonal entries.",
+        "margin_note": "Seventh mark. The top row is 1, 0, 0 so only one term survives, and its minor has zeros off the diagonal — its value is the product of the two diagonal entries.",
         "memory_tip": "The top row is 1, 0, 0, so one term survives, and its minor has zeros off the diagonal.",
         "lines": [
           "Expanding along R₁:",

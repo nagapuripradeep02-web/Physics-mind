@@ -182,7 +182,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
         "memory_tip": "Both bracket terms must be the same kind of function, or no formula applies. There is no 2 to take out.",
         "lines": [
           "= 1 − sin(C/2) [cos((A−B)/2) − sin(C/2)]",

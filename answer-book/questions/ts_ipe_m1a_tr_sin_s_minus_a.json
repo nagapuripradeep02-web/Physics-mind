@@ -187,7 +187,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
         "memory_tip": "The common factor comes out, and the condition is used again inside the bracket.",
         "lines": [
           "= 2 sin(C/2) [cos((B−A)/2) + cos(C/2)]",
@@ -260,7 +260,7 @@
             "sum formula"
           ]
         },
-        "why": "The 2 outside and the 2 from the formula multiply to the 4 in the answer, exactly as in answer 29.",
+        "why": "The 2 outside and the 2 from the formula multiply to the 4 in the answer.",
         "common_mistakes": [
           "Finishing with 2 instead of 4.",
           "Getting the arguments of the two cosines swapped."

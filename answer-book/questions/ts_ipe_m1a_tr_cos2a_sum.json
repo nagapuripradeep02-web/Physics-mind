@@ -194,7 +194,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
         "memory_tip": "Take the common factor out and leave the −1 outside; a sign slip turns the bracket into a difference.",
         "lines": [
           "= −1 − 2 cosC [cos(A−B) − cosC]",

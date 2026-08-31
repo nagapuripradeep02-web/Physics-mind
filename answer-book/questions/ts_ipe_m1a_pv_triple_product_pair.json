@@ -194,7 +194,7 @@
         "label": "Find a×b",
         "marks": 2,
         "mark_note": "Combine",
-        "margin_note": "One mark. Second part now, and the bracket has moved to the LEFT — so this time a×b is the inner product.",
+        "margin_note": "Two marks. Second part now, and the bracket has moved to the LEFT — so this time a×b is the inner product.",
         "memory_tip": "Second part now, and the bracket has moved LEFT — so a×b is the inner product this time.",
         "lines": [
           "For the second part the bracket is a×b:",

@@ -49,21 +49,21 @@
         "kind": "equation",
         "label": "Read off the coefficients",
         "marks": 1,
-        "margin_note": "First mark. The triangle a line makes with BOTH axes has a formula of its own — Δ = c²/(2|ab|) — so the only setting-up needed is to compare with ax + by + c = 0.",
-        "memory_tip": "The triangle a line makes with BOTH axes has its own formula, Δ = c²/(2|ab|) — just compare coefficients.",
+        "margin_note": "First mark. The triangle a line makes with BOTH axes has a formula of its own — Δ = r²/(2|pq|) — so the only setting-up needed is to compare with px + qy + r = 0.",
+        "memory_tip": "The triangle a line makes with BOTH axes has its own formula, Δ = r²/(2|pq|) — just compare coefficients.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
           "Given line is 3x + 4y = a  ⇒  3x + 4y − a = 0",
-          "On comparing with ax + by + c = 0, we get",
-          "a = 3, b = 4, c = −a",
-          "Area of the triangle is  Δ = c²/(2|ab|)"
+          "On comparing with px + qy + r = 0, we get",
+          "p = 3, q = 4, r = −a",
+          "Area of the triangle is  Δ = r²/(2|pq|)"
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the equation is compared with ax + by + c = 0 and the area formula Δ = c²/(2|ab|) is written.",
+          "must_convey": "That the equation is compared with px + qy + r = 0 and the area formula Δ = r²/(2|pq|) is written.",
           "accept": [
             "compare with a x plus b y plus c equals zero and use delta equals c squared over two mod a b",
             "the area formula for a line with both axes",
@@ -85,7 +85,7 @@
         },
         "why": "This formula already accounts for the two intercepts and the right angle at the origin, so no intercepts need finding separately.",
         "common_mistakes": [
-          "Getting the sign of c wrong when the equation is rearranged.",
+          "Getting the sign of r wrong when the equation is rearranged.",
           "Dropping the modulus and producing a negative area."
         ],
         "mark_note": "Method"
@@ -98,7 +98,7 @@
         "margin_note": "Second mark. Set the formula equal to the given area and solve — the modulus means the answer comes in a ± pair.",
         "memory_tip": "Set the formula equal to the given area. The modulus means the answer comes as a ± pair.",
         "lines": [
-          "Δ = c²/(2|ab|) = (−a)²/(2|(3)(4)|) = a²/24",
+          "Δ = r²/(2|pq|) = (−a)²/(2|(3)(4)|) = a²/24",
           "But given Area is 6",
           "∴ a²/24 = 6  ⇒  a² = 6 × 24 = 144 = 12²",
           {
@@ -131,11 +131,11 @@
         "why": "a appears squared in the formula, so both a positive and a negative value give the same area — both are genuine answers.",
         "common_mistakes": [
           "Reporting only the positive value of a.",
-          "Forgetting to square c before dividing."
+          "Forgetting to square r before dividing."
         ],
         "mark_note": "Solution"
       }
     ]
   },
-  "insider_note": "Use Δ = c²/(2|ab|) with the line written as 3x + 4y − a = 0, so c = −a and c² = a². Since a² = 144 both signs are answers, a = ±12, and giving only 12 loses the second mark."
+  "insider_note": "Use Δ = r²/(2|pq|), comparing with px + qy + r = 0, so r = −a and r² = a². Since a² = 144 both signs are answers, a = ±12, and giving only 12 loses the second mark."
 }

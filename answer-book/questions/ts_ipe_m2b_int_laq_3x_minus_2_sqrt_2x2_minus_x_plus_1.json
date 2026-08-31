@@ -68,7 +68,7 @@
           "Coeff of x: 4A=3 ⇒ A=3/4; constant:",
           "−A+B=−2 ⇒ B=−2+3/4=−5/4"
         ],
-        "why": "Writing the outside multiplier as A times the derivative of the expression under the root (plus a leftover B) is the same idea as answer 27, now for a MULTIPLIED root instead of a divided one.",
+        "why": "Writing the outside multiplier as A times the derivative of the expression under the root (plus a leftover B) is the same idea used earlier in this chapter, now for a MULTIPLIED root instead of a divided one.",
         "common_mistakes": [
           "Confusing this with the A·Dr′+B split used for a root in the DENOMINATOR (answer 27) and expecting the same final formula.",
           "Sign slip: −A+B=−2 with A=3/4 gives B=−2+3/4=−5/4, not −2−3/4."

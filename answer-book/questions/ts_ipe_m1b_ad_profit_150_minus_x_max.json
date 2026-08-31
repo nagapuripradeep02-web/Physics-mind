@@ -228,5 +228,5 @@
       }
     ]
   },
-  "insider_note": "Expand before differentiating. The x² coefficient is negative, so the stationary point is automatically a maximum and no second-derivative test is needed."
+  "insider_note": "Expand before differentiating. The x² coefficient is negative, so you can see in advance that the stationary point is a maximum — but the second-derivative test still carries a mark of its own, so write P″ = −2 < 0 anyway."
 }
