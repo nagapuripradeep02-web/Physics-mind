@@ -1,0 +1,132 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_unit_vector_sum_a_2i_2j_minus5k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find a unit vector in the direction of the sum of the vectors a = 2i + 2j − 5k and b = 2i + j + 3k.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Add and find the magnitude",
+      "marks": 1
+    },
+    {
+      "label": "Divide by the magnitude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.60, chapter 6 ADDITION OF VECTORS, Very Short Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question: the first mark is for adding the two vectors and finding the magnitude of the sum, the second for dividing the sum by that magnitude. This book prints almost no exam-appearance years, so appearances[] is empty — Addition of Vectors has long been examined, we simply have no sourced years for this question. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find a unit vector along the sum of two given vectors.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Add and find the magnitude",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The two k components are −5 and +3, so the k component of the sum is −2, not −8. Squaring it gives +4.",
+        "memory_tip": "Add the components first, then take the magnitude. Squaring −2 gives +4, so the 4 is added under the root, never subtracted.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "a + b = (2i + 2j − 5k) + (2i + j + 3k)",
+          "  = 4i + 3j − 2k",
+          "⇒ |a + b| = √(4² + 3² + (−2)²)",
+          "  = √(16 + 9 + 4) = √29"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a + b = 4i + 3j − 2k and that its magnitude is √29.",
+          "accept": [
+            "add them to get four i plus three j minus two k and the magnitude is root twenty nine",
+            "first add the vectors then take the magnitude of the sum",
+            "the sum is four i plus three j minus two k with length root twenty nine",
+            "modata add chesi tarvata magnitude teeskovali, root twenty nine",
+            "add componentwise and find the length of the sum"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four i plus three j",
+            "minus two k",
+            "root twenty nine",
+            "magnitude"
+          ]
+        },
+        "why": "The direction asked for is the direction of the SUM, so the addition has to happen before anything else. Magnitudes do not add: |a + b| is not |a| + |b|.",
+        "common_mistakes": [
+          "Adding |a| and |b| instead of adding the vectors first.",
+          "Writing the k component of the sum as −8 or as +2.",
+          "Writing √(16 + 9 − 4) because the k component is negative."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Divide by the magnitude",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. A unit vector is the vector divided by its own length, so the whole of a + b goes over √29. Leaving the root in the denominator is accepted.",
+        "memory_tip": "A unit vector is the vector over its own length. Here the whole sum goes over √29.",
+        "lines": [
+          "∴ Required unit vector = (a + b)/|a + b|",
+          {
+            "text": "= (4i + 3j − 2k)/√29",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the unit vector is (a + b) divided by |a + b|, giving (4i + 3j − 2k)/√29.",
+          "accept": [
+            "divide the sum by root twenty nine",
+            "the unit vector is four i plus three j minus two k over root twenty nine",
+            "a plus b over mod a plus b",
+            "sum ni daani magnitude tho divide cheyyali",
+            "the answer is the sum divided by its own length"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "unit vector",
+            "root twenty nine",
+            "divide",
+            "a plus b"
+          ]
+        },
+        "why": "Dividing a vector by its own magnitude leaves the direction unchanged and makes the length exactly 1, which is what the word unit means here.",
+        "common_mistakes": [
+          "Dividing each of a and b by its own length and then adding.",
+          "Giving 4i + 3j − 2k and forgetting to divide at all."
+        ]
+      }
+    ]
+  }
+}

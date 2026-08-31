@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_intercept_ratio_2_3_through_3_minus4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the equation of the straight line through (3, −4) whose x-intercept and y-intercept are in the ratio 2 : 3.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the intercept form with one unknown",
+      "marks": 1
+    },
+    {
+      "label": "Use the point and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 8, book p.141. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for turning the ratio into a single unknown k and writing the intercept form, and the second for substituting the point and clearing k. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked by substitution: 3(3) + 2(−4) − 1 = 9 − 8 − 1 = 0, so (3, −4) lies on 3x + 2y − 1 = 0; its intercepts are 1/3 and 1/2, and (1/3) : (1/2) = 2 : 3, so both conditions in the question hold."
+  },
+  "recall_prompt": "Say how you would solve this — say how the ratio becomes one unknown, and where the given point is used.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_intercept_form",
+        "kind": "equation",
+        "label": "Write the intercept form with one unknown",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A ratio 2 : 3 does not fix the two intercepts, only their proportion, so write them as 2k and 3k and carry one unknown instead of two.",
+        "memory_tip": "A ratio gives one unknown, not two: intercepts in the ratio 2 : 3 are 2k and 3k.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The intercepts are in the ratio 2 : 3",
+          "∴ take x-intercept a = 2k,",
+          "and y-intercept b = 3k,  where k ≠ 0",
+          "Intercept form is  x/a + y/b = 1",
+          "⇒ x/(2k) + y/(3k) = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the intercepts are taken as 2k and 3k and put into the intercept form x/a + y/b = 1.",
+          "accept": [
+            "take the intercepts as two k and three k",
+            "use the intercept form x by a plus y by b equals one",
+            "the ratio gives one unknown k",
+            "intercepts ni two k three k ga teesukovali",
+            "write x by two k plus y by three k equals one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "substitute the point three minus four"
+          ],
+          "heard_as": [
+            "two k and three k",
+            "intercept form",
+            "x by a plus y by b",
+            "ratio two is to three"
+          ]
+        },
+        "why": "The intercept form is the only standard form that shows both intercepts directly, so a condition on the intercepts can be written into it at once.",
+        "common_mistakes": [
+          "Taking the intercepts as 2 and 3 instead of 2k and 3k.",
+          "Writing the intercept form as ax + by = 1."
+        ]
+      },
+      {
+        "id": "s2_use_the_point_and_finish",
+        "kind": "boxed_final",
+        "label": "Use the point and finish",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The point gives one equation in k. Multiplying through by 6k clears both denominators in one move.",
+        "memory_tip": "Multiply by the LCM of the denominators, here 6k, so no fractions are left to slip on.",
+        "lines": [
+          "It passes through (3, −4)",
+          "⇒ 3/(2k) − 4/(3k) = 1",
+          "Multiply by 6k:  9 − 8 = 6k",
+          "⇒ 6k = 1  ⇒  k = 1/6",
+          "∴ a = 2k = 1/3  and  b = 3k = 1/2",
+          "x/(1/3) + y/(1/2) = 1  ⇒  3x + 2y = 1",
+          {
+            "text": "∴ 3x + 2y − 1 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting (3, −4) gives k = 1/6, the intercepts 1/3 and 1/2, and the line 3x + 2y − 1 = 0.",
+          "accept": [
+            "put three and minus four into the equation",
+            "multiply by six k to get nine minus eight",
+            "k is one by six",
+            "point substitute chesthe k one by six vasthundi",
+            "the line is three x plus two y minus one equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "take the intercepts as two k and three k"
+          ],
+          "heard_as": [
+            "six k",
+            "k is one by six",
+            "three x plus two y",
+            "minus one equals zero"
+          ]
+        },
+        "why": "Dividing by a fraction is multiplying by its reciprocal, so x/(1/3) becomes 3x and y/(1/2) becomes 2y, which clears the last fractions.",
+        "common_mistakes": [
+          "Substituting y = 4 instead of y = −4.",
+          "Writing x/(1/3) as x/3 instead of 3x."
+        ]
+      }
+    ]
+  }
+}

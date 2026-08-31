@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_aat_is_symmetric_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "For any square matrix A, show that AAᵀ is symmetric.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the reversal law",
+      "marks": 1
+    },
+    {
+      "label": "Transpose AAᵀ and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.34, chapter 5 MATRICES, Very Short Answer question 18. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards naming the reversal law (XY)ᵀ = YᵀXᵀ separately from applying it, because the law is the whole method and a proof that uses it silently shows no reason for the order swap. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Note on the statement: the result holds for ANY matrix A, square or not, because AAᵀ is square in every case. The card proves it as asked, for a square A, and says nothing wider."
+  },
+  "recall_prompt": "Say what has to be shown, name the law you use, and give the two lines of the proof.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reversal_law",
+        "kind": "equation",
+        "label": "State the reversal law",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Say what symmetric means, name the matrix B = AAᵀ, and write the reversal law. Those three lines are the method.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A matrix B is symmetric when Bᵀ = B.",
+          "Take B = AAᵀ. To find Bᵀ, use the reversal",
+          "law for the transpose of a product:",
+          "(XY)ᵀ = YᵀXᵀ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That symmetric means Bᵀ = B, and that the transpose of a product reverses the order, (XY)ᵀ = YᵀXᵀ.",
+          "accept": [
+            "symmetric means B transpose equals B",
+            "the transpose of a product is the product of the transposes in reverse order",
+            "X Y transpose equals Y transpose X transpose",
+            "product ki transpose teeste order reverse avutundi, X Y transpose equals Y transpose X transpose",
+            "call A A transpose B and take the transpose of B"
+          ],
+          "reject": [
+            "show it is symmetric",
+            "take the transpose"
+          ],
+          "heard_as": [
+            "reversal law",
+            "transpose of a product",
+            "Y transpose X transpose",
+            "symmetric"
+          ]
+        },
+        "why": "The question is a test, not a calculation: a matrix is symmetric exactly when its transpose gives it back. The only tool needed is the reversal law, and it is worth writing on its own line because the order swap is what makes the proof work.",
+        "common_mistakes": [
+          "Writing (XY)ᵀ = XᵀYᵀ, without reversing the order.",
+          "Testing one numerical matrix instead of proving it for any A.",
+          "Never stating what symmetric means."
+        ],
+        "memory_tip": "The transpose of a product reverses the order: (XY)ᵀ = YᵀXᵀ."
+      },
+      {
+        "id": "s2_conclude",
+        "kind": "boxed_final",
+        "label": "Transpose AAᵀ and conclude",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Apply the law, then use (Aᵀ)ᵀ = A. Bᵀ comes back as B, which is exactly the definition of symmetric.",
+        "lines": [
+          "Bᵀ = (AAᵀ)ᵀ = (Aᵀ)ᵀ Aᵀ",
+          "Now (Aᵀ)ᵀ = A, so",
+          "Bᵀ = A Aᵀ = B",
+          "B equals its own transpose.",
+          {
+            "text": "∴ AAᵀ is a symmetric matrix.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (AAᵀ)ᵀ = (Aᵀ)ᵀAᵀ = AAᵀ, so the matrix equals its own transpose and is symmetric.",
+          "accept": [
+            "transposing A A transpose gives A transpose transpose times A transpose",
+            "A transpose transpose is A so we get back A A transpose",
+            "B transpose equals B so it is symmetric",
+            "double transpose A ne isthundi, so B transpose equals B",
+            "the transpose returns the same matrix, hence symmetric"
+          ],
+          "reject": [
+            "hence proved",
+            "it is symmetric"
+          ],
+          "heard_as": [
+            "A A transpose",
+            "double transpose",
+            "B transpose equals B",
+            "symmetric"
+          ]
+        },
+        "why": "Reversing the order of AAᵀ gives (Aᵀ)ᵀAᵀ, and taking the transpose twice returns the original matrix. The product is therefore unchanged, which is the definition of symmetric being met and not merely observed.",
+        "common_mistakes": [
+          "Skipping the step (Aᵀ)ᵀ = A.",
+          "Writing (AAᵀ)ᵀ = AᵀA, which is a different matrix.",
+          "Stopping at Bᵀ = AAᵀ without saying that this is B."
+        ],
+        "memory_tip": "Transposing twice returns the original: (Aᵀ)ᵀ = A."
+      }
+    ]
+  }
+}

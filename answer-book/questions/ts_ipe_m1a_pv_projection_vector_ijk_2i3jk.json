@@ -1,0 +1,224 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_projection_vector_ijk_2i3jk",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Let a = i + j + k and b = 2i + 3j + k. Find the projection vector of b on a.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the direction and write the formula",
+      "marks": 1
+    },
+    {
+      "label": "Find a·b",
+      "marks": 1
+    },
+    {
+      "label": "Find |a|²",
+      "marks": 1
+    },
+    {
+      "label": "Substitute to get the projection vector",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 35(i), book p.74. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. b is projected ON a, so the answer points along a and the formula is ((a·b)/|a|²)a. Computed twice. Symbolically: a·b = 6, |a|² = 3, so the projection vector is (6/3)a = 2(i + j + k) = 2i + 2j + 2k. By the other form: the unit vector along a is (i + j + k)/√3, the scalar projection is (a·b)/|a| = 6/√3 = 2√3, and 2√3 × (i + j + k)/√3 = 2(i + j + k), the same vector. Its length is 2√3 ≈ 3.464, which equals the scalar projection, as it must. Part (ii) of the same book question asks for the perpendicular component and is authored separately as ts_ipe_m1a_pv_component_perpendicular_and_scalar. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: identifying which vector is projected onto which and writing the right formula, the dot product, the squared length, and the substitution. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the projection vector of one vector on another — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_direction",
+        "kind": "equation",
+        "label": "Name the direction and the formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. Read the words carefully: b ON a. The answer therefore points along a, so a must appear in it. Projecting a on b would give a different vector.",
+        "memory_tip": "Projection of b ON a points along a, so a stays in the answer.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "a = i + j + k,  b = 2i + 3j + k",
+          "b is projected ON a, so the answer",
+          "points along a.",
+          "Projection vector of b on a",
+          "  = ((a·b)/|a|²) a"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b is projected on a, so the projection vector is ((a·b)/|a|²)a and points along a.",
+          "accept": [
+            "b on a means the answer points along a",
+            "the projection vector is a dot b over mod a squared times a",
+            "divide by the square of the length of a and keep the vector a",
+            "b on a ante answer a direction lo untundi",
+            "write the projection formula with a in it"
+          ],
+          "reject": [
+            "find the projection",
+            "that is the answer",
+            "find the dot product"
+          ],
+          "heard_as": [
+            "projection vector",
+            "b on a",
+            "mod a squared",
+            "along a"
+          ]
+        },
+        "why": "A projection is the shadow one vector casts on the direction of the other. The direction it is cast onto decides which vector survives in the answer, so naming it first prevents the whole calculation being done the wrong way round.",
+        "common_mistakes": [
+          "Projecting a on b, which gives ((a·b)/|b|²)b instead.",
+          "Dividing by |a| rather than |a|², which gives a length and not a vector."
+        ]
+      },
+      {
+        "id": "s2_dot",
+        "kind": "equation",
+        "label": "Find a·b",
+        "marks": 1,
+        "mark_note": "Dot product",
+        "margin_note": "Second mark. All components of a are 1, so the dot product is just the sum of the components of b. Every term is positive here.",
+        "memory_tip": "All the components of a are 1, so a·b is simply the sum of b's components.",
+        "lines": [
+          "a·b = 1(2) + 1(3) + 1(1)",
+          "    = 2 + 3 + 1",
+          "    = 6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a·b = 2 + 3 + 1 = 6.",
+          "accept": [
+            "a dot b is two plus three plus one which is six",
+            "since a is all ones the dot product is the sum of b's components",
+            "the dot product comes to six",
+            "a annee ones kabatti b components add cheste six",
+            "multiply matching components and add to get six"
+          ],
+          "reject": [
+            "find the dot product",
+            "that is the answer",
+            "now find the magnitude"
+          ],
+          "heard_as": [
+            "a dot b",
+            "six",
+            "two plus three plus one"
+          ]
+        },
+        "why": "The dot product measures how much of b lies along a, before any scaling. It is the numerator of the projection and carries the sign, so a negative value would mean the projection points opposite to a.",
+        "common_mistakes": [
+          "Computing b·b instead of a·b.",
+          "Adding the components of a and b separately."
+        ]
+      },
+      {
+        "id": "s3_magnitude",
+        "kind": "equation",
+        "label": "Find |a|²",
+        "marks": 1,
+        "mark_note": "Squared length",
+        "margin_note": "Third mark. The formula needs |a|², not |a|, so there is no need to leave a √3 anywhere. Squaring the root immediately keeps the arithmetic whole.",
+        "memory_tip": "The projection formula needs |a|², so stop at 3 and never write √3.",
+        "lines": [
+          "|a| = √(1² + 1² + 1²) = √3",
+          "∴ |a|² = 3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |a| = √3, so |a|² = 3.",
+          "accept": [
+            "mod a is root three so mod a squared is three",
+            "one plus one plus one is three",
+            "the squared length of a is three",
+            "mod a root three, mod a square three",
+            "the denominator of the formula is three"
+          ],
+          "reject": [
+            "find the magnitude",
+            "that is the answer",
+            "now substitute"
+          ],
+          "heard_as": [
+            "root three",
+            "three",
+            "mod a squared"
+          ]
+        },
+        "why": "One factor of |a| turns a into a unit vector and the second scales the projection to its true length. That is why the square, not the length itself, sits in the denominator.",
+        "common_mistakes": [
+          "Using |b| in the denominator.",
+          "Leaving √3 in the denominator and getting a projection that is too long by a factor of √3."
+        ]
+      },
+      {
+        "id": "s4_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute for the answer",
+        "marks": 1,
+        "mark_note": "Projection vector",
+        "margin_note": "Last mark. 6/3 = 2 is a clean whole number, so the projection vector is simply twice a. Write it out in components as well, because the answer must read as a vector.",
+        "memory_tip": "6 over 3 is 2, so the projection is exactly twice a.",
+        "lines": [
+          "Projection vector of b on a",
+          "  = (6/3)(i + j + k)",
+          "  = 2(i + j + k)",
+          {
+            "text": "∴ Projection = 2i + 2j + 2k",
+            "style": "boxed"
+          },
+          "Its length is |2i + 2j + 2k| = 2√3."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the projection vector is (6/3)a = 2(i + j + k) = 2i + 2j + 2k.",
+          "accept": [
+            "six over three is two so the projection is two i two j two k",
+            "the projection vector is twice a",
+            "two times i plus j plus k",
+            "six by three two, so projection two i plus two j plus two k",
+            "the answer is a vector pointing along a with length two root three"
+          ],
+          "reject": [
+            "substitute the values",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two i two j two k",
+            "twice a",
+            "six by three",
+            "two root three"
+          ]
+        },
+        "why": "The scalar 2 says the shadow of b on a is twice the length of a itself. Keeping a in the answer is what makes it a projection VECTOR rather than a projection length.",
+        "common_mistakes": [
+          "Giving 2√3 or 6/√3 as the answer, which is the projection length and not the vector.",
+          "Writing 2 as the answer with no vector attached."
+        ]
+      }
+    ]
+  }
+}

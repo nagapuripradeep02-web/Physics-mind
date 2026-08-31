@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_2a_plus_bt_and_3bt_minus_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A is the matrix with rows (−2, 1), (5, 0) and (−1, 4), and B is the matrix with rows (−2, 3, 1) and (4, 0, 2), then find 2A + Bᵀ and 3Bᵀ − A.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write Bᵀ and find 2A + Bᵀ",
+      "marks": 1
+    },
+    {
+      "label": "Find 3Bᵀ − A",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 10, book p.33. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to each of the two matrices asked for, and Bᵀ is written inside the first step because both parts need it. ORDERS: A is 3×2 and B is 2×3, so Bᵀ is 3×2 and both sums are defined; A + B itself would not be. CHECKED: every entry of both answers was recomputed a second time straight from the stem, as 2aᵢⱼ + bⱼᵢ and 3bⱼᵢ − aᵢⱼ, and matched. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would work out 2A + Bᵀ and 3Bᵀ − A here.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bt_and_first_sum",
+        "kind": "equation",
+        "label": "Write Bᵀ and find 2A + Bᵀ",
+        "marks": 1,
+        "mark_note": "First matrix",
+        "margin_note": "First mark. Check the orders before adding anything: A is 3×2, B is 2×3, so Bᵀ is 3×2 and matches A. A + B on its own is not defined at all.",
+        "memory_tip": "Row 1 of Bᵀ is column 1 of B. Read B down its columns and write each column as a row.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A is 3×2 and B is 2×3, so Bᵀ is 3×2.",
+          {
+            "text": "B^{T} = \\begin{bmatrix} -2 & 4 \\\\ 3 & 0 \\\\ 1 & 2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "2A + B^{T} = \\begin{bmatrix} -4 & 2 \\\\ 10 & 0 \\\\ -2 & 8 \\end{bmatrix} + \\begin{bmatrix} -2 & 4 \\\\ 3 & 0 \\\\ 1 & 2 \\end{bmatrix} = \\begin{bmatrix} -6 & 6 \\\\ 13 & 0 \\\\ -1 & 10 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Bᵀ is 3×2 so it can be added to A, and 2A + Bᵀ is found entry by entry.",
+          "accept": [
+            "transpose B first so it is three by two like A then add",
+            "B transpose makes the orders match, then double A and add",
+            "columns of B become rows of B transpose, then add to two A",
+            "B transpose teeskunte three by two avuthundi, appudu add cheyyachu",
+            "double every entry of A and add the transpose"
+          ],
+          "reject": [
+            "add them",
+            "find two A plus B"
+          ],
+          "heard_as": [
+            "B transpose",
+            "three by two",
+            "two A",
+            "orders match"
+          ]
+        },
+        "why": "Matrices add only when they have the same order. Transposing B is what makes the addition possible, so checking the orders is part of the answer, not a preliminary.",
+        "common_mistakes": [
+          "Adding A and B directly, which is not defined.",
+          "Writing Bᵀ as a 2×3 matrix by reversing the rows instead of exchanging rows with columns."
+        ]
+      },
+      {
+        "id": "s2_second_matrix",
+        "kind": "boxed_final",
+        "label": "Find 3Bᵀ − A",
+        "marks": 1,
+        "mark_note": "Second matrix",
+        "margin_note": "Second mark. Scale first, subtract second. Note the order of the subtraction: it is 3Bᵀ − A, not A − 3Bᵀ.",
+        "memory_tip": "Scale both matrices first, then subtract once. Doing it the other way round changes the answer.",
+        "lines": [
+          {
+            "text": "3B^{T} - A = \\begin{bmatrix} -6 & 12 \\\\ 9 & 0 \\\\ 3 & 6 \\end{bmatrix} - \\begin{bmatrix} -2 & 1 \\\\ 5 & 0 \\\\ -1 & 4 \\end{bmatrix} = \\begin{bmatrix} -4 & 11 \\\\ 4 & 0 \\\\ 4 & 2 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Both answers are 3×2 matrices.",
+          {
+            "text": "∴ 2A + Bᵀ and 3Bᵀ − A are as above",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 3Bᵀ is formed first and A is then subtracted from it, giving a 3×2 matrix with rows (−4, 11), (4, 0) and (4, 2).",
+          "accept": [
+            "multiply B transpose by three then subtract A entry by entry",
+            "three times B transpose minus A gives minus four eleven, four zero, four two",
+            "scale first and subtract second, keeping the order three B transpose minus A",
+            "mundu three tho multiply chesi taruvatha A ni subtract cheyyali",
+            "the second answer is also a three by two matrix"
+          ],
+          "reject": [
+            "subtract them",
+            "do the same again"
+          ],
+          "heard_as": [
+            "three B transpose",
+            "minus A",
+            "minus four",
+            "eleven"
+          ]
+        },
+        "why": "Scalar multiplication reaches every entry, and subtraction acts position by position. Doing the scaling before the subtraction keeps the work to one pass.",
+        "common_mistakes": [
+          "Computing A − 3Bᵀ and getting every sign wrong.",
+          "Subtracting A before multiplying Bᵀ by 3."
+        ]
+      }
+    ]
+  }
+}

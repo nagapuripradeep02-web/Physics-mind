@@ -1,0 +1,233 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_cross_product_axes_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "For any vector a, show that |a × i|² + |a × j|² + |a × k|² = 2|a|².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write a in components",
+      "marks": 1
+    },
+    {
+      "label": "Find a × i and its squared length",
+      "marks": 1
+    },
+    {
+      "label": "Do the same with j and with k",
+      "marks": 1
+    },
+    {
+      "label": "Add the three results",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.74, chapter 7 PRODUCT OF VECTORS, Short Answer question 37. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the general set-up, the first cross product worked in full, the two that repeat the pattern, and the addition where the factor 2 appears — the set-up carries its own mark because the identity is claimed for EVERY vector, so components must be general and a numerical test alone is not a proof. ESTABLISHED ALGEBRAICALLY and then CHECKED ON A CONCRETE VECTOR: with a = 2i − 3j + 6k, a × i = 6j + 3k, a × j = −6i + 2k and a × k = −3i − 2j; each was dotted with a and with its own axis vector and every one of the six dot products was 0 — for instance (6j + 3k)·a = 0 − 18 + 18 = 0 and (6j + 3k)·i = 0. Their squared lengths are 45, 40 and 13, summing to 98, and 2|a|² = 2(4 + 9 + 36) = 98. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say why the factor 2 appears at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_components",
+        "kind": "equation",
+        "label": "Write a in components",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. The identity is claimed for every vector, so a must carry general components. Testing one particular vector is a check, not a proof.",
+        "memory_tip": "A claim about every vector needs letters, not numbers — write a₁, a₂, a₃ and keep them to the end.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = a₁i + a₂j + a₃k.",
+          "Then |a|² = a₁² + a₂² + a₃².",
+          "Use i × i = 0, j × i = −k, k × i = j."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a is written with general components a₁, a₂, a₃, and that |a|² = a₁² + a₂² + a₃².",
+          "accept": [
+            "write a as a one i plus a two j plus a three k",
+            "use general components because the claim is for every vector",
+            "mod a squared is a one squared plus a two squared plus a three squared",
+            "general components rayali, numbers kaadu",
+            "start from the component form of a"
+          ],
+          "reject": [
+            "so the sum is two mod a squared",
+            "a cross i is a three j minus a two k",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a one i",
+            "a two j",
+            "a three k",
+            "general components"
+          ]
+        },
+        "why": "The statement is about every vector a, so the proof must use unknown components rather than a chosen example. Every cross product that follows comes from the standard products of i, j and k.",
+        "common_mistakes": [
+          "Testing one particular vector and calling it a proof.",
+          "Writing j × i = k, with the sign the wrong way round."
+        ]
+      },
+      {
+        "id": "s2_a_cross_i",
+        "kind": "equation",
+        "label": "Find a × i and its squared length",
+        "marks": 1,
+        "mark_note": "First term",
+        "margin_note": "Second mark. Crossing with i wipes out the i component of a and leaves the other two, so the squared length is a₂² + a₃².",
+        "memory_tip": "Crossing with an axis vector removes that axis's component and keeps the other two.",
+        "lines": [
+          "a × i = a₁(i × i) + a₂(j × i) + a₃(k × i)",
+          "= 0 − a₂k + a₃j",
+          "= a₃j − a₂k",
+          "∴ |a × i|² = a₂² + a₃²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a × i = a₃j − a₂k, so |a × i|² = a₂² + a₃².",
+          "accept": [
+            "a cross i is a three j minus a two k",
+            "its squared length is a two squared plus a three squared",
+            "the a one term vanishes because i cross i is zero",
+            "i cross i zero kabatti a one term poyindi",
+            "crossing with i leaves the other two components"
+          ],
+          "reject": [
+            "add the three results",
+            "write a in components",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a cross i",
+            "a three j",
+            "a two k",
+            "a two squared plus a three squared"
+          ]
+        },
+        "why": "The term a₁(i × i) is zero, so only the j and k components survive. The squared length of a₃j − a₂k is a₃² + a₂², which is where the pair of squares comes from.",
+        "common_mistakes": [
+          "Keeping an a₁ term in a × i.",
+          "Squaring a₃j − a₂k as a₃² − a₂²."
+        ]
+      },
+      {
+        "id": "s3_other_two_axes",
+        "kind": "equation",
+        "label": "Do the same with j and with k",
+        "marks": 1,
+        "mark_note": "Other two terms",
+        "margin_note": "Third mark. The same working repeats. Each axis removes its own component of a and leaves the other two squares.",
+        "memory_tip": "Each of the three results is a pair of squares, and the pair left out is the axis you crossed with.",
+        "lines": [
+          "The same working with j and with k gives",
+          "a × j = −a₃i + a₁k, so",
+          {
+            "text": "|a × j|² = a₃² + a₁²",
+            "style": "indent"
+          },
+          "a × k = a₂i − a₁j, so",
+          {
+            "text": "|a × k|² = a₁² + a₂²",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |a × j|² = a₃² + a₁² and |a × k|² = a₁² + a₂², by the same working.",
+          "accept": [
+            "a cross j is minus a three i plus a one k so its square is a three squared plus a one squared",
+            "a cross k is a two i minus a one j so its square is a one squared plus a two squared",
+            "each axis leaves the other two squares",
+            "prathi axis daani component teesesi migilina rendu untayi",
+            "repeat the same working for j and k"
+          ],
+          "reject": [
+            "a cross i is a three j minus a two k",
+            "add the three results",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a cross j",
+            "a cross k",
+            "a three squared plus a one squared",
+            "a one squared plus a two squared"
+          ]
+        },
+        "why": "Each cross product loses the component along the axis it uses and keeps the other two, so the three squared lengths are the three pairs a₂²+a₃², a₃²+a₁² and a₁²+a₂².",
+        "common_mistakes": [
+          "Getting the sign of i × k wrong: i × k = −j, not j.",
+          "Using the same pair of squares twice."
+        ]
+      },
+      {
+        "id": "s4_add_the_three",
+        "kind": "boxed_final",
+        "label": "Add the three results",
+        "marks": 1,
+        "mark_note": "Sum",
+        "margin_note": "Last mark. Each square is left out of exactly one pair and kept in the other two, so every square is counted twice. That is the factor 2.",
+        "memory_tip": "Three pairs from three squares means each square appears twice — which is exactly the 2 in 2|a|².",
+        "lines": [
+          "Adding the three squared lengths,",
+          "each of a₁², a₂², a₃² appears twice:",
+          "sum = 2(a₁² + a₂² + a₃²) = 2|a|²",
+          {
+            "text": "∴ |a×i|² + |a×j|² + |a×k|² = 2|a|²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding the three pairs makes each square appear twice, giving 2(a₁² + a₂² + a₃²) = 2|a|².",
+          "accept": [
+            "adding them each square appears twice so the sum is two mod a squared",
+            "the total is two times a one squared plus a two squared plus a three squared",
+            "each component square is counted twice, that gives the factor two",
+            "prathi square rendu sarlu vastundi kabatti two vastundi",
+            "the sum equals twice the square of the length of a"
+          ],
+          "reject": [
+            "a cross j is minus a three i plus a one k",
+            "write a in components",
+            "each axis leaves the other two"
+          ],
+          "heard_as": [
+            "twice",
+            "two mod a squared",
+            "appears twice",
+            "factor two"
+          ]
+        },
+        "why": "Every component is missing from exactly one of the three pairs and present in the other two, so each square is counted twice in the total. That is the whole reason the answer is 2|a|² and not 3|a|².",
+        "common_mistakes": [
+          "Getting a factor of 3 by counting each square three times.",
+          "Stopping at a₁² + a₂² + a₃² without the factor 2."
+        ]
+      }
+    ]
+  }
+}

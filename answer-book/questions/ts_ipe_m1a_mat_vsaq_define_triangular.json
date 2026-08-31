@@ -1,0 +1,153 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_define_triangular",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define a triangular matrix.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Define upper triangular",
+      "marks": 1
+    },
+    {
+      "label": "Define lower triangular",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.36, chapter 5 MATRICES, Very Short Answer question 28. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the two kinds separately, because the word triangular covers both and an answer that names only one of them is half the definition. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Define both kinds of triangular matrix, and say which entries are zero in each.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_upper",
+        "kind": "text",
+        "label": "Define upper triangular",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. Upper triangular means the zeros are BELOW the principal diagonal, so the numbers sit in the upper triangle. The entry condition is aᵢⱼ = 0 when i > j.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Upper Triangular Matrix:",
+            "style": "heading"
+          },
+          "A square matrix A = [aᵢⱼ] is called upper",
+          "triangular if every entry below the principal",
+          "diagonal is zero, that is aᵢⱼ = 0 when i > j.",
+          {
+            "text": "\\begin{bmatrix} 1 & 2 & 3 \\\\ 0 & 4 & 5 \\\\ 0 & 0 & 6 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an upper triangular matrix is square with every entry below the principal diagonal equal to zero.",
+          "accept": [
+            "upper triangular means all the entries below the principal diagonal are zero",
+            "a i j is zero whenever i is greater than j",
+            "the numbers sit on and above the diagonal",
+            "diagonal kinda unna entries anni zero unte upper triangular",
+            "zeros below the diagonal, values above it"
+          ],
+          "reject": [
+            "it is triangular",
+            "the diagonal matrix"
+          ],
+          "heard_as": [
+            "upper triangular",
+            "below the diagonal",
+            "zero",
+            "i greater than j"
+          ]
+        },
+        "why": "The name describes where the numbers are, not where the zeros are, so upper triangular has its zeros below the diagonal. Writing the entry condition aᵢⱼ = 0 when i > j removes any doubt about which side is meant.",
+        "common_mistakes": [
+          "Putting the zeros above the diagonal and still calling it upper.",
+          "Leaving out the word square.",
+          "Requiring the diagonal entries to be non-zero, which is not part of the definition."
+        ],
+        "memory_tip": "Upper triangular: the numbers live in the upper triangle, so the zeros are below the diagonal."
+      },
+      {
+        "id": "s2_lower",
+        "kind": "boxed_final",
+        "label": "Define lower triangular",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Second mark. Lower triangular is the mirror case, aᵢⱼ = 0 when i < j. A matrix of either kind is called triangular, and its determinant is the product of the diagonal entries.",
+        "lines": [
+          {
+            "text": "Lower Triangular Matrix:",
+            "style": "heading"
+          },
+          "A square matrix A = [aᵢⱼ] is called lower",
+          "triangular if every entry above the principal",
+          "diagonal is zero, that is aᵢⱼ = 0 when i < j.",
+          {
+            "text": "\\begin{bmatrix} 1 & 0 & 0 \\\\ 2 & 3 & 0 \\\\ 4 & 5 & 6 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "A matrix of either kind is called triangular.",
+          {
+            "text": "∴ A is triangular if it is upper or lower",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a lower triangular matrix has every entry above the principal diagonal equal to zero, and that either kind is called triangular.",
+          "accept": [
+            "lower triangular means all the entries above the principal diagonal are zero",
+            "a i j is zero whenever i is less than j",
+            "a matrix that is upper or lower triangular is called triangular",
+            "diagonal paina unna entries anni zero unte lower triangular",
+            "zeros above the diagonal, values below it"
+          ],
+          "reject": [
+            "the other one",
+            "it is lower"
+          ],
+          "heard_as": [
+            "lower triangular",
+            "above the diagonal",
+            "i less than j",
+            "triangular"
+          ]
+        },
+        "why": "The two kinds are mirror images across the principal diagonal, and the transpose of an upper triangular matrix is lower triangular. A matrix that is both at once has zeros on both sides, which makes it a diagonal matrix.",
+        "common_mistakes": [
+          "Swapping the two definitions.",
+          "Naming only one kind when the question says triangular.",
+          "Giving a rectangular matrix as the example."
+        ],
+        "memory_tip": "Lower triangular is upper triangular reflected: transposing one gives the other."
+      }
+    ]
+  }
+}

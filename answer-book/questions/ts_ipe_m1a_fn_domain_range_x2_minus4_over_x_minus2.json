@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_range_x2_minus4_over_x_minus2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain and the range of the real valued function f(x) = (x² − 4)/(x − 2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The domain and the simplified rule",
+      "marks": 1
+    },
+    {
+      "label": "The range, with the missing value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.14, chapter 2 FUNCTIONS, Very Short Answer question 20(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The question asks for two things, so the 1+1 shape gives one mark to the domain together with the cancelling, and one to the range — and the range mark rests on the value 4 being removed, which is the point of the question. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the domain and the range here — and say what the cancelling leaves behind.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_domain",
+        "kind": "equation",
+        "label": "Find the domain, then cancel",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark needs both parts: x ≠ 2, and the simplified rule x + 2 beside it. Write x ≠ 2 before cancelling, not after.",
+        "memory_tip": "State x ≠ 2 first, then cancel. The cancelling is allowed only because that point has already been removed.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = (x² − 4)/(x − 2)",
+          "The denominator must not be zero:",
+          "x − 2 ≠ 0 ⇒ x ≠ 2",
+          "∴ Domain = R − {2}",
+          "For x ≠ 2 the factor x − 2 cancels:",
+          "f(x) = (x − 2)(x + 2)/(x − 2) = x + 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x ≠ 2 makes the domain R − {2}, and that after removing x = 2 the rule simplifies to x + 2.",
+          "accept": [
+            "the denominator cannot be zero so x is not two and the domain is R minus two",
+            "factorise the top as x minus two into x plus two and cancel",
+            "after removing x equals two the function is just x plus two",
+            "denominator zero kaakudadu kabatti x not equal to two",
+            "domain is all reals except two and the rule becomes x plus two"
+          ],
+          "reject": [
+            "the domain is R",
+            "cancel and get x plus two",
+            "find where it is defined"
+          ],
+          "heard_as": [
+            "denominator",
+            "x minus two",
+            "x plus two",
+            "R minus two",
+            "cancel"
+          ]
+        },
+        "why": "The rule is a fraction, so the only barred inputs are the ones making the denominator zero. Once x ≠ 2 is written down, the factor x − 2 may be cancelled, because cancelling is only illegal at x = 2 and x = 2 has already been removed. Cancelling first and then claiming the domain is R is the error this question is built to catch.",
+        "common_mistakes": [
+          "Cancelling first and then giving the domain as R.",
+          "Setting the numerator to zero as well; x = ±2 from the top is not a restriction.",
+          "Factorising x² − 4 as (x − 2)², so nothing cancels correctly."
+        ]
+      },
+      {
+        "id": "s2_range",
+        "kind": "boxed_final",
+        "label": "Find the range",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark is R − {4}. A range of R loses it: the hole at (2, 4) is exactly what the question is testing.",
+        "memory_tip": "A cancelled factor leaves a hole. The missing input is x = 2 and the missing output is 2 + 2 = 4.",
+        "lines": [
+          "So f(x) = x + 2 for every x ≠ 2.",
+          "As x runs over R − {2}, x + 2 runs over",
+          "every real number except 2 + 2 = 4.",
+          "f(x) = 4 would need x = 2, which is not",
+          "in the domain, so 4 is never reached.",
+          {
+            "text": "Domain = R − {2},  Range = R − {4}",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the range is R − {4}, because the value 4 would need x = 2, which is outside the domain.",
+          "accept": [
+            "the range is all reals except four because four needs x equal to two",
+            "x plus two gives every value except the one at the removed point",
+            "the graph is the line y equals x plus two with a hole at two four",
+            "four raavalante x equals two kaavali kaani adi domain lo ledu",
+            "range is R minus four"
+          ],
+          "reject": [
+            "the range is R",
+            "the range is R minus two",
+            "x plus two gives every real number"
+          ],
+          "heard_as": [
+            "range",
+            "R minus four",
+            "hole",
+            "x plus two",
+            "except four"
+          ]
+        },
+        "why": "The simplified rule x + 2 would give every real value on the whole line, but x = 2 is not in the domain, so the output 4 is never produced. The picture is the line y = x + 2 with a single hole at the point (2, 4). Removing the input 2 removes the output 4, not the output 2.",
+        "common_mistakes": [
+          "Giving the range as R, which is the range of x + 2 on the whole line.",
+          "Removing 2 instead of 4; 2 is the missing input and 4 is the missing output.",
+          "Writing f(2) = 4 by substituting into x + 2; f(2) does not exist."
+        ]
+      }
+    ]
+  }
+}

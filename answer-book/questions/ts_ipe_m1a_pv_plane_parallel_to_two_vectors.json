@@ -1,0 +1,317 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_plane_parallel_to_two_vectors",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "Find the equation of the plane passing through A(3, −2, −1) and parallel to the vectors b = i − 2j + 4k and c = 3i + 2j − 5k.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the point and the two vectors",
+      "marks": 1
+    },
+    {
+      "label": "State that b × c is the normal",
+      "marks": 1
+    },
+    {
+      "label": "Find b × c",
+      "marks": 2
+    },
+    {
+      "label": "Find a · n",
+      "marks": 1
+    },
+    {
+      "label": "Write the vector equation",
+      "marks": 1
+    },
+    {
+      "label": "Write the Cartesian equation and check",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.79, chapter 7 PRODUCT OF VECTORS, Long Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+2+1+1+2 split pays two marks for the cross product that produces the normal and two for the closing Cartesian form, where the point and both directions are checked. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the equation of a plane through a point and parallel to two given vectors.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "equation",
+        "label": "Write what is given",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. The point comes as a coordinate triple and the two directions come already in vector form, so only the point has to be converted.",
+        "memory_tip": "Only the point needs converting. The two directions are already vectors.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given A(3, −2, −1), so a = 3i − 2j − k",
+          "b = i − 2j + 4k,  c = 3i + 2j − 5k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point is written as a = 3i − 2j − k and the two given direction vectors are noted.",
+          "accept": [
+            "write the point as three i minus two j minus k",
+            "note a b and c before starting",
+            "the two directions are already in i j k form",
+            "point ni vector ga rasta, directions already vectors",
+            "a is three i minus two j minus k"
+          ],
+          "reject": [
+            "cross b and c",
+            "find a dot n",
+            "then I get it"
+          ],
+          "heard_as": [
+            "position vector",
+            "three i minus two j",
+            "given",
+            "directions"
+          ]
+        },
+        "why": "The plane equation needs a point vector and a normal vector. The point is the only piece here that is not already a vector.",
+        "common_mistakes": [
+          "Missing the minus signs on the second and third coordinates of A.",
+          "Treating b and c as points of the plane instead of directions."
+        ]
+      },
+      {
+        "id": "s2_idea",
+        "kind": "text",
+        "label": "State the normal direction",
+        "marks": 1,
+        "mark_note": "Normal direction",
+        "margin_note": "Second mark. The two given vectors are parallel to the plane, not inside it, but a vector at right angles to both is still at right angles to the plane. That sentence earns the mark.",
+        "memory_tip": "Parallel to the plane is enough. A vector at right angles to both is the normal.",
+        "lines": [
+          "The plane is parallel to both b and c.",
+          "b × c is at right angles to b and to c,",
+          "so b × c is a normal to the plane.",
+          "Write n = b × c."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b × c is at right angles to both given vectors and therefore is a normal to the plane.",
+          "accept": [
+            "b cross c is at right angles to both so it is the normal",
+            "the plane is parallel to b and c so their cross product is the normal",
+            "take n as b cross c",
+            "b cross c ni normal ga theeskovali",
+            "a vector perpendicular to both is perpendicular to the plane"
+          ],
+          "reject": [
+            "write what is given",
+            "expand the determinant",
+            "hence proved"
+          ],
+          "heard_as": [
+            "normal",
+            "b cross c",
+            "parallel",
+            "right angles"
+          ]
+        },
+        "why": "A plane parallel to two directions has those directions lying in every parallel copy of it, so a vector at right angles to both is at right angles to the plane.",
+        "common_mistakes": [
+          "Adding b and c instead of crossing them.",
+          "Using b or c on its own as the normal."
+        ]
+      },
+      {
+        "id": "s3_normal",
+        "kind": "equation",
+        "label": "Find b × c",
+        "marks": 2,
+        "mark_note": "Normal",
+        "margin_note": "Two marks. b on the top row, c below. The j term is −(−5 − 12), so it comes out positive and large.",
+        "memory_tip": "The j bracket is −(−5 − 12) = +17, the largest number in the answer.",
+        "lines": [
+          {
+            "text": "n = b \\times c = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 4 \\\\ 3 & 2 & -5 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(10 − 8) − j(−5 − 12) + k(2 + 6)",
+          "= 2i + 17j + 8k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b × c comes to 2i + 17j + 8k.",
+          "accept": [
+            "expand the determinant to get two i plus seventeen j plus eight k",
+            "the normal is two seventeen eight",
+            "b on top and c below in the determinant",
+            "b cross c equals two i plus seventeen j plus eight k",
+            "the j term is plus seventeen"
+          ],
+          "reject": [
+            "state the normal direction",
+            "find a dot n",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "two i",
+            "seventeen j",
+            "eight k",
+            "determinant"
+          ]
+        },
+        "why": "The j term carries two minus signs, one from the expansion and one from the arithmetic, so it turns positive. That is the single place this determinant goes wrong.",
+        "common_mistakes": [
+          "Writing the j term as −17 by keeping only one of the two minus signs.",
+          "Putting c on the top row, which reverses the whole normal."
+        ]
+      },
+      {
+        "id": "s4_dot",
+        "kind": "equation",
+        "label": "Find a · n",
+        "marks": 1,
+        "mark_note": "a · n",
+        "margin_note": "Fourth mark. Only the point goes into this dot product. The two direction vectors have dot product zero with n, which is a useful check later.",
+        "memory_tip": "Only the POINT goes in here. The directions would each give zero.",
+        "lines": [
+          "a·n = (3i − 2j − k)·(2i + 17j + 8k)",
+          "= 6 − 34 − 8 = −36"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a·n = −36.",
+          "accept": [
+            "dot the point with the normal to get minus thirty six",
+            "six minus thirty four minus eight is minus thirty six",
+            "a dot n is minus thirty six",
+            "a dot n minus thirty six vasthundi",
+            "the constant is minus thirty six"
+          ],
+          "reject": [
+            "find b cross c",
+            "write the vector equation",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus thirty six",
+            "a dot n",
+            "six minus thirty four"
+          ]
+        },
+        "why": "This number is the constant term of the plane. It depends on the point, which is exactly what separates this plane from every plane parallel to it.",
+        "common_mistakes": [
+          "Dotting b or c with n, which gives 0 and a plane through the origin.",
+          "Sign slip on the −2j and −k components."
+        ]
+      },
+      {
+        "id": "s5_vector_form",
+        "kind": "equation",
+        "label": "Write the vector equation",
+        "marks": 1,
+        "mark_note": "Vector equation",
+        "margin_note": "Fifth mark. One line, and the paper may ask for this form alone.",
+        "memory_tip": "The plane is every r with the SAME dot product against n that A has.",
+        "lines": [
+          "The plane is r·n = a·n, that is",
+          "r·(2i + 17j + 8k) = −36"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the vector equation is r·(2i + 17j + 8k) = −36.",
+          "accept": [
+            "the vector equation is r dot two i plus seventeen j plus eight k equals minus thirty six",
+            "r dot n equals a dot n",
+            "write the plane in r dot n form",
+            "r dot n equals minus thirty six ani rasta",
+            "every point of the plane has this dot product"
+          ],
+          "reject": [
+            "find a dot n",
+            "write the Cartesian equation",
+            "hence proved"
+          ],
+          "heard_as": [
+            "r dot n",
+            "minus thirty six",
+            "vector equation"
+          ]
+        },
+        "why": "The vector form is the shorter answer and is complete on its own. The Cartesian form is a substitution away.",
+        "common_mistakes": [
+          "Writing r·n = 0, which is a different, parallel plane.",
+          "Leaving the constant on the left as +36."
+        ]
+      },
+      {
+        "id": "s6_cartesian",
+        "kind": "boxed_final",
+        "label": "Write the Cartesian equation",
+        "marks": 2,
+        "mark_note": "Cartesian equation",
+        "margin_note": "The last two marks. Two checks are available here and both are one line: the point must satisfy the equation, and each direction must give zero against the normal.",
+        "memory_tip": "Two checks: the point fits the equation, and each direction dots to zero.",
+        "lines": [
+          "Put r = xi + yj + zk :",
+          "2x + 17y + 8z = −36",
+          {
+            "text": "2x + 17y + 8z + 36 = 0",
+            "style": "boxed"
+          },
+          "Check A: 6 − 34 − 8 + 36 = 0",
+          "Also b·n = 2 − 34 + 32 = 0 and",
+          "c·n = 6 + 34 − 40 = 0, so the plane is",
+          "parallel to b and to c."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Cartesian equation is 2x + 17y + 8z + 36 = 0, that A satisfies it, and that b·n and c·n are both zero.",
+          "accept": [
+            "the plane is two x plus seventeen y plus eight z plus thirty six equals zero",
+            "the point satisfies it and both directions dot to zero",
+            "substitute r as x i plus y j plus z k for the Cartesian form",
+            "b dot n and c dot n rendu zero, so parallel confirm",
+            "two x plus seventeen y plus eight z equals minus thirty six"
+          ],
+          "reject": [
+            "write the vector equation",
+            "find a dot n",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x plus seventeen y",
+            "plus thirty six",
+            "equals zero",
+            "dot to zero"
+          ]
+        },
+        "why": "A direction parallel to a plane has dot product zero with its normal. Testing both directions checks the cross product, and testing the point checks the constant.",
+        "common_mistakes": [
+          "Checking the point but never the two directions.",
+          "Moving the −36 across without changing its sign."
+        ]
+      }
+    ]
+  }
+}

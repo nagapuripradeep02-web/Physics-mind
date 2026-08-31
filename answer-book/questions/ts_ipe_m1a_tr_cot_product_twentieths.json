@@ -1,0 +1,180 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cot_product_twentieths",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that cot(π/20) · cot(3π/20) · cot(5π/20) · cot(7π/20) · cot(9π/20) = 1.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rewrite the two larger angles",
+      "marks": 1
+    },
+    {
+      "label": "Use cot θ · tan θ = 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 8, book p.83. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on the complement rewriting and on the closing line; the opening conversion and pairing stay on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: the product was evaluated to 12 decimal places as 1.000000000000, which is exactly 1. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_convert_to_degrees_and_pair",
+        "kind": "equation",
+        "label": "Convert to degrees and pair",
+        "marks": 0,
+        "margin_note": "Degrees make the pattern easy to read. Bracket the first factor with the last and the second with the fourth; cot 45° is left in the middle.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "π/20 = 9°, so the angles are",
+          "9°, 27°, 45°, 63° and 81°",
+          "L.H.S = cot 9° · cot 27° · cot 45°",
+          "        · cot 63° · cot 81°",
+          "= [cot 9° cot 81°] [cot 27° cot 63°] cot 45°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angles are 9°, 27°, 45°, 63°, 81° and that they are paired from the two ends.",
+          "accept": [
+            "multiply pi by twenty by nine to get nine degrees and pair the first with the last",
+            "the angles are nine twenty seven forty five sixty three and eighty one degrees",
+            "pair the outer factors and leave forty five in the middle",
+            "degrees lo rasi, first and last pair chesi forty five middle lo undipoyindi",
+            "there are five factors so one stays alone"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "nine degrees",
+            "eighty one",
+            "forty five",
+            "pair",
+            "five factors"
+          ]
+        },
+        "why": "Each bracketed pair of angles adds to 90°, so the two angles in a pair are complementary. Pairing from the two ends is the only arrangement that gives this.",
+        "common_mistakes": [
+          "Pairing neighbouring factors instead of pairing from the two ends.",
+          "Dropping the middle factor cot 45° while bracketing."
+        ],
+        "memory_tip": "Five factors, so one is left over: first with last, second with fourth, and 45° alone."
+      },
+      {
+        "id": "s2_rewrite_the_larger_angles",
+        "kind": "equation",
+        "label": "Rewrite the two larger angles",
+        "marks": 1,
+        "mark_note": "Complements",
+        "margin_note": "First mark. Turn cot 81° into tan 9° and cot 63° into tan 27°, and write cot 45° = 1.",
+        "lines": [
+          "81° = 90° − 9° and 63° = 90° − 27°",
+          "cot(90° − θ) = tan θ",
+          "Also cot 45° = 1",
+          "= [cot 9° · tan 9°] [cot 27° · tan 27°] · 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each larger angle is written as 90° minus the smaller, so its cotangent becomes the tangent of the smaller, and cot 45° = 1.",
+          "accept": [
+            "eighty one is ninety minus nine so cot eighty one is tan nine",
+            "cot of ninety minus theta is tan theta",
+            "the larger angle in each bracket is the complement of the smaller one",
+            "cot ninety minus theta ante tan theta, and cot forty five is one",
+            "change each larger cotangent into a tangent"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "the product equals one"
+          ],
+          "heard_as": [
+            "ninety minus",
+            "tan nine",
+            "tan twenty seven",
+            "cot forty five",
+            "complement"
+          ]
+        },
+        "why": "In each bracket the larger angle is 90° minus the smaller one, so its cotangent becomes the tangent of the smaller angle.",
+        "common_mistakes": [
+          "Writing cot(90° − θ) as cot θ.",
+          "Forgetting that the middle factor cot 45° is 1."
+        ],
+        "memory_tip": "cot(90° − θ) = tan θ. The larger angle of each pair is 90° minus the smaller one."
+      },
+      {
+        "id": "s3_use_cot_times_tan",
+        "kind": "boxed_final",
+        "label": "Use cot θ · tan θ = 1",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. Each bracket is a cotangent times its own tangent, which is 1, and the middle factor is 1, so the whole product is 1.",
+        "lines": [
+          "cot θ · tan θ = 1 for every angle θ",
+          "∴ L.H.S = 1 · 1 · 1 = 1",
+          {
+            "text": "∴ The product equals 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each bracket gives cot θ · tan θ = 1, so the whole product is 1.",
+          "accept": [
+            "cot theta times tan theta is one so every bracket is one",
+            "each bracket reduces to one and the answer is one",
+            "they are reciprocals so the product is one",
+            "cot and tan reciprocals, so product one",
+            "the value of the whole product is one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "change each larger cotangent into a tangent"
+          ],
+          "heard_as": [
+            "cot times tan",
+            "reciprocal",
+            "one",
+            "product"
+          ]
+        },
+        "why": "cot θ and tan θ are reciprocals, so their product is 1 wherever both are defined. No angle has to be worked out as a number.",
+        "common_mistakes": [
+          "Working out each cotangent as a decimal.",
+          "Writing cot θ · tan θ as tan²θ."
+        ],
+        "memory_tip": "cot θ and tan θ are reciprocals, so each bracket is exactly 1."
+      }
+    ]
+  }
+}

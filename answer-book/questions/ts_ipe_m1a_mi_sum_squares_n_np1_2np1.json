@@ -1,0 +1,266 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mi_sum_squares_n_np1_2np1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Mathematical Induction"
+  },
+  "chapter": "Mathematical Induction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove by mathematical induction that 1² + 2² + 3² + … + n² = n(n + 1)(2n + 1)/6.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Step 1 — S(1) is true",
+      "marks": 1
+    },
+    {
+      "label": "Step 2 — assume S(k)",
+      "marks": 1
+    },
+    {
+      "label": "Step 3 — S(k+1) follows",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion by P.M.I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.25, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 1(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this by induction — the nth term, the five moves, and how the bracket factorises in the third step.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mathematical Induction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Write the statement",
+        "marks": 0,
+        "margin_note": "Unmarked setup at 4 marks, but never skip it — the nth term and the full S(n) line are what Step 3 works on.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "nth term = n²",
+          "Let S(n): 1² + 2² + 3² + …",
+          "        + n² = n(n+1)(2n+1)/6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the nth term is n² and S(n) is the full statement, the sum of squares up to n² equals n(n+1)(2n+1)/6.",
+          "accept": [
+            "the nth term is n squared and s of n says the sum of squares equals n into n plus one into two n plus one over six",
+            "general term n squared then write out s of n in full",
+            "each term is a square so the nth term is n squared",
+            "nth term n squared ani rasi s of n rastam"
+          ],
+          "reject": [
+            "I write the nth term",
+            "state s of n",
+            "first the general term"
+          ],
+          "heard_as": [
+            "n squared",
+            "nth term",
+            "s of n",
+            "two n plus one",
+            "over six"
+          ]
+        },
+        "why": "The series is given as a pattern. Naming the nth term as n² is what lets you write the exact term to add to both sides in Step 3.",
+        "common_mistakes": [
+          "Writing the nth term as 2n instead of n², which is the wrong series.",
+          "Leaving S(n) unwritten, so Step 3 has no line to work from."
+        ],
+        "memory_tip": "Three factors on the right: n, then n + 1, then 2n + 1, all over 6. The 2n + 1 is the odd one to remember."
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Check S(1)",
+        "marks": 1,
+        "mark_note": "Step 1",
+        "margin_note": "One mark. Work out BOTH sides separately at n = 1 and say they are equal.",
+        "lines": [
+          "Step 1 — check S(1)",
+          "L.H.S of S(1) = 1² = 1",
+          "R.H.S of S(1) = 1(2)(3)/6 = 6/6 = 1",
+          "∴ L.H.S = R.H.S, so S(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at n = 1 the left side is 1 and the right side is 1 times 2 times 3 over 6, which is also 1, so S(1) is true.",
+          "accept": [
+            "left side is one squared which is one and right side is one two three over six which is one",
+            "put n equals one in both sides and both come to one",
+            "the first case gives one on each side",
+            "n equals one pettina rendu sides one vasthai"
+          ],
+          "reject": [
+            "s of one is true",
+            "check the base case",
+            "verify for n equals one"
+          ],
+          "heard_as": [
+            "l h s",
+            "r h s",
+            "one squared",
+            "six over six",
+            "s of one"
+          ]
+        },
+        "why": "Induction needs a true first case to start from. However good the inductive step is, without S(1) the chain has nothing to stand on.",
+        "common_mistakes": [
+          "Asserting S(1) is true without working out both sides.",
+          "Putting n = 1 into 2n + 1 and getting 2 instead of 3."
+        ],
+        "memory_tip": "At n = 1 the right side is 1 × 2 × 3 over 6, which is 6/6 = 1. Write both sides, then write that they are equal."
+      },
+      {
+        "id": "s3_assume",
+        "kind": "equation",
+        "label": "Assume S(k) is true",
+        "marks": 1,
+        "mark_note": "Step 2",
+        "margin_note": "One mark. Assume it for ONE value k and number the line (1) — Step 3 quotes that number.",
+        "lines": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 1² + 2² + … + k²",
+          "        = k(k+1)(2k+1)/6   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(k) is assumed true for some k in N — the sum of squares up to k² equals k(k+1)(2k+1)/6 — and the line is numbered (1).",
+          "accept": [
+            "assume it for k so the sum up to k squared equals k into k plus one into two k plus one over six",
+            "suppose s of k holds and call that equation one",
+            "take it as true for one value k in the naturals and number the line",
+            "k ki true ani assume chesi equation one ga rastam"
+          ],
+          "reject": [
+            "assume it is true",
+            "let it be true for k",
+            "then I assume s of k"
+          ],
+          "heard_as": [
+            "assume",
+            "s of k",
+            "two k plus one",
+            "equation one",
+            "induction hypothesis"
+          ]
+        },
+        "why": "This is the assumption the method rests on. It is granted for one value only, and Step 3 has to earn the right to pass it on to the next value.",
+        "common_mistakes": [
+          "Assuming the statement for ALL k, which assumes what is being proved.",
+          "Not numbering the line, so Step 3 cannot cite it."
+        ],
+        "memory_tip": "Replace every n by k, including inside 2n + 1, and number the line (1)."
+      },
+      {
+        "id": "s4_inductive",
+        "kind": "equation",
+        "label": "Show S(k+1) follows",
+        "marks": 1,
+        "mark_note": "Step 3",
+        "margin_note": "One mark, and the longest step on the page. Add (k+1)² to both sides of (1), take (k+1) out, then factorise the quadratic.",
+        "lines": [
+          "Step 3 — show S(k+1) is true",
+          "Add (k+1)² to both sides of (1):",
+          "L.H.S = k(k+1)(2k+1)/6 + (k+1)²",
+          "= [k(k+1)(2k+1) + 6(k+1)²]/6",
+          "= (k+1)[k(2k+1) + 6(k+1)]/6",
+          "= (k+1)(2k² + 7k + 6)/6",
+          "= (k+1)(k+2)(2k+3)/6 = R.H.S",
+          "So S(k+1) is true whenever S(k) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (k+1)² is added to both sides of (1), (k+1) comes out as a common factor, and 2k² + 7k + 6 factorises as (k+2)(2k+3), giving the formula with n replaced by k+1.",
+          "accept": [
+            "add k plus one squared to both sides take k plus one out and the quadratic factorises into k plus two into two k plus three",
+            "put in the next term take the common factor out and you get k plus one into k plus two into two k plus three over six",
+            "two k squared plus seven k plus six splits into k plus two and two k plus three",
+            "next term add chesi common factor teeste k plus two into two k plus three vasthundi"
+          ],
+          "reject": [
+            "I show s of k plus one",
+            "add the next term",
+            "then it follows"
+          ],
+          "heard_as": [
+            "k plus one squared",
+            "common factor",
+            "two k squared plus seven k plus six",
+            "two k plus three",
+            "over six"
+          ]
+        },
+        "why": "The added term (k+1)² shares the factor (k+1) with the assumed sum. Once that comes out, the quadratic left inside is 2k² + 7k + 6, which splits as (k+2)(2k+3) — exactly the two brackets the formula needs at k+1.",
+        "common_mistakes": [
+          "Adding (k+1) instead of (k+1)² as the next term.",
+          "Expanding everything into a cubic instead of factorising, which will not simplify.",
+          "Writing the target as (k+1)(k+2)(2k+1) and forgetting that 2n + 1 becomes 2k + 3."
+        ],
+        "memory_tip": "Take (k+1) out first. What is left is 2k² + 7k + 6 = (k+2)(2k+3), and 2k + 3 is 2(k+1) + 1."
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by P.M.I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark is for naming the principle. One sentence, one full mark.",
+        "lines": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(1) is true and S(k) implies S(k+1), so by the principle of mathematical induction the result holds for every natural number n.",
+          "accept": [
+            "since s of one is true and s of k gives s of k plus one by the principle of mathematical induction it holds for all n",
+            "hence by p m i the statement is true for every natural number",
+            "the base case and the inductive step together give it for all n in n",
+            "p m i prakaram anni natural numbers ki true"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is true",
+            "that completes the proof"
+          ],
+          "heard_as": [
+            "p m i",
+            "principle of mathematical induction",
+            "for all n",
+            "hence"
+          ]
+        },
+        "why": "The earlier steps prove two single statements — one about n = 1 and one about a step. Only the principle turns them into a claim about every n.",
+        "common_mistakes": [
+          "Writing only 'hence proved' and never naming the principle.",
+          "Claiming it for all real numbers instead of all n ∈ N."
+        ],
+        "memory_tip": "The closing sentence names the principle and is worth a full mark on its own."
+      }
+    ]
+  }
+}

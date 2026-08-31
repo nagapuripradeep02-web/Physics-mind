@@ -1,0 +1,240 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_equilateral_triangle_general_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the lines represented by (lx + my)² − 3(mx − ly)² = 0 together with the line lx + my + n = 0 form an equilateral triangle whose area is n² / (√3(l² + m²)) square units.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split the pair into two lines",
+      "marks": 1
+    },
+    {
+      "label": "Find the angle between L and L₁",
+      "marks": 1
+    },
+    {
+      "label": "Show all three angles are 60°",
+      "marks": 1
+    },
+    {
+      "label": "Find the area",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 15(i), book p.170. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because the question asks for two things — that the triangle is equilateral, and its area — and each half needs two steps: the pair must be split before an angle can be measured, and the angles must be settled before the height can be turned into a side. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say how you get the two lines out of the pair, and what you measure to show the triangle is equilateral.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_the_pair",
+        "kind": "equation",
+        "label": "Split the pair into two lines",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The pair is already a difference of two squares, so no middle term has to be split — take √3 inside the second bracket and use A² − B² = (A − B)(A + B).",
+        "memory_tip": "It is already A² − B², so use (A − B)(A + B) — no middle term to split.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(lx + my)² − 3(mx − ly)² = 0   ……(1)",
+          "Given line L: lx + my + n = 0   ……(2)",
+          "(1) is a difference of two squares:",
+          "(1) ⇒ [(lx+my) − √3(mx−ly)] ×",
+          "       [(lx+my) + √3(mx−ly)] = 0",
+          "L₁: (l − √3m)x + (m + √3l)y = 0",
+          "L₂: (l + √3m)x + (m − √3l)y = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pair is a difference of two squares and splits into L₁ and L₂ with √3 inside.",
+          "accept": [
+            "it is A squared minus B squared so it factorises as A minus B into A plus B",
+            "take root three inside the second bracket",
+            "the two lines are l minus root three m into x plus m plus root three l into y equals zero and the other with the signs swapped",
+            "difference of squares ga factorise cheyyali",
+            "collect the x terms and the y terms in each factor"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "difference of two squares",
+            "root three",
+            "l minus root three m",
+            "m plus root three l"
+          ]
+        },
+        "why": "Both lines of the pair pass through the origin, so the origin is one vertex of the triangle and the given line cuts off the other two.",
+        "common_mistakes": [
+          "Leaving the 3 outside as a factor instead of writing it as (√3)².",
+          "Collecting only the x terms and leaving the y terms uncombined."
+        ]
+      },
+      {
+        "id": "s2_angle_with_first_line",
+        "kind": "equation",
+        "label": "Find the angle between L and L₁",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Measure the angle through the normals: the angle between two lines equals the angle between their normal vectors. Both cross terms in the dot product cancel, which is the whole point of the √3.",
+        "memory_tip": "Measure through the NORMALS — the √3 terms in the dot product cancel each other.",
+        "lines": [
+          "Normals: L has (l, m);",
+          "L₁ has (l − √3m, m + √3l)",
+          "Dot product = l² − √3lm + m² + √3lm = l² + m²",
+          "(l−√3m)² + (m+√3l)² = 4l² + 4m²",
+          "So the length of L₁'s normal is 2√(l² + m²)",
+          "cos θ₁ = (l²+m²) / [√(l²+m²) · 2√(l²+m²)] = ½",
+          "∴ θ₁ = 60°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the dot product of the two normals is l² + m² and the lengths give cos θ₁ = ½, so θ₁ = 60°.",
+          "accept": [
+            "the angle between two lines is the angle between their normals",
+            "the dot product comes out l squared plus m squared because the root three terms cancel",
+            "the second normal has length two root l squared plus m squared",
+            "normals madhya angle teesukovali, root three terms cancel avuthaayi",
+            "cos theta is one half so the angle is sixty degrees"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "dot product",
+            "normals",
+            "cos theta is half",
+            "sixty degrees"
+          ]
+        },
+        "why": "Using normals avoids slopes altogether, so the proof never has to treat a vertical line as a separate case.",
+        "common_mistakes": [
+          "Taking (l, m) as a direction vector of L instead of its normal.",
+          "Expanding (l − √3m)² as l² − √3lm + 3m² and losing the factor 2."
+        ]
+      },
+      {
+        "id": "s3_all_angles_sixty",
+        "kind": "equation",
+        "label": "Show all three angles are 60°",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The second line gives the same working with the sign of √3 reversed, so the same cancellation happens. Two angles of 60° force the third to be 60° as well.",
+        "memory_tip": "Two angles of 60° force the third one, because the three angles add to 180°.",
+        "lines": [
+          "For L and L₂ the normals are (l, m)",
+          "and (l + √3m, m − √3l).",
+          "Dot product = l² + √3lm + m² − √3lm = l² + m²",
+          "(l+√3m)² + (m−√3l)² = 4l² + 4m² again",
+          "∴ cos θ₂ = ½, so θ₂ = 60°",
+          "Third angle = 180° − 60° − 60° = 60°",
+          "All three angles are 60°, so the triangle",
+          "is equilateral."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That L₂ gives cos θ₂ = ½ by the same working, so all three angles are 60° and the triangle is equilateral.",
+          "accept": [
+            "the second line gives the same result with the sign of root three reversed",
+            "both angles at the given line are sixty degrees",
+            "the third angle is one eighty minus sixty minus sixty",
+            "rendo line ki kooda same sixty degrees vasthundi",
+            "all three angles are sixty so it is equilateral"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixty degrees",
+            "third angle",
+            "one eighty minus",
+            "equilateral"
+          ]
+        },
+        "why": "Equal angles are enough here: a triangle with all three angles equal has all three sides equal, so no side length has to be computed to prove the shape.",
+        "common_mistakes": [
+          "Showing only one angle is 60° and calling the triangle equilateral.",
+          "Taking the third angle as 60° by assumption instead of from the angle sum."
+        ]
+      },
+      {
+        "id": "s4_area",
+        "kind": "boxed_final",
+        "label": "Find the area",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. The height from the origin to the given line is the perpendicular distance |n|/√(l² + m²). In an equilateral triangle the height is (√3/2) times the side, so the side follows from the height.",
+        "memory_tip": "Height of an equilateral triangle is (√3/2) × side, so side = 2 × height ÷ √3.",
+        "lines": [
+          "L₁ and L₂ meet at O(0, 0), so the height",
+          "from O to L is d = |n| / √(l² + m²)",
+          "For an equilateral triangle of side s,",
+          "d = (√3/2)s ⇒ s = 2d/√3",
+          "Area = (√3/4)s² = (√3/4)(4d²/3) = d²/√3",
+          "= n² / [√3(l² + m²)]",
+          {
+            "text": "∴ Area = n² / (√3(l² + m²)) sq.units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the height is |n|/√(l² + m²), the side is 2d/√3, and the area (√3/4)s² gives n²/(√3(l² + m²)).",
+          "accept": [
+            "the height is the perpendicular distance from the origin to the given line",
+            "in an equilateral triangle the height is root three by two times the side",
+            "area is root three by four times side squared",
+            "origin nunchi perpendicular distance ye height",
+            "the area comes out n squared over root three into l squared plus m squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "perpendicular distance",
+            "root three by two",
+            "root three by four",
+            "n squared"
+          ]
+        },
+        "why": "Squaring the height removes the modulus, since |n|² = n². That is why the answer carries n² and not |n|. The result needs l² + m² ≠ 0 and n ≠ 0: with n = 0 the given line passes through the origin and there is no triangle, which is what the formula reports as area 0.",
+        "common_mistakes": [
+          "Using d as the side length instead of the height.",
+          "Writing the area of an equilateral triangle as ½s² instead of (√3/4)s²."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_fofofof_reciprocal_linear",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f(x) = (x + 1)/(x − 1), x ≠ ±1, find (fofofof)(x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Show that (fof)(x) = x",
+      "marks": 1
+    },
+    {
+      "label": "Fourth application of f",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 9(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the collapse (fof)(x) = x and one to pairing the four copies of f, which is the step that separates this part from part (i). The printed condition x ≠ ±1 is kept as the book states it; f itself only needs x ≠ 1, and the extra exclusion of x = −1 changes no answer. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find (fofofof)(x) — what a pair of f's does, and how you use that four times over.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fof",
+        "kind": "equation",
+        "label": "Apply f twice",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write the numerator and the denominator as single fractions before cancelling, so the factor 1/(x − 1) is visible in both.",
+        "memory_tip": "Applying f twice gives x back. A function like this is its own inverse.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = (x + 1)/(x − 1), x ≠ ±1",
+          "(fof)(x) = f[f(x)] = (f(x) + 1)/(f(x) − 1)",
+          "Numerator: (x + 1)/(x − 1) + 1 = 2x/(x − 1)",
+          "Denominator: (x + 1)/(x − 1) − 1 = 2/(x − 1)",
+          "∴ (fof)(x) = 2x/(x − 1) × (x − 1)/2 = x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f applied to f(x) simplifies to x, because the numerator becomes 2x/(x − 1) and the denominator becomes 2/(x − 1).",
+          "accept": [
+            "f of f of x is f of x plus one over f of x minus one which simplifies to x",
+            "the top becomes two x over x minus one and the bottom two over x minus one so you get x",
+            "applying f twice gives back x",
+            "f rendu sarlu apply chesthe x ye vastundi",
+            "f o f of x equals x because the x minus one cancels"
+          ],
+          "reject": [
+            "I apply f four times",
+            "substitute f of x",
+            "the fourth one gives x"
+          ],
+          "heard_as": [
+            "f o f",
+            "fof",
+            "two x over x minus one",
+            "equals x",
+            "cancels"
+          ]
+        },
+        "why": "Both the numerator and the denominator carry the factor 1/(x − 1), so that factor cancels and only 2x over 2 is left. f itself needs x ≠ 1, and the question also rules out x = −1, so every line here is written for x ≠ ±1.",
+        "common_mistakes": [
+          "Adding 1 to only the numerator of f(x) instead of to the whole fraction.",
+          "Cancelling x − 1 before the top and the bottom are written as single fractions."
+        ]
+      },
+      {
+        "id": "s2_fourth",
+        "kind": "boxed_final",
+        "label": "Pair up the four f's",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Four copies of f are two copies of (fof). Show the pairing rather than applying f four times in a row.",
+        "memory_tip": "Count the f's: an even number gives x, an odd number gives f(x).",
+        "lines": [
+          "(fofofof)(x) = (fof)[(fof)(x)]",
+          "Inside: (fof)(x) = x",
+          "So (fofofof)(x) = (fof)(x) = x",
+          "Check at x = 5: f(5) = 3/2, f(3/2) = 5,",
+          "then again 3/2 and 5, which is x.",
+          {
+            "text": "∴ (fofofof)(x) = x, x ≠ ±1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That four copies of f are two pairs, each pair returns its input, so the answer is x.",
+          "accept": [
+            "four f's are two pairs and each pair gives back the input so the answer is x",
+            "f o f is x so f o f o f o f of x is x",
+            "an even number of applications returns x",
+            "naalugu f lu ante rendu jantalu so answer x",
+            "the answer is x itself"
+          ],
+          "reject": [
+            "the answer is x plus one over x minus one",
+            "it gives f of x",
+            "apply f once more"
+          ],
+          "heard_as": [
+            "f o f o f o f",
+            "fofofof",
+            "two pairs",
+            "even number",
+            "equals x"
+          ]
+        },
+        "why": "Four copies of f split into two pairs, and each pair returns its input unchanged, so the whole composition is the identity on the given domain. Checking at x = 5 gives 3/2, then 5, then 3/2, then 5, which is x.",
+        "common_mistakes": [
+          "Answering (x + 1)/(x − 1), which is what an odd number of applications gives.",
+          "Composing f only three times and stopping."
+        ]
+      }
+    ]
+  }
+}

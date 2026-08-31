@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_area_axes_cos_sin_p",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the area of the triangle formed by the straight line x cos α + y sin α = p with the coordinate axes.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the two intercepts",
+      "marks": 1
+    },
+    {
+      "label": "Compute the area",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 5, book p.140. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the two intercepts p sec α and p cosec α, and the second for the area and the double-angle simplification. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked by a second route: writing the line as x cos α + y sin α − p = 0 and applying Δ = c²/(2|ab|) gives p²/(2|sin α cos α|) = p²/|sin 2α|, which matches the intercept route used here."
+  },
+  "recall_prompt": "Say how you would solve this — say how you get each intercept, and which identity turns the answer into sin 2α.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_the_two_intercepts",
+        "kind": "equation",
+        "label": "Find the two intercepts",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Put y = 0 for the x-intercept and x = 0 for the y-intercept. The line must cut both axes, so cos α and sin α are both non-zero here.",
+        "memory_tip": "Put y = 0 to get the x-intercept and x = 0 to get the y-intercept. That order never changes.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given line is x cos α + y sin α = p",
+          "Here cos α ≠ 0 and sin α ≠ 0,",
+          "else the line misses one axis.",
+          "Put y = 0:  x cos α = p  ⇒  x = p sec α",
+          "Put x = 0:  y sin α = p  ⇒  y = p cosec α"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting y = 0 gives the x-intercept p sec α and putting x = 0 gives the y-intercept p cosec α.",
+          "accept": [
+            "put y equals zero to get p sec alpha",
+            "put x equals zero to get p cosec alpha",
+            "the intercepts are p by cos alpha and p by sin alpha",
+            "y zero pettina x intercept vasthundi",
+            "find both intercepts first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "half into product of intercepts"
+          ],
+          "heard_as": [
+            "p sec alpha",
+            "p cosec alpha",
+            "put y equals zero",
+            "intercept"
+          ]
+        },
+        "why": "The triangle has its right angle at the origin, and its two perpendicular sides are exactly these two intercepts, so finding them is the whole set-up.",
+        "common_mistakes": [
+          "Writing the x-intercept as p cos α instead of p/cos α.",
+          "Swapping the two intercepts."
+        ]
+      },
+      {
+        "id": "s2_compute_the_area",
+        "kind": "boxed_final",
+        "label": "Compute the area",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Half the product of the intercepts, in modulus, then 2 sin α cos α = sin 2α closes it.",
+        "memory_tip": "2 sin α cos α = sin 2α. The 2 from that identity meets the 2 in one half and clears the fraction.",
+        "lines": [
+          "Δ = ½ |x-intercept × y-intercept|",
+          "= ½ |p sec α · p cosec α|",
+          "= p²/(2 |sin α cos α|)",
+          "= p²/|2 sin α cos α|",
+          {
+            "text": "∴ Δ = p²/|sin 2α| sq.units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the area is half the product of the intercepts in modulus, and equals p² divided by the modulus of sin 2α.",
+          "accept": [
+            "half into the product of the two intercepts",
+            "p squared by two sin alpha cos alpha",
+            "two sin alpha cos alpha is sin two alpha",
+            "sin two alpha formula vaadali",
+            "the area is p squared by mod sin two alpha"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "put y equals zero"
+          ],
+          "heard_as": [
+            "p squared",
+            "sin two alpha",
+            "half into product",
+            "mod sin two alpha"
+          ]
+        },
+        "why": "The modulus is needed because sec α and cosec α change sign with the quadrant of α, while an area is always positive.",
+        "common_mistakes": [
+          "Dropping the modulus and reporting a negative area for an obtuse α.",
+          "Writing sin 2α as 2 sin α and losing the cos α."
+        ]
+      }
+    ]
+  }
+}

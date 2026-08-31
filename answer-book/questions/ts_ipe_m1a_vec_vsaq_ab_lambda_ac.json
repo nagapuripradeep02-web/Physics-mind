@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_ab_lambda_ac",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The points A, B and C have position vectors −2i + j − k, −4i + 2j + 2k and 6i − 3j − 13k respectively, and AB = λ AC. Find the value of λ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find AB and AC",
+      "marks": 1
+    },
+    {
+      "label": "Compare components and solve",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.61, chapter 6 ADDITION OF VECTORS, Very Short Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question: the first mark is for building AB and AC from the three position vectors, the second for comparing components and solving for λ. This book prints almost no exam-appearance years, so appearances[] is empty — Addition of Vectors has long been examined, we simply have no sourced years for this question. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The value λ = −1/4 was checked against all three components before it was written: −2 = 8λ, 1 = −4λ and 3 = −12λ each give −1/4."
+  },
+  "recall_prompt": "Say how you would find λ when one vector is a multiple of another.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find AB and AC",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. AB is head minus tail: the position vector of B minus the position vector of A. Watch the double minus — subtracting −2i adds 2i.",
+        "memory_tip": "AB = OB − OA, always head minus tail. Subtracting −2i adds 2i, and subtracting −k adds k.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "AB = OB − OA",
+          "  = (−4i + 2j + 2k) − (−2i + j − k)",
+          "  = −2i + j + 3k",
+          "AC = OC − OA",
+          "  = (6i − 3j − 13k) − (−2i + j − k)",
+          "  = 8i − 4j − 12k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AB = OB − OA = −2i + j + 3k and AC = OC − OA = 8i − 4j − 12k.",
+          "accept": [
+            "subtract the position vector of A from each of B and C",
+            "AB is minus two i plus j plus three k and AC is eight i minus four j minus twelve k",
+            "head minus tail so B minus A and C minus A",
+            "OB minus OA cheste AB vasthundi, alaage AC",
+            "build the two vectors from the position vectors first"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "OB minus OA",
+            "minus two i plus j plus three k",
+            "eight i minus four j",
+            "head minus tail"
+          ]
+        },
+        "why": "The condition given is about the vectors joining the points, not about the position vectors themselves, so both AB and AC have to be built from a common starting point A.",
+        "common_mistakes": [
+          "Writing AB as OA − OB, which reverses every sign.",
+          "Losing a double minus and getting −6i in AB.",
+          "Comparing OB with OC instead of AB with AC."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Compare components and solve",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. One component fixes λ, but write the other two as well: all three must give the same number, and that is what makes A, B and C lie on one line.",
+        "memory_tip": "Solve λ from one component, then confirm with the other two. All three must give the same value, here −1/4.",
+        "lines": [
+          "Given AB = λ AC, so",
+          "−2i + j + 3k = λ(8i − 4j − 12k)",
+          "Comparing i: −2 = 8λ ⇒ λ = −1/4",
+          "Comparing j: 1 = −4λ ⇒ λ = −1/4",
+          "Comparing k: 3 = −12λ ⇒ λ = −1/4",
+          {
+            "text": "∴ λ = −1/4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That comparing the i, j and k components each gives λ = −1/4.",
+          "accept": [
+            "compare the components, minus two equals eight lambda so lambda is minus one by four",
+            "all three components give lambda equals minus a quarter",
+            "equate coefficients of i j and k and solve",
+            "components compare cheste lambda minus one by four vasthundi",
+            "lambda is minus one fourth and the other two components agree"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus one by four",
+            "minus one fourth",
+            "compare the components",
+            "equate coefficients"
+          ]
+        },
+        "why": "λ is a single number, so the i, the j and the k comparison must all return the same value. Checking all three is the proof that AB really is a multiple of AC.",
+        "common_mistakes": [
+          "Writing λ = −4 by turning the fraction upside down.",
+          "Dropping the minus sign and answering 1/4.",
+          "Using one component only and never checking the other two."
+        ]
+      }
+    ]
+  }
+}

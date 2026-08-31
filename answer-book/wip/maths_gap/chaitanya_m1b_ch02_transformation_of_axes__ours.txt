@@ -1,0 +1,21 @@
+# OUR BANK — mathematics_1b unit 2: Transformation of Axes (Maths-1B)  (9 cards)
+# source index: answer-book/sources/chaitanya_m1b_ch02_transformation_of_axes.json
+
+[SAQ] ts_ipe_m1b_ta_shift_minus1_2_circle
+    When the origin is shifted to (−1,2) by the translation of axes, find the transformed equation of x²+y²+2x−4y+1=0.
+[SAQ] ts_ipe_m1b_ta_shift_minus1_2_ellipse
+    When the origin is shifted to (−1,2) by the translation of axes, find the transformed equation of 2x²+y²−4x+4y=0.
+[SAQ] ts_ipe_m1b_ta_shift_2_3_find_original
+    When the origin is shifted to the point (2,3), the transformed equation of a curve is x²+3xy−2y²+17x−7y−11=0, find the original equation of the curve.
+[SAQ] ts_ipe_m1b_ta_rotate_pi_over_6
+    Find the transformed equation of x²+2√3xy−y²=2a², when the axes are rotated through an angle π/6.
+[SAQ] ts_ipe_m1b_ta_rotate_pi_over_4
+    Find the transformed equation of 3x²+10xy+3y²=9 when the axes are rotated through an angle π/4.
+[SAQ] ts_ipe_m1b_ta_rotate_alpha_normal_form
+    When the axes are rotated through an angle α, find the transformed equation of xcosα + ysinα = p.
+[SAQ] ts_ipe_m1b_ta_rotate_45_find_original
+    When the axes are rotated through an angle 45°, the transformed equation of a curve is 17x²−16xy+17y²=225. Find the original equation of the curve.
+[SAQ] ts_ipe_m1b_ta_angle_removing_xy_term
+    Prove that the angle of rotation of the axes to eliminate xy term from the equation ax²+2hxy+by²=0 is ½ Tan⁻¹(2h/(a−b)) where a ≠ b and π/4 if a = b.
+[SAQ] ts_ipe_m1b_ta_sqp_shift_3_minus4_find_original
+    When the origin is shifted to the point (3,−4), the transformed equation of a curve is x²+y²−4=0. Find the original equation.

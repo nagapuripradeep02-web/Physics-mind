@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_sqrt_x2m1_plus_reciprocal_sqrt",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real valued function f(x) = √(x² − 1) + 1/√(x² − 3x + 2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Conditions for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.12, chapter 2 FUNCTIONS, Very Short Answer question 19 part (a-ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find this domain — the conditions the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write both conditions",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the conditions alone. Write every one of them down before solving any.",
+        "memory_tip": "Two terms, two conditions: ≥ 0 for the plain root, > 0 for the root under a fraction.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The first root needs x² − 1 ≥ 0",
+          "⇒ (x − 1)(x + 1) ≥ 0",
+          "⇒ x ∈ (−∞, −1] ∪ [1, ∞)   … (1)",
+          "The second root is in a denominator, so",
+          "x² − 3x + 2 > 0",
+          "⇒ (x − 1)(x − 2) > 0",
+          "⇒ x ∈ (−∞, 1) ∪ (2, ∞)   … (2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first root needs x² − 1 ≥ 0 while the second, being in a denominator, needs x² − 3x + 2 strictly greater than zero.",
+          "accept": [
+            "first root at least zero and the second strictly positive because it is in the denominator",
+            "x squared minus one greater than or equal to zero and x squared minus three x plus two greater than zero",
+            "the second one cannot be zero since we divide by it so strictly positive",
+            "second root denominator lo undi so zero avvakoodadu strictly positive undali",
+            "two conditions one with equals allowed and one without"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "x squared minus one",
+            "x squared minus three x plus two",
+            "denominator",
+            "strictly positive",
+            "non negative",
+            "minus one",
+            "one",
+            "two"
+          ]
+        },
+        "why": "Each term must be defined on its own. The only difference between the two roots is that the second sits in a denominator, and that is what turns ≥ 0 into > 0 and removes x = 1 and x = 2.",
+        "common_mistakes": [
+          "Using ≥ 0 for the second condition, which wrongly keeps x = 1 and x = 2 where the denominator is zero.",
+          "Writing only one condition and ignoring the other term."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Intersect the two sets",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "Both terms must work at the same x, so take the overlap of (1) and (2). Never their union.",
+        "lines": [
+          "The domain is the intersection of (1) and (2).",
+          "(−∞, −1] ∩ (−∞, 1) = (−∞, −1]",
+          "[1, ∞) ∩ (2, ∞) = (2, ∞)",
+          "The other two overlaps are empty.",
+          {
+            "text": "∴ Domain = (−∞, −1] ∪ (2, ∞)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is the intersection of the two sets, giving minus infinity to minus one closed, union two to infinity open.",
+          "accept": [
+            "intersect the two sets to get minus infinity to minus one union two to infinity",
+            "take the common part of both conditions not the union",
+            "x at most minus one or x greater than two strictly",
+            "rendu conditions common part theesukovali union kaadu",
+            "closed at minus one and open at two"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "x squared minus one",
+            "x squared minus three x plus two",
+            "denominator",
+            "strictly positive",
+            "non negative",
+            "minus one",
+            "one",
+            "two",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "A sum of two terms is defined only where both terms are defined, so the answer is the overlap of the two sets, not everything either one allows on its own.",
+        "common_mistakes": [
+          "Taking the union of the two sets, which lets in values where one term is undefined.",
+          "Including [1, 2], where the second denominator is zero or negative."
+        ]
+      }
+    ]
+  }
+}

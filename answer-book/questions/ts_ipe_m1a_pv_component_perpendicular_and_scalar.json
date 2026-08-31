@@ -1,0 +1,236 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_component_perpendicular_and_scalar",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Let a = i + j + k and b = 2i + 3j + k. Find the vector component of b perpendicular to a, and the component of b on a.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find a·b and |a|",
+      "marks": 1
+    },
+    {
+      "label": "Find the component of b on a",
+      "marks": 1
+    },
+    {
+      "label": "Find the vector component along a",
+      "marks": 1
+    },
+    {
+      "label": "Subtract to get the perpendicular part",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 35(ii), book p.74. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. READING OF THE STEM: the question asks two different things about the same pair, and they use the two different forms of the projection. 'The component of b on a' is the SCALAR (a·b)/|a| = 6/√3 = 2√3 ≈ 3.464; 'the vector component of b perpendicular to a' is the VECTOR b − ((a·b)/|a|²)a. Part (i) of the same book question asked for the projection vector and is authored separately as ts_ipe_m1a_pv_projection_vector_ijk_2i3jk, so this card recomputes the along-a part rather than pointing at the other card, and states in words which form is which. Computed twice. Symbolically: a·b = 6, |a|² = 3, along-a part = 2(i + j + k), perpendicular part = b − 2(i + j + k) = (2−2)i + (3−2)j + (1−2)k = j − k. By direct check: (j − k)·(i + j + k) = 0 + 1 − 1 = 0, so the perpendicular part really is perpendicular; and 2(i + j + k) + (j − k) = 2i + 3j + k = b, so the two parts reassemble b. The scalar 2√3 also equals |2i + 2j + 2k| = √12 = 2√3, as it must. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: the two ingredients, the scalar component, the vector along a, and the subtraction. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would split b into a part along a and a part perpendicular to a — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ingredients",
+        "kind": "equation",
+        "label": "Find a·b and |a|",
+        "marks": 1,
+        "mark_note": "Ingredients",
+        "margin_note": "First mark. Both answers come from the same two numbers, so compute them once. Note both |a| and |a|² — the scalar form uses |a| and the vector form uses |a|².",
+        "memory_tip": "One dot product and one length serve both answers.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "a = i + j + k,  b = 2i + 3j + k",
+          "a·b = 1(2) + 1(3) + 1(1) = 6",
+          "|a| = √(1 + 1 + 1) = √3",
+          "∴ |a|² = 3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a·b = 6, |a| = √3 and |a|² = 3.",
+          "accept": [
+            "a dot b is six and mod a is root three",
+            "the dot product is six and the squared length is three",
+            "compute both ingredients before splitting b",
+            "a dot b six, mod a root three, mod a square three",
+            "find the dot product and the length of a first"
+          ],
+          "reject": [
+            "find the ingredients",
+            "that is the answer",
+            "now divide"
+          ],
+          "heard_as": [
+            "a dot b",
+            "six",
+            "root three",
+            "mod a squared"
+          ]
+        },
+        "why": "Both the scalar component and the vector component are built from the same dot product; only the denominator changes. Computing them once makes the difference between the two forms visible.",
+        "common_mistakes": [
+          "Computing |b| instead of |a|.",
+          "Recording only |a| and then needing |a|² later without noticing."
+        ]
+      },
+      {
+        "id": "s2_scalar",
+        "kind": "equation",
+        "label": "Component of b on a",
+        "marks": 1,
+        "mark_note": "Scalar component",
+        "margin_note": "Second mark. The COMPONENT of b on a is a number, not a vector: it is the length of b's shadow on a. Its formula divides by |a|, one power only.",
+        "memory_tip": "Component means a NUMBER: divide by |a|, one power only.",
+        "lines": [
+          "The component of b on a is a number:",
+          "it is the length of the shadow of b",
+          "on the direction of a.",
+          "Component of b on a = (a·b)/|a|",
+          "  = 6/√3 = 6√3/3",
+          "  = 2√3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the component of b on a is the scalar (a·b)/|a| = 6/√3 = 2√3.",
+          "accept": [
+            "the component on a is a dot b divided by mod a",
+            "six over root three is two root three",
+            "this one is a number not a vector",
+            "component ante number, six by root three, two root three",
+            "rationalise six over root three to get two root three"
+          ],
+          "reject": [
+            "find the component",
+            "that is the answer",
+            "multiply by a"
+          ],
+          "heard_as": [
+            "component on a",
+            "six by root three",
+            "two root three",
+            "scalar"
+          ]
+        },
+        "why": "Dividing by |a| once turns a into a unit vector, and a dot product with a unit vector is exactly the length of the shadow. A second division would shrink it wrongly.",
+        "common_mistakes": [
+          "Dividing by |a|² and getting 2, which is the scale factor, not the component.",
+          "Giving a vector when a number was asked for."
+        ]
+      },
+      {
+        "id": "s3_along",
+        "kind": "equation",
+        "label": "Vector component along a",
+        "marks": 1,
+        "mark_note": "Along a",
+        "margin_note": "Third mark. This is the VECTOR form, so it divides by |a|² and keeps a. It is needed only as a stepping stone to the perpendicular part.",
+        "memory_tip": "Vector form divides by |a|² and keeps a; scalar form divides by |a| and drops a.",
+        "lines": [
+          "The vector component of b along a",
+          "  = ((a·b)/|a|²) a",
+          "  = (6/3)(i + j + k)",
+          "  = 2(i + j + k)",
+          "  = 2i + 2j + 2k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the vector component of b along a is (6/3)a = 2i + 2j + 2k.",
+          "accept": [
+            "the vector along a is six over three times a",
+            "two i plus two j plus two k",
+            "this form divides by mod a squared and keeps the vector a",
+            "vector form lo mod a square tho divide chesi a ni unchali",
+            "the part of b lying along a is twice a"
+          ],
+          "reject": [
+            "find the vector",
+            "that is the answer",
+            "now subtract"
+          ],
+          "heard_as": [
+            "two i two j two k",
+            "six by three",
+            "along a",
+            "twice a"
+          ]
+        },
+        "why": "Any vector splits into exactly one piece along a given direction and one piece at right angles to it. This is the first piece, and the second is whatever is left when it is taken away.",
+        "common_mistakes": [
+          "Reusing 2√3 here, which is the scalar and not the vector.",
+          "Multiplying by b instead of a."
+        ]
+      },
+      {
+        "id": "s4_perpendicular",
+        "kind": "boxed_final",
+        "label": "Subtract for the perpendicular part",
+        "marks": 1,
+        "mark_note": "Both answers",
+        "margin_note": "Last mark. Subtract the along-a part from b itself. The check costs one line and catches any slip: the result must dot to zero with a.",
+        "memory_tip": "Perpendicular part = b minus the part along a.",
+        "lines": [
+          "Perpendicular part = b − 2(i + j + k)",
+          "  = (2−2)i + (3−2)j + (1−2)k",
+          "  = j − k",
+          "Check: (j − k)·(i + j + k)",
+          "  = 0 + 1 − 1 = 0",
+          {
+            "text": "∴ Perpendicular part = j − k,",
+            "style": "boxed"
+          },
+          {
+            "text": "component of b on a = 2√3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b minus the along-a part gives j − k, whose dot product with a is zero, and that the two answers are j − k and 2√3.",
+          "accept": [
+            "subtract two i two j two k from b to get j minus k",
+            "the perpendicular component is j minus k",
+            "check it by dotting with a and getting zero",
+            "b nunchi along part teesesthe j minus k vasthundi",
+            "the two answers are j minus k and two root three"
+          ],
+          "reject": [
+            "subtract them",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "j minus k",
+            "perpendicular",
+            "zero",
+            "two root three"
+          ]
+        },
+        "why": "b is the sum of its along-a part and its perpendicular part, so removing one leaves the other. The dot product with a is zero, which is what proves the leftover really is perpendicular.",
+        "common_mistakes": [
+          "Subtracting b from the along-a part, which reverses every sign.",
+          "Reporting only one of the two things the question asks for."
+        ]
+      }
+    ]
+  }
+}

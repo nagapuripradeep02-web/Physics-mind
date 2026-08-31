@@ -1,0 +1,238 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_tan_plus_sec_root3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve tanθ + secθ = √3, for 0 ≤ θ ≤ 2π.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Clear the denominator",
+      "marks": 1
+    },
+    {
+      "label": "Collapse to one cosine",
+      "marks": 1
+    },
+    {
+      "label": "List the candidates in the interval",
+      "marks": 1
+    },
+    {
+      "label": "Test them and reject",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.108, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 4(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives a WHOLE mark to the final test, because this is the one question in the chapter whose answer is halved by it. EXTRANEOUS-ROOT RECORD: multiplying by cosθ turns tanθ + secθ = √3 into √3 cosθ − sinθ = 1, and that cleared equation is satisfied by θ = 3π/2, where cosθ = 0 and neither tanθ nor secθ exists. It is therefore an extraneous root introduced by the clearing step, and it is discarded on the page with the reason. Only θ = π/6 survives in 0 ≤ θ ≤ 2π, and it was substituted into the ORIGINAL equation: 1/√3 + 2/√3 = 3/√3 = √3. A route through squaring (secθ = √3 − tanθ, then sec²θ = 1 + tan²θ) reaches tanθ = 1/√3 and admits θ = 7π/6 instead, which also fails the original — either route needs the same test, and this card takes the shorter one. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say how you would test the values you find.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_clear_the_denominator",
+        "kind": "equation",
+        "label": "Clear the denominator",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both ratios share the denominator cosθ, so they add straight away. Record cosθ ≠ 0 before multiplying by it — that condition is what the last step uses.",
+        "memory_tip": "tanθ and secθ share the denominator cosθ, so they add to (sinθ + 1)/cosθ. Record cosθ ≠ 0 first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given tanθ + secθ = √3",
+          "Both ratios need cosθ ≠ 0.",
+          "⇒ sinθ/cosθ + 1/cosθ = √3",
+          "⇒ (sinθ + 1)/cosθ = √3",
+          "Multiply both sides by cosθ:",
+          "⇒ sinθ + 1 = √3 cosθ",
+          "⇒ √3 cosθ − sinθ = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tanθ + secθ = (sinθ + 1)/cosθ and multiplying by cosθ gives √3 cosθ − sinθ = 1, with cosθ ≠ 0 recorded.",
+          "accept": [
+            "both terms are over cos theta so it becomes sin theta plus one over cos theta and multiplying gives root three cos theta minus sin theta equals one",
+            "note cos theta is not zero then clear the denominator",
+            "it turns into the a cos theta plus b sin theta form",
+            "rendu terms cos theta meeda unnayi, cos theta tho multiply cheyyali",
+            "clear the denominator to get a linear combination"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin theta plus one",
+            "cos theta not zero",
+            "root three cos theta",
+            "clear the denominator"
+          ]
+        },
+        "why": "tanθ and secθ already sit over the same denominator, so one addition removes the fractions. Writing cosθ ≠ 0 now is what lets you catch the false answer later.",
+        "common_mistakes": [
+          "Writing secθ as 1/sinθ.",
+          "Forgetting to record cosθ ≠ 0 before multiplying by cosθ."
+        ]
+      },
+      {
+        "id": "s2_collapse_to_one_cosine",
+        "kind": "equation",
+        "label": "Collapse to one cosine",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Divide by √(a² + b²) = 2 so the coefficients become cos(π/6) and sin(π/6), and the left side becomes one cosine of a compound angle.",
+        "memory_tip": "Divide by √(a² + b²) = 2, and cos A cos B − sin A sin B = cos(A + B) — the sign is PLUS inside.",
+        "lines": [
+          "Divide by √((√3)² + (−1)²) = √4 = 2:",
+          "⇒ (√3/2) cosθ − (1/2) sinθ = 1/2",
+          "⇒ cosθ cos(π/6) − sinθ sin(π/6) = 1/2",
+          "  [∵ cosA cosB − sinA sinB = cos(A+B)]",
+          "⇒ cos(θ + π/6) = 1/2 = cos(π/3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by 2 gives cos(θ + π/6) = 1/2 = cos(π/3).",
+          "accept": [
+            "divide by root of a squared plus b squared which is two then the left side is cos of theta plus pi by six",
+            "the coefficients become cos pi by six and sin pi by six",
+            "it collapses to cos theta plus pi by six equals cos pi by three",
+            "two tho divide cheste cos theta plus pi by six vasthundi",
+            "use the cos A plus B formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos theta plus pi by six",
+            "divide by two",
+            "cos pi by three",
+            "cos A plus B"
+          ]
+        },
+        "why": "a cosθ + b sinθ cannot be solved directly, but after dividing by √(a² + b²) the coefficients are always a cosine and a sine of one angle, and a single compound-angle formula finishes it.",
+        "common_mistakes": [
+          "Dividing by a + b instead of √(a² + b²).",
+          "Using cos(A − B) and getting θ − π/6."
+        ]
+      },
+      {
+        "id": "s3_list_the_candidates",
+        "kind": "equation",
+        "label": "List the candidates in the interval",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Write the cosine general solution, split the ± into two families, then substitute n = 0, 1 and keep whatever lands in 0 ≤ θ ≤ 2π. These are candidates, not answers yet.",
+        "memory_tip": "Split the ± into two separate families before substituting n. Call what you get candidates, not answers.",
+        "lines": [
+          "For cosθ = cosα, θ = 2nπ ± α, so",
+          "θ + π/6 = 2nπ ± π/3,  n ∈ Z",
+          "⇒ θ = 2nπ + π/3 − π/6 = 2nπ + π/6",
+          "(or)  θ = 2nπ − π/3 − π/6 = 2nπ − π/2",
+          "In 0 ≤ θ ≤ 2π, n = 0 gives θ = π/6 and",
+          "n = 1 gives θ = 3π/2. These are candidates."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the general solution splits into θ = 2nπ + π/6 and θ = 2nπ − π/2, giving candidates π/6 and 3π/2 inside 0 ≤ θ ≤ 2π.",
+          "accept": [
+            "theta plus pi by six is two n pi plus or minus pi by three so theta is two n pi plus pi by six or two n pi minus pi by two",
+            "inside zero to two pi the candidates are pi by six and three pi by two",
+            "split the plus or minus into two families then substitute n",
+            "interval lo pi by six, three pi by two rendu candidates",
+            "these are candidates and still have to be tested"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two n pi plus pi by six",
+            "three pi by two",
+            "candidates",
+            "two n pi minus pi by two"
+          ]
+        },
+        "why": "The ± in the cosine general solution is two different families, and each has to be listed separately before any interval can be applied to it.",
+        "common_mistakes": [
+          "Substituting n into 2nπ ± π/3 and forgetting to subtract π/6.",
+          "Writing the second family as 2nπ − π/6 instead of 2nπ − π/2."
+        ]
+      },
+      {
+        "id": "s4_test_them_and_reject",
+        "kind": "boxed_final",
+        "label": "Test them and reject",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark, and the point of this question. θ = 3π/2 entered when the equation was multiplied by cosθ; at that value cosθ = 0, so tanθ and secθ do not exist. It is an extraneous root and must be discarded in writing.",
+        "memory_tip": "Multiplying by cosθ let in the values where cosθ = 0. Test every candidate in the ORIGINAL equation, not the cleared one.",
+        "lines": [
+          "Test both candidates in the original equation.",
+          "At θ = 3π/2, cosθ = 0, so tanθ and secθ do",
+          "not exist. This value entered only when we",
+          "multiplied by cosθ, so it is discarded.",
+          "At θ = π/6, tanθ + secθ = 1/√3 + 2/√3",
+          "  = 3/√3 = √3, which is correct.",
+          {
+            "text": "∴ θ = π/6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That θ = 3π/2 is discarded because cosθ = 0 makes tanθ and secθ undefined, and θ = π/6 is confirmed in the original equation.",
+          "accept": [
+            "at three pi by two cos theta is zero so tan and sec do not exist and it is rejected",
+            "it came in when we multiplied by cos theta so it is an extraneous root",
+            "put pi by six back and one by root three plus two by root three is root three",
+            "three pi by two lo cos theta zero, tan sec undefined, reject",
+            "only pi by six passes the test in the original equation"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three pi by two",
+            "cos theta is zero",
+            "extraneous root",
+            "pi by six",
+            "undefined"
+          ]
+        },
+        "why": "Multiplying by cosθ let in the values where cosθ = 0, and at those values the original equation has no meaning at all. Testing every candidate in the ORIGINAL equation is the only way to catch them.",
+        "common_mistakes": [
+          "Writing both θ = π/6 and θ = 3π/2 as answers.",
+          "Testing in the cleared equation √3 cosθ − sinθ = 1, which θ = 3π/2 does satisfy.",
+          "Giving the general solution when the interval was asked for."
+        ]
+      }
+    ]
+  }
+}

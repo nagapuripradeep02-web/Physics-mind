@@ -1,0 +1,325 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_perpendicular_bisectors_concurrent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "Prove that in any triangle the perpendicular bisectors of the sides are concurrent.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the triangle and name the meeting point",
+      "marks": 1
+    },
+    {
+      "label": "Take that point as the origin",
+      "marks": 1
+    },
+    {
+      "label": "Reduce the first bisector condition",
+      "marks": 2
+    },
+    {
+      "label": "Reduce the second bisector condition",
+      "marks": 2
+    },
+    {
+      "label": "Combine the two results",
+      "marks": 1
+    },
+    {
+      "label": "Read off the third bisector and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.80, chapter 7 PRODUCT OF VECTORS, Long Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+2+2+1+1 split gives two marks to each of the two bisector conditions, because reducing each to an equality of squared lengths is the whole method, and keeps single marks for the set-up, the combination and the conclusion. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove that the three perpendicular bisectors of a triangle meet at one point.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "Set up the triangle",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Two of the three bisectors are taken first, and the proof shows the third passes through where they cross. Saying why those two must cross is part of the mark.",
+        "memory_tip": "Start with TWO bisectors. The third is what the proof produces.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let ABC be a triangle. The perpendicular",
+          "bisector of a side is the line through",
+          "its midpoint at right angles to it.",
+          "All three lie in the plane of the",
+          "triangle. AB and BC are not parallel,",
+          "so the bisector of AB and the bisector",
+          "of BC are not parallel and must meet.",
+          "Let them meet at S."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bisectors of two sides must cross, because those two sides are not parallel, and that their meeting point is called S.",
+          "accept": [
+            "take the bisectors of AB and BC, they are not parallel so they meet at S",
+            "two perpendicular bisectors must cross",
+            "call the point where two bisectors meet S",
+            "rendu bisectors kalustai, aa point ni S ani rasta",
+            "start with two bisectors and name their meeting point"
+          ],
+          "reject": [
+            "take S as the origin",
+            "write the squared lengths",
+            "hence proved"
+          ],
+          "heard_as": [
+            "perpendicular bisector",
+            "midpoint",
+            "meet at S",
+            "not parallel"
+          ]
+        },
+        "why": "Concurrency is always proved this way: take the point where two of the lines cross and show the third passes through it. Assuming all three meet would assume the result.",
+        "common_mistakes": [
+          "Assuming all three bisectors already meet, which is the thing being proved.",
+          "Confusing the perpendicular bisector of a side with the altitude from the opposite vertex."
+        ]
+      },
+      {
+        "id": "s2_origin",
+        "kind": "text",
+        "label": "Take S as the origin",
+        "marks": 1,
+        "mark_note": "Origin at S",
+        "margin_note": "Second mark. With the origin at S, the vector from a midpoint to S is simply minus the midpoint vector, and each condition collapses to two squared lengths.",
+        "memory_tip": "Put the origin at S, and the vector from a midpoint to S is just minus that midpoint.",
+        "lines": [
+          "Take S as the origin and let a, b, c be",
+          "the position vectors of A, B, C.",
+          "The midpoint of AB has position vector",
+          "(a + b)/2, and AB = b − a."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S is taken as the origin, with a, b, c the position vectors of A, B, C, and that the midpoint of AB is (a + b)/2.",
+          "accept": [
+            "take S as the origin and let a b c be the position vectors",
+            "the midpoint of AB is a plus b over two",
+            "put the origin at the meeting point of the two bisectors",
+            "S ni origin ga theeskunte midpoint a plus b by two",
+            "AB is b minus a and its midpoint is half of a plus b"
+          ],
+          "reject": [
+            "set up the triangle",
+            "combine the two results",
+            "then I get it"
+          ],
+          "heard_as": [
+            "origin",
+            "midpoint",
+            "a plus b over two",
+            "position vectors"
+          ]
+        },
+        "why": "The origin can be placed anywhere. Placing it at S makes the vector from each midpoint to S a single term, which is what lets the dot product collapse to squared lengths.",
+        "common_mistakes": [
+          "Writing the midpoint as (a + b) without the 2.",
+          "Taking A as the origin, which leaves every term as a difference."
+        ]
+      },
+      {
+        "id": "s3_first",
+        "kind": "equation",
+        "label": "Bisector of AB",
+        "marks": 2,
+        "mark_note": "|a| = |b|",
+        "margin_note": "Two marks. The line from the midpoint of AB to S lies along the bisector, so it is at right angles to AB. Expanding that dot product leaves only two squared lengths.",
+        "memory_tip": "The dot product (a + b)·(b − a) is a difference of two squares: |b|² − |a|².",
+        "lines": [
+          "S is on the perpendicular bisector of AB,",
+          "so the line from the midpoint to S is at",
+          "right angles to AB :",
+          "[0 − (a + b)/2]·(b − a) = 0",
+          "(a + b)·(b − a) = 0",
+          "|b|² − |a|² = 0, so |a|² = |b|²    …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S on the bisector of AB gives (a + b)·(b − a) = 0, which reduces to |a|² = |b|².",
+          "accept": [
+            "the midpoint to S line is at right angles to AB so a plus b dot b minus a is zero",
+            "that expands to mod b squared minus mod a squared equals zero",
+            "so the squared lengths of a and b are equal",
+            "a plus b dot b minus a expand cheste squares difference vasthundi",
+            "S is the same distance from A and from B"
+          ],
+          "reject": [
+            "the second bisector",
+            "combine the two",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a plus b",
+            "b minus a",
+            "mod a squared",
+            "mod b squared"
+          ]
+        },
+        "why": "The product (a + b)·(b − a) expands to b·b − a·a, because the two cross terms a·b and b·a cancel. That is why the condition becomes an equality of lengths.",
+        "common_mistakes": [
+          "Expanding (a + b)·(b − a) as |a|² − |b|², with the signs the wrong way round.",
+          "Keeping the a·b terms in the expansion, which cancel."
+        ]
+      },
+      {
+        "id": "s4_second",
+        "kind": "equation",
+        "label": "Bisector of BC",
+        "marks": 2,
+        "mark_note": "|b| = |c|",
+        "margin_note": "Two marks. The same argument with the letters moved on one place. There is nothing new here, and saying so is part of a clean answer.",
+        "memory_tip": "The same argument with the letters moved on one place: A to B, B to C.",
+        "lines": [
+          "S is on the perpendicular bisector of BC",
+          "in the same way, so",
+          "[0 − (b + c)/2]·(c − b) = 0",
+          "(b + c)·(c − b) = 0",
+          "|c|² − |b|² = 0, so |b|² = |c|²    …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S on the bisector of BC gives (b + c)·(c − b) = 0, which reduces to |b|² = |c|².",
+          "accept": [
+            "the same working for BC gives mod b squared equals mod c squared",
+            "b plus c dot c minus b is zero",
+            "S is the same distance from B and from C",
+            "same method, ippudu b and c tho",
+            "the second condition is mod b squared equals mod c squared"
+          ],
+          "reject": [
+            "the first bisector",
+            "combine the two",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "b plus c",
+            "c minus b",
+            "mod c squared",
+            "equation two"
+          ]
+        },
+        "why": "Writing the second condition in the same shape as the first is what makes the combination in the next line immediate.",
+        "common_mistakes": [
+          "Pairing the wrong midpoint with the wrong side.",
+          "Restarting the expansion instead of quoting the pattern already shown."
+        ]
+      },
+      {
+        "id": "s5_combine",
+        "kind": "equation",
+        "label": "Combine the two",
+        "marks": 1,
+        "mark_note": "|a| = |c|",
+        "margin_note": "Fifth mark. Both equations share |b|², so the two ends are equal. The difference of squares is then rewritten as a dot product ready for the last step.",
+        "memory_tip": "Both conditions share |b|², so the outer two squared lengths are equal.",
+        "lines": [
+          "From (1) and (2), |a|² = |c|², so",
+          "|a|² − |c|² = 0",
+          "(c + a)·(a − c) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (1) and (2) give |a|² = |c|², and that this is the same as (c + a)·(a − c) = 0.",
+          "accept": [
+            "both share mod b squared so mod a squared equals mod c squared",
+            "that difference of squares is c plus a dot a minus c",
+            "S is the same distance from A and from C",
+            "mod a squared equals mod c squared, so difference zero",
+            "rewrite the equal squares as a dot product"
+          ],
+          "reject": [
+            "the second bisector",
+            "the third bisector",
+            "then I get it"
+          ],
+          "heard_as": [
+            "mod a squared",
+            "mod c squared",
+            "c plus a",
+            "a minus c"
+          ]
+        },
+        "why": "Turning the equality of squares back into a dot product is what lets the last line be read as a statement about a line, not about lengths.",
+        "common_mistakes": [
+          "Reading |a|² = |c|² as a = c, which is false for two different points.",
+          "Writing |a|² − |c|² as (a − c)·(a − c), which is a different expression."
+        ]
+      },
+      {
+        "id": "s6_conclude",
+        "kind": "boxed_final",
+        "label": "The third bisector",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Divide by 2 and put the minus back, and the line reads as the condition for S to lie on the bisector of CA. Then say so.",
+        "memory_tip": "The last line is the FIRST line again, with CA in place of AB.",
+        "lines": [
+          "So [0 − (c + a)/2]·(a − c) = 0, that is",
+          "S is on the perpendicular bisector of CA.",
+          {
+            "text": "The three bisectors meet at S.",
+            "style": "boxed"
+          },
+          "S is the same distance from A, B and C."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the combined condition is exactly the condition for S to lie on the bisector of CA, so all three bisectors pass through S.",
+          "accept": [
+            "that is the condition for S to be on the bisector of CA",
+            "so all three perpendicular bisectors pass through S",
+            "S is equidistant from the three vertices",
+            "moodava bisector kuda S gunda velthundi",
+            "hence the three bisectors are concurrent"
+          ],
+          "reject": [
+            "combine the two",
+            "the second bisector",
+            "hence proved"
+          ],
+          "heard_as": [
+            "third bisector",
+            "concurrent",
+            "equidistant",
+            "meet at S"
+          ]
+        },
+        "why": "The final line is the first line written again with different letters. Recognising that is what closes the proof, and the equal distances are why this point is the centre of the circle through A, B and C.",
+        "common_mistakes": [
+          "Stopping at |a|² = |c|² without turning it back into a bisector statement.",
+          "Naming the point as the circumcentre and treating that as the proof."
+        ]
+      }
+    ]
+  }
+}

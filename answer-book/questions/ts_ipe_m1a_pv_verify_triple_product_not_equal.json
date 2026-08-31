@@ -1,0 +1,325 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_verify_triple_product_not_equal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "If a = i − 2j − 3k, b = 2i + j − k and c = i + 3j − 2k, verify that a × (b × c) ≠ (a × b) × c.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find b × c",
+      "marks": 2
+    },
+    {
+      "label": "Find a × (b × c)",
+      "marks": 2
+    },
+    {
+      "label": "Find a × b",
+      "marks": 2
+    },
+    {
+      "label": "Find (a × b) × c",
+      "marks": 1
+    },
+    {
+      "label": "Compare the two vectors",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.77, chapter 7 PRODUCT OF VECTORS, Long Answer question 4. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 2+2+2+1+1 split pays for each cross product in turn and keeps the last mark for the comparison, because the question asks for a verification and four expansions with no stated conclusion earn nothing. The opening step, which copies the three vectors out, carries no mark of its own and so has no mark_split row. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would verify that the two triple products are different — say what you work out and in what order.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "text",
+        "label": "Write what is given",
+        "marks": 0,
+        "margin_note": "No mark of its own. Copy the three vectors out once, in i, j, k order. Four determinants are read off these rows, so one wrong sign here is repeated four times.",
+        "memory_tip": "Copy the three vectors out once. A slip here is repeated in four determinants.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given",
+          "a = i − 2j − 3k,  b = 2i + j − k,",
+          "c = i + 3j − 2k"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the three given vectors are written out before any product is computed. Naming the step is full credit.",
+          "accept": [
+            "write the three given vectors out first",
+            "copy down a b and c before starting",
+            "note the vectors in i j k form",
+            "ichina vectors ni modata rasta",
+            "start by writing what is given"
+          ],
+          "reject": [
+            "find b cross c",
+            "start the cross product"
+          ],
+          "heard_as": [
+            "given",
+            "vectors",
+            "write down"
+          ]
+        },
+        "why": "A cross product is a determinant whose rows are these vectors. Laying them out once, aligned, is what makes each determinant readable.",
+        "common_mistakes": [
+          "Missing a zero component and shifting a whole row.",
+          "Copying a sign wrongly and carrying it through every product."
+        ]
+      },
+      {
+        "id": "s2_bxc",
+        "kind": "equation",
+        "label": "Find b × c",
+        "marks": 2,
+        "mark_note": "Inner bracket",
+        "margin_note": "Two marks. On the left-hand side the BRACKET is worked first, so b × c comes before anything else. Rows: b on top, c below.",
+        "memory_tip": "On the left side the bracket comes first: b × c, with b on the top row.",
+        "lines": [
+          {
+            "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ 2 & 1 & -1 \\\\ 1 & 3 & -2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−2 + 3) − j(−4 + 1) + k(6 − 1)",
+          "= i + 3j + 5k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bracket b × c is computed first and comes to i + 3j + 5k.",
+          "accept": [
+            "work out b cross c first, it comes to i plus three j plus five k",
+            "the inner bracket gives one three five",
+            "expand the determinant with b on top and c below",
+            "bracket lo unnadi modata, b cross c equals i plus three j plus five k",
+            "b cross c is i plus three j plus five k"
+          ],
+          "reject": [
+            "find a cross b",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "b cross c",
+            "three j",
+            "five k",
+            "bracket",
+            "determinant"
+          ]
+        },
+        "why": "Brackets are worked first here exactly as in arithmetic. The question is asking whether the bracket can be moved, so each side must keep the bracket it was given.",
+        "common_mistakes": [
+          "Crossing a with b first on this side, which answers a different question.",
+          "Losing the minus on the j term instead of absorbing it into the bracket."
+        ]
+      },
+      {
+        "id": "s3_lhs",
+        "kind": "equation",
+        "label": "Find a × (b × c)",
+        "marks": 2,
+        "mark_note": "L.H.S",
+        "margin_note": "Two marks. Cross a with the vector just found. Keep a on the top row — reversing the rows would reverse the answer.",
+        "memory_tip": "a on the top row. Swapping the rows would flip every sign of the answer.",
+        "lines": [
+          {
+            "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & -3 \\\\ 1 & 3 & 5 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−10 + 9) − j(5 + 3) + k(3 + 2)",
+          "= −i − 8j + 5k    …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a × (b × c) comes to −i − 8j + 5k.",
+          "accept": [
+            "cross a with the bracket to get minus i minus eight j plus five k",
+            "the left hand side is minus one minus eight five",
+            "a on the top row and the bracket below",
+            "left side minus i minus eight j plus five k vasthundi",
+            "a cross the bracket gives minus i minus eight j plus five k"
+          ],
+          "reject": [
+            "find b cross c",
+            "find a cross b",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus eight j",
+            "five k",
+            "left hand side",
+            "minus i"
+          ]
+        },
+        "why": "The formula a × (b × c) = (a·c)b − (a·b)c gives the same vector: a·c = 1 and a·b = 3, so the answer is b − 3c = −i − 8j + 5k. Either route is a full check on the other.",
+        "common_mistakes": [
+          "Putting the bracket on the top row, which reverses every sign.",
+          "Using the components of b or c instead of the bracket just found."
+        ]
+      },
+      {
+        "id": "s4_axb",
+        "kind": "equation",
+        "label": "Find a × b",
+        "marks": 2,
+        "mark_note": "Inner bracket",
+        "margin_note": "Two marks. Now the other side. Here the bracket is a × b, a different pair in a different order, and it must be worked from scratch.",
+        "memory_tip": "The other side brackets a with b, not b with c. Start again from the rows.",
+        "lines": [
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & -3 \\\\ 2 & 1 & -1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(2 + 3) − j(−1 + 6) + k(1 + 4)",
+          "= 5i − 5j + 5k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bracket on the right-hand side is a × b, and that it comes to 5i − 5j + 5k.",
+          "accept": [
+            "on the other side the bracket is a cross b which is five i minus five j plus five k",
+            "all three components come out five in size",
+            "work a cross b from the rows a and b",
+            "ee side lo bracket a cross b, five minus five five",
+            "a cross b is five i minus five j plus five k"
+          ],
+          "reject": [
+            "find b cross c",
+            "compare the two",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "a cross b",
+            "five i",
+            "minus five j",
+            "bracket"
+          ]
+        },
+        "why": "The two sides bracket different pairs. Recomputing rather than reusing b × c is what makes the comparison at the end meaningful.",
+        "common_mistakes": [
+          "Reusing b × c on this side.",
+          "Writing b on the top row, which reverses the sign of the whole vector."
+        ]
+      },
+      {
+        "id": "s5_rhs",
+        "kind": "equation",
+        "label": "Find (a × b) × c",
+        "marks": 1,
+        "mark_note": "R.H.S",
+        "margin_note": "One mark. Cross the result with c, in that order. The numbers here are much larger than on the left side, which is the first sign that the two answers differ.",
+        "memory_tip": "The bracket goes on top and c below. The numbers here are far larger than on the left.",
+        "lines": [
+          {
+            "text": "(a \\times b) \\times c = \\begin{vmatrix} i & j & k \\\\ 5 & -5 & 5 \\\\ 1 & 3 & -2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(10 − 15) − j(−10 − 5) + k(15 + 5)",
+          "= −5i + 15j + 20k    …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (a × b) × c comes to −5i + 15j + 20k.",
+          "accept": [
+            "cross the bracket with c to get minus five i plus fifteen j plus twenty k",
+            "the right hand side is minus five fifteen twenty",
+            "the bracket on top and c below",
+            "right side minus five i plus fifteen j plus twenty k",
+            "a cross b then crossed with c gives minus five fifteen twenty"
+          ],
+          "reject": [
+            "find a cross b",
+            "find the left hand side",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus five i",
+            "fifteen j",
+            "twenty k",
+            "right hand side"
+          ]
+        },
+        "why": "The formula (a × b) × c = (c·a)b − (c·b)a gives the same vector: c·a = 1 and c·b = 7, so the answer is b − 7a = −5i + 15j + 20k. The two formulas differ, and so do the two answers.",
+        "common_mistakes": [
+          "Putting c on the top row, which reverses every sign.",
+          "Copying the left-hand side's answer because the letters look similar."
+        ]
+      },
+      {
+        "id": "s6_compare",
+        "kind": "boxed_final",
+        "label": "Compare the two",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Naming one component that differs is enough, and it is safer than claiming the whole vectors differ without pointing at anything.",
+        "memory_tip": "Name one component that differs. −1 against −5 is enough.",
+        "lines": [
+          "From (1) and (2) the i components are",
+          "−1 and −5, which are not equal, so",
+          {
+            "text": "a × (b × c) ≠ (a × b) × c",
+            "style": "boxed"
+          },
+          "The cross product is not associative."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two results are different vectors, so the identity fails and the cross product is not associative.",
+          "accept": [
+            "the two answers are different so the cross product is not associative",
+            "minus one is not minus five so the two sides are not equal",
+            "from one and two the vectors differ",
+            "rendu answers different, so not equal",
+            "the bracket position changes the answer"
+          ],
+          "reject": [
+            "find the right hand side",
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "not equal",
+            "not associative",
+            "differ",
+            "minus one",
+            "minus five"
+          ]
+        },
+        "why": "Four expansions prove nothing until the comparison is stated. The whole question is the last sentence, and that is where the mark sits.",
+        "common_mistakes": [
+          "Working out both sides and never saying they differ.",
+          "Writing that they are equal because both came from a determinant."
+        ]
+      }
+    ]
+  }
+}

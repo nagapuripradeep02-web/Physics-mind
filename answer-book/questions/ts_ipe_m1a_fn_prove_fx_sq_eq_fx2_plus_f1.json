@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_prove_fx_sq_eq_fx2_plus_f1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f: R − {0} → R is defined by f(x) = x + 1/x, prove that (f(x))² = f(x²) + f(1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Expand the left side",
+      "marks": 1
+    },
+    {
+      "label": "Build the right side and match",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.9, chapter 2 FUNCTIONS, Very Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the expansion of (x + 1/x)² and one to building f(x²) + f(1), because the identity is exactly the statement that the middle term of the square equals f(1). Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — what you expand first, and what each piece on the right side works out to.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expand_lhs",
+        "kind": "equation",
+        "label": "Expand (f(x))²",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark is the expansion with the middle term present. The middle term 2·x·(1/x) is 2, and that 2 is the whole point of the question.",
+        "memory_tip": "(x + 1/x)² = x² + 1/x² + 2, because the middle term 2·x·(1/x) is always 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = x + 1/x,  x ≠ 0",
+          "LHS = (f(x))² = (x + 1/x)²",
+          "= x² + 2·x·(1/x) + 1/x²",
+          "= x² + 1/x² + 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (x + 1/x)² expands to x² + 1/x² + 2, with the middle term equal to 2.",
+          "accept": [
+            "expand x plus one over x whole squared to get x squared plus one over x squared plus two",
+            "use a plus b whole squared and the middle term two x into one over x is two",
+            "the square gives three terms and the middle one is two",
+            "middle term two x into one by x equals two vasthundi",
+            "x square plus one by x square plus two is the left side"
+          ],
+          "reject": [
+            "I expand the square",
+            "use the identity",
+            "then compare both sides"
+          ],
+          "heard_as": [
+            "x plus one over x",
+            "whole squared",
+            "middle term",
+            "x squared plus one over x squared",
+            "plus two"
+          ]
+        },
+        "why": "The left side is the square of a two-term sum, so it opens with (a + b)² = a² + 2ab + b². Here ab is x·(1/x) = 1, so the middle term is the plain number 2. Keeping that 2 visible is what makes the next step obvious.",
+        "common_mistakes": [
+          "Writing (x + 1/x)² as x² + 1/x² and dropping the middle term.",
+          "Leaving the middle term as 2x/x instead of simplifying it to 2.",
+          "Using x = 0, which the domain R − {0} does not allow."
+        ]
+      },
+      {
+        "id": "s2_build_rhs",
+        "kind": "boxed_final",
+        "label": "Work out f(x²) and f(1)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark is f(x²) and f(1) written out and matched to the first step. Check with x = 2: LHS = (2 + 1/2)² = 25/4, and RHS = (4 + 1/4) + 2 = 25/4.",
+        "memory_tip": "f(1) = 1 + 1/1 = 2, and 2 is the middle term of the square. That is why the identity holds.",
+        "lines": [
+          "x ≠ 0 ⇒ x² ≠ 0, so f(x²) is defined.",
+          "f(x²) = x² + 1/x²",
+          "f(1) = 1 + 1/1 = 2",
+          "RHS = f(x²) + f(1) = x² + 1/x² + 2",
+          "LHS and RHS are the same expression.",
+          {
+            "text": "∴ (f(x))² = f(x²) + f(1)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f(x²) = x² + 1/x² and f(1) = 2, whose sum is the expansion found on the left side.",
+          "accept": [
+            "f of x squared is x squared plus one over x squared and f of one is two",
+            "add them and you get x squared plus one over x squared plus two which is the left side",
+            "put x squared into the rule and put one into the rule then add",
+            "f of one ante one plus one equals two",
+            "the right side matches the expansion so both sides are equal"
+          ],
+          "reject": [
+            "hence proved",
+            "both sides are equal",
+            "then I compare them"
+          ],
+          "heard_as": [
+            "f of x squared",
+            "f of one",
+            "equals two",
+            "one over x squared",
+            "right side"
+          ]
+        },
+        "why": "f(x²) is the same rule with x² in place of x, and f(1) is just the number 2. Their sum is exactly the expansion from the first step, so the two sides agree for every x in R − {0}. Squaring keeps x² away from 0, so f(x²) is always defined.",
+        "common_mistakes": [
+          "Writing f(x²) as (f(x))², which is the left side again.",
+          "Writing f(1) as 1 instead of 1 + 1 = 2.",
+          "Substituting one number such as x = 2 and stopping; a single value is a check, not a proof."
+        ]
+      }
+    ]
+  }
+}

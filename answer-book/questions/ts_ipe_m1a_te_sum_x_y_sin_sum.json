@@ -1,0 +1,237 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_sum_x_y_sin_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If x + y = 2π/3 and sin x + sin y = 3/2, find x and y.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply the sum-to-product formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute x + y = 2π/3",
+      "marks": 1
+    },
+    {
+      "label": "Solve for x − y",
+      "marks": 1
+    },
+    {
+      "label": "Solve the pair",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.109, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape rewards the four moves that turn two unknowns into one — quote the sum-to-product identity, feed the given sum into its half-sum factor, solve the resulting cosine equation for x − y, and recombine with x + y. Nothing is squared and no denominator is cleared, so no extraneous root can enter; the ± in the cosine general solution simply swaps x and y, which is why the answer is a PAIR and either member may be called x. The pair was checked against both given facts: π/2 + π/6 = 2π/3 and sin(π/2) + sin(π/6) = 1 + 1/2 = 3/2. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say which identity turns the sum of two sines into a product.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_apply_sum_to_product",
+        "kind": "equation",
+        "label": "Apply the sum-to-product formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Two unknowns cannot be found from one sine equation, so change the SUM of the sines into a product. The two factors are the half-sum and the half-difference, and one of them is already given.",
+        "memory_tip": "sinC + sinD turns into a product of the half-sum and the half-difference — and the half-sum is exactly what the question gives you.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given x + y = 2π/3   …(1)",
+          "and sin x + sin y = 3/2   …(2)",
+          "Now sinC + sinD",
+          "  = 2 sin((C+D)/2) cos((C−D)/2)",
+          "⇒ sin x + sin y",
+          "  = 2 sin((x+y)/2) cos((x−y)/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin x + sin y is rewritten as 2 sin((x+y)/2) cos((x−y)/2).",
+          "accept": [
+            "use sin C plus sin D equals two sin of half the sum into cos of half the difference",
+            "change the sum of sines into a product",
+            "the two factors are the half sum and the half difference",
+            "sin C plus sin D formula rasi product ga marchali",
+            "apply the sum to product identity first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin C plus sin D",
+            "half the sum",
+            "half the difference",
+            "sum to product"
+          ]
+        },
+        "why": "The question gives the SUM of the angles, and the sum-to-product form is the only shape that puts (x+y)/2 into the working as a single factor.",
+        "common_mistakes": [
+          "Using the sinC − sinD formula, which gives a cosine and sine the wrong way round.",
+          "Writing sin x + sin y = sin(x + y)."
+        ]
+      },
+      {
+        "id": "s2_substitute_the_sum",
+        "kind": "equation",
+        "label": "Substitute x + y = 2π/3",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Half of 2π/3 is π/3, and sin(π/3) = √3/2. The whole first factor becomes a number, leaving one unknown.",
+        "memory_tip": "Half of 2π/3 is π/3, and sin(π/3) = √3/2. That factor is now just a number.",
+        "lines": [
+          "From (1), (x+y)/2 = π/3",
+          "So (2) becomes",
+          "⇒ 2 sin(π/3) cos((x−y)/2) = 3/2",
+          "⇒ 2 × (√3/2) × cos((x−y)/2) = 3/2",
+          "⇒ √3 cos((x−y)/2) = 3/2",
+          "⇒ cos((x−y)/2) = 3/(2√3) = √3/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin((x+y)/2) = sin(π/3) = √3/2, leaving cos((x−y)/2) = √3/2.",
+          "accept": [
+            "half of two pi by three is pi by three and sin pi by three is root three by two so cos of half the difference is root three by two",
+            "substitute the given sum so only the difference is unknown",
+            "three over two root three simplifies to root three over two",
+            "sin pi by three root three by two, cos half difference root three by two",
+            "put the given sum into the first factor"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin pi by three",
+            "root three by two",
+            "half the difference",
+            "cos of x minus y by two"
+          ]
+        },
+        "why": "Substituting the given sum turns one of the two factors into a constant, so an equation in two unknowns becomes an equation in x − y alone.",
+        "common_mistakes": [
+          "Taking sin((x+y)/2) as sin(2π/3) and forgetting to halve.",
+          "Simplifying 3/(2√3) to 3√3/2."
+        ]
+      },
+      {
+        "id": "s3_solve_for_x_minus_y",
+        "kind": "equation",
+        "label": "Solve for x − y",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. √3/2 is cos(π/6), so the cosine general solution applies to the half-difference. Multiply through by 2 at the end to reach x − y itself.",
+        "memory_tip": "√3/2 = cos(π/6). Solve for the HALF-difference first, then double every term.",
+        "lines": [
+          "Now √3/2 = cos(π/6), so α = π/6",
+          "For cosθ = cosα, θ = 2nπ ± α",
+          "⇒ (x − y)/2 = 2nπ ± π/6,  n ∈ Z",
+          "⇒ x − y = 4nπ ± π/3   …(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos((x−y)/2) = cos(π/6) gives (x−y)/2 = 2nπ ± π/6, so x − y = 4nπ ± π/3.",
+          "accept": [
+            "root three by two is cos pi by six so half the difference is two n pi plus or minus pi by six and x minus y is four n pi plus or minus pi by three",
+            "use the cosine general solution then multiply by two",
+            "the principal value is pi by six",
+            "cos pi by six ante alpha pi by six, rendu vaipula two tho multiply cheyyali",
+            "solve the half difference and double it"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos pi by six",
+            "two n pi plus or minus",
+            "four n pi",
+            "x minus y"
+          ]
+        },
+        "why": "The unknown inside the cosine is (x − y)/2, not x − y, so the general solution is written for the half-difference first and only then doubled.",
+        "common_mistakes": [
+          "Doubling only the π/6 term and leaving 2nπ unchanged.",
+          "Taking α = π/3 because √3/2 is read as sin(π/3)."
+        ]
+      },
+      {
+        "id": "s4_solve_the_pair",
+        "kind": "boxed_final",
+        "label": "Solve the pair",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. Add (1) and (3) for x, then take y from (1). Only n = 0 gives values inside one turn, and the two signs give the same pair with x and y exchanged.",
+        "memory_tip": "Add the sum and the difference to get 2x. The ± only swaps x and y, so the answer is one pair.",
+        "lines": [
+          "Adding (1) and (3):",
+          "⇒ 2x = 2π/3 + 4nπ ± π/3",
+          "⇒ x = π/3 + 2nπ ± π/6",
+          "⇒ y = 2π/3 − x = π/3 − 2nπ ∓ π/6",
+          "Taking n = 0 with the upper signs:",
+          "x = π/3 + π/6 = π/2, y = π/3 − π/6 = π/6",
+          "Check: sin(π/2) + sin(π/6) = 1 + 1/2 = 3/2",
+          "The lower signs give the same pair swapped.",
+          {
+            "text": "∴ x = π/2, y = π/6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding the sum and the difference gives x = π/2 and y = π/6, and the other sign only swaps the two.",
+          "accept": [
+            "add the sum and the difference to get two x then x is pi by two and y is pi by six",
+            "taking n zero gives x equals pi by two and y equals pi by six",
+            "the other sign just exchanges x and y so it is the same pair",
+            "sum and difference add cheste x pi by two, y pi by six",
+            "check sin pi by two plus sin pi by six is three by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi by two",
+            "pi by six",
+            "add the two equations",
+            "same pair swapped"
+          ]
+        },
+        "why": "The sum and the difference of x and y are now both known, and adding them removes y. The ± sign does not give a new answer — it only decides which of the two angles is called x.",
+        "common_mistakes": [
+          "Presenting the two signs as two different answers.",
+          "Forgetting to check the pair against sin x + sin y = 3/2.",
+          "Leaving the answer as x − y = π/3 without finding x and y."
+        ]
+      }
+    ]
+  }
+}

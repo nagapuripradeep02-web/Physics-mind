@@ -1,0 +1,178 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos_product_ninths",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that cos(π/9) cos(2π/9) cos(3π/9) cos(4π/9) = 1/16.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply the product identity",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by cos(π/3)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 39(iv), book p.92. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on applying the product identity and on the closing multiplication; separating the cos(π/3) factor stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: the product was evaluated to 12 decimal places as 0.062500000000, which is exactly 1/16. PRINTED CLAIM CHECKED AND FOUND CORRECT: 3π/9 = π/3, so that factor is exactly 1/2 and the printed 1/16 could have been a lost or doubled factor of 2. It is not. The other three angles 20°, 40°, 80° form the standard product cos A cos(60° − A) cos(60° + A) = (1/4) cos 3A, which is (1/4) cos 60° = 1/8, and 1/2 × 1/8 = 1/16. The numeric evaluation above agrees, so the stem was authored as printed with no repair. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_separate_the_third_factor",
+        "kind": "equation",
+        "label": "Separate the cos(π/3) factor",
+        "marks": 0,
+        "margin_note": "3π/9 cancels to π/3 = 60°, whose cosine is 1/2. Pull that out and convert the other three angles to degrees.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "3π/9 = π/3, so cos(3π/9) = cos 60° = 1/2",
+          "In degrees π/9 = 20°, 2π/9 = 40°, 4π/9 = 80°",
+          "L.H.S = (1/2) · cos 20° cos 40° cos 80°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(3π/9) = cos 60° = 1/2 is taken out, leaving cos 20° cos 40° cos 80°.",
+          "accept": [
+            "three pi by nine is pi by three so that factor is one half",
+            "take out cos sixty which is a half",
+            "the other angles are twenty forty and eighty degrees",
+            "three pi by nine ante sixty degrees, adi half",
+            "separate the known factor first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi by three",
+            "cos sixty",
+            "one half",
+            "twenty forty eighty"
+          ]
+        },
+        "why": "The third factor is a known value on its own, so it is taken out first. What is left is a three-factor product in 20°, 40° and 80°.",
+        "common_mistakes": [
+          "Leaving cos(3π/9) inside and looking for a four-angle pattern.",
+          "Taking cos 60° as √3/2."
+        ],
+        "memory_tip": "3π/9 is π/3, and cos 60° = 1/2. Take it out before doing anything else."
+      },
+      {
+        "id": "s2_apply_the_identity",
+        "kind": "equation",
+        "label": "Apply the product identity",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. Quote the identity, then put A = 20° so that 3A = 60°. Three unknown cosines become one known cosine.",
+        "lines": [
+          "cos A cos(60° − A) cos(60° + A)",
+          "  = (1/4) cos 3A",
+          "With A = 20°: 40° = 60° − 20°,",
+          "80° = 60° + 20° and 3A = 60°",
+          "cos 20° cos 40° cos 80° = (1/4) cos 60°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos A cos(60° − A) cos(60° + A) = (1/4) cos 3A, so with A = 20° the product is (1/4) cos 60°.",
+          "accept": [
+            "cos a cos sixty minus a cos sixty plus a is one by four cos three a",
+            "with a as twenty the angle three a is sixty",
+            "the three cosines give a quarter of cos sixty",
+            "a equal twenty pettithe three a sixty avthundi",
+            "use the triple angle product identity"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "the answer is one by sixteen"
+          ],
+          "heard_as": [
+            "one by four",
+            "cos three a",
+            "cos sixty",
+            "a is twenty"
+          ]
+        },
+        "why": "The identity replaces three cosines of awkward angles by a single cosine of 3A. With A = 20° that single angle is 60°, whose value is known.",
+        "common_mistakes": [
+          "Using the sine identity (1/4) sin 3A by mistake.",
+          "Taking 3A as 20° rather than 60°."
+        ],
+        "memory_tip": "The three angles A, 60° − A, 60° + A give a quarter of cos 3A."
+      },
+      {
+        "id": "s3_multiply_and_finish",
+        "kind": "boxed_final",
+        "label": "Multiply by cos(π/3)",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. Bring back the 1/2 separated at the start. 1/8 of that is 1/16, and the extra halving is the whole reason the answer is not 1/8.",
+        "lines": [
+          "cos 60° = 1/2",
+          "cos 20° cos 40° cos 80° = (1/4)(1/2) = 1/8",
+          "L.H.S = (1/2) · (1/8)",
+          {
+            "text": "= 1/16 = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 20° cos 40° cos 80° = 1/8 and the separated 1/2 halves it to 1/16.",
+          "accept": [
+            "a quarter of a half is one by eight",
+            "then multiply by the half taken out at the start",
+            "one half into one by eight is one by sixteen",
+            "modati lo teesina half tho multiply cheyyali",
+            "the answer is one by sixteen"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "use the triple angle product identity"
+          ],
+          "heard_as": [
+            "one by eight",
+            "one by sixteen",
+            "half",
+            "multiply"
+          ]
+        },
+        "why": "The three-factor product is 1/8, and the cos(π/3) taken out at the start contributes the extra 1/2. Missing that factor would give 1/8 instead of 1/16.",
+        "common_mistakes": [
+          "Forgetting the 1/2 taken out at the start and answering 1/8.",
+          "Adding the two fractions instead of multiplying them."
+        ],
+        "memory_tip": "The identity gives 1/8, and the cos(π/3) taken out at the start halves it again to 1/16."
+      }
+    ]
+  }
+}

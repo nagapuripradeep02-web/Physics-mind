@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_tan_sec_ratio_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that (tan θ + sec θ − 1)/(tan θ − sec θ + 1) = (1 + sin θ)/cos θ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Replace 1 by sec²θ − tan²θ",
+      "marks": 1
+    },
+    {
+      "label": "Cancel and write in sin and cos",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 40, book p.93. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the substitution 1 = sec²θ − tan²θ and the factoring it makes possible first, and the cancellation plus the change to sin and cos second. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically at θ = 40°, 100°, 200° and 320°: the two sides agree to ten decimal places (2.1445069205, −11.4300523028, −0.7002075382 and 0.4663076582). The denominator tan θ − sec θ + 1 is zero exactly when sin θ + cos θ = 1, and with cos θ ≠ 0 that means θ = 2nπ; at θ = 0 it computes to 0.0000000000, which is why that family of angles is excluded on the page and not only here."
+  },
+  "recall_prompt": "Say what you would put in place of the 1 in the numerator, and say how the proof finishes.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "equation",
+        "label": "Replace 1 by sec²θ − tan²θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The −1 is the obstacle. Writing it as sec²θ − tan²θ makes every term carry the factor sec θ + tan θ, and the bracket left over is the denominator itself.",
+        "memory_tip": "Replace the 1 with sec²θ − tan²θ. The numerator then carries the whole denominator as a factor.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "tan θ and sec θ appear, so cos θ ≠ 0.",
+          "Also tan θ − sec θ + 1 ≠ 0; it is 0 when",
+          "sin θ + cos θ = 1, that is at θ = 2nπ.",
+          "In the numerator put 1 = sec²θ − tan²θ:",
+          "Nr = (tan θ + sec θ) − (sec²θ − tan²θ)",
+          "= (sec θ + tan θ)[1 − (sec θ − tan θ)]",
+          "= (sec θ + tan θ)(tan θ − sec θ + 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 is written as sec²θ − tan²θ, and the numerator then factors as (sec θ + tan θ)(tan θ − sec θ + 1).",
+          "accept": [
+            "write one as sec squared theta minus tan squared theta in the numerator",
+            "then sec theta plus tan theta comes out as a common factor",
+            "the numerator becomes sec theta plus tan theta times the denominator",
+            "one ni sec square minus tan square ga rasi common factor teestam",
+            "use the identity for one so the numerator factorises"
+          ],
+          "reject": [
+            "one plus sin theta by cos theta",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "sec squared minus tan squared",
+            "common factor",
+            "sec theta plus tan theta",
+            "numerator"
+          ]
+        },
+        "why": "The −1 is the obstacle. Replacing it with sec²θ − tan²θ makes both terms of the numerator carry the factor sec θ + tan θ, and the bracket that is left is exactly the denominator, so the fraction is about to collapse.",
+        "common_mistakes": [
+          "Replacing 1 by sin²θ + cos²θ, which does not factor here.",
+          "Forgetting that the denominator must not be 0."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Cancel and write in sin and cos",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The whole denominator is a factor of the numerator, so the fraction is sec θ + tan θ, and that is (1 + sin θ)/cos θ.",
+        "memory_tip": "After the factoring the fraction is simply sec θ + tan θ, and sec θ + tan θ = (1 + sin θ)/cos θ.",
+        "lines": [
+          "The denominator is not 0, so it cancels:",
+          "LHS = sec θ + tan θ",
+          "= 1/cos θ + sin θ/cos θ",
+          "= (1 + sin θ)/cos θ = RHS",
+          {
+            "text": "∴ LHS = (1 + sin θ)/cos θ",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the denominator cancels leaving sec θ + tan θ, which equals (1 + sin θ)/cos θ.",
+          "accept": [
+            "the denominator cancels so what is left is sec theta plus tan theta",
+            "sec theta plus tan theta is one over cos plus sin over cos which is one plus sin theta by cos theta",
+            "cancel the common bracket and convert to sin and cos",
+            "denominator cancel avutundi, sec theta plus tan theta migulutundi",
+            "write both in terms of cos theta and add"
+          ],
+          "reject": [
+            "write one as sec squared minus tan squared",
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sec theta plus tan theta",
+            "one plus sin theta",
+            "cancel",
+            "over cos theta"
+          ]
+        },
+        "why": "The whole denominator is a factor of the numerator, so the quotient is just sec θ + tan θ. Writing both of those over the common denominator cos θ gives the right side directly.",
+        "common_mistakes": [
+          "Cancelling before the numerator has been factored.",
+          "Writing sec θ + tan θ as (1 + cos θ)/sin θ."
+        ]
+      }
+    ]
+  }
+}

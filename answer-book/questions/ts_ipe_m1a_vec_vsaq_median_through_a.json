@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_median_through_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If a, b, c are the position vectors of the vertices A, B, C respectively of triangle ABC, find the vector equation of the median through the vertex A.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the midpoint of BC",
+      "marks": 1
+    },
+    {
+      "label": "Write the two-point form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.61, chapter 6 ADDITION OF VECTORS, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question: the first mark is for identifying the second point of the median as the midpoint of BC, the second for writing the two-point form of the line. This book prints almost no exam-appearance years, so appearances[] is empty — Addition of Vectors has long been examined, we simply have no sourced years for this question. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer was checked at both ends: t = 0 returns a, the vertex A, and t = 1 returns (b + c)/2, the midpoint of BC, so the equation does describe the median. Taking t = 2/3 returns (a + b + c)/3, the centroid, which is the further check that the line is the correct one."
+  },
+  "recall_prompt": "Say how you would write the vector equation of a median — say which two points it joins.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find the midpoint of BC",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. 'Median through A' names only one point, so the second one has to be found: the midpoint D of BC, the side opposite A. Its position vector is the average of b and c.",
+        "memory_tip": "A median runs from a vertex to the midpoint of the OPPOSITE side. The midpoint of BC is the average (b + c)/2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The median through A joins A to the",
+          "midpoint D of the opposite side BC.",
+          "Position vector of D = (b + c)/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the median through A ends at the midpoint D of BC, whose position vector is (b + c)/2.",
+          "accept": [
+            "the median goes from A to the midpoint of BC which is b plus c over two",
+            "find the midpoint of the opposite side first",
+            "D is the midpoint of BC so its position vector is the average of b and c",
+            "BC midpoint teeskovali, adi b plus c by two",
+            "the second point is the midpoint of the side opposite A"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "midpoint of BC",
+            "b plus c by two",
+            "median",
+            "opposite side"
+          ]
+        },
+        "why": "A line needs two points and the question names only one. Finding the midpoint supplies the second, and that is the only place the word median is used.",
+        "common_mistakes": [
+          "Taking the midpoint of AB or of AC instead of BC.",
+          "Writing the midpoint as b + c without dividing by 2.",
+          "Using the centroid (a + b + c)/3 as the second point."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Write the two-point form",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Two points and no direction given, so the two-point form is the one to use. t = 0 lands on A and t = 1 lands on D.",
+        "memory_tip": "Two points, so r = (1 − t)(first point) + t(second point). t = 0 sits at A, t = 1 sits at the midpoint.",
+        "lines": [
+          "A has position vector a, and D has (b + c)/2,",
+          "so by the two-point form of a line,",
+          "r = (1 − t)a + t·OD,  t ∈ R",
+          {
+            "text": "∴ r = (1 − t)a + t(b + c)/2, t ∈ R",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation is r = (1 − t)a + t(b + c)/2 with t real.",
+          "accept": [
+            "r equals one minus t times a plus t times b plus c over two",
+            "use the two point form with A and the midpoint",
+            "r is one minus t into a plus t into the midpoint of BC",
+            "r equals one minus t a plus t times b plus c by two, t real",
+            "the two point form of the line through A and the midpoint"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus t",
+            "two point form",
+            "r equals",
+            "b plus c by two",
+            "t belongs to R"
+          ]
+        },
+        "why": "The two-point form works because (1 − t) and t add to 1 for every value of t, and that sum being 1 is the test for a point lying on the line through A and D.",
+        "common_mistakes": [
+          "Using r = a + tb as though b were a direction vector.",
+          "Dropping t ∈ R, which describes only the segment AD.",
+          "Writing r = (1 − t)a + (b + c)/2 with the t left off the second term."
+        ]
+      }
+    ]
+  }
+}

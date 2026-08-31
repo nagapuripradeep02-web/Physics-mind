@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_collinear_find_t_parametric",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the values of t for which the points (t,2t), (2t,6t) and (3,8) are collinear.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the collinearity condition",
+      "marks": 1
+    },
+    {
+      "label": "Solve for t",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 25, book p.143. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for setting up the zero-area condition and one for solving the quadratic and reporting BOTH roots. NOTE ON THE ANSWER SET: t = 0 makes the first two points coincide at the origin, so the three points are collinear in the degenerate sense; it is a genuine root of the printed condition and is reported, with the coincidence stated on the page rather than quietly dropped. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say which condition you write down for three collinear points, and how many values of t you expect.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_collinearity_condition",
+        "kind": "equation",
+        "label": "Write the collinearity condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Three points are collinear exactly when the triangle they form has zero area, so the area determinant is set to 0 before any algebra starts.",
+        "memory_tip": "Collinear means the triangle has zero area. Write the area expression and set it to 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A = (t, 2t), B = (2t, 6t), C = (3, 8)",
+          "A, B, C are collinear",
+          "⇒ area of ΔABC = 0",
+          "⇒ x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That collinearity is written as the area of the triangle being zero.",
+          "accept": [
+            "three collinear points make a triangle of zero area",
+            "set the area expression equal to zero",
+            "use x one into y two minus y three and so on",
+            "area zero ante collinear ani artham",
+            "the area determinant is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "area of the triangle",
+            "equal to zero",
+            "collinear",
+            "x one y two minus y three"
+          ]
+        },
+        "why": "Any test for collinearity works, but the area form takes all three points at once and never divides by a difference, so it cannot break when two x-coordinates are equal.",
+        "common_mistakes": [
+          "Equating only two slopes and dividing by (2t − t), which is zero when t = 0.",
+          "Writing the area as one half of the expression and then forgetting it is set to zero."
+        ]
+      },
+      {
+        "id": "s2_solve_for_t",
+        "kind": "boxed_final",
+        "label": "Solve for t",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The expression factorises as 2t(t − 2), so there are two roots. Cancelling the t instead of factorising is what loses the mark.",
+        "memory_tip": "2t(t − 2) = 0 has TWO roots. Never cancel the t — that throws away t = 0.",
+        "lines": [
+          "⇒ t(6t − 8) + 2t(8 − 2t) + 3(2t − 6t) = 0",
+          "⇒ 6t² − 8t + 16t − 4t² − 12t = 0",
+          "⇒ 2t² − 4t = 0",
+          "⇒ 2t(t − 2) = 0",
+          {
+            "text": "∴ t = 0 or t = 2",
+            "style": "boxed"
+          },
+          "Check at t = 2: A(2, 4), B(4, 12), C(3, 8);",
+          "slope AB = 8/2 = 4 and slope BC = −4/−1 = 4.",
+          "At t = 0 both A and B become (0, 0), so the",
+          "three points still lie on one line."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the condition reduces to 2t(t − 2) = 0, giving t = 0 and t = 2.",
+          "accept": [
+            "two t into t minus two equals zero",
+            "t is zero or t is two",
+            "factorise instead of cancelling t",
+            "rendu values vastayi zero and two",
+            "both roots are answers"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two t into t minus two",
+            "t equals zero",
+            "t equals two",
+            "factorise"
+          ]
+        },
+        "why": "At t = 2 the three points are genuinely different and lie on a line of slope 4. At t = 0 the first two points are the same point, and any three points of which two coincide lie on a line, so t = 0 also satisfies the condition as printed.",
+        "common_mistakes": [
+          "Cancelling t and reporting only t = 2.",
+          "Making a sign slip in 3(2t − 6t) and getting a wrong quadratic."
+        ]
+      }
+    ]
+  }
+}

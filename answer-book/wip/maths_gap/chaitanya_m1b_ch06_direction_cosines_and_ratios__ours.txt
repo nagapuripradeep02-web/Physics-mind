@@ -1,0 +1,17 @@
+# OUR BANK — mathematics_1b unit 6: D.C's & D.R's (Maths-1B)  (7 cards)
+# source index: answer-book/sources/chaitanya_m1b_ch06_direction_cosines_and_ratios.json
+
+[LAQ] ts_ipe_m1b_dc_angle_l_plus_m_plus_n
+    Find the angle between the lines whose d.c's are related by l+m+n=0 and l²+m²−n²=0.
+[LAQ] ts_ipe_m1b_dc_angle_3l_plus_m_plus_5n
+    Find the angle between whose d.c's satisfy the equations 3l+m+5n=0 and 6mn−2nl+5lm=0.
+[LAQ] ts_ipe_m1b_dc_dcs_l_minus_5m_plus_3n
+    Find the direction cosines of two lines which are connected by the relations l−5m+3n=0 and 7l²+5m²−3n²=0.
+[LAQ] ts_ipe_m1b_dc_dcs_l_plus_m_plus_n_mn
+    Find the direction cosines of two lines which are connected by the relations l+m+n=0 and mn−2nl−2lm=0.
+[LAQ] ts_ipe_m1b_dc_perpendicular_proof
+    Show that the lines whose direction cosines are given by l+m+n=0, 2mn+3nl−5lm=0 are perpendicular to each other.
+[LAQ] ts_ipe_m1b_dc_angle_between_cube_diagonals
+    Find the angle between two diagonals of a cube.
+[LAQ] ts_ipe_m1b_dc_four_diagonals_cos_squares
+    If a ray makes angles α, β, γ, δ with the four diagonals of a cube then show that cos²α+cos²β+cos²γ+cos²δ = 4/3.

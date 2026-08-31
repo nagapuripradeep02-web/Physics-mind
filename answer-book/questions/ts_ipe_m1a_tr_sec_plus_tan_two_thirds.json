@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sec_plus_tan_two_thirds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If sec θ + tan θ = 2/3, find sin θ and state the quadrant in which θ lies.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Get sec θ − tan θ from the identity",
+      "marks": 1
+    },
+    {
+      "label": "Find sin θ and fix the quadrant",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 12, book p.84. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the reciprocal pair sec θ − tan θ = 3/2 first and the value of sin θ together with the quadrant second, because the question asks for two things and the quadrant is not a free extra. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically: sec θ = 13/12 and tan θ = −5/12 give sec θ + tan θ = 0.6666666667 = 2/3 and sec θ − tan θ = 1.5000000000 = 3/2; sin θ = −5/13 = −0.3846153846 and cos θ = 12/13 = 0.9230769231 satisfy sin²θ + cos²θ = 1. The angle is θ = −22.6198649480°, that is 337.3801350520°, which is in the fourth quadrant, so the quadrant on the page is derived from the two signs and not asserted."
+  },
+  "recall_prompt": "Say how you would do this one — name the identity you use, and say how you decide the quadrant.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pair",
+        "kind": "equation",
+        "label": "Get sec θ − tan θ from the identity",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. sec²θ − tan²θ = 1 factors into the given expression times its partner, so the partner is the reciprocal 3/2. The given value 2/3 is not 0, so the division is allowed.",
+        "memory_tip": "sec θ + tan θ and sec θ − tan θ multiply to 1, so each is the reciprocal of the other. Given 2/3, the partner is 3/2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "sec θ and tan θ appear, so cos θ ≠ 0.",
+          "sec²θ − tan²θ = 1",
+          "⇒ (sec θ + tan θ)(sec θ − tan θ) = 1",
+          "The given value 2/3 is not 0, so",
+          "sec θ − tan θ = 3/2      … (2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sec²θ − tan²θ = 1 makes sec θ − tan θ the reciprocal of the given 2/3, so it is 3/2.",
+          "accept": [
+            "sec squared minus tan squared is one so the two brackets are reciprocals and the other one is three by two",
+            "use sec squared theta minus tan squared theta equals one and factorise",
+            "the partner of two by three is three by two",
+            "sec square minus tan square equals one, so second one three by two",
+            "product of the two brackets is one so the other is three over two"
+          ],
+          "reject": [
+            "that is the answer",
+            "the fourth quadrant",
+            "then I get sin theta"
+          ],
+          "heard_as": [
+            "sec squared minus tan squared",
+            "three by two",
+            "reciprocal",
+            "factorise"
+          ]
+        },
+        "why": "sec²θ − tan²θ = 1 says the two expressions sec θ + tan θ and sec θ − tan θ have product 1, so each is the reciprocal of the other. One given value therefore fixes both, and two linear equations follow.",
+        "common_mistakes": [
+          "Writing sec θ − tan θ = −3/2 by taking the wrong sign.",
+          "Using sec²θ + tan²θ = 1, which is not an identity."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Find sin θ and fix the quadrant",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Adding gives sec θ = 13/12, subtracting gives tan θ = −5/12, and sin θ = tan θ cos θ = −5/13. cos θ positive with sin θ negative happens only in the fourth quadrant.",
+        "memory_tip": "Add the two equations to get sec θ, subtract them to get tan θ. Then sin θ = tan θ × cos θ, and the two signs name the quadrant.",
+        "lines": [
+          "Adding: 2 sec θ = 2/3 + 3/2 = 13/6",
+          "⇒ sec θ = 13/12, so cos θ = 12/13",
+          "Subtracting: 2 tan θ = 2/3 − 3/2 = −5/6",
+          "⇒ tan θ = −5/12",
+          "sin θ = tan θ · cos θ = (−5/12)(12/13) = −5/13",
+          "cos θ is positive and sin θ is negative,",
+          "and that happens only in the fourth quadrant.",
+          {
+            "text": "∴ sin θ = −5/13, θ in the fourth quadrant",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin θ = −5/13, and that cos θ positive with sin θ negative places θ in the fourth quadrant.",
+          "accept": [
+            "add to get sec theta twelve by thirteen for cos and subtract to get tan minus five by twelve so sin is minus five by thirteen",
+            "sin theta is minus five over thirteen and theta is in the fourth quadrant",
+            "cos is positive and sin is negative so it is the fourth quadrant",
+            "add cheste sec theta, subtract cheste tan theta, sin theta minus five by thirteen",
+            "sin theta equals minus five by thirteen, fourth quadrant"
+          ],
+          "reject": [
+            "the second quadrant",
+            "sin theta is five by thirteen",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus five by thirteen",
+            "twelve by thirteen",
+            "fourth quadrant",
+            "add and subtract"
+          ]
+        },
+        "why": "The two linear equations give sec θ and tan θ, and sin θ = tan θ × cos θ. The quadrant is then read off the two signs: cos θ positive together with sin θ negative occurs in the fourth quadrant and nowhere else.",
+        "common_mistakes": [
+          "Answering sin θ = 5/13 and losing the minus sign.",
+          "Naming the second quadrant, where cos θ is negative.",
+          "Stating a quadrant without checking the signs of both sin θ and cos θ."
+        ]
+      }
+    ]
+  }
+}

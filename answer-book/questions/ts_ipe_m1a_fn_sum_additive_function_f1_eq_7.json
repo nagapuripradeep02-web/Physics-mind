@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_sum_additive_function_f1_eq_7",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f: R→R satisfies f(x + y) = f(x) + f(y) for all x, y ∈ R and f(1) = 7, find Σ f(r), r = 1 to n.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Build f(r) = 7r for every natural number r",
+      "marks": 1
+    },
+    {
+      "label": "The sum",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 24. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to building f(r) = 7r out of the given property, which is the whole idea of the question, and one to summing it, because a student who reaches f(r) = 7r and then misquotes the sum of the first n natural numbers has still done half the work. The property is used only for natural r, and the card says so in its written lines. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this — how you get f(r) from the given property, and how you finish the sum.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_build_f_of_r",
+        "kind": "equation",
+        "label": "Build f(r) from the property",
+        "marks": 1,
+        "mark_note": "f(r) = 7r",
+        "margin_note": "One mark for reaching f(r) = 7r. Show at least f(2) and f(3) before claiming the general form; a bare f(r) = 7r earns nothing.",
+        "memory_tip": "f(x + y) = f(x) + f(y) turns addition inside f into addition outside, so f of a whole number is that many copies of f(1).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x + y) = f(x) + f(y) and f(1) = 7",
+          "f(2) = f(1 + 1) = f(1) + f(1) = 2f(1)",
+          "f(3) = f(2 + 1) = f(2) + f(1) = 3f(1)",
+          "Adding f(1) one more time each step,",
+          "f(r) = r f(1) for every r ∈ N.",
+          "f(1) = 7 ⇒ f(r) = 7r for every r ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting x = y = 1 gives f(2) = 2f(1), repeating gives f(r) = r f(1), and f(1) = 7 makes f(r) = 7r for natural r.",
+          "accept": [
+            "write two as one plus one so f of two is two times f of one",
+            "f of three is f of two plus f of one which is three f of one",
+            "repeating the property gives f of r equals r times f of one",
+            "since f of one is seven f of r is seven r",
+            "f of one repeat chesthu potey f of r equals seven r vasthundi"
+          ],
+          "reject": [
+            "the sum is seven n n plus one by two",
+            "use the formula for the sum of n terms",
+            "f of r is seven"
+          ],
+          "heard_as": [
+            "f of x plus y",
+            "f of one",
+            "seven r",
+            "additive",
+            "natural number"
+          ]
+        },
+        "why": "The property is the only information given about f, so f(r) has to be built out of it. Writing r as 1 + 1 + … + 1 and applying the property r − 1 times is what produces f(r) = r f(1).",
+        "common_mistakes": [
+          "Assuming f(x) = 7x for every real x from the start, instead of building f(r) for natural r from the property.",
+          "Writing f(2) = f(1)² or f(2) = f(1) + 1 instead of f(1) + f(1).",
+          "Stopping at f(r) = r f(1) and never putting f(1) = 7."
+        ]
+      },
+      {
+        "id": "s2_add_the_terms",
+        "kind": "boxed_final",
+        "label": "Add the n terms",
+        "marks": 1,
+        "mark_note": "The sum",
+        "margin_note": "The second mark is the sum. Take the 7 outside and quote Σr = n(n + 1)/2; leave the answer as a single fraction.",
+        "memory_tip": "Every term carries the same factor 7, so pull it out and only the sum 1 + 2 + … + n is left, which is n(n + 1)/2.",
+        "lines": [
+          "Σ f(r), r = 1 to n",
+          "= f(1) + f(2) + … + f(n)",
+          "= 7(1) + 7(2) + … + 7(n)",
+          "= 7(1 + 2 + … + n)",
+          "= 7 · n(n + 1)/2",
+          {
+            "text": "∴ Σ f(r) = 7n(n + 1)/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sum is 7(1 + 2 + … + n), and using Σr = n(n + 1)/2 gives 7n(n + 1)/2.",
+          "accept": [
+            "take seven outside and add one plus two up to n",
+            "the sum of the first n natural numbers is n into n plus one by two",
+            "so the answer is seven n into n plus one by two",
+            "seven times n n plus one over two",
+            "seven bayata teesi one plus two plus n add cheste n into n plus one by two"
+          ],
+          "reject": [
+            "f of r is seven r",
+            "put x equals y equals one",
+            "the sum is seven n"
+          ],
+          "heard_as": [
+            "sigma",
+            "sum",
+            "n into n plus one by two",
+            "seven n n plus one by two",
+            "first n natural numbers"
+          ]
+        },
+        "why": "Once f(r) = 7r is known the question is an arithmetic sum, not a function question. The constant 7 comes out of the sum, and what is left is the standard sum of the first n natural numbers.",
+        "common_mistakes": [
+          "Quoting Σr as n(n + 1) and dropping the 2 in the denominator.",
+          "Writing the answer as 7n, which adds one term instead of n terms.",
+          "Leaving the answer as 7(1 + 2 + … + n) without using the standard sum."
+        ]
+      }
+    ]
+  }
+}

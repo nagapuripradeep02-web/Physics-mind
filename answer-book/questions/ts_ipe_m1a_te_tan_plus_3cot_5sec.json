@@ -1,0 +1,235 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_tan_plus_3cot_5sec",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve tanθ + 3 cotθ = 5 secθ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Clear the fractions",
+      "marks": 1
+    },
+    {
+      "label": "Reduce to a quadratic in sinθ",
+      "marks": 1
+    },
+    {
+      "label": "Reject the impossible root",
+      "marks": 1
+    },
+    {
+      "label": "Check and write the general solution",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.106, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 1(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape rewards the four separable moves — clear the denominators while recording the condition they impose, reduce to a quadratic in sinθ, discard the out-of-range root in writing, and finish with the correct sine general solution. EXTRANEOUS-ROOT RECORD: multiplying by sinθ cosθ can admit values where sinθ cosθ = 0, so those were tested. Neither sinθ = 0 nor cosθ = 0 satisfies the cleared equation sin²θ + 3cos²θ = 5 sinθ (they give 3 = 0 and 1 = ±5), and the surviving root sinθ = 1/2 forces cosθ = ±√3/2, so the whole family θ = nπ + (−1)ⁿ(π/6) lies inside the domain. Both θ = π/6 and θ = 5π/6 were substituted into the ORIGINAL equation and both give ±10/√3 on each side, so NOTHING is discarded here except sinθ = −3, which is out of the sine range. The card therefore states the check and its result rather than inventing a rejection. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_clear_the_fractions",
+        "kind": "equation",
+        "label": "Clear the fractions",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write all three ratios in sine and cosine, then multiply by sinθ cosθ. Record θ ≠ nπ/2 now — that condition is what you test the answer against at the end.",
+        "memory_tip": "Write everything over sinθ and cosθ, then multiply by sinθ cosθ. Record sinθ ≠ 0 and cosθ ≠ 0 first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given tanθ + 3 cotθ = 5 secθ",
+          "These ratios exist only if sinθ ≠ 0 and",
+          "cosθ ≠ 0, that is θ ≠ nπ/2.",
+          "⇒ sinθ/cosθ + 3cosθ/sinθ = 5/cosθ",
+          "Multiply both sides by sinθ cosθ:",
+          "⇒ sin²θ + 3cos²θ = 5 sinθ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That all three ratios are written in sine and cosine and both sides are multiplied by sinθ cosθ, with sinθ ≠ 0 and cosθ ≠ 0 recorded.",
+          "accept": [
+            "write tan cot and sec in sine and cosine then multiply through by sin theta cos theta",
+            "clear the denominators after noting sin theta and cos theta are not zero",
+            "it becomes sin squared theta plus three cos squared theta equals five sin theta",
+            "anni sine cosine lo rasi sin theta cos theta tho multiply cheyyali",
+            "remove the fractions first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin theta cos theta",
+            "clear the denominators",
+            "not zero",
+            "sine and cosine"
+          ]
+        },
+        "why": "The three ratios are fractions in sinθ and cosθ. Multiplying by sinθ cosθ removes every denominator, but it is only allowed while sinθ ≠ 0 and cosθ ≠ 0, so that condition is written down before it is used.",
+        "common_mistakes": [
+          "Multiplying by cosθ only and leaving the cotθ term as a fraction.",
+          "Not recording that sinθ and cosθ must not be zero."
+        ]
+      },
+      {
+        "id": "s2_reduce_to_a_quadratic",
+        "kind": "equation",
+        "label": "Reduce to a quadratic in sinθ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Replace cos²θ by 1 − sin²θ and collect. Bring every term to one side so the quadratic has a positive sin²θ coefficient.",
+        "memory_tip": "Replace cos²θ by 1 − sin²θ, then move everything to the side that keeps sin²θ positive.",
+        "lines": [
+          "⇒ sin²θ + 3(1 − sin²θ) = 5 sinθ",
+          "  [∵ sin²θ + cos²θ = 1]",
+          "⇒ 3 − 2sin²θ = 5 sinθ",
+          "⇒ 2sin²θ + 5 sinθ − 3 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²θ is replaced by 1 − sin²θ, giving 2sin²θ + 5 sinθ − 3 = 0.",
+          "accept": [
+            "replace cos squared by one minus sin squared and collect to two sin squared plus five sin minus three equals zero",
+            "it becomes a quadratic in sine",
+            "use the identity so only sine is left",
+            "cos square ni one minus sin square ga marchi quadratic ga rasali",
+            "get a quadratic in sin theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "quadratic in sine",
+            "two sin squared plus five sin",
+            "minus three",
+            "one minus sin squared"
+          ]
+        },
+        "why": "One ratio is needed before anything can be factorised. Replacing cos²θ by 1 − sin²θ leaves an ordinary quadratic that behaves like any other.",
+        "common_mistakes": [
+          "Sign slip when moving 5 sinθ across.",
+          "Replacing sin²θ instead and leaving a cosine behind."
+        ]
+      },
+      {
+        "id": "s3_reject_the_impossible_root",
+        "kind": "equation",
+        "label": "Reject the impossible root",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark, and the part most often skipped. sinθ = −3 lies outside [−1, 1], so that branch is discarded with the reason written down.",
+        "memory_tip": "Split the middle term as 6 − 1. Then sinθ = −3 is outside [−1, 1], so discard it IN WRITING.",
+        "lines": [
+          "⇒ 2sin²θ + 6 sinθ − sinθ − 3 = 0",
+          "⇒ 2sinθ(sinθ + 3) − 1(sinθ + 3) = 0",
+          "⇒ (2sinθ − 1)(sinθ + 3) = 0",
+          "⇒ sinθ = 1/2  (or)  sinθ = −3",
+          "But |sinθ| ≤ 1 always, and 3 > 1,",
+          "so sinθ = −3 has no solution."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quadratic factorises to (2sinθ − 1)(sinθ + 3) = 0 and sinθ = −3 is rejected because |sinθ| ≤ 1.",
+          "accept": [
+            "factorise to two sin theta minus one into sin theta plus three and reject sin theta equals minus three",
+            "sin theta equals minus three is impossible because sine stays between minus one and one",
+            "the factors give a half and minus three and only a half is possible",
+            "sin theta minus three impossible, sine range minus one to one",
+            "discard the out of range root with a reason"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin theta plus three",
+            "minus three",
+            "no solution",
+            "mod sin theta less than one"
+          ]
+        },
+        "why": "A quadratic gives two roots, but a sine only takes values from −1 to 1. Testing each root against that range, in writing, is part of solving a trigonometric equation.",
+        "common_mistakes": [
+          "Carrying sinθ = −3 forward and inventing an angle for it.",
+          "Discarding it with no reason written down."
+        ]
+      },
+      {
+        "id": "s4_check_and_write_general",
+        "kind": "boxed_final",
+        "label": "Check and write the general solution",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. Clearing the fractions could have let in values where sinθ or cosθ is zero, so test the surviving root against θ ≠ nπ/2 before writing the answer. It passes, so the whole family is kept.",
+        "memory_tip": "Before writing the answer, put the root back: sinθ = 1/2 gives cosθ = ±√3/2, so no denominator is zero.",
+        "lines": [
+          "Check: sinθ = 1/2 makes cosθ = ±√3/2.",
+          "Neither is zero, so θ ≠ nπ/2 holds and this",
+          "root also satisfies the original equation.",
+          "Now sinθ = 1/2 = sin(π/6), so α = π/6",
+          "For sinθ = sinα, θ = nπ + (−1)ⁿ α",
+          {
+            "text": "∴ θ = nπ + (−1)ⁿ (π/6),  n ∈ Z",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the root is checked against sinθ ≠ 0 and cosθ ≠ 0, then sinθ = 1/2 gives θ = nπ + (−1)ⁿ(π/6), n ∈ Z.",
+          "accept": [
+            "check that sin theta is a half so cos theta is plus or minus root three by two and nothing is zero then write n pi plus minus one to the n pi by six",
+            "the principal value is pi by six and the sine general solution applies",
+            "put the root back into the original before writing the answer",
+            "sin theta half ante cos theta root three by two, denominator zero kaadu",
+            "the answer is n pi plus minus one power n pi by six"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi by six",
+            "n pi",
+            "minus one to the n",
+            "belongs to Z",
+            "check"
+          ]
+        },
+        "why": "Multiplying by sinθ cosθ can let in values where sinθ or cosθ is zero, and at those values tanθ, cotθ and secθ do not exist. Testing the surviving root against that condition is what makes the answer safe to write.",
+        "common_mistakes": [
+          "Using the cosine form 2nπ ± α for a sine equation.",
+          "Never checking that cosθ is not zero after clearing the fractions.",
+          "Omitting n ∈ Z."
+        ]
+      }
+    ]
+  }
+}

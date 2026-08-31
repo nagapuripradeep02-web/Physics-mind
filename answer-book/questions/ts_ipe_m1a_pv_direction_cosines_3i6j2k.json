@@ -1,0 +1,236 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_direction_cosines_3i6j2k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If α, β and γ are the angles made by the vector 3i − 6j + 2k with the positive directions of the coordinate axes, find cos α, cos β and cos γ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the magnitude of the vector",
+      "marks": 1
+    },
+    {
+      "label": "Say what the direction cosines are",
+      "marks": 1
+    },
+    {
+      "label": "Write the three cosines",
+      "marks": 1
+    },
+    {
+      "label": "Check with l² + m² + n² = 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 36, book p.74. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The stem's vector is 3i − 6j + 2k, with a MINUS on the j term. Computed twice. Component route: |v| = √(9 + 36 + 4) = √49 = 7 exactly, so cos α = 3/7, cos β = −6/7, cos γ = 2/7. Dot-product route, done independently: cos α = (v·i)/(|v||i|) = 3/7, cos β = (v·j)/(|v||j|) = −6/7, cos γ = (v·k)/(|v||k|) = 2/7 — the same three values. Checked against the identity: (9 + 36 + 4)/49 = 49/49 = 1. cos β is NEGATIVE and that is the correct answer, not a sign slip: β = Cos⁻¹(−6/7) ≈ 149.0° is obtuse because the vector points along −j. For reference the other two are α ≈ 64.6° and γ ≈ 73.4°. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: the magnitude, saying what a direction cosine is, writing the three values with their signs, and verifying the identity. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the cosines of the angles a vector makes with the three axes — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_magnitude",
+        "kind": "equation",
+        "label": "Find the magnitude",
+        "marks": 1,
+        "mark_note": "Magnitude",
+        "margin_note": "First mark. Square each component with its sign. (−6)² is +36, so the minus does not survive into the magnitude — it survives only into cos β.",
+        "memory_tip": "Squaring kills the minus sign here: (−6)² = 36, and √49 = 7 exactly.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let v = 3i − 6j + 2k.",
+          "|v| = √(3² + (−6)² + 2²)",
+          "    = √(9 + 36 + 4)",
+          "    = √49 = 7"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |v| = √(9 + 36 + 4) = √49 = 7.",
+          "accept": [
+            "the magnitude is root forty nine which is seven",
+            "nine plus thirty six plus four is forty nine",
+            "square each component with its sign and add",
+            "magnitude root forty nine ante seven",
+            "minus six squared is plus thirty six"
+          ],
+          "reject": [
+            "find the magnitude",
+            "that is the answer",
+            "now divide"
+          ],
+          "heard_as": [
+            "root forty nine",
+            "seven",
+            "thirty six",
+            "magnitude"
+          ]
+        },
+        "why": "Direction cosines are the components of a vector of length 1, so the length of the given vector is what every component must be divided by. Here it is exactly 7, so all three cosines are neat sevenths.",
+        "common_mistakes": [
+          "Writing (−6)² as −36 by squaring only the 6.",
+          "Adding 3 − 6 + 2 instead of the squares."
+        ]
+      },
+      {
+        "id": "s2_meaning",
+        "kind": "equation",
+        "label": "Say what a direction cosine is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Second mark. cos α is the cosine of the angle between v and the positive x axis, which is v·i divided by |v|. That is exactly the first component over the length.",
+        "memory_tip": "cos α = (v·i)/|v|, and v·i is just the i component of v.",
+        "lines": [
+          "α, β, γ are the angles v makes with the",
+          "positive x, y and z axes.",
+          "cos α = (v·i)/(|v||i|) = (v·i)/|v|",
+          "and the same for j and k.",
+          "So cos α, cos β, cos γ are the components",
+          "of the unit vector along v."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos α is (v·i)/|v| and likewise for j and k, so the three cosines are the components of the unit vector along v.",
+          "accept": [
+            "cos alpha is v dot i over mod v",
+            "the direction cosines are the components of the unit vector",
+            "dot the vector with each unit axis vector and divide by the length",
+            "direction cosines ante unit vector components",
+            "each cosine is one component divided by the magnitude"
+          ],
+          "reject": [
+            "write the definition",
+            "that is the answer",
+            "divide by seven"
+          ],
+          "heard_as": [
+            "direction cosines",
+            "unit vector",
+            "v dot i",
+            "components"
+          ]
+        },
+        "why": "The dot product with a unit axis vector picks out one component. Dividing by the length turns that component into a cosine, because a unit vector's components are the cosines of the angles it makes with the axes.",
+        "common_mistakes": [
+          "Confusing direction cosines with direction ratios, which are the components themselves.",
+          "Dividing by |v|² instead of |v|."
+        ]
+      },
+      {
+        "id": "s3_values",
+        "kind": "equation",
+        "label": "Write the three cosines",
+        "marks": 1,
+        "mark_note": "The values",
+        "margin_note": "Third mark. Divide each component by 7, keeping its sign. cos β is negative, which is correct: the vector points along the negative y direction.",
+        "memory_tip": "Divide each component by 7 and KEEP its sign.",
+        "lines": [
+          "Unit vector along v = v/|v|",
+          "  = (3i − 6j + 2k)/7",
+          "cos α = 3/7",
+          "cos β = −6/7",
+          "cos γ = 2/7"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos α = 3/7, cos β = −6/7 and cos γ = 2/7, with the minus sign kept on the second.",
+          "accept": [
+            "three sevenths minus six sevenths and two sevenths",
+            "divide each component by seven keeping the signs",
+            "cos beta is negative six over seven",
+            "prathi component ni seven tho divide cheste, sign unchali",
+            "the cosines are three by seven minus six by seven and two by seven"
+          ],
+          "reject": [
+            "find the cosines",
+            "divide by seven",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "three sevenths",
+            "minus six sevenths",
+            "two sevenths",
+            "cos beta"
+          ]
+        },
+        "why": "The component and the cosine share a sign because both describe the same direction along that axis. A negative component means the vector leans away from the positive axis, so its angle with that axis is more than 90°.",
+        "common_mistakes": [
+          "Dropping the minus sign and writing cos β = 6/7.",
+          "Pairing the values with the wrong axes."
+        ]
+      },
+      {
+        "id": "s4_check",
+        "kind": "boxed_final",
+        "label": "Check the identity",
+        "marks": 1,
+        "mark_note": "Check and answer",
+        "margin_note": "Last mark. The squares of the three direction cosines always add to 1, because they are the components of a unit vector. It is a free check on every sign and every division.",
+        "memory_tip": "cos²α + cos²β + cos²γ = 1 always — a free check on the arithmetic.",
+        "lines": [
+          "cos²α + cos²β + cos²γ",
+          "  = (9 + 36 + 4)/49",
+          "  = 49/49 = 1",
+          {
+            "text": "∴ cos α = 3/7, cos β = −6/7,",
+            "style": "boxed"
+          },
+          {
+            "text": "cos γ = 2/7",
+            "style": "boxed"
+          },
+          "cos β is negative, so β is obtuse. That is",
+          "correct, since v points along −j."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the squares of the three cosines add to 49/49 = 1, and that the negative cos β simply means β is obtuse.",
+          "accept": [
+            "the squares add to forty nine over forty nine which is one",
+            "the identity confirms the three values",
+            "a negative cosine means the angle is obtuse and that is correct",
+            "moodu squares add cheste one vasthundi, so answer correct",
+            "cos beta negative kabatti beta obtuse angle"
+          ],
+          "reject": [
+            "check it",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "squares add to one",
+            "forty nine",
+            "obtuse",
+            "negative cosine"
+          ]
+        },
+        "why": "A unit vector has length 1, so the sum of the squares of its components is 1. Any arithmetic slip in the magnitude or in a division breaks this identity, which is why it is worth a line of its own.",
+        "common_mistakes": [
+          "Taking the modulus of cos β to make all three positive.",
+          "Dividing by 7 instead of 49 when squaring."
+        ]
+      }
+    ]
+  }
+}

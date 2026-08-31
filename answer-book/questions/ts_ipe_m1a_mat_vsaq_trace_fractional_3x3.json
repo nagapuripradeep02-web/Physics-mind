@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_trace_fractional_3x3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the trace of a matrix. Find the trace of the matrix with rows (1, 2, −1/2), (0, −1, 2) and (−1/2, 2, 1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Define the trace",
+      "marks": 1
+    },
+    {
+      "label": "Add the principal diagonal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.33, chapter 5 MATRICES, Very Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the written definition and the diagonal sum separately, because the question asks for both and a bare number answers only half of it. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Two records for the reviewer. (1) The proposed question_id carries the word \"symmetric\", but the matrix printed in the stem is NOT symmetric: its (1,2) entry is 2 while its (2,1) entry is 0. The trace does not depend on that, so the card is authored on the matrix as printed and says nothing about symmetry; the file name is kept as assigned. (2) Related card in the same unit: ts_ipe_m1a_mat_vsaq_trace asks for the trace of a different matrix, so the two are separate questions that share one definition."
+  },
+  "recall_prompt": "Say what the trace of a matrix is, and how you would find it for this matrix.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "equation",
+        "label": "Define the trace",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. The question says \"define\", so the words have to be written even though the arithmetic is short.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Trace:",
+            "style": "heading"
+          },
+          "The trace of a square matrix A is the sum of",
+          "the entries in its principal diagonal.",
+          "It is written Tr(A), and it is defined only",
+          "for a square matrix."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the trace is the sum of the entries on the principal diagonal, and that it is defined only for a square matrix.",
+          "accept": [
+            "the trace is the sum of the entries in the principal diagonal of a square matrix",
+            "add the entries running from top left to bottom right",
+            "it is written Tr A and it needs a square matrix",
+            "trace ante principal diagonal lo unna elements sum",
+            "the sum of the main diagonal elements"
+          ],
+          "reject": [
+            "it is the trace",
+            "the diagonal of the matrix"
+          ],
+          "heard_as": [
+            "trace",
+            "principal diagonal",
+            "main diagonal",
+            "square matrix",
+            "sum"
+          ]
+        },
+        "why": "The word \"define\" carries a mark of its own. A correct number with no definition answers only half of what was asked, and the phrase \"square matrix\" is part of the definition because a rectangular matrix has no principal diagonal to add.",
+        "common_mistakes": [
+          "Giving the number and leaving out the definition.",
+          "Defining the trace as the sum of all the entries.",
+          "Leaving out the word square."
+        ],
+        "memory_tip": "Trace is the diagonal total, top left to bottom right, and only a square matrix has one."
+      },
+      {
+        "id": "s2_add_diagonal",
+        "kind": "boxed_final",
+        "label": "Add the principal diagonal",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The diagonal is 1, −1 and 1. The two −1/2 entries sit off the diagonal and take no part.",
+        "lines": [
+          {
+            "text": "A = \\begin{bmatrix} 1 & 2 & -\\frac{1}{2} \\\\ 0 & -1 & 2 \\\\ -\\frac{1}{2} & 2 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "The principal diagonal is 1, −1, 1.",
+          "Tr(A) = 1 + (−1) + 1 = 1",
+          {
+            "text": "∴ Tr(A) = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the diagonal entries 1, −1 and 1 are added to give a trace of 1.",
+          "accept": [
+            "the diagonal is one minus one and one so the trace is one",
+            "one minus one plus one equals one",
+            "the trace of this matrix is one",
+            "diagonal lo one minus one one, sum one",
+            "adding the diagonal gives one"
+          ],
+          "reject": [
+            "add the diagonal",
+            "find the trace"
+          ],
+          "heard_as": [
+            "one",
+            "minus one",
+            "diagonal",
+            "trace is one"
+          ]
+        },
+        "why": "The principal diagonal runs from the top left corner to the bottom right corner. The fractions here sit off that line, so they are not part of the trace even though they are the most eye-catching entries in the matrix.",
+        "common_mistakes": [
+          "Adding the −1/2 entries, which are off the diagonal.",
+          "Adding every entry of the matrix.",
+          "Using the other diagonal, from top right to bottom left."
+        ],
+        "memory_tip": "Read only the top-left to bottom-right line: 1, −1, 1."
+      }
+    ]
+  }
+}

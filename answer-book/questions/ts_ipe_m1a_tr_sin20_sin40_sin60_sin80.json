@@ -1,0 +1,177 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sin20_sin40_sin60_sin80",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that sin 20° sin 40° sin 60° sin 80° = 3/16.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply the product identity",
+      "marks": 1
+    },
+    {
+      "label": "Multiply by sin 60°",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 39(iii), book p.92. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on applying the product identity and on the closing multiplication; spotting the 60° ± 20° pattern stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: the product was evaluated to 12 decimal places as 0.187500000000, which is exactly 3/16. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_spot_the_pattern",
+        "kind": "equation",
+        "label": "Spot the 60° pattern",
+        "marks": 0,
+        "margin_note": "Take sin 60° out first. What is left is sin A, sin(60° − A) and sin(60° + A) with A = 20°.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "40° = 60° − 20° and 80° = 60° + 20°",
+          "L.H.S = sin 60°",
+          "  · [sin 20° sin(60° − 20°) sin(60° + 20°)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 40° = 60° − 20° and 80° = 60° + 20°, so three factors form sin A sin(60° − A) sin(60° + A) with A = 20°.",
+          "accept": [
+            "forty and eighty are twenty either side of sixty",
+            "keep sin sixty aside and bracket the other three",
+            "the bracket is sin a sin sixty minus a sin sixty plus a with a as twenty",
+            "sixty ki rendu vaipula twenty untundi",
+            "spot the sixty degree pattern"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sixty minus twenty",
+            "sixty plus twenty",
+            "sin sixty",
+            "bracket"
+          ]
+        },
+        "why": "Three of the four angles are 20° and 60° either side of it, which is exactly the shape of the standard product identity. sin 60° is set aside as a separate factor.",
+        "common_mistakes": [
+          "Trying to work out sin 20°, sin 40° and sin 80° as decimals.",
+          "Including sin 60° inside the bracket as well."
+        ],
+        "memory_tip": "40° and 80° sit 20° either side of 60°, so the bracket is the standard triple product."
+      },
+      {
+        "id": "s2_apply_the_identity",
+        "kind": "equation",
+        "label": "Apply the product identity",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. Quote the identity, then put A = 20° so that 3A = 60°. Three unknown sines become one known sine.",
+        "lines": [
+          "sin A sin(60° − A) sin(60° + A)",
+          "  = (1/4) sin 3A",
+          "With A = 20°, 3A = 60°:",
+          "sin 20° sin 40° sin 80° = (1/4) sin 60°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin A sin(60° − A) sin(60° + A) = (1/4) sin 3A, so with A = 20° the bracket is (1/4) sin 60°.",
+          "accept": [
+            "sin a sin sixty minus a sin sixty plus a is one by four sin three a",
+            "with a as twenty the angle three a is sixty",
+            "the bracket becomes a quarter of sin sixty",
+            "a equal twenty pettithe three a sixty avthundi",
+            "use the triple angle product identity"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "the answer is three by sixteen"
+          ],
+          "heard_as": [
+            "one by four",
+            "sin three a",
+            "sin sixty",
+            "a is twenty"
+          ]
+        },
+        "why": "The identity replaces three sines of awkward angles by a single sine of 3A. With A = 20° that single angle is 60°, whose value is known.",
+        "common_mistakes": [
+          "Using (1/4) sin A instead of (1/4) sin 3A.",
+          "Taking 3A as 20° rather than 60°."
+        ],
+        "memory_tip": "The three angles A, 60° − A, 60° + A give a quarter of sin 3A."
+      },
+      {
+        "id": "s3_multiply_by_sin_sixty",
+        "kind": "boxed_final",
+        "label": "Multiply by sin 60°",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. Bring back the sin 60° set aside at the start. Two copies of √3/2 give 3/4, and a quarter of 3/4 is 3/16.",
+        "lines": [
+          "sin 60° = √3/2",
+          "L.H.S = sin 60° · (1/4) sin 60°",
+          "= (1/4)(√3/2)(√3/2) = (1/4)(3/4)",
+          {
+            "text": "= 3/16 = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin 60° = √3/2 appears twice, giving (1/4)(3/4) = 3/16.",
+          "accept": [
+            "sin sixty is root three by two and it appears twice",
+            "root three by two squared is three by four",
+            "a quarter of three by four is three by sixteen",
+            "root three by two rendu sarlu vasthundi",
+            "the answer is three by sixteen"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "use the triple angle product identity"
+          ],
+          "heard_as": [
+            "root three by two",
+            "three by four",
+            "three by sixteen",
+            "twice"
+          ]
+        },
+        "why": "The factor sin 60° that was set aside now meets the sin 60° produced by the identity, so √3/2 appears twice and squares to 3/4.",
+        "common_mistakes": [
+          "Using sin 60° only once and getting √3/8.",
+          "Taking (√3/2)² as √3/4."
+        ],
+        "memory_tip": "√3/2 appears twice, and squaring it gives 3/4. A quarter of 3/4 is 3/16."
+      }
+    ]
+  }
+}

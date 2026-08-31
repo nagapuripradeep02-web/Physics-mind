@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_minor_cofactor_of_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the minor and the cofactor of the element 5 in the matrix with rows (1, 0, −2), (3, −1, 2) and (4, 5, 6).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the minor of 5",
+      "marks": 1
+    },
+    {
+      "label": "Apply the sign to get the cofactor",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 27, book p.36. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to the minor and one to the sign, because the question names two different quantities and the sign is the part students lose. POSITION: 5 is the entry in row 3, column 2, so it is a₃₂; deleting that row and that column leaves the 2×2 determinant with rows (1, −2) and (3, 2). CHECKED: the minor was evaluated twice, as (1)(2) − (−2)(3) = 2 + 6 = 8 and again as the determinant of the remaining block read down its columns, both giving 8; the cofactor is (−1)³⁺² × 8 = −8. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the minor and the cofactor of the element 5.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_minor",
+        "kind": "equation",
+        "label": "Find the minor of 5",
+        "marks": 1,
+        "mark_note": "Minor",
+        "margin_note": "First mark. Locate 5 first: it is in row 3, column 2, so it is a₃₂. Delete that row and that column and take the determinant of what is left. The minor carries no sign.",
+        "memory_tip": "Cover the row and the column that the element sits in. What is left is the minor.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The element 5 is in row 3, column 2,",
+          "so it is a₃₂. Delete row 3 and column 2.",
+          {
+            "text": "M_{32} = \\begin{vmatrix} 1 & -2 \\\\ 3 & 2 \\end{vmatrix} = (1)(2) - (-2)(3) = 8",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 5 sits at row 3 column 2, and deleting that row and column leaves a 2×2 determinant whose value 8 is the minor.",
+          "accept": [
+            "five is in row three column two so delete that row and that column",
+            "the minor is the two by two determinant left behind, which is eight",
+            "cover the third row and second column and evaluate what remains",
+            "row three column two delete cheste migilina determinant eight",
+            "minor M three two equals one times two minus minus two times three"
+          ],
+          "reject": [
+            "find the minor",
+            "delete a row and a column"
+          ],
+          "heard_as": [
+            "row three column two",
+            "minor",
+            "eight",
+            "a three two"
+          ]
+        },
+        "why": "The minor of an element is the determinant of the block that survives when its own row and column are removed. It is a plain value with no sign attached.",
+        "common_mistakes": [
+          "Reading 5 as a₂₃ instead of a₃₂ and deleting the wrong row and column.",
+          "Putting the sign (−1)³⁺² on the minor, where it does not belong."
+        ]
+      },
+      {
+        "id": "s2_cofactor",
+        "kind": "boxed_final",
+        "label": "Apply the sign to get the cofactor",
+        "marks": 1,
+        "mark_note": "Cofactor",
+        "margin_note": "Second mark. The cofactor is the minor times (−1) raised to the power (row + column). Here 3 + 2 = 5, which is odd, so the sign is minus and the cofactor is −8.",
+        "memory_tip": "Row plus column even, keep the sign; odd, change it. Here 3 + 2 = 5 is odd, so the cofactor is −8.",
+        "lines": [
+          "The minor carries no sign. The cofactor",
+          "is the minor times (−1) to the power i + j.",
+          "A₃₂ = (−1)³⁺² × M₃₂ = (−1)⁵ × 8 = −8",
+          {
+            "text": "∴ minor M₃₂ = 8, cofactor A₃₂ = −8",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cofactor is (−1) to the power (3 + 2) times the minor, so it equals −8 while the minor stays 8.",
+          "accept": [
+            "the cofactor is minus one to the power three plus two times eight, which is minus eight",
+            "three plus two is five which is odd so the sign is negative",
+            "minor is eight and cofactor is minus eight",
+            "three plus two odd kabatti sign minus, so cofactor minus eight",
+            "multiply the minor by the sign from the position"
+          ],
+          "reject": [
+            "apply the sign",
+            "the cofactor is eight"
+          ],
+          "heard_as": [
+            "minus eight",
+            "minus one to the power",
+            "cofactor",
+            "odd"
+          ]
+        },
+        "why": "The cofactor is the minor with the sign of the position attached, and that sign is what makes the expansion of a determinant work. Minor and cofactor differ only by that sign.",
+        "common_mistakes": [
+          "Giving the same value for both, usually 8 and 8.",
+          "Using (−1)²⁺³ from the wrong position, which happens to give the same sign here but is the wrong reason."
+        ]
+      }
+    ]
+  }
+}

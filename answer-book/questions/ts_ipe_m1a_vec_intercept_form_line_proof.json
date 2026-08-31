@@ -1,0 +1,236 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_intercept_form_line_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Using the vector method, prove that in the two-dimensional plane the equation of the line whose intercepts on the axes are a and b is x/a + y/b = 1.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the position vectors of the two intercept points",
+      "marks": 1
+    },
+    {
+      "label": "Write any point of the line in the (1 − t) form",
+      "marks": 1
+    },
+    {
+      "label": "Compare the i and j coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Eliminate t to reach the intercept form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.65, chapter 6 ADDITION OF VECTORS, Short Answer question 8. Only the question was taken — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. NOTATION WARNING CARRIED INTO THE CARD: in this question a and b are NUMBERS, the two intercepts, not the vectors a and b used everywhere else in the chapter. The card says so in the first step rather than leaving a student to collide with it. The derivation uses the section form OP = (1 − t) OA + t OB, the same form the neighbouring line questions in this unit use, and compares i and j coefficients because i and j are not parallel. It was checked a second way at the two endpoints: t = 0 gives (a, 0) and t = 1 gives (0, b), and both satisfy x/a + y/b = 1. The conditions a ≠ 0 and b ≠ 0 are stated in the working where the student reads them, since the division by a and b needs them. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the set-up, the parametric form, the coefficient comparison, and the elimination of the parameter. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Addition of Vectors has no Section C slot on the paper, so the unit is SAQ and VSAQ only. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove the intercept form by vectors — say which two points you use and how the parameter disappears.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Addition of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_points",
+        "kind": "equation",
+        "label": "Write the two intercept points",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Here a and b are NUMBERS, the two intercepts, not the vectors a and b used elsewhere in this chapter. An intercept a means the line crosses the x-axis at (a, 0), so both intercepts must be non-zero.",
+        "memory_tip": "In this question a and b are numbers, not vectors. Intercept a means the crossing point (a, 0).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here a and b are numbers, the intercepts,",
+          "not vectors. Both are non-zero.",
+          "The line meets the x-axis at A(a, 0) and",
+          "the y-axis at B(0, b).",
+          "OA = a i,  OB = b j"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the line cuts the axes at A(a, 0) and B(0, b), with position vectors a i and b j, and that a and b are non-zero numbers.",
+          "accept": [
+            "the line meets the axes at the points a comma zero and zero comma b",
+            "the position vectors of the two intercept points are a i and b j",
+            "a and b are numbers here not vectors and neither is zero",
+            "x axis meeda a comma zero, y axis meeda zero comma b",
+            "write the two intercept points first"
+          ],
+          "reject": [
+            "take the intercepts",
+            "write the points",
+            "let a and b be vectors"
+          ],
+          "heard_as": [
+            "intercept",
+            "a i",
+            "b j",
+            "x axis",
+            "y axis"
+          ]
+        },
+        "why": "The intercepts are the only data given, so the proof has to start by turning them into two actual points. Those two points fix the line completely, which is what the next step uses.",
+        "common_mistakes": [
+          "Reading a and b as vectors, as in the rest of the chapter.",
+          "Writing the x-intercept point as (0, a) instead of (a, 0)."
+        ]
+      },
+      {
+        "id": "s2_parametric",
+        "kind": "equation",
+        "label": "Write any point of the line",
+        "marks": 1,
+        "mark_note": "Parametric form",
+        "margin_note": "Second mark. A point P on the line AB satisfies OP = (1 − t) OA + t OB for some number t. Substitute the two position vectors and collect the i and j parts.",
+        "memory_tip": "Any point of the line through A and B is OP = (1 − t) OA + t OB. At t = 0 it is A, at t = 1 it is B.",
+        "lines": [
+          "Let P(x, y) be any point on the line AB,",
+          "so OP = x i + y j.",
+          "P lies on AB, so for some number t",
+          "OP = (1−t) OA + t OB",
+          "  = (1−t)a i + t b j   ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a general point P(x, y) of the line is written as OP = (1 − t) OA + t OB = (1 − t)a i + t b j.",
+          "accept": [
+            "any point on the line is one minus t times OA plus t times OB",
+            "take P as x i plus y j and write it in the parametric form",
+            "substitute a i and b j to get one minus t a i plus t b j",
+            "line meeda ye point ayina one minus t OA plus t OB ga rayochu",
+            "use the section form of a line through two points"
+          ],
+          "reject": [
+            "take a point",
+            "write the equation",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "one minus t",
+            "parametric",
+            "OP",
+            "general point",
+            "P x y"
+          ]
+        },
+        "why": "This form covers every point of the line exactly once as t runs over the numbers, so proving something for it proves it for the whole line.",
+        "common_mistakes": [
+          "Using OP = OA + t OB, which is not a line through both points.",
+          "Forgetting to say that P is a general point, which is what makes the result an equation of the line."
+        ]
+      },
+      {
+        "id": "s3_compare",
+        "kind": "equation",
+        "label": "Compare the i and j parts",
+        "marks": 1,
+        "mark_note": "Compare coefficients",
+        "margin_note": "Third mark. i and j are not parallel, so one vector equation splits into two number equations. Divide by a and by b, which is allowed because neither intercept is zero.",
+        "memory_tip": "i and j are not parallel, so one vector equation becomes two number equations, one per axis.",
+        "lines": [
+          "i and j are not parallel, so compare their",
+          "coefficients in (1):",
+          "x = (1−t)a   ……(2)",
+          "y = t b   ……(3)",
+          "a ≠ 0 and b ≠ 0, so divide (2) by a and",
+          "(3) by b:",
+          "x/a = 1 − t   and   y/b = t"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That comparing the i and j coefficients gives x = (1 − t)a and y = tb, so x/a = 1 − t and y/b = t.",
+          "accept": [
+            "compare the i and j coefficients to get x equals one minus t times a and y equals t b",
+            "divide by a and by b since neither intercept is zero",
+            "x over a is one minus t and y over b is t",
+            "i and j parallel kaadu kabatti coefficients compare cheyyochu",
+            "split the vector equation into two number equations"
+          ],
+          "reject": [
+            "compare the coefficients",
+            "divide by a and b",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "compare coefficients",
+            "x over a",
+            "y over b",
+            "one minus t",
+            "not parallel"
+          ]
+        },
+        "why": "Two non-parallel vectors are independent, so a vector equation between them can only hold if it holds separately in each direction. Dividing then puts the parameter alone on one side, ready to be removed.",
+        "common_mistakes": [
+          "Comparing coefficients without saying that i and j are not parallel.",
+          "Dividing by a or b without noting that neither is zero."
+        ]
+      },
+      {
+        "id": "s4_eliminate",
+        "kind": "boxed_final",
+        "label": "Eliminate t",
+        "marks": 1,
+        "mark_note": "Intercept form",
+        "margin_note": "Last mark. Adding the two results removes t in one line, because one is 1 − t and the other is t. The parameter must disappear — an equation of the line cannot contain it.",
+        "memory_tip": "Add the two results. One is 1 − t and the other is t, so t cancels and 1 is left.",
+        "lines": [
+          "Add the two results:",
+          "x/a + y/b = (1 − t) + t = 1",
+          "Check: t = 0 gives A(a, 0) and t = 1 gives",
+          "B(0, b), and both satisfy this equation.",
+          {
+            "text": "∴ x/a + y/b = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding x/a = 1 − t and y/b = t removes t and gives x/a + y/b = 1.",
+          "accept": [
+            "add the two so the t cancels and you get one",
+            "x over a plus y over b equals one minus t plus t which is one",
+            "the parameter disappears when you add the two results",
+            "rendintini kalipithe t cancel avuthundi, one migulutundi",
+            "check with t zero and t one and both fit the equation"
+          ],
+          "reject": [
+            "hence proved",
+            "add them",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "add",
+            "t cancels",
+            "x over a plus y over b",
+            "equals one"
+          ]
+        },
+        "why": "An equation of a line must relate x and y only, so removing t is the last required step. The endpoint check is a free second route: both known points of the line satisfy the result.",
+        "common_mistakes": [
+          "Leaving t in the final answer.",
+          "Subtracting instead of adding, which gives 1 − 2t rather than 1."
+        ]
+      }
+    ]
+  }
+}

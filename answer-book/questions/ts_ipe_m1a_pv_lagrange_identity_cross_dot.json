@@ -1,0 +1,241 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_lagrange_identity_cross_dot",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that for any four vectors a, b, c and d, the product (a × b)·(c × d) equals the 2 × 2 determinant whose rows are (a·c, a·d) and (b·c, b·d), and deduce in particular that (a × b)² = a²b² − (a·b)².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write it as a scalar triple product",
+      "marks": 1
+    },
+    {
+      "label": "Expand the vector triple product",
+      "marks": 1
+    },
+    {
+      "label": "Read the result as a 2 × 2 determinant",
+      "marks": 1
+    },
+    {
+      "label": "Deduce the special case",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.70, chapter 7 PRODUCT OF VECTORS, Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four distinct moves — regrouping as a scalar triple product, the vector triple product expansion, the determinant reading, and the substitution c = a, d = b that produces the special case the question asks for. CHECKED NUMERICALLY on a concrete quadruple: a = i + 2j + 3k, b = 2i − j + k, c = i − k, d = j + 2k. Here a × b = 5i + 5j − 5k, which dotted with a gives 5 + 10 − 15 = 0 and with b gives 10 − 5 − 5 = 0; c × d = i − 2j + k, which dotted with c gives 1 + 0 − 1 = 0 and with d gives 0 − 2 + 2 = 0. Then (a × b)·(c × d) = 5 − 10 − 5 = −10, and the determinant with rows (a·c, a·d) = (−2, 8) and (b·c, b·d) = (1, 1) is (−2)(1) − (8)(1) = −10. The same pair also confirms the deduction: |a × b|² = 75 and |a|²|b|² − (a·b)² = 14 × 6 − 9 = 75. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say what you rename first and which standard formula you use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_scalar_triple",
+        "kind": "equation",
+        "label": "Write it as a scalar triple product",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Naming c × d as one vector u turns the expression into a scalar triple product, and a scalar triple product may be regrouped freely.",
+        "memory_tip": "Rename c × d as a single vector u — then (a × b)·u is just the box product [a b u].",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put u = c × d.",
+          "Then (a × b)·u = [a b u] = a·(b × u)",
+          "∴ (a × b)·(c × d) = a·(b × (c × d))"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That writing u = c × d makes the product a scalar triple product, which regroups as a·(b × (c × d)).",
+          "accept": [
+            "call c cross d as u so the product is the box product a b u",
+            "regroup the scalar triple product as a dot b cross u",
+            "rewrite it as a dot b cross c cross d",
+            "c cross d ni u ani rasi box product ga marchali",
+            "use the scalar triple product regrouping"
+          ],
+          "reject": [
+            "hence proved",
+            "use the vector triple product formula",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "u equals c cross d",
+            "box product",
+            "scalar triple product",
+            "regroup"
+          ]
+        },
+        "why": "There is no direct formula for the dot product of two cross products, but (a × b)·u is a scalar triple product, and a scalar triple product may be written as a·(b × u). That converts the problem into one vector triple product.",
+        "common_mistakes": [
+          "Expanding both cross products into components.",
+          "Writing (a × b)·(c × d) as (a·c)(b·d), which is not a valid step."
+        ]
+      },
+      {
+        "id": "s2_vector_triple",
+        "kind": "equation",
+        "label": "Expand the vector triple product",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "Second mark. In b × (c × d) the middle vector c keeps the plus sign. Dotting with a then leaves only dot products.",
+        "memory_tip": "In b × (c × d) the middle vector c takes the plus sign: (b·d)c − (b·c)d.",
+        "lines": [
+          "b × (c × d) = (b·d)c − (b·c)d",
+          "∴ (a × b)·(c × d)",
+          {
+            "text": "= a·[(b·d)c − (b·c)d]",
+            "style": "indent"
+          },
+          {
+            "text": "= (a·c)(b·d) − (a·d)(b·c)   …(1)",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b × (c × d) = (b·d)c − (b·c)d, and dotting with a gives (a·c)(b·d) − (a·d)(b·c).",
+          "accept": [
+            "the vector triple product gives b dot d times c minus b dot c times d",
+            "dot that with a to get a dot c into b dot d minus a dot d into b dot c",
+            "the middle vector c keeps the plus sign",
+            "vector triple product formula lo middle vector ki plus sign",
+            "expand and then dot with a"
+          ],
+          "reject": [
+            "hence proved",
+            "call c cross d as u",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "b dot d",
+            "b dot c",
+            "vector triple product",
+            "a dot c"
+          ]
+        },
+        "why": "The vector triple product formula turns b × (c × d) into a combination of c and d, so dotting with a leaves nothing but dot products. No components are ever needed.",
+        "common_mistakes": [
+          "Writing b × (c × d) = (b·c)d − (b·d)c, with the two terms swapped.",
+          "Losing the brackets so that b·d multiplies the wrong vector."
+        ]
+      },
+      {
+        "id": "s3_determinant_form",
+        "kind": "equation",
+        "label": "Read it as a 2 × 2 determinant",
+        "marks": 1,
+        "mark_note": "Determinant",
+        "margin_note": "Third mark. A 2 × 2 determinant is the main diagonal product minus the other diagonal product, which is exactly the shape of result (1).",
+        "memory_tip": "The four dot products sit in the order a·c, a·d on the top row and b·c, b·d below.",
+        "lines": [
+          "The determinant with rows (a·c, a·d)",
+          "and (b·c, b·d) expands as",
+          {
+            "text": "\\begin{vmatrix} a\\cdot c & a\\cdot d \\\\ b\\cdot c & b\\cdot d \\end{vmatrix} = (a\\cdot c)(b\\cdot d) - (a\\cdot d)(b\\cdot c)",
+            "render": "katex",
+            "style": "eq"
+          },
+          "which is the value found in (1).",
+          "∴ the two sides are equal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the 2 × 2 determinant expands to the same expression as (1), so the required result is proved.",
+          "accept": [
+            "the two by two determinant is a dot c times b dot d minus a dot d times b dot c",
+            "that is exactly what step two gave so the result follows",
+            "main diagonal product minus the other diagonal product",
+            "determinant expand cheste step two answer ye vastundi",
+            "the determinant matches the expression already obtained"
+          ],
+          "reject": [
+            "the middle vector keeps the plus sign",
+            "put c equal to a and d equal to b",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "two by two determinant",
+            "main diagonal",
+            "a dot c b dot d",
+            "matches"
+          ]
+        },
+        "why": "A 2 × 2 determinant is the product of the main diagonal minus the product of the other diagonal, so the four dot products already found are exactly its entries. Writing it this way makes the pattern easy to reproduce in the exam.",
+        "common_mistakes": [
+          "Subtracting the two diagonal products the wrong way round.",
+          "Placing a·d and b·c on the main diagonal."
+        ]
+      },
+      {
+        "id": "s4_deduce_lagrange",
+        "kind": "boxed_final",
+        "label": "Deduce the special case",
+        "marks": 1,
+        "mark_note": "Deduction",
+        "margin_note": "Last mark. The general result contains the special one: put c = a and d = b, and every entry becomes a square or the same dot product.",
+        "memory_tip": "Put c = a and d = b in the general result — do not choose c = b and d = a, which gives the negative.",
+        "lines": [
+          "Put c = a and d = b in result (1):",
+          "(a × b)·(a × b)",
+          {
+            "text": "= (a·a)(b·b) − (a·b)(b·a)",
+            "style": "indent"
+          },
+          "∴ |a × b|² = |a|²|b|² − (a·b)²",
+          {
+            "text": "∴ (a × b)² = a²b² − (a·b)²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That setting c = a and d = b in the general result gives |a × b|² = |a|²|b|² − (a·b)².",
+          "accept": [
+            "put c equal to a and d equal to b in the general result",
+            "that gives mod a cross b squared equals a squared b squared minus a dot b squared",
+            "the left side becomes the square of the length of a cross b",
+            "c place lo a, d place lo b petti substitute cheyyali",
+            "the special case follows by substitution"
+          ],
+          "reject": [
+            "the two by two determinant",
+            "the middle vector keeps the plus sign",
+            "call c cross d as u"
+          ],
+          "heard_as": [
+            "c equals a",
+            "d equals b",
+            "a squared b squared",
+            "a dot b squared"
+          ]
+        },
+        "why": "The general result already contains the special one. Choosing c = a and d = b makes the left side the square of the length of a × b, and each determinant entry becomes a square or the repeated dot product a·b.",
+        "common_mistakes": [
+          "Choosing c = b and d = a, which gives the negative of the answer.",
+          "Treating (a·b) and (b·a) as two different quantities."
+        ]
+      }
+    ]
+  }
+}

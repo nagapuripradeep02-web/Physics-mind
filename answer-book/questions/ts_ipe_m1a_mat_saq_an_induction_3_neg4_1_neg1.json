@@ -1,0 +1,250 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_an_induction_3_neg4_1_neg1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If A is the matrix with rows (3, −4) and (1, −1), then show that for every integer n ≥ 1, Aⁿ is the matrix with rows (1+2n, −4n) and (n, 1−2n).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check the result for n = 1",
+      "marks": 1
+    },
+    {
+      "label": "Multiply Aᵏ by A and simplify each entry",
+      "marks": 2
+    },
+    {
+      "label": "Conclude by the principle of induction",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.42, chapter 5 MATRICES, Short Answer question 10(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 shape puts half the marks on the inductive multiplication, because that is the only step where the arithmetic can go wrong and the only step that actually proves anything; the base case and the closing appeal to the principle of induction are each short but each is a whole mark, since an answer missing either is not a proof. Independently checked before authoring: the claimed form was multiplied out at n = 1, 2 and 3 and gave rows (3, −4)/(1, −1), (5, −8)/(2, −3) and (7, −12)/(3, −5), which match the formula exactly. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say what you check first, what you assume, what you multiply, and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_base",
+        "kind": "equation",
+        "label": "Check n = 1",
+        "marks": 1,
+        "mark_note": "Base case",
+        "margin_note": "First mark. Put n = 1 into the claimed form and compare it with A itself: 1 + 2(1) = 3 and 1 − 2(1) = −1, so the two matrices are the same.",
+        "memory_tip": "Base case first: put n = 1 into the claimed form and compare it with A itself.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P(n) be the given statement about Aⁿ.",
+          {
+            "text": "A^{1} = A = \\begin{bmatrix} 3 & -4 \\\\ 1 & -1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Putting n = 1 in the given form:",
+          {
+            "text": "\\begin{bmatrix} 1+2(1) & -4(1) \\\\ 1 & 1-2(1) \\end{bmatrix} = \\begin{bmatrix} 3 & -4 \\\\ 1 & -1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Both agree, so P(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n = 1 is substituted into the claimed form and the result is compared with A itself, and the two match.",
+          "accept": [
+            "put n equals one in the given formula and check it against A itself",
+            "for n equals one the formula gives three minus four one minus one which is A",
+            "verify the base case by substituting n equals one",
+            "n equals one pettina formula A ne istundi, so base case correct",
+            "start by testing the statement at n equals one"
+          ],
+          "reject": [
+            "prove it by induction",
+            "check the formula",
+            "assume it is true"
+          ],
+          "heard_as": [
+            "n equals one",
+            "base case",
+            "substitute",
+            "P of one",
+            "true for one"
+          ]
+        },
+        "why": "Induction needs a first true case to stand on. Without P(1) the chain of implications has nothing to start from and proves nothing.",
+        "common_mistakes": [
+          "Skipping n = 1 and starting straight from the assumption.",
+          "Writing the n = 1 matrix without comparing it with A."
+        ]
+      },
+      {
+        "id": "s2_hypothesis",
+        "kind": "equation",
+        "label": "Assume for n = k",
+        "marks": 0,
+        "margin_note": "No mark of its own, but the next step is meaningless without it. Write the assumed matrix out in full — the inductive step multiplies this exact matrix by A.",
+        "memory_tip": "Write the assumed matrix out in full, because the next step multiplies that exact matrix by A.",
+        "lines": [
+          "Assume P(k) is true for some integer k ≥ 1:",
+          {
+            "text": "A^{k} = \\begin{bmatrix} 1+2k & -4k \\\\ k & 1-2k \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the result is ASSUMED true for some integer n = k, with the assumed matrix written out.",
+          "accept": [
+            "assume the result holds for n equals k and write that matrix out",
+            "suppose A to the power k has rows one plus two k minus four k and k one minus two k",
+            "take the statement as true for some k and use it",
+            "n equals k ki result nijam ani anukuntam",
+            "let the formula be true for a general k"
+          ],
+          "reject": [
+            "assume it is true for all n",
+            "it is true for k plus one",
+            "prove it for k"
+          ],
+          "heard_as": [
+            "assume",
+            "for n equals k",
+            "A to the k",
+            "induction hypothesis"
+          ]
+        },
+        "why": "This is an assumption about ONE value k, not about every n. Assuming it for all n would assume the whole result and prove nothing.",
+        "common_mistakes": [
+          "Saying \"assume it is true for all n\", which assumes what is being proved.",
+          "Leaving the assumed matrix unwritten, so the next multiplication has nothing to start from."
+        ]
+      },
+      {
+        "id": "s3_step",
+        "kind": "equation",
+        "label": "Multiply Aᵏ by A",
+        "marks": 2,
+        "mark_note": "Inductive step",
+        "margin_note": "Half the marks. Use A^(k+1) = Aᵏ·A, not A·Aᵏ from scratch. Then rewrite each entry so that k + 1 is visible: 2k + 3 is 1 + 2(k+1), and −2k − 1 is 1 − 2(k+1).",
+        "memory_tip": "After multiplying, rewrite every entry so k + 1 shows: 2k + 3 is 1 + 2(k+1).",
+        "lines": [
+          {
+            "text": "A^{k+1} = A^{k} \\cdot A = \\begin{bmatrix} 1+2k & -4k \\\\ k & 1-2k \\end{bmatrix}\\begin{bmatrix} 3 & -4 \\\\ 1 & -1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Row 1 × column 1: 3(1+2k) − 4k = 2k + 3",
+          "Row 1 × column 2: −4(1+2k) + 4k = −4k − 4",
+          "Row 2 × column 1: 3k + (1 − 2k) = k + 1",
+          "Row 2 × column 2: −4k − (1 − 2k) = −2k − 1",
+          "Now 2k + 3 = 1 + 2(k+1), −4k − 4 = −4(k+1),",
+          "and −2k − 1 = 1 − 2(k+1). So",
+          {
+            "text": "A^{k+1} = \\begin{bmatrix} 1+2(k+1) & -4(k+1) \\\\ k+1 & 1-2(k+1) \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "That is P(k+1). So P(k) ⇒ P(k+1)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A to the power k+1 is written as Aᵏ times A, the product is worked out, and each entry is rewritten so that it is the claimed form with n replaced by k + 1.",
+          "accept": [
+            "write A to the k plus one as A to the k times A and multiply row into column",
+            "multiply the assumed matrix by A and rewrite the entries in terms of k plus one",
+            "the product gives two k plus three which is one plus two times k plus one",
+            "A power k ni A tho multiply cheste k plus one form vasthundi",
+            "show that the answer is the same formula with n replaced by k plus one"
+          ],
+          "reject": [
+            "multiply the matrices",
+            "find A to the k plus one",
+            "it is true for k plus one"
+          ],
+          "heard_as": [
+            "A to the k plus one",
+            "A to the k into A",
+            "row into column",
+            "k plus one",
+            "same form"
+          ]
+        },
+        "why": "The whole proof is this one implication. Getting the product right is only half the work — the entries must then be rearranged so a reader can SEE the claimed form with k + 1 in place of n.",
+        "common_mistakes": [
+          "Stopping at 2k + 3 without showing it equals 1 + 2(k+1).",
+          "Dropping a minus sign when multiplying −4k by −1.",
+          "Multiplying A by Aᵏ in the wrong order and losing track of the entries."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by induction",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Name the principle of mathematical induction. The two facts proved — P(1) true, and P(k) leading to P(k+1) — are what the principle needs, and saying so is what turns two calculations into a proof.",
+        "memory_tip": "Two facts earn the conclusion: P(1) is true, and P(k) leads to P(k+1). Name the principle.",
+        "lines": [
+          "P(1) is true, and P(k) ⇒ P(k+1) for every k ≥ 1.",
+          "By the principle of mathematical induction, P(n)",
+          "is true for every integer n ≥ 1.",
+          {
+            "text": "A^{n} = \\begin{bmatrix} 1+2n & -4n \\\\ n & 1-2n \\end{bmatrix},\\quad n \\ge 1",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both induction conditions have been met and the principle of mathematical induction is named to give the result for every n ≥ 1.",
+          "accept": [
+            "since it is true for one and true for k plus one whenever true for k it holds for all n by induction",
+            "by the principle of mathematical induction the formula is true for every integer n greater than or equal to one",
+            "both conditions hold so induction gives the result for all n",
+            "rendu conditions unnayi kabatti induction valla anni n ki nijam",
+            "the principle of induction completes the proof for every n"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is true",
+            "the formula works"
+          ],
+          "heard_as": [
+            "principle of mathematical induction",
+            "for all n",
+            "hence proved",
+            "n greater than or equal to one"
+          ]
+        },
+        "why": "The two earlier steps only cover n = 1 and one implication. The principle of induction is the theorem that turns those two facts into a statement about every n, so it has to be named.",
+        "common_mistakes": [
+          "Writing only \"hence proved\" without naming the principle of induction.",
+          "Claiming the result for all real n; the proof covers integers n ≥ 1 only."
+        ]
+      }
+    ]
+  }
+}

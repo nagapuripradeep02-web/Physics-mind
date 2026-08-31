@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_hf_cosh4_minus_sinh4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Hyperbolic Functions"
+  },
+  "chapter": "Hyperbolic Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "For any x ∈ R, prove that cosh⁴x − sinh⁴x = cosh 2x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Factorise the difference of squares",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to cosh 2x",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the factorisation of the difference of two squares first and the reduction to cosh 2x second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbolic Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Factorise the difference of squares",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Read cosh⁴x − sinh⁴x as a⁴ − b⁴ and factorise. The second bracket is cosh²x − sinh²x, which is 1.",
+        "memory_tip": "a⁴ − b⁴ = (a² + b²)(a² − b²). Here the second bracket is the Pythagorean identity and equals 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = cosh⁴x − sinh⁴x",
+          "= (cosh²x)² − (sinh²x)²",
+          "= (cosh²x + sinh²x)(cosh²x − sinh²x)",
+          "But cosh²x − sinh²x = 1",
+          "= cosh²x + sinh²x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cosh⁴x − sinh⁴x is factorised as (cosh²x + sinh²x)(cosh²x − sinh²x) and the second bracket is 1.",
+          "accept": [
+            "factorise as a difference of two squares and the second bracket is one",
+            "cosh squared plus sinh squared times cosh squared minus sinh squared",
+            "the second bracket is the identity cosh squared minus sinh squared equals one",
+            "difference of squares ga factorise chesi second bracket one avuthundi",
+            "split the fourth powers into squares of squares"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "difference of squares",
+            "cosh squared plus sinh squared",
+            "equals one",
+            "factorise"
+          ]
+        },
+        "why": "Expanding the exponential definitions to the fourth power is long and easy to get wrong. Factorising first removes one whole bracket at once.",
+        "common_mistakes": [
+          "Substituting the exponential definitions and expanding the fourth powers.",
+          "Writing cosh²x − sinh²x as 0 instead of 1."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Simplify to cosh 2x",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Replace sinh²x by cosh²x − 1, so the sum becomes 2cosh²x − 1, which is the double-angle form of cosh 2x.",
+        "memory_tip": "sinh²x = cosh²x − 1, so cosh²x + sinh²x becomes 2cosh²x − 1, and that is cosh 2x.",
+        "lines": [
+          "Also sinh²x = cosh²x − 1",
+          "∴ cosh²x + sinh²x = cosh²x + cosh²x − 1",
+          "= 2cosh²x − 1",
+          {
+            "text": "= cosh 2x = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sinh²x is replaced by cosh²x − 1 to give 2cosh²x − 1, which is cosh 2x.",
+          "accept": [
+            "replace sinh squared by cosh squared minus one so it becomes two cosh squared minus one",
+            "two cosh squared x minus one is cosh two x",
+            "the sum of the squares is the double angle form",
+            "sinh square ni cosh square minus one ga rasi two cosh square minus one techi",
+            "the answer is cosh two x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two cosh squared",
+            "minus one",
+            "cosh two x",
+            "double angle"
+          ]
+        },
+        "why": "cosh²x + sinh²x is already cosh 2x, but writing it as 2cosh²x − 1 shows it in the form the chapter has already proved, so nothing new is assumed.",
+        "common_mistakes": [
+          "Writing cosh²x + sinh²x = 1, which is the wrong sign between the squares.",
+          "Stopping at cosh²x + sinh²x without naming it cosh 2x."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_solve_x_tan_ratio_pi4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve for x: Tan⁻¹((x − 1)/(x − 2)) + Tan⁻¹((x + 1)/(x + 2)) = π/4.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the two fractions",
+      "marks": 1
+    },
+    {
+      "label": "Take the tangent of both sides",
+      "marks": 1
+    },
+    {
+      "label": "Solve the quadratic",
+      "marks": 1
+    },
+    {
+      "label": "Test both roots",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.115, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 8(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split is 1+1+1+1, with a whole mark reserved for testing the two roots, because taking the tangent of both sides is only a necessary condition and an untested root is a real loss of marks on this question type. NOTATION: the book prints the inverse functions in lower case (tan⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. Checked numerically to twelve decimal places: at x = +1/√2 and at x = −1/√2 the left side equals 0.785398163397 = π/4, and a scan of x over [−50, 50] found no other root. Replacing x by −x swaps the two fractions, so the left side is an even function of x and both roots stand. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this one — name each move in order, and say how you test the roots you find.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trigonometric Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name_the_two_fractions",
+        "kind": "equation",
+        "label": "Name the two fractions",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Naming the two fractions keeps the algebra short and makes the excluded values easy to see.",
+        "memory_tip": "Exclude x = 2 and x = −2 first — those two values make a denominator zero.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let u = (x − 1)/(x − 2)",
+          "and v = (x + 1)/(x + 2),",
+          "with x ≠ 2 and x ≠ −2.",
+          "Given: Tan⁻¹u + Tan⁻¹v = π/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two fractions are named u and v and that x = 2 and x = −2 are excluded.",
+          "accept": [
+            "call the first fraction u and the second v, and rule out x equals two and minus two",
+            "the denominators cannot be zero so x is not two or minus two",
+            "name the fractions before doing any algebra",
+            "x equals two and minus two ni exclude cheyyali",
+            "write the equation as tan inverse u plus tan inverse v equals pi by four"
+          ],
+          "reject": [
+            "take the tangent of both sides",
+            "the roots are plus and minus one over root two",
+            "then I get it"
+          ],
+          "heard_as": [
+            "u and v",
+            "x is not two",
+            "denominator zero",
+            "pi by four"
+          ]
+        },
+        "why": "x = 2 and x = −2 must be excluded at the start, because the question's fractions have no value there.",
+        "common_mistakes": [
+          "Forgetting to exclude x = 2 and x = −2.",
+          "Mixing up which fraction is u and which is v."
+        ]
+      },
+      {
+        "id": "s2_take_the_tangent_of_both_sides",
+        "kind": "equation",
+        "label": "Take the tangent of both sides",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "Second mark. Both parts sit over x² − 4, so that factor cancels and the equation becomes a simple quadratic.",
+        "memory_tip": "Put u + v and 1 − uv over the same denominator x² − 4 — it cancels in the next line.",
+        "lines": [
+          "tan(Tan⁻¹u + Tan⁻¹v) = (u + v)/(1 − uv)",
+          "u + v = (2x² − 4)/(x² − 4)",
+          "uv = (x² − 1)/(x² − 4)",
+          "1 − uv = −3/(x² − 4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the tangent of both sides is taken, giving (u + v)/(1 − uv) with both parts over x² − 4.",
+          "accept": [
+            "take the tangent of both sides so the left becomes u plus v over one minus u v",
+            "u plus v is two x squared minus four over x squared minus four",
+            "one minus u v comes to minus three over x squared minus four",
+            "rendu parts x squared minus four meeda vasthayi",
+            "put both parts over the same denominator"
+          ],
+          "reject": [
+            "name the two fractions",
+            "solve the quadratic",
+            "test both roots"
+          ],
+          "heard_as": [
+            "u plus v",
+            "one minus u v",
+            "x squared minus four",
+            "minus three"
+          ]
+        },
+        "why": "Taking the tangent of both sides turns the inverse equation into an algebraic one. Every solution of the original must satisfy it.",
+        "common_mistakes": [
+          "Adding u and v without a common denominator.",
+          "Writing 1 − uv as uv − 1."
+        ]
+      },
+      {
+        "id": "s3_solve_the_quadratic",
+        "kind": "equation",
+        "label": "Solve the quadratic",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Both roots are only candidates at this stage, because taking the tangent of both sides can admit angles that differ by π.",
+        "memory_tip": "The x² − 4 cancels on the top and the bottom, leaving 2x² − 4 = −3.",
+        "lines": [
+          "tan(π/4) = 1, so (u + v)/(1 − uv) = 1",
+          "(2x² − 4)/(−3) = 1",
+          "⇒ 2x² − 4 = −3 ⇒ 2x² = 1",
+          "⇒ x² = 1/2 ⇒ x = ±1/√2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation reduces to 2x² − 4 = −3, giving x = ±1/√2 as candidates.",
+          "accept": [
+            "since tan of pi by four is one the fraction equals one and x squared is a half",
+            "the x squared minus four cancels leaving two x squared minus four equals minus three",
+            "the candidates are plus and minus one over root two",
+            "x squared half, so x plus or minus one by root two",
+            "solve the quadratic to get the two candidate roots"
+          ],
+          "reject": [
+            "take the tangent of both sides",
+            "test both roots",
+            "hence proved"
+          ],
+          "heard_as": [
+            "tan pi by four is one",
+            "two x squared",
+            "x squared is a half",
+            "one over root two"
+          ]
+        },
+        "why": "The x² − 4 factors cancel, so the equation is a plain quadratic. Both signs of the square root stay candidates until they are tested.",
+        "common_mistakes": [
+          "Keeping only the positive root without testing.",
+          "Cancelling x² − 4 while the excluded values still need it."
+        ]
+      },
+      {
+        "id": "s4_test_both_roots",
+        "kind": "boxed_final",
+        "label": "Test both roots",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Replacing x by −x swaps u and v, so the left side has the same value at both roots and neither is rejected.",
+        "memory_tip": "Test each root in the original equation. The check is uv < 1 — if uv is not less than 1, the sum needs an extra π.",
+        "lines": [
+          "At x = ±1/√2, uv = (x² − 1)/(x² − 4)",
+          "= (−1/2)/(−7/2) = 1/7 < 1, and u, v > 0",
+          "So Tan⁻¹u + Tan⁻¹v = Tan⁻¹(1) = π/4  ✓",
+          "Neither root is rejected.",
+          {
+            "text": "∴ x = 1/√2 or x = −1/√2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both roots are put back in, uv = 1/7 < 1, and both satisfy the original equation.",
+          "accept": [
+            "put both roots back in, u v is one seventh which is less than one so the plain formula holds and both work",
+            "no pi has to be added so the sum really is pi by four at both roots",
+            "both plus and minus one over root two are solutions",
+            "rendu roots correct, u v one by seven less than one",
+            "test the roots in the original equation before writing the answer"
+          ],
+          "reject": [
+            "solve the quadratic",
+            "u plus v is two x squared minus four",
+            "then I get it"
+          ],
+          "heard_as": [
+            "u v is one seventh",
+            "less than one",
+            "both roots",
+            "one over root two"
+          ]
+        },
+        "why": "Tan⁻¹u + Tan⁻¹v equals Tan⁻¹((u + v)/(1 − uv)) only when uv < 1; otherwise a π has to be added. Here uv = 1/7, so no π is needed and both roots stand.",
+        "common_mistakes": [
+          "Reporting only x = 1/√2.",
+          "Skipping the uv < 1 check on the roots."
+        ]
+      }
+    ]
+  }
+}

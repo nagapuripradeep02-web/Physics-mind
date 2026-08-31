@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_hf_tanh_inverse_log_form",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Hyperbolic Functions"
+  },
+  "chapter": "Hyperbolic Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "For x ∈ (−1, 1), prove that tanh⁻¹x = (1/2) logₑ((1 + x)/(1 − x)).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write tanh y using e²ʸ",
+      "marks": 1
+    },
+    {
+      "label": "Form (1 + x)/(1 − x)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.119, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 10. The book prints this result as a Theorem rather than as a numbered exercise; it is asked and worked exactly like one. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing tanh y in terms of e²ʸ first, and forming (1 + x)/(1 − x) and taking logarithms second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbolic Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Write tanh y using e²ʸ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Put y = Tanh⁻¹x so that x = tanh y. Multiplying top and bottom by eʸ leaves only e²ʸ, which is the single unknown to solve for.",
+        "memory_tip": "Multiply top and bottom by eʸ: tanh y = (e²ʸ − 1)/(e²ʸ + 1). One unknown, e²ʸ, is left.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = Tanh⁻¹x, so x = tanh y",
+          "x = (eʸ − e⁻ʸ)/(eʸ + e⁻ʸ)",
+          "Multiply the top and the bottom by eʸ:",
+          "x = (e²ʸ − 1)/(e²ʸ + 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y = Tanh⁻¹x is set so x = tanh y, and multiplying top and bottom by eʸ gives x = (e²ʸ − 1)/(e²ʸ + 1).",
+          "accept": [
+            "let y be tanh inverse x so x is tanh y",
+            "multiply numerator and denominator by e to the y",
+            "x becomes e to the two y minus one over e to the two y plus one",
+            "top and bottom ni e power y tho multiply cheyyali",
+            "now there is only e to the two y left"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tanh inverse",
+            "e to the two y",
+            "numerator and denominator",
+            "multiply"
+          ]
+        },
+        "why": "tanh y is a ratio, so multiplying top and bottom by eʸ changes nothing but removes every negative power. One unknown, e²ʸ, is then all that is left to find.",
+        "common_mistakes": [
+          "Multiplying only the numerator by eʸ.",
+          "Writing tanh y as (eʸ + e⁻ʸ)/(eʸ − e⁻ʸ), which is upside down."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Form (1 + x)/(1 − x)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Build 1 + x and 1 − x separately; their common denominator cancels and the ratio is e²ʸ. The given range −1 < x < 1 is what keeps both of them positive.",
+        "memory_tip": "1 + x and 1 − x share the denominator e²ʸ + 1, so dividing them leaves e²ʸ on its own.",
+        "lines": [
+          "1 + x = 2e²ʸ/(e²ʸ + 1)",
+          "1 − x = 2/(e²ʸ + 1)",
+          "∴ (1 + x)/(1 − x) = e²ʸ",
+          "Here −1 < x < 1, so 1 + x > 0 and 1 − x > 0",
+          "The ratio is positive, so its logarithm exists",
+          "2y = logₑ((1 + x)/(1 − x))",
+          {
+            "text": "∴ Tanh⁻¹x = (1/2) logₑ((1 + x)/(1 − x))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (1 + x)/(1 − x) = e²ʸ, that −1 < x < 1 keeps it positive so the logarithm exists, and that halving gives the result.",
+          "accept": [
+            "form one plus x and one minus x and divide to get e to the two y",
+            "the common denominator cancels so the ratio is e to the two y",
+            "x is between minus one and one so both are positive and the log exists",
+            "one plus x by one minus x ante e power two y",
+            "take logs and divide by two to get half log of one plus x over one minus x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus x",
+            "one minus x",
+            "e to the two y",
+            "half log"
+          ]
+        },
+        "why": "The range −1 < x < 1 is not decoration. Outside it one of 1 + x and 1 − x is negative or zero, the ratio is not positive, and the logarithm has no value.",
+        "common_mistakes": [
+          "Writing the ratio as (1 − x)/(1 + x), which gives e⁻²ʸ.",
+          "Forgetting the 1/2 that comes from 2y on the left."
+        ]
+      }
+    ]
+  }
+}

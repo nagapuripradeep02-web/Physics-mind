@@ -1,0 +1,362 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_rank_test_consistency_3_3_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "Apply the test of rank to examine whether the system x + y + z = 3, 2x + 2y − z = 3, x + y − z = 1 is consistent, and if consistent find the complete solution.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the augmented matrix [A D]",
+      "marks": 1
+    },
+    {
+      "label": "Reduce [A D] to echelon form",
+      "marks": 2
+    },
+    {
+      "label": "Read the rank of A",
+      "marks": 1
+    },
+    {
+      "label": "Compare with the rank of [A D]",
+      "marks": 1
+    },
+    {
+      "label": "Write the equivalent equations and find z",
+      "marks": 1
+    },
+    {
+      "label": "Introduce a parameter and state the solution set",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Long Answer question 10(i), rank-test route. The work order carries no printed page for question 10 (question 9(vii) is printed on book p.57), so no page number is asserted here rather than guessed. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1+1+1+2 split pays two marks for the echelon reduction that both ranks are read from, one mark for each rank, and two for the parameter that turns \"infinitely many\" into a written solution set. WHY THIS CARD EXISTS ALONGSIDE ts_ipe_m1a_mat_gauss_infinite_solutions: that card solves the SAME three equations (x + y + z = 3, 2x + 2y − z = 3, x + y − z = 1) and reaches the same solution set, but it answers a different ask — \"solve by the Gauss-Jordan method\", which the book sets separately as question 9(vi). This question asks the student to EXAMINE CONSISTENCY, and the examiner's expected work is the rank test: reduce [A D] to echelon form, read Rank(A), read Rank[A D], compare them with each other and with the number of unknowns, and only then produce the solution. The two cards therefore differ in what earns the marks — the Gauss-Jordan card pays for the row reduction and the parameter, this one pays for the two ranks and the comparison — so both are kept. ts_ipe_m1a_mat_sqp_rank_test is the same TECHNIQUE on a different system (x + y + z = 6, x − y + z = 2, 2x − y + 3z = 9) and at SAQ length; this is the LAQ form. Working checked: det A = 0 was confirmed by expanding along R₁ and again along C₁, and the solution x = k, y = 2 − k, z = 1 was substituted back into all three original equations, where it holds for every real k (3 = 3, 3 = 3, 1 = 1). Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would examine this system by the rank test — say what you reduce, which two ranks you compare, what the comparison tells you, and how the complete solution is written.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_augmented",
+        "kind": "equation",
+        "label": "Write the augmented matrix",
+        "marks": 1,
+        "mark_note": "Augmented matrix",
+        "margin_note": "First mark. The rank test needs BOTH matrices, A and [A D], so write them together in the augmented form. The rule marks where the equals sign was.",
+        "memory_tip": "The rank test needs BOTH A and [A D], so write them together in the augmented form.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The system is AX = D, where",
+          {
+            "text": "A = \\begin{bmatrix} 1 & 1 & 1 \\\\ 2 & 2 & -1 \\\\ 1 & 1 & -1 \\end{bmatrix}, \\ D = \\begin{bmatrix} 3 \\\\ 3 \\\\ 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "The augmented matrix is",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 2 & 2 & -1 & 3 \\\\ 1 & 1 & -1 & 1 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the augmented matrix [A | D] is written, because the rank test needs both A and [A D].",
+          "accept": [
+            "write the augmented matrix A D because the test compares the rank of A with the rank of A D",
+            "form the coefficient matrix with the constants column attached",
+            "set up A given D so both ranks can be read from one reduction",
+            "augmented matrix rasta, rendu ranks oke reduction nunchi chadavali kabatti",
+            "attach the constants to A to make the augmented matrix"
+          ],
+          "reject": [
+            "write the matrix",
+            "make the augmented matrix",
+            "write A and D"
+          ],
+          "heard_as": [
+            "augmented matrix",
+            "A D",
+            "constants column",
+            "rank"
+          ]
+        },
+        "why": "Rank(A) and Rank[A D] are read from the same reduced matrix, so one reduction serves both. Writing A alone would leave half the test with nothing to read.",
+        "common_mistakes": [
+          "Writing A alone, which leaves Rank[A D] with nothing to read.",
+          "Putting the constants in as a fourth row instead of a fourth column.",
+          "Starting to solve before the consistency question is answered."
+        ]
+      },
+      {
+        "id": "s2_echelon",
+        "kind": "equation",
+        "label": "Reduce to echelon form",
+        "marks": 2,
+        "mark_note": "Echelon form",
+        "margin_note": "Two marks. Columns 1 and 2 of A are identical, so clearing column 1 clears column 2 with it. Rows 2 and 3 are then proportional and one of them cancels to a row of zeros.",
+        "memory_tip": "Columns 1 and 2 of A are identical, so clearing column 1 clears column 2 with it.",
+        "lines": [
+          "R₂ → R₂ − 2R₁,  R₃ → R₃ − R₁:",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 0 & 0 & -3 & -3 \\\\ 0 & 0 & -2 & -2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₂ → (−⅓)R₂, then R₃ → R₃ + 2R₂:",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 1 & 1 & 3 \\\\ 0 & 0 & 1 & 1 \\\\ 0 & 0 & 0 & 0 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Call this reduced matrix (1)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That row operations reduce the augmented matrix to echelon form, and that the last row becomes all zeros.",
+          "accept": [
+            "row reduce the augmented matrix to echelon form and the last row becomes all zeros",
+            "apply the row operations until it is in echelon shape",
+            "clear column one and the third row cancels completely",
+            "row operations tho echelon form ki teeskuravali, last row zero avthundi",
+            "reduce it and one whole row goes to zero"
+          ],
+          "reject": [
+            "do row operations",
+            "reduce the matrix",
+            "clear the column"
+          ],
+          "heard_as": [
+            "echelon form",
+            "row operations",
+            "row of zeros",
+            "reduce"
+          ]
+        },
+        "why": "Rank is read off the echelon form and is invisible before it. The same operations that solve a system also expose its rank, which is why one reduction answers both questions.",
+        "common_mistakes": [
+          "Trying to read the rank off the original matrix.",
+          "Treating the row of zeros as an arithmetic error and starting again.",
+          "Applying an operation to part of a row and not to the constant."
+        ]
+      },
+      {
+        "id": "s3_rank_a",
+        "kind": "equation",
+        "label": "Read the rank of A",
+        "marks": 1,
+        "mark_note": "Rank of A",
+        "margin_note": "Third mark. Rank is the order of the largest non-zero minor. Show BOTH halves: the 3×3 determinant is 0, so the rank is below 3, and one 2×2 minor is non-zero, so it is exactly 2.",
+        "memory_tip": "Rank is the order of the LARGEST non-zero minor. Show both halves: 3×3 is zero, one 2×2 is not.",
+        "lines": [
+          "In (1) the coefficient part is",
+          {
+            "text": "\\begin{bmatrix} 1 & 1 & 1 \\\\ 0 & 0 & 1 \\\\ 0 & 0 & 0 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Its determinant is 0, so Rank(A) < 3.",
+          "Take rows 1, 2 and columns 1, 3 of it:",
+          {
+            "text": "\\begin{vmatrix} 1 & 1 \\\\ 0 & 1 \\end{vmatrix} = 1 \\neq 0",
+            "render": "katex",
+            "style": "eq"
+          },
+          "This minor of order 2 is not zero,",
+          "so Rank(A) = 2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Rank(A) = 2, because the 3×3 determinant of the coefficient part is zero while a 2×2 minor is not.",
+          "accept": [
+            "the three by three determinant is zero but a two by two minor is not so the rank of A is two",
+            "rank A is two because the largest non zero minor is of order two",
+            "det A is zero so rank is less than three and one two by two minor is non zero so it is two",
+            "det A zero, kaani oka two by two minor zero kaadu, so rank A rendu",
+            "the order of the largest non zero minor is two"
+          ],
+          "reject": [
+            "the rank is two",
+            "there are two rows",
+            "find the rank"
+          ],
+          "heard_as": [
+            "rank",
+            "minor",
+            "two by two",
+            "determinant is zero",
+            "rank two"
+          ]
+        },
+        "why": "Naming a rank means naming a size. Without the non-zero 2×2 minor the argument only proves the rank is less than 3, which is not the same as proving it is 2.",
+        "common_mistakes": [
+          "Stopping at det A = 0, which only shows the rank is below 3.",
+          "Counting the columns instead of the order of the largest non-zero minor.",
+          "Reading the rank from the original matrix rather than from (1)."
+        ]
+      },
+      {
+        "id": "s4_rank_test",
+        "kind": "equation",
+        "label": "Compare the two ranks",
+        "marks": 1,
+        "mark_note": "Rank test",
+        "margin_note": "Fourth mark, and the actual test. Equal ranks means consistent. Comparing that common rank with the number of unknowns is what separates one solution from infinitely many.",
+        "memory_tip": "Equal ranks means consistent. Rank below the number of unknowns means infinitely many solutions.",
+        "lines": [
+          "In (1) the augmented matrix also has just two",
+          "non-zero rows, so Rank[A D] = 2 as well.",
+          "∴ Rank(A) = Rank[A D] = 2,",
+          "so the system is CONSISTENT.",
+          "But 2 < 3, the number of unknowns, so the",
+          "solution is not unique."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Rank[A D] is also 2, that equal ranks make the system consistent, and that 2 < 3 unknowns means the solution is not unique.",
+          "accept": [
+            "the rank of the augmented matrix is also two so the ranks are equal and the system is consistent",
+            "both ranks are two which is less than three unknowns so there are infinitely many solutions",
+            "equal ranks means consistent and rank less than the number of unknowns means not unique",
+            "rendu ranks rendu, so consistent, kaani unknowns moodu kabatti unique kaadu",
+            "compare rank A with rank of A D and then with the number of unknowns"
+          ],
+          "reject": [
+            "it is consistent",
+            "the ranks are the same",
+            "compare the ranks"
+          ],
+          "heard_as": [
+            "rank A D",
+            "consistent",
+            "number of unknowns",
+            "not unique",
+            "two"
+          ]
+        },
+        "why": "If the two ranks differed, the extra non-zero row would read 0 = a non-zero number and no solution could exist. They are equal here, so a solution exists; and because the common rank is one short of the three unknowns, one unknown stays free.",
+        "common_mistakes": [
+          "Concluding consistency without writing both ranks.",
+          "Forgetting to compare the common rank with the number of unknowns.",
+          "Calling the system inconsistent because the ranks are less than 3."
+        ]
+      },
+      {
+        "id": "s5_equations",
+        "kind": "equation",
+        "label": "Write the equivalent equations",
+        "marks": 1,
+        "mark_note": "Back to equations",
+        "margin_note": "Fifth mark. Turn the surviving rows back into equations. Row 2 fixes z outright; row 1 then ties x and y together but cannot separate them.",
+        "memory_tip": "Turn the surviving rows back into equations: one fixes z, the other only fixes the SUM x + y.",
+        "lines": [
+          "The non-zero rows of (1) are the equations",
+          "x + y + z = 3    …(2)",
+          "z = 1    …(3)",
+          "Putting z = 1 into (2):",
+          "x + y + 1 = 3  ⇒  x + y = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two surviving rows read x + y + z = 3 and z = 1, and that substituting z = 1 leaves x + y = 2.",
+          "accept": [
+            "the two rows give x plus y plus z equals three and z equals one so x plus y equals two",
+            "row two gives z equals one and substituting into row one leaves x plus y equals two",
+            "convert the remaining rows to equations and find z is one so x plus y is two",
+            "row two nunchi z equals one vasthundi, substitute cheste x plus y equals two",
+            "only the sum of x and y is fixed, not x and y separately"
+          ],
+          "reject": [
+            "write the equations",
+            "substitute back",
+            "find z"
+          ],
+          "heard_as": [
+            "z equals one",
+            "x plus y equals two",
+            "equivalent equations"
+          ]
+        },
+        "why": "z is pinned down but x and y are not — only their sum is. One equation can never separate two unknowns, and that is exactly what a rank of 2 for three unknowns means.",
+        "common_mistakes": [
+          "Trying to find a number for x by guessing.",
+          "Writing x + y = 3 by forgetting to substitute z = 1.",
+          "Dropping z = 1 and leaving all three letters free."
+        ]
+      },
+      {
+        "id": "s6_parameter",
+        "kind": "boxed_final",
+        "label": "Introduce a parameter",
+        "marks": 2,
+        "mark_note": "Solution set",
+        "margin_note": "The last two marks. The number of free unknowns is the number of unknowns minus the rank, which is 3 − 2 = 1. Name that one k and write everything in terms of it, and say that k can be any real number.",
+        "memory_tip": "Free unknowns = unknowns − rank = 3 − 2 = 1. Name it k and say k can be any real number.",
+        "lines": [
+          "3 unknowns − rank 2 = 1 free unknown.",
+          "Let x = k, where k ∈ R. Then y = 2 − k.",
+          "Check in the three original equations:",
+          "k + (2 − k) + 1 = 3  ✓",
+          "2k + 2(2 − k) − 1 = 3  ✓",
+          "k + (2 − k) − 1 = 1  ✓",
+          {
+            "text": "∴ x = k, y = 2 − k, z = 1, k ∈ R",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one unknown is free because 3 − 2 = 1, giving x = k, y = 2 − k, z = 1 with k any real number.",
+          "accept": [
+            "three unknowns minus rank two leaves one free so take x equals k and y is two minus k",
+            "put a parameter k for x so the solution set is k, two minus k, one",
+            "let x be k then y equals two minus k and z equals one for all real k",
+            "x ni k anukunte y equals two minus k, z equals one, k any real number",
+            "introduce a parameter and write the complete solution in terms of it"
+          ],
+          "reject": [
+            "that is the answer",
+            "there are infinite solutions",
+            "x and y can be anything"
+          ],
+          "heard_as": [
+            "k",
+            "parameter",
+            "two minus k",
+            "belongs to R",
+            "any real number",
+            "solution set"
+          ]
+        },
+        "why": "Each value of k gives one genuine solution — k = 0 gives (0, 2, 1) and k = 2 gives (2, 0, 1), and both satisfy all three original equations. The parameter is how infinitely many answers are written on one line.",
+        "common_mistakes": [
+          "Writing 'infinitely many solutions' and stopping, with no solution set given.",
+          "Forgetting to state that k is a real number.",
+          "Giving one particular solution such as (0, 2, 1) as if it were the whole answer."
+        ]
+      }
+    ]
+  }
+}

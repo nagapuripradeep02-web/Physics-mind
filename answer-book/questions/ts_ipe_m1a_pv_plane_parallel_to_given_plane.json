@@ -1,0 +1,223 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_plane_parallel_to_given_plane",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the Cartesian equation of the plane passing through the point A(2, −1, −4) and parallel to the plane 4x − 12y − 3z − 7 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Read the normal off the given plane",
+      "marks": 1
+    },
+    {
+      "label": "Write the family of parallel planes",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the point to find the constant",
+      "marks": 1
+    },
+    {
+      "label": "Write the equation and check the point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.73, chapter 7 PRODUCT OF VECTORS, Short Answer question 29. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards reading the normal off the given plane, writing the parallel family with one unknown constant, substituting the point to fix that constant, and stating the finished equation. Paper position: Maths-1A Section B prints 8 short answers at 4 marks each and the student answers any 6; Product of Vectors is one of the units that can fill a Section-B slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the equation of a plane through a given point and parallel to a given plane.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_normal",
+        "kind": "equation",
+        "label": "Read the normal",
+        "marks": 1,
+        "mark_note": "Normal",
+        "margin_note": "First mark. Read 4, −12, −3 straight off the printed equation. Two parallel planes have the same normal, so nothing else from the given plane is used.",
+        "memory_tip": "The x, y and z coefficients ARE the normal. Parallel planes share it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given plane: 4x − 12y − 3z − 7 = 0",
+          "Its normal is n = 4i − 12j − 3k",
+          "Parallel planes have the same normal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficients of x, y and z give the normal 4i − 12j − 3k, and that a parallel plane keeps the same normal.",
+          "accept": [
+            "the coefficients give the normal four i minus twelve j minus three k",
+            "parallel planes have the same normal so I keep four minus twelve minus three",
+            "read the normal straight off the equation",
+            "normal same untundi, parallel planes ki",
+            "the normal vector is four i minus twelve j minus three k"
+          ],
+          "reject": [
+            "find two vectors in the plane",
+            "cross them",
+            "then I get it"
+          ],
+          "heard_as": [
+            "normal",
+            "four i",
+            "minus twelve j",
+            "parallel",
+            "coefficients"
+          ]
+        },
+        "why": "The coefficients of x, y and z in a Cartesian plane equation are the components of a vector at right angles to that plane.",
+        "common_mistakes": [
+          "Changing the coefficients when only the position of the plane changes.",
+          "Dropping the minus sign on the y or the z coefficient."
+        ]
+      },
+      {
+        "id": "s2_family",
+        "kind": "equation",
+        "label": "Write the parallel family",
+        "marks": 1,
+        "mark_note": "Family",
+        "margin_note": "Second mark. Only the constant term is free. Writing it as an unknown k turns the whole question into finding one number.",
+        "memory_tip": "Same left-hand side, new constant. One unknown k is all that is left.",
+        "lines": [
+          "Every plane parallel to it has the form",
+          "4x − 12y − 3z = k, where k is a constant."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the required plane has the same left-hand side, 4x − 12y − 3z = k, with k unknown.",
+          "accept": [
+            "the required plane is four x minus twelve y minus three z equals k",
+            "keep the same left side and change only the constant",
+            "write it with an unknown constant k",
+            "same left side, constant matram k ga rasta",
+            "only the constant term is different for a parallel plane"
+          ],
+          "reject": [
+            "the normal is four i minus twelve j minus three k",
+            "substitute the point",
+            "hence proved"
+          ],
+          "heard_as": [
+            "equals k",
+            "constant",
+            "same left side",
+            "parallel family"
+          ]
+        },
+        "why": "Two planes are parallel exactly when their normals are parallel, so the only remaining difference is the position of the plane, and that is set by the constant term.",
+        "common_mistakes": [
+          "Writing a new set of coefficients instead of keeping the given ones.",
+          "Setting k to 7, which only repeats the given plane."
+        ]
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Substitute the point",
+        "marks": 1,
+        "mark_note": "Find k",
+        "margin_note": "Third mark. Two of the three coordinates are negative, so watch both signs. −12 times −1 is +12 and −3 times −4 is +12.",
+        "memory_tip": "Two coordinates are negative, and both products come out positive.",
+        "lines": [
+          "The plane passes through A(2, −1, −4), so",
+          "k = 4(2) − 12(−1) − 3(−4)",
+          "= 8 + 12 + 12 = 32"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting A(2, −1, −4) into 4x − 12y − 3z gives k = 32.",
+          "accept": [
+            "put the point in and get k equals thirty two",
+            "eight plus twelve plus twelve is thirty two",
+            "substitute two minus one minus four to find the constant",
+            "point substitute cheste k thirty two vasthundi",
+            "the constant comes out as thirty two"
+          ],
+          "reject": [
+            "write the family",
+            "the normal is four i minus twelve j minus three k",
+            "then I get it"
+          ],
+          "heard_as": [
+            "thirty two",
+            "k equals",
+            "substitute",
+            "eight plus twelve"
+          ]
+        },
+        "why": "The point lies on the plane, so its coordinates must satisfy the equation. That one condition is enough to fix k.",
+        "common_mistakes": [
+          "Sign slips on the two negative coordinates.",
+          "Substituting into the given plane instead of the new one."
+        ]
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "Write the equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "margin_note": "Last mark. Move the 32 across so the answer is in the same '= 0' form the question printed, then put A back in as a one-line check.",
+        "memory_tip": "Put the point back in. If the four terms do not add to zero, the constant is wrong.",
+        "lines": [
+          "So the required plane is",
+          {
+            "text": "4x − 12y − 3z − 32 = 0",
+            "style": "boxed"
+          },
+          "Check A(2, −1, −4): 8 + 12 + 12 − 32 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the plane is 4x − 12y − 3z − 32 = 0, and that A satisfies it.",
+          "accept": [
+            "the plane is four x minus twelve y minus three z minus thirty two equals zero",
+            "write it in the equals zero form with thirty two moved across",
+            "substituting A back gives zero so the equation is right",
+            "final equation lo thirty two move chesi equals zero ga rasta",
+            "the answer is four x minus twelve y minus three z equals thirty two"
+          ],
+          "reject": [
+            "find k",
+            "write the family",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus thirty two",
+            "equals zero",
+            "check",
+            "final equation"
+          ]
+        },
+        "why": "Substituting the point back is the only check available here, and it costs one line. An arithmetic slip in the constant is otherwise invisible.",
+        "common_mistakes": [
+          "Writing the constant with the wrong sign, giving +32 on the left.",
+          "Never substituting the point back, so a slip goes unnoticed."
+        ]
+      }
+    ]
+  }
+}

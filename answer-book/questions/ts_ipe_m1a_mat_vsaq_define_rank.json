@@ -1,0 +1,150 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_define_rank",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the rank of a matrix.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the definition",
+      "marks": 1
+    },
+    {
+      "label": "Give a worked example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.34, chapter 5 MATRICES, Very Short Answer question 19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the stated definition and a worked example separately, which is how a two-mark definition question is answered in full. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Authoring choice recorded: the card states ONE definition, the minor definition used by the Telangana syllabus, rather than offering the row-echelon count as an alternative in the same breath. The echelon count is named in the rail guidance as an equivalent way to find the rank, never as a second definition. Related cards in the same unit: ts_ipe_m1a_mat_vsaq_rank_one and ts_ipe_m1a_mat_vsaq_rank_two compute a rank; this question asks only for the definition."
+  },
+  "recall_prompt": "Say the definition of the rank of a matrix, and show it on a small example.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "State the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. Both parts (i) and (ii) are needed: one non-zero minor of order r, and nothing non-zero above that order. The same fact can be found by row-reducing and counting the non-zero rows, but that is a method, not the definition asked for.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Rank of a Matrix:",
+            "style": "heading"
+          },
+          "Let A be a non-zero matrix. A positive integer r",
+          "is called the rank of A if",
+          "(i) A has at least one non-zero minor of order r,",
+          "(ii) every minor of order greater than r is zero.",
+          "In short, the rank is the order of the largest",
+          "non-zero minor of A. It is written Rank A = r.",
+          "The rank of a zero matrix is taken as 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rank is the order of the largest non-zero minor: some minor of order r is non-zero and every minor of larger order is zero.",
+          "accept": [
+            "the rank is the order of the largest non zero minor",
+            "there is a non zero minor of order r and every minor of bigger order is zero",
+            "rank r means some r by r determinant is not zero and all larger ones are",
+            "rank ante largest non zero minor yokka order",
+            "the rank of the zero matrix is zero"
+          ],
+          "reject": [
+            "the rank of a matrix",
+            "the size of the matrix"
+          ],
+          "heard_as": [
+            "rank",
+            "minor",
+            "order",
+            "non zero",
+            "largest"
+          ]
+        },
+        "why": "Both halves of the definition are needed. Part (i) alone would let any smaller non-zero minor be called the rank, and part (ii) alone is satisfied by the zero matrix, so together they pick out exactly one number.",
+        "common_mistakes": [
+          "Saying the rank is the order of the matrix.",
+          "Giving only part (i) and leaving out part (ii).",
+          "Saying the rank is the number of rows."
+        ],
+        "memory_tip": "Rank is the size of the LARGEST minor that is not zero, so start big and come down."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Give a worked example",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Second mark. One small matrix worked through shows the definition in use: the 2×2 minor is zero, a 1×1 minor is not, so the rank is 1.",
+        "lines": [
+          {
+            "text": "A = \\begin{bmatrix} 1 & 2 \\\\ 2 & 4 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "|A| = 1(4) − 2(2) = 0, so the only minor",
+          "of order 2 is zero.",
+          "The minor of order 1 given by the entry 1",
+          "is |1| = 1 ≠ 0.",
+          "So the largest non-zero minor has order 1.",
+          {
+            "text": "∴ Rank A = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in the example the order 2 minor is zero while an order 1 minor is not, so the rank is 1.",
+          "accept": [
+            "the two by two determinant is zero but a single entry is not zero so the rank is one",
+            "the largest non zero minor is one by one so rank is one",
+            "determinant zero, one by one minor one, rank one",
+            "two by two zero, one by one non zero kabatti rank one",
+            "rank A equals one for this example"
+          ],
+          "reject": [
+            "give an example",
+            "find the rank"
+          ],
+          "heard_as": [
+            "rank one",
+            "two by two",
+            "one by one",
+            "determinant zero"
+          ]
+        },
+        "why": "The example does the two tests in the order the definition names them, so it shows the definition being used rather than quoted. It also makes the point that a non-zero matrix always has rank at least 1.",
+        "common_mistakes": [
+          "Answering 2 because the matrix is 2×2.",
+          "Answering 0 for a matrix that is not the zero matrix.",
+          "Checking the 1×1 minor first and stopping there."
+        ],
+        "memory_tip": "A non-zero matrix always has rank at least 1, because some single entry is not zero."
+      }
+    ]
+  }
+}

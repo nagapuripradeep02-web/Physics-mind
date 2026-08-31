@@ -1,0 +1,314 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos_sq_sum_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If A + B + C = 0, prove that cos²A + cos²B + cos²C = 1 + 2 cos A cos B cos C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the zero-sum condition",
+      "marks": 1
+    },
+    {
+      "label": "Write the two squares as double angles",
+      "marks": 2
+    },
+    {
+      "label": "Pair the two cosines",
+      "marks": 1
+    },
+    {
+      "label": "Use the condition to convert",
+      "marks": 2
+    },
+    {
+      "label": "Take cos C out and convert inside",
+      "marks": 1
+    },
+    {
+      "label": "Apply the sum formula and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 9, book p.103. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives its two largest blocks to raising the squares with cos²θ = (1 + cos2θ)/2 and to the substitution from the zero-sum condition, and one mark each to the pairing, the factoring and the finish. THE CONDITION IS A + B + C = 0, NOT π: A + B = −C, so cos(A+B) = cos(−C) = +cos C with no sign change at all — this is the one member of the family where the substitution is sign-free, and that is why the answer keeps a plus. Applying A + B = π − C here would give −cos C and flip the last term. SOURCE WORDING NOTE, recorded not repaired: the book sets this condition as \"A + B + C = 0°\" with a degree sign on the zero, while its own question 10 sets the same condition without one. A degree sign on zero is harmless (0° = 0 radians) and changes no step, so the stem is authored as printed apart from that mark. NUMERIC CHECK (before authoring and again after): at A = 40°, B = 25°, C = −65°, which sums to 0, L.H.S = 1.5868240888 and R.H.S = 1.5868240888. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this identity — name each move in order, and say what the zero-sum condition does to the signs.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Ratios and Transformations · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the zero-sum condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. The three angles add to 0, not to π. There is no triangle here, and C is allowed to be negative.",
+        "memory_tip": "A + B = −C, and cosine is an even function, so cos(A+B) = cos C with NO sign change.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given A + B + C = 0",
+          "⇒ A + B = −C",
+          "The sum is 0 here. There is no triangle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the condition is A + B + C = 0 and it is rearranged to A + B = −C.",
+          "accept": [
+            "the sum is zero so A plus B equals minus C",
+            "write the condition first and rearrange it",
+            "state the angle condition, and note the sum is zero not pi",
+            "modata condition rasi, A plus B ni minus C ga rayali",
+            "write down the given sum in the form the proof needs"
+          ],
+          "reject": [
+            "write the given",
+            "start the proof"
+          ],
+          "heard_as": [
+            "sum is zero",
+            "A plus B plus C",
+            "minus C",
+            "angle condition"
+          ]
+        },
+        "why": "The statement is false without the condition. A + B = −C is the form both substitutions use, and it is the reason no minus sign ever appears in this proof.",
+        "common_mistakes": [
+          "Using A + B = π − C, which is the triangle condition and flips the last sign.",
+          "Assuming all three angles are positive; here at least one of them is negative."
+        ]
+      },
+      {
+        "id": "s2_raise_squares",
+        "kind": "equation",
+        "label": "Write the squares as double angles",
+        "marks": 2,
+        "mark_note": "Double angle",
+        "margin_note": "Two of the eight marks. Squares cannot be paired by any sum-to-product formula, so two of them are opened into plain cosines first. That is also where the 1 on the right comes from.",
+        "memory_tip": "Open only TWO squares with cos²θ = (1 + cos2θ)/2. The two halves add to the 1 on the right.",
+        "lines": [
+          "L.H.S = cos²A + cos²B + cos²C",
+          "cos²θ = (1 + cos2θ)/2",
+          "= (1 + cos2A)/2 + (1 + cos2B)/2 + cos²C",
+          "= 1 + (cos2A + cos2B)/2 + cos²C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²A and cos²B are written as (1 + cos2A)/2 and (1 + cos2B)/2, which produces the standalone 1.",
+          "accept": [
+            "write cos squared as one plus cos two theta over two for the first two terms",
+            "open the two squares into double angles so the one appears",
+            "the two halves add up to the one on the right hand side",
+            "modati rendu squares ni one plus cos two theta by two ga rayali",
+            "convert only two of the squares, not all three"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "one plus cos two theta",
+            "over two",
+            "cos squared",
+            "double angle"
+          ]
+        },
+        "why": "No sum-to-product formula acts on squares. Opening two of them gives plain cosines that can be paired, and the leftover halves supply the 1 the right-hand side opens with.",
+        "common_mistakes": [
+          "Opening all three squares, which leaves no term to absorb the common factor.",
+          "Writing cos²θ = (1 − cos2θ)/2, which is the sine version."
+        ]
+      },
+      {
+        "id": "s3_pair",
+        "kind": "equation",
+        "label": "Pair the two cosines",
+        "marks": 1,
+        "mark_note": "Sum to product",
+        "margin_note": "Fourth mark. cos C + cos D = 2 cos((C+D)/2) cos((C−D)/2). The 2 the formula supplies cancels the 1/2 outside, so the fraction disappears.",
+        "memory_tip": "The 2 from the formula cancels the 1/2 outside, so the fraction goes in one move.",
+        "lines": [
+          "cos2A + cos2B = 2 cos(A+B) cos(A−B)",
+          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          "= 1 + cos(A+B) cos(A−B) + cos²C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 2A + cos 2B = 2 cos(A+B) cos(A−B), and the 2 cancels the half outside.",
+          "accept": [
+            "apply cos C plus cos D to get two cos of A plus B into cos of A minus B",
+            "the two from the formula cancels the half outside",
+            "pair the two cosines with the sum to product formula",
+            "cos two A plus cos two B ni sum to product cheyyali",
+            "convert the pair of cosines into a product"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos A plus B",
+            "cos A minus B",
+            "sum to product",
+            "two cos"
+          ]
+        },
+        "why": "The formula halves the doubled angles, so cos 2A + cos 2B becomes a product in A + B and A − B, and A + B is exactly what the condition can replace.",
+        "common_mistakes": [
+          "Forgetting to halve the sum and the difference.",
+          "Keeping the 1/2 after the formula has already supplied a 2."
+        ]
+      },
+      {
+        "id": "s4_substitute",
+        "kind": "equation",
+        "label": "Use the condition",
+        "marks": 2,
+        "mark_note": "Substitution",
+        "margin_note": "Two marks. cos(−C) = cos C because cosine is an even function. This is the only member of the family where the substitution carries no sign change.",
+        "memory_tip": "cos(−C) = cos C. Cosine is even, so the sign survives untouched.",
+        "lines": [
+          "A + B = −C",
+          "⇒ cos(A+B) = cos(−C) = cosC",
+          "  [∵ cos(−θ) = cosθ]",
+          "L.H.S = 1 + cosC cos(A−B) + cos²C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A + B = −C gives cos(A+B) = cos C, with no sign change, because cosine is even.",
+          "accept": [
+            "A plus B is minus C and cos of minus C is cos C",
+            "cosine is an even function so the sign does not change",
+            "use the condition to turn cos A plus B into cos C",
+            "cos minus C ante cos C, sign marchadu",
+            "apply the angle condition to the cos A plus B term"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos minus C",
+            "cos C",
+            "even function",
+            "condition"
+          ]
+        },
+        "why": "Cosine is even, so replacing A + B by −C changes nothing but the letter. That is why the right-hand side keeps a plus where the triangle version would carry a minus.",
+        "common_mistakes": [
+          "Writing cos(−C) = −cos C, which confuses even with odd.",
+          "Using cos(π − C) = −cos C, which belongs to the triangle version of this question."
+        ]
+      },
+      {
+        "id": "s5_factor",
+        "kind": "equation",
+        "label": "Take cos C out",
+        "marks": 1,
+        "mark_note": "Factorise",
+        "margin_note": "Sixth mark. cos C comes out of the last two terms, and the cos C INSIDE the bracket is written back as cos(A+B). There is no 2 to take out here.",
+        "memory_tip": "Convert only the cos C inside the bracket, never the one outside. There is no 2 to take out.",
+        "lines": [
+          "= 1 + cosC [cos(A−B) + cosC]",
+          "Inside the bracket, cosC = cos(A+B)",
+          "= 1 + cosC [cos(A−B) + cos(A+B)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos C is taken out as a common factor and the cos C inside the bracket is rewritten as cos(A+B).",
+          "accept": [
+            "take cos C common and write the cos C inside the bracket as cos A plus B",
+            "factor out cos C so the bracket is a sum of two cosines",
+            "only the inside cos C converts, the outside one stays",
+            "cos C common teesi, bracket lo unna cos C ni cos A plus B ga marchali",
+            "the bracket becomes cos A minus B plus cos A plus B"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos C",
+            "common factor",
+            "cos A plus B",
+            "bracket"
+          ]
+        },
+        "why": "A product formula needs two compound angles. Writing the inside cos C back as cos(A+B) gives the bracket a sum of cos(A−B) and cos(A+B), which one formula closes.",
+        "common_mistakes": [
+          "Converting both cos C terms, which cancels the factor just taken out.",
+          "Taking out 2 cos C when there is no 2 to take."
+        ]
+      },
+      {
+        "id": "s6_final",
+        "kind": "boxed_final",
+        "label": "Apply the sum formula",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. cos(A−B) + cos(A+B) = 2 cos A cos B closes the proof. Write \"= R.H.S\" so the examiner can see it landed.",
+        "memory_tip": "cos(A−B) + cos(A+B) = 2 cos A cos B, which supplies the 2 in the answer.",
+        "lines": [
+          "cos(A−B) + cos(A+B) = 2 cosA cosB",
+          "L.H.S = 1 + cosC · 2 cosA cosB",
+          {
+            "text": "= 1 + 2 cosA cosB cosC = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(A−B) + cos(A+B) = 2 cos A cos B, giving 1 + 2 cos A cos B cos C.",
+          "accept": [
+            "cos A minus B plus cos A plus B is two cos A cos B so the answer is one plus two cos A cos B cos C",
+            "the bracket becomes two cos A cos B and closes the proof",
+            "apply the cosine sum formula to finish",
+            "bracket lo two cos A cos B vasthundi, adi answer",
+            "the final answer is one plus two cos A cos B cos C"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two cos A cos B",
+            "one plus two",
+            "sum formula",
+            "cos A cos B cos C"
+          ]
+        },
+        "why": "The sum of two cosines is a product of two cosines. The 2 in the answer comes from this formula alone, since nothing was factored out with a 2 earlier.",
+        "common_mistakes": [
+          "Using the cosine DIFFERENCE formula, which gives 2 sin A sin B.",
+          "Dropping the leading 1 while writing the final line."
+        ]
+      }
+    ]
+  }
+}

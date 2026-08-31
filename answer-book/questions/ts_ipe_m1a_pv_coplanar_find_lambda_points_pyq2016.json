@@ -1,0 +1,192 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_coplanar_find_lambda_points_pyq2016",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find λ if the points A(3, 2, 1), B(4, λ, 5), C(4, 2, −2) and D(6, 5, −1) are coplanar.",
+  "appearances": [
+    {
+      "year": 2016
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Form the three edge vectors",
+      "marks": 1
+    },
+    {
+      "label": "Set the determinant to zero",
+      "marks": 2
+    },
+    {
+      "label": "Solve for λ and check",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.70, chapter 7 PRODUCT OF VECTORS, Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant and a full mark to the substitution check, because a coplanarity value is only proved once it is put back. APPEARANCE: the book prints the tag \"(Mar-2016(TS))\" inline with this stem — the only printed exam year in this chapter — and appearances[] records year 2016 with no board key, which this schema already reads as ts_ipe. That year is the SOURCE BOOK'S claim; it has NOT been checked against a TSBIE question paper, so it stays under needs_teacher_verification with the mark split. Both evaluations of the determinant agree at 35 − 7λ: the first-row expansion gives 9 − 7(λ − 2) + 12, and the second-row expansion gives 2λ + 8 + 27 − 9λ; computing AC × AD = (9, −7, 3) and dotting with AB gives 35 − 7λ a third time. Substituting λ = 5 gives 9 − 21 + 12 = 0 exactly. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find λ — the vectors you form, the condition you use, and how you check the value.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_edges",
+        "kind": "equation",
+        "label": "Form the edge vectors",
+        "marks": 1,
+        "mark_note": "Edge vectors",
+        "margin_note": "First mark. Any of the four points may be the corner; A is the tidiest because λ then sits in one row only.",
+        "memory_tip": "Subtract the corner's coordinates from the other three points, one row each.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take A(3, 2, 1) as the corner.",
+          "AB = (1, λ − 2, 4)",
+          "AC = (1, 0, −3)",
+          "AD = (3, 3, −2)",
+          "Coplanar ⇔ [AB AC AD] = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three edges from A are formed and their box product set to zero.",
+          "accept": [
+            "take A as the corner and write AB, AC and AD",
+            "four points coplanar means the box product of the three edges is zero",
+            "subtract A from B, C and D",
+            "A ni corner ga teeskuni moodu edges rasi box product zero pettali",
+            "form AB AC AD and set their triple product to zero"
+          ],
+          "reject": [
+            "expand the determinant",
+            "lambda is five",
+            "hence proved"
+          ],
+          "heard_as": [
+            "A B",
+            "A C",
+            "A D",
+            "coplanar",
+            "box product zero"
+          ]
+        },
+        "why": "Four points lie in one plane exactly when three edges drawn from one of them are coplanar, and coplanar vectors have box product zero.",
+        "common_mistakes": [
+          "Subtracting in the wrong order, for example A − B.",
+          "Using the four position vectors instead of the three edges."
+        ]
+      },
+      {
+        "id": "s2_determinant",
+        "kind": "equation",
+        "label": "Set the determinant to zero",
+        "marks": 2,
+        "mark_note": "Determinant",
+        "margin_note": "Half the marks. λ sits in the first row only, so the expansion is a straight line in λ.",
+        "memory_tip": "Expand along the row that carries λ once; the result is linear in λ.",
+        "lines": [
+          {
+            "text": "[AB\\ AC\\ AD] = \\begin{vmatrix} 1 & \\lambda-2 & 4 \\\\ 1 & 0 & -3 \\\\ 3 & 3 & -2 \\end{vmatrix} = 0",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(0 + 9) − (λ − 2)(−2 + 9) + 4(3 − 0)",
+          "= 9 − 7(λ − 2) + 12 = 35 − 7λ",
+          "Row 2 check: −1(−2λ − 8) + 3(9 − 3λ)",
+          "= 2λ + 8 + 27 − 9λ = 35 − 7λ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the determinant expands to 35 − 7λ.",
+          "accept": [
+            "expand the determinant and get thirty five minus seven lambda",
+            "the middle term is minus seven into lambda minus two",
+            "row two gives the same thirty five minus seven lambda",
+            "determinant expand cheste thirty five minus seven lambda vasthundi",
+            "the expansion is linear in lambda"
+          ],
+          "reject": [
+            "form the edge vectors",
+            "lambda is five",
+            "then I get it"
+          ],
+          "heard_as": [
+            "thirty five minus seven lambda",
+            "determinant",
+            "row two",
+            "lambda minus two"
+          ]
+        },
+        "why": "Expanding the same determinant along a second row must give the same expression in λ; that is the cheapest guard against a sign slip.",
+        "common_mistakes": [
+          "Forgetting the minus in front of the middle entry of the first row.",
+          "Writing −7(λ − 2) as −7λ − 14 instead of −7λ + 14."
+        ]
+      },
+      {
+        "id": "s3_solve",
+        "kind": "boxed_final",
+        "label": "Solve for λ and check",
+        "marks": 1,
+        "mark_note": "Value of λ",
+        "margin_note": "Last mark. One line of substitution proves the value; do not leave it out.",
+        "memory_tip": "Put the value back in. Coplanar means the determinant is exactly 0, not nearly 0.",
+        "lines": [
+          "35 − 7λ = 0 ⇒ 7λ = 35 ⇒ λ = 5",
+          "Check: with λ = 5, AB = (1, 3, 4) and",
+          "1(9) − 3(7) + 4(3) = 9 − 21 + 12 = 0  ✓",
+          {
+            "text": "∴ λ = 5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 35 − 7λ = 0 gives λ = 5, and that substituting it makes the determinant zero.",
+          "accept": [
+            "set thirty five minus seven lambda to zero so lambda is five",
+            "lambda equals five",
+            "put five back and the determinant is exactly zero",
+            "lambda five vasthundi, substitute chesi zero ani check cheyyali",
+            "solve the linear equation and check the value"
+          ],
+          "reject": [
+            "expand the determinant",
+            "form the edge vectors",
+            "then I get it"
+          ],
+          "heard_as": [
+            "lambda equals five",
+            "thirty five",
+            "check",
+            "zero"
+          ]
+        },
+        "why": "Putting the value back into the determinant is what turns a candidate into an answer; here it comes out exactly zero.",
+        "common_mistakes": [
+          "Solving 35 − 7λ = 0 as λ = −5.",
+          "Stopping at 35 − 7λ without setting it to zero."
+        ]
+      }
+    ]
+  }
+}

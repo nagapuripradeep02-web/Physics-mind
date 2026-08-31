@@ -1,0 +1,230 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_arcsin_5x_12x_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve Sin⁻¹(5/x) + Sin⁻¹(12/x) = π/2.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the domain",
+      "marks": 1
+    },
+    {
+      "label": "Take the sine of both sides",
+      "marks": 1
+    },
+    {
+      "label": "Square and solve",
+      "marks": 1
+    },
+    {
+      "label": "Test both candidates",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.115, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. A full mark is given to the domain and a full mark to testing the two candidates, because squaring creates a root here that the domain test alone does not remove. NOTATION: the book prints this question with the word arcsin; it is written here as Sin⁻¹ to match the notation used across the rest of this unit, and the mathematics is unchanged. Checked numerically to twelve decimal places: at x = 13 the left side equals 1.570796326795 = π/2, and at x = −13 it equals −1.570796326795, so −13 is rejected. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this one — name each move in order, and say how you test the roots you find.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trigonometric Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_domain",
+        "kind": "equation",
+        "label": "Write the domain",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Writing the domain first is what lets a wrong root be rejected later with a reason.",
+        "memory_tip": "Both arguments must lie between −1 and 1, so |x| ≥ 12 — the larger numerator sets the limit.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Sin⁻¹k needs |k| ≤ 1, so here",
+          "|5/x| ≤ 1 and |12/x| ≤ 1, with x ≠ 0.",
+          "⇒ |x| ≥ 5 and |x| ≥ 12",
+          "⇒ |x| ≥ 12"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both arguments must have size at most 1, giving |x| ≥ 12 and x ≠ 0.",
+          "accept": [
+            "sin inverse needs its argument between minus one and one so modulus x must be at least twelve",
+            "the twelve over x condition is the one that decides it",
+            "write the domain before starting the algebra",
+            "domain modulus x twelve kanna ekkuva undali",
+            "x cannot be zero and its size is at least twelve"
+          ],
+          "reject": [
+            "take the sine of both sides",
+            "the answer is thirteen",
+            "then I get it"
+          ],
+          "heard_as": [
+            "modulus x at least twelve",
+            "five over x",
+            "twelve over x",
+            "domain"
+          ]
+        },
+        "why": "Sin⁻¹ is only defined for values between −1 and 1, so x cannot be small. The condition |x| ≥ 12 already forces |x| ≥ 5, so |x| ≥ 12 is the one that counts.",
+        "common_mistakes": [
+          "Starting the algebra without writing the domain.",
+          "Using |x| ≥ 5 as the condition."
+        ]
+      },
+      {
+        "id": "s2_take_the_sine_of_both_sides",
+        "kind": "equation",
+        "label": "Take the sine of both sides",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The right side is a square root, so it is never negative — that single fact rejects one root at the end.",
+        "memory_tip": "sin(π/2 − θ) = cosθ, and cos(Sin⁻¹k) = √(1 − k²), always the positive root.",
+        "lines": [
+          "Sin⁻¹(5/x) = π/2 − Sin⁻¹(12/x)",
+          "Take the sine of both sides:",
+          "5/x = sin(π/2 − Sin⁻¹(12/x))",
+          "= cos(Sin⁻¹(12/x)) = √(1 − 144/x²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one term is moved across and the sine is taken, turning the right side into cos(Sin⁻¹(12/x)) = √(1 − 144/x²).",
+          "accept": [
+            "move one term across and take the sine, sine of pi by two minus theta is cos theta",
+            "the right side becomes the square root of one minus one forty four over x squared",
+            "cos of a sin inverse is the positive square root",
+            "sin pi by two minus theta ante cos theta",
+            "take the sine of both sides after shifting one term"
+          ],
+          "reject": [
+            "write the domain",
+            "square and solve",
+            "the answer is thirteen"
+          ],
+          "heard_as": [
+            "pi by two minus",
+            "cos of sin inverse",
+            "square root",
+            "one forty four over x squared"
+          ]
+        },
+        "why": "sin(π/2 − θ) is cosθ, and the cosine of a Sin⁻¹ value is the positive root, because Sin⁻¹ returns an angle in [−π/2, π/2].",
+        "common_mistakes": [
+          "Writing sin(π/2 − θ) as sinθ.",
+          "Taking the negative square root."
+        ]
+      },
+      {
+        "id": "s3_square_and_solve",
+        "kind": "equation",
+        "label": "Square and solve",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Multiplying through by x² is safe because x ≠ 0 was written in the first step.",
+        "memory_tip": "25 + 144 = 169, so x = ±13 — the 5, 12, 13 triangle again.",
+        "lines": [
+          "Square both sides:",
+          "25/x² = 1 − 144/x²",
+          "⇒ 25 + 144 = x²",
+          "⇒ x² = 169 ⇒ x = 13 or x = −13"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring gives x² = 169, so the candidates are x = 13 and x = −13.",
+          "accept": [
+            "square both sides to get twenty five over x squared equals one minus one forty four over x squared",
+            "multiply through by x squared so x squared is one sixty nine",
+            "the candidates are plus and minus thirteen",
+            "x squared one sixty nine, so plus or minus thirteen",
+            "squaring clears the root and gives a quadratic in x"
+          ],
+          "reject": [
+            "take the sine of both sides",
+            "test both candidates",
+            "the domain is modulus x at least twelve"
+          ],
+          "heard_as": [
+            "twenty five over x squared",
+            "one sixty nine",
+            "plus or minus thirteen",
+            "square both sides"
+          ]
+        },
+        "why": "Squaring clears the root, but it can also create a value that does not satisfy the original equation, so both candidates must be tested.",
+        "common_mistakes": [
+          "Reading 25/x² = 1 − 144/x² as 25 = 1 − 144.",
+          "Giving only x = 13 with no test."
+        ]
+      },
+      {
+        "id": "s4_test_both_candidates",
+        "kind": "boxed_final",
+        "label": "Test both candidates",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. The domain test alone does not reject −13, because 13 is more than 12; the sign test is what removes it.",
+        "memory_tip": "x = −13 passes the domain but fails the equation — squaring created it. Always put each root back in.",
+        "lines": [
+          "Both candidates satisfy |x| ≥ 12,",
+          "so test the equation itself.",
+          "x = 13: 5/13 = √(1 − 144/169) = 5/13  ✓",
+          "x = −13: then 5/x = −5/13,",
+          "but a square root is never negative, so it fails.",
+          "In fact Sin⁻¹(−5/13) + Sin⁻¹(−12/13) = −π/2.",
+          {
+            "text": "∴ x = 13",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x = −13 is rejected because it makes the left side negative while the square root is positive, leaving x = 13.",
+          "accept": [
+            "both pass the domain but minus thirteen makes the left side negative while the root is positive so it is rejected",
+            "at minus thirteen the two inverse sines add to minus pi by two not pi by two",
+            "only thirteen satisfies the original equation",
+            "minus thirteen fail avthundi, only thirteen answer",
+            "put each candidate back into the original equation"
+          ],
+          "reject": [
+            "square and solve",
+            "the domain is modulus x at least twelve",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus thirteen",
+            "rejected",
+            "minus pi by two",
+            "x equals thirteen"
+          ]
+        },
+        "why": "x = −13 is inside the domain but was created by the squaring step. Both Sin⁻¹ values are then negative, so their sum is −π/2 and not π/2.",
+        "common_mistakes": [
+          "Accepting x = −13 because it passes |x| ≥ 12.",
+          "Not writing the check for x = 13."
+        ]
+      }
+    ]
+  }
+}

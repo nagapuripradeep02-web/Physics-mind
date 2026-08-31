@@ -1,0 +1,231 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_equilateral_triangle_test",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Is the triangle formed by the vectors 3i + 5j + 2k, 2i − 3j − 5k and −5i − 2j + 3k equilateral? Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Show the three vectors add to zero",
+      "marks": 1
+    },
+    {
+      "label": "Find the three side lengths",
+      "marks": 2
+    },
+    {
+      "label": "Compare them and answer the question",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.64, chapter 6 ADDITION OF VECTORS, Short Answer question 6(ii). Only the question was taken — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. The verdict is YES: all three magnitudes come to √38. It was checked a second way — the three squared components are the same three numbers 9, 25 and 4 in each vector, only in a different order, so the three sums are bound to be equal at 38. The card also answers the prior question the stem takes for granted, that the three vectors do form a triangle at all: they add to the zero vector, so placed nose to tail they close. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 split gives half the marks to the three magnitudes, which is the bulk of the writing, one mark to the closure check that makes it a triangle, and one to the comparison the question actually asks for. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Addition of Vectors has no Section C slot on the paper, so the unit is SAQ and VSAQ only. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer this — say what you check first before you measure anything, and then what you measure.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Addition of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name",
+        "kind": "text",
+        "label": "Name the three vectors",
+        "marks": 0,
+        "margin_note": "No mark of its own, but it makes every line below shorter. Give the three vectors short names and say what they are meant to be — the sides of a triangle placed nose to tail.",
+        "memory_tip": "Give the three vectors short names p, q, r before you start, so no line has to repeat the components.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let p = 3i + 5j + 2k,  q = 2i − 3j − 5k,",
+          "r = −5i − 2j + 3k.",
+          "If these form a triangle, they are its",
+          "sides taken nose to tail."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three given vectors are named p, q, r and are being treated as the sides of a triangle placed nose to tail.",
+          "accept": [
+            "call the three vectors p q and r",
+            "take them as the sides of a triangle placed nose to tail",
+            "name them first so the working stays short",
+            "moodu vectors ki p q r ani peru petti sides ga teeskuntam",
+            "treat the three vectors as the three sides"
+          ],
+          "reject": [
+            "write the vectors",
+            "start the sum",
+            "they are equal"
+          ],
+          "heard_as": [
+            "p q r",
+            "sides",
+            "nose to tail",
+            "triangle"
+          ]
+        },
+        "why": "The question calls them the sides of a triangle, but that has to be checked, not assumed. Naming them separates the two jobs: first show a triangle exists, then measure it.",
+        "common_mistakes": [
+          "Measuring the three lengths straight away and never checking that a triangle is formed.",
+          "Treating the three vectors as position vectors of vertices instead of as sides."
+        ]
+      },
+      {
+        "id": "s2_closed",
+        "kind": "equation",
+        "label": "Show they form a triangle",
+        "marks": 1,
+        "mark_note": "Closure",
+        "margin_note": "First mark. Three vectors placed nose to tail form a triangle exactly when they add to the zero vector. Add the i, j and k components in three separate columns.",
+        "memory_tip": "Three vectors close into a triangle exactly when they add to the zero vector.",
+        "lines": [
+          "p + q + r",
+          "  = (3+2−5)i + (5−3−2)j + (2−5+3)k",
+          "  = 0i + 0j + 0k = 0",
+          "The three add to the zero vector, so nose",
+          "to tail they close up.",
+          "∴ they do form a triangle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p + q + r = 0, so the three vectors placed nose to tail close and do form a triangle.",
+          "accept": [
+            "add the three and the sum is the zero vector so they form a triangle",
+            "the i j and k components all cancel to zero",
+            "three vectors close into a triangle when they add to zero",
+            "moodu kalipithe zero vector vasthundi, so triangle avthundi",
+            "check closure first and it holds"
+          ],
+          "reject": [
+            "add them",
+            "they form a triangle",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "zero vector",
+            "sum",
+            "closure",
+            "nose to tail",
+            "triangle"
+          ]
+        },
+        "why": "Walking along three vectors nose to tail returns you to the start exactly when their sum is zero, and a closed three-sided walk is a triangle. Without this the word \"triangle\" in the question is unearned.",
+        "common_mistakes": [
+          "Adding only the i components and assuming the rest follow.",
+          "Writing the answer as 0 when the sum of vectors is the zero vector, not the number zero."
+        ]
+      },
+      {
+        "id": "s3_magnitudes",
+        "kind": "equation",
+        "label": "Find the three side lengths",
+        "marks": 2,
+        "mark_note": "Magnitudes",
+        "margin_note": "Two marks, and all three magnitudes must appear. Square each component including its sign, add, then take the square root. Leave the answers as √38 rather than a decimal.",
+        "memory_tip": "Square every component with its sign, add the three squares, then take the square root. Keep the surd form.",
+        "lines": [
+          "|p| = √(3² + 5² + 2²)",
+          "    = √(9 + 25 + 4) = √38",
+          "|q| = √(2² + (−3)² + (−5)²)",
+          "    = √(4 + 9 + 25) = √38",
+          "|r| = √((−5)² + (−2)² + 3²)",
+          "    = √(25 + 4 + 9) = √38"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each magnitude is the square root of the sum of the squared components, and all three come to √38.",
+          "accept": [
+            "take the square root of the sum of the squares of the components",
+            "all three magnitudes come to root thirty eight",
+            "nine plus twenty five plus four is thirty eight for the first one",
+            "moodu magnitudes ki root thirty eight vasthundi",
+            "square each component then add then take the root"
+          ],
+          "reject": [
+            "find the magnitudes",
+            "they are equal",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "magnitude",
+            "root thirty eight",
+            "square root",
+            "modulus",
+            "thirty eight"
+          ]
+        },
+        "why": "The length of a side is the magnitude of the vector along it, and equilateral is a statement about lengths only. Squaring removes the signs, which is why three vectors pointing in quite different directions can still be equally long.",
+        "common_mistakes": [
+          "Writing (−3)² as −9 by squaring only the 3.",
+          "Adding the components instead of their squares.",
+          "Rounding √38 to a decimal, which loses the exact equality."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Answer the question",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The question says \"Explain\", so give the reason and not only the verdict: the three sums contain the same three squares, so the three lengths must agree.",
+        "memory_tip": "Equal sides means equal lengths only, not the same direction. Here the same three squares appear in each sum.",
+        "lines": [
+          "All three sides have the same length √38.",
+          "The same three squares 9, 25 and 4 appear",
+          "in each sum, only in a different order.",
+          "A triangle with three equal sides is",
+          "equilateral.",
+          {
+            "text": "∴ Yes: equilateral, each side √38.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three sides are equal in length, so the answer is yes, the triangle is equilateral with each side √38.",
+          "accept": [
+            "all three sides are root thirty eight so yes it is equilateral",
+            "equal sides means the triangle is equilateral",
+            "the answer is yes with each side root thirty eight",
+            "moodu sides equal kabatti equilateral avthundi",
+            "the same three squares appear in each sum so the lengths agree"
+          ],
+          "reject": [
+            "hence proved",
+            "yes",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "equilateral",
+            "equal sides",
+            "root thirty eight",
+            "yes"
+          ]
+        },
+        "why": "Equilateral asks only about lengths, so three equal magnitudes settle it. The reason behind the equality — the same three squares reappearing — is worth writing because the question asks for an explanation.",
+        "common_mistakes": [
+          "Answering yes without stating the common side length.",
+          "Concluding the vectors are equal, when only their lengths are."
+        ]
+      }
+    ]
+  }
+}

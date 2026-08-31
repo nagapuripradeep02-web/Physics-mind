@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_tan_sum_product_triangle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A, B, C are the angles of a triangle and none of them equals π/2, prove that tan A + tan B + tan C = tan A tan B tan C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Turn A + B + C = π into tan(A + B)",
+      "marks": 1
+    },
+    {
+      "label": "Cross multiply and collect",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 22, and again as Very Short Answer question 32(i), book p.86 and again p.89. The book prints this identity TWICE: as question 22 on p.86, where the stem adds the caveat that no angle equals π/2, and again as question 32(i) on p.89, where that caveat is dropped. It is authored ONCE here, and the caveat is KEPT, because the identity genuinely needs it — tan is undefined at π/2, and the step that divides by 1 − tan A tan B is exactly the step that fails when C = π/2. The condition is written into the answer's own lines, not left in this note. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to the set-up (A + B = π − C, then tan of both sides) and one to the cross-multiplication that produces the product form. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this one — name the fact about the angles you start from, and how the product appears.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_angle_sum",
+        "kind": "equation",
+        "label": "Turn A + B + C = π into tan(A + B)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. No angle is π/2, so all three tangents exist. Push C across: A + B = π − C, then take tan of both sides. tan(π − C) = −tan C.",
+        "memory_tip": "Push C across first: A + B = π − C. Then tan(π − C) = −tan C brings in the minus sign that later makes the product appear.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given: no angle of the triangle is π/2,",
+          "so tan A, tan B and tan C all exist.",
+          "In a triangle A + B + C = π",
+          "⇒ A + B = π − C",
+          "∴ tan(A + B) = tan(π − C) = −tan C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A + B = π − C is written and tan is taken of both sides, giving tan(A + B) = −tan C.",
+          "accept": [
+            "the angles add to pi so A plus B is pi minus C",
+            "take tan on both sides and tan of pi minus C is minus tan C",
+            "start from the angle sum of the triangle",
+            "A plus B ante pi minus C, tan teeskunte minus tan C vasthundi",
+            "write tan of A plus B equals minus tan C"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "multiply the three tangents"
+          ],
+          "heard_as": [
+            "tan A plus B",
+            "pi minus C",
+            "minus tan C",
+            "angle sum"
+          ]
+        },
+        "why": "The angle sum is the only fact given, so the proof has to turn it into a statement about tangents. tan(π − C) = −tan C is the reduction that introduces C, and its minus sign is what lets all three tangents be collected on one side at the end.",
+        "common_mistakes": [
+          "Writing tan(π − C) = tan C and losing the minus sign.",
+          "Starting from the right side of the identity instead of the angle sum."
+        ]
+      },
+      {
+        "id": "s2_cross_multiply",
+        "kind": "boxed_final",
+        "label": "Cross multiply and collect",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Expand tan(A + B), note that 1 − tan A tan B is not zero because C is not π/2, cross multiply, then move −tan C across.",
+        "memory_tip": "The denominator 1 − tan A tan B is zero only when A + B = π/2, that is when C = π/2. That is the case the question rules out.",
+        "lines": [
+          "⇒ (tan A + tan B)/(1 − tan A tan B) = −tan C",
+          "Here 1 − tan A tan B ≠ 0, because that",
+          "would mean A + B = π/2, that is C = π/2.",
+          "Cross multiplying:",
+          "tan A + tan B = −tan C + tan A tan B tan C",
+          {
+            "text": "∴ tanA + tanB + tanC = tanA tanB tanC",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan(A + B) is expanded, the denominator is cleared, and tan C is moved to the left to give the product form.",
+          "accept": [
+            "expand tan A plus B and cross multiply",
+            "bring tan C to the left and the product stays on the right",
+            "the denominator one minus tan A tan B is not zero because C is not ninety degrees",
+            "cross multiply chesi tan C ni left ki teesukuraali",
+            "collect the three tangents on one side"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "the angles add to pi"
+          ],
+          "heard_as": [
+            "cross multiply",
+            "one minus tan A tan B",
+            "tan A tan B tan C",
+            "denominator"
+          ]
+        },
+        "why": "Clearing the denominator is legal only because 1 − tan A tan B is not zero, and that is exactly what the condition C ≠ π/2 guarantees. Without it the identity has no meaning, since one of the tangents would not exist.",
+        "common_mistakes": [
+          "Cancelling the denominator without checking that C is not π/2.",
+          "Leaving the answer as a fraction instead of the product form."
+        ]
+      }
+    ]
+  }
+}

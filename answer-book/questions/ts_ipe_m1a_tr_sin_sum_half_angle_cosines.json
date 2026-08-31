@@ -1,0 +1,272 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sin_sum_half_angle_cosines",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If A, B, C are the angles of a triangle, prove that sin A + sin B + sin C = 4 cos(A/2) cos(B/2) cos(C/2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the angle condition",
+      "marks": 1
+    },
+    {
+      "label": "Pair two terms with a sum-to-product formula",
+      "marks": 3
+    },
+    {
+      "label": "Use the condition to convert",
+      "marks": 2
+    },
+    {
+      "label": "Take the common factor out",
+      "marks": 1
+    },
+    {
+      "label": "Apply the product formula and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 4, book p.101. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+3+2+1+1 above weights the two transformations that carry the proof (the sum-to-product pairing and the substitution from the halved condition) against the set-up and the finish, and matches the split already used on the eight sibling transformation long answers in this unit so a student meets ONE method, not eight. NUMERIC CHECK (before authoring and again after): at A = 50°, B = 60°, C = 70°, which is a genuine triangle, L.H.S = 2.5717624677 and R.H.S = 2.5717624677. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Ratios and Transformations · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the angle condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. The right side is built from HALF angles, so the condition is halved before anything else. Written in this form it converts a sine into a cosine at step 3.",
+        "memory_tip": "Halve the condition first: A + B + C = 180° gives (A+B)/2 = 90° − C/2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A, B, C are the angles of a triangle.",
+          "Given A + B + C = 180°",
+          "⇒ (A+B)/2 = 90° − C/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle condition is written first and HALVED, because the right-hand side is in half angles.",
+          "accept": [
+            "write the angle sum and divide it by two because the answer is in half angles",
+            "state A plus B plus C equals one eighty and halve it",
+            "the halved condition gives A plus B over two equals ninety minus C over two",
+            "modata angle condition rasi, rendu tho divide cheyyali",
+            "write down the condition on the angles in half angle form"
+          ],
+          "reject": [
+            "write the given",
+            "start the proof"
+          ],
+          "heard_as": [
+            "angle condition",
+            "A plus B plus C",
+            "half angle",
+            "ninety minus C over two"
+          ]
+        },
+        "why": "The statement is false without the condition, so it is the hypothesis and not preamble. It is halved because every factor on the right is a half angle.",
+        "common_mistakes": [
+          "Starting the transformation before writing the condition.",
+          "Writing the condition but not halving it, so step 3 has nothing to use."
+        ]
+      },
+      {
+        "id": "s2_pair",
+        "kind": "equation",
+        "label": "Pair two terms",
+        "marks": 3,
+        "mark_note": "Sum to product",
+        "margin_note": "Three of the eight marks. Three terms will not factorise as they stand, so the first two are combined into a product and the third is opened into half angles. Quote each formula in brackets — the formulas are what the examiner marks.",
+        "memory_tip": "Pair sin A with sin B, and open sin C as 2 sin(C/2) cos(C/2) so both parts carry a half angle.",
+        "lines": [
+          "L.H.S = sinA + sinB + sinC",
+          "= 2 sin((A+B)/2) cos((A−B)/2) + sinC",
+          "  [∵ sinC + sinD = 2 sin((C+D)/2) cos((C−D)/2)]",
+          "Also sinC = 2 sin(C/2) cos(C/2)",
+          "  [∵ sin2θ = 2 sinθ cosθ]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin A + sin B is paired with the sin C + sin D formula, and sin C is opened as 2 sin(C/2) cos(C/2).",
+          "accept": [
+            "pair the first two with the sin C plus sin D formula and open sin C as two sin half C cos half C",
+            "apply sum to product on sin A plus sin B and the double angle on the third",
+            "combine two of the terms and split the other one into half angles",
+            "modati rendu terms ni sum to product cheyyali, moodava term half angle",
+            "use sinC plus sinD on the first pair"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "sin C plus sin D",
+            "sum to product",
+            "two sin half C",
+            "pair",
+            "double angle"
+          ]
+        },
+        "why": "Three terms cannot be factorised as they stand. Pairing two of them makes a product, and opening the third into half angles gives it the factor the pair will share.",
+        "common_mistakes": [
+          "Trying to convert all three terms at once.",
+          "Leaving sin C closed, so no common factor ever appears."
+        ]
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Use the condition",
+        "marks": 2,
+        "mark_note": "Substitution",
+        "margin_note": "Two more marks. The halved condition turns a sine of (A+B)/2 into a cosine of C/2, which is what makes both terms carry cos(C/2).",
+        "memory_tip": "sin(90° − C/2) = cos(C/2). A sine becomes a cosine under this shift.",
+        "lines": [
+          "sin((A+B)/2) = sin(90° − C/2) = cos(C/2)",
+          "  [∵ sin(90° − θ) = cosθ]",
+          "L.H.S = 2 cos(C/2) cos((A−B)/2)",
+          "         + 2 sin(C/2) cos(C/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin((A+B)/2) = sin(90° − C/2) = cos(C/2), so both terms now share cos(C/2).",
+          "accept": [
+            "sin of A plus B over two is sin of ninety minus C over two which is cos C over two",
+            "use the halved condition so both terms carry cos half C",
+            "the sine turns into a cosine of the half angle",
+            "sin ninety minus C by two ante cos C by two",
+            "convert the half angle using the condition"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "ninety minus C over two",
+            "cos C over two",
+            "half angle",
+            "condition"
+          ]
+        },
+        "why": "sin(90° − θ) = cos θ is the only move that makes the two terms share a factor. Without it the expression stays in A and B on one side and C on the other.",
+        "common_mistakes": [
+          "Writing sin(90° − C/2) = sin(C/2).",
+          "Using A + B = 180° − C and forgetting that the half angle needs the halved condition."
+        ]
+      },
+      {
+        "id": "s4_factor",
+        "kind": "equation",
+        "label": "Take the common factor out",
+        "marks": 1,
+        "mark_note": "Factorise",
+        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are cosines.",
+        "memory_tip": "Take 2 cos(C/2) out, then write sin(C/2) as cos((A+B)/2) so the bracket holds two cosines.",
+        "lines": [
+          "= 2 cos(C/2) [cos((A−B)/2) + sin(C/2)]",
+          "sin(C/2) = cos((A+B)/2)",
+          "  [∵ (A+B)/2 = 90° − C/2]",
+          "= 2 cos(C/2) [cos((A−B)/2) + cos((A+B)/2)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2 cos(C/2) is taken out, and sin(C/2) inside the bracket is rewritten as cos((A+B)/2).",
+          "accept": [
+            "take two cos half C common then write sin half C as cos of A plus B over two",
+            "factor out two cos half C and convert the sine using the condition again",
+            "the bracket becomes cos A minus B over two plus cos A plus B over two",
+            "two cos C by two common teesi, bracket lo sine ni cosine ga marchali",
+            "use the condition a second time inside the bracket"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two cos C over two",
+            "common factor",
+            "cos A plus B over two",
+            "bracket"
+          ]
+        },
+        "why": "The condition is used twice — once outside on the sine and once inside on the half angle. Both bracket terms must be cosines before any product formula applies.",
+        "common_mistakes": [
+          "Leaving sin(C/2) inside the bracket, so no formula applies.",
+          "Taking out cos(C/2) instead of 2 cos(C/2)."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Apply the product formula",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. One sum formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "memory_tip": "cos((A−B)/2) + cos((A+B)/2) = 2 cos(A/2) cos(B/2). The two 2s multiply to give the 4.",
+        "lines": [
+          "= 2 cos(C/2) · 2 cos(A/2) cos(B/2)",
+          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          {
+            "text": "= 4 cos(A/2) cos(B/2) cos(C/2) = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos((A−B)/2) + cos((A+B)/2) = 2 cos(A/2) cos(B/2), giving 4 cos(A/2) cos(B/2) cos(C/2).",
+          "accept": [
+            "the sum of the two cosines is two cos half A cos half B so the answer is four cos half A cos half B cos half C",
+            "apply the cos C plus cos D formula to the bracket and finish",
+            "the bracket becomes two cos half A cos half B",
+            "bracket lo cos sum formula apply chesthe two cos A by two cos B by two vasthundi",
+            "the last formula gives four cos half A cos half B cos half C"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two cos A over two",
+            "cos B over two",
+            "four cos half A",
+            "sum formula"
+          ]
+        },
+        "why": "The sum of two cosines is a product of two cosines. That one formula supplies the last two factors, and the 4 comes from the 2 taken out earlier times the 2 in this formula.",
+        "common_mistakes": [
+          "Using the cosine DIFFERENCE formula, which gives sines instead of cosines.",
+          "Writing 2 cos(A/2) cos(B/2) cos(C/2) and losing one factor of 2."
+        ]
+      }
+    ]
+  }
+}

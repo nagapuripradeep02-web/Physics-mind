@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_hf_sinh_inverse_log_form",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Hyperbolic Functions"
+  },
+  "chapter": "Hyperbolic Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "For any x ∈ R, prove that sinh⁻¹x = logₑ(x + √(x² + 1)).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Form the quadratic in eʸ",
+      "marks": 1
+    },
+    {
+      "label": "Take the positive root",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 9. The book prints this result as a Theorem rather than as a numbered exercise; it is asked and worked exactly like one. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards forming the quadratic in eʸ first and choosing the positive root and taking logarithms second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbolic Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Form the quadratic in eʸ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Put y = Sinh⁻¹x so that x = sinh y, write the definition, then multiply by eʸ to clear e⁻ʸ. What is left is a quadratic in eʸ.",
+        "memory_tip": "Multiplying by eʸ turns eʸ − e⁻ʸ into e²ʸ − 1, which is what makes it a quadratic in eʸ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let y = Sinh⁻¹x, so x = sinh y",
+          "x = (eʸ − e⁻ʸ)/2 ⇒ 2x = eʸ − e⁻ʸ",
+          "Multiply throughout by eʸ:",
+          "2x·eʸ = e²ʸ − 1",
+          "∴ e²ʸ − 2x·eʸ − 1 = 0, a quadratic in eʸ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That y = Sinh⁻¹x is set so x = sinh y, and multiplying by eʸ gives the quadratic e²ʸ − 2x·eʸ − 1 = 0.",
+          "accept": [
+            "let y be sinh inverse x so x is sinh y and write the definition",
+            "multiply by e to the y to clear the negative power",
+            "you get e to the two y minus two x e to the y minus one equals zero",
+            "e power y tho multiply cheste quadratic vasthundi",
+            "it becomes a quadratic in e to the y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sinh inverse",
+            "e to the y",
+            "quadratic",
+            "multiply throughout"
+          ]
+        },
+        "why": "e⁻ʸ is the only thing stopping this from being a quadratic. Multiplying by eʸ removes it and turns the equation into one the quadratic formula solves.",
+        "common_mistakes": [
+          "Multiplying only one side by eʸ.",
+          "Writing eʸ·e⁻ʸ as e⁻ʸ² instead of 1."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Take the positive root",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Both roots come out of the formula, but eʸ is always positive and x − √(x² + 1) is always negative, so only the plus root survives.",
+        "memory_tip": "√(x² + 1) is bigger than x for every real x, so x − √(x² + 1) is negative and cannot equal eʸ.",
+        "lines": [
+          "eʸ = (2x ± √(4x² + 4))/2",
+          "= x ± √(x² + 1)",
+          "For every real x, √(x² + 1) > x",
+          "So x − √(x² + 1) < 0, but eʸ > 0",
+          "∴ eʸ = x + √(x² + 1)",
+          {
+            "text": "∴ Sinh⁻¹x = logₑ(x + √(x² + 1))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quadratic gives eʸ = x ± √(x² + 1), the minus root is rejected because eʸ is positive, and taking logarithms gives the result.",
+          "accept": [
+            "the quadratic formula gives x plus or minus root x squared plus one",
+            "the minus root is negative and e to the y is always positive so reject it",
+            "take logarithms to get log of x plus root x squared plus one",
+            "minus root negative untundi so reject chesi log teesukovali",
+            "so sinh inverse x is log of x plus root x squared plus one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "both roots are accepted"
+          ],
+          "heard_as": [
+            "plus or minus",
+            "root x squared plus one",
+            "reject",
+            "take logarithms"
+          ]
+        },
+        "why": "x + √(x² + 1) is positive for every real x, so the logarithm is defined for every real x. That is why the formula holds on the whole of R with no restriction.",
+        "common_mistakes": [
+          "Keeping both roots and writing logₑ(x ± √(x² + 1)).",
+          "Choosing the minus root, whose logarithm does not exist."
+        ]
+      }
+    ]
+  }
+}

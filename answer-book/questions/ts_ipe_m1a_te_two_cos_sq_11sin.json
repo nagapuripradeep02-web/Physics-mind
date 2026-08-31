@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_two_cos_sq_11sin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Solve 2 cos²θ + 11 sinθ = 7.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Convert to one ratio",
+      "marks": 1
+    },
+    {
+      "label": "Factorise the quadratic",
+      "marks": 1
+    },
+    {
+      "label": "Reject the impossible root",
+      "marks": 1
+    },
+    {
+      "label": "Solve the valid root",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.107, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 1(iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives a separate mark to the range check, because sinθ = 5 is the whole point of this question — a student who factorises correctly and then writes an angle for sinθ = 5 has lost the question, not a detail. Nothing is squared and no denominator is cleared here, so sinθ = 5 is a genuine out-of-range root, not an extraneous one, and the card says which of the two it is. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say which general solution formula you would use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_convert_to_one_ratio",
+        "kind": "equation",
+        "label": "Convert to one ratio",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The equation mixes cos² with sin, so replace cos²θ by 1 − sin²θ. Then bring every term to the left so sin²θ carries a positive coefficient.",
+        "memory_tip": "cos² with a plain sin means one substitution: cos²θ = 1 − sin²θ. Then collect on the side where sin²θ stays positive.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given 2cos²θ + 11 sinθ = 7",
+          "⇒ 2(1 − sin²θ) + 11 sinθ = 7",
+          "  [∵ sin²θ + cos²θ = 1]",
+          "⇒ 2 − 2sin²θ + 11 sinθ − 7 = 0",
+          "⇒ 2sin²θ − 11 sinθ + 5 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²θ becomes 1 − sin²θ and the equation collects to 2sin²θ − 11 sinθ + 5 = 0.",
+          "accept": [
+            "replace cos squared by one minus sin squared so the equation is two sin squared minus eleven sin plus five equals zero",
+            "convert to sine only and collect the terms",
+            "it becomes a quadratic in sine with a positive sin squared term",
+            "cos square ni one minus sin square ga marchi quadratic rasali",
+            "get everything into sine first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one minus sin squared",
+            "eleven sin theta",
+            "quadratic in sine"
+          ]
+        },
+        "why": "An equation holding two different ratios cannot be factorised. Reducing it to sine alone turns it into a quadratic that any student can handle.",
+        "common_mistakes": [
+          "Replacing sin²θ instead and leaving a cosine behind.",
+          "Sign slip when multiplying out the −2."
+        ]
+      },
+      {
+        "id": "s2_factorise_the_quadratic",
+        "kind": "equation",
+        "label": "Factorise the quadratic",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The product is 2 × 5 = 10 and the sum is −11, so split the middle term as −10 sinθ − sinθ.",
+        "memory_tip": "Product 10, sum −11: split the middle term as −10 sinθ − sinθ, and the bracket (sinθ − 5) is shared.",
+        "lines": [
+          "⇒ 2sin²θ − 10 sinθ − sinθ + 5 = 0",
+          "⇒ 2sinθ(sinθ − 5) − 1(sinθ − 5) = 0",
+          "⇒ (2sinθ − 1)(sinθ − 5) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the quadratic factorises to (2sinθ − 1)(sinθ − 5) = 0.",
+          "accept": [
+            "split the middle term and factorise to two sin theta minus one into sin theta minus five",
+            "the factors are two sin minus one and sin minus five",
+            "treat sin theta as one unknown and factorise",
+            "middle term split chesi factorise cheyyali",
+            "factor the quadratic into two brackets"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin theta minus five",
+            "two sin theta minus one",
+            "factorise",
+            "split the middle term"
+          ]
+        },
+        "why": "Treating sinθ as a single unknown is what makes the factorisation ordinary. Nothing trigonometric happens in this line at all.",
+        "common_mistakes": [
+          "Looking for factors of 11 instead of factors of 2 × 5 = 10.",
+          "Splitting the middle term as −5 sinθ − 6 sinθ, whose product is 30, not 10."
+        ]
+      },
+      {
+        "id": "s3_reject_the_impossible_root",
+        "kind": "equation",
+        "label": "Reject the impossible root",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. sinθ = 5 lies outside [−1, 1], so that branch has no angle at all. Write the reason on the page — the mark is for the reason, not for crossing the root out.",
+        "memory_tip": "sinθ = 5 is outside [−1, 1], so it has no angle. Write the reason, do not just cross it out.",
+        "lines": [
+          "⇒ 2sinθ − 1 = 0  (or)  sinθ − 5 = 0",
+          "⇒ sinθ = 1/2  (or)  sinθ = 5",
+          "But |sinθ| ≤ 1 always, and 5 > 1,",
+          "so sinθ = 5 has no solution."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sinθ = 5 is rejected because |sinθ| ≤ 1, with the reason stated.",
+          "accept": [
+            "sin theta equals five is impossible because a sine never goes above one",
+            "reject the second root, the sine range is minus one to one",
+            "that branch has no angle since five is bigger than one",
+            "sin theta five impossible, sine range minus one to one",
+            "discard the impossible value and say why"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin theta equals five",
+            "no solution",
+            "reject",
+            "mod sin theta less than one"
+          ]
+        },
+        "why": "A quadratic always gives two roots, but a trigonometric equation only accepts values a sine can actually take. Checking the range is part of solving, not a formality.",
+        "common_mistakes": [
+          "Carrying sinθ = 5 forward and inventing an angle for it.",
+          "Discarding it with no reason given."
+        ]
+      },
+      {
+        "id": "s4_solve_the_valid_root",
+        "kind": "boxed_final",
+        "label": "Solve the valid root",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. sinθ = 1/2 is sin(π/6), so the principal value is π/6 and the sine general solution applies. Keep n ∈ Z.",
+        "memory_tip": "sinθ = 1/2 = sin(π/6), so use the sine form nπ + (−1)ⁿ(π/6).",
+        "lines": [
+          "Now sinθ = 1/2 = sin(π/6)",
+          "Here the principal value is α = π/6",
+          "For sinθ = sinα, θ = nπ + (−1)ⁿ α",
+          {
+            "text": "∴ θ = nπ + (−1)ⁿ (π/6),  n ∈ Z",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sinθ = 1/2 gives principal value π/6 and general solution θ = nπ + (−1)ⁿ(π/6), n ∈ Z.",
+          "accept": [
+            "sin theta is a half which is sin pi by six so theta is n pi plus minus one to the n pi by six",
+            "the principal value is pi by six and the sine general solution follows",
+            "the answer is n pi plus minus one power n pi by six",
+            "sin theta half ante sin pi by six, general solution rasta",
+            "write the general solution for the valid root"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a half",
+            "pi by six",
+            "n pi",
+            "minus one to the n"
+          ]
+        },
+        "why": "Only one branch survived, so there is one family of solutions — but it is still an infinite family, which is why n ∈ Z has to appear.",
+        "common_mistakes": [
+          "Giving only θ = π/6 and no general solution.",
+          "Using the cosine general solution 2nπ ± α."
+        ]
+      }
+    ]
+  }
+}

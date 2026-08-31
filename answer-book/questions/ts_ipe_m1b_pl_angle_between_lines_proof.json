@@ -1,0 +1,227 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_angle_between_lines_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If ax² + 2hxy + by² = 0 represents a pair of straight lines, show that the angle θ between the two lines is given by cos θ = ±(a + b) / √((a − b)² + 4h²).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split the pair and match coefficients",
+      "marks": 1
+    },
+    {
+      "label": "Write tan θ from the two slopes",
+      "marks": 1
+    },
+    {
+      "label": "Put the sum and product into tan θ",
+      "marks": 1
+    },
+    {
+      "label": "Convert tan θ to cos θ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 2, book p.163. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because this proof turns four times and each turn is a separate piece of knowledge: splitting the pair into slopes, the angle formula in slopes, the identity that converts the difference of the slopes into the sum and the product, and the conversion from tan to cos. A student who stops after any one of them has still shown one complete idea. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say what you know about the two slopes, and how you get from tan θ to cos θ.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_and_match",
+        "kind": "equation",
+        "label": "Split the pair and match coefficients",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A homogeneous second-degree equation is two lines through the origin, so each line is y = mx. Matching coefficients gives the sum and the product of the two slopes — never the slopes themselves.",
+        "memory_tip": "Matching coefficients gives the SUM and the PRODUCT of the slopes, never the slopes one by one.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the two lines be y = m₁x and y = m₂x, b ≠ 0.",
+          "Then ax² + 2hxy + by² ≡ b(y − m₁x)(y − m₂x)",
+          "On equating like term coeff., we get",
+          "m₁ + m₂ = −2h/b,   m₁m₂ = a/b   ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pair is split as b(y − m₁x)(y − m₂x), giving m₁ + m₂ = −2h/b and m₁m₂ = a/b.",
+          "accept": [
+            "split the pair into two lines through the origin and equate coefficients",
+            "the sum of the slopes is minus two h over b and the product is a over b",
+            "write the pair as b into y minus m one x into y minus m two x",
+            "slopes sum and product teesukovali",
+            "match the coefficients of x squared and x y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "m one plus m two",
+            "minus two h over b",
+            "m one m two",
+            "a over b"
+          ]
+        },
+        "why": "Every proof in this chapter starts by SPLITTING the pair into two lines with unknown slopes and matching coefficients. That dictionary between (a, h, b) and the two slopes is what every later step spends.",
+        "common_mistakes": [
+          "Writing m₁ + m₂ = 2h/b without the minus sign.",
+          "Dividing by a instead of b."
+        ]
+      },
+      {
+        "id": "s2_tan_theta_from_slopes",
+        "kind": "equation",
+        "label": "Write tan θ from the two slopes",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Two lines meeting at a point make two angles, θ and 180° − θ, whose tangents are opposite in sign — that is where the ± comes from, and it stays to the end.",
+        "memory_tip": "Two lines make two angles, θ and 180° − θ, so the ± is there from the start.",
+        "lines": [
+          "θ is the angle between the two lines, so",
+          "tan θ = ±(m₁ − m₂) / (1 + m₁m₂)",
+          "(m₁ − m₂)² = (m₁ + m₂)² − 4m₁m₂"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan θ = ±(m₁ − m₂)/(1 + m₁m₂) and that (m₁ − m₂)² = (m₁ + m₂)² − 4m₁m₂.",
+          "accept": [
+            "tan theta is the difference of the slopes over one plus their product",
+            "the plus or minus is because the lines make two angles",
+            "the difference squared is the sum squared minus four times the product",
+            "tan theta formula raasi difference ni sum and product tho rayali",
+            "use the standard angle between two lines formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan theta",
+            "m one minus m two",
+            "one plus m one m two",
+            "sum squared minus four"
+          ]
+        },
+        "why": "Only the sum and the product of the slopes are known, so any expression in the slopes must first be written through those two. The identity in the third line is what makes the difference of the slopes reachable.",
+        "common_mistakes": [
+          "Writing (m₁ − m₂)² = (m₁ + m₂)² − 2m₁m₂.",
+          "Writing tan θ = (m₁ − m₂)/(1 − m₁m₂)."
+        ]
+      },
+      {
+        "id": "s3_substitute_sum_and_product",
+        "kind": "equation",
+        "label": "Put the sum and product into tan θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Both the numerator and the denominator carry a factor 1/b, so every b cancels and the result is in a, h and b only.",
+        "memory_tip": "Numerator and denominator each carry one factor of b, so every b cancels.",
+        "lines": [
+          "= (−2h/b)² − 4(a/b) = (4h² − 4ab)/b²",
+          "⇒ m₁ − m₂ = ±2√(h² − ab) / b",
+          "1 + m₁m₂ = 1 + a/b = (a + b)/b",
+          "∴ tan θ = ±2√(h² − ab) / (a + b)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting (1) gives m₁ − m₂ = ±2√(h² − ab)/b and 1 + m₁m₂ = (a + b)/b, so tan θ = ±2√(h² − ab)/(a + b).",
+          "accept": [
+            "substitute the sum and the product from one",
+            "the difference of the slopes is two root h squared minus a b over b",
+            "one plus the product is a plus b over b",
+            "sum and product substitute chesthe b cancel avuthundi",
+            "tan theta is two root h squared minus a b over a plus b"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root h squared minus a b",
+            "a plus b",
+            "the b cancels",
+            "tan theta"
+          ]
+        },
+        "why": "The quantity h² − ab decides everything about the pair: it is positive for two separate lines, zero for two coincident lines and negative when there are no real lines at all.",
+        "common_mistakes": [
+          "Writing (−2h/b)² as −4h²/b².",
+          "Cancelling only one of the two b factors."
+        ]
+      },
+      {
+        "id": "s4_tan_to_cos",
+        "kind": "boxed_final",
+        "label": "Convert tan θ to cos θ",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Read tan θ as opposite over adjacent, so the hypotenuse is √(p² + q²) and cos θ is adjacent over hypotenuse. The 4h² and the −4ab combine with (a + b)² to give (a − b)² + 4h².",
+        "memory_tip": "tan θ = p/q gives cos θ = q/√(p² + q²) — read the fraction as opposite over adjacent.",
+        "lines": [
+          "If tan θ = p/q then cos θ = q/√(p² + q²)",
+          "Here p = 2√(h² − ab) and q = a + b",
+          "p² + q² = 4h² − 4ab + a² + 2ab + b²",
+          "        = (a − b)² + 4h²",
+          {
+            "text": "∴ cos θ = ±(a + b)/√((a − b)² + 4h²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p² + q² = (a − b)² + 4h², so cos θ = ±(a + b)/√((a − b)² + 4h²).",
+          "accept": [
+            "if tan theta is p over q then cos theta is q over root p squared plus q squared",
+            "p squared plus q squared works out to a minus b whole squared plus four h squared",
+            "the minus four a b turns the plus two a b into minus two a b",
+            "tan nunchi cos ki marchali, hypotenuse root p square plus q square",
+            "this gives the required result"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "p over q",
+            "root p squared plus q squared",
+            "a minus b whole squared",
+            "four h squared"
+          ]
+        },
+        "why": "The −4ab from the numerator turns the +2ab inside (a + b)² into −2ab, which is exactly what makes (a − b)² appear. The result also reads correctly when a + b = 0: cos θ = 0, so θ = 90°, the known condition for a perpendicular pair.",
+        "common_mistakes": [
+          "Writing cos θ = p/√(p² + q²), which is sin θ.",
+          "Leaving (a + b)² under the root instead of (a − b)²."
+        ]
+      }
+    ]
+  }
+}

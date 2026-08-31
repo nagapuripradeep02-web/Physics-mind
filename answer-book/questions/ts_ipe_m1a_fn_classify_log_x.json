@@ -1,0 +1,181 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_classify_log_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Decide with justification whether f: (0, ∞)→R defined by f(x) = log x is an injection, a surjection or a bijection.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Proof that f is one one",
+      "marks": 1
+    },
+    {
+      "label": "Proof that f is onto",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 18(iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the one one argument and one to the onto argument, because the question asks for both and a student who proves only one still earns half. The verdict line carries no mark and is authored for the student, not for the examiner. The stem prints log x without naming a base; it is read here as logₑ x, the Intermediate default, and the answer line says so on the page. The verdict does not depend on the choice: for any base a > 0 with a ≠ 1 the same two arguments run with aʸ in place of eʸ, and the map is still a bijection. The domain and codomain answered against are the ones printed in the stem, (0, ∞) and R. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would decide this — how you prove one one for a logarithm, and how you find a pre-image for any real y.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_one_one",
+        "kind": "equation",
+        "label": "Prove f is one one",
+        "marks": 1,
+        "mark_note": "One one",
+        "margin_note": "First mark. Copy the domain and the codomain from the question first. Then subtract the two logarithms and use log a − log b = log(a/b).",
+        "memory_tip": "Subtract the two logs to get log(a/b) = 0, and log of a number is 0 only when that number is 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f: (0, ∞)→R, f(x) = log x, base e",
+          "Domain = (0, ∞), codomain = R",
+          "Let f(a) = f(b), where a, b > 0",
+          "⇒ log a = log b ⇒ log a − log b = 0",
+          "⇒ log(a/b) = 0 ⇒ a/b = e⁰ = 1 ⇒ a = b",
+          "∴ f is one one (an injection)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That log a = log b gives log(a/b) = 0, so a/b = 1 and a = b, which is what one one means.",
+          "accept": [
+            "let f of a equal f of b then log a equals log b so log of a by b is zero and a by b is one so a equals b",
+            "subtract the logarithms to get log of a over b equal to zero then a equals b",
+            "take exponentials on both sides of log a equals log b to get a equals b",
+            "log a equals log b anukunte a equals b vastundi so one one",
+            "the logarithm sends different positive numbers to different values so it is injective"
+          ],
+          "reject": [
+            "the log graph is increasing so it is one one",
+            "log is always one one",
+            "I prove it is an injection"
+          ],
+          "heard_as": [
+            "log a",
+            "log b",
+            "log of a by b",
+            "one one",
+            "injection",
+            "e to the zero"
+          ]
+        },
+        "why": "log a − log b = log(a/b) turns the assumption into a single logarithm, and log of a number is 0 only when that number is 1. Both a and b are positive, so dividing them is allowed.",
+        "common_mistakes": [
+          "Writing log a − log b = log a / log b, which is not a logarithm law.",
+          "Saying it is one one because the curve rises, with no algebra."
+        ]
+      },
+      {
+        "id": "s2_onto",
+        "kind": "equation",
+        "label": "Prove f is onto",
+        "marks": 1,
+        "mark_note": "Onto",
+        "margin_note": "Second mark. Start from an arbitrary y in R, including negative y, and produce eʸ. It is positive for every real y, so it lies in the domain (0, ∞).",
+        "memory_tip": "eʸ is positive for every real y, negative y included, so the pre-image is always inside (0, ∞).",
+        "lines": [
+          "Let y ∈ R, the codomain.",
+          "Solve log x = y ⇒ x = eʸ",
+          "eʸ > 0 for every real y, so x ∈ (0, ∞)",
+          "and f(x) = log eʸ = y.",
+          "∴ every y ∈ R has a pre-image; f is onto."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for an arbitrary real y the number e to the power y is positive, lies in the domain (0, ∞), and has log equal to y, so every element of R is reached.",
+          "accept": [
+            "take any y in R then x equals e to the power y is positive so it is in the domain and log of it is y",
+            "solve log x equals y to get x equals e power y which is always positive",
+            "every real number is the logarithm of some positive number so the map is onto",
+            "e power y eppudu positive so x domain lo untundi and log x equals y",
+            "for each y in R there is a positive x with log x equal to y"
+          ],
+          "reject": [
+            "log takes all real values",
+            "the range is R",
+            "I prove it is a surjection"
+          ],
+          "heard_as": [
+            "e to the power y",
+            "e power y",
+            "log x equals y",
+            "onto",
+            "surjection",
+            "pre image"
+          ]
+        },
+        "why": "Onto means nothing in R is left out, and R includes negative numbers. Producing eʸ shows the pre-image exists for those too, because eʸ is positive for every real y and so sits inside the domain (0, ∞).",
+        "common_mistakes": [
+          "Writing only 'the range of log is R' with no x produced for a general y.",
+          "Thinking a negative y has no pre-image; e to a negative power is still positive."
+        ]
+      },
+      {
+        "id": "s3_verdict",
+        "kind": "boxed_final",
+        "label": "State the verdict",
+        "marks": 0,
+        "margin_note": "No separate mark, but write it. The question named three words, so the last line must pick one and tie it to the two proofs.",
+        "memory_tip": "One one and onto together is the definition of a bijection, so name both before the verdict.",
+        "lines": [
+          "f is one one and onto.",
+          {
+            "text": "∴ f: (0, ∞)→R is a bijection.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is a bijection BECAUSE it was shown to be both one one and onto on the stated domain and codomain.",
+          "accept": [
+            "since f is one one and onto it is a bijection",
+            "both parts hold so log x from zero infinity to R is bijective",
+            "it is an injection and a surjection so it is a bijection",
+            "one one and onto rendu unnai so f bijection",
+            "the verdict is bijection"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is a bijection",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "bijection",
+            "bijective",
+            "by jection",
+            "one one and onto"
+          ]
+        },
+        "why": "The question offered three words, so the answer must choose one and tie it to the two proofs above. Because f is a bijection here, its inverse eˣ from R to (0, ∞) exists.",
+        "common_mistakes": [
+          "Naming only 'injection' when both properties were proved.",
+          "Stopping after the two arguments and never writing the verdict."
+        ]
+      }
+    ]
+  }
+}

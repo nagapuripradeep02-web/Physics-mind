@@ -1,0 +1,236 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_3a_minus_4bt",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If A is the matrix with rows (1, 5, 3), (2, 4, 0) and (3, −1, −5), and B is the matrix with rows (2, −1, 0), (0, −2, 5) and (1, 2, 0), then find 3A − 4Bᵀ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write Bᵀ",
+      "marks": 1
+    },
+    {
+      "label": "Find 3A",
+      "marks": 1
+    },
+    {
+      "label": "Find 4Bᵀ",
+      "marks": 1
+    },
+    {
+      "label": "Subtract entry by entry",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Short Answer question 9(iii), book p.41. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split gives a mark to each of the four separate matrices a student has to put on the page — Bᵀ, 3A, 4Bᵀ and the difference — because the transpose is a full mark's worth of work on its own and is where the answer is usually lost. CHECKED ENTRY BY ENTRY, TWICE: the nine entries were first read off the three intermediate matrices, then recomputed straight from the stem as 3aᵢⱼ − 4bⱼᵢ, and the two passes agree: (−5, 15, 5), (10, 20, −8), (9, −23, −15). The transposed-index trap is visible at two positions: Bᵀ in row 1 column 3 is B's entry in row 3 column 1, which is 1, while Bᵀ in row 3 column 1 is B's entry in row 1 column 3, which is 0. Swapping those two would still leave a well-formed 3×3 matrix, so the check has to be positional. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Matrices supplies questions to all three sections of this paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the order you would work in to find 3A − 4Bᵀ.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transpose",
+        "kind": "equation",
+        "label": "Write Bᵀ",
+        "marks": 1,
+        "mark_note": "Transpose",
+        "margin_note": "First mark. Write Bᵀ before any scaling. Read B down each column and write that column as a row: column 1 of B is (2, 0, 1), so row 1 of Bᵀ is (2, 0, 1).",
+        "memory_tip": "Column 1 of B becomes row 1 of Bᵀ. Read B downwards, write Bᵀ across.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Bᵀ turns the columns of B into rows.",
+          {
+            "text": "B^{T} = \\begin{bmatrix} 2 & 0 & 1 \\\\ -1 & -2 & 2 \\\\ 0 & 5 & 0 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "B is 3×3, so Bᵀ is 3×3 and matches A.",
+          "The 5 moves from row 2 to row 3;",
+          "the 1 in row 3 of B moves to row 1 of Bᵀ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Bᵀ is written by turning each column of B into a row, giving rows (2, 0, 1), (−1, −2, 2) and (0, 5, 0).",
+          "accept": [
+            "read B down its columns and write each column as a row",
+            "B transpose has rows two zero one, minus one minus two two, zero five zero",
+            "columns become rows so the five moves down to the last row",
+            "columns ni rows ga marchi B transpose rasukovali",
+            "transpose B first because it is a three by three like A"
+          ],
+          "reject": [
+            "take the transpose of B",
+            "write B dash"
+          ],
+          "heard_as": [
+            "B transpose",
+            "columns become rows",
+            "two zero one",
+            "zero five zero"
+          ]
+        },
+        "why": "The entry in row i column j of Bᵀ is the entry in row j column i of B. Writing Bᵀ out in full, before any scaling, is what keeps the two indices from being swapped.",
+        "common_mistakes": [
+          "Reading Bᵀ off the rows of B instead of its columns.",
+          "Reversing the order of the rows of B instead of exchanging rows with columns."
+        ]
+      },
+      {
+        "id": "s2_three_a",
+        "kind": "equation",
+        "label": "Find 3A",
+        "marks": 1,
+        "mark_note": "3A",
+        "margin_note": "Second mark. A scalar multiplies every entry, including the negative ones: 3(−1) = −3 and 3(−5) = −15.",
+        "memory_tip": "A scalar reaches all nine entries, negatives included. Nothing is left unchanged.",
+        "lines": [
+          "3A multiplies every entry of A by 3.",
+          {
+            "text": "3A = \\begin{bmatrix} 3 & 15 & 9 \\\\ 6 & 12 & 0 \\\\ 9 & -3 & -15 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every entry of A is multiplied by 3, giving rows (3, 15, 9), (6, 12, 0) and (9, −3, −15).",
+          "accept": [
+            "multiply all nine entries of A by three",
+            "three A has rows three fifteen nine, six twelve zero, nine minus three minus fifteen",
+            "the scalar three reaches every entry including the negatives",
+            "A lo prathi entry ni three tho multiply cheyyali",
+            "three times A entry by entry"
+          ],
+          "reject": [
+            "multiply by three",
+            "find three A"
+          ],
+          "heard_as": [
+            "three A",
+            "fifteen",
+            "minus fifteen",
+            "every entry"
+          ]
+        },
+        "why": "Scalar multiplication is defined entry by entry, so 3A is a single pass over the nine numbers. Doing it as its own step keeps the later subtraction to one clean pass.",
+        "common_mistakes": [
+          "Multiplying only the first row or only the diagonal by 3.",
+          "Writing 3(−1) as 3 instead of −3."
+        ]
+      },
+      {
+        "id": "s3_four_bt",
+        "kind": "equation",
+        "label": "Find 4Bᵀ",
+        "marks": 1,
+        "mark_note": "4Bᵀ",
+        "margin_note": "Third mark. Scale the transpose, not B. Multiplying B by 4 and transposing afterwards gives the same matrix here, but scaling the wrong matrix first is how the entries end up in the wrong places.",
+        "memory_tip": "Scale Bᵀ, not B. Work from the matrix you have just written, not from the original.",
+        "lines": [
+          "4Bᵀ multiplies every entry of Bᵀ by 4.",
+          {
+            "text": "4B^{T} = \\begin{bmatrix} 8 & 0 & 4 \\\\ -4 & -8 & 8 \\\\ 0 & 20 & 0 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every entry of Bᵀ is multiplied by 4, giving rows (8, 0, 4), (−4, −8, 8) and (0, 20, 0).",
+          "accept": [
+            "multiply the transpose by four, not the original B",
+            "four B transpose has rows eight zero four, minus four minus eight eight, zero twenty zero",
+            "scale each of the nine entries of B transpose by four",
+            "B transpose lo prathi entry ni four tho multiply cheyyali",
+            "four times the transpose entry by entry"
+          ],
+          "reject": [
+            "multiply by four",
+            "find four B"
+          ],
+          "heard_as": [
+            "four B transpose",
+            "twenty",
+            "minus eight",
+            "eight zero four"
+          ]
+        },
+        "why": "The question asks for 4Bᵀ, so the scalar acts on the transpose that has already been written. Keeping this as its own step means the final subtraction is between two finished matrices.",
+        "common_mistakes": [
+          "Scaling B and then transposing from memory, so the entries land in the wrong positions.",
+          "Writing 4(5) as 9 by adding instead of multiplying."
+        ]
+      },
+      {
+        "id": "s4_subtract",
+        "kind": "boxed_final",
+        "label": "Subtract entry by entry",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Fourth mark. Subtract position by position, in the order 3A − 4Bᵀ. Watch the double negatives: 6 − (−4) = 10 and 12 − (−8) = 20.",
+        "memory_tip": "Subtracting a negative adds. 6 − (−4) = 10 and 12 − (−8) = 20.",
+        "lines": [
+          "Subtract in the order 3A − 4Bᵀ:",
+          {
+            "text": "3A - 4B^{T} = \\begin{bmatrix} 3-8 & 15-0 & 9-4 \\\\ 6+4 & 12+8 & 0-8 \\\\ 9-0 & -3-20 & -15-0 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\begin{bmatrix} -5 & 15 & 5 \\\\ 10 & 20 & -8 \\\\ 9 & -23 & -15 \\end{bmatrix}",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two scaled matrices are subtracted position by position, giving rows (−5, 15, 5), (10, 20, −8) and (9, −23, −15).",
+          "accept": [
+            "subtract four B transpose from three A entry by entry",
+            "the answer has rows minus five fifteen five, ten twenty minus eight, nine minus twenty three minus fifteen",
+            "take away the matching entries, and minus a negative becomes plus",
+            "corresponding entries subtract cheste final matrix vasthundi",
+            "three A minus four B transpose position by position"
+          ],
+          "reject": [
+            "subtract them",
+            "that gives the answer"
+          ],
+          "heard_as": [
+            "minus five",
+            "twenty",
+            "minus twenty three",
+            "entry by entry"
+          ]
+        },
+        "why": "Subtraction acts on each position separately, so the answer keeps the 3×3 order. Recomputing one or two entries straight from the stem as 3aᵢⱼ − 4bⱼᵢ is a fast check that the transpose was written correctly.",
+        "common_mistakes": [
+          "Computing 4Bᵀ − 3A and getting every sign reversed.",
+          "Writing 6 − (−4) as 2 instead of 10."
+        ]
+      }
+    ]
+  }
+}

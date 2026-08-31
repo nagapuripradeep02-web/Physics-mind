@@ -1,0 +1,245 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_graph_cos_sq_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Draw the graph of y = cos²x on (0, π).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Table of values and the range",
+      "marks": 1
+    },
+    {
+      "label": "Draw the graph",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.87, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 28(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the table of values together with the range 0 ≤ y ≤ 1 and one to the drawing itself, since the question asks for a graph. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would draw this one — name the values you plot, the range, and the shape you get.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_values",
+        "kind": "equation",
+        "label": "Table of values and the range",
+        "marks": 1,
+        "mark_note": "Values",
+        "margin_note": "First mark. Writing cos²x as (1 + cos 2x)/2 settles two things at once: the values stay between 0 and 1, and the pattern repeats every π.",
+        "memory_tip": "cos²x = (1 + cos 2x)/2, so y stays between 0 and 1 and the pattern repeats every π.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "cos²x = (1 + cos 2x)/2, so 0 ≤ y ≤ 1.",
+          "x = 0, π/4, π/2, 3π/4, π",
+          "y = 1, 1/2, 0, 1/2, 1",
+          "The curve falls from 1 to 0 at x = π/2,",
+          "then rises back to 1 at x = π."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²x = (1 + cos 2x)/2 so 0 ≤ y ≤ 1, and that the values at 0, π/4, π/2, 3π/4, π are 1, 1/2, 0, 1/2, 1.",
+          "accept": [
+            "cos squared x is one plus cos two x over two so y lies between zero and one",
+            "at zero it is one, at pi by four it is a half and at pi by two it is zero",
+            "the values are one, half, zero, half, one",
+            "cos square x ni half of one plus cos two x ga rasi range zero to one",
+            "make the table and note that the value never goes below zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos squared",
+            "one plus cos two x",
+            "half",
+            "zero to one",
+            "range"
+          ]
+        },
+        "why": "A square is never negative, so the curve never goes below the x-axis. Knowing that before drawing stops the usual mistake of copying the shape of cos x.",
+        "common_mistakes": [
+          "Drawing the shape of cos x, which goes down to −1.",
+          "Reading cos²x as cos(x²)."
+        ]
+      },
+      {
+        "id": "s2_graph",
+        "kind": "diagram",
+        "label": "Draw the graph",
+        "marks": 1,
+        "mark_note": "Graph",
+        "margin_note": "Second mark, and the point of the question. One smooth dip: start at height 1, touch the x-axis at x = π/2 and come back up to 1 at x = π. The interval is open, so the value 1 is approached at the two ends but not included.",
+        "memory_tip": "One dip only: down from 1 to 0 at π/2 and back up to 1 at π. It never crosses the x-axis.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the axes are drawn and one smooth dip is sketched from 1 down to 0 at x = π/2 and back to 1 at x = π, staying on or above the x-axis. Naming the drawing is full credit.",
+          "accept": [
+            "draw the axes and one dip from one down to zero at pi by two and back to one",
+            "sketch the curve touching the x axis at pi by two",
+            "draw a single valley between zero and pi that never goes below the axis",
+            "axes geesi, pi by two daggara zero touch chesi malli one ki ravali",
+            "draw the graph as one dip above the x axis"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "draw",
+            "graph",
+            "dip",
+            "touch",
+            "pi by two",
+            "x axis"
+          ]
+        },
+        "why": "The curve TOUCHES the x-axis at x = π/2 and turns back; it does not cross. That single contact point is what shows the smallest value is 0 and not a negative number.",
+        "common_mistakes": [
+          "Letting the curve go below the x-axis.",
+          "Drawing two dips, which is the graph of cos²x over an interval of length 2π.",
+          "Making the curve cross the axis at π/2 instead of touching it."
+        ],
+        "figure": {
+          "id": "graph_cos_squared_x",
+          "width": 300,
+          "height": 192,
+          "elements": [
+            {
+              "type": "pause",
+              "id": "phase1",
+              "caption": "Step 1 — the axes and the line y = 1"
+            },
+            {
+              "type": "stroke",
+              "id": "axis_x",
+              "d": "M 24 148 L 284 148",
+              "ms": 2000
+            },
+            {
+              "type": "stroke",
+              "id": "axis_y",
+              "d": "M 60 178 L 60 26",
+              "ms": 1169
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_x",
+              "d": "M 276 143 L 284 148 L 276 153",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "arrow_y",
+              "d": "M 55 34 L 60 26 L 65 34",
+              "ms": 120
+            },
+            {
+              "type": "stroke",
+              "id": "level_one",
+              "d": "M 60 56 L 250 56",
+              "ms": 1700,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "pause",
+              "id": "phase2",
+              "caption": "Step 2 — the curve y = cos²x"
+            },
+            {
+              "type": "stroke",
+              "id": "curve_cos_sq",
+              "d": "M 60.0 56.0 L 64.0 56.4 L 67.8 57.5 L 71.5 59.3 L 74.9 61.4 L 78.0 64.0 L 81.0 66.7 L 83.8 69.6 L 86.5 72.6 L 89.1 75.7 L 91.5 78.8 L 94.0 82.1 L 96.3 85.4 L 98.7 88.8 L 100.9 92.1 L 103.2 95.4 L 105.4 98.8 L 107.6 102.2 L 109.9 105.6 L 112.1 109.0 L 114.3 112.3 L 116.6 115.7 L 118.9 119.0 L 121.3 122.3 L 123.7 125.5 L 126.3 128.7 L 128.8 131.8 L 131.5 134.8 L 134.4 137.7 L 137.4 140.4 L 140.6 142.9 L 144.0 145.0 L 147.6 146.6 L 151.5 147.7 L 155.5 148.0 L 159.5 147.5 L 163.4 146.3 L 167.0 144.4 L 170.3 142.2 L 173.5 139.7 L 176.4 136.9 L 179.2 134.0 L 181.9 131.0 L 184.4 127.9 L 186.9 124.7 L 189.3 121.4 L 191.7 118.1 L 193.9 114.8 L 196.2 111.5 L 198.5 108.1 L 200.7 104.7 L 202.9 101.3 L 205.2 98.0 L 207.4 94.6 L 209.6 91.3 L 211.9 87.9 L 214.2 84.6 L 216.6 81.3 L 219.0 78.1 L 221.5 74.9 L 224.2 71.8 L 226.9 68.8 L 229.7 66.0 L 232.8 63.3 L 236.0 60.9 L 239.5 58.8 L 243.2 57.2 L 247.1 56.2 L 250.0 56.0",
+              "ms": 2108
+            },
+            {
+              "type": "pause",
+              "id": "phase3",
+              "caption": "Step 3 — the labels"
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 46,
+              "y": 166,
+              "text": "O",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_one",
+              "x": 46,
+              "y": 62,
+              "text": "1",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_half_pi",
+              "x": 144,
+              "y": 170,
+              "text": "π/2",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_pi",
+              "x": 244,
+              "y": 170,
+              "text": "π",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_x",
+              "x": 270,
+              "y": 138,
+              "text": "x",
+              "ms": 200,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_y",
+              "x": 68,
+              "y": 38,
+              "text": "y",
+              "ms": 200,
+              "sm": true
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

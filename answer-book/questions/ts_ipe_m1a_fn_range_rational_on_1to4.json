@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_range_rational_on_1to4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A = {1, 2, 3, 4} and f: A→R is a function defined by f(x) = (x² − x + 1)/(x + 1), find the range of f.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The four images",
+      "marks": 1
+    },
+    {
+      "label": "The range written as a set",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.9, chapter 2 FUNCTIONS, Very Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the four images and one to collecting them into the range set, because those are the two things a student can leave out. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the range here — what you work out, and what the answer has to look like.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_images",
+        "kind": "equation",
+        "label": "Work out all four images",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark is the four values. All four must be on the page. The rule is undefined at x = −1, but −1 is not in A, so f is defined at every element of A.",
+        "memory_tip": "A finite domain means no algebra. Four elements, four substitutions, one line each.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A = {1, 2, 3, 4}",
+          "f(x) = (x² − x + 1)/(x + 1)",
+          "f(1) = (1 − 1 + 1)/(1 + 1) = 1/2",
+          "f(2) = (4 − 2 + 1)/(2 + 1) = 3/3 = 1",
+          "f(3) = (9 − 3 + 1)/(3 + 1) = 7/4",
+          "f(4) = (16 − 4 + 1)/(4 + 1) = 13/5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each element of A is substituted, giving 1/2, 1, 7/4 and 13/5.",
+          "accept": [
+            "substitute one two three and four and get half one seven by four and thirteen by five",
+            "f of one is a half f of two is one f of three is seven fourths f of four is thirteen fifths",
+            "put every element of A into the rule and work out the four values",
+            "nalugu values substitute chesi half one seven by four thirteen by five vasthai",
+            "the four images are one half one seven over four and thirteen over five"
+          ],
+          "reject": [
+            "I substitute the values",
+            "find f of each element",
+            "work out the images"
+          ],
+          "heard_as": [
+            "f of one",
+            "one half",
+            "seven by four",
+            "thirteen by five",
+            "substitute"
+          ]
+        },
+        "why": "A is a finite set, so the range is nothing more than the list of images. There is no inequality to solve and nothing to cancel — x² − x + 1 has no factor (x + 1), so the fraction does not reduce. The rule has no value at x = −1, and that is safe here only because −1 is not in A.",
+        "common_mistakes": [
+          "Trying to cancel (x + 1) into the numerator; x² − x + 1 has no such factor.",
+          "Dropping the denominator, so f(2) is written as 3 instead of 1.",
+          "Sign slip in the numerator, writing f(3) as (9 + 3 + 1)/4."
+        ]
+      },
+      {
+        "id": "s2_range",
+        "kind": "boxed_final",
+        "label": "Collect the images into the range",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark is the set. Write it in braces. The four values are all different, so all four stay.",
+        "memory_tip": "Range means the outputs, not the inputs. Put the four values inside one pair of braces.",
+        "lines": [
+          "The range is the set of all images of A.",
+          "The four values are all different.",
+          {
+            "text": "Range of f = {1/2, 1, 7/4, 13/5}",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the range is the set of the four images, {1/2, 1, 7/4, 13/5}.",
+          "accept": [
+            "the range is the set one half one seven by four and thirteen by five",
+            "collect the four images into a set and that is the range",
+            "range means the images so write them in braces",
+            "range ante images kabatti nalugu values ni set la rasthanu",
+            "the answer is the set of those four values"
+          ],
+          "reject": [
+            "the range is A",
+            "the range is R",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "range",
+            "set",
+            "braces",
+            "one half",
+            "thirteen by five"
+          ]
+        },
+        "why": "The range of a function on a finite domain is exactly the set of its images. The answer has to be written as a set, not as four loose numbers, because a range is a set.",
+        "common_mistakes": [
+          "Giving the domain A, or the whole of R, as the range.",
+          "Rounding 13/5 to 2.6; the exact fractions are the answer.",
+          "Writing the four values without braces, so no set is named."
+        ]
+      }
+    ]
+  }
+}

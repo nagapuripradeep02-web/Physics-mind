@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sec290_cosec250_sum",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that 1/cos290° + 1/(√3 sin250°) = 4/√3.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reduce both angles to 20°",
+      "marks": 1
+    },
+    {
+      "label": "Combine the two fractions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.93, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 42(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to reducing both angles to ratios of 20° with the correct signs and one to combining the two fractions and cancelling. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Reduce both angles to 20°",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. 290° = 360° − 70° keeps the cosine positive; 250° = 180° + 70° makes the sine negative. Complementary angles then turn both into ratios of 20°.",
+        "memory_tip": "290° = 360° − 70° and 250° = 180° + 70°. Both land on 70°, then 70° = 90° − 20°.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "cos290° = cos(360° − 70°) = cos70° = sin20°",
+          "sin250° = sin(180° + 70°) = −sin70°",
+          "= −cos20°",
+          "∴ L.H.S = 1/sin20° − 1/(√3 cos20°)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos290° = sin20° and sin250° = −cos20°, so the left side becomes 1/sin20° − 1/(√3 cos20°).",
+          "accept": [
+            "two ninety is three sixty minus seventy so the cosine stays positive",
+            "two fifty is one eighty plus seventy so the sine is negative",
+            "cos two ninety is sin twenty and sin two fifty is minus cos twenty",
+            "rendu angles ni twenty degrees ki reduce chestham",
+            "the second term becomes negative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos two ninety",
+            "sin two fifty",
+            "sin twenty",
+            "minus cos twenty"
+          ]
+        },
+        "why": "Both angles sit 70° away from a standard direction, so both reduce to a ratio of 20°. Working with one angle instead of two is what makes the rest short.",
+        "common_mistakes": [
+          "Writing sin250° as +sin70°.",
+          "Reducing cos290° to −cos70°."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Combine the two fractions",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Take out a 2 from the numerator to see sin(60° − 20°), and use 2 sin20° cos20° = sin40° in the denominator, so sin40° cancels.",
+        "memory_tip": "√3 cos20° − sin20° = 2 sin(60° − 20°) = 2 sin40°, and the bottom carries sin40° too.",
+        "lines": [
+          "= (√3 cos20° − sin20°)/(√3 sin20° cos20°)",
+          "Numerator = 2(sin60° cos20° − cos60° sin20°)",
+          "= 2 sin(60° − 20°) = 2 sin40°",
+          "Denominator = (√3/2)(2 sin20° cos20°)",
+          "= (√3/2) sin40°",
+          "L.H.S = 2 sin40° ÷ [(√3/2) sin40°]",
+          {
+            "text": "∴ L.H.S = 4/√3 = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator is 2 sin40° and the denominator (√3/2) sin40°, so sin40° cancels and 4/√3 is left.",
+          "accept": [
+            "take the two out and the top is two sin forty",
+            "the bottom is root three by two times sin forty",
+            "sin forty cancels and two divided by root three by two is four by root three",
+            "top two sin forty, bottom root three by two sin forty, cancel cheste four by root three",
+            "the answer is four by root three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two sin forty",
+            "root three by two",
+            "sin forty cancels",
+            "four by root three"
+          ]
+        },
+        "why": "√3 cos20° − sin20° is 2 times the expansion of sin(60° − 20°), because sin60° = √3/2 and cos60° = 1/2. Taking the 2 out first is what makes that visible.",
+        "common_mistakes": [
+          "Cancelling sin40° before writing the 2 and the √3/2.",
+          "Forgetting the 2 in 2 sin20° cos20° = sin40°."
+        ]
+      }
+    ]
+  }
+}

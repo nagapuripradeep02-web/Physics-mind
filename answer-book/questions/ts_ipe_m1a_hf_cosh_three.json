@@ -1,0 +1,178 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_hf_cosh_three",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Hyperbolic Functions"
+  },
+  "chapter": "Hyperbolic Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If cosh x = 3, show that x = logₑ(3 + √8).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the logarithmic form",
+      "marks": 1
+    },
+    {
+      "label": "Substitute x = 3",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards stating the correct logarithmic form of Cosh⁻¹ first and evaluating the surd second; the third step, which shows that logₑ(3 − √8) is the same number with the opposite sign, carries no mark and is authored for the student, not for the examiner. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbolic Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "State the logarithmic form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Cosh⁻¹ is the log form with a MINUS one under the root. cosh is an even function, so cosh x = 3 is solved by two values of x.",
+        "memory_tip": "Cosh⁻¹ carries √(x² − 1) with a minus. Sinh⁻¹ is the one with a plus.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given cosh x = 3, and 3 ≥ 1, so a real x exists",
+          "We know Cosh⁻¹x = logₑ(x + √(x² − 1)), x ≥ 1",
+          "cosh(−x) = cosh x, so cosh is an even function",
+          "∴ cosh x = 3 gives x = ± Cosh⁻¹(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Cosh⁻¹x = logₑ(x + √(x² − 1)) is stated with −1 under the root, and that cosh is even so there are two values of x.",
+          "accept": [
+            "cosh inverse x is log of x plus root x squared minus one",
+            "state the logarithmic form with minus one under the root",
+            "cosh is an even function so x is plus or minus cosh inverse three",
+            "cosh inverse ki log form rasta, x plus root x square minus one",
+            "quote the log formula for cosh inverse"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cosh inverse",
+            "log",
+            "x squared minus one",
+            "even function"
+          ]
+        },
+        "why": "cosh takes the same value at x and at −x, so cosh x = 3 has two solutions. Saying that first shows the single value the question asks for is a deliberate choice and not a missed root.",
+        "common_mistakes": [
+          "Writing √(x² + 1), which is the Sinh⁻¹ form.",
+          "Never mentioning that a second, negative solution exists."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute x = 3",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 9 − 1 = 8, so the surd is √8. The question asks for the positive value, so that is the one written in the box.",
+        "memory_tip": "9 − 1 = 8, so the surd is √8, which is 2√2. It is not √9 − √1.",
+        "lines": [
+          "Cosh⁻¹(3) = logₑ(3 + √(3² − 1))",
+          "= logₑ(3 + √(9 − 1))",
+          "Taking the positive value asked for:",
+          {
+            "text": "∴ x = logₑ(3 + √8)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting 3 gives √(9 − 1) = √8, so the positive value is x = logₑ(3 + √8).",
+          "accept": [
+            "substitute three so nine minus one is eight and the answer is log three plus root eight",
+            "the surd is root eight so x is log e of three plus root eight",
+            "take the positive value log of three plus root eight",
+            "three substitute cheste root eight vasthundi, so log three plus root eight",
+            "nine minus one is eight"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root eight",
+            "nine minus one",
+            "log",
+            "positive value"
+          ]
+        },
+        "why": "Only the surd changes when the number is put in. Getting √8 rather than √10 is the whole difference between the Cosh⁻¹ form and the Sinh⁻¹ form.",
+        "common_mistakes": [
+          "Getting √10 by using the Sinh⁻¹ form by mistake.",
+          "Writing √8 as √9 − √1 = 2."
+        ]
+      },
+      {
+        "id": "s3_other_root",
+        "kind": "text",
+        "label": "The other solution",
+        "marks": 0,
+        "margin_note": "Not marked, but worth knowing. logₑ(3 − √8) looks like a different answer and is not — it is the same number with the opposite sign.",
+        "memory_tip": "(3 + √8)(3 − √8) = 1, so the two logarithms are equal in size and opposite in sign.",
+        "lines": [
+          "The second solution is x = −logₑ(3 + √8)",
+          "The minus sign in the surd gives logₑ(3 − √8)",
+          "(3 + √8)(3 − √8) = 9 − 8 = 1",
+          "So 3 − √8 = 1/(3 + √8)",
+          "∴ logₑ(3 − √8) = −logₑ(3 + √8)",
+          "So cosh x = 3 has two solutions in all, not three"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That logₑ(3 − √8) equals −logₑ(3 + √8), because (3 + √8)(3 − √8) = 1, so it is the second solution and not a new one.",
+          "accept": [
+            "the other root is minus log of three plus root eight",
+            "three plus root eight times three minus root eight is one so the logs are negatives of each other",
+            "log of three minus root eight is the same number with a minus sign",
+            "product one vasthundi, so rendu logs opposite signs",
+            "it is the second solution not a different answer"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "there are three solutions"
+          ],
+          "heard_as": [
+            "three minus root eight",
+            "product is one",
+            "reciprocal",
+            "minus log"
+          ]
+        },
+        "why": "A student who solves cosh x = 3 straight from the exponential definition reaches logₑ(3 − √8) and thinks the answer is wrong. Showing the product is 1 settles that in one line.",
+        "common_mistakes": [
+          "Treating logₑ(3 − √8) as a third, separate solution.",
+          "Thinking logₑ(3 − √8) is undefined, when 3 − √8 is about 0.17 and positive."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_rank_2x3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the rank of the 2 × 3 matrix with rows (1, 0, −4) and (2, −1, 3).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reduce to echelon form",
+      "marks": 1
+    },
+    {
+      "label": "Count the non-zero rows",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.35, chapter 5 MATRICES, Very Short Answer question 20(iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape puts one mark on the row reduction and one on counting the non-zero rows. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Matrices fills one of those Section A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the rank of this 2 × 3 matrix.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reduce",
+        "kind": "equation",
+        "label": "Reduce to echelon form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The rank can never pass the smaller of the two sizes. This matrix is 2 × 3, so the rank is at most 2 whatever the entries are.",
+        "memory_tip": "Rank ≤ the smaller of the two sizes — for a 2 × 3 matrix that cap is 2, not 3.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The matrix has 2 rows, so Rank A ≤ 2.",
+          {
+            "text": "A = \\begin{bmatrix} 1 & 0 & -4 \\\\ 2 & -1 & 3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₂ → R₂ − 2R₁:",
+          {
+            "text": "\\sim \\begin{bmatrix} 1 & 0 & -4 \\\\ 0 & -1 & 11 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rank is capped at 2 because there are only two rows, and that R₂ → R₂ − 2R₁ puts the matrix in echelon form.",
+          "accept": [
+            "only two rows so the rank is at most two, then row reduce",
+            "apply R two minus two R one to get echelon form",
+            "a two by three matrix cannot have rank three, the cap is two",
+            "rendu rows unnayi kabatti rank two kanna ekkuva raadu",
+            "subtract twice the first row from the second row"
+          ],
+          "reject": [
+            "reduce the matrix",
+            "find the rank"
+          ],
+          "heard_as": [
+            "two rows",
+            "at most two",
+            "R two minus two R one",
+            "echelon"
+          ]
+        },
+        "why": "A minor is a square block cut out of the matrix. With only two rows, no 3×3 block can be cut, so a minor of order 3 does not exist here at all.",
+        "common_mistakes": [
+          "Answering 3 because the matrix has three columns.",
+          "Trying to write a determinant for a 2 × 3 matrix."
+        ]
+      },
+      {
+        "id": "s2_count",
+        "kind": "boxed_final",
+        "label": "Count the non-zero rows",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Two non-zero rows gives rank 2, which is already the cap, so no further test is needed or possible.",
+        "memory_tip": "Two non-zero rows and the cap is 2 — the rank is 2 and the work stops there.",
+        "lines": [
+          "Both rows are non-zero, so the rank is 2.",
+          "Columns 1 and 2 give a non-zero minor:",
+          {
+            "text": "\\begin{vmatrix} 1 & 0 \\\\ 2 & -1 \\end{vmatrix} = -1 \\neq 0",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ Rank A = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both echelon rows are non-zero, giving rank 2, with the order-2 minor −1 as confirmation.",
+          "accept": [
+            "both rows are not zero so the rank is two",
+            "the two by two minor from the first two columns is minus one so rank two",
+            "two non zero rows means rank two and that is the maximum here",
+            "rendu rows zero kaavu kabatti rank two",
+            "rank A equals two"
+          ],
+          "reject": [
+            "the rank is",
+            "count the rows"
+          ],
+          "heard_as": [
+            "rank two",
+            "two non zero rows",
+            "minus one",
+            "minor"
+          ]
+        },
+        "why": "The rank equals the number of non-zero rows in echelon form. Here that count also equals the cap of 2, so the answer is settled.",
+        "common_mistakes": [
+          "Checking for a 3×3 minor, which this matrix cannot have.",
+          "Reading the rank as 1 because the second row starts with 0."
+        ]
+      }
+    ]
+  }
+}

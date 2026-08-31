@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_gof_at_x_minus_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f: R→R and g: R→R are defined by f(x) = 3x − 2 and g(x) = x² + 1, find (gof)(x − 1).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Value of f(x − 1)",
+      "marks": 1
+    },
+    {
+      "label": "Expanded form of g(3x − 5)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 8(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the inner value f(x − 1) = 3x − 5 and one to the expansion, because the order of composition and the squaring of a bracket are the two separate skills being tested. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find (gof)(x − 1) — which function acts first, and what it acts on.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_inner",
+        "kind": "equation",
+        "label": "Work f at x − 1",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The input is x − 1, not x. Getting f(x − 1) = 3x − 5 on the page earns this mark on its own, even if the expansion afterwards slips.",
+        "memory_tip": "In gof, g is outside and f is inside, so f meets the input x − 1 first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(gof)(x − 1) = g[f(x − 1)]",
+          "f acts first, at the input x − 1:",
+          "f(x − 1) = 3(x − 1) − 2",
+          "= 3x − 3 − 2 = 3x − 5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in gof the inner function is f, so f is worked at x − 1 first, giving 3x − 5.",
+          "accept": [
+            "in g o f the inner function is f so first find f of x minus one which is three x minus five",
+            "f of x minus one is three times x minus one minus two that is three x minus five",
+            "work f first because it is written second and acts first",
+            "modata f of x minus one teeskovali adi three x minus five",
+            "the inner function f gives three x minus five"
+          ],
+          "reject": [
+            "I substitute x minus one",
+            "first I find the composition",
+            "apply both functions"
+          ],
+          "heard_as": [
+            "g o f",
+            "gof",
+            "f of x minus one",
+            "three x minus five",
+            "inner"
+          ]
+        },
+        "why": "In gof the function written on the right acts first, and here its input is the whole of x − 1. Writing f(x − 1) = 3x − 5 fixes what g will receive.",
+        "common_mistakes": [
+          "Applying g first, which computes (fog)(x − 1) and gives a different expression.",
+          "Writing 3(x − 1) − 2 as 3x − 1 by multiplying only the x by 3."
+        ]
+      },
+      {
+        "id": "s2_outer",
+        "kind": "boxed_final",
+        "label": "Apply g and expand",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The whole bracket is squared, so the expansion has three terms. The + 1 that belongs to g is added after the expansion.",
+        "memory_tip": "(3x − 5)² = 9x² − 2(3x)(5) + 25. The middle term −30x is the one students drop.",
+        "lines": [
+          "Now apply g to 3x − 5:",
+          "g(3x − 5) = (3x − 5)² + 1",
+          "= 9x² − 30x + 25 + 1",
+          {
+            "text": "∴ (gof)(x − 1) = 9x² − 30x + 26",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That g squares 3x − 5 and adds 1, giving 9x² − 30x + 26.",
+          "accept": [
+            "g of three x minus five is three x minus five all squared plus one",
+            "expand to nine x squared minus thirty x plus twenty five then add one",
+            "the answer is nine x squared minus thirty x plus twenty six",
+            "three x minus five whole square plus one ante nine x squared minus thirty x plus twenty six",
+            "square the bracket and add one to get twenty six as the constant"
+          ],
+          "reject": [
+            "then I get the answer",
+            "substitute and simplify",
+            "it comes out"
+          ],
+          "heard_as": [
+            "three x minus five whole squared",
+            "nine x squared",
+            "minus thirty x",
+            "twenty six"
+          ]
+        },
+        "why": "g squares whatever it is given, so the bracket (3x − 5) must be squared as one quantity. The constant 26 is 25 from the square plus the 1 that g always adds.",
+        "common_mistakes": [
+          "Writing (3x − 5)² as 9x² − 25 or as 9x² + 25, losing the middle term.",
+          "Dropping the + 1 that belongs to g and answering 9x² − 30x + 25."
+        ]
+      }
+    ]
+  }
+}

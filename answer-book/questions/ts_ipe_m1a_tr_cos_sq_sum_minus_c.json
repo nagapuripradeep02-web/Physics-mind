@@ -1,0 +1,270 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos_sq_sum_minus_c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If A + B + C = π, prove that cos²A + cos²B − cos²C = 1 − 2 sin A sin B cos C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the angle condition",
+      "marks": 1
+    },
+    {
+      "label": "Pair two terms with a sum-to-product formula",
+      "marks": 3
+    },
+    {
+      "label": "Use the condition to convert",
+      "marks": 2
+    },
+    {
+      "label": "Take the common factor out",
+      "marks": 1
+    },
+    {
+      "label": "Apply the product formula and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.99, chapter 8 TRANSFORMATIONS, Long Answer question 2(i). The book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run and restarts its numbering at 1; we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement. NUMBERING RECORDED, NOT RENUMBERED: the \"2.\" and \"i)\" labels sit in the binding gutter of the scan and are unreadable, so the printed stem reads as unnumbered; the number above is the position in the run, not a label we can read on the page. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+3+2+1+1 split rewards the two substantial transformations — the sum-to-product pairing and the use of the angle condition — over the set-up and the finish, and it is the same split and the same step ids already carried by the sibling cards of this family (sin2a_sum, cos2a_sum, sin_half_squares, cos_half_squares), deliberately: they are ONE method over different identities, so a student who learns the arc once can attempt any of them. IDENTITY CHECKED NUMERICALLY before and after writing, and every intermediate line of the derivation with it: at A = 50°, B = 60°, C = 70° both sides equal 0.5461981327, and the identity holds again at (40°, 75°, 65°) and (110°, 25°, 45°). Paper position: Maths-1A Section C carries the long answers at 8 marks each under the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27), any 2 of 3; the Transformations slot is always a question of this kind. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Ratios and Transformations · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the angle condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. These are squared terms, so no sum-to-product formula applies yet. The condition is still written first, because it is used twice further down.",
+        "memory_tip": "A + B = π − C. Written first, it is used twice: once on cos(A+B) and once inside the bracket.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given",
+          "A + B + C = π  ⇒  A + B = π − C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle condition is written down first, in the form the proof will actually use.",
+          "accept": [
+            "write the angle condition first as A plus B equals pi minus C",
+            "state the given condition and rearrange it",
+            "note the angle sum before starting the transformation",
+            "modata angle condition rasi, kavalsina form lo pettali",
+            "write down the condition on the angles"
+          ],
+          "reject": [
+            "write the given",
+            "start the proof"
+          ],
+          "heard_as": [
+            "angle condition",
+            "A plus B plus C",
+            "pi minus C",
+            "given"
+          ]
+        },
+        "why": "Without the condition the statement is false, so this line is the hypothesis the whole proof depends on, not preamble.",
+        "common_mistakes": [
+          "Starting the transformation before writing the condition.",
+          "Writing the condition but never rearranging it into a usable form."
+        ]
+      },
+      {
+        "id": "s2_pair",
+        "kind": "equation",
+        "label": "Pair two terms",
+        "marks": 3,
+        "mark_note": "Sum to product",
+        "margin_note": "Three of the eight marks. Squared terms carry no sum-to-product formula, so one of them is turned into 1 − sin². That single move produces the leading 1 and sets up a difference of squares.",
+        "memory_tip": "Turn cos²B into 1 − sin²B. That gives the leading 1 and leaves cos²A − sin²B, which has its own formula.",
+        "lines": [
+          "L.H.S = cos²A + cos²B − cos²C",
+          "= cos²A + (1 − sin²B) − cos²C",
+          "  [∵ sin²θ + cos²θ = 1]",
+          "= 1 + (cos²A − sin²B) − cos²C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one squared cosine is written as 1 − sin², so that a 1 appears and cos²A − sin²B is left.",
+          "accept": [
+            "write cos squared B as one minus sin squared B so the one appears and a difference of squares is left",
+            "convert one term to get one plus cos squared A minus sin squared B",
+            "replace the second cosine squared with one minus sine squared",
+            "cos square B ni one minus sin square B ga rasi, difference of squares techukovali",
+            "turn one of them into one minus sin squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "one minus sin squared",
+            "difference of squares",
+            "cos squared A",
+            "identity"
+          ]
+        },
+        "why": "cos²A − sin²B = cos(A+B) cos(A−B) is the formula that replaces sum-to-product for squared terms, and it needs one cosine square minus one sine square.",
+        "common_mistakes": [
+          "Converting all three terms and losing track.",
+          "Turning cos²A into 1 − sin²A as well, which destroys the difference of squares."
+        ]
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Use the condition",
+        "marks": 2,
+        "mark_note": "Substitution",
+        "margin_note": "Two more marks. The difference of squares becomes a product, and the condition then turns cos(A+B) into −cos C so that every term after the 1 carries cos C.",
+        "memory_tip": "cos(π − C) = −cos C, with the MINUS. That sign is what collects both terms under cos C.",
+        "lines": [
+          "= 1 + cos(A+B) cos(A−B) − cos²C",
+          "  [∵ cos²A − sin²B = cos(A+B) cos(A−B)]",
+          "= 1 + cos(π − C) cos(A−B) − cos²C",
+          "  [∵ (A+B) + C = π]",
+          "= 1 − cosC cos(A−B) − cos²C",
+          "  [∵ cos(π − θ) = −cosθ]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²A − sin²B = cos(A+B) cos(A−B) is applied, and cos(A+B) then becomes −cos C.",
+          "accept": [
+            "use cos squared minus sin squared equals cos of the sum times cos of the difference, then cos of pi minus C is minus cos C",
+            "apply the difference of squares identity and substitute the angle condition",
+            "the cosine of A plus B becomes minus cos C",
+            "cos pi minus C ante minus cos C",
+            "convert using the angle condition so every term has cos C"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos A plus B cos A minus B",
+            "pi minus C",
+            "minus cos C",
+            "angle condition"
+          ]
+        },
+        "why": "The condition converts an expression in A and B into one in C. Only after that do the remaining two terms share a factor.",
+        "common_mistakes": [
+          "Writing cos(π − C) = +cos C.",
+          "Using the formula on cos²A − cos²B, where it does not apply."
+        ]
+      },
+      {
+        "id": "s4_factor",
+        "kind": "equation",
+        "label": "Take the common factor out",
+        "marks": 1,
+        "mark_note": "Factorise",
+        "margin_note": "Sixth mark. The 1 is set aside and cos C comes out; the condition is used a SECOND time inside the bracket so that the bracket becomes a difference of two cosines.",
+        "memory_tip": "There is no 2 to take out here — only cos C. Then cos C = −cos(A+B) makes the bracket a difference.",
+        "lines": [
+          "= 1 − cosC [cos(A−B) + cosC]",
+          "= 1 − cosC [cos(A−B) − cos(A+B)]",
+          "  [∵ cosC = cos(π − (A+B)) = −cos(A+B)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos C alone is taken out as the common factor and rewritten inside the bracket as −cos(A+B).",
+          "accept": [
+            "keep the one outside and take cos C common, then cos C becomes minus cos A plus B",
+            "factor out cos C so the bracket is a difference of cosines",
+            "the bracket becomes cos A minus B minus cos A plus B",
+            "cos C common teesi, cos C ni minus cos A plus B ga marchali",
+            "use the condition a second time so the bracket subtracts"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos C",
+            "common factor",
+            "cos A plus B",
+            "difference of cosines"
+          ]
+        },
+        "why": "The right-hand side carries sin A sin B, and only a difference of cosines gives a product of sines.",
+        "common_mistakes": [
+          "Taking out 2 cos C when there is no 2.",
+          "Leaving the bracket as a sum, which would give cosines instead of sines."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Apply the product formula",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. One product formula finishes it. The coefficient on the answer is 2, not 4, because only cos C was taken out and not 2 cos C.",
+        "memory_tip": "The answer carries 2, not 4 — the factor taken out was cos C alone.",
+        "lines": [
+          "= 1 − cosC (2 sinA sinB)",
+          "  [∵ cos(A−B) − cos(A+B) = 2 sinA sinB]",
+          {
+            "text": "= 1 − 2 sinA sinB cosC = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(A−B) − cos(A+B) = 2 sinA sinB is applied, giving 1 − 2 sinA sinB cosC.",
+          "accept": [
+            "use cos A minus B minus cos A plus B equals two sin A sin B to get one minus two sin A sin B cos C",
+            "the bracket becomes two sin A sin B so the answer is one minus two sin A sin B cos C",
+            "apply the product formula and keep the one",
+            "cos difference formula tho two sin A sin B vasthundi, one minus two sin A sin B cos C",
+            "the final answer is one minus two sin A sin B cos C"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two sin A sin B",
+            "one minus two",
+            "cos C",
+            "product formula"
+          ]
+        },
+        "why": "cos(A−B) − cos(A+B) = 2 sin A sin B gives the two sine factors, and the 2 it brings is the whole coefficient of the answer.",
+        "common_mistakes": [
+          "Writing 4 sin A sin B cos C by carrying a 2 that was never taken out.",
+          "Losing the leading 1 at the very end."
+        ]
+      }
+    ]
+  }
+}

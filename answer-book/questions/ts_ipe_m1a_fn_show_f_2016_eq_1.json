@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_show_f_2016_eq_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f(x) = (sin²x + cos⁴x)/(cos²x + sin⁴x), show that f(2016) = 1.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reduce both halves to one letter",
+      "marks": 1
+    },
+    {
+      "label": "f is the constant 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.14, chapter 2 FUNCTIONS, Very Short Answer question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to reducing both halves to t² − t + 1 and one to the conclusion that f is the constant 1, because the number 2016 does no work in this question and no mark can rest on it. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show f(2016) = 1 — what you substitute, and why the number 2016 does not matter.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_one_letter",
+        "kind": "equation",
+        "label": "Write both halves in one letter",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark is both halves reduced to t² − t + 1. Show the expansion of (1 − t)² in full; that is where the sign slip happens.",
+        "memory_tip": "Everything is sin²x and cos²x, so name one of them t. Then sin²x = 1 − t and both halves become the same quadratic.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put t = cos²x, so sin²x = 1 − t.",
+          "Numerator = sin²x + cos⁴x",
+          "= (1 − t) + t² = t² − t + 1",
+          "Denominator = cos²x + sin⁴x",
+          "= t + (1 − t)²",
+          "= t + 1 − 2t + t² = t² − t + 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with t = cos²x both the numerator and the denominator become t² − t + 1.",
+          "accept": [
+            "let t be cos squared x so sin squared x is one minus t",
+            "the numerator becomes one minus t plus t squared",
+            "the denominator becomes t plus one minus t whole squared which is the same quadratic",
+            "cos square x ni t ani pettukunte rendu halves same avuthai",
+            "both top and bottom come to t squared minus t plus one"
+          ],
+          "reject": [
+            "I simplify the expression",
+            "use sin squared plus cos squared equals one",
+            "then it becomes one"
+          ],
+          "heard_as": [
+            "cos squared x",
+            "sin squared x",
+            "t squared minus t plus one",
+            "one minus t",
+            "numerator"
+          ]
+        },
+        "why": "Both halves are built only from sin²x and cos²x, and sin²x + cos²x = 1 ties them together. Writing everything in the single letter t = cos²x turns each half into a quadratic in t, and the two quadratics can then be compared directly. Putting x = 2016 into the original fraction leads nowhere, because sin 2016 and cos 2016 have no exact value.",
+        "common_mistakes": [
+          "Expanding (1 − t)² as 1 − t².",
+          "Reading cos⁴x as cos 4x rather than (cos²x)².",
+          "Putting x = 2016 into the fraction first; the expression has to be simplified before any number is used."
+        ]
+      },
+      {
+        "id": "s2_constant",
+        "kind": "boxed_final",
+        "label": "f is the constant 1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark is the statement that f(x) = 1 for every real x, and only then f(2016) = 1. Say the denominator is never zero. Check with x = 1 radian: top and bottom both come to 0.7933.",
+        "memory_tip": "The top and the bottom are the same expression, so f is the constant 1. The number 2016 changes nothing.",
+        "lines": [
+          "The two halves are the same expression.",
+          "Also t² − t + 1 = (t − 1/2)² + 3/4 > 0,",
+          "so the denominator is never zero and f(x)",
+          "is defined for every x ∈ R.",
+          "∴ f(x) = 1 for every real x, and 2016 is",
+          "one such value of x.",
+          {
+            "text": "∴ f(2016) = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the numerator equals the denominator, so f(x) = 1 for every real x, and 2016 is only one such value.",
+          "accept": [
+            "top and bottom are equal so f of x is one for every real x",
+            "the function is the constant one so any input gives one",
+            "the denominator is never zero so f is defined everywhere and equals one",
+            "top bottom same kabatti f of x always one",
+            "two thousand sixteen is nothing special the answer is one for any number"
+          ],
+          "reject": [
+            "hence f of two thousand sixteen is one",
+            "so the answer is one",
+            "then I substitute two thousand sixteen"
+          ],
+          "heard_as": [
+            "constant",
+            "equal",
+            "one for every x",
+            "denominator never zero",
+            "two thousand sixteen"
+          ]
+        },
+        "why": "Because the two halves reduce to the same expression, f(x) = 1 for every real x. So f(2016) is not a special evaluation at all — the simplification is the answer, and 2016 could be replaced by any number. The denominator t² − t + 1 = (t − 1/2)² + 3/4 is at least 3/4, so it is never zero and f is defined on the whole of R.",
+        "common_mistakes": [
+          "Writing f(2016) = 1 with no simplification above it; the marks are for the simplification.",
+          "Treating 2016 as degrees and reducing it by 360; x is a real number and the value is 1 either way.",
+          "Leaving out the check that the denominator is never zero."
+        ]
+      }
+    ]
+  }
+}

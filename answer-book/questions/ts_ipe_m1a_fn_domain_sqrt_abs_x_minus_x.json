@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_sqrt_abs_x_minus_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real valued function f(x) = √(|x| − x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Condition for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.13, chapter 2 FUNCTIONS, Very Short Answer question 19 part (b-iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. The same expression appears in part (b-v) under a denominator, where the condition becomes strict and the answer changes; the two cards are deliberately kept as separate questions. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find this domain — the conditions the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Test both cases of the modulus",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the condition alone. Split the modulus at 0 and test both sides before writing anything else.",
+        "memory_tip": "|x| is never below x, so |x| − x is never negative. Split at 0 and check both sides.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) is defined when |x| − x ≥ 0",
+          "If x ≥ 0 then |x| = x, so |x| − x = 0",
+          "If x < 0 then |x| = −x, so |x| − x = −2x",
+          "and −2x > 0 for every x < 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |x| − x is 0 when x ≥ 0 and −2x, a positive number, when x < 0, so the ≥ 0 condition holds in both cases.",
+          "accept": [
+            "for x at least zero the inside is zero and for x negative it is minus two x which is positive",
+            "split the modulus into two cases and both satisfy greater than or equal to zero",
+            "modulus x minus x is zero on the right and positive on the left",
+            "rendu cases lo kooda inside zero kanna takkuva raadu",
+            "the inside of the root is never negative"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "modulus",
+            "mod x minus x",
+            "minus two x",
+            "zero",
+            "non negative",
+            "cases"
+          ]
+        },
+        "why": "A modulus always has two cases, so the expression must be tested on both sides of 0. On the right it is exactly zero, and a square root of zero is a real number, so that half is not lost.",
+        "common_mistakes": [
+          "Treating |x| − x as 0 for all x and concluding the function does not exist.",
+          "Writing |x| = −x for x ≥ 0, which swaps the two cases."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Write the domain",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "√0 = 0 is a real value, so x ≥ 0 stays in. Only a strict > 0 condition would remove it.",
+        "lines": [
+          "So |x| − x ≥ 0 holds for every real x.",
+          "No real number is excluded.",
+          {
+            "text": "∴ Domain = R = (−∞, ∞)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That every real number satisfies the condition, so the domain is the whole of R.",
+          "accept": [
+            "the domain is all real numbers",
+            "R the whole real line minus infinity to infinity",
+            "no value of x is left out",
+            "anni real numbers domain lo untayi",
+            "every real number works because the inside is never negative"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "modulus",
+            "mod x minus x",
+            "minus two x",
+            "zero",
+            "non negative",
+            "cases",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "Both cases satisfy the condition, one with equality and one strictly, so nothing is cut out of the real line.",
+        "common_mistakes": [
+          "Answering (−∞, 0) by demanding |x| − x > 0, which is the condition for the reciprocal, not for this root.",
+          "Answering [0, ∞), the half where the value of the function is 0."
+        ]
+      }
+    ]
+  }
+}

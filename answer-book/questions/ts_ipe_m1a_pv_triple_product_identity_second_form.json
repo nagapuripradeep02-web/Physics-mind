@@ -1,0 +1,283 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_triple_product_identity_second_form",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "For any three vectors a, b, c, prove that a × (b × c) = (a·c)b − (a·b)c.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the vectors in component form",
+      "marks": 1
+    },
+    {
+      "label": "Find b × c in components",
+      "marks": 1
+    },
+    {
+      "label": "Expand the left side",
+      "marks": 2
+    },
+    {
+      "label": "Expand the right side",
+      "marks": 3
+    },
+    {
+      "label": "Compare and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.80, chapter 7 PRODUCT OF VECTORS, Long Answer question 12(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+2+3+1 split weights the right-hand side most heavily, because it carries two scalar products, six terms in each component and the cancellation that leaves four. This is the grouping with the bracket on the RIGHT. The bank also carries the other grouping, (a × b) × c = (c·a)b − (c·b)a, as a separate card; the two identities give different vectors and neither proves the other. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this identity — say what you do to each side and how the two meet.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_components",
+        "kind": "text",
+        "label": "Write in components",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. This is an identity about EVERY triple of vectors, so it cannot use particular numbers. Components with subscripts are what make the proof general.",
+        "memory_tip": "An identity about EVERY triple cannot use numbers. Subscripts make it general.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We take",
+          "a = a₁i + a₂j + a₃k,  b = b₁i + b₂j + b₃k,",
+          "c = c₁i + c₂j + c₃k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three vectors are written in general component form with subscripts, because the identity must hold for all vectors.",
+          "accept": [
+            "write a b and c in general component form with subscripts one two three",
+            "take general vectors with components rather than numbers",
+            "set up a one i plus a two j plus a three k and so on",
+            "general components tho rasta, numbers tho kaadu",
+            "use subscripted components so the proof is general"
+          ],
+          "reject": [
+            "write the vectors",
+            "take a b c"
+          ],
+          "heard_as": [
+            "components",
+            "a one",
+            "subscripts",
+            "general",
+            "i j k"
+          ]
+        },
+        "why": "A numerical example would only check one case. Subscripted components prove it for all of them at once.",
+        "common_mistakes": [
+          "Proving it with particular numbers, which proves nothing in general.",
+          "Using the same subscript for two different vectors."
+        ]
+      },
+      {
+        "id": "s2_bxc",
+        "kind": "equation",
+        "label": "Find b × c",
+        "marks": 1,
+        "mark_note": "b × c",
+        "margin_note": "Second mark. The bracket is worked first, so b × c comes before a is used at all. Write the j term with its sign already absorbed.",
+        "memory_tip": "The bracket first: b × c, with b on the top row. Absorb the j sign now.",
+        "lines": [
+          {
+            "text": "b \\times c = \\begin{vmatrix} i & j & k \\\\ b_1 & b_2 & b_3 \\\\ c_1 & c_2 & c_3 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(b₂c₃ − b₃c₂) + j(b₃c₁ − b₁c₃)",
+          "   + k(b₁c₂ − b₂c₁)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b × c is expanded as a determinant in components, giving the three bracketed expressions.",
+          "accept": [
+            "expand the determinant for b cross c to get the three brackets",
+            "b cross c in component form with b two c three minus b three c two and so on",
+            "the bracket is worked first, before a is used",
+            "bracket lo unnadi modata, b cross c components tho",
+            "the inner cross product gives three bracketed terms"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "b cross c",
+            "determinant",
+            "b two c three",
+            "components"
+          ]
+        },
+        "why": "This vector goes into the SECOND row of the next determinant, with a in the first. Getting that order right is the difference between this identity and the other grouping.",
+        "common_mistakes": [
+          "Losing the minus on the j term rather than absorbing it into the bracket.",
+          "Crossing a with b first, which is a different identity."
+        ]
+      },
+      {
+        "id": "s3_lhs",
+        "kind": "equation",
+        "label": "Expand the left side",
+        "marks": 2,
+        "mark_note": "L.H.S",
+        "margin_note": "Two marks. Cross a with that result. Only the i component is written out below — j and k follow the same pattern with the letters rotated.",
+        "memory_tip": "Write only the i component in full; j and k follow with the letters rotated.",
+        "lines": [
+          "Now cross a with this. The i component",
+          "of a × (b × c) is",
+          "a₂(b₁c₂ − b₂c₁) − a₃(b₃c₁ − b₁c₃)",
+          "= a₂b₁c₂ − a₂b₂c₁ − a₃b₃c₁ + a₃b₁c₃",
+          "The j and k components follow the",
+          "same pattern, letters rotated.   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a is crossed with b × c and multiplied out, and that the i component is a₂b₁c₂ − a₂b₂c₁ − a₃b₃c₁ + a₃b₁c₃.",
+          "accept": [
+            "cross a with the bracket and expand, each component has four terms",
+            "the i component is a two b one c two minus a two b two c one minus a three b three c one plus a three b one c three",
+            "multiply out and get four terms per component",
+            "expand cheste prathi component ki four terms vasthai",
+            "the j and k components follow the same pattern"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "four terms",
+            "i component",
+            "expand",
+            "rotated",
+            "pattern"
+          ]
+        },
+        "why": "Four terms per component is what the right-hand side must also produce. Counting them is the quickest check that nothing has been dropped.",
+        "common_mistakes": [
+          "Dropping a term when multiplying out.",
+          "Expanding all three components in full and running out of time and space."
+        ]
+      },
+      {
+        "id": "s4_rhs",
+        "kind": "equation",
+        "label": "Expand the right side",
+        "marks": 3,
+        "mark_note": "R.H.S",
+        "margin_note": "Three marks. a·c and a·b are NUMBERS, each a sum of three products. Multiplying them into b and c gives six terms in each component, of which two always cancel.",
+        "memory_tip": "a·c and a·b are NUMBERS. Six terms per component, two of which always cancel.",
+        "lines": [
+          "a·c = a₁c₁ + a₂c₂ + a₃c₃,",
+          "a·b = a₁b₁ + a₂b₂ + a₃b₃",
+          "The i component of (a·c)b − (a·b)c is",
+          "(a₁c₁ + a₂c₂ + a₃c₃)b₁",
+          "   − (a₁b₁ + a₂b₂ + a₃b₃)c₁",
+          "The a₁b₁c₁ terms cancel, leaving",
+          "a₂b₁c₂ + a₃b₁c₃ − a₂b₂c₁ − a₃b₃c₁  …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a·c and a·b are scalars, and that multiplying them into b and c leaves four terms per component after the a₁b₁c₁ terms cancel.",
+          "accept": [
+            "a dot c and a dot b are numbers, multiply them into b and c and the matching terms cancel leaving four",
+            "expand the right hand side, the a one b one c one terms cancel out",
+            "six terms per component but two cancel leaving four",
+            "a dot c and a dot b scalars, multiply cheste rendu terms cancel avthai",
+            "the right side also gives four terms per component"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a dot c",
+            "scalar",
+            "cancel",
+            "four terms",
+            "a one b one c one"
+          ]
+        },
+        "why": "The cancellation is what makes the proof work: the term that appears in both products is exactly the one that must disappear for the two sides to match.",
+        "common_mistakes": [
+          "Treating a·c as a vector.",
+          "Missing the cancellation and being left with six terms that will not match."
+        ]
+      },
+      {
+        "id": "s5_compare",
+        "kind": "boxed_final",
+        "label": "Compare and conclude",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. The four surviving terms on each side are the same four. Say that they match — an expansion is not a proof until the comparison is stated.",
+        "memory_tip": "The four survivors on each side are the same four. Say so, or the proof is unfinished.",
+        "lines": [
+          "The four terms in (1) and the four in (2)",
+          "are the same, and so are the j and k",
+          "components. From (1) and (2),",
+          {
+            "text": "∴ a × (b × c) = (a·c)b − (a·b)c",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expansions of the two sides give identical terms, so the identity is proved.",
+          "accept": [
+            "the terms on both sides match so the identity is proved",
+            "from one and two the two sides are identical",
+            "comparing the expansions shows they are equal",
+            "rendu sides terms same, so identity proved",
+            "both expansions give the same four terms"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "expand the right side"
+          ],
+          "heard_as": [
+            "identical",
+            "from one and two",
+            "compare",
+            "proved",
+            "match"
+          ]
+        },
+        "why": "Expanding both sides is not a proof until you say they agree. That last sentence is the step the mark is actually for.",
+        "common_mistakes": [
+          "Expanding both sides and never stating that they match.",
+          "Checking the i component only and not saying the others follow."
+        ]
+      }
+    ]
+  }
+}

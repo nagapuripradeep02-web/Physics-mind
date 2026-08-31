@@ -1,0 +1,235 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_orthocentre_ha_hb_hc_2ho",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In triangle ABC, O is the circumcentre and H is the orthocentre. Show that HA + HB + HC = 2HO.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write HA, HB, HC as differences from O",
+      "marks": 1
+    },
+    {
+      "label": "Add the three vectors",
+      "marks": 1
+    },
+    {
+      "label": "Use OA + OB + OC = OH",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to 2HO",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.64, chapter 6 ADDITION OF VECTORS, Short Answer question 5(ii). Only the question was taken — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. METHOD CHOICE RECORDED: the book prints this as part (ii) of the same question as OA + OB + OC = OH, so a student answering only part (ii) in the examination may not have written part (i). The card is therefore authored to STAND ALONE — step three both states OA + OB + OC = OH and gives a one-bracket proof of it (the point P with OP = OA + OB + OC satisfies AP = 2 OD and BP = 2 OE, both perpendicular to the opposite sides, so P is the orthocentre). The result was checked a second way by substituting it back: HA + HB + HC = OH − 3 OH = −2 OH, and −OH is HO. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards rewriting each vector from the common point O, the addition, the quoted-and-justified first result, and the final sign change from −2 OH to 2 HO. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Addition of Vectors has no Section C slot on the paper, so the unit is SAQ and VSAQ only. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say which point you measure everything from, and which earlier result you use.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Addition of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_from_o",
+        "kind": "equation",
+        "label": "Write HA, HB, HC from O",
+        "marks": 1,
+        "mark_note": "Change of reference point",
+        "margin_note": "First mark. Everything in the question is measured from H, but the useful result is measured from O. Rewrite all three vectors from O first — after that the proof is arithmetic.",
+        "memory_tip": "Rewrite every vector from the point that has the useful result. Here that point is O: HX = OX − OH.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take O, the circumcentre, as the reference",
+          "point. For any point X,  HX = OX − OH.",
+          "∴ HA = OA − OH",
+          "   HB = OB − OH",
+          "   HC = OC − OH"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each of HA, HB, HC is rewritten from the circumcentre O as OA − OH, OB − OH and OC − OH.",
+          "accept": [
+            "write HA as OA minus OH and do the same for HB and HC",
+            "measure everything from O instead of from H",
+            "any vector HX is OX minus OH",
+            "anni vectors ni O nunchi rasi, HA equals OA minus OH",
+            "change the reference point to the circumcentre"
+          ],
+          "reject": [
+            "write the vectors",
+            "take H as origin",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "HA",
+            "OA minus OH",
+            "reference point",
+            "circumcentre",
+            "HX"
+          ]
+        },
+        "why": "A vector between two points is the difference of their position vectors from any one chosen point. Choosing O is what lets the known circumcentre result be used later.",
+        "common_mistakes": [
+          "Writing HA = OH − OA, which reverses every term in the answer.",
+          "Keeping H as the reference point, which leaves nothing to substitute."
+        ]
+      },
+      {
+        "id": "s2_add",
+        "kind": "equation",
+        "label": "Add the three vectors",
+        "marks": 1,
+        "mark_note": "Addition",
+        "margin_note": "Second mark. Add the three lines as they stand. The OH term appears three times, so it collects as 3 OH — losing that 3 is the commonest slip on this question.",
+        "memory_tip": "Three vectors, three copies of OH. The sum carries −3 OH, not −OH.",
+        "lines": [
+          "Adding the three,",
+          "HA + HB + HC",
+          "  = (OA − OH) + (OB − OH) + (OC − OH)",
+          "  = (OA + OB + OC) − 3 OH   ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding the three gives (OA + OB + OC) − 3 OH, with the OH term counted three times.",
+          "accept": [
+            "add the three and you get OA plus OB plus OC minus three OH",
+            "the OH term appears three times so it becomes three OH",
+            "collect the position vectors together and the OH terms together",
+            "moodu saarlu OH vasthundi kabatti three OH",
+            "the sum is the three position vectors minus three OH"
+          ],
+          "reject": [
+            "add them",
+            "collect the terms",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "three OH",
+            "sum",
+            "OA plus OB plus OC",
+            "minus three"
+          ]
+        },
+        "why": "Grouping the three position vectors on one side and the three copies of OH on the other is what makes the known result usable — the bracket that appears is exactly the one that has a value.",
+        "common_mistakes": [
+          "Writing −OH instead of −3 OH.",
+          "Adding the magnitudes of the vectors instead of the vectors."
+        ]
+      },
+      {
+        "id": "s3_known",
+        "kind": "equation",
+        "label": "Use OA + OB + OC = OH",
+        "marks": 1,
+        "mark_note": "Circumcentre result",
+        "margin_note": "Third mark. This is the standard circumcentre-to-orthocentre result. Quote it, and give the one-bracket reason so the answer stands on its own even if part (i) was not attempted.",
+        "memory_tip": "The three circumradius vectors add to OH. Reason: the point P with OP = OA + OB + OC lies on two altitudes.",
+        "lines": [
+          "For any triangle, the circumcentre O and",
+          "the orthocentre H satisfy",
+          "OA + OB + OC = OH.   ……(2)",
+          "(Reason: the point P with",
+          "OP = OA + OB + OC has AP = OB + OC = 2 OD,",
+          "D the midpoint of BC, and OD ⊥ BC because",
+          "|OB| = |OC|. The same step at B gives",
+          "BP ⊥ CA, so P is on two altitudes, P = H.)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That OA + OB + OC = OH is the standard circumcentre and orthocentre result, and why it holds — the point P with that position vector lies on two altitudes.",
+          "accept": [
+            "use the result that OA plus OB plus OC equals OH",
+            "the sum of the three circumradius vectors is the vector to the orthocentre",
+            "the point with that position vector lies on two altitudes so it is H",
+            "OA plus OB plus OC equals OH ane result vaadali",
+            "quote the circumcentre to orthocentre result and give its reason"
+          ],
+          "reject": [
+            "use the formula",
+            "we know the result",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "OA plus OB plus OC",
+            "OH",
+            "orthocentre",
+            "two altitudes",
+            "circumcentre"
+          ]
+        },
+        "why": "This one substitution is what converts a general statement about three position vectors into a statement about H alone. Without it the working stops at an expression, not a proof.",
+        "common_mistakes": [
+          "Quoting the result with the wrong point, for example OA + OB + OC = 3 OG for the centroid, and then not converting it.",
+          "Using the result without any reason, when the question is itself about proving relations between these centres."
+        ]
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Simplify to 2HO",
+        "marks": 1,
+        "mark_note": "Final form",
+        "margin_note": "Last mark. The working gives −2 OH, but the question asked for 2 HO. Reversing a vector changes its sign, so −OH = HO — write that line, because the two forms look different on the page.",
+        "memory_tip": "Reversing a vector changes its sign: −OH = HO. So −2 OH is the same as 2 HO.",
+        "lines": [
+          "Substituting (2) in (1),",
+          "HA + HB + HC = OH − 3 OH = −2 OH",
+          "Reversing a vector changes its sign, so",
+          "−OH = HO and −2 OH = 2 HO.",
+          {
+            "text": "∴ HA + HB + HC = 2 HO",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That OH − 3 OH = −2 OH, and that −OH = HO, so the sum equals 2 HO.",
+          "accept": [
+            "OH minus three OH is minus two OH which is two HO",
+            "reversing the vector changes the sign so minus OH is HO",
+            "the answer is two HO",
+            "minus OH ante HO, so minus two OH equals two HO",
+            "substitute the result and simplify to two HO"
+          ],
+          "reject": [
+            "hence proved",
+            "simplify it",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "minus two OH",
+            "two HO",
+            "reverse",
+            "sign"
+          ]
+        },
+        "why": "OH and HO are the same segment travelled in opposite directions, so they differ only in sign. Leaving the answer as −2 OH is correct mathematics but is not the form the question asked for.",
+        "common_mistakes": [
+          "Leaving the answer as −2 OH and never turning it into 2 HO.",
+          "Writing −OH = OH and losing the sign completely."
+        ]
+      }
+    ]
+  }
+}

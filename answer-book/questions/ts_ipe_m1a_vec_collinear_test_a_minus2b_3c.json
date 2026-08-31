@@ -1,0 +1,233 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_collinear_test_a_minus2b_3c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If a, b, c are non-coplanar, test the collinearity of the points a − 2b + 3c, 2a + 3b − 4c and −7b + 10c.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the three position vectors",
+      "marks": 1
+    },
+    {
+      "label": "Find AB",
+      "marks": 1
+    },
+    {
+      "label": "Find AC and compare it with AB",
+      "marks": 1
+    },
+    {
+      "label": "State the conclusion about the points",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.63, chapter 6 ADDITION OF VECTORS, Short Answer question 2(i). Only the question was taken — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four acts an examiner can see separately — naming the position vectors, building the first edge vector, building the second one and comparing it, and stating the conclusion about the POINTS rather than only about the vectors. The answer was derived twice: once by showing AC = −AB, and once by the independent check OB + OC = 2 OA, which says A is the midpoint of BC. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Addition of Vectors has no Section C slot on the paper, so the unit is SAQ and VSAQ only. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would test three points for collinearity — say which vectors you build and what you look for in them.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Addition of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_position",
+        "kind": "equation",
+        "label": "Write the position vectors",
+        "marks": 1,
+        "mark_note": "Position vectors",
+        "margin_note": "First mark. Name the three points A, B, C and take O as the origin. Writing the missing a term as 0a is worth the ink — the whole test below is a coefficient comparison, and a missing coefficient is the commonest way to lose it.",
+        "memory_tip": "Name the points A, B, C and write every missing coefficient as 0a, 0b or 0c so no column is empty.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A, B, C be the points, O the origin.",
+          "OA = a − 2b + 3c",
+          "OB = 2a + 3b − 4c",
+          "OC = 0a − 7b + 10c"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three given vectors are named as the position vectors OA, OB, OC of three points A, B, C measured from an origin O.",
+          "accept": [
+            "call the three given vectors OA OB and OC with O as the origin",
+            "name the points A B C and write their position vectors from O",
+            "take the given vectors as position vectors of three points",
+            "moodu points ni A B C ani peru petti, O origin ga teeskuntam",
+            "write the third one as zero a minus seven b plus ten c"
+          ],
+          "reject": [
+            "write the vectors",
+            "take the points",
+            "write them down"
+          ],
+          "heard_as": [
+            "position vector",
+            "OA",
+            "OB",
+            "OC",
+            "origin",
+            "zero a"
+          ]
+        },
+        "why": "A position vector is measured from the origin, and the vector joining two points is the difference of their position vectors. Fixing an origin first is what makes that subtraction legal.",
+        "common_mistakes": [
+          "Treating the three given vectors as the sides of the figure instead of as positions.",
+          "Dropping the missing a term in the third point, which shifts the whole comparison."
+        ]
+      },
+      {
+        "id": "s2_ab",
+        "kind": "equation",
+        "label": "Find AB",
+        "marks": 1,
+        "mark_note": "First edge vector",
+        "margin_note": "Second mark. Subtract in the order OB − OA, and keep the a, b and c coefficients in separate brackets while you subtract. That middle line is where sign slips are caught.",
+        "memory_tip": "AB = OB − OA, far point first. Subtract each coefficient in its own bracket.",
+        "lines": [
+          "AB = OB − OA",
+          "  = (2a + 3b − 4c) − (a − 2b + 3c)",
+          "  = (2−1)a + (3+2)b + (−4−3)c",
+          "  = a + 5b − 7c"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AB = OB − OA is worked out coefficient by coefficient and equals a + 5b − 7c.",
+          "accept": [
+            "AB is OB minus OA which gives a plus five b minus seven c",
+            "subtract the first position vector from the second one",
+            "take the difference and collect the a b and c coefficients",
+            "AB ante OB minus OA, a plus five b minus seven c vasthundi",
+            "the far point minus the near point gives the edge vector"
+          ],
+          "reject": [
+            "find the vectors",
+            "subtract them",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "AB",
+            "OB minus OA",
+            "a plus five b minus seven c",
+            "difference"
+          ]
+        },
+        "why": "Collinearity is a statement about direction, and direction lives in the vector joining two of the points. AB is the reference direction that the next step is compared against.",
+        "common_mistakes": [
+          "Subtracting the wrong way round; it is OB − OA, not OA − OB.",
+          "A sign slip on the b term, where the subtracted coefficient is already negative."
+        ]
+      },
+      {
+        "id": "s3_ac",
+        "kind": "equation",
+        "label": "Find AC and compare",
+        "marks": 1,
+        "mark_note": "Second edge vector",
+        "margin_note": "Third mark. AC must start at the SAME point A as AB. Once you have it, factor out the common number instead of just staring at the three coefficients — writing −(a + 5b − 7c) is the line that earns the mark.",
+        "memory_tip": "Start AC at the same point A, then factor the answer so the multiple of AB is visible.",
+        "lines": [
+          "AC = OC − OA",
+          "  = (0a − 7b + 10c) − (a − 2b + 3c)",
+          "  = (0−1)a + (−7+2)b + (10−3)c",
+          "  = −a − 5b + 7c",
+          "  = −(a + 5b − 7c) = −AB"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AC = OC − OA = −a − 5b + 7c, which factors as −1 times AB.",
+          "accept": [
+            "AC is OC minus OA and it comes out as minus AB",
+            "the second edge vector is minus one times the first one",
+            "factor out minus one and you get exactly AB back",
+            "AC equals minus AB, ante same direction line meeda unnayi",
+            "AC is minus a minus five b plus seven c which is minus AB"
+          ],
+          "reject": [
+            "find AC",
+            "subtract them",
+            "they are collinear"
+          ],
+          "heard_as": [
+            "AC",
+            "OC minus OA",
+            "minus AB",
+            "scalar multiple",
+            "factor"
+          ]
+        },
+        "why": "Two vectors are parallel exactly when one is a number times the other. Here that number is −1, which means AC points the opposite way to AB along the same line.",
+        "common_mistakes": [
+          "Building AC from B instead of from A, so the two vectors no longer share a point.",
+          "Stopping at −a − 5b + 7c and never showing it is a multiple of AB."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "State the conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark, and it is two statements. The vectors being parallel is not enough on its own — they must also share a point, and here that point is A. Say both, then name the POINTS.",
+        "memory_tip": "Parallel plus a shared point equals collinear. Finish by naming the points, not the vectors.",
+        "lines": [
+          "AC = −AB, so AC is a scalar multiple of AB.",
+          "AB and AC both start at the same point A.",
+          "Check: OB + OC = 2a − 4b + 6c = 2 OA,",
+          "so A is the midpoint of BC.",
+          {
+            "text": "∴ A, B, C are collinear.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AB and AC are parallel and share the point A, so the three points A, B, C are collinear.",
+          "accept": [
+            "the two vectors are parallel and share the point A so the points are collinear",
+            "AC is a multiple of AB and both start at A hence A B C lie on one line",
+            "parallel vectors through a common point means the points are collinear",
+            "rendu vectors parallel and A common point kabatti points collinear",
+            "the check shows A is the midpoint of BC so all three lie on a line"
+          ],
+          "reject": [
+            "hence proved",
+            "so they are collinear",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "collinear",
+            "parallel",
+            "common point",
+            "midpoint",
+            "one line"
+          ]
+        },
+        "why": "Two parallel vectors could sit on two different parallel lines. Sharing the point A rules that out, so B and C lie on the one line through A. The midpoint check is an independent second route to the same answer.",
+        "common_mistakes": [
+          "Saying only that the vectors are parallel and never naming the points.",
+          "Writing \"hence proved\" with nothing named."
+        ]
+      }
+    ]
+  }
+}

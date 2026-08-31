@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_fofof_reciprocal_linear",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f(x) = (x + 1)/(x − 1), x ≠ ±1, find (fofof)(x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Show that (fof)(x) = x",
+      "marks": 1
+    },
+    {
+      "label": "Third application of f",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 9(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the collapse (fof)(x) = x, which is the whole idea of the question, and one to reading off the third application. The printed condition x ≠ ±1 is kept as the book states it; f itself only needs x ≠ 1, and the extra exclusion of x = −1 changes no answer. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find (fofof)(x) — what happens when f is applied twice, and what the third application gives.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fof",
+        "kind": "equation",
+        "label": "Apply f twice",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Everything in this question follows from (fof)(x) = x, so write the numerator and the denominator as single fractions before cancelling.",
+        "memory_tip": "Applying f twice gives x back. A function like this is its own inverse.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = (x + 1)/(x − 1), x ≠ ±1",
+          "(fof)(x) = f[f(x)] = (f(x) + 1)/(f(x) − 1)",
+          "Numerator: (x + 1)/(x − 1) + 1 = 2x/(x − 1)",
+          "Denominator: (x + 1)/(x − 1) − 1 = 2/(x − 1)",
+          "∴ (fof)(x) = 2x/(x − 1) × (x − 1)/2 = x"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f applied to f(x) simplifies to x, because the numerator becomes 2x/(x − 1) and the denominator becomes 2/(x − 1).",
+          "accept": [
+            "f of f of x is f of x plus one over f of x minus one which simplifies to x",
+            "the top becomes two x over x minus one and the bottom two over x minus one so you get x",
+            "applying f twice gives back x",
+            "f rendu sarlu apply chesthe x ye vastundi",
+            "f o f of x equals x because the x minus one cancels"
+          ],
+          "reject": [
+            "I apply f again",
+            "substitute f of x",
+            "the third one gives f of x"
+          ],
+          "heard_as": [
+            "f o f",
+            "fof",
+            "two x over x minus one",
+            "equals x",
+            "cancels"
+          ]
+        },
+        "why": "Both the numerator and the denominator carry the factor 1/(x − 1), so that factor cancels and only 2x over 2 is left. f itself needs x ≠ 1, and the question also rules out x = −1, so every line here is written for x ≠ ±1.",
+        "common_mistakes": [
+          "Adding 1 to only the numerator of f(x) instead of to the whole fraction.",
+          "Cancelling x − 1 before the top and the bottom are written as single fractions."
+        ]
+      },
+      {
+        "id": "s2_third",
+        "kind": "boxed_final",
+        "label": "Apply f once more",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Three copies of f are one (fof) followed by one f. Since (fof)(x) = x, the last f acts on x itself.",
+        "memory_tip": "Count the f's: an even number gives x, an odd number gives f(x).",
+        "lines": [
+          "(fofof)(x) = f[(fof)(x)]",
+          "= f(x), since (fof)(x) = x",
+          "Check at x = 2: f(2) = 3, f(3) = 2, f(2) = 3.",
+          {
+            "text": "∴ (fofof)(x) = (x + 1)/(x − 1), x ≠ ±1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the third f acts on x, so (fofof)(x) is f(x) itself, which is (x + 1)/(x − 1).",
+          "accept": [
+            "since f o f gives x the third f acts on x so the answer is f of x",
+            "f o f o f of x is f of x which is x plus one over x minus one",
+            "three applications leave one f so the answer is the original function",
+            "rendu sarlu x vastundi so moodava sari f of x vastundi",
+            "the answer is x plus one by x minus one"
+          ],
+          "reject": [
+            "the answer is x",
+            "it goes back to x",
+            "apply f twice more"
+          ],
+          "heard_as": [
+            "f o f o f",
+            "fofof",
+            "x plus one over x minus one",
+            "f of x",
+            "odd number"
+          ]
+        },
+        "why": "Three copies of f split as one pair plus one single. The pair returns its input unchanged, so only the single f is left to act. Checking at x = 2 gives 3, and (2 + 1)/(2 − 1) = 3, which agrees.",
+        "common_mistakes": [
+          "Answering x, which is what an even number of applications gives, not three.",
+          "Leaving the condition x ≠ ±1 off the final line."
+        ]
+      }
+    ]
+  }
+}

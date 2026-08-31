@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_alpha_plus_beta_pi4_sin_values",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If sin α = 1/√10, sin β = 1/√5 and α, β are acute, show that α + β = π/4.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find cos α and cos β",
+      "marks": 1
+    },
+    {
+      "label": "Find sin(α + β) and fix the quadrant",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 25, book p.87. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to the two cosines, where the acute condition decides the sign of the square root, and one to the addition formulas — including the cos(α + β) check, without which 3π/4 is not ruled out. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show this — name what you find first, and how you decide between π/4 and 3π/4.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_cosines",
+        "kind": "equation",
+        "label": "Find cos α and cos β",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both angles are acute, so both cosines are positive and the positive square root is the right one. cos α = 3/√10 and cos β = 2/√5.",
+        "memory_tip": "Acute means the cosine is positive, so take the plus sign on both square roots.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "α and β are acute, so cos α > 0, cos β > 0",
+          "cos α = √(1 − 1/10) = √(9/10) = 3/√10",
+          "cos β = √(1 − 1/5) = √(4/5) = 2/√5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos α = 3/√10 and cos β = 2/√5, with the positive root taken because both angles are acute.",
+          "accept": [
+            "use sin squared plus cos squared equals one to get the cosines",
+            "cos alpha is three by root ten and cos beta is two by root five",
+            "both are acute so the cosines are positive",
+            "acute kabatti cosine positive, plus root teeskovali",
+            "take the positive square root for both"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "sin of alpha plus beta"
+          ],
+          "heard_as": [
+            "three by root ten",
+            "two by root five",
+            "cos alpha",
+            "positive square root"
+          ]
+        },
+        "why": "Both cosines are needed for the addition formula, and only the word acute tells you which sign of the square root to take. A negative cosine would put the sum in a different quadrant and the proof would fail.",
+        "common_mistakes": [
+          "Taking the negative square root for a cosine.",
+          "Using 1 + sin²θ in place of 1 − sin²θ."
+        ]
+      },
+      {
+        "id": "s2_add_the_angles",
+        "kind": "boxed_final",
+        "label": "Find sin(α + β) and fix the quadrant",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. sin(α + β) = 1/√2 alone allows π/4 and 3π/4. cos(α + β) = 1/√2 is positive, which leaves only π/4.",
+        "memory_tip": "Sine alone leaves two answers, π/4 and 3π/4. The sign of the cosine decides which one.",
+        "lines": [
+          "sin(α + β) = sinα cosβ + cosα sinβ",
+          "= (1/√10)(2/√5) + (3/√10)(1/√5)",
+          "= 2/√50 + 3/√50 = 5/(5√2) = 1/√2",
+          "cos(α + β) = cosα cosβ − sinα sinβ",
+          "= 6/√50 − 1/√50 = 5/(5√2) = 1/√2 > 0",
+          "Both α and β are acute, so 0 < α + β < π,",
+          "and cos(α + β) > 0 rules out 3π/4.",
+          {
+            "text": "∴ α + β = π/4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(α + β) = 1/√2, that cos(α + β) = 1/√2 is positive, and that this rules out 3π/4 and leaves π/4.",
+          "accept": [
+            "sin of alpha plus beta is one by root two",
+            "also find cos of alpha plus beta and it is positive so the sum is in the first quadrant",
+            "sine alone gives pi by four or three pi by four so check the cosine",
+            "cos kuda positive kabatti pi by four matrame",
+            "the sum is forty five degrees"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "cos alpha is three by root ten"
+          ],
+          "heard_as": [
+            "one by root two",
+            "sin alpha plus beta",
+            "cos alpha plus beta",
+            "pi by four",
+            "three pi by four"
+          ]
+        },
+        "why": "sin(α + β) = 1/√2 is satisfied by π/4 and by 3π/4, so the sine alone does not finish the proof. Cosine separates them: it is positive at π/4 and negative at 3π/4, so showing cos(α + β) > 0 is what makes the answer unique.",
+        "common_mistakes": [
+          "Stopping at sin(α + β) = 1/√2 and writing π/4 without ruling out 3π/4.",
+          "A sign slip in cos(α + β) = cosα cosβ − sinα sinβ."
+        ]
+      }
+    ]
+  }
+}

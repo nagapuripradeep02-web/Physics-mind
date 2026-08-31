@@ -1,0 +1,190 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_parallelepiped_volume_lambda_16",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find λ if the volume of the parallelepiped having the edges i + j, 3i − j and 3j + λk is 16 cubic units.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the volume formula",
+      "marks": 1
+    },
+    {
+      "label": "Evaluate the determinant",
+      "marks": 2
+    },
+    {
+      "label": "Solve for λ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.67, chapter 7 PRODUCT OF VECTORS, Short Answer question 4(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the determinant, because that is where the work is, and a full mark to the modulus step, because the modulus is what produces both values of λ. The book prints this item as \"4. i)\" but no part ii) follows it — the next printed item is question 5 — so the card is filed under part (i) as printed. Both evaluations of the box product agree at −4λ: the first-row expansion gives 1(−λ) − 1(3λ) + 0 = −4λ, and the third-column expansion gives λ(1(−1) − 1(3)) = −4λ; computing b × c = (−λ, −3λ, 9) and dotting with a gives −4λ a third time. The answer is λ = ±4, not λ = −4 alone: the volume is |[a b c]| = 4|λ|, so λ = 4 builds a box of the same size with the edges taken in the opposite order. A solution that prints only one value has dropped the modulus. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find λ here — name the formula, the determinant, and what the modulus does to your answer.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "State the formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. Write the modulus bars now. They are what produces the second value of λ at the end.",
+        "memory_tip": "Parallelepiped takes the whole box product; the one sixth belongs to the tetrahedron.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = i + j, b = 3i − j, c = 3j + λk",
+          "Volume of the parallelepiped on a, b, c is",
+          {
+            "text": "V = |[a\\ b\\ c]|",
+            "render": "katex",
+            "style": "eq"
+          },
+          "A volume is the MODULUS of a box product."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the volume of a parallelepiped on three edges is the modulus of their scalar triple product.",
+          "accept": [
+            "the volume is the modulus of the box product of the three edges",
+            "write V equals mod of a b c",
+            "state the parallelepiped volume formula, no one sixth here",
+            "volume ante box product yokka modulus",
+            "the triple product with modulus bars gives the volume"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "lambda is four"
+          ],
+          "heard_as": [
+            "modulus",
+            "box product",
+            "scalar triple product",
+            "volume",
+            "formula"
+          ]
+        },
+        "why": "The scalar triple product gives the signed volume of the box on the three edges, and a volume is never negative, so the modulus bars are part of the formula.",
+        "common_mistakes": [
+          "Writing V = [a b c] with no modulus bars.",
+          "Using ⅙[a b c], which is the tetrahedron formula."
+        ]
+      },
+      {
+        "id": "s2_determinant",
+        "kind": "equation",
+        "label": "Evaluate the determinant",
+        "marks": 2,
+        "mark_note": "Determinant",
+        "margin_note": "Half the marks. The three edges are the rows. Both a and b have a zero k component — write the zeros in.",
+        "memory_tip": "Rows are the three edges, in the order given. A missing zero shifts the whole row.",
+        "lines": [
+          {
+            "text": "[a\\ b\\ c] = \\begin{vmatrix} 1 & 1 & 0 \\\\ 3 & -1 & 0 \\\\ 0 & 3 & \\lambda \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 1(−λ − 0) − 1(3λ − 0) + 0(9 − 0)",
+          "= −λ − 3λ = −4λ",
+          "Check along the third column:",
+          "λ(1(−1) − 1(3)) = λ(−4) = −4λ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the box product is the 3×3 determinant of the three edges and evaluates to −4λ.",
+          "accept": [
+            "put the three edges as rows and expand to get minus four lambda",
+            "the determinant comes to minus four lambda",
+            "expand along the third column and get the same minus four lambda",
+            "moodu edges ni rows ga petti expand cheste minus four lambda vasthundi",
+            "the box product is minus four lambda"
+          ],
+          "reject": [
+            "that is the answer",
+            "take the modulus",
+            "the volume is sixteen"
+          ],
+          "heard_as": [
+            "determinant",
+            "minus four lambda",
+            "third column",
+            "rows"
+          ]
+        },
+        "why": "Expanding a second way is the cheapest check there is: the same determinant reached from a different row or column must give the same number.",
+        "common_mistakes": [
+          "Leaving out the zero k components of a and b.",
+          "Getting the plus, minus, plus sign pattern wrong."
+        ]
+      },
+      {
+        "id": "s3_solve",
+        "kind": "boxed_final",
+        "label": "Solve for λ",
+        "marks": 1,
+        "mark_note": "Value of λ",
+        "margin_note": "Last mark. Both values are correct. Give both, or half the answer is missing.",
+        "memory_tip": "A modulus equation |x| = k always has two answers, +k and −k.",
+        "lines": [
+          "Volume = |−4λ| = 4|λ|",
+          "4|λ| = 16 ⇒ |λ| = 4",
+          {
+            "text": "∴ λ = 4 or λ = −4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 4|λ| = 16 gives |λ| = 4, so λ is 4 or −4.",
+          "accept": [
+            "four mod lambda equals sixteen so lambda is plus or minus four",
+            "the modulus gives two answers, four and minus four",
+            "lambda equals plus minus four",
+            "modulus valla rendu answers vasthayi, four and minus four",
+            "both plus four and minus four give a volume of sixteen"
+          ],
+          "reject": [
+            "the determinant is minus four lambda",
+            "write the formula",
+            "then I get it"
+          ],
+          "heard_as": [
+            "plus or minus four",
+            "modulus",
+            "sixteen",
+            "lambda"
+          ]
+        },
+        "why": "The modulus gives two cases. Both boxes have the same size; the sign of the triple product only records the order in which the edges were taken.",
+        "common_mistakes": [
+          "Solving −4λ = 16 and giving only λ = −4.",
+          "Dropping the modulus and losing one of the two answers."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos_fourth_plus_term_sin_fourth",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that cos⁴α + 2cos²α(1 − 1/sec²α) = 1 − sin⁴α.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Replace 1/sec²α by cos²α",
+      "marks": 1
+    },
+    {
+      "label": "Factor both sides",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 30, book p.88. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards clearing the sec α out of the bracket first and the matching factorisation of the two sides second. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically at α = 37°, 100° and 215°: the two sides agree to ten decimal places (0.8688246899, 0.0593981342 and 0.8917656271). Note on the condition: the reduced identity cos⁴α + 2cos²α sin²α = 1 − sin⁴α holds for every α, but the printed left side contains sec α, so the statement as printed needs cos α ≠ 0. That condition is written on the page in the student's own lines, not left here."
+  },
+  "recall_prompt": "Say what you would do with the sec α bracket, and say what both sides reduce to.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_clear_sec",
+        "kind": "equation",
+        "label": "Replace 1/sec²α by cos²α",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. sec α is written on the left, so cos α ≠ 0 is part of the statement. The bracket is only sin²α in disguise.",
+        "memory_tip": "1/sec²α is cos²α, so the bracket 1 − 1/sec²α is just sin²α.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "sec α is written, so cos α ≠ 0.",
+          "1/sec²α = cos²α, so",
+          "1 − 1/sec²α = 1 − cos²α = sin²α",
+          "LHS = cos⁴α + 2cos²α sin²α"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1/sec²α is cos²α, so the bracket becomes sin²α and the left side is cos⁴α + 2cos²α sin²α.",
+          "accept": [
+            "one over sec squared alpha is cos squared alpha so the bracket is one minus cos squared which is sin squared",
+            "the bracket is just sin squared alpha",
+            "replace one by sec squared with cos squared and the left side becomes cos to the fourth plus two cos squared sin squared",
+            "one by sec square ante cos square, so bracket sin square avutundi",
+            "clear the sec alpha out first"
+          ],
+          "reject": [
+            "one minus sin to the fourth",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "one over sec squared",
+            "cos squared",
+            "sin squared",
+            "bracket"
+          ]
+        },
+        "why": "The bracket is written with sec α only to hide sin²α. Replacing 1/sec²α by cos²α turns it into 1 − cos²α, which is sin²α, and the left side becomes a plain expression in sin α and cos α. Writing sec α at all is what makes cos α ≠ 0 part of the statement.",
+        "common_mistakes": [
+          "Reading 1/sec²α as sec²α.",
+          "Using sec α without noting that cos α must not be 0."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Factor both sides",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Take cos²α out on the left and use the difference of two squares on the right. Both sides land on cos²α(1 + sin²α).",
+        "memory_tip": "Both sides collapse to cos²α(1 + sin²α). On the right use 1 − sin⁴α = (1 − sin²α)(1 + sin²α).",
+        "lines": [
+          "LHS = cos²α(cos²α + 2 sin²α)",
+          "= cos²α(cos²α + sin²α + sin²α)",
+          "= cos²α(1 + sin²α)",
+          "RHS = 1 − sin⁴α = (1 − sin²α)(1 + sin²α)",
+          "= cos²α(1 + sin²α) = LHS",
+          {
+            "text": "∴ LHS = RHS = cos²α(1 + sin²α)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sides reduce to cos²α(1 + sin²α), the right side by factoring 1 − sin⁴α as (1 − sin²α)(1 + sin²α).",
+          "accept": [
+            "take cos squared out on the left and it becomes cos squared into one plus sin squared",
+            "one minus sin to the fourth is one minus sin squared into one plus sin squared which is cos squared into one plus sin squared",
+            "both sides come to cos squared alpha into one plus sin squared alpha",
+            "rendu sides cos square into one plus sin square vastundi",
+            "factor the right side as a difference of two squares"
+          ],
+          "reject": [
+            "one over sec squared is cos squared",
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one plus sin squared",
+            "difference of two squares",
+            "cos squared out",
+            "sin to the fourth"
+          ]
+        },
+        "why": "Both sides reduce to the same thing, cos²α(1 + sin²α). On the left the factor cos²α comes out and cos²α + sin²α becomes 1; on the right 1 − sin⁴α is a difference of two squares whose first factor is cos²α.",
+        "common_mistakes": [
+          "Treating 1 − sin⁴α as (1 − sin²α)².",
+          "Stopping at cos⁴α + 2cos²α sin²α without factoring."
+        ]
+      }
+    ]
+  }
+}

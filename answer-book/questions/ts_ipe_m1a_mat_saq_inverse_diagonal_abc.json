@@ -1,0 +1,250 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_inverse_diagonal_abc",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the inverse of the matrix A with rows (a, 0, 0), (0, b, 0) and (0, 0, c).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find det A and state when the inverse exists",
+      "marks": 1
+    },
+    {
+      "label": "Write the adjoint",
+      "marks": 1
+    },
+    {
+      "label": "Divide the adjoint by det A",
+      "marks": 1
+    },
+    {
+      "label": "Check that A·A⁻¹ = I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.44, chapter 5 MATRICES, Short Answer question 15(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives the determinant step a full mark because it carries the condition a ≠ 0, b ≠ 0, c ≠ 0 — the answer 1/a, 1/b, 1/c is meaningless without it — and gives the closing check a full mark because a letter answer cannot be tested by inspection the way a numerical one can. Independently checked before authoring: A·A⁻¹ was multiplied out and gives the 3×3 identity matrix exactly. The stem as printed states no condition on a, b and c; the condition is authored into the answer where the student reads it, not added to the question. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find this inverse — say what the determinant is, what condition it forces, what the adjoint looks like, and how you check the answer.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_det",
+        "kind": "equation",
+        "label": "Find det A",
+        "marks": 1,
+        "mark_note": "Determinant",
+        "margin_note": "First mark, and it carries the condition. For a diagonal matrix the determinant is just the product of the diagonal entries, so det A = abc, and abc = 0 the moment any one of a, b, c is 0.",
+        "memory_tip": "For a diagonal matrix the determinant is the product of the diagonal entries: det A = abc.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "A = \\begin{bmatrix} a & 0 & 0 \\\\ 0 & b & 0 \\\\ 0 & 0 & c \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "A is diagonal, so det A is the product of",
+          "the diagonal entries: det A = abc.",
+          "A⁻¹ exists only when abc ≠ 0, that is when",
+          "a ≠ 0, b ≠ 0 and c ≠ 0. Take this to be so."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the determinant of a diagonal matrix is the product abc, and that the inverse exists only when a, b and c are all non-zero.",
+          "accept": [
+            "the determinant of a diagonal matrix is a times b times c so det A is abc",
+            "det A equals abc and the inverse exists only if a b and c are all non zero",
+            "for a diagonal matrix multiply the diagonal entries to get the determinant",
+            "diagonal matrix ki determinant abc, a b c anni zero kaakoodadu",
+            "abc must not be zero for the inverse to exist"
+          ],
+          "reject": [
+            "find the determinant",
+            "expand along the first row",
+            "det A is not zero"
+          ],
+          "heard_as": [
+            "det A",
+            "abc",
+            "diagonal",
+            "non zero",
+            "inverse exists"
+          ]
+        },
+        "why": "Every entry of the answer is a reciprocal, and a reciprocal needs a non-zero denominator. Stating a ≠ 0, b ≠ 0, c ≠ 0 here is what makes the final matrix a legal answer.",
+        "common_mistakes": [
+          "Expanding along a row and losing a term instead of using the diagonal shortcut.",
+          "Writing the inverse without ever saying a, b and c must be non-zero."
+        ]
+      },
+      {
+        "id": "s2_adj",
+        "kind": "equation",
+        "label": "Write the adjoint",
+        "marks": 1,
+        "mark_note": "Adjoint",
+        "margin_note": "Second mark. Each off-diagonal 2×2 minor here contains a full row of zeros, so its determinant is 0. That leaves a diagonal cofactor matrix, and a diagonal matrix is its own transpose.",
+        "memory_tip": "Every off-diagonal minor here has a row of zeros, so the cofactor matrix stays diagonal.",
+        "lines": [
+          "Cofactor of a is the 2×2 determinant bc.",
+          "Cofactor of b is ca, cofactor of c is ab.",
+          "Every off-diagonal minor has a row of zeros,",
+          "so those cofactors are 0. The cofactor matrix",
+          "is diagonal, and equals its own transpose.",
+          {
+            "text": "\\text{Adj } A = \\begin{bmatrix} bc & 0 & 0 \\\\ 0 & ca & 0 \\\\ 0 & 0 & ab \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cofactors on the diagonal are bc, ca and ab, that every off-diagonal cofactor is 0 because its minor has a row of zeros, and that the adjoint is therefore the same diagonal matrix.",
+          "accept": [
+            "the diagonal cofactors are bc ca and ab and all the others are zero",
+            "each off diagonal minor has a zero row so its cofactor is zero",
+            "the cofactor matrix is diagonal so the adjoint is the same matrix transposed which is itself",
+            "diagonal cofactors bc ca ab, migilinavi anni zero",
+            "adjoint is diagonal with bc ca and ab"
+          ],
+          "reject": [
+            "find the adjoint",
+            "take the transpose",
+            "write the cofactor matrix"
+          ],
+          "heard_as": [
+            "adjoint",
+            "adj A",
+            "cofactor",
+            "bc ca ab",
+            "transpose"
+          ]
+        },
+        "why": "The adjoint is normally the transpose of the cofactor matrix, and forgetting the transpose is the usual error. Here the cofactor matrix is diagonal, so the transpose changes nothing — but the reason has to be said, not assumed.",
+        "common_mistakes": [
+          "Writing the diagonal cofactors as a, b, c instead of bc, ca, ab.",
+          "Pairing the cofactor ca with the wrong diagonal position."
+        ]
+      },
+      {
+        "id": "s3_inverse",
+        "kind": "equation",
+        "label": "Divide by det A",
+        "marks": 1,
+        "mark_note": "Inverse",
+        "margin_note": "Third mark. Apply A⁻¹ = (Adj A)/(det A). Each diagonal entry cancels: bc/abc = 1/a, ca/abc = 1/b, ab/abc = 1/c.",
+        "memory_tip": "Each diagonal entry cancels against abc: bc over abc is 1/a.",
+        "lines": [
+          {
+            "text": "A^{-1} = \\frac{1}{\\det A}\\,\\text{Adj } A = \\frac{1}{abc}\\begin{bmatrix} bc & 0 & 0 \\\\ 0 & ca & 0 \\\\ 0 & 0 & ab \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Cancel abc in each diagonal entry:",
+          {
+            "text": "A^{-1} = \\begin{bmatrix} 1/a & 0 & 0 \\\\ 0 & 1/b & 0 \\\\ 0 & 0 & 1/c \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the inverse is the adjoint divided by the determinant, and that the cancellation leaves 1/a, 1/b and 1/c on the diagonal.",
+          "accept": [
+            "divide the adjoint by abc and each entry cancels to one over a one over b one over c",
+            "A inverse is adj A over det A which gives reciprocals on the diagonal",
+            "bc over abc is one over a so the inverse has the reciprocals",
+            "adj A ni abc tho divide cheste one by a one by b one by c vasthundi",
+            "the inverse of a diagonal matrix has the reciprocal entries"
+          ],
+          "reject": [
+            "divide by the determinant",
+            "find the inverse",
+            "use the formula"
+          ],
+          "heard_as": [
+            "adj A by det A",
+            "one over a",
+            "reciprocal",
+            "cancel",
+            "A inverse"
+          ]
+        },
+        "why": "The cancellation is the whole reason the answer is so simple: bc/abc leaves 1/a. Seeing this once means the inverse of any diagonal matrix can be written down straight away.",
+        "common_mistakes": [
+          "Dividing only the first entry by abc and leaving the others.",
+          "Writing abc/bc instead of bc/abc, which turns the answer upside down."
+        ]
+      },
+      {
+        "id": "s4_check",
+        "kind": "boxed_final",
+        "label": "Check A·A⁻¹ = I",
+        "marks": 1,
+        "mark_note": "Check",
+        "margin_note": "Last mark. Multiply row by column: a(1/a) = 1 on the diagonal, and every off-diagonal product has a zero in it. The product is the identity, so the answer is right.",
+        "memory_tip": "Check by multiplying: a times 1/a is 1 on the diagonal, and every other product contains a zero.",
+        "lines": [
+          "Multiply row by column: a(1/a) = 1, b(1/b) = 1,",
+          "c(1/c) = 1, and every other product has a 0 in it.",
+          "So A·A⁻¹ = I, which confirms the answer.",
+          {
+            "text": "A^{-1} = \\begin{bmatrix} 1/a & 0 & 0 \\\\ 0 & 1/b & 0 \\\\ 0 & 0 & 1/c \\end{bmatrix}\\quad (a, b, c \\ne 0)",
+            "render": "katex",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A is multiplied by the answer and the product is the identity matrix, confirming the inverse.",
+          "accept": [
+            "multiply A by the answer and get the identity matrix so it is correct",
+            "a times one over a is one on the diagonal and the rest are zeros so the product is I",
+            "check by multiplication that A into A inverse is the unit matrix",
+            "A ni A inverse tho multiply cheste identity vasthundi",
+            "the product comes out as the identity so the inverse is right"
+          ],
+          "reject": [
+            "check the answer",
+            "verify it",
+            "so A inverse is found"
+          ],
+          "heard_as": [
+            "A into A inverse",
+            "identity matrix",
+            "unit matrix",
+            "I",
+            "check"
+          ]
+        },
+        "why": "With letters in every entry there is no numerical answer to compare against, so the multiplication is the only way to know the answer is right. It takes one line and catches a misplaced reciprocal at once.",
+        "common_mistakes": [
+          "Skipping the check because the answer looks obvious.",
+          "Writing the condition a, b, c ≠ 0 nowhere on the page."
+        ]
+      }
+    ]
+  }
+}

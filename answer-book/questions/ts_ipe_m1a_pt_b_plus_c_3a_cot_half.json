@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_b_plus_c_3a_cot_half",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If b + c = 3a, find the value of cot(B/2) cot(C/2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the product of the two cotangents",
+      "marks": 1
+    },
+    {
+      "label": "Use b + c = 3a",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.125, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the product rule for the two half-angle cotangents and one to substituting b + c = 3a and evaluating. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Properties of Triangles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_product",
+        "kind": "equation",
+        "label": "Write the product of the two cotangents",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. The product of the two cotangents leaves s/(s−a) — the bracket of the angle that was NOT used.",
+        "memory_tip": "cot(B/2) cot(C/2) = s/(s−a) — the bracket left is the one for the angle not used.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "cot(B/2) = √(s(s−b)/((s−c)(s−a)))",
+          "cot(C/2) = √(s(s−c)/((s−a)(s−b)))",
+          "∴ cot(B/2) cot(C/2) = √(s²/(s−a)²)",
+          "= s/(s−a)   [∵ s > a, both are positive]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cot(B/2) cot(C/2) = s/(s−a), because (s−b) and (s−c) cancel between the two roots.",
+          "accept": [
+            "multiply the two half angle cotangents and s minus b and s minus c cancel",
+            "the product is s over s minus a",
+            "the bracket left over is the one for the angle not used",
+            "rendu cotangents multiply cheste s by s minus a vasthundi",
+            "the product of cot half B and cot half C is s over s minus a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "s over s minus a",
+            "product",
+            "cancel",
+            "cot half B"
+          ]
+        },
+        "why": "Multiplying the two roots cancels (s−b) and (s−c) completely and leaves s over the bracket of the angle that was not asked for. That is why the answer depends only on a.",
+        "common_mistakes": [
+          "Writing cot(B/2) cot(C/2) = s/(s−b) or s/(s−c).",
+          "Adding the two cotangents instead of multiplying them."
+        ]
+      },
+      {
+        "id": "s2_use_the_given_relation",
+        "kind": "boxed_final",
+        "label": "Use b + c = 3a",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The other mark. 2s = a + (b+c) = 4a gives s = 2a, so s − a = a and the ratio is 2a/a = 2.",
+        "memory_tip": "2s = a + (b + c) = a + 3a = 4a, so s = 2a and s − a = a; the ratio is 2.",
+        "lines": [
+          "2s = a + b + c = a + 3a = 4a ⇒ s = 2a",
+          "∴ s − a = 2a − a = a",
+          "cot(B/2) cot(C/2) = s/(s−a) = 2a/a",
+          {
+            "text": "∴ cot(B/2) cot(C/2) = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That b + c = 3a gives 2s = 4a, so s = 2a, s − a = a and s/(s−a) = 2.",
+          "accept": [
+            "two s is a plus b plus c which is four a so s is two a",
+            "then s minus a is a and the ratio is two",
+            "the a cancels so the answer is a plain two",
+            "two s equals four a kabatti s equals two a, answer two",
+            "substitute b plus c equals three a into the perimeter"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two s equals four a",
+            "s equals two a",
+            "s minus a",
+            "answer is two"
+          ]
+        },
+        "why": "The given relation fixes the perimeter as 4a, so s = 2a and s − a = a. The ratio s/(s−a) is then a pure number and a drops out, which is why no side lengths are needed.",
+        "common_mistakes": [
+          "Writing s = a + b + c instead of 2s = a + b + c.",
+          "Substituting b + c = 3a into b and c separately."
+        ]
+      }
+    ]
+  }
+}

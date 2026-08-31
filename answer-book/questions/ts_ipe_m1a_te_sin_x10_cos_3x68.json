@@ -1,0 +1,238 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_te_sin_x10_cos_3x68",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Trigonometric Equations"
+  },
+  "chapter": "Trigonometric Equations",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If x is acute and sin(x + 10°) = cos(3x − 68°), find x in degrees.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write both sides as sines",
+      "marks": 1
+    },
+    {
+      "label": "Apply the sine general solution",
+      "marks": 1
+    },
+    {
+      "label": "Take n even",
+      "marks": 1
+    },
+    {
+      "label": "Take n odd and choose the acute value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.109, chapter 9 TRIGONOMETRIC EQUATIONS, Short Answer question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives a mark to EACH parity of n, because the short route — assume both angles are acute and set their sum to 90° — reaches 37° without ever showing that the other family gives nothing acute, and that is the half of the question a 4-mark answer is expected to write. CANDIDATE RECORD: the even family gives x = 90m + 37, so 37° (acute, kept) and 127°, 217°, … (not acute); the odd family gives x = −180m − 6, so −6°, 174°, … (not acute). Every one of those satisfies the equation — they are rejected by the words 'x is acute', not by being extraneous, and the card says which kind of rejection it is. The answer was checked: sin47° = cos43° is true because 47° + 43° = 90°. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Trigonometric Equations supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — name each move in order, and say how the word 'acute' picks out the answer.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Trigonometric Equations · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_both_sides_as_sines",
+        "kind": "equation",
+        "label": "Write both sides as sines",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A sine cannot be compared with a cosine, so turn the cosine into a sine using cosA = sin(90° − A). Watch the double sign change on −68°.",
+        "memory_tip": "cosA = sin(90° − A). Subtracting −68° adds 68°, so the angle becomes 158° − 3x.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given sin(x + 10°) = cos(3x − 68°)",
+          "Now cosA = sin(90° − A), so",
+          "cos(3x − 68°) = sin(90° − 3x + 68°)",
+          "  = sin(158° − 3x)",
+          "⇒ sin(x + 10°) = sin(158° − 3x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(3x − 68°) is written as sin(158° − 3x), so both sides are sines.",
+          "accept": [
+            "use cos A equals sin ninety minus A so the right side becomes sin of one fifty eight minus three x",
+            "turn the cosine into a sine before comparing",
+            "ninety minus three x plus sixty eight is one fifty eight minus three x",
+            "cos ni sin ninety minus A ga marchali",
+            "make both sides sines first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "ninety minus A",
+            "one fifty eight minus three x",
+            "cos to sin",
+            "sin of x plus ten"
+          ]
+        },
+        "why": "Two trigonometric expressions can only be equated angle-to-angle when they are the SAME function. Converting the cosine to a sine is what makes the comparison legal.",
+        "common_mistakes": [
+          "Writing 90° − 3x − 68° and getting 22° − 3x.",
+          "Equating x + 10° with 3x − 68° directly, mixing sine with cosine."
+        ]
+      },
+      {
+        "id": "s2_apply_the_general_solution",
+        "kind": "equation",
+        "label": "Apply the sine general solution",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Do not just equate the angles — write the full sine general solution in degrees, because both parities of n give real solutions and the question must choose between them.",
+        "memory_tip": "In degrees the sine general solution reads A = n(180°) + (−1)ⁿ B. Both parities of n matter here.",
+        "lines": [
+          "For sinA = sinB the general solution is",
+          "A = n(180°) + (−1)ⁿ B,  n ∈ Z",
+          "Here A = x + 10° and B = 158° − 3x",
+          "⇒ x + 10° = n(180°) + (−1)ⁿ(158° − 3x)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sine general solution A = n(180°) + (−1)ⁿB is applied with A = x + 10° and B = 158° − 3x.",
+          "accept": [
+            "for sin A equals sin B write A equals n into one eighty plus minus one to the n times B",
+            "use the sine general solution in degrees not just equal angles",
+            "A is x plus ten and B is one fifty eight minus three x",
+            "sin A equals sin B ki general solution rasali degrees lo",
+            "write the general solution before solving for x"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "n into one eighty",
+            "minus one to the n",
+            "general solution",
+            "sin A equals sin B"
+          ]
+        },
+        "why": "sinA = sinB does not mean A = B. It means A belongs to a whole family of angles, and the two parities of n give two different equations in x.",
+        "common_mistakes": [
+          "Writing A = B only and losing the second family.",
+          "Using π instead of 180° while the angles are in degrees."
+        ]
+      },
+      {
+        "id": "s3_take_n_even",
+        "kind": "equation",
+        "label": "Take n even",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. Put n = 2m so (−1)ⁿ = 1. Solving gives x = 90m + 37, and only m = 0 is acute.",
+        "memory_tip": "n even makes (−1)ⁿ = +1. Collect the x terms on one side: 4x = 360m + 148.",
+        "lines": [
+          "If n is even, put n = 2m so (−1)ⁿ = 1.",
+          "All angles below are in degrees.",
+          "⇒ x + 10 = 360m + 158 − 3x",
+          "⇒ 4x = 360m + 148",
+          "⇒ x = 90m + 37",
+          "m = 0 gives x = 37°, which is acute.",
+          "m = 1 gives x = 127°, which is not acute."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n even gives x = 90m + 37, and only m = 0 gives an acute value, x = 37°.",
+          "accept": [
+            "put n equals two m so minus one to the n is one and four x is three sixty m plus one forty eight so x is ninety m plus thirty seven",
+            "the even family gives thirty seven degrees when m is zero",
+            "one twenty seven is in the same family but it is not acute",
+            "n even ante x equals ninety m plus thirty seven",
+            "only m zero is acute here"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "ninety m plus thirty seven",
+            "thirty seven degrees",
+            "n even",
+            "one twenty seven"
+          ]
+        },
+        "why": "With n even the sign is +1, and the three x terms collect into one linear equation. The family it produces is spaced 90° apart, so at most one member can be acute.",
+        "common_mistakes": [
+          "Collecting 3x on the wrong side and getting 2x instead of 4x.",
+          "Dropping the 360m term so the family looks like a single value."
+        ]
+      },
+      {
+        "id": "s4_take_n_odd_and_choose",
+        "kind": "boxed_final",
+        "label": "Take n odd and choose the acute value",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. Put n = 2m + 1 so (−1)ⁿ = −1. This family gives −6°, 174°, … — every one of them solves the equation, but none is acute, so the word 'acute' in the question is what selects 37°.",
+        "memory_tip": "n odd makes (−1)ⁿ = −1, so the bracket is subtracted. The family it gives has no acute member.",
+        "lines": [
+          "If n is odd, put n = 2m + 1 so (−1)ⁿ = −1.",
+          "⇒ x + 10 = 360m + 180 − (158 − 3x)",
+          "⇒ x + 10 = 360m + 22 + 3x",
+          "⇒ 2x = −360m − 12",
+          "⇒ x = −180m − 6",
+          "This gives −6°, 174°, … and none is acute.",
+          "Check x = 37°: sin47° = cos43°, since",
+          "47° + 43° = 90°. So it is correct.",
+          {
+            "text": "∴ x = 37°",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n odd gives x = −180m − 6, none of which is acute, so the acute answer is x = 37°.",
+          "accept": [
+            "put n equals two m plus one so the bracket is subtracted and x is minus one eighty m minus six which gives minus six and one seventy four neither acute",
+            "the odd family has no acute member so the answer is thirty seven degrees",
+            "check that sin forty seven equals cos forty three",
+            "n odd ante acute value radu, so x thirty seven degrees",
+            "the word acute picks thirty seven out of the families"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus one eighty m minus six",
+            "minus six degrees",
+            "one seventy four",
+            "thirty seven degrees",
+            "acute"
+          ]
+        },
+        "why": "Both families are genuine solutions of the equation. They are not extraneous — the restriction 'x is acute' is what removes all of them but one, so the restriction has to be applied to BOTH families in writing.",
+        "common_mistakes": [
+          "Answering 37° without ever testing the odd family.",
+          "Calling −6° a wrong answer instead of one the restriction removes.",
+          "Dropping the degree sign from the final answer."
+        ]
+      }
+    ]
+  }
+}

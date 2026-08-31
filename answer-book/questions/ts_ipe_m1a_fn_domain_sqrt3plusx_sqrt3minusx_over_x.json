@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_sqrt3plusx_sqrt3minusx_over_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real valued function f(x) = (√(3 + x) + √(3 − x))/x.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Conditions for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.12, chapter 2 FUNCTIONS, Very Short Answer question 19 part (a-iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find this domain — the conditions the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write all three conditions",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the conditions alone. Write every one of them down before solving any.",
+        "memory_tip": "Count the parts: two roots and one denominator, so three conditions.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Three conditions must hold together.",
+          "First root: 3 + x ≥ 0 ⇒ x ≥ −3",
+          "Second root: 3 − x ≥ 0 ⇒ x ≤ 3",
+          "Denominator: x ≠ 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both roots need a non-negative inside, giving x ≥ −3 and x ≤ 3, and that the denominator forces x ≠ 0.",
+          "accept": [
+            "three plus x at least zero three minus x at least zero and x not equal to zero",
+            "both roots non negative and the denominator not zero",
+            "x greater than or equal to minus three and less than or equal to three and x is not zero",
+            "rendu roots non negative and denominator zero kaakoodadu",
+            "two root conditions and one denominator condition"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "three plus x",
+            "three minus x",
+            "denominator",
+            "not equal to zero",
+            "minus three",
+            "three",
+            "non negative"
+          ]
+        },
+        "why": "Each root needs a non-negative inside and the denominator may not be zero. The roots are not inside the denominator, so they keep ≥ 0, and only x itself is excluded.",
+        "common_mistakes": [
+          "Forgetting x ≠ 0 because the denominator is only a single letter.",
+          "Turning 3 − x ≥ 0 into x ≥ 3 instead of x ≤ 3."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Combine and remove x = 0",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "Closed at −3 and 3 where the roots are zero, open at 0 where the fraction fails.",
+        "lines": [
+          "x ≥ −3 and x ≤ 3 together give x ∈ [−3, 3]",
+          "Now remove x = 0 from that interval.",
+          {
+            "text": "∴ Domain = [−3, 0) ∪ (0, 3]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two root conditions give [−3, 3] and removing 0 splits it into [−3, 0) union (0, 3].",
+          "accept": [
+            "minus three to zero union zero to three with zero taken out",
+            "the closed interval minus three to three without the point zero",
+            "closed at minus three and three but open at zero",
+            "minus three nunchi three varaku but zero theeyali",
+            "two pieces meeting at zero which is excluded"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "three plus x",
+            "three minus x",
+            "denominator",
+            "not equal to zero",
+            "minus three",
+            "three",
+            "non negative",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "The two root conditions cut the real line down to [−3, 3], and the denominator then removes a single interior point, which splits that interval into two pieces.",
+        "common_mistakes": [
+          "Writing [−3, 3] and losing the mark for the hole at 0.",
+          "Using square brackets at 0, where the function is undefined."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sin_half_sum_minus_c_pi4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If A + B + C = π, show that sin(A/2) + sin(B/2) − sin(C/2) = −1 + 4 cos((π − A)/4) cos((π − B)/4) sin((π − C)/4).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the angle condition",
+      "marks": 1
+    },
+    {
+      "label": "Pair two terms with a sum-to-product formula",
+      "marks": 3
+    },
+    {
+      "label": "Use the condition to convert",
+      "marks": 2
+    },
+    {
+      "label": "Take the common factor out",
+      "marks": 1
+    },
+    {
+      "label": "Apply the product formula and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.100, chapter 8 TRANSFORMATIONS, Long Answer question 3(iii). The book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run and restarts its numbering at 1; we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement. The leading −1 on the right-hand side was checked separately and is correct as printed: it comes from sin(C/2) = cos((π−C)/2) = 1 − 2sin²((π−C)/4), whose −1 survives the factorisation. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+3+2+1+1 split rewards the two substantial transformations — the sum-to-product pairing and the use of the angle condition — over the set-up and the finish, and it is the same split and the same step ids already carried by the sibling cards of this family (sin2a_sum, cos2a_sum, sin_half_squares, cos_half_squares), deliberately: they are ONE method over different identities, so a student who learns the arc once can attempt any of them. IDENTITY CHECKED NUMERICALLY before and after writing, and every intermediate line of the derivation with it: at A = 50°, B = 60°, C = 70° both sides equal 0.3490418254, and the identity holds again at (40°, 75°, 65°) and (110°, 25°, 45°). Paper position: Maths-1A Section C carries the long answers at 8 marks each under the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27), any 2 of 3; the Transformations slot is always a question of this kind. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this identity — say the four moves in order, and where the angle condition gets used.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Ratios and Transformations · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the angle condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. The right-hand side is built from QUARTER angles, so the condition is not only stated but divided by 4 before it is used.",
+        "memory_tip": "Every argument on the right has a 4 under it, so divide the condition by 4: (A+B)/4 = (π−C)/4.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given",
+          "A + B + C = π  ⇒  A + B = π − C",
+          "⇒  (A+B)/4 = (π−C)/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the condition is divided by 4, giving (A+B)/4 = (π−C)/4, because the right-hand side is in quarter angles.",
+          "accept": [
+            "divide the angle sum by four to get A plus B over four equals pi minus C over four",
+            "quarter the condition because the answer is in quarter angles",
+            "write the condition down and bring it to quarter angles",
+            "condition ni four tho divide chesi, A plus B by four equals pi minus C by four rasi",
+            "state the given condition in quarter angle form"
+          ],
+          "reject": [
+            "write the given",
+            "start the proof"
+          ],
+          "heard_as": [
+            "quarter angle",
+            "A plus B over four",
+            "pi minus C over four",
+            "angle condition"
+          ]
+        },
+        "why": "The condition can only be substituted into an expression of the same size, so it is brought down to quarter angles at the start.",
+        "common_mistakes": [
+          "Halving the condition instead of quartering it.",
+          "Writing the condition but never rearranging it into a usable form."
+        ]
+      },
+      {
+        "id": "s2_pair",
+        "kind": "equation",
+        "label": "Pair two terms",
+        "marks": 3,
+        "mark_note": "Sum to product",
+        "margin_note": "Three of the eight marks. Pair the two PLUS terms; averaging two half angles is where the quarter angles appear. Then sin(C/2) is rewritten in the form that carries the −1 the answer begins with.",
+        "memory_tip": "Choose sin(C/2) = 1 − 2sin²((π−C)/4). The 1 in it becomes the −1 in the answer.",
+        "lines": [
+          "L.H.S = sin(A/2) + sin(B/2) − sin(C/2)",
+          "= 2 sin((A+B)/4) cos((A−B)/4) − sin(C/2)",
+          "  [∵ sinC + sinD = 2 sin((C+D)/2) cos((C−D)/2)]",
+          "Also C/2 = π/2 − (π−C)/2",
+          "⇒  sin(C/2) = cos((π−C)/2)",
+          "  [∵ sin(π/2 − θ) = cosθ]",
+          "⇒  sin(C/2) = 1 − 2 sin²((π−C)/4)",
+          "  [∵ cos2θ = 1 − 2sin²θ]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(A/2) and sin(B/2) are paired with the sin C + sin D formula, and sin(C/2) is written as 1 − 2sin²((π−C)/4).",
+          "accept": [
+            "pair the two plus terms with the sine sum formula, which gives quarter angles",
+            "apply sum to product on sin A over two and sin B over two",
+            "write sin C over two as one minus two sin squared pi minus C over four",
+            "modati rendu plus terms ni pair cheyyali, sin C by two ni one minus two sin square ga rasi",
+            "expand sin C over two so the one appears"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "sin C plus sin D",
+            "quarter angle",
+            "one minus two sin squared",
+            "sum to product"
+          ]
+        },
+        "why": "The answer begins with −1, and that −1 has to be produced. Writing sin(C/2) as 1 − 2sin²((π−C)/4) and subtracting it is where it comes from.",
+        "common_mistakes": [
+          "Using cos 2θ = 2cos²θ − 1, which gives the wrong sign on the constant.",
+          "Applying the sine SUM formula to a pair where one term carries a minus sign."
+        ]
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Use the condition",
+        "marks": 2,
+        "mark_note": "Substitution",
+        "margin_note": "Two more marks. The quartered condition replaces (A+B)/4 by (π−C)/4, and the expansion of sin(C/2) is substituted; subtracting it leaves the −1 outside.",
+        "memory_tip": "Subtracting 1 − 2sin²((π−C)/4) gives −1 plus a positive square term. The −1 stays outside from here on.",
+        "lines": [
+          "= 2 sin((π−C)/4) cos((A−B)/4) − sin(C/2)",
+          "  [∵ (A+B)/4 = (π−C)/4]",
+          "= 2 sin((π−C)/4) cos((A−B)/4)",
+          "    − 1 + 2 sin²((π−C)/4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (A+B)/4 is replaced by (π−C)/4 and the expansion of sin(C/2) is subtracted, which puts the −1 outside.",
+          "accept": [
+            "replace A plus B over four by pi minus C over four",
+            "subtract the expansion so minus one appears and the square term turns positive",
+            "substitute the condition and the expansion of sin C over two",
+            "A plus B by four ni pi minus C by four ga marchali, minus one bayata vasthundi",
+            "use the quartered condition to convert the first term"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "pi minus C over four",
+            "minus one",
+            "quarter angle",
+            "substitute"
+          ]
+        },
+        "why": "The condition converts an expression in A and B into one in C, and the subtraction turns the 1 into the −1 the answer needs.",
+        "common_mistakes": [
+          "Substituting (π−C)/2 in place of (π−C)/4.",
+          "Subtracting only the 1 and leaving the sign of 2sin²((π−C)/4) unchanged."
+        ]
+      },
+      {
+        "id": "s4_factor",
+        "kind": "equation",
+        "label": "Take the common factor out",
+        "marks": 1,
+        "mark_note": "Factorise",
+        "margin_note": "Sixth mark. The −1 is set aside, 2 sin((π−C)/4) comes out, and the sine inside the bracket is turned into a cosine so that both bracket terms are cosines.",
+        "memory_tip": "Inside the bracket, sin((π−C)/4) = cos((π+C)/4), and the condition rewrites that as cos((2π−A−B)/4).",
+        "lines": [
+          "= −1 + 2 sin((π−C)/4)",
+          "    × [cos((A−B)/4) + sin((π−C)/4)]",
+          "Now sin((π−C)/4) = cos((π+C)/4)",
+          "  [∵ sinθ = cos(π/2 − θ)]",
+          "and (π+C)/4 = (2π−A−B)/4",
+          "  [∵ C = π − A − B]",
+          "= −1 + 2 sin((π−C)/4)",
+          "    × [cos((A−B)/4) + cos((2π−A−B)/4)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That −1 is kept outside, 2 sin((π−C)/4) is taken out, and sin((π−C)/4) inside the bracket is rewritten as cos((2π−A−B)/4).",
+          "accept": [
+            "keep the minus one outside and take two sin pi minus C over four common",
+            "rewrite the sine inside the bracket as a cosine using sine theta equals cos of pi by two minus theta",
+            "the bracket becomes cos A minus B over four plus cos two pi minus A minus B over four",
+            "minus one bayata unchi, two sin pi minus C by four common teeyyali",
+            "convert the sine so both bracket terms are cosines"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus one",
+            "common factor",
+            "sine to cosine",
+            "sum of cosines"
+          ]
+        },
+        "why": "A formula only applies when both bracket terms are the same kind of function, and the bracket must be a SUM of cosines to give the product of cosines the answer needs.",
+        "common_mistakes": [
+          "Writing sin θ = cos(π/2 + θ), which puts a minus sign in.",
+          "Taking the −1 inside the bracket."
+        ]
+      },
+      {
+        "id": "s5_final",
+        "kind": "boxed_final",
+        "label": "Apply the product formula",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. The cosine SUM formula turns the bracket into a product of two quarter-angle cosines. Half the sum gives (π−B)/4 and half the difference gives −(π−A)/4; cosine is an even function, so the minus sign disappears.",
+        "memory_tip": "Half the sum is (π−B)/4 and half the difference is −(π−A)/4. Cosine is even, so the minus sign drops.",
+        "lines": [
+          "= −1 + 2 sin((π−C)/4)",
+          "    × 2 cos((π−A)/4) cos((π−B)/4)",
+          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          "  [(C+D)/2 = (π−B)/4, (C−D)/2 = −(π−A)/4]",
+          "= −1 + 4 cos((π−A)/4) cos((π−B)/4) sin((π−C)/4)",
+          {
+            "text": "∴ L.H.S = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cosine sum formula turns the bracket into 2 cos((π−A)/4) cos((π−B)/4), giving −1 + 4 cos((π−A)/4) cos((π−B)/4) sin((π−C)/4).",
+          "accept": [
+            "apply the cosine sum formula to get two cos pi minus A over four times cos pi minus B over four",
+            "half the sum is pi minus B over four and half the difference is pi minus A over four",
+            "the bracket becomes a product of two quarter angle cosines and the minus one stays",
+            "cos sum formula tho two cos pi minus A by four cos pi minus B by four vasthundi",
+            "the final answer is minus one plus four cos pi minus A by four cos pi minus B by four sin pi minus C by four"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos C plus cos D",
+            "pi minus A over four",
+            "pi minus B over four",
+            "minus one"
+          ]
+        },
+        "why": "A sum of two cosines is a product of two cosines. Averaging (A−B)/4 with (2π−A−B)/4 gives (π−B)/4, and their half difference gives (π−A)/4 once the even property of cosine is used.",
+        "common_mistakes": [
+          "Using the cosine difference formula, which would give sines.",
+          "Losing the leading −1 at the very end."
+        ]
+      }
+    ]
+  }
+}

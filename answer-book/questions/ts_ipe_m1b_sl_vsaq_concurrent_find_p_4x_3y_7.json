@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_concurrent_find_p_4x_3y_7",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the value of p if the lines 4x−3y=7, 2x+py+2=0 and 6x+5y−1=0 are concurrent.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the point of intersection",
+      "marks": 1
+    },
+    {
+      "label": "Substitute into the third line",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 32(ii), book p.144 (the printed folio is hidden or clipped on this scan; the page is taken from the strictly consecutive neighbours). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for solving the pair of lines that are free of p and one for using concurrency on the third. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say which two lines you solve first and why, and what concurrency then gives you.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_point_of_intersection",
+        "kind": "equation",
+        "label": "Find the point of intersection",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Only two of the three lines are free of p, so those two are the pair that can actually be solved.",
+        "memory_tip": "Solve the two lines that carry no unknown first. Concurrency is then used on the third.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The two lines free of p are",
+          "4x − 3y − 7 = 0  ……(1)",
+          "6x + 5y − 1 = 0  ……(2)",
+          "(1) × 5:  20x − 15y − 35 = 0",
+          "(2) × 3:  18x + 15y − 3 = 0",
+          "Adding:  38x − 38 = 0  ⇒  x = 1",
+          "From (1):  4 − 3y = 7  ⇒  y = −1",
+          "∴ Point of intersection is (1, −1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two lines without p are solved to give the point (1, −1).",
+          "accept": [
+            "solve the two lines that do not contain p",
+            "eliminate y and get x equals one",
+            "the point of intersection is one comma minus one",
+            "p leni rendu lines solve cheyyali",
+            "first find where the two known lines meet"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four x minus three y",
+            "six x plus five y",
+            "one comma minus one",
+            "point of intersection"
+          ]
+        },
+        "why": "A pair containing p would leave two unknowns and no way forward, so the p-free pair is the only pair worth solving; their meeting point is the single point the third line is forced through.",
+        "common_mistakes": [
+          "Writing 4x − 3y = 7 as 4x − 3y + 7 = 0 and carrying a sign error.",
+          "Trying to solve a pair that still contains p."
+        ]
+      },
+      {
+        "id": "s2_substitute_third",
+        "kind": "boxed_final",
+        "label": "Substitute into the third line",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Concurrency puts that point on the remaining line as well, and the equation it produces has only p in it.",
+        "memory_tip": "Put the point into the line that carries the unknown, and solve the one equation it gives.",
+        "lines": [
+          "The lines are concurrent, so (1, −1) also",
+          "lies on 2x + py + 2 = 0",
+          "⇒ 2(1) + p(−1) + 2 = 0",
+          "⇒ 4 − p = 0",
+          {
+            "text": "∴ p = 4",
+            "style": "boxed"
+          },
+          "Check: with p = 4 the line is 2x + 4y + 2 = 0,",
+          "and at (1, −1) it gives 2 − 4 + 2 = 0.",
+          "The point also satisfies 6(1) + 5(−1) − 1 = 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting (1, −1) into 2x + py + 2 = 0 gives p = 4.",
+          "accept": [
+            "put the point into the third line and solve for p",
+            "concurrent so the point lies on all three lines",
+            "two minus p plus two is zero so p is four",
+            "third line lo substitute chesthe p vasthundi",
+            "p equals four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "third line",
+            "p equals four",
+            "concurrent"
+          ]
+        },
+        "why": "Concurrency is the only extra information the question gives, and this substitution is the only place it can be used.",
+        "common_mistakes": [
+          "Reading p(−1) as +p and getting p = −4.",
+          "Substituting into one of the first two lines, which gives no equation in p."
+        ]
+      }
+    ]
+  }
+}

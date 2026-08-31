@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_centroid_ga_gb_gc_zero",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If G is the centroid of triangle ABC, show that GA + GB + GC = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the centroid formula",
+      "marks": 1
+    },
+    {
+      "label": "Add the three vectors",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.62, chapter 6 ADDITION OF VECTORS, Very Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question: the first mark is for the centroid position vector, the second for adding the three vectors and cancelling. This book prints almost no exam-appearance years, so appearances[] is empty — Addition of Vectors has long been examined, we simply have no sourced years for this question. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The proof was checked a second way on a worked triangle: with A(0, 0), B(6, 0) and C(0, 3) the centroid is (2, 1), and GA + GB + GC = (−2, −1) + (4, −1) + (−2, 2) = (0, 0)."
+  },
+  "recall_prompt": "Say how you would prove this — say what you write for G and what each of GA, GB and GC becomes.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Write the centroid formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Any origin O may be chosen. The centroid divides each median in the ratio 2 : 1, which places it at the average of the three position vectors.",
+        "memory_tip": "The centroid sits at the average of the three vertices: g = (a + b + c)/3.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let O be the origin. Let a, b, c and g be",
+          "the position vectors of A, B, C and G.",
+          "G is the centroid of triangle ABC, so",
+          "g = (a + b + c)/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the position vector of the centroid is g = (a + b + c)/3, measured from any origin O.",
+          "accept": [
+            "the centroid has position vector a plus b plus c over three",
+            "take an origin and write g as the average of the three vertices",
+            "g equals a plus b plus c divided by three",
+            "centroid position vector a plus b plus c by three ani rasta",
+            "start from the centroid formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a plus b plus c by three",
+            "centroid",
+            "position vector",
+            "origin"
+          ]
+        },
+        "why": "The statement is true for every choice of origin, so choosing one costs nothing. The centroid formula is the only property of G that this proof uses.",
+        "common_mistakes": [
+          "Writing g = a + b + c without dividing by 3.",
+          "Assuming the triangle must be equilateral for the result to hold.",
+          "Placing the origin at G, which assumes what is to be proved."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Add the three vectors",
+        "marks": 1,
+        "mark_note": "Proof",
+        "margin_note": "Second mark. Each of GA, GB and GC is head minus tail from G, so three copies of g are subtracted. Those three copies are exactly a + b + c, so everything cancels.",
+        "memory_tip": "Three vectors, so three copies of g: 3 × (a + b + c)/3 is exactly a + b + c, and it cancels the front bracket.",
+        "lines": [
+          "GA = a − g,  GB = b − g,  GC = c − g",
+          "⇒ GA + GB + GC = (a + b + c) − 3g",
+          "= (a + b + c) − 3 · (a + b + c)/3",
+          "= (a + b + c) − (a + b + c)",
+          {
+            "text": "∴ GA + GB + GC = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That GA + GB + GC = (a + b + c) − 3g, and substituting g = (a + b + c)/3 makes it 0.",
+          "accept": [
+            "each is head minus g so the sum is a plus b plus c minus three g",
+            "three g is a plus b plus c so the whole thing is zero",
+            "substitute the centroid formula and everything cancels",
+            "three g ante a plus b plus c, so sum zero avuthundi",
+            "the sum comes to the zero vector"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a plus b plus c minus three g",
+            "three g",
+            "zero vector",
+            "cancels"
+          ]
+        },
+        "why": "The 3 in the denominator of g is undone by the three subtracted copies of g. That is the whole content of the proof, and it is why the same sum is not zero for any point other than the centroid.",
+        "common_mistakes": [
+          "Writing GA as g − a, which reverses every term.",
+          "Subtracting one g instead of three.",
+          "Answering the number 0 rather than the zero vector."
+        ]
+      }
+    ]
+  }
+}

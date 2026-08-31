@@ -1,0 +1,268 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mi_divisible_xn_minus_yn",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Mathematical Induction"
+  },
+  "chapter": "Mathematical Induction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If x and y are natural numbers with x ≠ y, show by mathematical induction that xⁿ − yⁿ is divisible by x − y, ∀ n ∈ N.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Step 1 — S(1) is true",
+      "marks": 1
+    },
+    {
+      "label": "Step 2 — assume S(k)",
+      "marks": 1
+    },
+    {
+      "label": "Step 3 — S(k+1) follows",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion by P.M.I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.29, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 8(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. The condition x ≠ y is stated in the answer itself, in the opening step, because it is what makes x − y a non-zero divisor. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this by induction — what is held fixed, and the add-and-subtract move that makes the third step work.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mathematical Induction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Write the statement",
+        "marks": 0,
+        "margin_note": "Unmarked setup at 4 marks. Two things go here: x and y are fixed with x ≠ y, and divisibility is written as an equation.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x, y ∈ N and x ≠ y, so x − y ≠ 0.",
+          "The induction is on n only.",
+          "Let S(n): xⁿ − yⁿ = (x − y)q,",
+          "        where q ∈ Z"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x and y are fixed natural numbers with x ≠ y so x − y is not zero, and that divisibility is written as x to the n minus y to the n equals (x − y) times an integer q.",
+          "accept": [
+            "x and y are fixed and not equal so x minus y is non zero and we write the expression as x minus y times q",
+            "divisible by x minus y means it equals x minus y times some integer",
+            "hold x and y fixed and induct on n only",
+            "x minus y into q ga rastam q integer"
+          ],
+          "reject": [
+            "let s of n be the statement",
+            "I write s of n",
+            "it is divisible by x minus y"
+          ],
+          "heard_as": [
+            "x minus y",
+            "integer",
+            "divisible",
+            "x to the n",
+            "not equal"
+          ]
+        },
+        "why": "Two conditions do real work here. x ≠ y keeps x − y from being zero, and writing the claim as = (x − y)q is what lets Step 3 substitute the assumption.",
+        "common_mistakes": [
+          "Leaving the statement in words, so Step 3 has nothing to use.",
+          "Forgetting to say q is an integer, which is the whole content of divisibility.",
+          "Not saying why x ≠ y matters, so x − y could be zero."
+        ],
+        "memory_tip": "Two lines before any proof: x ≠ y makes x − y non-zero, and divisibility becomes = (x − y)q."
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Check S(1)",
+        "marks": 1,
+        "mark_note": "Step 1",
+        "margin_note": "One mark. At n = 1 the expression IS x − y, so write it as (x − y) times 1 rather than just saying it is obvious.",
+        "lines": [
+          "Step 1 — check S(1)",
+          "x¹ − y¹ = x − y = (x − y)(1),",
+          "and 1 is an integer,",
+          "so x − y is divisible by x − y.",
+          "So S(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at n = 1 the expression is x − y, which is (x − y) times 1, so it is divisible by x − y.",
+          "accept": [
+            "at n equals one it is x minus y which is x minus y times one",
+            "the first case is x minus y itself so it is divisible with q equal to one",
+            "put n equals one and you get x minus y",
+            "n equals one ki x minus y vasthundi q one"
+          ],
+          "reject": [
+            "s of one is true",
+            "check the base case",
+            "it works for one"
+          ],
+          "heard_as": [
+            "x minus y",
+            "times one",
+            "s of one",
+            "integer"
+          ]
+        },
+        "why": "The base case looks trivial, but the examiner wants the value of q named. Writing x − y = (x − y)(1) shows the integer is 1.",
+        "common_mistakes": [
+          "Writing 'obvious' instead of showing x − y = (x − y)(1).",
+          "Checking n = 2 first and never doing n = 1."
+        ],
+        "memory_tip": "At n = 1 the expression is x − y itself, so q = 1. Say the value of q."
+      },
+      {
+        "id": "s3_assume",
+        "kind": "equation",
+        "label": "Assume S(k) is true",
+        "marks": 1,
+        "mark_note": "Step 2",
+        "margin_note": "One mark. Assume it for ONE value k, with x and y unchanged, and number the line (1).",
+        "lines": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): xᵏ − yᵏ = (x − y)q   …(1)",
+          "        where q ∈ Z"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(k) is assumed true for some k in N — x to the k minus y to the k equals (x − y)q with q an integer — and the line is numbered (1).",
+          "accept": [
+            "assume x to the k minus y to the k is x minus y times q",
+            "suppose s of k holds with the same x and y and call it equation one",
+            "take it as true for one value k and number the line",
+            "k ki true ani assume chesi equation one ga rastam"
+          ],
+          "reject": [
+            "assume it is true",
+            "let it be true for k",
+            "then I assume s of k"
+          ],
+          "heard_as": [
+            "assume",
+            "s of k",
+            "x to the k",
+            "equation one",
+            "induction hypothesis"
+          ]
+        },
+        "why": "Only n changes to k. Step 3 will need this exact line to replace xᵏ − yᵏ, so it has to be written and numbered.",
+        "common_mistakes": [
+          "Assuming the statement for ALL k, which assumes what is being proved.",
+          "Not numbering the line, so Step 3 cannot cite it."
+        ],
+        "memory_tip": "Replace n by k and keep x, y and q as they are. Number the line (1)."
+      },
+      {
+        "id": "s4_inductive",
+        "kind": "equation",
+        "label": "Show S(k+1) follows",
+        "marks": 1,
+        "mark_note": "Step 3",
+        "margin_note": "One mark, and the longest step on the page. Add and subtract x·yᵏ — that single move splits the expression into a piece with xᵏ − yᵏ and a piece with x − y.",
+        "lines": [
+          "Step 3 — show S(k+1) is true",
+          "xᵏ⁺¹ − yᵏ⁺¹ = x·xᵏ − y·yᵏ",
+          "= x·xᵏ − x·yᵏ + x·yᵏ − y·yᵏ",
+          "= x(xᵏ − yᵏ) + yᵏ(x − y)",
+          "= x(x − y)q + yᵏ(x − y)   [from (1)]",
+          "= (x − y)(xq + yᵏ)",
+          "which is divisible by x − y, since",
+          "xq + yᵏ is an integer.",
+          "So S(k+1) is true whenever S(k) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x·yᵏ is added and subtracted, giving x(xᵏ − yᵏ) + yᵏ(x − y); the assumption replaces the first bracket, and (x − y) comes out as a common factor leaving the integer xq + yᵏ.",
+          "accept": [
+            "add and subtract x times y to the k so it splits into x into x to the k minus y to the k plus y to the k into x minus y",
+            "substitute the assumption in the first bracket and take x minus y out as a common factor",
+            "what is left inside is x q plus y to the k which is an integer",
+            "x into y power k add and subtract chesi x minus y common teestam"
+          ],
+          "reject": [
+            "I show s of k plus one",
+            "substitute and simplify",
+            "it is divisible"
+          ],
+          "heard_as": [
+            "add and subtract",
+            "x times y to the k",
+            "common factor",
+            "x q plus y to the k",
+            "integer"
+          ]
+        },
+        "why": "Adding and subtracting x·yᵏ changes nothing but makes two groups appear: one containing xᵏ − yᵏ, which the assumption covers, and one containing x − y outright. Both then share the factor x − y.",
+        "common_mistakes": [
+          "Writing xᵏ⁺¹ as xᵏ + x instead of x × xᵏ.",
+          "Substituting (1) straight into x·xᵏ − y·yᵏ, where no xᵏ − yᵏ has appeared yet.",
+          "Stopping at (x − y)(…) without saying the bracket is an integer, which is what divisibility requires."
+        ],
+        "memory_tip": "Add and subtract x·yᵏ. One group becomes x(xᵏ − yᵏ), the other becomes yᵏ(x − y)."
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by P.M.I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark is for naming the principle. One sentence, one full mark.",
+        "lines": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(1) is true and S(k) implies S(k+1), so by the principle of mathematical induction xⁿ − yⁿ is divisible by x − y for every natural number n.",
+          "accept": [
+            "since the first case is true and each case gives the next by p m i it is true for all n",
+            "hence by the principle of mathematical induction x to the n minus y to the n is divisible by x minus y for every natural number",
+            "base case plus inductive step gives it for all n in n",
+            "p m i prakaram anni n ki true"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is divisible",
+            "that completes it"
+          ],
+          "heard_as": [
+            "p m i",
+            "principle of mathematical induction",
+            "for all n",
+            "hence"
+          ]
+        },
+        "why": "The two proved statements are about n = 1 and about a step. Only the principle turns them into every n, for the fixed x and y.",
+        "common_mistakes": [
+          "Writing 'hence proved' without naming the principle."
+        ],
+        "memory_tip": "Name the principle in one sentence — it is worth a full mark."
+      }
+    ]
+  }
+}

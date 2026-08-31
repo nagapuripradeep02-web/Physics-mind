@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_a_minus_b_3pi4_tan_product",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A − B = 3π/4, show that (1 − tan A)(1 + tan B) = 2.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write tan(A − B) = −1",
+      "marks": 1
+    },
+    {
+      "label": "Expand the product and substitute",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 31(i), book p.88. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to turning the given difference into tan(A − B) = −1 and one to the expansion, where the group tan A − tan B has to be spotted before the substitution can be made. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show this — name the value you get from the given condition, and where you use it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tan_of_difference",
+        "kind": "equation",
+        "label": "Write tan(A − B) = −1",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. tan(3π/4) = −1. The expression asks for tan A and tan B, so both must exist: neither A nor B is an odd multiple of π/2.",
+        "memory_tip": "tan(3π/4) = −1. That single number is the whole point of the given condition.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "For tan A and tan B to exist, neither A",
+          "nor B is an odd multiple of π/2.",
+          "Given A − B = 3π/4",
+          "⇒ tan(A − B) = tan(3π/4) = −1",
+          "∴ (tan A − tan B)/(1 + tan A tan B) = −1",
+          "⇒ tan A − tan B = −1 − tan A tan B"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan(A − B) = tan(3π/4) = −1 is written and expanded, giving tan A − tan B = −1 − tan A tan B.",
+          "accept": [
+            "take tan on both sides and tan of three pi by four is minus one",
+            "expand tan A minus B and cross multiply",
+            "tan A minus tan B equals minus one minus tan A tan B",
+            "three pi by four ki tan minus one, adi expand cheyyali",
+            "use the tan A minus B formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "expand the bracket"
+          ],
+          "heard_as": [
+            "three pi by four",
+            "minus one",
+            "tan A minus B",
+            "cross multiply"
+          ]
+        },
+        "why": "3π/4 is the only angle the question gives, and its tangent is −1. Turning the condition into that one number, and then clearing the denominator, is the whole first half of the proof.",
+        "common_mistakes": [
+          "Writing tan(3π/4) = 1.",
+          "Using the tan(A + B) formula instead of tan(A − B)."
+        ]
+      },
+      {
+        "id": "s2_expand_and_substitute",
+        "kind": "boxed_final",
+        "label": "Expand the product and substitute",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Expand the bracket first — the group tan A − tan B appears, and step 1 replaces it. The two tan A tan B terms then cancel.",
+        "memory_tip": "Expand the bracket first. The group tan A − tan B shows up, and the condition replaces it.",
+        "lines": [
+          "(1 − tan A)(1 + tan B)",
+          "= 1 + tan B − tan A − tan A tan B",
+          "= 1 − (tan A − tan B) − tan A tan B",
+          "= 1 − (−1 − tan A tan B) − tan A tan B",
+          "= 1 + 1 + tan A tan B − tan A tan B",
+          {
+            "text": "= 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bracket is expanded, tan A − tan B is replaced using step 1, and the tan A tan B terms cancel to leave 2.",
+          "accept": [
+            "expand the bracket and the group tan A minus tan B appears",
+            "substitute minus one minus tan A tan B for tan A minus tan B",
+            "the tan A tan B terms cancel and two is left",
+            "bracket expand cheste tan A minus tan B group vasthundi",
+            "the answer is two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "tan of three pi by four is minus one"
+          ],
+          "heard_as": [
+            "expand the bracket",
+            "tan A minus tan B",
+            "cancel",
+            "equals two"
+          ]
+        },
+        "why": "Expanding first is what makes the substitution possible: the expansion contains the group tan A − tan B, which is exactly what the condition supplies. Substituting it makes the two tan A tan B terms cancel and leaves a pure number.",
+        "common_mistakes": [
+          "Expanding as 1 + tan A − tan B − tan A tan B.",
+          "Replacing tan A − tan B by −1 alone and dropping the tan A tan B term."
+        ]
+      }
+    ]
+  }
+}

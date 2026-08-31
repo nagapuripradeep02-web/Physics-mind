@@ -1,0 +1,313 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sin_sq_sum_half_pi",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If A + B + C = π/2, show that sin²A + sin²B + sin²C = 1 − 2 sin A sin B sin C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the π/2 condition",
+      "marks": 1
+    },
+    {
+      "label": "Write the two squares as double angles",
+      "marks": 2
+    },
+    {
+      "label": "Pair the two cosines",
+      "marks": 1
+    },
+    {
+      "label": "Use the condition to convert",
+      "marks": 2
+    },
+    {
+      "label": "Take sin C out and convert inside",
+      "marks": 1
+    },
+    {
+      "label": "Apply the difference formula and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 5(i), book p.101. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives its two largest blocks to the two moves a student most often cannot produce unaided — lowering the squares with sin²θ = (1 − cos2θ)/2, and substituting cos(A+B) = sin C from the π/2 condition — and one mark each to the mechanical pairing, the factoring and the finish. THE CONDITION IS π/2, NOT π: A + B = π/2 − C, so cos(A+B) = sin C. A student who reaches for A + B = 180° − C out of habit gets cos(A+B) = −cos C and the proof collapses. NUMERIC CHECK (before authoring and again after): at A = 30°, B = 25°, C = 35°, which sums to 90°, L.H.S = 0.7575961235 and R.H.S = 0.7575961235. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this identity — name each move in order, and say which angle condition you are using.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Ratios and Transformations · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the π/2 condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. The condition here is π/2, not π. Write it in the form A + B = π/2 − C, which is the form step 4 needs.",
+        "memory_tip": "The sum is π/2 here, not π. So A + B = π/2 − C, and cos(A+B) becomes sin C, not −cos C.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given A + B + C = π/2",
+          "⇒ A + B = π/2 − C",
+          "The sum is π/2 here, not π."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the condition is A + B + C = π/2 and it is rearranged to A + B = π/2 − C.",
+          "accept": [
+            "the sum is pi by two so A plus B equals pi by two minus C",
+            "write the condition first and rearrange it",
+            "state the angle condition, and note it is pi by two not pi",
+            "modata condition rasi, A plus B ni pi by two minus C ga rayali",
+            "write down the given sum in the form the proof needs"
+          ],
+          "reject": [
+            "write the given",
+            "start the proof"
+          ],
+          "heard_as": [
+            "pi by two",
+            "A plus B plus C",
+            "angle condition",
+            "rearrange"
+          ]
+        },
+        "why": "The statement is false without the condition, and it is false with the wrong one. Writing A + B = π/2 − C now fixes the sign of every substitution that follows.",
+        "common_mistakes": [
+          "Using A + B = π − C, which is the triangle condition and gives the wrong sign.",
+          "Starting the transformation before writing the condition."
+        ]
+      },
+      {
+        "id": "s2_lower_squares",
+        "kind": "equation",
+        "label": "Write the squares as double angles",
+        "marks": 2,
+        "mark_note": "Double angle",
+        "margin_note": "Two of the eight marks. Squares cannot be paired by any sum-to-product formula, so two of them are lowered to plain cosines first. That is also where the 1 on the right comes from.",
+        "memory_tip": "Lower only TWO squares with sin²θ = (1 − cos2θ)/2. The two halves add to the 1 on the right.",
+        "lines": [
+          "L.H.S = sin²A + sin²B + sin²C",
+          "sin²θ = (1 − cos2θ)/2",
+          "= (1 − cos2A)/2 + (1 − cos2B)/2 + sin²C",
+          "= 1 − (cos2A + cos2B)/2 + sin²C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin²A and sin²B are written as (1 − cos2A)/2 and (1 − cos2B)/2, which produces the standalone 1.",
+          "accept": [
+            "write sin squared as one minus cos two theta over two for the first two terms",
+            "lower the two squares to double angles so the one appears",
+            "the two halves add up to the one on the right hand side",
+            "modati rendu squares ni one minus cos two theta by two ga rayali",
+            "convert only two of the squares, not all three"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "one minus cos two theta",
+            "over two",
+            "sin squared",
+            "double angle"
+          ]
+        },
+        "why": "No sum-to-product formula acts on squares. Lowering two of them gives plain cosines that can be paired, and the leftover halves supply the 1 the right-hand side opens with.",
+        "common_mistakes": [
+          "Lowering all three squares, which leaves no term to absorb the common factor.",
+          "Writing sin²θ = (1 + cos2θ)/2, which is the cosine version."
+        ]
+      },
+      {
+        "id": "s3_pair",
+        "kind": "equation",
+        "label": "Pair the two cosines",
+        "marks": 1,
+        "mark_note": "Sum to product",
+        "margin_note": "Fourth mark. cos C + cos D = 2 cos((C+D)/2) cos((C−D)/2). The 2s inside cancel the halves, so cos 2A + cos 2B becomes 2 cos(A+B) cos(A−B) and the leading 1/2 disappears.",
+        "memory_tip": "The 2 from the formula cancels the 1/2 outside, so the fraction disappears in one move.",
+        "lines": [
+          "cos2A + cos2B = 2 cos(A+B) cos(A−B)",
+          "  [∵ cosC + cosD = 2 cos((C+D)/2) cos((C−D)/2)]",
+          "= 1 − cos(A+B) cos(A−B) + sin²C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 2A + cos 2B = 2 cos(A+B) cos(A−B), and the 2 cancels the half outside.",
+          "accept": [
+            "apply cos C plus cos D to get two cos of A plus B into cos of A minus B",
+            "the two from the formula cancels the half outside",
+            "pair the two cosines with the sum to product formula",
+            "cos two A plus cos two B ni sum to product cheyyali",
+            "convert the pair of cosines into a product"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos A plus B",
+            "cos A minus B",
+            "sum to product",
+            "two cos"
+          ]
+        },
+        "why": "The 2s inside cos 2A and cos 2B are halved by the formula, so the messy double angles become plain A + B and A − B, and A + B is exactly what the condition can replace.",
+        "common_mistakes": [
+          "Forgetting to halve the sum and the difference.",
+          "Keeping the 1/2 after the formula has already supplied a 2."
+        ]
+      },
+      {
+        "id": "s4_substitute",
+        "kind": "equation",
+        "label": "Use the condition",
+        "marks": 2,
+        "mark_note": "Substitution",
+        "margin_note": "Two marks. This is the step the π/2 condition exists for. A cosine of (A+B) becomes a SINE of C, which is what the right-hand side is built from.",
+        "memory_tip": "cos(π/2 − C) = sin C. Under a π/2 shift a cosine becomes a sine.",
+        "lines": [
+          "A + B = π/2 − C",
+          "⇒ cos(A+B) = cos(π/2 − C) = sinC",
+          "L.H.S = 1 − sinC cos(A−B) + sin²C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A + B = π/2 − C gives cos(A+B) = sin C.",
+          "accept": [
+            "A plus B is pi by two minus C so its cosine is sin C",
+            "cos of pi by two minus C is sin C",
+            "use the condition to turn the cosine into a sine",
+            "A plus B ante pi by two minus C, daani cos sin C",
+            "apply the angle condition to the cos A plus B term"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "pi by two minus C",
+            "sin C",
+            "condition",
+            "cos A plus B"
+          ]
+        },
+        "why": "The right-hand side is a product of three sines, so every cosine of a compound angle has to become a sine. Only the π/2 condition does that.",
+        "common_mistakes": [
+          "Writing cos(π/2 − C) = cos C.",
+          "Using cos(π − C) = −cos C, which belongs to the triangle version of this question."
+        ]
+      },
+      {
+        "id": "s5_factor",
+        "kind": "equation",
+        "label": "Take sin C out",
+        "marks": 1,
+        "mark_note": "Factorise",
+        "margin_note": "Sixth mark. sin C comes out of the last two terms, and the sin C INSIDE the bracket is converted back to cos(A+B) so both bracket terms are cosines. Only the inside one converts.",
+        "memory_tip": "Convert only the sin C inside the bracket, never the one outside.",
+        "lines": [
+          "= 1 − sinC [cos(A−B) − sinC]",
+          "Inside the bracket, sinC = cos(A+B)",
+          "= 1 − sinC [cos(A−B) − cos(A+B)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin C is taken out as a common factor and the sin C inside the bracket is rewritten as cos(A+B).",
+          "accept": [
+            "take sin C common and write the sin C inside the bracket as cos A plus B",
+            "factor out sin C so the bracket is a difference of two cosines",
+            "only the inside sin C converts, the outside one stays",
+            "sin C common teesi, bracket lo unna sin C ni cos A plus B ga marchali",
+            "the bracket becomes cos A minus B minus cos A plus B"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "sin C",
+            "common factor",
+            "cos A plus B",
+            "bracket"
+          ]
+        },
+        "why": "A product formula needs two terms of the same kind. Converting the inside sin C back to a cosine makes the bracket a difference of two cosines.",
+        "common_mistakes": [
+          "Converting both sin C terms, which cancels the factor that was just taken out.",
+          "Leaving a minus sign outside when the bracket already carries it."
+        ]
+      },
+      {
+        "id": "s6_final",
+        "kind": "boxed_final",
+        "label": "Apply the difference formula",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. cos(A−B) − cos(A+B) = 2 sin A sin B closes the proof. Write \"= R.H.S\" so the examiner can see it landed.",
+        "memory_tip": "cos(A−B) − cos(A+B) = 2 sin A sin B — difference of cosines gives the two sines the answer needs.",
+        "lines": [
+          "cos(A−B) − cos(A+B) = 2 sinA sinB",
+          "L.H.S = 1 − sinC · 2 sinA sinB",
+          {
+            "text": "= 1 − 2 sinA sinB sinC = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(A−B) − cos(A+B) = 2 sin A sin B, giving 1 − 2 sin A sin B sin C.",
+          "accept": [
+            "cos A minus B minus cos A plus B is two sin A sin B so the answer is one minus two sin A sin B sin C",
+            "the bracket becomes two sin A sin B and closes the proof",
+            "apply the cosine difference formula to finish",
+            "bracket lo two sin A sin B vasthundi, adi answer",
+            "the final answer is one minus two sin A sin B sin C"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two sin A sin B",
+            "one minus two",
+            "difference of cosines",
+            "sin A sin B sin C"
+          ]
+        },
+        "why": "A difference of two cosines is a product of two sines. That single formula supplies both remaining factors, and the leading 1 is already in place from step 2.",
+        "common_mistakes": [
+          "Using cos(A+B) − cos(A−B), which reverses the sign.",
+          "Dropping the leading 1 while writing the final line."
+        ]
+      }
+    ]
+  }
+}

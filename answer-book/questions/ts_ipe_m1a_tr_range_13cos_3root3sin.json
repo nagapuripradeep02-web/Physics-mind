@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_range_13cos_3root3sin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the range of 13 cos x + 3√3 sin x − 4.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Identify a, b, c and find √(a² + b²)",
+      "marks": 1
+    },
+    {
+      "label": "Write the range as an interval",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.83, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the squaring and the root √196 = 14 and one to writing the shifted interval. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Identify a, b, c and find √(a² + b²)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. (3√3)² is 27, not 9. With 169 it makes 196, and √196 is exactly 14 — a whole number, which is the sign that the squaring was done correctly.",
+        "memory_tip": "(3√3)² = 9 × 3 = 27, and 169 + 27 = 196 = 14². A whole-number root is the check.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given f(x) = 13 cos x + 3√3 sin x − 4",
+          "Compare with a cos x + b sin x + c:",
+          "a = 13, b = 3√3, c = −4",
+          "(3√3)² = 9 × 3 = 27",
+          "√(a² + b²) = √(169 + 27) = √196 = 14"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a = 13, b = 3√3, c = −4, and √(a² + b²) = √196 = 14.",
+          "accept": [
+            "three root three squared is twenty seven so one sixty nine plus twenty seven is one ninety six",
+            "the root of one ninety six is fourteen",
+            "a is thirteen, b is three root three and c is minus four",
+            "three root three square ante twenty seven, root one ninety six is fourteen",
+            "the amplitude is fourteen"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twenty seven",
+            "one ninety six",
+            "fourteen",
+            "three root three"
+          ]
+        },
+        "why": "The values of a cos x + b sin x fill the whole interval from −√(a² + b²) to √(a² + b²), so this one square root carries the answer.",
+        "common_mistakes": [
+          "Squaring 3√3 as 9 instead of 27.",
+          "Leaving the answer as √196 instead of 14."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "equation",
+        "label": "Write the range as an interval",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The −4 moves both ends of the interval: the low end to −18 and the high end to 10. Write it as an interval, smaller number first.",
+        "memory_tip": "Both ends move by the constant: −4 − 14 = −18 and −4 + 14 = 10, so the range is [−18, 10].",
+        "lines": [
+          "Range = [c − √(a² + b²), c + √(a² + b²)]",
+          "= [−4 − 14, −4 + 14]",
+          {
+            "text": "∴ Range = [−18, 10]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the range is [−18, 10], because the constant −4 moves both −14 and 14 down by 4.",
+          "accept": [
+            "minus four minus fourteen is minus eighteen and minus four plus fourteen is ten",
+            "the range is minus eighteen to ten",
+            "both ends of the interval move down by four",
+            "rendu ends four thakkuva avuthai, minus eighteen to ten",
+            "the answer is the closed interval from minus eighteen to ten"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus eighteen",
+            "ten",
+            "range",
+            "interval",
+            "closed interval"
+          ]
+        },
+        "why": "13 cos x + 3√3 sin x takes every value between −14 and 14 as x varies, and subtracting 4 moves that whole interval down by 4.",
+        "common_mistakes": [
+          "Writing the range as [−14, 14] and ignoring the −4.",
+          "Writing the interval backwards as [10, −18]."
+        ]
+      }
+    ]
+  }
+}

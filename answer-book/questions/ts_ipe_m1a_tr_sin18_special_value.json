@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sin18_special_value",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that sin18° = (√5 − 1)/4.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up sin2θ = cos3θ",
+      "marks": 1
+    },
+    {
+      "label": "Solve the quadratic in sinθ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.95, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 44(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to setting up sin2θ = cos3θ from 5θ = 90° and one to solving the quadratic and choosing the root the quadrant allows. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Set up sin2θ = cos3θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. 18° is one fifth of 90°, so 2θ and 3θ are complementary and sin2θ = cos3θ. Expand both sides.",
+        "memory_tip": "18° is one fifth of 90°, so 2θ = 90° − 3θ and sin2θ = cos3θ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let θ = 18°. Then 5θ = 90°",
+          "⇒ 2θ = 90° − 3θ",
+          "⇒ sin2θ = sin(90° − 3θ) = cos3θ",
+          "⇒ 2 sinθ cosθ = 4cos³θ − 3cosθ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 5θ = 90° gives 2θ = 90° − 3θ, so sin2θ = cos3θ, and both sides are expanded.",
+          "accept": [
+            "five theta is ninety so two theta and three theta are complementary",
+            "sin two theta equals cos three theta",
+            "expand as two sin theta cos theta equals four cos cubed minus three cos",
+            "five theta ninety kabatti sin two theta equals cos three theta",
+            "eighteen is one fifth of ninety"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "five theta",
+            "sin two theta",
+            "cos three theta",
+            "four cos cubed"
+          ]
+        },
+        "why": "18° is one fifth of 90°. That is the only special fact about it, and it is what turns the question into an equation that can be solved.",
+        "common_mistakes": [
+          "Writing cos3θ as 3cosθ − 4cos³θ.",
+          "Using cos2θ = sin3θ, which does not follow from 5θ = 90°."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Solve the quadratic in sinθ",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Divide by cosθ (which is not zero at 18°), replace cos²θ by 1 − sin²θ, and take the positive root because 18° is acute.",
+        "memory_tip": "4sin²θ + 2 sinθ − 1 = 0. Take the positive root, because 18° is acute.",
+        "lines": [
+          "cosθ ≠ 0 at θ = 18°, so divide by cosθ:",
+          "2 sinθ = 4cos²θ − 3 = 4(1 − sin²θ) − 3",
+          "⇒ 4sin²θ + 2 sinθ − 1 = 0",
+          "⇒ sinθ = (−2 ± √20)/8 = (−1 ± √5)/4",
+          "18° is acute, so sin18° > 0",
+          {
+            "text": "∴ sin18° = (√5 − 1)/4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing by cosθ and replacing cos²θ gives 4sin²θ + 2 sinθ − 1 = 0, whose positive root is (√5 − 1)/4.",
+          "accept": [
+            "divide by cos theta and replace cos squared by one minus sin squared",
+            "the quadratic is four sin squared plus two sin theta minus one equals zero",
+            "the roots are minus one plus or minus root five over four",
+            "eighteen acute kabatti positive root theeskovali",
+            "so sin eighteen is root five minus one by four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "four sin squared",
+            "quadratic",
+            "root five minus one",
+            "positive root"
+          ]
+        },
+        "why": "Replacing cos²θ by 1 − sin²θ leaves one unknown, so the equation becomes an ordinary quadratic. The quadrant then decides which of its two roots is wanted.",
+        "common_mistakes": [
+          "Keeping the negative root −(√5 + 1)/4.",
+          "Dividing by cosθ without saying it is not zero."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+# OUR BANK — mathematics_1b unit 7: The Plane (Maths-1B)  (11 cards)
+# source index: answer-book/sources/chaitanya_m1b_ch07_the_plane.json
+
+[VSAQ] ts_ipe_m1b_pln_intercept_form_4x_4y_2z
+    Write the equation of the plane 4x−4y+2z+5=0 in the intercept form.
+[VSAQ] ts_ipe_m1b_pln_intercepts_4x_3y_2z
+    Find the intercepts of the plane 4x+3y−2z+2=0 on the coordinate axes.
+[VSAQ] ts_ipe_m1b_pln_intercepts_x_minus_3y_2z
+    Find the intercepts of the plane x−3y+2z=9 on the coordinate axes.
+[VSAQ] ts_ipe_m1b_pln_from_intercepts_1_2_4
+    Find the equation of the plane which makes intercepts 1,2,4 on the x,y,z-axes respectively.
+[VSAQ] ts_ipe_m1b_pln_from_intercepts_2_3_4
+    Find the equation of the plane which makes intercepts 2,3,4 on the x,y,z-axes respectively.
+[VSAQ] ts_ipe_m1b_pln_normal_form_x_2y_3z
+    Reduce the equation x+2y−3z−6=0 of the plane to the normal form.
+[VSAQ] ts_ipe_m1b_pln_dcs_of_normal
+    Find a triad of d.c's of the normal to the plane x+2y+2z−4=0.
+[VSAQ] ts_ipe_m1b_pln_angle_2x_minus_y_plus_z
+    Find the angle between the planes 2x−y+z=6 and x+y+2z=7.
+[VSAQ] ts_ipe_m1b_pln_angle_x_2y_2z
+    Find the angle between the planes x+2y+2z−5=0 and 3x+3y+2z−8=0.
+[VSAQ] ts_ipe_m1b_pln_parallel_through_1_1_1
+    Find the equation of the plane passing through the point (1,1,1) and parallel to the plane x+2y+3z−7=0.
+[VSAQ] ts_ipe_m1b_pln_parallel_through_1_2_minus3
+    Find the equation of the plane passing through the point (1,2,−3) and parallel to the plane 2x−3y+6z=0.

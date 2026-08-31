@@ -1,0 +1,183 @@
+{
+    "schema_version": "answer_book_v1",
+    "question_id": "ts_ipe_m1a_fn_solve_fog_eq_gof",
+    "board": "ts_ipe",
+    "board_label": "Telangana — Board of Intermediate Education",
+    "subject": "mathematics",
+    "year_cycle": "first_year",
+    "class_label": "Intermediate I Year (Class 11)",
+    "unit": {
+        "number": 2,
+        "name": "Functions"
+    },
+    "chapter": "Functions",
+    "qtype": "VSAQ",
+    "marks_total": 2,
+    "paper_section": "Section A",
+    "expected_time_min": 4,
+    "question_text": "If f(x) = x² and g(x) = 2ˣ, solve (fog)(x) = (gof)(x).",
+    "appearances": [],
+    "mark_split": [
+        {
+            "label": "Both compositions written",
+            "marks": 1
+        },
+        {
+            "label": "Solving for x",
+            "marks": 1
+        }
+    ],
+    "verification": {
+        "status": "unverified",
+        "needs_teacher_verification": true,
+        "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing both compositions first and equating the powers to reach the two roots second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The third step, which puts both roots back into the original equation, carries no mark and is authored for the student, not for the examiner."
+    },
+    "recall_prompt": "Say how you would solve this — the two compositions, how the powers are compared, and the values of x.",
+    "answer": {
+        "page_header": [
+            "Section A — Very Short Answer Question",
+            "Functions · 2 marks"
+        ],
+        "steps": [
+            {
+                "id": "s1_compositions",
+                "kind": "equation",
+                "label": "Write both compositions",
+                "marks": 1,
+                "mark_note": "Both compositions written",
+                "margin_note": "First mark. Write both sides before solving anything. In fog, g acts first; in gof, f acts first, and that is the whole difference.",
+                "lines": [
+                    {
+                        "text": "Sol:",
+                        "style": "heading"
+                    },
+                    "f(x) = x², g(x) = 2ˣ",
+                    "(fog)(x) = f[g(x)] = f(2ˣ) = (2ˣ)²",
+                    "So (fog)(x) = 2²ˣ",
+                    "(gof)(x) = g[f(x)] = g(x²) = 2^(x²)"
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That (fog)(x) = (2ˣ)² = 2²ˣ and (gof)(x) = 2^(x²).",
+                    "accept": [
+                        "f o g is two to the x all squared which is two to the two x",
+                        "g o f is two to the power x squared",
+                        "one side is two to the two x and the other is two to the x squared",
+                        "fog lo g modata so two power two x, gof lo two power x square",
+                        "write both compositions first"
+                    ],
+                    "reject": [
+                        "I find the compositions",
+                        "apply the functions",
+                        "then I solve"
+                    ],
+                    "heard_as": [
+                        "f o g",
+                        "g o f",
+                        "two to the two x",
+                        "two to the x squared",
+                        "exponent"
+                    ]
+                },
+                "why": "The two sides differ only in which function acts first, and that changes the power from 2x to x². Writing both compositions is what turns the question into an equation.",
+                "memory_tip": "(2ˣ)² = 2²ˣ, while 2 raised to x² stays 2^(x²). The two are not the same.",
+                "common_mistakes": [
+                    "Writing (2ˣ)² as 2^(x²), which would make both sides equal for every x.",
+                    "Applying f first in fog, which swaps the two sides."
+                ]
+            },
+            {
+                "id": "s2_solve",
+                "kind": "equation",
+                "label": "Equate the powers and solve",
+                "marks": 1,
+                "mark_note": "Solving for x",
+                "margin_note": "Second mark. Same base on both sides, so the powers can be equated. Factorise instead of dividing by x, or the root x = 0 is lost.",
+                "lines": [
+                    "2²ˣ = 2^(x²)",
+                    "Same base, so the powers are equal:",
+                    "2x = x²",
+                    "x² − 2x = 0",
+                    "x(x − 2) = 0",
+                    "∴ x = 0 or x = 2"
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That equal bases give 2x = x², which factorises to x(x − 2) = 0, so x = 0 or x = 2.",
+                    "accept": [
+                        "same base so two x equals x squared",
+                        "x squared minus two x equals zero so x into x minus two is zero",
+                        "the roots are zero and two",
+                        "base same kabatti powers equate cheyyali x zero or two",
+                        "factorise and get x equals zero or x equals two"
+                    ],
+                    "reject": [
+                        "then I solve",
+                        "factorise it",
+                        "I get the answer"
+                    ],
+                    "heard_as": [
+                        "same base",
+                        "two x equals x squared",
+                        "factorise",
+                        "zero",
+                        "two"
+                    ]
+                },
+                "why": "Two powers of the same base are equal only when the powers are equal, so the exponential equation becomes a quadratic. Factorising keeps both roots; dividing by x would lose x = 0.",
+                "memory_tip": "Never divide by x to solve x² = 2x. Move everything to one side and factorise, so x = 0 is not lost.",
+                "common_mistakes": [
+                    "Dividing both sides by x and giving only x = 2.",
+                    "Factorising x² − 2x as x(x + 2) and giving the roots 0 and −2."
+                ]
+            },
+            {
+                "id": "s3_check",
+                "kind": "boxed_final",
+                "label": "Check both roots",
+                "marks": 0,
+                "margin_note": "No mark of its own. Both values are put back into the original equation, which is how the student sees that neither root is extraneous.",
+                "lines": [
+                    "Check x = 0:",
+                    "(fog)(0) = (2⁰)² = 1, (gof)(0) = 2⁰ = 1",
+                    "Check x = 2:",
+                    "(fog)(2) = (2²)² = 16, (gof)(2) = 2⁴ = 16",
+                    "Both values satisfy the equation.",
+                    {
+                        "text": "Solution set = {0, 2}",
+                        "style": "boxed"
+                    }
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That both x = 0 and x = 2 satisfy the original equation, so the solution set is {0, 2}.",
+                    "accept": [
+                        "at x equals zero both sides give one",
+                        "at x equals two both sides give sixteen",
+                        "both roots satisfy the equation so the solution set is zero and two",
+                        "rendu roots correct so solution set zero and two",
+                        "check both values in the original equation"
+                    ],
+                    "reject": [
+                        "hence proved",
+                        "that is the answer",
+                        "both are correct"
+                    ],
+                    "heard_as": [
+                        "check",
+                        "both sides",
+                        "one",
+                        "sixteen",
+                        "solution set"
+                    ]
+                },
+                "why": "Equating the powers is a reversible step here, so no extra root appears — but putting both values back is the only way to show it rather than assume it.",
+                "memory_tip": "Put every root back into the original equation. Here 0 and 2 both give the same value on each side.",
+                "common_mistakes": [
+                    "Checking one root only and assuming the other one works too.",
+                    "Stopping at x² = 2x without writing the roots."
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pln_define_angle_between_planes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "The Plane"
+  },
+  "chapter": "The Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Define the angle between two planes.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the definition",
+      "marks": 1
+    },
+    {
+      "label": "Write the formula in direction ratios",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 7 THE PLANE, Very Short Answer question 12, book p.183. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. On a definition question this bank gives the first mark to the words of the definition and the second to the thing that makes the definition usable — here the cosine formula in direction ratios, the same way the Maths-1A definition cards give their second mark to a worked example. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Related card in the same unit: ts_ipe_m1b_pln_angle_2x_minus_y_plus_z applies the formula to two given planes, so the two are not duplicates. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the definition of the angle between two planes, and then the formula that computes it from the two equations.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "State the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. The words wanted are \"the angle between their normals\". Saying which of the two angles is taken finishes the statement.",
+        "memory_tip": "The angle between two PLANES is defined as the angle between their NORMALS.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take two planes. Draw a normal to the first",
+          "plane and a normal to the second plane.",
+          "The angle between the two planes is defined",
+          "as the angle between these two normals.",
+          "Two intersecting planes make two angles that",
+          "add to 180°. The acute one is taken as the",
+          "angle between the planes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle between two planes is defined as the angle between their normals, and that the acute one is taken.",
+          "accept": [
+            "the angle between two planes is the angle between their normals",
+            "draw a normal to each plane and measure the angle between them",
+            "the two planes make two angles adding to one eighty and the acute one is taken",
+            "rendu planes ki normals geesi vaati madhya angle ye answer",
+            "it is defined through the normals, not the planes themselves"
+          ],
+          "reject": [
+            "cos theta is the sum of the products over the two roots",
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "angle between two planes",
+            "normals",
+            "acute angle",
+            "defined as"
+          ]
+        },
+        "why": "A plane has no single direction of its own, but its normal does. Defining the angle through the normals turns a question about two flat surfaces into the angle between two lines, which is already known from the previous chapter.",
+        "common_mistakes": [
+          "Saying it is the angle between two lines drawn inside the planes, which is not fixed.",
+          "Leaving out which of the two angles at the intersection is meant."
+        ]
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Write the formula in direction ratios",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The coefficients of x, y and z in each equation are the direction ratios of that plane's normal, so the line formula from the previous chapter is used with no extra work. The modulus keeps the answer acute.",
+        "memory_tip": "The coefficients of x, y and z ARE the normal's direction ratios, so the line formula is reused.",
+        "lines": [
+          "Let the planes be a₁x + b₁y + c₁z + d₁ = 0",
+          "and a₂x + b₂y + c₂z + d₂ = 0.",
+          "Their normals have direction ratios",
+          "(a₁, b₁, c₁) and (a₂, b₂, c₂).",
+          "Write n₁ = √(a₁²+b₁²+c₁²) and",
+          "n₂ = √(a₂²+b₂²+c₂²).",
+          "Then the angle θ between the planes is",
+          {
+            "text": "cos θ = |a₁a₂ + b₁b₂ + c₁c₂| / (n₁n₂)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos θ = |a₁a₂ + b₁b₂ + c₁c₂| divided by the product of the two square roots of the sums of squares.",
+          "accept": [
+            "cos theta is mod a one a two plus b one b two plus c one c two over the two roots",
+            "the coefficients of the two equations are the direction ratios of the normals",
+            "divide by root of a one squared plus b one squared plus c one squared, times the other root",
+            "coefficients ye normals ki direction ratios, formula apply cheyyali",
+            "the modulus keeps the angle acute"
+          ],
+          "reject": [
+            "the angle between two planes is the angle between their normals",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos theta",
+            "a one a two plus b one b two",
+            "over the roots",
+            "modulus"
+          ]
+        },
+        "why": "A normal points in two opposite directions, so without the modulus the same pair of planes could report the obtuse angle. The modulus is what makes the definition give one answer.",
+        "common_mistakes": [
+          "Using the constant terms d₁ and d₂ in the formula, which do not affect the angle.",
+          "Leaving out the modulus and reporting an obtuse angle."
+        ]
+      }
+    ]
+  }
+}

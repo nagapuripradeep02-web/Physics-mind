@@ -1,0 +1,267 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mi_sum_4cube_8cube_series",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Mathematical Induction"
+  },
+  "chapter": "Mathematical Induction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Use mathematical induction to prove that 4³ + 8³ + 12³ + … up to n terms = 16n²(n + 1)².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Step 1 — S(1) is true",
+      "marks": 1
+    },
+    {
+      "label": "Step 2 — assume S(k)",
+      "marks": 1
+    },
+    {
+      "label": "Step 3 — S(k+1) follows",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion by P.M.I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.30, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. The nth term is read off the printed pattern as (4n)³, which reproduces 4³, 8³, 12³ at n = 1, 2, 3 and gives the stated sum 16n²(n+1)² at n = 1 (64) and n = 2 (576); that reading is ours, since the book states only the first three terms. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this by induction — the nth term, and what comes out as a common factor in the third step.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mathematical Induction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Find the nth term",
+        "marks": 0,
+        "margin_note": "Unmarked setup at 4 marks. The bases go 4, 8, 12, so they are multiples of 4 — the nth term is (4n)³, not 4n³.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Bases: 4, 8, 12, … = 4n",
+          "nth term = (4n)³ = 64n³",
+          "Let S(n): 4³ + 8³ + 12³ + …",
+          "        + (4n)³ = 16n²(n+1)²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bases are the multiples of 4, so the nth term is (4n)³, which is 64n³.",
+          "accept": [
+            "the bases go four eight twelve so they are four n and the nth term is four n all cubed",
+            "general term is four n whole cubed which is sixty four n cubed",
+            "each base is a multiple of four so cube four n",
+            "nth term four n whole cube ani rastam"
+          ],
+          "reject": [
+            "I write the nth term",
+            "state s of n",
+            "first the general term"
+          ],
+          "heard_as": [
+            "four n",
+            "four n cubed",
+            "sixty four n cubed",
+            "nth term",
+            "s of n"
+          ]
+        },
+        "why": "Everything in this question follows from seeing that the bases are 4n. Once the term is 64n³, the series is 64 times the sum of cubes, which is why the answer is 64 × n²(n+1)²/4 = 16n²(n+1)².",
+        "common_mistakes": [
+          "Writing the nth term as 4n³ instead of (4n)³, which drops a factor of 16.",
+          "Reading the bases as 4, 8, 12 but forgetting they are all cubed."
+        ],
+        "memory_tip": "The nth term is (4n)³ = 64n³, so this is just 64 times the sum of cubes: 64 × n²(n+1)²/4 = 16n²(n+1)²."
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Check S(1)",
+        "marks": 1,
+        "mark_note": "Step 1",
+        "margin_note": "One mark. Work out BOTH sides separately at n = 1 and say they are equal.",
+        "lines": [
+          "Step 1 — check S(1)",
+          "L.H.S of S(1) = 4³ = 64",
+          "R.H.S of S(1) = 16(1)²(2)² = 64",
+          "∴ L.H.S = R.H.S, so S(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at n = 1 the left side is 4 cubed, which is 64, and the right side is 16 times 1 times 4, which is also 64.",
+          "accept": [
+            "left side is four cubed which is sixty four and right side is sixteen into one into four which is sixty four",
+            "put n equals one in both sides and both come to sixty four",
+            "the first case gives sixty four on each side",
+            "n equals one pettina rendu sides sixty four vasthai"
+          ],
+          "reject": [
+            "s of one is true",
+            "check the base case",
+            "verify for n equals one"
+          ],
+          "heard_as": [
+            "l h s",
+            "r h s",
+            "four cubed",
+            "sixty four",
+            "s of one"
+          ]
+        },
+        "why": "Landing on 64 from both sides is a good sign the nth term was read as (4n)³ and not 4n³. At n = 2 both sides give 576, which is a second check worth doing in rough work.",
+        "common_mistakes": [
+          "Asserting S(1) is true without working out both sides.",
+          "Reading 16(1)²(2)² as 16 × 1 × 2 and getting 32."
+        ],
+        "memory_tip": "At n = 1 both sides give 64. At n = 2 both give 576: 64 + 512 and 16 × 4 × 9."
+      },
+      {
+        "id": "s3_assume",
+        "kind": "equation",
+        "label": "Assume S(k) is true",
+        "marks": 1,
+        "mark_note": "Step 2",
+        "margin_note": "One mark. Assume it for ONE value k and number the line (1) — Step 3 quotes that number.",
+        "lines": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 4³ + 8³ + … + (4k)³",
+          "        = 16k²(k+1)²   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(k) is assumed true for some k in N — the sum up to (4k)³ equals 16k²(k+1)² — and the line is numbered (1).",
+          "accept": [
+            "assume the sum up to four k cubed is sixteen k squared into k plus one squared",
+            "suppose s of k holds and call that equation one",
+            "take it as true for one value k in the naturals and number the line",
+            "k ki true ani assume chesi equation one ga rastam"
+          ],
+          "reject": [
+            "assume it is true",
+            "let it be true for k",
+            "then I assume s of k"
+          ],
+          "heard_as": [
+            "assume",
+            "s of k",
+            "four k cubed",
+            "equation one",
+            "induction hypothesis"
+          ]
+        },
+        "why": "This is the assumption the method rests on. It is granted for one value only, and Step 3 has to earn the right to pass it on to the next value.",
+        "common_mistakes": [
+          "Assuming the statement for ALL k, which assumes what is being proved.",
+          "Not numbering the line, so Step 3 cannot cite it."
+        ],
+        "memory_tip": "Replace n by k everywhere, last term (4k)³ and right side 16k²(k+1)². Number the line (1)."
+      },
+      {
+        "id": "s4_inductive",
+        "kind": "equation",
+        "label": "Show S(k+1) follows",
+        "marks": 1,
+        "mark_note": "Step 3",
+        "margin_note": "One mark, and the longest step on the page. The next term is 64(k+1)³. Take 16(k+1)² out and the bracket becomes a perfect square.",
+        "lines": [
+          "Step 3 — show S(k+1) is true",
+          "(k+1)th term = [4(k+1)]³ = 64(k+1)³",
+          "Add it to both sides of (1):",
+          "L.H.S = 16k²(k+1)² + 64(k+1)³",
+          "= 16(k+1)²[k² + 4(k+1)]",
+          "= 16(k+1)²(k² + 4k + 4)",
+          "= 16(k+1)²(k+2)² = R.H.S",
+          "So S(k+1) is true whenever S(k) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the next term is 64(k+1)³, that 16(k+1)² comes out as a common factor, and that k² + 4k + 4 is (k+2)², giving the formula with n replaced by k+1.",
+          "accept": [
+            "the next term is sixty four into k plus one cubed and sixteen into k plus one squared comes out as a common factor",
+            "what is left is k squared plus four k plus four which is k plus two squared",
+            "take the common factor out and you get sixteen k plus one squared k plus two squared",
+            "next term add chesi common factor teeste k plus two squared vasthundi"
+          ],
+          "reject": [
+            "I show s of k plus one",
+            "add the next term",
+            "then it follows"
+          ],
+          "heard_as": [
+            "sixty four",
+            "k plus one cubed",
+            "common factor",
+            "k plus two squared",
+            "perfect square"
+          ]
+        },
+        "why": "The added term 64(k+1)³ shares 16(k+1)² with the assumed sum, because 64 = 16 × 4. What is left inside is k² + 4k + 4, which is (k+2)² — exactly the bracket the formula needs at k+1.",
+        "common_mistakes": [
+          "Writing the next term as 4(k+1)³ instead of [4(k+1)]³ = 64(k+1)³.",
+          "Expanding everything instead of factorising, which leaves a quartic that will not simplify.",
+          "Stopping before writing = R.H.S, so the step does not show what was asked."
+        ],
+        "memory_tip": "64 = 16 × 4, so 16(k+1)² comes out and leaves k² + 4k + 4, which folds into (k+2)²."
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by P.M.I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark is for naming the principle. One sentence, one full mark.",
+        "lines": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(1) is true and S(k) implies S(k+1), so by the principle of mathematical induction the result holds for every natural number n.",
+          "accept": [
+            "since s of one is true and s of k gives s of k plus one by the principle of mathematical induction it holds for all n",
+            "hence by p m i the statement is true for every natural number",
+            "the base case and the inductive step together give it for all n in n",
+            "p m i prakaram anni natural numbers ki true"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is true",
+            "that completes the proof"
+          ],
+          "heard_as": [
+            "p m i",
+            "principle of mathematical induction",
+            "for all n",
+            "hence"
+          ]
+        },
+        "why": "The earlier steps prove two single statements — one about n = 1 and one about a step. Only the principle turns them into a claim about every n.",
+        "common_mistakes": [
+          "Writing only 'hence proved' and never naming the principle.",
+          "Claiming it for all real numbers instead of all n ∈ N."
+        ],
+        "memory_tip": "The closing sentence names the principle and is worth a full mark on its own."
+      }
+    ]
+  }
+}

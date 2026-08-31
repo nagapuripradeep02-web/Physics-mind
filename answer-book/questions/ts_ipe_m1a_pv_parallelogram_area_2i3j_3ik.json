@@ -1,0 +1,186 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_parallelogram_area_2i3j_3ik",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the area of the parallelogram whose adjacent sides are 2i − 3j and 3i − k.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Quote the area formula for adjacent sides",
+      "marks": 1
+    },
+    {
+      "label": "Find a × b",
+      "marks": 2
+    },
+    {
+      "label": "Take the magnitude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.71, chapter 7 PRODUCT OF VECTORS, Short Answer question 21(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 split gives the first mark to reading which pair of vectors the stem supplies, half the marks to the determinant, and the last to the magnitude — the first mark is separated deliberately because the stem says ADJACENT SIDES, so the area is |a × b| with no factor of ½; the ½ belongs to the diagonal form ½|d₁ × d₂|, and a student who mixes the two halves the answer. STEM READ EXACTLY: the two vectors are named as adjacent sides, so no ½ is applied. CROSS PRODUCT VERIFIED: a × b = 3i + 2j + 9k dotted with a = (2, −3, 0) gives 6 − 6 + 0 = 0 and dotted with b = (3, 0, −1) gives 9 + 0 − 9 = 0, so the result is perpendicular to both sides; its squared length is 9 + 4 + 81 = 94, and 94 = 2 × 47 has no square factor, so √94 is the final surd form. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find this area — say first whether the given vectors are sides or diagonals.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_area_formula",
+        "kind": "equation",
+        "label": "Quote the area formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. Read the stem before writing anything: adjacent sides give |a × b|, diagonals give ½|d₁ × d₂|. This stem says adjacent sides, so there is no ½.",
+        "memory_tip": "Sides give the full cross product; diagonals bring the ½. Read which pair the stem names.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = 2i − 3j and b = 3i − k.",
+          "The stem gives adjacent SIDES, so",
+          "Area of the parallelogram = |a × b|",
+          "There is no ½ here. The ½ belongs to",
+          "the case where the diagonals are given."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given vectors are adjacent sides, so the area is |a × b| with no factor of ½.",
+          "accept": [
+            "these are adjacent sides so the area is the magnitude of a cross b",
+            "no half is used because the sides are given not the diagonals",
+            "area of a parallelogram is mod a cross b for adjacent sides",
+            "adjacent sides ichcharu kabatti half raakoodadu",
+            "the half is only for the diagonal form"
+          ],
+          "reject": [
+            "the answer is root ninety four",
+            "expand the determinant",
+            "hence proved"
+          ],
+          "heard_as": [
+            "adjacent sides",
+            "mod a cross b",
+            "no half",
+            "diagonals"
+          ]
+        },
+        "why": "The area of a parallelogram is the magnitude of the cross product of its two adjacent sides. If the diagonals had been given, the area would be ½|d₁ × d₂|, so the first job is to read which pair the stem supplies.",
+        "common_mistakes": [
+          "Using ½|a × b|, which is the area of the triangle.",
+          "Treating the given vectors as diagonals and halving the answer."
+        ]
+      },
+      {
+        "id": "s2_cross_product",
+        "kind": "equation",
+        "label": "Find a × b",
+        "marks": 2,
+        "mark_note": "Cross product",
+        "margin_note": "Half the marks. Fill in the missing components as zeros first: a = (2, −3, 0) and b = (3, 0, −1). The j term of the expansion carries its own minus sign.",
+        "memory_tip": "Write in the zero components before the determinant, or the rows will not line up.",
+        "lines": [
+          "a = (2, −3, 0) and b = (3, 0, −1).",
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & -3 & 0 \\\\ 3 & 0 & -1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(3 − 0) − j(−2 − 0) + k(0 + 9)",
+          "= 3i + 2j + 9k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a × b = 3i + 2j + 9k, found from the determinant with the zero components written in.",
+          "accept": [
+            "the cross product is three i plus two j plus nine k",
+            "write the zero components in and expand the determinant",
+            "a cross b comes out as three i plus two j plus nine k",
+            "zero components rasi determinant expand cheyyali",
+            "expand the three by three determinant"
+          ],
+          "reject": [
+            "the area is root ninety four",
+            "adjacent sides so no half",
+            "hence proved"
+          ],
+          "heard_as": [
+            "three i plus two j",
+            "nine k",
+            "determinant",
+            "zero components"
+          ]
+        },
+        "why": "A vector written with only two terms still has a third component, and it is zero. Writing the zeros in keeps the rows aligned, and the minus in front of the j term is the place where most sign errors happen.",
+        "common_mistakes": [
+          "Leaving out the zero components of 2i − 3j and 3i − k.",
+          "Dropping the minus that stands in front of the j term."
+        ]
+      },
+      {
+        "id": "s3_magnitude",
+        "kind": "boxed_final",
+        "label": "Take the magnitude",
+        "marks": 1,
+        "mark_note": "Area",
+        "margin_note": "Last mark. Check the cross product by dotting it with each side and looking for 0, then take the square root of the sum of squares. Keep the surd and write sq. units.",
+        "memory_tip": "Dot the result with both sides and expect 0 each time — that check costs two lines and catches every sign slip.",
+        "lines": [
+          "Check: (3i + 2j + 9k)·a = 6 − 6 + 0 = 0",
+          "and (3i + 2j + 9k)·b = 9 + 0 − 9 = 0",
+          "|a × b| = √(9 + 4 + 81) = √94",
+          {
+            "text": "∴ Area = √94 sq. units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the magnitude √(9 + 4 + 81) = √94 is the area, in square units.",
+          "accept": [
+            "the magnitude is root of nine plus four plus eighty one which is root ninety four",
+            "the area is root ninety four square units",
+            "check the cross product by dotting with both sides then take the length",
+            "root ninety four square units answer",
+            "square root of ninety four square units"
+          ],
+          "reject": [
+            "adjacent sides so no half",
+            "expand the determinant",
+            "the cross product is three i plus two j plus nine k"
+          ],
+          "heard_as": [
+            "root ninety four",
+            "square units",
+            "magnitude",
+            "nine plus four plus eighty one"
+          ]
+        },
+        "why": "The length of the cross product is the area. Dotting the cross product with each side must give 0, because the cross product is perpendicular to both, and 94 has no square factor, so √94 is the final form.",
+        "common_mistakes": [
+          "Replacing √94 with a rounded decimal.",
+          "Leaving off the words sq. units."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_one_over_6x_minus_x2_minus_5",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real valued function f(x) = 1/(6x − x² − 5).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Condition for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.12, chapter 2 FUNCTIONS, Very Short Answer question 19 part (a-i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find this domain — the conditions the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Find where the denominator is zero",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "memory_tip": "No root and no logarithm here, only a denominator. Set it equal to zero and remove those points.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) is not defined when 6x − x² − 5 = 0",
+          "⇒ x² − 6x + 5 = 0",
+          "⇒ (x − 1)(x − 5) = 0",
+          "⇒ x = 1 or x = 5"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That only the denominator can fail, so the work is to solve 6x − x² − 5 = 0 and get x = 1 and x = 5.",
+          "accept": [
+            "the denominator must not be zero so solve six x minus x squared minus five equals zero",
+            "multiply by minus one to get x squared minus six x plus five and factorise",
+            "the bottom is zero at one and five so those two go out",
+            "denominator zero ayye chotla function undadu so one and five theeyali",
+            "set the denominator equal to zero and get the roots one and five"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "denominator",
+            "six x minus x squared minus five",
+            "x squared minus six x plus five",
+            "one",
+            "five"
+          ]
+        },
+        "why": "The numerator is the constant 1, so the only way the formula can fail is a zero denominator. Rearranging to x² − 6x + 5 puts the quadratic in the form that factorises directly.",
+        "common_mistakes": [
+          "Solving 6x − x² − 5 > 0, which is the condition for a square root, not for a denominator.",
+          "A sign slip when rearranging −x² + 6x − 5 into x² − 6x + 5."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Remove those points from R",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "Two roots removed, so the answer is R minus a set of two numbers, never an inequality.",
+        "lines": [
+          "For all other x the denominator is not zero.",
+          "So x may be any real number except 1 and 5.",
+          "= (−∞, 1) ∪ (1, 5) ∪ (5, ∞)",
+          {
+            "text": "∴ Domain = R − {1, 5}",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the domain is every real number except 1 and 5.",
+          "accept": [
+            "all real numbers except one and five",
+            "R minus the set one and five",
+            "minus infinity to one union one to five union five to infinity",
+            "one and five thappa anni real numbers",
+            "every real except the two roots of the denominator"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "denominator",
+            "six x minus x squared minus five",
+            "x squared minus six x plus five",
+            "one",
+            "five",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "Each root of the denominator removes exactly one point from the real line, so two roots leave a line with two holes in it.",
+        "common_mistakes": [
+          "Reporting {1, 5} as the domain instead of what is removed from R.",
+          "Writing R − [1, 5], which wrongly removes the whole interval between them."
+        ]
+      }
+    ]
+  }
+}

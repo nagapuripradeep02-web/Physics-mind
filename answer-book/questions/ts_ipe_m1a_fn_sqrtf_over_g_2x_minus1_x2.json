@@ -1,0 +1,138 @@
+{
+    "schema_version": "answer_book_v1",
+    "question_id": "ts_ipe_m1a_fn_sqrtf_over_g_2x_minus1_x2",
+    "board": "ts_ipe",
+    "board_label": "Telangana — Board of Intermediate Education",
+    "subject": "mathematics",
+    "year_cycle": "first_year",
+    "class_label": "Intermediate I Year (Class 11)",
+    "unit": {
+        "number": 2,
+        "name": "Functions"
+    },
+    "chapter": "Functions",
+    "qtype": "VSAQ",
+    "marks_total": 2,
+    "paper_section": "Section A",
+    "expected_time_min": 4,
+    "question_text": "If f(x) = 2x − 1 and g(x) = x², find (√f/g)(x).",
+    "appearances": [],
+    "mark_split": [
+        {
+            "label": "The rule √(2x − 1)/x²",
+            "marks": 1
+        },
+        {
+            "label": "The domain [1/2, ∞)",
+            "marks": 1
+        }
+    ],
+    "verification": {
+        "status": "unverified",
+        "needs_teacher_verification": true,
+        "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 16(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the rule √(2x − 1)/x² first and the domain, from the root and the denominator together, second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    },
+    "recall_prompt": "Say how you would find (√f/g)(x) — the rule, and every condition x must satisfy for it to be defined.",
+    "answer": {
+        "page_header": [
+            "Section A — Very Short Answer Question",
+            "Functions · 2 marks"
+        ],
+        "steps": [
+            {
+                "id": "s1_rule",
+                "kind": "equation",
+                "label": "Write the rule",
+                "marks": 1,
+                "mark_note": "The rule √(2x − 1)/x²",
+                "margin_note": "First mark. The square root acts on f alone, and that root is then divided by g(x) = x².",
+                "lines": [
+                    {
+                        "text": "Sol:",
+                        "style": "heading"
+                    },
+                    "f(x) = 2x − 1 and g(x) = x²",
+                    "(√f/g)(x) = √(f(x))/g(x)",
+                    "= √(2x − 1)/x²"
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That (√f/g)(x) = √(2x − 1)/x², with the root taken of f only.",
+                    "accept": [
+                        "root f over g is root of two x minus one divided by x squared",
+                        "the square root applies to f only",
+                        "root two x minus one on top and x squared below",
+                        "root f pina x square kinda untundi",
+                        "write root of two x minus one over x squared"
+                    ],
+                    "reject": [
+                        "I take the root",
+                        "divide them",
+                        "then simplify"
+                    ],
+                    "heard_as": [
+                        "root f over g",
+                        "root two x minus one",
+                        "x squared",
+                        "over",
+                        "denominator"
+                    ]
+                },
+                "why": "√f is the function whose value at x is √(f(x)), and dividing by g divides that value by g(x). Writing the rule this way shows the root is not taken of the whole fraction.",
+                "memory_tip": "√f/g means the root of f on top, g underneath: √(2x − 1)/x².",
+                "common_mistakes": [
+                    "Taking the square root of the whole fraction, writing √((2x − 1)/x²).",
+                    "Reading √f/g as √(f/g) and cancelling inside the root."
+                ]
+            },
+            {
+                "id": "s2_domain",
+                "kind": "boxed_final",
+                "label": "Find where it is defined",
+                "marks": 1,
+                "mark_note": "The domain [1/2, ∞)",
+                "margin_note": "Second mark. Two conditions must be checked: the root needs 2x − 1 ≥ 0 and the denominator needs x ≠ 0. Together they give x ≥ 1/2.",
+                "lines": [
+                    "√(2x − 1) needs 2x − 1 ≥ 0, so x ≥ 1/2.",
+                    "x² in the denominator needs x ≠ 0.",
+                    "Every x ≥ 1/2 is already non zero, so the",
+                    "two conditions together give x ≥ 1/2.",
+                    {
+                        "text": "(√f/g)(x) = √(2x − 1)/x² on [1/2, ∞)",
+                        "style": "boxed"
+                    }
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That 2x − 1 ≥ 0 gives x ≥ 1/2, that x² ≠ 0 gives x ≠ 0, and that both together give the domain [1/2, ∞).",
+                    "accept": [
+                        "the root needs two x minus one at least zero so x is at least one half",
+                        "x squared in the denominator cannot be zero so x is not zero",
+                        "both conditions together give x greater than or equal to one half",
+                        "root ki two x minus one zero kanna thakkuva undakoodadu, x half kanna ekkuva",
+                        "the domain is one half to infinity"
+                    ],
+                    "reject": [
+                        "find the domain",
+                        "it is defined",
+                        "x is real"
+                    ],
+                    "heard_as": [
+                        "two x minus one",
+                        "greater than or equal",
+                        "one half",
+                        "not zero",
+                        "domain"
+                    ]
+                },
+                "why": "A quotient with a square root carries two separate restrictions, and both have to be written. Here x ≥ 1/2 already rules out x = 0, so the domain is [1/2, ∞).",
+                "memory_tip": "Check the root and the denominator separately, then keep the values that satisfy both. Here x ≥ 1/2 already covers x ≠ 0.",
+                "common_mistakes": [
+                    "Giving the rule with no domain, so the answer is stated where the function does not exist.",
+                    "Checking the root only and forgetting that x² cannot be 0.",
+                    "Writing x > 1/2 instead of x ≥ 1/2 — at x = 1/2 the root is 0, which is allowed."
+                ]
+            }
+        ]
+    }
+}

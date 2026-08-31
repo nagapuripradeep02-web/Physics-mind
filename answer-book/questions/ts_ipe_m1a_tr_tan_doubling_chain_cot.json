@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_tan_doubling_chain_cot",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If θ is not an integral multiple of π/2, prove that tan θ + 2 tan 2θ + 4 tan 4θ + 8 cot 8θ = cot θ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Prove cot θ − tan θ = 2 cot 2θ",
+      "marks": 1
+    },
+    {
+      "label": "Apply it at θ, 2θ and 4θ and add",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 47(i), book p.96. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to the lemma cot θ − tan θ = 2 cot 2θ, which is the engine of the whole chain, and one to applying it three times and adding. SOURCE CONDITION TOO WEAK — RECORDED, NOT SILENTLY REPAIRED: the book's stem says θ is not an integral multiple of π/2, but that does not keep every ratio in the identity defined. At θ = π/4, tan 2θ = tan(π/2) is undefined; at θ = π/8, cot 8θ = cot π is undefined; neither π/4 nor π/8 is an integral multiple of π/2. The true requirement is sin 8θ ≠ 0, that is θ ≠ nπ/8, because sin 8θ = 8 sinθ cosθ cos2θ cos4θ, so that one inequality is exactly what keeps tan θ, tan 2θ, tan 4θ, cot 8θ and cot θ all defined at once. The card prints the stem as the book has it and states the sharper condition in the answer's own lines, where the student reads it. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name the small identity you prove first and how you use it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_lemma",
+        "kind": "equation",
+        "label": "Prove cot θ − tan θ = 2 cot 2θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Prove the lemma from the definitions, then rearrange it as tan θ = cot θ − 2 cot 2θ, which is the form the chain needs.",
+        "memory_tip": "cot minus tan is twice the cot of the double angle. Rearranged as tan θ = cot θ − 2 cot 2θ, it turns every tangent into two cotangents.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Every ratio below must exist, so sin 8θ ≠ 0,",
+          "that is θ ≠ nπ/8. This is stronger than the",
+          "θ ≠ nπ/2 the question states.",
+          "cot θ − tan θ = cosθ/sinθ − sinθ/cosθ",
+          "= (cos²θ − sin²θ)/(sinθ cosθ)",
+          "= cos 2θ / ((1/2) sin 2θ)",
+          "= 2 cos 2θ / sin 2θ = 2 cot 2θ",
+          "∴ tan θ = cot θ − 2 cot 2θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cot θ − tan θ = 2 cot 2θ is proved from the definitions and rearranged as tan θ = cot θ − 2 cot 2θ.",
+          "accept": [
+            "cot theta minus tan theta is two cot two theta",
+            "write both as cos over sin and sin over cos and combine",
+            "the top becomes cos two theta and the bottom is half sin two theta",
+            "cot minus tan ante two cot two theta, adi lemma",
+            "rearrange it as tan theta equals cot theta minus two cot two theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "add the three lines"
+          ],
+          "heard_as": [
+            "cot minus tan",
+            "two cot two theta",
+            "cos two theta",
+            "half sin two theta"
+          ]
+        },
+        "why": "One small identity is enough for the whole question. cot θ − tan θ = 2 cot 2θ, written as tan θ = cot θ − 2 cot 2θ, replaces each tangent in the chain by a difference of two cotangents, and differences arranged like that cancel when added.",
+        "common_mistakes": [
+          "Writing cos²θ − sin²θ as sin 2θ.",
+          "Forgetting that sin θ cos θ is half of sin 2θ."
+        ]
+      },
+      {
+        "id": "s2_add_the_chain",
+        "kind": "boxed_final",
+        "label": "Apply it at θ, 2θ and 4θ and add",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Write the lemma three times, at θ, 2θ and 4θ, each already multiplied by the coefficient the question uses. Then add.",
+        "memory_tip": "Write the lemma three times, at θ, 2θ and 4θ, each times its coefficient. Only the first and the last cotangent are left.",
+        "lines": [
+          "tan θ = cot θ − 2 cot 2θ",
+          "2 tan 2θ = 2 cot 2θ − 4 cot 4θ",
+          "4 tan 4θ = 4 cot 4θ − 8 cot 8θ",
+          "Adding, 2cot2θ and 4cot4θ cancel:",
+          "tanθ + 2tan2θ + 4tan4θ = cotθ − 8cot8θ",
+          "Now add 8 cot 8θ to both sides:",
+          {
+            "text": "L.H.S = cot θ = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the lemma is written at θ, 2θ and 4θ with the given coefficients, the inner cotangents cancel on adding, and 8 cot 8θ is moved across.",
+          "accept": [
+            "apply the lemma at theta then two theta then four theta",
+            "multiply each one by its coefficient two and four",
+            "the middle cotangents cancel leaving cot theta minus eight cot eight theta",
+            "lemma ni moodu sarlu raasi add cheste madhya terms cancel",
+            "add eight cot eight theta to both sides"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "cot minus tan is two cot two theta"
+          ],
+          "heard_as": [
+            "cot two theta",
+            "cot four theta",
+            "eight cot eight theta",
+            "cancel"
+          ]
+        },
+        "why": "Each line is the same lemma at a doubled angle, already multiplied by the coefficient the question prints. Written that way every inner cotangent appears once with a plus and once with a minus, so only the first and the last are left.",
+        "common_mistakes": [
+          "Forgetting to multiply the lemma by 2 and by 4.",
+          "Cancelling cot θ as well, although it appears only once."
+        ]
+      }
+    ]
+  }
+}
