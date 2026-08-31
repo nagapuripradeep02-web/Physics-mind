@@ -277,5 +277,6 @@
         "memory_tip": "Count the multiples before writing anything else: 2 + 3 − 4 = 1. The whole eight marks come down to that one sum."
       }
     ]
-  }
+  },
+  "insider_note": "Every bracket is a multiple-angle tangent, so x = tan θ turns y into 2θ + 3θ − 4θ = θ. The three derivatives collapse to a single 1/(1 + x²)."
 }

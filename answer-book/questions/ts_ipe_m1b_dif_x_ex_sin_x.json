@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "THREE functions multiplied, so the product rule has three terms, each differentiating one factor. Taking eˣ out at the end is what makes the answer compact."
 }

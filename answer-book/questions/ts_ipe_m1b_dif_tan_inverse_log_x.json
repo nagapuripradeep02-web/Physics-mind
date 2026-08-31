@@ -129,5 +129,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The Tan⁻¹ rule squares its argument, so the denominator is 1 + (log x)² and not 1 + log(x²). The inner derivative then contributes the 1/x."
 }

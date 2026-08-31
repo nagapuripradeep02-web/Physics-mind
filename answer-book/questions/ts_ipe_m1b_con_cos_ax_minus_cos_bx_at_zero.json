@@ -225,5 +225,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "One formula covers both sides of 0, so a single two-sided limit settles it — no left and right work needed. The limit comes to (b² − a²)/2, which is exactly the given f(0)."
 }

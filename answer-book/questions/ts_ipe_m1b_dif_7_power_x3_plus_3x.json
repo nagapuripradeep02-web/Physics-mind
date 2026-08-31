@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The base is constant and the exponent is a function, so the rule is aᵘ · logₑa · du/dx. The logₑ7 is part of the answer, not an optional extra."
 }

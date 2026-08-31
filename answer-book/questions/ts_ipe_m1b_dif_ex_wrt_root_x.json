@@ -132,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The question asks for du/dv, not du/dx, so form (du/dx)/(dv/dx). Dividing by 1/(2√x) multiplies by 2√x, which is where that factor comes from."
 }

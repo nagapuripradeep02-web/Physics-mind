@@ -191,5 +191,6 @@
         "memory_tip": "Difference on top, one plus the product underneath, modulus around the whole fraction."
       }
     ]
-  }
+  },
+  "insider_note": "The question names the FOURTH quadrant, so only the point with x > 0 and y < 0 is wanted — the other root is discarded. Find the intersection first, then the two slopes there."
 }

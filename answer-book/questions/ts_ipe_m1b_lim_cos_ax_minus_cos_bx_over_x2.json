@@ -132,5 +132,6 @@
         "memory_tip": "The alternative route gives the same check: (cos ax − 1)/x² → −a²/2 and (1 − cos bx)/x² → b²/2, and adding them gives (b² − a²)/2."
       }
     ]
-  }
+  },
+  "insider_note": "cos C − cos D turns the top into a product of two sines, and x² splits as x · x to feed one to each. The answer (b² − a²)/2 has b first — the order comes from (D − C)/2."
 }

@@ -231,5 +231,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Each piece is continuous on its own interval, so only the two junctions x = −2 and x = 1 need testing. x = 1 passes because √x + 1 → 2; x = −2 fails, −1/2 against 11."
 }

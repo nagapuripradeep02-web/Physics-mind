@@ -131,5 +131,6 @@
         "memory_tip": "Above 2 the step has already been taken, so [x] gives 2 and x gives 2."
       }
     ]
-  }
+  },
+  "insider_note": "Approaching from ABOVE puts x in (2, 3), where [x] = 2. The answer is 4, and the gap from the left-hand version is exactly the jump in [x]."
 }

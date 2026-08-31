@@ -220,5 +220,6 @@
         "memory_tip": "Check with two values: y(0) = π/4 and y(π/2) = π/2, and the rise π/4 over the run π/2 is 1/2."
       }
     ]
-  }
+  },
+  "insider_note": "Write sec x + tan x as (1 + sin x)/cos x, then use half angles on both — the common factor cancels and leaves tan(π/4 + x/2). The answer is the constant ½."
 }

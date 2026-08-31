@@ -225,5 +225,6 @@
         "memory_tip": "sin⁻¹ and cos⁻¹ have the same derivative apart from the sign. This answer came from cos⁻¹, so it is the negative one."
       }
     ]
-  }
+  },
+  "insider_note": "Put x = cos 2θ so the half-angle forms turn the fraction into tan²θ. Then y = θ = ½Cos⁻¹x, and the answer is half the Cos⁻¹ derivative."
 }

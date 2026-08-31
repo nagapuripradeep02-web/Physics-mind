@@ -276,5 +276,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two separate terms, so take logarithms of each on its own and add the derivatives — never log the sum. Both need x > 0 and sin x > 0 for the logarithms to exist."
 }

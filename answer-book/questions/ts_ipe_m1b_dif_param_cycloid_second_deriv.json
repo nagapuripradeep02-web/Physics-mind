@@ -219,5 +219,6 @@
         "memory_tip": "One division for the first derivative, a second division for the second derivative — one dx/dt per order."
       }
     ]
-  }
+  },
+  "insider_note": "The half-angle forms turn dy/dx into −cot(t/2). For the SECOND derivative divide by dx/dt again — differentiating with respect to t alone is the standard error here."
 }

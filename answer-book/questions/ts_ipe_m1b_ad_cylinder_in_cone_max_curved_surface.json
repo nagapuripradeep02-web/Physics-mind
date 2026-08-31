@@ -230,5 +230,6 @@
         "memory_tip": "Greatest curved surface gives radius R/2 and height H/2. Greatest volume is a different question with a different answer, radius 2R/3."
       }
     ]
-  }
+  },
+  "insider_note": "Use similar triangles to write the cylinder's height through its radius, so the surface area has ONE variable. The answer is half the cone's radius, independent of the height."
 }

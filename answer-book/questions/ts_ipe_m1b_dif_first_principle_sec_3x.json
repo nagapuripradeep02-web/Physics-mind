@@ -224,5 +224,6 @@
         "memory_tip": "sec differentiates to sec times tan, with the inside multiplier in front: 3 sec 3x tan 3x."
       }
     ]
-  }
+  },
+  "insider_note": "Write both secants as reciprocals and combine over one denominator, which turns the top into cos 3x − cos(3x + 3h). The 3 from the inner function appears twice over."
 }

@@ -224,5 +224,6 @@
         "memory_tip": "sin 2h over h is 2 times sin 2h over 2h. Put the 2 in the moment you split it."
       }
     ]
-  }
+  },
+  "insider_note": "Write both tangents as sin/cos and combine; the numerator becomes sin 2h by the compound formula. Matching the denominator to 2h is what supplies the factor 2."
 }

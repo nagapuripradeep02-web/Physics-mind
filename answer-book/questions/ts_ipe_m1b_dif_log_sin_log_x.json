@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Three layers, so the chain rule is applied twice, working from the outside in. cos/sin collapses to cot, and the final 1/x comes from the inner logarithm."
 }

@@ -234,5 +234,6 @@
         "memory_tip": "Read the question again before writing the last line. This one names only the normal, so only the normal is marked."
       }
     ]
-  }
+  },
+  "insider_note": "The normal slope is −1/m, not m — check the point lies on the curve first. Here m = 4, so the normal has slope −1/4."
 }

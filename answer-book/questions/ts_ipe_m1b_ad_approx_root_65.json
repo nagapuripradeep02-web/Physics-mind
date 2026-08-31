@@ -132,5 +132,6 @@
         "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so an upward move adds."
       }
     ]
-  }
+  },
+  "insider_note": "Take x = 64, the nearest perfect SQUARE, so √64 = 8 exactly and Δx = 1. f′(64) = 1/16, so the correction added is small."
 }

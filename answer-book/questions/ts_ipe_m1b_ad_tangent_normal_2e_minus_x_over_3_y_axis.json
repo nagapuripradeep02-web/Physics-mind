@@ -237,5 +237,6 @@
         "memory_tip": "Multiply the two slopes together as a check. If the answer is not −1, one of them is wrong."
       }
     ]
-  }
+  },
+  "insider_note": "The y-axis means x = 0, so the point is (0, 2) and must be found before differentiating. The inner −1/3 comes down from the exponent."
 }

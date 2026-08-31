@@ -133,5 +133,6 @@
         "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down."
       }
     ]
-  }
+  },
+  "insider_note": "dy = (2x + 3)Δx is the approximation; Δy needs f(10.01) worked out in full. The gap between them is (Δx)², which is tiny but not zero."
 }

@@ -222,5 +222,6 @@
         "memory_tip": "Check at x = 0: the answer gives 2(2)/4 = 1, and the function itself is log(2/2) = 0 there. One substitution like this catches a lost sign."
       }
     ]
-  }
+  },
+  "insider_note": "Use log(P/Q) = log P − log Q BEFORE differentiating — the quotient rule on the fraction inside is far longer. Two simple logarithmic derivatives are then subtracted."
 }

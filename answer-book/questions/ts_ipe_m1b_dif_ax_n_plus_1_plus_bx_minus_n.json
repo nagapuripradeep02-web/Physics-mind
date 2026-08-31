@@ -217,5 +217,6 @@
         "memory_tip": "Check with n = 1 and b = 0: y = ax², y″ = 2a, x²y″ = 2ax² = 1·2·y."
       }
     ]
-  }
+  },
+  "insider_note": "Differentiate twice as plain powers; the second term's index −n − 1 times −n turns the sign positive. Multiplying by x² restores the original powers, so the bracket becomes y."
 }

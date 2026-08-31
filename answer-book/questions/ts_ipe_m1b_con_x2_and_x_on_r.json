@@ -220,5 +220,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both pieces are polynomials, so only the join at x = 1 can fail — and 1² = 1 makes both sides agree. Saying the three sets cover all of ℝ is what turns this into a proof on ℝ."
 }

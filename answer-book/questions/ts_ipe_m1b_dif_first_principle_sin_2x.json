@@ -238,5 +238,6 @@
         "memory_tip": "The number multiplying x inside the sine comes out in front: sin 2x gives 2 cos 2x."
       }
     ]
-  }
+  },
+  "insider_note": "sin C − sin D turns the difference into 2cos(2x + h)sin h. Dividing by h gives sin h/h → 1, and the 2 in front is what makes the answer 2cos2x."
 }

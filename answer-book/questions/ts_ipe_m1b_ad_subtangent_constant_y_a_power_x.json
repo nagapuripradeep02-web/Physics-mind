@@ -231,5 +231,6 @@
         "memory_tip": "y over y log a leaves one over log a. The y disappears, and only the base decides the answer."
       }
     ]
-  }
+  },
+  "insider_note": "d/dx(aˣ) = aˣ log a, so the aˣ cancels in y/m and leaves 1/log a. The log a is what makes the answer constant rather than 1."
 }

@@ -236,5 +236,6 @@
         "memory_tip": "Same point and same slope means one tangent serves both curves — that single shared tangent is what touching means."
       }
     ]
-  }
+  },
+  "insider_note": "Touching means the point lies on BOTH curves and the slopes agree there — two separate checks. Verify membership first, then compare the two derivatives."
 }

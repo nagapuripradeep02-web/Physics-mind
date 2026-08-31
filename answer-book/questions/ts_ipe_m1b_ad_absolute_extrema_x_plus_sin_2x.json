@@ -230,5 +230,6 @@
         "memory_tip": "Absolute extrema on a closed interval are found by comparing a LIST, not by a sign test. Build the list, then read off the largest and the smallest."
       }
     ]
-  }
+  },
+  "insider_note": "Absolute extrema on a CLOSED interval need the endpoints tested as well as the stationary points — the largest may sit at x = π. Compare all the values at the end rather than using a second-derivative test."
 }

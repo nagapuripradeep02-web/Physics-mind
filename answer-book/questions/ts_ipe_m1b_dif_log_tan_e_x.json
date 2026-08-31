@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Three layers: log, then tan, then eˣ. sec²/tan tidies to 2·Cosec(2eˣ), and either form is acceptable as long as the chain is complete."
 }

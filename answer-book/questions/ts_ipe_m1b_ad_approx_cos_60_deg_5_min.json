@@ -134,5 +134,6 @@
         "memory_tip": "New value ≈ old value + slope × step. Here the slope is negative, so the answer drops below 0.5."
       }
     ]
-  }
+  },
+  "insider_note": "Δx must be converted to RADIANS before use — 5′ is (1/12)° and then π/2160. Leaving it in minutes or degrees makes the correction hundreds of times too large."
 }

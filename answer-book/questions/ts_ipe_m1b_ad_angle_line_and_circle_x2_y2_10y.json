@@ -189,5 +189,6 @@
         "memory_tip": "Two ends of one chord, one angle — if the two values differ, there is an arithmetic slip to find."
       }
     ]
-  }
+  },
+  "insider_note": "Substitute the line into the circle to get the meeting points; there are two, so the working must be done at each. The line's slope is constant, only the circle's changes."
 }

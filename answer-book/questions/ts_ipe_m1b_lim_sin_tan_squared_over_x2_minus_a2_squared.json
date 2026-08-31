@@ -134,5 +134,6 @@
         "memory_tip": "When the numerator carries more powers of (x − a) than the denominator, the limit is 0. Only equal counts give a non-zero number."
       }
     ]
-  }
+  },
+  "insider_note": "Count powers of (x − a): three on top, two below, so one survives and drives the answer to 0. A limit of 0 is the correct answer here, not a sign of a mistake."
 }

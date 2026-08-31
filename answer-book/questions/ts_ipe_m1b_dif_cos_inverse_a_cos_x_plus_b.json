@@ -283,5 +283,6 @@
         "memory_tip": "Group by a and by b, not by cosine and sine. The a group gives 1 and the b group gives cos x, which rebuilds a + b cos x in one line."
       }
     ]
-  }
+  },
+  "insider_note": "Put t = tan(x/2) so the whole bracket becomes a cosine of a single angle. The conditions a > b > 0 and 0 < x < π are what keep the denominator positive and the roots real."
 }

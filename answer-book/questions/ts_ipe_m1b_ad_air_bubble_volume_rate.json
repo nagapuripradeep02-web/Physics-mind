@@ -136,5 +136,6 @@
         "memory_tip": "With r = 1 the r² factor is just 1, so the whole answer is 4π halved, which is 2π."
       }
     ]
-  }
+  },
+  "insider_note": "A bubble is a SPHERE, so V = (4/3)πr³ and dV/dt = 4πr²(dr/dt). Substitute r = 1 only after differentiating — putting the number in early loses the variable."
 }

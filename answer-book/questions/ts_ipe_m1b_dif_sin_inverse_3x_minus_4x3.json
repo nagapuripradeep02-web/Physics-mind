@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "3x − 4x³ is sin3θ, so x = sin θ turns y into 3Sin⁻¹x. Here the answer DOES keep the root, unlike the 2x/(1 + x²) version."
 }

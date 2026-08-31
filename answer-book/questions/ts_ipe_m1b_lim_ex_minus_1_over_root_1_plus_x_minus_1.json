@@ -130,5 +130,6 @@
         "memory_tip": "Dividing by 1/2 doubles the number, and the top limit here is 1, so the answer is simply 2."
       }
     ]
-  }
+  },
+  "insider_note": "Divide top and bottom by x so both become standard limits, 1 and 1/2. Dividing by a half doubles, so the answer is 2 — the same shape as the 3ˣ version."
 }

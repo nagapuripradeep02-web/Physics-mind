@@ -152,5 +152,6 @@
         "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down."
       }
     ]
-  }
+  },
+  "insider_note": "Δx = 0.1 is comparatively large here, so dy and Δy differ visibly — 2.1 against 2.11. That visible gap is the point of the question."
 }

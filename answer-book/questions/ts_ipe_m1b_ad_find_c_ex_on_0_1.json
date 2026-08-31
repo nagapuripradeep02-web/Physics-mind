@@ -134,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "This is the mean value theorem in disguise: set f′(c) equal to the average slope e − 1. Then e^c = e − 1 gives c = logₑ(e − 1), which does lie in (0, 1)."
 }

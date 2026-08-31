@@ -134,5 +134,6 @@
         "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down."
       }
     ]
-  }
+  },
+  "insider_note": "Both dy and Δy are wanted, and here e⁵ must be evaluated numerically for the comparison. Leaving the answer in terms of e is only half of what is asked."
 }

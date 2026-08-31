@@ -130,5 +130,6 @@
         "memory_tip": "The 3 is 2 from the modulus term plus 1 from the constant; the x term contributes nothing at 0."
       }
     ]
-  }
+  },
+  "insider_note": "From the right x is POSITIVE, so |x| = x and 2|x|/x is simply 2. The rest is substitution: 2 + 0 + 1 = 3."
 }

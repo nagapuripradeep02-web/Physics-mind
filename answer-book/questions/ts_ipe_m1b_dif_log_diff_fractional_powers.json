@@ -272,5 +272,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Four fractional powers multiplied and divided, so take logarithms first — the product and quotient rules directly would run for pages. Each power becomes a coefficient times a simple log."
 }

@@ -220,5 +220,6 @@
         "memory_tip": "The 1/x is the factor pulled outside; the logarithm limit contributes only 1."
       }
     ]
-  }
+  },
+  "insider_note": "Combine the two logarithms into log(1 + h/x) before taking the limit. Then log(1 + t)/t → 1 with t = h/x, and the 1/x left outside is the answer."
 }

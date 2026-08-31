@@ -130,5 +130,6 @@
         "memory_tip": "The answer is always 1 divided by the leftover factor at the point. Here the leftover is x + 1 = 2, so the answer is 1/2."
       }
     ]
-  }
+  },
+  "insider_note": "The angle is (x − 1), so the denominator must be factorised to produce a matching (x − 1). The leftover 1/(x + 1) is then just substituted."
 }

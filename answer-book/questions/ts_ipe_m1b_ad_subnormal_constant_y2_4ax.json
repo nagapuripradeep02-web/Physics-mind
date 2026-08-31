@@ -185,5 +185,6 @@
         "memory_tip": "For y² = 4ax the subnormal is 2a — half of the 4a in the equation. It is the same at every point, near the vertex or far from it."
       }
     ]
-  }
+  },
+  "insider_note": "Differentiate implicitly rather than solving for y. The y in the subnormal y·m cancels the y in dy/dx = 2a/y, leaving the constant 2a."
 }

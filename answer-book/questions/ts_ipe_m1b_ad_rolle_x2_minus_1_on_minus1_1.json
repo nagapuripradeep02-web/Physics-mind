@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "All three conditions must be written out; the verification IS the answer, not the value of c. Here f′(c) = 2c = 0 gives c = 0, which lies inside (−1, 1)."
 }

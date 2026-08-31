@@ -173,5 +173,6 @@
         "memory_tip": "The result has no a and no b, so if either survives the cancelling, go back to y″."
       }
     ]
-  }
+  },
+  "insider_note": "The second term is a product, so the product rule is needed at BOTH differentiations. Adding y back cancels the a and b terms entirely, leaving only the 4 cos x."
 }

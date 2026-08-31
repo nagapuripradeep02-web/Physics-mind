@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both velocity and acceleration are asked, so differentiate twice. Substitute t = 4 only at the end, into each derivative separately."
 }

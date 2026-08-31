@@ -178,5 +178,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The limit exists and equals 2, but f(0) is given as 1, so the answer is NO. Saying it is a removable discontinuity, mendable by redefining f(0) = 2, is what finishes the answer."
 }

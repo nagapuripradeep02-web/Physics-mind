@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "dx is the increase, 0.01. dA = 2x·dx gives 0.06, and comparing with the exact 0.0601 shows how good the approximation is."
 }

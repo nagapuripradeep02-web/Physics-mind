@@ -221,5 +221,6 @@
         "memory_tip": "The answer is −sin 2x. The double angle comes from A + B = 2x + h."
       }
     ]
-  }
+  },
+  "insider_note": "Use cos²A − cos²B = −sin(A + B)sin(A − B) so the difference becomes a product in one step. The sin h/h then goes to 1 and sin(2x + h) → sin 2x."
 }

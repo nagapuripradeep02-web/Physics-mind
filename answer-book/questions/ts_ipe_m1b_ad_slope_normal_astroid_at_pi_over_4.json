@@ -185,5 +185,6 @@
         "memory_tip": "π/4 is 45°, where tan is 1. A slope of −1 and a slope of +1 are always perpendicular."
       }
     ]
-  }
+  },
+  "insider_note": "dy/dx simplifies to −tan θ, which is −1 at π/4. The NORMAL slope is the negative reciprocal, so the answer is +1, not −1."
 }

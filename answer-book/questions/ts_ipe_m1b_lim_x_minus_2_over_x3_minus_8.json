@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Factorise the bottom with a³ − b³ = (a − b)(a² + ab + b²), taking b = 2. The (x − 2) cancels and the quadratic is then evaluated at 2, giving 12."
 }

@@ -276,5 +276,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Work out d/dx√(a² + x²) once and reuse it in both terms. The two awkward pieces cancel exactly, leaving 2√(a² + x²) — a much simpler answer than the working suggests."
 }

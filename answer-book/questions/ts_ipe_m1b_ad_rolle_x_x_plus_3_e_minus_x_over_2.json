@@ -137,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The exponential is never zero, so it can be divided out after differentiating and only the polynomial factor gives c. Both endpoints make f zero, which is condition (iii)."
 }

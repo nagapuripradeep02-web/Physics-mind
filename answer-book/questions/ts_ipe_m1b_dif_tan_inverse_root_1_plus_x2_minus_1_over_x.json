@@ -132,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "x = tan θ makes the bracket (1 − cos θ)/sin θ, which is tan(θ/2) — so y = θ/2 and the answer is half the Tan⁻¹ derivative. The halving is the whole point."
 }

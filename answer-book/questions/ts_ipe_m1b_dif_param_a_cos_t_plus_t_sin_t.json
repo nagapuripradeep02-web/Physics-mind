@@ -225,5 +225,6 @@
         "memory_tip": "If a survives to the last line, go back — a scales both x and y equally, so it can never appear in dy/dx."
       }
     ]
-  }
+  },
+  "insider_note": "The product rule on t sin t and t cos t makes most terms cancel in pairs, leaving dx/dt = at cos t and dy/dt = at sin t. The at then cancels, giving tan t."
 }

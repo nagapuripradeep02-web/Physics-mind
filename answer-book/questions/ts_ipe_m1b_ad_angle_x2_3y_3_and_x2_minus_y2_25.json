@@ -191,5 +191,6 @@
         "memory_tip": "Put both the numerator and the denominator over the same number, here 21, and that number cancels itself out."
       }
     ]
-  }
+  },
+  "insider_note": "Eliminate x² rather than y — the first curve gives x² = 3 − 3y directly. y = −7 is rejected because it makes x² negative."
 }

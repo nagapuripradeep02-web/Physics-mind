@@ -283,5 +283,6 @@
         "memory_tip": "The variable differentiated with respect to, x, ends up in the denominator; the other one, y, ends up on top."
       }
     ]
-  }
+  },
+  "insider_note": "Put x = sin A and y = sin B; the roots become cosines and the relation reduces to A − B = constant. Differentiating that gives the answer in one line."
 }

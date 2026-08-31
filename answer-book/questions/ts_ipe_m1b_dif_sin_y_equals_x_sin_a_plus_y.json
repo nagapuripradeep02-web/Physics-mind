@@ -226,5 +226,6 @@
         "memory_tip": "The answer is the previous line turned upside down. Check the sine that ends up in the denominator is sin a, the constant one."
       }
     ]
-  }
+  },
+  "insider_note": "x separates but y does not, so write x = sin y/sin(a + y), find dx/dy, and invert. The numerator collapses by the compound formula to sin a, which is the constant in the answer."
 }

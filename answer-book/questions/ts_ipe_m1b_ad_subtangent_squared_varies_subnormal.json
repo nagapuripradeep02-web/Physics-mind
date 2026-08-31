@@ -232,5 +232,6 @@
         "memory_tip": "Varies as means one is a fixed number times the other, so divide and check that every letter except the constants disappears."
       }
     ]
-  }
+  },
+  "insider_note": "Form both lengths, then square the subtangent and compare — the question asks for a VARIES relation, not an equality. The constants b and a survive as the factor."
 }

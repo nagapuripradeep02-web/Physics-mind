@@ -130,5 +130,6 @@
         "memory_tip": "A ratio of two natural logarithms is a change of base: logₑa / logₑb is the logarithm of a to the base b. That is the compact form of the answer."
       }
     ]
-  }
+  },
+  "insider_note": "Divide top and bottom by x so each becomes the standard (aˣ − 1)/x → logₑa. The condition b ≠ 1 is what keeps logₑb from being zero, so it belongs in the answer."
 }

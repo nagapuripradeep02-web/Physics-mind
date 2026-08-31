@@ -279,5 +279,6 @@
         "memory_tip": "Sin⁻¹ and Cos⁻¹ have the same denominator and opposite signs. Cos⁻¹ takes the minus, because the cosine decreases as the angle grows."
       }
     ]
-  }
+  },
+  "insider_note": "Put x² = cos 2θ, not x = cos θ, so both roots simplify together. x ≠ 0 matters because the denominator vanishes there, which is why the range is 0 < |x| < 1."
 }

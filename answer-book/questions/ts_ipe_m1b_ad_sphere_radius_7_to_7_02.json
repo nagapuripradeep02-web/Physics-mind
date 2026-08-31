@@ -132,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "dr is the CHANGE, 0.02, not the new radius. dV = 4πr²·dr uses the old radius 7, giving 3.92π."
 }

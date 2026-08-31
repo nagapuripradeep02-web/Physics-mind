@@ -223,5 +223,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "x = 1 belongs to the FIRST piece, so f(1) and the right limit are already equal and only the left gives a condition. That single equation k² − k = 2 has two roots, and both work."
 }

@@ -133,5 +133,6 @@
         "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so a downward move subtracts."
       }
     ]
-  }
+  },
+  "insider_note": "Take x = 1000, the nearest perfect cube, giving Δx = −1. f′ = 1/(3(∛x)²) uses the CUBE root squared, which is 100 — not 1000."
 }

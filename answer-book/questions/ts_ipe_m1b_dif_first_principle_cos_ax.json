@@ -221,5 +221,6 @@
         "memory_tip": "Cosine differentiates to minus sine, and the number inside the angle comes out in front: −a sin ax."
       }
     ]
-  }
+  },
+  "insider_note": "First principle means the limit definition, not the standard rule — quoting −a sin(ax) earns nothing. Use cos C − cos D to turn the difference into a product, then sin(ah/2)/(ah/2) → 1."
 }

@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The 3axy term needs the product rule on xy. Divide through by 3 early to keep the numbers small, then collect the dy/dx terms on one side."
 }

@@ -219,5 +219,6 @@
         "memory_tip": "Two terms in, two terms out: each of the three parts of the identity is there to kill one term of y₂."
       }
     ]
-  }
+  },
+  "insider_note": "Name the bracket P = b cos(sin x) − a sin(sin x) so the second differentiation stays readable. P′ comes out as −y cos x, and that is what makes every term collapse."
 }

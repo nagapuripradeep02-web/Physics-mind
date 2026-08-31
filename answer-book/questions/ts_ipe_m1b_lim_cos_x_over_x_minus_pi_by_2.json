@@ -130,5 +130,6 @@
         "memory_tip": "The answer is the derivative of cos x at x = π/2, which is −sin(π/2) = −1. That is a quick way to check the sign."
       }
     ]
-  }
+  },
+  "insider_note": "The standard limit lives at 0, so shift the point: put x = π/2 + h. cos(π/2 + h) = −sin h, and that minus sign is the whole answer."
 }

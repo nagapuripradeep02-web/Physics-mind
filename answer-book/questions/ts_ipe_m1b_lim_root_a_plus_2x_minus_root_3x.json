@@ -133,5 +133,6 @@
         "memory_tip": "After both conjugates the value is 4√a over 6√(3a): the √a cancels and 2 over 3√3 is left."
       }
     ]
-  }
+  },
+  "insider_note": "TWO conjugates are needed, one for the top and one for the bottom. Both give a multiple of (a − x), which cancels, and the a itself then cancels out of the answer."
 }

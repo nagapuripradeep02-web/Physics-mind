@@ -225,5 +225,6 @@
         "memory_tip": "Go back to the first line to finish the last one: wherever y log x appears, log y may be written instead."
       }
     ]
-  }
+  },
+  "insider_note": "Take logarithms to get log y = y log x, then differentiate — the right side needs the product rule because y depends on x. Both printed forms follow from y = xʸ."
 }

@@ -136,5 +136,6 @@
         "memory_tip": "In dy/dt = 4x(dx/dt) there is no y, so from the point (2, 8) only the 2 is used and the 8 is just the check."
       }
     ]
-  }
+  },
+  "insider_note": "Chain the rates: dy/dt = (dy/dx)(dx/dt). The point (2, 8) supplies x = 2, so dy/dx = 8 and the answer is 32."
 }

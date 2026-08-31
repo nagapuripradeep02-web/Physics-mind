@@ -141,5 +141,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two unknowns need two equations: f(1) = f(3) gives one and f′(c) = 0 with the stated c gives the other. Solve them together rather than one at a time."
 }

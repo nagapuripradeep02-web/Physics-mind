@@ -132,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Rewrite the top in terms of the bottom, 2x + 3 = ½(4x + 5) + ½, so the quotient rule is never needed. What is left is a simple power differentiated twice."
 }

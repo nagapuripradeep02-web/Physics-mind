@@ -132,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Multiply and divide by sin x so it splits into (e^t − 1)/t and (sin x)/x, both of which go to 1. Trying to expand the exponential instead leads nowhere."
 }

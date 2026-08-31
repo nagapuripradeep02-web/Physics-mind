@@ -137,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Check all three conditions, then solve f′(c) = 0 as a quadratic in cos c. Only the root that lies inside (0, π) may be quoted."
 }

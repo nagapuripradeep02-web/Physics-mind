@@ -225,5 +225,6 @@
         "memory_tip": "Factor first, divide second. The cos 2t was put in front on purpose so that one cancellation finishes the question."
       }
     ]
-  }
+  },
+  "insider_note": "Both derivatives factorise to a multiple of cos 2t: dx/dt = 3 sin t cos 2t and dy/dt = 3 cos t cos 2t. The cos 2t cancels, leaving cot t."
 }

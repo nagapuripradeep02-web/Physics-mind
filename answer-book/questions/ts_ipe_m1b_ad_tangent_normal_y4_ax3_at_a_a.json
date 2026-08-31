@@ -239,5 +239,6 @@
         "memory_tip": "Tangent slope 3/4 turns over to 4/3 and the sign changes to minus. The two lines then have slopes whose product is −1."
       }
     ]
-  }
+  },
+  "insider_note": "Differentiate implicitly; the point (a, a) lies on the curve for EVERY a, which is worth checking first. The a's then cancel, leaving a numerical slope of 3/4."
 }

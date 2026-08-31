@@ -229,5 +229,6 @@
         "memory_tip": "Second derivative negative means the curve bends downward there, so the stationary point is a maximum. Positive means it bends upward, so it is a minimum."
       }
     ]
-  }
+  },
+  "insider_note": "The sphere's centre bisects the axis, so R² + (h/2)² = r² eliminates R. Maximising then gives h = r√2, and squaring to avoid the root keeps the algebra clean."
 }

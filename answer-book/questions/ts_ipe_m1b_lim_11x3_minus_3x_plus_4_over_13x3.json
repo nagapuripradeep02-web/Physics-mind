@@ -129,5 +129,6 @@
         "memory_tip": "Only the x³ coefficients matter: 11 over 13."
       }
     ]
-  }
+  },
+  "insider_note": "Divide every term by the HIGHEST power present, x³, and each remaining fraction goes to 0. The answer is just the ratio of the leading coefficients, 11/13."
 }

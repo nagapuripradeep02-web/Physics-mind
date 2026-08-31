@@ -130,5 +130,6 @@
         "memory_tip": "1 divided by a quantity that increases without bound approaches 0."
       }
     ]
-  }
+  },
+  "insider_note": "This is ∞ − ∞, not ∞/∞, so no dividing helps — multiply by the conjugate instead. The top becomes 1 and the bottom grows, so the limit is 0."
 }

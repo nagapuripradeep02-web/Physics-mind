@@ -189,5 +189,6 @@
         "memory_tip": "Difference on top, one plus the product underneath, modulus around the whole fraction."
       }
     ]
-  }
+  },
+  "insider_note": "y² = 8x needs x ≥ 0, so x = −4 is discarded. The surviving x = 2 gives y = ±4, and the angle is the same at both by symmetry."
 }

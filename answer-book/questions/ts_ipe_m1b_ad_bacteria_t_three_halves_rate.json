@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Differentiate t^(3/2) by the ordinary power rule to get (3/2)√t. Then substitute t = 4, giving 3."
 }

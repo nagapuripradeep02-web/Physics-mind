@@ -132,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Base and exponent are BOTH variable, so neither the power rule nor the exponential rule applies — take logarithms first. The left side then needs the chain rule and the right the product rule."
 }

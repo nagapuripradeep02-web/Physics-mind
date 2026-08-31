@@ -134,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Parallel means equal SLOPES, so find the chord's slope first, which is 1. Then 2x = 1 gives x = 1/2, and the y-coordinate must be worked out too."
 }

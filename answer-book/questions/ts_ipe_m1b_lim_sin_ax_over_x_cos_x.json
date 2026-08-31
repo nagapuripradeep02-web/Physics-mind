@@ -132,5 +132,6 @@
         "memory_tip": "Read the answer straight off the question: whatever multiplies x inside the sine is the answer, since cos 0 = 1 leaves it unchanged."
       }
     ]
-  }
+  },
+  "insider_note": "Separate the awkward part from the ordinary one: cos x → 1 by simple substitution. Multiply and divide by a so the angle matches below the sine, and that a is the answer."
 }

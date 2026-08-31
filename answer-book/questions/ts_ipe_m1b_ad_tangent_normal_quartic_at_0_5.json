@@ -236,5 +236,6 @@
         "memory_tip": "Turn the tangent slope upside down, then change its sign. Both moves, every time."
       }
     ]
-  }
+  },
+  "insider_note": "At x = 0 every power term vanishes, so m is just the coefficient of x, which is −10. That makes the normal slope 1/10."
 }

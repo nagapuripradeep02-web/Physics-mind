@@ -135,5 +135,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The rate is GIVEN and the time is asked, so set dN/dt = 300 and solve. That is the reverse of the usual direction, and reading it the other way makes the question impossible."
 }

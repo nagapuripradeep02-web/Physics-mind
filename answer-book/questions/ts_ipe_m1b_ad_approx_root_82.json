@@ -137,5 +137,6 @@
         "memory_tip": "New value ≈ old value + slope × step. The step keeps its sign, so an upward move adds."
       }
     ]
-  }
+  },
+  "insider_note": "Take x = 81 rather than 80, because 81 is the perfect square. Δx = 1 and f′(81) = 1/18, giving 9 + 1/18."
 }

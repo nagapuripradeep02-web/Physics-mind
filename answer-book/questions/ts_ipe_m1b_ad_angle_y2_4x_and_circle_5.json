@@ -188,5 +188,6 @@
         "memory_tip": "Difference on top, one plus the product underneath — the same formula as the angle between two straight lines."
       }
     ]
-  }
+  },
+  "insider_note": "y² = 4x forces x ≥ 0, so the root x = −5 is rejected on sight. Both intersection points share x = 1, with y = ±2."
 }

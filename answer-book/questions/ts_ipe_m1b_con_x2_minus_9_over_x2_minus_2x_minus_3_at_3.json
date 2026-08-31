@@ -223,5 +223,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both top and bottom vanish at 3, so factorise both and cancel the shared (x − 3). The surviving (x + 3)/(x + 1) gives 1.5, matching the given f(3) exactly."
 }

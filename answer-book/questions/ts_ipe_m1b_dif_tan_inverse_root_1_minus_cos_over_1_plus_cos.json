@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The half-angle identities turn the fraction into tan²(x/2), so the root and the Tan⁻¹ cancel and y is just x/2. The answer is the constant 1/2."
 }

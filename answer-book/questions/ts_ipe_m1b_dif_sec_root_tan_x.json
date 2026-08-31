@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Three nested layers: sec, then the square root, then tan. Work outwards-in and keep √(tan x) as the argument of both sec and tan in the answer."
 }

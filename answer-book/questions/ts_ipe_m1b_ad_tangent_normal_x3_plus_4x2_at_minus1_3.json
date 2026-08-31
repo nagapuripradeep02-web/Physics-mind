@@ -190,5 +190,6 @@
         "memory_tip": "Minus one divided by a negative slope is positive. A tangent sloping down has a normal sloping up."
       }
     ]
-  }
+  },
+  "insider_note": "Check the point is on the curve first, then m = 3x² + 8x at x = −1 gives −5. Watch the signs: squaring −1 gives +1 while the linear term stays negative."
 }

@@ -227,5 +227,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Take logarithms of both sides to reach (log y)(log x) = log(log x), which needs x > 1. Then differentiate implicitly, treating log y as the unknown function."
 }

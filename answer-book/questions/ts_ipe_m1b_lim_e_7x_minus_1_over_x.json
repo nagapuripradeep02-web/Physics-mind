@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Make the denominator match the power: write it as 7 · (e⁷ˣ − 1)/(7x). The 7 pulled out front IS the answer, since the bracket goes to 1."
 }

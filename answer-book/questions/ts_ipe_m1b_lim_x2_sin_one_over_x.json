@@ -129,5 +129,6 @@
         "memory_tip": "When both outer limits are 0, the limit of the expression between them is 0 as well."
       }
     ]
-  }
+  },
+  "insider_note": "sin(1/x) has no limit at 0, so bound it between −1 and 1 and multiply by x². Both outer limits are 0, so the Sandwich theorem forces the answer to 0."
 }

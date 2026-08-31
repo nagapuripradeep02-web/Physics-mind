@@ -188,5 +188,6 @@
         "memory_tip": "Perpendicular slopes multiply to −1, exactly as in straight lines — at the shared point each curve has the direction of its own tangent."
       }
     ]
-  }
+  },
+  "insider_note": "Orthogonal means the product of the slopes is −1. Both curves give y² directly, so equate the right sides to find x = 8 without substituting."
 }

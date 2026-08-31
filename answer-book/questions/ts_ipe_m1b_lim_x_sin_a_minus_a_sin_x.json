@@ -132,5 +132,6 @@
         "memory_tip": "Read the answer off the question: sin a comes from the sin a term, and a cos a from the a sin x term with the minus it already carries."
       }
     ]
-  }
+  },
+  "insider_note": "Add and subtract a sin a on top so the expression splits into a constant and the derivative of sin x at a. That derivative is cos a, giving sin a − a cos a."
 }

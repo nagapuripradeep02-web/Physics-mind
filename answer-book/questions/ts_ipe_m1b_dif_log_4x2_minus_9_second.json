@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Factorise first and split the log into a sum — differentiating log(4x² − 9) directly makes the second derivative much messier. Each piece is then a simple power."
 }

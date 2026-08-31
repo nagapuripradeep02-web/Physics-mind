@@ -134,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Acceleration zero means the SECOND derivative is zero, not the first. 24t − 6 = 0 gives t = 1/4, and a fractional time is a perfectly good answer."
 }

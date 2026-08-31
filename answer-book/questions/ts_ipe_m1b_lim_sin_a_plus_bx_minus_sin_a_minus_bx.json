@@ -132,5 +132,6 @@
         "memory_tip": "sin(bx)/x is never 1; it is b. Whatever multiplies x inside the sine comes out in front."
       }
     ]
-  }
+  },
+  "insider_note": "sin C − sin D makes the half-sum a constant, cos a, and the half-difference the small angle bx. Only sin(bx)/x is left, which supplies the b."
 }

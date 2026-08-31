@@ -182,5 +182,6 @@
         "memory_tip": "The maximum VALUE is one number, but the points where it is reached can be several. Report the value first, then every x that gives it."
       }
     ]
-  }
+  },
+  "insider_note": "Test both endpoints along with the stationary point. The minimum 0 is interior at x = 0 but the maximum 4 occurs at BOTH ends, which is worth saying."
 }

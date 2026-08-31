@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "a is a constant, so a² sits outside untouched — only eˣ² is differentiated. The chain rule on x² supplies the 2x that appears in the answer."
 }

@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two things are wanted: the times AND the positions there. Factor v = 3(t − 2)(t − 4) to get the times, then put each back into S, not into v."
 }

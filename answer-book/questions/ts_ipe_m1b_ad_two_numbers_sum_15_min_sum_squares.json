@@ -183,5 +183,6 @@
         "memory_tip": "When a sum is fixed, the sum of squares is least when the two numbers are equal. Equal split for the smallest sum of squares is worth remembering as a check."
       }
     ]
-  }
+  },
+  "insider_note": "Write the second number as 15 − x and minimise 2x² − 30x + 225. The answer 7.5 each is not an integer, and the question does not ask for one."
 }

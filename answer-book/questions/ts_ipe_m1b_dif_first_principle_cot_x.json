@@ -179,5 +179,6 @@
         "memory_tip": "One over sine is cosec. sin²x underneath becomes cosec²x on top, with the minus kept."
       }
     ]
-  }
+  },
+  "insider_note": "Write both cotangents as cos/sin and combine over one denominator; the numerator collapses to sin(−h) by the compound formula. That minus is why the answer is −cosec²x."
 }

@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Match the denominator to the argument: 5 · log(1 + 5x)/(5x). The 5 taken out front is the answer, because log(1 + t)/t → 1."
 }

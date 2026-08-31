@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Split the power first: e^(x+3) = eˣ · e³, so e³ comes out as a constant. What is left is the standard (eˣ − 1)/x → 1, making the answer e³ and not 1."
 }
