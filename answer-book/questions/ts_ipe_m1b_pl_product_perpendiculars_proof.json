@@ -11,10 +11,10 @@
     "name": "Pair of Straight Lines"
   },
   "chapter": "Pair of Straight Lines",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 15,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "Prove that the product of the perpendiculars from (α,β) to the pair of lines ax²+2hxy+by²=0 is |aα²+2hαβ+bβ²| : √((a−b)²+4h²).",
   "appearances": [
     {
@@ -39,27 +39,27 @@
     },
     {
       "label": "Write both perpendicular distances",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Multiply them together",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Convert to a, h, b",
-      "marks": 3
+      "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2 Pair of Straight Lines, answer 8, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP J 17 · TS 18,22 · AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Convert to a, h, b."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.21 — LAQ chapter 2 Pair of Straight Lines, answer 8, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP J 17 · TS 18,22 · AP 19. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. The chapter's only printed splits are on its two homogenisation answers (12 and 15), whose shape does not transfer to a general proof. This split follows the answer's own printed structure instead: the book sets every proof in this chapter out as a chain of starred bullet lines, and the cut here groups them at the points where the argument turns. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Convert to a, h, b. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the four steps now carry 1+1+1+1 instead of 1+2+2+3. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — say what form you split the pair into, and what the numerator turns into.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Pair of Straight Lines · 8 marks"
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
     ],
     "steps": [
       {
@@ -110,8 +110,8 @@
         "id": "s2_both_distances",
         "kind": "equation",
         "label": "Write both perpendicular distances",
-        "marks": 2,
-        "margin_note": "Two marks. Each line passes through the origin, so its equation has no constant — the perpendicular distance from (α, β) is just |l α + m β| over the root of the squares.",
+        "marks": 1,
+        "margin_note": "One mark. Each line passes through the origin, so its equation has no constant — the perpendicular distance from (α, β) is just |l α + m β| over the root of the squares.",
         "lines": [
           "Perpendicular distance from (α, β) to l₁x + m₁y = 0 is  p₁ = |l₁α + m₁β| / √(l₁² + m₁²)",
           "Perpendicular distance from (α, β) to l₂x + m₂y = 0 is  p₂ = |l₂α + m₂β| / √(l₂² + m₂²)"
@@ -148,8 +148,8 @@
         "id": "s3_multiply",
         "kind": "equation",
         "label": "Multiply them together",
-        "marks": 2,
-        "margin_note": "Two marks. Multiply the two fractions, then multiply out both numerator and denominator so that everything is written in the products the dictionary knows.",
+        "marks": 1,
+        "margin_note": "One mark. Multiply the two fractions, then multiply out both numerator and denominator so that everything is written in the products the dictionary knows.",
         "lines": [
           "∴ Product of perpendiculars is  p₁·p₂ = [|l₁α + m₁β| / √(l₁² + m₁²)] · [|l₂α + m₂β| / √(l₂² + m₂²)]",
           "= |(l₁α + m₁β)(l₂α + m₂β)| / √((l₁² + m₁²)(l₂² + m₂²))",
@@ -188,8 +188,8 @@
         "id": "s4_convert",
         "kind": "boxed_final",
         "label": "Convert to a, h, b",
-        "marks": 3,
-        "margin_note": "The last three marks. The numerator substitutes directly. The denominator needs one rearrangement: add and subtract 2l₁l₂m₁m₂ so it becomes a difference of squares plus a square.",
+        "marks": 1,
+        "margin_note": "The last mark. The numerator substitutes directly. The denominator needs one rearrangement: add and subtract 2l₁l₂m₁m₂ so it becomes a difference of squares plus a square.",
         "lines": [
           "= |aα² + 2hαβ + bβ²| / √((l₁l₂ − m₁m₂)² + 2l₁l₂m₁m₂ + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
           "= |aα² + 2hαβ + bβ²| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",

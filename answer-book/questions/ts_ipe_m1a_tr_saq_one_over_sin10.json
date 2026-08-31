@@ -11,10 +11,10 @@
     "name": "Trigonometric Ratios and Transformations"
   },
   "chapter": "Trigonometric Ratios and Transformations",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 8,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
   "question_text": "Show that 1/sin10° − √3/cos10° = 4.",
   "appearances": [
     {
@@ -32,15 +32,7 @@
   ],
   "mark_split": [
     {
-      "label": "Combine over one denominator",
-      "marks": 1
-    },
-    {
       "label": "Take 2 out to make known angles",
-      "marks": 1
-    },
-    {
-      "label": "Apply sin(A−B)",
       "marks": 1
     },
     {
@@ -51,22 +43,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 64.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP 16 · TS 16. The √3 is not decoration — it is there so that after halving, the coefficients become cos 30° and sin 30°, which is what lets the numerator collapse into a single sine. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.65 — SAQ chapter 10 T-Ratios upto Transformations, answer 64.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: TS 18 · AP 16 · TS 16. The √3 is not decoration — it is there so that after halving, the coefficients become cos 30° and sin 30°, which is what lets the numerator collapse into a single sine. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 42 i. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the step that takes the 2 out and on the closing cancellation, and the remaining steps stay on the page as unmarked working. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "Trigonometric Ratios · 4 marks"
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
     ],
     "steps": [
       {
         "id": "s1_combine_over_one_denomin",
         "kind": "equation",
         "label": "Combine over one denominator",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "First mark. One fraction, so the numerator can be worked on as a single expression.",
+        "marks": 0,
+        "margin_note": "One fraction, so the numerator can be worked on as a single expression.",
         "lines": [
           {
             "text": "Sol:",
@@ -109,7 +100,7 @@
         "label": "Take 2 out to make known angles",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark, and the idea of the question. Taking 2 out turns the coefficients into 1/2 and √3/2 — which are sin 30° and cos 30°.",
+        "margin_note": "First mark, and the idea of the question. Taking 2 out turns the coefficients into 1/2 and √3/2 — which are sin 30° and cos 30°.",
         "lines": [
           "= 2[(1/2)cos10° − (√3/2)sin10°] / (sin10° cos10°)",
           "= 2[sin30° cos10° − cos30° sin10°] / (sin10° cos10°)"
@@ -147,9 +138,8 @@
         "id": "s3_apply_sin_a_b",
         "kind": "equation",
         "label": "Apply sin(A−B)",
-        "marks": 1,
-        "mark_note": "Method",
-        "margin_note": "Third mark. sinA cosB − cosA sinB is sin(A−B), so the whole numerator collapses to 2 sin20°.",
+        "marks": 0,
+        "margin_note": "sinA cosB − cosA sinB is sin(A−B), so the whole numerator collapses to 2 sin20°.",
         "lines": [
           "= 2 sin(30° − 10°) / (sin10° cos10°)",
           "  [∵ sinA cosB − cosA sinB = sin(A−B)]",

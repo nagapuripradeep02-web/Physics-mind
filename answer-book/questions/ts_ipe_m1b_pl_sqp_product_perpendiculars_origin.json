@@ -11,10 +11,10 @@
     "name": "Pair of Straight Lines"
   },
   "chapter": "Pair of Straight Lines",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 15,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "Prove that the product of the perpendicular distances from the origin to the pair of straight lines represented by ax²+2hxy+by²+2gx+2fy+c=0 is |c| : √((a−b)²+4h²).",
   "appearances": [
     {
@@ -32,27 +32,27 @@
     },
     {
       "label": "Write both perpendicular distances",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Multiply them together",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Convert to a, h, b and c",
-      "marks": 3
+      "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.105 — the STAR QUESTIONS PLUS bank, answer 185, under its 'PAIR OF LINES' heading. Printed appearances: TS 19 · AP 19. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from LAQ chapter 2 — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut. This is filed as LAQ because Pair of Straight Lines has NO Section-A or Section-B slot on the paper at all — the Blue Print gives it 7+7 in Section C and nothing else — so an LAQ is the only cut this unit admits, the same way 1A's Units 2, 7 and 8 fix their own section. ⚠ THE MARK SPLIT IS ALSO OURS — the bank prints no [N Marks] tags anywhere; it follows the shape of the chapter answer this question mirrors. It mirrors chapter answer 8 (book p.21), which proves the same product for a general point (α,β) on a pair through the ORIGIN; this bank question inverts that — a general pair, and the perpendiculars taken FROM the origin. The two answers share their skeleton, and the chapter answer's 1+2+2+2 shape is used here. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Convert to a, h, b and c."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1B (Sri Publishers, Machilipatnam), book p.105 — the STAR QUESTIONS PLUS bank, answer 185, under its 'PAIR OF LINES' heading. Printed appearances: TS 19 · AP 19. ⚠ THIS QUESTION COMES FROM THE STAR QUESTIONS PLUS BANK (book pp.104-108, answers 181-196), NOT from LAQ chapter 2 — the bank sits AFTER every numbered chapter and is organised by chapter, so it is not part of any chapter's own inventory. Boundary walked to book p.109, the Bullet Model Paper. SECTION CLASSIFICATION IS OURS, NOT THE BOOK'S: its headings name the CHAPTER, never the mark cut. This is filed as LAQ because Pair of Straight Lines has NO Section-A or Section-B slot on the paper at all — the Blue Print gives it 7+7 in Section C and nothing else — so an LAQ is the only cut this unit admits, the same way 1A's Units 2, 7 and 8 fix their own section. ⚠ THE MARK SPLIT IS ALSO OURS — the bank prints no [N Marks] tags anywhere; it follows the shape of the chapter answer this question mirrors. It mirrors chapter answer 8 (book p.21), which proves the same product for a general point (α,β) on a pair through the ORIGIN; this bank question inverts that — a general pair, and the perpendiculars taken FROM the origin. The two answers share their skeleton, and the chapter answer's 1+2+2+2 shape is used here. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTE: Pair of Straight Lines holds TWO Section-C slots — the book's chapter header reads '7+7=14 Marks' and the IPE Blue Print (book p.3) gives it 14 marks, all in Section C and none in Section A or B, so it is an LAQ-ONLY unit and the only 1B unit besides Matrices-on-1A to carry two long slots. The chapter runs book pp.19-26 and its boundary was walked: p.27 opens LAQ chapter 3, D.C's & D.R's. Paper position: Maths-1B Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Convert to a, h, b and c. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition) files this chapter under the printed banner \"2 x 4M = 8 M\" followed by \"Short Answer Questions\", lists every one of its questions there, and prints no long-answer block for this chapter at all. A chapter with no 8-mark block cannot hold an 8-mark question. The standing boundary for that book — \"Only the question was taken\" — holds here, and this card takes even less: what was read from it is the chapter’s printed section banner and nothing else. The solution, the step order and the mark split are this answer book’s own work, see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the four steps now carry 1+1+1+1 instead of 1+2+2+3. Paper position now: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — say what the distance from the ORIGIN simplifies to, and what the numerator becomes.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Pair of Straight Lines · 8 marks"
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
     ],
     "steps": [
       {
@@ -105,8 +105,8 @@
         "id": "s2_both_distances",
         "kind": "equation",
         "label": "Write both perpendicular distances",
-        "marks": 2,
-        "margin_note": "Two marks. From the ORIGIN the distance formula collapses: putting (0,0) into |l x + m y + n| leaves only |n|. Both numerators are therefore single constants.",
+        "marks": 1,
+        "margin_note": "One mark. From the ORIGIN the distance formula collapses: putting (0,0) into |l x + m y + n| leaves only |n|. Both numerators are therefore single constants.",
         "lines": [
           "The perpendicular distance from O(0,0) to line (1) is  p₁ = |n₁| / √(l₁² + m₁²)",
           "The perpendicular distance from O(0,0) to line (2) is  p₂ = |n₂| / √(l₂² + m₂²)"
@@ -144,8 +144,8 @@
         "id": "s3_multiply",
         "kind": "equation",
         "label": "Multiply them together",
-        "marks": 2,
-        "margin_note": "Two marks. Multiply the two fractions. The numerator is immediately n₁n₂, which the dictionary already names; only the denominator needs work.",
+        "marks": 1,
+        "margin_note": "One mark. Multiply the two fractions. The numerator is immediately n₁n₂, which the dictionary already names; only the denominator needs work.",
         "lines": [
           "∴ The product of the perpendiculars is",
           "p₁·p₂ = [|n₁| / √(l₁² + m₁²)] · [|n₂| / √(l₂² + m₂²)]",
@@ -185,8 +185,8 @@
         "id": "s4_convert",
         "kind": "boxed_final",
         "label": "Convert to a, h, b and c",
-        "marks": 3,
-        "margin_note": "The last three marks. Add and subtract 2l₁l₂m₁m₂ under the root so it regroups as a difference of squares plus a square — the same rearrangement chapter answer 8 uses.",
+        "marks": 1,
+        "margin_note": "The last mark. Add and subtract 2l₁l₂m₁m₂ under the root so it regroups as a difference of squares plus a square — the same rearrangement chapter answer 8 uses.",
         "lines": [
           "= |c| / √((l₁l₂ − m₁m₂)² + 2l₁l₂m₁m₂ + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
           "= |c| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",

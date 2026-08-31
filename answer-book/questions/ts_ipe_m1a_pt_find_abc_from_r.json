@@ -11,10 +11,10 @@
     "name": "Properties of Triangles"
   },
   "chapter": "Properties of Triangles",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 12,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "In a △ABC, if r₁ = 8, r₂ = 12 and r₃ = 24, then find a, b and c.",
   "appearances": [
     {
@@ -37,15 +37,15 @@
   "mark_split": [
     {
       "label": "Find r from the three ex-radii",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Find Δ and s",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Find each side from its ex-radius",
-      "marks": 3
+      "marks": 1
     },
     {
       "label": "State the sides",
@@ -55,22 +55,22 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.43 — LAQ chapter 6 Properties of Triangles, answer 31.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17 · TS 15,16,18. The book pairs it with 31.2 and calls the two \"Always be cheerful with this a,b,c question\" — the same chain of standard results run in the same order. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Find each side from its ex-radius\" step."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.43 — LAQ chapter 6 Properties of Triangles, answer 31.1, on a ★★★ SSP (Super Scoring Page). Printed appearances: AP 17 · TS 15,16,18. The book pairs it with 31.2 and calls the two \"Always be cheerful with this a,b,c question\" — the same chain of standard results run in the same order. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed against this answer. It is not a bare guess: this same chapter DOES print a full 1×7 split against answer 32 on book p.44, so the granularity is the chapter's own, and the weightings here follow the natural steps. The book's chapter header carries ★★★ and reads '7 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section C runs Q18-Q24 at 7 marks each, answer any 5 of 7; Q24 is the Properties of Triangles slot. Together with Q17 (SAQ) this unit holds TWO slots — one of only two units to do so, Matrices being the other. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to the \"Find each side from its ex-radius\" step. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter as 16 Very Short Answer questions and 11 Short Answer questions, lists this one among the short answers (SAQ 2 ii), and prints no long-answer block for it at all. Only the question was taken; the boundary is recorded in docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would do this one — name each standard result you use and the order you use them in.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Properties of Triangles · 8 marks"
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_find_r_from_the_three_ex_r",
         "kind": "equation",
         "label": "Find r from the three ex-radii",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two of the eight marks. The three ex-radii determine the in-radius through 1/r = 1/r₁ + 1/r₂ + 1/r₃ — one of the standard results, quoted rather than derived.",
+        "margin_note": "One of the four marks. The three ex-radii determine the in-radius through 1/r = 1/r₁ + 1/r₂ + 1/r₃ — one of the standard results, quoted rather than derived.",
         "lines": [
           {
             "text": "Sol:",
@@ -113,9 +113,9 @@
         "id": "s2_find_and_s",
         "kind": "equation",
         "label": "Find Δ and s",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two more marks. Δ = √(r r₁ r₂ r₃) is the standard result that turns four radii into an area; then s = Δ/r follows from r = Δ/s.",
+        "margin_note": "One more mark. Δ = √(r r₁ r₂ r₃) is the standard result that turns four radii into an area; then s = Δ/r follows from r = Δ/s.",
         "lines": [
           "We know Δ = √(r r₁ r₂ r₃)",
           "= √(4 × 8 × 12 × 24) = √(4 × 8 × (3×4) × (3×8))",
@@ -155,9 +155,9 @@
         "id": "s3_find_each_side_from_its_ex",
         "kind": "equation",
         "label": "Find each side from its ex-radius",
-        "marks": 3,
+        "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Three marks. Each ex-radius names one side: r₁ = Δ/(s−a) gives s−a, and s is known — so a follows. Same for b and c.",
+        "margin_note": "One more mark. Each ex-radius names one side: r₁ = Δ/(s−a) gives s−a, and s is known — so a follows. Same for b and c.",
         "lines": [
           "(i) r₁ = Δ/(s−a) ⇒ s − a = Δ/r₁ = 96/8 = 12",
           "  ∴ 24 − a = 12 ⇒ a = 12",

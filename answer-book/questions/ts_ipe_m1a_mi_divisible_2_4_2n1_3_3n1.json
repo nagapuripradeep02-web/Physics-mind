@@ -11,17 +11,13 @@
     "name": "Mathematical Induction"
   },
   "chapter": "Mathematical Induction",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 14,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "Using P.M.I, show that 2·4⁽²ⁿ⁺¹⁾ + 3⁽³ⁿ⁺¹⁾ is divisible by 11, ∀ n ∈ N.",
   "appearances": [],
   "mark_split": [
-    {
-      "label": "The statement S(n)",
-      "marks": 1
-    },
     {
       "label": "Step 1 — S(1) is true",
       "marks": 1
@@ -32,7 +28,7 @@
     },
     {
       "label": "Step 3 — S(k+1) follows",
-      "marks": 4
+      "marks": 1
     },
     {
       "label": "Conclusion by P.M.I",
@@ -42,22 +38,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.21 — the PRACTICE question printed at the foot of LAQ chapter 2. IMPORTANT: the book poses this question but gives NO worked solution and NO mark split, so unlike every other question in this unit BOTH the solution and the 1+1+1+3+1 split are ours — the split copied from the chapter's solved questions, the working done and checked here (n=1 gives 209 = 11 × 19; the step turns on 16 − 27 being a multiple of 11). No appearance years are printed. Everything here needs a teacher's confirmation. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Step 3 — S(k+1) follows."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.21 — the PRACTICE question printed at the foot of LAQ chapter 2. IMPORTANT: the book poses this question but gives NO worked solution and NO mark split, so unlike every other question in this unit BOTH the solution and the 1+1+1+3+1 split are ours — the split copied from the chapter's solved questions, the working done and checked here (n=1 gives 209 = 11 × 19; the step turns on 16 − 27 being a multiple of 11). No appearance years are printed. Everything here needs a teacher's confirmation. SUPERSEDED 2026-08-31 by the RE-CUT sentence at the end of this note — re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Step 3 — S(k+1) follows. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition) prints this chapter under a Short Answer Questions banner and prints no long-answer block for it at all. Only the question was taken from a source book; the solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved — the four induction moves (base case, hypothesis, inductive step, conclusion) now carry 1 mark each and the opening statement step carries 0. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this by induction — how each power grows, and which subtraction produces the 11.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Mathematical Induction · 8 marks"
+      "Section B — Short Answer Question",
+      "Mathematical Induction · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_statement",
         "kind": "equation",
         "label": "Write the statement",
-        "marks": 1,
-        "mark_note": "Statement",
-        "margin_note": "One mark. Same first move as every divisibility proof: turn the word into an equation.",
+        "marks": 0,
+        "margin_note": "Unmarked setup at 4 marks, but never skip it — same first move as every divisibility proof: turn the word into an equation.",
         "lines": [
           "Let S(n): 2·4⁽²ⁿ⁺¹⁾ + 3⁽³ⁿ⁺¹⁾ = 11q,",
           "        where q ∈ Z"
@@ -173,9 +168,9 @@
         "id": "s4_inductive",
         "kind": "equation",
         "label": "Show S(k+1) follows",
-        "marks": 4,
+        "marks": 1,
         "mark_note": "Step 3",
-        "margin_note": "Four marks. The powers grow by 4² = 16 and 3³ = 27. Substitute the rearranged line and collect — 27 − 16 = 11 is what finishes it.",
+        "margin_note": "One mark, and the longest step on the page. The powers grow by 4² = 16 and 3³ = 27. Substitute the rearranged line and collect — 27 − 16 = 11 is what finishes it.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           "2·4⁽²ᵏ⁺³⁾ + 3⁽³ᵏ⁺⁴⁾",

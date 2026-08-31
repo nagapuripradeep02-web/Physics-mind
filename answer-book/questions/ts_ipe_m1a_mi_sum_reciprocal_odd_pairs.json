@@ -11,10 +11,10 @@
     "name": "Mathematical Induction"
   },
   "chapter": "Mathematical Induction",
-  "qtype": "LAQ",
-  "marks_total": 8,
-  "paper_section": "Section C",
-  "expected_time_min": 14,
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
   "question_text": "Show that 1/(1·3) + 1/(3·5) + 1/(5·7) + … + n terms = n/(2n+1), ∀ n ∈ N.",
   "appearances": [
     {
@@ -28,10 +28,6 @@
   ],
   "mark_split": [
     {
-      "label": "nth term and the statement S(n)",
-      "marks": 1
-    },
-    {
       "label": "Step 1 — S(1) is true",
       "marks": 1
     },
@@ -41,7 +37,7 @@
     },
     {
       "label": "Step 3 — S(k+1) follows",
-      "marks": 4
+      "marks": 1
     },
     {
       "label": "Conclusion by P.M.I",
@@ -51,22 +47,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.18 — LAQ chapter 2, question 7, marked by the book as a Board Model Paper question. NOTE: this page prints NO mark split. The 1+1+1+3+1 used here is the split the SAME book prints on questions 5, 6 and 8 of this chapter, applied because the answer has the identical five moves — an inference from the source, not a reading of it. Publisher's claims until a Telangana IPE teacher confirms them. Re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Step 3 — S(k+1) follows."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.18 — LAQ chapter 2, question 7, marked by the book as a Board Model Paper question. NOTE: this page prints NO mark split. The 1+1+1+3+1 used here is the split the SAME book prints on questions 5, 6 and 8 of this chapter, applied because the answer has the identical five moves — an inference from the source, not a reading of it. Publisher's claims until a Telangana IPE teacher confirms them. SUPERSEDED 2026-08-31 by the RE-CUT sentence at the end of this note — re-cut to the 8-mark Section-C form of the 2026-27 pattern (TGBIE model paper w.e.f. 2026-27): the extra mark goes to Step 3 — S(k+1) follows. RE-CUT 2026-08-31: this card was filed as LAQ at 8 marks and is now SAQ at 4 marks. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition) prints this chapter under a Short Answer Questions banner and prints no long-answer block for it at all. Only the question was taken from a source book; the solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved — the four induction moves (base case, hypothesis, inductive step, conclusion) now carry 1 mark each and the opening statement step carries 0. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this by induction — the nth term, and what cancels in the third step.",
   "answer": {
     "page_header": [
-      "Section C — Long Answer Question",
-      "Mathematical Induction · 8 marks"
+      "Section B — Short Answer Question",
+      "Mathematical Induction · 4 marks"
     ],
     "steps": [
       {
         "id": "s1_statement",
         "kind": "equation",
         "label": "Find the nth term",
-        "marks": 1,
-        "mark_note": "Statement",
-        "margin_note": "One mark. The denominators are consecutive odd numbers, so find both sequences with the A.P. formula before writing S(n).",
+        "marks": 0,
+        "margin_note": "Unmarked setup at 4 marks, but never skip it — the denominators are consecutive odd numbers, so find both sequences with the A.P. formula before writing S(n).",
         "lines": [
           "1, 3, 5, … is an A.P: a = 1, d = 2 ⇒ 2n − 1",
           "3, 5, 7, … is an A.P: a = 3, d = 2 ⇒ 2n + 1",
@@ -186,9 +181,9 @@
         "id": "s4_inductive",
         "kind": "equation",
         "label": "Show S(k+1) follows",
-        "marks": 4,
+        "marks": 1,
         "mark_note": "Step 3",
-        "margin_note": "Four marks. Add the (k+1)th term, put over a common denominator, and factorise the numerator — 2k² + 3k + 1 is the step that finishes it.",
+        "margin_note": "One mark, and the longest step on the page. Add the (k+1)th term, put over a common denominator, and factorise the numerator — 2k² + 3k + 1 is the step that finishes it.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           "(k+1)th term = 1/((2k+1)(2k+3))",

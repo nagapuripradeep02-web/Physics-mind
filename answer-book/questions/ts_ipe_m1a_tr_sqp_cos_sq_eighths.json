@@ -11,20 +11,16 @@
     "name": "Trigonometric Ratios and Transformations"
   },
   "chapter": "Trigonometric Ratios and Transformations",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 7,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
   "question_text": "Prove that cos²(π/8) + cos²(3π/8) + cos²(5π/8) + cos²(7π/8) = 2.",
   "appearances": [],
   "mark_split": [
     {
-      "label": "Rewrite 3π/8",
-      "marks": 1
-    },
-    {
       "label": "Rewrite 5π/8 and 7π/8",
-      "marks": 2
+      "marks": 1
     },
     {
       "label": "Square and pair",
@@ -34,22 +30,21 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.109 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 174. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: none — this answer carries no year tag. The same closing move as the previous question, but each of the three larger angles needs its OWN rewriting — one as π/2 − θ, one as π/2 + θ, one as π − θ. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.109 — from the book's separate \"STAR QUESTIONS PLUS\" bank, answer 174. That bank (book pp.98-111, answers 142-180) sits AFTER all the numbered chapters and is organised by chapter rather than forming part of any chapter's own inventory; it is authored into this unit because that is where the question belongs on the paper (founder decision 2026-08-22). SECTION: classed SAQ on its length and shape. The bank prints no mark cut, so this classification is OURS. Printed appearances: none — this answer carries no year tag. The same closing move as the previous question, but each of the three larger angles needs its OWN rewriting — one as π/2 − θ, one as π/2 + θ, one as π − θ. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — the bank prints no [N Marks] tags anywhere. The shapes used follow the splits the book DOES print elsewhere: 1+1 for a 2-mark VSAQ (answers 100, 101 on book p.82), 1+1+1+1 or 1+2+1 for a 4-mark SAQ (answers 58, 59 on p.63 and 61 on p.64), and the granular split for a 7-mark LAQ (answer 32 on p.44). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 35 i. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the second rewriting step and on the closing line, and the first rewriting stays on the page as unmarked working. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would do this one — name each move in order.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "Trigonometric Ratios upto Transformations · 4 marks"
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
     ],
     "steps": [
       {
         "id": "s1_rewrite_3_8",
         "kind": "equation",
         "label": "Rewrite 3π/8",
-        "marks": 1,
-        "mark_note": "First shift",
-        "margin_note": "First mark. 3π/8 = (4π − π)/8 = π/2 − π/8, and cos(π/2 − θ) = sin θ.",
+        "marks": 0,
+        "margin_note": "3π/8 = (4π − π)/8 = π/2 − π/8, and cos(π/2 − θ) = sin θ.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,9 +84,9 @@
         "id": "s2_rewrite_5_8_and_7_8",
         "kind": "equation",
         "label": "Rewrite 5π/8 and 7π/8",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Two more shifts",
-        "margin_note": "Half the marks, and the two to watch — 5π/8 goes to π/2 PLUS π/8 (giving −sin), and 7π/8 goes to π MINUS π/8 (giving −cos).",
+        "margin_note": "First mark, and the two to watch — 5π/8 goes to π/2 PLUS π/8 (giving −sin), and 7π/8 goes to π MINUS π/8 (giving −cos).",
         "lines": [
           "cos(5π/8) = cos((4π + π)/8) = cos(π/2 + π/8)",
           "= −sin(π/8)",

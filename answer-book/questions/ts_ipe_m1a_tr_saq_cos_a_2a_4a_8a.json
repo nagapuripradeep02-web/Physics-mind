@@ -11,10 +11,10 @@
     "name": "Trigonometric Ratios and Transformations"
   },
   "chapter": "Trigonometric Ratios and Transformations",
-  "qtype": "SAQ",
-  "marks_total": 4,
-  "paper_section": "Section B",
-  "expected_time_min": 8,
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
   "question_text": "Prove that cosA · cos2A · cos4A · cos8A = sin16A / (16 sinA).",
   "appearances": [
     {
@@ -29,23 +29,19 @@
     },
     {
       "label": "Apply the double angle repeatedly",
-      "marks": 2
-    },
-    {
-      "label": "State the result",
       "marks": 1
     }
   ],
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 10 T-Ratios upto Transformations, answer 69. Printed appearances: AP 17. The angles DOUBLE each time — A, 2A, 4A, 8A — and the answer is in 16A. That doubling chain is the whole method: each application of sin2θ = 2 sinθ cosθ moves one step up it. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot."
+    "note": "Source: Baby Bullet-Q, Junior Inter Maths-1A (Sri Publishers, Machilipatnam), book p.67 — SAQ chapter 10 T-Ratios upto Transformations, answer 69. Printed appearances: AP 17. The angles DOUBLE each time — A, 2A, 4A, 8A — and the answer is in 16A. That doubling chain is the whole method: each application of sin2θ = 2 sinθ cosθ moves one step up it. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed anywhere in this chapter (its pages are set two questions to a page in two columns). It is not a bare guess: the same book prints 1+1+1+1 for the 4-mark answers 58 and 59 on book p.63 and 1+2+1 for answer 61 on p.64, so both shapes used here are the book's own. The book's chapter header carries ★★ and reads '4 Marks'; that star is the CHAPTER's rank, not this question's. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Paper position: Maths-1A Section B runs Q11-Q17 at 4 marks each, answer any 5 of 7; Q14 is the T-Ratios slot. RE-CUT 2026-08-31: this card was filed as SAQ at 4 marks and is now VSAQ at 2. The original label came from the Baby Bullet-Q blueprint for the superseded 75-mark paper; the Sri Chaitanya FAST TRACK IPE Mathematics-IA 2026-27 edition files this chapter under a Very Short Answer Questions banner and prints no short answer block for it at all, asking this same question as Very Short Answer question 38. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The mathematics and the steps are unchanged; only the mark scheme moved: the two marks now sit on the step that manufactures the sine and on the doubling chain, and the closing line is a restatement that carries none. Still unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would prove this — name each move in order.",
   "answer": {
     "page_header": [
-      "Section B — Short Answer Question",
-      "Trigonometric Ratios · 4 marks"
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
     ],
     "steps": [
       {
@@ -96,9 +92,9 @@
         "id": "s2_apply_the_double_angle_r",
         "kind": "equation",
         "label": "Apply the double angle repeatedly",
-        "marks": 2,
+        "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Half the marks. Each 2 pairs with the sine just made and the next cosine, doubling the angle: A → 2A → 4A → 8A → 16A. Four applications, one per 2.",
+        "margin_note": "Last mark. Each 2 pairs with the sine just made and the next cosine, doubling the angle: A → 2A → 4A → 8A → 16A. Four applications, one per 2.",
         "lines": [
           "= (1/(16 sinA)) (sin2A)(2 cos2A)(2 cos4A)(2 cos8A)",
           "= (1/(16 sinA)) (sin4A)(2 cos4A)(2 cos8A)",
@@ -138,9 +134,8 @@
         "id": "s3_state_the_result",
         "kind": "boxed_final",
         "label": "State the result",
-        "marks": 1,
-        "mark_note": "Conclusion",
-        "margin_note": "Last mark. The chain ends at sin16A over the 16 sinA that was introduced at the start.",
+        "marks": 0,
+        "margin_note": "The chain ends at sin16A over the 16 sinA that was introduced at the start.",
         "lines": [
           {
             "text": "= sin16A / (16 sinA) = R.H.S",

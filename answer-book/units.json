@@ -4716,81 +4716,81 @@
       "questions": [
         {
           "ref": "laq1",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 1,
-          "stars": 3,
+          "stars": 0,
           "text": "Using the principle of finite Mathematical Induction prove that 1·2·3 + 2·3·4 + 3·4·5 + … upto n terms = n(n+1)(n+2)(n+3)/4, ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_sum_n_np1_np2"
         },
         {
           "ref": "laq2",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 2,
-          "stars": 3,
+          "stars": 0,
           "text": "Using the principle of finite Mathematical Induction prove that 1² + (1² + 2²) + (1² + 2² + 3²) + … n terms = n(n+1)²(n+2)/12, ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_sum_of_squares_series"
         },
         {
           "ref": "laq3",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 3,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that 1/(1·3) + 1/(3·5) + 1/(5·7) + … + n terms = n/(2n+1), ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_sum_reciprocal_odd_pairs"
         },
         {
           "ref": "laq4",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 4,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that 1/(1·4) + 1/(4·7) + 1/(7·10) + … + n terms = n/(3n+1), ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_sum_reciprocal_step_three"
         },
         {
           "ref": "laq5",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 5,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that 1³/1 + (1³ + 2³)/(1 + 3) + (1³ + 2³ + 3³)/(1 + 3 + 5) + … n terms = (n/24)(2n² + 9n + 13), ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_sum_cubes_over_odds"
         },
         {
           "ref": "laq6",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 6,
-          "stars": 3,
+          "stars": 0,
           "text": "By Mathematical Induction, show that 49ⁿ + 16n − 1 is divisible by 64 for all positive integers n.",
           "question_id": "ts_ipe_m1a_mi_divisible_49n_16n_minus_1"
         },
         {
           "ref": "laq7",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 7,
-          "stars": 3,
+          "stars": 0,
           "text": "Using the principle of Mathematical Induction, prove that 3·5⁽²ⁿ⁺¹⁾ + 2⁽³ⁿ⁺¹⁾ is divisible by 17, ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_divisible_3_5_2n1_2_3n1"
         },
         {
           "ref": "laq8",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 8,
-          "stars": 3,
+          "stars": 0,
           "text": "Using P.M.I, show that 2·4⁽²ⁿ⁺¹⁾ + 3⁽³ⁿ⁺¹⁾ is divisible by 11, ∀ n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_divisible_2_4_2n1_3_3n1"
         },
         {
           "ref": "laq9",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 9,
-          "stars": 3,
+          "stars": 0,
           "text": "Using the principle of finite Mathematical Induction, prove that a + ar + ar² + … upto n terms = a(rⁿ − 1)/(r − 1), for r ≠ 1.",
           "question_id": "ts_ipe_m1a_mi_sqp_gp_sum"
         },
         {
           "ref": "laq10",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 10,
-          "stars": 3,
+          "stars": 0,
           "text": "Using the principle of finite Mathematical Induction, prove that (1 + 3/1)(1 + 5/4)(1 + 7/9) … (1 + (2n+1)/n²) = (n+1)², for all n ∈ N.",
           "question_id": "ts_ipe_m1a_mi_sqp_product_squares"
         }
@@ -5792,57 +5792,57 @@
         },
         {
           "ref": "saq1",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 1,
-          "stars": 2,
+          "stars": 0,
           "text": "Prove that tanA + cotA = 2 cosec2A.",
           "question_id": "ts_ipe_m1a_tr_saq_tan_plus_cot"
         },
         {
           "ref": "saq2",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 2,
-          "stars": 2,
+          "stars": 0,
           "text": "Prove that cotA − tanA = 2 cot2A.",
           "question_id": "ts_ipe_m1a_tr_saq_cot_minus_tan"
         },
         {
           "ref": "saq3",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 3,
-          "stars": 2,
+          "stars": 0,
           "text": "Show that 1/sin10° − √3/cos10° = 4.",
           "question_id": "ts_ipe_m1a_tr_saq_one_over_sin10"
         },
         {
           "ref": "saq4",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 4,
-          "stars": 2,
+          "stars": 0,
           "text": "Show that √3 cosec20° − sec20° = 4.",
           "question_id": "ts_ipe_m1a_tr_saq_root3_csc20"
         },
         {
           "ref": "saq5",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 5,
-          "stars": 2,
+          "stars": 0,
           "text": "If tanθ = b/a, then prove that a cos2θ + b sin2θ = a.",
           "question_id": "ts_ipe_m1a_tr_saq_acos2t_bsin2t"
         },
         {
           "ref": "saq6",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 6,
-          "stars": 2,
+          "stars": 0,
           "text": "Show that sin⁴(π/8) + sin⁴(3π/8) + sin⁴(5π/8) + sin⁴(7π/8) = 3/2.",
           "question_id": "ts_ipe_m1a_tr_saq_sin_fourth_powers"
         },
         {
           "ref": "saq7",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 7,
-          "stars": 2,
+          "stars": 0,
           "text": "Show that cos⁴(π/8) + cos⁴(3π/8) + cos⁴(5π/8) + cos⁴(7π/8) = 3/2.",
           "question_id": "ts_ipe_m1a_tr_saq_cos_fourth_powers"
         },
@@ -5856,25 +5856,25 @@
         },
         {
           "ref": "saq9",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 9,
-          "stars": 2,
+          "stars": 0,
           "text": "Prove that (1 + cos(π/10))(1 + cos(3π/10))(1 + cos(7π/10))(1 + cos(9π/10)) = 1/16.",
           "question_id": "ts_ipe_m1a_tr_saq_product_pi_ten"
         },
         {
           "ref": "saq10",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 10,
-          "stars": 2,
+          "stars": 0,
           "text": "Prove that cosA · cos2A · cos4A · cos8A = sin16A / (16 sinA).",
           "question_id": "ts_ipe_m1a_tr_saq_cos_a_2a_4a_8a"
         },
         {
           "ref": "saq11",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 11,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that cot(π/16) · cot(2π/16) · cot(3π/16) · … · cot(7π/16) = 1.",
           "question_id": "ts_ipe_m1a_tr_sqp_cot_product_one"
         },
@@ -5888,9 +5888,9 @@
         },
         {
           "ref": "saq13",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 13,
-          "stars": 3,
+          "stars": 0,
           "text": "Prove that cos²(π/8) + cos²(3π/8) + cos²(5π/8) + cos²(7π/8) = 2.",
           "question_id": "ts_ipe_m1a_tr_sqp_cos_sq_eighths"
         },
@@ -6380,57 +6380,57 @@
       "questions": [
         {
           "ref": "laq1",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 1,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, if r₁ = 8, r₂ = 12 and r₃ = 24, then find a, b and c.",
           "question_id": "ts_ipe_m1a_pt_find_abc_from_r"
         },
         {
           "ref": "laq2",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 2,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, if r₁ = 2, r₂ = 3, r₃ = 6 and r = 1, then prove that a = 3, b = 4 and c = 5.",
           "question_id": "ts_ipe_m1a_pt_prove_345"
         },
         {
           "ref": "laq3",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 3,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, if a = 13, b = 14 and c = 15, then show that R = 65/8, r = 4, r₁ = 21/2, r₂ = 12 and r₃ = 14.",
           "question_id": "ts_ipe_m1a_pt_13_14_15"
         },
         {
           "ref": "laq4",
-          "section": "LAQ",
+          "section": "VSAQ",
           "number": 4,
-          "stars": 3,
+          "stars": 0,
           "text": "If a = (b + c) cos θ, then prove that sin θ = (2√(bc)/(b+c)) cos(A/2).",
           "question_id": "ts_ipe_m1a_pt_a_eq_b_plus_c_cos"
         },
         {
           "ref": "laq5",
-          "section": "LAQ",
+          "section": "VSAQ",
           "number": 5,
-          "stars": 3,
+          "stars": 0,
           "text": "If sin θ = a/(b + c), then show that cos θ = (2√(bc)/(b+c)) cos(A/2).",
           "question_id": "ts_ipe_m1a_pt_sin_theta_a_over_b_plus_c"
         },
         {
           "ref": "laq6",
-          "section": "LAQ",
+          "section": "VSAQ",
           "number": 6,
-          "stars": 3,
+          "stars": 0,
           "text": "If a = (b − c) sec θ, then prove that tan θ = (2√(bc)/(b−c)) sin(A/2).",
           "question_id": "ts_ipe_m1a_pt_a_eq_b_minus_c_sec"
         },
         {
           "ref": "laq7",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 7,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, show that (a+b+c)²/(a²+b²+c²) = (cot(A/2) + cot(B/2) + cot(C/2))/(cotA + cotB + cotC).",
           "question_id": "ts_ipe_m1a_pt_cot_half_ratio"
         },
@@ -6452,41 +6452,41 @@
         },
         {
           "ref": "laq10",
-          "section": "LAQ",
+          "section": "VSAQ",
           "number": 10,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, if a : b : c = 7 : 8 : 9, then show that cos A : cos B : cos C = 14 : 11 : 6.",
           "question_id": "ts_ipe_m1a_pt_ratio_789"
         },
         {
           "ref": "laq11",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 11,
-          "stars": 3,
+          "stars": 0,
           "text": "If p₁, p₂, p₃ are the altitudes of a △ABC, then show that (i) 1/p₁ + 1/p₂ + 1/p₃ = 1/r, (ii) 1/p₁ + 1/p₂ − 1/p₃ = 1/r₃, and (iii) p₁p₂p₃ = (abc)²/(8R³) = 8Δ³/(abc).",
           "question_id": "ts_ipe_m1a_pt_altitudes"
         },
         {
           "ref": "saq1",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 1,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, prove that cot(A/2) + cot(B/2) + cot(C/2) = s²/Δ.",
           "question_id": "ts_ipe_m1a_pt_saq_cot_half_sum"
         },
         {
           "ref": "saq2",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 2,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, prove that cot A + cot B + cot C = (a² + b² + c²)/(4Δ).",
           "question_id": "ts_ipe_m1a_pt_saq_cot_sum"
         },
         {
           "ref": "saq3",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 3,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, show that cosA/a + cosB/b + cosC/c = (a² + b² + c²)/(2abc).",
           "question_id": "ts_ipe_m1a_pt_saq_cos_over_a"
         },
@@ -6516,25 +6516,25 @@
         },
         {
           "ref": "saq7",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 7,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, show that a² cot A + b² cot B + c² cot C = abc/R.",
           "question_id": "ts_ipe_m1a_pt_saq_a_sq_cot"
         },
         {
           "ref": "saq8",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 8,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, if 1/(a+c) + 1/(b+c) = 3/(a+b+c), then show that C = 60°.",
           "question_id": "ts_ipe_m1a_pt_saq_c_is_60"
         },
         {
           "ref": "saq9",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 9,
-          "stars": 3,
+          "stars": 0,
           "text": "In a △ABC, show that 1/r² + 1/r₁² + 1/r₂² + 1/r₃² = (a² + b² + c²)/Δ².",
           "question_id": "ts_ipe_m1a_pt_saq_reciprocal_squares"
         },
@@ -6849,49 +6849,49 @@
         },
         {
           "ref": "saq1",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 13,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the value of k, if the lines 2x−3y+k=0, 3x−4y−13=0, 8x−11y−33=0 are concurrent.",
           "question_id": "ts_ipe_m1b_sl_concurrent_find_k"
         },
         {
           "ref": "saq2",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 14,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the value of p, if the lines 3x+4y=5, 2x+3y=4, px+4y=6 are concurrent.",
           "question_id": "ts_ipe_m1b_sl_concurrent_find_p"
         },
         {
           "ref": "saq3",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 15,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that the lines 2x+y−3=0, 3x+2y−2=0 and 2x−3y−23=0 are concurrent and find the point of concurrency.",
           "question_id": "ts_ipe_m1b_sl_concurrent_point_of_concurrency"
         },
         {
           "ref": "saq4",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 16,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the equation of the straight line parallel to the line 3x+4y=7 and passing through the point of intersection of the lines x−2y−3=0 and x+3y−6=0.",
           "question_id": "ts_ipe_m1b_sl_parallel_through_intersection"
         },
         {
           "ref": "saq5",
-          "section": "SAQ",
+          "section": "LAQ",
           "number": 17,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the equation of the line passing through the point of intersection of 2x+3y=1, 3x+4y=6 and perpendicular to the line 5x−2y=7.",
           "question_id": "ts_ipe_m1b_sl_perpendicular_through_intersection"
         },
         {
           "ref": "saq6",
-          "section": "SAQ",
+          "section": "LAQ",
           "number": 18,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the value of k if the angle between the straight lines 4x−y+7=0, kx−5y−9=0 is 45°.",
           "question_id": "ts_ipe_m1b_sl_angle_45_find_k"
         },
@@ -6905,33 +6905,33 @@
         },
         {
           "ref": "saq8",
-          "section": "SAQ",
+          "section": "LAQ",
           "number": 20,
-          "stars": 3,
+          "stars": 0,
           "text": "A straight line through Q(√3,2) makes an angle π/6 with the positive direction of the X-axis. If the straight line intersects the line √3x−4y+8=0 at P, find the distance PQ.",
           "question_id": "ts_ipe_m1b_sl_parametric_distance_pi_over_6"
         },
         {
           "ref": "saq9",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 21,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the points on the line 3x−4y−1=0 which are at a distance of 5 units from the point (3,2).",
           "question_id": "ts_ipe_m1b_sl_points_at_distance_five"
         },
         {
           "ref": "saq10",
-          "section": "SAQ",
+          "section": "VSAQ",
           "number": 22,
-          "stars": 3,
+          "stars": 0,
           "text": "If the straight lines ax+by+c=0, bx+cy+a=0 and cx+ay+b=0 are concurrent, then prove that a³+b³+c³=3abc.",
           "question_id": "ts_ipe_m1b_sl_concurrent_cubes_proof"
         },
         {
           "ref": "saq11",
-          "section": "SAQ",
+          "section": "LAQ",
           "number": 23,
-          "stars": 3,
+          "stars": 0,
           "text": "Transform the equation x/a + y/b = 1 into normal form. If the perpendicular distance of the straight line from the Origin is p then deduce that 1/p² = 1/a² + 1/b².",
           "question_id": "ts_ipe_m1b_sl_normal_form_intercepts"
         },
@@ -7112,121 +7112,121 @@
       "questions": [
         {
           "ref": "laq1",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 1,
-          "stars": 3,
+          "stars": 0,
           "text": "If the equation ax²+2hxy+by²=0 represents a pair of lines then prove that the equation of the pair of angular bisectors is h(x²−y²)−(a−b)xy=0.",
           "question_id": "ts_ipe_m1b_pl_angular_bisectors_proof"
         },
         {
           "ref": "laq2",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 2,
-          "stars": 3,
+          "stars": 0,
           "text": "Prove that the area of the triangle formed by the pair of lines ax²+2hxy+by²=0 and lx+my+n=0 is n²√(h²−ab) : |am²−2hlm+bl²|.",
           "question_id": "ts_ipe_m1b_pl_area_triangle_proof"
         },
         {
           "ref": "laq3",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 3,
-          "stars": 3,
+          "stars": 0,
           "text": "Prove that the product of the perpendiculars from (α,β) to the pair of lines ax²+2hxy+by²=0 is |aα²+2hαβ+bβ²| : √((a−b)²+4h²).",
           "question_id": "ts_ipe_m1b_pl_product_perpendiculars_proof"
         },
         {
           "ref": "laq4",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 4,
-          "stars": 3,
+          "stars": 0,
           "text": "If ax²+2hxy+by²+2gx+2fy+c=0 represents two parallel lines then prove that (i) h²=ab (ii) af²=bg² (iii) the distance between the parallel lines is 2√((g²−ac)/(a(a+b))) or 2√((f²−bc)/(b(a+b))).",
           "question_id": "ts_ipe_m1b_pl_parallel_lines_conditions_proof"
         },
         {
           "ref": "laq5",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 5,
-          "stars": 3,
+          "stars": 0,
           "text": "If ax²+2hxy+by²+2gx+2fy+c=0 represents a pair of lines then prove that (a) Δ = abc+2fgh−af²−bg²−ch² = 0 (b) h²≥ab, f²≥bc, g²≥ac.",
           "question_id": "ts_ipe_m1b_pl_pair_conditions_proof"
         },
         {
           "ref": "laq6",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 6,
-          "stars": 3,
+          "stars": 0,
           "text": "Prove that the equation 3x²+7xy+2y²+5x+5y+2=0 represents a pair of straight lines and find the coordinates of the point of intersection.",
           "question_id": "ts_ipe_m1b_pl_check_3x2_7xy_2y2"
         },
         {
           "ref": "laq7",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 7,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that the equation 2x²−13xy−7y²+x+23y−6=0 represents a pair of straight lines. Also find the angle between them and the coordinates of the point of intersection.",
           "question_id": "ts_ipe_m1b_pl_check_2x2_minus_13xy"
         },
         {
           "ref": "laq8",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 8,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the angle between the lines joining the origin to the points of intersection of the curve x²+2xy+y²+2x+2y−5=0 and the line 3x−y+1=0.",
           "question_id": "ts_ipe_m1b_pl_homog_angle_3x_minus_y_plus_1"
         },
         {
           "ref": "laq9",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 9,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that the lines joining the origin with the points of intersection of the curve 7x²−4xy+8y²+2x−4y−8=0 with the line 3x−y=2 are mutually perpendicular.",
           "question_id": "ts_ipe_m1b_pl_homog_perpendicular_7x2_minus_4xy"
         },
         {
           "ref": "laq10",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 10,
-          "stars": 3,
+          "stars": 0,
           "text": "Show that the lines joining the origin to the points of intersection of the curve x²−xy+y²+3x+3y−2=0 and the straight line x−y−√2=0 are mutually perpendicular.",
           "question_id": "ts_ipe_m1b_pl_homog_perpendicular_x2_minus_xy"
         },
         {
           "ref": "laq11",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 11,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the value of k, if the lines joining the origin with the points of intersection of the curve 2x²−2xy+3y²+2x−y−1=0 and the line x+2y=k are mutually perpendicular.",
           "question_id": "ts_ipe_m1b_pl_homog_find_k_perpendicular"
         },
         {
           "ref": "laq12",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 12,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the condition for the lines joining the origin to the points of intersection of the circle x²+y²=a² and the line lx+my=1 to coincide.",
           "question_id": "ts_ipe_m1b_pl_chord_coincident_condition"
         },
         {
           "ref": "laq13",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 13,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the condition for the chord lx+my=1 of the circle x²+y²=a² to subtend a right angle at the origin.",
           "question_id": "ts_ipe_m1b_pl_chord_right_angle_condition"
         },
         {
           "ref": "sqp1",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 14,
-          "stars": 3,
+          "stars": 0,
           "text": "Prove that the product of the perpendicular distances from the origin to the pair of straight lines represented by ax²+2hxy+by²+2gx+2fy+c=0 is |c| : √((a−b)²+4h²).",
           "question_id": "ts_ipe_m1b_pl_sqp_product_perpendiculars_origin"
         },
         {
           "ref": "sqp2",
-          "section": "LAQ",
+          "section": "SAQ",
           "number": 15,
-          "stars": 3,
+          "stars": 0,
           "text": "Find the centroid and area of the triangle formed by the lines 3x²−4xy+y²=0, 2x−y=6.",
           "question_id": "ts_ipe_m1b_pl_sqp_centroid_and_area"
         }
