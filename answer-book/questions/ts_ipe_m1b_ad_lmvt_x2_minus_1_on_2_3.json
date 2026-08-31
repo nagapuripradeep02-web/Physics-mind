@@ -87,7 +87,7 @@
         "common_mistakes": [
           "Writing only the value of c and leaving the two conditions unstated.",
           "Dividing by b + a instead of b − a.",
-          "Computing f(3) − f(2) as 3² − 2² = 5 by accident, which is right here only because the −1 cancels."
+          "Forgetting to subtract the two function values in the right order, so the slope comes out negative."
         ]
       },
       {

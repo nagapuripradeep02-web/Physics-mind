@@ -52,7 +52,8 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let the two numbers be a and b.",
+          "Let the two numbers be a and b, with a ≠ b",
+          "so that (√a − √b)² ≠ 0 below.",
           "A.M. : G.M. = m : n  ⇒  (a + b)/(2√(ab)) = m/n",
           "By componendo and dividendo,",
           "(a + b + 2√(ab))/(a + b − 2√(ab)) = (m + n)/(m − n)",

@@ -132,7 +132,7 @@
         "why": "The two points are different because the subintervals share no point. Without that sentence the working shows two applications of the theorem but not two distinct values of c, which is exactly what the question asks for.",
         "common_mistakes": [
           "Stopping at 'there is a c in each interval' without saying the two values are different.",
-          "Solving f′(x) = 3x² − 12x + 11 = 0 and calling that the proof; the roots confirm the answer, but the question asks for an argument from Rolle's theorem."
+          "Finding one c and stopping, when the question asks for more than one."
         ]
       }
     ]

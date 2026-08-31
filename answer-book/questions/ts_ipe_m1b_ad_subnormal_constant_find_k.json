@@ -177,7 +177,7 @@
             "power of x"
           ]
         },
-        "why": "At any point means for every x, so a quantity that changes with x cannot be constant. Setting the index of x to zero is the only condition available, because k and a cannot depend on x.",
+        "why": "At any point means for every x, so a quantity that changes with x cannot be constant. With k ≠ 0, setting the index of x to zero is the only condition available, because k and a cannot depend on x. (k = 0 makes y constant and the subnormal zero, which the question excludes.)",
         "common_mistakes": [
           "Setting the whole expression equal to zero instead of only the power of x.",
           "Setting 2k − 1 = 1 and getting k = 1.",

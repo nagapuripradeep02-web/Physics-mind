@@ -127,7 +127,7 @@
         "why": "The exact increase is 0.0601 cm² and the approximation gives 0.06 cm². The difference is (dx)² = 0.0001, the one term the linear approximation drops — which is why the method is accurate when dx is small. This question asks for the change itself, so the answer keeps its unit; dividing by A instead would give the relative error dA/A, which is what a percentage question asks for.",
         "common_mistakes": [
           "Writing the unit as cm instead of cm².",
-          "Giving 9.0601 or 0.0601, which answers a different question from the one asked."
+          "Giving 9.0601, the new area, when the question asks for the increase."
         ]
       }
     ]

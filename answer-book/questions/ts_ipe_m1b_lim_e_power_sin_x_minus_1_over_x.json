@@ -128,7 +128,7 @@
         "why": "The substitution t = sin x is what turns the first factor into the standard limit. Stating that t → 0 as x → 0 is the part that makes the substitution valid, and it is what the examiner looks for.",
         "common_mistakes": [
           "Writing the first factor as 1 without saying that sin x → 0.",
-          "Multiplying the two factors and giving 2 instead of 1."
+          "Adding the two factors and giving 2 instead of multiplying them to get 1."
         ]
       }
     ]

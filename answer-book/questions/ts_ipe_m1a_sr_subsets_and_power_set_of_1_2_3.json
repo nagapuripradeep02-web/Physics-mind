@@ -128,7 +128,7 @@
         "why": "Ordering the list by size makes the count 1 + 3 + 3 + 1 visible on the page, so the list can be checked against part (ii) without recounting. Part (iv) then costs one line, because the objects are already written.",
         "memory_tip": "List by size: the empty set, then the singletons, then the pairs, then the whole set.",
         "common_mistakes": [
-          "Leaving out ∅ or leaving out A itself, which gives only 6 subsets.",
+          "Leaving out ∅, or leaving out A itself, which gives 7 subsets instead of 8.",
           "Writing P(A) = {1, 2, 3} — dropping the inner braces makes it a set of numbers, not a set of sets.",
           "Repeating the whole list twice for (iii) and (iv) instead of naming it once."
         ]

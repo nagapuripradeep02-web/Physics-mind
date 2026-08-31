@@ -126,7 +126,7 @@
             "goes to zero"
           ]
         },
-        "why": "The numerator is of higher order than the denominator, so the quotient is driven to 0 rather than to a finite non-zero value. The value checks numerically: with a = 2 the expression is 0.000625 at x = 2.01 and 0.0000625 at x = 2.001, falling by a factor of ten each time, exactly as (x − a)/(2a)² = (x − a)/16 does.",
+        "why": "The numerator is of higher order than the denominator, so the quotient is driven to 0 rather than to a finite non-zero value. The value checks numerically: with a = 2 the expression falls by a factor of about ten as x moves from 2.01 to 2.001, matching the way (x − a)/(2a)² = (x − a)/16 behaves near a.",
         "common_mistakes": [
           "Answering 1/(4a²) by cancelling one power of (x − a) too many.",
           "Writing the answer as 1/(2a)³ by copying the pattern of the simpler tangent question."

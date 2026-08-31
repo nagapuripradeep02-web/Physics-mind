@@ -151,7 +151,7 @@
         "label": "Find the subtangent and the subnormal",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Third mark. The subtangent simplifies all the way back to a sin t, which is a useful check: it is exactly dy/dt divided by a.",
+        "margin_note": "Third mark. The subtangent simplifies all the way back to a sin t, which is a useful check: it is exactly dy/dt.",
         "lines": [
           "Subtangent = y/m = 2a sin²(t/2)/tan(t/2)",
           "= 2a sin²(t/2) · cos(t/2)/sin(t/2)",

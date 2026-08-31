@@ -52,6 +52,7 @@
             "text": "Sol:",
             "style": "heading"
           },
+          "Here n ≠ 0, else sin² nx is zero for all x.",
           "Putting x = 0 gives 0/0, so the expression must be rewritten first.",
           "We know 1 − cos 2θ = 2sin²θ",
           "Put θ = mx, then 1 − cos 2mx = 2sin²(mx)",
