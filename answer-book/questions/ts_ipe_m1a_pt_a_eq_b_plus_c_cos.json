@@ -59,6 +59,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two of the eight marks. The target has a sine and the condition a cosine, so the bridge is sin² = 1 − cos². Square the condition first so it can be substituted.",
+        "memory_tip": "The target is a sine and the condition a cosine, so the bridge is sin² = 1 − cos².",
         "lines": [
           {
             "text": "Sol:",
@@ -105,6 +106,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two more marks. Expand (b+c)², then spot b² + c² − a² inside it — that is 2bc cos A by the cosine rule, and it is what brings the angle in.",
+        "memory_tip": "Expand (b + c)², then spot b² + c² − a² inside — that is 2bc cos A and it brings the angle in.",
         "lines": [
           "= (b² + c² + 2bc − a²)/(b+c)²",
           "= (2bc + (b² + c² − a²))/(b+c)²",
@@ -146,6 +148,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two more marks. Factor 2bc out, then 1 + cos A = 2cos²(A/2) — which is where the half angle in the answer comes from.",
+        "memory_tip": "A PLUS in front of cos A calls for the COSINE half-angle: 1 + cos A = 2cos²(A/2).",
         "lines": [
           "= 2bc(1 + cos A)/(b+c)²",
           "= 2bc · 2cos²(A/2)/(b+c)²   [∵ 1 + cosA = 2cos²(A/2)]",
@@ -186,6 +189,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "Last two marks. Everything under the root is a perfect square, so the root is exact — and sin θ is taken positive.",
+        "memory_tip": "Everything under the root is a perfect square, so the root is exact and sin θ is taken positive.",
         "lines": [
           "∴ sin θ = √(4bc cos²(A/2)/(b+c)²)",
           {

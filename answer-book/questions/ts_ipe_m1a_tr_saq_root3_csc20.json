@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. cosec and sec are reciprocals, so write them out and combine over one denominator.",
+        "memory_tip": "cosec and sec are reciprocals — write them out and combine over one denominator.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. This time √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the twin.",
+        "memory_tip": "Here √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the sin10° twin.",
         "lines": [
           "= 2[(√3/2)cos20° − (1/2)sin20°] / (sin20° cos20°)",
           "= 2[sin60° cos20° − cos60° sin20°] / (sin20° cos20°)"
@@ -142,6 +144,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. The numerator collapses to 2 sin 40°.",
+        "memory_tip": "The numerator collapses to 2 sin 40°.",
         "lines": [
           "= 2 sin(60° − 20°) / (sin20° cos20°)",
           "= 2 sin40° / (sin20° cos20°)"
@@ -180,6 +183,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. sin40° = 2 sin20° cos20°, the denominator exactly — so it cancels and leaves 4.",
+        "memory_tip": "sin40° = 2 sin20° cos20°, exactly the denominator — it cancels and leaves 4.",
         "lines": [
           "= 2(2 sin20° cos20°) / (sin20° cos20°)",
           {

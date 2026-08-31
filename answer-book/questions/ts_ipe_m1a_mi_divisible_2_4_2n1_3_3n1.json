@@ -58,6 +58,7 @@
         "marks": 1,
         "mark_note": "Statement",
         "margin_note": "One mark. Same first move as every divisibility proof: turn the word into an equation.",
+        "memory_tip": "Turn 'divisible by 11' into an EQUATION: equal to 11q with q an integer. Nothing can be substituted otherwise.",
         "lines": [
           "Let S(n): 2·4⁽²ⁿ⁺¹⁾ + 3⁽³ⁿ⁺¹⁾ = 11q,",
           "        where q ∈ Z"
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Step 1",
         "margin_note": "One mark. Work out both powers at n = 1 and name the multiple of 11.",
+        "memory_tip": "At n = 1 the powers are 4³ and 3⁴: 128 + 81 = 209 = 11 × 19. Name the multiple.",
         "lines": [
           "Step 1 — check S(1)",
           "2·4³ + 3⁴ = 2(64) + 81",
@@ -136,6 +138,7 @@
         "marks": 1,
         "mark_note": "Step 2",
         "margin_note": "One mark. Assume for k, number the line, and rearrange to isolate the first power — that is what Step 3 substitutes.",
+        "memory_tip": "Assume for k, number the line, and rearrange to isolate the FIRST power — that is what Step 3 substitutes.",
         "lines": [
           "Step 2 — assume S(k) is true, k ∈ N",
           "S(k): 2·4⁽²ᵏ⁺¹⁾ + 3⁽³ᵏ⁺¹⁾ = 11q   …(1)",
@@ -176,6 +179,7 @@
         "marks": 4,
         "mark_note": "Step 3",
         "margin_note": "Four marks. The powers grow by 4² = 16 and 3³ = 27. Substitute the rearranged line and collect — 27 − 16 = 11 is what finishes it.",
+        "memory_tip": "The powers grow by 4² = 16 and 3³ = 27, and 27 − 16 = 11 is exactly what finishes it.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           "2·4⁽²ᵏ⁺³⁾ + 3⁽³ᵏ⁺⁴⁾",
@@ -222,6 +226,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "The last mark is for naming the principle. One sentence, one mark.",
+        "memory_tip": "One sentence naming the principle is a whole mark. Write it.",
         "lines": [
           "Hence, by the principle of finite",
           "Mathematical Induction, S(n) is true",

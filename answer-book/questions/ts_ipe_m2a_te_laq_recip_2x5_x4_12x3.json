@@ -84,6 +84,7 @@
         "marks": 1,
         "mark_note": "Identify the root −1",
         "margin_note": "First mark (the book prints a single [2 Marks] over this step and the next). Odd degree, coefficients 2, 1, −12, −12, 1, 2 equal from both ends: class I, odd degree, so −1 is a root. Substitute to confirm.",
+        "memory_tip": "Odd degree with aₖ = aₙ₋ₖ is class I, so −1 is a root. Substitute to confirm it.",
         "lines": [
           {
             "text": "Sol:",
@@ -134,6 +135,7 @@
         "marks": 1,
         "mark_note": "Synthetic division",
         "margin_note": "Second mark. Synthetic division by −1: bring down 2, multiply by −1, add, repeat. The last entry must be 0. The quotient 2x⁴ − x³ − 11x² − x + 2 is itself reciprocal (2, −1, −11, −1, 2).",
+        "memory_tip": "Synthetic division by −1; the last entry must be 0. The quotient is reciprocal again.",
         "lines": [
           "Divide f(x) by (x + 1) (synthetic division):",
           {
@@ -187,6 +189,7 @@
         "marks": 1,
         "mark_note": "Substitution",
         "margin_note": "Third mark. Divide the quotient by x², group, and substitute. 2(t² − 2) = 2t² − 4, and −4 − 11 = −15.",
+        "memory_tip": "Substitute in the QUOTIENT, not the original. 2(t² − 2) = 2t² − 4, and −4 − 11 = −15.",
         "lines": [
           "Divide 2x⁴ − x³ − 11x² − x + 2 = 0 by x²:",
           "2(x² + 1/x²) − (x + 1/x) − 11 = 0 … (1)",
@@ -230,6 +233,7 @@
         "marks": 1,
         "mark_note": "Values of t",
         "margin_note": "Fourth mark. Split −1 = −6 + 5 with (−6)(5) = −30 = 2 × (−15).",
+        "memory_tip": "Split −1 = −6 + 5, since (−6)(5) = −30 = 2 × (−15).",
         "lines": [
           "2t² − 6t + 5t − 15 = 0",
           "2t(t − 3) + 5(t − 3) = 0",
@@ -272,6 +276,7 @@
         "marks": 1,
         "mark_note": "Roots from t = 3",
         "margin_note": "Fifth mark. x² − 3x + 1 = 0 has discriminant 9 − 4 = 5; the roots stay as surds.",
+        "memory_tip": "x² − 3x + 1 = 0 has discriminant 5, so the roots stay as surds.",
         "lines": [
           "If t = 3: x + 1/x = 3",
           "x² + 1 = 3x, so x² − 3x + 1 = 0",
@@ -314,6 +319,7 @@
         "marks": 1,
         "mark_note": "Roots from t = −5/2",
         "margin_note": "Sixth mark. Multiply x + 1/x = −5/2 by 2x: 2x² + 5x + 2 = 0 factorises as (2x + 1)(x + 2). The book reads −5/2 = −2 − 1/2 straight off; same roots.",
+        "memory_tip": "Multiply by 2x: 2x² + 5x + 2 = (2x + 1)(x + 2), so x = −2 or −1/2.",
         "lines": [
           "If t = −5/2: x + 1/x = −5/2",
           "2x² + 2 = −5x, so 2x² + 5x + 2 = 0",
@@ -357,6 +363,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. Five roots for a degree-5 equation: −1 from the division, −2 and −1/2 from t = −5/2, and the surd pair from t = 3. Their sum is −1/2 = −a₁/a₀.",
+        "memory_tip": "Five roots for degree 5 — and −1, removed by the division, is the one most often left out.",
         "lines": [
           "The five roots are:",
           {

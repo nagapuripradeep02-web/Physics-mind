@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. Put a = cis α, b = cis β, c = cis γ; the two given sums are the real and imaginary parts of a + b + c, so a + b + c = 0 + i(0) = 0. Show both parts — writing a + b + c = 0 straight away skips what earns the mark.",
+        "memory_tip": "The two given sums are exactly the real and imaginary parts of a + b + c, so it is 0. Show both parts.",
         "lines": [
           {
             "text": "Sol:",
@@ -110,6 +111,7 @@
         "marks": 1,
         "mark_note": "Cube identity",
         "margin_note": "Second mark. Because a + b + c = 0, the identity a³ + b³ + c³ − 3abc = (a + b + c)(a² + b² + c² − ab − bc − ca) leaves a³ + b³ + c³ = 3abc. Keep the 3; it is the 3 on the right of results (i) and (ii).",
+        "memory_tip": "a + b + c = 0 makes a³ + b³ + c³ = 3abc. Keep the 3 — it is the 3 on the right of (i) and (ii).",
         "lines": [
           "a + b + c = 0 ⇒ a³ + b³ + c³ = 3abc",
           "⇒ (cis α)³ + (cis β)³ + (cis γ)³",
@@ -151,6 +153,7 @@
         "marks": 1,
         "mark_note": "Expand",
         "margin_note": "Third mark. De Moivre gives (cis α)³ = cis 3α, and the product rule gives (cis α)(cis β)(cis γ) = cis(α + β + γ). Angles add in a product of cis numbers; they are never multiplied.",
+        "memory_tip": "(cis α)³ = cis 3α, and cis α · cis β · cis γ = cis(α + β + γ). Angles add in a product, never multiply.",
         "lines": [
           "⇒ cis 3α + cis 3β + cis 3γ = 3 cis(α + β + γ)",
           "(by De Moivre's theorem)",
@@ -195,6 +198,7 @@
         "marks": 2,
         "mark_note": "(i) and (ii)",
         "margin_note": "Fourth and fifth marks. Two complex numbers are equal only when both parts agree, so this one line gives (i) from the real parts and (ii) from the imaginary parts. The right side is 3cos(α + β + γ), not cos 3(α + β + γ).",
+        "memory_tip": "One complex equation carries both results: real parts give (i), imaginary parts give (ii).",
         "lines": [
           "Equating real parts:",
           "cos 3α + cos 3β + cos 3γ = 3cos(α + β + γ)",
@@ -241,6 +245,7 @@
         "marks": 2,
         "mark_note": "(iii)",
         "margin_note": "Sixth and seventh marks. 1/a = cis(−α), so 1/a + 1/b + 1/c is the same given data with the sine sign reversed, and it is 0. Multiply through by abc to get ab + bc + ca = 0; each product is cis of a sum of two angles, and the real parts give result (iii).",
+        "memory_tip": "1/a = cis(−α), so the reciprocals sum to 0 as well. Multiply through by abc: ab + bc + ca = 0.",
         "lines": [
           "1/a + 1/b + 1/c = cis(−α) + cis(−β) + cis(−γ)",
           "= (cos α + cos β + cos γ)",

@@ -51,6 +51,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Each cosine goes in as the cosine rule, and the 1/a outside multiplies the 1/(2bc) inside — giving 1/(2abc) every time.",
+        "memory_tip": "The 1/a outside multiplies the 1/(2bc) inside, giving 1/(2abc) every time.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "The other half. Same cancellation as answer 81 — each squared term survives once.",
+        "memory_tip": "Over the common denominator each squared term survives exactly once.",
         "lines": [
           "= [(b²+c²−a²) + (c²+a²−b²) + (a²+b²−c²)]/(2abc)",
           {

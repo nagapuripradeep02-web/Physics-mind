@@ -71,6 +71,7 @@
         "marks": 1,
         "mark_note": "Statement",
         "margin_note": "One mark. Same shape as the previous question but the denominators step by 3, so both A.P.s have d = 3.",
+        "memory_tip": "Same shape as the odd-pairs question but the step is 3, so both A.P.s have d = 3: 3n − 2 and 3n + 1.",
         "lines": [
           "1, 4, 7, … is an A.P: a = 1, d = 3 ⇒ 3n − 2",
           "4, 7, 10, … is an A.P: a = 4, d = 3 ⇒ 3n + 1",
@@ -112,6 +113,7 @@
         "marks": 1,
         "mark_note": "Step 1",
         "margin_note": "One mark. Both sides come to one quarter.",
+        "memory_tip": "Both sides come to one quarter.",
         "lines": [
           "Step 1 — check S(1)",
           "L.H.S of S(1) = 1/(1·4) = 1/4",
@@ -152,6 +154,7 @@
         "marks": 1,
         "mark_note": "Step 2",
         "margin_note": "One mark. Assume the statement for one value k and NUMBER the line (1) — Step 3 quotes it, so it has to be labelled.",
+        "memory_tip": "Assume for k and number the line (1).",
         "lines": [
           "Step 2 — assume S(k) is true, k ∈ N",
           "S(k): 1/(1·4) + … + 1/((3k−2)(3k+1))",
@@ -192,6 +195,7 @@
         "marks": 4,
         "mark_note": "Step 3",
         "margin_note": "Four marks. Identical shape to question 7: add, combine, factorise, cancel.",
+        "memory_tip": "Add, combine, factorise, cancel: 3k² + 4k + 1 = (3k+1)(k+1), and the (3k+1) cancels.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           "(k+1)th term = 1/((3k+1)(3k+4))",
@@ -238,6 +242,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "The last mark is for naming the principle. Write the sentence — it is one line and it is worth a full mark.",
+        "memory_tip": "Name the principle in one line — it is a full mark.",
         "lines": [
           "Hence, by the principle of finite",
           "Mathematical Induction, S(n) is true",

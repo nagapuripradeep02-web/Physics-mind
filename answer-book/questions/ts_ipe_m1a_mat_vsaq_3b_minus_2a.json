@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. A number times a matrix multiplies EVERY entry. Do both scalar multiplications before subtracting anything.",
+        "memory_tip": "A number times a matrix multiplies EVERY entry. Do both scalar multiplications before subtracting.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Subtract matching positions. Both matrices are 2×3, so the answer is 2×3 too.",
+        "memory_tip": "Subtract matching positions. Both are 2×3, so the answer is 2×3 too.",
         "lines": [
           {
             "text": "3B - 2A = \\begin{bmatrix} 9-2 & 6-4 & 3-6 \\\\ 3-6 & 6-4 & 9-2 \\end{bmatrix}",

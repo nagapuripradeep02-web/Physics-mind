@@ -55,6 +55,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. r = Δ/s inverts to 1/r = s/Δ, so 1/r² = s²/Δ² — and the ex-radii follow the same pattern with s−a, s−b, s−c.",
+        "memory_tip": "r = Δ/s inverts to 1/r = s/Δ, so 1/r² = s²/Δ². The ex-radii follow with s−a, s−b, s−c.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "The other half. Expand the three brackets; the s² terms give 4s², the cross terms give −2s(a+b+c) = −4s², and those cancel exactly.",
+        "memory_tip": "The s² terms give 4s² and the cross terms give −2s(2s) = −4s² — they cancel exactly.",
         "lines": [
           "= [s² + (s²−2as+a²) + (s²−2bs+b²) + (s²−2cs+c²)]/Δ²",
           "= [4s² − 2s(a+b+c) + a²+b²+c²]/Δ²",

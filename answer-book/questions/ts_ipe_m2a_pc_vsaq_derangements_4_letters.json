@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. \"No letter in its own envelope\" is a derangement. Dₙ = n!(1 − 1/1! + 1/2! − 1/3! + … + (−1)ⁿ/n!); the first two terms cancel.",
+        "memory_tip": "'No letter in its own envelope' is a derangement. The first two terms of the series cancel.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 24(1/2 − 1/6 + 1/24) = 12 − 4 + 1 = 9.",
+        "memory_tip": "24(1/2 − 1/6 + 1/24) = 12 − 4 + 1 = 9. The signs alternate — do not add all three.",
         "lines": [
           "D₄ = 24(1/2 − 1/6 + 1/24) = 12 − 4 + 1",
           {

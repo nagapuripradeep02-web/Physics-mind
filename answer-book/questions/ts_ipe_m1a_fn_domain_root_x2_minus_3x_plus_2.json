@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "memory_tip": "≥ 0 for a plain root, and the quadratic factorises directly to (x − 1)(x − 2).",
         "lines": [
           "f(x) is defined when x² − 3x + 2 ≥ 0",
           "⇒ (x − 1)(x − 2) ≥ 0"
@@ -86,6 +87,7 @@
         "marks": 1,
         "mark_note": "Domain",
         "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "Product ≥ 0 means outside the roots: (−∞, 1] ∪ [2, ∞), square brackets at both.",
         "lines": [
           "⇒ x ∈ (−∞, 1] ∪ [2, ∞)",
           "∴ Domain = (−∞, 1] ∪ [2, ∞)"

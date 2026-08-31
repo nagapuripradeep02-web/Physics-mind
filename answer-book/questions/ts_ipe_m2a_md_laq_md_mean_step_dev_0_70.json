@@ -72,6 +72,7 @@
         "marks": 2,
         "mark_note": "Table",
         "margin_note": "First two marks. Columns: class, frequency fᵢ, midpoint xᵢ, step deviation dᵢ = (xᵢ − 35)/10, product fᵢdᵢ. Seven classes, so A = 35 is the fourth midpoint and dᵢ runs from −3 to 3. The book's own table header prints (xᵢ − 25)/10 by mistake; its numbers use 35. On the exam page this table and the one in the deviations step are ONE table of seven columns.",
+        "memory_tip": "Seven classes, so A = 35 is the fourth midpoint and dᵢ runs −3 to 3. A moves with the data.",
         "lines": [
           {
             "text": "Sol:",
@@ -155,6 +156,7 @@
         "marks": 2,
         "mark_note": "Mean",
         "margin_note": "Next two marks. Σfᵢdᵢ is negative, so the true mean is BELOW the assumed mean: 10·(−8/50) = −1.6 and x̄ = 33.4. Keep the sign.",
+        "memory_tip": "Σfᵢdᵢ is negative, so the mean lands below A: 35 − 1.6 = 33.4. Keep the sign.",
         "lines": [
           "Mean x̄ = A + C·(Σfᵢdᵢ/N)",
           "= 35 + 10·(−8/50) = 35 − 1.6 = 33.4"
@@ -196,6 +198,7 @@
         "marks": 2,
         "mark_note": "Deviations",
         "margin_note": "Next two marks. Columns: midpoint xᵢ, frequency fᵢ, |xᵢ − 33.4|, and its product with fᵢ. Because x̄ = 33.4 is not a whole number every deviation carries a decimal; the products are 6 × 28.4 = 170.4 and so on. The sum is 659.2.",
+        "memory_tip": "x̄ = 33.4 is not whole, so every deviation carries the .4. Subtract before rounding, not after.",
         "lines": [
           "With x̄ = 33.4, fill the last two columns:",
           {
@@ -272,6 +275,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. 659.2/50 = 13.184; the book writes 13.18. Two decimal places is the book's convention for this chapter.",
+        "memory_tip": "659.2/50 = 13.184, written 13.18. This chapter keeps two decimals and does not round up to 13.2.",
         "lines": [
           "M.D. about the mean = (1/N)·Σfᵢ|xᵢ − x̄|",
           "= (1/50)·659.2 = 13.18",

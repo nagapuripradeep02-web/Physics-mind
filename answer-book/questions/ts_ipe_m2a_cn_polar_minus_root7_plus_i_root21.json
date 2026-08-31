@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Modulus",
         "margin_note": "First mark. x = −√7, y = √21. The squares are 7 and 21, so r = √28 = 2√7.",
+        "memory_tip": "7 + 21 = 28, and √28 simplifies to 2√7 — the expected form.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. tan θ = y/x = −√3, but that alone gives two candidate angles. The point (−√7, √21) is in the second quadrant, so θ = π − π/3 = 2π/3.",
+        "memory_tip": "tan θ = −√3 also fits −π/3. (−√7, √21) is in the second quadrant, so θ = π − π/3 = 2π/3.",
         "lines": [
           "tan θ = y/x = √21/(−√7) = −√3",
           "(−√7, √21) lies in the second quadrant",

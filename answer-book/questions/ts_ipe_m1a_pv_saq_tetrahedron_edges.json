@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Formula",
         "margin_note": "First mark. The three given vectors are already the EDGES from one corner, so they go straight into the formula with no subtraction needed.",
+        "memory_tip": "The three given vectors are already EDGES from one corner, so no subtraction is needed.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,6 +105,7 @@
         "marks": 2,
         "mark_note": "Determinant",
         "margin_note": "Half the marks. The scalar triple product is a 3×3 determinant with the three edges as rows. Note b has a zero k component — write it in.",
+        "memory_tip": "A 3×3 determinant with the three edges as rows. b has a zero k component — write it in.",
         "lines": [
           {
             "text": "[a\\ b\\ c] = \\begin{vmatrix} 1 & 1 & 1 \\\\ 1 & -1 & 0 \\\\ 1 & 2 & 1 \\end{vmatrix}",
@@ -148,6 +150,7 @@
         "marks": 1,
         "mark_note": "Volume",
         "margin_note": "Last mark. One sixth of 1. A volume is reported in cubic units — say so.",
+        "memory_tip": "One sixth of the triple product, reported in CUBIC units.",
         "lines": [
           "V = ⅙ |1|",
           {

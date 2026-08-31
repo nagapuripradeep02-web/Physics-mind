@@ -72,6 +72,7 @@
         "marks": 1,
         "mark_note": "Order",
         "margin_note": "First mark. Six letters with E repeated twice: A, C, E, E, M, T. The repeat matters — blocks that still contain both E letters are divided by 2!.",
+        "memory_tip": "Sort the letters first: A, C, E, E, M, T. List E twice — the repeat changes every block below.",
         "lines": [
           {
             "text": "Sol:",
@@ -116,6 +117,7 @@
         "marks": 2,
         "mark_note": "Counting",
         "margin_note": "Two marks. Words starting with A or C still contain both E letters, so each block is 5!/2! = 60. With E fixed, E A C and E A E give 3! each. After E A M the remaining letters C, E, T are already in order, so EAMCET is the next word.",
+        "memory_tip": "Blocks that still hold both E letters are 5!/2! = 60, not 120. With E fixed, EAC and EAE give 3! each.",
         "lines": [
           "Words starting with A: 5!/2! = 60",
           "Words starting with C: 5!/2! = 60",
@@ -161,6 +163,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. 60 + 60 + 6 + 6 = 132 words come before EAMCET, so its rank is 133.",
+        "memory_tip": "132 words come before it, so the rank is 133. Rank is words-before plus one.",
         "lines": [
           "Rank = 60 + 60 + 6 + 6 + 1",
           {

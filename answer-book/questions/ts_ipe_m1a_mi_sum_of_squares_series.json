@@ -67,6 +67,7 @@
         "marks": 1,
         "mark_note": "Statement",
         "margin_note": "One mark. Each term is itself a sum of squares, so the nth term needs the standard sum-of-squares formula before S(n) can be written.",
+        "memory_tip": "Each term is itself a sum of squares, so the nth term is n(n+1)(2n+1)/6 before S(n) can be written.",
         "lines": [
           "nth term = 1² + 2² + … + n²",
           "        = n(n+1)(2n+1)/6",
@@ -107,6 +108,7 @@
         "marks": 1,
         "mark_note": "Step 1",
         "margin_note": "One mark. Both sides at n = 1 come to 1.",
+        "memory_tip": "At n = 1 both sides come to 1: the left is 1², the right is 12/12.",
         "lines": [
           "Step 1 — check S(1)",
           "L.H.S of S(1) = 1² = 1",
@@ -148,6 +150,7 @@
         "marks": 1,
         "mark_note": "Step 2",
         "margin_note": "One mark. Assume the statement for one value k and NUMBER the line (1) — Step 3 quotes it, so it has to be labelled.",
+        "memory_tip": "Assume for k and number the line (1).",
         "lines": [
           "Step 2 — assume S(k) is true, k ∈ N",
           "S(k): 1² + (1² + 2²) + …",
@@ -189,6 +192,7 @@
         "marks": 4,
         "mark_note": "Step 3",
         "margin_note": "Four marks. Write the (k+1)th term first, add it to (1), put everything over 12, then factorise out (k+1)(k+2).",
+        "memory_tip": "Write the (k+1)th term first, put everything over 12, then factor out (k+1)(k+2). k² + 5k + 6 = (k+2)(k+3).",
         "lines": [
           "Step 3 — show S(k+1) is true",
           "(k+1)th term = (k+1)(k+2)(2k+3)/6",
@@ -235,6 +239,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "The last mark is for naming the principle. Write the sentence — it is one line and it is worth a full mark.",
+        "memory_tip": "Name the principle — one line, one mark.",
         "lines": [
           "Hence, by the principle of finite",
           "Mathematical Induction, S(n) is true",

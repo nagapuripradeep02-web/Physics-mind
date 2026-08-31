@@ -64,6 +64,7 @@
         "marks": 2,
         "mark_note": "Series in standard shape",
         "margin_note": "First two marks. Each denominator is a product like 5·10·15 = 5³·(1·2·3), so every term becomes (a product)/(k!) times (1/5)ᵏ. The first term (3·5)/(5·10) is the (1/5)² term with numerator 3·5, so p = 3 and the 1 and the (3/1!)(1/5) terms are missing: add 1 + 3/5 on both sides.",
+        "memory_tip": "The first term is the (1/5)² one with numerator 3·5, so p = 3 and the missing start is 1 + 3/5.",
         "lines": [
           {
             "text": "Sol:",
@@ -111,6 +112,7 @@
         "marks": 1,
         "mark_note": "Standard form",
         "margin_note": "Third mark, for WRITING the standard expansion beside the series. The examiner looks for the pattern p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!. All plus signs mean the (1 − x) form.",
+        "memory_tip": "All plus signs mean the (1 − x) form. Write it out beside the series.",
         "lines": [
           "Compare with the standard expansion",
           {
@@ -153,6 +155,7 @@
         "marks": 2,
         "mark_note": "p, q, x",
         "margin_note": "Fourth and fifth marks. p is the first factor (3), p + q is the second (5) so q = 2, and x/q equals the common ratio 1/5 so x = q/5 = 2/5.",
+        "memory_tip": "p = 3 from the first factor, p + q = 5 so q = 2, and x/q = 1/5 gives x = 2/5.",
         "lines": [
           "p = 3, p + q = 5 ⇒ q = 2",
           "x/q = 1/5 ⇒ x = q/5 = 2/5"
@@ -191,6 +194,7 @@
         "marks": 1,
         "mark_note": "Value of the power",
         "margin_note": "Sixth mark. Substitute p, q, x into (1 − x)^(−p/q) and simplify the fraction inside the bracket before touching the exponent.",
+        "memory_tip": "The index is −3/2, so invert to (5/3) and raise to 3/2: 5√5/(3√3).",
         "lines": [
           {
             "text": "1 + \\tfrac{3}{5} + S = \\left(1 - \\tfrac{2}{5}\\right)^{-3/2} = \\left(\\tfrac{5}{3}\\right)^{3/2} = \\dfrac{5\\sqrt{5}}{3\\sqrt{3}}",
@@ -231,6 +235,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Seventh mark. The 1 + 3/5 = 8/5 that was added must come off again. 5√5/(3√3) = 5√15/9 if a rational denominator is required.",
+        "memory_tip": "Take the added 1 + 3/5 = 8/5 back off. The bare 5√5/(3√3) is not the sum.",
         "lines": [
           "8/5 + S = 5√5/(3√3)",
           "5√5/(3√3) = 5√15/9",

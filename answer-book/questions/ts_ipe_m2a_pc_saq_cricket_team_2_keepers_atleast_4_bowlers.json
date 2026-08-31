@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Cases",
         "margin_note": "First mark. Both keepers are in every team (²C₂ = 1), so 9 places remain for bowlers and batsmen. Bowlers can be 4, 5 or 6; the batsmen make up 9.",
+        "memory_tip": "Both keepers are in every team, so only 9 places remain. Batsmen = 9 − bowlers, never 11 − bowlers.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 2,
         "mark_note": "Counting",
         "margin_note": "Two marks. ⁶C₄ = ⁶C₂ = 15, ⁷C₅ = ⁷C₂ = 21, ⁷C₄ = ⁷C₃ = 35. Multiply within each case.",
+        "memory_tip": "Multiply the three groups within a case. Use ⁿCᵣ = ⁿCₙ₋ᵣ: ⁷C₅ = ⁷C₂ = 21, not 35.",
         "lines": [
           "Case 1: ²C₂ · ⁶C₄ · ⁷C₅ = 1 · 15 · 21 = 315",
           "Case 2: ²C₂ · ⁶C₅ · ⁷C₄ = 1 · 6 · 35 = 210",
@@ -142,6 +144,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. 315 + 210 + 35 = 560.",
+        "memory_tip": "Different bowler counts are different teams, so add: 315 + 210 + 35 = 560.",
         "lines": [
           {
             "text": "∴ number of ways = 315 + 210 + 35 = 560",

@@ -68,6 +68,7 @@
         "marks": 2,
         "mark_note": "Series in standard shape",
         "margin_note": "First two marks. Each denominator is a product like 5·10·15 = 5³·(1·2·3), so every term becomes (a product)/(k!) times (1/100)ᵏ. Work on the bracket S alone and multiply by 7/5 at the end. 1/10², 1/10⁴, 1/10⁶ are (1/100)¹, (1/100)², (1/100)³, so the common ratio is 1/100.",
+        "memory_tip": "The powers are 1/10², 1/10⁴, 1/10⁶, so the ratio is 1/100, not 1/10. Work on the bracket alone.",
         "lines": [
           {
             "text": "Sol:",
@@ -111,6 +112,7 @@
         "marks": 1,
         "mark_note": "Standard form",
         "margin_note": "Third mark, for WRITING the standard expansion beside the series. The examiner looks for the pattern p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!. All plus signs mean the (1 − x) form.",
+        "memory_tip": "All plus signs mean the (1 − x) form. Write it out beside the series.",
         "lines": [
           "Compare with the standard expansion",
           {
@@ -153,6 +155,7 @@
         "marks": 2,
         "mark_note": "p, q, x",
         "margin_note": "Fourth and fifth marks. p is the first factor (1), p + q is the second (3) so q = 2, and x/q equals the common ratio 1/100 so x = q/100 = 2/100 = 1/50.",
+        "memory_tip": "p = 1, p + q = 3 so q = 2, and x/q = 1/100 gives x = 2/100 = 1/50.",
         "lines": [
           "p = 1, p + q = 3 ⇒ q = 2",
           "x/q = 1/100 ⇒ x = q/100 = 2/100 = 1/50"
@@ -191,6 +194,7 @@
         "marks": 1,
         "mark_note": "Value of the power",
         "margin_note": "Sixth mark. Substitute p, q, x into (1 − x)^(−p/q) and simplify the fraction inside the bracket before touching the exponent.",
+        "memory_tip": "(49/50) to the power −1/2 inverts to √(50/49) = 5√2/7.",
         "lines": [
           {
             "text": "S = \\left(1 - \\tfrac{1}{50}\\right)^{-1/2} = \\left(\\tfrac{49}{50}\\right)^{-1/2} = \\sqrt{\\tfrac{50}{49}} = \\dfrac{5\\sqrt{2}}{7}",
@@ -231,6 +235,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Seventh mark. The 7/5 outside the bracket was chosen to cancel the 5/7 in S — the 7s cancel, the 5s cancel, and √2 is left.",
+        "memory_tip": "The 7/5 outside was chosen to cancel the 5/7 in S, leaving exactly √2.",
         "lines": [
           "The given series = (7/5)·S = (7/5)·(5√2/7)",
           {

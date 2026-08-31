@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. \"At least one contract\" is the union. Do not assume independence — it is not given, and the union value is what replaces it.",
+        "memory_tip": "'At least one' is the UNION. Independence is not given — the union value replaces it.",
         "lines": [
           {
             "text": "Sol:",
@@ -116,6 +117,7 @@
         "marks": 1,
         "mark_note": "Theorem",
         "margin_note": "Second mark. P(A ∪ B) = P(A) + P(B) − P(A ∩ B), rearranged for the intersection.",
+        "memory_tip": "Rearrange the addition theorem for the intersection, not P(A)·P(B).",
         "lines": [
           {
             "text": "By the addition theorem,",
@@ -157,6 +159,7 @@
         "marks": 2,
         "mark_note": "Answer",
         "margin_note": "Two marks. Common denominator 45: 2/3 = 30/45, 5/9 = 25/45, 4/5 = 36/45; 30 + 25 − 36 = 19.",
+        "memory_tip": "Common denominator 45: 30 + 25 − 36 = 19, so the answer is 19/45.",
         "lines": [
           {
             "text": "= 2/3 + 5/9 − 4/5",

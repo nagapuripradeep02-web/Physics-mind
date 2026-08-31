@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "The common root",
         "margin_note": "First mark. One of the two equations has no unknown in it — solve THAT one. x² − 6x + 5 = (x − 1)(x − 5), so the common root can only be 1 or 5.",
+        "memory_tip": "The first equation has no unknown, so it fixes α: (x − 1)(x − 5) = 0 gives 1 or 5.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Each candidate goes into x² − 12x + p = 0. α = 1: 1 − 12 + p = 0 gives p = 11. α = 5: 25 − 60 + p = 0 gives p = 35. Two values of α, two values of p — give both.",
+        "memory_tip": "α = 1 gives p = 11 and α = 5 gives p = 35. Carry both candidates through.",
         "lines": [
           "α also satisfies α² − 12α + p = 0.",
           "α = 1: 1 − 12 + p = 0 ⇒ p = 11",

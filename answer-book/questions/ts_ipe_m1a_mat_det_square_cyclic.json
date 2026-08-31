@@ -58,6 +58,7 @@
         "label": "Name the determinant",
         "marks": 0,
         "margin_note": "No mark of its own, but it decides how readable the rest is. This question is proved in TWO separate halves that meet at the end, so both halves need a short name to refer back to.",
+        "memory_tip": "This is proved in TWO separate halves that meet at the end, so name things clearly.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 3,
         "mark_note": "Value of Δ",
         "margin_note": "Three of the eight marks — the first half of the proof, complete on its own. Expand along the top row, collect the terms, and notice that abc appears three times. The minus sign in front matters less than you might expect, because Δ is about to be squared.",
+        "memory_tip": "The first half, complete on its own: expand along the top row and notice abc appears three times.",
         "lines": [
           "Expanding along R₁:",
           "Δ = a(bc − a²) − b(b² − ac) + c(ab − c²)",
@@ -146,6 +148,7 @@
         "label": "Write Δ² as Δ times Δ",
         "marks": 0,
         "margin_note": "The second half starts here. Δ² means the same determinant multiplied by itself — two determinants side by side, which is what lets the row-by-row multiplication rule be used.",
+        "memory_tip": "Δ² is the same determinant twice, side by side — which is what allows row-by-row multiplication.",
         "lines": [
           "Again, Δ² = Δ · Δ",
           {
@@ -188,6 +191,7 @@
         "marks": 2,
         "mark_note": "Column interchange",
         "margin_note": "The step the book itself calls crucial. Swapping two columns changes the SIGN of a determinant, so a minus appears — and that minus is then absorbed into column 1 as three −1s. Without this swap the multiplication gives the wrong entries.",
+        "memory_tip": "Swapping two columns CHANGES THE SIGN, and that minus is then absorbed into the multiplication.",
         "lines": [
           "Interchanging C₂ and C₃ in the first determinant",
           "changes its sign:",
@@ -240,6 +244,7 @@
         "marks": 3,
         "mark_note": "Product determinant",
         "margin_note": "Multiply row 1 of the first by row 1 of the second for the top-left entry, and so on. First entry: (−a)(a) + c(b) + b(c) = −a² + 2bc. Every entry falls out the same way.",
+        "memory_tip": "Row 1 of the first against row 1 of the second gives the top-left entry: (−a)(a) + c(b) + b(c).",
         "lines": [
           "Multiplying row by row:",
           "(−a)(a) + c(b) + b(c) = 2bc − a²",
@@ -287,6 +292,7 @@
         "label": "Join the two halves",
         "marks": 0,
         "margin_note": "No separate mark — the seven are already spent — but write the line. Two results were proved separately and the question asked for all three expressions to be equal, so the last line has to name both.",
+        "memory_tip": "Two results were proved separately; the question asked for all three expressions, so join them.",
         "lines": [
           "From (1) and (2), both equal Δ²:",
           {

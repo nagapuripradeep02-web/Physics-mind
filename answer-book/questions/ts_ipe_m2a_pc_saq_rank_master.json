@@ -88,6 +88,7 @@
         "marks": 1,
         "mark_note": "Order",
         "margin_note": "First mark. Six different letters: A, E, M, R, S, T. No repeats, so every count below is a plain factorial.",
+        "memory_tip": "Sort first: A, E, M, R, S, T. No repeats, so every block below is a plain factorial.",
         "lines": [
           {
             "text": "Sol:",
@@ -130,6 +131,7 @@
         "marks": 2,
         "mark_note": "Counting",
         "margin_note": "Two marks. Words starting with A or E come first (5! each). Then M A E and M A R (3! each), then M A S E and M A S R (2! each). The next word is MASTER itself.",
+        "memory_tip": "Fix one more letter each line: A and E give 5!, then MAE and MAR give 3!, then MASE and MASR give 2!.",
         "lines": [
           "Words starting with A: 5! = 120",
           "Words starting with E: 5! = 120",
@@ -176,6 +178,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. 120 + 120 + 6 + 6 + 2 + 2 = 256 words come before MASTER, so its rank is 257.",
+        "memory_tip": "256 words come before MASTER, so the rank is 257. Add 1 for the word itself, not 2!.",
         "lines": [
           "Rank = 2(120) + 2(6) + 2(2) + 1",
           "= 240 + 12 + 4 + 1",

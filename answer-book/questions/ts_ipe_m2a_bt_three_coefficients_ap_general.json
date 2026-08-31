@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Setting up",
         "margin_note": "First mark. The r-th term is Tᵣ = ⁿCᵣ₋₁ xʳ⁻¹, so the three coefficients are ⁿCᵣ₋₁, ⁿCᵣ, ⁿCᵣ₊₁ — the index runs one behind the position.",
+        "memory_tip": "The r-th TERM has coefficient ⁿCᵣ₋₁ — the index runs one behind the position.",
         "lines": [
           {
             "text": "Sol:",
@@ -111,6 +112,7 @@
         "marks": 2,
         "mark_note": "A.P. condition",
         "margin_note": "Three numbers are in A.P. when the middle one is the average of the other two: 2·(middle) = (first) + (last). Divide through by the middle coefficient so the ratios appear.",
+        "memory_tip": "In A.P. means 2 × middle = first + last. Divide by the middle so the ratios appear.",
         "lines": [
           "2·ⁿCᵣ = ⁿCᵣ₋₁ + ⁿCᵣ₊₁",
           "Dividing by ⁿCᵣ:",
@@ -149,6 +151,7 @@
         "marks": 2,
         "mark_note": "Ratio formulas",
         "margin_note": "Third and fourth marks. ⁿCᵣ₋₁/ⁿCᵣ = r/(n − r + 1) and ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1).",
+        "memory_tip": "ⁿCᵣ₋₁/ⁿCᵣ = r/(n − r + 1) and ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1).",
         "lines": [
           "ⁿCᵣ/ⁿCᵣ₋₁ = (n − r + 1)/r",
           "and ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1)",
@@ -188,6 +191,7 @@
         "marks": 2,
         "mark_note": "Result",
         "margin_note": "Fifth to seventh marks. Multiply out both sides fully before collecting — the r² terms cancel on one side and the n² term appears on the other.",
+        "memory_tip": "Expand both sides fully before collecting: the r² terms cancel on one side and n² appears on the other.",
         "lines": [
           "2(n − r + 1)(r + 1) = r(r + 1) + (n − r)(n − r + 1)",
           "2(nr + n − r² + 1) = r² + r + n² − 2nr + r² + n − r",

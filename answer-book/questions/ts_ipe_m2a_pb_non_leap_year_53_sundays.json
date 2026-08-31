@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. 365 = 52 × 7 + 1. Every day of the week occurs 52 times; the one extra day can be any of the seven, equally likely.",
+        "memory_tip": "365 = 52 × 7 + 1. Every weekday occurs 52 times; the ONE extra day decides everything.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "(i)",
         "margin_note": "Second mark. 53 Sundays happens only when the extra day is a Sunday: one case out of seven.",
+        "memory_tip": "53 Sundays needs the extra day to be a Sunday — one case out of seven.",
         "lines": [
           {
             "text": "(i) Let E = the year has 53 Sundays; this",
@@ -151,6 +153,7 @@
         "marks": 2,
         "mark_note": "(ii)",
         "margin_note": "Two marks. Exactly 52 Sundays means the extra day is NOT a Sunday: the complement of (i), 1 − 1/7 = 6/7.",
+        "memory_tip": "'52 only' is the complement of part (i): 1 − 1/7 = 6/7, not a fresh count.",
         "lines": [
           {
             "text": "(ii) 52 Sundays only means the extra day is not",

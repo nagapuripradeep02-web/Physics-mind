@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "S₁ and S₃",
         "margin_note": "First mark. Two unknown roots need two relations. The sum gives α + β and the product gives αβ, because the third root is 1.",
+        "memory_tip": "Two unknowns need two relations. The sum gives α + β = 1, the product gives αβ = −6.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Numbers with sum 1 and product −6 are 3 and −2, the roots of y² − y − 6 = 0. Either order is correct.",
+        "memory_tip": "Sum 1 and product −6 are the roots of y² − y − 6 = (y − 3)(y + 2). Either order is right.",
         "lines": [
           "α + β = 1 and αβ = −6, so α, β are the roots of",
           "y² − y − 6 = 0 ⇒ (y − 3)(y + 2) = 0",

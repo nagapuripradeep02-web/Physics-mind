@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The 6th term is Tᵣ₊₁ with r = 5: ⁹C₅ times the first entry to the power 4 times the second to the power 5.",
+        "memory_tip": "The 6th term is Tᵣ₊₁ with r = 5, not 6 — the index runs one behind.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ⁹C₅ = 126; (2⁴/3⁴)(3⁵/2⁵) = 3/2; 126 × 3/2 = 189.",
+        "memory_tip": "The fractions are built to cancel: (2⁴/3⁴)(3⁵/2⁵) = 3/2, and 126 × 3/2 = 189.",
         "lines": [
           "= 126 · (2⁴/3⁴) · (3⁵/2⁵) · x⁴y⁵ = 126 · (3/2) · x⁴y⁵",
           {

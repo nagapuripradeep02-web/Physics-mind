@@ -49,6 +49,7 @@
         "label": "Write the slope from the two points",
         "marks": 1,
         "margin_note": "First mark. The slope between two points is the difference of the y's over the difference of the x's, taken in the same order both times.",
+        "memory_tip": "Difference of the y's over difference of the x's, taken in the SAME order both times.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "label": "Equate to the given slope and solve",
         "marks": 1,
         "margin_note": "Second mark. The given slope is 2, so set the two equal and solve the short linear equation.",
+        "memory_tip": "Set it equal to the given slope 2 and solve the short linear equation.",
         "lines": [
           "But given slope m₂ = 2",
           "Now, m₁ = m₂",

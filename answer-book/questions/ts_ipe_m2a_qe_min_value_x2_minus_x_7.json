@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Which one it is",
         "margin_note": "First mark. Read off a = 1, b = −1, c = 7. a > 0 means the graph opens upward, so there is a lowest point and no highest — the expression has a MINIMUM. Say which one before computing.",
+        "memory_tip": "a = 1 > 0, so the graph opens upward: a minimum and no maximum. Say which one before computing.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Minimum = (4ac − b²)/(4a) = (28 − 1)/4 = 27/4. Note (−1)² = 1 — the square of a negative number is positive. The minimum occurs at x = −b/2a = 1/2.",
+        "memory_tip": "(4ac − b²)/(4a) = (28 − 1)/4 = 27/4. Note (−1)² = +1, and the answer is the value, not the x.",
         "lines": [
           "Minimum value = (4ac − b²)/(4a)",
           "= (4(1)(7) − (−1)²)/(4(1))",

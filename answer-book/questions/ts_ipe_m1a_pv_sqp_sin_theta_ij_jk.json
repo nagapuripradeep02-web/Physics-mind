@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Cross product",
         "margin_note": "First mark. Both vectors have length √2. Then the cross product, laid out as a determinant with i, j, k on top.",
+        "memory_tip": "Both vectors have length √2. Then the cross product as a determinant with i, j, k on top.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Second mark. Rearrange to sin θ = |a×b| / (|a||b|), then substitute.",
+        "memory_tip": "Rearrange |a×b| = |a||b| sin θ to sin θ = |a×b|/(|a||b|), then substitute.",
         "lines": [
           "sin θ = |a × b| / (|a| |b|)",
           "= √3 / (√2 · √2) = √3 / 2",

@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Multiplying and dividing by 2 lets 2 cosA cosB = cos(A+B) + cos(A−B) be applied, turning a product into a sum.",
+        "memory_tip": "Multiply and divide by 2 so that 2cosA cosB = cos(A+B) + cos(A−B) can turn the product into a sum.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. cos60° = 1/2 and cos36° = (√5+1)/4 — the second is a standard result and is quoted, not derived.",
+        "memory_tip": "cos60° = 1/2 and cos36° = (√5 + 1)/4 — the second is standard and is quoted.",
         "lines": [
           "cos60° = 1/2,  cos36° = (√5 + 1)/4",
           "= (1/2)[1/2 + (√5 + 1)/4]",

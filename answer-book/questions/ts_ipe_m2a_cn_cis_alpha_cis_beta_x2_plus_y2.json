@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "cis rule",
         "margin_note": "First mark. cis θ means cos θ + i sin θ, and cis α · cis β = cis(α + β). Then x and y are the cos and sin of α + β.",
+        "memory_tip": "cis α · cis β = cis(α + β) — the angles add, they do not multiply.",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. cos² + sin² of the same angle is 1.",
+        "memory_tip": "cos² + sin² of the SAME angle is 1. A cis value has modulus 1, so the answer had to be 1.",
         "lines": [
           "x² + y² = cos²(α + β) + sin²(α + β)",
           {

@@ -75,6 +75,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "First mark. π is 180°, so this is the same halved condition as the previous two questions written in radians.",
+        "memory_tip": "π is 180°, so this is the halved condition written in radians: (A+B)/2 = π/2 − C/2.",
         "lines": [
           {
             "text": "Sol:",
@@ -117,6 +118,7 @@
         "marks": 3,
         "mark_note": "Sum to product",
         "margin_note": "Three of the eight marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
+        "memory_tip": "Three terms will not factorise as they stand, so combine TWO into a product first. Quote the formula.",
         "lines": [
           "L.H.S = cos²(A/2) + cos²(B/2) + cos²(C/2)",
           "= cos²(A/2) + (1 − sin²(B/2)) + cos²(C/2)",
@@ -156,6 +158,7 @@
         "marks": 2,
         "mark_note": "Substitution",
         "margin_note": "Two more marks. This is where the angle condition earns its place: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "memory_tip": "The condition turns an expression in A and B into one in C, so every term shares a factor.",
         "lines": [
           "= 1 + cos((A+B)/2) cos((A−B)/2) + cos²(C/2)",
           "  [∵ cos²A − sin²B = cos(A+B) cos(A−B)]",
@@ -197,6 +200,7 @@
         "marks": 1,
         "mark_note": "Factorise",
         "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "memory_tip": "Pull the common factor out, then use the condition a SECOND time inside the bracket.",
         "lines": [
           "= 2 + sin(C/2) [cos((A−B)/2) − sin(C/2)]",
           "= 2 + sin(C/2) [cos((A−B)/2) − cos((A+B)/2)]",
@@ -236,6 +240,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "memory_tip": "One more sum-or-difference formula closes it. Write '= R.H.S' so the examiner sees it landed.",
         "lines": [
           "= 2 + sin(C/2) (2 sin(A/2) sin(B/2))",
           "  [∵ cosC − cosD = 2 sin((C+D)/2) sin((D−C)/2)]",

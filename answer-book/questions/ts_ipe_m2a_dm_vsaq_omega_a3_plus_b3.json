@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Reduce",
         "margin_note": "First mark. (aω + bω²)(aω² + bω) = a²ω³ + abω² + abω⁴ + b²ω³. With ω³ = 1 and ω⁴ = ω this is a² + ab(ω + ω²) + b², and ω + ω² = −1 gives a² − ab + b².",
+        "memory_tip": "Multiply the two ω brackets first. With ω³ = 1 and ω⁴ = ω they give a² − ab + b².",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. a² − ab + b² is the second factor of a³ + b³, so (a + b)(a² − ab + b²) = a³ + b³. No ω is left in the answer.",
+        "memory_tip": "a² − ab + b² is the second factor of a³ + b³. No ω is left in the answer.",
         "lines": [
           "L.H.S. = (a + b)(a² − ab + b²)",
           {

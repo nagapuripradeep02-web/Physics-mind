@@ -76,6 +76,7 @@
         "marks": 1,
         "mark_note": "Form",
         "margin_note": "First mark. x² + 1 has no real factors, so it gets Bx + C. The linear factor (x + 2) gets A. Do not confuse x² + 1 with x² − 1, which does factorise.",
+        "memory_tip": "x² + 1 has no real factors — do not confuse it with x² − 1, which does split. It takes Bx + C.",
         "lines": [
           {
             "text": "Sol:",
@@ -122,6 +123,7 @@
         "marks": 1,
         "mark_note": "Identity",
         "margin_note": "Second mark. Multiply by (x + 2)(x² + 1). A keeps (x² + 1), (Bx + C) keeps (x + 2).",
+        "memory_tip": "A keeps (x² + 1), (Bx + C) keeps (x + 2). Keep the bracket around Bx + C.",
         "lines": [
           "Multiply by (x + 2)(x² + 1):",
           "x² − 3 = A(x² + 1) + (Bx + C)(x + 2)"
@@ -162,6 +164,7 @@
         "marks": 1,
         "mark_note": "A, B and C",
         "margin_note": "Third mark. x = −2 gives A = 1/5. x = 0 gives A + 2C = −3, so C = −8/5. Compare x² for B = 4/5. Fractions with 5 all the way; keep them as fractions.",
+        "memory_tip": "x = −2 gives (−2)² − 3 = 1, so A = 1/5. Then x = 0 gives A + 2C = −3, so C = −8/5.",
         "lines": [
           "Put x = −2: 1 = A(5) ⇒ A = 1/5",
           "Put x = 0: −3 = A + 2C ⇒ 2C = −16/5",
@@ -206,6 +209,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. Bx + C = (4/5)x − 8/5 = (4x − 8)/5, so the second fraction is (4x − 8)/(5(x² + 1)). The first is 1/(5(x + 2)).",
+        "memory_tip": "Every constant is a fifth: (4/5)x − 8/5 becomes (4x − 8)/5. Check x = 1: −2 = 2/5 − 12/5.",
         "lines": [
           "∴ (x² − 3)/((x + 2)(x² + 1))",
           {

@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. With a minus between them the eˣ terms cancel instead, leaving e⁻ˣ — the mirror of the twin.",
+        "memory_tip": "With a MINUS between them the eˣ terms cancel, leaving e⁻ˣ — the mirror of the plus version.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The right side collapses the same way with nx, giving e⁻ⁿˣ, and the two agree.",
+        "memory_tip": "The right side collapses the same way with nx, giving e⁻ⁿˣ. Then say the two sides agree.",
         "lines": [
           "R.H.S = cosh nx − sinh nx",
           "= (eⁿˣ + e⁻ⁿˣ)/2 − (eⁿˣ − e⁻ⁿˣ)/2",

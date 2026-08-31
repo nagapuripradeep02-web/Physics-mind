@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Mean",
         "margin_note": "First mark. Eight values, sum 80, mean 10. Write n = 8 — it is the divisor in both steps.",
+        "memory_tip": "80/8 = 10. The repeated 12 is counted twice, so n = 8 and the same 8 divides the next step.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Write the eight absolute deviations from 10, add them (26), divide by n = 8. 26/8 = 3.25 exactly.",
+        "memory_tip": "The value 10 equals the mean, so its deviation is 0 — but it still counts in n = 8. 26/8 = 3.25.",
         "lines": [
           "|xᵢ − x̄| : 4, 3, 0, 2, 3, 6, 2, 6",
           "M.D. = Σ|xᵢ − x̄|/n = (4 + 3 + 0 + 2 + 3 + 6 + 2 + 6)/8",

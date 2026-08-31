@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Same formula as the twin. Write it before substituting anything.",
+        "memory_tip": "Sinh⁻¹x = logₑ(x + √(x² + 1)). Write the formula before substituting anything.",
         "lines": [
           {
             "text": "Sol:",
@@ -92,6 +93,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 25 + 1 = 26, and √26 does not simplify — the surd is the final form.",
+        "memory_tip": "25 + 1 = 26, and √26 does not simplify — the surd is the final form.",
         "lines": [
           "Given sinh x = 5, so x = Sinh⁻¹(5)",
           "= logₑ(5 + √(5² + 1))",

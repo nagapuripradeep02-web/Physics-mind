@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Quadratic in x",
         "margin_note": "First mark. Collect by powers of x, not by y: the x² coefficient is 2y, the x coefficient is 3y − 1, the constant is 6y − 2. The denominator 2x² + 3x + 6 is never zero (its own Δ = 9 − 48 < 0), so every real x gives a value of y.",
+        "memory_tip": "Collect by powers of x, not by y: the coefficients are 2y, then 3y − 1, then 6y − 2.",
         "lines": [
           {
             "text": "Sol:",
@@ -112,6 +113,7 @@
         "marks": 1,
         "mark_note": "Discriminant",
         "margin_note": "Second mark. a = 2y, b = 3y − 1, c = 6y − 2. The product 4(2y)(6y − 2) = 48y² − 16y, and it is SUBTRACTED, so the signs flip to −48y² + 16y.",
+        "memory_tip": "4(2y)(6y − 2) = 48y² − 16y, and it is SUBTRACTED, so the signs flip to −48y² + 16y.",
         "lines": [
           "∴ Δ = b² − 4ac ≥ 0",
           "⇒ (3y − 1)² − 4(2y)(6y − 2) ≥ 0",
@@ -154,6 +156,7 @@
         "marks": 1,
         "mark_note": "Inequality in y",
         "margin_note": "Third mark. Multiplying by −1 REVERSES the inequality: ≥ becomes ≤. Split −10y as −13y + 3y so the pairs factorise. A product of two factors is ≤ 0 between its roots, so y lies between −1/13 and 1/3, both included.",
+        "memory_tip": "Multiplying by −1 reverses the inequality. Split −10y as −13y + 3y so the pairs factorise.",
         "lines": [
           "⇒ 39y² − 10y − 1 ≤ 0",
           "⇒ 39y² − 13y + 3y − 1 ≤ 0",
@@ -201,6 +204,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. Square brackets, because Δ = 0 at each end: y = 1/3 happens at x = 0 and y = −1/13 at x = −4, so both end values are actually reached.",
+        "memory_tip": "Δ = 0 at each end, so both are reached: square brackets, [−1/13, 1/3].",
         "lines": [
           "At y = 0 the equation is linear, not quadratic:",
           "x + 2 = 0 gives x = −2, so y = 0 is reached.",

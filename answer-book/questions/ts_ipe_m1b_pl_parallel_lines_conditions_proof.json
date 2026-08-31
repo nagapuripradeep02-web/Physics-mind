@@ -61,6 +61,7 @@
         "label": "Split into two PARALLEL lines",
         "marks": 1,
         "margin_note": "First mark, and the move that makes the whole question work. Parallel lines share their x and y coefficients and differ ONLY in the constant — so both factors get the same l and m.",
+        "memory_tip": "PARALLEL lines share their x and y coefficients and differ only in the CONSTANT — same l and m in both.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "label": "Prove h² = ab",
         "marks": 2,
         "margin_note": "Two marks. The first result is immediate from the dictionary: h is lm, and a and b are l² and m².",
+        "memory_tip": "Straight from the dictionary: h is lm, and a and b are l² and m².",
         "lines": [
           "(i) h² = (lm)² = l²m² = ab",
           "⇒ h² = ab"
@@ -144,6 +146,7 @@
         "label": "Prove af² = bg²",
         "marks": 2,
         "margin_note": "Two marks. Both f and g carry the same factor (n₁ + n₂), so squaring each and multiplying by the other's coefficient produces the same expression twice.",
+        "memory_tip": "Both f and g carry the same (n₁ + n₂), so each side produces the same expression.",
         "lines": [
           "(ii) af² = l²[m(n₁ + n₂)/2]²",
           "= l²m²(n₁ + n₂)²/4",
@@ -186,6 +189,7 @@
         "label": "Derive the distance",
         "marks": 3,
         "margin_note": "The last three marks. The two lines share l and m, so the distance is |n₁ − n₂| over √(l² + m²) — and |n₁ − n₂| is found from its square, since only the sum and product of the n's are known.",
+        "memory_tip": "The distance is |n₁ − n₂| over √(l² + m²), and |n₁ − n₂| comes from its SQUARE.",
         "lines": [
           "(iii) Distance between lx + my + n₁ = 0 and lx + my + n₂ = 0 is  |n₁ − n₂| / √(l² + m²)",
           "= √((n₁ + n₂)² − 4n₁n₂) / √(a + b)",

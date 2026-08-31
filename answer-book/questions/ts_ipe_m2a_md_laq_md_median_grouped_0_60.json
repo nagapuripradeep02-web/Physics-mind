@@ -60,6 +60,7 @@
         "marks": 2,
         "mark_note": "Table",
         "margin_note": "First two marks. Columns: class, frequency fᵢ, cumulative frequency c.f. (running total of fᵢ), midpoint xᵢ. The c.f. column is what locates the median class in the next step.",
+        "memory_tip": "The c.f. column is a running total, not the frequencies copied again. Add the midpoint column now too.",
         "lines": [
           {
             "text": "Sol:",
@@ -135,6 +136,7 @@
         "marks": 2,
         "mark_note": "Median",
         "margin_note": "Next two marks. N/2 = 25; the first c.f. that reaches 25 is 28, so 20–30 is the median class. In the formula l = lower limit 20, C = width 10, f = frequency of the median class 14, m = c.f. of the class BEFORE it, 14. 110/14 = 7.857…, written 7.86.",
+        "memory_tip": "M = l + (C/f)·(N/2 − m), where m is the c.f. of the class BEFORE the median class — 14 here, not 28.",
         "lines": [
           "N/2 = 25. The first c.f. ≥ 25 is 28,",
           "so the median class is 20–30.",
@@ -181,6 +183,7 @@
         "marks": 2,
         "mark_note": "Deviations",
         "margin_note": "Next two marks. Columns: midpoint xᵢ, frequency fᵢ, |xᵢ − 27.86|, and the product with fᵢ. Every deviation has two decimals because M does. The products are 6 × 22.86 = 137.16 and so on; the sum is 517.16.",
+        "memory_tip": "Subtract the median 27.86, not the mean. Two decimals in M means two decimals in every deviation.",
         "lines": [
           "With M = 27.86:",
           {
@@ -253,6 +256,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. 517.16/50 = 10.3432, written 10.34.",
+        "memory_tip": "517.16/50 = 10.34. Write 'about the median' in the answer line; 'about the mean' loses the mark.",
         "lines": [
           "M.D. about the median = Σfᵢ|xᵢ − M|/N",
           "= 517.16/50 = 10.34",

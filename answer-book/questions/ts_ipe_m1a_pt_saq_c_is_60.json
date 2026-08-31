@@ -59,6 +59,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Combine the left side over one denominator, then cross-multiply. Nothing trigonometric happens yet — this is ordinary algebra.",
+        "memory_tip": "Combine the left over one denominator and cross-multiply. Nothing trigonometric happens yet.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,6 +105,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. Expand both sides fully. Everything cancels except a² + b² − c² = ab — a pure side relation with no fractions left.",
+        "memory_tip": "Everything cancels except a² + b² − c² = ab — a pure side relation with no fractions.",
         "lines": [
           "⇒ (a²+b²+c²+2ab+2bc+2ca) + (ca+cb+c²) = 3(ab+ac+cb+c²)",
           "⇒ a²+b²+c²+2ab+2bc+2ca+ca+cb+c² = 3ab+3ac+3cb+3c²",
@@ -144,6 +146,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Divide both sides by 2ab: the left becomes cos C exactly, and the right becomes 1/2.",
+        "memory_tip": "Divide by 2ab: the left becomes cos C exactly, the right becomes 1/2.",
         "lines": [
           "Dividing both sides by 2ab:",
           "(a² + b² − c²)/(2ab) = ab/(2ab)",

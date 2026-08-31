@@ -58,6 +58,7 @@
         "label": "Write what is given",
         "marks": 0,
         "margin_note": "No mark of its own. Copy the three (or four) vectors out once, in i, j, k order. Every cross product below is read straight off these rows, so a slip here is repeated three times.",
+        "memory_tip": "Copy all four vectors out once in i, j, k order. A slip here is repeated in three determinants.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 2,
         "mark_note": "First product",
         "margin_note": "Two of the eight marks. Work the brackets first, exactly as in arithmetic. All three components come out as −5 here, which is a useful check.",
+        "memory_tip": "Brackets first, exactly as in arithmetic. All three components come out −5 — a useful check.",
         "lines": [
           {
             "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & 1 & -3 \\\\ 1 & -2 & 1 \\end{vmatrix}",
@@ -144,6 +146,7 @@
         "marks": 2,
         "mark_note": "Second product",
         "margin_note": "Two more marks. The second bracket, built the same way from c and d.",
+        "memory_tip": "The second bracket, built the same way from c and d.",
         "lines": [
           {
             "text": "c \\times d = \\begin{vmatrix} i & j & k \\\\ -1 & 1 & -4 \\\\ 1 & 1 & 1 \\end{vmatrix}",
@@ -188,6 +191,7 @@
         "marks": 3,
         "mark_note": "Combine",
         "margin_note": "Three marks. Now cross the two results — a third determinant, with (1) on the first row and (2) on the second. Taking 5 out at the end makes the magnitude easy.",
+        "memory_tip": "A third determinant, with (1) on the first row and (2) on the second. Take the 5 out at the end.",
         "lines": [
           "From (1) and (2),",
           {
@@ -234,6 +238,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. The 5 comes out of the square root as a multiplier. √114 does not simplify, so the surd stands.",
+        "memory_tip": "The 5 comes out of the root as a multiplier. √114 does not simplify, so the surd stands.",
         "lines": [
           "|(a×b)×(c×d)| = 5√((−1)² + (−7)² + 8²)",
           "= 5√(1 + 49 + 64)",

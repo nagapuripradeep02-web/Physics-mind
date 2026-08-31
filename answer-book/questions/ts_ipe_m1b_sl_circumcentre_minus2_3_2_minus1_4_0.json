@@ -65,6 +65,7 @@
         "label": "Set up the equal-distance condition",
         "marks": 1,
         "margin_note": "First mark. The circumcentre is the one point equally far from all three vertices, so the whole answer is the single line SA = SB = SC turned into algebra.",
+        "memory_tip": "SA = SB = SC is the entire content — the circumcentre is equidistant from all three.",
         "lines": [
           {
             "text": "Sol:",
@@ -109,6 +110,7 @@
         "label": "Draw the triangle",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. The dashed lines are perpendicular BISECTORS — they cut each side in half at a right angle, which is what the equal-distance condition means geometrically.",
+        "memory_tip": "The dashed perpendicular bisectors are the equal-distance condition drawn.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That a triangle is sketched with two perpendicular bisectors meeting at S. Naming the drawing is full credit — it cannot be spoken.",
@@ -268,6 +270,7 @@
         "label": "First equation from SA = SB",
         "marks": 2,
         "margin_note": "Two marks. Square both sides at once — the square roots vanish and, better, the x² and y² terms cancel across the equals sign, so a SECOND-degree statement collapses to a FIRST-degree line. That collapse is the whole reason this method works.",
+        "memory_tip": "Squaring collapses second degree to first, because the x² and y² terms cancel.",
         "lines": [
           "Step-1: Take SA = SB",
           "⇒ √((x+2)² + (y−3)²) = √((x−2)² + (y+1)²)",
@@ -313,6 +316,7 @@
         "label": "Second equation from SB = SC",
         "marks": 2,
         "margin_note": "Two marks. Exactly the same move on a different pair. Use SB = SC rather than SA = SC — the arithmetic reuses the B expansion already written above.",
+        "memory_tip": "Use SB = SC so the B expansion is reused.",
         "lines": [
           "Step-2: Take SB = SC",
           "⇒ √((x−2)² + (y+1)²) = √((x−4)² + (y−0)²)",
@@ -357,6 +361,7 @@
         "label": "Solve the pair",
         "marks": 3,
         "margin_note": "The last three marks. Two linear equations in two unknowns — solve them any way you like; the book uses the cross-multiplication rule. The answer is a single point.",
+        "memory_tip": "Two equations, one point.",
         "lines": [
           "Step-3: Solving (1) and (2), we get S;",
           "(1) ⇒ x − y + 1 = 0;   (2) ⇒ 4x + 2y − 11 = 0",

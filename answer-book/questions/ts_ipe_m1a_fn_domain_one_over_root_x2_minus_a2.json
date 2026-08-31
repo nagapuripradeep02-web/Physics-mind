@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "memory_tip": "Root under a denominator, so strictly > 0: (x − a)(x + a) > 0.",
         "lines": [
           "f(x) is defined when x² − a² > 0",
           "⇒ (x − a)(x + a) > 0"
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Domain",
         "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "A product > 0 is OUTSIDE the roots, with round brackets: (−∞, −a) ∪ (a, ∞).",
         "lines": [
           "⇒ x ∈ (−∞, −a) ∪ (a, ∞)",
           "∴ Domain = (−∞, −a) ∪ (a, ∞)"

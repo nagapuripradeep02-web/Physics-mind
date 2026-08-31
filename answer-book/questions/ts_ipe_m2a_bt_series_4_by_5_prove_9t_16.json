@@ -64,6 +64,7 @@
         "marks": 2,
         "mark_note": "Series in standard shape",
         "margin_note": "First two marks. Each denominator is a product like 5·10·15 = 5³·(1·2·3), so every term becomes (a product)/(k!) times (1/5)ᵏ. No leading 1, so add 1 on both sides. The numerators 4, 4·6, 4·6·8 step by 2, so q = 2 and p/q = 2 is a whole number — the power is an ordinary square.",
+        "memory_tip": "5·10·15 = 5³·3!. No leading 1 is printed, so add 1 to both sides. The numerators 4, 6, 8 step by 2.",
         "lines": [
           {
             "text": "Sol:",
@@ -110,6 +111,7 @@
         "marks": 1,
         "mark_note": "Standard form",
         "margin_note": "Third mark, for WRITING the standard expansion beside the series. The examiner looks for the pattern p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!. All plus signs mean the (1 − x) form.",
+        "memory_tip": "All plus signs mean the (1 − x) form. Write the standard expansion out beside the series.",
         "lines": [
           "Compare with the standard expansion",
           {
@@ -152,6 +154,7 @@
         "marks": 2,
         "mark_note": "p, q, x",
         "margin_note": "Fourth and fifth marks. p is the first factor (4), p + q is the second (6) so q = 2, and x/q equals the common ratio 1/5 so x = q/5 = 2/5.",
+        "memory_tip": "p = 4, p + q = 6 so q = 2, and x/q = 1/5 gives x = 2/5.",
         "lines": [
           "p = 4, p + q = 6 ⇒ q = 2",
           "x/q = 1/5 ⇒ x = q/5 = 2/5"
@@ -190,6 +193,7 @@
         "marks": 1,
         "mark_note": "Value of the power",
         "margin_note": "Sixth mark. Substitute p, q, x into (1 − x)^(−p/q) and simplify the fraction inside the bracket before touching the exponent.",
+        "memory_tip": "The negative index inverts the FRACTION: (3/5)⁻² = (5/3)² = 25/9, never 9/25.",
         "lines": [
           {
             "text": "1 + t = \\left(1 - \\tfrac{2}{5}\\right)^{-4/2} = \\left(\\tfrac{3}{5}\\right)^{-2} = \\left(\\tfrac{5}{3}\\right)^{2} = \\dfrac{25}{9}",
@@ -230,6 +234,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Seventh mark. Multiply by 9 and the 16 appears: 9 + 9t = 25.",
+        "memory_tip": "Multiply by 9: 9 + 9t = 25, so 9t = 16.",
         "lines": [
           "9(1 + t) = 25 ⇒ 9 + 9t = 25",
           {

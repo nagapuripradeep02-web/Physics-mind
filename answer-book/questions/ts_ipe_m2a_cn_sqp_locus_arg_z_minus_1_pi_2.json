@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "First mark. z − 1 = (x − 1) + iy. An argument of π/2 means the number points straight up the imaginary axis: real part 0, imaginary part positive.",
+        "memory_tip": "Argument π/2 points straight up: real part 0 AND imaginary part positive. Two conditions, not one.",
         "lines": [
           {
             "text": "Sol:",
@@ -92,6 +93,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. x − 1 = 0 and y > 0: the vertical half-line above the point (1, 0).",
+        "memory_tip": "x = 1 with y > 0 — a half-line. The whole line would include points with argument −π/2.",
         "lines": [
           "⇒ x − 1 = 0 and y > 0",
           {

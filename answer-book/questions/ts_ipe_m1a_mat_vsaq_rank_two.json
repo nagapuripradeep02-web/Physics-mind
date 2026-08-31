@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Start with the largest minor — the whole determinant. It comes to 0, so the rank is less than 3 and you must look at a smaller minor.",
+        "memory_tip": "Start with the largest minor — the whole determinant. It is 0, so the rank is less than 3.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Only ONE non-zero 2×2 minor is needed — you are not checking them all. The top-left block gives 3 − 4 = −1, which is enough.",
+        "memory_tip": "Only ONE non-zero 2×2 minor is needed; you are not checking them all.",
         "lines": [
           "Take the 2×2 minor from the top-left:",
           {

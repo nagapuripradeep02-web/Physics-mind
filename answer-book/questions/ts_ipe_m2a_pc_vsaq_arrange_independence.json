@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Counting",
         "margin_note": "First mark. I-N-D-E-P-E-N-D-E-N-C-E: 12 letters. E appears 4 times, N 3 times, D twice; I, P, C once.",
+        "memory_tip": "Write it out and number: I-N-D-E-P-E-N-D-E-N-C-E. E four times, N three times, D twice.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 12!/(4!·3!·2!) = 479001600/288 = 16,63,200.",
+        "memory_tip": "12!/(4!·3!·2!) = 16,63,200. Missing the D pair doubles the answer.",
         "lines": [
           "Arrangements = n!/(p!·q!·r!)",
           {

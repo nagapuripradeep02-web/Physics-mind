@@ -55,6 +55,7 @@
         "marks": 2,
         "mark_note": "Table",
         "margin_note": "First two marks. The data is NOT in order (6, 9, 3, 12, …), so the first move is to sort the xᵢ and carry each frequency with its value. Columns: xᵢ, fᵢ, cumulative frequency c.f.",
+        "memory_tip": "Sort the xᵢ first and carry each fᵢ with its own value. A c.f. built on unsorted data means nothing.",
         "lines": [
           {
             "text": "Sol:",
@@ -139,6 +140,7 @@
         "marks": 2,
         "mark_note": "Median",
         "margin_note": "Next two marks. N/2 = 15. Reading down the c.f. column, 14 is below 15 and 18 is the first at or above it, so the 15th item is a 13. No interpolation for discrete data: the median IS that value.",
+        "memory_tip": "Stop at the first c.f. that reaches N/2 = 15; the median is that xᵢ. No grouped-data formula on discrete data.",
         "lines": [
           "N/2 = 30/2 = 15",
           "The first c.f. ≥ 15 is 18, at xᵢ = 13.",
@@ -181,6 +183,7 @@
         "marks": 2,
         "mark_note": "Deviations",
         "margin_note": "Next two marks. Columns: xᵢ, fᵢ, |xᵢ − 13|, and the product with fᵢ. The row xᵢ = 13 contributes 0. The sum is 149.",
+        "memory_tip": "Deviate from M = 13, and multiply by fᵢ, not by the c.f. The row xᵢ = 13 contributes 0.",
         "lines": [
           "With M = 13:",
           {
@@ -261,6 +264,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. 149/30 = 4.9666…, written 4.97. Divide by N = 30, not by the 8 rows.",
+        "memory_tip": "The divisor is the total frequency N = 30, not the 8 rows of the table. 149/30 = 4.97.",
         "lines": [
           "M.D. about the median = Σfᵢ|xᵢ − M|/N",
           "= 149/30 = 4.97",

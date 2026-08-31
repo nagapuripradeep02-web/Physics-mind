@@ -50,6 +50,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. With a, b, c as position vectors, the two sides from A are AB = b − a and AC = c − a.",
+        "memory_tip": "With a, b, c as positions, the two sides from A are b − a and c − a.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Formula",
         "margin_note": "Second mark. Area = ½|AB × AC|, so twice the area is |AB × AC| — which is what the question is really about.",
+        "memory_tip": "Area = ½|AB × AC|, so TWICE the area is |AB × AC| — which is what is being asked about.",
         "lines": [
           "Area of △ABC = ½ |AB × AC|",
           "⇒ 2(Area of △ABC) = |AB × AC|",
@@ -134,6 +136,7 @@
         "marks": 2,
         "mark_note": "Expansion",
         "margin_note": "Half the marks. Expand as if multiplying brackets, but keep the ORDER — the cross product is not commutative. The a × a term is zero.",
+        "memory_tip": "Expand like brackets but keep the ORDER — cross products do not commute. The a × a term is zero.",
         "lines": [
           "(b − a) × (c − a)",
           "= b×c − b×a − a×c + a×a",

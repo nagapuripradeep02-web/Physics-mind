@@ -54,6 +54,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks. Substitute r₁ = 4R sin(A/2)cos(B/2)cos(C/2) and b, c by the sine rule, then cancel. Write ONE term with a sigma; the other two follow by symmetry.",
+        "memory_tip": "Substitute r₁ = 4R sin(A/2)cos(B/2)cos(C/2) and the sine rule for b, c. Write ONE term with a sigma.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two more marks. The cos(B/2) and cos(C/2) cancel top and bottom, and what is left has sin(A/2) over 4R sin(B/2)sin(C/2) — which becomes sin²(A/2)/r.",
+        "memory_tip": "The cos(B/2) and cos(C/2) cancel; multiplying by sin(A/2) turns what is left into sin²(A/2)/r.",
         "lines": [
           "= Σ sin(A/2) / [4R sin(B/2)sin(C/2)]",
           "= Σ sin²(A/2) / [4R sin(A/2)sin(B/2)sin(C/2)]   [multiplying by sin(A/2)]",
@@ -140,6 +142,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two more marks. sin²(A/2) + sin²(B/2) + sin²(C/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2) — the Unit 6 identity, quoted.",
+        "memory_tip": "Σsin²(A/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2), and that product is r/(4R).",
         "lines": [
           "= (1/r)[1 − 2 sin(A/2)sin(B/2)sin(C/2)]",
           "  [∵ Σsin²(A/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2)]",
@@ -181,6 +184,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "Last two marks. Multiply the 1/r through the bracket; the r in the second term cancels, leaving 1/(2R).",
+        "memory_tip": "Multiply the 1/r through: the r in the second term cancels, leaving 1/(2R).",
         "lines": [
           "= 1/r − (1/r)(r/(2R))",
           "= 1/r − 1/(2R)",

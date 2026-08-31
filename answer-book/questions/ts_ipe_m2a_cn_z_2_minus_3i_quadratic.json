@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Square",
         "margin_note": "First mark. Move the 2 to the left so the right side is only −3i, then square: (−3i)² = 9i² = −9. The i is gone.",
+        "memory_tip": "Move the 2 across first, then square: (−3i)² = −9 and the i is gone in one line.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (z − 2)² = z² − 4z + 4. Move the −9 across: 4 + 9 = 13.",
+        "memory_tip": "The 13 is 4 + 9 — the 4 from squaring the 2, the 9 from squaring the 3.",
         "lines": [
           "⇒ z² − 4z + 4 = −9",
           {

@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "αβ = 6, γδ = 8",
         "margin_note": "First mark. Call the roots α, β, γ, δ with αβ = 6. The product of all four is the constant term 48 (a₀ = 1, even degree so the sign is +), which forces γδ = 8.",
+        "memory_tip": "The product of all four is the constant 48 with a PLUS sign (even degree), so the other pair is 8.",
         "lines": [
           {
             "text": "Sol:",
@@ -105,6 +106,7 @@
         "marks": 2,
         "mark_note": "Pair the roots",
         "margin_note": "Two marks. Let the two pair-sums be p and q. Each pair is the root set of a quadratic x² − (sum)x + product, so the quartic is the product of x² − px + 6 and x² − qx + 8.",
+        "memory_tip": "Name the two pair-sums p and q. Each pair gives x² − (sum)x + product, and the quartic is their product.",
         "lines": [
           "Let α + β = p and γ + δ = q.",
           "The quadratic with roots α, β: x² − px + 6",
@@ -147,6 +149,7 @@
         "marks": 2,
         "mark_note": "p = 5, q = −6",
         "margin_note": "Two marks. Expand, then match x³ (p + q = −1) and x (8p + 6q = 4). Solve the pair: p = 5, q = −6. Check on the x² coefficient: pq + 14 = −16.",
+        "memory_tip": "Match x³ (p + q = −1) and x (8p + 6q = 4). The x² coefficient is a free check: pq + 14 = −16.",
         "lines": [
           "Expand the right side:",
           "x⁴ − (p + q)x³ + (pq + 14)x² − (8p + 6q)x + 48",
@@ -193,6 +196,7 @@
         "marks": 2,
         "mark_note": "Roots",
         "margin_note": "Last two marks. x² − 5x + 6 factorises as (x − 2)(x − 3) and x² + 6x + 8 as (x + 2)(x + 4). The pair 2, 3 has product 6 as required; all four add to −1.",
+        "memory_tip": "x² − 5x + 6 = (x − 2)(x − 3) and x² + 6x + 8 = (x + 2)(x + 4). Check 2 × 3 = 6, the given product.",
         "lines": [
           "x² − 5x + 6 = 0 ⇒ (x − 2)(x − 3) = 0 ⇒ x = 2, 3",
           "x² + 6x + 8 = 0 ⇒ (x + 2)(x + 4) = 0 ⇒ x = −2, −4",

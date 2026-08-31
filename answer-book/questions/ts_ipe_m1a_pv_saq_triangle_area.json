@@ -54,6 +54,7 @@
         "marks": 1,
         "mark_note": "Side vectors",
         "margin_note": "First mark. Both vectors must start at the SAME vertex — A here. Two sides from one corner is what spans the triangle.",
+        "memory_tip": "Both vectors must start at the SAME vertex — two sides from one corner span the triangle.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Cross product",
         "margin_note": "Second mark. All three components come out as −3, which is a good sign the arithmetic is right.",
+        "memory_tip": "All three components come out −3, which is a good sign the arithmetic is right.",
         "lines": [
           {
             "text": "AB \\times AC = \\begin{vmatrix} i & j & k \\\\ 1 & 1 & -2 \\\\ 2 & -1 & -1 \\end{vmatrix}",
@@ -142,6 +144,7 @@
         "marks": 1,
         "mark_note": "Magnitude",
         "margin_note": "Third mark. √27 is not final — 27 = 9 × 3, so it simplifies to 3√3. Leaving a surd unsimplified costs marks.",
+        "memory_tip": "√27 is not final: 27 = 9 × 3, so it simplifies to 3√3.",
         "lines": [
           "|AB × AC| = √((−3)² + (−3)² + (−3)²)",
           "= √(9 + 9 + 9) = √27 = 3√3"
@@ -181,6 +184,7 @@
         "marks": 1,
         "mark_note": "Area",
         "margin_note": "Last mark. The cross product gives the parallelogram; the triangle is half of it. And the answer is an AREA, so say square units.",
+        "memory_tip": "The cross product gives the PARALLELOGRAM, so halve it. And say square units.",
         "lines": [
           "Area of △ABC = ½ |AB × AC|",
           {

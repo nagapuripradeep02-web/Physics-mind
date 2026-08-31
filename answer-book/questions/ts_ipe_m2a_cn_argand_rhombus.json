@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Points",
         "margin_note": "First mark. Expand (7/2)(1 + i) to 7/2 + (7/2)i before reading its point. Keep the fractions as halves — the arithmetic stays clean if every coordinate is written over 2.",
+        "memory_tip": "Expand (7/2)(1 + i) to 7/2 + (7/2)i before reading its point. Keep every coordinate written over 2.",
         "lines": [
           {
             "text": "Sol:",
@@ -117,6 +118,7 @@
         "label": "Sketch the rhombus",
         "marks": 0,
         "margin_note": "Worth no mark. The rhombus is tall and tilted; its diagonals AC (long) and BD (short) are dashed. Unequal diagonals is what makes it a rhombus and not a square.",
+        "memory_tip": "AC and BD are diagonals, not sides. Unequal diagonals is what makes this a rhombus and not a square.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That the four points are marked, joined in order A B C D, and both diagonals drawn. Naming the sketch is full credit.",
@@ -301,6 +303,7 @@
         "marks": 2,
         "mark_note": "Six distances",
         "margin_note": "Half the marks. Each side is √170/2 — the pairs 1/4 + 169/4 and 121/4 + 49/4 both add to 170/4. The diagonals are √136 and √34, which are not equal.",
+        "memory_tip": "Six distances, not four. Every side is √170/2; the diagonals √136 and √34 are different.",
         "lines": [
           {
             "text": "AB = √((−2 + 3/2)² + (7 − 1/2)²)",
@@ -388,6 +391,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Say the sides are equal, say the diagonals are not, and name the shape.",
+        "memory_tip": "Two facts, then the name: sides equal, diagonals unequal, therefore rhombus.",
         "lines": [
           "AB = BC = CD = DA = √170/2 — four equal sides.",
           "AC = √136 ≠ BD = √34 — the diagonals are unequal.",

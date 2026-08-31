@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Regrouping",
         "margin_note": "First mark. Take one factor (1 − i) out of the cube and pair it with (1 + i): that pair is a conjugate product, which is real. What remains is (1 − i)², a small square.",
+        "memory_tip": "Pair one (1 − i) with the (1 + i) first — a conjugate pair is real. Only (1 − i)² is left to expand.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. i² = −1 makes the first bracket −2i and the second bracket 2. Then the real part is 0.",
+        "memory_tip": "i² = −1 makes the brackets −2i and 2. The form a + ib needs the zero written: 0 + i(−4).",
         "lines": [
           "= (1 − 2i − 1)(1 + 1)        (since i² = −1)",
           "= (−2i)(2) = −4i",

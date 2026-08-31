@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Expansion",
         "margin_note": "First mark. Four products, like any two binomials: 2·3, 2·4i, −3i·3, −3i·4i.",
+        "memory_tip": "Four products, like any two binomials: 2·3, 2·4i, −3i·3, −3i·4i.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. −12i² = +12, so the real part is 6 + 12 = 18. The i terms combine to −i.",
+        "memory_tip": "−12i² = +12, so A = 18. B is the real number −1, never −i.",
         "lines": [
           "= 6 − i + 12        (since i² = −1)",
           {

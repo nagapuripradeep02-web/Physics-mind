@@ -67,6 +67,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks. The sine is given this time, so cos²θ = 1 − sin²θ. Everything else follows the same path as answer 33.",
+        "memory_tip": "The sine is given this time, so cos²θ = 1 − sin²θ.",
         "lines": [
           {
             "text": "Sol:",
@@ -111,6 +112,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two more marks. Identical to answer 33 from here — expand, group, and apply the cosine rule.",
+        "memory_tip": "Expand (b + c)², then group so b² + c² − a² appears — that is 2bc cos A.",
         "lines": [
           "= (b² + c² + 2bc − a²)/(b+c)²",
           "= (2bc + (b² + c² − a²))/(b+c)²",
@@ -150,6 +152,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two more marks. 1 + cos A = 2cos²(A/2), the same half of the pair as answer 33.",
+        "memory_tip": "1 + cos A = 2cos²(A/2), the same half of the pair as the a = (b+c)cos θ question.",
         "lines": [
           "= 2bc(1 + cos A)/(b+c)²",
           "= 4bc cos²(A/2)/(b+c)²"
@@ -188,6 +191,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "Last two marks. Same finish, and the same answer as answer 33 — which is worth noticing rather than doubting.",
+        "memory_tip": "The answer is identical to the cos θ question — worth noticing rather than doubting.",
         "lines": [
           "∴ cos θ = √(4bc cos²(A/2)/(b+c)²)",
           {

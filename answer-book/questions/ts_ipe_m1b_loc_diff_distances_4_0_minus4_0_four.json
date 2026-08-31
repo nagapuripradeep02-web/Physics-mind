@@ -49,6 +49,7 @@
         "label": "Take the locus point",
         "marks": 0,
         "margin_note": "No mark of its own. The same symmetric pair as its partner question, with the labels the other way round and a smaller difference.",
+        "memory_tip": "The same symmetric pair as its partner, with the labels reversed and a smaller difference.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Open the modulus as ±4, isolate one distance and square. The ± is carried until the last squaring removes it.",
+        "memory_tip": "Open the modulus as ±4, ISOLATE one distance, then square. The ± is carried until the last squaring.",
         "lines": [
           "Given condition: |PA − PB| = 4",
           "⇒ PA − PB = ±4   ⇒   PA = ±4 + PB",
@@ -133,6 +135,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. The y² terms cancel because both fixed points sit on the x-axis, and the x-terms collapse by the difference of two squares. Squaring here also removes the ±.",
+        "memory_tip": "Both fixed points sit on the x-axis, so the y² terms cancel outright.",
         "lines": [
           "⇒ ±8 PB = 16 + [(x−4)² + (y−0)²] − [(x+4)² + (y−0)²]",
           "⇒ ±8 PB = 16 + (x−4)² − (x+4)²",
@@ -175,6 +178,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. Opposite signs on x² and y² again — a hyperbola, the same shape its partner question produced from the same kind of condition.",
+        "memory_tip": "OPPOSITE signs on x² and y² — a hyperbola, as any difference condition gives.",
         "lines": [
           "⇒ (x+4)² + (y−0)² = 4(x² + 1 − 2x)",
           "⇒ (x² + 16 + 8x) + y² = 4x² + 4 − 8x",

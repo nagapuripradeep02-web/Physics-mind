@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Standard form",
         "margin_note": "First mark. Expand the left side and move h² across: x² − (a + b)x + (ab − h²) = 0. The constant term is ab − h², and that minus sign is what the proof uses.",
+        "memory_tip": "Move h² across before reading Δ: the constant is ab − h², and that minus is what the proof uses.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Δ is a sum of squares",
         "margin_note": "Second mark. Δ = (a + b)² − 4ab + 4h² = (a − b)² + 4h². Write 4h² as (2h)² so it is visibly a square. A sum of two squares is never negative, so Δ ≥ 0 for every a, b, h — that IS the proof.",
+        "memory_tip": "(a + b)² − 4ab = (a − b)². Write 4h² as (2h)² so Δ is visibly a sum of two squares.",
         "lines": [
           "Δ = (a + b)² − 4(ab − h²)",
           "= a² + 2ab + b² − 4ab + 4h²",

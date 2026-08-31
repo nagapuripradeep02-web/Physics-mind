@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Intercept form needs 1 on the right, so the constant term goes across first and every term is then divided by it.",
+        "memory_tip": "Intercept form needs 1 on the RIGHT, so move the constant across and divide every term by it.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Once each term reads x over something, that something IS the intercept on that axis. Take care with signs — a negative intercept is perfectly normal.",
+        "memory_tip": "Once each term reads x over something, that something IS the intercept. A negative intercept is normal.",
         "lines": [
           "⇒ x/(−5/4) + y/(5/4) + z/(−5/2) = 1",
           {

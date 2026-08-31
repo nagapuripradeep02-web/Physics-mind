@@ -59,6 +59,7 @@
         "marks": 2,
         "mark_note": "Series in standard shape",
         "margin_note": "First two marks. Each denominator is a product like 5·10·15 = 5³·(1·2·3), so every term becomes (a product)/(k!) times (1/3)ᵏ. Each term is short of one factor 3 on top: 5/(2!·3) = (3·5)/(2!·3²). Written that way the numerators are 3·5, 3·5·7, … — p = 3 — and the 1 and the (3/1!)(1/3) terms are missing, so add 1 + (3/1!)(1/3) = 2 on both sides.",
+        "memory_tip": "Each term is short one factor 3 on top: 5/(2!·3) = (3·5)/(2!·3²). Written that way p = 3, not the printed 5.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Standard form",
         "margin_note": "Third mark, for WRITING the standard expansion beside the series. The examiner looks for the pattern p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!. All plus signs mean the (1 − y) form.",
+        "memory_tip": "All plus signs mean the (1 − y) form. The coefficients grow p, p(p + q), p(p + q)(p + 2q).",
         "lines": [
           "Compare with the standard expansion",
           {
@@ -148,6 +150,7 @@
         "marks": 2,
         "mark_note": "p, q, y",
         "margin_note": "Fourth and fifth marks. p is the first factor (3), p + q is the second (5) so q = 2, and y/q equals the common ratio 1/3 so y = q/3 = 2/3.",
+        "memory_tip": "p = 3, p + q = 5 so q = 2, and y/q = 1/3 gives y = 2/3.",
         "lines": [
           "p = 3, p + q = 5 ⇒ q = 2",
           "y/q = 1/3 ⇒ y = q/3 = 2/3"
@@ -186,6 +189,7 @@
         "marks": 1,
         "mark_note": "Value of the power",
         "margin_note": "Sixth mark. Substitute p, q, y into (1 − y)^(−p/q) and simplify the fraction inside the bracket before touching the exponent.",
+        "memory_tip": "(1/3) to the power −3/2 inverts to 3 to the power 3/2 = √27.",
         "lines": [
           {
             "text": "1 + 1 + x = \\left(1 - \\tfrac{2}{3}\\right)^{-3/2} = \\left(\\tfrac{1}{3}\\right)^{-3/2} = 3^{3/2} = \\sqrt{27}",
@@ -226,6 +230,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Seventh mark. 1 + 1 + x = 2 + x. Square it: x² + 4x + 4 = 27, and the 4 moves across.",
+        "memory_tip": "The added terms make the left side 2 + x. Square it: x² + 4x + 4 = 27.",
         "lines": [
           "2 + x = √27 ⇒ (2 + x)² = 27",
           "x² + 4x + 4 = 27",

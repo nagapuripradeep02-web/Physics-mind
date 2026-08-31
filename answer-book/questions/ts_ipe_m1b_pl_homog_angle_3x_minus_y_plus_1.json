@@ -61,6 +61,7 @@
         "label": "Clear the line to = 1",
         "marks": 1,
         "margin_note": "First mark. Move everything so the line reads (something)/(constant) = 1. Nothing else in the method works until the line is in that form.",
+        "memory_tip": "Rearrange the line so it reads (something)/(constant) = 1. Nothing works until it is in that form.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "label": "Write the homogenised equation",
         "marks": 1,
         "margin_note": "Second mark. Raise every term of the curve to degree two: the linear terms are multiplied by that 1 once, and the constant term by it TWICE. The second-degree terms are left alone.",
+        "memory_tip": "Raise every term to degree two: linear terms times that 1 ONCE, the constant TWICE.",
         "lines": [
           "Given curve is x² + 2xy + y² + 2x + 2y − 5 = 0  ……(2)",
           "Homogenising (1) & (2), we get",
@@ -144,6 +146,7 @@
         "label": "Simplify to ax² + 2hxy + by² = 0",
         "marks": 2,
         "margin_note": "Two marks. Expand everything and collect. The result must have no constant and no linear term — if either survives, a term was homogenised wrongly.",
+        "memory_tip": "The result must have NO constant and no linear term — if either survives, a term was raised wrongly.",
         "lines": [
           "⇒ x² + 2xy + y² − 2x(3x − y) − 2y(3x − y) − 5(3x − y)² = 0",
           "⇒ x² + 2xy + y² − 6x² + 2xy − 6xy + 2y² − 5(9x² + y² − 6xy) = 0",
@@ -186,6 +189,7 @@
         "label": "Apply the cosθ formula",
         "marks": 4,
         "margin_note": "The last four marks on the 2026-27 paper — printed in the book as '1 Mark' for writing the cosθ formula and '2 Marks' for carrying it through to the angle; the eighth mark of the new pattern goes here too. Note this formula uses 2h, not h — reading the wrong one is the commonest slip in the whole chapter.",
+        "memory_tip": "Write the cos θ formula out before substituting; the formula itself carries a mark.",
         "lines": [
           "On comparing with ax² + 2hxy + by² = 0, we get a = 25, b = 1, 2h = −14",
           "∴ cosθ = |a + b| / √((a − b)² + (2h)²), where θ is the angle between the required lines",

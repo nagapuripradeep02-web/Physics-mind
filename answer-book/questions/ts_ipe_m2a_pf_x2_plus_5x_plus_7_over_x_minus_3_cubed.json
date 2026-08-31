@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Substitution",
         "margin_note": "First mark. The denominator is ONE linear factor cubed. Instead of the three-constant form, put x − 3 = y so the denominator becomes y³ and the numerator becomes a polynomial in y.",
+        "memory_tip": "One linear factor cubed — put x − 3 = y, so x = y + 3. No constants need solving at all.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Numerator in y",
         "margin_note": "Second mark. Expand (y + 3)² = y² + 6y + 9 and 5(y + 3) = 5y + 15, then add the 7. Collect like terms carefully: the constants 9 + 15 + 7 = 31.",
+        "memory_tip": "(y + 3)² = y² + 6y + 9, and the constants add to 9 + 15 + 7 = 31.",
         "lines": [
           "(y + 3)² + 5(y + 3) + 7",
           "= y² + 6y + 9 + 5y + 15 + 7",
@@ -148,6 +150,7 @@
         "marks": 1,
         "mark_note": "Split",
         "margin_note": "Third mark. Divide each term of the numerator by y³ separately. y²/y³ = 1/y, 11y/y³ = 11/y², 31/y³ stays. No constants to solve for.",
+        "memory_tip": "Divide each term by y³ separately: y²/y³ = 1/y, not y. Then 11/y² and 31/y³.",
         "lines": [
           "(y² + 11y + 31)/y³",
           "= y²/y³ + 11y/y³ + 31/y³",
@@ -190,6 +193,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. Put y = x − 3 back. The three denominators become (x − 3), (x − 3)², (x − 3)³. Write the original fraction on the left.",
+        "memory_tip": "Put y = x − 3 back. Check with x = 4, so y = 1: 43 = 1 + 11 + 31.",
         "lines": [
           "Put back y = x − 3:",
           "∴ (x² + 5x + 7)/(x − 3)³",

@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Points",
         "margin_note": "First mark. A complex number x + iy is the point (x, y) in the Argand plane. Write all three as points and write the distance formula once — every later line uses it.",
+        "memory_tip": "x + iy is the point (x, y). Read −2√3 + 2√3i as (−2√3, 2√3) — the √3 belongs to both coordinates.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "label": "Sketch the triangle",
         "marks": 0,
         "margin_note": "Worth no mark, but it takes ten seconds and it shows the examiner which point is which. The dashed lines are the axes; the triangle sits with A in the first quadrant, B in the third, C in the second.",
+        "memory_tip": "A in the first quadrant, B in the third, C in the second. The sketch fixes which pairs are sides.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That the three points are marked on the Argand plane and joined into triangle ABC. Naming the sketch is full credit — it cannot be spoken.",
@@ -241,6 +243,7 @@
         "marks": 2,
         "mark_note": "Three sides",
         "margin_note": "Half the marks. AB is quick. BC and CA both have a √3 inside the root; the identity (a + b)² + (a − b)² = 2(a² + b²) does both in one line each and avoids expanding (2 + 2√3)² by hand.",
+        "memory_tip": "(a + b)² + (a − b)² = 2(a² + b²) does BC and CA in one line each. All three sides come out √32.",
         "lines": [
           {
             "text": "AB = √((2 + 2)² + (2 + 2)²) = √(16 + 16) = √32",
@@ -302,6 +305,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Say the three sides are equal AND name the shape. A page of correct distances with no sentence at the end loses this mark.",
+        "memory_tip": "Equilateral needs all three sides shown; two equal sides is only isosceles. Name the shape in the last line.",
         "lines": [
           "AB = BC = CA = √32",
           {

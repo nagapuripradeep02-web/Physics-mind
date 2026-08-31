@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. x⁶ = cos 6θ + i sin 6θ by De Moivre. Since |x| = 1, the reciprocal is the conjugate, so 1/x⁶ = cos 6θ − i sin 6θ.",
+        "memory_tip": "The 6 goes onto the angle. Since |x| = 1, the reciprocal is the conjugate: cos 6θ − i sin 6θ.",
         "lines": [
           {
             "text": "Sol:",
@@ -109,6 +110,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Adding the two cancels the sines and doubles the cosine: x⁶ + 1/x⁶ = 2cos 6θ. No i is left, and the angle stays 6θ.",
+        "memory_tip": "Adding cancels the sines and doubles the cosine: 2cos 6θ. Not 2cos⁶θ, and no i left.",
         "lines": [
           {
             "text": "x⁶ + 1/x⁶ = 2cos 6θ",

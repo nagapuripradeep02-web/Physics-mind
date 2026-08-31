@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Modulus",
         "margin_note": "First mark. Read off a = 7, b = 24 and find r = √(a² + b²). Here 7, 24, 25 is a Pythagorean triple, so r = 25.",
+        "memory_tip": "r = √(a² + b²), not √(a + b). Here 7, 24, 25 is a Pythagorean triple, so r = 25.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Since b > 0 the two parts have the same sign. (25 + 7)/2 = 16 and (25 − 7)/2 = 9 — both perfect squares, which is the check that the arithmetic is right.",
+        "memory_tip": "(25 + 7)/2 = 16 and (25 − 7)/2 = 9, both perfect squares. Keep the ±, and square back to check.",
         "lines": [
           "For b > 0:",
           {

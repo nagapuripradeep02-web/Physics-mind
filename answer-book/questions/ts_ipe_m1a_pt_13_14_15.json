@@ -87,6 +87,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and the book prints [1 Mark] for it. Everything downstream needs s, so it is computed and displayed on its own line.",
+        "memory_tip": "2s = a + b + c, so s = 21. Everything downstream needs s — give it its own line.",
         "lines": [
           {
             "text": "Sol:",
@@ -131,6 +132,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks. Heron's formula. Group the factors into perfect squares — 3²×4²×7² — rather than multiplying out to 7056.",
+        "memory_tip": "Group the factors into perfect squares, 3² × 4² × 7², rather than multiplying out to 7056.",
         "lines": [
           "Δ = √(s(s−a)(s−b)(s−c))",
           "= √(21(21−13)(21−14)(21−15)) = √(21 × 8 × 7 × 6)",
@@ -172,6 +174,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. R = abc/(4Δ) — the circumradius. The 65/8 does not simplify further.",
+        "memory_tip": "R = abc/(4Δ), the circumradius. 65/8 does not simplify further.",
         "lines": [
           "(i) R = abc/(4Δ) = (13 × 14 × 15)/(4 × 84)",
           "= 2730/336 = 65/8"
@@ -210,6 +213,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Fourth mark. r = Δ/s — the in-radius, and the simplest of the five.",
+        "memory_tip": "r = Δ/s, the in-radius and the simplest of the five.",
         "lines": [
           "(ii) r = Δ/s = 84/21 = 4"
         ],
@@ -247,6 +251,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Fifth mark. r₁ = Δ/(s−a) — the same shape as r, with s−a underneath.",
+        "memory_tip": "r₁ = Δ/(s − a) — same shape as r, with s − a underneath.",
         "lines": [
           "(iii) r₁ = Δ/(s−a) = 84/(21−13) = 84/8 = 21/2"
         ],
@@ -284,6 +289,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Sixth mark. Same again with s−b.",
+        "memory_tip": "Same again with s − b: r₂ = Δ/(s − b).",
         "lines": [
           "(iv) r₂ = Δ/(s−b) = 84/(21−14) = 84/7 = 12"
         ],
@@ -321,6 +327,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Same with s−c, then state all five together as the question asked.",
+        "memory_tip": "Same with s − c, then state all FIVE together as the question asked.",
         "lines": [
           "(v) r₃ = Δ/(s−c) = 84/(21−15) = 84/6 = 14",
           {

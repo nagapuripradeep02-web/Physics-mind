@@ -58,6 +58,7 @@
         "label": "Split the pair and match coefficients",
         "marks": 1,
         "margin_note": "First mark. Write the pair as a product of two lines, but in a form that carries the ANGLES the lines make — x sinα − y cosα — because bisectors are about angles.",
+        "memory_tip": "Write the pair in the ANGLE form x sinα − y cosα, because bisectors are about angles.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "label": "Write the bisector equation",
         "marks": 2,
         "margin_note": "Two marks. A point on an angular bisector is EQUALLY far from both lines, so set the two perpendicular distances equal with a ±. The denominators are each √(sin² + cos²) = 1.",
+        "memory_tip": "A point on a bisector is EQUALLY far from both lines, so set the two distances equal with a ±.",
         "lines": [
           "Equation of angular bisectors is",
           "(x sinα − y cosα)/√(sin²α + cos²α) = ±(x sinβ − y cosβ)/√(sin²β + cos²β)",
@@ -142,6 +144,7 @@
         "label": "Square and collect",
         "marks": 2,
         "margin_note": "Two marks. Squaring removes the ±. Use sin2θ for the cross terms so the whole line collapses into differences of squares.",
+        "memory_tip": "Squaring removes the ±. Use sin 2θ on the cross terms so everything becomes differences of squares.",
         "lines": [
           "⇒ (x sinα − y cosα)² = (x sinβ − y cosβ)²",
           "⇒ x²sin²α + y²cos²α − 2xy sinα cosα = x²sin²β + y²cos²β − 2xy sinβ cosβ",
@@ -186,6 +189,7 @@
         "label": "Substitute back from (1)",
         "marks": 3,
         "margin_note": "The last three marks. Turn both brackets into product form so that (1) can be used: sin²α − sin²β = sin(α+β)sin(α−β), and sin2α − sin2β = 2cos(α+β)sin(α−β). The common sin(α−β) then cancels.",
+        "memory_tip": "Turn both brackets into products so (1) applies; the common sin(α−β) then cancels.",
         "lines": [
           "⇒ [sin(α + β) sin(α − β)](x² − y²) = 2cos(α + β) sin(α − β) xy",
           "  [∵ sin²A − sin²B = sin(A+B)sin(A−B),  sin2A − sin2B = 2cos(A+B)sin(A−B)]",

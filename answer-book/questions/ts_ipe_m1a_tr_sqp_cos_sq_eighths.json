@@ -50,6 +50,7 @@
         "marks": 1,
         "mark_note": "First shift",
         "margin_note": "First mark. 3π/8 = (4π − π)/8 = π/2 − π/8, and cos(π/2 − θ) = sin θ.",
+        "memory_tip": "3π/8 = π/2 − π/8, and cos(π/2 − θ) = sin θ.",
         "lines": [
           {
             "text": "Sol:",
@@ -92,6 +93,7 @@
         "marks": 2,
         "mark_note": "Two more shifts",
         "margin_note": "Half the marks, and the two to watch — 5π/8 goes to π/2 PLUS π/8 (giving −sin), and 7π/8 goes to π MINUS π/8 (giving −cos).",
+        "memory_tip": "5π/8 is π/2 PLUS π/8 (giving −sin), and 7π/8 is π MINUS π/8 (giving −cos).",
         "lines": [
           "cos(5π/8) = cos((4π + π)/8) = cos(π/2 + π/8)",
           "= −sin(π/8)",
@@ -133,6 +135,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. Squaring removes both minus signs, and the four terms fall into two Pythagorean pairs.",
+        "memory_tip": "Squaring removes both minus signs, and the four terms fall into two Pythagorean pairs.",
         "lines": [
           "Squaring removes both minus signs:",
           "L.H.S = cos²(π/8) + sin²(π/8)",

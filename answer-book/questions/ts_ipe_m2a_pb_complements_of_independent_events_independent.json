@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "De Morgan",
         "margin_note": "First mark. \"Neither A nor B\" is the complement of \"A or B\", so its probability is 1 − P(A ∪ B).",
+        "memory_tip": "'Neither A nor B' is the complement of the UNION, so it is 1 − P(A ∪ B).",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 2,
         "mark_note": "Independence used",
         "margin_note": "Two marks. Addition theorem on P(A ∪ B), then replace P(A ∩ B) by P(A)·P(B) — write \"A, B independent\" beside that line.",
+        "memory_tip": "Expand the bracket carefully, then replace P(A ∩ B) by P(A)P(B) and write 'independent' beside it.",
         "lines": [
           {
             "text": "= 1 − [P(A) + P(B) − P(A ∩ B)]",
@@ -154,6 +156,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. 1 − P(A) − P(B) + P(A)P(B) = (1 − P(A))(1 − P(B)). Then say what that equality means.",
+        "memory_tip": "1 − P(A) − P(B) + P(A)P(B) factors as (1 − P(A))(1 − P(B)). Then say what that means.",
         "lines": [
           {
             "text": "= [1 − P(A)]·[1 − P(B)] = P(Aᶜ)·P(Bᶜ)",

@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "All words",
         "margin_note": "First mark. PISTON has 6 different letters. With repetition allowed each of the 4 positions has 6 choices: 6⁴.",
+        "memory_tip": "'At least one repeat' is counted by subtracting from ALL words. With repetition, each of 4 places has 6 choices: 6⁴.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "No repeats",
         "margin_note": "Second mark. No letter repeated means an arrangement of 4 of the 6 letters: ⁶P₄ = 360.",
+        "memory_tip": "No repeat means an arrangement, so ⁶P₄ = 360, not ⁶C₄ — a word has an order.",
         "lines": [
           "4-letter words with no letter repeated:",
           "ⁿPᵣ = ⁶P₄ = 6 · 5 · 4 · 3 = 360"
@@ -132,6 +134,7 @@
         "marks": 2,
         "mark_note": "Answer",
         "margin_note": "Two marks. All words minus words with no repeat: 1296 − 360 = 936.",
+        "memory_tip": "All words minus no-repeat words: 1296 − 360 = 936. Say in words what is taken from what.",
         "lines": [
           "Words with at least one repeated letter",
           "= all words − words with no repetition",

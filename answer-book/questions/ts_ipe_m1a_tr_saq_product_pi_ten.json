@@ -71,6 +71,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Degrees are easier here because 18° and 54° are the standard angles whose exact sines are known. The last two come out negative.",
+        "memory_tip": "Degrees are easier: 18° and 54° have known exact sines. The last two reduce negative.",
         "lines": [
           {
             "text": "Sol:",
@@ -115,6 +116,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Same pairing as answer 67 — each plus bracket with its own minus partner.",
+        "memory_tip": "Each plus bracket with its own minus partner, giving 1 − cos² = sin².",
         "lines": [
           "L.H.S = (1 + cos18°)(1 + cos54°)(1 − cos54°)(1 − cos18°)",
           "= (1 − cos²18°)(1 − cos²54°)",
@@ -154,6 +156,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. sin18° = (√5 − 1)/4 and sin54° = (√5 + 1)/4. These are standard results and are quoted, not derived.",
+        "memory_tip": "sin18° = (√5 − 1)/4 and sin54° = (√5 + 1)/4 — standard results, quoted not derived.",
         "lines": [
           "sin18° = (√5 − 1)/4,  sin54° = (√5 + 1)/4",
           "= [(√5 − 1)/4]² [(√5 + 1)/4]²"
@@ -193,6 +196,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Group the two conjugates together first: (√5 − 1)(√5 + 1) is 5 − 1 = 4, and the surds vanish.",
+        "memory_tip": "Group the CONJUGATES first: (√5 − 1)(√5 + 1) = 4, and the surds vanish.",
         "lines": [
           "= [(√5 − 1)(√5 + 1)/16]²",
           "= [(5 − 1)/16]² = [4/16]²",

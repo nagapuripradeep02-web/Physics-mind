@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "α + β and αβ",
         "margin_note": "First mark. The imaginary parts cancel in the sum: −3 + 5i − 3 − 5i = −6. The product is (−3)² − (5i)² = 9 − 25i² = 9 + 25 = 34, because i² = −1 turns the minus into a plus.",
+        "memory_tip": "i² = −1 turns 9 − 25i² into 9 + 25 = 34. The imaginary parts cancel in the sum.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The formula has −(α + β)x, and α + β = −6, so the middle term is +6x. Two minus signs make a plus; this is the line where the sign is lost.",
+        "memory_tip": "The formula is −(α + β)x and α + β = −6, so the middle term is +6x. Two minuses make a plus.",
         "lines": [
           "Required equation: x² − (α + β)x + αβ = 0",
           {

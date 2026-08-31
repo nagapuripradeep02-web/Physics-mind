@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Theorem",
         "margin_note": "First mark. The two given numbers are the union and the intersection, so the addition theorem is the link to P(A) and P(B).",
+        "memory_tip": "The given values are the union and the intersection, so the addition theorem is the link.",
         "lines": [
           {
             "text": "Sol:",
@@ -113,6 +114,7 @@
         "marks": 1,
         "mark_note": "P(A) + P(B)",
         "margin_note": "Second mark. Move the intersection across: P(A) + P(B) = 0.65 + 0.15 = 0.8.",
+        "memory_tip": "Move the intersection across: P(A) + P(B) = 0.65 + 0.15 = 0.8.",
         "lines": [
           {
             "text": "⇒ P(A) + P(B) = P(A ∪ B) + P(A ∩ B)",
@@ -154,6 +156,7 @@
         "marks": 2,
         "mark_note": "Complements",
         "margin_note": "Two marks. P(Aᶜ) = 1 − P(A) and P(Bᶜ) = 1 − P(B); adding gives 2 − [P(A) + P(B)] = 2 − 0.8 = 1.2.",
+        "memory_tip": "2 − 0.8 = 1.2. An answer above 1 is correct here — it is a SUM of two probabilities, not one.",
         "lines": [
           {
             "text": "P(Aᶜ) + P(Bᶜ) = [1 − P(A)] + [1 − P(B)]",

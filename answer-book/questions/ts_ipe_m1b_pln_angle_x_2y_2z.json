@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The angle between two planes IS the angle between their normals, and each normal's direction ratios are simply that plane's coefficients.",
+        "memory_tip": "Read the normal's direction ratios straight off each plane's coefficients.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. The same formula as for two lines. The modulus keeps the answer to the acute angle between the planes.",
+        "memory_tip": "The modulus keeps the answer to the ACUTE angle. Here it stays as an inverse cosine.",
         "lines": [
           "∴ cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",
           "= |1(3) + 2(3) + 2(2)| / √((1 + 4 + 4)(9 + 9 + 4))",

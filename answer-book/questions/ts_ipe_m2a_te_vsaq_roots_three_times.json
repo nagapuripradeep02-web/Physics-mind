@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "f(x/3) = 0",
         "margin_note": "First mark. New roots 3α ⇒ α = x/3, so the required equation is f(x/3) = 0. Denominators 81, 27, 9, 3.",
+        "memory_tip": "New roots 3α means α = x/3, so form f(x/3). The 3 is raised too: (x/3)⁴ = x⁴/81.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Multiply through by 3⁴ = 81: 81/27 = 3, 81/9 = 9, 81/3 = 27.",
+        "memory_tip": "Multiply by 3⁴ = 81. Each coefficient gains 3 to the power (4 − its degree): 1, 3, 9, 27, 81.",
         "lines": [
           "Multiply by 3⁴ = 81:",
           {

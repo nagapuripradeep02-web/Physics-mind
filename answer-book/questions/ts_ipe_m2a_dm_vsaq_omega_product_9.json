@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Reduce",
         "margin_note": "First mark. ω³ = 1, so ω⁴ = ω and ω⁸ = (ω³)² · ω² = ω². The four brackets are then two repeated pairs, so the product is [(1 − ω)(1 − ω²)]².",
+        "memory_tip": "ω³ = 1, so ω⁴ = ω and ω⁸ = ω². Square one pair instead of multiplying four brackets.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (1 − ω)(1 − ω²) = 1 − (ω + ω²) + ω³ = 1 + 1 + 1 = 3, using ω + ω² = −1 and ω³ = 1. Square it for 9.",
+        "memory_tip": "(1 − ω)(1 − ω²) = 1 − (ω + ω²) + ω³ = 1 + 1 + 1 = 3. Drop the ω³ term and the pair gives 2.",
         "lines": [
           "(1 − ω)(1 − ω²) = 1 − ω − ω² + ω³",
           "= 1 − (ω + ω²) + 1 = 1 + 1 + 1 = 3",

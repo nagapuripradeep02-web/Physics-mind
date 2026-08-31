@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. ⁿPᵣ = r! · ⁿCᵣ, so r! = 5040/210 = 24 = 4! and r = 4.",
+        "memory_tip": "ⁿPᵣ = r!·ⁿCᵣ, so the ratio is r! whatever n is: 5040/210 = 24 = 4!, and r = 4.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ⁿP₄ = 5040 = 10 · 9 · 8 · 7, so n = 10.",
+        "memory_tip": "Then ⁿP₄ = 5040 = 10 · 9 · 8 · 7, so n = 10. State BOTH letters.",
         "lines": [
           "ⁿP₄ = 5040 = 10 · 9 · 8 · 7 = ¹⁰P₄",
           {

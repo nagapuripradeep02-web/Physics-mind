@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "The common root",
         "margin_note": "First mark. One of the two equations has no unknown in it — solve THAT one. x² − 6x + 5 = (x − 1)(x − 5), so the common root can only be 1 or 5.",
+        "memory_tip": "Solve the equation with no unknown in it: (x − 1)(x − 5) = 0, so α is 1 or 5.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,6 +94,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Each candidate goes into x² − 3ax + 35 = 0. α = 1: 1 − 3a + 35 = 0 gives 3a = 36, a = 12. α = 5: 25 − 15a + 35 = 0 gives 15a = 60, a = 4. Two values of α, two values of a — give both.",
+        "memory_tip": "Both candidates go in: α = 1 gives a = 12, α = 5 gives a = 4. Two roots, two answers.",
         "lines": [
           "α also satisfies α² − 3aα + 35 = 0.",
           "α = 1: 1 − 3a + 35 = 0 ⇒ a = 12",

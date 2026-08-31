@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Product",
         "margin_note": "First mark. Multiply first, then take the conjugate — a conjugate of a product needs the product as one number a + ib.",
+        "memory_tip": "−12i² = +12, so the real part is 6 + 12 = 18 and the product is 18 − i.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Conjugate = same real part, opposite sign on the i part. 18 − i becomes 18 + i.",
+        "memory_tip": "The product is not the answer. The conjugate of 18 − i is 18 + i.",
         "lines": [
           "The conjugate of a + ib is a − ib.",
           {

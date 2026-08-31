@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. A binomial with a fractional index expands only in the form (1 + y) with |y| < 1, so factor 3 out of the bracket.",
+        "memory_tip": "A fractional index expands only as (1 + y) with |y| < 1, so take the 3 out first.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. |4x/3| < 1 gives |x| < 3/4, an open interval.",
+        "memory_tip": "|4x/3| < 1 gives |x| < 3/4. The end points are excluded.",
         "lines": [
           "|x| < 3/4",
           {

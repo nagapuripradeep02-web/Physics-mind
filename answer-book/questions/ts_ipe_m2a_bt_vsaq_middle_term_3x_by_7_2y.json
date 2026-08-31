@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. n = 10 is even, so there is ONE middle term, the (n/2 + 1)-th = 6th.",
+        "memory_tip": "n = 10 is even, so there is ONE middle term, the (n/2 + 1)-th = 6th.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (−2y)⁵ = −2⁵y⁵ — an odd power keeps the minus. (3/7)⁵ · 2⁵ = (6/7)⁵.",
+        "memory_tip": "(−2y)⁵ keeps its minus — an odd power preserves the sign. (3/7)⁵ · 2⁵ = (6/7)⁵.",
         "lines": [
           "= −¹⁰C₅ (3/7)⁵ · 2⁵ · x⁵y⁵",
           {

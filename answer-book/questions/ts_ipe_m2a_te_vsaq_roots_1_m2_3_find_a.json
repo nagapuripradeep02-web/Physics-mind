@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "x = 1 satisfies",
         "margin_note": "First mark. A root makes the equation true, so put x = 1 in. Any of the three roots works; 1 gives the least arithmetic.",
+        "memory_tip": "A root makes the equation true, so put x = 1 in. Of the three, 1 gives the least arithmetic.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 1 − 2 + a + 6 = 0 gives a = −5. Check: the pairwise products of 1, −2, 3 add to −2 − 6 + 3 = −5 = a₂/a₀.",
+        "memory_tip": "1 − 2 + a + 6 = 0 gives a = −5. Check: the pairwise products −2 − 6 + 3 = −5 = a₂/a₀.",
         "lines": [
           "1 − 2 + a + 6 = 0",
           "a + 5 = 0",

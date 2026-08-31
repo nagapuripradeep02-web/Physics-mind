@@ -73,6 +73,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Two relations are given, one linear and one of second degree. Make one letter the subject of the LINEAR one — it is always the easier to rearrange.",
+        "memory_tip": "Make one letter the subject of the LINEAR relation — it is always the easier of the two to rearrange.",
         "lines": [
           {
             "text": "Sol:",
@@ -116,6 +117,7 @@
         "marks": 3,
         "mark_note": "Method",
         "margin_note": "Three marks. Substituting leaves one homogeneous quadratic in two letters. It always factors, and each factor is one of the two lines.",
+        "memory_tip": "Substituting leaves ONE homogeneous quadratic in two letters, and it always factors.",
         "lines": [
           "Solving (1) & (2) we get",
           "6n(−3l − 5n) − 2nl + 5l(−3l − 5n) = 0",
@@ -161,6 +163,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Two marks. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "memory_tip": "Feed the first factor back into the linear relation and read off l : m : n.",
         "lines": [
           "Case (i): Put l = −n in (1), then",
           "m = −3(−n) − 5n = 3n − 5n = −2n   ∴ m = −2n",
@@ -202,6 +205,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Two marks. The same work on the second factor. The two lines the question asks about are these two.",
+        "memory_tip": "The same work on the second factor gives the second line.",
         "lines": [
           "Case (ii): Put l = −2n in (1), then",
           "m = −3(−2n) − 5n = 6n − 5n = n   ∴ m = n",
@@ -243,6 +247,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. With one direction ratio triple for each line, the cosine of the angle between them comes straight from the standard formula.",
+        "memory_tip": "One direction-ratio triple per line, then the standard cosine formula.",
         "lines": [
           "If θ is the angle between the lines then from (3), (4), we get",
           "cosθ = |a₁a₂ + b₁b₂ + c₁c₂| / √((a₁²+b₁²+c₁²)(a₂²+b₂²+c₂²))",

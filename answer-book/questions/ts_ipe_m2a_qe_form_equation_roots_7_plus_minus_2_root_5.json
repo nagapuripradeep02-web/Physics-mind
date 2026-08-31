@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "α + β and αβ",
         "margin_note": "First mark. The surd parts cancel in the sum: 7 + 2√5 + 7 − 2√5 = 14. The product is (7)² − (2√5)² = 49 − 4·5 = 29; remember (2√5)² = 4 × 5, not 2 × 5.",
+        "memory_tip": "The surds cancel in the sum, giving 14. In the product, (2√5)² = 4 × 5 = 20, not 10.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The formula has a MINUS before the sum and a PLUS before the product. Write '= 0' — an expression is not an equation.",
+        "memory_tip": "x² − (sum)x + (product) = 0: MINUS before the sum, PLUS before the product. Write the '= 0'.",
         "lines": [
           "Required equation: x² − (α + β)x + αβ = 0",
           {

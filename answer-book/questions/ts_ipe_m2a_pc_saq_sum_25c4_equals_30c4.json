@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Terms",
         "margin_note": "First mark. Put r = 0, 1, 2, 3, 4 into ⁽²⁹⁻ʳ⁾C₃ and list the five terms; then place ²⁵C₄ next to ²⁵C₃.",
+        "memory_tip": "r = 0 to 4 gives FIVE terms, ²⁹C₃ down to ²⁵C₃. Put ²⁵C₄ next to ²⁵C₃.",
         "lines": [
           {
             "text": "Sol:",
@@ -105,6 +106,7 @@
         "marks": 1,
         "mark_note": "Identity",
         "margin_note": "Second mark. State ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ and use it on the pair with top number 25: ²⁵C₃ + ²⁵C₄ = ²⁶C₄.",
+        "memory_tip": "ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ. Start at the smallest top number — only the 25 pair has a C₄ partner.",
         "lines": [
           "Use ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ",
           "on the pair with the smallest top number:",
@@ -144,6 +146,7 @@
         "marks": 2,
         "mark_note": "Answer",
         "margin_note": "Two marks. ²⁶C₄ joins ²⁶C₃ to make ²⁷C₄, and so on up to ³⁰C₄. Show every line and end with R.H.S.",
+        "memory_tip": "Each line raises the top by one and keeps the lower at 4. Write every line and end at '= R.H.S.'.",
         "lines": [
           "²⁶C₄ + ²⁶C₃ = ²⁷C₄",
           "²⁷C₄ + ²⁷C₃ = ²⁸C₄",

@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Required to prove",
         "margin_note": "First mark. Same move as the previous question: multiply both sides by A so the inverse disappears. A⁻¹ = Aᵀ becomes AAᵀ = I, which is one multiplication.",
+        "memory_tip": "Multiply both sides by A so the inverse disappears: A⁻¹ = Aᵀ becomes AAᵀ = I.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "The matrices",
         "margin_note": "Second mark, and the step most often skipped. The question gives 3A, so A itself is that matrix divided by 3. Then Aᵀ swaps rows for columns, keeping the 1/3.",
+        "memory_tip": "The question gives 3A, so A is that matrix DIVIDED by 3 — the step most often skipped.",
         "lines": [
           "Given 3A, so A is that matrix divided by 3:",
           {
@@ -151,6 +153,7 @@
         "marks": 2,
         "mark_note": "Product is I",
         "margin_note": "Half the marks. The two 1/3 factors multiply to 1/9, and the matrix product comes out as 9 down the diagonal and 0 elsewhere — so the 9s and the 1/9 cancel exactly.",
+        "memory_tip": "The two thirds multiply to 1/9, and the product is 9 down the diagonal — so the 9s cancel.",
         "lines": [
           "Multiplying row by column, the 1/3 factors give 1/9:",
           "Row 1 × column 1:  1 + 4 + 4 = 9",

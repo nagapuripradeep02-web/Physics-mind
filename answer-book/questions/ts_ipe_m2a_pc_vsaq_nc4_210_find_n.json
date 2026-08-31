@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. ⁿC₄ = n(n − 1)(n − 2)(n − 3)/4!. Multiply 210 by 24 to get 5040 = 10 · 9 · 8 · 7.",
+        "memory_tip": "Multiply BY 4! to clear it: 210 × 24 = 5040 = 10 · 9 · 8 · 7, four consecutive factors.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The largest factor is 10, so n = 10.",
+        "memory_tip": "n is the LARGEST factor, 10, not the smallest. Check ¹⁰C₄ = 210.",
         "lines": [
           "n(n − 1)(n − 2)(n − 3) = 10 · 9 · 8 · 7",
           {

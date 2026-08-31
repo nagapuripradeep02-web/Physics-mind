@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. State the identity and take the equal case first: r + 1 = 3r − 5 gives r = 3.",
+        "memory_tip": "ⁿCᵣ = ⁿCₛ has two branches. Here the equal branch DOES work: r + 1 = 3r − 5 gives r = 3.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Sum case: (r + 1) + (3r − 5) = 12 gives 4r = 16, r = 4. Both values work: ¹²C₄ = ¹²C₄ and ¹²C₅ = ¹²C₇.",
+        "memory_tip": "The sum branch gives 4r = 16, r = 4. Both branches hold, so both values are answers.",
         "lines": [
           "Sum case: (r + 1) + (3r − 5) = 12",
           "4r − 4 = 12 ⇒ 4r = 16 ⇒ r = 4",

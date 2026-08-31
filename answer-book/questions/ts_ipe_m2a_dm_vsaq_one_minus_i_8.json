@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Mod-amp form",
         "margin_note": "First mark. Take √2 out of 1 − i and it leaves 1/√2 − i/√2 = cos π/4 − i sin π/4. The modulus is √2, not 2, and the minus stays on the sine.",
+        "memory_tip": "Take √2 out and 1/√2 − i/√2 is left, which is cos π/4 − i sin π/4. The modulus is √2, not 2.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (√2)⁸ = 2⁴ = 16, and the angle becomes 8 · π/4 = 2π, where cos 2π = 1 and sin 2π = 0. So the value is 16.",
+        "memory_tip": "(√2)⁸ = 2⁴ = 16, and 8 · π/4 = 2π, where cos = 1 and sin = 0.",
         "lines": [
           "(1 − i)⁸ = (√2)⁸ (cos π/4 − i sin π/4)⁸",
           "= 2⁴ (cos 2π − i sin 2π)",

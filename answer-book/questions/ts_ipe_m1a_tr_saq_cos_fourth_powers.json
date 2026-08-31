@@ -50,6 +50,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Note the minus signs on two of the reductions. They matter for the working and vanish at the fourth power — say so rather than dropping them silently.",
+        "memory_tip": "Two reductions come out NEGATIVE. Say so — the signs vanish only at the fourth power.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. After the fourth powers kill the signs, the expression is 2[sin⁴ + cos⁴] — identical to the twin from here on.",
+        "memory_tip": "(−x)⁴ = x⁴, so the four terms become 2[sin⁴ + cos⁴], then a² + b² = (a+b)² − 2ab on the squares.",
         "lines": [
           "L.H.S = cos⁴(π/8) + sin⁴(π/8) + sin⁴(π/8) + cos⁴(π/8)",
           "  [∵ (−x)⁴ = x⁴]",
@@ -135,6 +137,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Identical finish to the twin, and the same answer.",
+        "memory_tip": "4sin²cos² is (2 sin cos)² = sin²(π/4) = 1/2, so the answer is 2 − 1/2.",
         "lines": [
           "= 2 − [2 sin(π/8) cos(π/8)]²",
           "= 2 − [sin(π/4)]² = 2 − 1/2",

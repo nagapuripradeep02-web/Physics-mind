@@ -59,6 +59,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks. cos²(A/2) = (1 + cos A)/2 splits every term into a plain side and a side-times-cosine — and the plain sides are what become s.",
+        "memory_tip": "cos²(A/2) = (1 + cos A)/2 splits each term into a plain side and a side-times-cosine; the plain sides become s.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,6 +105,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two more marks. a = 2R sinA turns each term into 2R sinA cosA, which is R sin2A — bringing double angles in.",
+        "memory_tip": "a = 2R sin A makes each term 2R sinA cosA, which is R sin 2A — bringing double angles in.",
         "lines": [
           "a cosA + b cosB + c cosC",
           "= 2R sinA cosA + 2R sinB cosB + 2R sinC cosC   [∵ a = 2R sinA]",
@@ -145,6 +147,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two more marks. sin2A + sin2B + sin2C = 4 sinA sinB sinC in any triangle — the Unit 6 identity, quoted here rather than re-proved.",
+        "memory_tip": "In any triangle sin2A + sin2B + sin2C = 4 sinA sinB sinC. Quote it, do not re-prove it.",
         "lines": [
           "= R(4 sinA sinB sinC)   [∵ in a △, sin2A+sin2B+sin2C = 4 sinA sinB sinC]",
           "∴ L.H.S = s + (R · 4 sinA sinB sinC)/2",
@@ -185,6 +188,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "Last two marks. Multiply and divide by R: 2R² sinA sinB sinC is Δ, so the whole term becomes Δ/R.",
+        "memory_tip": "Multiply and divide by R: 2R² sinA sinB sinC is Δ, so the term becomes Δ/R.",
         "lines": [
           "= s + (2R² sinA sinB sinC)/R   [multiplying and dividing by R]",
           "= s + Δ/R   [∵ Δ = 2R² sinA sinB sinC]",

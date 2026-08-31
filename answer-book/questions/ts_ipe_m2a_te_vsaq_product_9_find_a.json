@@ -72,6 +72,7 @@
         "marks": 1,
         "mark_note": "S₃ = −a₃/a₀",
         "margin_note": "First mark. The constant term is −a, so a₃ = −a and S₃ = −a₃/a₀ = −(−a)/4 = a/4. Two minus signs; write both.",
+        "memory_tip": "The constant term is −a, so S₃ = −(−a)/4 = a/4. TWO minus signs — write both.",
         "lines": [
           {
             "text": "Sol:",
@@ -115,6 +116,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. a/4 = 9 gives a = 36.",
+        "memory_tip": "a/4 = 9 gives a = 36. Multiply by 4, do not divide.",
         "lines": [
           "a/4 = 9",
           {

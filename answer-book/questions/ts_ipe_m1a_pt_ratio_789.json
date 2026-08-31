@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. A ratio fixes the sides only up to a scale, so write a = 7k, b = 8k, c = 9k. The k will cancel out of every cosine.",
+        "memory_tip": "A ratio fixes the sides only up to scale, so write a = 7k, b = 8k, c = 9k. The k cancels later.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks. The cosine rule, with the k² cancelling top and bottom. Every cosine below works the same way.",
+        "memory_tip": "The cosine rule, with k² cancelling top and bottom. Every cosine works the same way.",
         "lines": [
           "cos A = (b² + c² − a²)/(2bc)",
           "= ((8k)² + (9k)² − (7k)²)/(2(8k)(9k))",
@@ -147,6 +149,7 @@
         "marks": 3,
         "mark_note": "Method",
         "margin_note": "Three marks. Same rule, rotating which side is subtracted: b² for cos B, c² for cos C.",
+        "memory_tip": "Rotate which side is SUBTRACTED: b² for cos B, c² for cos C.",
         "lines": [
           "cos B = (c² + a² − b²)/(2ca) = (81 + 49 − 64)/(2 · 9 · 7) = 66/126 = 11/21",
           "cos C = (a² + b² − c²)/(2ab) = (49 + 64 − 81)/(2 · 7 · 8) = 32/112 = 2/7"
@@ -186,6 +189,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "The last two marks. The three fractions have denominators 3, 21 and 7 — all divide 21, so multiplying every term by 21 clears them at once.",
+        "memory_tip": "The denominators 3, 21 and 7 all divide 21, so multiplying every term by 21 clears them at once.",
         "lines": [
           "cos A : cos B : cos C = 2/3 : 11/21 : 2/7",
           "Multiplying each by 21:",

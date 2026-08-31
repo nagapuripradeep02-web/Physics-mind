@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. P(A) = 2P(B) and P(B) = 2P(C), so P(A) = 4P(C). Everything is now in one unknown.",
+        "memory_tip": "Chain the two relations: P(A) = 2P(B) = 4P(C). Everything is now in one unknown.",
         "lines": [
           {
             "text": "Sol:",
@@ -122,6 +123,7 @@
         "marks": 1,
         "mark_note": "Sum = 1",
         "margin_note": "Second mark. Only one horse wins (disjoint) and one of them does win (A ∪ B ∪ C = S), so P(A) + P(B) + P(C) = P(S) = 1.",
+        "memory_tip": "TWO facts, both written: only one horse wins (disjoint), and one of them does win (exhaustive).",
         "lines": [
           {
             "text": "Only one horse can win, so A, B, C are disjoint;",
@@ -170,6 +172,7 @@
         "marks": 2,
         "mark_note": "Answer",
         "margin_note": "Two marks. 4P(C) + 2P(C) + P(C) = 7P(C) = 1. State all three — the question asks for A, B and C.",
+        "memory_tip": "7P(C) = 1. State all three probabilities — the question asks for A, B and C.",
         "lines": [
           {
             "text": "⇒ 4P(C) + 2P(C) + P(C) = 1 ⇒ 7P(C) = 1",

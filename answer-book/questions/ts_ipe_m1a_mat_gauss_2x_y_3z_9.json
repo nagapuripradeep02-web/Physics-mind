@@ -67,6 +67,7 @@
         "marks": 1,
         "mark_note": "Augmented matrix",
         "margin_note": "First mark. The augmented matrix is A with the constants column joined on. The rule down the middle is not decoration — it marks where the equals sign was, and every row operation acts across it.",
+        "memory_tip": "The augmented matrix is A with the constants column joined on; the rule marks where the equals sign was.",
         "lines": [
           {
             "text": "Sol:",
@@ -121,6 +122,7 @@
         "marks": 2,
         "mark_note": "Forward elimination",
         "margin_note": "Two marks. The top-left entry is 2, so swap rows 1 and 2 first — row 2 already starts with a 1, and a leading 1 keeps every later operation free of fractions.",
+        "memory_tip": "Swap rows 1 and 2 first — row 2 already starts with a 1, and a leading 1 keeps later steps fraction-free.",
         "lines": [
           "R₁ ↔ R₂  (to get a leading 1)",
           {
@@ -178,6 +180,7 @@
         "marks": 1,
         "mark_note": "Last pivot",
         "margin_note": "Fourth mark. Once row 3 reads 0 0 1 with a number after the rule, z is already known — everything from here is bookkeeping to get x and y out.",
+        "memory_tip": "Once row 3 reads 0 0 1, z is known; everything after is bookkeeping for x and y.",
         "lines": [
           "R₃ → R₃ − 2R₂",
           {
@@ -229,6 +232,7 @@
         "marks": 3,
         "mark_note": "Backward elimination",
         "margin_note": "Three marks. Row 2 is left as −1 rather than normalised to 1; that is allowed, and the last step simply reads −y = −2. Normalising it costs an extra line and gains nothing.",
+        "memory_tip": "Row 2 may be left as −1 rather than normalised — the last step simply reads −y = −2.",
         "lines": [
           "R₁ → R₁ − R₃,  R₂ → R₂ − R₃",
           {
@@ -280,6 +284,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. Each row is now a one-letter equation, so the answer is read straight off with no substitution.",
+        "memory_tip": "Each row is now a one-letter equation, so the answer is read off with no substitution.",
         "lines": [
           "Each row is now a single equation:",
           "Row 1: x = 1",

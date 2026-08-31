@@ -67,6 +67,7 @@
         "label": "A and B are independent",
         "marks": 0,
         "margin_note": "No mark of its own. Write the given values and the word \"independent\" — it is the reason behind parts (i), (iii) and (iv).",
+        "memory_tip": "Write the word 'independent' — it justifies parts (i), (iii) and (iv).",
         "lines": [
           {
             "text": "Sol:",
@@ -112,6 +113,7 @@
         "marks": 1,
         "mark_note": "(i)",
         "margin_note": "Independent, so multiply: 0.6 × 0.7 = 0.42.",
+        "memory_tip": "Independent, so multiply: 0.6 × 0.7 = 0.42.",
         "lines": [
           {
             "text": "(i) P(A ∩ B) = P(A)·P(B) = 0.6 × 0.7 = 0.42",
@@ -150,6 +152,7 @@
         "marks": 1,
         "mark_note": "(ii)",
         "margin_note": "Addition theorem, using part (i): 0.6 + 0.7 − 0.42 = 0.88.",
+        "memory_tip": "0.6 + 0.7 = 1.3 is over 1, so the minus term matters: 1.3 − 0.42 = 0.88.",
         "lines": [
           {
             "text": "(ii) P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
@@ -192,6 +195,7 @@
         "marks": 1,
         "mark_note": "(iii)",
         "margin_note": "For independent events the condition changes nothing: P(B|A) = P(B) = 0.7.",
+        "memory_tip": "One line: for independent events the condition changes nothing, so P(B|A) = P(B) = 0.7.",
         "lines": [
           {
             "text": "(iii) A, B independent ⇒ P(B|A) = P(B) = 0.7",
@@ -230,6 +234,7 @@
         "marks": 1,
         "mark_note": "(iv)",
         "margin_note": "Aᶜ and Bᶜ are also independent, so multiply the complements: 0.4 × 0.3 = 0.12.",
+        "memory_tip": "Complements of independent events are independent, so multiply THEM: 0.4 × 0.3 = 0.12.",
         "lines": [
           {
             "text": "(iv) Aᶜ, Bᶜ are also independent, so",

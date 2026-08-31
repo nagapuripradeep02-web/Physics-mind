@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Perpendicular means dot product zero — write that condition down as an equation before substituting anything.",
+        "memory_tip": "Perpendicular means the dot product is ZERO. Write that condition as an equation first.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Expand, collect, solve. One line each.",
+        "memory_tip": "Expand, collect, solve — one line each.",
         "lines": [
           "⇒ 2(4) − 2λ − 2 = 0",
           "⇒ 8 − 2λ − 2 = 0",

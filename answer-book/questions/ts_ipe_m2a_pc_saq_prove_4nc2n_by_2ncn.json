@@ -72,6 +72,7 @@
         "marks": 1,
         "mark_note": "Set up",
         "margin_note": "First mark. ⁿCᵣ = n!/(r!(n − r)!). For ⁴ⁿC₂ₙ both r and n − r are 2n; for ²ⁿCₙ both are n. Then divide.",
+        "memory_tip": "ⁿCᵣ = n!/(r!(n − r)!). For ⁴ⁿC₂ₙ both parts are 2n, so (2n)! appears TWICE below.",
         "lines": [
           {
             "text": "Sol:",
@@ -116,6 +117,7 @@
         "marks": 2,
         "mark_note": "Splitting",
         "margin_note": "Two marks. (4n)! is the product 1·2·3·…·4n. Take the even factors 2·4·…·4n = 2²ⁿ(2n)! out; what remains is the odd product 1·3·5·…·(4n − 1). Do the same for (2n)!.",
+        "memory_tip": "There are 2n even numbers up to 4n, so the even part is 2²ⁿ(2n)! — the power is 2n, not n.",
         "lines": [
           "(4n)! = [2·4·6·…·(4n)]·[1·3·5·…·(4n − 1)]",
           "= 2²ⁿ·(2n)!·[1·3·5·…·(4n − 1)]",
@@ -158,6 +160,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. Put the two splits into the fraction from step 1. One (2n)! cancels, then (2n)!² in the denominator is replaced by its split and 2²ⁿ(n!)² cancels top and bottom.",
+        "memory_tip": "The even parts were built to cancel: 2²ⁿ against (2ⁿ)², and (n!)² against (n!)². Only odd products survive.",
         "lines": [
           "L.H.S. = 2²ⁿ·(2n)!·[1·3·…·(4n − 1)]·(n!)²",
           "÷ [(2n)!]³",

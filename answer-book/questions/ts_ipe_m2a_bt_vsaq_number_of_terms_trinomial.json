@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. (x + y + z)ⁿ has (n + 1)(n + 2)/2 distinct terms — one for each way of writing n as a sum of three powers.",
+        "memory_tip": "Three entries in the bracket, so the count is (n + 1)(n + 2)/2, not the binomial's n + 1.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (8 × 9)/2 = 36. The coefficients 2 and 3 do not change the count.",
+        "memory_tip": "(8 × 9)/2 = 36. The coefficients 2 and 3 do not change the count.",
         "lines": [
           "For n = 7: (7 + 1)(7 + 2)/2 = (8 × 9)/2",
           {

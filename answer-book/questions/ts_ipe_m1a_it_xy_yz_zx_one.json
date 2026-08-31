@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Let each inverse be an angle, so its tangent is the corresponding letter. The condition then becomes a plain statement about three angles.",
+        "memory_tip": "Let each inverse be an angle, so its tangent is the matching letter. The condition becomes A + B + C = π/2.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Move C across, then take the tangent of both sides. tan(π/2 − C) is cot C, which is 1/tan C — and that is where the z ends up in a denominator.",
+        "memory_tip": "Move C across FIRST, then take tangents. tan(π/2 − C) = cot C = 1/tan C, which puts z in a denominator.",
         "lines": [
           "A + B + C = π/2 ⇒ A + B = π/2 − C",
           "⇒ tan(A + B) = tan(π/2 − C)",
@@ -140,6 +142,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Put the letters back in and cross-multiply. The z distributes over (x+y), and moving the xy across gives the symmetric result.",
+        "memory_tip": "Cross-multiply: z distributes over (x + y), and moving xy across gives the symmetric result.",
         "lines": [
           "⇒ (x + y)/(1 − xy) = 1/z",
           "⇒ z(x + y) = 1 − xy",

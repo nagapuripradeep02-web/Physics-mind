@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Setting up",
         "margin_note": "First mark. The coefficient of x⁹ in (1 + x)ⁿ is ⁿC₉ — here the power of x IS the index, unlike the \"r-th term\" wording of the general question.",
+        "memory_tip": "The coefficient of x⁹ is ⁿC₉ — here the power IS the index. Do not shift to ⁿC₈.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 2,
         "mark_note": "A.P. condition",
         "margin_note": "Three numbers are in A.P. when the middle one is the average of the other two: 2·(middle) = (first) + (last). Divide through by the middle coefficient so the ratios appear.",
+        "memory_tip": "In A.P. means 2 × middle = first + last. Divide by the middle so the two ratios appear.",
         "lines": [
           "2·ⁿC₁₀ = ⁿC₉ + ⁿC₁₁",
           "Dividing by ⁿC₁₀:",
@@ -139,6 +141,7 @@
         "marks": 2,
         "mark_note": "Ratio formulas",
         "margin_note": "Third and fourth marks. With r = 10: ⁿC₉/ⁿC₁₀ = 10/(n − 9) and ⁿC₁₁/ⁿC₁₀ = (n − 10)/11.",
+        "memory_tip": "ⁿC₉/ⁿC₁₀ = 10/(n − 9) and ⁿC₁₁/ⁿC₁₀ = (n − 10)/11. Do not invert either one.",
         "lines": [
           "ⁿC₁₀/ⁿC₉ = (n − 9)/10",
           "and ⁿC₁₁/ⁿC₁₀ = (n − 10)/11",
@@ -178,6 +181,7 @@
         "marks": 2,
         "mark_note": "Result",
         "margin_note": "Fifth to seventh marks. Multiply through by 11(n − 9). The right side is 110 + (n − 10)(n − 9) = n² − 19n + 200.",
+        "memory_tip": "Multiply through by 11(n − 9). Watch (n − 10)(n − 9) = n² − 19n + 90, with a PLUS 90.",
         "lines": [
           "2·11(n − 9) = 110 + (n − 10)(n − 9)",
           "22n − 198 = 110 + n² − 19n + 90",

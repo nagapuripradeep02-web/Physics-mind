@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and the whole question. The coefficients are 1, 4, 9, … — the squares — so their sum is the standard result n(n+1)(2n+1)/6.",
+        "memory_tip": "The coefficients 1, 4, 9 are the SQUARES, so their sum is n(n+1)(2n+1)/6.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Dividing π by a fraction with 6 underneath brings the 6 up top, which is where the 6π comes from.",
+        "memory_tip": "Period of tan kx is π/|k|, and dividing by a sixth brings the 6 up top.",
         "lines": [
           "Period of tan kx = π/|k|, with k = n(n+1)(2n+1)/6",
           {

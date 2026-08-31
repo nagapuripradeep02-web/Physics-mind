@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Quadratic in x",
         "margin_note": "First mark. The x terms collect to −(3y + 1)x and the constant is 2y + p. The denominator is (x − 1)(x − 2), so x = 1 and x = 2 are excluded; neither is a root of (1) for the p found later, so nothing false enters.",
+        "memory_tip": "Collect by powers of x: yx² − (3y + 1)x + (2y + p) = 0. Say in writing that x is real.",
         "lines": [
           {
             "text": "Sol:",
@@ -116,6 +117,7 @@
         "marks": 1,
         "mark_note": "Discriminant",
         "margin_note": "Second mark. a = y, b = −(3y + 1), c = 2y + p. 4ac = 8y² + 4py. Collect the y terms: 6y − 4py = (6 − 4p)y. Label it (2) — the next step reasons about it.",
+        "memory_tip": "a = y, b = −(3y + 1), c = 2y + p. Collect 6y − 4py as (6 − 4p)y, and label the result (2).",
         "lines": [
           "∴ Δ = b² − 4ac ≥ 0",
           "⇒ (3y + 1)² − 4y(2y + p) ≥ 0",
@@ -159,6 +161,7 @@
         "marks": 1,
         "mark_note": "For every y",
         "margin_note": "Third mark, and the idea of the question. 'Takes all real values' means (2) is true for EVERY y. A quadratic in y with positive leading coefficient stays ≥ 0 everywhere only if it never goes below the axis — its own discriminant must be ≤ 0. Note the direction: ≤, not ≥.",
+        "memory_tip": "'All real values' means (2) holds for EVERY y, so this second discriminant is ≤ 0, not ≥ 0.",
         "lines": [
           "y takes all real values, so (2) holds",
           "for every real y.",
@@ -209,6 +212,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark, and where most answers stop early. At p = 1 the numerator (x − 1) cancels a factor of the denominator and the expression becomes 1/(x − 2), which never takes the value 0; at p = 2 it becomes 1/(x − 1), likewise. So the end values are excluded and the bounds are strict.",
+        "memory_tip": "At p = 1 and p = 2 the numerator cancels a denominator factor, so the ends are excluded: 1 < p < 2.",
         "lines": [
           "If p = 1 or p = 2, the numerator cancels",
           "a factor of (x − 1)(x − 2), and the",

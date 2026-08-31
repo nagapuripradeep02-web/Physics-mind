@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Identity",
         "margin_note": "First mark. sin²A − sin²B = sin(A+B) sin(A−B). The halves cancel: the sum is 105° and the difference is 60°.",
+        "memory_tip": "sin²A − sin²B = sin(A+B) sin(A−B). The halves cancel: sum 105°, difference 60°.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Value",
         "margin_note": "Second mark. 105° = 60° + 45°, so use the sine addition formula, then multiply by sin 60° = √3/2.",
+        "memory_tip": "105° = 60° + 45°, so use the sine addition formula, then multiply by sin60° = √3/2.",
         "lines": [
           "sin 105° = sin(60° + 45°)",
           "= sin60 cos45 + cos60 sin45",

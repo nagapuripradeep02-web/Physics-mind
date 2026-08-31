@@ -62,6 +62,7 @@
         "label": "Write what is given",
         "marks": 0,
         "margin_note": "No mark of its own. Copy the three (or four) vectors out once, in i, j, k order. Every cross product below is read straight off these rows, so a slip here is repeated three times.",
+        "memory_tip": "Copy the three vectors out once in i, j, k order.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,6 +105,7 @@
         "marks": 2,
         "mark_note": "First product",
         "margin_note": "Two of the eight marks. First part, inner bracket: the product a×b, which the c then crosses from the right.",
+        "memory_tip": "First part, inner bracket on the LEFT: compute a×b, which c then crosses from the right.",
         "lines": [
           {
             "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 3 \\\\ 2 & 1 & 1 \\end{vmatrix}",
@@ -148,6 +150,7 @@
         "marks": 2,
         "mark_note": "Second product",
         "margin_note": "Two more marks. Cross that result by c, take out the common 5, and then the magnitude.",
+        "memory_tip": "Cross by c, take out the common 5, then the magnitude.",
         "lines": [
           {
             "text": "(a \\times b) \\times c = \\begin{vmatrix} i & j & k \\\\ -5 & 5 & 5 \\\\ 1 & 1 & 2 \\end{vmatrix}",
@@ -193,6 +196,7 @@
         "marks": 2,
         "mark_note": "Combine",
         "margin_note": "One mark. Second part now — a DIFFERENT inner bracket. Here the bracket is on the right, so b×c is what gets computed first.",
+        "memory_tip": "Second part has a DIFFERENT inner bracket — on the right, so b×c comes first.",
         "lines": [
           "For the second part the bracket is b×c:",
           {
@@ -238,6 +242,7 @@
         "marks": 2,
         "mark_note": "Answer",
         "margin_note": "Last two marks together. Cross a into that result and take the magnitude. √54 simplifies to 3√6 — and 3√6 is NOT 5√14, which is the point.",
+        "memory_tip": "√54 simplifies to 3√6 — and 3√6 is not 5√14, which is the whole point of the pair.",
         "lines": [
           {
             "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 3 \\\\ 1 & -3 & 1 \\end{vmatrix}",

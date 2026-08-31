@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Column operation",
         "margin_note": "First mark. Every row sums to 1 + ω + ω², because ω³ = 1 collapses every higher power back into the same three values.",
+        "memory_tip": "Every row sums to 1 + ω + ω², because ω³ = 1 collapses higher powers back.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Second mark. That sum is zero for a complex cube root of 1 — so column 1 is entirely zero, and a determinant with a zero column is zero.",
+        "memory_tip": "That sum is ZERO for a complex cube root, so column 1 vanishes — and a zero column means a zero determinant.",
         "lines": [
           "For a complex cube root of unity, 1 + ω + ω² = 0.",
           "So every entry of C₁ is 0.",

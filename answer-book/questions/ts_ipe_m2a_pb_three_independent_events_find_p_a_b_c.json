@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Products",
         "margin_note": "First mark. Independent events (and their complements) multiply. Number the three equations — the next steps refer to them.",
+        "memory_tip": "Independent events and their complements multiply. Number the three equations.",
         "lines": [
           {
             "text": "Sol:",
@@ -124,6 +125,7 @@
         "marks": 1,
         "mark_note": "P(A)",
         "margin_note": "Second mark. (1) and (3) share P(Bᶜ)P(Cᶜ); dividing leaves P(A)/P(Aᶜ) = 1, so P(A) = 1 − P(A).",
+        "memory_tip": "(1) and (3) share P(Bᶜ)P(Cᶜ), so dividing leaves P(A)/P(Aᶜ) = 1.",
         "lines": [
           {
             "text": "(1) ÷ (3): P(A)/P(Aᶜ) = (1/4)/(1/4) = 1",
@@ -167,6 +169,7 @@
         "marks": 1,
         "mark_note": "P(B)",
         "margin_note": "Third mark. (2) and (3) share P(Aᶜ)P(Cᶜ); dividing gives P(B)/P(Bᶜ) = 1/2.",
+        "memory_tip": "(2) and (3) share P(Aᶜ)P(Cᶜ), giving P(B)/P(Bᶜ) = 1/2, so 2P(B) = 1 − P(B).",
         "lines": [
           {
             "text": "(2) ÷ (3): P(B)/P(Bᶜ) = (1/8)/(1/4) = 1/2",
@@ -210,6 +213,7 @@
         "marks": 1,
         "mark_note": "P(C)",
         "margin_note": "Last mark. Put P(Aᶜ) = 1/2 and P(Bᶜ) = 2/3 into (3): (1/3)·P(Cᶜ) = 1/4, so P(Cᶜ) = 3/4.",
+        "memory_tip": "The third value comes from SUBSTITUTING into (3), not from another division.",
         "lines": [
           {
             "text": "From (3): P(Aᶜ)·P(Bᶜ)·P(Cᶜ) = 1/4",

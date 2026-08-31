@@ -53,6 +53,7 @@
         "label": "Solve two of the lines",
         "marks": 1,
         "margin_note": "First mark. Concurrent means all three pass through ONE point. Pick the two lines with no unknown in them — that point can be found outright.",
+        "memory_tip": "Pick the two lines with NO unknown in them — that point can be found outright.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "label": "Write the point of intersection",
         "marks": 1,
         "margin_note": "Second mark. State the point plainly — it is the point every one of the three lines must pass through.",
+        "memory_tip": "State the point plainly; every one of the three lines must pass through it.",
         "lines": [
           "∴ Point of intersection is P(11, 5)"
         ],
@@ -138,6 +140,7 @@
         "label": "Substitute into the third line",
         "marks": 2,
         "margin_note": "The last two marks. Because the three are concurrent, that point lies on the third line too — so putting it in must give zero, and the one unknown drops out.",
+        "memory_tip": "Putting that point into the third line must give zero, and the one unknown drops out.",
         "lines": [
           "Given lines are concurrent, so P(11, 5) lies on 2x − 3y + k = 0",
           "⇒ 2(11) − 3(5) + k = 0",

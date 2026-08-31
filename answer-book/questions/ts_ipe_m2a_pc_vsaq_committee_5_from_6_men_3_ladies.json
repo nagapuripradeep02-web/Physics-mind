@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The question puts no condition on men or ladies, so it is simply 5 people from 6 + 3 = 9: ⁹C₅.",
+        "memory_tip": "There is NO condition on the mix, so it is simply 5 from 6 + 3 = 9 people: ⁹C₅.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ⁹C₅ = ⁹C₄ = (9·8·7·6)/(1·2·3·4) = 126.",
+        "memory_tip": "⁹C₅ = ⁹C₄ = (9·8·7·6)/(1·2·3·4) = 126.",
         "lines": [
           "⁹C₅ = ⁹C₄ = (9 · 8 · 7 · 6)/(1 · 2 · 3 · 4)",
           {

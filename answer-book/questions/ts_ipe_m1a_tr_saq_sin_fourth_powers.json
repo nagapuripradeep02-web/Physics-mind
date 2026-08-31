@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and the idea. 3π/8 and 5π/8 both reduce to cos(π/8), and 7π/8 reduces to sin(π/8) — so the four terms are really two, each appearing twice.",
+        "memory_tip": "3π/8 and 5π/8 both reduce to cos(π/8), and 7π/8 to sin(π/8) — four terms are really two, twice each.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. The four terms become 2[sin⁴ + cos⁴], and a⁴ + b⁴ is handled by a² + b² = (a+b)² − 2ab applied to the SQUARES.",
+        "memory_tip": "a⁴ + b⁴ is handled by a² + b² = (a+b)² − 2ab applied to the SQUARES.",
         "lines": [
           "L.H.S = sin⁴(π/8) + cos⁴(π/8) + cos⁴(π/8) + sin⁴(π/8)",
           "= 2[sin⁴(π/8) + cos⁴(π/8)]",
@@ -141,6 +143,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. 4sin²cos² is (2 sin cos)², which is sin²(π/4) — and sin(π/4) is 1/√2, so the square is 1/2.",
+        "memory_tip": "4sin²cos² is (2 sin cos)² = sin²(π/4), and sin(π/4) = 1/√2, so the square is 1/2.",
         "lines": [
           "= 2 − 4sin²(π/8)cos²(π/8)",
           "= 2 − [2 sin(π/8) cos(π/8)]²",

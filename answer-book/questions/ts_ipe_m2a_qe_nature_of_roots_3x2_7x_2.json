@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Discriminant",
         "margin_note": "First mark. a = 3, b = 7, c = 2. Δ = 49 − 24 = 25. Write it as 5² on the page — the examiner is looking for the words 'perfect square'.",
+        "memory_tip": "Δ = 49 − 24 = 25. Write it as 5² — 'perfect square' is the phrase the examiner reads.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Δ > 0 gives real and unequal; Δ a perfect square (with rational coefficients) upgrades that to rational. Both words matter: 'rational, unequal'. (The roots are −1/3 and −2.)",
+        "memory_tip": "Δ > 0 gives real and unequal; a perfect square upgrades that to RATIONAL. Both words are needed.",
         "lines": [
           "Δ > 0 and a perfect square, with",
           "rational coefficients.",

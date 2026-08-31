@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Identify and divide",
         "margin_note": "First mark. Coefficients 2, 1, −11, 1, 2 read the same both ways and the degree is even. Divide by x² and pair 2x² with 2/x², x with 1/x.",
+        "memory_tip": "2, 1, −11, 1, 2 reads the same both ways and the degree is even — a standard reciprocal equation.",
         "lines": [
           {
             "text": "Sol:",
@@ -113,6 +114,7 @@
         "marks": 1,
         "mark_note": "Substitution",
         "margin_note": "Second mark. Replace x² + 1/x² by t² − 2 and x + 1/x by t. The 2 in front multiplies the whole bracket: 2(t² − 2) = 2t² − 4.",
+        "memory_tip": "x² + 1/x² is t² − 2, never t². The 2 in front multiplies the whole bracket.",
         "lines": [
           "Put x + 1/x = t, so x² + 1/x² = t² − 2",
           "(1) becomes 2(t² − 2) + t − 11 = 0",
@@ -155,6 +157,7 @@
         "marks": 1,
         "mark_note": "Values of t",
         "margin_note": "Third mark. Split the middle term: 1 = 6 − 5 with (6)(−5) = −30 = 2 × (−15).",
+        "memory_tip": "Split 1 = 6 − 5, since (6)(−5) = −30 = 2 × (−15).",
         "lines": [
           "2t² + 6t − 5t − 15 = 0",
           "2t(t + 3) − 5(t + 3) = 0",
@@ -197,6 +200,7 @@
         "marks": 2,
         "mark_note": "Roots from t = 5/2",
         "margin_note": "Two marks. Multiply x + 1/x = 5/2 by 2x to clear the fraction: 2x² − 5x + 2 = 0, which factorises. The book's shortcut 5/2 = 2 + 1/2 reads the roots 2 and 1/2 straight off; the factorised line shows the same thing.",
+        "memory_tip": "Multiply x + 1/x = 5/2 by 2x: 2x² − 5x + 2 = 0 factorises, so no formula is needed.",
         "lines": [
           "If t = 5/2: x + 1/x = 5/2",
           "2x² + 2 = 5x, so 2x² − 5x + 2 = 0",
@@ -240,6 +244,7 @@
         "marks": 2,
         "mark_note": "Roots from t = −3",
         "margin_note": "Last two marks. x² + 3x + 1 = 0 has discriminant 9 − 4 = 5, so the roots stay as surds. Box all four; their product is 2 · (1/2) · 1 = 1 = 2/2, the constant over the leading coefficient.",
+        "memory_tip": "x² + 3x + 1 = 0 has discriminant 5, so this pair stays as surds. Box all four roots.",
         "lines": [
           "If t = −3: x + 1/x = −3",
           "x² + 1 = −3x, so x² + 3x + 1 = 0",

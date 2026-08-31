@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. Turn each percentage into a probability. Seven numbers: three singles, three pairs, one triple.",
+        "memory_tip": "Seven numbers: three singles, three pairs, one triple. Turn each percentage into a decimal.",
         "lines": [
           {
             "text": "Sol:",
@@ -124,6 +125,7 @@
         "marks": 1,
         "mark_note": "Formula",
         "margin_note": "Second mark. Singles plus, pairs minus, triple plus. Write it in symbols before any number.",
+        "memory_tip": "Singles PLUS, pairs MINUS, triple PLUS. Write it in symbols before any number.",
         "lines": [
           {
             "text": "P(A ∪ B ∪ C) = P(A) + P(B) + P(C) − P(A ∩ B)",
@@ -167,6 +169,7 @@
         "marks": 2,
         "mark_note": "Answer",
         "margin_note": "Two marks. Singles 0.5, pairs 0.17: 0.5 − 0.17 + 0.02 = 0.35, i.e. 35%.",
+        "memory_tip": "Singles 0.5, pairs 0.17: 0.5 − 0.17 + 0.02 = 0.35, which is 35%.",
         "lines": [
           {
             "text": "= 0.2 + 0.16 + 0.14 − 0.08 − 0.04 − 0.05 + 0.02",

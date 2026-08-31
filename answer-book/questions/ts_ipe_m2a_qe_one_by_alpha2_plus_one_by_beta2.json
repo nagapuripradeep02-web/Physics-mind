@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "α + β and αβ",
         "margin_note": "First mark. Two relations, written before anything else: α + β = −b/a and αβ = c/a. The minus sign belongs to the SUM only.",
+        "memory_tip": "Read both relations off the coefficients first: α + β = −b/a and αβ = c/a.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Numerator: α² + β² = (α + β)² − 2αβ = b²/a² − 2c/a = (b² − 2ac)/a². Denominator: (αβ)² = c²/a². Dividing, the a² cancels and the answer is (b² − 2ac)/c².",
+        "memory_tip": "Divide (b² − 2ac)/a² by (αβ)² = c²/a². The a² cancels, so the denominator is c², not a².",
         "lines": [
           "1/α² + 1/β² = (α² + β²)/(αβ)²",
           "= [(α + β)² − 2αβ]/(αβ)²",

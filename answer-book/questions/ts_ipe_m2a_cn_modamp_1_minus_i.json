@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Modulus",
         "margin_note": "First mark. x = 1, y = −1, so r = √(1 + 1) = √2.",
+        "memory_tip": "r ignores signs: (−1)² = 1, so r = √(1 + 1) = √2.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. tan θ = −1 and (1, −1) is in the fourth quadrant, so θ = −π/4. The i sin(−π/4) becomes −i sin(π/4).",
+        "memory_tip": "tan θ = −1 fits two angles. (1, −1) is in the fourth quadrant, so θ = −π/4.",
         "lines": [
           "tan θ = y/x = (−1)/1 = −1",
           "(1, −1) lies in the fourth quadrant ⇒ θ = −π/4",

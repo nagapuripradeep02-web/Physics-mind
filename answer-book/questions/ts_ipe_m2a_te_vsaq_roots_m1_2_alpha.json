@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "S₁ = −a₁/a₀",
         "margin_note": "First mark. Two roots known; the sum relation S₁ = −a₁/a₀ = −1/2 gives the third. Note a₀ = 2, not 1.",
+        "memory_tip": "a₀ is 2, not 1, so S₁ = −a₁/a₀ = −1/2. That division is the whole question.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. −1 + 2 + α = −1/2 gives α = −3/2. Check with the product: (−1)(2)(−3/2) = 3 = −a₃/a₀ = 6/2.",
+        "memory_tip": "−1 + 2 + α = −1/2 gives α = −3/2. Check the product: (−1)(2)(−3/2) = 3 = 6/2.",
         "lines": [
           "−1 + 2 + α = −1/2",
           "1 + α = −1/2",

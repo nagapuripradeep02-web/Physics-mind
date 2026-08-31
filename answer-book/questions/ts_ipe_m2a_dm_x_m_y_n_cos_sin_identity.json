@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "De Moivre",
         "margin_note": "First mark. xᵐ = cos mα + i sin mα and yⁿ = cos nβ + i sin nβ. The exponent m belongs to α and n to β; write both lines before multiplying anything.",
+        "memory_tip": "The exponent m belongs to α and n to β. Write both powers before multiplying anything.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 1,
         "mark_note": "Product",
         "margin_note": "Second mark. cis mα · cis nβ = cis(mα + nβ): both moduli are 1, so only the angles combine, and they add. Label it (1).",
+        "memory_tip": "cis mα · cis nβ = cis(mα + nβ). Both moduli are 1, so only the angles combine, and they add.",
         "lines": [
           "xᵐyⁿ = cis mα · cis nβ = cis(mα + nβ)",
           "= cos(mα + nβ) + i sin(mα + nβ) …(1)"
@@ -147,6 +149,7 @@
         "marks": 1,
         "mark_note": "Reciprocal",
         "margin_note": "Third mark. 1/cis(mα + nβ) = cis(−(mα + nβ)), because cis θ · cis(−θ) = cis 0 = 1. Only the sine changes sign; label it (2).",
+        "memory_tip": "1/cis θ = cis(−θ), since cis θ · cis(−θ) = cis 0 = 1. Only the sine changes sign.",
         "lines": [
           "1/(xᵐyⁿ) = 1/cis(mα + nβ) = cis(−(mα + nβ))",
           "= cos(mα + nβ) − i sin(mα + nβ) …(2)"
@@ -188,6 +191,7 @@
         "marks": 2,
         "mark_note": "First result",
         "margin_note": "Fourth and fifth marks. Adding (1) and (2) cancels the sines and doubles the cosine: 2cos(mα + nβ). The angle stays whole — it does not split into 2cos mα + 2cos nβ.",
+        "memory_tip": "Adding cancels the sines: 2cos(mα + nβ). The angle stays whole, never splitting into two cosines.",
         "lines": [
           "Adding (1) and (2):",
           {
@@ -231,6 +235,7 @@
         "marks": 2,
         "mark_note": "Second result",
         "margin_note": "Sixth and seventh marks. Subtracting (2) from (1) cancels the cosines and doubles the imaginary part: 2i sin(mα + nβ). The i stays in the answer, and the order matters — (2) minus (1) gives the opposite sign.",
+        "memory_tip": "Subtracting leaves 2i sin(mα + nβ). The i stays, and the order (1) − (2) fixes the sign.",
         "lines": [
           "Subtracting (2) from (1):",
           {

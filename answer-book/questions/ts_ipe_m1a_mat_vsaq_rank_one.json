@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Rank is the size of the LARGEST non-zero minor, so start big and come down. Every row here is identical, so the 3×3 and every 2×2 are zero.",
+        "memory_tip": "Rank is the size of the LARGEST non-zero minor, so start big and come down.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. A single entry counts as a 1×1 minor, and |1| = 1, which is not zero. So the largest non-zero minor is 1×1 and the rank is 1.",
+        "memory_tip": "A single entry is a 1×1 minor, and |1| = 1 ≠ 0 — so the rank is 1.",
         "lines": [
           "Take a 1×1 minor:  |1| = 1 ≠ 0",
           "So the largest non-zero minor is 1×1.",

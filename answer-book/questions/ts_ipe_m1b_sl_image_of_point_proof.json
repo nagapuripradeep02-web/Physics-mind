@@ -58,6 +58,7 @@
         "label": "Both slopes",
         "marks": 1,
         "margin_note": "First mark. Two slopes are needed — the one joining the two points, and the one of the given line. The second reads straight off the coefficients as −a/b.",
+        "memory_tip": "The slope of PQ and the line's own slope −a/b.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "label": "Draw P, the line and the image",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing, and it is the picture that explains the factor 2. Q is the mirror point, so the line cuts PQ in HALF — the two tick marks are equal, and it is the MIDPOINT R that lies on the line, not Q.",
+        "memory_tip": "The picture explains the factor 2: the line cuts PQ in HALF, so it is the MIDPOINT that lies on it.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That P, the line, the image Q and the midpoint R on the line are sketched, with PR = RQ. Naming the drawing is full credit — it cannot be spoken.",
@@ -218,6 +220,7 @@
         "label": "Use the perpendicularity",
         "marks": 2,
         "margin_note": "Two marks. PQ meets the line at a right angle, so m₁m₂ = −1. Rearranged, that says (h − x₁)/a and (k − y₁)/b are EQUAL — and giving that common value the name r is what makes the rest of the proof short.",
+        "memory_tip": "m₁m₂ = −1 makes the two ratios equal; call the common value r.",
         "lines": [
           "Two lines are perpendicular ⇒ m₁m₂ = −1",
           "⇒ [(k − y₁)/(h − x₁)] · (−a/b) = −1   ⇒   [(k − y₁)/(h − x₁)](a/b) = 1",
@@ -259,6 +262,7 @@
         "label": "Write h and k through r",
         "marks": 2,
         "margin_note": "Two marks. Read (1) both ways round: each of h and k is now its P-coordinate plus a multiple of r. The point Q is pinned by the single number r.",
+        "memory_tip": "h and k are each P's coordinate plus a multiple of r.",
         "lines": [
           "∴ (h − x₁)/a = r  ⇒  h − x₁ = ar  ⇒  h = x₁ + ar",
           "   (k − y₁)/b = r  ⇒  k − y₁ = br  ⇒  k = y₁ + br"
@@ -297,6 +301,7 @@
         "label": "Find r from the condition",
         "marks": 3,
         "margin_note": "The last three marks, and the ONLY place this proof differs from its neighbour. The IMAGE is the mirror point, so the line bisects PQ — it is the MIDPOINT R that lies on the line, not Q itself. That midpoint is where the factor 2 in the answer comes from.",
+        "memory_tip": "The IMAGE is a mirror point, so the MIDPOINT lies on the line, not Q — and that is where the 2 comes from.",
         "lines": [
           "Now P = (x₁, y₁), Q = (h, k) ⇒ Mid point of PQ is",
           "R = ((x₁ + h)/2, (y₁ + k)/2)",

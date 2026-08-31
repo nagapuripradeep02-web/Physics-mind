@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Divide and form",
         "margin_note": "First mark. Degree 3 over degree 3: improper. Both leading coefficients are 1, so the quotient is the constant 1. Then one constant over each of the three different linear factors.",
+        "memory_tip": "Equal degrees with both leading coefficients 1, so the quotient is the constant 1. No long division needed.",
         "lines": [
           {
             "text": "Sol:",
@@ -117,6 +118,7 @@
         "marks": 1,
         "mark_note": "Identity",
         "margin_note": "Second mark. Multiply by (x − a)(x − b)(x − c). The 1 keeps the whole denominator; A keeps (x − b)(x − c), B keeps (x − a)(x − c), C keeps (x − a)(x − b).",
+        "memory_tip": "The 1 keeps the whole denominator; A keeps (x − b)(x − c), B keeps (x − a)(x − c), C keeps (x − a)(x − b).",
         "lines": [
           "Multiply by (x − a)(x − b)(x − c):",
           "x³ = (x − a)(x − b)(x − c)",
@@ -161,6 +163,7 @@
         "marks": 1,
         "mark_note": "A, B and C",
         "margin_note": "Third mark. x = a makes the product and the B and C terms zero: a³ = A(a − b)(a − c). The same pattern with x = b and x = c. Each constant is that letter cubed over its differences from the other two letters.",
+        "memory_tip": "One pattern: each letter CUBED over its differences from the other two. B's denominator is (b − a)(b − c).",
         "lines": [
           "Put x = a: a³ = A(a − b)(a − c)",
           "⇒ A = a³/((a − b)(a − c))",
@@ -206,6 +209,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. The 1 comes first, then each constant over its own factor. The result is four terms and too long for one box, so the constants are boxed under it.",
+        "memory_tip": "The 1 comes first, then each constant over its own factor. Test with a, b, c = 1, 2, 3 if unsure.",
         "lines": [
           "∴ x³/((x − a)(x − b)(x − c)) = 1",
           "+ a³/((a − b)(a − c)(x − a))",

@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Statement",
         "margin_note": "One mark. Write divisibility as an equation before anything else.",
+        "memory_tip": "Write divisibility as an equation, = 17q with q an integer, before anything else.",
         "lines": [
           "Let S(n): 3·5⁽²ⁿ⁺¹⁾ + 2⁽³ⁿ⁺¹⁾ = 17q,",
           "        where q ∈ Z"
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Step 1",
         "margin_note": "One mark. The powers are small at n = 1 — work the arithmetic out fully and show the multiple of 17.",
+        "memory_tip": "At n = 1: 3(125) + 16 = 391 = 17 × 23. Work the arithmetic out fully.",
         "lines": [
           "Step 1 — check S(1)",
           "3·5³ + 2⁴ = 3(125) + 16",
@@ -140,6 +142,7 @@
         "marks": 1,
         "mark_note": "Step 2",
         "margin_note": "One mark. Assume for k and number the line — Step 3 substitutes it.",
+        "memory_tip": "Assume for k and NUMBER the line — Step 3 quotes it.",
         "lines": [
           "Step 2 — assume S(k) is true, k ∈ N",
           "S(k): 3·5⁽²ᵏ⁺¹⁾ + 2⁽³ᵏ⁺¹⁾ = 17q   …(1)"
@@ -179,6 +182,7 @@
         "marks": 4,
         "mark_note": "Step 3",
         "margin_note": "Four marks. Each power grows by its own factor: 5² = 25 and 2³ = 8. Substitute for ONE of them and let 17 appear.",
+        "memory_tip": "Each power grows by its own factor: 5² = 25 and 2³ = 8. Substitute for one of them, and 25 − 8 = 17 appears.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           "3·5⁽²ᵏ⁺³⁾ + 2⁽³ᵏ⁺⁴⁾",
@@ -225,6 +229,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "The last mark is for naming the principle. One sentence, one mark.",
+        "memory_tip": "The closing sentence names the principle and earns a full mark on its own.",
         "lines": [
           "Hence, by the principle of finite",
           "Mathematical Induction, S(n) is true",

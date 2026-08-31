@@ -64,6 +64,7 @@
         "marks": 2,
         "mark_note": "k",
         "margin_note": "First two marks. Every probability distribution has one rule: the probabilities add to 1. Write the table, write ΣP(X = xᵢ) = 1, add the k's — 15k = 1 gives k = 1/15. Keep k as a fraction; the mean and variance are found in k first and 1/15 is put in at the end.",
+        "memory_tip": "Add the PROBABILITIES, not the values: 15k = 1. Write the ΣP = 1 line — the equation is the mark.",
         "lines": [
           {
             "text": "Sol:",
@@ -121,6 +122,7 @@
         "marks": 2,
         "mark_note": "Mean",
         "margin_note": "Two marks. Mean μ = Σxᵢ·P(X = xᵢ): multiply each value by its probability and add. Factor the k out — k(1 + 4 + 9 + 16 + 25) = 55k — and only then put k = 1/15. 55/15 simplifies to 11/3; leave it as a fraction.",
+        "memory_tip": "Multiply each value by its probability and factor k out: k(1 + 4 + 9 + 16 + 25) = 55k = 11/3.",
         "lines": [
           {
             "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
@@ -166,6 +168,7 @@
         "marks": 3,
         "mark_note": "Variance",
         "margin_note": "Three marks. Variance σ² = Σxᵢ²·P(X = xᵢ) − μ². Square each VALUE (not the probability), multiply by its probability, add — k(1 + 8 + 27 + 64 + 125) = 225k = 15 — then subtract μ² = 121/9. The answer 14/9 is positive, as a variance must be.",
+        "memory_tip": "Square the VALUES, not the probabilities: k(1 + 8 + 27 + 64 + 125) = 15, then subtract μ² = 121/9.",
         "lines": [
           {
             "text": "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²",

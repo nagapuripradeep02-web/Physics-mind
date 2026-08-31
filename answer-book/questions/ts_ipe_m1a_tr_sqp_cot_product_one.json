@@ -50,6 +50,7 @@
         "marks": 1,
         "mark_note": "Pairing",
         "margin_note": "First mark. Write all seven factors, then bracket the first with the last, the second with the sixth, the third with the fifth — leaving the fourth alone.",
+        "memory_tip": "Write all seven factors, then bracket first with last, second with sixth, third with fifth — the fourth stands alone.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 2,
         "mark_note": "Complements",
         "margin_note": "Half the marks. In each pair the larger angle is π/2 minus the smaller — for example 7π/16 = (8π − π)/16 = π/2 − π/16.",
+        "memory_tip": "In each pair the larger angle is π/2 minus the smaller, and cot(π/2 − θ) = tan θ.",
         "lines": [
           "7π/16 = (8π − π)/16 = π/2 − π/16",
           "6π/16 = (8π − 2π)/16 = π/2 − 2π/16",
@@ -139,6 +141,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. Each bracket is a cotangent times its own tangent, which is 1 — so the product of three 1s and the middle 1 is 1.",
+        "memory_tip": "Each bracket is a cotangent times its OWN tangent, which is 1. The middle term cot(π/4) is 1 too.",
         "lines": [
           "cot θ · tan θ = 1 for each pair.",
           "∴ L.H.S = 1 · 1 · 1 · 1 = 1 = R.H.S",

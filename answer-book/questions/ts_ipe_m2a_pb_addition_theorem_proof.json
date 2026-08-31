@@ -84,6 +84,7 @@
         "marks": 1,
         "mark_note": "Statement",
         "margin_note": "First mark. Write the statement in full: name the two events, the sample space, and the formula. A formula alone with no words is not a statement.",
+        "memory_tip": "A formula alone is not a statement. Name the two events and the sample space, then write the formula.",
         "lines": [
           {
             "text": "Sol:",
@@ -139,6 +140,7 @@
         "marks": 2,
         "mark_note": "Case (i)",
         "margin_note": "Two marks. When the events have no common outcome, the union axiom gives P(E₁ ∪ E₂) = P(E₁) + P(E₂) directly, and P(E₁ ∩ E₂) = 0 makes the formula hold with the minus term equal to zero.",
+        "memory_tip": "No common outcome means P(E₁ ∩ E₂) = 0, so the union axiom gives the formula with a zero minus term.",
         "lines": [
           {
             "text": "Proof: Case (i): E₁ ∩ E₂ = ∅",
@@ -198,6 +200,7 @@
         "marks": 3,
         "mark_note": "Two disjoint splittings",
         "margin_note": "Three marks — the main case. E₁ ∪ E₂ is split as (E₁ − E₂) ∪ E₂ and E₁ is split as (E₁ − E₂) ∪ (E₁ ∩ E₂). Each split is a union of DISJOINT sets, which is what allows the union axiom to be used on each.",
+        "memory_tip": "Two DISJOINT splittings: E₁ ∪ E₂ as (E₁ − E₂) ∪ E₂, and E₁ as (E₁ − E₂) ∪ (E₁ ∩ E₂).",
         "lines": [
           {
             "text": "Case (ii): E₁ ∩ E₂ ≠ ∅",
@@ -269,6 +272,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Substitute (2) into (1). Write \"Hence proved\" only after the formula appears in exactly the stated form.",
+        "memory_tip": "Substitute (2) into (1). The final line needs a MINUS before P(E₁ ∩ E₂).",
         "lines": [
           {
             "text": "Substituting (2) in (1):",

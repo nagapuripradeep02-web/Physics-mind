@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Solve for x",
         "margin_note": "One mark. Identical method to the numeric case, with letters. The condition a ≠ 0 is what lets you divide.",
+        "memory_tip": "Same method as the numeric case, with letters. The condition a ≠ 0 is what lets you divide.",
         "lines": [
           "Take f(x) = y ⇒ x = f⁻¹(y)",
           "ax + b = y ⇒ ax = y − b",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "The inverse function",
         "margin_note": "The second mark is the finished function, renamed in x.",
+        "memory_tip": "Rename the variable back to x: f⁻¹(x) = (x − b)/a.",
         "lines": [
           "⇒ f⁻¹(y) = (y − b)/a",
           "∴ f⁻¹(x) = (x − b)/a"

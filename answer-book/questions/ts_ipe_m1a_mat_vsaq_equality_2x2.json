@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Two matrices are equal only when EVERY corresponding entry is equal. That turns one matrix equation into four ordinary equations.",
+        "memory_tip": "Two matrices are equal only when EVERY corresponding entry matches — four ordinary equations.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Four one-line solves. Watch z: z + 2 = −2 gives z = −4, not 0.",
+        "memory_tip": "Watch z: z + 2 = −2 gives z = −4, not 0.",
         "lines": [
           "x = 5 + 3 = 8",
           "2y = 2 + 8 = 10  ⇒  y = 5",

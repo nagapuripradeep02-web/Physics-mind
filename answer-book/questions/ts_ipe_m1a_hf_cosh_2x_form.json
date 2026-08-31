@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Start from 2cosh²x − 1, which is the side with something to simplify. Squaring gives three terms over 4, and the 2 outside cancels one of the factors.",
+        "memory_tip": "Start from 2cosh²x − 1, the side with something to simplify. Squaring gives three terms over 4.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The +2/2 is exactly 1, which the −1 removes — and what is left is the definition of cosh 2x.",
+        "memory_tip": "The +2/2 is exactly 1, and the −1 removes it. What is left is the definition of cosh 2x.",
         "lines": [
           "= (e²ˣ + e⁻²ˣ + 2 − 2)/2",
           "= (e²ˣ + e⁻²ˣ)/2",

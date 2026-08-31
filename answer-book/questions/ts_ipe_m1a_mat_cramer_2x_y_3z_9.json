@@ -71,6 +71,7 @@
         "marks": 1,
         "mark_note": "Matrix form",
         "margin_note": "First mark. A holds the coefficients in the order they appear, X holds the unknowns, D holds the right-hand sides. Write the equations out in x, y, z order before building A — a missing term is the commonest error in the whole question.",
+        "memory_tip": "Line the equations up in x, y, z order first, so A holds the coefficients in the right places.",
         "lines": [
           {
             "text": "Sol:",
@@ -119,6 +120,7 @@
         "marks": 1,
         "mark_note": "Δ",
         "margin_note": "Second mark. Δ is the determinant of A itself. It has to be non-zero or Cramer's rule cannot be used at all — so say so in writing, do not just compute the number.",
+        "memory_tip": "Δ is the determinant of A itself, and it must be NON-ZERO or the rule cannot be used. Say so in writing.",
         "lines": [
           {
             "text": "\\Delta = \\det A = \\begin{vmatrix} 2 & -1 & 3 \\\\ 1 & 1 & 1 \\\\ 1 & -1 & 1 \\end{vmatrix}",
@@ -166,6 +168,7 @@
         "marks": 1,
         "mark_note": "Δ₁",
         "margin_note": "Third mark. Δ₁ is Δ with the FIRST column replaced by the constants 9, 6, 2. Columns 2 and 3 are untouched. Replace, never insert.",
+        "memory_tip": "Δ₁ REPLACES the first column with the constants. Columns 2 and 3 are untouched — replace, never insert.",
         "lines": [
           "Replace C₁ of Δ by the constants:",
           {
@@ -213,6 +216,7 @@
         "marks": 1,
         "mark_note": "Δ₂",
         "margin_note": "Fourth mark. Same move, second column. Column 1 goes back to the coefficients of x — a common slip is to leave the constants there from the previous step.",
+        "memory_tip": "Second column now, and column 1 goes BACK to the x coefficients. Leaving the constants there is the usual slip.",
         "lines": [
           "Replace C₂ of Δ by the constants:",
           {
@@ -258,6 +262,7 @@
         "marks": 1,
         "mark_note": "Δ₃",
         "margin_note": "Fifth mark. Last one — third column replaced, the other two back to the coefficients.",
+        "memory_tip": "Third column replaced, the other two back to the coefficients.",
         "lines": [
           "Replace C₃ of Δ by the constants:",
           {
@@ -303,6 +308,7 @@
         "marks": 3,
         "mark_note": "Solution",
         "margin_note": "The last three marks. Each unknown is its own determinant divided by Δ. All four values here are negative, so every division gives a positive answer — write the divisions out rather than doing them in your head.",
+        "memory_tip": "Each unknown is its own determinant over Δ. All four values are negative here, so every answer comes out positive.",
         "lines": [
           "By Cramer's rule:",
           "x = Δ₁/Δ = (−2)/(−2) = 1",

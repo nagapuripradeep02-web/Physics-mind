@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Divide and form",
         "margin_note": "First mark. Degree 2 over degree 2: improper, and both leading coefficients are 1, so the quotient is the constant 1. Then A over (x − 1) and B over (x − 2).",
+        "memory_tip": "Degree 2 over degree 2 is IMPROPER. Both leading coefficients are 1, so the quotient is just 1.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Identity",
         "margin_note": "Second mark. Multiply by (x − 1)(x − 2). The 1 keeps the whole product; A keeps (x − 2), B keeps (x − 1).",
+        "memory_tip": "The 1 keeps the whole product (x − 1)(x − 2); A keeps (x − 2) and B keeps (x − 1).",
         "lines": [
           "Multiply by (x − 1)(x − 2):",
           "x² = (x − 1)(x − 2) + A(x − 2) + B(x − 1)"
@@ -144,6 +146,7 @@
         "marks": 1,
         "mark_note": "A and B",
         "margin_note": "Third mark. x = 1 makes the product and the B term zero: 1 = −A. x = 2 makes the product and the A term zero: 4 = B.",
+        "memory_tip": "At each root the product vanishes too: x = 1 gives 1 = −A, and x = 2 gives 4 = B.",
         "lines": [
           "Put x = 1: 1 = A(−1) ⇒ A = −1",
           "Put x = 2: 4 = B(1) ⇒ B = 4"
@@ -185,6 +188,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. The 1 comes first, then −1/(x − 1) + 4/(x − 2). This matches the answer the book prints for its practice question. Write the original fraction on the left.",
+        "memory_tip": "The 1 comes first: 1 − 1/(x − 1) + 4/(x − 2). Check x = 0: 0 = 2 + 2 − 4.",
         "lines": [
           "∴ x²/((x − 1)(x − 2))",
           {

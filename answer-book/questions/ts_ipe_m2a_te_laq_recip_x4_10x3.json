@@ -72,6 +72,7 @@
         "marks": 1,
         "mark_note": "Identify and divide",
         "margin_note": "First mark. Read the coefficients from both ends: 1, −10, 26, −10, 1. Same both ways, degree even — a standard reciprocal equation. Divide by x² and pair each term with its matching term from the other end.",
+        "memory_tip": "1, −10, 26, −10, 1 reads the same both ways. Note x ≠ 0 before dividing by x².",
         "lines": [
           {
             "text": "Sol:",
@@ -121,6 +122,7 @@
         "marks": 1,
         "mark_note": "Substitution",
         "margin_note": "Second mark. The whole method is the identity x² + 1/x² = t² − 2. Write the squaring line once so the −2 is visible, then the equation is a quadratic in t.",
+        "memory_tip": "Write the squaring line once: t² = x² + 2 + 1/x², so x² + 1/x² = t² − 2.",
         "lines": [
           "Put x + 1/x = t.",
           "Squaring: x² + 2 + 1/x² = t², so",
@@ -165,6 +167,7 @@
         "marks": 1,
         "mark_note": "Values of t",
         "margin_note": "Third mark. Split the middle term: −10 = −6 − 4 with (−6)(−4) = 24. Two values of t, so four roots are coming.",
+        "memory_tip": "Split −10 = −6 − 4, since (−6)(−4) = 24. Two t values means four roots are coming.",
         "lines": [
           "t² − 6t − 4t + 24 = 0",
           "t(t − 6) − 4(t − 6) = 0",
@@ -207,6 +210,7 @@
         "marks": 2,
         "mark_note": "Roots from t = 4",
         "margin_note": "Two marks. Multiply x + 1/x = 4 by x to get x² − 4x + 1 = 0. The discriminant 16 − 4 = 12 = 4 × 3, so √12 = 2√3 and the 2 cancels with the denominator.",
+        "memory_tip": "x² − 4x + 1 = 0, discriminant 12 = 4 × 3, so √12 = 2√3 and the 2 cancels: 2 ± √3.",
         "lines": [
           "If t = 4: x + 1/x = 4",
           "x² + 1 = 4x, so x² − 4x + 1 = 0",
@@ -250,6 +254,7 @@
         "marks": 2,
         "mark_note": "Roots from t = 6",
         "margin_note": "Last two marks. x² − 6x + 1 = 0 has discriminant 36 − 4 = 32 = 16 × 2, so √32 = 4√2. Box all four roots together; a check is that their product is 1, the constant term.",
+        "memory_tip": "x² − 6x + 1 = 0, discriminant 32 = 16 × 2, so √32 = 4√2: 3 ± 2√2. All four multiply to 1.",
         "lines": [
           "If t = 6: x + 1/x = 6",
           "x² + 1 = 6x, so x² − 6x + 1 = 0",

@@ -54,6 +54,7 @@
         "marks": 1,
         "mark_note": "Position vectors",
         "margin_note": "First mark. Name the four points P, Q, R, S and take O as the origin. The names are what let every later line stay short.",
+        "memory_tip": "Name the points P, Q, R, S with O as the origin. i, j, k are automatically non-coplanar.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Edge vectors",
         "margin_note": "Second mark. All three vectors must start at the SAME point — P here. Three edges from one corner is what makes them testable for coplanarity; three edges picked at random is not. i, j, k are non-coplanar by definition — they point along three different axes — so the same test applies, and here the determinant IS the scalar triple product with no [a b c] factor left over.",
+        "memory_tip": "All three from P. With i, j, k there is no [a b c] factor to carry.",
         "lines": [
           "∴ PQ = OQ − OP = (−j − k) − (4i + 5j + k)",
           "  = −4i − 6j − 2k",
@@ -146,6 +148,7 @@
         "marks": 1,
         "mark_note": "Scalar triple product",
         "margin_note": "Third mark. Write the three vectors as the rows of a determinant, in order, and expand along the top row. Three vectors lie in a plane exactly when this comes out 0.",
+        "memory_tip": "Rows of a determinant, expanded along the top row. Zero means coplanar.",
         "lines": [
           "Now,",
           {
@@ -193,6 +196,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark, and it is two statements, not one: the VECTORS are coplanar, therefore the POINTS are. Stopping at the vectors leaves the question half answered.",
+        "memory_tip": "The vectors are coplanar, therefore the points are. Write both.",
         "lines": [
           "So PQ, PR, PS are coplanar.",
           {

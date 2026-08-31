@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Three terms",
         "margin_note": "First mark. Tᵣ₊₁ = ⁿCᵣ aⁿ⁻ʳ xʳ. The 2nd term has r = 1, the 3rd has r = 2, the 4th has r = 3 — one less than the position every time.",
+        "memory_tip": "Tᵣ₊₁ = ⁿCᵣaⁿ⁻ʳxʳ, so the 2nd term has r = 1 — one less than the position, every time.",
         "lines": [
           {
             "text": "Sol:",
@@ -114,6 +115,7 @@
         "marks": 2,
         "mark_note": "First relation",
         "margin_note": "Second and third marks. Dividing removes the unknown power of a. ⁿC₂/ⁿC₁ = (n − 1)/2 comes from ⁿCᵣ₊₁/ⁿCᵣ = (n − r)/(r + 1) with r = 1.",
+        "memory_tip": "Dividing consecutive terms cancels the unknown power of a. ⁿC₂/ⁿC₁ = (n − 1)/2.",
         "lines": [
           "(2)/(1): (ⁿC₂ aⁿ⁻² x²)/(ⁿC₁ aⁿ⁻¹ x)",
           "  = 720/240 = 3",
@@ -155,6 +157,7 @@
         "marks": 1,
         "mark_note": "Second relation",
         "margin_note": "Fourth mark. Same move one step up: ⁿC₃/ⁿC₂ = (n − 2)/3.",
+        "memory_tip": "The same move one step up: ⁿC₃/ⁿC₂ = (n − 2)/3, and 1080/720 = 3/2.",
         "lines": [
           "(3)/(2): (ⁿC₃/ⁿC₂)(x/a) = 1080/720 = 3/2",
           "((n − 2)/3)(x/a) = 3/2",
@@ -194,6 +197,7 @@
         "marks": 1,
         "mark_note": "n = 5",
         "margin_note": "Fifth mark. Divide (5) by (4): the x and the a cancel and only n is left.",
+        "memory_tip": "Divide (5) by (4): both x and a cancel, leaving n alone.",
         "lines": [
           "(5)/(4): 2(n − 2)/(n − 1) = 9a/6a = 3/2",
           "4(n − 2) = 3(n − 1) ⇒ 4n − 8 = 3n − 3",
@@ -232,6 +236,7 @@
         "marks": 1,
         "mark_note": "a = 2",
         "margin_note": "Sixth mark. With n = 5, (4) gives x = 3a/2. Put that and n = 5 into (1): 5·a⁴·(3a/2) = 240 gives a⁵ = 32.",
+        "memory_tip": "With n = 5, (4) gives x = 3a/2. Put it into (1): a⁵ = 32 = 2⁵.",
         "lines": [
           "From (4): 4x = 6a ⇒ x = 3a/2 …(6)",
           "From (1): ⁵C₁ a⁴ x = 240 ⇒ 5a⁴(3a/2) = 240",
@@ -272,6 +277,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Seventh mark. x = 3a/2 with a = 2 is x = 3. Check: T₂ = 5·2⁴·3 = 240.",
+        "memory_tip": "State all THREE values. Check T₂ = 5 · 2⁴ · 3 = 240.",
         "lines": [
           "From (6): x = 3(2)/2 = 3",
           {

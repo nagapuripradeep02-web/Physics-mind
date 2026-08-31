@@ -49,6 +49,7 @@
         "label": "Take the locus point",
         "marks": 0,
         "margin_note": "No mark of its own, but nothing below can be written without it. P is the point that moves; A and B are nailed down.",
+        "memory_tip": "The 'third vertex' is the moving point P; the hypotenuse ends are fixed.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. A right angle at P means the triangle APB is right angled AT P, so AB is its hypotenuse and Pythagoras applies as PA² + PB² = AB². Writing this line earns the mark on its own.",
+        "memory_tip": "The named HYPOTENUSE tells you where the right angle is: at P. So PA² + PB² = AB².",
         "lines": [
           "Given condition: ∠APB = 90°",
           "⇒ PA² + PB² = AB²   [Pythagoras in △APB]"
@@ -130,6 +132,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. Every distance becomes the square of a coordinate difference, and because the condition is already squared there is no square root anywhere in this line.",
+        "memory_tip": "Every distance is a squared coordinate difference — no roots here.",
         "lines": [
           "⇒ [(x−0)² + (y−6)²] + [(x−6)² + (y−0)²] = (0−6)² + (6−0)²"
         ],
@@ -168,6 +171,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. Expand, cancel, and every x² and y² term survives with the SAME coefficient — that is what identifies the locus as a circle. Divide by that coefficient to finish.",
+        "memory_tip": "Same coefficient on x² and y² — a circle.",
         "lines": [
           "⇒ x² + (y² − 12y + 36) + (x² − 12x + 36) + y² = 36 + 36",
           "⇒ 2x² + 2y² − 12x − 12y + 72 = 72",

@@ -56,6 +56,7 @@
         "marks": 2,
         "mark_note": "Series",
         "margin_note": "First two marks. X has infinitely many values, so ΣP(X = k) = 1 is an infinite series: c/1! + c²/2! + c³/3! + … = 1. Write the general term first and then the series with at least three terms and the dots.",
+        "memory_tip": "The range starts at k = 1, so the series opens at c/1! with no leading 1. Keep the powers of c.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 3,
         "mark_note": "c",
         "margin_note": "Three marks — the main idea. The series is the exponential series with its first term 1 missing: 1 + x/1! + x²/2! + x³/3! + … = eˣ. Add 1 to both sides, so the left side becomes eᶜ and the right side 2. Then c = logₑ 2.",
+        "memory_tip": "This is the exponential series missing its first term, so add 1 to BOTH sides: eᶜ = 2, and c = logₑ 2.",
         "lines": [
           "Add 1 to both sides:",
           "1 + c/1! + c²/2! + c³/3! + … = 1 + 1 = 2",
@@ -149,6 +151,7 @@
         "marks": 2,
         "mark_note": "Probability",
         "margin_note": "Last two marks. 0 < X < 3 on the range {1, 2, 3, …} means X = 1 or 2. Add the two terms c/1! + c²/2! = c + c²/2 and put c = logₑ 2. The answer stays in logarithms; there is no simpler form.",
+        "memory_tip": "0 < X < 3 on {1, 2, 3, …} keeps X = 1 and 2. Leave the answer in logarithms, not decimals.",
         "lines": [
           "P(0 < X < 3) = P(X = 1) + P(X = 2)",
           "= c/1! + c²/2! = c + c²/2",

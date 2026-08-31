@@ -51,6 +51,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Each cotangent is s(s−a)/Δ, and every term carries the same s/Δ — so it cancels straight out of the ratio, leaving the brackets.",
+        "memory_tip": "Every cotangent carries the same s/Δ, so it cancels straight out of the ratio.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "The other half. Adding the three gives 3s − 2s = s = 15k; then each side follows by subtracting from s.",
+        "memory_tip": "Adding the three brackets gives 3s − 2s = s = 15k; each side then follows by subtracting from s.",
         "lines": [
           "Adding: (s−a)+(s−b)+(s−c) = 3s − (a+b+c) = 3s − 2s = s",
           "⇒ s = 3k + 5k + 7k = 15k",

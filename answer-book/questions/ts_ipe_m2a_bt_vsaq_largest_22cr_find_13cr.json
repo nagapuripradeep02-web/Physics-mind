@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. n = 22 is even, so the largest coefficient is the middle one ²²C₁₁; hence r = 11.",
+        "memory_tip": "n = 22 is even, so the largest coefficient is the single middle one, ²²C₁₁, and r = 11.",
         "lines": [
           {
             "text": "Sol:",
@@ -110,6 +111,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ¹³C₁₁ = ¹³C₂ because 11 + 2 = 13; ¹³C₂ = (13·12)/(1·2) = 78.",
+        "memory_tip": "¹³C₁₁ = ¹³C₂ because 11 + 2 = 13, so it is just (13 × 12)/2 = 78.",
         "lines": [
           "¹³Cᵣ = ¹³C₁₁ = ¹³C₂ = (13·12)/(1·2)",
           {

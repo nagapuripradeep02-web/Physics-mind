@@ -76,6 +76,7 @@
         "marks": 2,
         "mark_note": "Series in standard shape",
         "margin_note": "First two marks. Each denominator is a product like 5·10·15 = 5³·(1·2·3), so every term becomes (a product)/(k!) times (1/5)ᵏ. The series has no leading 1, so add 1 to both sides first; the formula is then written in y because x is already taken.",
+        "memory_tip": "5·10·15 = 5³·3!, so each term is (a product)/k! times (1/5)ᵏ. No leading 1 is printed — add 1 to both sides.",
         "lines": [
           {
             "text": "Sol:",
@@ -122,6 +123,7 @@
         "marks": 1,
         "mark_note": "Standard form",
         "margin_note": "Third mark, for WRITING the standard expansion beside the series. The examiner looks for the pattern p, p(p + q), p(p + q)(p + 2q) over 1!, 2!, 3!. All plus signs mean the (1 − y) form.",
+        "memory_tip": "All plus signs mean the (1 − y) form. The pattern is p, p(p + q), p(p + q)(p + 2q) over the factorials.",
         "lines": [
           "Compare with the standard expansion",
           {
@@ -164,6 +166,7 @@
         "marks": 2,
         "mark_note": "p, q, y",
         "margin_note": "Fourth and fifth marks. p is the first factor (1), p + q is the second (3) so q = 2, and y/q equals the common ratio 1/5 so y = q/5 = 2/5.",
+        "memory_tip": "p = 1, p + q = 3 so q = 2, and y/q = 1/5 gives y = 2/5.",
         "lines": [
           "p = 1, p + q = 3 ⇒ q = 2",
           "y/q = 1/5 ⇒ y = q/5 = 2/5"
@@ -202,6 +205,7 @@
         "marks": 1,
         "mark_note": "Value of the power",
         "margin_note": "Sixth mark. Substitute p, q, y into (1 − y)^(−p/q) and simplify the fraction inside the bracket before touching the exponent.",
+        "memory_tip": "(3/5) to the power −1/2 inverts to √(5/3).",
         "lines": [
           {
             "text": "1 + x = (1 - y)^{-p/q} = \\left(1 - \\tfrac{2}{5}\\right)^{-1/2} = \\left(\\tfrac{3}{5}\\right)^{-1/2} = \\sqrt{\\tfrac{5}{3}}",
@@ -242,6 +246,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Seventh mark. Square 1 + x = √(5/3), multiply by 3, and the left side is 3 + 6x + 3x². The 3x² + 6x asked for is sitting there.",
+        "memory_tip": "3x² + 6x is 3(1 + x)² − 3, so squaring 1 + x is enough. x itself is never needed.",
         "lines": [
           "(1 + x)² = 5/3",
           "3(1 + 2x + x²) = 5 ⇒ 3 + 6x + 3x² = 5",

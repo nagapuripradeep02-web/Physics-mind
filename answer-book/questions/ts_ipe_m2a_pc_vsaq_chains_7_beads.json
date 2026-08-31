@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Beads on a chain form a circle, so (n − 1)! arrangements; a chain can be turned over, so halve it: (n − 1)!/2.",
+        "memory_tip": "Rotations give (n − 1)!; turning the chain over pairs each arrangement with its mirror, so halve again.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (7 − 1)!/2 = 6!/2 = 720/2 = 360.",
+        "memory_tip": "6!/2 = 720/2 = 360. The halving is the mark.",
         "lines": [
           "Number of chains = (7 − 1)!/2 = 6!/2 = 720/2",
           {
