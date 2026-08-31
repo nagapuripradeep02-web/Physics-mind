@@ -52,6 +52,7 @@
         "label": "Write both slopes",
         "marks": 1,
         "margin_note": "First mark. Read each slope off its coefficients as −a/b, keeping p as a letter in the second.",
+        "memory_tip": "Read each slope as −a/b, keeping p as a letter in the second.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "label": "Use the perpendicular condition",
         "marks": 1,
         "margin_note": "Second mark. Perpendicular lines have m₁m₂ = −1, and the two minus signs cancel to leave a short equation in p.",
+        "memory_tip": "m₁m₂ = −1, and the two minus signs cancel to leave a short equation in p.",
         "lines": [
           "If the two lines are perpendicular then  m₁m₂ = −1",
           "⇒ (−3/7)(7/p) = −1   ⇒   −3/p = −1   ⇒   3/p = 1",

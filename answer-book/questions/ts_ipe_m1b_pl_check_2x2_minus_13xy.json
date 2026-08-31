@@ -57,6 +57,7 @@
         "label": "Compare the coefficients",
         "marks": 1,
         "margin_note": "First mark. Every test that follows is written in a, h, b, g, f, c — so read all six off the given equation first, halving the ones the standard form doubles.",
+        "memory_tip": "Read all six of a, h, b, g, f, c off first, HALVING the ones the standard form doubles.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "label": "Test Δ = 0",
         "marks": 2,
         "margin_note": "Two marks. Δ = abc + 2fgh − af² − bg² − ch² is the master test — it is zero exactly when the equation factors into two lines.",
+        "memory_tip": "Δ = abc + 2fgh − af² − bg² − ch² is the master test: zero exactly when it factors into two lines.",
         "lines": [
           "(i) Δ = abc + 2fgh − af² − bg² − ch²",
           "= 2(−7)(−6) + 2(23/2)(1/2)(−13/2) − 2(23/2)² − (−7)(1/2)² − (−6)(−13/2)²",
@@ -144,6 +146,7 @@
         "label": "Test the three inequalities",
         "marks": 2,
         "margin_note": "Two marks. Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL rather than complex. All four conditions together settle it.",
+        "memory_tip": "Δ = 0 alone is not enough — the three inequalities confirm the factors are REAL.",
         "lines": [
           "(ii) h² − ab = (−13/2)² − 2(−7) = 169/4 + 14 = (169 + 56)/4 = 225/4 > 0",
           "(iii) f² − bc = (23/2)² − (−7)(−6) = 529/4 − 42 = (529 − 168)/4 = 361/4 > 0",
@@ -185,6 +188,7 @@
         "label": "Find the point of intersection",
         "marks": 2,
         "margin_note": "The last two marks. The two lines meet at a point given directly by a formula in the same six coefficients — no factorising and no solving is needed.",
+        "memory_tip": "A formula in the same six coefficients gives the meeting point — no factorising, no solving.",
         "lines": [
           "Point of intersection  P = ((hf − bg)/(ab − h²), (gh − af)/(ab − h²))",
           "hf − bg = (−13/2)(23/2) − (−7)(1/2) = −299/4 + 14/4 = −285/4",
@@ -232,6 +236,7 @@
         "label": "Find the angle between them",
         "marks": 1,
         "margin_note": "One mark. The angle between the two lines of a pair comes from the same coefficients again — tanθ = 2√(h² − ab) / |a + b|, using the h² − ab already computed above.",
+        "memory_tip": "tan θ = 2√(h² − ab)/|a + b|, reusing the h² − ab already computed.",
         "lines": [
           "The angle between the pair is given by  tanθ = 2√(h² − ab) / |a + b|",
           "= 2√(225/4) / |2 + (−7)| = 2(15/2)/5 = 15/5 = 3",

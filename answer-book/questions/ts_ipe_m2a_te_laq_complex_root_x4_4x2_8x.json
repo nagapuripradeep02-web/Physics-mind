@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Conjugate pair",
         "margin_note": "First mark. The coefficients are real, so complex roots come in conjugate pairs: 2 − i√3 is a root too. Say why — the word 'real coefficients' is what earns the mark.",
+        "memory_tip": "Real coefficients force complex roots into pairs, so 2 − i√3 is a root too. Say 'real coefficients'.",
         "lines": [
           {
             "text": "Sol:",
@@ -105,6 +106,7 @@
         "marks": 2,
         "mark_note": "x² − 4x + 7",
         "margin_note": "Two marks. The pair's sum is 4 and product is 4 − 3i² = 7 (i² = −1, so −3i² = +3). The quadratic with these roots, x² − 4x + 7, divides f(x).",
+        "memory_tip": "Sum 4, product 4 − 3i² = 4 + 3 = 7. The factor x² − 4x + 7 has real coefficients.",
         "lines": [
           "Sum of the pair = (2 + i√3) + (2 − i√3) = 4",
           "Product = (2 + i√3)(2 − i√3) = 4 − 3i²",
@@ -149,6 +151,7 @@
         "marks": 2,
         "mark_note": "Long division",
         "margin_note": "Two marks. Divide x⁴ + 0x³ − 4x² + 8x + 35 by x² − 4x + 7. Each line: take the leading term, multiply the divisor, subtract. The remainder must be 0; the quotient is x² + 4x + 5.",
+        "memory_tip": "Write the missing 0x³ so the columns line up. The remainder must come out 0.",
         "lines": [
           "Divide f(x) by x² − 4x + 7:",
           "x² · (x² − 4x + 7) = x⁴ − 4x³ + 7x²",
@@ -194,6 +197,7 @@
         "marks": 2,
         "mark_note": "−2 ± i",
         "margin_note": "Last two marks. x² + 4x + 5 = 0 has discriminant 16 − 20 = −4, so √(−4) = 2i and the roots are −2 ± i. Box all four; the sum is 4 + (−4) = 0, matching the missing x³ term.",
+        "memory_tip": "√(−4) = 2i, so the last pair is −2 ± i. Box all four; they add to 0, matching the absent x³.",
         "lines": [
           "The other two roots solve x² + 4x + 5 = 0:",
           "x = (−4 ± √(16 − 20))/2 = (−4 ± √(−4))/2",

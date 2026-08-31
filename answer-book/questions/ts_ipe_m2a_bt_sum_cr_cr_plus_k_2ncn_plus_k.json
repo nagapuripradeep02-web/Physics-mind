@@ -68,6 +68,7 @@
         "marks": 2,
         "mark_note": "Two expansions",
         "margin_note": "First two marks. (1 + x)ⁿ in rising powers, and the SAME expansion written as (x + 1)ⁿ in falling powers. Both are the same polynomial; only the order of writing differs.",
+        "memory_tip": "Write the SAME expansion twice — rising as (1 + x)ⁿ and falling as (x + 1)ⁿ.",
         "lines": [
           {
             "text": "Sol:",
@@ -112,6 +113,7 @@
         "marks": 2,
         "mark_note": "(1 + x)²ⁿ",
         "margin_note": "Third and fourth marks. The product is (1 + x)ⁿ(x + 1)ⁿ = (1 + x)²ⁿ — the left side is a big bracket product, the right side a single binomial whose coefficients are ²ⁿCₖ.",
+        "memory_tip": "The product is (1 + x)ⁿ(x + 1)ⁿ = (1 + x)²ⁿ, whose coefficients are ²ⁿCₖ.",
         "lines": [
           "Multiplying (2) and (1):",
           "(C₀xⁿ + C₁xⁿ⁻¹ + … + Cₙ₋ᵣxʳ + … + Cₙ)",
@@ -151,6 +153,7 @@
         "marks": 2,
         "mark_note": "Coefficient of xⁿ⁺ʳ",
         "margin_note": "Fifth and sixth marks. On the left, xⁿ⁺ʳ comes from Cₖxⁿ⁻ᵏ (falling) times Cₖ₊ᵣxᵏ⁺ʳ (rising) for k = 0, 1, …, n − r. On the right it is ²ⁿCₙ₊ᵣ.",
+        "memory_tip": "On the left xⁿ⁺ʳ comes from Cₖxⁿ⁻ᵏ times Cₖ₊ᵣxᵏ⁺ʳ; on the right it is ²ⁿCₙ₊ᵣ.",
         "lines": [
           "Compare the coefficient of xⁿ⁺ʳ",
           "on both sides of (3):",
@@ -192,6 +195,7 @@
         "marks": 1,
         "mark_note": "Deductions",
         "margin_note": "Seventh mark. r = 0 makes every product a square; r = 1 makes the indices consecutive.",
+        "memory_tip": "Both deductions are substitutions, not new proofs: r = 0 for (i), r = 1 for (ii).",
         "lines": [
           "(i) Put r = 0: C₀² + C₁² + C₂² + … + Cₙ² = ²ⁿCₙ",
           "(ii) Put r = 1:",

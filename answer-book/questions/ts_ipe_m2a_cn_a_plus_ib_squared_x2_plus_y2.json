@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Modulus",
         "margin_note": "First mark. Do not expand. x² + y² is |x + iy|², so take the modulus of both sides: |(a + ib)²| = |a + ib|² = a² + b².",
+        "memory_tip": "x² + y² is |x + iy|², so take the modulus instead of expanding. |z²| = |z|² = a² + b².",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Square to remove the root on the right.",
+        "memory_tip": "Square to clear the root. The answer is (a² + b²)², not a² + b².",
         "lines": [
           "Squaring both sides:",
           {

@@ -49,6 +49,7 @@
         "label": "Write both slopes",
         "marks": 1,
         "margin_note": "First mark. Two lines are named, so two slopes are needed — one carries the unknown, the other is fully numeric.",
+        "memory_tip": "Two lines named, so two slopes — one carries the unknown, the other is fully numeric.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "label": "Equate the slopes and solve",
         "marks": 1,
         "margin_note": "Second mark. Parallel lines have EQUAL slopes, so setting the two equal gives y in one step.",
+        "memory_tip": "Parallel means EQUAL slopes, so setting them equal gives y in one step.",
         "lines": [
           "Take, m₁ = m₂  [∵ Given lines are parallel]",
           "⇒ y − 7 = 2   ⇒   y = 2 + 7",

@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Area from SIDES is the magnitude of their cross product — no halving. Both vectors have a missing component; write the zeros in.",
+        "memory_tip": "Area from SIDES is the plain magnitude of the cross product. Write the missing components as zeros.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,6 +105,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Area from adjacent SIDES has no factor of a half — that factor belongs to a triangle, and to the diagonals form.",
+        "memory_tip": "No factor of a half here — that belongs to a triangle and to the diagonals form.",
         "lines": [
           "Area = |a × b| = √(2² + 1² + 2²)",
           "= √(4 + 1 + 4) = √9 = 3",

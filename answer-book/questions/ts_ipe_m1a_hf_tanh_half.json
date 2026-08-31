@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Tanh⁻¹ has its own form, and it carries a HALF outside the logarithm — which is exactly where the 1/2 in the answer comes from.",
+        "memory_tip": "Tanh⁻¹x = (1/2)logₑ((1 + x)/(1 − x)). The HALF outside is where the 1/2 in the answer comes from.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The compound fraction simplifies: (1 + 1/2) over (1 − 1/2) is (3/2) over (1/2), which is 3.",
+        "memory_tip": "(3/2) divided by (1/2) is 3, not 3/2. Keep the half outside the logarithm.",
         "lines": [
           "∴ Tanh⁻¹(1/2) = (1/2) logₑ((1 + 1/2)/(1 − 1/2))",
           "= (1/2) logₑ((3/2)/(1/2))",

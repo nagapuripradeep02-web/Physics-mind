@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "α = −a/2, α² = b",
         "margin_note": "First mark. 'Equal roots' means BOTH roots of x² + ax + b = 0 are the common root α. Then sum α + α = −a gives α = −a/2, and product α·α = b gives α² = b. Two facts about α, both needed.",
+        "memory_tip": "Equal roots means BOTH roots are α: the sum 2α = −a gives α = −a/2, the product gives α² = b.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. α is also a root of x² + cx + d = 0: α² + cα + d = 0. Replace α² by b and α by −a/2: b − ac/2 + d = 0, so b + d = ac/2, and multiplying by 2 gives 2(b + d) = ac.",
+        "memory_tip": "Replace α² by b and α by −a/2 in the second equation, then multiply through by 2.",
         "lines": [
           "α is a root of x² + cx + d = 0:",
           "α² + cα + d = 0",

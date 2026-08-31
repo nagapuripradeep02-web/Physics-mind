@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Same division by cos11° as the twin, giving tan(45° + 11°) = tan56°.",
+        "memory_tip": "Divide top and bottom by cos11°, giving tan(45° + 11°) = tan56°.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark, and the point of the question. tan is positive in the third quadrant too, and the third-quadrant angle with the same tangent is 180° + 56°.",
+        "memory_tip": "tan is positive in the THIRD quadrant too, so the answer is 180° + 56° = 236°.",
         "lines": [
           "θ is in the third quadrant, and",
           "tan56° = tan(180° + 56°) = tan236°",

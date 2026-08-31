@@ -67,6 +67,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Substitute the tangent forms of cos2θ and sin2θ, clear the denominator, and collect. What comes out is a quadratic in tanθ — which is the whole idea.",
+        "memory_tip": "Substitute the TANGENT forms of cos 2θ and sin 2θ, clear the denominator, and a quadratic in tanθ appears.",
         "lines": [
           {
             "text": "Sol:",
@@ -114,6 +115,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. For ax² + bx + c = 0 the sum of the roots is −b/a. Here that is −(−2b)/(c+a), which is 2b/(c+a).",
+        "memory_tip": "Sum is −B/A, and B is −2b here, so the answer is +2b/(c + a).",
         "lines": [
           "This is a quadratic in tanθ with roots tanθ₁, tanθ₂.",
           "Sum of the roots of Ax² + Bx + C = 0 is −B/A:",
@@ -156,6 +158,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. The product is C/A. Then tan(θ₁+θ₂) uses the compound formula, and the (c+a) cancels top and bottom, leaving b/a.",
+        "memory_tip": "Put the 1 over the common denominator (c + a) before subtracting; then (c + a) cancels and b/a is left.",
         "lines": [
           "Product of the roots is C/A:",
           "tanθ₁ · tanθ₂ = (c − a)/(c + a)",

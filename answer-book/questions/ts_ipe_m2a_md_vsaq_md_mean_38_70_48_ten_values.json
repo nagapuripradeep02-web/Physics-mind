@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Mean",
         "margin_note": "First mark. Ten values that add to exactly 500, so the mean is 50. The sum is written on two rows because it does not fit on one.",
+        "memory_tip": "Add in two groups of five, 238 and 262, then 500/10 = 50. A round sum is a sign the addition is right.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Ten absolute deviations from 50, in the given order: 12, 20, 2, 10, 8, 5, 13, 4, 4, 6. Sum 84, divide by n = 10. 84/10 = 8.4.",
+        "memory_tip": "Drop every sign before adding: with signs the deviations from the mean always total 0. 84/10 = 8.4.",
         "lines": [
           "|xᵢ − x̄| : 12, 20, 2, 10, 8, 5, 13, 4, 4, 6",
           "Σ|xᵢ − x̄| = 84",

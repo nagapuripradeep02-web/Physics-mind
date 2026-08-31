@@ -68,6 +68,7 @@
         "marks": 2,
         "mark_note": "Distribution",
         "margin_note": "First two marks. Say what X is (the number on the face), list its values 1 to 6, and give each the probability 1/6. A fair die is what makes all six probabilities equal — write that the die is fair or unbiased.",
+        "memory_tip": "A FAIR die gives all six faces the same 1/6. Say the die is fair — that is what makes them equal.",
         "lines": [
           {
             "text": "Sol:",
@@ -121,6 +122,7 @@
         "marks": 2,
         "mark_note": "Mean",
         "margin_note": "Two marks. Mean μ = Σxᵢ·P(X = xᵢ) = (1/6)(1 + 2 + 3 + 4 + 5 + 6) = 21/6 = 7/2. Factor the 1/6 out; the sum 1 + 2 + … + 6 = 21 is the only arithmetic.",
+        "memory_tip": "Factor the 1/6 out: (1/6)(1 + 2 + … + 6) = 21/6 = 7/2. A mean no face shows is still correct.",
         "lines": [
           {
             "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
@@ -166,6 +168,7 @@
         "marks": 3,
         "mark_note": "Variance",
         "margin_note": "Three marks. Variance σ² = Σxᵢ²·P(X = xᵢ) − μ² = (1/6)(1 + 4 + 9 + 16 + 25 + 36) − (7/2)² = 91/6 − 49/4. The common denominator is 12: (182 − 147)/12 = 35/12.",
+        "memory_tip": "σ² = Σxᵢ²P − μ², and it subtracts μ² = 49/4, not μ. Over 12: (182 − 147)/12 = 35/12.",
         "lines": [
           {
             "text": "Variance σ² = Σxᵢ²·P(X = xᵢ) − μ²",

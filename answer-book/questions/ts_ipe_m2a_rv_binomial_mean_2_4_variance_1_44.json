@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "n, p, q",
         "margin_note": "First mark. Divide variance by mean: q = 1.44/2.4 = 0.6 = 3/5, so p = 2/5, and n = 2.4/(2/5) = 6. Convert to fifths at once — the powers in the next step are all over 5.",
+        "memory_tip": "Variance over mean gives q, NOT p: 1.44/2.4 = 3/5. Convert to fifths at once.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 1 < X ≤ 4 keeps X = 2, 3, 4 — three terms. Each is ⁶Cᵣ (3/5)⁶⁻ʳ (2/5)ʳ; put everything over 5⁶ = 15625: 15·81·4 + 20·27·8 + 15·9·16 = 4860 + 4320 + 2160 = 11340. Reduce by 5 to 2268/3125.",
+        "memory_tip": "1 < X ≤ 4 keeps X = 2, 3, 4 — three terms. Put everything over 5⁶ = 15625.",
         "lines": [
           "P(X = r) = ⁶Cᵣ (3/5)⁶⁻ʳ (2/5)ʳ",
           "P(1 < X ≤ 4) = P(X = 2) + P(X = 3) + P(X = 4)",

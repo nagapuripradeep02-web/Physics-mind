@@ -60,6 +60,7 @@
         "marks": 2,
         "mark_note": "Mod-amp form",
         "margin_note": "First and second marks. For 1 + i: r = √(1 + 1) = √2 and tan θ = 1, so θ = π/4, with x and y both positive. The √2 outside the bracket is what produces the power of 2 in the answer.",
+        "memory_tip": "r = √(1 + 1) = √2 and θ = π/4, both x and y positive. r is not 1 — it is what makes the power of 2.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 2,
         "mark_note": "De Moivre",
         "margin_note": "Third and fourth marks. The power 2n goes on both parts: (√2)²ⁿ = 2ⁿ, and the angle becomes 2n · π/4 = nπ/2. Raise the modulus as an ordinary real number and multiply the angle by the same power.",
+        "memory_tip": "The power 2n goes on both parts: (√2)²ⁿ = 2ⁿ, and 2n · π/4 = nπ/2.",
         "lines": [
           "(1 + i)²ⁿ = [√2(cos π/4 + i sin π/4)]²ⁿ",
           "= (√2)²ⁿ [cos(2n · π/4) + i sin(2n · π/4)]",
@@ -150,6 +152,7 @@
         "marks": 1,
         "mark_note": "Conjugate",
         "margin_note": "Fifth mark. 1 − i is the conjugate of 1 + i, so raising it to 2n gives the same 2ⁿ with the sine sign reversed. Label it (2); nothing is recomputed.",
+        "memory_tip": "1 − i is the conjugate of 1 + i, so the same 2ⁿ with the sine sign reversed.",
         "lines": [
           "Similarly,",
           "(1 − i)²ⁿ = 2ⁿ [cos(nπ/2) − i sin(nπ/2)] …(2)"
@@ -190,6 +193,7 @@
         "marks": 2,
         "mark_note": "Result",
         "margin_note": "Sixth and seventh marks. Adding (1) and (2) cancels the i sin terms and doubles the cosine: 2ⁿ · 2 cos(nπ/2). Combine the powers of 2 into 2ⁿ⁺¹.",
+        "memory_tip": "Adding cancels the sines and doubles the cosine: 2ⁿ · 2 = 2ⁿ⁺¹.",
         "lines": [
           "Adding (1) and (2):",
           "(1 + i)²ⁿ + (1 − i)²ⁿ = 2ⁿ · 2 cos(nπ/2)",

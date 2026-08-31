@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Product",
         "margin_note": "First mark. Both real parts and the i² term are negative here, so the real part is −8 − 30 = −38. Watch the signs on every product.",
+        "memory_tip": "30i² = −30, so the real part is −8 − 30 = −38. Both real contributions are negative here.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Keep −38, flip −8i to +8i.",
+        "memory_tip": "Keep the real part, flip only the i term: −38 − 8i becomes −38 + 8i.",
         "lines": [
           "The conjugate of a + ib is a − ib.",
           {

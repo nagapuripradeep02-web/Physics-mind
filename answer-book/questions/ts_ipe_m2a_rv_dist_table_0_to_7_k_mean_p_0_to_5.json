@@ -80,6 +80,7 @@
         "marks": 3,
         "mark_note": "k",
         "margin_note": "Three marks. The sum of the probabilities is a QUADRATIC in k this time: 10k² + 9k − 1 = 0. Factor it — (10k − 1)(k + 1) — and reject k = −1 in words, because a probability cannot be negative. The rejection is a marked line, not a footnote.",
+        "memory_tip": "The lone k inside 7k² + k is easy to drop — the k terms add to 9k, not 8k. Reject k = −1 in writing.",
         "lines": [
           {
             "text": "Sol:",
@@ -152,6 +153,7 @@
         "marks": 2,
         "mark_note": "Mean",
         "margin_note": "Two marks. Mean μ = Σxᵢ·P(X = xᵢ). The x = 0 term is 0, so start from 1(k). Collect the k terms (30k) and the k² terms (66k²) separately, then put k = 1/10: 3 + 0.66 = 3.66.",
+        "memory_tip": "Collect the k terms (30k) and the k² terms (66k²) separately. Note 66k² = 66/100, not 66/10.",
         "lines": [
           {
             "text": "Mean μ = Σxᵢ·P(X = xᵢ)",
@@ -200,6 +202,7 @@
         "marks": 2,
         "mark_note": "Probability",
         "margin_note": "Last two marks. 0 < X < 5 means X = 1, 2, 3, 4 — both ends are EXCLUDED. Add those four probabilities: k + 2k + 2k + 3k = 8k = 4/5. Including X = 0 changes nothing here (its probability is 0), but including X = 5 is wrong.",
+        "memory_tip": "0 < X < 5 means X = 1, 2, 3, 4 — BOTH ends excluded. That is k + 2k + 2k + 3k = 8k.",
         "lines": [
           "(iii) P(0 < X < 5)",
           "= P(X = 1) + P(X = 2) + P(X = 3) + P(X = 4)",

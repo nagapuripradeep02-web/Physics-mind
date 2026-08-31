@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. cos²A − sin²B = cos(A+B)cos(A−B). The halves add and subtract cleanly: 52½ + 22½ = 75 and 52½ − 22½ = 30.",
+        "memory_tip": "cos²A − sin²B = cos(A+B)cos(A−B). The halves add and subtract cleanly to 75° and 30°.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. cos75° = (√3 − 1)/(2√2) and cos30° = √3/2. Multiply and simplify.",
+        "memory_tip": "cos75° = (√3 − 1)/(2√2) and cos30° = √3/2. Multiply and simplify.",
         "lines": [
           "cos75° = (√3 − 1)/(2√2),  cos30° = √3/2",
           "= [(√3 − 1)/(2√2)] × [√3/2]",

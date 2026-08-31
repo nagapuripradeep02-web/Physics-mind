@@ -72,6 +72,7 @@
         "label": "Clear the line to = 1",
         "marks": 1,
         "margin_note": "First mark. Move everything so the line reads (something)/(constant) = 1. Nothing else in the method works until the line is in that form.",
+        "memory_tip": "Divide by k so the line reads = 1 before anything else.",
         "lines": [
           {
             "text": "Sol:",
@@ -114,6 +115,7 @@
         "label": "Write the homogenised equation",
         "marks": 1,
         "margin_note": "Second mark. Raise every term of the curve to degree two: the linear terms are multiplied by that 1 once, and the constant term by it TWICE. The second-degree terms are left alone.",
+        "memory_tip": "Linear terms multiplied by the 1 once, the constant twice; second-degree terms left alone.",
         "lines": [
           "Given curve is 2x² − 2xy + 3y² + 2x − y − 1 = 0  ……(2)",
           "Homogenising (1) & (2), we get",
@@ -155,6 +157,7 @@
         "label": "Simplify to ax² + 2hxy + by² = 0",
         "marks": 3,
         "margin_note": "Two marks. Expand everything and collect. The result must have no constant and no linear term — if either survives, a term was homogenised wrongly.",
+        "memory_tip": "No constant and no linear term may survive the collection.",
         "lines": [
           "⇒ [k²(2x² − 2xy + 3y²) + k(2x² + 4xy) − k(xy + 2y²) − (x² + 4y² + 4xy)] / k² = 0",
           "⇒ k²(2x² − 2xy + 3y²) + k(2x² + 4xy) − k(xy + 2y²) − (x² + 4y² + 4xy) = 0",
@@ -195,6 +198,7 @@
         "label": "Solve the perpendicular condition",
         "marks": 3,
         "margin_note": "The last three marks. Adding the two squared coefficients kills every k-term except the squares, which is why a messy expansion still ends in a two-line solve. The xy coefficient is never used.",
+        "memory_tip": "Adding the two squared coefficients kills every k-term except the squares. The xy coefficient is never used.",
         "lines": [
           "If this pair of lines are perpendicular then",
           "Coeff. x² + Coeff. y² = 0",

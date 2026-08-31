@@ -53,6 +53,7 @@
         "label": "Set up the orthocentre",
         "marks": 1,
         "margin_note": "First mark. The orthocentre is where the three altitudes meet. An altitude runs through one vertex PERPENDICULAR to the opposite side, so every altitude needs two things: a point and a perpendicular slope.",
+        "memory_tip": "Altitudes meet at the orthocentre; each is a vertex plus the opposite side's perpendicular.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "label": "Draw the triangle",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. Two altitudes are enough to fix O — the third passes through the same point on its own. The right-angle mark is the whole definition of an altitude.",
+        "memory_tip": "Two altitudes are enough — the third is automatic.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That a triangle ABC is sketched with two altitudes drawn and their meeting point marked O. Naming the drawing is full credit — it cannot be spoken.",
@@ -229,6 +231,7 @@
         "label": "First altitude through A",
         "marks": 2,
         "margin_note": "Two marks. Three moves in order: slope of the OPPOSITE side, flip-and-negate it for the perpendicular, then the point-slope form through the vertex.",
+        "memory_tip": "Slope of the OPPOSITE side first, then flip and negate, then point-slope.",
         "lines": [
           "Step-1: Finding altitude through A(−5, −7):",
           "Slope of BC is m = (6 − 2)/(−5 − 13) = 4/(−18) = −2/9",
@@ -272,6 +275,7 @@
         "label": "Second altitude through B",
         "marks": 2,
         "margin_note": "Two marks. The same three moves from a different vertex. Two altitudes are enough — the third passes through their intersection automatically.",
+        "memory_tip": "Repeat from another vertex.",
         "lines": [
           "Step-2: Finding altitude through B(13, 2):",
           "A(−5, −7) and C(−5, 6) share x = −5, so AC is a VERTICAL line",
@@ -314,6 +318,7 @@
         "label": "Solve the pair",
         "marks": 3,
         "margin_note": "The last three marks. Two linear equations, one point. Like the circumcentre, this point may lie outside the triangle when the triangle is obtuse.",
+        "memory_tip": "Two linear equations, one point.",
         "lines": [
           "Step-3: Solving (1), (2), we get O;",
           "(1) ⇒ 9x − 2y + 31 = 0;   (2) ⇒ y = 2",

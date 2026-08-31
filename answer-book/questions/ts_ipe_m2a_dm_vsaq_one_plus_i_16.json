@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Mod-amp form",
         "margin_note": "First mark. Take √2 out of 1 + i and it leaves 1/√2 + i/√2 = cos π/4 + i sin π/4. The modulus is √2, not 2, and the angle is π/4, not π/2.",
+        "memory_tip": "Take √2 out to leave cos π/4 + i sin π/4. The angle is π/4, not π/2.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (√2)¹⁶ = 2⁸ = 256, and the angle becomes 16 · π/4 = 4π, where cos 4π = 1 and sin 4π = 0. So the value is 256.",
+        "memory_tip": "(√2)¹⁶ = 2⁸ = 256, and 16 · π/4 = 4π — two full turns, so cos = 1 and sin = 0.",
         "lines": [
           "(1 + i)¹⁶ = (√2)¹⁶ (cos π/4 + i sin π/4)¹⁶",
           "= 2⁸ (cos 4π + i sin 4π)",

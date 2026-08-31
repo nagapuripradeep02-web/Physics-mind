@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "f(−x) = 0",
         "margin_note": "First mark. New roots −α ⇒ α = −x, so the required equation is f(−x) = 0. Even powers keep their sign, odd powers change it.",
+        "memory_tip": "New roots −α means α = −x, so the equation is f(−x) = 0. Even powers keep their sign.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (−x)⁴ = x⁴, (−x)³ = −x³, −x stays. Only the x³ and x terms change sign.",
+        "memory_tip": "(−x)⁴ = x⁴ and (−x)³ = −x³. The x² term is missing, so exactly two signs flip.",
         "lines": [
           {
             "text": "∴ x⁴ − 5x³ − 11x + 3 = 0",

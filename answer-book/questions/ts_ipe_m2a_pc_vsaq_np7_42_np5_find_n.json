@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. ⁿP₇ = n(n − 1)…(n − 6) and ⁿP₅ = n(n − 1)…(n − 4). Their ratio leaves (n − 5)(n − 6).",
+        "memory_tip": "ⁿP₇ contains ⁿP₅ as its first five factors, so dividing leaves just (n − 5)(n − 6).",
         "lines": [
           {
             "text": "Sol:",
@@ -104,6 +105,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (n − 5)(n − 6) = 7 · 6, two consecutive numbers, so n − 5 = 7 and n = 12.",
+        "memory_tip": "42 = 7 × 6, two consecutive numbers. The LARGER is n − 5, so n = 12, not 13.",
         "lines": [
           "(n − 5)(n − 6) = 7 · 6",
           "n − 5 = 7",

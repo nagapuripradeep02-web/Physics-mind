@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "f(x/2) = 0",
         "margin_note": "First mark. If the new roots are 2α, then x = 2α ⇒ α = x/2, so the required equation is f(x/2) = 0. Write each power of x/2 with its denominator.",
+        "memory_tip": "Doubling the roots means HALVING the variable: f(x/2), not f(2x).",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Multiply through by 2⁵ = 32 to clear every denominator: 32 · (1/8) = 4, 32 · (3/8) = 12, 32 · (1/2) = 16, 32 · 2 = 64, 32 · 3 = 96.",
+        "memory_tip": "Multiply by 2⁵ = 32 to clear every denominator, the constant included: 32 × 3 = 96.",
         "lines": [
           "Multiply by 2⁵ = 32:",
           {

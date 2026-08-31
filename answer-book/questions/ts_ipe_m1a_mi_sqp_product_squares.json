@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "nth factor",
         "margin_note": "First mark. The denominators are 1, 4, 9 — the squares — so the nth factor is 1 + (2n+1)/n².",
+        "memory_tip": "The denominators 1, 4, 9 are the squares, so the nth factor is 1 + (2n+1)/n² = (n+1)²/n².",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 1,
         "mark_note": "Base case",
         "margin_note": "Second mark. n = 1 gives the single factor 1 + 3/1 = 4, and (1+1)² = 4.",
+        "memory_tip": "n = 1 gives the single factor 1 + 3/1 = 4, and (1 + 1)² = 4.",
         "lines": [
           "For n = 1: L.H.S = 1 + 3/1 = 4",
           "R.H.S = (1+1)² = 2² = 4",
@@ -146,6 +148,7 @@
         "marks": 1,
         "mark_note": "Hypothesis",
         "margin_note": "Third mark. The hypothesis, written as a numbered equation.",
+        "memory_tip": "The hypothesis, written as a numbered equation.",
         "lines": [
           "Assume S(k) is true for some k ∈ N:",
           "(1 + 3/1)(1 + 5/4) … (1 + (2k+1)/k²) = (k+1)²   …(1)"
@@ -184,6 +187,7 @@
         "marks": 4,
         "mark_note": "Inductive step",
         "margin_note": "Four marks. MULTIPLY both sides by the (k+1)th factor, which is (k+2)²/(k+1)². The (k+1)² cancels against the hypothesis exactly.",
+        "memory_tip": "This is a PRODUCT, so MULTIPLY both sides by (k+2)²/(k+1)². The (k+1)² cancels exactly.",
         "lines": [
           "The (k+1)th factor is (1 + (2k+3)/(k+1)²) = (k+2)²/(k+1)²",
           "Multiplying both sides of (1) by it:",
@@ -226,6 +230,7 @@
         "marks": 1,
         "mark_note": "P.M.I.",
         "margin_note": "Last mark. Name the principle.",
+        "memory_tip": "Name the principle in one sentence.",
         "lines": [
           "S(1) is true, and S(k) true ⇒ S(k+1) true.",
           {

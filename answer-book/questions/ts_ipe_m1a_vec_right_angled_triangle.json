@@ -54,6 +54,7 @@
         "marks": 1,
         "mark_note": "Side vectors",
         "margin_note": "First mark. Go round the triangle: AB, then BC, then CA. Going round means each vector ends where the next begins, so none of the three sides is missed.",
+        "memory_tip": "Go round the triangle: AB, BC, CA. Each vector ends where the next begins, so none is missed.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "label": "Draw the triangle",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. The right angle sits at C, between the two SHORTER sides — the sketch is what shows which side is the hypotenuse before Pythagoras is applied to it.",
+        "memory_tip": "The sketch shows which side is the hypotenuse before Pythagoras is applied to it.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That triangle ABC is sketched with the right angle marked at C. Naming the drawing is full credit — it cannot be spoken.",
@@ -203,6 +205,7 @@
         "marks": 1,
         "mark_note": "Lengths",
         "margin_note": "Second mark. Square each component, add, take the root. Leave the answers as surds — squaring them again in the next step is easier from √41 than from 6.4.",
+        "memory_tip": "Leave the answers as surds — squaring back is easier from √41 than from 6.4.",
         "lines": [
           "|AB| = √((−1)² + (−2)² + (−6)²) = √(1+4+36) = √41",
           "|BC| = √(2² + (−1)² + 1²) = √(4+1+1) = √6",
@@ -244,6 +247,7 @@
         "marks": 1,
         "mark_note": "The relation",
         "margin_note": "Third mark. Square the three lengths and look for the one that equals the sum of the other two. Here 41 = 6 + 35, so AB is the hypotenuse.",
+        "memory_tip": "Square all three and look for the one equal to the sum of the other two: 41 = 6 + 35.",
         "lines": [
           "|AB|² = 41",
           "|BC|² + |CA|² = 6 + 35 = 41",
@@ -285,6 +289,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Name the conclusion, and it is worth naming WHERE the right angle is: opposite the longest side, so at C.",
+        "memory_tip": "Name WHERE the right angle is — opposite the longest side, so at C.",
         "lines": [
           "The relation holds, so the angle opposite AB is 90°.",
           {

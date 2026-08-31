@@ -74,6 +74,7 @@
         "label": "Take the locus point",
         "marks": 0,
         "margin_note": "No mark of its own. A and B are the fixed ends of the base; P is the vertex that moves.",
+        "memory_tip": "A and B are fixed; P is the moving vertex.",
         "lines": [
           {
             "text": "Sol:",
@@ -116,6 +117,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The area of a triangle from three coordinate pairs is the half-determinant form. Writing it with the given area on the right earns the mark.",
+        "memory_tip": "The half-determinant area form, with the given 9 on the right.",
         "lines": [
           "Given condition: area of △PAB = 9 sq.units",
           {
@@ -158,6 +160,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. The determinant rows are differences of coordinates, so the moving point (x, y) enters as the third pair. Expand the 2×2 determinant as a cross product of diagonals.",
+        "memory_tip": "Expand the 2×2 determinant as a cross product of its diagonals.",
         "lines": [
           "Here (x₁, y₁) = (5, 3), (x₂, y₂) = (3, −2), (x₃, y₃) = (x, y)",
           {
@@ -206,6 +209,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks, and the place this family differs from every other in the chapter. A modulus opens to PLUS OR MINUS, so there are TWO lines, and both are part of the locus. Write them as one product equal to zero.",
+        "memory_tip": "The modulus gives ±, so the locus is TWO lines, written as one product.",
         "lines": [
           "⇒ |5x − 2y − 19| = 18   ⇒   5x − 2y − 19 = ±18",
           "⇒ 5x − 2y − 37 = 0   (or)   5x − 2y − 1 = 0",

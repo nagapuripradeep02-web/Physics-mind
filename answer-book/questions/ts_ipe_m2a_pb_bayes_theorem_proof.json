@@ -80,6 +80,7 @@
         "marks": 1,
         "mark_note": "Statement",
         "margin_note": "First mark. Three conditions belong in the statement: E₁, …, Eₙ mutually exclusive, exhaustive, and A an event with P(A) ≠ 0. Then the formula.",
+        "memory_tip": "Three conditions belong in the statement: mutually exclusive, exhaustive, and P(A) ≠ 0.",
         "lines": [
           {
             "text": "Sol:",
@@ -144,6 +145,7 @@
         "marks": 2,
         "mark_note": "Definition of P(Eₖ|A)",
         "margin_note": "Two marks. P(Eₖ|A) = P(Eₖ ∩ A)/P(A) is the definition; the numerator is rewritten by the multiplication theorem as P(Eₖ)·P(A|Eₖ). This is equation (1) and it is what the rest of the proof completes.",
+        "memory_tip": "P(Eₖ|A) = P(Eₖ ∩ A)/P(A) is the definition; the multiplication theorem rewrites the numerator.",
         "lines": [
           {
             "text": "Proof: By the definition of conditional probability,",
@@ -202,6 +204,7 @@
         "marks": 3,
         "mark_note": "Total probability",
         "margin_note": "Three marks — the main step. Because the Eᵢ are exhaustive their union is S, and because they are mutually exclusive the pieces A ∩ Eᵢ are disjoint. So P(A) is the sum of P(A ∩ Eᵢ), and each piece is P(Eᵢ)·P(A|Eᵢ).",
+        "memory_tip": "Exhaustive makes the union S, mutually exclusive makes the pieces A ∩ Eᵢ disjoint. Start from A = A ∩ S.",
         "lines": [
           {
             "text": "E₁, …, Eₙ are mutually exclusive and exhaustive,",
@@ -273,6 +276,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Put (2) into the denominator of (1). The final line must match the statement exactly.",
+        "memory_tip": "Put (2) into the denominator of (1). The final denominator is the SUM, not P(A).",
         "lines": [
           {
             "text": "Substituting (2) in (1):",

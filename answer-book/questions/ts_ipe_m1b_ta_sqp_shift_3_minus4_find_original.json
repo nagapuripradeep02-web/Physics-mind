@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. This time the equation you are handed is the NEW one, so it is written in capital X and capital Y. Number it (1).",
+        "memory_tip": "The NEW equation is what was handed over, so it goes in capital X and Y.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark, and the one that separates this from its facing question. Going BACK to the original means X = x − h and Y = y − k — the signs are the other way round.",
+        "memory_tip": "Going back: X = x − h and Y = y − k. With k = −4 that gives Y = y + 4.",
         "lines": [
           "We take origin (h, k) = (3, −4), then",
           "X = x − h  ⇒  X = x − 3",
@@ -142,6 +144,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. Put those two lines into equation (1) — every capital X and capital Y is replaced by its small-letter expression.",
+        "memory_tip": "Replace every capital letter by its small-letter expression.",
         "lines": [
           "From (1), original equation is",
           "(x−3)² + (y+4)² − 4 = 0"
@@ -181,6 +184,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. Expand, collect and write the original equation in small x and small y. A capital letter left in the answer means a term was missed.",
+        "memory_tip": "Expand and collect into small x and y. Any capital left means a term was missed.",
         "lines": [
           "⇒ (x² − 6x + 9) + (y² + 8y + 16) − 4 = 0",
           {

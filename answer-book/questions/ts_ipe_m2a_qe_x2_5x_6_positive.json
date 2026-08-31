@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Roots and sign of a",
         "margin_note": "First mark. Factorise: x² − 5x + 6 = (x − 2)(x − 3), roots 2 and 3, real and distinct. a = 1 > 0. The rule: for x OUTSIDE the two roots the expression has the sign of a; between them, the opposite sign.",
+        "memory_tip": "Factorise to (x − 2)(x − 3), roots 2 and 3, with a = 1 > 0. Outside the roots the sign is a's.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Positive for x < 2 or x > 3. In interval form: (−∞, 2) ∪ (3, ∞), round brackets because at x = 2 and x = 3 the expression is zero, not positive.",
+        "memory_tip": "Positive for x < 2 or x > 3. Round brackets, and the join is 'or', never 'and'.",
         "lines": [
           "⇒ x² − 5x + 6 > 0 for x < 2 or x > 3",
           {

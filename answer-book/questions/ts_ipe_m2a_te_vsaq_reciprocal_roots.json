@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "f(1/x) = 0",
         "margin_note": "First mark. If α is a root of f(x) = 0 then 1/α is a root of f(1/x) = 0, so the required equation is f(1/x) = 0. Write it out with the powers of 1/x.",
+        "memory_tip": "If α is a root of f(x) = 0 then 1/α is a root of f(1/x) = 0. Write it out with powers of 1/x.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Multiply through by x⁴ to clear the fractions, then write the equation with a positive leading coefficient (multiply by −1) and powers in descending order.",
+        "memory_tip": "Multiply by x⁴ — the coefficients come out reversed. Then make the leading term positive.",
         "lines": [
           "Multiply by x⁴:",
           "1 − 3x + 7x² + 5x³ − 2x⁴ = 0",

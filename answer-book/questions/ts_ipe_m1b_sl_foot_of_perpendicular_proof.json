@@ -58,6 +58,7 @@
         "label": "Both slopes",
         "marks": 1,
         "margin_note": "First mark. Two slopes are needed — the one joining the two points, and the one of the given line. The second reads straight off the coefficients as −a/b.",
+        "memory_tip": "Two slopes: the one joining P and Q, and the line's own, which reads off as −a/b.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "label": "Draw P, the line and the foot",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. The picture carries the one fact the second half turns on: Q sits ON the line, so its coordinates satisfy the line's equation.",
+        "memory_tip": "The picture carries the fact the second half turns on: Q sits ON the line.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That P, the line and the foot Q are sketched, with Q lying on the line. Naming the drawing is full credit — it cannot be spoken.",
@@ -197,6 +199,7 @@
         "label": "Use the perpendicularity",
         "marks": 2,
         "margin_note": "Two marks. PQ meets the line at a right angle, so m₁m₂ = −1. Rearranged, that says (h − x₁)/a and (k − y₁)/b are EQUAL — and giving that common value the name r is what makes the rest of the proof short.",
+        "memory_tip": "m₁m₂ = −1 rearranges to say the two ratios are EQUAL — naming that common value r shortens everything.",
         "lines": [
           "Two lines are perpendicular ⇒ m₁m₂ = −1",
           "⇒ [(k − y₁)/(h − x₁)] · (−a/b) = −1   ⇒   [(k − y₁)/(h − x₁)](a/b) = 1",
@@ -238,6 +241,7 @@
         "label": "Write h and k through r",
         "marks": 2,
         "margin_note": "Two marks. Read (1) both ways round: each of h and k is now its P-coordinate plus a multiple of r. The point Q is pinned by the single number r.",
+        "memory_tip": "Each of h and k is its P-coordinate plus a multiple of r, so Q is pinned by one number.",
         "lines": [
           "∴ (h − x₁)/a = r  ⇒  h − x₁ = ar  ⇒  h = x₁ + ar",
           "   (k − y₁)/b = r  ⇒  k − y₁ = br  ⇒  k = y₁ + br"
@@ -276,6 +280,7 @@
         "label": "Find r from the condition",
         "marks": 3,
         "margin_note": "The last three marks, and the ONLY place this proof differs from its neighbour. The FOOT of the perpendicular lies ON the line, so its coordinates satisfy the line's equation — substitute and solve for r.",
+        "memory_tip": "The FOOT lies ON the line, so Q's own coordinates satisfy the equation. Substitute and solve for r.",
         "lines": [
           "But Q(h, k) lies on ax + by + c = 0",
           "⇒ ah + bk + c = 0",

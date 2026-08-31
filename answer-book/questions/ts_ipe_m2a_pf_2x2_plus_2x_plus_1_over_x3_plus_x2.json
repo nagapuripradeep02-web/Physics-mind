@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Form",
         "margin_note": "First mark. x³ + x² = x²(x + 1). The x² is a repeated factor (x twice), so it gives A/x + B/x², and (x + 1) gives C/(x + 1).",
+        "memory_tip": "x³ + x² = x²(x + 1). The repeated x needs BOTH A/x and B/x² — three fractions in all.",
         "lines": [
           {
             "text": "Sol:",
@@ -111,6 +112,7 @@
         "marks": 1,
         "mark_note": "Identity",
         "margin_note": "Second mark. Multiply by x²(x + 1). A keeps x(x + 1), B keeps (x + 1), C keeps x². Every term on the right is a polynomial.",
+        "memory_tip": "A keeps x(x + 1), B keeps (x + 1), C keeps x². Each term on the right is a polynomial.",
         "lines": [
           "Multiply by x²(x + 1):",
           "2x² + 2x + 1 = Ax(x + 1) + B(x + 1) + Cx²"
@@ -152,6 +154,7 @@
         "marks": 1,
         "mark_note": "A, B and C",
         "margin_note": "Third mark. x = 0 gives B, x = −1 gives C, and A comes from the x² coefficient: A + C = 2. The repeated factor has one root, so one constant must come from a coefficient.",
+        "memory_tip": "x = 0 gives B and x = −1 gives C. A must come from the x² coefficient: A + C = 2.",
         "lines": [
           "Put x = 0: 1 = B ⇒ B = 1",
           "Put x = −1: 2 − 2 + 1 = C(1) ⇒ C = 1",
@@ -196,6 +199,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. All three constants are 1, so the answer is 1/x + 1/x² + 1/(x + 1). Write the original fraction on the left.",
+        "memory_tip": "All three constants are 1. Check with x = 1: 5 = 2 + 2 + 1.",
         "lines": [
           "∴ (2x² + 2x + 1)/(x³ + x²)",
           {

@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Base",
         "margin_note": "First mark. Multiply above and below by 1 + i: the top becomes (1 + i)² = 2i and the bottom 1 + 1 = 2. The whole base is just i.",
+        "memory_tip": "(1 + i)² = 2i sits over 1 + 1 = 2, so the whole base collapses to i.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. i¹ = i, i² = −1, i³ = −i, i⁴ = 1 — the first power that gives 1 is the fourth.",
+        "memory_tip": "Powers of i repeat every four: i, −1, −i, 1. The first that gives 1 is n = 4.",
         "lines": [
           "So the condition is iⁿ = 1.",
           "i¹ = i, i² = −1, i³ = −i, i⁴ = 1",

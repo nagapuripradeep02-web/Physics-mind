@@ -60,6 +60,7 @@
         "marks": 3,
         "mark_note": "Table",
         "margin_note": "First three marks. Columns: class, frequency fᵢ, midpoint xᵢ, step deviation dᵢ = (xᵢ − 65)/10, its square dᵢ², and the two products fᵢdᵢ and fᵢdᵢ². The formula needs the two sums Σfᵢdᵢ = −15 and Σfᵢdᵢ² = 105. Note dᵢ² is never negative, so Σfᵢdᵢ² adds straight up.",
+        "memory_tip": "The last column is fᵢ × dᵢ², frequency times the square: 3 × 9 = 27, not (−9)² = 81.",
         "lines": [
           {
             "text": "Sol:",
@@ -143,6 +144,7 @@
         "marks": 3,
         "mark_note": "Variance",
         "margin_note": "Next three marks. The bracket is (mean of dᵢ²) − (mean of dᵢ)²: 105/50 = 2.1 and (−15/50)² = 0.09. Squaring removes the minus sign. The C² = 100 outside the bracket converts the variance of dᵢ back to the variance of marks.",
+        "memory_tip": "σ² = C²·[Σfᵢdᵢ²/N − (Σfᵢdᵢ/N)²]. The bracket gives 2.01; the C² = 100 outside is what makes it 201.",
         "lines": [
           "Variance σ² = C²·[Σfᵢdᵢ²/N − (Σfᵢdᵢ/N)²]",
           "= 100·[105/50 − (−15/50)²]",
@@ -186,6 +188,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. √201 = 14.177…, written 14.18. Standard deviation is the square root of the variance, in the same unit as the marks.",
+        "memory_tip": "√201 = 14.18. The variance is in marks squared; the square root brings it back to marks.",
         "lines": [
           "Standard deviation σ = √201 = 14.18",
           {

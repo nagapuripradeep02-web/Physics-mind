@@ -80,6 +80,7 @@
         "marks": 1,
         "mark_note": "Equation",
         "margin_note": "First mark (the book's own [1 Mark]). The three probabilities add to 1. Move the 1 across and order the powers: 3c³ − 10c² + 9c − 2 = 0. The constant term is −2, not −1 — the −1 from P(X = 2) and the −1 moved from the right side combine.",
+        "memory_tip": "The probabilities add to 1, so move that 1 across: the constant term is −2, not −1.",
         "lines": [
           {
             "text": "Sol:",
@@ -133,6 +134,7 @@
         "marks": 1,
         "mark_note": "Factors",
         "margin_note": "Second mark (book's [1 Mark]). The coefficients 3 − 10 + 9 − 2 add to 0, so c = 1 is a root. Synthetic division by 1 gives the quotient 3c² − 7c + 2, which factors as (c − 2)(3c − 1). Three roots: 1, 2, 1/3.",
+        "memory_tip": "The coefficients 3 − 10 + 9 − 2 add to 0, so c = 1 is a root. Divide it out, then factor the quadratic.",
         "lines": [
           "Sum of the coefficients: 3 − 10 + 9 − 2 = 0,",
           "so c = 1 is a root.",
@@ -178,6 +180,7 @@
         "marks": 1,
         "mark_note": "Accepted value",
         "margin_note": "Third mark (book's [1 Mark]). A probability lies between 0 and 1. Test each root against P(X = 2) = 5c − 1: c = 1 gives 4, c = 2 gives 9 — both impossible. c = 1/3 gives 1/9, 2/9, 2/3, all valid and adding to 1. Write the rejections; the mark is for the reason, not for the value.",
+        "memory_tip": "Test each root against a probability: c = 1 gives 4 and c = 2 gives 9, both impossible. Write the reason.",
         "lines": [
           "Every probability must lie between 0 and 1.",
           "c = 1 gives P(X = 2) = 5 − 1 = 4 > 1 — rejected.",
@@ -223,6 +226,7 @@
         "marks": 2,
         "mark_note": "(ii)",
         "margin_note": "Two marks (book's [2 Marks]). 0 < X < 3 with range {0, 1, 2} means X = 1 or 2. Add the two expressions first — (4c − 10c²) + (5c − 1) = 9c − 10c² − 1 — then put c = 1/3: 3 − 10/9 − 1 = 8/9.",
+        "memory_tip": "0 < X < 3 on {0, 1, 2} keeps X = 1 and 2. Add the expressions first, then put c = 1/3.",
         "lines": [
           "(ii) P(0 < X < 3) = P(X = 1) + P(X = 2)",
           "= (4c − 10c²) + (5c − 1) = 9c − 10c² − 1",
@@ -265,6 +269,7 @@
         "marks": 1,
         "mark_note": "(iii)",
         "margin_note": "One mark (book's [1 Mark]). 1 < X ≤ 2 keeps only X = 2 — the left end is excluded, the right end included. P(X = 2) = 5c − 1 = 5/3 − 1 = 2/3.",
+        "memory_tip": "1 < X ≤ 2 keeps only X = 2 — left end excluded, right end included.",
         "lines": [
           "(iii) P(1 < X ≤ 2) = P(X = 2) = 5c − 1",
           "= 5(1/3) − 1 = 5/3 − 1 = 2/3"
@@ -305,6 +310,7 @@
         "marks": 1,
         "mark_note": "(iv)",
         "margin_note": "Last mark (book's [1 Mark]). X < 1 keeps only X = 0. P(X = 0) = 3c³ = 3(1/27) = 1/9. As a check, the three probabilities 1/9, 2/9, 2/3 add to 1.",
+        "memory_tip": "X < 1 keeps only X = 0. 3(1/3)³ = 3/27 = 1/9; the three probabilities should add to 1.",
         "lines": [
           "(iv) P(X < 1) = P(X = 0) = 3c³",
           "= 3(1/3)³ = 3 · 1/27 = 1/9",

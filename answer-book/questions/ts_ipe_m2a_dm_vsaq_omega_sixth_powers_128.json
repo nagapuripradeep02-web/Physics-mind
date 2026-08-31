@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Reduce",
         "margin_note": "First mark. 1 + ω + ω² = 0 gives 1 + ω² = −ω and 1 + ω = −ω². So 1 − ω + ω² = −2ω and 1 + ω − ω² = −2ω²; each bracket has two equal terms, not one.",
+        "memory_tip": "1 + ω² = −ω and 1 + ω = −ω². Each bracket doubles: −2ω and −2ω², never −ω and −ω².",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (−2ω)⁶ + (−2ω²)⁶ = 64ω⁶ + 64ω¹² = 64(ω³)² + 64(ω³)⁴ = 64 + 64 = 128. An even power removes the minus sign.",
+        "memory_tip": "An even power removes the minus: 64ω⁶ + 64ω¹² = 64 + 64 = 128, since both are powers of ω³ = 1.",
         "lines": [
           "(1 − ω + ω²)⁶ + (1 + ω − ω²)⁶ = (−2ω)⁶ + (−2ω²)⁶",
           "= 64ω⁶ + 64ω¹² = 64(ω³)² + 64(ω³)⁴",

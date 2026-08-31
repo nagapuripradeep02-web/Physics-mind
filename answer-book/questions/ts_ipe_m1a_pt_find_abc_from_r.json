@@ -71,6 +71,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two of the eight marks. The three ex-radii determine the in-radius through 1/r = 1/r₁ + 1/r₂ + 1/r₃ — one of the standard results, quoted rather than derived.",
+        "memory_tip": "1/r = 1/r₁ + 1/r₂ + 1/r₃ — a standard result, quoted rather than derived.",
         "lines": [
           {
             "text": "Sol:",
@@ -116,6 +117,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two more marks. Δ = √(r r₁ r₂ r₃) is the standard result that turns four radii into an area; then s = Δ/r follows from r = Δ/s.",
+        "memory_tip": "Δ = √(r r₁ r₂ r₃) turns four radii into an area; then s = Δ/r follows from r = Δ/s.",
         "lines": [
           "We know Δ = √(r r₁ r₂ r₃)",
           "= √(4 × 8 × 12 × 24) = √(4 × 8 × (3×4) × (3×8))",
@@ -158,6 +160,7 @@
         "marks": 3,
         "mark_note": "Method",
         "margin_note": "Three marks. Each ex-radius names one side: r₁ = Δ/(s−a) gives s−a, and s is known — so a follows. Same for b and c.",
+        "memory_tip": "Each ex-radius names ONE side: r₁ gives s − a, and s is known, so a follows.",
         "lines": [
           "(i) r₁ = Δ/(s−a) ⇒ s − a = Δ/r₁ = 96/8 = 12",
           "  ∴ 24 − a = 12 ⇒ a = 12",
@@ -200,6 +203,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. A quick check worth doing: a + b + c should be 2s, and 12 + 16 + 20 = 48 = 2 × 24.",
+        "memory_tip": "Check a + b + c = 2s: 12 + 16 + 20 = 48 = 2 × 24.",
         "lines": [
           "Check: a + b + c = 12 + 16 + 20 = 48 = 2s ✓",
           {

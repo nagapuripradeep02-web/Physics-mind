@@ -79,6 +79,7 @@
         "marks": 1,
         "mark_note": "Formula",
         "margin_note": "First mark, and it is a mark for WRITING THE FORMULA — the book prints [1 Mark] against this line. Write it before touching any numbers.",
+        "memory_tip": "Writing the formula is itself a mark. Put it down before touching any numbers.",
         "lines": [
           {
             "text": "Sol:",
@@ -129,6 +130,7 @@
         "marks": 1,
         "mark_note": "a − c",
         "margin_note": "Second mark. Compare each line with r = a + tb: the standalone vector is the point, the one with the parameter is the direction. Then subtract the two points.",
+        "memory_tip": "Compare with r = a + tb: the standalone vector is the point, the one with the parameter is the direction.",
         "lines": [
           "Comparing with r = a + tb and r = c + sd:",
           "a = 6i + 2j + 2k,  b = i − 2j + 2k",
@@ -172,6 +174,7 @@
         "marks": 1,
         "mark_note": "b × d",
         "margin_note": "Third mark. b×d is perpendicular to BOTH directions — it is the direction of the common perpendicular, which is why the distance is measured along it.",
+        "memory_tip": "b×d is perpendicular to BOTH directions — the common perpendicular, which is where the distance is measured.",
         "lines": [
           {
             "text": "b \\times d = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 2 \\\\ 3 & -2 & -2 \\end{vmatrix}",
@@ -216,6 +219,7 @@
         "marks": 1,
         "mark_note": "Numerator",
         "margin_note": "Fourth mark. A dot product of the two results just found — the numerator of the formula, before the modulus.",
+        "memory_tip": "A dot product of the two results just found — the numerator, before the modulus.",
         "lines": [
           "(a − c)·(b × d) = (10i + 2j + 3k)·(8i + 8j + 4k)",
           "= 80 + 16 + 12 = 108"
@@ -255,6 +259,7 @@
         "marks": 1,
         "mark_note": "Denominator",
         "margin_note": "Fifth mark. The denominator. 64 + 64 + 16 = 144, a perfect square — which is why this question divides so cleanly.",
+        "memory_tip": "64 + 64 + 16 = 144, a perfect square, which is why this one divides cleanly.",
         "lines": [
           "|b × d| = √(8² + 8² + 4²)",
           "= √(64 + 64 + 16) = √144 = 12"
@@ -294,6 +299,7 @@
         "marks": 3,
         "mark_note": "Shortest distance",
         "margin_note": "The last three marks. 108 over 12 is 9 exactly. A distance is never negative, which is what the modulus in the formula guarantees.",
+        "memory_tip": "108 over 12 is 9 exactly. A distance is never negative — that is what the modulus guarantees.",
         "lines": [
           "S.D = |(a−c)·(b×d)| / |b×d|",
           "= 108 / 12",

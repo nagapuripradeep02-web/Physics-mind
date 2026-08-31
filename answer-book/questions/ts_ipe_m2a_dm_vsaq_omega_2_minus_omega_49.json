@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Reduce",
         "margin_note": "First mark. ω³ = 1, so ω¹⁰ = (ω³)³ · ω = ω and ω¹¹ = (ω³)³ · ω² = ω². The four brackets are then two repeated pairs, so the product is [(2 − ω)(2 − ω²)]².",
+        "memory_tip": "ω³ = 1, so ω¹⁰ = ω and ω¹¹ = ω². The four brackets are two repeated pairs.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (2 − ω)(2 − ω²) = 4 − 2(ω + ω²) + ω³ = 4 + 2 + 1 = 7, using ω + ω² = −1 and ω³ = 1. Square it for 49.",
+        "memory_tip": "(2 − ω)(2 − ω²) = 4 − 2(ω + ω²) + ω³ = 4 + 2 + 1 = 7. Then square it.",
         "lines": [
           "(2 − ω)(2 − ω²) = 4 − 2(ω + ω²) + ω³",
           "= 4 − 2(−1) + 1 = 7",

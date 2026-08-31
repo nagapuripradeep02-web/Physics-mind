@@ -57,6 +57,7 @@
         "label": "Clear the fractions",
         "marks": 1,
         "margin_note": "First mark. Normal form has no fractions, so the intercept form is cleared to ax + by = c shape before anything else.",
+        "memory_tip": "Normal form has NO fractions, so clear the intercept form to ax + by = c shape first.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "label": "Divide by √(a²+b²)",
         "marks": 1,
         "margin_note": "Second mark. Normal form needs the coefficients of x and y to square-and-add to 1, which is exactly what dividing by √(a²+b²) arranges.",
+        "memory_tip": "Divide by √(a²+b²) so the x and y coefficients square-and-add to 1.",
         "lines": [
           "On dividing by √(a² + b²), we get",
           "bx/√(a²+b²) + ay/√(a²+b²) = ab/√(a²+b²)"
@@ -139,6 +141,7 @@
         "label": "Read off cosα, sinα and p",
         "marks": 1,
         "margin_note": "Third mark. Compare with xcosα + ysinα = p term by term. Note that cosα takes b and sinα takes a — the letters cross over, because the x-intercept is a but the x-coefficient is b.",
+        "memory_tip": "The letters CROSS OVER: cos α takes b and sin α takes a, because the x-intercept is a but the x-coefficient is b.",
         "lines": [
           "This is in the normal form  xcosα + ysinα = p,  where",
           "cosα = b/√(a²+b²),   sinα = a/√(a²+b²)   and   p = ab/√(a²+b²)"
@@ -178,6 +181,7 @@
         "label": "Deduce the result",
         "marks": 1,
         "margin_note": "Last mark. Square p, invert it, and split the single fraction into two — the a² and b² separate because the numerator is a product.",
+        "memory_tip": "Square p, invert, and split the fraction — a² and b² separate because the numerator is a product.",
         "lines": [
           "So, p = ab/√(a²+b²)  ⇒  p² = a²b²/(a²+b²)",
           "⇒ 1/p² = (a² + b²)/(a²b²) = a²/(a²b²) + b²/(a²b²)",

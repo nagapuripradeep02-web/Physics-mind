@@ -50,6 +50,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks. cot(A/2) = s(s−a)/Δ is a standard result. The three terms share s/Δ, and the brackets add to 3s − 2s = s.",
+        "memory_tip": "cot(A/2) = s(s − a)/Δ. The three share s/Δ, and the brackets add to 3s − 2s = s.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 3,
         "mark_note": "Method",
         "margin_note": "Three marks — the longer half. Use cot = cos/sin, then the cosine rule on each numerator and Δ = ½bc sinA on each denominator. Everything lands over 4Δ.",
+        "memory_tip": "cot = cos/sin, then the cosine rule on top and Δ = ½bc sinA below. Everything lands over 4Δ.",
         "lines": [
           "In R.H.S, denominator = cotA + cotB + cotC",
           "= cosA/sinA + cosB/sinB + cosC/sinC",
@@ -138,6 +140,7 @@
         "marks": 3,
         "mark_note": "Conclusion",
         "margin_note": "The last three marks. Divide (1) by (2). The Δ cancels, and 4s² is (2s)² — which is (a+b+c)².",
+        "memory_tip": "The Δ cancels, and 4s² is (2s)² — which is (a + b + c)².",
         "lines": [
           "From (1) and (2), R.H.S = (s²/Δ) ÷ ((a²+b²+c²)/(4Δ))",
           "= 4s²/(a²+b²+c²)",

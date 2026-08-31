@@ -54,6 +54,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Bring everything to one side, then pair the two terms whose half-sum matches the third angle — here 2θ and 8θ average to 5θ, which is exactly the term left over.",
+        "memory_tip": "Bring everything to one side, then pair the two whose HALF-SUM matches the third: 2θ and 8θ average to 5θ.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. cos(−3θ) is cos3θ because cosine is even. Then cos5θ is common to both terms and comes out.",
+        "memory_tip": "cos(−3θ) = cos 3θ, since cosine is even. Then FACTOR out cos 5θ — cancelling it loses a whole family.",
         "lines": [
           "⇒ 2cos5θ cos3θ − cos5θ = 0",
           "  [∵ cos(−θ) = cosθ]",
@@ -140,6 +142,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. cosθ = 0 has its own general solution — (2n+1)π/2 — different from cosθ = cosα. Note the equation is in 5θ, so divide at the end.",
+        "memory_tip": "cos θ = 0 has its own solution, (2n + 1)π/2 — not the cos θ = cos α form. The equation is in 5θ, so divide at the end.",
         "lines": [
           "(i) If cos5θ = 0 then",
           "  5θ = (2n+1) π/2,  n ∈ Z",
@@ -183,6 +186,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. cos3θ = 1/2 = cos(π/3), so the cosine general solution applies — then divide through by 3.",
+        "memory_tip": "cos 3θ = 1/2 = cos(π/3), so θ = 2nπ ± α. Divide EVERY term by 3, the 2nπ included.",
         "lines": [
           "(ii) If 2cos3θ − 1 = 0 then cos3θ = 1/2 = cos(π/3)",
           "  Here α = π/3, and for cosθ = cosα, θ = 2nπ ± α",

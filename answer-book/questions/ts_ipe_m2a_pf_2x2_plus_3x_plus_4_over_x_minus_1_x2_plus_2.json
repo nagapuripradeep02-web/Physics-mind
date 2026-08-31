@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Form",
         "margin_note": "First mark. x² + 2 has no real factors (x² = −2 has no real solution), so it is an irreducible quadratic and gets the numerator Bx + C. The linear factor gets A.",
+        "memory_tip": "x² = −2 has no real solution, so x² + 2 is irreducible and takes Bx + C, never a constant.",
         "lines": [
           {
             "text": "Sol:",
@@ -114,6 +115,7 @@
         "marks": 1,
         "mark_note": "Identity",
         "margin_note": "Second mark. Multiply by (x − 1)(x² + 2). A keeps (x² + 2), (Bx + C) keeps (x − 1). Keep Bx + C in a bracket.",
+        "memory_tip": "A keeps (x² + 2), (Bx + C) keeps (x − 1). Keep the bracket around Bx + C.",
         "lines": [
           "Multiply by (x − 1)(x² + 2):",
           "2x² + 3x + 4 = A(x² + 2) + (Bx + C)(x − 1)"
@@ -154,6 +156,7 @@
         "marks": 1,
         "mark_note": "A, B and C",
         "margin_note": "Third mark. x = 1 gives A directly. x = 0 is not a root but it is an easy value: it gives 2A − C, hence C. Then compare x² for B. The book uses exactly these three lines.",
+        "memory_tip": "x = 1 gives A. Then x = 0 is not a root but is easy: it gives 2A − C, so watch that minus.",
         "lines": [
           "Put x = 1: 9 = A(3) ⇒ A = 3",
           "Put x = 0: 4 = 2A − C ⇒ C = 2",
@@ -197,6 +200,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. Bx + C = −x + 2, written as 2 − x. Write the original fraction on the left.",
+        "memory_tip": "B = −1 makes the numerator 2 − x, not x + 2. Check with x = 2: 18 = 18 + 0.",
         "lines": [
           "∴ (2x² + 3x + 4)/((x − 1)(x² + 2))",
           {

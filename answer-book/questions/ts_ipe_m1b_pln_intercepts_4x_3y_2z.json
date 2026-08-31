@@ -54,6 +54,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Intercept form needs 1 on the right, so the constant term goes across first and every term is then divided by it.",
+        "memory_tip": "Move the constant to the right, then divide every term by it so the right side becomes 1.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Once each term reads x over something, that something IS the intercept on that axis. Take care with signs — a negative intercept is perfectly normal.",
+        "memory_tip": "The denominator under each variable IS its intercept. Two come out negative here, which is fine.",
         "lines": [
           "⇒ x/(−1/2) + y/(−2/3) + z/1 = 1",
           "which is in the intercept form  x/a + y/b + z/c = 1",

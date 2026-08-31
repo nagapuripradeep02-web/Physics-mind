@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Cases",
         "margin_note": "First mark. In a committee of 5, a majority means 3 or more. So Indians 3, 4 or 5 with Americans 2, 1 or 0.",
+        "memory_tip": "In a committee of 5, a majority means 3 or more. So Indians 3, 4 or 5 — three cases, not one.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,6 +105,7 @@
         "marks": 2,
         "mark_note": "Counting",
         "margin_note": "Two marks. ⁶C₅ = 6, ⁶C₄ = 15, ⁶C₃ = 20; ⁵C₀ = 1, ⁵C₁ = 5, ⁵C₂ = 10. Multiply within each case.",
+        "memory_tip": "Multiply within a case: ⁶C₅·⁵C₀, ⁶C₄·⁵C₁, ⁶C₃·⁵C₂. Note ⁵C₀ = 1, not 0.",
         "lines": [
           "Case 1: ⁶C₅ · ⁵C₀ = 6 · 1 = 6",
           "Case 2: ⁶C₄ · ⁵C₁ = 15 · 5 = 75",
@@ -145,6 +147,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. 6 + 75 + 200 = 281.",
+        "memory_tip": "The cases are different committees, so ADD: 6 + 75 + 200 = 281.",
         "lines": [
           {
             "text": "∴ number of ways = 6 + 75 + 200 = 281",

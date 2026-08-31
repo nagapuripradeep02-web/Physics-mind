@@ -58,6 +58,7 @@
         "label": "Slope to cosθ and sinθ",
         "marks": 1,
         "margin_note": "First mark, printed in the book's margin. The parametric form needs cosθ and sinθ, not the slope — and from tanθ = 3/4 the 3-4-5 triangle gives both at once with no calculator.",
+        "memory_tip": "The parametric form needs cos θ and sin θ. From tan θ = 3/4 the 3-4-5 triangle gives both with no calculator.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "label": "Write the parametric point",
         "marks": 1,
         "margin_note": "Second mark, also printed. The two points sit at distance 5 on EITHER side of (3,2), so the ± is written into the parametric form from the start.",
+        "memory_tip": "The two points sit on EITHER side, so write the ± into the parametric form from the start.",
         "lines": [
           "Given distance |r| = 5",
           "Given point (x₁, y₁) = (3, 2)",
@@ -145,6 +147,7 @@
         "label": "State both required points",
         "marks": 2,
         "margin_note": "The last two marks, printed as '2 Marks'. Take the signs TOGETHER — both plus, then both minus. Mixing them gives points that are not on the line.",
+        "memory_tip": "Take the signs TOGETHER — both plus, then both minus. Mixing them gives points off the line.",
         "lines": [
           "Taking both upper signs:  (3 + 4, 2 + 3) = (7, 5)",
           "Taking both lower signs:  (3 − 4, 2 − 3) = (−1, −1)",

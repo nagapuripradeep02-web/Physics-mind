@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "f(x + 2) = 0",
         "margin_note": "First mark. A translate by −2 means each new root is (old root − 2), so x = α − 2 ⇒ α = x + 2 and the required equation is f(x + 2) = 0. The sign is the mark: translate by −2 means REPLACE x by x + 2.",
+        "memory_tip": "Translate by −2 means REPLACE x by x + 2 — the sign is opposite to the shift.",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Expand each bracket and add like powers: x³: 8 − 5 = 3; x²: 24 − 30 + 7 = 1; x: 32 − 60 + 28 − 4 = −4; constant: 16 − 40 + 28 − 8 + 5 = 1.",
+        "memory_tip": "(x + 2)⁴ uses 1, 4, 6, 4, 1 times powers of 2: 1, 8, 24, 32, 16. Then add like powers.",
         "lines": [
           "(x + 2)⁴ = x⁴ + 8x³ + 24x² + 32x + 16",
           "−5(x + 2)³ = −5x³ − 30x² − 60x − 40",

@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "First diagonal",
         "margin_note": "First mark. AC = AB + BC, and in a parallelogram BC = AD because those two sides are equal and parallel.",
+        "memory_tip": "AC = AB + BC, and in a parallelogram BC = AD because those sides are equal and parallel.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "label": "Draw the parallelogram",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. The two dashed lines are the DIAGONALS, AC and BD — the angle asked for is θ where they cross, not the angle between the sides AB and AD that were given.",
+        "memory_tip": "The angle asked for is where the DIAGONALS cross, not the angle between the given sides.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That parallelogram ABCD is sketched with both diagonals drawn and the angle between them marked. Naming the drawing is full credit — it cannot be spoken.",
@@ -239,6 +241,7 @@
         "marks": 1,
         "mark_note": "Second diagonal",
         "margin_note": "Second mark. AB + BD = AD, so BD = AD − AB. The order matters: it is the far end minus the near end.",
+        "memory_tip": "BD = AD − AB: the far end minus the near end. The order matters.",
         "lines": [
           "AB + BD = AD ⇒ BD = AD − AB",
           "= (i − 2k) − (3i − 2j + 2k)",
@@ -279,6 +282,7 @@
         "marks": 2,
         "mark_note": "Angle",
         "margin_note": "Half the marks. cos θ = (AC·BD)/(|AC||BD|). The dot product is negative, so the answer is an obtuse angle — that is correct, not a slip.",
+        "memory_tip": "The dot product is negative, so the angle is obtuse — that is correct, not a slip.",
         "lines": [
           "AC·BD = 4(−2) + (−2)(2) + 0(−4) = −8 − 4 = −12",
           "|AC| = √(16 + 4) = √20 = 2√5",

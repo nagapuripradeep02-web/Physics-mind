@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. A bijection from A onto A pairs each element with a different element and uses all 7 — an arrangement of the 7 elements: ⁷P₇ = 7!.",
+        "memory_tip": "One-one and onto together mean the map just rearranges A, so it is ⁷P₇ = 7!.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 7! = 5040.",
+        "memory_tip": "7! = 5040. The 720 answer is 6!, one factor short.",
         "lines": [
           "7! = 7 · 6 · 5 · 4 · 3 · 2 · 1",
           {

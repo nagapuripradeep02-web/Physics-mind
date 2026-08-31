@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Take the three points in pairs and apply the distance formula, which in three dimensions carries a third squared difference. Leave every answer in surd form.",
+        "memory_tip": "Three pairs, three distances, each with a third squared difference. Keep them as surds.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Three points are collinear exactly when the two SHORTER distances add to the longest — the middle point then lies on the segment joining the other two.",
+        "memory_tip": "√14 + 2√14 = 3√14, so the two shorter add to the longest and the points are collinear.",
         "lines": [
           "Now, AB + BC = √14 + 2√14 = 3√14 = AC",
           {

@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "α = 1",
         "margin_note": "First mark. Neither equation can be solved on its own, so write both with the common root α and SUBTRACT: the α² terms cancel and (b − c)α + (c − b) = 0, i.e. (b − c)(α − 1) = 0. With b ≠ c, α = 1.",
+        "memory_tip": "SUBTRACT the two equations so α² cancels: (b − c)(α − 1) = 0, and b ≠ c gives α = 1.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Put α = 1 back into either equation: 1 + b + c = 0, which is the required result. One line, but it is the line the question asks for — write it.",
+        "memory_tip": "Put α = 1 back into either equation: 1 + b + c = 0. That one line is the asked result.",
         "lines": [
           "Put α = 1 in (1): 1 + b + c = 0",
           {

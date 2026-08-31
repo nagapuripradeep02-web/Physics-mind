@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Beads on a chain form a circle, so (n − 1)! arrangements; and a chain can be turned over, so clockwise and anticlockwise are the same chain — halve it: (n − 1)!/2.",
+        "memory_tip": "A circle gives (n − 1)!, and a chain can be turned over, so halve it: (n − 1)!/2.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (6 − 1)!/2 = 5!/2 = 120/2 = 60.",
+        "memory_tip": "5!/2 = 120/2 = 60. The 120 is the round-table answer, not the chain answer.",
         "lines": [
           "Number of chains = (6 − 1)!/2 = 5!/2 = 120/2",
           {

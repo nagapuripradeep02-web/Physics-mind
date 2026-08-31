@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "(x − 2)(x − 3)(x − 6)",
         "margin_note": "First mark. Monic means the leading coefficient is 1, so the equation is just the product of (x − root) for each root.",
+        "memory_tip": "Monic means the leading coefficient is 1, so the equation is just the product of (x − root).",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Multiply two brackets first, then the third. The coefficients are −S₁, +S₂, −S₃: 11, 36, 36.",
+        "memory_tip": "Multiply two brackets first. The coefficients are −S₁, +S₂, −S₃: 11, 36, 36.",
         "lines": [
           "(x − 2)(x² − 9x + 18) = 0",
           "x³ − 9x² + 18x − 2x² + 18x − 36 = 0",

@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Write 2·¹⁰C₄ as ¹⁰C₄ + ¹⁰C₄ and group (¹⁰C₅ + ¹⁰C₄) + (¹⁰C₄ + ¹⁰C₃); each bracket is a Pascal pair.",
+        "memory_tip": "Split 2·¹⁰C₄ into two copies, one for each neighbour. Each bracket is then a Pascal pair.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ¹¹C₅ + ¹¹C₄ = ¹²C₅ = (12·11·10·9·8)/(1·2·3·4·5) = 792.",
+        "memory_tip": "¹¹C₅ + ¹¹C₄ = ¹²C₅ = (12·11·10·9·8)/(1·2·3·4·5) = 792. Divide by 120, not 24.",
         "lines": [
           "= ¹²C₅ = (12·11·10·9·8)/(1·2·3·4·5)",
           {

@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Replace every square with its value before doing anything else — the pattern in the question is a distraction, not a shortcut.",
+        "memory_tip": "Replace every square with its value first — the pattern in the question is a distraction, not a shortcut.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. No zeros here, so all three terms are needed. The middle term carries a minus sign, and all three minors come out negative.",
+        "memory_tip": "No zeros here, so all three terms are needed, and the middle one carries a minus.",
         "lines": [
           "Expanding along R₁:",
           "= 1(225 − 256) − 4(100 − 144) + 9(64 − 81)",

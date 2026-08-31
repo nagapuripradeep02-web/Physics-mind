@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Factor 2 out so the bracket reads (1 + 3x/2); the negative fractional index changes nothing about the condition.",
+        "memory_tip": "Factor the 2 out first, so the bracket reads (1 + 3x/2). The condition is |3x/2| < 1.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. |3x/2| < 1 gives |x| < 2/3.",
+        "memory_tip": "|x| < 2/3, an OPEN interval — square brackets lose the mark.",
         "lines": [
           "|x| < 2/3",
           {

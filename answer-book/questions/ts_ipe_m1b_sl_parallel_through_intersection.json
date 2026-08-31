@@ -57,6 +57,7 @@
         "label": "Find the required slope",
         "marks": 1,
         "margin_note": "First mark. The new line is parallel to a given line, so its slope is fixed before any point is known. Read the given slope off the coefficients as −a/b, and use the same value.",
+        "memory_tip": "PARALLEL means the same slope, fixed before any point is known. Read it off as −a/b.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "label": "Solve for the point",
         "marks": 1,
         "margin_note": "Second mark. The new line passes through the meeting point of two OTHER lines, so solve that pair. This half is independent of the slope work above.",
+        "memory_tip": "Solve the OTHER pair of lines for the point. This half is independent of the slope work.",
         "lines": [
           "Given  x − 2y − 3 = 0 ……(1),  x + 3y − 6 = 0 ……(2)",
           "Solving (1) & (2) we get P",
@@ -142,6 +144,7 @@
         "label": "Write the point-slope form",
         "marks": 1,
         "margin_note": "Third mark. With a point and a slope, the point-slope form y − y₁ = m(x − x₁) writes the line in one line.",
+        "memory_tip": "With a point and a slope, y − y₁ = m(x − x₁) writes the line in one line.",
         "lines": [
           "∴ Point of intersection is P(21/5, 3/5)",
           "∴ Line through P(21/5, 3/5) with slope −3/4 is",
@@ -185,6 +188,7 @@
         "label": "Simplify to the line",
         "marks": 1,
         "margin_note": "Last mark. Clear the fractions and collect into ax + by + c = 0 form.",
+        "memory_tip": "Clear the fractions and collect into ax + by + c = 0.",
         "lines": [
           {
             "text": "∴ Required line is 3x + 4y − 15 = 0",

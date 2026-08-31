@@ -55,6 +55,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two of the eight marks. r is given here, so Δ = √(r r₁ r₂ r₃) can be used immediately — no reciprocal step needed.",
+        "memory_tip": "r is given here, so Δ = √(r r₁ r₂ r₃) can be used at once — no reciprocal step needed.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 4,
         "mark_note": "Method",
         "margin_note": "Four marks — the bulk. Same pairing as the twin: r₁ with a, r₂ with b, r₃ with c.",
+        "memory_tip": "The pairing is fixed: r₁ with a, r₂ with b, r₃ with c.",
         "lines": [
           "(i) r₁ = Δ/(s−a) ⇒ s − a = Δ/r₁ = 6/2 = 3",
           "  ∴ 6 − a = 3 ⇒ a = 3",
@@ -141,6 +143,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "The last two marks. Check against 2s, and note the shape: 3, 4, 5 is the right-angled triangle, which is worth remarking on.",
+        "memory_tip": "Check against 2s, and note the shape — 3, 4, 5 is the right-angled triangle.",
         "lines": [
           "Check: a + b + c = 3 + 4 + 5 = 12 = 2s ✓",
           {

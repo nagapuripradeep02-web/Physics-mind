@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The equation you are handed is the ORIGINAL one, so it is the one written in small x and small y. Number it (1) — the last step refers back to it.",
+        "memory_tip": "The ORIGINAL equation, in small x and y.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. A shift of origin to (−1, 2) means x = X + h and y = Y + k. Substituting the numbers gives the two lines to carry forward.",
+        "memory_tip": "Forward shift: x = X + h and y = Y + k, so x = X − 1 and y = Y + 2.",
         "lines": [
           "We take new origin (h, k) = (−1, 2), then",
           "x = X + h  ⇒  x = X − 1",
@@ -141,6 +143,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. Put those two lines into equation (1). Every x and every y goes, including the ones inside brackets and squares.",
+        "memory_tip": "Substitute into every term, squares included.",
         "lines": [
           "From (1), transformed equation is",
           "2(X−1)² + (Y+2)² − 4(X−1) + 4(Y+2) = 0"
@@ -180,6 +183,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. Expand, collect and read off the transformed equation in capital X and capital Y. The answer must be written in the NEW letters, never mixed with the old ones.",
+        "memory_tip": "Write the answer in the NEW letters only — never mixed with the old ones.",
         "lines": [
           "⇒ 2(X² − 2X + 1) + (Y² + 4Y + 4) − 4X + 4 + 4Y + 8 = 0",
           "⇒ 2X² − 4X + 2 + Y² + 4Y + 4 − 4X + 4 + 4Y + 8 = 0",

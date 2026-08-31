@@ -50,6 +50,7 @@
         "label": "Read off the coefficients",
         "marks": 1,
         "margin_note": "First mark. The triangle a line makes with BOTH axes has a formula of its own — Δ = c²/(2|ab|) — so the only setting-up needed is to compare with ax + by + c = 0.",
+        "memory_tip": "The triangle a line makes with BOTH axes has its own formula, Δ = c²/(2|ab|) — just compare coefficients.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "label": "Solve for a",
         "marks": 1,
         "margin_note": "Second mark. Set the formula equal to the given area and solve — the modulus means the answer comes in a ± pair.",
+        "memory_tip": "Set the formula equal to the given area. The modulus means the answer comes as a ± pair.",
         "lines": [
           "Δ = c²/(2|ab|) = (−a)²/(2|(3)(4)|) = a²/24",
           "But given Area is 6",

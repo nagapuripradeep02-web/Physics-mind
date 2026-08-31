@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Both matrices are 2×3, so addition is defined. Add matching positions — nothing else happens.",
+        "memory_tip": "Both are 2×3, so addition is defined. Add matching positions — nothing else happens.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Watch the negatives: −1 + 1 = 0 and 8 + (−4) = 4.",
+        "memory_tip": "Watch the negatives: −1 + 1 = 0 and 8 + (−4) = 4.",
         "lines": [
           {
             "text": "A + B = \\begin{bmatrix} 3 & 3 & 0 \\\\ 9 & 4 & 4 \\end{bmatrix}",

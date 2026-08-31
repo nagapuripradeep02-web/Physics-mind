@@ -67,6 +67,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. One fraction, so the numerator can be worked on as a single expression.",
+        "memory_tip": "One fraction, so the numerator can be worked as a single expression.",
         "lines": [
           {
             "text": "Sol:",
@@ -110,6 +111,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark, and the idea of the question. Taking 2 out turns the coefficients into 1/2 and √3/2 — which are sin 30° and cos 30°.",
+        "memory_tip": "Taking 2 out makes the coefficients 1/2 and √3/2 — which are sin 30° and cos 30°.",
         "lines": [
           "= 2[(1/2)cos10° − (√3/2)sin10°] / (sin10° cos10°)",
           "= 2[sin30° cos10° − cos30° sin10°] / (sin10° cos10°)"
@@ -150,6 +152,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. sinA cosB − cosA sinB is sin(A−B), so the whole numerator collapses to 2 sin20°.",
+        "memory_tip": "sinA cosB − cosA sinB = sin(A−B), so the numerator collapses to 2 sin20°.",
         "lines": [
           "= 2 sin(30° − 10°) / (sin10° cos10°)",
           "  [∵ sinA cosB − cosA sinB = sin(A−B)]",
@@ -189,6 +192,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. sin20° is 2 sin10° cos10°, which is exactly the denominator — so everything cancels and only the numbers survive.",
+        "memory_tip": "sin20° = 2 sin10° cos10°, which IS the denominator — everything cancels and 4 survives.",
         "lines": [
           "= 2(2 sin10° cos10°) / (sin10° cos10°)",
           "  [∵ sin2θ = 2 sinθ cosθ]",

@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Events",
         "margin_note": "First mark. Two events for the two urns, one event for the colour seen. Name all three before writing any number.",
+        "memory_tip": "Do not reuse the letter B for both the urn and the black-ball event. Name all three.",
         "lines": [
           {
             "text": "Sol:",
@@ -122,6 +123,7 @@
         "marks": 1,
         "mark_note": "Priors",
         "margin_note": "Second mark. \"Selected at random\" between two urns means each urn has probability 1/2.",
+        "memory_tip": "The URN is chosen at random, not a ball, so each urn is 1/2 — not 5/12 and 7/12.",
         "lines": [
           {
             "text": "The urn is chosen at random, so",
@@ -167,6 +169,7 @@
         "marks": 1,
         "mark_note": "Conditional probabilities",
         "margin_note": "Third mark. Read each urn separately: B₁ has 3 black out of 5, B₂ has 4 black out of 7.",
+        "memory_tip": "Read each urn separately: 3 black of 5, and 4 black of 7.",
         "lines": [
           {
             "text": "P(B|E₁) = 3/5   (3 black of 5 in B₁)",
@@ -212,6 +215,7 @@
         "marks": 2,
         "mark_note": "Total probability",
         "margin_note": "Two marks. P(B) = P(E₁)·P(B|E₁) + P(E₂)·P(B|E₂). Keep the fractions exact: 3/10 + 2/7 = (21 + 20)/70 = 41/70.",
+        "memory_tip": "Keep the fractions exact: 3/10 + 2/7 over 70 is (21 + 20)/70 = 41/70.",
         "lines": [
           {
             "text": "By total probability,",
@@ -266,6 +270,7 @@
         "marks": 2,
         "mark_note": "Bayes' theorem",
         "margin_note": "Last two marks. P(E₁|B) = P(E₁)·P(B|E₁)/P(B) = (3/10)/(41/70). Divide by a fraction by multiplying by its reciprocal; 70/10 = 7 gives 21/41.",
+        "memory_tip": "The forward direction 3/5 is not the answer. Divide by multiplying by the reciprocal: (3/10)(70/41) = 21/41.",
         "lines": [
           {
             "text": "By Bayes' theorem,",

@@ -70,6 +70,7 @@
         "label": "Write the determinant",
         "marks": 0,
         "margin_note": "No mark of its own, but write it. Naming the left side Δ means every later line can start with '=' instead of copying the whole determinant again.",
+        "memory_tip": "Name the left side Δ so every later line can begin with '=' instead of recopying the determinant.",
         "lines": [
           {
             "text": "Sol:",
@@ -115,6 +116,7 @@
         "marks": 1,
         "mark_note": "Common factors",
         "margin_note": "The first mark. Column 1 is a, a², a³ — every entry has an a, so a comes out. Same for b in column 2 and c in column 3. This is the move that turns the powers into the standard pattern.",
+        "memory_tip": "Column 1 is a, a², a³ — every entry carries an a, so a comes out. Same for b and c.",
         "lines": [
           "Taking a, b, c common from C₁, C₂, C₃:",
           {
@@ -161,6 +163,7 @@
         "marks": 1,
         "mark_note": "Column operations",
         "margin_note": "Second mark. Subtracting column 1 from the other two puts two zeros in the top row. A determinant with two zeros in one row is cheap to expand, and that is the whole point of the move.",
+        "memory_tip": "Subtracting column 1 puts two zeros in the top row, which makes the expansion cheap.",
         "lines": [
           "C₂ → C₂ − C₁ and C₃ → C₃ − C₁:",
           {
@@ -206,6 +209,7 @@
         "marks": 1,
         "mark_note": "Difference of squares",
         "margin_note": "Third mark. b²−a² and c²−a² are differences of squares. Writing them as products is what exposes the (b−a) and (c−a) that come out on the next line.",
+        "memory_tip": "b²−a² and c²−a² are DIFFERENCES OF SQUARES — writing them as products exposes the brackets.",
         "lines": [
           "b² − a² = (b−a)(b+a),  c² − a² = (c−a)(c+a)",
           {
@@ -251,6 +255,7 @@
         "marks": 1,
         "mark_note": "Common factors again",
         "margin_note": "Fourth mark. Column 2 now has (b−a) in both non-zero entries and column 3 has (c−a). Both come out, and the determinant left behind is small enough to expand by eye.",
+        "memory_tip": "(b−a) comes out of column 2 and (c−a) out of column 3.",
         "lines": [
           "Taking (b−a) from C₂ and (c−a) from C₃:",
           {
@@ -296,6 +301,7 @@
         "marks": 1,
         "mark_note": "Expansion",
         "margin_note": "Fifth mark. The top row is 1, 0, 0, so only the first term survives. The minor is the bottom-right 2×2 block, and its value is (c+a)·1 − (b+a)·1.",
+        "memory_tip": "The top row is 1, 0, 0, so only the first term survives; the minor is the bottom-right 2×2.",
         "lines": [
           "Expanding along R₁ (only the 1 contributes):",
           "Δ = abc(b−a)(c−a)[(c+a)·1 − (b+a)·1]"
@@ -337,6 +343,7 @@
         "marks": 1,
         "mark_note": "Simplification",
         "margin_note": "Sixth mark. The a inside the bracket cancels: (c+a) − (b+a) = c − b. One line, but it is a marked line, so write it out rather than doing it in your head.",
+        "memory_tip": "The a inside cancels: (c+a) − (b+a) = c − b. Write the line out — it is marked.",
         "lines": [
           "(c + a) − (b + a) = c − b",
           "Δ = abc(b−a)(c−a)(c−b)"
@@ -376,6 +383,7 @@
         "marks": 2,
         "mark_note": "Required form",
         "margin_note": "Last two marks. The answer is already correct, but the question asked for (a−b)(b−c)(c−a). Flipping (b−a) to −(a−b) and (c−b) to −(b−c) uses two minus signs, and two minus signs cancel — so the value does not change.",
+        "memory_tip": "The answer is right but not in the asked form. Two sign flips turn (b−a)(c−b) into (a−b)(b−c).",
         "lines": [
           "(b−a) = −(a−b)  and  (c−b) = −(b−c)",
           "Two sign changes cancel each other.",

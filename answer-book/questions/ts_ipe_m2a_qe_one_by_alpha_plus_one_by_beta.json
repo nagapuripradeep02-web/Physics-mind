@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "α + β and αβ",
         "margin_note": "First mark. Two relations, written before anything else: α + β = −b/a and αβ = c/a. The minus sign belongs to the SUM only.",
+        "memory_tip": "α + β = −b/a and αβ = c/a, written before anything else. The minus belongs to the sum.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Combine the fractions: 1/α + 1/β = (β + α)/(αβ). Then (−b/a) ÷ (c/a) — the a's cancel — gives −b/c.",
+        "memory_tip": "1/α + 1/β = (α + β)/(αβ), never 1/(α + β). The a's cancel, leaving −b/c.",
         "lines": [
           "1/α + 1/β = (α + β)/(αβ)",
           "= (−b/a)/(c/a)",

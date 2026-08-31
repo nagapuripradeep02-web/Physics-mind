@@ -61,6 +61,7 @@
         "label": "Split the pair and match coefficients",
         "marks": 1,
         "margin_note": "First mark. A general pair splits into two general lines, each carrying its own constant — and those constants are what the perpendicular distances from the origin will use.",
+        "memory_tip": "A general pair splits into two lines each with its OWN constant — those constants do the work.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "label": "Write both perpendicular distances",
         "marks": 2,
         "margin_note": "Two marks. From the ORIGIN the distance formula collapses: putting (0,0) into |l x + m y + n| leaves only |n|. Both numerators are therefore single constants.",
+        "memory_tip": "From the ORIGIN the formula collapses: putting (0,0) in leaves only |n|.",
         "lines": [
           "The perpendicular distance from O(0,0) to line (1) is  p₁ = |n₁| / √(l₁² + m₁²)",
           "The perpendicular distance from O(0,0) to line (2) is  p₂ = |n₂| / √(l₂² + m₂²)"
@@ -146,6 +148,7 @@
         "label": "Multiply them together",
         "marks": 2,
         "margin_note": "Two marks. Multiply the two fractions. The numerator is immediately n₁n₂, which the dictionary already names; only the denominator needs work.",
+        "memory_tip": "The numerator is n₁n₂ straight away; only the denominator needs work.",
         "lines": [
           "∴ The product of the perpendiculars is",
           "p₁·p₂ = [|n₁| / √(l₁² + m₁²)] · [|n₂| / √(l₂² + m₂²)]",
@@ -187,6 +190,7 @@
         "label": "Convert to a, h, b and c",
         "marks": 3,
         "margin_note": "The last three marks. Add and subtract 2l₁l₂m₁m₂ under the root so it regroups as a difference of squares plus a square — the same rearrangement chapter answer 8 uses.",
+        "memory_tip": "Add and subtract 2l₁l₂m₁m₂ under the root so it regroups into a difference of squares plus a square.",
         "lines": [
           "= |c| / √((l₁l₂ − m₁m₂)² + 2l₁l₂m₁m₂ + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
           "= |c| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",

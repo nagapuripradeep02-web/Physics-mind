@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. 70° − 20° is 50°, which is the angle in the answer. Same backwards start as the twin.",
+        "memory_tip": "70° − 20° = 50°, the angle in the answer. Same backwards start as the twin.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 20° is 90° − 70°, so tan20° = cot70° and the product is 1 again. Denominator 2, then cross-multiply.",
+        "memory_tip": "20° = 90° − 70°, so tan20° = cot70° and the product is 1 again. Denominator 2, then cross-multiply.",
         "lines": [
           "tan20° = tan(90° − 70°) = cot70°",
           "⇒ (tan70° − tan20°)/(1 + tan70° cot70°) = tan50°",

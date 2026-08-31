@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Form",
         "margin_note": "First mark. Factorise the denominator first: x² − 3x + 2 = (x − 1)(x − 2), two different linear factors, so the form is one constant over each factor.",
+        "memory_tip": "Factorise first: x² − 3x + 2 = (x − 1)(x − 2). Over a LINEAR factor the numerator is a constant.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Identity",
         "margin_note": "Second mark. Multiply both sides by (x − 1)(x − 2). Each fraction loses its own factor and keeps the other one. The result is an identity: it is true for every value of x.",
+        "memory_tip": "Each fraction loses its own factor and keeps the other. A sits over (x − 1), so A keeps (x − 2).",
         "lines": [
           "Multiply both sides by (x − 1)(x − 2):",
           "3x + 7 = A(x − 2) + B(x − 1)"
@@ -144,6 +146,7 @@
         "marks": 1,
         "mark_note": "A and B",
         "margin_note": "Third mark. Put x = 2 to make the A term zero, then x = 1 to make the B term zero. One substitution gives one constant; there are no simultaneous equations here.",
+        "memory_tip": "One substitution gives one constant: x = 2 kills the A term, x = 1 kills the B term. No simultaneous equations.",
         "lines": [
           "Put x = 2: 6 + 7 = A(0) + B(1)",
           "⇒ B = 13",
@@ -188,6 +191,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. Put A and B back into the form from step 1 and write the left side again beside it. The book also writes −10/(x − 1) as 10/(1 − x); both are correct.",
+        "memory_tip": "A = −10 stays negative in the answer. Check with x = 0: 7 = 20 − 13.",
         "lines": [
           "∴ (3x + 7)/(x² − 3x + 2)",
           {

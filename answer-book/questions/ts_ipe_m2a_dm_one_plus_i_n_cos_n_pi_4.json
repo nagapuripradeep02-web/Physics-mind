@@ -72,6 +72,7 @@
         "marks": 2,
         "mark_note": "Mod-amp form",
         "margin_note": "First and second marks. For 1 + i: r = √(1 + 1) = √2 and tan θ = 1, so θ = π/4, with x and y both positive. The √2 outside the bracket is what produces the power of 2 in the answer.",
+        "memory_tip": "r = √2 and θ = π/4. The √2 outside the bracket is what produces the power of 2.",
         "lines": [
           {
             "text": "Sol:",
@@ -119,6 +120,7 @@
         "marks": 2,
         "mark_note": "De Moivre",
         "margin_note": "Third and fourth marks. The power n gives (√2)ⁿ and the angle nπ/4. Write (√2)ⁿ as 2 to the power n/2 on this line — the exponent in the final answer is built by adding to it.",
+        "memory_tip": "Write (√2)ⁿ as 2 to the power n/2 on this line — the final exponent is built by adding to it.",
         "lines": [
           "(1 + i)ⁿ = [√2(cos π/4 + i sin π/4)]ⁿ",
           {
@@ -170,6 +172,7 @@
         "marks": 1,
         "mark_note": "Conjugate",
         "margin_note": "Fifth mark. 1 − i is the conjugate of 1 + i, so raising it to n gives the same 2 to the power n/2 with the sine sign reversed. Label it (2); nothing is recomputed.",
+        "memory_tip": "Same modulus factor, sine sign reversed. Nothing is recomputed.",
         "lines": [
           "Similarly,",
           {
@@ -214,6 +217,7 @@
         "marks": 2,
         "mark_note": "Result",
         "margin_note": "Sixth and seventh marks. Adding (1) and (2) gives 2 to the power n/2 multiplied by 2 cos(nπ/4). Add the exponents: 1 + n/2 = (n + 2)/2, so the factor is 2 to the power (n + 2)/2, not 2ⁿ.",
+        "memory_tip": "Add the exponents, do not multiply: 1 + n/2 = (n + 2)/2, so the factor is 2^((n+2)/2), not 2ⁿ.",
         "lines": [
           "Adding (1) and (2):",
           {

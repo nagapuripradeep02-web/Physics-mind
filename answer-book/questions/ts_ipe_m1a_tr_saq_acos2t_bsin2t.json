@@ -50,6 +50,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. tanθ = b/a is a ratio of sine to cosine, so cross-multiplying gives a relation with no fraction in it — much easier to substitute.",
+        "memory_tip": "Cross-multiply tanθ = b/a into b cosθ = a sinθ — a relation with no fraction, easy to substitute.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Expand sin2θ as 2 sinθ cosθ, then spot the b cosθ inside it and swap it for a sinθ using the condition.",
+        "memory_tip": "Expand sin2θ = 2 sinθ cosθ, then spot the b cosθ inside and swap it for a sinθ.",
         "lines": [
           "L.H.S = a cos2θ + b sin2θ",
           "= a cos2θ + b(2 sinθ cosθ)",
@@ -137,6 +139,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Choose cos2θ = 1 − 2sin²θ, not the other forms — it is the one whose second term cancels what is already there.",
+        "memory_tip": "Choose cos2θ = 1 − 2sin²θ — the one form whose second term cancels what is already there.",
         "lines": [
           "= a(1 − 2sin²θ) + 2a sin²θ",
           "  [∵ cos2θ = 1 − 2sin²θ]",

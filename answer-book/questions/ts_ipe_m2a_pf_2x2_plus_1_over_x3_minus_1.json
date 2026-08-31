@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Form",
         "margin_note": "First mark. x³ − 1 = (x − 1)(x² + x + 1) by a³ − b³ = (a − b)(a² + ab + b²). The quadratic x² + x + 1 has no real factors, so it gets a LINEAR numerator Bx + C.",
+        "memory_tip": "x³ − 1 = (x − 1)(x² + x + 1) — the middle sign is PLUS. That quadratic has no real factors, so it takes Bx + C.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 1,
         "mark_note": "Identity",
         "margin_note": "Second mark. Multiply by (x − 1)(x² + x + 1). A keeps the quadratic, (Bx + C) keeps (x − 1). Keep Bx + C in a bracket; it is one numerator.",
+        "memory_tip": "A keeps the quadratic, (Bx + C) keeps (x − 1). Keep Bx + C bracketed; it is one numerator.",
         "lines": [
           "Multiply by (x − 1)(x² + x + 1):",
           "2x² + 1 = A(x² + x + 1) + (Bx + C)(x − 1)"
@@ -147,6 +149,7 @@
         "marks": 1,
         "mark_note": "A, B and C",
         "margin_note": "Third mark. Only one real root, x = 1, which gives A. B and C come from comparing coefficients: x² gives A + B, the constant term gives A − C.",
+        "memory_tip": "Only one real root, x = 1, gives A. The constant term on the right is A − C, not A + C.",
         "lines": [
           "Put x = 1: 3 = A(3) ⇒ A = 1",
           "Compare x²: A + B = 2 ⇒ B = 1",
@@ -191,6 +194,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. With B = 1 and C = 0 the second numerator is just x. Write the original fraction on the left.",
+        "memory_tip": "C = 0 is a correct value, so the second numerator is just x. Check with x = 2: 9 = 7 + 2.",
         "lines": [
           "∴ (2x² + 1)/(x³ − 1)",
           {

@@ -55,6 +55,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. cot(A/2) = s(s−a)/Δ is a standard result — quote it rather than deriving it. All three terms then share s/Δ.",
+        "memory_tip": "cot(A/2) = s(s − a)/Δ is standard — quote it. All three terms then share s/Δ.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "The other half. (s−a) + (s−b) + (s−c) is 3s − (a+b+c), and a+b+c is 2s — so the brackets collapse to s.",
+        "memory_tip": "(s−a) + (s−b) + (s−c) = 3s − 2s = s, so the brackets collapse to a single s.",
         "lines": [
           "= s[3s − (a + b + c)]/Δ",
           "= s[3s − 2s]/Δ   [∵ a + b + c = 2s]",

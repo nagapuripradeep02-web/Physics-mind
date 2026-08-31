@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The cross product of two vectors is perpendicular to both, so it is already the direction wanted — only its length needs fixing. Take 5 out.",
+        "memory_tip": "The cross product is already perpendicular to both, so only its length needs fixing. Take the 5 out.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The 5 cancels into the 35, leaving 7 in the denominator. Keep the ± — there are two unit normals, one each way.",
+        "memory_tip": "The 5 cancels into the 35, leaving 7 below. Keep the ± — there are two unit normals.",
         "lines": [
           "Required unit vector = ± (a × b)/|a × b|",
           "= ± 5(−3i + 2j − 6k)/35",

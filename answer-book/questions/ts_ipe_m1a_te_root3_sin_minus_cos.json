@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and the move that makes the whole family work. Dividing by √(a²+b²) forces the two coefficients to become a cosine and a sine of the same angle, so the left side collapses to ONE trig function.",
+        "memory_tip": "Divide by √(a² + b²) = 2. That forces both coefficients to become a sine and a cosine of one angle.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. √3/2 is cos30° and 1/2 is sin30°, so the left side is exactly the sin(A−B) pattern. The right side, 1/√2, is sin45°.",
+        "memory_tip": "√3/2 is cos 30° and 1/2 is sin 30° — that way round. The right side 1/√2 is sin 45°.",
         "lines": [
           "⇒ sinθ cos30° − cosθ sin30° = sin45°",
           "⇒ sinθ cos(π/6) − cosθ sin(π/6) = sin(π/4)"
@@ -145,6 +147,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. sinA cosB − cosA sinB is sin(A−B), so the equation becomes a single sine equal to a single sine. The principal value is then read off directly.",
+        "memory_tip": "sinA cosB − cosA sinB = sin(A − B), so the angle is θ − π/6 and the principal value is π/4.",
         "lines": [
           "⇒ sin(θ − π/6) = sin(π/4)",
           "  [∵ sinA cosB − cosA sinB = sin(A−B)]",
@@ -185,6 +188,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. For a SINE equation the general solution is nπ + (−1)ⁿα. Solve for θ, and leave the answer with n ∈ Z — an equation like this has infinitely many solutions.",
+        "memory_tip": "For a SINE equation it is nπ + (−1)ⁿα. Add the π/6 back, and write n ∈ Z.",
         "lines": [
           "For sinθ = sinα, the general solution is",
           "θ = nπ + (−1)ⁿ α,  n ∈ Z",

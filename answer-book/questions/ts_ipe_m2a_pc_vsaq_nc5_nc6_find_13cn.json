@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. State the identity. 5 ≠ 6, so the second case applies: n = 5 + 6 = 11.",
+        "memory_tip": "5 ≠ 6, so n = 5 + 6 = 11. State the identity before using it.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ¹³C₁₁ = ¹³C₂ = (13 · 12)/(1 · 2) = 78.",
+        "memory_tip": "Finish what was asked: ¹³C₁₁ = ¹³C₂ = (13 × 12)/2 = 78. n alone is not the answer.",
         "lines": [
           "¹³Cₙ = ¹³C₁₁ = ¹³C₂",
           {

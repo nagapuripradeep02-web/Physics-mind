@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Any 2 of the n vertices give a line, ⁿC₂; n of those lines are sides. Diagonals = ⁿC₂ − n = n(n − 3)/2.",
+        "memory_tip": "ⁿC₂ counts every join of two vertices, and n of those are sides. Diagonals = ⁿC₂ − n = n(n − 3)/2.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,6 +105,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 12 × 9/2 = 54.",
+        "memory_tip": "12 × 9/2 = 54. Check the other way: ¹²C₂ − 12 = 66 − 12 = 54.",
         "lines": [
           "= 12 · 9 / 2",
           {

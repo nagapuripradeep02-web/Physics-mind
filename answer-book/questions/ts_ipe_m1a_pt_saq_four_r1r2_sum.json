@@ -51,6 +51,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Each ex-radius is Δ over its own bracket, so each product is Δ² over a product of two brackets — and all three share Δ².",
+        "memory_tip": "Each ex-radius is Δ over its own bracket, so each product is Δ² over two brackets.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "The other half. The brackets add to s, and Δ² = s(s−a)(s−b)(s−c) means the bracket product IS Δ²/s — so everything cancels down to 4s².",
+        "memory_tip": "The brackets add to s, and Δ² = s(s−a)(s−b)(s−c) makes the bracket product Δ²/s.",
         "lines": [
           "= 4Δ² s / [(s−a)(s−b)(s−c)]   [∵ Σ(s−a) = 3s − 2s = s]",
           "Now Δ² = s(s−a)(s−b)(s−c) ⇒ (s−a)(s−b)(s−c) = Δ²/s",

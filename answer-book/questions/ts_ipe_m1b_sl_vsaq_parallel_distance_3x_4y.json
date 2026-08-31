@@ -50,6 +50,7 @@
         "label": "Match the coefficients",
         "marks": 1,
         "margin_note": "First mark, and the step the whole question turns on. The distance formula only works when BOTH lines carry the SAME a and b, so rescale one of them first.",
+        "memory_tip": "The formula only works when BOTH lines carry the SAME a and b — rescale one first.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "label": "Apply the distance formula",
         "marks": 1,
         "margin_note": "Second mark. With matched coefficients, the distance is |c₁ − c₂| over √(a² + b²).",
+        "memory_tip": "With matched coefficients the distance is |c₁ − c₂| over √(a² + b²).",
         "lines": [
           "∴ The distance between (1) & (2) is",
           "|c₁ − c₂| / √(a² + b²) = |−6 + 1| / √(6² + 8²)",

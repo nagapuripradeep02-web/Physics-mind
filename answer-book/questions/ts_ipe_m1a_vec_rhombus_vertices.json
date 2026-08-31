@@ -54,6 +54,7 @@
         "marks": 1,
         "mark_note": "Side vectors",
         "margin_note": "First mark. Take the points in the order given as A, B, C, D and go round: AB, BC, CD, DA. Order matters — a different order makes the same four points into a crossed shape.",
+        "memory_tip": "Take the points in the ORDER given and go round: AB, BC, CD, DA. A different order makes a crossed shape.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "label": "Draw the rhombus",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. The four tick marks say all four SIDES are equal; the two dashed diagonals are what must come out UNEQUAL. Equal sides alone would allow a square, so both halves of the check are in the picture.",
+        "memory_tip": "Four tick marks for the equal sides, two dashed diagonals for the unequal pair. Equal sides alone allow a square.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That rhombus ABCD is sketched with its four equal sides marked and both diagonals drawn. Naming the drawing is full credit — it cannot be spoken.",
@@ -244,6 +246,7 @@
         "marks": 1,
         "mark_note": "Equal sides",
         "margin_note": "Second mark. All four magnitudes come to 7 — and 4 + 9 + 36 = 49 every time, just with the numbers in a different order. Write all four out; three plus an assumption is not a proof.",
+        "memory_tip": "All four come to 7, because 4 + 9 + 36 = 49 every time. Write all four — three plus an assumption is not a proof.",
         "lines": [
           "|AB| = √(4+9+36) = √49 = 7",
           "|BC| = √(36+4+9) = √49 = 7",
@@ -286,6 +289,7 @@
         "marks": 1,
         "mark_note": "Diagonals",
         "margin_note": "Third mark, and the half students skip. The diagonals are AC and BD — corner to opposite corner, not side to side. They must come out UNEQUAL, or the figure is a square.",
+        "memory_tip": "The diagonals are AC and BD, corner to OPPOSITE corner. They must come out unequal, or it is a square.",
         "lines": [
           "AC = OC − OA = −4i − 5j + 9k",
           "  |AC| = √(16+25+81) = √122",
@@ -330,6 +334,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. State both findings together — equal sides and unequal diagonals — because it is the pair of them that names the shape.",
+        "memory_tip": "State both findings together — equal sides AND unequal diagonals is what names the shape.",
         "lines": [
           "All four sides are equal and the diagonals are unequal.",
           {

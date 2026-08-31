@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and the book says so outright: writing the formula earns a mark by itself. The +5 shifts the graph sideways and the +7 lifts it — neither changes how often it repeats.",
+        "memory_tip": "Period of cos(kx + l) = 2π/|k|. The +5 shifts sideways and the +7 lifts — neither changes the period.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Here k = 3, and the modulus keeps the answer positive whatever the sign of k.",
+        "memory_tip": "k = 3, and the modulus keeps the answer positive whatever the sign of k.",
         "lines": [
           "Here k = 3",
           {

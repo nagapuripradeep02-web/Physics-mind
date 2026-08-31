@@ -63,6 +63,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Multiply row by column, keeping k as a letter. The top-left entry is 2(2) + 4(−1) = 0 already, which is a useful check that the setup is right.",
+        "memory_tip": "Multiply row by column keeping k as a letter. The top-left comes to 0 already — a useful check.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. A² = O means EVERY entry is zero. The top-right entry gives k straight away; check that the same k also kills the others.",
+        "memory_tip": "A² = O means EVERY entry is zero. The top-right gives k; check the same k kills the others.",
         "lines": [
           "A² = O means every entry is 0:",
           "8 + 4k = 0  ⇒  4k = −8  ⇒  k = −2",

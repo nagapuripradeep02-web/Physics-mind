@@ -50,6 +50,7 @@
         "label": "Write both slopes",
         "marks": 1,
         "margin_note": "First mark. Read each slope off its coefficients as −a/b. The second carries k, which the parallel condition will fix.",
+        "memory_tip": "Read each slope off its coefficients as −a/b; the second carries k.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,6 +94,7 @@
         "label": "Equate the slopes",
         "marks": 1,
         "margin_note": "Second mark. Parallel lines have equal slopes, so setting m₁ = m₂ gives k at once.",
+        "memory_tip": "Parallel means EQUAL slopes, so m₁ = m₂ gives k at once.",
         "lines": [
           "If the two lines are parallel then  m₁ = m₂",
           "⇒ 3/5 = k/5   ⇒   k = 3",

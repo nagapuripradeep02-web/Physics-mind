@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. A² means A × A. The matrix is diagonal, so each diagonal entry simply squares and the off-diagonal entries stay 0.",
+        "memory_tip": "A² means A × A. The matrix is diagonal, so each diagonal entry squares and the off-diagonals stay 0.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark, and the point of the question. i² = −1, so the matrix becomes −1 on the diagonal — which is exactly −I.",
+        "memory_tip": "i² = −1, so the diagonal becomes −1 — which is exactly −I.",
         "lines": [
           "Since i² = −1:",
           {

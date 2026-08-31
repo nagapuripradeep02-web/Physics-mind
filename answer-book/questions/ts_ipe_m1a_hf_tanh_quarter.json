@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Same formula as the twin.",
+        "memory_tip": "Tanh⁻¹x = (1/2)logₑ((1 + x)/(1 − x)) — the plus on top, the minus below, and a half outside.",
         "lines": [
           {
             "text": "Sol:",
@@ -87,6 +88,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (1 + 1/4) over (1 − 1/4) is (5/4) over (3/4). The quarters cancel and 5/3 survives — a fraction, not a whole number.",
+        "memory_tip": "(5/4) divided by (3/4): the quarters cancel and 5/3 survives — a fraction, not a whole number.",
         "lines": [
           "∴ Tanh⁻¹(1/4) = (1/2) logₑ((1 + 1/4)/(1 − 1/4))",
           "= (1/2) logₑ((5/4)/(3/4))",

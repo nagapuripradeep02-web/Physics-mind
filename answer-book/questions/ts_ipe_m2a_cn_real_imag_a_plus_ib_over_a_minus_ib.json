@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Rationalise",
         "margin_note": "First mark. The conjugate of the denominator a − ib is a + ib, the same as the numerator, so the top becomes (a + ib)² and the bottom a² + b².",
+        "memory_tip": "The conjugate a + ib is the numerator itself, so the top becomes (a + ib)² and the bottom a² + b².",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. (a + ib)² = a² + 2abi + i²b² = (a² − b²) + 2abi. Divide each part by a² + b².",
+        "memory_tip": "i²b² = −b². The imaginary part is 2ab/(a² + b²), reported with no i attached.",
         "lines": [
           "(a + ib)² = a² + 2abi + i²b² = (a² − b²) + 2abi",
           {

@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Add and subtract componentwise. Both results are needed before any test can be applied.",
+        "memory_tip": "Add and subtract componentwise. Both results are needed before any test can be applied.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,6 +105,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Perpendicular means dot product zero — that is the definition, and computing it is the whole proof.",
+        "memory_tip": "Perpendicular means dot product zero — computing it IS the whole proof.",
         "lines": [
           "(a+b)·(a−b) = (4i + j − k)·(−2i + 3j − 5k)",
           "= 4(−2) + 1(3) + (−1)(−5)",

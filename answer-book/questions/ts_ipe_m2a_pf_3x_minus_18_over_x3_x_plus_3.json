@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Form",
         "margin_note": "First mark. x³ is the factor x repeated three times, so it gives THREE fractions: A/x, B/x², C/x³. Then D/(x + 3). Four constants in all.",
+        "memory_tip": "x³ is x repeated three times, so it gives THREE fractions: A/x, B/x², C/x³. Four constants in all.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 1,
         "mark_note": "Identity",
         "margin_note": "Second mark. Multiply by x³(x + 3). A keeps x²(x + 3), B keeps x(x + 3), C keeps (x + 3), D keeps x³. The power of x left with each constant goes down by one each time.",
+        "memory_tip": "The power of x left with each constant falls by one: x²(x + 3), x(x + 3), (x + 3), then x³ for D.",
         "lines": [
           "Multiply by x³(x + 3):",
           "3x − 18 = Ax²(x + 3) + Bx(x + 3)",
@@ -150,6 +152,7 @@
         "marks": 1,
         "mark_note": "A, B, C and D",
         "margin_note": "Third mark. Two roots, 0 and −3, give C and D. Then compare x³ for A and x² for B. Expand only the coefficients you need; no need to expand everything.",
+        "memory_tip": "Two roots give only C and D. A comes from the x³ coefficient and B from the x², where 3A also appears.",
         "lines": [
           "Put x = −3: −27 = D(−27) ⇒ D = 1",
           "Put x = 0: −18 = C(3) ⇒ C = −6",
@@ -196,6 +199,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. Four fractions with their signs: −1/x + 3/x² − 6/x³ + 1/(x + 3). Write the original fraction on the left.",
+        "memory_tip": "Carry the signs: −1/x + 3/x² − 6/x³ + 1/(x + 3). Check with x = 1: −15 = −4 + 12 − 24 + 1.",
         "lines": [
           "∴ (3x − 18)/(x³(x + 3))",
           {

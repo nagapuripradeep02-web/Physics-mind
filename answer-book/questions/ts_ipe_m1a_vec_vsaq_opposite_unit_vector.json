@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. c has no i term — write it as 0i + j + 2k so the columns line up. The magnitude comes out to exactly 7, which is a good sign the addition is right.",
+        "memory_tip": "Write c as 0i + j + 2k so the columns line up. The magnitude comes to exactly 7 — a good check.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,6 +105,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark, and the point of the question. Opposite direction means a minus sign in front of the whole thing — the length stays 1, only the direction flips.",
+        "memory_tip": "OPPOSITE direction means a minus in front of the whole thing. The length stays 1; only the direction flips.",
         "lines": [
           "Opposite unit vector = −(a + b + c)/|a + b + c|",
           {

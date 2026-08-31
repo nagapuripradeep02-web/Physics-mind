@@ -63,6 +63,7 @@
         "marks": 2,
         "mark_note": "Sum to product",
         "margin_note": "Two of the eight marks. sin C + sin D = 2 sin((C+D)/2) cos((C−D)/2), applied to sin 2A + sin 2B.",
+        "memory_tip": "Group sin2A + sin2B with the sine sum formula, leaving sin2C outside.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "marks": 1,
         "mark_note": "Angle sum",
         "margin_note": "Third mark, and where the minus sign first appears. A + B = −C, and sin(−C) = −sin C.",
+        "memory_tip": "A + B = −C, and sin(−C) = −sin C. That is where the minus in the answer is born.",
         "lines": [
           "A + B = −C",
           "⇒ sin(A + B) = sin(−C) = −sin C",
@@ -146,6 +148,7 @@
         "marks": 2,
         "mark_note": "Double angle",
         "margin_note": "Two marks. sin 2C = 2 sin C cos C, so both terms now carry 2 sin C — take it out, keeping the minus outside.",
+        "memory_tip": "sin2C = 2 sinC cosC, so both terms carry 2 sin C — take it out, keeping the minus OUTSIDE.",
         "lines": [
           "sin 2C = 2 sin C cos C",
           "L.H.S = −2 sin C cos(A − B) + 2 sin C cos C",
@@ -186,6 +189,7 @@
         "marks": 2,
         "mark_note": "Second substitution",
         "margin_note": "Two marks (sixth and seventh). Inside the bracket, cos C = cos(−(A+B)) = cos(A+B), because cosine ignores the sign.",
+        "memory_tip": "cos C = cos(−(A+B)) = cos(A+B), because cosine ignores the sign.",
         "lines": [
           "Inside the bracket, C = −(A + B), so",
           "cos C = cos(−(A + B)) = cos(A + B)",
@@ -225,6 +229,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Last mark. cos(X−Y) − cos(X+Y) = 2 sin X sin Y with X = A, Y = B gives 2 sin A sin B.",
+        "memory_tip": "cos(A−B) − cos(A+B) = 2 sinA sinB, and the outside minus gives the −4.",
         "lines": [
           "cos(A − B) − cos(A + B) = 2 sin A sin B",
           "L.H.S = −2 sin C · 2 sin A sin B",

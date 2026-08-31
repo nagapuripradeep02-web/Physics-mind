@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Points",
         "margin_note": "First mark. Note that 3i is 0 + 3i, the point (0, 3) — the missing real part is where this question is most often lost. Write the four points in the order given; that order is the order round the square.",
+        "memory_tip": "3i is 0 + 3i, the point (0, 3). A missing real part means zero, not a missing coordinate.",
         "lines": [
           {
             "text": "Sol:",
@@ -108,6 +109,7 @@
         "label": "Sketch the square",
         "marks": 0,
         "margin_note": "Worth no mark. The square stands on the corner A, so its diagonals AC and BD (dashed) are vertical and horizontal — that is why they come out as whole numbers, 4 and 4.",
+        "memory_tip": "This square stands on the corner A, so its diagonals run vertical and horizontal — that is why they are whole numbers.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That the four points are marked on the Argand plane, joined in order A B C D, and both diagonals drawn. Naming the sketch is full credit.",
@@ -292,6 +294,7 @@
         "marks": 2,
         "mark_note": "Six distances",
         "margin_note": "Half the marks, six short distances. Every side is √8 and every diagonal is √16 = 4. Do all six — four equal sides alone would only show a rhombus.",
+        "memory_tip": "Six distances: every side √8, every diagonal 4. Four equal sides alone would only show a rhombus.",
         "lines": [
           {
             "text": "AB = √((2 − 4)² + (1 − 3)²) = √(4 + 4) = √8",
@@ -356,6 +359,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. Two sentences: sides equal, diagonals equal. Then name the shape.",
+        "memory_tip": "A square needs equal sides AND equal diagonals. State both, then name it.",
         "lines": [
           "AB = BC = CD = DA = √8 — the four sides are equal.",
           "AC = BD = 4 — the two diagonals are equal.",

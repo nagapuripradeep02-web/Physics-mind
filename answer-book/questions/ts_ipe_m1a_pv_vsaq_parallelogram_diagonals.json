@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Same cross product as before — but these are DIAGONALS, not sides, and that changes the formula at the end. Take the −2 out to keep the numbers small.",
+        "memory_tip": "These are DIAGONALS, not sides, and that changes the formula at the end. Take the −2 out.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark, and the difference from the previous question. From DIAGONALS the area is HALF the magnitude — the half is not optional here.",
+        "memory_tip": "From DIAGONALS the area is HALF the magnitude — the half is not optional here.",
         "lines": [
           "|d₁ × d₂| = 2√(1 + 49 + 25) = 2√75",
           "Area = ½ |d₁ × d₂| = ½ (2√75) = √75",

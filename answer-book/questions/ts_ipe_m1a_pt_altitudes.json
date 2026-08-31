@@ -59,6 +59,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks, and the whole setup. The area can be computed from any side and its altitude, so Δ = ½ a p₁ — which rearranges to p₁ = 2Δ/a. The other two follow by symmetry.",
+        "memory_tip": "Area from any side and its own height: Δ = ½ a p₁, so p₁ = 2Δ/a. The other two follow by symmetry.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "label": "Draw the triangle",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. The altitude p₁ is the HEIGHT onto BC, and BC is the base a — the picture is what pairs each altitude with the side it is dropped onto, which is the whole content of Δ = ½ a p₁.",
+        "memory_tip": "The picture pairs each altitude with the side it is dropped onto — that pairing is the whole content.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That triangle ABC is sketched with the altitude from A drawn onto BC, its right angle marked and the base named a. Naming the drawing is full credit — it cannot be spoken.",
@@ -222,6 +224,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks. The three reciprocals share 1/(2Δ), and a + b + c is 2s — so the sum becomes s/Δ, which is 1/r.",
+        "memory_tip": "The three reciprocals share 1/(2Δ), and a + b + c = 2s, so the sum is s/Δ = 1/r.",
         "lines": [
           "(i) 1/p₁ + 1/p₂ + 1/p₃ = a/(2Δ) + b/(2Δ) + c/(2Δ)",
           "= (a+b+c)/(2Δ) = 2s/(2Δ) = s/Δ",
@@ -262,6 +265,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two more marks. The same sum with a minus on the third: a + b − c is 2s − 2c = 2(s−c), and Δ/(s−c) is r₃.",
+        "memory_tip": "With a minus on the third: a + b − c = 2s − 2c = 2(s − c), and Δ/(s − c) is r₃.",
         "lines": [
           "(ii) 1/p₁ + 1/p₂ − 1/p₃ = (a + b − c)/(2Δ)",
           "= (a+b+c−2c)/(2Δ) = (2s − 2c)/(2Δ)",
@@ -302,6 +306,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "Last two marks. Multiply the three altitudes, then convert using abc = 4RΔ to reach the second form.",
+        "memory_tip": "Multiply the three altitudes, then convert using abc = 4RΔ to reach the second form.",
         "lines": [
           "(iii) p₁p₂p₃ = (2Δ/a)(2Δ/b)(2Δ/c) = 8Δ³/(abc)",
           "Also Δ = abc/(4R) ⇒ 8Δ³/(abc) = 8/(abc) · (abc/4R)³",

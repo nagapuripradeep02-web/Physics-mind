@@ -61,6 +61,7 @@
         "label": "Clear the line to = 1",
         "marks": 1,
         "margin_note": "First mark. Move everything so the line reads (something)/(constant) = 1. Nothing else in the method works until the line is in that form.",
+        "memory_tip": "Divide through so the line reads = 1 — the method needs that form.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "label": "Write the homogenised equation",
         "marks": 1,
         "margin_note": "Second mark. Raise every term of the curve to degree two: the linear terms are multiplied by that 1 once, and the constant term by it TWICE. The second-degree terms are left alone.",
+        "memory_tip": "Linear terms times the 1 once, the constant twice.",
         "lines": [
           "Given curve is 7x² − 4xy + 8y² + 2x − 4y − 8 = 0  ……(2)",
           "Homogenising (1) & (2), we get",
@@ -144,6 +146,7 @@
         "label": "Simplify to ax² + 2hxy + by² = 0",
         "marks": 3,
         "margin_note": "Two marks. Expand everything and collect. The result must have no constant and no linear term — if either survives, a term was homogenised wrongly.",
+        "memory_tip": "A surviving constant or linear term means something was homogenised wrongly.",
         "lines": [
           "⇒ 7x² − 4xy + 8y² + x(3x − y) − 2y(3x − y) − 8(3x − y)²/4 = 0",
           "⇒ 7x² − 4xy + 8y² + 3x² − xy − 6xy + 2y² − 2(9x² + y² − 6xy) = 0",
@@ -185,6 +188,7 @@
         "label": "Add the squared coefficients",
         "marks": 3,
         "margin_note": "The last three marks. Perpendicular through the origin means the coefficient of x² plus the coefficient of y² is zero. Nothing else needs computing — the cross term is not used at all.",
+        "memory_tip": "Perpendicular through the origin means coefficient of x² plus coefficient of y² is ZERO. The cross term is unused.",
         "lines": [
           "Here, coeff. of x² + coeff. of y² = −8 + 8 = 0",
           {

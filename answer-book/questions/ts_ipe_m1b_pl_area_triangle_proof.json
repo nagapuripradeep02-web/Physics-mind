@@ -63,6 +63,7 @@
         "label": "Split the pair and match coefficients",
         "marks": 1,
         "margin_note": "First mark. The pair passes through the origin, so the triangle has O as one vertex and the two meeting points with the line as the other two. Split the pair in slope form.",
+        "memory_tip": "The pair passes through the ORIGIN, so O is one vertex for free. Split the pair in slope form.",
         "lines": [
           {
             "text": "Sol:",
@@ -107,6 +108,7 @@
         "label": "Draw the pair and the cutting line",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. Both lines of the pair pass through the ORIGIN, so O is one vertex for free — the picture is what makes that visible, and it is why only two vertices have to be found.",
+        "memory_tip": "The picture makes it visible that only TWO vertices have to be found.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That the two lines through the origin and the cutting line are sketched, forming triangle OAB. Naming the drawing is full credit — it cannot be spoken.",
@@ -238,6 +240,7 @@
         "label": "Find vertex A",
         "marks": 2,
         "margin_note": "Two marks. One vertex is where the given line meets the first of the two lines — solve that pair by cross-multiplication, keeping everything in letters.",
+        "memory_tip": "Solve the given line against the first of the pair by cross-multiplication, keeping everything in letters.",
         "lines": [
           "By solving lx + my + n = 0 and m₁x − y = 0 we get A",
           "lx + my + n = 0",
@@ -281,6 +284,7 @@
         "label": "Find vertex B and write the area",
         "marks": 2,
         "margin_note": "Two marks. B comes from the same working with m₂ in place of m₁. With O at the origin, the area reduces to ½|x₁y₂ − x₂y₁| — no third coordinate needed.",
+        "memory_tip": "With O at the origin the area collapses to ½|x₁y₂ − x₂y₁| — no third coordinate needed.",
         "lines": [
           "Similarly, we get  B = (−n/(l + mm₂),  −nm₂/(l + mm₂))",
           "The area of the triangle with vertices O(0,0), A(x₁,y₁), B(x₂,y₂) is  Δ = ½|x₁y₂ − x₂y₁|",
@@ -323,6 +327,7 @@
         "label": "Convert to a, h, b",
         "marks": 3,
         "margin_note": "The last three marks. m₂ − m₁ is not in the dictionary, but (m₁+m₂)² − 4m₁m₂ is — so square the difference first, then substitute (1) and clear the b's.",
+        "memory_tip": "m₂ − m₁ is not in the dictionary, but (m₁+m₂)² − 4m₁m₂ is — so SQUARE the difference first.",
         "lines": [
           "= ½ · n²√((m₁ + m₂)² − 4m₁m₂) / |l² + lm(m₁ + m₂) + m²(m₁m₂)|",
           "  [∵ (a − b) = √((a + b)² − 4ab)]",

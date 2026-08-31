@@ -61,6 +61,7 @@
         "label": "Take the locus point",
         "marks": 0,
         "margin_note": "No mark of its own. Both fixed points share x = 2, so they sit one above the other — worth noticing before any algebra.",
+        "memory_tip": "Both fixed points share x = 2, so they sit one above the other — worth noticing first.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Move one distance across BEFORE squaring, so only one square root is ever squared at a time. The line is then arranged with the surviving root alone on one side.",
+        "memory_tip": "Move one distance across BEFORE squaring, so only one root is squared at a time.",
         "lines": [
           "Given condition: PA + PB = 8",
           "⇒ PA = 8 − PB",
@@ -144,6 +146,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark, and the moment the question becomes easy. Because both fixed points share x = 2, the (x−2)² terms are identical and cancel outright, leaving a difference of two squares in y alone.",
+        "memory_tip": "The (x−2)² terms are identical and cancel, leaving a difference of squares in y alone.",
         "lines": [
           "⇒ 16 PB = 64 + [(x−2)² + (y+3)²] − [(x−2)² + (y−3)²]",
           "⇒ 16 PB = 64 + (y+3)² − (y−3)²",
@@ -186,6 +189,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. Square once more to clear the surviving root, then collect. The x² and y² coefficients come out DIFFERENT and both positive — what identifies the locus as an ellipse.",
+        "memory_tip": "Square again to clear the surviving root. Different but both positive coefficients — an ellipse.",
         "lines": [
           "Squaring on both sides:  16 PB² = (16 + 3y)²",
           "⇒ 16[(x−2)² + (y+3)²] = 256 + 9y² + 96y",

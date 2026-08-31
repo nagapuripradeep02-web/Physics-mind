@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Magnitudes are awkward to work with directly; squaring turns them into dot products, where the algebra is easy.",
+        "memory_tip": "Magnitudes are awkward directly; SQUARING turns them into dot products where the algebra is easy.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Everything cancels except the cross terms, and 4a·b = 0 forces the dot product to zero.",
+        "memory_tip": "Everything cancels except the cross terms, and 4a·b = 0 forces the dot product to zero.",
         "lines": [
           "⇒ 4a·b = 0  ⇒  a·b = 0",
           "A zero dot product means the vectors are",

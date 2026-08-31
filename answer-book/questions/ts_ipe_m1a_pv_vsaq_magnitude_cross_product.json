@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Straight determinant. Watch the double negatives — (−1)(−5) is +5, not −5.",
+        "memory_tip": "A straight determinant. Watch the double negatives — (−1)(−5) is +5, not −5.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Square, add, root. 210 has no square factor, so the surd is the final answer.",
+        "memory_tip": "Square, add, root. 210 has no square factor, so the surd is the final answer.",
         "lines": [
           "|a × b| = √(8² + 11² + (−5)²)",
           "= √(64 + 121 + 25)",

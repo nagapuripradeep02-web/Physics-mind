@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. SINE comes from the CROSS product, where cosine came from the dot — that is the one thing to get right here.",
+        "memory_tip": "SINE comes from the CROSS product, where cosine came from the dot. That is the one thing to get right.",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Divide by the product of the two magnitudes. √6 times √26 is √156, so the surds combine into one fraction under a single root.",
+        "memory_tip": "Divide by the product of the magnitudes: √6 × √26 = √156, one surd under a single root.",
         "lines": [
           {
             "text": "\\sin\\theta = \\frac{|a \\times b|}{|a|\\,|b|}",

@@ -62,6 +62,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. This one carries no numbers at all — the angle of rotation is the SAME α that appears in the equation, which is what makes the answer come out so short.",
+        "memory_tip": "No numbers at all — and the rotation angle is the SAME α that is already in the equation.",
         "lines": [
           {
             "text": "Sol:",
@@ -104,6 +105,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. The standard rotation formulas with θ = α. Nothing is evaluated, because α stays a letter throughout.",
+        "memory_tip": "The standard rotation formulas with θ = α. Nothing is evaluated; α stays a letter.",
         "lines": [
           "Angle of rotation θ = α, then",
           "x = Xcosθ − Ysinθ  ⇒  x = Xcosα − Ysinα",
@@ -143,6 +145,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. Substituting gives four terms; group the ones carrying X and the ones carrying Y before doing anything else.",
+        "memory_tip": "Four terms come out — group the X ones and the Y ones before doing anything else.",
         "lines": [
           "From (1), transformed equation is",
           "(Xcosα − Ysinα)cosα + (Ycosα + Xsinα)sinα = p",
@@ -183,6 +186,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. The two Y terms are equal and opposite, so they cancel outright; the two X terms carry cos²α + sin²α, which is 1. What is left is a single letter.",
+        "memory_tip": "The two Y terms cancel outright, and cos²α + sin²α = 1 leaves a single letter: X = p.",
         "lines": [
           "⇒ X(cos²α + sin²α) = p      [∵ the two Y terms cancel]",
           "⇒ X(1) = p      [∵ cos²α + sin²α = 1]",

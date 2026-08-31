@@ -71,6 +71,7 @@
         "marks": 1,
         "mark_note": "Matrix form",
         "margin_note": "First mark. A holds the coefficients in x, y, z order, X holds the unknowns, D holds the right-hand sides. Line the equations up in x, y, z order before building A — a missing term is the commonest error in the whole question.",
+        "memory_tip": "Line the equations up in x, y, z order so the coefficients land in the right columns.",
         "lines": [
           {
             "text": "Sol:",
@@ -119,6 +120,7 @@
         "marks": 1,
         "mark_note": "Δ",
         "margin_note": "Second mark. Δ is −3 here, a small negative number, so every division at the end flips a sign. That is exactly where this question is lost, and it is why the sign of Δ is worth writing on its own line.",
+        "memory_tip": "Δ = −3, a NEGATIVE number, so every division at the end flips a sign. That is where this one is lost.",
         "lines": [
           {
             "text": "\\Delta = \\det A = \\begin{vmatrix} 1 & 1 & 1 \\\\ 2 & 2 & 3 \\\\ 1 & 4 & 9 \\end{vmatrix}",
@@ -165,6 +167,7 @@
         "marks": 1,
         "mark_note": "Δ₁",
         "margin_note": "Third mark. Δ₁ is Δ with the FIRST column replaced by the constants. Columns 2 and 3 are untouched. Replace, never insert.",
+        "memory_tip": "Δ₁ replaces the first column with the constants, leaving the other two alone.",
         "lines": [
           "Replace C₁ of Δ by the constants:",
           {
@@ -210,6 +213,7 @@
         "marks": 1,
         "mark_note": "Δ₂",
         "margin_note": "Fourth mark. Same move, second column. Column 1 goes back to the coefficients of x — a common slip is to leave the constants there from the previous step.",
+        "memory_tip": "Second column now; restore column 1 to the x coefficients first.",
         "lines": [
           "Replace C₂ of Δ by the constants:",
           {
@@ -254,6 +258,7 @@
         "marks": 1,
         "mark_note": "Δ₃",
         "margin_note": "Fifth mark. Last one — third column replaced, the other two back to the coefficients.",
+        "memory_tip": "Third column replaced, the other two back to the coefficients.",
         "lines": [
           "Replace C₃ of Δ by the constants:",
           {
@@ -298,6 +303,7 @@
         "marks": 3,
         "mark_note": "Solution",
         "margin_note": "The last three marks, and the only hard part of this question. Δ is NEGATIVE, so a positive Δ₂ gives a negative y. An answer with no negative number in it is wrong here.",
+        "memory_tip": "Δ is negative, so a positive Δ₂ gives a NEGATIVE y. An answer with no minus in it is wrong.",
         "lines": [
           "By Cramer's rule:",
           "x = Δ₁/Δ = −21/−3 = 7",

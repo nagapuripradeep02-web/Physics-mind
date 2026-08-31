@@ -53,6 +53,7 @@
         "label": "Find the three vertices",
         "marks": 2,
         "margin_note": "Two marks. Sides are given, so all three corners must be manufactured first — each vertex is where two of the three lines meet, so there are three pairs to solve.",
+        "memory_tip": "SIDES are given, so the corners must be manufactured: each vertex is where two of the lines meet.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "label": "Draw the triangle",
         "marks": 0,
         "margin_note": "Worth no mark but worth drawing. The dashed lines are perpendicular BISECTORS — they cut each side in half at a right angle, which is what the equal-distance condition means geometrically.",
+        "memory_tip": "The dashed lines are perpendicular bisectors of the sides.",
         "recall": {
           "credit": "name_it",
           "must_convey": "That a triangle is sketched with two perpendicular bisectors meeting at S. Naming the drawing is full credit — it cannot be spoken.",
@@ -260,6 +262,7 @@
         "label": "First equation from SA = SB",
         "marks": 2,
         "margin_note": "Two marks. From here the working is identical to the vertices-given questions: square SA = SB and watch the x² and y² terms cancel, leaving a straight line.",
+        "memory_tip": "From here it is identical to the vertices-given version: square SA = SB and watch the squares cancel.",
         "lines": [
           "S(x, y) as circumcentre",
           "Step-4: SA = SB ⇒ (x−2)² + (y−1)² = (x−1)² + (y+2)²",
@@ -302,6 +305,7 @@
         "label": "Second equation from SB = SC",
         "marks": 2,
         "margin_note": "Two marks. The same move on the second pair, giving the second perpendicular bisector.",
+        "memory_tip": "The same move on the second pair gives the second bisector.",
         "lines": [
           "Step-5: SB = SC ⇒ (x−1)² + (y+2)² = (x+2)² + (y−3)²",
           "⇒ (x² − 2x + 1) + (y² + 4y + 4) = (x² + 4x + 4) + (y² − 6y + 9)",
@@ -342,6 +346,7 @@
         "label": "Solve the pair",
         "marks": 2,
         "margin_note": "The last two marks. Two linear equations, one point.",
+        "memory_tip": "Two linear equations, one point.",
         "lines": [
           "Step-6: Solving (4) & (5) we get S;   (4) ⇒ x = −3y",
           "(5) ⇒ 3(−3y) − 5y + 4 = 0   ⇒   −14y + 4 = 0   ⇒   y = 2/7",

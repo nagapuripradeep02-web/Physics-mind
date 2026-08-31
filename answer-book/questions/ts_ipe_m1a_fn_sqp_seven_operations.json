@@ -67,6 +67,7 @@
         "marks": 2,
         "mark_note": "Intersection",
         "margin_note": "Two of the eight marks, and the decision the whole question turns on. f+g exists only where both f and g exist — the intersection {4, 6}, not the union.",
+        "memory_tip": "f + g exists only where BOTH exist, so the domain is the intersection {4, 6}, never the union.",
         "lines": [
           {
             "text": "Sol:",
@@ -113,6 +114,7 @@
         "marks": 2,
         "mark_note": "Parts i-iii",
         "margin_note": "Two more marks. Evaluate at 4 and 6 only. Watch part (iii): the coefficients multiply the VALUES, so 2f(4) + 4g(4) = 2(5) + 4(−4).",
+        "memory_tip": "The coefficients multiply the VALUES, not the preimages: 2f(4) + 4g(4) = 2(5) + 4(−4).",
         "lines": [
           "(i) f+g = {(4, 5−4), (6, −4+5)} = {(4,1), (6,1)}",
           "(ii) f−g = {(4, 5+4), (6, −4−5)} = {(4,9), (6,−9)}",
@@ -154,6 +156,7 @@
         "marks": 1,
         "mark_note": "Part iv",
         "margin_note": "Fifth mark. Multiply the values at each shared preimage.",
+        "memory_tip": "Multiply the values at each shared preimage — 4 and 6 only.",
         "lines": [
           "(iv) fg = {(4, 5×(−4)), (6, (−4)×5)}",
           "  = {(4,−20), (6,−20)}"
@@ -192,6 +195,7 @@
         "marks": 3,
         "mark_note": "Parts v-vii",
         "margin_note": "The last three marks. These involve f ALONE, so the domain is f's own {4,5,6} — not the intersection. And √f drops 6, because √(−4) is not a real number.",
+        "memory_tip": "These use f ALONE, so the domain is f's own {4, 5, 6}. And √f drops 6, since √(−4) is not real.",
         "lines": [
           "These use f alone, so the domain is {4, 5, 6}.",
           "(v) √f = {(4,√5), (5,√6), (6,√(−4))}",

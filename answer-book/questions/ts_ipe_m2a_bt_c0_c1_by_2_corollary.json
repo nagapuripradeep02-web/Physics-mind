@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Setting up",
         "margin_note": "First mark. This is the x-series with x = 1: every term is ⁿCᵣ divided by r + 1.",
+        "memory_tip": "Every denominator is r + 1, one more than the index. This is the x-series with x = 1.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 2,
         "mark_note": "(n + 1)S",
         "margin_note": "Second and third marks. Multiplying by n + 1 puts (n + 1)/(r + 1) in front of each ⁿCᵣ — no x this time.",
+        "memory_tip": "Multiplying by n + 1 puts (n + 1)/(r + 1) in front of each ⁿCᵣ. No x in this version.",
         "lines": [
           "(n + 1)S = ((n + 1)/1)ⁿC₀ + ((n + 1)/2)ⁿC₁",
           "  + ((n + 1)/3)ⁿC₂ + … + ((n + 1)/(n + 1))ⁿCₙ"
@@ -138,6 +140,7 @@
         "marks": 2,
         "mark_note": "Index raised to n + 1",
         "margin_note": "Fourth and fifth marks. ((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁ — one row down, one index along. Every term of the sum becomes a coefficient of (1 + x)ⁿ⁺¹.",
+        "memory_tip": "((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁ — one row down, one index along. The sum now starts at ⁿ⁺¹C₁.",
         "lines": [
           "= ⁿ⁺¹C₁ + ⁿ⁺¹C₂ + ⁿ⁺¹C₃ + … + ⁿ⁺¹Cₙ₊₁",
           "  [((n + 1)/(r + 1))·ⁿCᵣ = ⁿ⁺¹Cᵣ₊₁]"
@@ -175,6 +178,7 @@
         "marks": 2,
         "mark_note": "Result",
         "margin_note": "Sixth and seventh marks. ⁿ⁺¹C₀ + ⁿ⁺¹C₁ + … + ⁿ⁺¹Cₙ₊₁ = 2ⁿ⁺¹, and ⁿ⁺¹C₀ = 1 is missing, so the sum is 2ⁿ⁺¹ − 1.",
+        "memory_tip": "All the coefficients of (1 + x)ⁿ⁺¹ add to 2ⁿ⁺¹, and ⁿ⁺¹C₀ = 1 is missing — hence the −1.",
         "lines": [
           "= 2ⁿ⁺¹ − 1",
           "  [ⁿ⁺¹C₀ + ⁿ⁺¹C₁ + … + ⁿ⁺¹Cₙ₊₁ = 2ⁿ⁺¹]",

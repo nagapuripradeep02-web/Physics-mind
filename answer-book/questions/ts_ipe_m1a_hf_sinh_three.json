@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Every inverse hyperbolic function has a logarithmic form, and writing the right one is the mark. For Sinh⁻¹ the surd carries a PLUS one.",
+        "memory_tip": "For Sinh⁻¹ the surd carries a PLUS one: logₑ(x + √(x² + 1)). Cosh⁻¹ is the one with a minus.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. sinh x = 3 means x is Sinh⁻¹(3). Substitute and simplify the surd: 9 + 1 = 10.",
+        "memory_tip": "9 + 1 = 10, so the answer is logₑ(3 + √10). √10 is not √9 + √1.",
         "lines": [
           "Given sinh x = 3, so x = Sinh⁻¹(3)",
           "= logₑ(3 + √(3² + 1))",

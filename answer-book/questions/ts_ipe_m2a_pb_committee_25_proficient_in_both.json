@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. Every member is in at least one group, so the union is all 25. Write the three counts.",
+        "memory_tip": "'Either, or both' says every member is in at least one group, so the union is all 25.",
         "lines": [
           {
             "text": "Sol:",
@@ -111,6 +112,7 @@
         "marks": 1,
         "mark_note": "Formula",
         "margin_note": "Second mark. n(M ∩ St) = n(M) + n(St) − n(M ∪ St) — the addition theorem in counts.",
+        "memory_tip": "n(M ∩ St) = n(M) + n(St) − n(M ∪ St) — the addition theorem written in counts.",
         "lines": [
           {
             "text": "n(M ∩ St) = n(M) + n(St) − n(M ∪ St)",
@@ -148,6 +150,7 @@
         "marks": 2,
         "mark_note": "Answer",
         "margin_note": "Two marks. 19 + 16 − 25 = 10 members in both; probability = 10/25 = 2/5.",
+        "memory_tip": "19 + 16 − 25 = 10 in both, so 10/25 = 2/5. Do not stop at the count.",
         "lines": [
           {
             "text": "= 19 + 16 − 25 = 10",

@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. A function gives every element of A one image in B, with no restriction — each of the 5 elements has 4 choices, independently: 4⁵.",
+        "memory_tip": "The base is the number of CHOICES and the exponent the number of choosers: 4⁵, not 5⁴.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 4⁵ = 1024.",
+        "memory_tip": "4⁵ = 1024, the same as 2¹⁰. The 625 answer is 5⁴.",
         "lines": [
           "4⁵ = 4 · 4 · 4 · 4 · 4",
           {

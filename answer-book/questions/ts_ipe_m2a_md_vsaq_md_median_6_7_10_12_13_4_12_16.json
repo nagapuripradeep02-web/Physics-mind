@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "Median",
         "margin_note": "First mark. Sort first. n = 8 is even, so there are two middle values, the 4th and 5th (10 and 12); the median is their average, 11.",
+        "memory_tip": "Even n: average the 4th and 5th sorted values, (10 + 12)/2 = 11. The median need not be in the data.",
         "lines": [
           {
             "text": "Sol:",
@@ -111,6 +112,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Absolute deviations from 11, in the sorted order: 7, 5, 4, 1, 1, 1, 2, 5. Sum 26, divide by n = 8. 26/8 = 3.25.",
+        "memory_tip": "The mean of this same data is 10 — subtract the median 11 instead. 26/8 = 3.25.",
         "lines": [
           "|xᵢ − M| : 7, 5, 4, 1, 1, 1, 2, 5",
           "M.D. = Σ|xᵢ − M|/n = (7 + 5 + 4 + 1 + 1 + 1 + 2 + 5)/8",

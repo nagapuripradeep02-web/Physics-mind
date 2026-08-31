@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and the whole method. Call the wanted expression x, then SQUARE AND ADD the two — the cross terms cancel and only a² + b² survives.",
+        "memory_tip": "Call the wanted expression x, then square and add — the cross terms cancel and a² + b² survives.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The 2ab sinθ cosθ terms cancel, sin²θ + cos²θ = 1 twice over, and a² + b² is all that is left. The ± comes from the square root.",
+        "memory_tip": "sin² + cos² = 1 twice over, so x² = a² + b² − c². The ± comes from the square root.",
         "lines": [
           "= a²sin²θ + 2ab sinθcosθ + b²cos²θ",
           "  + a²cos²θ − 2ab sinθcosθ + b²sin²θ",

@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and the observation the whole question rests on: cosh x + sinh x is just eˣ, because the e⁻ˣ terms cancel.",
+        "memory_tip": "cosh x + sinh x is just eˣ — the e⁻ˣ terms cancel. No binomial expansion is needed.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,6 +96,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The right side is the same identity with nx in place of x — so it collapses to eⁿˣ too, and the two agree.",
+        "memory_tip": "The right side is the same identity with nx, so it collapses to eⁿˣ too. Write the comparison line.",
         "lines": [
           "R.H.S = cosh nx + sinh nx",
           "= (eⁿˣ + e⁻ⁿˣ)/2 + (eⁿˣ − e⁻ⁿˣ)/2",

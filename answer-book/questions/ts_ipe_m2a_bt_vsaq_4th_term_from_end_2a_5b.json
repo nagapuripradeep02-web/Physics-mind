@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Reverse the bracket: the 4th term from the end of (2a + 5b)⁸ is the 4th term from the beginning of (5b + 2a)⁸.",
+        "memory_tip": "Reverse the bracket: 4th from the end of (2a + 5b)⁸ is 4th from the start of (5b + 2a)⁸.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ⁸C₃ = 56, 5⁵ = 3125, 2³ = 8; 56 × 3125 × 8 = 1400000.",
+        "memory_tip": "⁸C₃ = 56, 5⁵ = 3125, 2³ = 8, and 56 × 3125 × 8 = 1400000.",
         "lines": [
           "= ⁸C₃ · 5⁵ · 2³ · a³b⁵ = 56 × 3125 × 8 · a³b⁵",
           {

@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Same opening as the twin — reduce everything to sine and cosine.",
+        "memory_tip": "Reduce everything to sine and cosine first.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. The numerator is cos²A − sin²A — a DIFFERENCE this time, and that is exactly cos 2A.",
+        "memory_tip": "The numerator is cos²A − sin²A, a DIFFERENCE — and that is exactly cos 2A.",
         "lines": [
           "= (cos²A − sin²A)/(sinA cosA)",
           "= cos2A/(sinA cosA)   [∵ cos2A = cos²A − sin²A]"
@@ -141,6 +143,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. Same trick as the twin — double top and bottom so the denominator becomes sin 2A.",
+        "memory_tip": "Double top and bottom so the denominator becomes sin 2A.",
         "lines": [
           "= 2 cos2A/(2 sinA cosA)",
           "= 2 cos2A/sin2A   [∵ sin2A = 2 sinA cosA]"
@@ -179,6 +182,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. cos over sin is cot, so the answer is 2 cot 2A.",
+        "memory_tip": "cos over sin is cot, so the answer is 2 cot 2A.",
         "lines": [
           {
             "text": "= 2 cot2A = R.H.S",

@@ -76,6 +76,7 @@
         "marks": 2,
         "mark_note": "Mean",
         "margin_note": "First two marks. The mean is needed BEFORE any deviation can be written, so it comes first. Columns: xᵢ, fᵢ, product fᵢxᵢ. N = 30 and Σfᵢxᵢ = 420 give x̄ = 14, a whole number — which is why this question uses the direct formula and not step deviation.",
+        "memory_tip": "x̄ = Σfᵢxᵢ/N. Weight by fᵢ: 420/30 = 14, not the plain average of the seven xᵢ.",
         "lines": [
           {
             "text": "Sol:",
@@ -158,6 +159,7 @@
         "marks": 2,
         "mark_note": "Deviations",
         "margin_note": "Next two marks. Columns: xᵢ, fᵢ, deviation xᵢ − 14 (signed), its square, and fᵢ times the square. Signs disappear on squaring; 300 appears twice because −10 and 10 square to the same 100. The sum is 1374.",
+        "memory_tip": "The column is fᵢ × (xᵢ − x̄)², frequency times the square. Squaring drops the signs on its own.",
         "lines": [
           "With x̄ = 14:",
           {
@@ -234,6 +236,7 @@
         "marks": 2,
         "mark_note": "Variance",
         "margin_note": "Next two marks. Divide the weighted sum by N = 30: 1374/30 = 45.8 exactly.",
+        "memory_tip": "σ² = Σfᵢ(xᵢ − x̄)²/N. Divide by N = 30, not by N − 1 — this syllabus never uses N − 1.",
         "lines": [
           "Variance σ² = (1/N)·Σfᵢ(xᵢ − x̄)²",
           "= 1374/30 = 45.8"
@@ -274,6 +277,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Last mark. √45.8 = 6.767…, written 6.77 (6.77² = 45.83). Same unit as the data.",
+        "memory_tip": "σ² is the bigger number and σ is its square root: 45.8 then 6.77, never the other way round.",
         "lines": [
           "Standard deviation σ = √45.8 = 6.77",
           {

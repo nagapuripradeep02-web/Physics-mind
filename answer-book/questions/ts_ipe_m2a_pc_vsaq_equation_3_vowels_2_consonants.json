@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. EQUATION: vowels E, U, A, I, O (5), consonants Q, T, N (3), all different. Select from each group: ⁵C₃ and ³C₂.",
+        "memory_tip": "EQUATION has five vowels — E, U, A, I, O — so U counts even though it follows Q. Three consonants remain.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 10 × 3 = 30. (The question asks for selections, not words, so no arrangement factor.)",
+        "memory_tip": "⁵C₃ · ³C₂ = 10 × 3 = 30. Selecting only, so no 5! for arranging.",
         "lines": [
           "Required = ⁵C₃ · ³C₂ = 10 · 3",
           {

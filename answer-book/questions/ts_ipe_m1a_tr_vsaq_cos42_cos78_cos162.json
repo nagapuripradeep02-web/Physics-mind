@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and the trick. 42° is 60° − 18° and 78° is 60° + 18°, so the first two are a matched pair around 60°. The third reduces to −cos18°.",
+        "memory_tip": "42° is 60° − 18° and 78° is 60° + 18° — a matched pair around 60°. The third gives −cos18°.",
         "lines": [
           {
             "text": "Sol:",
@@ -88,6 +89,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The pair collapses to 2cos60°cos18° = cos18°, which the third term cancels exactly.",
+        "memory_tip": "The pair collapses to 2cos60°cos18° = cos18°, which the third term cancels exactly.",
         "lines": [
           "= 2 cos60° cos18° − cos18°",
           "  [∵ cos(A+B) + cos(A−B) = 2 cosA cosB]",

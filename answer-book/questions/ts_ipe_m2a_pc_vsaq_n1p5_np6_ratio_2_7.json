@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. ⁽ⁿ⁺¹⁾P₅ = (n + 1)n(n − 1)(n − 2)(n − 3) and ⁿP₆ = n(n − 1)(n − 2)(n − 3)(n − 4)(n − 5). Four factors cancel.",
+        "memory_tip": "ⁿP₆ has SIX factors, so two survive below — (n − 4)(n − 5) — and the equation becomes quadratic.",
         "lines": [
           {
             "text": "Sol:",
@@ -92,6 +93,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 7(n + 1) = 2(n − 4)(n − 5) gives 2n² − 25n + 33 = 0, which factors as (n − 11)(2n − 3); n = 3/2 is not a whole number and is below 6, so n = 11.",
+        "memory_tip": "2n² − 25n + 33 = (n − 11)(2n − 3). Reject n = 3/2: n must be a whole number and at least 6.",
         "lines": [
           "7(n + 1) = 2(n − 4)(n − 5)",
           "7n + 7 = 2n² − 18n + 40",

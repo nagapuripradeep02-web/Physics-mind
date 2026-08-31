@@ -67,6 +67,7 @@
         "marks": 1,
         "mark_note": "Statement",
         "margin_note": "One mark. Nothing can be proved until the nth term is named and S(n) is written out in full.",
+        "memory_tip": "The nth term is n(n+1)(n+2) — three consecutive factors. Write S(n) out in full before proving anything.",
         "lines": [
           "nth term = n(n+1)(n+2)",
           "Let S(n): 1·2·3 + 2·3·4 + …",
@@ -107,6 +108,7 @@
         "marks": 1,
         "mark_note": "Step 1",
         "margin_note": "One mark. Compute BOTH sides separately and say they are equal — do not just assert it.",
+        "memory_tip": "Compute BOTH sides separately: 1·2·3 = 6 and 24/4 = 6. Do not just assert equality.",
         "lines": [
           "Step 1 — check S(1)",
           "L.H.S of S(1) = 1·2·3 = 6",
@@ -148,6 +150,7 @@
         "marks": 1,
         "mark_note": "Step 2",
         "margin_note": "One mark. Assume the statement for one value k and NUMBER the line (1) — Step 3 quotes it, so it has to be labelled.",
+        "memory_tip": "Assume for k and number the line (1) — Step 3 quotes it.",
         "lines": [
           "Step 2 — assume S(k) is true, k ∈ N",
           "S(k): 1·2·3 + 2·3·4 + …",
@@ -189,6 +192,7 @@
         "marks": 4,
         "mark_note": "Step 3",
         "margin_note": "Four of the eight marks — the whole inductive step. Add the (k+1)th term to BOTH sides of (1), then factorise until the right-hand side appears.",
+        "memory_tip": "Add (k+1)(k+2)(k+3) to both sides, then take it out as a common factor: k + 4 is what is left.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           "Add (k+1)(k+2)(k+3) to both sides of (1):",
@@ -234,6 +238,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "The last mark is for naming the principle. Write the sentence — it is one line and it is worth a full mark.",
+        "memory_tip": "The closing sentence names the principle and is worth a full mark.",
         "lines": [
           "Hence, by the principle of finite",
           "Mathematical Induction, S(n) is true",

@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Parallel planes share a normal, so the new plane keeps the SAME coefficients — only its constant changes. The point-form a(x−x₁) + b(y−y₁) + c(z−z₁) = 0 does both at once.",
+        "memory_tip": "Same normal means same coefficients. a(x−x₁) + b(y−y₁) + c(z−z₁) = 0 does both jobs at once.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Put the given point and coefficients in, expand, and collect the constants.",
+        "memory_tip": "Watch the point's negative coordinate: z − (−3) becomes z + 3.",
         "lines": [
           "⇒ 2(x − 1) − 3(y − 2) + 6(z + 3) = 0",
           "⇒ 2x − 2 − 3y + 6 + 6z + 18 = 0",

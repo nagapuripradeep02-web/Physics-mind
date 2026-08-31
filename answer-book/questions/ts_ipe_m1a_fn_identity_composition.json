@@ -50,6 +50,7 @@
         "label": "Write what is given",
         "marks": 0,
         "margin_note": "No mark of its own. Write down what each identity function does before you use it — the whole proof is one line of algebra once that is on the page.",
+        "memory_tip": "Write what each identity DOES to an element first; the proof is one line of algebra after that.",
         "lines": [
           {
             "text": "Given:",
@@ -105,6 +106,7 @@
         "marks": 4,
         "mark_note": "First part",
         "margin_note": "Four of the eight marks. Two things earn them: that both sides have domain A, and the one-line substitution. Do not skip the domain line.",
+        "memory_tip": "The inner function must accept elements of A, so it is I_A. Do not skip the domain line.",
         "lines": [
           {
             "text": "\\text{(i) To prove } f \\circ I_A = f",
@@ -172,6 +174,7 @@
         "marks": 4,
         "mark_note": "Second part",
         "margin_note": "Four of the eight marks. Same shape as part (i), but the identity now acts on the OUTPUT, so it is I_B and it uses I_B(b) = b.",
+        "memory_tip": "Here the identity acts on the OUTPUT, so it is I_B and uses I_B(b) = b. Write it out, not 'by symmetry'.",
         "lines": [
           {
             "text": "\\text{(ii) To prove } I_B \\circ f = f",
@@ -239,6 +242,7 @@
         "label": "Conclude",
         "marks": 0,
         "margin_note": "No separate mark. Write the double equality exactly as the question stated it.",
+        "memory_tip": "Write the DOUBLE equality exactly as the question stated it.",
         "lines": [
           {
             "text": "f \\circ I_A = f = I_B \\circ f",

@@ -72,6 +72,7 @@
         "marks": 1,
         "mark_note": "Terms",
         "margin_note": "First mark. Put r = 0, 1, 2, 3, 4 into ⁽³⁸⁻ʳ⁾C₄ and list the five terms. Then place ³⁴C₅ next to ³⁴C₄ — the two with the smallest top number go together.",
+        "memory_tip": "r = 0 to 4 gives FIVE terms, ³⁸C₄ down to ³⁴C₄. Place ³⁴C₅ beside ³⁴C₄.",
         "lines": [
           {
             "text": "Sol:",
@@ -117,6 +118,7 @@
         "marks": 1,
         "mark_note": "Identity",
         "margin_note": "Second mark. State ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ and use it on the pair with top number 34: ³⁴C₄ + ³⁴C₅ = ³⁵C₅.",
+        "memory_tip": "The two lower numbers must differ by ONE. Only the pair with top number 34 has a C₅ partner.",
         "lines": [
           "Use ⁿCᵣ₋₁ + ⁿCᵣ = ⁽ⁿ⁺¹⁾Cᵣ",
           "on the pair with the smallest top number:",
@@ -156,6 +158,7 @@
         "marks": 2,
         "mark_note": "Answer",
         "margin_note": "Two marks. The new ³⁵C₅ joins ³⁵C₄ to make ³⁶C₅, and so on up to ³⁹C₅. Show each line; the examiner is paying for the chain, not the last symbol.",
+        "memory_tip": "The lower number stays 5 the whole way up to ³⁹C₅. The marks are for the chain, not the last symbol.",
         "lines": [
           "³⁵C₅ + ³⁵C₄ = ³⁶C₅",
           "³⁶C₅ + ³⁶C₄ = ³⁷C₅",

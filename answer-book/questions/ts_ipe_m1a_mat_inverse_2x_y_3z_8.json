@@ -67,6 +67,7 @@
         "marks": 1,
         "mark_note": "Matrix form",
         "margin_note": "First mark. Write the plan as well as the matrices: the solution of AX = D is X = A⁻¹D, so everything after this line is about building A⁻¹.",
+        "memory_tip": "Write the PLAN as well as the matrices: X = A⁻¹D, so everything after is about building A⁻¹.",
         "lines": [
           {
             "text": "Sol:",
@@ -116,6 +117,7 @@
         "marks": 1,
         "mark_note": "Determinant",
         "margin_note": "Second mark. det A is −38, non-zero, so A⁻¹ exists. This is the question the book attaches its mark note to: finding A⁻¹ was worth 4 of the old 7 marks on its own, and is 5 of the 8 marks on the 2026-27 paper.",
+        "memory_tip": "det A = −38, non-zero, so A⁻¹ exists. Write that check rather than just computing.",
         "lines": [
           {
             "text": "\\det A = \\begin{vmatrix} 2 & -1 & 3 \\\\ -1 & 2 & 1 \\\\ 3 & 1 & -4 \\end{vmatrix}",
@@ -163,6 +165,7 @@
         "marks": 3,
         "mark_note": "Cofactors",
         "margin_note": "Three marks, and the longest part of the question — nine 2×2 determinants. The sign board is + − + / − + − / + − +. Cross out the entry’s own row and column, take the determinant of what is left, then apply that sign.",
+        "memory_tip": "Nine 2×2 determinants, with the sign board + − + / − + − / + − +. Cross out the entry's own row and column.",
         "lines": [
           "Delete each entry’s row and column, take the 2×2",
           "determinant, and apply the sign board + − + / − + − / + − +:",
@@ -209,6 +212,7 @@
         "marks": 1,
         "mark_note": "Adjoint and inverse",
         "margin_note": "Fourth mark, and the step most often skipped. Adj A is the TRANSPOSE of the cofactor matrix — rows become columns. Then A⁻¹ is Adj A divided by det A.",
+        "memory_tip": "Adj A is the TRANSPOSE of the cofactor matrix — the step most often skipped. Then divide by det A.",
         "lines": [
           "Adj A is the transpose of the cofactor matrix:",
           {
@@ -259,6 +263,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. All three products come out as −76, and −76 divided by −38 is 2 — so x, y and z are all 2. Equal answers look suspicious but are correct here; check one in the original equation rather than doubting them.",
+        "memory_tip": "All three products come to −76, and −76/−38 = 2, so x, y and z are all 2. Equal answers are correct here.",
         "lines": [
           "X = A⁻¹D. Multiplying row by column:",
           "−9(8) − 1(4) − 7(0) = −72 − 4 − 0 = −76",

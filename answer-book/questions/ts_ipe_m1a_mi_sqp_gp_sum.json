@@ -67,6 +67,7 @@
         "marks": 1,
         "mark_note": "nth term",
         "margin_note": "First mark. The nth term of the series is arⁿ⁻¹ — note the n−1, since the first term has no r at all.",
+        "memory_tip": "The nth term is arⁿ⁻¹ — note the n − 1, because the first term carries no r at all.",
         "lines": [
           {
             "text": "Sol:",
@@ -109,6 +110,7 @@
         "marks": 1,
         "mark_note": "Base case",
         "margin_note": "Second mark. Put n = 1 into both sides. The right side needs the (r−1) to cancel, which it does exactly.",
+        "memory_tip": "At n = 1 the right side is a(r − 1)/(r − 1), and the brackets cancel exactly to a.",
         "lines": [
           "For n = 1: L.H.S = a",
           "R.H.S = a(r¹ − 1)/(r − 1) = a(r−1)/(r−1) = a",
@@ -149,6 +151,7 @@
         "marks": 1,
         "mark_note": "Hypothesis",
         "margin_note": "Third mark. Assume the statement holds for some k and write it down — this is the induction hypothesis, and the next step leans on it entirely.",
+        "memory_tip": "Write the hypothesis as a numbered equation; the next step leans on it entirely.",
         "lines": [
           "Assume S(k) is true for some k ∈ N:",
           "a + ar + … + ar^(k−1) = a(r^k − 1)/(r − 1)   …(1)"
@@ -188,6 +191,7 @@
         "marks": 4,
         "mark_note": "Inductive step",
         "margin_note": "Four marks — the bulk. Add the (k+1)th term, which is ar^k, to both sides of the hypothesis, then combine over the common denominator.",
+        "memory_tip": "Add the (k+1)th term arᵏ to BOTH sides, then combine over (r − 1) — the arᵏ terms cancel.",
         "lines": [
           "Adding the (k+1)th term ar^k to both sides of (1):",
           "L.H.S = a(r^k − 1)/(r − 1) + ar^k",
@@ -231,6 +235,7 @@
         "marks": 1,
         "mark_note": "P.M.I.",
         "margin_note": "Last mark. Both halves are done, so the principle applies. Name it — that sentence is the mark.",
+        "memory_tip": "Both halves are done, so name the principle. That sentence is the mark.",
         "lines": [
           "S(1) is true, and S(k) true ⇒ S(k+1) true.",
           {

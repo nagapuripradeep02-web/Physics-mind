@@ -49,6 +49,7 @@
         "label": "Make the constant positive",
         "marks": 1,
         "margin_note": "First mark. Normal form is xcosα + ysinα = p with p POSITIVE, so before dividing, arrange the equation so the number on the right is greater than zero — multiply through by −1 if it is not.",
+        "memory_tip": "Normal form needs p POSITIVE, so multiply through by −1 if the right side is not.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,6 +94,7 @@
         "label": "Divide and read off",
         "marks": 1,
         "margin_note": "Second mark. Divide through by √(a²+b²) so the coefficients square-and-add to 1, then name the angle whose cosine and sine they are.",
+        "memory_tip": "Divide by √(a²+b²) so the coefficients square-and-add to 1, then name the angle.",
         "lines": [
           "Now, dividing by √((−3)² + (−4)²) = √(9 + 16) = √25 = 5, we get",
           "−(3/5)x − (4/5)y = 12/5",

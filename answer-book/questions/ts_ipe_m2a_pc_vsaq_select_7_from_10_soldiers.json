@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Members are selected, not arranged, so ¹⁰C₇; and ¹⁰C₇ = ¹⁰C₃ shortens the arithmetic.",
+        "memory_tip": "Members are selected, not arranged, so ¹⁰C₇ — and ¹⁰C₇ = ¹⁰C₃ shortens the arithmetic.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,6 +90,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. ¹⁰C₃ = (10·9·8)/(1·2·3) = 120.",
+        "memory_tip": "¹⁰C₃ = (10·9·8)/(1·2·3) = 120.",
         "lines": [
           "¹⁰C₃ = (10 · 9 · 8)/(1 · 2 · 3)",
           {

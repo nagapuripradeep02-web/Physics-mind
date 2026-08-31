@@ -71,6 +71,7 @@
         "marks": 1,
         "mark_note": "Position vectors",
         "margin_note": "First mark. Turn the four coordinate triples into vectors before anything else.",
+        "memory_tip": "Turn the four coordinate triples into vectors before anything else.",
         "lines": [
           {
             "text": "Sol:",
@@ -115,6 +116,7 @@
         "marks": 1,
         "mark_note": "Lines",
         "margin_note": "Second mark. A line through two points has the first as its POINT and the difference as its DIRECTION. That is what turns four points into the r = a + tb form the formula needs.",
+        "memory_tip": "A line through two points takes the first as its POINT and the difference as its DIRECTION.",
         "lines": [
           "(i) Line AB is r = a + tb, where",
           "  a = OA = i − 2j − k",
@@ -159,6 +161,7 @@
         "marks": 1,
         "mark_note": "a − c",
         "margin_note": "Third mark. The i and k terms cancel completely here, leaving a single j term — which makes the dot product below very short.",
+        "memory_tip": "The i and k terms cancel completely, leaving a single j term — which shortens the dot product.",
         "lines": [
           "a − c = (i − 2j − k) − (i + 2j − k)",
           "  = −4j"
@@ -198,6 +201,7 @@
         "marks": 1,
         "mark_note": "b × d",
         "margin_note": "Fourth mark. Cross the two DIRECTIONS, not the points.",
+        "memory_tip": "Cross the two DIRECTIONS, not the points.",
         "lines": [
           {
             "text": "b \\times d = \\begin{vmatrix} i & j & k \\\\ 3 & 2 & -2 \\\\ 1 & -6 & -4 \\end{vmatrix}",
@@ -242,6 +246,7 @@
         "marks": 1,
         "mark_note": "Both pieces",
         "margin_note": "Fifth mark. Because a − c is only a j term, the dot product picks out just the j component of b×d — one multiplication instead of three.",
+        "memory_tip": "Because a − c is only a j term, the dot product picks out just the j component of b×d.",
         "lines": [
           "(a − c)·(b × d) = (−4j)·(−20i + 10j − 20k)",
           "  = −4(10) = −40",
@@ -283,6 +288,7 @@
         "marks": 3,
         "mark_note": "Distance",
         "margin_note": "The last three marks. The modulus makes the −40 positive, and 40/30 cancels to 4/3. Leave it as a fraction — decimals are not expected.",
+        "memory_tip": "The modulus makes −40 positive, and 40/30 cancels to 4/3. Leave it as a fraction.",
         "lines": [
           "S.D = |(a−c)·(b×d)| / |b×d|",
           "= |−40| / 30 = 40/30",

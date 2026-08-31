@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Edge vectors",
         "margin_note": "First mark. Four vertices, but only THREE edges are needed — all from the same corner A. That is what turns vertices into the form the formula wants.",
+        "memory_tip": "Four vertices but only THREE edges are needed, all from the same corner A.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 2,
         "mark_note": "Determinant",
         "margin_note": "Half the marks, and the book prints [2 Marks] here. The zeros make two of the three expansion terms cheap — expand along the top row and use them.",
+        "memory_tip": "The zeros make two expansion terms cheap — expand along the top row and use them.",
         "lines": [
           {
             "text": "[AB\\ AC\\ AD] = \\begin{vmatrix} 2 & 0 & 4 \\\\ 1 & -3 & -1 \\\\ -2 & -2 & 0 \\end{vmatrix}",
@@ -149,6 +151,7 @@
         "marks": 1,
         "mark_note": "Volume",
         "margin_note": "Last mark. The modulus turns −36 into 36, and a sixth of that is 6. Cubic units.",
+        "memory_tip": "The modulus turns −36 into 36, and a sixth of that is 6. Cubic units.",
         "lines": [
           "V = ⅙ |[AB AC AD]| = ⅙ |−36|",
           {

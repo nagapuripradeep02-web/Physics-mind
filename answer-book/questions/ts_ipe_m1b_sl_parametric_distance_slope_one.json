@@ -60,6 +60,7 @@
         "label": "Find the angle",
         "marks": 1,
         "margin_note": "First mark. The parametric form needs an ANGLE, not a slope, so convert whatever the question gives into θ before anything else.",
+        "memory_tip": "Slope 1 means tan θ = 1, so θ = 45° — the parametric form needs the angle, not the slope.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "label": "Write the parametric point",
         "marks": 1,
         "margin_note": "Second mark. Any point at distance r from Q along the line is (x₁ + r cosθ, y₁ + r sinθ). Writing P this way turns an unknown POINT into a single unknown NUMBER.",
+        "memory_tip": "Write P as (x₁ + r cos θ, y₁ + r sin θ), turning the unknown point into a single number r.",
         "lines": [
           "Given point Q(x₁, y₁) = (−3, 5) and distance PQ = r, then",
           "P = (x₁ + r cosθ, y₁ + r sinθ)",
@@ -145,6 +147,7 @@
         "label": "Put it on the line",
         "marks": 1,
         "margin_note": "Third mark. P is stated to lie on the given line, so its coordinates satisfy that equation. Substituting produces one equation in r alone.",
+        "memory_tip": "P is on the given line, so substituting gives one equation in r.",
         "lines": [
           "But P lies on the line x + y − 6 = 0 ⇒ x + y = 6",
           "⇒ (−3 + r/√2) + (5 + r/√2) = 6",
@@ -184,6 +187,7 @@
         "label": "Solve for r",
         "marks": 1,
         "margin_note": "Last mark. The distance PQ IS r, so solving for r finishes the question with no extra work.",
+        "memory_tip": "PQ is r itself — no extra work after solving.",
         "lines": [
           {
             "text": "∴ r/√2 = 2  ⇒  Distance PQ = r = 2√2",

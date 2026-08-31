@@ -45,6 +45,7 @@
         "label": "Set up the intercepts",
         "marks": 1,
         "margin_note": "First mark. The condition is about the INTERCEPTS, so use the intercept form x/a + y/b = 1 and let the condition choose a and b for you: sum of intercepts is zero.",
+        "memory_tip": "Use x/a + y/b = 1 and let the condition choose b: sum zero means b = −a.",
         "lines": [
           {
             "text": "Sol:",
@@ -91,6 +92,7 @@
         "label": "Substitute the point and finish",
         "marks": 1,
         "margin_note": "Second mark. The line passes through the given point, so that point satisfies the equation — substitute it, find the one remaining unknown, and write the line.",
+        "memory_tip": "Substitute the given point to fix the one remaining unknown.",
         "lines": [
           "But (2, 3) lies on (1)",
           "⇒ 2 − 3 = a  ⇒  a = −1",

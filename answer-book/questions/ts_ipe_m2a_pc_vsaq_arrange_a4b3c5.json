@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Counting",
         "margin_note": "First mark. Expanded, a⁴b³c⁵ is aaaabbbccccc: 12 letters, a four times, b three times, c five times.",
+        "memory_tip": "Expanded, a⁴b³c⁵ is aaaabbbccccc — 12 letters. The exponents are counts, not powers to evaluate.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,6 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 12!/(4!·3!·5!) = 479001600/17280 = 27,720.",
+        "memory_tip": "One factorial per repeated letter: 12!/(4!·3!·5!) = 27,720.",
         "lines": [
           "Arrangements = n!/(p!·q!·r!)",
           {

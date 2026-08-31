@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. tan and cot are both ratios of sine and cosine. Writing them out is what lets them be added over a common denominator.",
+        "memory_tip": "tan and cot are both ratios of sine and cosine — write them out to add over a common denominator.",
         "lines": [
           {
             "text": "Sol:",
@@ -102,6 +103,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. The numerator becomes sin²A + cos²A, which is 1 — the identity that makes this whole question short.",
+        "memory_tip": "The numerator is sin²A + cos²A, which is 1 — the identity that makes this short.",
         "lines": [
           "= (sin²A + cos²A)/(sinA cosA)",
           "= 1/(sinA cosA)   [∵ sin²A + cos²A = 1]"
@@ -141,6 +143,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. The answer is in 2A, so a 2A has to be manufactured. Multiplying top and bottom by 2 turns 2 sinA cosA into sin2A.",
+        "memory_tip": "The answer is in 2A, so manufacture one: doubling top and bottom turns 2 sinA cosA into sin2A.",
         "lines": [
           "= 2/(2 sinA cosA)",
           "= 2/sin2A   [∵ sin2A = 2 sinA cosA]"
@@ -180,6 +183,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. 1/sin is cosec, so 2/sin2A is 2 cosec2A. Name the reciprocal rather than leaving the fraction.",
+        "memory_tip": "1/sin is cosec, so 2/sin2A is 2 cosec 2A. Name the reciprocal.",
         "lines": [
           {
             "text": "= 2 cosec2A = R.H.S",

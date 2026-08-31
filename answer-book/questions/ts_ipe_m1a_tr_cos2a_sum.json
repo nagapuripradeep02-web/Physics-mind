@@ -67,6 +67,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "First mark. Same condition as the twin question. Write it first — both uses of it below depend on it.",
+        "memory_tip": "A + B = 180° − C. Write it first — both uses below depend on it.",
         "lines": [
           {
             "text": "Sol:",
@@ -109,6 +110,7 @@
         "marks": 3,
         "mark_note": "Sum to product",
         "margin_note": "Three of the eight marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
+        "memory_tip": "Pair cos2A with cos2B, and expand cos2C as 2cos²C − 1 so the −1 appears cleanly.",
         "lines": [
           "L.H.S = cos2A + cos2B + cos2C",
           "= 2 cos((2A+2B)/2) cos((2A−2B)/2) + cos2C",
@@ -151,6 +153,7 @@
         "marks": 2,
         "mark_note": "Substitution",
         "margin_note": "Two more marks. This is where the angle condition earns its place: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "memory_tip": "cos(180° − C) = −cos C, with the MINUS. That sign is the whole difference here.",
         "lines": [
           "= 2 cos(180° − C) cos(A−B) + 2cos²C − 1",
           "  [∵ (A+B) + C = 180°]",
@@ -192,6 +195,7 @@
         "marks": 1,
         "mark_note": "Factorise",
         "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "memory_tip": "Take the common factor out and leave the −1 outside; a sign slip turns the bracket into a difference.",
         "lines": [
           "= −1 − 2 cosC [cos(A−B) − cosC]",
           "= −1 − 2 cosC [cos(A−B) + cos(A+B)]",
@@ -233,6 +237,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "memory_tip": "Use the SUM formula to get cosines. Losing the −1 at the last line is the usual slip.",
         "lines": [
           "= −1 − 2 cosC (2 cosA cosB)",
           "  [∵ cos(A+B) + cos(A−B) = 2 cosA cosB]",

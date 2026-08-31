@@ -56,6 +56,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. ⁿCᵣ = ⁿCₙ₋ᵣ, so ¹⁰C₆ = ¹⁰C₄. Now the two lower numbers differ by one.",
+        "memory_tip": "3 and 6 are not one apart. Rewrite ¹⁰C₆ as ¹⁰C₄ so Pascal can be used.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. With n = 10 and r = 3 the identity gives ¹¹C₄, which is the right-hand side.",
+        "memory_tip": "ⁿCᵣ + ⁿCᵣ₊₁ = ⁽ⁿ⁺¹⁾Cᵣ₊₁ with n = 10, r = 3 gives ¹¹C₄. End at '= R.H.S.'.",
         "lines": [
           "ⁿCᵣ + ⁿCᵣ₊₁ = ⁽ⁿ⁺¹⁾Cᵣ₊₁ with n = 10, r = 3:",
           {

@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The k-th term of (1 + x)²¹ has coefficient ²¹Cₖ₋₁, so the two coefficients are ²¹C₂ᵣ₊₃ and ²¹C₃ᵣ₊₃. Two coefficients ⁿCᵣ, ⁿCₛ are equal when r = s or r + s = n.",
+        "memory_tip": "The k-th term of (1 + x)²¹ has coefficient ²¹Cₖ₋₁. Equal coefficients means r = s OR r + s = 21.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The first branch gives r = 0, which makes the two terms the same term; the second branch gives r = 3.",
+        "memory_tip": "The equal branch gives r = 0, the same term twice. The sum branch gives the real answer, r = 3.",
         "lines": [
           "2r + 3 = 3r + 3 ⇒ r = 0 (the same term twice)",
           "(2r + 3) + (3r + 3) = 21 ⇒ 5r = 15 ⇒ r = 3",

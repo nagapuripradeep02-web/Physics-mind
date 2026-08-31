@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Events",
         "margin_note": "First mark. Three box events and one colour event, as in every question of this family.",
+        "memory_tip": "Three box events and one colour event — name all four before writing a number.",
         "lines": [
           {
             "text": "Sol:",
@@ -121,6 +122,7 @@
         "marks": 1,
         "mark_note": "Priors",
         "margin_note": "Second mark. Each box is chosen on 2 of the 6 faces: 2/6 = 1/3. Write the reason — the die is what the question changed.",
+        "memory_tip": "The die changes nothing: 2 faces of 6 for each box is 2/6 = 1/3. Write that reason.",
         "lines": [
           {
             "text": "Each box is chosen when 2 of the 6 faces",
@@ -170,6 +172,7 @@
         "marks": 1,
         "mark_note": "Conditional probabilities",
         "margin_note": "Third mark. B₁: 2 red of 5. B₂: 4 red of 9. B₃: 2 red of 9.",
+        "memory_tip": "Each box over its OWN total: 2 of 5, 4 of 9, 2 of 9. Never the grand total 23.",
         "lines": [
           {
             "text": "P(R|B₁) = 2/5",
@@ -219,6 +222,7 @@
         "marks": 2,
         "mark_note": "Total probability",
         "margin_note": "Two marks. Factor out 1/3, then add 2/5 + 4/9 + 2/9 over 45: 18 + 20 + 10 = 48, so the bracket is 48/45 = 16/15 and P(R) = 16/45.",
+        "memory_tip": "Factor out the 1/3, then add over 45: 18 + 20 + 10 = 48, so P(R) = 16/45.",
         "lines": [
           {
             "text": "By total probability,",
@@ -280,6 +284,7 @@
         "marks": 2,
         "mark_note": "Bayes' theorem",
         "margin_note": "Last two marks. P(B₂|R) = (1/3)(4/9) / (16/45) = (4/27)·(45/16). Cancel: 45/27 = 5/3 and 4/16 = 1/4, so 5/12.",
+        "memory_tip": "The question asks the REVERSE of 4/9. Cancel carefully: 45/27 = 5/3 and 4/16 = 1/4, giving 5/12.",
         "lines": [
           {
             "text": "By Bayes' theorem,",

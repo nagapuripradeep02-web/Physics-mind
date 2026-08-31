@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Principle",
         "margin_note": "First mark. State the rule and write the three inequalities it gives before solving any of them.",
+        "memory_tip": "Every probability lies between 0 AND 1 — write the lower bound too, not just the upper.",
         "lines": [
           {
             "text": "Sol:",
@@ -113,6 +114,7 @@
         "marks": 3,
         "mark_note": "One mark each",
         "margin_note": "Three marks, one per inequality. Multiply through by the denominator, then isolate p. When dividing by a negative number, reverse the inequality signs.",
+        "memory_tip": "Multiply through by the denominator, then isolate p. Dividing by a negative REVERSES the signs.",
         "lines": [
           {
             "text": "0 ≤ (1 + 3p)/3 ≤ 1 ⇒ 0 ≤ 1 + 3p ≤ 3",
@@ -176,6 +178,7 @@
         "marks": 2,
         "mark_note": "Mutually exclusive",
         "margin_note": "Two marks. Mutually exclusive events: the probability of their union is the SUM, and that union is an event, so the sum is between 0 and 1. Common denominator 12: 4(1 + 3p) + 3(1 − p) + 6(1 − 2p) = 13 − 3p.",
+        "memory_tip": "Mutually exclusive means the union's probability is the SUM, and it is still ≤ 1 — not = 1.",
         "lines": [
           {
             "text": "The three events are mutually exclusive, so the",
@@ -247,6 +250,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. p must satisfy all four. The largest lower bound is 1/3 (from (4)); the smallest upper bound is 1/2 (from (3)).",
+        "memory_tip": "Take the INTERSECTION of all four ranges: the largest lower bound and the smallest upper bound.",
         "lines": [
           {
             "text": "p must satisfy (1), (2), (3) and (4) together.",

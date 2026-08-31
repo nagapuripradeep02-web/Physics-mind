@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The multiplicative inverse of z is 1/z. Multiply above and below by the conjugate √5 − 3i; the denominator becomes (√5)² + 3² = 5 + 9.",
+        "memory_tip": "Inverse means 1/z, not the conjugate. (√5)² is 5, so the denominator is 5 + 9.",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 5 + 9 = 14. Separate the real and imaginary parts.",
+        "memory_tip": "5 + 9 = 14. The √5 stays in the numerator; it does not simplify further.",
         "lines": [
           "= (√5 − 3i)/14",
           {

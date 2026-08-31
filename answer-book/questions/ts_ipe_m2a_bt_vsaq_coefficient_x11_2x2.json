@@ -52,6 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. (x²)¹³⁻ʳ gives x²⁶⁻²ʳ and (1/x³)ʳ gives x⁻³ʳ, so the power is 26 − 5r.",
+        "memory_tip": "(x²)¹³⁻ʳ and (1/x³)ʳ make the power 26 − 5r. Set it to 11, not to zero.",
         "lines": [
           {
             "text": "Sol:",
@@ -94,6 +95,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. r = 3: ¹³C₃ = 286, 2¹⁰ = 1024, 3³ = 27.",
+        "memory_tip": "r = 3: the coefficient is ¹³C₃ · 2¹⁰ · 3³ — everything except the x¹¹.",
         "lines": [
           "Coefficient = ¹³C₃ · 2¹⁰ · 3³ = 286 × 1024 × 27",
           {

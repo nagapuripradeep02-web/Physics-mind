@@ -63,6 +63,7 @@
         "marks": 2,
         "mark_note": "Two results",
         "margin_note": "Two of the eight marks. Two standard results do all the work: if gof is one one then the FIRST function is one one, and if gof is onto then the SECOND is onto. Write both before using either.",
+        "memory_tip": "Two standard results: gof one one makes the FIRST function one one; gof onto makes the SECOND onto.",
         "lines": [
           {
             "text": "Sol:",
@@ -109,6 +110,7 @@
         "marks": 2,
         "mark_note": "Bijection",
         "margin_note": "Two more marks. gof = I_A is one one, so by (a) f is one one. fog = I_B is onto, so by (b) f is onto — note it is fog, not gof, that gives this half.",
+        "memory_tip": "gof = I_A gives f one one, but it is fog = I_B that gives f onto. Different composition each half.",
         "lines": [
           "gof = I_A is one one ⇒ f is one one   [by (a)]",
           "fog = I_B is onto ⇒ f is onto   [by (b), with the",
@@ -150,6 +152,7 @@
         "marks": 1,
         "mark_note": "Domains",
         "margin_note": "Fifth mark. Two functions are equal only if they have the same domain AND agree everywhere. This step settles the domain half.",
+        "memory_tip": "Equality of functions needs the domain too: g and f⁻¹ both run B→A.",
         "lines": [
           "(ii) To show g = f⁻¹:",
           "Given g: B→A.  Since f: A→B is a bijection,",
@@ -191,6 +194,7 @@
         "marks": 3,
         "mark_note": "Values agree",
         "margin_note": "The last three marks. Take any b in B, let g(b) = a, and use fog = I_B to show f(a) = b — which is exactly what f⁻¹(b) = a means.",
+        "memory_tip": "Take ANY b, set g(b) = a, and use fog = I_B to get f(a) = b — which is exactly f⁻¹(b) = a.",
         "lines": [
           "Let b ∈ B and g(b) = a, where a ∈ A.",
           "Then f(a) = f(g(b)) = (fog)(b) = I_B(b) = b",

@@ -80,6 +80,7 @@
         "marks": 1,
         "mark_note": "n, p, q",
         "margin_note": "First mark. Mean = np, variance = npq. Divide: q = npq/np = 3/4, so p = 1/4, and then n = 4/p = 16. Always find q first — the variance-over-mean division gives q, not p.",
+        "memory_tip": "Variance over mean gives q = 3/4, so p = 1/4 and n = 4/p = 16. Always find q first.",
         "lines": [
           {
             "text": "Sol:",
@@ -126,6 +127,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The distribution is P(X = r) = ¹⁶Cᵣ (3/4)¹⁶⁻ʳ (1/4)ʳ. P(X ≥ 1) is 1 − P(X = 0), and P(X = 0) = qⁿ = (3/4)¹⁶. Leave the power as it is.",
+        "memory_tip": "Write the distribution itself — it is asked for. P(X ≥ 1) = 1 − qⁿ = 1 − (3/4)¹⁶, one subtraction.",
         "lines": [
           "The distribution is P(X = r) = ⁿCᵣ qⁿ⁻ʳ pʳ",
           "= ¹⁶Cᵣ (3/4)¹⁶⁻ʳ (1/4)ʳ, r = 0, 1, 2, …, 16",

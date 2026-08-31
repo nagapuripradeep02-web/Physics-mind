@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "(i)",
         "margin_note": "First mark. \"A does not occur\" is Aᶜ: 1 − 0.5 = 0.5.",
+        "memory_tip": "'A does not occur' is Aᶜ, so 1 − P(A) = 0.5.",
         "lines": [
           {
             "text": "Sol:",
@@ -113,6 +114,7 @@
         "marks": 1,
         "mark_note": "Set identity",
         "margin_note": "Second mark. \"Neither A nor B\" means A does not occur AND B does not occur: Aᶜ ∩ Bᶜ, which is the complement of A ∪ B. Writing this identity is the mark.",
+        "memory_tip": "'Neither A nor B' is Aᶜ ∩ Bᶜ = (A ∪ B)ᶜ — the complement of the UNION, not of the intersection.",
         "lines": [
           {
             "text": "(ii) Neither A nor B occurs:",
@@ -156,6 +158,7 @@
         "marks": 2,
         "mark_note": "Union and answer",
         "margin_note": "Two marks. Addition theorem: 0.5 + 0.4 − 0.3 = 0.6, then 1 − 0.6 = 0.4.",
+        "memory_tip": "Addition theorem gives P(A ∪ B) = 0.6, then 1 − 0.6 = 0.4.",
         "lines": [
           {
             "text": "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",

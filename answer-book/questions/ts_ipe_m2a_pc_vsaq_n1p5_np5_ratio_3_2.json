@@ -47,6 +47,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. ⁽ⁿ⁺¹⁾P₅ = (n + 1)n(n − 1)(n − 2)(n − 3) and ⁿP₅ = n(n − 1)(n − 2)(n − 3)(n − 4). Four factors cancel.",
+        "memory_tip": "Both have five factors and four are shared. Only (n + 1) on top and (n − 4) below survive.",
         "lines": [
           {
             "text": "Sol:",
@@ -92,6 +93,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 2(n + 1) = 3(n − 4) gives n = 14.",
+        "memory_tip": "Cross-multiply in order: 2(n + 1) = 3(n − 4), so n = 14. Swapping the sides gives −11.",
         "lines": [
           "2(n + 1) = 3(n − 4)",
           "2n + 2 = 3n − 12",

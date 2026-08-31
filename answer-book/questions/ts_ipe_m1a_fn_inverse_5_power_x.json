@@ -51,6 +51,7 @@
         "marks": 1,
         "mark_note": "Take logarithms and solve",
         "margin_note": "One mark. The unknown is in the exponent, so a logarithm is the only way to bring it down.",
+        "memory_tip": "The unknown sits in the EXPONENT, so take logarithms to bring it down.",
         "lines": [
           "Take f(x) = y ⇒ x = f⁻¹(y)",
           "5ˣ = y ⇒ log 5ˣ = log y",
@@ -93,6 +94,7 @@
         "marks": 1,
         "mark_note": "The inverse function",
         "margin_note": "The second mark is the finished function, renamed in x.",
+        "memory_tip": "Rename the variable back to x: f⁻¹(x) = log₅x.",
         "lines": [
           "⇒ f⁻¹(y) = log₅ y",
           "∴ f⁻¹(x) = log₅ x"

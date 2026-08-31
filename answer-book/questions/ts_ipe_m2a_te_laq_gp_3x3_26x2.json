@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Assume the roots",
         "margin_note": "First mark. The G.P. form a/r, a, ar makes the product collapse to a³. Write out a₀ … a₃ so the sign rules can be applied without a slip.",
+        "memory_tip": "For a G.P. write a/r, a, ar — that form makes the PRODUCT collapse to a³.",
         "lines": [
           {
             "text": "Sol:",
@@ -112,6 +113,7 @@
         "marks": 1,
         "mark_note": "S₃ = −a₃/a₀",
         "margin_note": "Second mark. The product is used FIRST for a G.P., because (a/r)·a·(ar) = a³ with r cancelling: −a₃/a₀ = 24/3 = 8, so a = 2.",
+        "memory_tip": "Use the product FIRST for a G.P.: r cancels, so a³ = 24/3 = 8 and a = 2.",
         "lines": [
           "Product of roots S₃ = −a₃/a₀:",
           "(a/r)·a·(ar) = a³ = 24/3 = 8",
@@ -154,6 +156,7 @@
         "marks": 2,
         "mark_note": "S₁ = −a₁/a₀",
         "margin_note": "Two marks. Sum = 26/3. Put a = 2, divide by 2, then put the bracket over r: (1 + r + r²)/r = 13/3. Cross-multiply to a quadratic in r.",
+        "memory_tip": "With a known, put the bracket over r: (1 + r + r²)/r = 13/3, then cross-multiply.",
         "lines": [
           "Sum of roots S₁ = −a₁/a₀:",
           "a/r + a + ar = 26/3",
@@ -199,6 +202,7 @@
         "marks": 1,
         "mark_note": "Values of r",
         "margin_note": "Sixth mark. Split −10 = −9 − 1 with (−9)(−1) = 9 = 3 × 3. The two values of r are reciprocals, which is why they give the same roots.",
+        "memory_tip": "(3r − 1)(r − 3) = 0. The two values are reciprocals, so they give the same three roots.",
         "lines": [
           "3r² − 9r − r + 3 = 0",
           "3r(r − 3) − 1(r − 3) = 0",
@@ -241,6 +245,7 @@
         "marks": 2,
         "mark_note": "Roots",
         "margin_note": "Last two marks. With a = 2 and r = 3: 2/3, 2, 6. The ratio between neighbours is 3 both times, and the three add to 26/3.",
+        "memory_tip": "With a = 2 and r = 3: 2/3, 2, 6. The ratio is 3 both times and they multiply to 8.",
         "lines": [
           "Take r = 3 (r = 1/3 gives the same three roots):",
           "a/r = 2/3, a = 2, ar = 6",

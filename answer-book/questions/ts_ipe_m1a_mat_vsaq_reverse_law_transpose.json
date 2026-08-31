@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Multiply A by B first — a 2×3 times a 3×2 gives a 2×2 — then transpose that result. Do not transpose before multiplying.",
+        "memory_tip": "Multiply FIRST, then transpose. A 2×3 times a 3×2 gives a 2×2.",
         "lines": [
           {
             "text": "Sol:",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Note the ORDER reverses — B′ comes first. B′ is 2×3 and A′ is 3×2, so the product is 2×2 and matches. Written the other way round the sizes would not even fit.",
+        "memory_tip": "The ORDER reverses: B′ comes first. Written the other way round the sizes would not even fit.",
         "lines": [
           {
             "text": "B'A' = \\begin{bmatrix} 1 & -3 & 5 \\\\ -2 & 0 & 4 \\end{bmatrix}\\begin{bmatrix} 2 & 1 \\\\ -1 & 3 \\\\ 2 & -4 \\end{bmatrix} = \\begin{bmatrix} 15 & -28 \\\\ 4 & -18 \\end{bmatrix}",

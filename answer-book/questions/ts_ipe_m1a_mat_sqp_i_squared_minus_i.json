@@ -46,6 +46,7 @@
         "marks": 1,
         "mark_note": "Product",
         "margin_note": "First mark. A is diagonal, so each diagonal entry simply squares: i² and (−i)². Both come to −1.",
+        "memory_tip": "A is diagonal, so each diagonal entry simply squares: i² and (−i)².",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Second mark. i² = −1 and (−i)² = i² = −1, so both diagonal entries are −1 — which is −I.",
+        "memory_tip": "i² = −1 and (−i)² = i² = −1, so both diagonal entries are −1 — which is −I.",
         "lines": [
           "Since i² = −1 and (−i)² = i² = −1:",
           {

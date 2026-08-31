@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The sine coefficient is −24 and the cosine one is 7. Both get squared, so both signs disappear.",
+        "memory_tip": "The sine coefficient is −24 and the cosine one is 7. Both get squared, so both signs disappear.",
         "lines": [
           {
             "text": "Sol:",
@@ -100,6 +101,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Compute both ends, then write them as [minimum, maximum] — smallest first, which is the convention for an interval.",
+        "memory_tip": "Write the interval smallest first: [minimum, maximum] = [−20, 30].",
         "lines": [
           "Maximum = c + √(a²+b²) = 5 + 25 = 30",
           "Minimum = c − √(a²+b²) = 5 − 25 = −20",

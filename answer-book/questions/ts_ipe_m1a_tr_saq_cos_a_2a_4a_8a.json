@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, and the trick of the question. There is no sinA on the left, so one is introduced deliberately — multiplied AND divided, which changes nothing.",
+        "memory_tip": "There is no sinA on the left, so introduce one — multiplied AND divided, which changes nothing.",
         "lines": [
           {
             "text": "Sol:",
@@ -99,6 +100,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Each 2 pairs with the sine just made and the next cosine, doubling the angle: A → 2A → 4A → 8A → 16A. Four applications, one per 2.",
+        "memory_tip": "sin2θ = 2 sinθ cosθ applied four times: sinA becomes sin2A, then sin4A, sin8A, sin16A.",
         "lines": [
           "= (1/(16 sinA)) (sin2A)(2 cos2A)(2 cos4A)(2 cos8A)",
           "= (1/(16 sinA)) (sin4A)(2 cos4A)(2 cos8A)",
@@ -141,6 +143,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. The chain ends at sin16A over the 16 sinA that was introduced at the start.",
+        "memory_tip": "The 2⁴ in the denominator is the 16. Write the final identity out.",
         "lines": [
           {
             "text": "= sin16A / (16 sinA) = R.H.S",

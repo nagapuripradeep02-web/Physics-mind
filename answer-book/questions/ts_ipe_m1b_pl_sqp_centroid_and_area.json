@@ -58,6 +58,7 @@
         "label": "Find the points of intersection",
         "marks": 1,
         "margin_note": "First mark. Both lines of the pair pass through the ORIGIN, so O is automatically the third vertex. Substitute the line into the pair to find where the other two vertices sit.",
+        "memory_tip": "Both lines of the pair pass through the ORIGIN, so O is automatically the third vertex.",
         "lines": [
           {
             "text": "Sol:",
@@ -101,6 +102,7 @@
         "label": "Solve for both vertices",
         "marks": 2,
         "margin_note": "Two marks. Substituting collapses the pair to a single quadratic in x, and its two roots give the two vertices.",
+        "memory_tip": "Substituting collapses the pair to one quadratic in x, whose two roots give the two vertices.",
         "lines": [
           "∴ (1) ⇒ 3x² − 4x(2x − 6) + (2x − 6)² = 0",
           "⇒ 3x² − 8x² + 24x + 4x² + 36 − 24x = 0",
@@ -146,6 +148,7 @@
         "label": "Find the centroid",
         "marks": 2,
         "margin_note": "Two marks. The centroid is the plain average of the three vertices. With the origin among them, two of the six numbers are zero.",
+        "memory_tip": "The plain average of the three vertices — and with the origin among them, two numbers are zero.",
         "lines": [
           "∴ The centroid of the triangle formed by O(0,0), A(6, 6), B(−6, −18) is",
           "G = ((x₁ + x₂ + x₃)/3, (y₁ + y₂ + y₃)/3)",
@@ -187,6 +190,7 @@
         "label": "Find the area",
         "marks": 3,
         "margin_note": "The last three marks. With one vertex at the origin the area determinant collapses to ½|x₁y₂ − x₂y₁| — only the two other vertices appear.",
+        "memory_tip": "With a vertex at the origin the determinant collapses to ½|x₁y₂ − x₂y₁|.",
         "lines": [
           "Area of △OAB = ½ |x₁y₂ − x₂y₁|",
           "= ½ |6(−18) − (−6)(6)|",

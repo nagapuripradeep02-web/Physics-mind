@@ -59,6 +59,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "memory_tip": "x² − 1 SPLITS as (x − 1)(x + 1), so there are three excluded points, not two.",
         "lines": [
           "f(x) is defined when (x² − 1)(x + 3) ≠ 0",
           "⇒ (x − 1)(x + 1)(x + 3) ≠ 0"
@@ -99,6 +100,7 @@
         "marks": 1,
         "mark_note": "Domain",
         "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "R minus {1, −1, −3} — all three roots of the denominator.",
         "lines": [
           "⇒ x ≠ 1, −1, −3",
           "∴ Domain = R − {1, −1, −3}"

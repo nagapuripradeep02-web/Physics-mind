@@ -60,6 +60,7 @@
         "marks": 1,
         "mark_note": "Counting",
         "margin_note": "First mark. M-A-T-H-E-M-A-T-I-C-S: 11 letters. M twice, A twice, T twice; H, E, I, C, S once.",
+        "memory_tip": "M-A-T-H-E-M-A-T-I-C-S is 11 letters, not 12. Three pairs: M, A and T.",
         "lines": [
           {
             "text": "Sol:",
@@ -103,6 +104,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 11!/(2!·2!·2!) = 39916800/8 = 49,89,600.",
+        "memory_tip": "11!/(2!·2!·2!) = 49,89,600. Divide by 2! three times — each missed pair doubles the answer.",
         "lines": [
           "Arrangements = n!/(p!·q!·r!)",
           {

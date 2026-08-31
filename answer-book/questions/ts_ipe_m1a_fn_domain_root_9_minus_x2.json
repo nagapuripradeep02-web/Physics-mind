@@ -55,6 +55,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "memory_tip": "≥ 0 for a plain root, and rearranging to x² − 9 ≤ 0 flips the inequality.",
         "lines": [
           "f(x) is defined when 9 − x² ≥ 0",
           "⇒ x² − 9 ≤ 0",
@@ -96,6 +97,7 @@
         "marks": 1,
         "mark_note": "Domain",
         "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "Between the roots with square brackets: [−3, 3].",
         "lines": [
           "⇒ x ∈ [−3, 3]",
           "∴ Domain = [−3, 3]"

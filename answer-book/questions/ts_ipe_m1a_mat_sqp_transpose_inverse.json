@@ -50,6 +50,7 @@
         "marks": 1,
         "mark_note": "Transpose",
         "margin_note": "First mark. Transpose first — rows become columns — then take the determinant. Transposing never changes a determinant, so |A′| = |A|.",
+        "memory_tip": "Transpose FIRST, then take the determinant — though transposing never changes it.",
         "lines": [
           {
             "text": "Sol:",
@@ -98,6 +99,7 @@
         "marks": 2,
         "mark_note": "Cofactors",
         "margin_note": "Half the marks. Nine 2×2 determinants with the sign board + − + / − + − / + − +.",
+        "memory_tip": "Nine 2×2 determinants with the sign board + − + / − + − / + − +.",
         "lines": [
           "Deleting each entry’s row and column and applying",
           "the sign board:",
@@ -142,6 +144,7 @@
         "marks": 1,
         "mark_note": "Inverse",
         "margin_note": "Last mark. The adjoint is the cofactor matrix transposed; dividing by |A′| = 1 leaves it unchanged.",
+        "memory_tip": "The adjoint is the cofactor matrix transposed; dividing by 1 leaves it unchanged.",
         "lines": [
           "Adj(A′) = (cofactor matrix)′",
           {

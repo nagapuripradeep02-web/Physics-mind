@@ -68,6 +68,7 @@
         "marks": 1,
         "mark_note": "Events",
         "margin_note": "First mark. Three box events and one colour event.",
+        "memory_tip": "Three box events and one colour event — including the boxes not asked about.",
         "lines": [
           {
             "text": "Sol:",
@@ -121,6 +122,7 @@
         "marks": 1,
         "mark_note": "Priors",
         "margin_note": "Second mark. One of three boxes at random: 1/3 each.",
+        "memory_tip": "One of three boxes at random is 1/3 each. Do not weight by how many balls a box holds.",
         "lines": [
           {
             "text": "The box is chosen at random, so",
@@ -165,6 +167,7 @@
         "marks": 1,
         "mark_note": "Conditional probabilities",
         "margin_note": "Third mark. Box I: 3 red of 6. Box II: 1 red of 4. Box III: 3 red of 12. Each over its own box total.",
+        "memory_tip": "Each over its own box total: 3 of 6, 1 of 4, 3 of 12. Never 22, the grand total.",
         "lines": [
           {
             "text": "P(R|B₁) = 3/6 = 1/2",
@@ -215,6 +218,7 @@
         "marks": 2,
         "mark_note": "Total probability",
         "margin_note": "Two marks. P(R) = Σ P(Bᵢ)·P(R|Bᵢ). Factor out the common 1/3: (1/3)(1/2 + 1/4 + 1/4) = (1/3)(1) = 1/3.",
+        "memory_tip": "Factor out 1/3: 1/2 + 1/4 + 1/4 = 1 exactly, so P(R) = 1/3.",
         "lines": [
           {
             "text": "By total probability,",
@@ -272,6 +276,7 @@
         "marks": 2,
         "mark_note": "Bayes' theorem",
         "margin_note": "Last two marks. P(B₂|R) = P(B₂)·P(R|B₂)/P(R) = (1/12)/(1/3) = 1/4.",
+        "memory_tip": "1/4 also happens to be P(R|B₂), so write the Bayes line — the method is the mark.",
         "lines": [
           {
             "text": "By Bayes' theorem,",

@@ -64,6 +64,7 @@
         "marks": 1,
         "mark_note": "S₃ = −a₃/a₀",
         "margin_note": "First mark. Two of the roots are known, so the relation that gives the third with the least work is the product: S₃ = −a₃/a₀ = −(−4)/1 = 4.",
+        "memory_tip": "Two roots are 1, so the product relation gives α in one line: S₃ = −(−4)/1 = 4.",
         "lines": [
           {
             "text": "Sol:",
@@ -106,6 +107,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 1 · 1 · α = 4 gives α = 4. Check with the sum: 1 + 1 + 4 = 6 = −a₁/a₀.",
+        "memory_tip": "1 · 1 · α = 4 gives α = 4. Check with the sum: 1 + 1 + 4 = 6 = −a₁/a₀.",
         "lines": [
           "1 · 1 · α = 4",
           {

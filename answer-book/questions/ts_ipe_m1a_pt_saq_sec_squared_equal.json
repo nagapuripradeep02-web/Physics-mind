@@ -51,6 +51,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Half the marks. Both radii carry 4R cos(C/2), so it factors out — and the bracket left behind is sin((A+B)/2), which is cos(C/2).",
+        "memory_tip": "Both radii carry 4R cos(C/2), so it factors out, and the bracket left is sin((A+B)/2) = cos(C/2).",
         "lines": [
           {
             "text": "Sol:",
@@ -97,6 +98,7 @@
         "marks": 2,
         "mark_note": "Conclusion",
         "margin_note": "The other half. sec²(C/2) is 1/cos²(C/2), so it cancels the cosine exactly, leaving 4R. The other two go the same way, so all three equal 4R.",
+        "memory_tip": "sec²(C/2) cancels the cosine exactly, leaving 4R. All three go the same way.",
         "lines": [
           "⇒ (r₁ + r₂) sec²(C/2) = 4R cos²(C/2) × 1/cos²(C/2) = 4R",
           "By the same working with the letters rotated,",
