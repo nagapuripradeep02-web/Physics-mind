@@ -73,7 +73,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "The last mark. Both sides integrate directly to a Tan⁻¹ — no substitution needed.",
-        "memory_tip": "∫1/(1+x²)dx = Tan⁻¹x is one of the standard integrals worth knowing by heart, on both sides here.",
+        "memory_tip": "∫1/(1+x²)dx = Tan⁻¹x is one of the standard integrals worth remembering, and it is used on both sides here.",
         "lines": [
           "∫dy/(1 + y²) = ∫dx/(1 + x²)",
           {

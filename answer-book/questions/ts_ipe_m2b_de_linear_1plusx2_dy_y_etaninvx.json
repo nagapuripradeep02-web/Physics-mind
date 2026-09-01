@@ -67,7 +67,7 @@
         "marks": 1,
         "mark_note": "P and ∫P dx",
         "margin_note": "One mark. Divide by (1 + x²) to reach the standard linear form.",
-        "memory_tip": "∫1/(1+x²) dx = Tan⁻¹x — one of the standard integrals worth knowing by heart.",
+        "memory_tip": "∫1/(1+x²) dx = Tan⁻¹x — one of the standard integrals worth remembering.",
         "lines": [
           {
             "text": "Sol:",
