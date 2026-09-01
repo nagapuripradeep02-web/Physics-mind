@@ -82,7 +82,7 @@
         },
         "why": "The expression 2x − 3y + 4 is zero exactly on the line, positive on one side of it and negative on the other. Its value at a point is therefore a direct reading of which side that point is on.",
         "common_mistakes": [
-          "Testing against 2x − 3y = −4 without moving the 4 across, which changes the sign.",
+          "Substituting the two points into different forms of the line, so the two values cannot be compared.",
           "Sign slip on −3(−3), writing −9 instead of +9."
         ]
       },

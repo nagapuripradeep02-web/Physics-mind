@@ -95,7 +95,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Use the point-and-normal form with P as the point and OP as the normal. The z coordinate is negative, so z − (−5) becomes z + 5.",
-        "memory_tip": "The constant is 1² + 3² + 5² = 35, the square of the distance from the origin.",
+        "memory_tip": "The constant term is −35, and 35 = 1² + 3² + 5² is the square of the distance from the origin.",
         "lines": [
           "The plane passes through P(1, 3, −5) with",
           "normal (a, b, c) = (1, 3, −5), so",
@@ -131,7 +131,7 @@
             "equals zero"
           ]
         },
-        "why": "The constant term is 1² + 3² + (−5)² = 35, which is the square of the distance OP. That is a quick way to see the constant is right without expanding twice.",
+        "why": "The constant term is −35, and 35 = 1² + 3² + (−5)² is the square of the distance OP. That is a quick way to see the constant is right without expanding twice.",
         "common_mistakes": [
           "Writing −5(z − 5) instead of −5(z + 5) for the negative coordinate.",
           "Leaving the answer as x + 3y − 5z = 0, which is a parallel plane through the origin."

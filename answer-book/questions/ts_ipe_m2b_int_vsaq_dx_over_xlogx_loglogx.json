@@ -57,7 +57,7 @@
         ],
         "why": "log(logx) differentiates, by the chain rule, to exactly 1/(x logx) — so the whole denominator's first two factors collapse into dt, leaving only the [log(logx)] part to deal with.",
         "common_mistakes": [
-          "Substituting only t=logx (as in the previous few questions) and missing that this question nests one level deeper.",
+          "Substituting only t=logx and missing that this integrand nests one level deeper.",
           "Losing the chain-rule factor 1/logx when differentiating log(logx)."
         ],
         "memory_tip": "log(logx) differentiates by the chain rule TWICE over — once for the outer log, once for the inner — giving 1/(x logx)."

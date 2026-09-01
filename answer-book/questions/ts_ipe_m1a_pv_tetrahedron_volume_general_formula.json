@@ -320,7 +320,7 @@
         "why": "The parallelepiped on the same three edges has volume |[a b c]|, so the tetrahedron is one sixth of it. Knowing which figure carries the one sixth prevents the two formulas from being mixed up.",
         "common_mistakes": [
           "Writing the answer without the modulus, which allows a negative volume.",
-          "Using one third in place of one sixth, which is the wrong figure's formula."
+          "Using one third in place of one sixth, by forgetting the half that makes the base a triangle."
         ]
       }
     ]

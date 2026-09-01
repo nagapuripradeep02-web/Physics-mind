@@ -222,7 +222,7 @@
           "Giving only one of the two forms when the question asks for both.",
           "Trying to prove the equivalence from the original relation y = xʸ again instead of using the logarithm line already written."
         ],
-        "memory_tip": "Go back to the first line to finish the last one: wherever y log x appears, log y may be written instead."
+        "memory_tip": "Go back to the line log y = y log x to finish this step: wherever y log x appears, log y may be written instead."
       }
     ]
   },

@@ -97,7 +97,7 @@
         "label": "Compare and name the type",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Aᵀ ≠ A because of the (1,2) entry, and Aᵀ = −A entry by entry. The diagonal 0, 0, 0 is the extra sign that it is skew.",
+        "margin_note": "Second mark. Aᵀ ≠ A because of the (1,2) entry, and Aᵀ = −A entry by entry. The diagonal 0, 0, 0 fits a skew matrix, but it is the comparison with −A that proves it.",
         "lines": [
           "Aᵀ ≠ A: the (1,2) entry is −1 in Aᵀ but 1 in A.",
           "So A is not symmetric. Now write −A:",

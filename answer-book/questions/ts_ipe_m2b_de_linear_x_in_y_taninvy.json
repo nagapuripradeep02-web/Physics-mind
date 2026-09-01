@@ -100,7 +100,7 @@
         ],
         "why": "The integrating-factor formula applies identically whether the equation is linear in x or in y — only the variable being integrated changes, from x to y.",
         "common_mistakes": [
-          "Writing e^(Tan⁻¹x) by mistake, confusing this with the sibling question that used Tan⁻¹x.",
+          "Writing e^(Tan⁻¹x) instead of e^(Tan⁻¹y) — the integration here is with respect to y.",
           "Forgetting the e^(...) wrapper and leaving the I.F. as Tan⁻¹y."
         ]
       },

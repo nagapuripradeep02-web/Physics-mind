@@ -137,7 +137,7 @@
         },
         "why": "No sum-to-product formula acts on squares. Opening two of them gives plain cosines that can be paired, and the leftover halves supply the 1 the right-hand side opens with.",
         "common_mistakes": [
-          "Opening all three squares, which leaves no term to absorb the common factor.",
+          "Opening all three squares, which needs the third one converted back to cos²C before the common factor appears.",
           "Writing cos²θ = (1 − cos2θ)/2, which is the sine version."
         ]
       },
@@ -271,7 +271,7 @@
         "label": "Apply the sum formula",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. cos(A−B) + cos(A+B) = 2 cos A cos B closes the proof. Write \"= R.H.S\" so the examiner can see it landed.",
+        "margin_note": "Last mark. cos(A−B) + cos(A+B) = 2 cos A cos B closes the proof. Write \"= R.H.S\" so the examiner can see the last line reaches the right-hand side.",
         "memory_tip": "cos(A−B) + cos(A+B) = 2 cos A cos B, which supplies the 2 in the answer.",
         "lines": [
           "cos(A−B) + cos(A+B) = 2 cosA cosB",

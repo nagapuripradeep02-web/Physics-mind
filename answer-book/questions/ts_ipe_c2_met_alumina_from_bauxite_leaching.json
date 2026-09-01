@@ -125,7 +125,7 @@
             "style": "indent"
           }
         ],
-        "why": "This is the step that finally separates alumina from silica: carbon dioxide is a weak acid and it brings down the aluminium hydroxide but leaves the silicate in solution. The book, following NCERT, prints this equation with one CO₂ and two NaHCO₃, which leaves one carbon on the left and two on the right. It is written here with 2CO₂, which balances every atom and fixes the hydrate at Al₂O₃·3H₂O — the same substance the book itself writes as Al(OH)₃ in its own flow chart for the next question.",
+        "why": "This is the step that finally separates alumina from silica: carbon dioxide is a weak acid and it brings down the aluminium hydroxide but leaves the silicate in solution. The book, following NCERT, prints this equation with one CO₂ and two NaHCO₃, which leaves one carbon on the left and two on the right. It is written here with 2CO₂, which balances every atom and fixes the hydrate at Al₂O₃·3H₂O — the same substance the book itself writes as Al(OH)₃ in its own flow chart.",
         "common_mistakes": [
           "Bubbling in HCl instead of CO₂. A strong acid would redissolve the aluminium hydroxide.",
           "Writing one CO₂ with two NaHCO₃. Two carbons are needed on the right, so two CO₂ go in on the left."
@@ -153,7 +153,7 @@
           "This alumina is the feed for the",
           "electrolysis that gives aluminium."
         ],
-        "why": "Heating drives off the water of hydration and leaves anhydrous alumina, which is what the electrolytic cell needs. The book prints 1470 K here and 1473 K in the flow chart of the next question; the two are the same temperature written to different precision.",
+        "why": "Heating drives off the water of hydration and leaves anhydrous alumina, which is what the electrolytic cell needs. The book prints 1470 K here and 1473 K in its flow chart; the two are the same temperature written to different precision.",
         "common_mistakes": [
           "Stopping at the hydrated oxide. The question asks for alumina, so the water has to be driven off.",
           "Showing the water as a liquid. At 1470 K it leaves as steam."

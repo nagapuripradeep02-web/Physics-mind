@@ -132,7 +132,7 @@
         },
         "why": "Every later mark rests on this point, so a one-line check here protects the whole second half of the answer.",
         "common_mistakes": [
-          "Reading x = 22 by dropping the minus sign.",
+          "Reading x = 2 by dropping the minus sign.",
           "Skipping the check and carrying an arithmetic slip into the formula."
         ],
         "mark_note": "Method",
@@ -211,7 +211,7 @@
             "under the root"
           ]
         },
-        "why": "The sign of c matters: reading c as +15 changes the numerator from 5 to 35 and the answer with it, so the line must be read exactly as printed.",
+        "why": "The sign of c matters: reading c as +15 changes the numerator from 5 to 25 and the answer with it, so the line must be read exactly as printed.",
         "common_mistakes": [
           "Taking c as +15 instead of −15.",
           "Squaring only 24 and not 7 under the root."

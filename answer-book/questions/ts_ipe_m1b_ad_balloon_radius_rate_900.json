@@ -81,7 +81,7 @@
             "nine hundred"
           ]
         },
-        "why": "The 3 from differentiating r³ cancels the 3 in the denominator, so dV/dt = 4πr²(dr/dt), and 4πr² is the surface area of the sphere. This is the same relation as the bubble question, used the other way round.",
+        "why": "The 3 from differentiating r³ cancels the 3 in the denominator, so dV/dt = 4πr²(dr/dt), and 4πr² is the surface area of the sphere.",
         "common_mistakes": [
           "Using the surface area 4πr² as the volume formula.",
           "Differentiating r³ as r² without the factor 3, which loses the cancellation.",
@@ -139,5 +139,5 @@
       }
     ]
   },
-  "insider_note": "Here dV/dt is given and dr/dt is asked — the reverse of the bubble question. Substitute r = 15 into dV/dt = 4πr²(dr/dt) and solve, giving 1/π."
+  "insider_note": "Here dV/dt is given and dr/dt is the unknown, not the other way round. Substitute r = 15 into dV/dt = 4πr²(dr/dt) and solve, giving 1/π."
 }

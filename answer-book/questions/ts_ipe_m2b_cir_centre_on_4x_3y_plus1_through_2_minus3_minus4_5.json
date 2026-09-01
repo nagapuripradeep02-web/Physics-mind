@@ -98,7 +98,7 @@
         ],
         "why": "The question supplies only two points, so the line is the second condition. A point lies on a line exactly when its coordinates satisfy the line equation.",
         "common_mistakes": [
-          "Copying the constant as −1 from the similar question on the same page.",
+          "Copying the constant as −1 when the given line is 4x + 3y + 1 = 0.",
           "Substituting a given point into the line instead of the centre."
         ]
       },

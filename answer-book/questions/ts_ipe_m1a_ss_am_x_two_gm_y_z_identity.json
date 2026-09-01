@@ -81,7 +81,7 @@
         },
         "why": "Two geometric means between a and b make a four-term G.P., and in a G.P. each term squared equals the product of its neighbours. Those two relations are all this identity needs.",
         "common_mistakes": [
-          "Putting a, y, z, b in A.P. instead of G.P., which is the condition for the arithmetic means question.",
+          "Putting a, y, z, b in A.P. instead of G.P. A.P. is the condition for arithmetic means; y and z here are geometric means.",
           "Writing y² = ab, which is the rule for a single geometric mean, not for two."
         ]
       },

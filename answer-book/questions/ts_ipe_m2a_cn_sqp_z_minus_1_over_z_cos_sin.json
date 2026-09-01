@@ -131,7 +131,7 @@
             "sin theta"
           ]
         },
-        "why": "z − 1/z = cis θ − cis(−θ) is purely imaginary, and equals 2i sin θ; the companion fact z + 1/z = 2cos θ is the one De Moivre questions use. Both come from the same reciprocal line.",
+        "why": "z − 1/z = cis θ − cis(−θ) is purely imaginary, and equals 2i sin θ; the companion fact z + 1/z = 2cos θ is the one used when expanding powers by De Moivre's theorem. Both come from the same reciprocal line.",
         "common_mistakes": [
           "Getting 2cos θ — that is z + 1/z.",
           "Dropping the i and answering 2 sin θ."

@@ -53,7 +53,7 @@
         "label": "Form the edge vectors",
         "marks": 1,
         "mark_note": "Edge vectors",
-        "margin_note": "First mark. Any of the four points may be the corner; A is the tidiest because λ then sits in one row only.",
+        "margin_note": "First mark. Any of the four points may be the corner; A is a convenient one because λ then sits in one row only. Taking B as the corner would put λ in all three rows.",
         "memory_tip": "Subtract the corner's coordinates from the other three points, one row each.",
         "lines": [
           {

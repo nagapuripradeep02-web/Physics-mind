@@ -81,7 +81,7 @@
           "monomer is isoprene, and vulcanisation",
           "adds the cross links."
         ],
-        "why": "Every one of these is built from a diene, so one double bond is left over in the chain after polymerisation. That leftover double bond is where sulphur later forms the cross links, which is why the rubbers and the vulcanisation question belong together.",
+        "why": "Every one of these is built from a diene, so one double bond is left over in the chain after polymerisation. That leftover double bond is where sulphur forms the cross links during vulcanisation, which is what gives a rubber its elasticity.",
         "common_mistakes": [
           "Giving nylon-6,6 or terylene as an elastomer. Those are fibres, held by strong hydrogen bonds.",
           "Naming Buna-S and Buna-N without their monomers. The two differ only in the second monomer, styrene against vinyl cyanide."

@@ -56,7 +56,7 @@
         "kind": "equation",
         "label": "Write both lines in standard form",
         "marks": 1,
-        "margin_note": "First mark. The slope formula −a/b needs the equations as ax + by + c = 0, so clear the denominators first. Take a > b > 0: the stem gives a > b, and a and b must both be positive for a² − b² to be positive, which the boxed answer needs.",
+        "margin_note": "First mark. The slope of Ax + By + C = 0 is −A/B, so clear the denominators first — here a and b are the INTERCEPTS, not the coefficients. Take a > b > 0: the stem gives a > b, and a and b must both be positive for a² − b² to be positive, which the boxed answer needs.",
         "lines": [
           {
             "text": "Sol:",
@@ -95,7 +95,7 @@
           "Forgetting that the answer needs a² − b² > 0, which a > b alone does not give if b is negative."
         ],
         "mark_note": "Method",
-        "memory_tip": "Clear the denominators first: −a/b only reads correctly off ax + by + c = 0."
+        "memory_tip": "Clear the denominators first: the slope −A/B only reads correctly off Ax + By + C = 0."
       },
       {
         "id": "s2_both_slopes",

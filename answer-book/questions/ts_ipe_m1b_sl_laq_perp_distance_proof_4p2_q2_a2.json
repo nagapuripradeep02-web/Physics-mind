@@ -233,7 +233,7 @@
         "label": "Add and finish",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Add the two boxed results, take a² out, and use sin²θ + cos²θ = 1 at θ = 2α.",
+        "margin_note": "The last two marks. Add the two numbered results (1) and (2), take a² out, and use sin²θ + cos²θ = 1 at θ = 2α.",
         "lines": [
           "Adding (1) and (2),",
           "4p² + q² = a² sin²2α + a² cos²2α",

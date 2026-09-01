@@ -158,9 +158,9 @@
           "Giving ethanol and water as an example. That pair shows positive deviation and forms a minimum boiling azeotrope."
         ],
         "memory_tip": "Three negative signs together, and a maximum boiling azeotrope.",
-        "margin_note": "Two named examples are enough. The azeotrope line links this answer to the azeotrope question on the same paper."
+        "margin_note": "Two named examples are enough. The azeotrope line is worth writing on its own: a large negative deviation gives a maximum boiling azeotrope."
       }
     ]
   },
-  "insider_note": "This question and the positive deviation question are marked side by side, so every sign must be the mirror of the other card. Strong A–B interaction, pressure below the line, ΔHmix negative, ΔVmix negative, maximum boiling azeotrope."
+  "insider_note": "Negative deviation is the exact mirror of positive deviation, so every sign has to be written the opposite way round. Negative: strong A–B interaction, pressure below the line, ΔHmix negative, ΔVmix negative, maximum boiling azeotrope. Positive: weak A–B interaction, pressure above the line, both signs positive, minimum boiling azeotrope."
 }

@@ -128,7 +128,7 @@
         "why": "Each coordinate of the centroid depends only on the matching coordinates of the vertices, so the three columns are three separate additions and a slip in one does not spread to the others.",
         "common_mistakes": [
           "Reading −3 as +3 in the x column.",
-          "Cancelling 15/4 wrongly instead of leaving it as a fraction."
+          "Dividing the coordinate sums by 3 instead of 4; a tetrahedron has four vertices."
         ]
       }
     ]

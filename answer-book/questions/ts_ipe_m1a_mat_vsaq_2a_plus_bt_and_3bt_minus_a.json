@@ -98,7 +98,7 @@
         "marks": 1,
         "mark_note": "Second matrix",
         "margin_note": "Second mark. Scale first, subtract second. Note the order of the subtraction: it is 3Bᵀ − A, not A − 3Bᵀ.",
-        "memory_tip": "Scale both matrices first, then subtract once. Doing it the other way round changes the answer.",
+        "memory_tip": "Multiply Bᵀ by 3 first, then subtract A once. Subtracting before scaling changes the answer.",
         "lines": [
           {
             "text": "3B^{T} - A = \\begin{bmatrix} -6 & 12 \\\\ 9 & 0 \\\\ 3 & 6 \\end{bmatrix} - \\begin{bmatrix} -2 & 1 \\\\ 5 & 0 \\\\ -1 & 4 \\end{bmatrix} = \\begin{bmatrix} -4 & 11 \\\\ 4 & 0 \\\\ 4 & 2 \\end{bmatrix}",

@@ -45,7 +45,7 @@
         "label": "Prove f is one one",
         "marks": 1,
         "mark_note": "One one",
-        "margin_note": "First mark. Copy the domain and the codomain from the question before you start, then assume two inputs share an image and force them to be equal.",
+        "margin_note": "First mark. Copy the domain and the codomain out of the question first, then assume two inputs share an image and force them to be equal.",
         "memory_tip": "For one one, start from f(x₁) = f(x₂) and end at x₁ = x₂. Never start from x₁ = x₂.",
         "lines": [
           {

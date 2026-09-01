@@ -263,7 +263,7 @@
         "why": "The letters h and k were only a name for the moving point, so the last move is to write the relation in the standard locus letters x and y. Two concrete lines through P confirm it: at a = 2, b = 3 the locus is 10xy = 6(x + y), and the midpoints (1, 3/2) and (3/2, 1) both satisfy it.",
         "common_mistakes": [
           "Leaving the answer in h and k.",
-          "Cancelling hk from both sides, which removes the locus."
+          "Cancelling (h + k) against hk, which is not a common factor of the two sides."
         ],
         "mark_note": "Method",
         "memory_tip": "h and k were only a NAME for the moving point — rename them x and y at the very end."

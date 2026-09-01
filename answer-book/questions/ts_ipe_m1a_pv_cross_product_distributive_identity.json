@@ -53,7 +53,7 @@
         "label": "Expand the three brackets",
         "marks": 1,
         "mark_note": "Expansion",
-        "margin_note": "First mark. Cross multiplication distributes over addition, so each bracket splits into two terms. The order inside each term must be kept exactly as written.",
+        "margin_note": "First mark. The cross product distributes over addition, so each bracket splits into two terms. The order inside each term must be kept exactly as written.",
         "memory_tip": "Expand like ordinary brackets, but never swap the two vectors inside a term.",
         "lines": [
           {

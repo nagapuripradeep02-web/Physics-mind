@@ -177,7 +177,7 @@
           "Applying the minus sign to only the first term of the product-rule result.",
           "Writing d/dt (t cos t) as −t sin t and dropping the cos t term."
         ],
-        "memory_tip": "This step mirrors the last one: there the sines cancelled, here the cosines do. Both leave a single term with a t in it."
+        "memory_tip": "This step mirrors the dx/dt working: there the sin t terms cancelled, here the cos t terms do. Both leave a single term with a t in it."
       },
       {
         "id": "s4_divide",

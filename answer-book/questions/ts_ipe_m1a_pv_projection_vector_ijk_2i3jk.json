@@ -91,7 +91,7 @@
         "why": "A projection is the shadow one vector casts on the direction of the other. The direction it is cast onto decides which vector survives in the answer, so naming it first prevents the whole calculation being done the wrong way round.",
         "common_mistakes": [
           "Projecting a on b, which gives ((a·b)/|b|²)b instead.",
-          "Dividing by |a| rather than |a|², which gives a length and not a vector."
+          "Writing the formula with |a| in place of |a|² in the denominator."
         ]
       },
       {

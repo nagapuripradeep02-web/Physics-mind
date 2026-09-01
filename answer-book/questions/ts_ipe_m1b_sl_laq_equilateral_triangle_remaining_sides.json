@@ -136,7 +136,7 @@
         "why": "The side lengths are not given, so the only way into the question is the angle between two lines written through their slopes.",
         "common_mistakes": [
           "Using sin 60° or cos 60° in place of tan 60°.",
-          "Writing the denominator as 1 − m₁m₂."
+          "Writing the denominator as 1 − m m₁."
         ],
         "memory_tip": "tan θ = |(m − m₁)/(1 + m m₁)|, and tan 60° = √3. The angle, not the side length, is what is given."
       },

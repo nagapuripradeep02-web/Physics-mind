@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. (3√3)² is 27, not 9. With 169 it makes 196, and √196 is exactly 14 — a whole number, which is the sign that the squaring was done correctly.",
-        "memory_tip": "(3√3)² = 9 × 3 = 27, and 169 + 27 = 196 = 14². A whole-number root is the check.",
+        "memory_tip": "(3√3)² = 9 × 3 = 27, and 169 + 27 = 196 = 14². Here the root comes out whole, which makes the arithmetic easy to check.",
         "lines": [
           {
             "text": "Sol:",

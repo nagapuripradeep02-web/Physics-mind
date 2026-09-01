@@ -81,7 +81,7 @@
         "why": "The modulus cannot be removed until the sign of x − 2 is known, and only the side of the approach settles it. This is the one-sided part of the question, so stating x < 2 in words is what earns the mark.",
         "common_mistakes": [
           "Writing |x − 2| = x − 2, which is the rule for the right-hand side.",
-          "Substituting x = 2 and writing 0/0, which the modulus question is not asking for."
+          "Substituting x = 2 and writing 0/0; x never takes the value 2 in a one-sided limit."
         ]
       },
       {

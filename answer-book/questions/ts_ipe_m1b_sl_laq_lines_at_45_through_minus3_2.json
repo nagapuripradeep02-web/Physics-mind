@@ -134,7 +134,7 @@
         "why": "tan 45° = 1 is what turns the angle statement into a plain algebraic equation with only m in it.",
         "common_mistakes": [
           "Using sin 45° or cos 45° instead of tan 45°.",
-          "Writing the denominator as 1 − m₁m₂."
+          "Writing the denominator as 1 − m m₁."
         ],
         "memory_tip": "tan θ = |(m − m₁)/(1 + m m₁)|, and tan 45° = 1, so the modulus itself equals 1."
       },

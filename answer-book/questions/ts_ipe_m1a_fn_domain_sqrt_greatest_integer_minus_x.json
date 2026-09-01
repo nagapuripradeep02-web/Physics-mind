@@ -59,7 +59,7 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the root needs [x] − x ≥ 0 while the definition gives [x] − x ≤ 0, so the only survivors are the points where [x] = x.",
+          "must_convey": "That the root needs [x] − x ≥ 0 while the definition gives [x] − x ≤ 0, so the only points left are those where [x] = x.",
           "accept": [
             "the greatest integer is at most x so the difference is at most zero",
             "the root needs it non negative and the definition needs it non positive so it must be zero",
@@ -81,7 +81,7 @@
             "non negative"
           ]
         },
-        "why": "The condition from the root points one way and the definition of the greatest integer function points the other, so only the points where the two meet at zero can survive.",
+        "why": "The root needs [x] − x to be at least 0, and the definition of the greatest integer function makes [x] − x at most 0, so only the points where it is exactly 0 are in the domain.",
         "common_mistakes": [
           "Reading [x] as the modulus of x and solving |x| − x ≥ 0 instead.",
           "Writing [x] ≥ x, which reverses the definition."

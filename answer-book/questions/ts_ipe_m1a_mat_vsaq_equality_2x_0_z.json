@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. Two matrices are equal only when every entry in the same position is equal. Write down only the positions that carry an unknown; the rest are already identical.",
-        "memory_tip": "Same position, same value. Nine positions here, but only four of them carry an unknown.",
+        "memory_tip": "Same position, same value. Nine positions here, but only five of them carry an unknown.",
         "lines": [
           {
             "text": "Sol:",
@@ -67,7 +67,7 @@
           "accept": [
             "equal matrices means every corresponding entry is equal so I get separate equations",
             "compare each position and write the equation it gives",
-            "match entry by entry and only four positions have unknowns",
+            "match entry by entry and only five positions have unknowns",
             "corresponding elements equate cheste chinna equations vasthai",
             "equate the entries in the same row and column"
           ],

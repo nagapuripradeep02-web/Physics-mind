@@ -184,7 +184,7 @@
         },
         "why": "A common factor of a whole row comes outside the determinant. Two of the three factors of the answer are collected here, which is why the remaining 2×2 work only has to produce one more.",
         "common_mistakes": [
-          "Taking 2(a−1) out of R₂ and still writing that row as 1, 1, 0; only (a−1) comes out, so the row is 2, 1, 0.",
+          "Taking 2(a−1) out of R₂ and still writing that row as 1, 1, 0; taking (a−1) out leaves the row as 2, 1, 0.",
           "Forgetting that the second entry a − 1 also has to be divided, leaving a − 1 inside.",
           "Taking the factor out of a column instead of a row."
         ]

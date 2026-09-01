@@ -143,7 +143,7 @@
         "why": "The sign is kept here and no modulus is used, because an interior angle of a triangle can be obtuse and a modulus would report its acute partner instead. In this triangle all three sums turn out to be zero or positive, so all three angles are right or acute.",
         "common_mistakes": [
           "Putting a modulus on the top line — a triangle's own angle can be obtuse, so the sign is kept.",
-          "Working out the two roots underneath when the top is already 0."
+          "Reading a zero numerator as an angle of 0°; a zero dot product means 90°."
         ]
       },
       {

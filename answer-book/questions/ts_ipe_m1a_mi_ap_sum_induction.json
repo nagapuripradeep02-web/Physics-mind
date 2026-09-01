@@ -87,7 +87,7 @@
             "nth term"
           ]
         },
-        "why": "Two letters are floating in this question. Saying that a and d are fixed and that only n changes is what makes S(n) a statement about one variable, which is the only kind induction can prove.",
+        "why": "This question carries two extra letters, a and d. Saying that a and d are fixed and that only n changes is what makes S(n) a statement about one variable, which is the only kind induction can prove.",
         "common_mistakes": [
           "Writing the nth term as a + nd instead of a + (n−1)d.",
           "Trying to induct on d or on a as well as on n."

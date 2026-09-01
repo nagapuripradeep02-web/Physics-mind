@@ -78,7 +78,7 @@
             "plus or minus three"
           ]
         },
-        "why": "Five terms means the last one is ar⁴, so a single fourth power has to be undone. A fourth root of a positive number has two real values, and both are allowed here.",
+        "why": "Five terms means the fifth term is ar⁴, so a single fourth power has to be undone. A fourth root of a positive number has two real values, and both are allowed here.",
         "common_mistakes": [
           "Taking 81 as the 4th term and writing ar³ = 81.",
           "Giving only r = 3 and missing r = −3."

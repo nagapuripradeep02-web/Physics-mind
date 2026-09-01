@@ -131,7 +131,7 @@
             "trace is one"
           ]
         },
-        "why": "The principal diagonal runs from the top left corner to the bottom right corner. The fractions here sit off that line, so they are not part of the trace even though they are the most eye-catching entries in the matrix.",
+        "why": "The principal diagonal runs from the top left corner to the bottom right corner. The fractions here sit off that line, so they are not part of the trace even though they are the only fractions in the matrix.",
         "common_mistakes": [
           "Adding the −1/2 entries, which are off the diagonal.",
           "Adding every entry of the matrix.",

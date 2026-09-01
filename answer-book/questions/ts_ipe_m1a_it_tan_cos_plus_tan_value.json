@@ -173,7 +173,7 @@
         "why": "The two fractions must be put over a common denominator before dividing. 3/4 + 2/3 is 17/12, not 5/7.",
         "common_mistakes": [
           "Adding 3/4 and 2/3 as 5/7.",
-          "Dividing by 1/2 instead of multiplying by 2."
+          "Multiplying by 1/2 instead of dividing by it, which gives 17/24."
         ]
       }
     ]

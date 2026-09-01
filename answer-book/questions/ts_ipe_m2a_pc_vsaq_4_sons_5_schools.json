@@ -78,7 +78,7 @@
             "five schools"
           ]
         },
-        "why": "Which son goes to which school matters, and no school is used twice, so this is an ordered choice without repetition — a permutation. It is the same count as the injections question (149.1) with sons as the domain.",
+        "why": "Which son goes to which school matters, and no school is used twice, so this is an ordered choice without repetition — a permutation. It is the same count as the number of injections from a 4-element set into a 5-element set, with the sons as the domain.",
         "common_mistakes": [
           "Using ⁵C₄ = 5, which ignores which son goes where.",
           "Using 5⁴ = 625, which allows two sons in one school."

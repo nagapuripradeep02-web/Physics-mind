@@ -50,7 +50,7 @@
         "label": "Find d₁×d₂",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Same cross-product step as before — but these are DIAGONALS, not sides, and that changes the formula at the end. Take the −2 out to keep the numbers small.",
+        "margin_note": "First mark. The cross product is computed the same way for sides or for diagonals — but these are DIAGONALS, and that changes the formula at the end. Take the −2 out to keep the numbers small.",
         "memory_tip": "These are DIAGONALS, not sides, and that changes the formula at the end. Take the −2 out.",
         "lines": [
           {
@@ -101,7 +101,7 @@
         "label": "Halve the magnitude",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark, and the difference from the previous question. From DIAGONALS the area is HALF the magnitude — the half is not optional here.",
+        "margin_note": "Second mark, and the difference from the sides form. From DIAGONALS the area is HALF the magnitude — the half is not optional here.",
         "memory_tip": "From DIAGONALS the area is HALF the magnitude — the half is not optional here.",
         "lines": [
           "|d₁ × d₂| = 2√(1 + 49 + 25) = 2√75",

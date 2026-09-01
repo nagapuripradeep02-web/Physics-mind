@@ -77,7 +77,7 @@
         },
         "why": "The second and third factors are a sum and a difference of the same two angles, so they multiply to a difference of squares. sin A is left outside for now.",
         "common_mistakes": [
-          "Expanding sin(π/3 + A) and sin(π/3 − A) term by term.",
+          "Expanding sin(π/3 + A) and sin(π/3 − A) term by term, which reaches the same bracket but takes longer.",
           "Grouping sin A with one of the other factors."
         ],
         "memory_tip": "A sum times a difference of the same two angles is a difference of squares."

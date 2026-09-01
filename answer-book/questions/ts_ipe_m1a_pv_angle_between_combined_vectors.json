@@ -174,7 +174,7 @@
         },
         "why": "The two lengths are equal because a and b have the same length, so swapping their coefficients produces a mirror image. That equality makes the denominator a whole number and the arithmetic short.",
         "common_mistakes": [
-          "Assuming the two magnitudes must differ and re-checking a correct answer.",
+          "Deciding the two equal magnitudes must be a slip and changing one of them; the equality is genuine here.",
           "Squaring −4 as −16."
         ]
       },

@@ -126,7 +126,7 @@
             "s of one"
           ]
         },
-        "why": "Induction needs a true first case to start from. However good the inductive step is, without S(1) the chain has nothing to stand on.",
+        "why": "Induction needs a true first case to start from. However good the inductive step is, without S(1) there is no proved case for it to work from.",
         "common_mistakes": [
           "Asserting S(1) is true without working out both sides.",
           "Reading 1²(2)²/4 as 1²(2)/4 and getting 1/2."

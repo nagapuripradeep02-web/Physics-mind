@@ -75,7 +75,7 @@
           "No metabolic energy is spent, so osmosis is",
           "a form of passive transport."
         ],
-        "why": "Naming osmosis as passive transport links it to the transport question in the same chapter and shows why no ATP appears anywhere in the answer.",
+        "why": "Naming osmosis as passive transport is what shows why no ATP appears anywhere in the answer.",
         "common_mistakes": [
           "Writing that osmosis needs ATP. It is passive.",
           "Calling osmosis active transport because a membrane is involved."
@@ -85,5 +85,5 @@
       }
     ]
   },
-  "insider_note": "Osmosis appears again in the active-versus-passive transport question, where it is the standard example of passive transport."
+  "insider_note": "Osmosis is the standard example of passive transport, so the words 'passive, no ATP' are what complete the answer."
 }

@@ -148,7 +148,7 @@
         "label": "Multiply Aᵏ by A",
         "marks": 2,
         "mark_note": "Inductive step",
-        "margin_note": "Half the marks. Use A^(k+1) = Aᵏ·A, not A·Aᵏ from scratch. Then rewrite each entry so that k + 1 is visible: 2k + 3 is 1 + 2(k+1), and −2k − 1 is 1 − 2(k+1).",
+        "margin_note": "Half the marks. Use A^(k+1) = Aᵏ·A. Then rewrite each entry so that k + 1 is visible: 2k + 3 is 1 + 2(k+1), and −2k − 1 is 1 − 2(k+1).",
         "memory_tip": "After multiplying, rewrite every entry so k + 1 shows: 2k + 3 is 1 + 2(k+1).",
         "lines": [
           {
@@ -196,7 +196,7 @@
         "common_mistakes": [
           "Stopping at 2k + 3 without showing it equals 1 + 2(k+1).",
           "Dropping a minus sign when multiplying −4k by −1.",
-          "Multiplying A by Aᵏ in the wrong order and losing track of the entries."
+          "Stopping at the product without rewriting each entry so that k + 1 is visible."
         ]
       },
       {

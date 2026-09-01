@@ -91,7 +91,7 @@
         "label": "Solve for cosθ",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The cubic factors as (c + 1)(4c² − 2c − 1). Reject c = −1 because 36° is not 180°, then take the positive root. A shorter route once part (i) is known: cos36° = 1 − 2sin²18° gives the same value.",
+        "margin_note": "Second mark. The cubic factors as (c + 1)(4c² − 2c − 1). Reject c = −1 because 36° is not 180°, then take the positive root. A shorter route if sin18° = (√5 − 1)/4 is already known: cos36° = 1 − 2sin²18° gives the same value.",
         "memory_tip": "Factor out (c + 1) and reject it, since 36° is not 180°. Then take the positive root.",
         "lines": [
           "Put c = cosθ:",

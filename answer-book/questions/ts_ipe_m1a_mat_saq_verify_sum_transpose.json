@@ -91,7 +91,7 @@
         "why": "The left-hand side of the law is built from the sum, so the sum has to exist first. Matrices add only when they have the same order, which is why the orders are checked before anything else.",
         "common_mistakes": [
           "Adding the entries in the wrong positions.",
-          "Getting 1 − 3 = 2 instead of −2 by ignoring the sign of B."
+          "Getting 1 + 3 = 4 instead of −2 by ignoring the minus sign on B."
         ]
       },
       {

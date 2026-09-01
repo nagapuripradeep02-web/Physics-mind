@@ -176,7 +176,7 @@
             "one half"
           ]
         },
-        "why": "The whole index and series machinery has collapsed to a single ordinary trigonometric equation. From here it is the standard cosine work.",
+        "why": "The index work and the series sum are both finished, and only a single ordinary trigonometric equation is left. From here it is the standard cosine work.",
         "common_mistakes": [
           "Writing 1 − cos x = 2 instead of 1/2.",
           "Sign slip giving cos x = −1/2."

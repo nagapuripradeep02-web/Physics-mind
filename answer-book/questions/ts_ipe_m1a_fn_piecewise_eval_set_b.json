@@ -19,7 +19,7 @@
   "appearances": [],
   "mark_split": [
     {
-      "label": "The four values and the sum f(2) + f(−2)",
+      "label": "The three values and the sum f(2) + f(−2)",
       "marks": 1
     },
     {
@@ -45,7 +45,7 @@
         "label": "Match each point to its branch",
         "marks": 1,
         "mark_note": "The values and the sum",
-        "margin_note": "One mark for the four values and the sum. The two points 2 and −2 sit in different branches, so write both branches out before adding.",
+        "margin_note": "One mark for the three values and the sum. The two points 2 and −2 sit in different branches, so write both branches out before adding.",
         "memory_tip": "Draw the three conditions on a number line, place each number on it, and only then substitute.",
         "lines": [
           {

@@ -290,7 +290,7 @@
           "At each layer it goes from denser to rarer",
           "air, so it bends away from the normal.",
           "The angle of incidence at the next layer is",
-          "therefore larger than at the last one, and",
+          "therefore larger than at the layer above, and",
           "the ray follows a curved path."
         ],
         "margin_note": "Third mark. Each step is denser to rarer, so each step bends the ray a little further from the normal.",

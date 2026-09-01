@@ -218,7 +218,7 @@
         "why": "Squaring |p||q| sin θ and |p||q| cos θ and adding gives |p|²|q|², so the two products are tied together. That tie is what lets one answer check the other without repeating the same arithmetic.",
         "common_mistakes": [
           "Adding (p·q)² instead of subtracting it.",
-          "Writing |p|²|q|² as (|p||q|)² = 6 rather than 36."
+          "Working out |p|²|q|² as 6 instead of 36 — it is 4 × 9, not 2 × 3."
         ]
       }
     ]

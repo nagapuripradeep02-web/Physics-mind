@@ -79,7 +79,7 @@
             "identity"
           ]
         },
-        "why": "Both terms are sine squares, so this is the sin²A − sin²B form and not the mixed cos²A − sin²B form used in the previous part.",
+        "why": "Both terms are sine squares, so this is the sin²A − sin²B form, not the mixed cos²A − sin²B form.",
         "common_mistakes": [
           "Using cos²A − sin²B, which needs the first term to be a cosine.",
           "Adding the halves wrongly and getting 74° instead of 75°."

@@ -63,7 +63,7 @@
             "style": "heading"
           },
           "Given line is 2x + 3y = 0",
-          "It's slope  m = −a/b = −2/3",
+          "Its slope  m = −a/b = −2/3",
           "∴ Slope of its perpendicular is −1/m = 3/2"
         ],
         "recall": {
@@ -257,7 +257,7 @@
         },
         "why": "Both conditions the question set can be tested in one line each, so a sign slip anywhere above shows up here rather than in the marked answer.",
         "common_mistakes": [
-          "Skipping the check and shipping a sign slip.",
+          "Skipping the check and leaving a sign slip in the final answer.",
           "Checking only the point and not the perpendicular condition."
         ],
         "mark_note": "Method",

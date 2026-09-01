@@ -110,7 +110,7 @@
         },
         "why": "The first column being 1, 1, 1 is what makes row subtraction free of fractions. Spotting that decides the whole method before you write a second line.",
         "common_mistakes": [
-          "Reaching for column operations because the last question used them.",
+          "Reaching for column operations out of habit, when the all-1s first column is what makes ROW operations free of fractions here.",
           "Expanding the determinant directly and producing six messy terms."
         ]
       },

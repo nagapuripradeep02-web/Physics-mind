@@ -97,7 +97,7 @@
         "why": "Subtracting one row from another leaves the value of a determinant unchanged, and here it turns two of the three 1s in the first column into zeros.",
         "common_mistakes": [
           "Expanding the determinant in full and hoping the algebra factorises.",
-          "Applying R₁ → R₁ − R₂ and then using the OLD R₂ in the next operation."
+          "Doing R₂ → R₂ − R₃ first, which changes R₂ before R₁ − R₂ uses it."
         ]
       },
       {
@@ -106,7 +106,7 @@
         "label": "Take (a−b) and (b−c) out",
         "marks": 1,
         "mark_note": "Common factors",
-        "margin_note": "Second mark. Use a² − b² = (a−b)(a+b). Taking a factor out of a row divides that whole row by it, so both entries of R₁ change, not just the last one.",
+        "margin_note": "Second mark. Use a² − b² = (a−b)(a+b). Taking a factor out of a row divides that whole row by it, so both entries of R₁ change, not just the a² − b² entry.",
         "memory_tip": "a² − b² = (a−b)(a+b), so (a−b) comes out of the whole first row.",
         "lines": [
           "a² − b² = (a−b)(a+b) and",
@@ -195,7 +195,7 @@
         "label": "Reach (a−b)(b−c)(c−a)",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Last mark. The 2×2 determinant is (b+c) − (a+b) = c − a, which is the third bracket. Check the order of the letters against the question before boxing it.",
+        "margin_note": "Last mark. The 2×2 determinant is (b+c) − (a+b) = c − a, which is the third bracket. Check the letter order against what the question asks before boxing it.",
         "memory_tip": "The 2×2 determinant gives (b+c) − (a+b) = c − a — the third bracket.",
         "lines": [
           "The 2×2 determinant is",

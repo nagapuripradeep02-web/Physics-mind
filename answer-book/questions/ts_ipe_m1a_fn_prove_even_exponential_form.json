@@ -134,7 +134,7 @@
         },
         "why": "The extra x produced by the split is exactly what the term −x/2 needs: x − x/2 = x/2, which is the middle term of f(x). A numerical check agrees — at x = 0.6 both f(0.6) and f(−0.6) are 2.0298, and at x = 1.7 both are 2.2300.",
         "common_mistakes": [
-          "Writing x − x/2 as −x/2, which would give a false odd conclusion; the correct value is x/2.",
+          "Writing x − x/2 as −x/2, which breaks the match with f(x); the correct value is x/2.",
           "Stopping at f(−x) = xeˣ/(eˣ − 1) − x/2 + 1 and asserting it equals f(x) with no algebra.",
           "Concluding odd because a minus sign appeared during the working."
         ]

@@ -233,7 +233,7 @@
         },
         "why": "Proportionality has to hold in every coefficient at once. Two of the three agreeing is not enough, so the honest answer to this test is no — and the BC check reaches the same answer by a different route.",
         "common_mistakes": [
-          "Forcing a positive answer because the question looks like the collinearity questions beside it.",
+          "Forcing a positive answer, on the assumption that a collinearity test must end in yes.",
           "Reporting only that λ has no value, without saying what that means about the points."
         ]
       }

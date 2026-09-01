@@ -55,7 +55,7 @@
           "where r is the length of the arm from",
           "the nut to the hand."
         ],
-        "margin_note": "Same torque idea as the door question — name r as the arm length.",
+        "margin_note": "First mark. Name r as the arm length — the distance from the nut to the hand.",
         "why": "A nut turns about its own axis; only torque about that axis loosens it.",
         "common_mistakes": [
           "Talking about \"more power\". The quantity at work is torque, not power."

@@ -130,7 +130,7 @@
         "why": "Inverting each exradius makes the numerators (s−a), (s−b) and (s−c), and those three add to 3s − 2s = s. That is exactly s/Δ, which is 1/r.",
         "common_mistakes": [
           "Writing r₁ = (s−a)/Δ instead of Δ/(s−a).",
-          "Adding (s−a) + (s−b) + (s−c) to 2s instead of s."
+          "Adding (s−a) + (s−b) + (s−c) and getting 2s instead of s."
         ]
       }
     ]

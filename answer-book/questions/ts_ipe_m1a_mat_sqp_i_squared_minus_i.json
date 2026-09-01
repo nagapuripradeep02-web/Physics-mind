@@ -133,7 +133,7 @@
             "identity"
           ]
         },
-        "why": "(−i)² = (−1)²i² = i² — the minus squares away. Both entries land on −1 for slightly different reasons.",
+        "why": "(−i)² = (−1)²i² = i² — the minus disappears when it is squared. Both entries land on −1 for slightly different reasons.",
         "common_mistakes": [
           "Writing (−i)² = +1.",
           "Leaving the answer as a grid of −1s without naming it −I."

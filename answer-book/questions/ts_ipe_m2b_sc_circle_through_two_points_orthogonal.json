@@ -116,7 +116,7 @@
           "Applying the orthogonality formula directly to the un-divided circle, which doubles every coefficient on the wrong side.",
           "Clearing the fraction 5g/2 by multiplying only the left side by 2 and leaving the right side as c + 2 instead of 2c + 4."
         ],
-        "memory_tip": "Divide by the leading coefficient FIRST, always, before touching the orthogonality formula — the same lesson as the radical-centre questions in this chapter. Whatever you multiply on the left to clear a fraction, multiply on the right too."
+        "memory_tip": "Divide by the leading coefficient FIRST, always, before touching the orthogonality formula — 2gg′ + 2ff′ = c + c′ only holds when both circles carry x² + y² with coefficient 1. Whatever you multiply on the left to clear a fraction, multiply on the right too."
       },
       {
         "id": "s4_solve_final_circle",
@@ -139,7 +139,7 @@
         ],
         "why": "Substituting g = f into the orthogonality equation leaves one equation in g and c; combining it with (1) then solves the whole system, and substituting g, f, c back into S = 0 gives the final circle — this reproduces the book's own printed answer.",
         "common_mistakes": [
-          "Solving for c but forgetting that g = f = 0 must both be substituted back into the final circle.",
+          "Solving for c but forgetting that g = f = −4/7 must both be substituted back into the final circle.",
           "Leaving the final circle with a fraction instead of clearing it to whole-number coefficients."
         ],
         "memory_tip": "Once one unknown is expressed in terms of another (g = f, here), always substitute it into the EARLIEST equation available, not a fresh derivation."

@@ -436,7 +436,7 @@
           "origin is moved."
         ],
         "margin_note": "Not asked. Write it only if time is left.",
-        "why": "Each line here is a very short question in its own right, and the last one is the usual trap: the point does not move, but its position vector does.",
+        "why": "Each line here is a very short question in its own right, and the line about moving the origin is the usual trap: the point does not move, but its position vector does.",
         "common_mistakes": [
           "Thinking the position vector is a property of the point alone."
         ],

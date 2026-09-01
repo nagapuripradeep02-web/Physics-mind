@@ -120,7 +120,7 @@
         "marks": 1,
         "mark_note": "r = 4",
         "margin_note": "Second mark. Set the power equal to 10.",
-        "memory_tip": "Set the power equal to 10, not to 0 — this is not the term-independent question.",
+        "memory_tip": "Set the power equal to 10, not to 0 — the term independent of x is not what is asked.",
         "lines": [
           "For x¹⁰: 22 − 3r = 10 ⇒ 3r = 12 ⇒ r = 4"
         ],

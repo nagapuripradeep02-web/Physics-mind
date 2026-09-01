@@ -268,13 +268,13 @@
             "then I get it"
           ]
         },
-        "why": "The sum reaching 180° is the proof that the right angle was made obtuse, and the cosine rule on the three vertices confirms the same values by a completely separate route.",
+        "why": "The sum reaching 180° is the proof that the correct angle was made obtuse, and the cosine rule on the three vertices confirms the same values by a completely separate route.",
         "common_mistakes": [
           "Writing the answer without saying which angle is obtuse.",
           "Skipping the sum check, which is the only test that the correction was right."
         ],
         "mark_note": "Method",
-        "memory_tip": "The sum reaching 180° exactly is the check that you made the RIGHT angle obtuse."
+        "memory_tip": "The sum reaching 180° exactly is the check that you made the CORRECT angle obtuse."
       }
     ]
   }

@@ -143,7 +143,7 @@
             "D"
           ]
         },
-        "why": "This is the only property that turns 1 + a³ into two separate pieces. Splitting two columns at once is not allowed, which is why the a, a², c₁ and c₂ entries are copied unchanged.",
+        "why": "This is the only property that turns 1 + a³ into two separate pieces. Splitting two columns at once is not allowed, which is why C₁ and C₂ are copied unchanged into both determinants.",
         "common_mistakes": [
           "Splitting more than one column at a time.",
           "Writing the two determinants with different first or second columns.",

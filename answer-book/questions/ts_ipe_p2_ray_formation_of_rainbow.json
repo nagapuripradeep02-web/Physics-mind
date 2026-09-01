@@ -250,7 +250,7 @@
           "spread further apart."
         ],
         "margin_note": "Second mark. Four events in order: refraction in, dispersion, total internal reflection, refraction out.",
-        "why": "The order matters. Dispersion begins at the first refraction and is added to at the last one, while the reflection in between is what turns the light back towards the observer instead of letting it pass out of the far side. Worth knowing, though you should write the book's version: this reflection is NOT total. For water n = 1.33 gives a critical angle of 48.8°, and the ray that forms the bow strikes the back surface at about 40°, which is less. So it is ordinary partial internal reflection — which is exactly why a rainbow is faint and the secondary bow fainter still. Every school text calls it total internal reflection.",
+        "why": "The order matters. Dispersion begins at the first refraction and is added to at the second refraction, while the reflection in between is what turns the light back towards the observer instead of letting it pass out of the far side. Worth knowing, though you should write the book's version: this reflection is NOT total. For water n = 1.33 gives a critical angle of 48.8°, and the ray that forms the bow strikes the back surface at about 40°, which is less. So it is ordinary partial internal reflection — which is exactly why a rainbow is faint and the secondary bow fainter still. Every school text calls it total internal reflection.",
         "common_mistakes": [
           "Leaving out the second refraction as the light leaves the drop.",
           "Saying the light reflects off the outside of the drop. The reflection happens on the inside surface.",
