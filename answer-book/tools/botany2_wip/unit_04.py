@@ -177,11 +177,14 @@ C.append(Q(U, 'calvin_cycle', 'SAQ', 'saq4', 168, 52,
            ("Reduction phase",1),("Regeneration phase",1)],
     note_extra="Printed under STAR QUESTIONS PLUS (pp.52-53), and the LAQ chapter cross-references it "
                "(\"For Calvin Cycle 'Q' Refer P.No: 52(168)\"), so the book treats it as major content: "
-               "the printed answer runs two pages with a full cycle diagram. FLAGGED FOR FOUNDER REVIEW: "
-               "that is Section-C-grade material, but the 2022 blue print gives Photosynthesis 6 marks "
-               "with NO Section-C slot, and the book prints it outside every LAQ chapter. It is "
-               "therefore authored at 4 marks and NO 8-mark form is invented — the same discipline the "
-               "junior botany track used for Section-C-grade content the book does not source as an LAQ.",
+               "the printed answer runs two pages with a full cycle diagram. That is Section-C-grade "
+               "material, but the 2022 blue print gives Photosynthesis 6 marks with NO Section-C slot, "
+               "and the book prints it outside every LAQ chapter, so it is authored at 4 marks with NO "
+               "8-mark form invented — the same discipline the junior botany track used for "
+               "Section-C-grade content the book does not source as an LAQ. FOUNDER RULING 2026-08-29: "
+               "stays at 4 marks. SETTLED, not open — do not re-raise it. If a real Telangana "
+               "Botany-II paper ever sets this question at 8 marks, that is new evidence and the "
+               "answer is a CUT over these same steps, not a second card.",
     insider="Three phases, in order, with the number of carbons at each step. Carbon fixation, reduction, "
             "regeneration — an answer that names all three in order has most of the marks already.",
     steps=[
