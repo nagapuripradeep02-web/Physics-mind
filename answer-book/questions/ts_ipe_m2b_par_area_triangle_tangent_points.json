@@ -137,5 +137,5 @@
       }
     ]
   },
-  "insider_note": "This proof and answer 14's share almost every line — the only real difference is the extra 1/2 in front of the determinant here, which is exactly why the final denominator doubles from 8a to 16a."
+  "insider_note": "This proof shares almost every line with the companion result for the triangle formed by the three points of contact themselves — the tangent triangle carries an extra 1/2 in front of the determinant, which is exactly why the denominator here is 16a and not 8a."
 }
