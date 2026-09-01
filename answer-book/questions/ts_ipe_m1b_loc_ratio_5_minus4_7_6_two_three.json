@@ -48,8 +48,8 @@
         "kind": "text",
         "label": "Take the locus point",
         "marks": 0,
-        "margin_note": "No mark of its own. A ratio question, not a sum — a ratio squares away in one move, so no square root ever has to be isolated.",
-        "memory_tip": "A ratio, not a sum — a ratio squares away in one move, so no root is ever isolated.",
+        "margin_note": "No mark of its own. A ratio question, not a sum — one squaring clears both roots, so no square root ever has to be isolated.",
+        "memory_tip": "A ratio, not a sum — one squaring clears both roots, so no root is ever isolated.",
         "lines": [
           {
             "text": "Sol:",

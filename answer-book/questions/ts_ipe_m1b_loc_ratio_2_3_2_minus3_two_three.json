@@ -59,8 +59,8 @@
         "kind": "text",
         "label": "Take the locus point",
         "marks": 0,
-        "margin_note": "No mark of its own. A ratio question, not a sum — and a ratio is far easier, because it squares away in one move.",
-        "memory_tip": "A ratio, not a sum — far easier, because it squares away in one move.",
+        "margin_note": "No mark of its own. A ratio question, not a sum — and a ratio is far easier, because one squaring clears both roots.",
+        "memory_tip": "A ratio, not a sum — far easier, because one squaring clears both roots.",
         "lines": [
           {
             "text": "Sol:",

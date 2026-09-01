@@ -23,7 +23,7 @@
       "marks": 1
     },
     {
-      "label": "Substitute x = 3",
+      "label": "Substitute the value 3",
       "marks": 1
     }
   ],
@@ -53,7 +53,7 @@
             "style": "heading"
           },
           "Given cosh x = 3, and 3 ≥ 1, so a real x exists",
-          "We know Cosh⁻¹x = logₑ(x + √(x² − 1)), x ≥ 1",
+          "We know Cosh⁻¹t = logₑ(t + √(t² − 1)), t ≥ 1",
           "cosh(−x) = cosh x, so cosh is an even function",
           "∴ cosh x = 3 gives x = ± Cosh⁻¹(3)"
         ],
@@ -88,7 +88,7 @@
       {
         "id": "s2_answer",
         "kind": "boxed_final",
-        "label": "Substitute x = 3",
+        "label": "Substitute the value 3",
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. 9 − 1 = 8, so the surd is √8. The question asks for the positive value, so that is the one written in the box.",

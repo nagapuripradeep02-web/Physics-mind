@@ -102,8 +102,8 @@
         "label": "Find the two vertices",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Both lines of the pair pass through the origin, so O is the third vertex for free. Here both other vertices carry fractions, so keep them as fractions and do not round.",
-        "memory_tip": "Both lines of the pair pass through the ORIGIN, so O is the third vertex for free.",
+        "margin_note": "One mark. Both lines of the pair pass through the origin, so O is the third vertex, with no work needed. Here both other vertices carry fractions, so keep them as fractions and do not round.",
+        "memory_tip": "Both lines of the pair pass through the ORIGIN, so O is the third vertex, with no work needed.",
         "lines": [
           "Both lines of (1) pass through O(0, 0).",
           "y − 2x = 0 ⇒ y = 2x. Put in (2):",

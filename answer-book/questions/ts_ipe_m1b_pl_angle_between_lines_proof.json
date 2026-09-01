@@ -87,7 +87,7 @@
             "a over b"
           ]
         },
-        "why": "Every proof in this chapter starts by SPLITTING the pair into two lines with unknown slopes and matching coefficients. That dictionary between (a, h, b) and the two slopes is what every later step spends.",
+        "why": "Every proof in this chapter starts by SPLITTING the pair into two lines with unknown slopes and matching coefficients. The link it gives between (a, h, b) and the two slopes is what every later step uses.",
         "common_mistakes": [
           "Writing m₁ + m₂ = 2h/b without the minus sign.",
           "Dividing by a instead of b."
@@ -140,8 +140,8 @@
         "label": "Put the sum and product into tan θ",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Both the numerator and the denominator carry a factor 1/b, so every b cancels and the result is in a, h and b only.",
-        "memory_tip": "Numerator and denominator each carry one factor of b, so every b cancels.",
+        "margin_note": "One mark. Both the numerator and the denominator carry a factor 1/b, so those two factors cancel and the result is in a, h and b only.",
+        "memory_tip": "Numerator and denominator each carry a factor 1/b, so those two factors cancel.",
         "lines": [
           "= (−2h/b)² − 4(a/b) = (4h² − 4ab)/b²",
           "⇒ m₁ − m₂ = ±2√(h² − ab) / b",

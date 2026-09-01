@@ -92,7 +92,7 @@
         },
         "why": "A diameter is a chord through the centre, so its two ends are exactly opposite in position from the centre. Only the centre-as-origin choice turns that fact into the clean pair a and −a.",
         "common_mistakes": [
-          "Taking A as the origin, which loses the symmetry and leaves an unusable expression.",
+          "Taking A as the origin, which loses the symmetry and makes the working much longer.",
           "Forgetting to say that P lies on the circle, so |p| = r is never available."
         ]
       },
@@ -259,7 +259,7 @@
         "label": "Show the dot product is zero",
         "marks": 1,
         "mark_note": "Dot product",
-        "margin_note": "Third mark, and the heart of the proof. The cross terms a·p and p·a are equal and opposite in sign, so they cancel, and only the two squared lengths survive — and they are both r².",
+        "margin_note": "Third mark, and the heart of the proof. The cross terms a·p and p·a are equal in value but enter with opposite signs, so they cancel, and only the two squared lengths survive — and they are both r².",
         "memory_tip": "The cross terms cancel because a·p = p·a, so only −|a|² + |p|² is left.",
         "lines": [
           "PA · PB = (a − p)·(−a − p)",

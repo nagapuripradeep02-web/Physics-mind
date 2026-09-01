@@ -121,7 +121,7 @@
         },
         "why": "The two given numbers multiply to a single fraction, and that fraction is a statement about s and b alone. Clearing it gives one plain equation between the perimeter and b.",
         "common_mistakes": [
-          "Cancelling the 5 wrongly and getting 2/6.",
+          "Turning the second fraction upside down, so the product reads 25/12 instead of 1/3.",
           "Writing s − b = 1/3 instead of (s − b)/s = 1/3."
         ]
       },

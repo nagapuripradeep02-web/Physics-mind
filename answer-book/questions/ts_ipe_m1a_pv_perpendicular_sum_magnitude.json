@@ -134,7 +134,7 @@
         },
         "why": "The expansion of |a + b + c|² needs exactly the quantity a·b + b·c + c·a, and adding the three given conditions is the shortest way to show that quantity is zero.",
         "common_mistakes": [
-          "Concluding that each individual dot product is zero, which the question does not say.",
+          "Jumping from the sum of the three pairwise dot products being zero to each one separately being zero — the addition alone does not give that.",
           "Forgetting the factor 2 when collecting the pairs."
         ]
       },
@@ -144,7 +144,7 @@
         "label": "Expand the square of the sum",
         "marks": 1,
         "mark_note": "Expansion",
-        "margin_note": "Third mark. The square of a sum of three vectors follows the same pattern as ordinary algebra: three squares and twice each of the three cross products.",
+        "margin_note": "Third mark. The square of a sum of three vectors follows the same pattern as ordinary algebra: three squares and twice each of the three cross terms.",
         "memory_tip": "Square of a sum of three: three squares plus twice each of the three pairs.",
         "lines": [
           "|a + b + c|²",
@@ -177,7 +177,7 @@
         "why": "The length of a vector is found through its dot product with itself, so the only way to reach |a + b + c| is to expand |a + b + c|² first.",
         "common_mistakes": [
           "Writing |a + b + c| = |a| + |b| + |c|, which is false unless all three point the same way.",
-          "Dropping the factor 2 in front of the cross products."
+          "Dropping the factor 2 in front of the cross terms."
         ]
       },
       {
@@ -186,7 +186,7 @@
         "label": "Substitute and take the root",
         "marks": 1,
         "mark_note": "Result",
-        "margin_note": "Last mark. The whole cross-product bracket is zero, so only the three squared lengths survive. 29 is not a perfect square, so leave the answer as √29.",
+        "margin_note": "Last mark. The whole cross-term bracket is zero, so only the three squared lengths survive. 29 is not a perfect square, so leave the answer as √29.",
         "memory_tip": "With the cross terms zero, only 2² + 3² + 4² is left.",
         "lines": [
           "|a + b + c|² = 2² + 3² + 4² + 2(0)",

@@ -215,7 +215,7 @@
         "why": "Substituting the value back shows the dot product really is zero, so the two vectors really are at right angles.",
         "common_mistakes": [
           "Giving λ = 1 with no check line.",
-          "Checking with the original −λj instead of −j."
+          "Checking perpendicularity before the value of λ has been substituted."
         ]
       }
     ]

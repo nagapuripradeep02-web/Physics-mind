@@ -144,7 +144,7 @@
         "why": "The origin can be placed anywhere. Placing it at S makes the vector from each midpoint to S a single term, which is what lets the dot product collapse to squared lengths.",
         "common_mistakes": [
           "Writing the midpoint as (a + b) without the 2.",
-          "Taking A as the origin, which leaves every term as a difference."
+          "Taking A as the origin, which reaches the same result but leaves every term as a difference and lengthens the algebra."
         ]
       },
       {

@@ -133,7 +133,7 @@
             "three minus one"
           ]
         },
-        "why": "The determinant is the whole calculation, and the two dot products are a complete check on it: a cross product that is not perpendicular to both inputs has a sign error in it.",
+        "why": "The determinant is the whole calculation, and the two dot products check its direction: a cross product that is not perpendicular to both inputs has a sign error in it. They do not test the magnitude, so re-read the determinant for that.",
         "common_mistakes": [
           "Dropping the minus in front of the j term.",
           "Writing the second row as 2, 1, 3 and the third as 1, 1, 1, which reverses the answer."

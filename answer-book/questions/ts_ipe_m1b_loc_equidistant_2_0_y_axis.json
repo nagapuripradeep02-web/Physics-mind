@@ -49,7 +49,7 @@
         "label": "Take the locus point",
         "marks": 0,
         "margin_note": "No mark of its own. Here one of the two things P is measured from is a LINE, not a point — the y-axis. That single difference is what makes this question a parabola instead of a circle.",
-        "memory_tip": "One measurement is to a point and one is to a LINE — that pairing always gives a parabola.",
+        "memory_tip": "One distance is to a point, one to a LINE, and the two are EQUAL — that always gives a parabola.",
         "lines": [
           {
             "text": "Sol:",

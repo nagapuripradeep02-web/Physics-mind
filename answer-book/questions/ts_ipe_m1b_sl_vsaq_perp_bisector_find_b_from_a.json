@@ -88,7 +88,7 @@
             "h and k"
           ]
         },
-        "why": "Either condition alone still produces a line and an answer, which is why leaving one out feels safe and is not. Through the midpoint alone allows every line through that midpoint, and perpendicular alone allows every line in that direction; only both together fix B.",
+        "why": "Either condition alone still gives an equation and an answer, which is why leaving one out looks safe and is not. The midpoint condition alone leaves B anywhere on h − 3k − 2 = 0, and perpendicularity alone leaves B anywhere on 3h + k + 6 = 0; only both together fix B.",
         "common_mistakes": [
           "Using only the midpoint condition, which leaves B undetermined.",
           "Taking the slope of AB as 1/3, the slope of the line itself."
@@ -141,8 +141,8 @@
         },
         "why": "B is the mirror image of A in the given line, so the same answer also comes from the reflection formula; solving the two conditions is the version that needs no formula to be remembered.",
         "common_mistakes": [
-          "Sign slip in −3(−3h − 6), giving 10h = 16.",
-          "Rounding −8/5 to −1.6 and losing the exact form."
+          "Sign slip when moving the constant across, writing 10h = 16 instead of 10h = −16.",
+          "Solving for h and stopping there, without also solving for k."
         ]
       }
     ]
