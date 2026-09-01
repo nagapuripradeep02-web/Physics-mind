@@ -98,7 +98,7 @@
         },
         "why": "The same identity gives a plus under the root when solving for cosh and a minus when solving for sinh. Which one you need depends on what was given.",
         "common_mistakes": [
-          "Using √(cosh²x + 1) by copying the twin.",
+          "Using √(cosh²x + 1), which is the form for a question where sinh x is the given value.",
           "Getting 25/4 − 1 as 24/4."
         ]
       },
@@ -108,7 +108,7 @@
         "label": "Apply the double-angle formulas",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Same two formulas as the twin. The surd survives into sinh2x but cancels out of cosh2x, since only the squares appear there.",
+        "margin_note": "Second mark. Same two formulas as the question where sinh x is given. The surd survives into sinh2x but cancels out of cosh2x, since only the squares appear there.",
         "memory_tip": "cosh 2x = cosh²x + sinh²x uses only the squares, so the surd cancels there but survives in sinh 2x.",
         "lines": [
           "cosh 2x = cosh²x + sinh²x = 25/4 + 21/4 = 46/4 = 23/2",

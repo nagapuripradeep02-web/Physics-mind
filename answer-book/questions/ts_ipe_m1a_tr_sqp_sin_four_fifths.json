@@ -85,7 +85,7 @@
         },
         "why": "Only the sine is given, and a sine value alone fits two different angles. The quadrant clause is what makes the answer unique.",
         "common_mistakes": [
-          "Assuming Q1 out of habit and writing 3/5.",
+          "Assuming the first quadrant and writing 3/5.",
           "Reporting both signs."
         ]
       },
@@ -126,7 +126,7 @@
             "negative root"
           ]
         },
-        "why": "Writing ±3/5 and then choosing shows the examiner that the quadrant was used, rather than the right sign appearing by luck.",
+        "why": "Writing ±3/5 and then choosing shows the examiner that the quadrant was used, rather than the right sign appearing without a reason.",
         "common_mistakes": [
           "Writing +3/5.",
           "Leaving the answer as ±3/5."
@@ -134,5 +134,5 @@
       }
     ]
   },
-  "insider_note": "The phrase 'not in the first quadrant' does all the work: a positive sine allows Q₁ or Q₂, so it must be Q₂ and cos is negative. Without that sentence the answer would be ±3/5."
+  "insider_note": "The phrase 'not in the first quadrant' is what fixes the sign: a positive sine allows Q₁ or Q₂, so it must be Q₂ and cos is negative. Without that sentence the answer would be ±3/5."
 }

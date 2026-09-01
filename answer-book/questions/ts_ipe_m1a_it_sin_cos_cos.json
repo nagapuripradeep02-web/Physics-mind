@@ -174,7 +174,7 @@
             "alpha plus beta"
           ]
         },
-        "why": "Which inverse function appears in the answer is decided by which compound formula was used — cosine here, sine in the twin.",
+        "why": "Which inverse function appears in the answer is decided by which compound formula was used — the cosine formula here gives a Cos⁻¹ answer, while the sine formula would give a Sin⁻¹ one.",
         "common_mistakes": [
           "Writing Sin⁻¹(33/65).",
           "Stopping at the fraction."

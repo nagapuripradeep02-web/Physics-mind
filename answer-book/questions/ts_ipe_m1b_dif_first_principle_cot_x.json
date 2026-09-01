@@ -126,7 +126,7 @@
             "sin of minus h"
           ]
         },
-        "why": "sin A cos B − cos A sin B = sin(A − B) applies here with A = x and B = x + h, so the angle difference is −h. Getting the minus this way keeps it honest instead of guessed at the end.",
+        "why": "sin A cos B − cos A sin B = sin(A − B) applies here with A = x and B = x + h, so the angle difference is −h. Getting the minus from the identity means it is derived, not added at the end.",
         "common_mistakes": [
           "Subtracting the two products the other way round and losing the minus sign.",
           "Writing sin(−h) as sin h.",

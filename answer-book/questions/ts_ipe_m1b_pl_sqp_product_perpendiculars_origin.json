@@ -147,7 +147,7 @@
         "kind": "equation",
         "label": "Multiply them together",
         "marks": 1,
-        "margin_note": "One mark. Multiply the two fractions. The numerator is immediately n₁n₂, which the dictionary already names; only the denominator needs work.",
+        "margin_note": "One mark. Multiply the two fractions. The numerator is immediately n₁n₂, which the matched coefficients already give; only the denominator needs work.",
         "lines": [
           "∴ The product of the perpendiculars is",
           "p₁·p₂ = [|n₁| / √(l₁² + m₁²)] · [|n₂| / √(l₂² + m₂²)]",
@@ -204,7 +204,7 @@
           "accept": [
             "add and subtract the same term so the denominator regroups",
             "it becomes a minus b squared plus four h squared",
-            "substitute the dictionary into the denominator",
+            "substitute the matched coefficients into the denominator",
             "denominator ni a minus b square plus four h square ga rayali",
             "this gives the required result"
           ],

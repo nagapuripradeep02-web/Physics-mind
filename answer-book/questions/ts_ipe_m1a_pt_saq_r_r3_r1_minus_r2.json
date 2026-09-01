@@ -91,7 +91,7 @@
         },
         "why": "The answer keeps a cos B, so the grouping must leave B behind rather than cancel it — which is why the pairs are chosen around B and not C.",
         "common_mistakes": [
-          "Copying the twin and grouping around C.",
+          "Grouping around C, as in the r₁ + r₂ + r₃ − r question, instead of around B.",
           "Losing the minus in front of the second group."
         ]
       },

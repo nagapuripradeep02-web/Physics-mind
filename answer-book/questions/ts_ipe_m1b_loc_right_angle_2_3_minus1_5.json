@@ -53,8 +53,8 @@
         "kind": "text",
         "label": "Take the locus point",
         "marks": 0,
-        "margin_note": "No mark of its own, but nothing below can be written without it. P is the point that moves; A and B are nailed down.",
-        "memory_tip": "P is the point that moves; A and B are nailed down.",
+        "margin_note": "No mark of its own, but nothing below can be written without it. P is the point that moves; A and B are fixed.",
+        "memory_tip": "P is the point that moves; A and B are fixed.",
         "lines": [
           {
             "text": "Sol:",
@@ -221,7 +221,7 @@
         "why": "A right angle at a point is almost never used as an angle in this chapter — it is used as Pythagoras. PA² + PB² = AB² turns the angle into distances, and distances are what coordinates can express.",
         "common_mistakes": [
           "Writing PA² + AB² = PB², which puts the right angle at the wrong vertex.",
-          "Trying to use the slope condition m₁m₂ = −1 and then losing the sign."
+          "Writing the slope condition as m₁m₂ = 1 instead of −1; with the minus sign that route is correct and gives the same circle."
         ]
       },
       {

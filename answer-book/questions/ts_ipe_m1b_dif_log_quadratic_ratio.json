@@ -89,7 +89,7 @@
         "why": "Differentiating the quotient inside the logarithm would need the chain rule and the quotient rule together. Splitting first replaces both with two independent chain-rule terms, which is shorter and much easier to check.",
         "common_mistakes": [
           "Writing log(P/Q) as log P/log Q, which is not a logarithm law.",
-          "Applying the quotient rule inside the logarithm first, which makes the algebra several times longer."
+          "Splitting it as log(x² − x + 2) − log(x² + x + 2), with the two logarithms the wrong way round."
         ],
         "memory_tip": "A logarithm turns division into subtraction. Use that law before differentiating, never after."
       },

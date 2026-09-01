@@ -185,8 +185,7 @@
         "why": "The scalar triple product is the volume of the box the three vectors span. Zero volume means the box is flat — which is exactly what it means for three vectors to lie in one plane.",
         "common_mistakes": [
           "Getting the sign pattern wrong when expanding: plus, minus, plus along the top row.",
-          "Putting the vectors in as columns and rows inconsistently.",
-          "Omitting a zero coefficient and shifting the whole row."
+          "Putting the vectors in as columns and rows inconsistently."
         ]
       },
       {

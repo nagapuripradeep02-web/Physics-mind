@@ -91,7 +91,7 @@
             "minor"
           ]
         },
-        "why": "A row of zeros is a gift — expanding along it turns three 2×2 determinants into one. Choosing the right row to expand along is the skill this question tests.",
+        "why": "A row with two zeros saves work — expanding along it leaves a single 2×2 minor instead of three. Choosing the right row to expand along is the skill this question tests.",
         "common_mistakes": [
           "Expanding along a row with no zeros and doing three times the work.",
           "Substituting a guess for x before expanding."

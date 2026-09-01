@@ -130,7 +130,7 @@
         "marks": 1,
         "mark_note": "a − c",
         "margin_note": "Second mark. Compare each line with r = a + tb: the standalone vector is the point, the one with the parameter is the direction. Then subtract the two points.",
-        "memory_tip": "Compare with r = a + tb: the standalone vector is the point, the one with the parameter is the direction.",
+        "memory_tip": "Compare with r = a + tb: the standalone vector is the point, the one with the parameter is the direction. Taking c − a instead gives the same distance, because the modulus removes the sign.",
         "lines": [
           "Comparing with r = a + tb and r = c + sd:",
           "a = 6i + 2j + 2k,  b = i − 2j + 2k",
@@ -163,7 +163,7 @@
         },
         "why": "a − c is the vector joining a point on one line to a point on the other. The formula projects it onto the common perpendicular, which is what b×d gives.",
         "common_mistakes": [
-          "Taking c − a, which changes the sign inside the modulus but not the answer — harmless here, but worth being deliberate about.",
+          "Missing the zero j component of c = −4i − k and getting the j term of a − c wrong.",
           "Mixing up which vector is the point and which the direction."
         ]
       },
@@ -304,7 +304,7 @@
           "S.D = |(a−c)·(b×d)| / |b×d|",
           "= 108 / 12",
           {
-            "text": "∴ Shortest distance = 9",
+            "text": "∴ Shortest distance = 9 units",
             "style": "boxed"
           }
         ],

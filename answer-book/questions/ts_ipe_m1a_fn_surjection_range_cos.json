@@ -131,7 +131,7 @@
             "B"
           ]
         },
-        "why": "Every value is different here, so unlike the previous question nothing collapses — but the reason B equals the range is the same word: surjection.",
+        "why": "Every cosine value here is different, so no two elements of A share an image and B has all five values — and the reason B equals the range is the same word: surjection.",
         "common_mistakes": [
           "Writing B as an interval such as [0, 1] rather than the five-element set.",
           "Omitting 0 or 1, the two endpoint values."

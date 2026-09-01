@@ -282,5 +282,5 @@
       }
     ]
   },
-  "insider_note": "aᵇ is a CONSTANT, so the whole derivative is zero — that is what makes the answer a single negative fraction. Log u and v separately, since the sum cannot be logged."
+  "insider_note": "aᵇ is a CONSTANT, so the derivative of the whole left side is zero — that is what makes the answer a single negative fraction. Log u and v separately, since the sum cannot be logged."
 }

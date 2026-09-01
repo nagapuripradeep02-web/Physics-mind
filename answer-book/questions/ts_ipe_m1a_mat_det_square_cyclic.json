@@ -135,7 +135,7 @@
             "minus"
           ]
         },
-        "why": "a³+b³+c³−3abc is a standard expression and this determinant is its usual disguise. Recognising it saves the whole first half of the question.",
+        "why": "a³+b³+c³−3abc is a standard expression, and this determinant is the standard determinant form of it. Recognising it saves the whole first half of the question.",
         "common_mistakes": [
           "Collecting only one abc instead of three.",
           "Dropping the minus sign before squaring, which happens to give the same answer and hides the error until the next question.",

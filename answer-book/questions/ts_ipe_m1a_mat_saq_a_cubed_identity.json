@@ -54,7 +54,7 @@
         "label": "Find A²",
         "marks": 1,
         "mark_note": "A squared",
-        "margin_note": "First mark. Multiply row by column. Watch the negative entries — row 1 against column 2 is 1(−2) + (−2)(1) + 1(−1) = −5, and a dropped minus here quietly ruins A³ as well.",
+        "margin_note": "First mark. Multiply row by column. Watch the negative entries — row 1 against column 2 is 1(−2) + (−2)(1) + 1(−1) = −5, and a dropped minus here carries through into A³ as well.",
         "memory_tip": "Multiply row by column, watching the negatives: row 1 against column 2 is 1(−2) + (−2)(1) + 1(−1) = −5.",
         "lines": [
           {

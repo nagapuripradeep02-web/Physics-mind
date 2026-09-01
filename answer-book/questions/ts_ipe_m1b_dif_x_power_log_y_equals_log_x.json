@@ -101,7 +101,7 @@
         "label": "Differentiate both sides with respect to x",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. The left side is a product, so the product rule is used, and log y carries a dy/dx. The right side needs the chain rule twice over, giving 1/(x log x).",
+        "margin_note": "Two marks. The left side is a product, so the product rule is used, and log y carries a dy/dx. The right side needs the chain rule on log(log x): one over the inside, times the derivative of the inside, giving 1/(x log x).",
         "memory_tip": "The derivative of log(log x) is one over the inside, times the derivative of the inside: (1/log x) × (1/x).",
         "lines": [
           "Differentiating (1) with respect to x,",

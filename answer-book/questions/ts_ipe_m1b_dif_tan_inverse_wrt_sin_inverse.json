@@ -57,7 +57,7 @@
         "label": "Write what derivative with respect to g means",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the one most often thrown away. The question does not ask for df/dx. Write the chain rule line before doing any trigonometry.",
+        "margin_note": "First mark, and the one most often lost. The question does not ask for df/dx. Write the chain rule line before doing any trigonometry.",
         "lines": [
           {
             "text": "Sol:",
@@ -191,7 +191,7 @@
         "label": "Reduce g and find dg/dx",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. The step worth showing is 2 tan θ/(1 + tan²θ) = 2 sin θ cos θ, because 1 + tan²θ = sec²θ. Without that line the reduction to sin 2θ looks like it was quoted from nowhere.",
+        "margin_note": "Two marks. The step worth showing is 2 tan θ/(1 + tan²θ) = 2 sin θ cos θ, because 1 + tan²θ = sec²θ. Without that line the reduction to sin 2θ has no working to support it.",
         "lines": [
           "With x = tan θ:  2x/(1 + x²) = 2 tan θ/(1 + tan²θ)",
           "1 + tan²θ = sec²θ, so",

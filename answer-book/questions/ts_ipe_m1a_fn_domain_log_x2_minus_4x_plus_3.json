@@ -87,7 +87,7 @@
         "why": "log 0 is undefined and log of a negative number is not real, so the input must be strictly positive — this is the one place the bracket type changes.",
         "common_mistakes": [
           "Using ≥ 0, the square-root condition, which wrongly lets in the points where the input is zero.",
-          "Factorising to (x − 1)(x − 4) and moving the second root."
+          "Factorising as (x − 1)(x − 4), taking the 4 from the −4x term — expand to check: the constant must come to 3, so the roots are 1 and 3."
         ]
       },
       {

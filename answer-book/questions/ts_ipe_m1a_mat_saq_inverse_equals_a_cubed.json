@@ -83,7 +83,7 @@
             "RTP"
           ]
         },
-        "why": "A⁻¹ is defined by AA⁻¹ = I, so any statement about A⁻¹ can be turned into one about products of A. That swap is what makes this a 4-mark question instead of a 7-mark one.",
+        "why": "A⁻¹ is defined by AA⁻¹ = I, so any statement about A⁻¹ can be turned into one about products of A. That swap is what makes this a 4-mark question instead of a full long-answer one.",
         "common_mistakes": [
           "Computing A⁻¹ by cofactors and running out of time.",
           "Multiplying only one side by A."

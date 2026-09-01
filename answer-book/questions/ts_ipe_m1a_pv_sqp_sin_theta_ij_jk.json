@@ -89,7 +89,7 @@
             "cross product"
           ]
         },
-        "why": "Each vector has a zero component, so one column of the determinant carries a 0 — write it in rather than shortening the row.",
+        "why": "Each vector has a zero component, so each of the two rows carries a 0 — write it in rather than shortening the row.",
         "common_mistakes": [
           "Writing a as i + j + 0k but forgetting the 0 in the determinant row.",
           "Sign slip on the j term."

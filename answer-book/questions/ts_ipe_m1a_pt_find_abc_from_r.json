@@ -103,7 +103,7 @@
             "ex radii"
           ]
         },
-        "why": "Nothing else in the chain can start without r. That single standard result is what unlocks Δ, then s, then the sides.",
+        "why": "Nothing else in the chain can start without r. That single standard result is what makes Δ, then s, then the sides available.",
         "common_mistakes": [
           "Adding r₁ + r₂ + r₃ directly instead of their reciprocals.",
           "Forgetting to invert at the end, giving r = 1/4."

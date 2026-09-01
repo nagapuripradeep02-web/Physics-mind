@@ -93,7 +93,7 @@
         "label": "Subtract using the difference formula",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark, and the difference from the twin. Tan⁻¹x − Tan⁻¹y = Tan⁻¹((x−y)/(1+xy)) — note the PLUS in the denominator.",
+        "margin_note": "Third mark, and the step that differs from an all-addition chain of arctangents. Tan⁻¹x − Tan⁻¹y = Tan⁻¹((x−y)/(1+xy)) — note the PLUS in the denominator.",
         "memory_tip": "The DIFFERENCE formula has a PLUS in the denominator: (x − y)/(1 + xy).",
         "lines": [
           "We know Tan⁻¹x − Tan⁻¹y = Tan⁻¹((x−y)/(1+xy))",
@@ -135,7 +135,7 @@
         "label": "Evaluate Tan⁻¹(1)",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. 425/425 is 1, so the answer is Tan⁻¹(1) = π/4 — the same landing as the twin.",
+        "margin_note": "Last mark. 425/425 is 1, so the answer is Tan⁻¹(1) = π/4 — the same value the all-addition version reaches.",
         "memory_tip": "425/425 is 1, so the answer is Tan⁻¹(1) = π/4.",
         "lines": [
           "= Tan⁻¹(1) = π/4",

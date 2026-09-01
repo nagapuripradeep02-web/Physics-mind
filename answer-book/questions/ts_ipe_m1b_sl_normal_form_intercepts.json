@@ -140,7 +140,7 @@
         "kind": "equation",
         "label": "Read off cosα, sinα and p",
         "marks": 2,
-        "margin_note": "Two more marks. Compare with xcosα + ysinα = p term by term. Note that cosα takes b and sinα takes a — the letters cross over, because the x-intercept is a but the x-coefficient is b.",
+        "margin_note": "Two more marks. Compare with xcosα + ysinα = p term by term. Note that cosα takes b and sinα takes a — the letters cross over, because the x-intercept is a but the x-coefficient is b. Normal form needs p > 0, so this takes a and b positive; otherwise p = |ab|/√(a²+b²), since p is a distance.",
         "lines": [
           "This is in the normal form  xcosα + ysinα = p,  where",
           "cosα = b/√(a²+b²),   sinα = a/√(a²+b²)   and   p = ab/√(a²+b²)"

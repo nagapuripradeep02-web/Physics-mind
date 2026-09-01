@@ -126,7 +126,7 @@
         },
         "why": "Multiplying each squared relation by its own term turns the squares into cubes and leaves yz as a common factor. The bracket that remains is a + b, which the arithmetic mean has already replaced by 2x.",
         "common_mistakes": [
-          "Expanding y³ + z³ as (y + z)(y² − yz + z²), which does not use either mean condition.",
+          "Factorising y³ + z³ as (y + z)(y² − yz + z²): correct algebra, but a dead end here, because neither mean condition fits that bracket.",
           "Leaving the answer as yz(a + b) without putting a + b = 2x."
         ]
       }

@@ -123,7 +123,7 @@
         },
         "why": "The Sandwich theorem says that a function lying between two functions with the same limit L at a point has limit L there as well. Here both outer functions have limit 0.",
         "common_mistakes": [
-          "Writing 0 without naming the theorem; the name is what the method is credited for.",
+          "Writing 0 straight from the inequality without saying that both outer limits are equal; that equality is what the theorem needs.",
           "Splitting it as lim x² × lim sin(1/x); the product rule needs both limits to exist, and the second does not."
         ],
         "memory_tip": "When both outer limits are 0, the limit of the expression between them is 0 as well."

@@ -28,7 +28,7 @@
       "marks": 1
     },
     {
-      "label": "Add two of them to get the third",
+      "label": "Add two distances and read off the ratio",
       "marks": 1
     }
   ],
@@ -95,7 +95,7 @@
       {
         "id": "s2_draw_the_conclusion",
         "kind": "boxed_final",
-        "label": "Add two of them to get the third",
+        "label": "Add two distances and read off the ratio",
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Three points are collinear exactly when the two SHORTER distances add to the longest — the middle point then lies on the segment joining the other two.",

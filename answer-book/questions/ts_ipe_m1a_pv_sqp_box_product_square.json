@@ -27,7 +27,7 @@
       "marks": 3
     },
     {
-      "label": "Kill the repeated term",
+      "label": "The repeated term is zero",
       "marks": 1
     },
     {
@@ -102,7 +102,7 @@
         "label": "Expand with the triple product",
         "marks": 3,
         "mark_note": "Triple product",
-        "margin_note": "Three marks. Use (X × Y) = ... with X = c×a treated as a single vector: (c×a) × (a×b) = [(c×a)·b]a − [(c×a)·a]b.",
+        "margin_note": "Three marks. Use the vector triple product p × (q × r) = (p·r)q − (p·q)r, with p = c×a treated as a single vector: (c×a) × (a×b) = [(c×a)·b]a − [(c×a)·a]b.",
         "memory_tip": "Treat c×a as ONE vector and apply the triple product expansion to (c×a) × (a×b).",
         "lines": [
           "Treating (c×a) as one vector and using",
@@ -141,7 +141,7 @@
       {
         "id": "s3_kill_the_repeated_term",
         "kind": "equation",
-        "label": "Kill the repeated term",
+        "label": "The repeated term is zero",
         "marks": 1,
         "mark_note": "Zero term",
         "margin_note": "Fifth mark, and the step the proof turns on. [c a a] has a REPEATED vector, so it is zero — the second term vanishes completely.",

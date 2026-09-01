@@ -66,7 +66,7 @@
         "label": "State the angle condition",
         "marks": 1,
         "mark_note": "Condition",
-        "margin_note": "First mark. Same condition as the twin question. Write it first — both uses of it below depend on it.",
+        "margin_note": "First mark. Same condition as the sin 2A + sin 2B + sin 2C question. Write it first — both uses of it below depend on it.",
         "memory_tip": "A + B = 180° − C. Write it first — both uses below depend on it.",
         "lines": [
           {
@@ -97,7 +97,7 @@
             "given"
           ]
         },
-        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof leans on, and it is used at least twice below.",
+        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof uses, and it is used at least twice below.",
         "common_mistakes": [
           "Starting the transformation before writing the condition.",
           "Writing the condition but never rearranging it into a usable form."
@@ -152,7 +152,7 @@
         "label": "Use the condition",
         "marks": 2,
         "mark_note": "Substitution",
-        "margin_note": "Two more marks. This is where the angle condition earns its place: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "margin_note": "Two more marks. This is where the angle condition is used: it converts an expression in A and B into one in C, so that every term shares a factor.",
         "memory_tip": "cos(180° − C) = −cos C, with the MINUS. That sign is the whole difference here.",
         "lines": [
           "= 2 cos(180° − C) cos(A−B) + 2cos²C − 1",
@@ -182,7 +182,7 @@
             "angle condition"
           ]
         },
-        "why": "Cosine changes sign across 180° where sine does not. That single difference is why this proof and its twin diverge here.",
+        "why": "Cosine changes sign across 180° where sine does not. That single difference is why this proof and the sin 2A + sin 2B + sin 2C proof separate here.",
         "common_mistakes": [
           "Writing cos(180° − C) = +cos C.",
           "Forgetting the condition entirely."
@@ -236,7 +236,7 @@
         "label": "Apply the product formula",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity is complete. Write \"= R.H.S\" so the examiner can see the proof finished.",
         "memory_tip": "Use the SUM formula to get cosines. Losing the −1 at the last line is the usual slip.",
         "lines": [
           "= −1 − 2 cosC (2 cosA cosB)",

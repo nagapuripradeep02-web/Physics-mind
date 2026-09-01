@@ -202,7 +202,7 @@
             "equal"
           ]
         },
-        "why": "Applying f⁻¹og⁻¹ to c walks backwards along the same path that f then g walked forwards. That is why the composition of the inverses reverses the order.",
+        "why": "Applying f⁻¹og⁻¹ to c undoes g first and then f, the reverse of the order in which f then g were applied. That is why the composition of the inverses reverses the order.",
         "common_mistakes": [
           "Applying f⁻¹ before g⁻¹ — the outer function g must be undone first.",
           "Never stating 'for all c ∈ C', which is what turns two values into an equality of functions.",

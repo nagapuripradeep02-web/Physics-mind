@@ -52,7 +52,7 @@
         "kind": "text",
         "label": "Take the locus point",
         "marks": 0,
-        "margin_note": "No mark of its own. Both fixed points sit on the y-axis, so the x-terms will cancel in the same way as its partner question.",
+        "margin_note": "No mark of its own. Both fixed points sit on the y-axis, symmetric about the origin, so the x-terms will cancel.",
         "memory_tip": "Both fixed points sit on the Y-axis, so this time the x-terms are what cancel.",
         "lines": [
           {

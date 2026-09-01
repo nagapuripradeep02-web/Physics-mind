@@ -86,7 +86,7 @@
         "why": "Two lines meet at exactly one point, so solving any two of them gives the only point all three could possibly share. Picking the pair with the easiest numbers keeps the arithmetic short.",
         "common_mistakes": [
           "Trying to handle all three equations at once instead of taking a pair first.",
-          "Slip in the cross-multiplication denominators."
+          "Subtracting the two equations the wrong way round, so the sign of x comes out reversed."
         ],
         "mark_note": "Method",
         "memory_tip": "Concurrent means all three pass through ONE point — solve any two of them for it."
@@ -124,7 +124,7 @@
         "why": "Naming the point separates the two halves of the question: finding it, and then using it.",
         "common_mistakes": [
           "Writing the coordinates the wrong way round.",
-          "Leaving the point as a pair of fractions without simplifying."
+          "Carrying y = −5 forward without its minus sign."
         ],
         "memory_tip": "State the point; it is the candidate every line must satisfy."
       },

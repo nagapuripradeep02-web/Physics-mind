@@ -362,7 +362,7 @@
             "the point"
           ]
         },
-        "why": "In a right-angled triangle the orthocentre sits exactly on the right-angled vertex, which is a quick sanity check when the numbers look surprising.",
+        "why": "Two altitudes meet at exactly one point, so this pair of equations has a single solution — and that point is the orthocentre.",
         "common_mistakes": [
           "Arithmetic slip in the elimination.",
           "Writing the coordinates the wrong way round."

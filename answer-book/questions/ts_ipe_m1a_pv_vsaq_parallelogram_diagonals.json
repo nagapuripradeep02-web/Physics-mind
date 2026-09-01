@@ -50,7 +50,7 @@
         "label": "Find d₁×d₂",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Same cross product as before — but these are DIAGONALS, not sides, and that changes the formula at the end. Take the −2 out to keep the numbers small.",
+        "margin_note": "First mark. Same cross-product step as before — but these are DIAGONALS, not sides, and that changes the formula at the end. Take the −2 out to keep the numbers small.",
         "memory_tip": "These are DIAGONALS, not sides, and that changes the formula at the end. Take the −2 out.",
         "lines": [
           {

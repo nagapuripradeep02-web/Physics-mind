@@ -104,7 +104,7 @@
           "= (√3/2)(1/√2) + (1/2)(1/√2) = (√3 + 1)/(2√2)",
           "Expression = (√3 + 1)/(2√2) × √3/2",
           {
-            "text": "∴ Value = √3(√3 + 1)/(4√2)",
+            "text": "∴ Value = √3(√3 + 1)/(4√2) = (3 + √3)/(4√2)",
             "style": "boxed"
           }
         ],
@@ -130,7 +130,7 @@
             "four root two"
           ]
         },
-        "why": "105° is not a standard angle, but it splits into two that are. Choosing 60° + 45° rather than 30° + 75° keeps both parts standard.",
+        "why": "105° is not a standard angle, but it splits into two that are. Choosing 60° + 45° rather than 30° + 75° keeps both parts standard. Multiplying √3 into (√3 + 1) gives 3 + √3, so the final value is (3 + √3)/(4√2).",
         "common_mistakes": [
           "Treating sin 105° as sin 60° + sin 45°.",
           "Using the sin(A − B) form and writing sin60 cos45 − cos60 sin45, which gives (√3 − 1)/(2√2) — that is sin 15°, not sin 105°."

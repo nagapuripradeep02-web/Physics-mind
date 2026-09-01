@@ -49,7 +49,7 @@
         "kind": "equation",
         "label": "Match the coefficients",
         "marks": 1,
-        "margin_note": "First mark, and the step the whole question turns on. The distance formula only works when BOTH lines carry the SAME a and b, so rescale one of them first.",
+        "margin_note": "First mark, and the step that decides the whole answer. The distance formula only works when BOTH lines carry the SAME a and b, so rescale one of them first.",
         "memory_tip": "The formula only works when BOTH lines carry the SAME a and b — rescale one first.",
         "lines": [
           {

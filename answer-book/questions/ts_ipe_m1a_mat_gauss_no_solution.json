@@ -57,7 +57,7 @@
         "label": "Write the augmented matrix",
         "marks": 1,
         "mark_note": "Augmented matrix",
-        "margin_note": "First mark. Look at the x and y coefficients: 2 and 4, then 1 and 2, then 3 and 6 — every row has y twice x. Columns 1 and 2 are proportional, which is the first hint that this system will not behave.",
+        "margin_note": "First mark. Look at the x and y coefficients: 2 and 4, then 1 and 2, then 3 and 6 — every row has y twice x. Columns 1 and 2 are proportional, which is the first sign that this system has no unique solution.",
         "memory_tip": "Look at the x and y coefficients — every row has y twice x. Proportional columns are the warning sign.",
         "lines": [
           {
@@ -209,8 +209,8 @@
         "label": "Reach the impossible row",
         "marks": 2,
         "mark_note": "Contradiction",
-        "margin_note": "Two marks. Subtracting the identical rows leaves zeros on the left of the rule but −1 on the right. Read that row back as an equation and it says 0 = −1, which nothing can satisfy.",
-        "memory_tip": "Subtracting the identical rows leaves zeros left of the rule but −1 on the right: 0 = −1.",
+        "margin_note": "Two marks. The two rows are identical on the LEFT of the rule but not on the right, so subtracting leaves zeros on the left and −1 on the right. Read that row back as an equation and it says 0 = −1, which nothing can satisfy.",
+        "memory_tip": "The two rows match on the left of the rule but not on the right, so subtracting leaves 0 = −1.",
         "lines": [
           "R₃ → R₃ − R₂",
           {

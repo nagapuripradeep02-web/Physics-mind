@@ -62,8 +62,8 @@
         "label": "Write the augmented matrix",
         "marks": 1,
         "mark_note": "Augmented matrix",
-        "margin_note": "First mark. Nothing about the setup warns you that this system is unusual — it is written down exactly like any other. The surprise arrives two steps later.",
-        "memory_tip": "Nothing in the setup warns that this system is unusual; the surprise arrives two steps later.",
+        "margin_note": "First mark. Nothing about the setup shows that this system is unusual — it is written down exactly like any other. The row of zeros appears two steps later.",
+        "memory_tip": "Nothing in the setup shows that this system is unusual; the row of zeros appears two steps later.",
         "lines": [
           {
             "text": "Sol:",

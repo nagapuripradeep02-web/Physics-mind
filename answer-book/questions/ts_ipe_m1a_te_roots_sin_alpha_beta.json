@@ -94,7 +94,7 @@
             "cos squared"
           ]
         },
-        "why": "Squaring is what removes the cosine, and it is legitimate here because the roots are being characterised, not found — any extraneous root introduced would still satisfy the squared equation.",
+        "why": "Squaring is what removes the cosine. It is sound here because sinα and sinβ both satisfy the quadratic that results, and a quadratic has only two roots — so those two ARE its roots, and the sum and product of roots formulas apply to them.",
         "common_mistakes": [
           "Squaring the equation as it stands, leaving a cross term in sinθcosθ.",
           "Forgetting the middle term of (c − b sinθ)²."
@@ -135,7 +135,7 @@
             "quadratic"
           ]
         },
-        "why": "α and β are the two solutions, so sinα and sinβ are the two roots of this quadratic — exactly the same logic as the twin, reached by a different route.",
+        "why": "α and β are the two solutions, so sinα and sinβ are the two roots of this quadratic — exactly the same logic as the a cos2θ + b sin2θ = c question, reached by a different route.",
         "common_mistakes": [
           "Sign slip on the c² − a² term.",
           "Failing to gather both sin²θ terms."

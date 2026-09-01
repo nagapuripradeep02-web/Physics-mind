@@ -105,9 +105,11 @@
         "memory_tip": "The 5 cancels into the 35, leaving 7 below. Keep the ± — there are two unit normals.",
         "lines": [
           "Required unit vector = ± (a × b)/|a × b|",
-          "= ± 5(−3i + 2j − 6k)/35",
+          "= ± 5(−3i + 2j − 6k)/35 = ± (−3i + 2j − 6k)/7",
+          "Both signs are allowed, so this is the same",
+          "answer written more simply:",
           {
-            "text": "= ± (3i − 2j + 6k)/7",
+            "text": "∴ Unit vector = ± (3i − 2j + 6k)/7",
             "style": "boxed"
           }
         ],

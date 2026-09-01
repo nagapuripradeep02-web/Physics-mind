@@ -48,8 +48,8 @@
         "kind": "text",
         "label": "Take the locus point",
         "marks": 0,
-        "margin_note": "No mark of its own. The same symmetric pair as its partner question, with the labels the other way round and a smaller difference.",
-        "memory_tip": "The same symmetric pair as its partner, with the labels reversed and a smaller difference.",
+        "margin_note": "No mark of its own. Both fixed points sit on the x-axis, symmetric about the origin, so the y-terms will cancel later.",
+        "memory_tip": "Write down which point is A and which is B before anything else: PA is measured from A = (4, 0) and PB from B = (−4, 0).",
         "lines": [
           {
             "text": "Sol:",
@@ -177,7 +177,7 @@
         "label": "Simplify to the locus",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Opposite signs on x² and y² again — a hyperbola, the same shape its partner question produced from the same kind of condition.",
+        "margin_note": "The last two marks. Opposite signs on x² and y² — a hyperbola, which is what a constant difference of two distances always gives.",
         "memory_tip": "OPPOSITE signs on x² and y² — a hyperbola, as any difference condition gives.",
         "lines": [
           "⇒ (x+4)² + (y−0)² = 4(x² + 1 + 2x)",

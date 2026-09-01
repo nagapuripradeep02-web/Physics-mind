@@ -150,7 +150,7 @@
         "marks": 2,
         "mark_note": "Second product",
         "margin_note": "Two more marks. Cross a into that. This part asks for the VECTOR, not its magnitude — so stop at the vector.",
-        "memory_tip": "Cross a into that. This part wants the VECTOR, so stop at the vector.",
+        "memory_tip": "Cross a into that. This part asks for the VECTOR, so stop at the vector.",
         "lines": [
           {
             "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 1 & -2 & 1 \\\\ -3 & 3 & 3 \\end{vmatrix}",
@@ -240,8 +240,8 @@
         "label": "Find |(a×b)×c|",
         "marks": 2,
         "mark_note": "Answer",
-        "margin_note": "Last two marks together. Cross that by c, then take the magnitude — this part DOES want a number. √174 has no square factor, so it stands.",
-        "memory_tip": "Cross by c, then take the magnitude — this part does want a number. √174 has no square factor.",
+        "margin_note": "Last two marks together. Cross that by c, then take the magnitude — this part DOES ask for a number. √174 has no square factor, so it stands.",
+        "memory_tip": "Cross by c, then take the magnitude — this part does ask for a number. √174 has no square factor.",
         "lines": [
           {
             "text": "(a \\times b) \\times c = \\begin{vmatrix} i & j & k \\\\ -3 & 1 & 5 \\\\ 1 & 2 & -1 \\end{vmatrix}",

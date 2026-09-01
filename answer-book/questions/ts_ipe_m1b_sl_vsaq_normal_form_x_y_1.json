@@ -102,7 +102,7 @@
         "lines": [
           "On dividing by √((−1)² + (−1)²) = √2, we get",
           "−(1/√2)x − (1/√2)y = 1/√2",
-          "= x(−1/√2) + y(−1/√2) = 1/√2",
+          "which is  x(−1/√2) + y(−1/√2) = 1/√2",
           "Here cosα = −1/√2 and sinα = −1/√2, both negative ⇒ α is in the third quadrant",
           "⇒ α = 225°",
           {

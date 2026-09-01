@@ -278,7 +278,7 @@
         "why": "The angle formula needs direction cosines in principle, but the normalising roots cancel between numerator and denominator — so direction RATIOS may be used directly, which is what the book does.",
         "common_mistakes": [
           "Forgetting the modulus, which can give an obtuse angle instead of the acute one.",
-          "Multiplying the two roots without keeping them under one square root."
+          "Taking the square root of only one of the two sums of squares."
         ]
       }
     ]

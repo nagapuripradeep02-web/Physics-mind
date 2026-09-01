@@ -166,9 +166,9 @@
             "eliminate"
           ]
         },
-        "why": "Gauss-Jordan works one column at a time, and it always wants a 1 at the pivot first. Chasing zeros before you have that 1 is what forces fractions into the working.",
+        "why": "Gauss-Jordan works one column at a time, and the method needs a 1 at the pivot first. Making zeros before that 1 is in place is what forces fractions into the working.",
         "common_mistakes": [
-          "Starting to clear the column before securing a leading 1 and drowning in fractions.",
+          "Starting to clear the column before securing a leading 1, which fills the working with fractions.",
           "Applying an operation to only part of a row — every entry moves, including the constant.",
           "Changing the pivot row while using it to clear the others."
         ]
@@ -179,8 +179,8 @@
         "label": "Reach a leading 1 in R₃",
         "marks": 1,
         "mark_note": "Last pivot",
-        "margin_note": "Fourth mark. Once row 3 reads 0 0 1 with a number after the rule, z is already known — everything from here is bookkeeping to get x and y out.",
-        "memory_tip": "Once row 3 reads 0 0 1, z is known; everything after is bookkeeping for x and y.",
+        "margin_note": "Fourth mark. Once row 3 reads 0 0 1 with a number after the rule, z is already known — everything from here is routine work to get x and y out.",
+        "memory_tip": "Once row 3 reads 0 0 1, z is known; everything after is routine work for x and y.",
         "lines": [
           "R₃ → R₃ − 2R₂",
           {
@@ -270,7 +270,7 @@
             "identity"
           ]
         },
-        "why": "Clearing upwards as well as downwards is the ONLY difference between Gauss-Jordan and plain Gauss elimination. It buys you an answer you can read straight off, with no back-substitution.",
+        "why": "Clearing upwards as well as downwards is the ONLY difference between Gauss-Jordan and plain Gauss elimination. The answer can then be read straight off, with no back-substitution.",
         "common_mistakes": [
           "Stopping at the triangular form and back-substituting; that is Gauss, not Gauss-Jordan.",
           "Clearing upwards before the pivots are 1, which reintroduces fractions.",
@@ -318,7 +318,7 @@
             "z equals"
           ]
         },
-        "why": "A row reading 0 0 1 | 3 is literally the equation z = 3. Understanding that the matrix never stopped being the equations is what makes the whole method feel less like a trick.",
+        "why": "A row reading 0 0 1 | 3 is literally the equation z = 3. Understanding that the matrix never stopped being the equations is what makes the whole method easy to follow.",
         "common_mistakes": [
           "Reading the values in the wrong order.",
           "Forgetting a row left with a −1 pivot, which needs one sign flip.",

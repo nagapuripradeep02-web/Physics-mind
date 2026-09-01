@@ -62,7 +62,7 @@
         "label": "State the angle condition",
         "marks": 1,
         "mark_note": "Condition",
-        "margin_note": "First mark. The same S-condition as its twin — and the same observation, that the two shifted angles add to C.",
+        "margin_note": "First mark. The same S-condition as the sin(S−A) + sin(S−B) + sin C question — and the same observation, that the two shifted angles add to C.",
         "memory_tip": "The key observation: the two shifted angles ADD to C. Work that out before starting.",
         "lines": [
           {
@@ -93,7 +93,7 @@
             "given"
           ]
         },
-        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof leans on, and it is used at least twice below.",
+        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof uses, and it is used at least twice below.",
         "common_mistakes": [
           "Starting the transformation before writing the condition.",
           "Writing the condition but never rearranging it into a usable form."
@@ -134,7 +134,7 @@
             "B minus A over two"
           ]
         },
-        "why": "Identical opening to the twin question — only the formula changes from sine to cosine.",
+        "why": "Identical opening to the sin(S−A) + sin(S−B) + sin C question — only the formula changes from sine to cosine.",
         "common_mistakes": [
           "Using the sine formula by habit.",
           "Pairing the wrong two terms."
@@ -146,7 +146,7 @@
         "label": "Use the condition",
         "marks": 2,
         "mark_note": "Substitution",
-        "margin_note": "Two more marks. This is where the angle condition earns its place: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "margin_note": "Two more marks. This is where the angle condition is used: it converts an expression in A and B into one in C, so that every term shares a factor.",
         "memory_tip": "The cosine form is what produces the −1; the sine form leaves sines that will not factor.",
         "lines": [
           "= 2 cos(C/2) cos((B−A)/2) + (2cos²(C/2) − 1)",
@@ -227,7 +227,7 @@
         "label": "Apply the product formula",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity is complete. Write \"= R.H.S\" so the examiner can see the proof finished.",
         "memory_tip": "Finish with cos(C/2), not sin(C/2) — and keep the −1.",
         "lines": [
           "= −1 + 2 cos(C/2) (2 cos((S−A)/2) cos((S−B)/2))",
@@ -259,9 +259,9 @@
             "sum formula"
           ]
         },
-        "why": "Every factor in this answer is a cosine, where its twin finished with a sine. The difference traces back to one choice made three steps earlier.",
+        "why": "Every factor in this answer is a cosine, where the sin(S−A) + sin(S−B) + sin C question finished with a sine. The difference traces back to one choice made three steps earlier.",
         "common_mistakes": [
-          "Finishing with sin(C/2) by copying the twin.",
+          "Finishing with sin(C/2) by copying the sin(S−A) + sin(S−B) + sin C question.",
           "Losing the −1."
         ]
       }
