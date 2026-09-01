@@ -150,17 +150,21 @@
         "label": "Compare coefficients",
         "marks": 1,
         "mark_note": "Solve for t",
-        "margin_note": "Third mark. Comparing a, b and c gives three equations in two unknowns, and the a and c pair is enough. Adding them cancels s outright and leaves t on its own.",
-        "memory_tip": "Three equations, two unknowns — the a and c pair is enough. Adding them cancels s outright.",
+        "margin_note": "Third mark. Comparing a, b and c gives three equations in two unknowns. Solve the a and c pair for t and s, then CHECK the b equation — with a, b, c non-coplanar all three must hold before the lines really meet.",
+        "memory_tip": "Three equations, two unknowns. Solve two, then check the third — with a, b, c non-coplanar every coefficient has to match.",
         "lines": [
-          "At the intersection (1) = (2). Comparing coefficients:",
+          "At the intersection (1) = (2). a, b, c are non-coplanar,",
+          "so ALL THREE coefficients must match:",
           "6t = 2s − 1  ⇒  6t − 2s = −1   …(3)",
-          "8t − 4 = −2s − 3  ⇒  8t + 2s = 1   …(4)",
-          "Adding (3) and (4):  14t = 0  ⇒  t = 0"
+          "−4t = 4s − 2   …(4)",
+          "8t − 4 = −2s − 3  ⇒  8t + 2s = 1   …(5)",
+          "Adding (3) and (5):  14t = 0  ⇒  t = 0",
+          "Then (3) gives −2s = −1  ⇒  s = ½",
+          "Check (4):  −4(0) = 0  and  4(½) − 2 = 0  ✓"
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That comparing coefficients gives three equations, and adding the a and c equations cancels s to give t = 0.",
+          "must_convey": "That comparing coefficients gives three equations, that adding the a and c equations gives t = 0 and s = ½, and that the b equation is then checked and holds.",
           "accept": [
             "compare the coefficients and add the a and c equations so s cancels leaving fourteen t equals zero so t is zero",
             "the two equations add to give t equals zero",
@@ -181,8 +185,9 @@
             "s cancels"
           ]
         },
-        "why": "Choosing WHICH two equations to combine is the skill. The a and c ones were built to have +2s and −2s, so adding them is the one step that removes s in a single line.",
+        "why": "Choosing WHICH two equations to combine is the skill. The a and c ones were built to have +2s and −2s, so adding them removes s in a single line. Two equations fix t and s; the third is what proves the lines meet, so it is checked, not assumed.",
         "common_mistakes": [
+          "Stopping after two equations without checking the third; with a, b, c non-coplanar all three coefficients must match.",
           "Substituting one equation into another and grinding through fractions.",
           "Sign errors when rearranging to the form 6t − 2s = −1."
         ]
