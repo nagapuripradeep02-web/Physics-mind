@@ -79,5 +79,6 @@
         "margin_note": "Either PV = constant or P₁V₁ = P₂V₂ earns the mark; the boxed two-state form is the working tool."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks: the statement and the formula. The condition at constant temperature belongs inside the statement mark rather than as an afterthought, and the two-state form is the one the numericals use."
 }

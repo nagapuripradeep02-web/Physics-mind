@@ -146,5 +146,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Rank is the size of the largest non-zero minor. Every 2×2 and the 3×3 vanish because the rows repeat, but a single entry is 1 ≠ 0, so the rank is 1 and never 0."
 }

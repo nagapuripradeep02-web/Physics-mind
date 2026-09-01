@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "2x/(1 + x²) is sin2θ under x = tan θ, so y becomes 2Tan⁻¹x — note it is Tan⁻¹, not Sin⁻¹. The answer 2/(1 + x²) carries no square root at all."
 }

@@ -219,5 +219,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Check that xy < 1 before using the addition formula — here it is 1/91, and stating it earns credit. The 91s cancel to leave 20/90, which must be reduced to 2/9 for the subtraction to close."
 }

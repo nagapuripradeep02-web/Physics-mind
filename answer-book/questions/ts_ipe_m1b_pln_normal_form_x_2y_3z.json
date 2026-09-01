@@ -137,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Normal form divides by √(1 + 4 + 9) = √14 — not by 14, and not by the constant 6, which would give intercept form instead. The right-hand side gets divided too."
 }

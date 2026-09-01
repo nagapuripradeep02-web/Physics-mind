@@ -49,8 +49,8 @@
         "label": "Find det A",
         "marks": 1,
         "mark_note": "Determinant",
-        "margin_note": "First mark. det A comes to 3. Expanding along the top row is easiest here because the middle entry is 0, which kills one of the three terms outright.",
-        "memory_tip": "det A = 3. Expand along the top row — the middle 0 kills one of the three terms.",
+        "margin_note": "First mark. det A comes to 3. Expanding along the top row is easiest here because the middle entry is 0, which makes one of the three terms vanish.",
+        "memory_tip": "det A = 3. Expand along the top row — the middle 0 makes one of the three terms vanish.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,7 +93,7 @@
             "inverse exists"
           ]
         },
-        "why": "A⁻¹ is the adjoint divided by det A. A zero determinant would mean dividing by zero, which is exactly why a singular matrix has no inverse — so this line is a gate, not a warm-up.",
+        "why": "A⁻¹ is the adjoint divided by det A. A zero determinant would mean dividing by zero, which is exactly why a singular matrix has no inverse — so this line has to be written before anything else.",
         "common_mistakes": [
           "Computing det A but never writing that it is non-zero.",
           "Getting the sign pattern wrong: plus, minus, plus along the top row.",
@@ -203,5 +203,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Adj A is the TRANSPOSE of the cofactor matrix — stopping at the cofactors is the standard lost mark. det A = 3, so every entry of the inverse is a third."
 }

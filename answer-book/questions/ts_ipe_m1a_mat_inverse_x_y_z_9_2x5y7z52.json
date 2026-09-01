@@ -208,7 +208,7 @@
         "label": "Transpose to get Adj A",
         "marks": 1,
         "mark_note": "Adjoint and inverse",
-        "margin_note": "Fourth mark, and the step most often skipped. This cofactor matrix is NOT symmetric, so the transpose really changes it — rows become columns. Then A⁻¹ is Adj A divided by det A, and one row of A times the columns of Adj A checks it before it is used.",
+        "margin_note": "Sixth mark, and the step most often skipped. This cofactor matrix is NOT symmetric, so the transpose really changes it — rows become columns. Then A⁻¹ is Adj A divided by det A, and one row of A times the columns of Adj A checks it before it is used.",
         "memory_tip": "Adj A is the TRANSPOSE of the cofactor matrix — the step most often skipped. Then divide by det A and check A(Adj A) = (det A)I.",
         "lines": [
           "Adj A is the transpose of the cofactors:",

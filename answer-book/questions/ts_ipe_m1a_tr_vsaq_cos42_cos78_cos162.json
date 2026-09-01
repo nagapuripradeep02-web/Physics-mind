@@ -45,7 +45,7 @@
         "label": "Rewrite as 60° ± 18°",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the trick. 42° is 60° − 18° and 78° is 60° + 18°, so the first two are a matched pair around 60°. The third reduces to −cos18°.",
+        "margin_note": "First mark, and the step the whole answer depends on. 42° is 60° − 18° and 78° is 60° + 18°, so the first two are a matched pair around 60°. The third reduces to −cos18°.",
         "memory_tip": "42° is 60° − 18° and 78° is 60° + 18° — a matched pair around 60°. The third gives −cos18°.",
         "lines": [
           {
@@ -129,5 +129,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Write 42° and 78° as 60° ∓ 18° so they pair into 2cos60°cos18°, and 162° as 180° − 18°. The 2 × ½ leaves exactly one cos18° to cancel the other."
 }

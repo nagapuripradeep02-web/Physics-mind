@@ -53,7 +53,7 @@
         "label": "Combine the bracket over cos x",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Simplifying before differentiating is the method being tested. A quotient-rule attempt on the original bracket reaches the same answer only after a page of algebra.",
+        "margin_note": "First mark. Simplifying before differentiating is the method being tested. Differentiating the bracket as it stands also works and cancels to 1/2, but it takes more lines.",
         "lines": [
           {
             "text": "Sol:",
@@ -84,7 +84,7 @@
             "simplify first"
           ]
         },
-        "why": "Differentiating the bracket as it stands needs the derivative of sec x + tan x inside a quotient. One line of algebra removes all of that work.",
+        "why": "Differentiating the bracket as it stands puts the derivative of sec x + tan x over 1 + (sec x + tan x)², and that has to be factorised before it cancels. One line of algebra removes all of that work.",
         "common_mistakes": [
           "Differentiating Tan⁻¹(sec x + tan x) directly with the chain rule and stopping at an unsimplified expression.",
           "Writing sec x as cos x rather than 1/cos x."
@@ -217,8 +217,9 @@
           "Differentiating π/4 as π/4 rather than 0.",
           "Giving 2 instead of 1/2 by differentiating x/2 as 2x."
         ],
-        "memory_tip": "Check with two values: y(0) = π/4 and y(π/2) = π/2, and the rise π/4 over the run π/2 is 1/2."
+        "memory_tip": "Check with two values inside the range: y(0) = π/4 and y(π/3) = π/4 + π/6, and the rise π/6 over the run π/3 is 1/2."
       }
     ]
-  }
+  },
+  "insider_note": "Write sec x + tan x as (1 + sin x)/cos x, then use half angles on both — the common factor cancels and leaves tan(π/4 + x/2). The answer is the constant ½."
 }

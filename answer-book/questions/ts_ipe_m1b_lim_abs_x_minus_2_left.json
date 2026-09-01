@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The left-hand arrow is the whole question: x < 2 makes x − 2 negative, so |x − 2| = −(x − 2). The ratio is then the constant −1 for every x below 2."
 }

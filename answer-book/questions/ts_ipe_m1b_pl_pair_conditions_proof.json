@@ -31,7 +31,7 @@
       "marks": 1
     },
     {
-      "label": "Build 8fgh from the dictionary",
+      "label": "Build 8fgh from the matched coefficients",
       "marks": 1
     },
     {
@@ -93,7 +93,7 @@
             "n one n two"
           ]
         },
-        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. That dictionary between (a, h, b) and the two lines is what every later step spends.",
+        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
         "common_mistakes": [
           "Pairing the cross terms with the same subscript twice.",
           "Forgetting that h, g and f are each HALF the matched quantity."
@@ -104,7 +104,7 @@
       {
         "id": "s2_build_8fgh",
         "kind": "equation",
-        "label": "Build 8fgh from the dictionary",
+        "label": "Build 8fgh from the matched coefficients",
         "marks": 1,
         "margin_note": "One mark. Multiply the three doubled coefficients together. Every term of the expansion is a product of six letters, and regrouping is what turns it into something recognisable.",
         "lines": [
@@ -147,7 +147,7 @@
         "kind": "equation",
         "label": "Reduce it to the Δ condition",
         "marks": 1,
-        "margin_note": "One mark. Each bracket becomes (sum)² − 2(product), and every one of those is already in the dictionary — so the whole expression converts into a, b, c, f, g, h in one pass.",
+        "margin_note": "One mark. Each bracket becomes (sum)² − 2(product), and every one of those is already among the matched coefficients — so the whole expression converts into a, b, c, f, g, h in one pass.",
         "lines": [
           "= l₁l₂[(m₁n₂ + m₂n₁)² − 2m₁m₂n₁n₂] + m₁m₂[(n₁l₂ + n₂l₁)² − 2n₁n₂l₁l₂]",
           "   + n₁n₂[(l₁m₂ + l₂m₁)² − 2l₁l₂m₁m₂] + 2l₁l₂m₁m₂n₁n₂",
@@ -164,7 +164,7 @@
           "must_convey": "That each bracket becomes (sum)² − 2(product), giving 8fgh = 4af² + 4bg² + 4ch² − 4abc.",
           "accept": [
             "each bracket is a sum squared minus twice the product",
-            "substitute the dictionary and divide by four",
+            "substitute the matched coefficients and divide by four",
             "this gives the determinant condition equal to zero",
             "prathi bracket ni sum square minus two product ga rayali",
             "hence delta is zero"
@@ -187,7 +187,7 @@
           "Sign slip when moving abc across."
         ],
         "mark_note": "Method",
-        "memory_tip": "Each bracket becomes (sum)² − 2(product), and every one of those is already in the dictionary."
+        "memory_tip": "Each bracket becomes (sum)² − 2(product), and every one of those is already among the matched coefficients."
       },
       {
         "id": "s4_inequalities",
@@ -227,7 +227,7 @@
             "similarly"
           ]
         },
-        "why": "The same argument runs unchanged for g² − ac and f² − bc, with the letters permuted — which is why the book writes 'similarly' rather than repeating it twice.",
+        "why": "The same argument runs unchanged for g² − ac and f² − bc, with the letters permuted, so writing 'similarly' is enough rather than setting it out twice more.",
         "common_mistakes": [
           "Claiming strict inequality h² > ab, which fails when the lines are parallel.",
           "Forgetting the division by 4 when writing h from 2h."
@@ -236,5 +236,6 @@
         "memory_tip": "h² − ab is a perfect square over 4 — and a square is never negative. That IS the argument."
       }
     ]
-  }
+  },
+  "insider_note": "Multiply 2h, 2g and 2f together, not h, g and f — that 8 is what gets divided out at the end. Part (b) is short: h² − ab becomes (l₁m₂ − l₂m₁)²/4, so the inequality is ≥ and never strict."
 }

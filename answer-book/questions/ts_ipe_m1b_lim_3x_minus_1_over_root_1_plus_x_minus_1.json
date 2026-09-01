@@ -132,5 +132,6 @@
         "memory_tip": "Dividing by 1/2 doubles the number. So the answer is twice logₑ3, and 2 logₑ3 = logₑ9 by the power rule for logarithms."
       }
     ]
-  }
+  },
+  "insider_note": "Divide top and bottom by x so BOTH become standard limits: (aˣ − 1)/x → logₑa and (√(1+x) − 1)/x → 1/2. Dividing by a half doubles, so the answer is 2logₑ3 = logₑ9."
 }

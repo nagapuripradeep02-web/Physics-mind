@@ -141,5 +141,6 @@
         "memory_tip": "Differentiate first, substitute second — a number put in early has no derivative left to give."
       }
     ]
-  }
+  },
+  "insider_note": "Use SIMILAR triangles to write r = h/2 and eliminate r before differentiating — a cone volume with two variables cannot be differentiated in one step. V then becomes πh³/12."
 }

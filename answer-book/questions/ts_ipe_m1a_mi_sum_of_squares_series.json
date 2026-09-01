@@ -268,5 +268,6 @@
         "memory_tip": "Name the principle — one line, one mark."
       }
     ]
-  }
+  },
+  "insider_note": "The nth term is itself a sum, k(k+1)(2k+1)/6, so write that down before starting. In the step, factor out (k+1)(k+2) and the bracket becomes k² + 5k + 6 = (k+2)(k+3)."
 }

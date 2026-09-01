@@ -108,8 +108,8 @@
         "label": "Find a×(b×c)",
         "marks": 2,
         "mark_note": "The product",
-        "margin_note": "Half the marks. a on the first row, the bracket result on the second. The zero in the second row kills one product in each expansion.",
-        "memory_tip": "a on the first row, the bracket result on the second. The zero kills one product in each expansion.",
+        "margin_note": "Half the marks. a on the first row, the bracket result on the second. The zero in the second row makes one product zero in the j term and one in the k term.",
+        "memory_tip": "a on the first row, the bracket result on the second. The zero makes one product zero in the j term and one in the k term.",
         "lines": [
           {
             "text": "a \\times (b \\times c) = \\begin{vmatrix} i & j & k \\\\ 2 & 3 & 4 \\\\ 0 & -2 & -2 \\end{vmatrix}",
@@ -194,5 +194,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "b×c has a zero i component, which is a help rather than a sign of error. The verification is a DOT product with a, and it must be shown to come to 0 explicitly."
 }

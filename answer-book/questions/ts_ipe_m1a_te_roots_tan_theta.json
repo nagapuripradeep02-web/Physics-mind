@@ -114,7 +114,7 @@
         "label": "Read off the sum of roots",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. For ax² + bx + c = 0 the sum of the roots is −b/a. Here that is −(−2b)/(c+a), which is 2b/(c+a).",
+        "margin_note": "Third mark. For Ax² + Bx + C = 0 the sum of the roots is −B/A. Here B = −2b and A = c + a, so the sum is −(−2b)/(c+a), which is 2b/(c+a).",
         "memory_tip": "Sum is −B/A, and B is −2b here, so the answer is +2b/(c + a).",
         "lines": [
           "This is a quadratic in tanθ with roots tanθ₁, tanθ₂.",
@@ -199,5 +199,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Write cos2θ and sin2θ in terms of tanθ so the whole equation becomes a quadratic in tanθ. Both parts are then sum and product of roots, and the last part drops out of the tan(A+B) formula."
 }

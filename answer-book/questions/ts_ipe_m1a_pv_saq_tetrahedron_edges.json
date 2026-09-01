@@ -186,5 +186,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A tetrahedron is one SIXTH of the box product, not one half. The determinant comes to 1, so the whole answer is 1/6 — a small number is correct here."
 }

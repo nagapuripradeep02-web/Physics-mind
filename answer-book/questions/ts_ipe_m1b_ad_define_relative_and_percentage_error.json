@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two definitions, one mark each, and they differ only by the factor 100. Relative error is Δy/y — dividing by the value itself is what makes it relative."
 }

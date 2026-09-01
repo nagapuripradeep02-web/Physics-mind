@@ -90,7 +90,7 @@
         },
         "why": "7, 24, 25 is a Pythagorean triple, which is why the root comes out whole. Recognising it saves a long square root.",
         "common_mistakes": [
-          "Matching a to the cosine coefficient by habit.",
+          "Taking √(a² + b²) as a + b, giving 31 instead of 25.",
           "Missing the constant 5."
         ]
       },
@@ -140,5 +140,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Range, not just maximum and minimum, so the answer must be written as the interval [−20, 30]. The +5 shifts both ends, and 7 with 24 give the Pythagorean 25."
 }

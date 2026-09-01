@@ -124,7 +124,7 @@
             "square both sides"
           ]
         },
-        "why": "'Twice the distance' is a ratio, and a ratio squares in one move with no cross term — quite unlike the sum and difference families on the facing pages.",
+        "why": "'Twice the distance' is a ratio, and a ratio squares in one move with no cross term, unlike a condition on the sum or the difference of two distances.",
         "common_mistakes": [
           "Squaring to PA² = 2PB² and forgetting to square the 2.",
           "Reading it backwards as PB = 2PA."
@@ -213,9 +213,10 @@
         "why": "Any fixed ratio of distances other than 1:1 gives a circle of Apollonius, so equal x² and y² coefficients are the check that the arithmetic held.",
         "common_mistakes": [
           "Forgetting to divide through by the common factor 3.",
-          "Collecting 9 − 36 as +27 on the wrong side."
+          "Taking the constant as 9 − 36 = −27; moving the 9 across gives 36 − 9 = +27 on the right."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "PA = 2PB squares to PA² = 4PB², not 2PB² — the 2 is squared as well. The whole right bracket takes the 4, both the x and the y part, and the finish divides through by the common 3."
 }

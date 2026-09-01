@@ -99,7 +99,7 @@
             "equate coefficients"
           ]
         },
-        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. That dictionary between (a, h, b) and the two lines is what every later step spends.",
+        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
         "common_mistakes": [
           "Using the slope form, which cannot handle a line with no y-term.",
           "Writing 2h = l₁m₁ + l₂m₂ instead of the cross pairing."
@@ -151,7 +151,7 @@
         "kind": "equation",
         "label": "Multiply them together",
         "marks": 1,
-        "margin_note": "One mark. Multiply the two fractions, then multiply out both numerator and denominator so that everything is written in the products the dictionary knows.",
+        "margin_note": "One mark. Multiply the two fractions, then multiply out both numerator and denominator so that everything is written in the products that the matched coefficients name.",
         "lines": [
           "∴ Product of perpendiculars is  p₁·p₂ = [|l₁α + m₁β| / √(l₁² + m₁²)] · [|l₂α + m₂β| / √(l₂² + m₂²)]",
           "= |(l₁α + m₁β)(l₂α + m₂β)| / √((l₁² + m₁²)(l₂² + m₂²))",
@@ -179,13 +179,13 @@
             "under the root"
           ]
         },
-        "why": "The numerator's three groups are exactly a, 2h and b from the dictionary — that correspondence is the whole point of expanding rather than leaving it factored.",
+        "why": "The numerator's three groups are exactly a, 2h and b from the matched coefficients — that correspondence is the whole point of expanding rather than leaving it factored.",
         "common_mistakes": [
           "Adding the two distances instead of multiplying.",
           "Forgetting that the two middle terms combine into the 2h group."
         ],
         "mark_note": "Method",
-        "memory_tip": "Multiply the two fractions and expand both parts into the products the dictionary knows."
+        "memory_tip": "Multiply the two fractions and expand both parts into the products that the matched coefficients name."
       },
       {
         "id": "s4_convert",
@@ -232,5 +232,6 @@
         "memory_tip": "Add and subtract 2l₁l₂m₁m₂ in the denominator so it becomes a difference of squares plus a square."
       }
     ]
-  }
+  },
+  "insider_note": "Multiply the two distances, never add them, and keep both roots under one. The denominator regroups as (l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)² = (a − b)² + 4h²; writing (a + b)² there is the standard error."
 }

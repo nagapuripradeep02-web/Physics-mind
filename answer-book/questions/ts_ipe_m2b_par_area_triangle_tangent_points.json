@@ -114,7 +114,7 @@
         "label": "Convert to y-differences and write the boxed area",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "Last two marks. Compare the denominator with answer 14's — 16a here, not 8a, because of the extra 1/2.",
+        "margin_note": "Last two marks. Compare the denominator with the points-of-contact triangle — 16a here, not 8a, because of the extra 1/2.",
         "lines": [
           "Area = (1/2)|a²(t₁−t₂)(t₁−t₃)(t₂−t₃)|",
           "= (a²/2)|(t₁−t₂)(t₁−t₃)(t₂−t₃)|",
@@ -128,14 +128,14 @@
             "style": "boxed"
           }
         ],
-        "why": "This area comes out to exactly half of answer 14's area for the same three parameters, because the extra factor of 1/2 sitting in front of the determinant here has no counterpart in the earlier proof — that is also why the denominator here is 16a instead of 8a.",
+        "why": "This area comes out to exactly half the area of the triangle formed by the three points of contact themselves, for the same three parameters, because the extra factor of 1/2 sitting in front of the determinant here has no counterpart in that proof — that is also why the denominator here is 16a instead of 8a.",
         "common_mistakes": [
-          "Reusing answer 14's final denominator of 8a instead of the 16a that the extra 1/2 here produces.",
-          "Dropping the absolute value bars again, the same slip as in answer 14."
+          "Reusing the points-of-contact triangle's final denominator of 8a instead of the 16a that the extra 1/2 here produces.",
+          "Dropping the absolute value bars again — the same slip as in the area formula step."
         ],
-        "memory_tip": "This triangle (from tangents) is always half the area of the triangle in answer 14 (from the points themselves) for the same three parameters — 16a instead of 8a."
+        "memory_tip": "This triangle (from tangents) is always half the area of the triangle formed by the points of contact themselves, for the same three parameters — 16a instead of 8a."
       }
     ]
   },
-  "insider_note": "This proof and answer 14's share almost every line — the only real difference is the extra 1/2 in front of the determinant here, which is exactly why the final denominator doubles from 8a to 16a."
+  "insider_note": "This proof shares almost every line with the companion result for the triangle formed by the three points of contact themselves — the tangent triangle carries an extra 1/2 in front of the determinant, which is exactly why the denominator here is 16a and not 8a."
 }

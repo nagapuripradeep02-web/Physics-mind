@@ -131,5 +131,6 @@
         "memory_tip": "Both lines are led by x², so the answer is 1; the sine only adds a correction that approaches 0."
       }
     ]
-  }
+  },
+  "insider_note": "sin x has no limit at infinity, but it is BOUNDED, so (sin x)/x² is squeezed to 0. Naming the Sandwich theorem is what makes this an argument rather than an assertion."
 }

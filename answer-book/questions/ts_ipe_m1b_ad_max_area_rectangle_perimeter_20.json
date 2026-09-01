@@ -182,5 +182,6 @@
         "memory_tip": "Among all rectangles with the same perimeter the square has the largest area. That result is worth remembering as a check on the working."
       }
     ]
-  }
+  },
+  "insider_note": "Use the fixed perimeter to eliminate one side before differentiating. The maximum comes at x = 5, so the rectangle is a SQUARE — worth stating as the conclusion."
 }

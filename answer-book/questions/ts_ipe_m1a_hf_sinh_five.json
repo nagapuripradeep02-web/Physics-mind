@@ -50,7 +50,7 @@
         "label": "State the logarithmic form",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Same formula as the twin. Write it before substituting anything.",
+        "margin_note": "First mark. Same formula as every Sinh⁻¹ question. Write it before substituting anything.",
         "memory_tip": "Sinh⁻¹x = logₑ(x + √(x² + 1)). Write the formula before substituting anything.",
         "lines": [
           {
@@ -80,10 +80,10 @@
             "x squared plus one"
           ]
         },
-        "why": "The formula is worth a mark on its own, so writing it costs one line and earns one mark even if the arithmetic then slips.",
+        "why": "The formula is worth a mark on its own, so writing it costs one line and earns one mark even if the arithmetic then slips. Deriving the same result from eˣ − e⁻ˣ = 10 also works and is correct, but the quoted log form is one line and carries the method mark.",
         "common_mistakes": [
           "Using the Cosh⁻¹ form with −1.",
-          "Starting from the exponential definition."
+          "Reading Sinh⁻¹x as 1/sinh x instead of the inverse function."
         ]
       },
       {
@@ -132,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A quote-and-substitute question: Sinh⁻¹x = logₑ(x + √(x² + 1)). Note the PLUS one inside the root — the cosh and tanh forms differ, and mixing them up is the only real risk here."
 }

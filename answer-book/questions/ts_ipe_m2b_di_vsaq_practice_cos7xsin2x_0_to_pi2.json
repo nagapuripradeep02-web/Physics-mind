@@ -50,7 +50,7 @@
         "label": "State Walli's formula for mixed powers",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. m=7 is odd, so K=1 — the same rule as the previous answer, but with different power values.",
+        "margin_note": "First mark. m=7 is odd, so K=1 — the same rule as the other reduction-formula questions, but with different power values.",
         "memory_tip": "cos⁷x sin²x is NOT the same integral as sin⁵x cos⁴x — different powers always need a fresh product, never a copied answer.",
         "lines": [
           {

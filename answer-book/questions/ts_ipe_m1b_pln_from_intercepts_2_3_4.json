@@ -127,5 +127,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The intercepts go underneath, never on top: x/2 + y/3 + z/4 = 1. The common denominator is 12, and every term including the 1 on the right gets multiplied by it."
 }

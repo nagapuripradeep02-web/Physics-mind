@@ -45,7 +45,7 @@
         "label": "State the logarithmic form",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Same formula as the twin.",
+        "margin_note": "First mark. Same formula as the Tanh⁻¹(1/2) question.",
         "memory_tip": "Tanh⁻¹x = (1/2)logₑ((1 + x)/(1 − x)) — the plus on top, the minus below, and a half outside.",
         "lines": [
           {
@@ -75,7 +75,7 @@
             "one plus x"
           ]
         },
-        "why": "Same formula, so the only difference between the twins is the arithmetic that follows.",
+        "why": "Same formula, so the only difference from the Tanh⁻¹(1/2) question is the arithmetic that follows.",
         "common_mistakes": [
           "Using the Sinh⁻¹ form.",
           "Dropping the half."
@@ -126,5 +126,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The same formula as the ½ version: Tanh⁻¹x = (1/2)logₑ((1 + x)/(1 − x)). The quarters cancel to leave 5/3, and the answer keeps both the ½ and the fraction inside the log."
 }

@@ -59,7 +59,7 @@
         "why": "For an odd power of sin, Walli's formula uses the same descending-product pattern as the cosine version, ending at 2 on top and 3 on the bottom with no π/2 factor.",
         "common_mistakes": [
           "Using the even-n version of the formula for this odd n=7 case.",
-          "Confusing this with the cos¹¹x formula from the previous answer, which has five terms rather than three."
+          "Confusing this with the cos¹¹x formula, which has five terms rather than three."
         ]
       },
       {

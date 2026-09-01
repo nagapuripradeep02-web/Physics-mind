@@ -127,7 +127,7 @@
             "master test"
           ]
         },
-        "why": "Δ = 0 is necessary AND sufficient together with the inequalities — it is the condition proved in answer 10 of this same chapter.",
+        "why": "Δ = 0 is necessary AND sufficient together with the inequalities — it is the standard condition for a general second-degree equation to represent a pair of lines.",
         "common_mistakes": [
           "Dropping one of the five terms of Δ.",
           "Arithmetic slip with the quarters that come from halved coefficients."
@@ -225,5 +225,6 @@
         "memory_tip": "The intersection comes from a formula in the same six coefficients — nothing needs solving."
       }
     ]
-  }
+  },
+  "insider_note": "The point of intersection carries two of the four marks, so the Δ test and the inequalities are one line each. Both coordinates share the denominator ab − h² = −25/4, so work it out once and use it twice."
 }

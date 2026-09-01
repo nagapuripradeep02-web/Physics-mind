@@ -188,5 +188,6 @@
         "memory_tip": "Turn 20 into 1/20 and change the sign. A steep tangent always has a flat normal."
       }
     ]
-  }
+  },
+  "insider_note": "m = 20x³ gives 20 at x = 1 — a steep tangent and a very flat normal of slope −1/20. Both equations are asked for, so write both."
 }

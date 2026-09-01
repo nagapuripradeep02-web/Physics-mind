@@ -89,7 +89,7 @@
         "why": "Differentiating the quotient inside the logarithm would need the chain rule and the quotient rule together. Splitting first replaces both with two independent chain-rule terms, which is shorter and much easier to check.",
         "common_mistakes": [
           "Writing log(P/Q) as log P/log Q, which is not a logarithm law.",
-          "Applying the quotient rule inside the logarithm first, which makes the algebra several times longer."
+          "Splitting it as log(x² − x + 2) − log(x² + x + 2), with the two logarithms the wrong way round."
         ],
         "memory_tip": "A logarithm turns division into subtraction. Use that law before differentiating, never after."
       },
@@ -217,10 +217,11 @@
         "why": "The numerator and denominator share no common factor once the 2 is taken out, so this is the simplest form. It also shows the derivative is zero only at x = ±√2, which is a quick check that the working is sensible.",
         "common_mistakes": [
           "Cancelling the 2 in the numerator against the 4 in the denominator, which are not factors of the whole expressions.",
-          "Leaving the denominator as a product of two quadratics when the question asks for the derivative in its simplest form."
+          "Differentiating the quotient before splitting the logarithm, which replaces a two-term subtraction with a long quotient rule."
         ],
         "memory_tip": "Check at x = 0: the answer gives 2(2)/4 = 1, and the function itself is log(2/2) = 0 there. One substitution like this catches a lost sign."
       }
     ]
-  }
+  },
+  "insider_note": "Use log(P/Q) = log P − log Q BEFORE differentiating — the quotient rule on the fraction inside is far longer. Two simple logarithmic derivatives are then subtracted."
 }

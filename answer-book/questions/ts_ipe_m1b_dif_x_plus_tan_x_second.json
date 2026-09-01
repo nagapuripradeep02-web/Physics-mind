@@ -134,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Differentiate twice to reach 2sec²x tan x, then multiply by cos²x so the sec² cancels exactly. What is left, 2tan x, plus 2x rebuilds 2y."
 }

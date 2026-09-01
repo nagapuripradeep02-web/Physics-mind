@@ -88,7 +88,7 @@
             "surd"
           ]
         },
-        "why": "Both questions on this page are answered by computing the SAME three distances. Only the conclusion drawn from them differs, which is why the book prints the note 'Questioning is different but Answering is similar' underneath.",
+        "why": "Collinearity and the shape of a triangle are both settled by the same three pairwise distances — only the conclusion drawn from them differs.",
         "common_mistakes": [
           "Forgetting the third squared difference and using the 2D formula.",
           "Simplifying a surd wrongly, which hides the pattern in the three answers."
@@ -138,5 +138,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The longest distance must be the SUM: BC = 3√11 is the biggest here, so the check is AB + AC = BC, not AB + BC. Simplify every surd to a multiple of √11 or the pattern stays hidden."
 }

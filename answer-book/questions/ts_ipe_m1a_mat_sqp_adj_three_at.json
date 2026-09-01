@@ -106,8 +106,8 @@
         "label": "Find the adjoint",
         "marks": 1,
         "mark_note": "Adjoint",
-        "margin_note": "Second mark. Nine cofactors, then transpose. The result turns out symmetric, so the transpose changes nothing here.",
-        "memory_tip": "Nine cofactors, then transpose. The result is symmetric here, so the transpose changes nothing.",
+        "margin_note": "Second mark. Nine cofactors, then transpose. The cofactor matrix is not symmetric here, so skipping the transpose gives the wrong matrix.",
+        "memory_tip": "Nine cofactors, then transpose. The cofactor matrix is not symmetric here, so the transpose really does change it.",
         "lines": [
           "Cofactor matrix, then transposing:",
           {
@@ -241,5 +241,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "det A = 27 = 3³, which is why the adjoint comes out as exactly 3Aᵀ. Once that is shown, A⁻¹ = 3Aᵀ/27 = Aᵀ/9 with no further cofactor work."
 }

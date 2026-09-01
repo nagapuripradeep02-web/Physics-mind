@@ -130,12 +130,13 @@
             "two values"
           ]
         },
-        "why": "Two points on the line through (5,−1,7) sit at distance 9 in the x-direction, one on each side — so two answers are expected, not a sign of error.",
+        "why": "The unknown point must lie on the line y = 5, z = 1. All points at distance 9 from (5,−1,7) form a sphere, and that sphere cuts the line in two places — so two values of x are expected, not a sign of error.",
         "common_mistakes": [
           "Reporting only x = 8.",
           "Taking the square root of 9 as 4.5."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Squaring leaves (x − 5)² = 9, so there are TWO answers, 8 and 2. The question says values, plural; reporting only x = 8 loses the second mark."
 }

@@ -85,7 +85,7 @@
         },
         "why": "This formula already accounts for the two intercepts and the right angle at the origin, so no intercepts need finding separately.",
         "common_mistakes": [
-          "Getting the sign of c wrong when the equation is rearranged.",
+          "Reading b as 4 instead of −4. The modulus makes no difference to this answer, but the first mark is for the correct comparison line.",
           "Dropping the modulus and producing a negative area."
         ],
         "mark_note": "Method"
@@ -135,5 +135,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The shortcut Δ = c²/(2|ab|) does this in one line — the intercepts never need to be found. The modulus matters because b = −4 here, and the 2 in the denominator is the piece usually dropped."
 }

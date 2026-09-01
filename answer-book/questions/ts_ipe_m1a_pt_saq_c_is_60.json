@@ -180,5 +180,6 @@
         "memory_tip": "Divide by 2ab: the left becomes cos C exactly, the right becomes 1/2."
       }
     ]
-  }
+  },
+  "insider_note": "Clear the fractions and everything cancels down to a² + b² − c² = ab. Dividing by 2ab turns that straight into cos C = ½, so aim for the cosine rule from the start."
 }

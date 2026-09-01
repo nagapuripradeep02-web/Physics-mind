@@ -129,5 +129,6 @@
         "memory_tip": "Coefficient of x² on top over coefficient of x² below: 1 over 2."
       }
     ]
-  }
+  },
+  "insider_note": "Divide by x², the highest power, and every fraction vanishes. The answer is the ratio of the leading coefficients, 1/2."
 }

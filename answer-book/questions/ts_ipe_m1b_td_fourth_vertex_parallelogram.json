@@ -49,7 +49,7 @@
         "label": "Equate the diagonal midpoints",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, printed in the book's margin. A parallelogram's diagonals BISECT each other, so the midpoint of AC equals the midpoint of BD. Note the vertices are CONSECUTIVE, so the diagonals are AC and BD, not AB and CD.",
+        "margin_note": "First mark. A parallelogram's diagonals BISECT each other, so the midpoint of AC equals the midpoint of BD. Note the vertices are CONSECUTIVE, so the diagonals are AC and BD, not AB and CD.",
         "memory_tip": "A parallelogram's diagonals BISECT each other. The vertices are consecutive, so the diagonals are AC and BD.",
         "lines": [
           {
@@ -234,7 +234,7 @@
         "label": "Solve for the fourth vertex",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark, also printed. The halves cancel on both sides, leaving three short equations that are solved one at a time.",
+        "margin_note": "Second mark. The halves cancel on both sides, leaving three short equations that are solved one at a time.",
         "memory_tip": "The halves cancel on both sides, leaving three short equations solved one at a time.",
         "lines": [
           "⇒ (3 + a)/2 = 6/2  ⇒  a + 3 = 6  ⇒  a = 6 − 3 = 3;",
@@ -274,5 +274,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The vertices are given as consecutive, so AC and BD are the diagonals while AB and CD are sides. Equating the midpoints of the sides instead is what makes this question come out wrong."
 }

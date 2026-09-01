@@ -185,7 +185,7 @@
         "why": "The length of the normal is the distance from the point to the x-axis measured along the normal, and the factor √(1 + m²) is what stretches y along that slanted line. On this curve that factor is y/a exactly.",
         "common_mistakes": [
           "Using the length of the tangent formula, which divides by m as well.",
-          "Writing √(y²/a²) as y²/a, forgetting that the root removes the squares.",
+          "Writing √(y²/a²) as y²/a² — the root removes the squares, so the factor is y/a; only multiplying by y afterwards gives y²/a.",
           "Giving the subnormal ym here, which is the next part."
         ],
         "memory_tip": "Length of the normal = y√(1 + m²); the length of the tangent is the same thing divided by m. The normal has no m in the denominator."
@@ -236,8 +236,9 @@
           "Expanding the product term by term and keeping the two cross terms that cancel.",
           "Writing the coefficient as a/2 instead of a/4."
         ],
-        "memory_tip": "Subtangent divides, subnormal multiplies: y/m and ym. Tangent and division both go with the shallower slope, so the subtangent is the quotient."
+        "memory_tip": "Subtangent divides, subnormal multiplies: y/m and ym. The word with more letters, subtangent, is the one that DIVIDES."
       }
     ]
-  }
+  },
+  "insider_note": "The derivative is the difference of the two exponentials over 2, and 1 + m² then becomes a perfect square. That is what lets the root be taken cleanly."
 }

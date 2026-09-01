@@ -125,7 +125,7 @@
         "why": "Adding I to both sides gives 2I directly, and dividing by 2 gives the same final value as the twin question — confirming the book's claim that the two integrals are equal.",
         "common_mistakes": [
           "Forgetting the final division by 2.",
-          "Reporting a different numeric value from the twin question 36.1 without checking the arithmetic — both must agree."
+          "Reporting a different numeric value from the twin form of this integral without checking the arithmetic — both must agree."
         ]
       }
     ]

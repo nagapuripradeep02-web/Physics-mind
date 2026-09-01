@@ -139,7 +139,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Last mark. The answer to the question as asked is no. Naming the discontinuity as removable, and saying which value of f(0) would repair it, is what shows the point of the question has been understood.",
-        "memory_tip": "When the limit exists but does not match the value, the discontinuity is removable — the value alone is at fault, and redefining it repairs the function.",
+        "memory_tip": "When the limit exists but does not match the value, the discontinuity is removable — only the assigned value is different, so redefining f(0) = 2 makes f continuous.",
         "lines": [
           "lim(x → 0) f(x) = 2,   but the given value is   f(0) = 1",
           "2 ≠ 1, so lim(x → 0) f(x) ≠ f(0)",
@@ -178,5 +178,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The limit exists and equals 2, but f(0) is given as 1, so the answer is NO. Saying it is a removable discontinuity, which is fixed by redefining f(0) = 2, is what finishes the answer."
 }

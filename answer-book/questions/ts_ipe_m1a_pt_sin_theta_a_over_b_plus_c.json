@@ -57,7 +57,7 @@
         "kind": "equation",
         "label": "Square the given relation",
         "marks": 0,
-        "margin_note": "No separate mark at this length. The sine is given this time, so cos²θ = 1 − sin²θ. Everything else follows the same path as answer 33.",
+        "margin_note": "No separate mark at this length. The sine is given this time, so cos²θ = 1 − sin²θ. Everything else follows the standard path.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,7 +89,7 @@
             "cos squared"
           ]
         },
-        "why": "sin² + cos² = 1 works in either direction, which is why this twin and answer 33 reach the SAME expression from opposite starting points.",
+        "why": "sin² + cos² = 1 works in either direction, which is why this question and the a = (b + c) cos θ question reach the SAME expression from opposite starting points.",
         "common_mistakes": [
           "Using 1 + sin²θ.",
           "Squaring only the numerator."
@@ -101,7 +101,7 @@
         "kind": "equation",
         "label": "Expand and use the cosine rule",
         "marks": 0,
-        "margin_note": "No separate mark at this length. Identical to answer 33 from here — expand, group, and apply the cosine rule.",
+        "margin_note": "No separate mark at this length. From here it is the standard route — expand, group, and apply the cosine rule.",
         "lines": [
           "= (b² + c² + 2bc − a²)/(b+c)²",
           "= (2bc + (b² + c² − a²))/(b+c)²",
@@ -128,7 +128,7 @@
             "expand"
           ]
         },
-        "why": "From this line on the two twins are word for word identical — which is why the book prints them side by side.",
+        "why": "From this line on the working is word for word identical to the a = (b + c) cos θ question.",
         "common_mistakes": [
           "Failing to group the three terms together.",
           "Sign slip on −a²."
@@ -141,7 +141,7 @@
         "label": "Introduce the half angle",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One of the two marks — the method mark for the whole derivation. 1 + cos A = 2cos²(A/2), the same half of the pair as answer 33.",
+        "margin_note": "One of the two marks — the method mark for the whole derivation. 1 + cos A = 2cos²(A/2), the half-angle form that turns the bracket into a square.",
         "lines": [
           "= 2bc(1 + cos A)/(b+c)²",
           "= 4bc cos²(A/2)/(b+c)²"
@@ -180,7 +180,7 @@
         "label": "Take the square root",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "The last mark. Same finish, and the same answer as answer 33 — which is worth noticing rather than doubting.",
+        "margin_note": "The last mark. The square root gives exactly the result the question states — which is worth noticing rather than doubting.",
         "lines": [
           "∴ cos θ = √(4bc cos²(A/2)/(b+c)²)",
           {
@@ -209,13 +209,13 @@
             "square root"
           ]
         },
-        "why": "Both twins land on the same right-hand side. That is not a coincidence — they start from the two halves of the same Pythagorean identity.",
+        "why": "This question and the a = (b + c) cos θ question land on the same right-hand side, because they start from the two halves of the same Pythagorean identity.",
         "common_mistakes": [
-          "Assuming the answer must differ from the twin and re-checking needlessly.",
           "Writing √(4bc) as 4√(bc)."
         ],
         "memory_tip": "The answer is identical to the cos θ question — worth noticing rather than doubting."
       }
     ]
-  }
+  },
+  "insider_note": "Squaring leaves cos²θ, and the cosine rule turns (b+c)² − a² into 2bc(1 + cos A). The finish is the same as the a = (b+c)cos θ question; only the starting ratio differs."
 }

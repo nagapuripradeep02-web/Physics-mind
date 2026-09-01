@@ -136,7 +136,7 @@
           "Using the total surface area 2πx(x + h) instead of the curved surface 2πxh.",
           "Treating R or H as a variable and differentiating them."
         ],
-        "memory_tip": "Curved surface is the label round a tin: 2π times radius times height. Keep every fixed letter outside the bracket so the differentiation is short."
+        "memory_tip": "Curved surface is the side of the cylinder only: 2π times radius times height, with no flat ends. Keep every fixed letter outside the bracket so the differentiation is short."
       },
       {
         "id": "s3_differentiate",
@@ -230,5 +230,6 @@
         "memory_tip": "Greatest curved surface gives radius R/2 and height H/2. Greatest volume is a different question with a different answer, radius 2R/3."
       }
     ]
-  }
+  },
+  "insider_note": "Use similar triangles to write the cylinder's height through its radius, so the surface area has ONE variable. The answer is half the cone's radius, independent of the height."
 }

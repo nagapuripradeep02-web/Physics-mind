@@ -125,12 +125,13 @@
             "twelve point three two"
           ]
         },
-        "why": "The exact increase is (4/3)π[(7.02)³ − 7³] = 3.9312π cm³, and the approximation gives 3.92π cm³. They agree to two figures because dr = 0.02 is small compared with r = 7, which is the condition the method needs. The answer here is the change itself, in cm³; had a percentage been asked, the relative form dV/V = 3(dr/r) would be used, because the volume is r to the power 3.",
+        "why": "The exact increase is (4/3)π[(7.02)³ − 7³] = 3.9312π cm³, and the approximation gives 3.92π cm³. They agree to two figures and differ by about 0.3%, because dr = 0.02 is small compared with r = 7, which is the condition the method needs. The answer here is the change itself, in cm³; had a percentage been asked, the relative form dV/V = 3(dr/r) would be used, because the volume is r to the power 3.",
         "common_mistakes": [
           "Writing the unit as cm² instead of cm³.",
-          "Computing the two full volumes and subtracting, which is exact but is not what 'approximate' asks for."
+          "Computing the two full volumes and subtracting; the arithmetic is right, but the marks here are for the differential method dV = 4πr²·dr."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "dr is the CHANGE, 0.02, not the new radius. dV = 4πr²·dr uses the old radius 7, giving 3.92π."
 }

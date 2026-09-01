@@ -168,7 +168,7 @@
         "label": "Read the rank of A",
         "marks": 1,
         "mark_note": "Rank of A",
-        "margin_note": "Third mark. Rank is the order of the largest non-zero minor. Show BOTH halves: the 3×3 determinant is 0, so the rank is below 3, and one 2×2 minor is non-zero, so it is exactly 2.",
+        "margin_note": "Fourth mark. Rank is the order of the largest non-zero minor. Show BOTH halves: the 3×3 determinant is 0, so the rank is below 3, and one 2×2 minor is non-zero, so it is exactly 2.",
         "memory_tip": "Rank is the order of the LARGEST non-zero minor. Show both halves: 3×3 is zero, one 2×2 is not.",
         "lines": [
           "In (1) the coefficient part is",
@@ -223,7 +223,7 @@
         "label": "Compare the two ranks",
         "marks": 1,
         "mark_note": "Rank test",
-        "margin_note": "Fourth mark, and the actual test. Equal ranks means consistent. Comparing that common rank with the number of unknowns is what separates one solution from infinitely many.",
+        "margin_note": "Fifth mark, and the actual test. Equal ranks means consistent. Comparing that common rank with the number of unknowns is what separates one solution from infinitely many.",
         "memory_tip": "Equal ranks means consistent. Rank below the number of unknowns means infinitely many solutions.",
         "lines": [
           "In (1) the augmented matrix also has just two",
@@ -269,7 +269,7 @@
         "label": "Write the equivalent equations",
         "marks": 1,
         "mark_note": "Back to equations",
-        "margin_note": "Fifth mark. Turn the surviving rows back into equations. Row 2 fixes z outright; row 1 then ties x and y together but cannot separate them.",
+        "margin_note": "Sixth mark. Turn the surviving rows back into equations. Row 2 fixes z outright; row 1 then ties x and y together but cannot separate them.",
         "memory_tip": "Turn the surviving rows back into equations: one fixes z, the other only fixes the SUM x + y.",
         "lines": [
           "The non-zero rows of (1) are the equations",

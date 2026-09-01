@@ -186,7 +186,7 @@
         "label": "Expand cos 2C",
         "marks": 1,
         "mark_note": "Double angle",
-        "margin_note": "Fifth mark. cos 2θ has three forms; only 1 − 2 sin²θ leaves a standalone 1, which is the first term on the right-hand side.",
+        "margin_note": "Sixth mark. cos 2θ has three forms; only 1 − 2 sin²θ leaves a standalone 1, which is the first term on the right-hand side.",
         "memory_tip": "Choose cos 2C = 1 − 2 sin²C out of the three forms — it is the one that produces the 1 on the right.",
         "lines": [
           "cos2C = 1 − 2 sin²C",
@@ -227,7 +227,7 @@
         "label": "Convert sin C inside the bracket",
         "marks": 1,
         "mark_note": "Second substitution",
-        "margin_note": "Sixth mark. The condition is used a SECOND time, and it carries a minus sign again: sin(3π/2 − θ) = −cos θ. That turns the bracket into a DIFFERENCE of cosines.",
+        "margin_note": "Seventh mark. The condition is used a SECOND time, and it carries a minus sign again: sin(3π/2 − θ) = −cos θ. That turns the bracket into a DIFFERENCE of cosines.",
         "memory_tip": "sin(3π/2 − θ) = −cos θ. The second minus turns the plus inside the bracket into a minus.",
         "lines": [
           "C = 3π/2 − (A+B)",

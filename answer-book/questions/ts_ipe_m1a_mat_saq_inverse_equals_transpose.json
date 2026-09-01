@@ -199,5 +199,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The matrix given is 3A, so divide by 3 before starting. A⁻¹ = Aᵀ is the same as AAᵀ = I, and the two thirds combine to 1/9 against the 9s on the diagonal."
 }

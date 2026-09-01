@@ -84,7 +84,7 @@
           "Cancelling x against the x inside sin ax.",
           "Writing lim sin(ax)/x = 1 and losing the factor a."
         ],
-        "memory_tip": "sin θ / θ → 1 needs the same angle above and below. Here the angle is ax, so create ax below and pay for it with an a outside."
+        "memory_tip": "sin θ / θ → 1 needs the same angle above and below. Here the angle is ax, so create ax below, and put an a outside so the value is unchanged."
       },
       {
         "id": "s2_standard_limit",
@@ -132,5 +132,6 @@
         "memory_tip": "Read the answer straight off the question: whatever multiplies x inside the sine is the answer, since cos 0 = 1 leaves it unchanged."
       }
     ]
-  }
+  },
+  "insider_note": "Only sin(ax)/x is indeterminate; cos x is simply 1 at x = 0, so separate the two first. Multiply and divide by a so the angle matches below the sine, and that a is the answer."
 }

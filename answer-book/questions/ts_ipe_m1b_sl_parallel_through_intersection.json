@@ -215,5 +215,6 @@
         "memory_tip": "Clear the fractions and collect into ax + by + c = 0."
       }
     ]
-  }
+  },
+  "insider_note": "The slope is available before the point is, so read −3/4 off the given line first. Parallel keeps that slope unchanged, and the final line divides through by 5 to reach 3x + 4y − 15 = 0."
 }

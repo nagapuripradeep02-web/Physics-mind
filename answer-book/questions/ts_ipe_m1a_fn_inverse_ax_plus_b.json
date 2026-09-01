@@ -119,12 +119,13 @@
             "by a"
           ]
         },
-        "why": "This is the general form of the previous question — every linear function's inverse is this, which is why it is worth memorising as a shape.",
+        "why": "This is the general form of a numerical linear function such as f(x) = 5x + 4 — every linear function's inverse is this, which is why it is worth memorising as a shape.",
         "common_mistakes": [
           "Leaving the answer in y.",
           "Writing (x + b)/a."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The condition a ≠ 0 is stated because the division needs it, so carry it through into the answer. The method is the same as the numerical version: solve for x, rename at the end."
 }

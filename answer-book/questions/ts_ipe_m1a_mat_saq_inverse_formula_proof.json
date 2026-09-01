@@ -153,7 +153,7 @@
             "rows become columns"
           ]
         },
-        "why": "The transpose is not decoration. It is exactly what makes the next product come out diagonal — without it the sums would not line up as det A.",
+        "why": "The transpose is what makes the next product come out diagonal — without it the sums do not come out as det A.",
         "common_mistakes": [
           "Calling the cofactor matrix itself the adjoint.",
           "Transposing A instead of the cofactor matrix."
@@ -212,7 +212,7 @@
         "marks": 1,
         "mark_note": "Properties of determinants",
         "margin_note": "Third mark, and the heart of the proof. A row paired with its own cofactors IS the expansion of det A. A row paired with another row's cofactors is the expansion of a determinant with two identical rows, and that is always 0.",
-        "memory_tip": "A row with its own cofactors IS det A; a row with another row's cofactors is 0. That is the heart of it.",
+        "memory_tip": "A row with its own cofactors IS det A; a row with another row's cofactors is 0. That is the whole proof.",
         "lines": [
           "a₁A₁ + b₁B₁ + c₁C₁ = det A   (expansion of det A)",
           "a₁A₂ + b₁B₂ + c₁C₂ = 0   (two identical rows)",
@@ -307,5 +307,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The whole proof is one product, A·(Adj A). Diagonal entries pair a row with its OWN cofactors and give det A; the others pair a row with a different row's and give 0."
 }

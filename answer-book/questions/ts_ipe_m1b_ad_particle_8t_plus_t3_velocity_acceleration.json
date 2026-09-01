@@ -134,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Velocity is the first derivative and acceleration the second, so differentiate twice before substituting. Initial velocity means t = 0, which picks out the constant term."
 }

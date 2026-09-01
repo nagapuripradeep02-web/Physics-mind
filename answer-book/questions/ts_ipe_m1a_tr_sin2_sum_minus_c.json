@@ -186,7 +186,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor 2 sin C comes out, and the condition is used a SECOND time inside the bracket so that the bracket becomes a SUM of two cosines rather than a difference.",
+        "margin_note": "Seventh mark. The common factor 2 sin C comes out, and the condition is used a SECOND time inside the bracket so that the bracket becomes a SUM of two cosines rather than a difference.",
         "memory_tip": "Take 2 sinC out. Then cos C = −cos(A+B) turns the minus inside the bracket into a plus.",
         "lines": [
           "= 2 sinC [cos(A−B) − cosC]",

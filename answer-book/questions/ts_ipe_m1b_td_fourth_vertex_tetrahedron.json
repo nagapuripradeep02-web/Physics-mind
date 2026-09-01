@@ -147,5 +147,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A tetrahedron has four vertices, so the centroid divides by 4, not 3. Solve the three coordinate equations separately; all three giving 3 is a useful check, not something to assume in advance."
 }

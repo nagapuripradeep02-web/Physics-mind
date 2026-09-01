@@ -186,7 +186,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The 1 is set aside, 2 sin(C/2) comes out, and the condition is used a SECOND time — this time backwards, sine to cosine — so that both bracket terms are cosines.",
+        "margin_note": "Seventh mark. The 1 is set aside, 2 sin(C/2) comes out, and the condition is used a SECOND time — this time backwards, sine to cosine — so that both bracket terms are cosines.",
         "memory_tip": "Inside the bracket, turn sin(C/2) back into cos((A+B)/2) so both terms are cosines.",
         "lines": [
           "= 1 + 2 sin(C/2) [cos((A−B)/2) − sin(C/2)]",

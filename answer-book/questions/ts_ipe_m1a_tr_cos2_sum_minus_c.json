@@ -185,7 +185,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The 1 is set aside and 2 cos C comes out; the condition is used a SECOND time inside the bracket so that the bracket becomes a difference of two cosines.",
+        "margin_note": "Seventh mark. The 1 is set aside and 2 cos C comes out; the condition is used a SECOND time inside the bracket so that the bracket becomes a difference of two cosines.",
         "memory_tip": "Set the 1 aside first, then take 2 cos C out. Inside, cos C = −cos(A+B) makes the bracket a difference.",
         "lines": [
           "= 1 − 2 cosC [cos(A−B) + cosC]",

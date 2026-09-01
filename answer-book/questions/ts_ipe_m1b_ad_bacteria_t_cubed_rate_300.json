@@ -94,7 +94,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Write t = ±10 and then say in words why −10 is rejected — an examiner looks for the rejection, not only the 10.",
-        "memory_tip": "Two roots, one clock: time is measured forward from zero, so a negative root is not a time.",
+        "memory_tip": "Two roots come out, but time is measured forward from zero, so a negative root is not a time.",
         "lines": [
           "3t² = 300",
           "t² = 100",
@@ -135,5 +135,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The rate is GIVEN and the time is asked, so set dN/dt = 300 and solve. That is the reverse of the usual direction, and reading it the other way makes the question impossible."
 }

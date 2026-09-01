@@ -92,7 +92,7 @@
           "Forgetting to divide by 4 and mis-factorising 4x² + 8x − 32 = 0.",
           "Taking y = ±4 but then using x = −4 as the y-value."
         ],
-        "memory_tip": "A parabola y² = 4ax lives only on one side of the y-axis, so any negative x from the algebra is not on the curve."
+        "memory_tip": "A parabola y² = 4ax has no point with x negative, so any negative x from the algebra is not on the curve."
       },
       {
         "id": "s2_slopes",
@@ -184,10 +184,11 @@
         "common_mistakes": [
           "Reporting θ = Tan⁻¹(−3) and giving an obtuse angle.",
           "Writing 1 − m₁m₂ in the denominator instead of 1 + m₁m₂.",
-          "Cancelling the 3 and the −1 into −3 and then squaring it."
+          "Writing the numerator as 1 + (−2) = −1 instead of 1 − (−2) = 3."
         ],
         "memory_tip": "Difference on top, one plus the product underneath, modulus around the whole fraction."
       }
     ]
-  }
+  },
+  "insider_note": "y² = 8x needs x ≥ 0, so x = −4 is discarded. The surviving x = 2 gives y = ±4, and the angle is the same at both by symmetry."
 }

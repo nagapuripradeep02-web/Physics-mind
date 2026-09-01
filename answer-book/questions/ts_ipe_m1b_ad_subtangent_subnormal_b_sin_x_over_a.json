@@ -189,5 +189,6 @@
         "memory_tip": "sin A cos A is half of sin 2A. Whenever a sine and a cosine of the SAME angle multiply, that identity shortens the answer."
       }
     ]
-  }
+  },
+  "insider_note": "Both lengths come from y and m = (b/a)cos(x/a), so find the derivative once. Subtangent is y/m and subnormal is y·m — dividing and multiplying, not the other way round."
 }

@@ -187,7 +187,7 @@
         "lines": [
           "⇒ 2x² + 2y² − 6x + 2y + 18 = 2x² + 2y² + 8x − 12y + 26",
           "⇒ −6x + 2y + 18 = 8x − 12y + 26",
-          "⇒ 0 = 14x − 14y + 8   ⇒   7(2x − 2y) + 8 = 14x − 14y + 8",
+          "⇒ 0 = 14x − 14y + 8   ⇒   14x − 14y + 8 = 0",
           "⇒ 2(7x − 7y + 4) = 0",
           {
             "text": "∴ Locus of P is 7x − 7y + 4 = 0",
@@ -224,5 +224,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "2PC² is twice the square, not (2PC)². The x² and y² terms cancel on both sides at once, so keep both, and the last mark is dividing 14x − 14y + 8 = 0 by 2 to reach the printed answer."
 }

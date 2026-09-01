@@ -88,7 +88,7 @@
             "single fraction"
           ]
         },
-        "why": "Nothing can be simplified while the expression is two separate fractions. Combining is what makes the numerator attackable.",
+        "why": "Nothing can be simplified while the expression is two separate fractions. Combining is what makes the numerator possible to simplify.",
         "common_mistakes": [
           "Subtracting the numerators without a common denominator.",
           "Losing the √3 when combining."
@@ -129,7 +129,7 @@
             "take two out"
           ]
         },
-        "why": "A stray √3 almost always signals a 30° or 60° angle in disguise. Spotting that is what turns a messy numerator into a single sine.",
+        "why": "A √3 in the expression almost always means a 30° or 60° angle is involved. Noticing that is what turns a messy numerator into a single sine.",
         "common_mistakes": [
           "Failing to take the 2 out and never seeing the known values.",
           "Matching 1/2 to cos 30° instead of sin 30°."
@@ -220,5 +220,6 @@
         "memory_tip": "sin20° = 2 sin10° cos10°, which IS the denominator — everything cancels and 4 survives."
       }
     ]
-  }
+  },
+  "insider_note": "Combine over one denominator, then take 2 out so that ½ and √3/2 become sin30° and cos30°. The sin(A−B) form gives sin20°, which then cancels against the denominator."
 }

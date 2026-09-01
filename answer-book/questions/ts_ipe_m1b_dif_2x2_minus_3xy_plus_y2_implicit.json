@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The xy term needs the PRODUCT rule, giving y + x(dy/dx) — treating it as a single term is where this goes wrong. Collect every dy/dx on one side before dividing."
 }

@@ -147,7 +147,7 @@
         "label": "Take sin A common",
         "marks": 1,
         "mark_note": "Factor",
-        "margin_note": "Fourth mark. Both terms now carry sin A, so factor it out — everything that follows happens inside the bracket.",
+        "margin_note": "Fifth mark. Both terms now carry sin A, so factor it out — everything that follows happens inside the bracket.",
         "memory_tip": "Both terms now carry sin A, so factor it out; everything else happens inside the bracket.",
         "lines": [
           "L.H.S = sin A [sin A + sin(B − C)]"
@@ -263,5 +263,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Group the LAST two terms so that sin²B − sin²C = sin(B+C)sin(B−C) applies. sin(B+C) = sinA then makes sinA a common factor, and the bracket becomes a sum of sines."
 }

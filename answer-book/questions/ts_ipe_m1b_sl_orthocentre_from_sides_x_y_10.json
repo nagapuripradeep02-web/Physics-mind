@@ -267,7 +267,7 @@
             "altitude through A"
           ]
         },
-        "why": "Reading a slope off ax + by + c = 0 as −a/b saves rearranging into y = mx + c every time, and the book uses it throughout this chapter.",
+        "why": "Reading a slope off ax + by + c = 0 as −a/b saves rearranging into y = mx + c every time.",
         "common_mistakes": [
           "Using one of the two lines that MEET at A as the opposite side.",
           "Reading the slope as −b/a."
@@ -366,5 +366,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Two of these sides have slopes −1 and 1, so the triangle is right-angled and the orthocentre is that vertex. The working shows it: the second altitude reduces to line (1) itself, giving (−4, −6), which is vertex A."
 }

@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Only the magnitude is asked for, but the full cross product has to be computed first. Watch the middle term: the j entry carries a minus sign built into the expansion."
 }

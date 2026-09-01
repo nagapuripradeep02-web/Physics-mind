@@ -152,7 +152,7 @@
         "label": "Remove the inverse tangent",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks, and this is where careful students separate themselves: Tan⁻¹(tan A) = A only when A is inside (−π/2, π/2). Show that π/4 + θ is inside it before writing the next line.",
+        "margin_note": "Two marks, and this is the step most often lost: Tan⁻¹(tan A) = A only when A is inside (−π/2, π/2). Show that π/4 + θ is inside it before writing the next line.",
         "lines": [
           "y = Tan⁻¹(tan(π/4 + θ))",
           "0 < θ < π/4, so  π/4 < π/4 + θ < π/2.",
@@ -188,7 +188,7 @@
           "Cancelling Tan⁻¹ and tan with no check on the range, which is the same working that goes wrong on many other questions of this type.",
           "Reading the range of Tan⁻¹ as [0, π], which belongs to Cos⁻¹."
         ],
-        "memory_tip": "Three principal ranges are worth holding: Sin⁻¹ gives [−π/2, π/2], Tan⁻¹ gives (−π/2, π/2), Cos⁻¹ gives [0, π]. Only Cos⁻¹ is the odd one out."
+        "memory_tip": "Three principal ranges are worth holding: Sin⁻¹ gives [−π/2, π/2], Tan⁻¹ gives (−π/2, π/2), Cos⁻¹ gives [0, π]. Cos⁻¹ is the only one of the three with a different range."
       },
       {
         "id": "s4_back_to_x",
@@ -279,5 +279,6 @@
         "memory_tip": "Sin⁻¹ and Cos⁻¹ have the same denominator and opposite signs. Cos⁻¹ takes the minus, because the cosine decreases as the angle grows."
       }
     ]
-  }
+  },
+  "insider_note": "Put x² = cos 2θ, not x = cos θ, so both roots simplify together. x ≠ 0 matters because the denominator vanishes there, which is why the range is 0 < |x| < 1."
 }

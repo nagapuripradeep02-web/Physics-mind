@@ -179,5 +179,6 @@
         "memory_tip": "The Δ cancels, and 4s² is (2s)² — which is (a + b + c)²."
       }
     ]
-  }
+  },
+  "insider_note": "Two separate simplifications: the numerator gives s²/Δ and the denominator (a²+b²+c²)/(4Δ). The Δ cancels on division, and 4s² = (2s)² = (a+b+c)²."
 }

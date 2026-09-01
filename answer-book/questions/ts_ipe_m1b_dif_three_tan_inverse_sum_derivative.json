@@ -178,7 +178,7 @@
         },
         "why": "The numerator 3x − x³ and the denominator 1 − 3x² are the two halves of the tangent triple angle formula, and no other standard formula has that pair. Recognising it replaces a quotient rule on a cubic over a quadratic.",
         "common_mistakes": [
-          "Writing the formula as (3 tan θ + tan³θ)/(1 + 3 tan²θ). Both signs are wrong: tan 3θ carries a minus above and below.",
+          "Writing the formula as (3 tan θ + tan³θ)/(1 + 3 tan²θ). Both signs are wrong: tan 3θ has 3 tan θ − tan³θ on top and 1 − 3 tan²θ underneath.",
           "Swapping the two threes, giving (3x − x³)/(1 − x²) or (x − 3x³)/(1 − 3x²)."
         ],
         "memory_tip": "In tan 3θ the odd power sits on top and the even power sits underneath, and the 3 appears once in each. The minus sign appears in both places too."
@@ -223,7 +223,7 @@
         },
         "why": "Four times an angle is twice a doubled angle, so the double angle formula does the whole job when it is applied to 2θ instead of θ. The quartic 1 − 6x² + x⁴ comes out of (1 − x²)² − 4x², which is why it looks unfamiliar while nothing new is being used.",
         "common_mistakes": [
-          "Expanding (1 − x²)² as 1 − x⁴, which turns the denominator into 1 − 5x² instead of 1 − 6x² + x⁴.",
+          "Expanding (1 − x²)² as 1 − x⁴, which turns the denominator into 1 − 4x² − x⁴ instead of 1 − 6x² + x⁴.",
           "Forgetting that this term is subtracted, and adding 4θ in the next step."
         ],
         "memory_tip": "Doubling twice gives four times, so tan 4θ needs the double angle formula used on 2θ. Only the middle term of (1 − x²)² matters: it is −2x², and −2x² − 4x² is the −6x²."
@@ -277,5 +277,6 @@
         "memory_tip": "Count the multiples before writing anything else: 2 + 3 − 4 = 1. The whole eight marks come down to that one sum."
       }
     ]
-  }
+  },
+  "insider_note": "Every bracket is a multiple-angle tangent, so x = tan θ turns y into 2θ + 3θ − 4θ = θ. The three derivatives collapse to a single 1/(1 + x²)."
 }

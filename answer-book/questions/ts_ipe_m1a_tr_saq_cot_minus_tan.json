@@ -49,7 +49,7 @@
         "kind": "equation",
         "label": "Write both as fractions",
         "marks": 0,
-        "margin_note": "Same opening as the twin — reduce everything to sine and cosine.",
+        "margin_note": "Same opening as the tan A + cot A question — reduce everything to sine and cosine.",
         "lines": [
           {
             "text": "Sol:",
@@ -80,7 +80,7 @@
             "tan"
           ]
         },
-        "why": "Identical first move to the twin. What changes is the sign between them, and everything downstream follows from that.",
+        "why": "Identical first move to the tan A + cot A question. What changes is the sign between them, and everything downstream follows from that.",
         "common_mistakes": [
           "Subtracting the wrong way round.",
           "Writing tan A as cos A / sin A."
@@ -119,7 +119,7 @@
             "common denominator"
           ]
         },
-        "why": "A sum of the squares gives 1; a DIFFERENCE gives cos 2A. That single change is what separates this proof from its twin.",
+        "why": "A sum of the squares gives 1; a DIFFERENCE gives cos 2A. That single change is what separates this proof from the tan A + cot A proof.",
         "common_mistakes": [
           "Writing cos²A − sin²A = 1.",
           "Getting sin²A − cos²A and picking up a sign."
@@ -132,7 +132,7 @@
         "label": "Introduce the double angle",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Same trick as the twin — double top and bottom so the denominator becomes sin 2A.",
+        "margin_note": "First mark. Same step as the tan A + cot A question — double top and bottom so the denominator becomes sin 2A.",
         "lines": [
           "= 2 cos2A/(2 sinA cosA)",
           "= 2 cos2A/sin2A   [∵ sin2A = 2 sinA cosA]"
@@ -158,7 +158,7 @@
             "double angle"
           ]
         },
-        "why": "Both this proof and its twin need the same 2 manufactured in the denominator. Only the numerator differs.",
+        "why": "Both this proof and the tan A + cot A proof need the same factor 2 introduced in the denominator. Only the numerator differs.",
         "common_mistakes": [
           "Doubling only one side of the fraction.",
           "Losing the cos 2A on top."
@@ -199,13 +199,14 @@
             "cos over sin"
           ]
         },
-        "why": "The twin ended in cosec because its numerator was 1; this one ends in cot because its numerator is a cosine.",
+        "why": "The tan A + cot A question ended in cosec because its numerator was 1; this one ends in cot because its numerator is a cosine.",
         "common_mistakes": [
           "Writing tan instead of cot.",
-          "Leaving the answer as a fraction."
+          "Stopping at 2 cos2A/sin2A, which leaves the proof unfinished."
         ],
         "memory_tip": "cos over sin is cot, so the answer is 2 cot 2A."
       }
     ]
-  }
+  },
+  "insider_note": "Write both as fractions over sinA cosA, and the numerator becomes cos2A directly. Doubling top and bottom is what turns sinA cosA into sin2A."
 }

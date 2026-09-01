@@ -208,7 +208,7 @@
         "why": "AE and BD are opposite sides of the rectangle ABDE, and AF and CD are opposite sides of ACDF. You can assert that from the picture in a moment, or fail to see it at all without one.",
         "common_mistakes": [
           "Skipping the figure and then guessing which vectors are equal.",
-          "Labelling the vertices clockwise, which swaps the pairs."
+          "Labelling the vertices out of order, so ABCDEF does not run round the hexagon one vertex at a time."
         ]
       },
       {
@@ -342,5 +342,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The whole proof rests on two hexagon facts: AE = BD and AF = CD. Swapping those turns the five terms into three copies of AD, and O being the midpoint of AD then gives the 6AO."
 }

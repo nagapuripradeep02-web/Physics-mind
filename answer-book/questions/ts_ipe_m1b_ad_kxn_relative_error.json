@@ -132,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both k and the power of x cancel in dy/y, which is why the constant k never appears in the answer. The n comes down from the index and multiplies the relative error."
 }

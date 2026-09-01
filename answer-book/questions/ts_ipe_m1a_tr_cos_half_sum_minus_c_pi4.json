@@ -189,7 +189,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor 2 cos((π−C)/4) comes out, and the sine inside the bracket is turned into a cosine so that the bracket becomes a SUM of two cosines.",
+        "margin_note": "Seventh mark. The common factor 2 cos((π−C)/4) comes out, and the sine inside the bracket is turned into a cosine so that the bracket becomes a SUM of two cosines.",
         "memory_tip": "cos(θ + π/2) = −sin θ turns the minus sine inside the bracket into a plus cosine.",
         "lines": [
           "= 2 cos((π−C)/4) [cos((A−B)/4) − sin((π−C)/4)]",

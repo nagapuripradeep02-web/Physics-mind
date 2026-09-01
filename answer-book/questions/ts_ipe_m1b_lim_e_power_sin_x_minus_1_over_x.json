@@ -128,9 +128,10 @@
         "why": "The substitution t = sin x is what turns the first factor into the standard limit. Stating that t → 0 as x → 0 is the part that makes the substitution valid, and it is what the examiner looks for.",
         "common_mistakes": [
           "Writing the first factor as 1 without saying that sin x → 0.",
-          "Adding the two factors and giving 2 instead of multiplying them to get 1."
+          "Adding the two limits and giving 2, when the two factors are multiplied and 1 × 1 = 1."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Multiply and divide by sin x so it splits into (e^t − 1)/t and (sin x)/x, both of which go to 1. Expanding the exponential as a series is not on this syllabus — the multiply-and-divide route is the one the examiner expects."
 }

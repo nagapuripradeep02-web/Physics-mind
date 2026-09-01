@@ -140,7 +140,7 @@
         },
         "why": "A negative triple product just means the three edges are ordered the other way round. The modulus in the formula removes that, which is why a volume is still positive.",
         "common_mistakes": [
-          "Panicking at the negative and re-doing the arithmetic.",
+          "Assuming the negative determinant is a mistake and re-doing correct arithmetic.",
           "Forgetting the middle term is multiplied by 0 and still writing it out."
         ]
       },
@@ -188,5 +188,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Vertices are given, not edges, so subtract first to get AB, AC and AD all starting at A. The modulus matters: −36 gives a volume of 6, never −6."
 }

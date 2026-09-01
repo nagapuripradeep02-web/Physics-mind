@@ -225,5 +225,6 @@
         "memory_tip": "Top loses its 1, bottom keeps its square — that one sentence is the whole simplification."
       }
     ]
-  }
+  },
+  "insider_note": "Taking logarithms gives y log x = x − y, which SOLVES for y as x/(1 + log x). Differentiating that quotient is far easier than implicit differentiation of the original."
 }

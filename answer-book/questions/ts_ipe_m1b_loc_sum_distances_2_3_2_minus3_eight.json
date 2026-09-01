@@ -230,5 +230,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Isolate PA before squaring or a PA·PB cross term survives. The two (x − 2)² brackets are identical and cancel, leaving 64 + 12y from the difference of squares, and the 96y cancels at the end."
 }

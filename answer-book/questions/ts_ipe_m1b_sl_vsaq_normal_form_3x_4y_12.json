@@ -100,15 +100,15 @@
           "−(3/5)x − (4/5)y = 12/5",
           "We write it as x cosα + y sinα = p",
           "Where cosα = −3/5, sinα = −4/5, p = 12/5",
-          "Hence tanα = 4/3 ⇒ α = Tan⁻¹(4/3) ∈ Q₃",
+          "Hence tanα = 4/3, and α lies in Q₃, so α = 180° + Tan⁻¹(4/3)",
           {
-            "text": "⇒ x(−3/5) + y(−4/5) = 12/5,  with α = Tan⁻¹(4/3) in the third quadrant",
+            "text": "⇒ x(−3/5) + y(−4/5) = 12/5,  with α = 180° + Tan⁻¹(4/3) in the third quadrant",
             "style": "boxed"
           }
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That dividing by √(a²+b²) puts it in normal form x(−3/5) + y(−4/5) = 12/5,  with α = Tan⁻¹(4/3) in the third quadrant.",
+          "must_convey": "That dividing by √(a²+b²) puts it in normal form x(−3/5) + y(−4/5) = 12/5,  with α = 180° + Tan⁻¹(4/3) in the third quadrant.",
           "accept": [
             "divide by the root of a squared plus b squared and read off the angle",
             "the coefficients then square and add to one",
@@ -137,5 +137,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Normal form needs p > 0, so multiply through by −1 BEFORE dividing; dividing first gives a negative p and earns nothing. Both cosα and sinα then come out negative, which puts α in the third quadrant."
 }

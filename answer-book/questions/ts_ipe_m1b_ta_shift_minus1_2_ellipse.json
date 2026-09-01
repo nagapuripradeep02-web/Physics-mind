@@ -222,5 +222,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The shift is to (−1, 2), which is not this ellipse's own centre, so the linear terms do NOT vanish — the answer keeps −8X + 8Y. Getting zero for the linear terms means you shifted to the ellipse's own centre (1, −2) instead of the given (−1, 2)."
 }

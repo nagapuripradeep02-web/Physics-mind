@@ -240,7 +240,7 @@
         "label": "Combine the two",
         "marks": 1,
         "mark_note": "|a| = |c|",
-        "margin_note": "Fifth mark. Both equations share |b|², so the two ends are equal. The difference of squares is then rewritten as a dot product ready for the last step.",
+        "margin_note": "Seventh mark. Both equations share |b|², so the two ends are equal. The difference of squares is then rewritten as a dot product ready for the last step.",
         "memory_tip": "Both conditions share |b|², so the outer two squared lengths are equal.",
         "lines": [
           "From (1) and (2), |a|² = |c|², so",

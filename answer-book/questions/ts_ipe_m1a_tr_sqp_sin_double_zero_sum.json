@@ -108,7 +108,7 @@
         "marks": 1,
         "mark_note": "Angle sum",
         "margin_note": "Third mark, and where the minus sign first appears. A + B = −C, and sin(−C) = −sin C.",
-        "memory_tip": "A + B = −C, and sin(−C) = −sin C. That is where the minus in the answer is born.",
+        "memory_tip": "A + B = −C, and sin(−C) = −sin C. That is where the minus in the answer comes from.",
         "lines": [
           "A + B = −C",
           "⇒ sin(A + B) = sin(−C) = −sin C",
@@ -138,7 +138,7 @@
         "why": "sin(−θ) = −sin θ, so the minus comes straight out. That single sign is the minus in the final answer.",
         "common_mistakes": [
           "Writing sin(−C) = sin C.",
-          "Using A + B = π − C out of habit."
+          "Using A + B = π − C, which is the triangle condition, not the one given here."
         ]
       },
       {
@@ -266,5 +266,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The condition is A + B + C = 0, so sin(A+B) = −sinC — that minus is the whole reason the answer is negative. Otherwise the working matches the triangle version exactly."
 }

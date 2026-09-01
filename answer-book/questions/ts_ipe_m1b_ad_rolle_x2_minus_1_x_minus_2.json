@@ -135,5 +135,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Expand to a cubic before differentiating. The quadratic 3c² − 4c − 1 = 0 has two roots, and both lie inside (−1, 2), so both are valid values of c."
 }

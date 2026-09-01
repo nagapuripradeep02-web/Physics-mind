@@ -102,7 +102,7 @@
             "text": "∴ dy/dx = cot(log x)/x",
             "style": "boxed"
           },
-          "This working needs sin(log x) > 0, that is 0 < log x < π."
+          "This working needs sin(log x) > 0, that is log x in (0, π), or in any interval (2kπ, (2k + 1)π)."
         ],
         "recall": {
           "credit": "say_it",
@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Three layers, so the chain rule is applied twice, working from the outside in. cos/sin collapses to cot, and the final 1/x comes from the inner logarithm."
 }

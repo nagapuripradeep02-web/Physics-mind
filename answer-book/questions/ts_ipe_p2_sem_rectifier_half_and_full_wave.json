@@ -548,7 +548,7 @@
             }
           ]
         },
-        "margin_note": "Fourth mark. Centre tap C marked, both diodes named, load between the joined cathodes and the centre tap.",
+        "margin_note": "Fifth mark. Centre tap C marked, both diodes named, load between the joined cathodes and the centre tap.",
         "why": "The centre tap is the one feature that makes this a full wave circuit rather than two half wave circuits, so it must be marked on the diagram. Both diodes point the same way, towards the load.",
         "common_mistakes": [
           "Leaving out the centre tap. Without it the circuit does not work.",

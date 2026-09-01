@@ -173,5 +173,6 @@
         "memory_tip": "Choose cos2θ = 1 − 2sin²θ — the one form whose second term cancels what is already there."
       }
     ]
-  }
+  },
+  "insider_note": "Turn tanθ = b/a into b cosθ = a sinθ and substitute it into the sin2θ term — that substitution is the key step. Then cos2θ = 1 − 2sin²θ makes the remaining terms cancel."
 }

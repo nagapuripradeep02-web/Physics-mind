@@ -143,5 +143,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Surjection means B is exactly the image set, and a set never repeats: f(−1) and f(0) both give 1, f(−2) and f(1) both give 3, so B holds three elements, not five."
 }

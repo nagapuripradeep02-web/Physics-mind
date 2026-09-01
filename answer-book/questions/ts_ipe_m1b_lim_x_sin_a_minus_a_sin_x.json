@@ -78,7 +78,7 @@
             "split"
           ]
         },
-        "why": "Neither x sin a nor a sin x alone has a factor of (x − a). Adding and subtracting a sin a manufactures one factor of (x − a) directly and turns the rest into sin x − sin a, which is the first-principles difference for sin x at x = a.",
+        "why": "Neither x sin a nor a sin x alone has a factor of (x − a). Adding and subtracting a sin a produces one factor of (x − a) directly and turns the rest into sin x − sin a, which is the first-principles difference for sin x at x = a.",
         "common_mistakes": [
           "Adding and subtracting x sin x, which leaves neither piece in a usable form.",
           "Cancelling x against a somewhere in the numerator."
@@ -91,11 +91,12 @@
         "label": "Apply the two limits separately",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The first piece cancels to the constant sin a; the second piece is the first-principles derivative of sin x at x = a, which is cos a. Keep the minus sign in front of it.",
+        "margin_note": "Second mark. The first piece cancels to the constant sin a; the second piece becomes cos a by the sum-to-product formula for sin x − sin a. Keep the minus sign in front of it.",
         "lines": [
           "Divide both pieces by (x − a):",
           "(x sin a − a sin x)/(x − a) = sin a − a · [(sin x − sin a)/(x − a)]",
-          "Now  lim(x → a) (sin x − sin a)/(x − a) = cos a,  the derivative of sin x at x = a.",
+          "Now  sin x − sin a = 2 cos((x + a)/2) · sin((x − a)/2),  so dividing by (x − a) gives  cos((x + a)/2) · sin((x − a)/2)/((x − a)/2).",
+          "As x → a the angle (x − a)/2 → 0, so this tends to cos a · 1 = cos a   (it is also the derivative of sin x at x = a).",
           "∴ the limit = sin a − a cos a",
           {
             "text": "∴ lim(x → a) (x sin a − a sin x)/(x − a) = sin a − a cos a",
@@ -132,5 +133,6 @@
         "memory_tip": "Read the answer off the question: sin a comes from the sin a term, and a cos a from the a sin x term with the minus it already carries."
       }
     ]
-  }
+  },
+  "insider_note": "Add and subtract a sin a on top so the expression splits into a constant and the derivative of sin x at a. That derivative is cos a, giving sin a − a cos a."
 }

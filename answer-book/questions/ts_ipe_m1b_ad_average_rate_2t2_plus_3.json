@@ -134,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "AVERAGE rate over an interval, so no differentiation at all — it is [f(4) − f(2)]/(4 − 2). Differentiating gives the instantaneous rate, which answers a different question."
 }

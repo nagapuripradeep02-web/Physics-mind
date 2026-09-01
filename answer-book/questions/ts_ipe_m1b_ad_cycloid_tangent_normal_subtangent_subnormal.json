@@ -242,5 +242,6 @@
         "memory_tip": "The two lengths differ by one factor of m: length of normal = m × length of tangent, exactly as subnormal = m² × subtangent."
       }
     ]
-  }
+  },
+  "insider_note": "Half-angle forms turn both derivatives into neat products, giving m = tan(t/2). All four lengths then follow from y and m, so get those two right before anything else."
 }

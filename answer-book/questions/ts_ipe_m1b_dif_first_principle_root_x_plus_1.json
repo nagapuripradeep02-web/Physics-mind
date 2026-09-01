@@ -176,5 +176,6 @@
         "memory_tip": "Two equal roots add, they do not multiply: √a + √a = 2√a."
       }
     ]
-  }
+  },
+  "insider_note": "The form is 0/0, so multiply by the conjugate — no trigonometric identity helps here. The h cancels and substituting h = 0 leaves 1/(2√(x + 1))."
 }

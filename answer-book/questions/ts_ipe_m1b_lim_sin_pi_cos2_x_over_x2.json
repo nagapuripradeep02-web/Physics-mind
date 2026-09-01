@@ -131,5 +131,6 @@
         "memory_tip": "Multiply and divide by the angle π sin²x, so every sine stands over its own angle."
       }
     ]
-  }
+  },
+  "insider_note": "Replace cos²x by 1 − sin²x so the argument becomes π − π sin²x, then sin(π − θ) = sin θ. Without that step the sine never becomes small and nothing cancels."
 }

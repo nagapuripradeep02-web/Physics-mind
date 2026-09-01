@@ -76,7 +76,7 @@
         },
         "why": "Once it is factorised, the question is only where the product of two factors is not negative.",
         "common_mistakes": [
-          "Not factorising, so there is nothing to reason about.",
+          "Writing the condition as x² − 3x + 2 > 0, the denominator rule, which loses x = 1 and x = 2 where the root is zero.",
           "Factorising to (x − 1)(x + 2), which changes the roots."
         ]
       },
@@ -127,5 +127,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Factorise before deciding anything: (x − 1)(x − 2) ≥ 0 holds OUTSIDE the roots, so the answer is two rays. Closed brackets, since a plain root permits zero."
 }

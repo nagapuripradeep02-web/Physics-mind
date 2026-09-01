@@ -137,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Use Δ = ½bc sinA to turn every denominator into 4Δ — that is the move that makes the three numerators addable. They cancel in pairs, leaving a² + b² + c²."
 }

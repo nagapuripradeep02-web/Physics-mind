@@ -105,7 +105,7 @@
         "kind": "diagram",
         "label": "Draw the triangle",
         "marks": 0,
-        "margin_note": "Worth no mark but worth drawing. The dashed lines are perpendicular BISECTORS — they cut each side in half at a right angle, which is what the equal-distance condition means geometrically.",
+        "margin_note": "Worth no mark but worth drawing. The dashed lines are perpendicular BISECTORS — they cut each side in half at a right angle, which is what the equal-distance condition means geometrically. The sketch shows the general construction, not this question's triangle: here the triangle is obtuse, so S comes out well outside it.",
         "memory_tip": "Perpendicular bisectors cut each side in half at a right angle.",
         "recall": {
           "credit": "name_it",
@@ -401,5 +401,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The answer (−8, −10) sits well outside the triangle, which is correct for an obtuse one — a distant answer is not a sign of error. Check it by confirming SA² = SB² = SC² = 250 rather than by redoing the algebra."
 }

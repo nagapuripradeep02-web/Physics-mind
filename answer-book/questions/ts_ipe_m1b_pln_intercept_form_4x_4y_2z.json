@@ -137,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Move the 5 across first, then divide by −5 so the right side is exactly 1. The intercept is the denominator that results, so a = −5/4, and the middle term's two minus signs leave b positive."
 }

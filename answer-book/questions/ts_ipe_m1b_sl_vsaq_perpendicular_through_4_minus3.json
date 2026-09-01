@@ -84,7 +84,7 @@
             "minus one by m"
           ]
         },
-        "why": "The slope is fixed entirely by the other line, so it can be written before the given point is touched at all.",
+        "why": "The slope is fixed entirely by the other line, so it can be written before the given point is used at all.",
         "common_mistakes": [
           "Keeping the same slope, which gives a parallel line instead.",
           "Reading the slope as −b/a."
@@ -96,7 +96,7 @@
         "kind": "boxed_final",
         "label": "Write the line through the point",
         "marks": 1,
-        "margin_note": "Second mark. Point-slope form, then clear the fraction and collect. The book also prints a one-line shortcut for this shape, given below.",
+        "margin_note": "Second mark. Point-slope form, then clear the fraction and collect. There is also a one-line shortcut for this shape, given below.",
         "memory_tip": "Point-slope form through the given point, then clear and collect.",
         "lines": [
           "Perpendicular through (4, −3) with slope −3/5 is  y − y₁ = (−1/m)(x − x₁)",
@@ -136,7 +136,7 @@
             "required line"
           ]
         },
-        "why": "The book's shortcut works because a perpendicular line keeps the same coefficients swapped with one sign changed, so only the constant has to be recomputed.",
+        "why": "The shortcut works because a perpendicular line keeps the same coefficients swapped with one sign changed, so only the constant has to be recomputed.",
         "common_mistakes": [
           "Sign slip when the point has a negative coordinate.",
           "Leaving the answer with a fraction in it."
@@ -144,5 +144,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The short route is b(x − x₁) − a(y − y₁) = 0, which swaps the coefficients and flips one sign — no reciprocal needed. The point's y is −3, so that bracket is (y + 3)."
 }

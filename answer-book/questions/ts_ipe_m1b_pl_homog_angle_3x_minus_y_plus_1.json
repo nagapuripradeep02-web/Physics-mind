@@ -145,7 +145,7 @@
           "⇒ x² + 2xy + y² − 2x(3x − y) − 2y(3x − y) − 5(3x − y)² = 0",
           "⇒ x² + 2xy + y² − 6x² + 2xy − 6xy + 2y² − 5(9x² + y² − 6xy) = 0",
           "⇒ x² + 2xy + y² − 6x² + 2xy − 6xy + 2y² − 45x² − 5y² + 30xy = 0",
-          "⇒ −50x² − 2y² + 28xy = 0   ⇒   2(25x² + y² − 14xy) = 0",
+          "⇒ −50x² − 2y² + 28xy = 0   ⇒   −2(25x² + y² − 14xy) = 0",
           "⇒ 25x² + y² − 14xy = 0"
         ],
         "recall": {
@@ -226,5 +226,6 @@
         "memory_tip": "Write the cos θ formula out before substituting; the formula itself carries a mark."
       }
     ]
-  }
+  },
+  "insider_note": "The line rearranges to 3x − y = −1, so the divisor is −1 and every substituted term flips sign; that is where this one is lost. Then use cosθ = |a + b|/√((a − b)² + (2h)²), not the tan form."
 }

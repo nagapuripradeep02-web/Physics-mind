@@ -137,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Check all three conditions, then solve f′(c) = 0 as a quadratic in cos c. Both roots give a c inside (0, π), so both are valid values of c."
 }

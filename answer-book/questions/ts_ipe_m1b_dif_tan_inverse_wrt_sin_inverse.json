@@ -57,7 +57,7 @@
         "label": "Write what derivative with respect to g means",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the one most often thrown away. The question does not ask for df/dx. Write the chain rule line before doing any trigonometry.",
+        "margin_note": "First mark, and the one most often lost. The question does not ask for df/dx. Write the chain rule line before doing any trigonometry.",
         "lines": [
           {
             "text": "Sol:",
@@ -191,7 +191,7 @@
         "label": "Reduce g and find dg/dx",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. The step worth showing is 2 tan θ/(1 + tan²θ) = 2 sin θ cos θ, because 1 + tan²θ = sec²θ. Without that line the reduction to sin 2θ looks like it was quoted from nowhere.",
+        "margin_note": "Two marks. The step worth showing is 2 tan θ/(1 + tan²θ) = 2 sin θ cos θ, because 1 + tan²θ = sec²θ. Without that line the reduction to sin 2θ has no working to support it.",
         "lines": [
           "With x = tan θ:  2x/(1 + x²) = 2 tan θ/(1 + tan²θ)",
           "1 + tan²θ = sec²θ, so",
@@ -278,5 +278,6 @@
         "memory_tip": "When two functions reduce to the same expression, their derivative with respect to each other is 1. Any other value means one of the two reductions was on the wrong branch."
       }
     ]
-  }
+  },
+  "insider_note": "Both brackets reduce to 2Tan⁻¹x under x = tan θ, so both derivatives are 2/(1 + x²) and the ratio is 1. Simplify each before dividing, never differentiate the fractions as they stand."
 }

@@ -127,7 +127,7 @@
             "master test"
           ]
         },
-        "why": "Δ = 0 is necessary AND sufficient together with the inequalities — it is the condition proved in answer 10 of this same chapter.",
+        "why": "Δ = 0 is necessary AND sufficient together with the inequalities — it is the standard condition for a general second-degree equation to represent a pair of lines.",
         "common_mistakes": [
           "Dropping one of the five terms of Δ.",
           "Arithmetic slip with the quarters that come from halved coefficients."
@@ -265,11 +265,12 @@
         "why": "h² − ab was already computed for the inequality test, so the angle costs almost nothing extra — which is why the question asks for all three parts together.",
         "common_mistakes": [
           "Using cosθ's formula with 2h when tanθ's formula wants h² − ab.",
-          "Giving the answer as Tan⁻¹(3) when the book states it as a cosine."
+          "Dropping the modulus on |a + b|: here a + b = −5, so a negative tangent comes out."
         ],
         "mark_note": "Solution",
         "memory_tip": "tan θ = 2√(h² − ab)/|a + b|, reusing the h² − ab already computed."
       }
     ]
-  }
+  },
+  "insider_note": "h, g and f are all halves here, so work over a denominator of 4 rather than decimalising. Three things are marked: Δ = 0, the point of intersection, and the angle from tanθ = 2√(h² − ab)/|a + b|."
 }

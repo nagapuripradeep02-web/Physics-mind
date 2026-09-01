@@ -92,7 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Divide by 3 first, then move the two dy/dx terms to one side and everything else to the other. State y² ≠ ax, where the tangent is vertical.",
-        "memory_tip": "The numerator is ay − x² and the denominator is y² − ax. Exchanging x and y in one does not give the other — it gives its negative, so write both out rather than deriving one from the other.",
+        "memory_tip": "The denominator is the numerator with x and y exchanged and then the sign reversed: ay − x² on top, y² − ax below. Check the sign, not only the letters.",
         "lines": [
           "Divide throughout by 3:  x² + y²(dy/dx) − ay − ax(dy/dx) = 0",
           "Take the dy/dx terms to one side:  (y² − ax)(dy/dx) = ay − x²",
@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The 3axy term needs the product rule on xy. Divide through by 3 early to keep the numbers small, then collect the dy/dx terms on one side."
 }

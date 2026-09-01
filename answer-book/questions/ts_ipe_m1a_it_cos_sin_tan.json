@@ -176,5 +176,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Name both angles first, then convert everything to TANGENTS, because the target is a Tan⁻¹. cosα = 4/5 gives tanα = 3/4 and sinβ = 3/√34 gives tanβ = 3/5, both straight from right triangles."
 }

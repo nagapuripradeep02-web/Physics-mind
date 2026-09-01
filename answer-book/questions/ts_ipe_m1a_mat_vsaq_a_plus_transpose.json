@@ -147,5 +147,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two different operations: A + A′ adds entry by entry, while AA′ is a full matrix product. Both results come out symmetric, which is a useful check."
 }

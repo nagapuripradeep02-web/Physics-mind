@@ -135,5 +135,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Rearrange to 2X = B − A before dividing, and keep the order B − A. Every entry is then halved, which is what makes the answer come out in whole numbers."
 }

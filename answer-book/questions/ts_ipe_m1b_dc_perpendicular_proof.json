@@ -96,10 +96,10 @@
             "quadratic in m over n"
           ]
         },
-        "why": "The perpendicularity test needs only l₁l₂ + m₁m₂ + n₁n₂, and each product is the PRODUCT OF THE ROOTS of one of these quadratics — so the individual lines never have to be found. That is what keeps a seven-mark question short.",
+        "why": "The perpendicularity test needs only l₁l₂ + m₁m₂ + n₁n₂, and each product is the PRODUCT OF THE ROOTS of one of these quadratics — so the individual lines never have to be found. That is what keeps an eight-mark question short.",
         "common_mistakes": [
           "Solving for the two lines explicitly, which is far more work than the question needs.",
-          "Dividing by m² instead of n² and getting the reciprocal roots."
+          "Substituting l = m + n and losing the minus sign, which flips both the 3nl and the 5lm term."
         ]
       },
       {
@@ -236,5 +236,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Do not solve for the two lines — the question asks only whether they are perpendicular. Eliminate twice, once for m/n and once for l/m, and read each PRODUCT of roots as c/a; the ratio 2 : 3 : −5 then sums to zero."
 }

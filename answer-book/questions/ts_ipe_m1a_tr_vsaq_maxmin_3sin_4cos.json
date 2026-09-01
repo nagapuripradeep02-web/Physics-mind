@@ -91,7 +91,7 @@
         "label": "Apply the max and min formulas",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Same as the twin — and the same answers, because the amplitude is the same.",
+        "margin_note": "Second mark. Same as the 3cosx + 4sinx version — and the same answers, because the amplitude is the same.",
         "memory_tip": "Same answers as the plus version, because the amplitude √(a² + b²) is the same.",
         "lines": [
           "Maximum = c + √(a²+b²) = 0 + 5 = 5",
@@ -122,12 +122,13 @@
             "same"
           ]
         },
-        "why": "This function is the previous one shifted sideways, not stretched — so it reaches exactly the same heights.",
+        "why": "This function is 3cosx + 4sinx shifted sideways, not stretched — so it reaches exactly the same highest and lowest values.",
         "common_mistakes": [
           "Expecting a different answer because of the minus.",
           "Giving only one value."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The minus sign makes no difference, because b is squared and −4 gives the same 5 as 4. The answers are again 5 and −5."
 }

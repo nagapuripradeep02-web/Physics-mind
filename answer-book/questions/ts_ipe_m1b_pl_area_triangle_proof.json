@@ -94,7 +94,7 @@
             "a over b"
           ]
         },
-        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. That dictionary between (a, h, b) and the two lines is what every later step spends.",
+        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
         "common_mistakes": [
           "Writing m₁ + m₂ = 2h/b without the minus sign.",
           "Dividing by a instead of b."
@@ -326,13 +326,13 @@
         "kind": "boxed_final",
         "label": "Convert to a, h, b",
         "marks": 1,
-        "margin_note": "The last mark. m₂ − m₁ is not in the dictionary, but (m₁+m₂)² − 4m₁m₂ is — so square the difference first, then substitute (1) and clear the b's.",
+        "margin_note": "The last mark. m₂ − m₁ is not among the matched coefficients, but (m₁+m₂)² − 4m₁m₂ is — so square the difference first, then substitute (1) and clear the b's.",
         "lines": [
           "= ½ · n²√((m₁ + m₂)² − 4m₁m₂) / |l² + lm(m₁ + m₂) + m²(m₁m₂)|",
-          "  [∵ (a − b) = √((a + b)² − 4ab)]",
+          "  [∵ |p − q| = √((p + q)² − 4pq), applied to p = m₁, q = m₂]",
           "= ½ · n²√((−2h/b)² − 4(a/b)) / |l² + lm(−2h/b) + m²(a/b)|",
           "= ½ · n²√((4h² − 4ab)/b²) / |(bl² − 2hlm + am²)/b|",
-          "= ½ · n²(2√(h² − ab)/b) / (|bl² − 2hlm + am²|/b)",
+          "= ½ · n²(2√(h² − ab)/|b|) / (|bl² − 2hlm + am²|/|b|)",
           {
             "text": "∴ Area = n²√(h² − ab) / |am² − 2hlm + bl²|  sq.units",
             "style": "boxed"
@@ -366,8 +366,9 @@
           "Forgetting that b appears in both numerator and denominator and cancels."
         ],
         "mark_note": "Solution",
-        "memory_tip": "m₂ − m₁ is not in the dictionary, but (m₁+m₂)² − 4m₁m₂ is — so SQUARE the difference first."
+        "memory_tip": "m₂ − m₁ is not among the matched coefficients, but (m₁+m₂)² − 4m₁m₂ is — so SQUARE the difference first."
       }
     ]
-  }
+  },
+  "insider_note": "Only the SUM and PRODUCT of the slopes are needed, never the slopes themselves: m₁ + m₂ = −2h/b, m₁m₂ = a/b. Write m₂ − m₁ as √((m₁+m₂)² − 4m₁m₂), and the b cancels top and bottom at the end."
 }

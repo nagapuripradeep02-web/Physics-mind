@@ -223,5 +223,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two different formulas meet here, so both one-sided limits are needed. The left limit and f(2) agree at 0 but the right gives 1 — continuous from the left is still not continuous."
 }

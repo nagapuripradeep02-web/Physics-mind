@@ -267,5 +267,6 @@
         "memory_tip": "The closing sentence names the principle and is worth a full mark."
       }
     ]
-  }
+  },
+  "insider_note": "Do not expand anything — take (k+1)(k+2)(k+3) out as a common factor and the bracket becomes k + 4 in one line. Expanding the quartic instead is where the time and the marks go."
 }

@@ -223,5 +223,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Convert cos² into 1 − sin² so everything is in sinθ, then factorise. One root is sinθ = −√3, impossible since |sinθ| ≤ 1, and saying so explicitly is part of the answer."
 }

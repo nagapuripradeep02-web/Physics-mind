@@ -88,5 +88,6 @@
         "margin_note": "The mean-bond-enthalpy line covers the polyatomic case."
       }
     ]
-  }
+  },
+  "insider_note": "Definition and example, one mark each, and the example fails if any species in it is not gaseous. H₂ is the safest choice because it has exactly one bond and so needs no mean value."
 }

@@ -148,7 +148,7 @@
         "label": "Collect the terms",
         "marks": 1,
         "mark_note": "Collect",
-        "margin_note": "Third mark. Gather the r terms into one dot product and move the constants to the right. The normal now depends on λ.",
+        "margin_note": "Fourth mark. Gather the r terms into one dot product and move the constants to the right. The normal now depends on λ.",
         "memory_tip": "Gather the r terms into ONE dot product; the normal now depends on λ.",
         "lines": [
           "Collecting the r terms,",
@@ -232,7 +232,7 @@
         "label": "Put λ back",
         "marks": 1,
         "mark_note": "Substitute back",
-        "margin_note": "Fifth mark. Keep everything over 14 rather than turning it into decimals — the fractions all clear in the next line.",
+        "margin_note": "Seventh mark. Keep everything over 14 rather than turning it into decimals — the fractions all clear in the next line.",
         "memory_tip": "Keep everything over 14. The fourteens all clear in the next line.",
         "lines": [
           "Normal = (1 + 6/14)i + (1 + 9/14)j",

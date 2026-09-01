@@ -103,7 +103,7 @@
             "ex radii"
           ]
         },
-        "why": "Nothing else in the chain can start without r. That single standard result is what unlocks Δ, then s, then the sides.",
+        "why": "Nothing else in the chain can start without r. That single standard result is what makes Δ, then s, then the sides available.",
         "common_mistakes": [
           "Adding r₁ + r₂ + r₃ directly instead of their reciprocals.",
           "Forgetting to invert at the end, giving r = 1/4."
@@ -240,5 +240,6 @@
         "memory_tip": "Check a + b + c = 2s: 12 + 16 + 20 = 48 = 2 × 24."
       }
     ]
-  }
+  },
+  "insider_note": "Get r from 1/r = 1/r₁ + 1/r₂ + 1/r₃ first, then Δ = √(r r₁ r₂ r₃). Both come out whole, and a + b + c = 2s is a check worth writing down."
 }

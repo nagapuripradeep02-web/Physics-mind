@@ -219,5 +219,6 @@
         "memory_tip": "The denominators 3, 21 and 7 all divide 21, so multiplying every term by 21 clears them at once."
       }
     ]
-  }
+  },
+  "insider_note": "Introduce k and the k² cancels in every cosine, so the ratio does not depend on it. Multiply the three fractions by 21, their common denominator, to reach whole numbers."
 }

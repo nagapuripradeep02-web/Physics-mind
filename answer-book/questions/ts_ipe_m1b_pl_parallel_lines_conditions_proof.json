@@ -106,7 +106,7 @@
         "kind": "equation",
         "label": "Prove h² = ab",
         "marks": 1,
-        "margin_note": "One mark. The first result is immediate from the dictionary: h is lm, and a and b are l² and m².",
+        "margin_note": "One mark. The first result is immediate from the matched coefficients: h is lm, and a and b are l² and m².",
         "lines": [
           "(i) h² = (lm)² = l²m² = ab",
           "⇒ h² = ab"
@@ -117,7 +117,7 @@
           "accept": [
             "h is l m so h squared is l squared m squared which is a b",
             "square the h relation and read off a and b",
-            "h squared equals a b follows straight from the dictionary",
+            "h squared equals a b follows straight from the matched coefficients",
             "h square chesthe a b vasthundi",
             "this proves the first part"
           ],
@@ -138,7 +138,7 @@
           "Concluding h² > ab, which describes two distinct intersecting lines."
         ],
         "mark_note": "Method",
-        "memory_tip": "Straight from the dictionary: h is lm, and a and b are l² and m²."
+        "memory_tip": "Straight from the matched coefficients: h is lm, and a and b are l² and m²."
       },
       {
         "id": "s3_prove_af2_bg2",
@@ -231,5 +231,6 @@
         "memory_tip": "The distance is |n₁ − n₂| over √(l² + m²), and |n₁ − n₂| comes from its SQUARE."
       }
     ]
-  }
+  },
+  "insider_note": "Parallel means the two factors share l and m and differ only in the constant; that one line makes all three parts fall out. The distance needs |n₁ − n₂| via (n₁+n₂)² − 4n₁n₂, and both forms are asked for."
 }

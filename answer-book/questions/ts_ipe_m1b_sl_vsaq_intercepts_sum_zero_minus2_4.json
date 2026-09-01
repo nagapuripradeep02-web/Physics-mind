@@ -53,7 +53,7 @@
         "kind": "equation",
         "label": "Set up the intercepts",
         "marks": 1,
-        "margin_note": "First mark. The condition is about the INTERCEPTS, so use the intercept form x/a + y/b = 1 and let the condition choose a and b for you: sum of intercepts is zero.",
+        "margin_note": "First mark. The condition is about the INTERCEPTS, so use the intercept form x/a + y/b = 1, where the condition becomes a direct relation between a and b: the sum of the intercepts is zero.",
         "memory_tip": "Intercept form with b = −a, because the intercepts sum to zero.",
         "lines": [
           {
@@ -133,7 +133,7 @@
             "the line is"
           ]
         },
-        "why": "One unknown is left after the condition is used, and one point is exactly enough to pin it.",
+        "why": "One unknown is left after the condition is used, and one point is exactly enough to find it.",
         "common_mistakes": [
           "Substituting the coordinates the wrong way round.",
           "Stopping at the value of a without writing the line."
@@ -141,5 +141,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Same setup as its partner question: intercepts a and −a give x − y = a. Here the point gives a = −6, so the line is x − y + 6 = 0, and the sign flip on moving a across is where it is lost."
 }

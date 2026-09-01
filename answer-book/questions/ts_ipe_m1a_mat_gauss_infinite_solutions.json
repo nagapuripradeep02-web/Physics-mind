@@ -62,8 +62,8 @@
         "label": "Write the augmented matrix",
         "marks": 1,
         "mark_note": "Augmented matrix",
-        "margin_note": "First mark. Nothing about the setup warns you that this system is unusual — it is written down exactly like any other. The surprise arrives two steps later.",
-        "memory_tip": "Nothing in the setup warns that this system is unusual; the surprise arrives two steps later.",
+        "margin_note": "First mark. Nothing about the setup shows that this system is unusual — it is written down exactly like any other. The row of zeros appears two steps later.",
+        "memory_tip": "Nothing in the setup shows that this system is unusual; the row of zeros appears two steps later.",
         "lines": [
           {
             "text": "Sol:",
@@ -295,5 +295,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Column 2 goes to zero at the same time as column 1, and that is the tell: the last row becomes all zeros. Infinitely many solutions follow, so introduce a parameter k and write x, y, z in terms of it."
 }

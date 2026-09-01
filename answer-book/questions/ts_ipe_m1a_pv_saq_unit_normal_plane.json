@@ -232,5 +232,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "AC comes out as −7k on its own, which makes the determinant short — two of its entries are 0. Keep the ±, since a normal has two directions."
 }

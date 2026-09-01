@@ -222,5 +222,6 @@
         "memory_tip": "Two pieces, two terms: sin x from the leftover part, x cos x from the sine difference."
       }
     ]
-  }
+  },
+  "insider_note": "Split (x + h)sin(x + h) into x sin(x + h) + h sin(x + h) so the two standard pieces separate. One gives x cos x and the other sin x."
 }

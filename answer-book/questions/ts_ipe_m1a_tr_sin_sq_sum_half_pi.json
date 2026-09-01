@@ -229,7 +229,7 @@
         "label": "Take sin C out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. sin C comes out of the last two terms, and the sin C INSIDE the bracket is converted back to cos(A+B) so both bracket terms are cosines. Only the inside one converts.",
+        "margin_note": "Seventh mark. sin C comes out of the last two terms, and the sin C INSIDE the bracket is converted back to cos(A+B) so both bracket terms are cosines. Only the inside one converts.",
         "memory_tip": "Convert only the sin C inside the bracket, never the one outside.",
         "lines": [
           "= 1 − sinC [cos(A−B) − sinC]",

@@ -103,7 +103,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. x = 1 belongs to the middle piece, because −2 ≤ x ≤ 1 carries the equals sign. The right-hand formula gives 0/0 at 1, so it must be simplified before the limit is taken.",
-        "memory_tip": "x − 1 = (√x)² − 1², so it factorises as (√x − 1)(√x + 1) — that is the difference of two squares in disguise.",
+        "memory_tip": "x − 1 = (√x)² − 1², so it factorises as (√x − 1)(√x + 1) — a difference of two squares, with √x in place of x.",
         "lines": [
           "At x = 1:",
           "lim(x → 1⁻) f(x) = lim(x → 1⁻) (5 − 3x) = 5 − 3(1) = 2",
@@ -135,7 +135,7 @@
             "difference of squares"
           ]
         },
-        "why": "The right-hand formula is 0/0 at x = 1, so it cannot be substituted. Writing x − 1 as a difference of two squares cancels the offending factor and turns the limit into a substitution.",
+        "why": "The right-hand formula is 0/0 at x = 1, so it cannot be substituted. Writing x − 1 as a difference of two squares cancels the factor that is zero at x = 1 and turns the limit into a substitution.",
         "common_mistakes": [
           "Substituting x = 1 into (x − 1)/(√x − 1) and writing 0/0 as the right limit.",
           "Taking f(1) from the piece x > 1, when x = 1 is not in that interval."
@@ -148,7 +148,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Third mark. x = −2 also belongs to the middle piece, so the value and the right limit agree automatically. The left limit comes from 6/(x − 10) and is the number that breaks the test.",
-        "memory_tip": "At x = −2 the denominator x − 10 is −12, not −8 — subtract 10 from −2, do not add.",
+        "memory_tip": "At x = −2 the denominator is −2 − 10 = −12. Both numbers are negative, so they combine to −12, not to −8 or 8.",
         "lines": [
           "At x = −2:",
           "lim(x → −2⁻) f(x) = lim(x → −2⁻) 6/(x − 10) = 6/(−2 − 10) = 6/(−12) = −1/2",
@@ -231,5 +231,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Each piece is continuous on its own interval, so only the two junctions x = −2 and x = 1 need testing. x = 1 passes because √x + 1 → 2; x = −2 fails, −1/2 against 11."
 }

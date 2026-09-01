@@ -192,7 +192,7 @@
         "label": "Find a · n",
         "marks": 1,
         "mark_note": "a · n",
-        "margin_note": "Fourth mark. Any one of the three points can be used here. A is the shortest because its third coordinate is −1.",
+        "margin_note": "Fifth mark. Any one of the three points can be used here. A is the shortest because its third coordinate is −1.",
         "memory_tip": "Any of the three points works. Use the one with the smallest numbers.",
         "lines": [
           "a·n = (2i + 3j − k)·(3i − 9j + 4k)",
@@ -231,7 +231,7 @@
         "label": "Write the vector equation",
         "marks": 1,
         "mark_note": "Vector equation",
-        "margin_note": "Fifth mark. The plane is every point r whose dot product with n matches the one A gives. That single line is the vector equation.",
+        "margin_note": "Sixth mark. The plane is every point r whose dot product with n matches the one A gives. That single line is the vector equation.",
         "memory_tip": "The plane is every r with the SAME dot product against n that A has.",
         "lines": [
           "The plane is r·n = a·n, that is",

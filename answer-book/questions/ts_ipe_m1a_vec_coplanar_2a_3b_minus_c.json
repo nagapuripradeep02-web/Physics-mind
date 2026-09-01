@@ -109,8 +109,8 @@
         "label": "Find PQ, PR and PS",
         "marks": 1,
         "mark_note": "Edge vectors",
-        "margin_note": "Second mark. All three vectors must start at the SAME point — P here. Three edges from one corner is what makes them testable for coplanarity; three edges picked at random is not.",
-        "memory_tip": "All three vectors must START at the same point, P. Three edges picked at random prove nothing.",
+        "margin_note": "Second mark. All three vectors must start at the SAME point — P here. Three edges from one corner always works; three edges that use only three of the four points do not, because one of them is then the difference of the other two.",
+        "memory_tip": "All three vectors must START at the same point, P. Three edges that use only three of the points prove nothing.",
         "lines": [
           "∴ PQ = OQ − OP = (a − 2b + 3c) − (2a + 3b − c)",
           "  = −a − 5b + 4c",
@@ -145,7 +145,7 @@
         },
         "why": "Four points are coplanar exactly when three vectors joining ONE of them to the other three lie in a plane. Anchoring all three at P is not a convention — it is the condition.",
         "common_mistakes": [
-          "Building PQ, QR and RS, a chain rather than three edges from one corner.",
+          "Using PQ, PR and QR, which involve only P, Q and R; since QR = PR − PQ, that determinant is zero for any four points and proves nothing.",
           "Subtracting the wrong way round; OQ − OP, not OP − OQ.",
           "A sign slip when the subtracted term is already negative."
         ]
@@ -194,8 +194,7 @@
         "why": "The scalar triple product is the volume of the box the three vectors span. Zero volume means the box is flat — which is exactly what it means for three vectors to lie in one plane.",
         "common_mistakes": [
           "Getting the sign pattern wrong when expanding: plus, minus, plus along the top row.",
-          "Putting the vectors in as columns and rows inconsistently.",
-          "Omitting a zero coefficient and shifting the whole row."
+          "Putting the vectors in as columns and rows inconsistently."
         ]
       },
       {
@@ -242,5 +241,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Take all the differences from ONE point: PQ, PR and PS every one starting at P. The determinant of their coefficients must be zero, and the [a b c] factor is carried along, never evaluated."
 }

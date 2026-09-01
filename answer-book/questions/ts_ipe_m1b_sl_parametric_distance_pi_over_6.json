@@ -23,7 +23,7 @@
   ],
   "mark_split": [
     {
-      "label": "Find the angle",
+      "label": "Write down the given angle",
       "marks": 1
     },
     {
@@ -54,7 +54,7 @@
       {
         "id": "s1_find_the_angle",
         "kind": "equation",
-        "label": "Find the angle",
+        "label": "Write down the given angle",
         "marks": 1,
         "margin_note": "First mark. The parametric form needs an ANGLE, not a slope, so convert whatever the question gives into θ before anything else.",
         "lines": [
@@ -88,7 +88,7 @@
         },
         "why": "The parametric form measures distance ALONG the line, and distance needs a direction — which is what θ supplies.",
         "common_mistakes": [
-          "Using the slope directly in place of cosθ and sinθ.",
+          "Forgetting that π/6 is 30°, so cos θ = √3/2 and sin θ = 1/2.",
           "Taking θ as the angle with the Y-axis."
         ],
         "mark_note": "Method",
@@ -221,5 +221,6 @@
         "memory_tip": "The distance PQ IS r, so solving for r finishes the question."
       }
     ]
-  }
+  },
+  "insider_note": "Write P as (x₁ + r cosθ, y₁ + r sinθ) and put it on the line — solving the two lines for P and then measuring is far longer. The 8 and the −8 cancel, leaving r = 6."
 }

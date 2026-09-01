@@ -292,7 +292,7 @@
             "two s minus two c"
           ]
         },
-        "why": "Writing a + b − c as a + b + c − 2c is the trick — it turns an awkward combination into 2s minus something, which is what the ex-radius formula needs.",
+        "why": "Writing a + b − c as a + b + c − 2c is the step that matters — it turns an awkward combination into 2s minus something, which is what the ex-radius formula needs.",
         "common_mistakes": [
           "Not spotting a + b − c = 2(s−c).",
           "Pairing the minus with r₁ instead of r₃."
@@ -345,5 +345,6 @@
         "memory_tip": "Multiply the three altitudes, then convert using abc = 4RΔ to reach the second form."
       }
     ]
-  }
+  },
+  "insider_note": "Everything follows from p₁ = 2Δ/a, so write that first and the three parts become arithmetic. Part (ii) needs a + b − c = 2s − 2c, which is where the (s−c) comes from."
 }

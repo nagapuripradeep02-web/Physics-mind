@@ -45,8 +45,8 @@
         "label": "Add all three columns into C₁",
         "marks": 1,
         "mark_note": "Column operation",
-        "margin_note": "First mark. Every row sums to 1 + ω + ω², because ω³ = 1 collapses every higher power back into the same three values.",
-        "memory_tip": "Every row sums to 1 + ω + ω², because ω³ = 1 collapses higher powers back.",
+        "margin_note": "First mark. Every row holds the same three entries 1, ω and ω² in a different order, so every row sums to 1 + ω + ω².",
+        "memory_tip": "Every row holds the same three entries in a different order, so every row sums to 1 + ω + ω².",
         "lines": [
           {
             "text": "Sol:",
@@ -126,10 +126,11 @@
         },
         "why": "1 + ω + ω² = 0 holds for the COMPLEX cube roots but not for ω = 1 — which is why the question says complex, and why that word is not decoration.",
         "common_mistakes": [
-          "Using ω = 1, for which the sum is 3 and the result fails.",
+          "Using ω = 1, for which 1 + ω + ω² = 3, so column 1 is not zero and this argument does not work — that is why the question says COMPLEX cube root.",
           "Expanding after the operation instead of quoting the zero-column rule."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Do not expand anything. Adding all three columns into C₁ makes every entry 1 + ω + ω² = 0, and a column of zeros ends the question in two lines."
 }

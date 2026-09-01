@@ -131,5 +131,6 @@
         "memory_tip": "Below 2 the pair is 1 from the step and 2 from x, which is 3."
       }
     ]
-  }
+  },
+  "insider_note": "Approaching 2 from BELOW keeps x in (1, 2), where [x] = 1 — not 2. So the expression is 1 + x and the limit is 3."
 }

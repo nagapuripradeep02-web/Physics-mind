@@ -239,8 +239,9 @@
           "Leaving the answer as √(a²cos²θ + a²sin²θ) and calling it constant without simplifying.",
           "Using the distance formula between P and A instead of between A and B."
         ],
-        "memory_tip": "A sits on the x-axis and B sits on the y-axis, so AB is the hypotenuse of a right triangle with legs a cosθ and a sinθ — and that hypotenuse is a."
+        "memory_tip": "A sits on the x-axis and B sits on the y-axis, so AB is the hypotenuse of a right triangle with legs a cosθ and a sinθ — and that hypotenuse is |a|."
       }
     ]
-  }
+  },
+  "insider_note": "Use the parametric point (a cos³θ, a sin³θ) — the implicit form makes the intercepts far messier. AB then comes out as |a|, free of θ, which is the whole claim."
 }

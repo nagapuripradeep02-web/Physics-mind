@@ -137,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The s/Δ cancels, so the given ratio is really (s−a) : (s−b) : (s−c). Their sum is s, not 2s, and that is what fixes s = 15k and turns 3, 5, 7 into 12, 10, 8."
 }

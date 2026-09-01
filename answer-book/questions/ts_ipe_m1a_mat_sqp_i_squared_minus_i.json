@@ -87,7 +87,7 @@
         },
         "why": "A diagonal matrix squares entry by entry — but only because the off-diagonal zeros make every cross term zero, not as a general rule.",
         "common_mistakes": [
-          "Squaring the entries without doing the multiplication.",
+          "Squaring the entries of a matrix that is not diagonal — entry-by-entry squaring works here only because the off-diagonal zeros make every cross term zero.",
           "Forgetting that (−i)² is also −1."
         ]
       },
@@ -140,5 +140,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A is diagonal, so A² simply squares each diagonal entry. (−i)² = i² = −1 as well, which is why both entries agree and the result is −I rather than I."
 }

@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both top and bottom vanish at 3, so both must be factorised — each carries an (x − 3). After cancelling, substitution gives −2/6, which must be reduced."
 }

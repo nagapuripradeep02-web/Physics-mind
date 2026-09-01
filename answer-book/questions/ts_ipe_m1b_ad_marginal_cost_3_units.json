@@ -135,5 +135,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Marginal cost means dC/dx, not C(x)/x — the average cost is a different quantity. Differentiate first, then substitute x = 3."
 }

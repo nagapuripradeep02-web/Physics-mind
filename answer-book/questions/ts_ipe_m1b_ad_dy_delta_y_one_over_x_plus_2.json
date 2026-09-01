@@ -133,5 +133,6 @@
         "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down."
       }
     ]
-  }
+  },
+  "insider_note": "The derivative is NEGATIVE, so both dy and Δy come out negative — the function is decreasing. Losing that sign is the standard error here."
 }

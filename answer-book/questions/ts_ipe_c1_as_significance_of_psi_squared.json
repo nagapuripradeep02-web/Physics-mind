@@ -84,5 +84,6 @@
         "margin_note": "Mentioning the node connects this to the node and nodal plane question."
       }
     ]
-  }
+  },
+  "insider_note": "A one-line question carrying two marks, one per symbol, so the contrast is the answer. Write ψ and ψ² on separate lines; a paragraph about the orbital that never separates them can only reach half."
 }

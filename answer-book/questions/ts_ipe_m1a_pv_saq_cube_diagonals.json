@@ -55,7 +55,7 @@
         "marks": 1,
         "mark_note": "Set-up",
         "margin_note": "First mark. Put one corner at the origin and three edges along the axes. A UNIT cube is enough: scaling a cube does not change the angle between its diagonals.",
-        "memory_tip": "A UNIT cube is enough — scaling a cube does not change the angle between its diagonals.",
+        "memory_tip": "A UNIT cube is enough — scaling a cube does not change the angle between its diagonals. A cube of side a works too, but every a² cancels — side 1 gets there faster.",
         "lines": [
           {
             "text": "Sol:",
@@ -90,7 +90,7 @@
         },
         "why": "The angle between diagonals is the same for every cube, so choosing side 1 loses no generality and makes every vector a sum of unit vectors.",
         "common_mistakes": [
-          "Using a cube of side a and carrying it through pointlessly.",
+          "Taking a unit cube without saying that the angle is the same for every cube, so the working reads as one special case rather than a proof.",
           "Placing the cube off the axes, which makes the vectors messy."
         ]
       },
@@ -351,5 +351,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Choose a UNIT cube with one corner at the origin so every component is 1 or −1. The two diagonals differ in a single sign, which is what leaves 1 + 1 − 1 = 1 over 3."
 }

@@ -177,7 +177,7 @@
             "both pairs"
           ]
         },
-        "why": "Both pairs ending with cos(C/2) is not luck — it is why this pairing was chosen, and it is what allows the next factoring.",
+        "why": "Both pairs ending with cos(C/2) is the reason this pairing was chosen, and it is what allows the next factoring.",
         "common_mistakes": [
           "Missing that cos(−C/2) = cos(C/2).",
           "Writing 2S − C as A + B + C."
@@ -189,7 +189,7 @@
         "label": "Take 2 cos(C/2) common",
         "marks": 1,
         "mark_note": "Factor",
-        "margin_note": "Sixth mark. Both pairs have 2 cos(C/2), so pull it out — leaving a sum of two cosines inside.",
+        "margin_note": "Seventh mark. Both pairs have 2 cos(C/2), so pull it out — leaving a sum of two cosines inside.",
         "memory_tip": "Both pairs share 2 cos(C/2) — pull it out, leaving a SUM of two cosines inside.",
         "lines": [
           "L.H.S = 2 cos(C/2) cos((A−B)/2)",
@@ -267,5 +267,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Four terms, so pair them as the first two and the last two — cos S pairs with cos(S−C). Both pairs reduce using 2S − A − B = C, and one more application finishes it."
 }

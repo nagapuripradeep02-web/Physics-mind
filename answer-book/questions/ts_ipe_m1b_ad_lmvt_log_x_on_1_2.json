@@ -139,5 +139,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Verify BOTH conditions before finding c — Lagrange asks only for continuity on [1, 2] and differentiability on (1, 2); the third condition f(a) = f(b) belongs to Rolle — a verification question is marked on the conditions as much as the value. c = 1/log 2 lands in (1, 2), which must be stated."
 }

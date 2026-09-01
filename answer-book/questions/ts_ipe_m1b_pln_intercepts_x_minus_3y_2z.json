@@ -19,7 +19,7 @@
   "appearances": [],
   "mark_split": [
     {
-      "label": "Move the constant across",
+      "label": "Divide through by the constant",
       "marks": 1
     },
     {
@@ -42,10 +42,10 @@
       {
         "id": "s1_move_the_constant",
         "kind": "equation",
-        "label": "Move the constant across",
+        "label": "Divide through by the constant",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Intercept form needs 1 on the right, so the constant term goes across first and every term is then divided by it.",
+        "margin_note": "First mark. Intercept form needs 1 on the right. The constant 9 is already there, so every term is divided by 9.",
         "memory_tip": "The constant is already on the right, so divide every term by 9 to make it 1.",
         "lines": [
           {
@@ -57,7 +57,7 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the constant is moved to the right and every term divided by it.",
+          "must_convey": "That every term is divided by the constant on the right, so the right-hand side becomes 1.",
           "accept": [
             "move the constant across and divide everything by it",
             "intercept form needs one on the right hand side",
@@ -77,7 +77,7 @@
             "intercept form"
           ]
         },
-        "why": "Intercept form must have 1 on the right-hand side — that is its whole definition. So the constant is moved across and everything divided by it, and the three denominators that appear ARE the intercepts.",
+        "why": "Intercept form must have 1 on the right-hand side — that is its whole definition. Here 9 is already on the right, so every term is divided by 9, and the three denominators that appear ARE the intercepts.",
         "common_mistakes": [
           "Leaving a number other than 1 on the right.",
           "Dividing only some of the terms."
@@ -128,5 +128,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The constant is already on the right, so divide straight through by 9. The intercept is the denominator after that, which makes the y-intercept −3 rather than −1/3."
 }

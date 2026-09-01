@@ -137,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "x² + 2 is never zero, so the logarithm is defined everywhere and continuity is easy to argue. The −log 3 is a constant and vanishes on differentiating."
 }

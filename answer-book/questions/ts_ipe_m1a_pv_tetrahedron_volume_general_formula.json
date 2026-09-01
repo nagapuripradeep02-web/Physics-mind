@@ -153,7 +153,7 @@
         "label": "Write the unit normal",
         "marks": 1,
         "mark_note": "Unit normal",
-        "margin_note": "Third mark. a × b is at right angles to the base plane, so dividing it by its own length gives the unit vector the height is measured along.",
+        "margin_note": "Fourth mark. a × b is at right angles to the base plane, so dividing it by its own length gives the unit vector the height is measured along.",
         "memory_tip": "Divide a × b by its own length to get the unit vector at right angles to the base.",
         "lines": [
           "a × b is at right angles to the base",
@@ -238,7 +238,7 @@
         "label": "Multiply and cancel",
         "marks": 1,
         "mark_note": "Multiply",
-        "margin_note": "Fifth mark. Put the base area and the height into the pyramid formula. The factor |a × b| appears once on top and once underneath, so it cancels.",
+        "margin_note": "Seventh mark. Put the base area and the height into the pyramid formula. The factor |a × b| appears once on top and once underneath, so it cancels.",
         "memory_tip": "|a × b| appears on top and underneath, so it cancels and leaves one sixth.",
         "lines": [
           "Volume = (1/3) × (1/2)|a × b| × h",

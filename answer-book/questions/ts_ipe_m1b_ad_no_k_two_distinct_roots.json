@@ -138,5 +138,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "This is a proof by contradiction: ASSUME two roots exist, apply Rolle, and show the resulting c falls outside [0, 1]. f′(x) = 2x − 3 is zero at 3/2, which is beyond 1."
 }

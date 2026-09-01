@@ -139,5 +139,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A plane needs TWO parameters, s and t; it is the three coefficients (1 − s − t), s and t that sum to one: r = (1 − s − t)a + sb + tc. Nothing needs expanding — writing the form with the three vectors substituted is the complete answer."
 }

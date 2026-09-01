@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Use 1 − cos2θ = 2sin²θ with θ = mx — that turns the whole thing into sines and no other identity is needed. Divide top and bottom by x², not by x, since both are squared."
 }

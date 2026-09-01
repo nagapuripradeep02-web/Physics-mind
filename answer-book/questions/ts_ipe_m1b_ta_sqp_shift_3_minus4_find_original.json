@@ -102,7 +102,7 @@
         "label": "Write the change of axes",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark, and the one that separates this from its facing question. Going BACK to the original means X = x − h and Y = y − k — the signs are the other way round.",
+        "margin_note": "Second mark, and the one that decides the direction. Going BACK to the original means X = x − h and Y = y − k — the signs are the other way round from a forward shift.",
         "memory_tip": "Going back: X = x − h and Y = y − k. With k = −4 that gives Y = y + 4.",
         "lines": [
           "We take origin (h, k) = (3, −4), then",
@@ -115,7 +115,7 @@
           "accept": [
             "capital X equals x minus h and capital Y equals y minus k",
             "going back to the original the signs reverse",
-            "X is x minus two and Y is y minus three",
+            "X is x minus three and Y is y plus four",
             "original ki vellali ante X equals x minus h",
             "write the reverse translation formulas"
           ],
@@ -154,7 +154,7 @@
           "must_convey": "That the reverse change-of-axes lines are put into the given equation.",
           "accept": [
             "substitute the capital X and Y expressions into the given equation",
-            "put x minus two and y minus three into equation one",
+            "put x minus three and y plus four into equation one",
             "replace every capital X and capital Y",
             "equation one lo substitute cheyyali",
             "put these into the given equation"
@@ -174,7 +174,7 @@
         "why": "Substitution is mechanical once the formulas are down. Every x and every y in the given equation is replaced, including the ones inside a squared bracket.",
         "common_mistakes": [
           "Substituting into only some of the terms.",
-          "Forgetting to substitute inside a product like XY."
+          "Substituting inside only one of the two squared brackets."
         ]
       },
       {
@@ -218,9 +218,10 @@
         "why": "The answer describes the curve on the ORIGINAL axes, so it must contain only x and y.",
         "common_mistakes": [
           "Leaving a capital X or Y in the final line.",
-          "Sign slip when expanding a product of two brackets."
+          "Sign slip on (y + 4)², which expands with +8y."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The transformed equation is given, so X = x − 3 and Y = y + 4 — the shift subtracts, and the −4 turns into y + 4. Expand the two brackets and collect the constants as 9 + 16 − 4 = 21."
 }

@@ -89,10 +89,10 @@
         "why": "The angle between two curves is the angle between their tangents at a point they share, so nothing can be differentiated usefully until that point is known. Rejecting x = −5 with a stated reason is part of the method mark.",
         "common_mistakes": [
           "Keeping x = −5 and producing a second angle at a point that does not exist.",
-          "Substituting x = y²/4 into the circle, which gives a quartic and much longer work.",
+          "Rejecting x = −5 silently, without writing the reason y² = 4x ≥ 0.",
           "Solving x² + 4x − 5 = 0 as (x − 5)(x + 1) = 0."
         ],
-        "memory_tip": "Substitute whichever square is already isolated — here y² is given free, so it goes straight into the circle."
+        "memory_tip": "Substitute whichever square is already isolated — here y² is given free, so it goes straight into the circle. Putting x = y²/4 into the circle also works and gives y⁴ + 16y² − 80 = 0, with the same points."
       },
       {
         "id": "s2_slopes",
@@ -188,5 +188,6 @@
         "memory_tip": "Difference on top, one plus the product underneath — the same formula as the angle between two straight lines."
       }
     ]
-  }
+  },
+  "insider_note": "y² = 4x forces x ≥ 0, so the root x = −5 is rejected immediately. Both intersection points share x = 1, with y = ±2."
 }

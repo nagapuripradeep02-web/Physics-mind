@@ -267,5 +267,6 @@
         "memory_tip": "Both halves are done, so name the principle. That sentence is the mark."
       }
     ]
-  }
+  },
+  "insider_note": "The nth term is arⁿ⁻¹, not arⁿ — getting that index wrong makes the inductive step fail even with perfect algebra. State r ≠ 1, since the formula divides by r − 1."
 }

@@ -219,11 +219,12 @@
         },
         "why": "Clearing the inner fraction turns 1/(1 + x²/a²) into a²/(a² + x²), and that a² divided by the a from du/dx leaves one a. A quick check on the answer: doubling both a and x halves 3a/(a² + x²), which is what a derivative must do when the whole picture is scaled up.",
         "common_mistakes": [
-          "Leaving the answer as 3/(a(1 + x²/a²)) without clearing the inner fraction.",
+          "Stopping at 3/(a(1 + x²/a²)) — correct, but clear the inner fraction so the answer reads 3a/(a² + x²).",
           "Cancelling both a's and writing 3/(a² + x²)."
         ],
         "memory_tip": "This is the standard result d/dx tan⁻¹(x/a) = a/(a² + x²), multiplied by the 3 carried down from the triple angle."
       }
     ]
-  }
+  },
+  "insider_note": "The substitution is x = a tan θ, not x = tan θ, because of the a's. The bracket becomes tan3θ, so y = 3Tan⁻¹(x/a) and the answer carries 3a/(a² + x²)."
 }

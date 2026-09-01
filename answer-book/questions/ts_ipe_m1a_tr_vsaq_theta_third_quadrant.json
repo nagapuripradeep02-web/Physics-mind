@@ -45,7 +45,7 @@
         "label": "Simplify to a tangent",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Same division by cos11° as the twin, giving tan(45° + 11°) = tan56°.",
+        "margin_note": "First mark. Dividing numerator and denominator by cos11° turns every term into a tangent, and the 1 becomes tan45°, giving tan(45° + 11°) = tan56°.",
         "memory_tip": "Divide top and bottom by cos11°, giving tan(45° + 11°) = tan56°.",
         "lines": [
           {
@@ -78,7 +78,7 @@
             "divide by cos eleven"
           ]
         },
-        "why": "Identical simplification to the twin. What differs is what happens next, not how the expression is handled.",
+        "why": "Dividing by cos11° makes every term a tangent and turns the 1 into tan45°, which is exactly the tan(A + B) form. The quadrant condition comes next; it does not change this simplification.",
         "common_mistakes": [
           "Dividing by sin 11°.",
           "Stopping here and answering 56°."
@@ -129,5 +129,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The simplification gives tan56°, but that is only the reference angle. The third-quadrant condition then adds 180°, so the answer is 236° and not 56°."
 }

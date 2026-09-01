@@ -142,5 +142,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "f(0) and f(π) are both 0, so the average slope is 0 and this reduces to the Rolle case. Solve f′(c) = 0 as a quadratic in cos c."
 }

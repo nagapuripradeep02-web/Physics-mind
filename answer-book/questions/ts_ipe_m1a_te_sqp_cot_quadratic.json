@@ -89,7 +89,7 @@
             "middle term"
           ]
         },
-        "why": "The coefficient is already written as (√3 + 1), which names the two parts. The question hands over the split rather than hiding it.",
+        "why": "The coefficient is already written as (√3 + 1), which names the two parts of the split, so no searching for factors is needed.",
         "common_mistakes": [
           "Using the quadratic formula on a surd coefficient.",
           "Splitting as −√3 and +1."
@@ -219,5 +219,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "It is a quadratic in cot x, so factorise before converting anything. Turning cot into tan afterwards makes both roots standard angles, and the range 0 < x < π/2 means one value each, not a general solution."
 }

@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Either route works: set f(x) = y and solve for x, then rename the letter; or interchange x and y first and then solve. Both give (x − 4)/5. What loses the mark is stopping at x = 5y + 4 without making y the subject."
 }

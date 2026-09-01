@@ -236,5 +236,6 @@
         "memory_tip": "Only the parabola y² = 4ax family has a constant subnormal, so k = 1/2 is the power that turns this curve into a parabola."
       }
     ]
-  }
+  },
+  "insider_note": "Form the subnormal y·m and collect the powers of x; it is constant only when the total index is zero. That gives 2k − 1 = 0, so k = 1/2."
 }

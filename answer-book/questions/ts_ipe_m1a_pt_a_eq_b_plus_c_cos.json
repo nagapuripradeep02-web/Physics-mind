@@ -165,7 +165,7 @@
             "four b c"
           ]
         },
-        "why": "1 + cos A = 2cos²(A/2) is the identity the whole family turns on. Its partner, 1 − cos A = 2sin²(A/2), is what answer 34.2 uses instead.",
+        "why": "1 + cos A = 2cos²(A/2) is the identity the whole family turns on. Its partner, 1 − cos A = 2sin²(A/2), is what the a = (b − c) sec θ question uses instead.",
         "common_mistakes": [
           "Using 1 − cos A = 2sin²(A/2) here, which is the wrong half of the pair.",
           "Losing a factor of 2."
@@ -216,5 +216,6 @@
         "memory_tip": "Everything under the root is a perfect square, so the root is exact and sin θ is taken positive."
       }
     ]
-  }
+  },
+  "insider_note": "The PLUS version: squaring leaves 2bc(1 + cos A), and 1 + cos A = 2cos²(A/2). That sign inside the bracket is the only difference from the (b − c) sec θ question."
 }

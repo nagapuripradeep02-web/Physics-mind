@@ -177,7 +177,7 @@
         "why": "Everything before this was setting up; this is the step that actually uses the line P sits on.",
         "common_mistakes": [
           "Substituting into the wrong line.",
-          "Forgetting to distribute a coefficient across both parts of a coordinate."
+          "Forgetting that BOTH coordinates carry r/√2, so the two r-terms add."
         ],
         "mark_note": "Method"
       },
@@ -223,5 +223,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Slope 1 means θ = 45°, so cosθ and sinθ are both 1/√2 and the two r-terms add. Leave the answer as 2√2 — the parametric r IS the distance, so no distance formula is needed at the end."
 }

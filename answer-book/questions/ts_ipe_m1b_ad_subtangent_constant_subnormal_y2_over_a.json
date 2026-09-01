@@ -233,5 +233,6 @@
         "memory_tip": "Part (i) divides, part (ii) multiplies, and the slope y/a is the same in both. One answer keeps y, the other loses it."
       }
     ]
-  }
+  },
+  "insider_note": "The derivative simplifies to y/a, which is the key step — the exponential reappears as y itself. Subtangent y/m is then a, and subnormal y·m is y²/a."
 }

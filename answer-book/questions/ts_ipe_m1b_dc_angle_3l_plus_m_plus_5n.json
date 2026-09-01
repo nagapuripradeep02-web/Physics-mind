@@ -162,7 +162,7 @@
         "label": "Case (i): the first line",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "margin_note": "One mark. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
         "memory_tip": "Feed the first factor back into the linear relation and read off l : m : n.",
         "lines": [
           "Case (i): Put l = −n in (1), then",
@@ -204,7 +204,7 @@
         "label": "Case (ii): the second line",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks. The same work on the second factor. The two lines the question asks about are these two.",
+        "margin_note": "One mark. The same work on the second factor. The two lines the question asks about are these two.",
         "memory_tip": "The same work on the second factor gives the second line.",
         "lines": [
           "Case (ii): Put l = −2n in (1), then",
@@ -283,9 +283,10 @@
         "why": "The angle formula needs direction cosines in principle, but the normalising roots cancel between numerator and denominator — so direction RATIOS may be used directly, which is what the book does.",
         "common_mistakes": [
           "Forgetting the modulus, which can give an obtuse angle instead of the acute one.",
-          "Multiplying the two roots without keeping them under one square root."
+          "Taking the square root of only one of the two sums of squares."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Eliminate using the LINEAR relation — rearranging the second-degree one brings in a square root. It factorises to (l + n)(l + 2n) = 0, and both factors are needed: one line each, and it takes two lines to make an angle."
 }

@@ -230,5 +230,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Logarithms give y log x = x log y, and both sides then need the product rule because each holds x and y together. Collect the dy/dx terms before dividing."
 }

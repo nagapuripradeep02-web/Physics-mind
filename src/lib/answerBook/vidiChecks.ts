@@ -352,3 +352,44 @@ export function looksTruncated(reply: string): boolean {
     if (!t) return false;
     return !TERMINAL_END.test(t);
 }
+
+/* ── the mark number written into prose ──────────────────────────────────────
+ * A `margin_note` that OPENS by naming a mark is naming THIS step's mark, and
+ * nothing kept that prose in step with `steps[].marks`. The 2026-08-28 re-cut of
+ * the maths papers from 7 marks to 8 moved every mark and left the words behind:
+ * a bank-wide sweep on 2026-09-01 found 35 notes across six subjects naming the
+ * wrong mark, and one of them ("the seven are already spent") is what made Vidi
+ * tell a student an 8-mark question was worth 7.
+ *
+ * Two deliberate non-checks, both learned by over-firing during that sweep:
+ *   - a mid-sentence ordinal usually refers to ANOTHER step ("The names carry
+ *     the second mark") and is correct, so only the OPENING phrase is read;
+ *   - "One mark PER application" counts per item, not per step.
+ */
+const MARK_ORDINALS = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
+const MARK_CARDINALS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+
+/** `null` when the note is fine. `marksBefore` = marks earned by earlier steps. */
+export function markNumberError(note: string | undefined, stepMarks: number, marksBefore: number): string | null {
+    if (!note) return null;
+
+    const ord = note.match(new RegExp(String.raw`^\s*(${MARK_ORDINALS.join('|')})\s+marks?\b`, 'i'));
+    if (ord) {
+        const claimed = MARK_ORDINALS.indexOf(ord[1].toLowerCase()) + 1;
+        if (stepMarks === 0) return `margin_note opens "${ord[0].trim()}" on a step worth 0 marks`;
+        const first = marksBefore + 1, last = marksBefore + stepMarks;
+        if (claimed < first || claimed > last) {
+            const span = stepMarks > 1 ? `marks ${first}-${last}` : `mark ${first}`;
+            return `margin_note opens "${ord[0].trim()}" but the step earns ${span}`;
+        }
+        return null;
+    }
+
+    const card = note.match(new RegExp(String.raw`^\s*(${MARK_CARDINALS.join('|')})\s+marks?\b`, 'i'));
+    if (card) {
+        if (/^\s*\w+\s+marks?\s+(per|each|for each)\b/i.test(note)) return null;
+        const claimed = MARK_CARDINALS.indexOf(card[1].toLowerCase());
+        if (claimed !== stepMarks) return `margin_note opens "${card[0].trim()}" but the step is worth ${stepMarks}`;
+    }
+    return null;
+}

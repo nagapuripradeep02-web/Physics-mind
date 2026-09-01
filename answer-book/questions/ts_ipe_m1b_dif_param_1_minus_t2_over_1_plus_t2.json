@@ -220,5 +220,6 @@
         "memory_tip": "Check at t = 1: the point is (0, b), the top of the ellipse, where the tangent is horizontal — and the answer gives dy/dx = 0."
       }
     ]
-  }
+  },
+  "insider_note": "Put t = tan θ and the point becomes (a cos2θ, b sin2θ) — an ellipse — so both derivatives are one line. Differentiating the fractions in t directly is far heavier."
 }

@@ -144,5 +144,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Work the INNER bracket first — a×(b×c) is not the same as (a×b)×c and the two give different answers. Compute b×c, then cross a into that result."
 }

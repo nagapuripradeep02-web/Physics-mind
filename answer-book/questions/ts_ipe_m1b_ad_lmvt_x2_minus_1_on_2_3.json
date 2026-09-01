@@ -138,5 +138,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "For any quadratic the mean value c is the midpoint of the interval, here 5/2. Check the two conditions first, then confirm c lies inside (2, 3)."
 }

@@ -91,7 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. The factored form is the expected answer. Test it with n = 2: 2 × 3 × 4/3 = 8, and 1·2 + 2·3 = 8.",
-        "memory_tip": "The answer carries on the consecutive numbers: n(n + 1)(n + 2) over 3.",
+        "memory_tip": "The answer uses the next consecutive number: n(n + 1)(n + 2) divided by 3.",
         "lines": [
           "Sₙ = n(n + 1)(2n + 1)/6 + n(n + 1)/2",
           "= n(n + 1)[(2n + 1)/6 + 1/2] = n(n + 1)[(2n + 1 + 3)/6]",

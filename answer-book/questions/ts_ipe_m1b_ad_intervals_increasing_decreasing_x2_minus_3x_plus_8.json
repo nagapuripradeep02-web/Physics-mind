@@ -182,5 +182,6 @@
         "memory_tip": "For an upward parabola the graph falls to the vertex and rises after it, so decreasing always comes first and increasing second."
       }
     ]
-  }
+  },
+  "insider_note": "The sign of f′ = 2x − 3 decides everything, so the turning point 3/2 splits the line into two intervals. Give the answer as intervals, not as a single value."
 }

@@ -130,5 +130,6 @@
         "memory_tip": "Once sin(x − 1)/(x − 1) is split off and goes to 1, what is left is the leftover factor at the point. Here that is 1/(x + 1) at x = 1, so the answer is 1/2. The angle inside the sine must match the factor cancelled, or the two do not pair off."
       }
     ]
-  }
+  },
+  "insider_note": "The angle is (x − 1), so the denominator must be factorised to produce a matching (x − 1). The leftover 1/(x + 1) is then just substituted."
 }

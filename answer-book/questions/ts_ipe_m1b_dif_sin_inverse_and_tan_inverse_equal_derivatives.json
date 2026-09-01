@@ -282,5 +282,6 @@
         "memory_tip": "The final denominator holds the two differences that meet at x: the part below it, x − β, and the part above it, α − x. Their product sits under one root."
       }
     ]
-  }
+  },
+  "insider_note": "Both functions reduce to the SAME angle θ, so f(x) = g(x) exactly and their derivatives match — the given β < x < α is what keeps both radicands positive. Showing f = g first is shorter than differentiating each separately."
 }

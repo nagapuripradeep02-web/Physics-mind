@@ -190,5 +190,6 @@
         "memory_tip": "Difference on top, one plus the product underneath, modulus around the whole fraction."
       }
     ]
-  }
+  },
+  "insider_note": "Substituting gives x³ = −8, which has ONE real root, x = −2 — the quadratic factor has no real roots. So there is a single point of intersection."
 }

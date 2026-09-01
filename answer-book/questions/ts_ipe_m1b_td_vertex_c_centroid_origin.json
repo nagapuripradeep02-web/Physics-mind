@@ -149,5 +149,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The centroid is the origin, so each coordinate sum is simply zero — the shortest form these equations ever take. Two of the three answers come out negative, and that is where the sign slips happen."
 }

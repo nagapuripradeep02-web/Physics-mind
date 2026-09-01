@@ -94,7 +94,7 @@
         "label": "Take 2 out to make known angles",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. This time √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the twin.",
+        "margin_note": "First mark. This time √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the 1/sin 10° − √3/cos 10° question.",
         "lines": [
           "= 2[(√3/2)cos20° − (1/2)sin20°] / (sin20° cos20°)",
           "= 2[sin60° cos20° − cos60° sin20°] / (sin20° cos20°)"
@@ -123,10 +123,10 @@
         },
         "why": "The √3 sits on the cosine here rather than the sine, which is why the angle comes out as 60° instead of 30°.",
         "common_mistakes": [
-          "Copying the twin and using 30°.",
+          "Copying the 1/sin 10° − √3/cos 10° question and using 30°.",
           "Not factoring the 2 out first."
         ],
-        "memory_tip": "Here √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the sin10° twin."
+        "memory_tip": "Here √3/2 and 1/2 land as sin 60° and cos 60° — the other way round from the 1/sin 10° − √3/cos 10° question."
       },
       {
         "id": "s3_apply_sin_a_b",
@@ -201,7 +201,7 @@
             "four"
           ]
         },
-        "why": "Both twins land on 4 for the same reason: the angle in the numerator is always double the one in the denominator.",
+        "why": "This question and the 1/sin 10° − √3/cos 10° question both give 4 for the same reason: the angle in the numerator is double the one in the denominator.",
         "common_mistakes": [
           "Cancelling before expanding.",
           "Finishing with 2."
@@ -209,5 +209,6 @@
         "memory_tip": "sin40° = 2 sin20° cos20°, exactly the denominator — it cancels and leaves 4."
       }
     ]
-  }
+  },
+  "insider_note": "Write the cosecant and secant as fractions first, then take 2 out so √3/2 and ½ become sin60° and cos60°. sin40° then cancels against 2 sin20° cos20°."
 }

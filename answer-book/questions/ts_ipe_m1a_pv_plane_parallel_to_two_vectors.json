@@ -192,7 +192,7 @@
         "label": "Find a · n",
         "marks": 1,
         "mark_note": "a · n",
-        "margin_note": "Fourth mark. Only the point goes into this dot product. The two direction vectors have dot product zero with n, which is a useful check later.",
+        "margin_note": "Fifth mark. Only the point goes into this dot product. The two direction vectors have dot product zero with n, which is a useful check later.",
         "memory_tip": "Only the POINT goes in here. The directions would each give zero.",
         "lines": [
           "a·n = (3i − 2j − k)·(2i + 17j + 8k)",
@@ -231,7 +231,7 @@
         "label": "Write the vector equation",
         "marks": 1,
         "mark_note": "Vector equation",
-        "margin_note": "Fifth mark. One line, and the paper may ask for this form alone.",
+        "margin_note": "Sixth mark. One line, and the paper may ask for this form alone.",
         "memory_tip": "The plane is every r with the SAME dot product against n that A has.",
         "lines": [
           "The plane is r·n = a·n, that is",

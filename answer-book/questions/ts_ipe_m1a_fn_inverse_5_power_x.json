@@ -128,5 +128,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Take logarithms of both sides rather than trying to rearrange 5ˣ directly. The answer is log₅x; log x / log 5 is the same thing, but the base-5 form is what is expected."
 }

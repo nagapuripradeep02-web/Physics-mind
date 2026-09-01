@@ -97,7 +97,7 @@
             "style": "eq"
           }
         ],
-        "margin_note": "This is Unit 6’s work-energy theorem wearing rotational clothes — say the connection.",
+        "margin_note": "This is the Work Power Energy chapter’s work-energy theorem wearing rotational clothes — say the connection.",
         "why": "The same theorem proved in Work Power Energy, with ½Iω² standing in for ½mv². Cross-chapter links like this are what the examiners reward.",
         "common_mistakes": [
           "Writing W = ½I(ω₂ − ω₁)² — the SQUARES are differenced, not the difference squared."

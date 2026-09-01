@@ -163,7 +163,7 @@
             "three k plus one"
           ]
         },
-        "why": "Both powers grow by a fixed factor when n goes up by one, so the assumption can be used as a whole rather than rearranged.",
+        "why": "Both powers grow by a fixed factor when n goes up by one, so only one of them has to be replaced. Rearrange this line first to isolate the first power, 3·5⁽²ᵏ⁺¹⁾ = 17q − 2⁽³ᵏ⁺¹⁾ — that is the form Step 3 substitutes.",
         "common_mistakes": [
           "Assuming it for every k instead of one k.",
           "Not numbering the line."
@@ -257,5 +257,6 @@
         "memory_tip": "The closing sentence names the principle and earns a full mark on its own."
       }
     ]
-  }
+  },
+  "insider_note": "The powers step up by 25 and 8, and 25 − 8 = 17 is what makes this work — that subtraction is the whole idea. Isolate 3·5^(2k+1) from the assumption first, then substitute it in."
 }

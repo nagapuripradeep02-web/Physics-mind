@@ -58,8 +58,8 @@
         "kind": "equation",
         "label": "Find the point of intersection",
         "marks": 1,
-        "margin_note": "First mark. Two of the three lines are as simple as they come — one fixes x, the other fixes y — so their meeting point can be written down without any solving.",
-        "memory_tip": "Two of the lines are as simple as they come — one fixes x, the other y — so the point needs no solving.",
+        "margin_note": "First mark. Two of the three lines are very simple — one fixes x, the other fixes y — so their meeting point can be written down without any solving.",
+        "memory_tip": "Two of the lines are very simple — one fixes x, the other y — so the point needs no solving.",
         "lines": [
           {
             "text": "Sol:",
@@ -143,5 +143,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "x + p = 0 and y + 2 = 0 each fix one coordinate, so the meeting point (−p, −2) reads straight off with no simultaneous equations. Substitute it into the THIRD line, not into one of the first two."
 }

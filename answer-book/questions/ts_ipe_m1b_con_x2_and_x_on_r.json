@@ -100,7 +100,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "Second mark. The condition x ≤ 1 carries the equals sign, so x = 1 belongs to the x² piece and f(1) = 1² = 1. Take the value from the correct piece before comparing anything.",
-        "memory_tip": "The piece whose inequality carries the equals sign owns the join, so it supplies the value there.",
+        "memory_tip": "The piece whose inequality includes the equals sign gives the value at the join.",
         "lines": [
           "At x = 1:",
           "lim(x → 1⁻) f(x) = lim(x → 1⁻) x² = 1² = 1",
@@ -220,5 +220,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Both pieces are polynomials, so only the join at x = 1 can fail — and 1² = 1 makes both sides agree. Saying the three sets cover all of ℝ is what turns this into a proof on ℝ."
 }

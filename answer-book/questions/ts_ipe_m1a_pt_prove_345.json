@@ -86,7 +86,7 @@
             "s equals six"
           ]
         },
-        "why": "With r given the chain is one step shorter than its twin. Recognising which links are already supplied is what keeps the working brief.",
+        "why": "With r given the chain is one step shorter than in the version where only r₁, r₂ and r₃ are supplied. Recognising which values are already given is what keeps the working brief.",
         "common_mistakes": [
           "Re-deriving r from the reciprocal formula unnecessarily.",
           "Writing √36 as 18."
@@ -99,7 +99,7 @@
         "label": "Find each side from its ex-radius",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks — the bulk. Same pairing as the twin: r₁ with a, r₂ with b, r₃ with c.",
+        "margin_note": "Two marks — the bulk. Same pairing as the r₁ = 8, r₂ = 12, r₃ = 24 question: r₁ with a, r₂ with b, r₃ with c.",
         "lines": [
           "(i) r₁ = Δ/(s−a) ⇒ s − a = Δ/r₁ = 6/2 = 3",
           "  ∴ 6 − a = 3 ⇒ a = 3",
@@ -180,5 +180,6 @@
         "memory_tip": "Check against 2s, and note the shape — 3, 4, 5 is the right-angled triangle."
       }
     ]
-  }
+  },
+  "insider_note": "r is given here, so Δ = √(r r₁ r₂ r₃) = 6 comes straight out and s = 6. Each side then follows from its own ex-radius, and 3 + 4 + 5 = 2s confirms it."
 }

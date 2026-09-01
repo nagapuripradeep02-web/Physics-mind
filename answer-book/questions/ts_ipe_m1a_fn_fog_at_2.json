@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "fog means g acts FIRST — find g(2) = 5, then f(5). Reading the composition left to right instead gives f(2) = 5 and then g(5) = 26, a completely different answer."
 }

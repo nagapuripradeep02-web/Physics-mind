@@ -140,5 +140,6 @@
         "memory_tip": "Differentiate first, substitute second — a number put in early has no derivative left to give."
       }
     ]
-  }
+  },
+  "insider_note": "Similar triangles give r = 3h/4 here, not h/2 — the ratio comes from the cone's own dimensions. Eliminate r first, so V = 3πh³/16."
 }

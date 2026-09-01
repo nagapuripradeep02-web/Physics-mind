@@ -125,10 +125,11 @@
         "why": "After the modulus is removed both lines are multiples of x, so x cancels and the expression is the constant 11 for every x > 0. The limit is that constant.",
         "common_mistakes": [
           "Giving 1, which is the value at x → −∞ where |x| = −x makes it (−5x)/(−5x).",
-          "Dividing by x² instead of x and reporting 0."
+          "Dividing only the numerator by x, leaving 11/x, and reporting 0."
         ],
         "memory_tip": "Eleven over one: the top adds 8 + 3 and the bottom subtracts 3 − 2."
       }
     ]
-  }
+  },
+  "insider_note": "x → ∞ means x is POSITIVE, so |x| = x and the modulus simply disappears. The whole question is deciding the sign of x before anything else."
 }

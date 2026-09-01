@@ -360,7 +360,7 @@
         "kind": "boxed_final",
         "label": "Solve the pair",
         "marks": 3,
-        "margin_note": "The last three marks. Two linear equations in two unknowns — solve them any way you like; the book uses the cross-multiplication rule. The answer is a single point.",
+        "margin_note": "The last three marks. Two linear equations in two unknowns — solve them any way you like; here subtracting (2) from (1) removes x in one step. The answer is a single point.",
         "memory_tip": "Two linear equations, two unknowns, one point.",
         "lines": [
           "Step-3: Solving (1) and (2), we get S;",
@@ -378,7 +378,7 @@
           "must_convey": "That solving the two equations gives ∴ Circumcentre S(x, y) = (−1/3, 2/3).",
           "accept": [
             "solve the two equations together to get the circumcentre",
-            "use cross multiplication on equation one and two",
+            "subtract equation two from equation one to remove x",
             "solving the pair gives the point",
             "rendu equations solve chesthe circumcentre vasthundi",
             "the circumcentre is this point"
@@ -390,18 +390,19 @@
           ],
           "heard_as": [
             "solve",
-            "cross multiplication",
+            "subtract the equations",
             "circumcentre is",
             "the point"
           ]
         },
-        "why": "The circumcentre can sit outside the triangle when the triangle is obtuse, so an answer far from the vertices is not automatically wrong.",
+        "why": "Two perpendicular bisectors meet at exactly one point, so this pair of equations has a single solution — and that point is the circumcentre.",
         "common_mistakes": [
-          "Arithmetic slip in the cross-multiplication denominators.",
+          "Subtracting the two equations the wrong way round, so the sign of y comes out reversed.",
           "Writing the coordinates the wrong way round."
         ],
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Square both sides straight away — the x² and y² terms cancel every time, so no root ever survives. Two linear equations are left, and subtracting them here removes x in a single step."
 }

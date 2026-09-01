@@ -31,8 +31,11 @@ import {
 } from '../lib/answerBook/vidiChecks';
 
 const ROOT = process.cwd();
-const CONTEXTS = ROOT + '/.answerbook_logs/vidi_contexts.json';
 const arg = (k: string, d: string) => process.argv.find((a) => a.startsWith('--' + k + '='))?.split('=')[1] ?? d;
+/** Where the context dump lives. Overridable so a STRATIFIED subset can be audited: --limit
+ *  takes the FIRST N contexts in file order, which silently concentrates a sample in whichever
+ *  chapter sorts first and measures nothing about the rest. Write a filtered dump, point at it. */
+const CONTEXTS = arg('contexts', ROOT + '/.answerbook_logs/vidi_contexts.json');
 const PREFIX = arg('prefix', 'ts_ipe_p1');
 const OUT = arg('out', ROOT + '/.answerbook_logs/audit_' + PREFIX + '.jsonl');
 const ENDPOINT = arg('endpoint', 'http://localhost:8110/api/chat');

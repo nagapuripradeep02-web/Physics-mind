@@ -146,7 +146,7 @@
         },
         "why": "The four triples are (±a, a, ±a) in all four sign combinations — which is what makes the final sum collapse so neatly.",
         "common_mistakes": [
-          "Listing only two diagonals, as the previous question needed.",
+          "Listing only two diagonals; this question needs all four.",
           "Including face diagonals among the four."
         ]
       },
@@ -184,7 +184,7 @@
         },
         "why": "A cube has exactly four body diagonals, one from each pair of opposite corners. Drawing them is the quickest way to see that there are four and not six.",
         "common_mistakes": [
-          "Drawing only two diagonals, as the previous question needed.",
+          "Drawing only two diagonals; this question needs all four.",
           "Counting face diagonals among the four."
         ],
         "figure": {
@@ -525,5 +525,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "All four body diagonals are needed here, not the two the angle question uses. Pair the squares as (l + m ± n) with (l − m ± n) so (a + b)² + (a − b)² = 2(a² + b²) applies twice, then l² + m² + n² = 1 closes it."
 }

@@ -132,5 +132,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "u = √x makes u² = x, so the 1 − u² under the root becomes simply 1 − x. Combining the two roots gives √(x − x²), valid only for 0 < x < 1."
 }

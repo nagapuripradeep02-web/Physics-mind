@@ -141,5 +141,6 @@
         "memory_tip": "A cube has six equal square faces, so S = 6a², and its derivative doubles the 6 into 12a."
       }
     ]
-  }
+  },
+  "insider_note": "Same two-step route as its partner: da/dt from the volume rate, then the surface rate. With a = 10 the numbers stay whole, giving 3.6."
 }

@@ -169,11 +169,12 @@
         "why": "Concurrency is exactly the statement that the third line also passes through that point, so substituting is not a check — it IS the equation that determines the unknown.",
         "common_mistakes": [
           "Substituting into one of the two lines already used, which gives 0 = 0.",
-          "Sign slip when the point has a negative coordinate."
+          "Substituting 11 and 5 the wrong way round into 2x − 3y + k."
         ],
         "mark_note": "Solution",
         "memory_tip": "Putting that point into the third line must give zero, and the one unknown drops out."
       }
     ]
-  }
+  },
+  "insider_note": "Solve the two lines WITHOUT the unknown first — using a line that carries k leaves k inside the point and doubles the work. The point (11, 5) then gives k = −7 in a single substitution."
 }

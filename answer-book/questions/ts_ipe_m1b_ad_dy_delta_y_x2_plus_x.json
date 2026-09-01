@@ -111,7 +111,7 @@
         "label": "Find Δy from the exact change",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Δy needs the function evaluated at both 10.1 and 10. Δx = 0.1 is ten times bigger than in the previous part, so dy and Δy sit further apart here — 2.1 against 2.11.",
+        "margin_note": "Second mark. Δy needs the function evaluated at both 10.1 and 10. Δx = 0.1 is large for this kind of question, so dy and Δy sit further apart here — 2.1 against 2.11.",
         "lines": [
           "Δy = f(x + Δx) − f(x) = f(10.1) − f(10)",
           "f(10.1) = (10.1)² + 10.1 = 102.01 + 10.1 = 112.11",
@@ -152,5 +152,6 @@
         "memory_tip": "Δy is the after value minus the before value, in that order — a negative Δy is allowed and simply means y went down."
       }
     ]
-  }
+  },
+  "insider_note": "Δx = 0.1 is comparatively large here, so dy and Δy differ visibly — 2.1 against 2.11. That visible gap is the point of the question."
 }

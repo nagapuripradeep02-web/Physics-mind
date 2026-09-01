@@ -48,7 +48,7 @@
         "kind": "text",
         "label": "Take the locus point",
         "marks": 0,
-        "margin_note": "No mark of its own, but nothing below can be written without it. P is the point that moves; A and B are nailed down.",
+        "margin_note": "No mark of its own, but nothing below can be written without it. P is the point that moves; A and B are fixed.",
         "memory_tip": "The 'third vertex' is the moving point P; the hypotenuse ends are fixed.",
         "lines": [
           {
@@ -122,7 +122,7 @@
         "why": "A right angle at a point is almost never used as an angle in this chapter — it is used as Pythagoras. PA² + PB² = AB² turns the angle into distances, and distances are what coordinates can express.",
         "common_mistakes": [
           "Writing PA² + AB² = PB², which puts the right angle at the wrong vertex.",
-          "Trying to use the slope condition m₁m₂ = −1 and then losing the sign."
+          "Writing the slope condition as m₁m₂ = 1 instead of −1; with the minus sign that route is correct and gives the same circle."
         ]
       },
       {
@@ -208,9 +208,10 @@
         "why": "The locus of a point that sees a fixed segment at a right angle is the circle on that segment as diameter, so a circle is the expected shape and a check on the algebra.",
         "common_mistakes": [
           "Forgetting to divide by the common factor 2 at the end.",
-          "Losing a sign when expanding a bracket like (y − 4)²."
+          "Losing a sign when expanding (y − 6)², which gives −12y."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The hypotenuse is named in the question, so its two ends are the fixed points and the right angle sits at the third vertex: AB² = 72 is a plain number on the right. Divide by the common 2 at the end."
 }

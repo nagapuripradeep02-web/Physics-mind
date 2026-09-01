@@ -58,7 +58,7 @@
         "kind": "equation",
         "label": "Write the chord and the circle",
         "marks": 0,
-        "margin_note": "No mark of its own. The chord is already given as lx + my = 1 — exactly the '= 1' form homogenisation needs — so no clearing is required here, unlike the earlier questions in the run.",
+        "margin_note": "No mark of its own. The chord is already given as lx + my = 1 — exactly the '= 1' form homogenisation needs — so no clearing is required here, unlike a chord given as ax + by = c, which must first be divided by c.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,7 +89,7 @@
             "x squared plus y squared"
           ]
         },
-        "why": "Homogenisation needs the line as (something) = 1, and this question hands it over that way — which is why the whole answer is shorter than its neighbours.",
+        "why": "Homogenisation needs the line as (something) = 1, and this question already gives it that way, so no dividing-through step is needed before the homogenisation.",
         "common_mistakes": [
           "Rearranging the chord unnecessarily and introducing a sign error.",
           "Leaving the circle as x² + y² = a² and forgetting to move a² across."
@@ -185,8 +185,9 @@
         "marks": 2,
         "margin_note": "The last two marks — one for stating h² = ab, one for carrying it through. Coincident means the two lines are the SAME line, which for a pair is exactly h² = ab.",
         "lines": [
-          "If this pair of lines are coincident then  h² = ab",
-          "Here a = (1 − a²l²), b = (1 − a²m²), 2h = −2a²lm ⇒ h = −a²lm",
+          "Write the pair's coefficients as A, B, H, because the letter a is already the circle's radius here.",
+          "If this pair of lines are coincident then  H² = AB",
+          "Here A = (1 − a²l²), B = (1 − a²m²), 2H = −2a²lm ⇒ H = −a²lm",
           "⇒ (a²lm)² = (1 − a²l²)(1 − a²m²)",
           "⇒ a⁴l²m² = 1 − a²l² − a²m² + a⁴l²m²",
           "⇒ 0 = 1 − a²l² − a²m²",
@@ -226,5 +227,6 @@
         "memory_tip": "Coincident lines mean h² = ab — the equal-roots condition for the pair."
       }
     ]
-  }
+  },
+  "insider_note": "Homogenise by replacing the constant a² with a²(lx + my)², then apply h² = ab, because coincident lines are the equal-root case. The a⁴l²m² cancels on both sides, leaving a²(l² + m²) = 1."
 }

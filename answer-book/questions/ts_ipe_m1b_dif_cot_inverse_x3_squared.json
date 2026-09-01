@@ -130,5 +130,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two chain rules nest here: the square outside, then Cot⁻¹, then x³. The Cot⁻¹ derivative carries a MINUS sign, which is what makes the answer negative."
 }

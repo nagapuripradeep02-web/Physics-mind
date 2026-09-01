@@ -233,5 +233,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "TWO terms, each with x in base and power, so take logarithms of each SEPARATELY — logging the sum is not allowed. Differentiate u and v apart and add at the end."
 }

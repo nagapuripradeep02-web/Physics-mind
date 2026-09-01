@@ -81,5 +81,6 @@
         "margin_note": "The unit is half of this mark. Never leave it out."
       }
     ]
-  }
+  },
+  "insider_note": "The question asks for the unit outright, and the second mark carries the relation and the unit together. A definition alone, however well written, is capped at one of the two marks."
 }

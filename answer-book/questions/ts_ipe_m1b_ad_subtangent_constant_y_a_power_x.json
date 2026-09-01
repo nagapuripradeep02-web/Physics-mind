@@ -175,7 +175,7 @@
         },
         "why": "The subtangent formula divides y by m, so writing m with a y in it is what allows the two y's to cancel. This is the same step used on y = b eˣ⁄ᵃ, where the slope becomes y/a.",
         "common_mistakes": [
-          "Leaving the slope as aˣ logₑa and dividing aˣ by aˣ later, which works but takes an extra line.",
+          "Skipping this line and going straight to y ÷ (aˣ logₑa); the cancelling still works, but the mark here is for writing the slope in terms of y.",
           "Writing m = y + logₑa, adding instead of multiplying.",
           "Writing m = logₑy, replacing the wrong part of the expression."
         ],
@@ -231,5 +231,6 @@
         "memory_tip": "y over y log a leaves one over log a. The y disappears, and only the base decides the answer."
       }
     ]
-  }
+  },
+  "insider_note": "d/dx(aˣ) = aˣ log a, so the aˣ cancels in y/m and leaves 1/log a. The log a is what makes the answer constant rather than 1."
 }

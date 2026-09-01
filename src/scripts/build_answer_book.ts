@@ -26,7 +26,7 @@ import katex from 'katex';
 import { answerBookQuestionSchema, PAPER_PATTERNS, type AnswerBookQuestion } from '../schemas/answerBook';
 // The Rule 41 word list, IMPORTED not copied — it is the same list the shakedown
 // grades Vidi's replies with, so the bank and the model are held to one standard.
-import { idiomsIn } from '../lib/answerBook/vidiChecks';
+import { idiomsIn, markNumberError } from '../lib/answerBook/vidiChecks';
 
 const ROOT = process.cwd();
 const BOOK_DIR = join(ROOT, 'answer-book');
@@ -443,8 +443,12 @@ manifest.units = manifest.units
         if (q.insider_note) strings.push(['insider_note', q.insider_note]);
 
         let tips = 0, notes = 0;
+        let marksSoFar = 0;
         for (const s of q.answer.steps) {
             const at = `${where} / ${s.id}`;
+            const markNumErr = markNumberError(s.margin_note, s.marks, marksSoFar);
+            if (markNumErr) bad.push(`${at}: ${markNumErr}`);
+            marksSoFar += s.marks || 0;
             // The two fields carrying every explanation Vidi gives.
             if (!s.why) bad.push(`${at}: no \`why\` — it is the model's WHY line`);
             if (!s.common_mistakes?.length) bad.push(`${at}: no \`common_mistakes\``);

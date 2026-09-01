@@ -183,5 +183,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The target is a Sin⁻¹, so build sin(α + β) with the sin(A+B) formula. Both angles come from 3-4-5 and 7-24-25 triangles, so the cosines are exact and no root survives."
 }

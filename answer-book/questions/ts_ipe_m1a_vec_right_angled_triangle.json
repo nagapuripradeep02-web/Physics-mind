@@ -128,7 +128,7 @@
         "why": "Pythagoras compares the LONGEST side against the other two, so the drawing is how you check which of the three magnitudes should sit alone on one side of the equation.",
         "common_mistakes": [
           "Marking the right angle at the wrong vertex, which tests the wrong pair of sides.",
-          "Assuming the vertices are given in the order they appear around the triangle."
+          "Assuming the right angle is at A because A is named first, instead of finding which square equals the sum of the other two."
         ],
         "figure": {
           "id": "right_angled_triangle_abc",
@@ -325,5 +325,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Compare the SQUARES of the magnitudes, never the roots — 41 = 6 + 35 is exact while the roots are not. The longest side is AB, so the right angle sits at C, opposite it."
 }

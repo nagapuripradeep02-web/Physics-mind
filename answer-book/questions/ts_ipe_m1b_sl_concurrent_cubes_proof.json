@@ -213,5 +213,6 @@
         "memory_tip": "The three mixed terms are all abc, and the three cubes collect on the other side."
       }
     ]
-  }
+  },
+  "insider_note": "Do not simplify the point of intersection: the common denominator ca − b² cancels the moment it goes into the third line. What survives is 3abc − (a³ + b³ + c³) = 0, which is already the result."
 }

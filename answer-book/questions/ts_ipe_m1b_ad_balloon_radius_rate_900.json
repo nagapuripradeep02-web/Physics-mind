@@ -138,5 +138,6 @@
         "memory_tip": "4π × 225 is 900π, and the 900 pumped in per second cancels it — so the answer is exactly 1/π."
       }
     ]
-  }
+  },
+  "insider_note": "Here dV/dt is given and dr/dt is asked — the reverse of the bubble question. Substitute r = 15 into dV/dt = 4πr²(dr/dt) and solve, giving 1/π."
 }

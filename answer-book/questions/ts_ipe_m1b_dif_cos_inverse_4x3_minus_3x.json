@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "4x³ − 3x is cos3θ, so put x = cos θ and the whole thing collapses to 3Cos⁻¹x. Differentiating the original directly is far harder and rarely lands."
 }

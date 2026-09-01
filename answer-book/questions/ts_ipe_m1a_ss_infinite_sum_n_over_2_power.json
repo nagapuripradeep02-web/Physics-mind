@@ -91,7 +91,7 @@
         "label": "Sum the geometric series that is left",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The last move — doubling back — is the one most often missed. What the subtraction gives is S/2, not S.",
+        "margin_note": "Second mark. The last move — multiplying by 2 — is the one most often missed. What the subtraction gives is S/2, not S.",
         "memory_tip": "After the subtraction you are holding half of S, so double it at the end.",
         "lines": [
           "(1/2)S = 1 + 1/2 + 1/2² + 1/2³ + … to ∞",

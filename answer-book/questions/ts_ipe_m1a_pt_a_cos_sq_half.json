@@ -146,7 +146,7 @@
         "label": "Use the sin2A identity",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two more marks. sin2A + sin2B + sin2C = 4 sinA sinB sinC in any triangle — the Unit 6 identity, quoted here rather than re-proved.",
+        "margin_note": "Two more marks. sin2A + sin2B + sin2C = 4 sinA sinB sinC in any triangle — the Trigonometric Ratios and Transformations identity, quoted here rather than re-proved.",
         "memory_tip": "In any triangle sin2A + sin2B + sin2C = 4 sinA sinB sinC. Quote it, do not re-prove it.",
         "lines": [
           "= R(4 sinA sinB sinC)   [∵ in a △, sin2A+sin2B+sin2C = 4 sinA sinB sinC]",
@@ -175,7 +175,7 @@
             "two R"
           ]
         },
-        "why": "This is exactly the identity proved as Unit 6 answer 26.1. Quoting a proved result rather than re-deriving it is what keeps an 8-mark answer inside its time.",
+        "why": "This is exactly the identity sin2A + sin2B + sin2C = 4 sinA sinB sinC, proved in the Trigonometric Ratios chapter. Quoting a proved result rather than re-deriving it is what keeps an 8-mark answer inside its time.",
         "common_mistakes": [
           "Trying to re-prove the identity and running out of time.",
           "Halving wrongly and losing the factor of 2."
@@ -226,5 +226,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Use cos²(A/2) = (1 + cos A)/2 to split the sum into (a+b+c)/2 and a cosine part. The first is s at once, and Σsin2A = 4 sinA sinB sinC finishes the rest."
 }

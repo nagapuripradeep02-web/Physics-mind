@@ -48,8 +48,8 @@
         "kind": "text",
         "label": "Take the locus point",
         "marks": 0,
-        "margin_note": "No mark of its own. The same symmetric pair as its partner question, with the labels the other way round and a smaller difference.",
-        "memory_tip": "The same symmetric pair as its partner, with the labels reversed and a smaller difference.",
+        "margin_note": "No mark of its own. Both fixed points sit on the x-axis, symmetric about the origin, so the y-terms will cancel later.",
+        "memory_tip": "Write down which point is A and which is B before anything else: PA is measured from A = (4, 0) and PB from B = (−4, 0).",
         "lines": [
           {
             "text": "Sol:",
@@ -137,20 +137,20 @@
         "margin_note": "Second mark. The y² terms cancel because both fixed points sit on the x-axis, and the x-terms collapse by the difference of two squares. Squaring here also removes the ±.",
         "memory_tip": "Both fixed points sit on the x-axis, so the y² terms cancel outright.",
         "lines": [
-          "⇒ ±8 PB = 16 + [(x−4)² + (y−0)²] − [(x+4)² + (y−0)²]",
-          "⇒ ±8 PB = 16 + (x−4)² − (x+4)²",
-          "⇒ ±8 PB = 16 − 4(x)(4)      [∵ (a−b)² − (a+b)² = −4ab]",
-          "⇒ ±8 PB = 16 − 16x   ⇒   ±PB = 2(1 − x)   ⇒   PB² = 4(x − 1)²"
+          "⇒ ±8 PB = 16 + [(x+4)² + (y−0)²] − [(x−4)² + (y−0)²]",
+          "⇒ ±8 PB = 16 + (x+4)² − (x−4)²",
+          "⇒ ±8 PB = 16 + 4(x)(4)      [∵ (a+b)² − (a−b)² = 4ab]",
+          "⇒ ±8 PB = 16 + 16x   ⇒   ±PB = 2(1 + x)   ⇒   PB² = 4(x + 1)²"
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the y² terms cancel, the difference of squares gives ±8PB = 16 − 16x, and squaring gives PB² = 4(x − 1)².",
+          "must_convey": "That the y² terms cancel, the difference of squares gives ±8PB = 16 + 16x, and squaring gives PB² = 4(x + 1)².",
           "accept": [
-            "the y squared terms cancel and the x difference of squares gives minus four a b",
-            "substitute and use a minus b whole squared minus a plus b whole squared equals minus four a b",
-            "both y terms are the same so they cancel leaving eight P B equals sixteen minus sixteen x",
+            "the y squared terms cancel and the x difference of squares gives four a b",
+            "substitute and use a plus b whole squared minus a minus b whole squared equals four a b",
+            "both y terms are the same so they cancel leaving eight P B equals sixteen plus sixteen x",
             "y terms cancel avuthaayi, x lo difference of squares",
-            "reduce it to P B squared equals four into x minus one whole squared"
+            "reduce it to P B squared equals four into x plus one whole squared"
           ],
           "reject": [
             "that is the answer",
@@ -159,15 +159,15 @@
           ],
           "heard_as": [
             "cancel",
-            "minus four a b",
+            "four a b",
             "difference of squares",
-            "sixteen minus sixteen x",
+            "sixteen plus sixteen x",
             "P B squared"
           ]
         },
-        "why": "Both fixed points sit on the x-axis at ±a, so the y² terms are identical and cancel, and what is left is a difference of two squares in x.",
+        "why": "Both fixed points sit on the x-axis at ±a, so the y² terms are identical and cancel, and what is left is a difference of two squares in x. PB is measured from B = (−4, 0), so PB² is the (x+4)² term.",
         "common_mistakes": [
-          "Using +4ab and getting 16 + 16x.",
+          "Using −4ab and getting 16 − 16x. Here PB² is the (x+4)² term, so the difference of squares is +4ab.",
           "Cancelling the 8 against the 16 as 1 instead of 2."
         ]
       },
@@ -177,13 +177,13 @@
         "label": "Simplify to the locus",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Opposite signs on x² and y² again — a hyperbola, the same shape its partner question produced from the same kind of condition.",
+        "margin_note": "The last two marks. Opposite signs on x² and y² — a hyperbola, which is what a constant difference of two distances always gives.",
         "memory_tip": "OPPOSITE signs on x² and y² — a hyperbola, as any difference condition gives.",
         "lines": [
-          "⇒ (x+4)² + (y−0)² = 4(x² + 1 − 2x)",
-          "⇒ (x² + 16 + 8x) + y² = 4x² + 4 − 8x",
-          "⇒ x² + 16 + 8x + y² − 4x² − 4 + 8x = 0",
-          "⇒ −3x² + y² + 16x + 12 = 0",
+          "⇒ (x+4)² + (y−0)² = 4(x² + 1 + 2x)",
+          "⇒ (x² + 16 + 8x) + y² = 4x² + 4 + 8x",
+          "⇒ x² + 16 + 8x + y² − 4x² − 4 − 8x = 0",
+          "⇒ −3x² + y² + 12 = 0",
           {
             "text": "∴ Locus of P is 3x² − y² − 12 = 0",
             "style": "boxed"
@@ -214,10 +214,11 @@
         },
         "why": "A constant difference of distances to two fixed points is a hyperbola with those points as foci, so OPPOSITE signs on x² and y² are the expected finish — the one family here that is not a circle or an ellipse.",
         "common_mistakes": [
-          "Leaving the answer as −3x² + y² + 16x + 12 = 0 without tidying the signs.",
+          "Leaving the answer as −3x² + y² + 12 = 0 without tidying the signs.",
           "Writing 3x² + y² = 12 and turning a hyperbola into an ellipse."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Never square |PA − PB| = 4 directly; isolate PA first or a PA·PB cross term survives. PB is measured from B = (−4, 0), so PB² is the (x + 4)² bracket — swapping the two brackets flips the sign of the 16x."
 }

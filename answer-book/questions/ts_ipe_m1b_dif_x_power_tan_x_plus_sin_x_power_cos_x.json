@@ -150,7 +150,7 @@
         "label": "Take the logarithm of the second term and differentiate",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks. Here the power is cos x, whose derivative is −sin x, so the first product term carries a minus sign. Carrying that minus sign correctly is where most of this mark is won or lost.",
+        "margin_note": "Two marks. Here the power is cos x, whose derivative is −sin x, so the first product term carries a minus sign. Carrying that minus sign correctly is where this mark is most often lost.",
         "memory_tip": "The power comes down as the outside factor of the logarithm. Here the power is cos x, and its derivative −sin x puts a minus sign on the first term.",
         "lines": [
           "v = (sin x)^(cos x)",
@@ -276,5 +276,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two separate terms, so take logarithms of each on its own and add the derivatives — never log the sum. Both need x > 0 and sin x > 0 for the logarithms to exist."
 }

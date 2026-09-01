@@ -189,5 +189,6 @@
         "memory_tip": "A negative reciprocal of a fraction: turn it over, then change the sign. −5/2 becomes +2/5."
       }
     ]
-  }
+  },
+  "insider_note": "Write y = 10/x as a power before differentiating rather than using the quotient rule. m = −5/2 is negative, so the normal slope is +2/5."
 }

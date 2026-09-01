@@ -189,7 +189,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The −1 is set aside, 2 sin((π−C)/4) comes out, and the sine inside the bracket is turned into a cosine so that both bracket terms are cosines.",
+        "margin_note": "Seventh mark. The −1 is set aside, 2 sin((π−C)/4) comes out, and the sine inside the bracket is turned into a cosine so that both bracket terms are cosines.",
         "memory_tip": "Inside the bracket, sin((π−C)/4) = cos((π+C)/4), and the condition rewrites that as cos((2π−A−B)/4).",
         "lines": [
           "= −1 + 2 sin((π−C)/4)",

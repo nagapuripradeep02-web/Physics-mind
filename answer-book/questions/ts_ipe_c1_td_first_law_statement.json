@@ -80,5 +80,6 @@
         "margin_note": "State whose work w is; the sign convention is part of the equation."
       }
     ]
-  }
+  },
+  "insider_note": "Two marks, and the second is the equation with its sign convention named. ΔU = q + w is only correct when w is stated as the work done on the system; without that sentence the equation is ambiguous."
 }

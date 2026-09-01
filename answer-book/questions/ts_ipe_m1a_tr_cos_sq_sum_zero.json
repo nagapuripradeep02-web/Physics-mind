@@ -230,7 +230,7 @@
         "label": "Take cos C out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. cos C comes out of the last two terms, and the cos C INSIDE the bracket is written back as cos(A+B). There is no 2 to take out here.",
+        "margin_note": "Seventh mark. cos C comes out of the last two terms, and the cos C INSIDE the bracket is written back as cos(A+B). There is no 2 to take out here.",
         "memory_tip": "Convert only the cos C inside the bracket, never the one outside. There is no 2 to take out.",
         "lines": [
           "= 1 + cosC [cos(A−B) + cosC]",

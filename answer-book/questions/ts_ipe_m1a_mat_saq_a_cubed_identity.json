@@ -54,7 +54,7 @@
         "label": "Find A²",
         "marks": 1,
         "mark_note": "A squared",
-        "margin_note": "First mark. Multiply row by column. Watch the negative entries — row 1 against column 2 is 1(−2) + (−2)(1) + 1(−1) = −5, and a dropped minus here quietly ruins A³ as well.",
+        "margin_note": "First mark. Multiply row by column. Watch the negative entries — row 1 against column 2 is 1(−2) + (−2)(1) + 1(−1) = −5, and a dropped minus here carries through into A³ as well.",
         "memory_tip": "Multiply row by column, watching the negatives: row 1 against column 2 is 1(−2) + (−2)(1) + 1(−1) = −5.",
         "lines": [
           {
@@ -150,7 +150,7 @@
         "why": "Matrix multiplication is associative, so A·A·A can be grouped as (A·A)·A. Reusing A² halves the work and is why the order of the steps matters.",
         "common_mistakes": [
           "Multiplying A by A by A from scratch and making a fresh arithmetic error.",
-          "Multiplying A·A² and A²·A as though they might differ; here they do not, but the working must still be shown.",
+          "Multiplying A² by A² and calling the result A³ — that gives A⁴; A³ is A²·A.",
           "Sign slips in the larger numbers."
         ]
       },
@@ -209,5 +209,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "A³ is needed, so A² has to be right before anything else — one slip there ruins both later matrices. Work entry by entry across all four terms; every one of the nine must come to 0."
 }

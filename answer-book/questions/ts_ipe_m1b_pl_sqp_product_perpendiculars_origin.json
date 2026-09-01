@@ -134,7 +134,7 @@
             "perpendicular distance"
           ]
         },
-        "why": "This is what makes the origin version SHORTER than the general-point version in chapter answer 8: the numerator has one term instead of two.",
+        "why": "This is what makes the origin version SHORTER than the general-point version: the numerator has one term instead of two.",
         "common_mistakes": [
           "Carrying α and β through when the point is the origin.",
           "Forgetting the modulus signs."
@@ -147,7 +147,7 @@
         "kind": "equation",
         "label": "Multiply them together",
         "marks": 1,
-        "margin_note": "One mark. Multiply the two fractions. The numerator is immediately n₁n₂, which the dictionary already names; only the denominator needs work.",
+        "margin_note": "One mark. Multiply the two fractions. The numerator is immediately n₁n₂, which the matched coefficients already give; only the denominator needs work.",
         "lines": [
           "∴ The product of the perpendiculars is",
           "p₁·p₂ = [|n₁| / √(l₁² + m₁²)] · [|n₂| / √(l₂² + m₂²)]",
@@ -176,7 +176,7 @@
             "numerator"
           ]
         },
-        "why": "The numerator finishes in one step because c was matched directly — all the remaining work is in the denominator, exactly as in chapter answer 8.",
+        "why": "The numerator finishes in one step because c was matched directly — all the remaining work is in the denominator, exactly as in the general-point version.",
         "common_mistakes": [
           "Adding rather than multiplying the two distances.",
           "Forgetting to multiply the two roots under one square root."
@@ -189,7 +189,7 @@
         "kind": "boxed_final",
         "label": "Convert to a, h, b and c",
         "marks": 1,
-        "margin_note": "The last mark. Add and subtract 2l₁l₂m₁m₂ under the root so it regroups as a difference of squares plus a square — the same rearrangement chapter answer 8 uses.",
+        "margin_note": "The last mark. Add and subtract 2l₁l₂m₁m₂ under the root so it regroups as a difference of squares plus a square — the same rearrangement the general-point version uses.",
         "lines": [
           "= |c| / √((l₁l₂ − m₁m₂)² + 2l₁l₂m₁m₂ + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
           "= |c| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",
@@ -204,7 +204,7 @@
           "accept": [
             "add and subtract the same term so the denominator regroups",
             "it becomes a minus b squared plus four h squared",
-            "substitute the dictionary into the denominator",
+            "substitute the matched coefficients into the denominator",
             "denominator ni a minus b square plus four h square ga rayali",
             "this gives the required result"
           ],
@@ -229,5 +229,6 @@
         "memory_tip": "Add and subtract 2l₁l₂m₁m₂ under the root so it regroups into a difference of squares plus a square."
       }
     ]
-  }
+  },
+  "insider_note": "The constants have to be matched as well: n₁n₂ = c is what makes the numerator collapse to |c|. The denominator is the same (a − b)² + 4h² as the (α, β) version, so the two proofs differ only at the top."
 }

@@ -19,11 +19,11 @@
   "appearances": [],
   "mark_split": [
     {
-      "label": "Write the two complements A′ and B′",
+      "label": "Write A′ and B′ and check the first law",
       "marks": 1
     },
     {
-      "label": "Check both sides of each law",
+      "label": "Check the second law",
       "marks": 1
     }
   ],
@@ -42,10 +42,10 @@
       {
         "id": "s1_complements",
         "kind": "equation",
-        "label": "Write the two complements A′ and B′",
+        "label": "Write A′ and B′ and check the first law",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Write U out first, then take each complement inside U. Both parts of the question use these two sets.",
+        "margin_note": "First mark. A′ and B′ are written once at the top because both parts use them, and the first law is checked here. Note that 4 and 7 belong to neither A nor B, so they appear in both complements.",
         "lines": [
           {
             "text": "Sol:",
@@ -53,15 +53,18 @@
           },
           "U = {1, 2, 3, 4, 5, 6, 7},  A = {1, 2, 3},  B = {3, 5, 6}",
           "A′ = U − A = {4, 5, 6, 7}",
-          "B′ = U − B = {1, 2, 4, 7}"
+          "B′ = U − B = {1, 2, 4, 7}",
+          "(i) A ∪ B = {1, 2, 3, 5, 6}, so (A ∪ B)′ = {4, 7}",
+          "A′ ∩ B′ = {4, 5, 6, 7} ∩ {1, 2, 4, 7} = {4, 7}",
+          "∴ (A ∪ B)′ = A′ ∩ B′"
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That A′ = {4, 5, 6, 7} and B′ = {1, 2, 4, 7}, each taken inside U.",
+          "must_convey": "That A′ = {4, 5, 6, 7} and B′ = {1, 2, 4, 7}, and that both sides of the first law give {4, 7}.",
           "accept": [
             "the complement is everything in U that the set leaves out",
             "A dash is four five six seven and B dash is one two four seven",
-            "take U minus A and U minus B",
+            "the complement of the union is four seven and so is A dash cap B dash",
             "U lo unna, A lo leni elements ni teesukunte A dash vasthundi",
             "write both complements first because both parts need them"
           ],
@@ -74,10 +77,10 @@
             "complement",
             "A dash",
             "B dash",
-            "U minus A"
+            "complement of the union"
           ]
         },
-        "why": "Every complement in this question is taken inside U, so both complements are found once here and then used in both parts. Doing them separately for each part is where members get dropped.",
+        "why": "Every complement in this question is taken inside U, so both complements are found once here and then used in both parts. Doing them separately for each part is where members get dropped. The first law is then shown by working out its two sides on their own and finding the same set.",
         "common_mistakes": [
           "Leaving 3 in A′ or in B′; 3 belongs to both A and B, so it is in neither complement.",
           "Taking the complement inside A ∪ B instead of inside U.",
@@ -88,29 +91,27 @@
       {
         "id": "s2_both_laws",
         "kind": "boxed_final",
-        "label": "Check both sides of each law",
+        "label": "Check the second law",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. Both parts are needed for this mark, and each part must show both of its sides worked out.",
+        "margin_note": "Second mark. A and B share only the element 3, so the complement of A ∩ B is everything else in U. Both sides must still be written out.",
         "lines": [
-          "(i) A ∪ B = {1, 2, 3, 5, 6}, so (A ∪ B)′ = {4, 7}",
-          "A′ ∩ B′ = {4, 5, 6, 7} ∩ {1, 2, 4, 7} = {4, 7}",
           "(ii) A ∩ B = {3}, so (A ∩ B)′ = {1, 2, 4, 5, 6, 7}",
           "A′ ∪ B′ = {4, 5, 6, 7} ∪ {1, 2, 4, 7} = {1, 2, 4, 5, 6, 7}",
           {
-            "text": "∴ (A ∪ B)′ = A′ ∩ B′  and  (A ∩ B)′ = A′ ∪ B′",
+            "text": "∴ (A ∩ B)′ = A′ ∪ B′",
             "style": "boxed"
           }
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That both sides of each law give the same set, {4, 7} for the first and {1, 2, 4, 5, 6, 7} for the second.",
+          "must_convey": "That both sides of the second law give {1, 2, 4, 5, 6, 7}.",
           "accept": [
-            "the complement of the union is four seven and so is A dash cap B dash",
             "the complement of the intersection matches A dash union B dash",
-            "work out both sides of each law and they agree",
+            "A intersection B is just three, so its complement is everything else",
+            "work out both sides and they agree",
             "rendu sides same set ichchayi kabatti law nirupinchabadindi",
-            "part one gives four and seven, part two gives everything except three"
+            "the second part gives everything except three"
           ],
           "reject": [
             "that is the answer",
@@ -118,17 +119,17 @@
             "then I get it"
           ],
           "heard_as": [
-            "complement of the union",
-            "four seven",
+            "complement of the intersection",
             "except three",
+            "A dash union B dash",
             "both sides"
           ]
         },
-        "why": "Each law is shown by working out its two sides on their own and finding the same set, which is what the word 'show' asks for. The final line states the two equalities, so the reader does not have to compare sets themselves.",
+        "why": "The second law is shown the same way: work out its two sides on their own and find the same set, which is what the word ‘show’ asks for. The final line states the equality, so the reader does not have to compare the sets themselves.",
         "common_mistakes": [
-          "Swapping the two laws and writing (A ∪ B)′ = A′ ∪ B′.",
-          "Working out only one side of each law and asserting the other.",
-          "Leaving 4 out of (A ∪ B)′, even though 4 is in neither A nor B."
+          "Swapping the two laws and writing (A ∩ B)′ = A′ ∩ B′.",
+          "Working out only one side of the law and asserting the other.",
+          "Dropping 7 from (A ∩ B)′; 7 is in U and in neither A nor B, so it belongs there."
         ],
         "memory_tip": "De Morgan changes the operation: the complement of a union is an intersection, and the complement of an intersection is a union."
       }

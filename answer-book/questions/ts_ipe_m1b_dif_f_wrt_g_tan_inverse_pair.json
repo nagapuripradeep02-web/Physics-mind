@@ -217,5 +217,6 @@
         "memory_tip": "Test it at x = 1: f(1) = π/8 and g(1) = π/4, and π/8 is half of π/4."
       }
     ]
-  }
+  },
+  "insider_note": "f simplifies to ½Tan⁻¹x under x = tan θ, so f′ is exactly half of g′. The ratio df/dg is the constant ½, and simplifying f before differentiating is what makes that visible."
 }

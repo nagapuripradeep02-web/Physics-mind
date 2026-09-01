@@ -92,7 +92,7 @@
         "label": "Solve f′(c) = the chord slope",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. eᶜ = e − 1 is solved by taking logₑ of both sides. Note that logₑ(e − 1) is not e − 1 and is not 1 − logₑ e; leave it as it stands.",
+        "margin_note": "Second mark. eᶜ = e − 1 is solved by taking logₑ of both sides. A logarithm of a difference does not split, so logₑ(e − 1) is not logₑ e − logₑ 1; leave it as it stands.",
         "memory_tip": "To get an unknown out of an exponent, take logₑ of both sides.",
         "lines": [
           "f′(x) = eˣ,   so f′(c) = eᶜ",
@@ -130,9 +130,10 @@
         "why": "The theorem states that c lies strictly inside (0, 1), so the answer has to be checked against that. logₑ(e − 1) ≈ 0.541, which is inside — an answer such as e − 1 ≈ 1.718 would be outside and therefore wrong.",
         "common_mistakes": [
           "Giving c = e − 1, which is about 1.718 and lies outside (0, 1).",
-          "Simplifying logₑ(e − 1) to 1 − logₑ 1 or to logₑ e − logₑ 1; a logarithm of a difference does not split."
+          "Splitting logₑ(e − 1) as logₑ e − logₑ 1; a logarithm of a difference does not split."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "This is the mean value theorem in disguise: set f′(c) equal to the average slope e − 1. Then e^c = e − 1 gives c = logₑ(e − 1), which does lie in (0, 1)."
 }

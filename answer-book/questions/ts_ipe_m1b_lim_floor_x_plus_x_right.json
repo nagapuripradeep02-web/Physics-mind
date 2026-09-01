@@ -81,7 +81,7 @@
         "why": "Between two consecutive integers the greatest integer function is constant, so on the whole interval 2 < x < 3 it equals 2. Fixing that value is the entire method.",
         "common_mistakes": [
           "Writing [x] = 3 by rounding 2.001 up instead of taking the integer below.",
-          "Treating [x] as continuous and writing lim [x] = [lim x] without checking the side."
+          "Assuming a one-sided limit at an integer can never equal the value there; just above 2 the greatest integer function is 2, which is [2] itself."
         ],
         "memory_tip": "The greatest integer function steps down to the integer at or below x, so just above 2 it is still 2."
       },
@@ -131,5 +131,6 @@
         "memory_tip": "Above 2 the step has already been taken, so [x] gives 2 and x gives 2."
       }
     ]
-  }
+  },
+  "insider_note": "Approaching from ABOVE puts x in (2, 3), where [x] = 2. The answer is 4, and the gap from the left-hand version is exactly the jump in [x]."
 }

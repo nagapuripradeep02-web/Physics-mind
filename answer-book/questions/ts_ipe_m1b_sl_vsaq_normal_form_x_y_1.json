@@ -102,7 +102,7 @@
         "lines": [
           "On dividing by √((−1)² + (−1)²) = √2, we get",
           "−(1/√2)x − (1/√2)y = 1/√2",
-          "= x(−1/√2) + y(−1/√2) = 1/√2",
+          "which is  x(−1/√2) + y(−1/√2) = 1/√2",
           "Here cosα = −1/√2 and sinα = −1/√2, both negative ⇒ α is in the third quadrant",
           "⇒ α = 225°",
           {
@@ -141,5 +141,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "Make the right side positive first, so it reads −x − y = 1 before dividing by √2. Both ratios are −1/√2, giving α = 225°; naming a first-quadrant angle for two negative values is the usual error."
 }

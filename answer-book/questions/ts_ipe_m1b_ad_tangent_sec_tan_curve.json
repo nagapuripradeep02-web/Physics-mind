@@ -235,5 +235,6 @@
         "memory_tip": "sec²θ − tan²θ = 1 comes straight from 1 + tan²θ = sec²θ. Whenever sec and tan appear squared together, that identity is the one to use."
       }
     ]
-  }
+  },
+  "insider_note": "Parametric, so dy/dx = (dy/dθ)/(dx/dθ), and it simplifies to cosec θ. Multiplying through by sin θ at the end is what produces the printed form."
 }

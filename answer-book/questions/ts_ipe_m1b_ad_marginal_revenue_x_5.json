@@ -134,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Marginal revenue is dR/dx, so differentiate before substituting. The constant 5 disappears entirely, which is a useful check."
 }

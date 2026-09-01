@@ -50,7 +50,7 @@
         "label": "State the period formula",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark, and the book says so outright: writing the formula earns a mark by itself. The +5 shifts the graph sideways and the +7 lifts it — neither changes how often it repeats.",
+        "margin_note": "First mark. Writing the period formula earns a mark on its own. The +5 shifts the graph sideways and the +7 moves it up — neither changes how often it repeats.",
         "memory_tip": "Period of cos(kx + l) = 2π/|k|. The +5 shifts sideways and the +7 lifts — neither changes the period.",
         "lines": [
           {
@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Only the coefficient of x matters; the +5 inside and the +7 outside change nothing at all. The period is 2π/3."
 }

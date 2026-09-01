@@ -85,5 +85,6 @@
         "margin_note": "Box the answer and write m. The unit is part of the mark."
       }
     ]
-  }
+  },
+  "insider_note": "A one-step numerical with no unit conversion in it, so the substitution line earns the first mark on its own. Write the formula with the numbers in before doing any arithmetic, and a slip in the powers of ten then costs one mark instead of two."
 }

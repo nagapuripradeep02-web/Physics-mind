@@ -238,5 +238,6 @@
         "memory_tip": "A negative power turns the term upside down and a half power is a square root, so x₁⁻¹⁄² is simply 1/√x₁."
       }
     ]
-  }
+  },
+  "insider_note": "Implicit differentiation gives the neat slope −√y/√x. Substituting the point and clearing the roots produces the stated form directly."
 }

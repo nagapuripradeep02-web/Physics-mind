@@ -224,5 +224,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The rotation angle is the same α already standing in the equation, so do not bring in a second letter. The two mixed sinα cosα terms cancel and cos²α + sin²α = 1 finishes it: the answer is just X = p."
 }

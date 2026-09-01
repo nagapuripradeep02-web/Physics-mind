@@ -135,5 +135,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Write each ex-radius as Δ/(s−a), so the common denominator is (s−a)(s−b)(s−c). Heron's formula then replaces that by Δ²/s, and the Δ² cancels."
 }

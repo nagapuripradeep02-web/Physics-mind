@@ -227,5 +227,6 @@
         "memory_tip": "Substitute into the ORIGINAL function for the value, never into the derivative — the derivative is zero there, which is how the point was found."
       }
     ]
-  }
+  },
+  "insider_note": "Expand before differentiating. The x² coefficient is negative, so you can see in advance that the stationary point is a maximum — but the second-derivative test still carries a mark of its own, so write P″ = −2 < 0 anyway."
 }

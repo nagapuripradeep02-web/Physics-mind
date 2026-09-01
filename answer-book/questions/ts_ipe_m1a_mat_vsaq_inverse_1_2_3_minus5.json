@@ -144,5 +144,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "|A| = −11 is NEGATIVE, so dividing by it flips every sign in the adjoint. Losing that flip is what turns the answer into its own negative."
 }

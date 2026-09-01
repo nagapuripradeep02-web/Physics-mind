@@ -128,10 +128,11 @@
         },
         "why": "This mark is for recognising that the answer is a constant. A student who keeps differentiating the original fraction will produce something that only reduces to 1/2 after several more lines.",
         "common_mistakes": [
-          "Applying the Tan⁻¹ chain rule to tan(x/2) and producing 1/(2(1 + tan²(x/2))) instead of cancelling first.",
+          "Writing the inner derivative of tan(x/2) as ½ instead of ½sec²(x/2), which gives 1/(2(1 + tan²(x/2))) instead of 1/2.",
           "Giving the answer as x/2, which is y and not dy/dx."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The half-angle identities turn the fraction into tan²(x/2), so the root and the Tan⁻¹ cancel and y is just x/2. The answer is the constant 1/2."
 }

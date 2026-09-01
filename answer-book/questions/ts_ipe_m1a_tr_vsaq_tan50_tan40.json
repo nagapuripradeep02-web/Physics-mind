@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Start from tan(50° − 40°) = tan10° and work backwards. tan40° = cot50° makes the denominator 1 + 1 = 2, and that 2 is the whole answer."
 }

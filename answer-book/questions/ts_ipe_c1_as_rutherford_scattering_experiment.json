@@ -90,5 +90,6 @@
         "margin_note": "Pair each conclusion with its observation number. It reads as reasoning, not a list."
       }
     ]
-  }
+  },
+  "insider_note": "The two halves are marked together, so number the three observations and number the conclusions to match. That pairing is what makes the second half read as reasoning rather than as a memorised list."
 }

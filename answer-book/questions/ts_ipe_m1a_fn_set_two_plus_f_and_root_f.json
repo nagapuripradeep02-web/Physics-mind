@@ -90,7 +90,7 @@
         "margin_note": "The second mark. Only the images that are non negative survive — the others are not real numbers, so those pairs are dropped.",
         "memory_tip": "Only non-negative images survive √f. The pairs with negative values are dropped, not made imaginary.",
         "lines": [
-          "(ii) √f = {(1,√2), (2,√−3), (3,√−1)}",
+          "(ii) Roots of the images: √2 at 1, √−3 at 2, √−1 at 3",
           "√−3 and √−1 are not real",
           "∴ √f = {(1, √2)}"
         ],
@@ -124,5 +124,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "√f drops every pair whose image is negative, so two of the three pairs vanish and the answer is a SMALLER set. Writing √(−3) as a value is exactly the error this question is set to catch."
 }

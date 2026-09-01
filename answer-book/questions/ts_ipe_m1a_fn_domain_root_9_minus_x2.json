@@ -87,7 +87,7 @@
         "why": "A square root of a negative number is not a real number, so the inside decides the whole domain.",
         "common_mistakes": [
           "Solving 9 − x² ≥ 0 as if it were x² ≥ 9, which gives the outside instead of the inside.",
-          "Writing the answer as (−3, 3) with round brackets, which drops two points that are in the domain."
+          "Writing the condition as 9 − x² > 0, as if the root were in a denominator, which loses x = ±3."
         ]
       },
       {
@@ -137,5 +137,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The same shape as any a² − x² root, with the roots at ±3. A plain root allows equality, so the answer is the closed interval [−3, 3]."
 }

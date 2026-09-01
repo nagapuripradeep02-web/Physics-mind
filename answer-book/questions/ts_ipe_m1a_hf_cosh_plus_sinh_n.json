@@ -132,9 +132,10 @@
         "why": "The same cancellation happens on both sides, just with a different exponent. Recognising that saves doing any new work for the right-hand side.",
         "common_mistakes": [
           "Computing both sides and never saying they agree.",
-          "Expanding the right side with a binomial expansion."
+          "Stopping at (2eⁿˣ)/2 without writing it as eⁿˣ."
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The bracket collapses to eˣ before the power matters, so the left side is eⁿˣ in one line. Both sides must be simplified separately and then compared; working one side only is half an answer."
 }

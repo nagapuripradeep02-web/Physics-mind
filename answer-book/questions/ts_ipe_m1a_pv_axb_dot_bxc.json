@@ -65,7 +65,7 @@
         "kind": "text",
         "label": "Write what is given",
         "marks": 0,
-        "margin_note": "No mark of its own. Copy the three (or four) vectors out once, in i, j, k order. Every cross product below is read straight off these rows, so a slip here is repeated three times.",
+        "margin_note": "No mark of its own. Copy the three vectors out once, in i, j, k order. Both cross products below are read straight off these rows, so a slip here is repeated twice.",
         "memory_tip": "Copy the three vectors out once in i, j, k order before any determinant.",
         "lines": [
           {
@@ -277,5 +277,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "b appears in both brackets, but they are still two separate cross products. The last step is a DOT product, so the answer is the single number −54 and not a vector."
 }

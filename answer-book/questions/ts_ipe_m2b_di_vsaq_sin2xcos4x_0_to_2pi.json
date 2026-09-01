@@ -53,7 +53,7 @@
         "label": "Reduce the range using the period property",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Same even-even pattern as the previous answer — the range always collapses by a factor of 4.",
+        "margin_note": "First mark. Same even-even pattern — the range always collapses by a factor of 4.",
         "memory_tip": "This is the sin²xcos⁴x version of the same reduction just used for sin⁴xcos⁶x.",
         "lines": [
           {
@@ -67,7 +67,7 @@
           "= 2×2∫₀^(π/2) sin²x cos⁴x dx",
           "= 4∫₀^(π/2) sin²x cos⁴x dx"
         ],
-        "why": "The same reasoning as the previous answer applies: sin²x and cos⁴x are both even powers, so the integrand survives both reflections and the range collapses to 4 times the 0-to-π/2 integral.",
+        "why": "The same even-power reasoning applies: sin²x and cos⁴x are both even powers, so the integrand survives both reflections and the range collapses to 4 times the 0-to-π/2 integral.",
         "common_mistakes": [
           "Re-deriving from scratch instead of recognising this is the same range-reduction pattern as the previous question.",
           "Losing a factor of 2 somewhere in the double reduction."

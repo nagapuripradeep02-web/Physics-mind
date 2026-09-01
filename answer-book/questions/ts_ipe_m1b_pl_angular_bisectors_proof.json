@@ -75,7 +75,7 @@
             "split the pair and equate the coefficients",
             "a is sin alpha sin beta, b is cos alpha cos beta, two h is minus sin of alpha plus beta",
             "pair ni rendu lines product ga rasi coefficients equate cheyyali",
-            "match the coefficients to get the dictionary"
+            "match the coefficients to get a, b and two h"
           ],
           "reject": [
             "that is the answer",
@@ -89,9 +89,9 @@
             "cos beta"
           ]
         },
-        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. That dictionary between (a, h, b) and the two lines is what every later step spends.",
+        "why": "Every proof in this chapter starts the same way: SPLIT the pair into its two separate lines with unknown coefficients, then match coefficients against the given equation. Those matched coefficients, linking (a, h, b) to the two lines, are what every later step uses.",
         "common_mistakes": [
-          "Using the slope form m₁x − y, which cannot express an angle bisector cleanly.",
+          "Matching only a and b and skipping 2h, so the sin(α + β) needed later is never written down.",
           "Losing the minus sign in 2h = −sin(α + β)."
         ],
         "mark_note": "Method",
@@ -222,7 +222,7 @@
             "h into x squared minus y squared"
           ]
         },
-        "why": "cos(α+β) = cosαcosβ − sinαsinβ is exactly b − a from the dictionary in (1), and sin(α+β) is −2h — so the trigonometry converts back into the coefficients the question asked about.",
+        "why": "cos(α+β) = cosαcosβ − sinαsinβ is exactly b − a from the matched coefficients in (1), and sin(α+β) is −2h — so the trigonometry converts back into the coefficients the question asked about.",
         "common_mistakes": [
           "Expanding cos(α+β) as cosαcosβ + sinαsinβ.",
           "Cancelling sin(α−β) without noting it appears on both sides."
@@ -231,5 +231,6 @@
         "memory_tip": "Turn both brackets into products so (1) applies; the common sin(α−β) then cancels."
       }
     ]
-  }
+  },
+  "insider_note": "Write each line as x sinα − y cosα, so both denominators are already 1. The slope form reaches the same result, but leaves a √(1 + m²) in each denominator and takes longer. Keep the ±, let SQUARING remove it, then sin²A − sin²B = sin(A+B)sin(A−B) brings back a, b and h."
 }

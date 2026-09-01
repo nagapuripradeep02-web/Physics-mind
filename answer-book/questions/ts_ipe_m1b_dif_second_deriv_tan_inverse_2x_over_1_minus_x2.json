@@ -131,5 +131,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "2x/(1 − x²) is tan2θ, so the substitution x = tan θ reduces y to 2Tan⁻¹x before any differentiation. The second derivative is then a one-line chain rule."
 }

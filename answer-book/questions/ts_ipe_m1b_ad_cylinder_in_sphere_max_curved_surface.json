@@ -136,7 +136,7 @@
           "Using the total surface area 2πR(R + h) instead of the curved surface 2πRh.",
           "Squaring only one factor when forming S²."
         ],
-        "memory_tip": "Curved surface is the label wrapped round a tin: 2πR times h. The two flat lids are what total surface area adds on top."
+        "memory_tip": "Curved surface is the side of the cylinder only: 2πR times h. Total surface area is that plus the two flat ends."
       },
       {
         "id": "s3_differentiate",
@@ -179,7 +179,7 @@
           "Keeping h = 0 as an answer.",
           "Taking the negative root h = −√2 r, which cannot be a length."
         ],
-        "memory_tip": "Take the common factor h out first. A stationary-point equation that factors hands you the rejected root and the real root in the same line."
+        "memory_tip": "Take the common factor h out first. A stationary-point equation that factors shows the rejected root and the real root on the same line."
       },
       {
         "id": "s4_second_derivative",
@@ -229,5 +229,6 @@
         "memory_tip": "Second derivative negative means the curve bends downward there, so the stationary point is a maximum. Positive means it bends upward, so it is a minimum."
       }
     ]
-  }
+  },
+  "insider_note": "The sphere's centre bisects the axis, so R² + (h/2)² = r² eliminates R. Maximising then gives h = r√2, and squaring to avoid the root keeps the algebra clean."
 }

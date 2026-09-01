@@ -234,7 +234,7 @@
         "label": "Divide and read off m",
         "marks": 1,
         "mark_note": "Divide",
-        "margin_note": "Sixth mark. Put both products back into (1), cancel the 2s, then divide by the two cosines. Each pair of a sine over its own cosine becomes a tangent.",
+        "margin_note": "Seventh mark. Put both products back into (1), cancel the 2s, then divide by the two cosines. Each pair of a sine over its own cosine becomes a tangent.",
         "memory_tip": "Divide by cos(π/4 − β) cos(π/4 − α). Each sine over its own cosine becomes a tangent.",
         "lines": [
           "Put both in (1) and cancel the 2:",

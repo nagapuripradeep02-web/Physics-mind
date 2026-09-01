@@ -134,5 +134,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "f(−3) = f(3) = 13, so condition (iii) holds even though neither value is zero — Rolle does not require the endpoints to be zero. c = 0 follows at once."
 }

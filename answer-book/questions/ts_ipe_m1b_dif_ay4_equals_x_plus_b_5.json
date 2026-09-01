@@ -219,5 +219,6 @@
         "memory_tip": "The two indices decide the answer: with 4 logₑy = 5 logₑ(x + b), the coefficient is (5 − 4)/5 = 1/5, so the 5 in 5yy″ is the index of (x + b)."
       }
     ]
-  }
+  },
+  "insider_note": "Take logarithms FIRST — differentiating (x + b)⁵ and y⁴ directly makes the second derivative unmanageable. Then differentiate y′/y as a quotient, which produces yy″ − (y′)² on top."
 }

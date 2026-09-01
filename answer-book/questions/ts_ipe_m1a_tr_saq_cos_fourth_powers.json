@@ -79,7 +79,7 @@
         "why": "A negative raised to an even power is positive, so the minus signs disappear — but writing them down is what shows the reduction was done properly.",
         "common_mistakes": [
           "Dropping the minus signs without saying why they do not matter.",
-          "Assuming the answer must differ from the twin because of the signs."
+          "Assuming the answer must differ from the sin⁴ version because of the signs."
         ],
         "memory_tip": "Two reductions come out NEGATIVE. Say so — the signs vanish only at the fourth power."
       },
@@ -89,12 +89,12 @@
         "label": "Group and use a² + b²",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. After the fourth powers kill the signs, the expression is 2[sin⁴ + cos⁴] — identical to the twin from here on.",
+        "margin_note": "First mark. The fourth power makes both minus signs positive, so the expression is 2[sin⁴ + cos⁴] — identical to the sin⁴ version from here on.",
         "lines": [
           "L.H.S = cos⁴(π/8) + sin⁴(π/8) + sin⁴(π/8) + cos⁴(π/8)",
           "  [∵ (−x)⁴ = x⁴]",
           "= 2[sin⁴(π/8) + cos⁴(π/8)]",
-          "= 2[(sin² + cos²)² − 2sin²cos²] = 2[1 − 2sin²(π/8)cos²(π/8)]"
+          "= 2[(sin²(π/8) + cos²(π/8))² − 2 sin²(π/8) cos²(π/8)] = 2[1 − 2sin²(π/8)cos²(π/8)]"
         ],
         "recall": {
           "credit": "say_it",
@@ -118,7 +118,7 @@
             "two times"
           ]
         },
-        "why": "From this line onward the two twins are word for word identical, which is why the book calls the second half \"same to same\".",
+        "why": "From this line onward this question and the sin⁴ version are word for word identical, so the rest of the working is the same on both.",
         "common_mistakes": [
           "Carrying the minus signs into the fourth powers.",
           "Expanding the fourth powers directly."
@@ -131,7 +131,7 @@
         "label": "Turn the product into sin(π/4)",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. Identical finish to the twin, and the same answer.",
+        "margin_note": "Last mark. Identical finish to the sin⁴ version, and the same answer.",
         "lines": [
           "= 2 − [2 sin(π/8) cos(π/8)]²",
           "= 2 − [sin(π/4)]² = 2 − 1/2",
@@ -142,7 +142,7 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the product becomes sin²(π/4) = 1/2, giving 3/2 — the same answer as the twin.",
+          "must_convey": "That the product becomes sin²(π/4) = 1/2, giving 3/2 — the same answer as the sin⁴ version.",
           "accept": [
             "the product becomes sin pi by four squared which is a half so the answer is three by two",
             "same finish as the other question, three halves",
@@ -162,13 +162,14 @@
             "same answer"
           ]
         },
-        "why": "Both twins give 3/2 because after reduction they are literally the same sum. Getting a different answer means a reduction went wrong.",
+        "why": "This question and the sin⁴ version both give 3/2 because after reduction they are the same sum. Getting a different answer means a reduction went wrong.",
         "common_mistakes": [
-          "Expecting a different answer from the twin and going back to hunt.",
+          "Forgetting to square the bracket, so 2 sin(π/8) cos(π/8) is used in place of sin²(π/4).",
           "Writing sin(π/4) = 1/2."
         ],
         "memory_tip": "4sin²cos² is (2 sin cos)² = sin²(π/4) = 1/2, so the answer is 2 − 1/2."
       }
     ]
-  }
+  },
+  "insider_note": "Reduce all four angles to π/8 first; the two minus signs vanish under a fourth power. Then a⁴ + b⁴ needs (a²+b²)² − 2a²b², and 2 sin cos = sin(π/4) finishes it."
 }

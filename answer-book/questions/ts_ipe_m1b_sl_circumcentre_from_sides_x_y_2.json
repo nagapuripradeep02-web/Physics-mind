@@ -292,7 +292,7 @@
             "first equation"
           ]
         },
-        "why": "The line produced is the perpendicular bisector of AB — the book's own panel calls it PB₁.",
+        "why": "The line produced is the perpendicular bisector of AB — every point on it is the same distance from A as from B.",
         "common_mistakes": [
           "Squaring only one side.",
           "Carrying x² terms forward instead of cancelling."
@@ -308,7 +308,7 @@
         "memory_tip": "Repeat on the second pair for the second bisector.",
         "lines": [
           "Step-5: SB = SC ⇒ √((x+3)² + (y−1)²) = √((x−1)² + (y−3)²)",
-          "⇒ (x² + 9 + 6x) + (y² − 1 + 2y) = (x² + 1 − 2x) + (y² + 9 − 6y)",
+          "⇒ (x² + 9 + 6x) + (y² + 1 − 2y) = (x² + 1 − 2x) + (y² + 9 − 6y)",
           "⇒ 6x + 2x − 2y + 6y = 0   ⇒   8x + 4y = 0   ⇒   4(2x + y) = 0",
           "⇒ 2x + y = 0  ……(5)"
         ],
@@ -385,5 +385,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The vertices have to be found first — that is two marks before the circumcentre work even begins. Both equations that follow carry a common factor, so divide it out before solving the pair."
 }

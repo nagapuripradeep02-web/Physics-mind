@@ -230,5 +230,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "The original equation is given, so substitute x = (X − Y)/√2 and y = (X + Y)/√2 — the minus sign belongs to x. The XY terms must cancel; if one survives, a sine term carried the wrong sign."
 }

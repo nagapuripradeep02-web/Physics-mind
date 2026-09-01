@@ -153,7 +153,7 @@
             "first column"
           ]
         },
-        "why": "Subtracting one row from another never changes a determinant's value. Because column 1 is all 1s, this single move buys two zeros at no cost.",
+        "why": "Subtracting one row from another never changes a determinant's value. Because column 1 is all 1s, this single move creates two zeros at no cost.",
         "common_mistakes": [
           "Doing R₁ − R₂ instead of R₂ − R₁, which flips the sign of the final answer.",
           "Changing row 1 as well; the row you subtract BY must stay as it is."
@@ -196,7 +196,7 @@
             "b minus a"
           ]
         },
-        "why": "The difference of cubes is the one factorisation this question is really testing. Everything after it is bookkeeping.",
+        "why": "The difference of cubes is the one factorisation this question is really testing. Everything after it is routine simplification.",
         "common_mistakes": [
           "Writing b³ − a³ = (b−a)³, which is wrong.",
           "Getting the middle sign wrong: the second bracket is a² + ab + b², all plus.",
@@ -387,5 +387,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Do R₂ − R₁ and R₃ − R₁ first so that a whole column becomes zeros. Then b² − a² and b³ − a³ both carry (b − a), which is what comes out as the common factor."
 }

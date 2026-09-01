@@ -544,7 +544,7 @@
           "   and leaves through the suspension and the",
           "   spring."
         ],
-        "margin_note": "Fifth mark. Five short numbered points. The phosphor bronze property and the radial field are the two the examiner looks for.",
+        "margin_note": "Sixth mark. Five short numbered points. The phosphor bronze property and the radial field are the two the examiner looks for.",
         "why": "Every part answers one need: the wire must twist without stretching, the core must make the field radial, and the spring must supply a restoring couple that grows with the twist. A radial field gives the coil ZERO flux, not maximum: the field lies in the plane of the coil, so the normal is at 90° to B and Φ = NBA cos 90° = 0. What it maximises is the TORQUE, τ = niAB sin θ with sin θ = 1 at every deflection — and that is what makes the scale uniform.",
         "common_mistakes": [
           "Saying phosphor bronze has a high rigidity modulus. It is LOW, so the wire twists easily.",
@@ -596,7 +596,7 @@
           "where C is the restoring couple per unit",
           "twist of the wire."
         ],
-        "margin_note": "Sixth mark. The radial field removes sin θ from the deflecting torque; the suspension supplies a restoring torque proportional to the twist.",
+        "margin_note": "Seventh mark. The radial field removes sin θ from the deflecting torque; the suspension supplies a restoring torque proportional to the twist.",
         "why": "Without the radial field the deflecting torque would fall as the coil turned, and equal steps of current would give smaller and smaller steps of deflection.",
         "common_mistakes": [
           "Keeping sin θ in the deflecting torque of the instrument. The radial field makes sin θ = 1.",

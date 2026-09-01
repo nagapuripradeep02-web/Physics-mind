@@ -181,5 +181,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Use A + B + C = 180° to replace C by 180° − (A+B), which turns that cosine negative. Then cos(A+B)cos(A−B) = cos²A − sin²B is the identity that collapses everything."
 }

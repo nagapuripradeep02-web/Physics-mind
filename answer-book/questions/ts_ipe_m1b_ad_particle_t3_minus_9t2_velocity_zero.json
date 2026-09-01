@@ -93,7 +93,7 @@
         "label": "Find S at each time",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark, and the mark most often lost: answering only 'when'. Put each time back into S. A negative S is a real position — it is 2 units on the other side of the fixed point S = 0, not a mistake. The particle starts at S(0) = −18 and crosses S = 0 at t = 3 on the way back. The stem prints no units; seconds and metres are the standard reading.",
+        "margin_note": "Second mark, and the mark most often lost: answering only 'when'. Put each time back into S. A negative S is a real position — it is 2 units on the negative side of the origin, not a mistake. The particle starts at S(0) = −18 and crosses S = 0 at t = 3 on the way back. The stem prints no units; seconds and metres are the standard reading.",
         "memory_tip": "Where means position, and position lives in S. Substitute back into the original formula, never into v.",
         "lines": [
           "At t = 2:  S = (2)³ − 9(2)² + 24(2) − 18 = 8 − 36 + 48 − 18 = 2",
@@ -133,5 +133,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two things are wanted: the times AND the positions there. Factor v = 3(t − 2)(t − 4) to get the times, then put each back into S, not into v."
 }

@@ -228,5 +228,6 @@
         "memory_tip": "The letter carrying the cube has the larger value. With x + y = 60 and xy³ the split is 15 and 45, which is 60 divided in the ratio 1 to 3."
       }
     ]
-  }
+  },
+  "insider_note": "Substitute x = 60 − y so only y remains, and differentiate. f′ = 4y²(45 − y) has a repeated root at y = 0, which is rejected, leaving y = 45 and x = 15."
 }

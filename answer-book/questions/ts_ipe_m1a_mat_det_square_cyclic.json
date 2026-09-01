@@ -135,7 +135,7 @@
             "minus"
           ]
         },
-        "why": "a³+b³+c³−3abc is a standard expression and this determinant is its usual disguise. Recognising it saves the whole first half of the question.",
+        "why": "a³+b³+c³−3abc is a standard expression, and this determinant is the standard determinant form of it. Recognising it saves the whole first half of the question.",
         "common_mistakes": [
           "Collecting only one abc instead of three.",
           "Dropping the minus sign before squaring, which happens to give the same answer and hides the error until the next question.",
@@ -291,7 +291,7 @@
         "kind": "boxed_final",
         "label": "Join the two halves",
         "marks": 0,
-        "margin_note": "No separate mark — the seven are already spent — but write the line. Two results were proved separately and the question asked for all three expressions to be equal, so the last line has to name both.",
+        "margin_note": "No separate mark — all eight are already spent — but write the line. Two results were proved separately and the question asked for all three expressions to be equal, so the last line has to name both.",
         "memory_tip": "Two results were proved separately; the question asked for all three expressions, so join them.",
         "lines": [
           "From (1) and (2), both equal Δ²:",
@@ -329,5 +329,6 @@
         ]
       }
     ]
-  }
+  },
+  "insider_note": "Two separate things are asked. Expanding Δ once gives −(a³+b³+c³−3abc), and squaring removes the sign; the other half needs Δ·Δ multiplied ROW by row after a column swap."
 }

@@ -234,5 +234,6 @@
         "memory_tip": "Adding the two squared coefficients kills every k-term except the squares. The xy coefficient is never used."
       }
     ]
-  }
+  },
+  "insider_note": "k is unknown, so multiply through by k² and keep everything symbolic — the x² and y² coefficients come out as 2k² + 2k − 1 and 3k² − 2k − 4. Their sum is 5k² − 5, so k = ±1 and both signs are answers."
 }

@@ -69,7 +69,7 @@
         "kind": "equation",
         "label": "Find the antiderivative",
         "marks": 0,
-        "margin_note": "Second mark. x³/3 is the antiderivative — a direct application of the power rule.",
+        "margin_note": "No mark of its own. x³/3 is the antiderivative — a direct application of the power rule.",
         "memory_tip": "∫x² dx = x³/3 — one of the most basic power-rule integrals, worth knowing directly.",
         "lines": [
           "∫x² dx = x³/3 + c",

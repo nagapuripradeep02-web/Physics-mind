@@ -125,7 +125,7 @@
             "y equals nine"
           ]
         },
-        "why": "Parallel is equal slopes; perpendicular would be a product of −1. The two are constantly confused and the whole answer turns on which is meant.",
+        "why": "Parallel is equal slopes; perpendicular would be a product of −1. The two are constantly confused, and the whole answer depends on which one is meant.",
         "common_mistakes": [
           "Using m₁m₂ = −1, which is the perpendicular condition.",
           "Arithmetic slip on y − 7 = 2."
@@ -133,5 +133,6 @@
         "mark_note": "Solution"
       }
     ]
-  }
+  },
+  "insider_note": "The denominator 2 − 3 = −1 flips the sign, so the slope of AB is y − 7, not 7 − y. Parallel means the slopes are equal, and that gives y = 9 in one line."
 }
