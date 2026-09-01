@@ -63,7 +63,7 @@
         "kind": "equation",
         "label": "Complete the square to standard form",
         "marks": 0,
-        "margin_note": "No mark of its own, but this is the real extra work in this question compared with Q58.",
+        "margin_note": "No mark of its own, but this is the real extra work here compared with an ellipse already given in standard form.",
         "memory_tip": "Group the x-terms and y-terms separately before completing each square.",
         "lines": [
           {
@@ -75,7 +75,7 @@
           "⇒ 9(x − 2)² + 16(y + 1)² = 92 + 36 + 16 = 144",
           "⇒ (x − 2)²/16 + (y + 1)²/9 = 1"
         ],
-        "why": "Completing the square in x and y turns the general equation into the shifted standard form (x − h)²/a² + (y − k)²/b² = 1, which reads off the same a² = 16, b² = 9 as Q58, but centred at (h, k) = (2, −1).",
+        "why": "Completing the square in x and y turns the general equation into the shifted standard form (x − h)²/a² + (y − k)²/b² = 1, which reads off the same a² = 16, b² = 9 as the centred ellipse x²/16 + y²/9 = 1, but centred at (h, k) = (2, −1).",
         "common_mistakes": [
           "Adding 4 and 1 (the numbers needed inside each bracket) but forgetting to also add 9·4 and 16·1 on the right-hand side.",
           "Losing the sign of k when reading (y − k)² — here y + 1 means k = −1, not +1."
@@ -87,7 +87,7 @@
         "label": "Eccentricity",
         "marks": 1,
         "mark_note": "Eccentricity",
-        "margin_note": "First mark. a² = 16, b² = 9, a > b, centre (h, k) = (2, −1) — same a, b as Q58.",
+        "margin_note": "First mark. a² = 16, b² = 9, a > b, centre (h, k) = (2, −1) — the same a and b as x²/16 + y²/9 = 1.",
         "memory_tip": "The eccentricity never depends on where the centre is — only on a and b.",
         "lines": [
           "e = √(a² − b²) / a",
@@ -131,7 +131,7 @@
         "label": "Length of latus rectum",
         "marks": 1,
         "mark_note": "Latus rectum",
-        "margin_note": "Third mark. Identical to Q58 — the centre shift never changes a length.",
+        "margin_note": "Third mark. Identical to the centred ellipse — the centre shift never changes a length.",
         "memory_tip": "Latus rectum equals 2 times the smaller square, over the bigger axis length.",
         "lines": [
           "Length of latus rectum = 2b² / a",

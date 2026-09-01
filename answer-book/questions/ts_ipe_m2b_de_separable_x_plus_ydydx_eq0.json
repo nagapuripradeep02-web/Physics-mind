@@ -73,7 +73,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "The last mark. ∫y dy = y²/2 and ∫x dx = x²/2 by the power rule; combine and relabel the constant.",
-        "memory_tip": "y² + x² = 2c is a family of circles centred at the origin — the same family used in answer 186.",
+        "memory_tip": "y² + x² = 2c is a family of circles centred at the origin — one circle for each value of c, all sharing that centre.",
         "lines": [
           "∫y dy = −∫x dx ⇒ y²/2 = −x²/2 + c",
           {

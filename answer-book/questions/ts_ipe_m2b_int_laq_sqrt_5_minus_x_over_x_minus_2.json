@@ -93,7 +93,7 @@
           "Coeff of x: −2A=−1 ⇒ A=1/2; constant:",
           "7A+B=5 ⇒ B=5−7/2=3/2"
         ],
-        "why": "With the integrand now in the familiar linear-numerator-over-root-of-quadratic shape, the same A·Dr′+B split from answer 27 applies directly.",
+        "why": "With the integrand now in the familiar linear-numerator-over-root-of-quadratic shape, the standard A·Dr′+B split applies directly.",
         "common_mistakes": [
           "Using the ORIGINAL denominator (x−2)(5−x) instead of its expanded quadratic form 7x−10−x² when differentiating.",
           "Sign slip: 7(1/2)+B=5 gives B=5−7/2=3/2, not 5+7/2."

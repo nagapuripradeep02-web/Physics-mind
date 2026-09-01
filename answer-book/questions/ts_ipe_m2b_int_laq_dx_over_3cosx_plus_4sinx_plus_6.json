@@ -106,9 +106,9 @@
             "style": "eq"
           }
         ],
-        "why": "This time the completed square leaves a POSITIVE constant, 11/9, so the quadratic is a sum of squares — the Tan⁻¹ formula applies here, unlike the log formula needed in answer 21.",
+        "why": "This time the completed square leaves a POSITIVE constant, 11/9, so the quadratic is a sum of squares — the Tan⁻¹ formula applies here, unlike the log formula a DIFFERENCE of squares needs.",
         "common_mistakes": [
-          "Reaching for the log formula out of habit, copying answer 21's method without checking the sign.",
+          "Reaching for the log formula out of habit, copying the difference-of-squares method without checking the sign.",
           "Arithmetic slip computing 16/9 from (4/3)²."
         ],
         "memory_tip": "Positive constant after completing the square ⇒ Tan⁻¹; negative ⇒ log — check the sign every time."

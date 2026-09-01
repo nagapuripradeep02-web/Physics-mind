@@ -70,7 +70,7 @@
         ],
         "why": "Writing the outside multiplier as A times the derivative of the expression under the root (plus a leftover B) is the same idea used earlier in this chapter, now for a MULTIPLIED root instead of a divided one.",
         "common_mistakes": [
-          "Confusing this with the A·Dr′+B split used for a root in the DENOMINATOR (answer 27) and expecting the same final formula.",
+          "Confusing this with the A·Dr′+B split used for a root in the DENOMINATOR and expecting the same final formula.",
           "Sign slip: −A+B=−2 with A=3/4 gives B=−2+3/4=−5/4, not −2−3/4."
         ],
         "memory_tip": "−(3/4)+B=−2 ⇒ B=−2+3/4 — adding 3/4, not subtracting it, when moving −A to the other side."
@@ -97,7 +97,7 @@
           "Trying to complete the square before splitting off the A-part, which is unnecessary extra work.",
           "Missing the exponent 3/2, writing a plain square instead."
         ],
-        "memory_tip": "∫f′√f dx = (2/3)f^{3/2} — the SAME shape as ∫f′/√f dx = 2√f from answer 27, one power higher."
+        "memory_tip": "∫f′√f dx = (2/3)f^{3/2} — the SAME shape as ∫f′/√f dx = 2√f, one power higher."
       },
       {
         "id": "s3_square",

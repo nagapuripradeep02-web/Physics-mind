@@ -94,3 +94,54 @@ will drift again every time unit numbering changes, which it already did once wh
 maths were renumbered for the 2026-27 books.
 
 Any repair should therefore name the identity, never a unit or answer number.
+
+---
+
+## Addendum 2 (2026-09-01, later the same day): family (a) is CLOSED, and the count was wrong twice
+
+Family (a) now reports **zero** across all four maths papers and both chemistry papers. Getting
+there took two more passes, and both are worth recording because the same mistake was made twice
+in opposite directions.
+
+### The count was 28. It was actually 43, in two instalments.
+
+**Instalment 1 — 14 card-level `insider_note`s (Maths-2B).** These are what the original table
+counted, and they were repaired first: each note now names the mathematics it points at rather
+than where the book keeps it, e.g.
+
+  "the same t=Tan-1x idea from answer 154"  ->  "the same idea as the substitution t = Tan-1x"
+  "This proof and answer 14's share ..."    ->  "... the triangle formed by the three points of contact"
+
+**Instalment 2 — 29 more strings in 14 cards, at STEP level.** Found only because a spot-check of
+the served bundle still matched "answer 186" on a card whose `insider_note` had just been fixed.
+The second occurrence was in `answer.steps[1].memory_tip`.
+
+**The cause was a traversal bug in the re-sweep, not a regex.** The scan walked `card.steps`,
+which does not exist — steps live under `answer.steps` — so it silently read card-level fields
+only and reported a clean Maths-2B while a step-level `memory_tip` still leaked. The failure mode
+is the one this file already records ("each regex was narrower than the defect"), except the
+narrowing was in the WALK, and a walk that finds nothing looks exactly like a walk that finds
+nothing wrong. **A sweep must be proved against a known-positive before its zero is believed.**
+
+That instalment also corrected the claim that Maths-1A was at zero. It was not:
+`ts_ipe_m1a_tr_cos_s_minus_a` still carried "the same tactic used in answers 26.2 and 28" in a
+step-level `why`.
+
+### Two false-positive families, both of which nearly caused harm
+
+- **`Q1`-`Q4` are QUADRANTS, not question numbers.** A `\bQ\d+\b` pattern flags "sin θ is positive,
+  so θ is in Q1 or Q2" — correct, standard trigonometry wording on at least three cards. The
+  pattern now matches `Q5`+ only. Rewriting those would have damaged correct mathematics.
+- **"answer" as a VERB.** "A student who compared only the two critical values would answer 1.9132
+  and 1.2284" is not a cross-reference. Likewise "the answer 1.4π", "the answer 7.5 each" — the
+  number is the RESULT, not an index. The pattern now requires locational wording
+  (`as|from|in|like|of|to|with|than|see` + `answer NN`, or `(answer NN)`, or `answer NN's`).
+
+### What is deliberately left
+
+Two `physics_2` cards remain, and they are family (c), not (a):
+`ts_ipe_p2_sem_nand_and_nor_gates` ("on page 56 it repeats the NAND caption") and
+`ts_ipe_p2_sem_transistor_circuit_symbols` ("The book prints the two symbols swapped on page 54").
+Both are genuinely useful examiner guidance about a printing error, and both name a book to a
+student. They belong to the 229-card policy question in section (c) above, which is the founder's
+to decide — not something to sweep away while closing (a).

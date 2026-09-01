@@ -94,12 +94,12 @@
           "− (1/2)∫dx/(x²+3x+12)",
           "= (1/2)log|x²+3x+12| − (1/2)∫dx/(x²+3x+12)"
         ],
-        "why": "The A-part is now an f′(x)/f(x) form WITHOUT a square root, so it integrates to a plain log|f(x)| — no factor of 2, unlike the √f(x) case in answer 27.",
+        "why": "The A-part is now an f′(x)/f(x) form WITHOUT a square root, so it integrates to a plain log|f(x)| — no factor of 2, unlike the √f(x) case.",
         "common_mistakes": [
-          "Copying answer 27's ∫f′/√f = 2√f rule here by mistake — with no root, the correct rule is ∫f′/f = log|f|.",
+          "Copying the ∫f′/√f = 2√f rule here by mistake — with no root, the correct rule is ∫f′/f = log|f|.",
           "Losing the negative sign on the B=−1/2 term."
         ],
-        "memory_tip": "No root under the fraction ⇒ ∫f′/f dx = log|f|, no factor of 2. A root present ⇒ the factor of 2 rule from answer 27 applies instead."
+        "memory_tip": "No root under the fraction ⇒ ∫f′/f dx = log|f|, no factor of 2. A root present ⇒ the factor of 2 rule applies instead."
       },
       {
         "id": "s3_square",
