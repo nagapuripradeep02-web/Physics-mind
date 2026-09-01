@@ -1,0 +1,328 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_tetrahedron_volume_general_formula",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "Show that the volume of a tetrahedron with a, b and c as coterminous edges is (1/6)|[a b c]|.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the tetrahedron and the pyramid formula",
+      "marks": 1
+    },
+    {
+      "label": "Find the area of the base triangle",
+      "marks": 2
+    },
+    {
+      "label": "Write the unit normal to the base",
+      "marks": 1
+    },
+    {
+      "label": "Find the height as a projection",
+      "marks": 2
+    },
+    {
+      "label": "Multiply and cancel",
+      "marks": 1
+    },
+    {
+      "label": "Name the scalar triple product",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.80, chapter 7 PRODUCT OF VECTORS, Long Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1+2+1+1 split gives two marks to the base area and two to the height, because those are the two measured quantities the pyramid formula needs, and keeps the last mark for naming the scalar triple product. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would derive the volume of a tetrahedron from its three edge vectors.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "Set up the tetrahedron",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Coterminous edges means all three start at the same corner. Naming that corner O is what lets the three edges be the position vectors a, b and c.",
+        "memory_tip": "Coterminous means the three edges start at ONE corner. Call it O.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let OABC be the tetrahedron whose three",
+          "edges from O are",
+          "OA = a, OB = b, OC = c.",
+          "For any pyramid,",
+          "Volume = (1/3) × base area × height."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three coterminous edges are taken from one corner O, and that the pyramid volume formula is one third of base area times height.",
+          "accept": [
+            "take the three edges from one corner O as a b and c",
+            "volume of a pyramid is one third base area times height",
+            "coterminous means all three edges meet at the same corner",
+            "moodu edges okate corner nunchi, one third base into height",
+            "start from the pyramid volume formula"
+          ],
+          "reject": [
+            "find the base area",
+            "take the cross product",
+            "hence proved"
+          ],
+          "heard_as": [
+            "coterminous",
+            "one third",
+            "base area",
+            "height",
+            "pyramid"
+          ]
+        },
+        "why": "A tetrahedron is a pyramid with a triangular base, so the general pyramid formula applies. The whole derivation is finding the base area and the height in vector form.",
+        "common_mistakes": [
+          "Using the prism formula, base area times height, with no one third.",
+          "Taking the three edges from different corners."
+        ]
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Find the base area",
+        "marks": 2,
+        "mark_note": "Base area",
+        "margin_note": "Two marks. Choose triangle OAB as the base. The parallelogram on a and b has area |a × b|, and the triangle is half of it.",
+        "memory_tip": "The parallelogram on a and b has area |a × b|; the triangle is half of that.",
+        "lines": [
+          "Take triangle OAB as the base.",
+          "The parallelogram with sides a and b has",
+          "area |a × b|, and the triangle is half",
+          "of that parallelogram, so",
+          "base area = (1/2)|a × b|"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That triangle OAB is taken as the base and its area is (1/2)|a × b|.",
+          "accept": [
+            "the base is triangle OAB and its area is half the modulus of a cross b",
+            "the parallelogram on a and b has area a cross b, the triangle is half",
+            "base area is one half mod a cross b",
+            "triangle area ante parallelogram lo half",
+            "take OAB as the base and use half the cross product"
+          ],
+          "reject": [
+            "find the height",
+            "set up the tetrahedron",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "half",
+            "a cross b",
+            "base area",
+            "parallelogram",
+            "triangle"
+          ]
+        },
+        "why": "The magnitude of a cross product is the area of the parallelogram on the two vectors. A triangle on the same two sides is exactly half of it.",
+        "common_mistakes": [
+          "Using |a × b| as the triangle area and losing the factor of one half.",
+          "Taking a dot product, which gives no area."
+        ]
+      },
+      {
+        "id": "s3_normal",
+        "kind": "equation",
+        "label": "Write the unit normal",
+        "marks": 1,
+        "mark_note": "Unit normal",
+        "margin_note": "Fourth mark. a × b is at right angles to the base plane, so dividing it by its own length gives the unit vector the height is measured along.",
+        "memory_tip": "Divide a × b by its own length to get the unit vector at right angles to the base.",
+        "lines": [
+          "a × b is at right angles to the base",
+          "plane OAB, so the unit vector at right",
+          "angles to the base is",
+          "(a × b)/|a × b|"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a × b is at right angles to the base, and dividing it by its length gives the unit normal (a × b)/|a × b|.",
+          "accept": [
+            "a cross b is at right angles to the base so divide it by its length",
+            "the unit normal is a cross b over mod a cross b",
+            "the height is measured along this unit vector",
+            "a cross b ni its length tho divide cheste unit normal",
+            "make a cross b into a unit vector"
+          ],
+          "reject": [
+            "find the base area",
+            "find the height",
+            "then I get it"
+          ],
+          "heard_as": [
+            "unit normal",
+            "a cross b",
+            "right angles",
+            "divide by its length"
+          ]
+        },
+        "why": "The height is a distance measured at right angles to the base, so a unit vector in that direction is needed before the projection can be taken.",
+        "common_mistakes": [
+          "Forgetting to divide, so the projection carries an extra factor of |a × b|.",
+          "Dividing by |c| instead of by |a × b|."
+        ]
+      },
+      {
+        "id": "s4_height",
+        "kind": "equation",
+        "label": "Find the height",
+        "marks": 2,
+        "mark_note": "Height",
+        "margin_note": "Two marks. The height is how far C stands above the base plane, which is the length of the projection of c on the unit normal. The modulus is not optional.",
+        "memory_tip": "The height is the projection of c on the unit normal, and a height is never negative.",
+        "lines": [
+          "The height is the length of the",
+          "projection of c on that unit vector:",
+          "h = |c·(a × b)| / |a × b|",
+          "The modulus is needed because a height",
+          "is a length and cannot be negative."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the height is the modulus of the projection of c on the unit normal, h = |c·(a × b)|/|a × b|.",
+          "accept": [
+            "the height is c projected on the unit normal, mod of c dot a cross b over mod a cross b",
+            "project c on the normal direction to get the height",
+            "the modulus is needed because a height cannot be negative",
+            "c ni normal meeda project cheste height vasthundi",
+            "h is mod c dot a cross b divided by mod a cross b"
+          ],
+          "reject": [
+            "write the unit normal",
+            "multiply and cancel",
+            "hence proved"
+          ],
+          "heard_as": [
+            "projection",
+            "height",
+            "modulus",
+            "c dot a cross b"
+          ]
+        },
+        "why": "If C lies on the other side of the base plane, the dot product turns negative while the height does not. The modulus is what keeps the answer a length.",
+        "common_mistakes": [
+          "Dropping the modulus and reporting a negative volume.",
+          "Using |c| as the height, which is only correct when c is at right angles to the base."
+        ]
+      },
+      {
+        "id": "s5_multiply",
+        "kind": "equation",
+        "label": "Multiply and cancel",
+        "marks": 1,
+        "mark_note": "Multiply",
+        "margin_note": "Seventh mark. Put the base area and the height into the pyramid formula. The factor |a × b| appears once on top and once underneath, so it cancels.",
+        "memory_tip": "|a × b| appears on top and underneath, so it cancels and leaves one sixth.",
+        "lines": [
+          "Volume = (1/3) × (1/2)|a × b| × h",
+          "= (1/6)|a × b| × |c·(a × b)|/|a × b|",
+          "The factor |a × b| cancels, leaving",
+          "Volume = (1/6)|c·(a × b)|"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting the base area and the height into the pyramid formula cancels |a × b| and leaves (1/6)|c·(a × b)|.",
+          "accept": [
+            "put both into one third base times height and the mod a cross b cancels",
+            "one third times one half is one sixth",
+            "the volume becomes one sixth of mod c dot a cross b",
+            "mod a cross b cancel avthundi, one sixth migulthundi",
+            "the cross product magnitude cancels top and bottom"
+          ],
+          "reject": [
+            "find the height",
+            "name the triple product",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "one sixth",
+            "cancels",
+            "one third times one half",
+            "volume"
+          ]
+        },
+        "why": "The base area contains the factor |a × b| and the height divides by it. That cancellation is why the final formula has no square roots in it at all.",
+        "common_mistakes": [
+          "Multiplying by |a × b| twice instead of cancelling.",
+          "Writing one third times one half as one fifth."
+        ]
+      },
+      {
+        "id": "s6_final",
+        "kind": "boxed_final",
+        "label": "Name the triple product",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. c·(a × b) is the scalar triple product [c a b], and a cyclic change of order leaves it unchanged, so it equals [a b c]. That last renaming is the mark.",
+        "memory_tip": "A cyclic change of order leaves a scalar triple product unchanged: [c a b] = [a b c].",
+        "lines": [
+          "Now c·(a × b) = [c a b] = [a b c],",
+          "because a scalar triple product does not",
+          "change under a cyclic change of order.",
+          {
+            "text": "∴ Volume = (1/6)|[a b c]|",
+            "style": "boxed"
+          },
+          "The parallelepiped on the same three",
+          "edges has volume |[a b c]|, so the",
+          "tetrahedron is one sixth of it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That c·(a × b) is the scalar triple product [a b c] by a cyclic change of order, giving volume = (1/6)|[a b c]|.",
+          "accept": [
+            "c dot a cross b is the box product a b c by cyclic change",
+            "the volume is one sixth of the modulus of the box product",
+            "a cyclic change of order does not change a scalar triple product",
+            "cyclic ga marchina box product same untundi",
+            "the tetrahedron is one sixth of the parallelepiped"
+          ],
+          "reject": [
+            "multiply and cancel",
+            "find the height",
+            "then I get it"
+          ],
+          "heard_as": [
+            "box product",
+            "cyclic",
+            "one sixth",
+            "a b c",
+            "parallelepiped"
+          ]
+        },
+        "why": "The parallelepiped on the same three edges has volume |[a b c]|, so the tetrahedron is one sixth of it. Knowing which figure carries the one sixth prevents the two formulas from being mixed up.",
+        "common_mistakes": [
+          "Writing the answer without the modulus, which allows a negative volume.",
+          "Using one third in place of one sixth, which is the wrong figure's formula."
+        ]
+      }
+    ]
+  }
+}

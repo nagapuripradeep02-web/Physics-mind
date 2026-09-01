@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_point_equidistant_on_line",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the point on the line 3x+y+4=0 which is equidistant from the points (−5,6) and (3,2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the perpendicular bisector",
+      "marks": 1
+    },
+    {
+      "label": "Solve with the given line",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 40, book p.147. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for building the perpendicular bisector from BOTH of its conditions and one for meeting it with the given line. The answer (−2, 2) was checked three ways: it satisfies 3x + y + 4 = 0, and its distances to (−5, 6) and to (3, 2) are both exactly 5. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say which line every point equidistant from two given points must lie on, and how you then find the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_perpendicular_bisector",
+        "kind": "equation",
+        "label": "Write the perpendicular bisector",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The bisector needs BOTH conditions — through the midpoint and perpendicular to AB. Either one alone describes a different line.",
+        "memory_tip": "Equidistant from two points means on their perpendicular bisector: midpoint AND perpendicular, both.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A = (−5, 6), B = (3, 2)",
+          "The required point is equidistant from A",
+          "and B, so it lies on the perpendicular",
+          "bisector of AB.",
+          "Midpoint of AB = ((−5 + 3)/2, (6 + 2)/2)",
+          "= (−1, 4)",
+          "Slope of AB  m₁ = (2 − 6)/(3 + 5) = −1/2",
+          "Perpendicular slope  m₂ = −1/m₁ = 2",
+          "Check:  m₁m₂ = (−1/2)(2) = −1",
+          "Bisector through (−1, 4) with slope 2:",
+          "y − 4 = 2(x + 1)",
+          "⇒ 2x − y + 6 = 0  ……(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the locus of points equidistant from A and B is the perpendicular bisector, built from the midpoint (−1, 4) and slope 2, giving 2x − y + 6 = 0.",
+          "accept": [
+            "equidistant means it is on the perpendicular bisector",
+            "find the midpoint and the perpendicular slope",
+            "midpoint is minus one comma four and the slope is two",
+            "perpendicular bisector meeda untundi",
+            "the bisector is two x minus y plus six equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "perpendicular bisector",
+            "midpoint",
+            "minus one comma four",
+            "slope two"
+          ]
+        },
+        "why": "The set of all points equidistant from A and B is exactly the perpendicular bisector of AB, so the answer is where that bisector meets the given line. The bisector needs both conditions, because through the midpoint alone allows every line through it, and perpendicular alone allows every line in that direction.",
+        "common_mistakes": [
+          "Using only the midpoint, which allows any line through that point.",
+          "Using the slope of AB itself instead of its perpendicular slope."
+        ]
+      },
+      {
+        "id": "s2_solve_with_given_line",
+        "kind": "boxed_final",
+        "label": "Solve with the given line",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The required point is on the given line as well, so solve the two lines together.",
+        "memory_tip": "Two lines, one point: add or subtract to remove a variable, then go back for the other.",
+        "lines": [
+          "Given line  3x + y + 4 = 0  ……(2)",
+          "(1) + (2):  5x + 10 = 0  ⇒  x = −2",
+          "From (2):  y = −3(−2) − 4 = 2",
+          {
+            "text": "∴ The point is (−2, 2)",
+            "style": "boxed"
+          },
+          "Check: 3(−2) + 2 + 4 = 0, so it is on the line.",
+          "Distance to (−5, 6) = √(3² + 4²) = 5, and",
+          "distance to (3, 2) = √(5² + 0²) = 5."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving the bisector with the given line gives the point (−2, 2).",
+          "accept": [
+            "solve the bisector with the given line",
+            "add the two equations to get x equals minus two",
+            "the point is minus two comma two",
+            "rendu lines solve chesthe point vasthundi",
+            "then y comes out as two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus two comma two",
+            "add the equations",
+            "x equals minus two",
+            "y equals two"
+          ]
+        },
+        "why": "The point has to satisfy two things at once — on the given line and equidistant from A and B — and each is one linear equation, so the pair pins exactly one point.",
+        "common_mistakes": [
+          "Reporting the midpoint (−1, 4), which is not on the given line.",
+          "Finding x and forgetting to substitute back for y."
+        ]
+      }
+    ]
+  }
+}

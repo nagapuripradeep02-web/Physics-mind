@@ -77,7 +77,7 @@
             "inequality"
           ]
         },
-        "why": "sin(1/x) has no limit at x = 0, because 1/x increases without bound and the sine keeps oscillating between −1 and 1. That does not matter: the product still lies between two quantities that both approach 0.",
+        "why": "sin(1/x) has no limit at x = 0, because 1/x grows without bound in size and the sine keeps oscillating between −1 and 1. That does not matter: the product still lies between two quantities that both approach 0.",
         "common_mistakes": [
           "Writing lim(x → 0) sin(1/x) = 0; that limit does not exist.",
           "Reversing the inequality signs when multiplying; x² is not negative, so they stay as they are."

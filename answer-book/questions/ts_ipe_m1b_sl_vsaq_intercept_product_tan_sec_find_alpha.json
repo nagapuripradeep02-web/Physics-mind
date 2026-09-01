@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_intercept_product_tan_sec_find_alpha",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The intercepts made on the coordinate axes by the straight line x tanα + y secα = 1 have product sinα. Find α.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write both intercepts",
+      "marks": 1
+    },
+    {
+      "label": "Use the product condition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 36, book p.146. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for reading both intercepts off the line and one for solving the trigonometric equation the product condition produces. The answer is authored as the general solution α = (2n + 1)π/4 with the acute value π/4 named, because tan²α = 1 has two families and reporting only 45° drops half of them; both were checked by substitution back into the original line. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say how you get each intercept, and what equation the product condition turns into.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_both_intercepts",
+        "kind": "equation",
+        "label": "Write both intercepts",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. An intercept is what is left when the other variable is set to zero, and 1/tan α = cot α, 1/sec α = cos α.",
+        "memory_tip": "For the x-intercept put y = 0; for the y-intercept put x = 0. Then use 1/tan = cot and 1/sec = cos.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given line is  x tanα + y secα = 1",
+          "Put y = 0:  x tanα = 1  ⇒  x = cotα",
+          "Put x = 0:  y secα = 1  ⇒  y = cosα",
+          "∴ x-intercept = cotα, y-intercept = cosα",
+          "(tanα ≠ 0 here, so α is not a multiple of π.)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the intercepts are cot α and cos α.",
+          "accept": [
+            "put y equals zero to get x equals cot alpha",
+            "put x equals zero to get y equals cos alpha",
+            "the intercepts are cot alpha and cos alpha",
+            "y ni zero pettina x intercept vasthundi",
+            "one over tan is cot and one over sec is cos"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cot alpha",
+            "cos alpha",
+            "x intercept",
+            "y intercept"
+          ]
+        },
+        "why": "The line is not written in intercept form, so each intercept has to be read off by setting the other variable to zero; writing them as cot α and cos α keeps the next step in one trigonometric family.",
+        "common_mistakes": [
+          "Giving the intercepts as tan α and sec α, which are the coefficients, not the intercepts.",
+          "Setting x = 0 to get the x-intercept."
+        ]
+      },
+      {
+        "id": "s2_product_condition",
+        "kind": "boxed_final",
+        "label": "Use the product condition",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. cot α · cos α = cos²α/sin α, so the condition becomes cos²α = sin²α, which is cos 2α = 0.",
+        "memory_tip": "cos²α = sin²α is the same as cos 2α = 0. Its solutions are the odd multiples of π/4.",
+        "lines": [
+          "Product of the intercepts = sinα",
+          "⇒ cotα · cosα = sinα",
+          "⇒ cos²α/sinα = sinα",
+          "⇒ cos²α = sin²α",
+          "⇒ cos²α − sin²α = 0  ⇒  cos 2α = 0",
+          "⇒ 2α = (2n + 1)π/2,  n ∈ Z",
+          {
+            "text": "∴ α = (2n + 1)π/4,  n ∈ Z",
+            "style": "boxed"
+          },
+          "The acute value is α = π/4, that is 45°.",
+          "Check at α = π/4: the line is x + √2 y = 1,",
+          "with intercepts 1 and 1/√2; their product is",
+          "1/√2, and sin(π/4) = 1/√2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the condition reduces to cos 2α = 0, so α = (2n + 1)π/4, with π/4 the acute value.",
+          "accept": [
+            "cot alpha into cos alpha equals sin alpha",
+            "cos squared alpha equals sin squared alpha",
+            "cos two alpha is zero so alpha is an odd multiple of pi by four",
+            "alpha equals pi by four",
+            "cos two alpha zero ayithe alpha pi by four vasthundi"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos two alpha",
+            "pi by four",
+            "two n plus one",
+            "forty five degrees"
+          ]
+        },
+        "why": "Dividing by sin α is safe because sin α is not zero here: α is not a multiple of π, which the x-intercept already required. cos²α = sin²α is the double-angle form cos 2α = 0, whose solutions are exactly the odd multiples of π/4.",
+        "common_mistakes": [
+          "Cancelling to tan α = 1 only, and losing the tan α = −1 family.",
+          "Giving 45° alone without the general value."
+        ]
+      }
+    ]
+  }
+}

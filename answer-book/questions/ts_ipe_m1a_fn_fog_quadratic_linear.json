@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_fog_quadratic_linear",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f: R→R and g: R→R are defined by f(x) = 2x² + 3 and g(x) = 3x − 2, find (fog)(x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute g(x) into f",
+      "marks": 1
+    },
+    {
+      "label": "Expanded form of (fog)(x)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 10(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to substituting g(x) into f in the right order and one to the expansion, because the order of composition and the squaring of a bracket are the two separate skills being tested. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find (fog)(x) — which function acts first, and how you expand what is left.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "equation",
+        "label": "Put g(x) into f",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Keep 3x − 2 inside a bracket when it enters f, so the squaring applies to the whole of it.",
+        "memory_tip": "In fog, g is inside. Read the composition from right to left.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(fog)(x) = f[g(x)]",
+          "g acts first, so 3x − 2 goes into f:",
+          "f(3x − 2) = 2(3x − 2)² + 3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in fog the inner function is g, so 3x − 2 is substituted into f, giving 2(3x − 2)² + 3.",
+          "accept": [
+            "in f o g the inner function is g so three x minus two goes into f",
+            "f of three x minus two is two times three x minus two whole squared plus three",
+            "g acts first because it is written second",
+            "modata g apply chestham so three x minus two ni f lo pedatham",
+            "substitute three x minus two for x in f"
+          ],
+          "reject": [
+            "I substitute x",
+            "first I find the composition",
+            "expand the bracket"
+          ],
+          "heard_as": [
+            "f o g",
+            "fog",
+            "three x minus two",
+            "whole squared",
+            "inner"
+          ]
+        },
+        "why": "In fog the function written on the right acts first, so g's output becomes f's input. Writing f(3x − 2) with the bracket kept whole is what makes the next line correct.",
+        "common_mistakes": [
+          "Applying f first, which computes (gof)(x) = 6x² + 7 instead.",
+          "Writing f(3x − 2) as 2(3x² − 2) + 3, squaring only the x."
+        ]
+      },
+      {
+        "id": "s2_expand",
+        "kind": "boxed_final",
+        "label": "Expand and simplify",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Square the bracket first, then multiply all three terms by 2, then add the 3. Doing the multiplication before the square is where marks are lost.",
+        "memory_tip": "(a − b)² = a² − 2ab + b². Here the middle term is −12x, and the 2 outside makes it −24x.",
+        "lines": [
+          "(3x − 2)² = 9x² − 12x + 4",
+          "So (fog)(x) = 2(9x² − 12x + 4) + 3",
+          "= 18x² − 24x + 8 + 3",
+          {
+            "text": "∴ (fog)(x) = 18x² − 24x + 11",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (3x − 2)² expands to 9x² − 12x + 4, and doubling it and adding 3 gives 18x² − 24x + 11.",
+          "accept": [
+            "three x minus two squared is nine x squared minus twelve x plus four",
+            "double it to get eighteen x squared minus twenty four x plus eight then add three",
+            "the answer is eighteen x squared minus twenty four x plus eleven",
+            "expand chesi rendu tho multiply chesi three add chesthe eighteen x squared minus twenty four x plus eleven",
+            "the constant is eight plus three which is eleven"
+          ],
+          "reject": [
+            "then I simplify",
+            "expand and get the answer",
+            "it comes out"
+          ],
+          "heard_as": [
+            "nine x squared",
+            "eighteen x squared",
+            "twenty four x",
+            "eleven"
+          ]
+        },
+        "why": "The bracket is squared before anything multiplies it, and the 2 then multiplies all three terms of the expansion. The constant 11 is 8 from the doubled square plus the 3 that f always adds.",
+        "common_mistakes": [
+          "Multiplying only the first term by 2, giving 18x² − 12x + 4.",
+          "Writing (3x − 2)² as 9x² + 4 and losing the middle term."
+        ]
+      }
+    ]
+  }
+}

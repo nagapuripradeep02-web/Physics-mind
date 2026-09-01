@@ -1,0 +1,141 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_show_f_tantheta_cos2theta",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f: R → R is defined by f(x) = (1 − x²)/(1 + x²), show that f(tan θ) = cos 2θ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute x = tan θ",
+      "marks": 1
+    },
+    {
+      "label": "Reduce the fraction to cos 2θ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.9, chapter 2 FUNCTIONS, Very Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the substitution and one to the reduction, because a student who writes the substituted fraction and stops has done half the work. The book's own MODEL PAPER-IA prints this same question at Q3 of Section I, its very short answer section. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would show f(tan θ) = cos 2θ — what you substitute, and how you clear the tangents.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitute",
+        "kind": "equation",
+        "label": "Put x = tan θ in the rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark is the substituted fraction. Also say where tan θ exists: θ must not be an odd multiple of π/2.",
+        "memory_tip": "f(anything) means put that thing where x stands. Here every x becomes tan θ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = (1 − x²)/(1 + x²)",
+          "Put x = tan θ, taking θ so that tan θ exists,",
+          "that is θ ≠ (2n + 1)π/2, n ∈ Z.",
+          "f(tan θ) = (1 − tan²θ)/(1 + tan²θ)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f(tan θ) is the same rule with tan θ in place of x, giving (1 − tan²θ)/(1 + tan²θ).",
+          "accept": [
+            "put tan theta where x is so it becomes one minus tan squared over one plus tan squared",
+            "substitute x equals tan theta into the given rule",
+            "f of tan theta is one minus tan square theta by one plus tan square theta",
+            "x place lo tan theta pedithe one minus tan square by one plus tan square vasthundi",
+            "replace x by tan theta in the fraction"
+          ],
+          "reject": [
+            "I substitute tan theta",
+            "use the same function",
+            "then it becomes cos two theta"
+          ],
+          "heard_as": [
+            "tan theta",
+            "tan squared theta",
+            "one minus tan square",
+            "substitute",
+            "f of tan theta"
+          ]
+        },
+        "why": "f is given by a rule in x, so f(tan θ) is that rule with tan θ written wherever x appeared. Nothing else about f changes. The one condition to state is that tan θ must exist, so θ is not an odd multiple of π/2.",
+        "common_mistakes": [
+          "Reading f(tan θ) as tan of f(θ).",
+          "Writing (tan θ)² as tan θ², which is the tangent of θ².",
+          "Substituting into only the numerator."
+        ]
+      },
+      {
+        "id": "s2_reduce",
+        "kind": "boxed_final",
+        "label": "Clear the tangents and reach cos 2θ",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark is the reduction. Check with θ = 30°: tan 30° = 1/√3, so f = (1 − 1/3)/(1 + 1/3) = 1/2, and cos 60° = 1/2.",
+        "memory_tip": "Multiply the top and the bottom by cos²θ. The bottom becomes 1 and the top becomes cos²θ − sin²θ, which is cos 2θ.",
+        "lines": [
+          "Write tan θ = sin θ/cos θ, then multiply the",
+          "numerator and the denominator by cos²θ:",
+          "= (cos²θ − sin²θ)/(cos²θ + sin²θ)",
+          "= (cos²θ − sin²θ)/1",
+          "= cos²θ − sin²θ = cos 2θ",
+          {
+            "text": "∴ f(tan θ) = cos 2θ",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying the top and bottom by cos²θ gives (cos²θ − sin²θ)/1, which is cos 2θ.",
+          "accept": [
+            "multiply top and bottom by cos squared theta so the bottom becomes one",
+            "the numerator becomes cos square minus sin square which is cos two theta",
+            "cos square plus sin square is one so only the numerator is left",
+            "cos square theta tho multiply chesthe denominator one authundi",
+            "it reduces to cos square minus sin square theta equals cos two theta"
+          ],
+          "reject": [
+            "hence proved",
+            "it becomes cos two theta",
+            "then I simplify"
+          ],
+          "heard_as": [
+            "cos squared theta",
+            "sin squared theta",
+            "cos two theta",
+            "multiply top and bottom",
+            "equals one"
+          ]
+        },
+        "why": "Multiplying the top and the bottom by cos²θ clears every tangent at once. The denominator becomes cos²θ + sin²θ, which is 1, and the numerator becomes cos²θ − sin²θ, which is the double angle form of cos 2θ.",
+        "common_mistakes": [
+          "Multiplying only the numerator by cos²θ.",
+          "Writing cos²θ + sin²θ as 2 instead of 1.",
+          "Reading cos²θ − sin²θ as cos²2θ."
+        ]
+      }
+    ]
+  }
+}

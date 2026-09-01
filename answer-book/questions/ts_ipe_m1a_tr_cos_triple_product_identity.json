@@ -1,0 +1,177 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos_triple_product_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that cos A cos(π/3 + A) cos(π/3 − A) = (1/4) cos 3A.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply cos(X+Y) cos(X−Y)",
+      "marks": 1
+    },
+    {
+      "label": "Recognise cos 3A",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 39(ii), book p.92. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on the difference-of-squares step and on recognising cos 3A; grouping the last two factors stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: both sides were evaluated at A = 0.3, 0.7, 1.1 and 37°; they agreed to 12 decimal places at every value. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_group_the_last_two",
+        "kind": "equation",
+        "label": "Group the last two factors",
+        "marks": 0,
+        "margin_note": "Write cos A outside a bracket and keep the matched pair inside it. Note the formula mixes cos² with sin², unlike the sine version.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = cos A · [cos(π/3 + A) cos(π/3 − A)]",
+          "cos(X + Y) cos(X − Y) = cos²X − sin²Y"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the last two factors are grouped as a sum times a difference, ready for cos²X − sin²Y.",
+          "accept": [
+            "keep cos a outside and bracket the other two",
+            "cos x plus y into cos x minus y is cos squared x minus sin squared y",
+            "the second and third factors are a matched pair",
+            "rendu factors ni bracket lo pettali",
+            "group the matched pair first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos x plus y",
+            "cos x minus y",
+            "cos squared x",
+            "sin squared y"
+          ]
+        },
+        "why": "The second and third factors are a sum and a difference of the same two angles, so they multiply to a difference of squares. cos A is left outside for now.",
+        "common_mistakes": [
+          "Expanding cos(π/3 + A) and cos(π/3 − A) term by term.",
+          "Writing the result as cos²X − cos²Y."
+        ],
+        "memory_tip": "For cosines the pair gives cos²X − sin²Y — a cosine square minus a sine square."
+      },
+      {
+        "id": "s2_difference_of_squares",
+        "kind": "equation",
+        "label": "Apply cos(X+Y) cos(X−Y)",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. The bracket first becomes 1/4 − sin²A; replacing sin²A by 1 − cos²A turns it into cos²A − 3/4.",
+        "lines": [
+          "With X = π/3 and Y = A:",
+          "cos(π/3 + A) cos(π/3 − A)",
+          "  = cos²(π/3) − sin²A = 1/4 − sin²A",
+          "sin²A = 1 − cos²A",
+          "  ⇒ 1/4 − sin²A = cos²A − 3/4",
+          "L.H.S = cos A (cos²A − 3/4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the bracket becomes cos²(π/3) − sin²A = 1/4 − sin²A, and then cos²A − 3/4.",
+          "accept": [
+            "x is pi by three and y is a so it is cos squared pi by three minus sin squared a",
+            "cos pi by three squared is one by four",
+            "replace sin squared a by one minus cos squared a to get cos squared a minus three by four",
+            "sin square ni one minus cos square ga marchali",
+            "apply the difference of squares formula"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "cos three a is four cos cubed a minus three cos a"
+          ],
+          "heard_as": [
+            "pi by three",
+            "one by four",
+            "cos squared a",
+            "three by four"
+          ]
+        },
+        "why": "cos(π/3) = 1/2, so its square is 1/4. Changing sin²A to 1 − cos²A is needed because cos 3A is written in cosines only.",
+        "common_mistakes": [
+          "Taking cos²(π/3) as 1/2 instead of 1/4.",
+          "Leaving sin²A in place, which cannot give cos 3A."
+        ],
+        "memory_tip": "cos(π/3) = 1/2, and squaring gives 1/4. Then 1/4 − 1 = −3/4."
+      },
+      {
+        "id": "s3_recognise_cos_three_a",
+        "kind": "boxed_final",
+        "label": "Recognise cos 3A",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. Multiply cos A in, then take 1/4 out of both terms. What is left is the standard expansion of cos 3A.",
+        "lines": [
+          "= (4 cos³A − 3 cos A)/4",
+          "cos 3A = 4 cos³A − 3 cos A",
+          {
+            "text": "∴ L.H.S = (1/4) cos 3A = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos A (cos²A − 3/4) = (1/4)(4 cos³A − 3 cos A) = (1/4) cos 3A.",
+          "accept": [
+            "multiply cos a in and take one by four out",
+            "four cos cubed a minus three cos a is cos three a",
+            "so the left side is a quarter of cos three a",
+            "one by four bayaki teeste cos three a vasthundi",
+            "the answer is one by four cos three a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "apply the difference of squares formula"
+          ],
+          "heard_as": [
+            "four cos cubed",
+            "three cos a",
+            "cos three a",
+            "one by four"
+          ]
+        },
+        "why": "Multiplying cos A into the bracket gives cos³A − (3/4)cos A. Taking 1/4 out leaves 4 cos³A − 3 cos A, which is exactly cos 3A.",
+        "common_mistakes": [
+          "Taking 1/4 out of only one term.",
+          "Writing cos 3A as 3 cos A − 4 cos³A, which is the sine pattern."
+        ],
+        "memory_tip": "cos 3A = 4 cos³A − 3 cos A: cosine starts with 4, sine starts with 3."
+      }
+    ]
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_angle_between_intercept_lines_sin_theta",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "θ is the angle between the lines x/a + y/b = 1 and x/b + y/a = 1. Find the value of sin θ when a > b.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write both lines in standard form",
+      "marks": 1
+    },
+    {
+      "label": "Read both slopes",
+      "marks": 1
+    },
+    {
+      "label": "Write the angle formula",
+      "marks": 2
+    },
+    {
+      "label": "Simplify to tan θ",
+      "marks": 2
+    },
+    {
+      "label": "Get sin θ from tan θ",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 21(ii), book p.161. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the four real moves plus the setting-up line — one mark for clearing both equations to standard form, one for reading the two slopes, two for quoting and substituting into the angle formula, two for reducing it to tan θ, and two for turning tan θ into sin θ through the right triangle, which is where the (a² + b²) hypotenuse appears. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. AUTHOR NOTE on the stem: the book writes only “a > b”. The card states the fuller reading a > b > 0 in its first line, because a and b are INTERCEPTS and the answer (a² − b²)/(a² + b²) needs a² − b² > 0, which a > b alone does not give when b is negative. The modulus in the angle formula also means θ is the ACUTE angle between the two lines; the obtuse angle would give the same sine, so the answer is unaffected, but the card says which angle it is."
+  },
+  "recall_prompt": "Say how you would solve this — name the angle formula, and say how you turn tan θ into sin θ.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_standard_form",
+        "kind": "equation",
+        "label": "Write both lines in standard form",
+        "marks": 1,
+        "margin_note": "First mark. The slope formula −a/b needs the equations as ax + by + c = 0, so clear the denominators first. Take a > b > 0: the stem gives a > b, and a and b must both be positive for a² − b² to be positive, which the boxed answer needs.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "a and b are intercepts, and a > b > 0",
+          "⇒ a² − b² > 0 and 2ab > 0",
+          "x/a + y/b = 1  ⇒  bx + ay − ab = 0 ……(1)",
+          "x/b + y/a = 1  ⇒  ax + by − ab = 0 ……(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both intercept-form equations are cleared to bx + ay − ab = 0 and ax + by − ab = 0, with a > b > 0.",
+          "accept": [
+            "multiply through by a b to clear the denominators",
+            "the first becomes b x plus a y equals a b",
+            "write both lines in the standard form",
+            "denominators clear chesi standard form lo rayali",
+            "a and b are positive intercepts with a bigger than b"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "standard form",
+            "b x plus a y",
+            "a x plus b y",
+            "clear denominators"
+          ]
+        },
+        "why": "Reading a slope off an intercept-form equation is where sign slips start, so clearing to ax + by + c = 0 first makes the next step mechanical.",
+        "common_mistakes": [
+          "Reading the slope straight off x/a + y/b = 1 as a/b.",
+          "Forgetting that the answer needs a² − b² > 0, which a > b alone does not give if b is negative."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "Clear the denominators first: −a/b only reads correctly off ax + by + c = 0."
+      },
+      {
+        "id": "s2_both_slopes",
+        "kind": "equation",
+        "label": "Read both slopes",
+        "marks": 1,
+        "margin_note": "One mark. The two lines are the same equation with a and b swapped, so the two slopes are reciprocals of each other — that symmetry is what makes the answer so short.",
+        "lines": [
+          "Slope of (1) is m₁ = −b/a",
+          "Slope of (2) is m₂ = −a/b",
+          "Neither line is vertical, so both slopes exist."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That m₁ = −b/a and m₂ = −a/b are read off the coefficients.",
+          "accept": [
+            "the slopes are minus b over a and minus a over b",
+            "read both slopes as minus a over b from the coefficients",
+            "the two slopes are reciprocals of each other",
+            "rendu slopes minus coefficient ratio tho teesukovali",
+            "m one is minus b by a and m two is minus a by b"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus b over a",
+            "minus a over b",
+            "both slopes",
+            "reciprocal"
+          ]
+        },
+        "why": "Both slopes are needed before the angle formula can be written, and the formula fails if a line is vertical, so it is worth saying that neither is.",
+        "common_mistakes": [
+          "Writing both slopes as −b/a by not swapping a and b.",
+          "Dropping the minus sign on one of them."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "The two lines are the same equation with a and b swapped, so their slopes are reciprocals."
+      },
+      {
+        "id": "s3_angle_formula",
+        "kind": "equation",
+        "label": "Write the angle formula",
+        "marks": 2,
+        "margin_note": "The next two marks. Quote tan θ = |(m₁ − m₂)/(1 + m₁m₂)| and work out the numerator and the denominator separately — the denominator collapses to 2.",
+        "lines": [
+          "tan θ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "m₁ − m₂ = −b/a + a/b = (a² − b²)/(ab)",
+          "1 + m₁m₂ = 1 + (−b/a)(−a/b) = 1 + 1 = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle formula is quoted and its numerator and denominator are worked out.",
+          "accept": [
+            "tan theta is mod of m one minus m two over one plus m one m two",
+            "the numerator is a squared minus b squared over a b",
+            "the denominator becomes two",
+            "angle formula rasi numerator denominator veru veru cheyyali",
+            "use the tangent of the angle between two lines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan theta",
+            "m one minus m two",
+            "one plus m one m two",
+            "denominator two"
+          ]
+        },
+        "why": "m₁m₂ = 1 exactly, so the denominator is 2 whatever a and b are — that is why the answer stays this simple.",
+        "common_mistakes": [
+          "Writing the denominator as 1 − m₁m₂.",
+          "Using sin θ or cos θ in place of tan θ."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "m₁m₂ = 1 here, so the denominator is always 2."
+      },
+      {
+        "id": "s4_simplify_tan",
+        "kind": "equation",
+        "label": "Simplify to tan θ",
+        "marks": 2,
+        "margin_note": "Two more marks. The modulus makes θ the ACUTE angle between the lines. With a > b > 0 the inside is already positive, so the modulus opens directly.",
+        "lines": [
+          "tan θ = |((a² − b²)/(ab)) / 2|",
+          "= |(a² − b²)/(2ab)|",
+          "∴ tan θ = (a² − b²)/(2ab),  as a > b > 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fraction simplifies to tan θ = (a² − b²)/(2ab), the modulus opening positively because a > b > 0.",
+          "accept": [
+            "tan theta is a squared minus b squared over two a b",
+            "divide by two and open the modulus",
+            "a is bigger than b so the inside is positive",
+            "a peddadi kabatti modulus positive ga open avutundi",
+            "the modulus gives the acute angle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "a squared minus b squared",
+            "two a b",
+            "acute angle",
+            "open the modulus"
+          ]
+        },
+        "why": "The modulus is what makes θ the acute angle; the obtuse angle between the same two lines has the same sine, so the final answer is the same either way.",
+        "common_mistakes": [
+          "Dropping the modulus and reporting a negative tangent.",
+          "Cancelling ab against 2ab and losing the 2."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "The modulus means θ is the ACUTE angle; with a > b > 0 it opens as it stands."
+      },
+      {
+        "id": "s5_get_sin",
+        "kind": "boxed_final",
+        "label": "Get sin θ from tan θ",
+        "marks": 2,
+        "margin_note": "The last two marks. Read tan θ as opposite over adjacent, find the hypotenuse, then read sin θ off the same triangle. The hypotenuse is a perfect square here.",
+        "lines": [
+          "tan θ = (a² − b²)/(2ab) = opposite/adjacent",
+          "Hypotenuse = √((a² − b²)² + (2ab)²)",
+          "= √(a⁴ + 2a²b² + b⁴) = a² + b²",
+          {
+            "text": "∴ sin θ = (a² − b²)/(a² + b²)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the right triangle gives hypotenuse a² + b² and so sin θ = (a² − b²)/(a² + b²).",
+          "accept": [
+            "treat tan theta as opposite over adjacent and find the hypotenuse",
+            "the hypotenuse is a squared plus b squared",
+            "sin theta is a squared minus b squared over a squared plus b squared",
+            "right triangle geesi hypotenuse kanukkovali",
+            "square and add to get the hypotenuse"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "hypotenuse",
+            "opposite over adjacent",
+            "a squared plus b squared",
+            "sin theta"
+          ]
+        },
+        "why": "(a² − b²)² + 4a²b² = (a² + b²)², so the hypotenuse is exact and no surd survives. The same answer follows in one line from sin θ = |a₁b₂ − a₂b₁| / (√(a₁² + b₁²)√(a₂² + b₂²)).",
+        "common_mistakes": [
+          "Writing the hypotenuse as a² − b² + 2ab.",
+          "Reading sin θ as adjacent over hypotenuse."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "(a² − b²)² + (2ab)² = (a² + b²)² — the hypotenuse is a perfect square."
+      }
+    ]
+  }
+}

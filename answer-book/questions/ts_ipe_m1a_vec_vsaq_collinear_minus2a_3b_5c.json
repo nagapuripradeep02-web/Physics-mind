@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_collinear_minus2a_3b_5c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that the points whose position vectors are −2a + 3b + 5c, a + 2b + 3c and 7a − c are collinear, where a, b, c are non-coplanar vectors.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find PQ and PR",
+      "marks": 1
+    },
+    {
+      "label": "Show PR is a multiple of PQ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.61, chapter 6 ADDITION OF VECTORS, Very Short Answer question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question: the first mark is for building PQ and PR from the position vectors, the second for showing one is a multiple of the other and naming the point they share. This book prints almost no exam-appearance years, so appearances[] is empty — Addition of Vectors has long been examined, we simply have no sourced years for this question. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The result was checked a second way with the third pair: QR = OR − OQ = 6a − 2b − 4c = 2 PQ, and PQ + QR = 3 PQ = PR, which is consistent."
+  },
+  "recall_prompt": "Say how you would show three points are collinear from their position vectors.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find PQ and PR",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Name the points P, Q, R and take O as the origin. Because a, b and c are non-coplanar, their coefficients are collected separately, exactly as with i, j and k.",
+        "memory_tip": "Non-coplanar a, b, c behave like i, j and k: collect the a, b and c coefficients separately.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P, Q, R be the points, with O as origin:",
+          "OP = −2a + 3b + 5c,  OQ = a + 2b + 3c,",
+          "OR = 7a − c",
+          "PQ = OQ − OP = 3a − b − 2c",
+          "PR = OR − OP = 9a − 3b − 6c"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That PQ = OQ − OP = 3a − b − 2c and PR = OR − OP = 9a − 3b − 6c.",
+          "accept": [
+            "subtract OP from OQ and from OR to get PQ and PR",
+            "PQ is three a minus b minus two c and PR is nine a minus three b minus six c",
+            "build two vectors from the same point P",
+            "OP ni theesi PQ, PR calculate cheyyali",
+            "take the differences of the position vectors from P"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three a minus b minus two c",
+            "nine a minus three b minus six c",
+            "OQ minus OP",
+            "PQ and PR"
+          ]
+        },
+        "why": "Non-coplanar means no one of a, b, c can be built from the other two, so the coefficients can be collected separately. It also guarantees 3a − b − 2c is not the zero vector, so P and Q are genuinely different points.",
+        "common_mistakes": [
+          "Adding the position vectors instead of subtracting them.",
+          "Forgetting that OR has no b term, so its b coefficient is 0.",
+          "Building PQ and QR from different starting points and then comparing them."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Show PR is a multiple of PQ",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Second mark. Take the common factor 3 out of PR. Two vectors that are multiples of each other and start from the same point P must lie along one straight line.",
+        "memory_tip": "Take out the common factor: PR = 3 PQ. Multiple of each other plus a shared point P means one straight line.",
+        "lines": [
+          "PR = 9a − 3b − 6c = 3(3a − b − 2c)",
+          "∴ PR = 3 PQ",
+          "So PR and PQ are parallel, and P lies on both.",
+          {
+            "text": "∴ P, Q, R are collinear.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That PR = 3 PQ, and that with the common point P this makes the three points collinear.",
+          "accept": [
+            "PR is three times PQ so they are parallel and share P, hence collinear",
+            "take three out of PR to get three times PQ",
+            "one is a scalar multiple of the other and P is common to both",
+            "PR equals three PQ, P common kabatti collinear",
+            "since PR is a multiple of PQ the three points lie on one line"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "PR equals three PQ",
+            "scalar multiple",
+            "parallel",
+            "collinear",
+            "common point"
+          ]
+        },
+        "why": "Vectors that are multiples of each other are only parallel on their own. It is the shared starting point P that forces the three points onto one straight line rather than onto two parallel ones.",
+        "common_mistakes": [
+          "Stopping at PR = 3 PQ without saying that P is common to both.",
+          "Reading parallel as meaning the points cannot be collinear."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+# OUR BANK — mathematics unit 2: Functions (Maths-1A)  (26 cards)
+# source index: answer-book/sources/chaitanya_m1a_ch02_functions.json
+
+[LAQ] ts_ipe_m1a_fn_gof_bijective
+    If f: A→B, g: B→C are two bijective functions then prove that gof: A→C is also a bijective function.
+[LAQ] ts_ipe_m1a_fn_gof_inverse_reverse
+    If f: A→B, g: B→C are two bijective functions then prove that (gof)⁻¹ = f⁻¹og⁻¹.
+[LAQ] ts_ipe_m1a_fn_identity_composition
+    If f: A→B is a function and I_A, I_B are identity functions on A, B respectively then prove that foI_A = f = I_Bof.
+[LAQ] ts_ipe_m1a_fn_f_finverse_identity
+    If f: A→B is a bijective function then prove that (i) fof⁻¹ = I_B (ii) f⁻¹of = I_A.
+[LAQ] ts_ipe_m1a_fn_sqp_bijection_inverse
+    If f: A→B and g: B→A are two functions such that gof = I_A and fog = I_B, then prove that (i) f is a bijection and (ii) g = f⁻¹.
+[LAQ] ts_ipe_m1a_fn_sqp_seven_operations
+    If f = {(4,5), (5,6), (6,−4)} and g = {(4,−4), (6,5), (8,5)}, then find (i) f+g (ii) f−g (iii) 2f+4g (iv) fg (v) √f (vi) f² (vii) |f|.
+[VSAQ] ts_ipe_m1a_fn_fog_at_2
+    If f: R→R, g: R→R are defined by f(x) = 3x − 1 and g(x) = x² + 1, then find (fog)(2).
+[VSAQ] ts_ipe_m1a_fn_gof_fog_identity
+    If f(x) = 2x − 1, g(x) = (x + 1)/2 for all x ∈ R, find (i) (gof)(x) (ii) (fog)(x).
+[VSAQ] ts_ipe_m1a_fn_surjection_range_quadratic
+    If A = {−2, −1, 0, 1, 2} and f: A→B is a surjection defined by f(x) = x² + x + 1 then find B.
+[VSAQ] ts_ipe_m1a_fn_surjection_range_cos
+    If A = {0, π/6, π/4, π/3, π/2} and f: A→B is a surjection defined by f(x) = cos x then find B.
+[VSAQ] ts_ipe_m1a_fn_inverse_5x_plus_4
+    If f: Q→Q is defined by f(x) = 5x + 4, find f⁻¹.
+[VSAQ] ts_ipe_m1a_fn_inverse_ax_plus_b
+    Find the inverse of the real function f(x) = ax + b, a ≠ 0.
+[VSAQ] ts_ipe_m1a_fn_inverse_5_power_x
+    Find the inverse function of f(x) = 5ˣ.
+[VSAQ] ts_ipe_m1a_fn_inverse_log2_x
+    Find the inverse function of f(x) = log₂x.
+[VSAQ] ts_ipe_m1a_fn_set_two_plus_f_and_root_f
+    If f = {(1,2), (2,−3), (3,−1)} then find (i) 2 + f (ii) √f.
+[VSAQ] ts_ipe_m1a_fn_set_two_f_and_f_squared
+    If f = {(1,2), (2,−3), (3,−1)} then find (i) 2f (ii) f².
+[VSAQ] ts_ipe_m1a_fn_domain_root_9_minus_x2
+    Find the domain of the real function √(9 − x²).
+[VSAQ] ts_ipe_m1a_fn_domain_root_16_minus_x2
+    Find the domain of the real function √(16 − x²).
+[VSAQ] ts_ipe_m1a_fn_domain_root_x2_minus_25
+    Find the domain of the real function √(x² − 25).
+[VSAQ] ts_ipe_m1a_fn_domain_root_x2_minus_3x_plus_2
+    Find the domain of the real function √(x² − 3x + 2).
+[VSAQ] ts_ipe_m1a_fn_domain_log_x2_minus_4x_plus_3
+    Find the domain of the real function log(x² − 4x + 3).
+[VSAQ] ts_ipe_m1a_fn_domain_one_over_root_x2_minus_a2
+    Find the domain of the real function 1/√(x² − a²).
+[VSAQ] ts_ipe_m1a_fn_domain_root_4x_minus_x2
+    Find the domain of the real function f(x) = √(4x − x²).
+[VSAQ] ts_ipe_m1a_fn_domain_one_over_root_1_minus_x2
+    Find the domain of the real function 1/√(1 − x²).
+[VSAQ] ts_ipe_m1a_fn_domain_rational_x2_minus_1_x_plus_3
+    Find the domain of the real function 1/((x² − 1)(x + 3)).
+[VSAQ] ts_ipe_m1a_fn_domain_rational_three_factors
+    Find the domain of the real function (2x² − 5x + 7)/((x − 1)(x − 2)(x − 3)).

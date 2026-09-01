@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_one_over_log_2_minus_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real valued function f(x) = 1/log(2 − x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Conditions for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.12, chapter 2 FUNCTIONS, Very Short Answer question 19 part (a-vi). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find this domain — the conditions the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write both conditions",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the conditions alone. Write every one of them down before solving any.",
+        "memory_tip": "log 1 = 0, so a logarithm in a denominator always removes the point where its input equals 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The logarithm needs 2 − x > 0",
+          "⇒ x < 2",
+          "The logarithm is in the denominator, so",
+          "log(2 − x) ≠ 0, that is 2 − x ≠ 1",
+          "⇒ x ≠ 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the input of the logarithm must be positive, giving x < 2, and that the logarithm itself may not be zero, which removes x = 1.",
+          "accept": [
+            "two minus x greater than zero and log two minus x not equal to zero",
+            "log needs a positive input so x less than two and log is zero at input one so x is not one",
+            "the denominator is a logarithm so it cannot be zero which happens at x equals one",
+            "log denominator lo undi so zero kaakoodadu x equals one theeyali",
+            "x less than two but x not equal to one"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "logarithm",
+            "log",
+            "two minus x",
+            "not equal to zero",
+            "one",
+            "two",
+            "denominator"
+          ]
+        },
+        "why": "Two rules apply at once: the input of a logarithm must be positive, and a denominator may not be zero. log(2 − x) is zero exactly when 2 − x = 1, so x = 1 fails even though the logarithm is defined there.",
+        "common_mistakes": [
+          "Stopping at 2 − x > 0 and forgetting that the logarithm sits in the denominator.",
+          "Writing 2 − x ≠ 0 instead of 2 − x ≠ 1."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Take out the single point",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "One interval with one point taken out of the middle, so the answer is two open pieces.",
+        "lines": [
+          "x < 2 gives x ∈ (−∞, 2)",
+          "Remove the single point x = 1 from it.",
+          {
+            "text": "∴ Domain = (−∞, 1) ∪ (1, 2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is minus infinity to 1, union 1 to 2, with both endpoints open.",
+          "accept": [
+            "minus infinity to one union one to two",
+            "everything below two except the point one",
+            "two open intervals split at one",
+            "two kanna takkuva kaani one theeyali",
+            "x less than two and x not equal to one written as intervals"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "logarithm",
+            "log",
+            "two minus x",
+            "not equal to zero",
+            "one",
+            "two",
+            "denominator",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "The condition x < 2 gives one interval, and x ≠ 1 removes a single interior point, which splits that interval into two open pieces.",
+        "common_mistakes": [
+          "Giving (−∞, 2) and losing the excluded point x = 1.",
+          "Removing x = 2 as well, although it is already outside the interval."
+        ]
+      }
+    ]
+  }
+}

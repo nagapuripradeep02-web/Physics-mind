@@ -1,0 +1,233 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_ab_inverse_reverse_order",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If A and B are invertible matrices of the same order, then show that AB is invertible and (AB)⁻¹ = B⁻¹A⁻¹.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State what has to be shown",
+      "marks": 1
+    },
+    {
+      "label": "Show (AB)(B⁻¹A⁻¹) = I",
+      "marks": 1
+    },
+    {
+      "label": "Show (B⁻¹A⁻¹)(AB) = I",
+      "marks": 1
+    },
+    {
+      "label": "Conclude, with the order reversed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.46, chapter 5 MATRICES, Short Answer question 19(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives the two products a mark each because the definition of an inverse asks for BOTH, and a proof that shows only one side is incomplete unless it names a theorem that allows the other; the opening mark buys the statement of what must be shown, which is what makes the two products mean something. STEM WORDING: the source prints \"if A and B are invertible\"; \"of the same order\" is written into the question text here because AB must be defined and square for the statement to make sense. That is a completion of the hypothesis, not a change to it, and it is recorded rather than made silently. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say what a matrix has to satisfy to be the inverse of AB, what two products you form, and what the answer looks like.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given",
+        "kind": "equation",
+        "label": "State what is needed",
+        "marks": 1,
+        "mark_note": "What is given",
+        "margin_note": "First mark. Write down what invertible means for A and for B, and then what a matrix X must satisfy to be the inverse of AB. Both (AB)X = I and X(AB) = I are part of the definition.",
+        "memory_tip": "The definition of an inverse asks for two products, not one: (AB)X = I and X(AB) = I.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "A and B are invertible square matrices",
+          "of the same order, so",
+          "AA⁻¹ = A⁻¹A = I and BB⁻¹ = B⁻¹B = I.",
+          "A matrix X is the inverse of AB only when",
+          "(AB)X = I and X(AB) = I. Both are needed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A and B each have an inverse giving the identity on both sides, and that to prove X is the inverse of AB both (AB)X = I and X(AB) = I must be shown.",
+          "accept": [
+            "A inverse and B inverse exist and give the identity on both sides",
+            "to be the inverse of AB a matrix must give I when multiplied on the left and on the right",
+            "we need both products with AB to come out as the identity",
+            "inverse ki rendu products identity ravali, left and right",
+            "state the definition of an inverse before starting"
+          ],
+          "reject": [
+            "A and B are invertible",
+            "we have to prove the formula",
+            "write down what is given"
+          ],
+          "heard_as": [
+            "invertible",
+            "A inverse",
+            "identity",
+            "both sides",
+            "definition"
+          ]
+        },
+        "why": "The proof is nothing but the definition of an inverse applied twice. Writing the definition first is what makes the two calculations that follow into an argument instead of two unexplained products.",
+        "common_mistakes": [
+          "Starting the multiplication without saying what has to be proved.",
+          "Using only AA⁻¹ = I and forgetting that A⁻¹A = I is also available."
+        ]
+      },
+      {
+        "id": "s2_forward",
+        "kind": "equation",
+        "label": "Multiply on the right",
+        "marks": 1,
+        "mark_note": "First product",
+        "margin_note": "Second mark. Regroup the brackets — matrix multiplication is associative — so that B meets B⁻¹ in the middle. That pair becomes I, and I disappears against A⁻¹.",
+        "memory_tip": "Regroup so the inner pair B and B⁻¹ meet first; they collapse to I and the outer pair follows.",
+        "lines": [
+          "Take X = B⁻¹A⁻¹ and multiply on the right:",
+          "(AB)(B⁻¹A⁻¹) = A(BB⁻¹)A⁻¹",
+          "Matrix multiplication is associative, so the",
+          "brackets may be moved like this.",
+          "= A I A⁻¹ = AA⁻¹ = I"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AB multiplied by B⁻¹A⁻¹ is regrouped by associativity so that B B⁻¹ becomes I, leaving A A⁻¹ = I.",
+          "accept": [
+            "AB times B inverse A inverse regroups so B and B inverse give the identity",
+            "by associativity the middle pair cancels and we are left with A times A inverse which is I",
+            "the inner brackets collapse to the identity so the whole product is I",
+            "madhyalo B B inverse identity avthundi, migilinadi A A inverse equals I",
+            "moving the brackets makes the middle pair cancel"
+          ],
+          "reject": [
+            "multiply them",
+            "it gives the identity",
+            "form the product"
+          ],
+          "heard_as": [
+            "associative",
+            "B B inverse",
+            "identity",
+            "A A inverse",
+            "brackets"
+          ]
+        },
+        "why": "Everything rests on associativity. The two matrices next to each other in the middle are B and B⁻¹ only because the order was reversed, and that is exactly why B⁻¹A⁻¹ works and A⁻¹B⁻¹ does not.",
+        "common_mistakes": [
+          "Trying (AB)(A⁻¹B⁻¹), where the middle pair is B and A⁻¹ and nothing cancels.",
+          "Writing A I A⁻¹ as I without saying that AI = A."
+        ]
+      },
+      {
+        "id": "s3_backward",
+        "kind": "equation",
+        "label": "Multiply on the left",
+        "marks": 1,
+        "mark_note": "Second product",
+        "margin_note": "Third mark. Now the same regrouping puts A⁻¹ next to A. One product alone does not prove an inverse unless you quote a theorem that allows it, so this second line is not optional.",
+        "memory_tip": "Do the product in both orders — one side alone does not prove a matrix is an inverse.",
+        "lines": [
+          "Now multiply in the other order:",
+          "(B⁻¹A⁻¹)(AB) = B⁻¹(A⁻¹A)B",
+          "= B⁻¹ I B = B⁻¹B = I",
+          "Both products give the identity matrix I."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product is also formed in the other order, that A⁻¹A becomes I, and that this second product is I as well.",
+          "accept": [
+            "now multiply B inverse A inverse by AB and the middle pair A inverse A gives the identity",
+            "the other order also comes out as I so both sides are done",
+            "B inverse I B is B inverse B which is the identity",
+            "reverse order lo kuda multiply cheste identity ne vasthundi",
+            "do the product the other way round to complete the definition"
+          ],
+          "reject": [
+            "same as before",
+            "it also gives I",
+            "repeat the working"
+          ],
+          "heard_as": [
+            "other order",
+            "A inverse A",
+            "B inverse B",
+            "identity",
+            "both products"
+          ]
+        },
+        "why": "For square matrices one-sided inverses are in fact two-sided, but that is a theorem, not an observation. Doing the second product takes two lines and avoids having to quote it.",
+        "common_mistakes": [
+          "Stopping after one product and calling the proof finished.",
+          "Assuming the second product must be I because the first one was."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude, order reversed",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Both products are I, so AB has an inverse and that inverse is B⁻¹A⁻¹. Say the order out loud: B⁻¹ comes FIRST. Writing A⁻¹B⁻¹ is the error this whole question exists to prevent.",
+        "memory_tip": "The order reverses: B⁻¹ comes first, exactly as in (AB)ᵀ = BᵀAᵀ.",
+        "lines": [
+          "AB has a matrix that gives I on both sides, so",
+          "AB is invertible and that matrix is its inverse.",
+          "Note the reversed order: B⁻¹ comes first.",
+          {
+            "text": "∴ (AB)⁻¹ = B⁻¹A⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because both products equal I, AB is invertible and its inverse is B⁻¹A⁻¹, with the order reversed.",
+          "accept": [
+            "both products give the identity so AB is invertible and its inverse is B inverse A inverse",
+            "the inverse of a product is the product of the inverses in reverse order",
+            "AB inverse equals B inverse A inverse with B first",
+            "AB ki inverse B inverse A inverse, order reverse avthundi",
+            "since both sides give I the inverse of AB is B inverse times A inverse"
+          ],
+          "reject": [
+            "hence proved",
+            "AB inverse is A inverse B inverse",
+            "so the formula is true"
+          ],
+          "heard_as": [
+            "AB inverse",
+            "B inverse A inverse",
+            "reverse order",
+            "reversal law",
+            "hence proved"
+          ]
+        },
+        "why": "The reversal is not a convention, it is what makes the middle pair cancel. The same reversal appears in (AB)ᵀ = BᵀAᵀ, and both come from matrix multiplication not being commutative.",
+        "common_mistakes": [
+          "Writing (AB)⁻¹ = A⁻¹B⁻¹, which is false unless A and B commute.",
+          "Concluding without saying that AB is invertible, which is half of what was asked."
+        ]
+      }
+    ]
+  }
+}

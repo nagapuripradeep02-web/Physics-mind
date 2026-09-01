@@ -1,0 +1,228 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_parallel_vectors_find_p",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If 4i + (2p/3)j + pk is parallel to the vector i + 2j + 3k, find p.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the condition for parallel vectors",
+      "marks": 1
+    },
+    {
+      "label": "Equate the ratios of like components",
+      "marks": 1
+    },
+    {
+      "label": "Solve for p",
+      "marks": 1
+    },
+    {
+      "label": "Check the value in every component",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.71, chapter 7 PRODUCT OF VECTORS, Short Answer question 20. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the condition, the ratio statement, the value of p, and the substitution back — the last mark is deliberate because the middle ratio (2p/3)/2 simplifies to p/3 and therefore adds no new information, and a student who never checks it cannot know that. ANSWER IS DETERMINATE: p = 12. VERIFIED by substitution — with p = 12 the vector is 4i + 8j + 12k = 4(i + 2j + 3k), an exact scalar multiple, and the cross product test gives (4, 8, 12) × (1, 2, 3) = i(24 − 24) − j(12 − 12) + k(8 − 8) = 0, the zero vector, which is the parallel condition written the other way. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find p — say what being parallel tells you about the components.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_parallel_condition",
+        "kind": "equation",
+        "label": "State the condition for parallel vectors",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. Parallel means one vector is a fixed multiple of the other, so every pair of like components carries the same multiplier.",
+        "memory_tip": "Parallel means one is a multiple of the other, so like components share one common ratio.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = 4i + (2p/3)j + pk",
+          "and b = i + 2j + 3k.",
+          "a is parallel to b ⇒ a = t b, t ≠ 0.",
+          "So like components are in one ratio."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That parallel vectors satisfy a = t b, so the ratios of like components are all equal.",
+          "accept": [
+            "parallel means a equals some scalar t times b",
+            "so the like components are in the same ratio",
+            "one vector is a constant multiple of the other",
+            "parallel ante okati inkoka dani multiple",
+            "write a as t times b"
+          ],
+          "reject": [
+            "so p is twelve",
+            "hence proved",
+            "use a dot b equals zero"
+          ],
+          "heard_as": [
+            "a equals t b",
+            "same ratio",
+            "scalar multiple",
+            "parallel"
+          ]
+        },
+        "why": "Parallel vectors lie along the same line, so one must be a fixed multiple of the other. Component by component that multiple is the same number, which is why the ratios are equal.",
+        "common_mistakes": [
+          "Using the perpendicular condition a·b = 0 instead.",
+          "Pairing the i component of one vector with the j component of the other."
+        ]
+      },
+      {
+        "id": "s2_equate_ratios",
+        "kind": "equation",
+        "label": "Equate the ratios of like components",
+        "marks": 1,
+        "mark_note": "Ratios",
+        "margin_note": "Second mark. Write all three ratios before solving. The middle one simplifies to p/3, the same as the third, so it decides nothing on its own.",
+        "memory_tip": "Write all three ratios first — here the middle one repeats the third, so it adds no new equation.",
+        "lines": [
+          "4/1 = (2p/3)/2 = p/3",
+          "The middle ratio is (2p/3)/2 = p/3,",
+          "the same as the third ratio, so it",
+          "gives no new equation."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three ratios are 4/1, (2p/3)/2 and p/3, and the middle one simplifies to p/3.",
+          "accept": [
+            "four over one equals two p by three over two equals p over three",
+            "the middle ratio simplifies to p over three",
+            "write all three ratios of like components",
+            "middle ratio p by three ye avutundi, kotha samacharam ledu",
+            "the second and third ratios are the same expression"
+          ],
+          "reject": [
+            "so p is twelve",
+            "parallel means a equals t b",
+            "hence proved"
+          ],
+          "heard_as": [
+            "four over one",
+            "two p by three",
+            "p over three",
+            "middle ratio"
+          ]
+        },
+        "why": "Writing all three ratios shows which of them actually fixes p. Here the middle ratio reduces to p/3, so the first and third are the pair that determine the value.",
+        "common_mistakes": [
+          "Reading (2p/3)/2 as 2p/3.",
+          "Turning one ratio upside down, for example writing 1/4."
+        ]
+      },
+      {
+        "id": "s3_solve_for_p",
+        "kind": "equation",
+        "label": "Solve for p",
+        "marks": 1,
+        "mark_note": "Value",
+        "margin_note": "Third mark. The first and third ratios give 4 = p/3 at once. Cross multiply rather than cancelling terms.",
+        "memory_tip": "Use the two ratios that carry plain numbers, 4/1 and p/3, and cross multiply.",
+        "lines": [
+          "From the first and third ratios,",
+          "4/1 = p/3",
+          "⇒ p = 12",
+          "Then 2p/3 = 8, and 8/2 = 4 as needed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 4/1 = p/3 gives p = 12, and that 2p/3 is then 8, whose ratio to 2 is also 4.",
+          "accept": [
+            "four equals p over three so p is twelve",
+            "cross multiply to get p equal to twelve",
+            "then two p by three is eight and eight over two is four",
+            "p equals twelve, cross multiply chesthe vastundi",
+            "the value of p is twelve"
+          ],
+          "reject": [
+            "the middle ratio simplifies",
+            "parallel means a equals t b",
+            "hence proved"
+          ],
+          "heard_as": [
+            "p is twelve",
+            "cross multiply",
+            "eight over two",
+            "p equals twelve"
+          ]
+        },
+        "why": "The first and third ratios contain only numbers and p, so they give the value directly. The middle ratio is then used as a check, not as a second equation.",
+        "common_mistakes": [
+          "Solving 4/1 = 2p/3 and getting p = 6.",
+          "Dividing instead of cross multiplying, giving p = 4/3."
+        ]
+      },
+      {
+        "id": "s4_check_the_value",
+        "kind": "boxed_final",
+        "label": "Check the value in every component",
+        "marks": 1,
+        "mark_note": "Check",
+        "margin_note": "Last mark. Substitute p = 12 back: the vector becomes exactly 4 times b, and the cross product is the zero vector, which is the same test written another way.",
+        "memory_tip": "Substitute the value back and look for an exact multiple — the cross product is then the zero vector.",
+        "lines": [
+          "With p = 12,",
+          "a = 4i + 8j + 12k = 4(i + 2j + 3k)",
+          "So a = 4b, and a × b = 0.",
+          "Both tests confirm a is parallel to b.",
+          {
+            "text": "∴ p = 12",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That p = 12 makes the vector 4(i + 2j + 3k), an exact multiple of b, and that a × b is then the zero vector.",
+          "accept": [
+            "substituting twelve gives four times i plus two j plus three k",
+            "so a is four times b and the cross product is zero",
+            "the answer is p equals twelve",
+            "p twelve pettinappudu a equals four b avutundi",
+            "check by substitution, a cross b is the zero vector"
+          ],
+          "reject": [
+            "cross multiply",
+            "the middle ratio simplifies",
+            "parallel means one is a multiple"
+          ],
+          "heard_as": [
+            "four times b",
+            "cross product zero",
+            "p equals twelve",
+            "substitute back"
+          ]
+        },
+        "why": "Substituting the value back shows the first vector is exactly 4 times the second, so they really are parallel. A cross product of the zero vector is the same statement in another form, and it also checks the middle component.",
+        "common_mistakes": [
+          "Stopping at p = 12 without testing the middle component.",
+          "Saying the two vectors are equal rather than parallel."
+        ]
+      }
+    ]
+  }
+}

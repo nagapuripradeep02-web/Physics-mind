@@ -1,0 +1,242 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_collinear_test_3a_minus4b_3c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If a, b, c are non-coplanar, test the collinearity of the points 3a − 4b + 3c, −4a + 5b − 6c and 4a − 7b + 6c.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the three position vectors",
+      "marks": 1
+    },
+    {
+      "label": "Find AB and AC",
+      "marks": 1
+    },
+    {
+      "label": "Test whether AB = λ AC",
+      "marks": 1
+    },
+    {
+      "label": "State the conclusion about the points",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.63, chapter 6 ADDITION OF VECTORS, Short Answer question 2(ii). Only the question was taken — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. THE VERDICT IS NEGATIVE AND THAT IS THE ANSWER, NOT A DEFECT: the question says \"test the collinearity\", and the algebra gives AB = −7a + 9b − 9c and AC = a − 3b + 3c, which are NOT proportional (the a coefficients need λ = −7 while the b and c coefficients both need λ = −3). The three points are therefore not collinear, and the card is authored on that verdict rather than forced to a positive one. It was checked a second way with the third edge vector, BC = 8a − 12b + 12c, which is not a multiple of AC either. Part (i) of the same book question IS collinear, so the pair is a deliberate contrast. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the position vectors, the two edge vectors, the coefficient comparison that produces two different values of λ, and the negative conclusion stated about the POINTS. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Addition of Vectors has no Section C slot on the paper, so the unit is SAQ and VSAQ only. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would test three points for collinearity — and say what you write down when the test fails.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Addition of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_position",
+        "kind": "equation",
+        "label": "Write the position vectors",
+        "marks": 1,
+        "mark_note": "Position vectors",
+        "margin_note": "First mark. Name the three points A, B, C and take O as the origin. Every coefficient matters here, so copy the three vectors slowly — the whole test is a comparison of coefficients.",
+        "memory_tip": "Name the points A, B, C from the origin O, and copy every coefficient with its sign.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A, B, C be the points, O the origin.",
+          "OA = 3a − 4b + 3c",
+          "OB = −4a + 5b − 6c",
+          "OC = 4a − 7b + 6c"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three given vectors are named as the position vectors OA, OB, OC of three points A, B, C measured from an origin O.",
+          "accept": [
+            "call the three given vectors OA OB and OC with O as the origin",
+            "name the points A B C and write their position vectors from O",
+            "take the given vectors as position vectors of three points",
+            "moodu points ni A B C ani peru petti, O origin ga teeskuntam",
+            "write down the three position vectors before anything else"
+          ],
+          "reject": [
+            "write the vectors",
+            "take the points",
+            "write them down"
+          ],
+          "heard_as": [
+            "position vector",
+            "OA",
+            "OB",
+            "OC",
+            "origin"
+          ]
+        },
+        "why": "A position vector is measured from the origin, and the vector joining two points is the difference of their position vectors. Fixing an origin first is what makes that subtraction legal.",
+        "common_mistakes": [
+          "Treating the three given vectors as the sides of the figure instead of as positions.",
+          "Copying −4a as 4a, which turns a negative verdict into a false positive one."
+        ]
+      },
+      {
+        "id": "s2_edges",
+        "kind": "equation",
+        "label": "Find AB and AC",
+        "marks": 1,
+        "mark_note": "Edge vectors",
+        "margin_note": "Second mark. Both vectors must start at the SAME point A. Keep the a, b and c coefficients in separate brackets while subtracting — that middle line is where a sign slip shows up.",
+        "memory_tip": "Both edge vectors start at A: AB = OB − OA and AC = OC − OA.",
+        "lines": [
+          "AB = OB − OA",
+          "  = (−4a + 5b − 6c) − (3a − 4b + 3c)",
+          "  = (−4−3)a + (5+4)b + (−6−3)c",
+          "  = −7a + 9b − 9c",
+          "AC = OC − OA",
+          "  = (4a − 7b + 6c) − (3a − 4b + 3c)",
+          "  = (4−3)a + (−7+4)b + (6−3)c",
+          "  = a − 3b + 3c"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AB = OB − OA = −7a + 9b − 9c and AC = OC − OA = a − 3b + 3c, both starting at A.",
+          "accept": [
+            "AB is OB minus OA and AC is OC minus OA so both start at A",
+            "the two edge vectors are minus seven a plus nine b minus nine c and a minus three b plus three c",
+            "subtract OA from the other two position vectors",
+            "rendu vectors A nunchi start avvali, AB and AC",
+            "take the differences coefficient by coefficient"
+          ],
+          "reject": [
+            "find the vectors",
+            "subtract them",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "AB",
+            "AC",
+            "OB minus OA",
+            "minus seven a",
+            "a minus three b"
+          ]
+        },
+        "why": "Collinearity is a statement about direction, and two vectors can only be compared for direction if they start at the same point. Anchoring both at A is part of the test, not a habit.",
+        "common_mistakes": [
+          "Building AB and BC, a chain, instead of two vectors from the same point A.",
+          "Subtracting the wrong way round; it is OB − OA, not OA − OB.",
+          "A sign slip where the subtracted coefficient is already negative."
+        ]
+      },
+      {
+        "id": "s3_test",
+        "kind": "equation",
+        "label": "Test whether AB = λ AC",
+        "marks": 1,
+        "mark_note": "Compare coefficients",
+        "margin_note": "Third mark, and the whole question turns on it. a, b, c are non-coplanar, so one vector equation splits into three separate scalar equations. Solve each for λ and read off whether they agree.",
+        "memory_tip": "Non-coplanar a, b, c means one vector equation splits into three scalar ones. One λ must satisfy all three.",
+        "lines": [
+          "A, B, C are collinear only if AB = λ AC",
+          "for some scalar λ.",
+          "a, b, c are non-coplanar, so compare the",
+          "three coefficients separately:",
+          "a:  −7 = λ(1)   ⇒  λ = −7",
+          "b:   9 = λ(−3)  ⇒  λ = −3",
+          "c:  −9 = λ(3)   ⇒  λ = −3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because a, b, c are non-coplanar the coefficients can be compared separately, and doing so gives λ = −7 from the a term but λ = −3 from the b and c terms.",
+          "accept": [
+            "since a b c are non coplanar compare the coefficients and solve each one for lambda",
+            "the a coefficient gives lambda minus seven but b and c give lambda minus three",
+            "set AB equal to lambda times AC and match the three coefficients",
+            "a b c non coplanar kabatti coefficients separate ga compare cheyyochu",
+            "the three equations give two different values of lambda"
+          ],
+          "reject": [
+            "compare the coefficients",
+            "solve for lambda",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "lambda",
+            "compare coefficients",
+            "non coplanar",
+            "minus seven",
+            "minus three"
+          ]
+        },
+        "why": "Non-coplanar vectors are independent: no one of them can be written using the other two. That independence is exactly what lets one vector equation be read as three separate number equations.",
+        "common_mistakes": [
+          "Comparing only one pair of coefficients and stopping there.",
+          "Comparing coefficients without saying why non-coplanar vectors allow it."
+        ]
+      },
+      {
+        "id": "s4_conclude",
+        "kind": "boxed_final",
+        "label": "State the conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. A negative verdict is a complete answer here — the question says \"test\", not \"show\". Name the disagreement in λ, then say the POINTS are not collinear.",
+        "memory_tip": "A test can end in no. Say which two values of λ disagree, then answer about the points.",
+        "lines": [
+          "The a term needs λ = −7, but the b and c",
+          "terms both need λ = −3.",
+          "No single λ satisfies all three, so AB is",
+          "not a scalar multiple of AC.",
+          "Check: BC = OC − OB = 8a − 12b + 12c is",
+          "not a multiple of AC = a − 3b + 3c either.",
+          {
+            "text": "∴ A, B, C are not collinear.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That no single value of λ fits all three coefficient equations, so AB is not parallel to AC and the three points are not collinear.",
+          "accept": [
+            "no single lambda works so AB is not a multiple of AC and the points are not collinear",
+            "the values of lambda disagree so the three points do not lie on one line",
+            "since the test fails the answer is that they are not collinear",
+            "lambda values match avvaledu kabatti points collinear kaadu",
+            "the third edge vector BC is not a multiple of AC either"
+          ],
+          "reject": [
+            "hence proved",
+            "they are collinear",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "not collinear",
+            "lambda",
+            "not a multiple",
+            "fails",
+            "BC"
+          ]
+        },
+        "why": "Proportionality has to hold in every coefficient at once. Two of the three agreeing is not enough, so the honest answer to this test is no — and the BC check reaches the same answer by a different route.",
+        "common_mistakes": [
+          "Forcing a positive answer because the question looks like the collinearity questions beside it.",
+          "Reporting only that λ has no value, without saying what that means about the points."
+        ]
+      }
+    ]
+  }
+}

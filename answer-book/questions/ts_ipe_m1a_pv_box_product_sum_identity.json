@@ -1,0 +1,184 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_box_product_sum_identity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that for any three vectors a, b, c, [b + c  c + a  a + b] = 2[a b c].",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Expand the cross product",
+      "marks": 1
+    },
+    {
+      "label": "Dot and drop the zero terms",
+      "marks": 2
+    },
+    {
+      "label": "Use the cyclic rule",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.73, chapter 7 PRODUCT OF VECTORS, Short Answer question 31. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives half the marks to the six-term dot expansion, which is where the work is, and single marks to opening the cross product and to the cyclic rule that finishes it. Checked numerically twice. On a, b, c = i, j, k the left side is the determinant of (0,1,1), (1,0,1), (1,1,0), which is 2, while [a b c] = 1. On a, b, c = (1,2,3), (0,1,4), (2,0,1) the left side is 22 and [a b c] = 11. Both confirm the factor 2. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — how you open the cross product, which terms die, and the rule that finishes it.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cross",
+        "kind": "equation",
+        "label": "Expand the cross product",
+        "marks": 1,
+        "mark_note": "Cross product",
+        "margin_note": "First mark. Open the cross product first; the box product is only a dot away after that.",
+        "memory_tip": "A vector crossed with itself is the zero vector, because the angle between them is 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "[b + c  c + a  a + b]",
+          "= (b + c)·((c + a) × (a + b))",
+          "(c + a) × (a + b)",
+          "= c×a + c×b + a×a + a×b",
+          "a×a = 0, so this is c×a + c×b + a×b."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (c + a) × (a + b) opens into c×a + c×b + a×b, since a×a is the zero vector.",
+          "accept": [
+            "open the cross product by distributing over the sums",
+            "a cross a is the zero vector so it drops out",
+            "what is left is c cross a plus c cross b plus a cross b",
+            "a cross a zero avthundi kabatti aa term poddi",
+            "write the box product as a dot of a cross product"
+          ],
+          "reject": [
+            "dot with b plus c",
+            "cyclic order keeps the sign",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cross product",
+            "a cross a",
+            "zero vector",
+            "distributive"
+          ]
+        },
+        "why": "The cross product is distributive over addition, so the bracket opens into four terms, and any vector crossed with itself is the zero vector.",
+        "common_mistakes": [
+          "Writing a×a = 1 instead of the zero vector.",
+          "Assuming c×a equals a×c; the cross product changes sign on a swap."
+        ]
+      },
+      {
+        "id": "s2_dot",
+        "kind": "equation",
+        "label": "Dot and drop the zero terms",
+        "marks": 2,
+        "mark_note": "Dot product",
+        "margin_note": "Half the marks. Six terms come out and four are zero. Show the six before crossing them out.",
+        "memory_tip": "Six terms, four of them repeat a vector and vanish. Two are left.",
+        "lines": [
+          "Dot with (b + c):",
+          "b·(c×a) + b·(c×b) + b·(a×b)",
+          "+ c·(c×a) + c·(c×b) + c·(a×b)",
+          "A box product with a repeated vector is 0,",
+          "so only two terms survive:",
+          "= [b c a] + [c a b]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the six dot terms reduce to [b c a] + [c a b], the other four repeating a vector.",
+          "accept": [
+            "dot b plus c with each of the three cross products to get six terms",
+            "four of the six repeat a vector so they are zero",
+            "what survives is b c a plus c a b",
+            "repeat aina vector unna terms anni zero",
+            "only two box products are left"
+          ],
+          "reject": [
+            "open the cross product",
+            "cyclic order keeps the sign",
+            "then I get it"
+          ],
+          "heard_as": [
+            "six terms",
+            "repeated vector",
+            "b c a",
+            "c a b"
+          ]
+        },
+        "why": "Four of the six terms repeat a vector inside the box product, and a box product with a repeated vector is zero because the three vectors then lie in one plane.",
+        "common_mistakes": [
+          "Keeping terms such as b·(c×b), which are zero.",
+          "Producing only three terms by dotting with one part of the sum."
+        ]
+      },
+      {
+        "id": "s3_cyclic",
+        "kind": "boxed_final",
+        "label": "Use the cyclic rule",
+        "marks": 1,
+        "mark_note": "Cyclic rule",
+        "margin_note": "Last mark. Both surviving brackets are cyclic rotations of [a b c], so both equal it.",
+        "memory_tip": "a→b→c→a is cyclic and keeps the sign. Swapping any two letters flips it.",
+        "lines": [
+          "Cyclic order leaves a box product unchanged:",
+          "[b c a] = [a b c] and [c a b] = [a b c].",
+          "So the sum is [a b c] + [a b c].",
+          {
+            "text": "∴ [b + c  c + a  a + b] = 2[a b c]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both surviving brackets are cyclic rotations of [a b c], giving 2[a b c].",
+          "accept": [
+            "b c a and c a b are cyclic rotations so both equal a b c",
+            "the sum is a b c plus a b c which is twice a b c",
+            "cyclic order does not change the box product",
+            "cyclic aithe sign marchadu, so rendu a b c ye",
+            "hence the left side is two times a b c"
+          ],
+          "reject": [
+            "dot with b plus c",
+            "open the cross product",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cyclic",
+            "twice",
+            "a b c",
+            "rotation"
+          ]
+        },
+        "why": "Rotating the three letters without changing their order is a cyclic move, which leaves the value alone; only a swap of two letters would flip the sign.",
+        "common_mistakes": [
+          "Treating [b c a] as −[a b c]; that is a swap, not a cyclic move.",
+          "Stopping at [b c a] + [c a b] without naming them."
+        ]
+      }
+    ]
+  }
+}

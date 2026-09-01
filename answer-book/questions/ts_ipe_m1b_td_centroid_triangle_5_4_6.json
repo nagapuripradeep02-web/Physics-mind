@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_td_centroid_triangle_5_4_6",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "3D-Coordinates"
+  },
+  "chapter": "3D-Coordinates",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the centroid of the triangle whose vertices are (5, 4, 6), (1, −1, 3) and (4, 3, 2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the centroid formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 5 THREE DIMENSIONAL COORDINATES, Very Short Answer question 1, book p.175. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split rewards writing the centroid formula for a triangle first, and reading the three averages off the substitution second — the shape this bank uses for every Maths-1B Section A question. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what the centroid of a triangle is in terms of its vertices, and what you do with each coordinate.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "3D-Coordinates · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_centroid_formula",
+        "kind": "equation",
+        "label": "Write the centroid formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The centroid of a triangle is the plain average of its three vertices, taken one coordinate at a time. Write the formula before putting any numbers in.",
+        "memory_tip": "A triangle has THREE vertices, so the centroid divides by 3, not by 2.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We take A = (5, 4, 6), B = (1, −1, 3),",
+          "C = (4, 3, 2)",
+          "Centroid of triangle ABC is",
+          "G = ((x₁+x₂+x₃)/3, (y₁+y₂+y₃)/3, (z₁+z₂+z₃)/3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the centroid of a triangle is the average of the three vertices, written one coordinate at a time.",
+          "accept": [
+            "the centroid is the average of the three vertices",
+            "add the three x values and divide by three, and the same for y and z",
+            "write the centroid formula for a triangle first",
+            "centroid formula rasi, moodu coordinates average teesukovali",
+            "each coordinate of the centroid is its own average"
+          ],
+          "reject": [
+            "divide by four because there are four points",
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "centroid",
+            "average",
+            "divide by three",
+            "x one plus x two plus x three"
+          ]
+        },
+        "why": "The centroid formula is one average per coordinate, and the three averages do not interact. Writing the formula first turns the question into three short additions.",
+        "common_mistakes": [
+          "Dividing by 2 instead of 3.",
+          "Adding an x value into the y column while working down the list."
+        ]
+      },
+      {
+        "id": "s2_substitute_and_simplify",
+        "kind": "boxed_final",
+        "label": "Substitute and simplify",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Add each column and divide by 3. Only the y column divides exactly, so two of the three answers stay as fractions.",
+        "memory_tip": "Add down each column, then divide by 3. Keep 10/3 and 11/3 as fractions.",
+        "lines": [
+          "⇒ G = ((5+1+4)/3, (4−1+3)/3, (6+3+2)/3)",
+          "= (10/3, 6/3, 11/3)",
+          {
+            "text": "∴ Centroid G = (10/3, 2, 11/3)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives the centroid (10/3, 2, 11/3).",
+          "accept": [
+            "substitute the three vertices and divide each sum by three",
+            "the x sum is ten, the y sum is six, the z sum is eleven",
+            "the centroid is ten by three, two, eleven by three",
+            "substitute chesi moodu tho divide cheyyali",
+            "two of the three stay as fractions"
+          ],
+          "reject": [
+            "the centroid is the average of the vertices",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "ten by three",
+            "eleven by three",
+            "six by three is two",
+            "centroid is"
+          ]
+        },
+        "why": "Only the middle column divides exactly, so a whole-number answer in all three places would mean an arithmetic slip somewhere in the addition.",
+        "common_mistakes": [
+          "Writing 10/3 and 11/3 as rounded decimals.",
+          "Dropping the minus sign on −1 while adding the y column."
+        ]
+      }
+    ]
+  }
+}

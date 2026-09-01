@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos_sin_root2_swap",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If cos θ + sin θ = √2 cos θ, prove that cos θ − sin θ = √2 sin θ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rearrange the given relation",
+      "marks": 1
+    },
+    {
+      "label": "Take out √2 and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 10, book p.84. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the rearrangement sin θ = (√2 − 1) cos θ first and the regrouping 2 − √2 = √2(√2 − 1) second, which are the two moves the proof is made of. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically: the given relation forces tan θ = √2 − 1, so θ = 22½°; there cos θ + sin θ and √2 cos θ are both 1.3065629649, and cos θ − sin θ and √2 sin θ are both 0.5411961001. The other branch θ = 202½° was checked too and both sides agree there as well. The proof never squares, so no sign branch has to be chosen anywhere."
+  },
+  "recall_prompt": "Say how you would prove this one — what you do with the given relation, and how the √2 comes back out.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rearrange",
+        "kind": "equation",
+        "label": "Rearrange the given relation",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The given relation already links sin θ and cos θ, so it only has to be rearranged. Nothing is squared, so no sign case appears later.",
+        "memory_tip": "Move cos θ across, not sin θ. That leaves sin θ = (√2 − 1) cos θ, which is the only fact the proof uses.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given cos θ + sin θ = √2 cos θ.",
+          "If cos θ were 0, the given relation would",
+          "force sin θ = 0 too, so cos θ ≠ 0.",
+          "Take cos θ across to the right side:",
+          "sin θ = √2 cos θ − cos θ",
+          "∴ sin θ = (√2 − 1) cos θ     … (1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given relation is rearranged to sin θ = (√2 − 1) cos θ.",
+          "accept": [
+            "take cos theta to the other side so sin theta is root two minus one times cos theta",
+            "rearrange the given to get sin theta in terms of cos theta",
+            "sin theta equals root two minus one into cos theta",
+            "cos theta ni transfer chesi sin theta equals root two minus one cos theta rasta",
+            "shift cos theta and factor it out"
+          ],
+          "reject": [
+            "square both sides",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "root two minus one",
+            "sin theta equals",
+            "cos theta",
+            "rearrange"
+          ]
+        },
+        "why": "The given relation is already a link between sin θ and cos θ, so rearranging it is enough. Squaring would introduce a sign choice that this question does not need, and cos θ cannot be 0 because that would force sin θ to be 0 as well.",
+        "common_mistakes": [
+          "Squaring the given relation instead of rearranging it.",
+          "Writing sin θ = (1 − √2) cos θ with the signs the wrong way round."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Take out √2 and finish",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 2 − √2 = √2(√2 − 1), and (√2 − 1) cos θ is sin θ by line (1). That single regrouping ends the proof.",
+        "memory_tip": "2 − √2 = √2(√2 − 1). The bracket (√2 − 1) cos θ is exactly sin θ from line (1).",
+        "lines": [
+          "cos θ − sin θ = cos θ − (√2 − 1) cos θ",
+          "= (1 − √2 + 1) cos θ = (2 − √2) cos θ",
+          "Now 2 − √2 = √2(√2 − 1), so",
+          "= √2 (√2 − 1) cos θ = √2 sin θ    [by (1)]",
+          {
+            "text": "∴ cos θ − sin θ = √2 sin θ",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2 − √2 is written as √2(√2 − 1), and (√2 − 1) cos θ is replaced by sin θ.",
+          "accept": [
+            "two minus root two is root two times root two minus one so it becomes root two sin theta",
+            "take root two out and the bracket is sin theta again",
+            "substitute line one back and get root two sin theta",
+            "two minus root two ni root two bracket root two minus one ga rasta",
+            "the bracket root two minus one cos theta is sin theta"
+          ],
+          "reject": [
+            "square both sides",
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two minus root two",
+            "root two sin theta",
+            "take root two out",
+            "substitute back"
+          ]
+        },
+        "why": "The factor 2 − √2 is √2(√2 − 1), and (√2 − 1) cos θ is sin θ by line (1). That one regrouping is the whole proof, and since nothing was squared no sign has to be chosen.",
+        "common_mistakes": [
+          "Writing 2 − √2 as √2(1 − √2), which has the wrong sign.",
+          "Stopping at (2 − √2) cos θ without turning it into √2 sin θ."
+        ]
+      }
+    ]
+  }
+}

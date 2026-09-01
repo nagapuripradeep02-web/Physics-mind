@@ -1,0 +1,151 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_rank_3x4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the rank of the 3 × 4 matrix with rows (1, 2, 0, −1), (3, 4, 1, 2) and (−2, 3, 2, 5).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reduce to echelon form",
+      "marks": 1
+    },
+    {
+      "label": "Count the non-zero rows",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.35, chapter 5 MATRICES, Very Short Answer question 20(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape puts one mark on the row reduction and one on counting the non-zero rows. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Matrices fills one of those Section A slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the rank of this 3 × 4 matrix.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reduce",
+        "kind": "equation",
+        "label": "Reduce to echelon form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A 3 × 4 matrix has no determinant of its own, so row reduction is the working method. The rank cannot pass 3, because there are only 3 rows.",
+        "memory_tip": "A non-square matrix has no determinant — reduce it to echelon form instead.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The matrix is 3 × 4, so Rank A ≤ 3.",
+          {
+            "text": "A = \\begin{bmatrix} 1 & 2 & 0 & -1 \\\\ 3 & 4 & 1 & 2 \\\\ -2 & 3 & 2 & 5 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₂ → R₂ − 3R₁,  R₃ → R₃ + 2R₁:",
+          {
+            "text": "\\sim \\begin{bmatrix} 1 & 2 & 0 & -1 \\\\ 0 & -2 & 1 & 5 \\\\ 0 & 7 & 2 & 3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₃ → 2R₃ + 7R₂:",
+          {
+            "text": "\\sim \\begin{bmatrix} 1 & 2 & 0 & -1 \\\\ 0 & -2 & 1 & 5 \\\\ 0 & 0 & 11 & 41 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the matrix is reduced to echelon form by named row operations, because a 3 × 4 matrix has no determinant.",
+          "accept": [
+            "reduce it to echelon form using row operations",
+            "R two minus three R one and R three plus two R one, then clear the second column",
+            "there is no determinant for a three by four matrix so row reduce it",
+            "row operations tho echelon form ki teesukuraavali",
+            "make zeros below the first pivot and then below the second"
+          ],
+          "reject": [
+            "find the determinant",
+            "reduce the matrix"
+          ],
+          "heard_as": [
+            "echelon",
+            "row operations",
+            "R two minus three R one",
+            "three by four"
+          ]
+        },
+        "why": "Row operations do not change the rank, so the echelon form has the same rank as the original matrix — and in echelon form the rank can simply be counted.",
+        "common_mistakes": [
+          "Looking for a determinant of the whole 3 × 4 matrix.",
+          "Answering 4 because the matrix has four columns."
+        ]
+      },
+      {
+        "id": "s2_count",
+        "kind": "boxed_final",
+        "label": "Count the non-zero rows",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Three non-zero rows means rank 3, and the order-3 minor built from the first three columns confirms it. There is no minor of order 4, because there are only 3 rows.",
+        "memory_tip": "The number of non-zero rows in echelon form IS the rank.",
+        "lines": [
+          "The echelon form has 3 non-zero rows.",
+          "Columns 1, 2, 3 give a non-zero minor:",
+          {
+            "text": "\\begin{vmatrix} 1 & 2 & 0 \\\\ 3 & 4 & 1 \\\\ -2 & 3 & 2 \\end{vmatrix} = -11 \\neq 0",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ Rank A = 3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the echelon form has three non-zero rows, so the rank is 3, confirmed by a non-zero order-3 minor.",
+          "accept": [
+            "three non zero rows so the rank is three",
+            "count the rows that are not all zeros, there are three, so rank three",
+            "the first three columns give a minor of minus eleven which is not zero so rank is three",
+            "zero kaani rows moodu unnayi kabatti rank three",
+            "rank A equals three"
+          ],
+          "reject": [
+            "the rank is",
+            "count the rows"
+          ],
+          "heard_as": [
+            "three non zero rows",
+            "rank three",
+            "minus eleven",
+            "minor"
+          ]
+        },
+        "why": "The count of non-zero rows in echelon form is the rank. Showing one non-zero minor of that same order is the check straight from the definition.",
+        "common_mistakes": [
+          "Counting the rows of the original matrix instead of the echelon form.",
+          "Stopping the reduction before the shape is triangular."
+        ]
+      }
+    ]
+  }
+}

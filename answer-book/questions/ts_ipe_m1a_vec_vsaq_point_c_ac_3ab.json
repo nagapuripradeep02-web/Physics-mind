@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_point_c_ac_3ab",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the position vector of the point C on AB produced such that AC = 3AB, where a and b are the position vectors of A and B respectively.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the given in position vectors",
+      "marks": 1
+    },
+    {
+      "label": "Solve for the position vector of C",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.61, chapter 6 ADDITION OF VECTORS, Very Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question: the first mark is for turning AC = 3AB into one equation in position vectors, the second for solving that equation. This book prints almost no exam-appearance years, so appearances[] is empty — Addition of Vectors has long been examined, we simply have no sourced years for this question. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer 3b − 2a was checked a second way on a number line: taking a = 0 and b = 1 gives c = 3, and then AC = 3 and AB = 1, so AC = 3AB with C beyond B. The coefficients 3 and −2 add to 1, which is the test for C lying on the line AB."
+  },
+  "recall_prompt": "Say how you would find the position vector of a point placed along AB produced.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Write the given in position vectors",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Write both AB and AC head minus tail from the same point A. That turns the sentence 'AC = 3AB' into one equation with c as the only unknown.",
+        "memory_tip": "Write both vectors head minus tail from A: AB = b − a and AC = c − a. Then the given sentence is one equation in c.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let O be the origin and let c be the",
+          "position vector of C.",
+          "AB = b − a and AC = c − a",
+          "Given AC = 3AB, so",
+          "c − a = 3(b − a)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AB = b − a, AC = c − a, and the given condition becomes c − a = 3(b − a).",
+          "accept": [
+            "AB is b minus a and AC is c minus a so c minus a equals three times b minus a",
+            "write both from A and put the condition as an equation",
+            "call the position vector of C as c and use head minus tail",
+            "AB equals b minus a, AC equals c minus a ani rasi equation cheyyali",
+            "set c minus a equal to three b minus a"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "b minus a",
+            "c minus a",
+            "three times b minus a",
+            "head minus tail"
+          ]
+        },
+        "why": "The condition is about the vectors AB and AC, so both must be written from the same starting point A before the unknown c can appear in a single equation.",
+        "common_mistakes": [
+          "Reading AC = 3AB as c = 3b.",
+          "Writing AC as a − c, which reverses the direction.",
+          "Multiplying only b by 3 and leaving the a alone."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Solve for the position vector of C",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Expand the bracket and collect the a terms. Two of the three a terms cancel, leaving −2a, and the coefficients 3 and −2 add to 1.",
+        "memory_tip": "The coefficients of a and b must add to 1 for C to be on the line AB: 3 + (−2) = 1.",
+        "lines": [
+          "c − a = 3b − 3a",
+          "⇒ c = 3b − 3a + a",
+          "⇒ c = 3b − 2a",
+          {
+            "text": "∴ Position vector of C = 3b − 2a",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving gives c = 3b − 2a.",
+          "accept": [
+            "expand and bring the a across to get three b minus two a",
+            "the position vector of C is three b minus two a",
+            "c equals three b minus two a",
+            "c equals three b minus two a vasthundi",
+            "collect the a terms and finish with three b minus two a"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three b minus two a",
+            "three b",
+            "minus two a",
+            "position vector of C"
+          ]
+        },
+        "why": "AB produced means C lies beyond B on the same straight line, and 3b − 2a is three times as far from A as B is, in the same direction. The coefficients adding to 1 is the check that the point is on that line.",
+        "common_mistakes": [
+          "Stopping at 3b − 3a and losing the +a brought across.",
+          "Answering 3b, which is not on the line AB in general."
+        ]
+      }
+    ]
+  }
+}

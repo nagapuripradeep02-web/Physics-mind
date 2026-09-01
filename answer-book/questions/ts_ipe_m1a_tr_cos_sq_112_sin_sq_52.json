@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos_sq_112_sin_sq_52",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of cos²112½° − sin²52½°.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply the cos² − sin² identity",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the exact values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.83, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 7(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to naming and applying the identity and one to substituting the exact values and reaching the surd. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Apply the cos² − sin² identity",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. cos²A − sin²B = cos(A+B) cos(A−B). Here A + B = 165° and A − B = 60°.",
+        "memory_tip": "cos²A − sin²B = cos(A+B) cos(A−B). The two angles add to 165° and subtract to 60°.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = cos²112½° − sin²52½°",
+          "= cos(112½° + 52½°) cos(112½° − 52½°)",
+          "  [∵ cos²A − sin²B = cos(A+B) cos(A−B)]",
+          "= cos165° cos60°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos²A − sin²B = cos(A+B) cos(A−B) is applied, giving cos165° cos60°.",
+          "accept": [
+            "use cos squared minus sin squared equals cos of the sum times cos of the difference",
+            "the angles add to one sixty five and subtract to sixty",
+            "apply the identity to get cos one sixty five cos sixty",
+            "identity apply cheste cos one sixty five cos sixty vasthundi",
+            "write it as cos one sixty five times cos sixty"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos one sixty five",
+            "cos sixty",
+            "sum and difference",
+            "identity"
+          ]
+        },
+        "why": "The first term is a cosine squared and the second a sine squared, so the expression is already in the form cos²A − sin²B. No conversion is needed before the formula.",
+        "common_mistakes": [
+          "Using sin²A − sin²B, which needs both terms to be sines.",
+          "Writing the product as cos(A+B) sin(A−B)."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute the exact values",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. cos165° = −cos15°, cos15° = (√3 + 1)/(2√2) and cos60° = ½. Multiply the three.",
+        "memory_tip": "cos165° = −cos15°, and cos15° = (√3 + 1)/(2√2). The minus sign is what makes the value negative.",
+        "lines": [
+          "cos165° = cos(180° − 15°) = −cos15°",
+          "cos15° = (√3 + 1)/(2√2),  cos60° = 1/2",
+          "= [−(√3 + 1)/(2√2)] × (1/2)",
+          {
+            "text": "∴ Value = −(√3 + 1)/(4√2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos165° = −cos15°, and substituting cos15° = (√3 + 1)/(2√2) with cos60° = 1/2 gives −(√3 + 1)/(4√2).",
+          "accept": [
+            "cos one sixty five is minus cos fifteen so the value is negative",
+            "cos fifteen is root three plus one over two root two and cos sixty is a half",
+            "multiply them to get minus root three plus one over four root two",
+            "cos one sixty five ante minus cos fifteen, so answer negative vasthundi",
+            "the answer is minus root three plus one by four root two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus cos fifteen",
+            "root three plus one",
+            "two root two",
+            "four root two"
+          ]
+        },
+        "why": "165° is a second quadrant angle, where the cosine is negative. That single minus sign is what makes the whole value negative.",
+        "common_mistakes": [
+          "Writing cos165° as +cos15°.",
+          "Losing the 1/2 that comes from cos60°."
+        ]
+      }
+    ]
+  }
+}

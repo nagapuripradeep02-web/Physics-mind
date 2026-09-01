@@ -127,7 +127,7 @@
           "Answering 1 by forgetting the 1/(x + 1) factor.",
           "Substituting x = 1 into x + 1 and writing 1 instead of 2."
         ],
-        "memory_tip": "The answer is always 1 divided by the leftover factor at the point. Here the leftover is x + 1 = 2, so the answer is 1/2."
+        "memory_tip": "Once sin(x − 1)/(x − 1) is split off and goes to 1, what is left is the leftover factor at the point. Here that is 1/(x + 1) at x = 1, so the answer is 1/2. The angle inside the sine must match the factor cancelled, or the two do not pair off."
       }
     ]
   },

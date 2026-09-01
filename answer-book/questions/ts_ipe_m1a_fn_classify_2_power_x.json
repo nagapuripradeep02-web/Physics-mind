@@ -1,0 +1,181 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_classify_2_power_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Decide with justification whether f: R→(0, ∞) defined by f(x) = 2ˣ is an injection, a surjection or a bijection.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Proof that f is one one",
+      "marks": 1
+    },
+    {
+      "label": "Proof that f is onto",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 18(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the one one argument and one to the onto argument, because the question asks for both and a student who proves only one still earns half. The verdict line carries no mark and is authored for the student, not for the examiner. The codomain printed in the stem is (0, ∞), not R, and the onto argument is answered against that codomain; read as a map from R to R the same rule would NOT be onto, because 2ˣ is never zero or negative. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would decide this — how you prove one one for a power, and how the codomain (0, ∞) makes the onto part work.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_one_one",
+        "kind": "equation",
+        "label": "Prove f is one one",
+        "marks": 1,
+        "mark_note": "One one",
+        "margin_note": "First mark. Copy the domain and the codomain from the question first. Then equate the two powers and use equal bases to equate the exponents.",
+        "memory_tip": "Equal powers of the same base mean equal exponents. Divide to get 2 to the power a − b equals 2 to the power 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f: R→(0, ∞), f(x) = 2ˣ",
+          "Domain = R, codomain = (0, ∞)",
+          "Let f(a) = f(b), where a, b ∈ R",
+          "⇒ 2ᵃ = 2ᵇ ⇒ 2ᵃ/2ᵇ = 1 ⇒ 2ᵃ⁻ᵇ = 2⁰",
+          "⇒ a − b = 0 ⇒ a = b",
+          "∴ f is one one (an injection)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That assuming 2 to the power a equals 2 to the power b gives 2 to the power a minus b equals 2 to the power 0, so a − b = 0 and a = b.",
+          "accept": [
+            "let f of a equal f of b then two power a equals two power b so two power a minus b is two power zero and a equals b",
+            "divide the two powers to get two to the a minus b equals one so a minus b is zero",
+            "same base and same value means the exponents are equal so a equals b",
+            "two power a equals two power b anukunte a equals b vastundi so one one",
+            "equal powers of two force the exponents to be equal so f is injective"
+          ],
+          "reject": [
+            "the exponential is one one",
+            "the graph is increasing so it is one one",
+            "I prove it is an injection"
+          ],
+          "heard_as": [
+            "two power a",
+            "two to the a",
+            "two power b",
+            "one one",
+            "injection",
+            "exponent"
+          ]
+        },
+        "why": "Two powers of the same base are equal only when the exponents are equal, and dividing turns that into 2 to the power a − b equals 2 to the power 0. Writing that line is the proof; naming the graph is not.",
+        "common_mistakes": [
+          "Writing 'the exponential graph is increasing, so it is one one' with no algebra.",
+          "Cancelling the 2 instead of the base power and concluding a = b directly."
+        ]
+      },
+      {
+        "id": "s2_onto",
+        "kind": "equation",
+        "label": "Prove f is onto",
+        "marks": 1,
+        "mark_note": "Onto",
+        "margin_note": "Second mark. The codomain is (0, ∞), so y is strictly positive and log₂ y is a real number. That is exactly what makes this map onto.",
+        "memory_tip": "log₂ y is real only when y > 0, and the codomain (0, ∞) gives you exactly that.",
+        "lines": [
+          "Let y ∈ (0, ∞), so y > 0.",
+          "Solve 2ˣ = y. Taking log₂ on both sides,",
+          "x = log₂ y, which is real because y > 0.",
+          "So x ∈ R and f(x) = 2ˣ = y.",
+          "∴ every y > 0 has a pre-image; f is onto."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for an arbitrary y > 0 in the codomain, x = log₂ y lies in the domain R and f(x) = y, so every element of (0, ∞) is reached.",
+          "accept": [
+            "take any y greater than zero then x equals log base two of y is real and two power x equals y",
+            "solve two power x equals y by taking log base two so x is log two y which is in R",
+            "every positive number is a power of two so the map is onto",
+            "y greater than zero kabatti log base two y real so pre image untundi",
+            "for each y in zero to infinity there is a real x with f of x equals y"
+          ],
+          "reject": [
+            "two power x is onto",
+            "the range is all positive numbers",
+            "I prove it is a surjection"
+          ],
+          "heard_as": [
+            "log base two",
+            "log two y",
+            "onto",
+            "surjection",
+            "pre image",
+            "zero to infinity"
+          ]
+        },
+        "why": "Onto depends on the codomain the question names. Over (0, ∞) every y is strictly positive, so log₂ y exists and the pre-image is real. Read as a map from R to R the same rule would miss 0 and every negative number and would not be onto.",
+        "common_mistakes": [
+          "Answering for the codomain R instead of (0, ∞) and calling f not onto.",
+          "Writing x = log₂ y without saying that y > 0 is what makes it real."
+        ]
+      },
+      {
+        "id": "s3_verdict",
+        "kind": "boxed_final",
+        "label": "State the verdict",
+        "marks": 0,
+        "margin_note": "No separate mark, but write it. The question named three words, so the last line must pick one and tie it to the two proofs.",
+        "memory_tip": "One one and onto together is the definition of a bijection, so name both before the verdict.",
+        "lines": [
+          "f is one one and onto.",
+          {
+            "text": "∴ f: R→(0, ∞) is a bijection.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is a bijection BECAUSE it was shown to be both one one and onto on the stated domain and codomain.",
+          "accept": [
+            "since f is one one and onto it is a bijection",
+            "both parts hold so two power x from R to zero infinity is bijective",
+            "it is an injection and a surjection so it is a bijection",
+            "one one and onto rendu unnai so f bijection",
+            "the verdict is bijection"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is a bijection",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "bijection",
+            "bijective",
+            "by jection",
+            "one one and onto"
+          ]
+        },
+        "why": "The question offered three words, so the answer must choose one and tie it to the two proofs above. Because f is a bijection here, the inverse function log₂ x from (0, ∞) to R exists.",
+        "common_mistakes": [
+          "Naming only 'injection' when both properties were proved.",
+          "Stopping after the two arguments and never writing the verdict."
+        ]
+      }
+    ]
+  }
+}

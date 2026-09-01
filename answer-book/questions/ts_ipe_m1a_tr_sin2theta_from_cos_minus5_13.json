@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sin2theta_from_cos_minus5_13",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If cosθ = −5/13 and π/2 < θ < π, find sin2θ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find sinθ from the quadrant",
+      "marks": 1
+    },
+    {
+      "label": "Use sin2θ = 2 sinθ cosθ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.85, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to finding sinθ with the correct sign from the quadrant and one to the double angle formula and the final value. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Find sinθ from the quadrant",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. π/2 < θ < π is the second quadrant, where sinθ is positive, so the positive root is taken: sinθ = +12/13.",
+        "memory_tip": "Second quadrant: sine positive, cosine negative. So sinθ = +12/13 from the 5, 12, 13 triple.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "π/2 < θ < π, so θ is in the second quadrant.",
+          "In the second quadrant sinθ is positive.",
+          "sinθ = +√(1 − cos²θ) = √(1 − 25/169)",
+          "= √(144/169) = 12/13"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the second quadrant makes sinθ positive, so sinθ = +12/13.",
+          "accept": [
+            "theta is in the second quadrant so sine is positive",
+            "sin theta is plus twelve by thirteen",
+            "use sin squared plus cos squared equals one and take the positive root",
+            "second quadrant kabatti sine positive, twelve by thirteen",
+            "one minus twenty five by one sixty nine gives one forty four by one sixty nine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "second quadrant",
+            "twelve by thirteen",
+            "positive root",
+            "sin squared plus cos squared"
+          ]
+        },
+        "why": "The identity sin²θ + cos²θ = 1 gives sinθ only up to a sign. The interval π/2 < θ < π is what fixes that sign as positive.",
+        "common_mistakes": [
+          "Taking sinθ = −12/13, which is the third quadrant value.",
+          "Writing √(1 − 25/169) as 1 − 5/13."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Use sin2θ = 2 sinθ cosθ",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. sin2θ = 2 sinθ cosθ = 2(12/13)(−5/13) = −120/169.",
+        "memory_tip": "sin2θ = 2 sinθ cosθ. One factor is negative, so the answer is negative.",
+        "lines": [
+          "sin2θ = 2 sinθ cosθ",
+          "= 2 × (12/13) × (−5/13)",
+          "= −120/169",
+          {
+            "text": "∴ sin2θ = −120/169",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin2θ = 2 sinθ cosθ is used with both values, giving −120/169.",
+          "accept": [
+            "sin two theta is two sin theta cos theta",
+            "two times twelve by thirteen times minus five by thirteen",
+            "the answer is minus one twenty by one sixty nine",
+            "double angle formula apply cheste minus one twenty by one sixty nine",
+            "the answer is negative because cos theta is negative"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two sin theta cos theta",
+            "minus one twenty",
+            "one sixty nine",
+            "double angle"
+          ]
+        },
+        "why": "sin2θ comes out negative because cosθ is negative while sinθ is positive. That agrees with 2θ lying between π and 2π, where the sine is negative.",
+        "common_mistakes": [
+          "Writing sin2θ = 2 sinθ only.",
+          "Dropping the minus sign that comes from cosθ."
+        ]
+      }
+    ]
+  }
+}

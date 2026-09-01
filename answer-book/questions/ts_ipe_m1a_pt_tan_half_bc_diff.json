@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_tan_half_bc_diff",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that in △ABC, tan((B − C)/2) = ((b − c)/(b + c)) cot(A/2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Convert the sides to sines",
+      "marks": 1
+    },
+    {
+      "label": "Replace the half-angle sum",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.121, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to the sine-rule and sum-to-product work and one to the angle-sum step that produces cot(A/2). Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Properties of Triangles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_convert_the_sides_to_sines",
+        "kind": "equation",
+        "label": "Convert the sides to sines",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. The 2R cancels from the top and the bottom, so the ratio of the sides equals the ratio of the sines.",
+        "memory_tip": "The 2R cancels top and bottom, so (b−c)/(b+c) = (sinB − sinC)/(sinB + sinC).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "By the sine rule, b = 2R sinB, c = 2R sinC",
+          "∴ (b−c)/(b+c) = (sinB − sinC)/(sinB + sinC)",
+          "sinB − sinC = 2 cos((B+C)/2) sin((B−C)/2)",
+          "sinB + sinC = 2 sin((B+C)/2) cos((B−C)/2)",
+          "∴ (b−c)/(b+c) = cot((B+C)/2) tan((B−C)/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the sine rule turns (b−c)/(b+c) into (sinB − sinC)/(sinB + sinC), and the sum-to-product forms give cot((B+C)/2) tan((B−C)/2).",
+          "accept": [
+            "use the sine rule so b minus c over b plus c is sin B minus sin C over sin B plus sin C",
+            "the two R cancels from the top and the bottom",
+            "apply sum to product on both the difference and the sum of the sines",
+            "sine rule vaadithe two R cancel authundi, sum to product cheyyali",
+            "convert the sides into sines and then use sum to product"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two R sin B",
+            "sum to product",
+            "sine rule",
+            "cot of B plus C by two"
+          ]
+        },
+        "why": "The result to be proved is written in half angles, so the sides must first become sines. The sum-to-product forms are the only step that produces half angles from B and C.",
+        "common_mistakes": [
+          "Writing b = R sinB without the 2.",
+          "Using the sum formula for the difference of sines."
+        ]
+      },
+      {
+        "id": "s2_replace_the_half_angle_sum",
+        "kind": "boxed_final",
+        "label": "Replace the half-angle sum",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The other mark. The angle sum turns cot((B+C)/2) into tan(A/2), and dividing by tan(A/2) is multiplying by cot(A/2).",
+        "memory_tip": "(B+C)/2 = 90° − A/2, so cot((B+C)/2) = tan(A/2).",
+        "lines": [
+          "A + B + C = 180° ⇒ (B+C)/2 = 90° − A/2",
+          "∴ cot((B+C)/2) = cot(90° − A/2) = tan(A/2)",
+          "So (b−c)/(b+c) = tan(A/2) tan((B−C)/2)",
+          {
+            "text": "∴ tan((B−C)/2) = ((b−c)/(b+c)) cot(A/2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (B+C)/2 = 90° − A/2 gives cot((B+C)/2) = tan(A/2), so tan((B−C)/2) = ((b−c)/(b+c)) cot(A/2).",
+          "accept": [
+            "B plus C over two is ninety minus A over two so the cot becomes tan half A",
+            "use the angle sum to change the half angle of B plus C",
+            "divide by tan half A which is the same as multiplying by cot half A",
+            "ninety minus A by two kabatti cot ni tan half A ga marchali",
+            "the complement turns the cotangent into a tangent"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "ninety minus A by two",
+            "angle sum",
+            "tan half A",
+            "cot half A"
+          ]
+        },
+        "why": "The angle sum of a triangle is what links the half angle of B + C to the half angle of A. Dividing by tan(A/2) is the same as multiplying by cot(A/2), which is the form asked for.",
+        "common_mistakes": [
+          "Writing cot((B+C)/2) = cot(A/2) and losing the complement.",
+          "Leaving the answer divided by tan(A/2) instead of multiplied by cot(A/2)."
+        ]
+      }
+    ]
+  }
+}

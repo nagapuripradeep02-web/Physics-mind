@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cot_pairwise_sum_triangle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A, B, C are the angles of a triangle, prove that cot A cot B + cot B cot C + cot C cot A = 1.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write cot(A + B) = −cot C",
+      "marks": 1
+    },
+    {
+      "label": "Cross multiply and collect",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 32(ii), book p.89. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1 + 1 gives one mark to the set-up in cotangents and one to the cross-multiplication. Unlike the tangent identity printed as question 22 and again as 32(i), this one needs no excluded angle, and the answer says so where the student reads it rather than leaving the difference unexplained. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name the formula you start from and how the three products appear.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup_in_cotangents",
+        "kind": "equation",
+        "label": "Write cot(A + B) = −cot C",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Every angle of a triangle lies strictly between 0 and π, and cot θ is defined on all of that range, so this identity needs no excluded angle at all.",
+        "memory_tip": "cot θ exists for every angle strictly between 0 and π, so a triangle never breaks it. That is why this identity carries no π/2 caveat while the tangent one does.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Each angle lies strictly between 0 and π,",
+          "so cot A, cot B and cot C all exist.",
+          "A + B + C = π ⇒ A + B = π − C",
+          "∴ cot(A + B) = cot(π − C) = −cot C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A + B = π − C is written and cot is taken of both sides, giving cot(A + B) = −cot C.",
+          "accept": [
+            "the angles add to pi so A plus B is pi minus C",
+            "cot of pi minus C is minus cot C",
+            "no angle has to be excluded because cot exists between zero and pi",
+            "A plus B ante pi minus C, cot teeskunte minus cot C",
+            "start from the angle sum in cotangents"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "cross multiply"
+          ],
+          "heard_as": [
+            "cot A plus B",
+            "pi minus C",
+            "minus cot C",
+            "angle sum"
+          ]
+        },
+        "why": "Unlike the tangent identity, this one needs no extra condition: cot θ is defined for every θ strictly between 0 and π, and every angle of a triangle is. Nothing here can become undefined, so no angle has to be ruled out.",
+        "common_mistakes": [
+          "Writing cot(π − C) = cot C.",
+          "Using the tangent addition formula on cotangents."
+        ]
+      },
+      {
+        "id": "s2_cross_multiply",
+        "kind": "boxed_final",
+        "label": "Cross multiply and collect",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Cross multiply, then multiply −cot C into both terms of the bracket. Moving them left and the −1 right gives the three pairwise products and 1.",
+        "memory_tip": "Cross multiply, then share −cot C over both terms in the bracket. The three pairwise products land on one side and 1 on the other.",
+        "lines": [
+          "⇒ (cot A cot B − 1)/(cot A + cot B) = −cot C",
+          "Cross multiplying:",
+          "cot A cot B − 1 = −cot C (cot A + cot B)",
+          "= −cot C cot A − cot B cot C",
+          "∴ cot A cot B + cot B cot C + cot C cot A",
+          {
+            "text": "= 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the denominator is cleared, −cot C is multiplied into both bracket terms, and the three products are collected on one side to leave 1.",
+          "accept": [
+            "cross multiply and share minus cot C over both terms",
+            "bring the two cot C products to the left and the minus one to the right",
+            "the three pairwise products add to one",
+            "cross multiply chesi rendu terms ki minus cot C ivvali",
+            "so the sum of the three products is one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "cot of pi minus C is minus cot C"
+          ],
+          "heard_as": [
+            "cross multiply",
+            "cot A cot B",
+            "pairwise products",
+            "equals one"
+          ]
+        },
+        "why": "The whole second mark is one cross-multiplication. It is valid because cot A + cot B equals sin C/(sin A sin B), which is never zero in a triangle, so nothing is divided away.",
+        "common_mistakes": [
+          "Writing cot(A + B) = (cot A cot B + 1)/(cot A + cot B).",
+          "Multiplying only cot A by −cot C and leaving cot B unmultiplied."
+        ]
+      }
+    ]
+  }
+}

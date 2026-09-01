@@ -1,0 +1,266 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mi_sum_cubes_n_sq_np1_sq",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Mathematical Induction"
+  },
+  "chapter": "Mathematical Induction",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove by mathematical induction that 1³ + 2³ + 3³ + … + n³ = n²(n + 1)²/4.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Step 1 — S(1) is true",
+      "marks": 1
+    },
+    {
+      "label": "Step 2 — assume S(k)",
+      "marks": 1
+    },
+    {
+      "label": "Step 3 — S(k+1) follows",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion by P.M.I",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.25, chapter 4 MATHEMATICAL INDUCTION, Short Answer question 1(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves an induction proof is marked on — the base case, the hypothesis, the inductive step and the closing appeal to the principle — and leaves the opening statement step unmarked, matching every other card in this chapter. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, and Mathematical Induction supplies one of them on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this by induction — the nth term, the five moves, and what you add to both sides in the third step.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mathematical Induction · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Write the statement",
+        "marks": 0,
+        "margin_note": "Unmarked setup at 4 marks, but never skip it — the nth term and the full S(n) line are what Step 3 works on.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "nth term = n³",
+          "Let S(n): 1³ + 2³ + 3³ + …",
+          "        + n³ = n²(n+1)²/4"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the nth term is n³ and S(n) is the full statement, the sum of cubes up to n³ equals n²(n+1)²/4.",
+          "accept": [
+            "the nth term is n cubed and s of n says the sum of cubes equals n squared into n plus one squared over four",
+            "general term n cubed then write out s of n in full",
+            "each term is a cube so the nth term is n cubed",
+            "nth term n cubed ani rasi s of n rastam"
+          ],
+          "reject": [
+            "I write the nth term",
+            "state s of n",
+            "first the general term"
+          ],
+          "heard_as": [
+            "n cubed",
+            "nth term",
+            "s of n",
+            "n squared",
+            "over four"
+          ]
+        },
+        "why": "The series is given as a pattern. Naming the nth term as n³ turns three sample terms into an expression you can add to both sides later.",
+        "common_mistakes": [
+          "Writing the nth term as n² and proving the wrong identity.",
+          "Leaving S(n) unwritten, so Step 3 has no line to work from."
+        ],
+        "memory_tip": "The nth term is n³. The right side is the square of the sum formula: n(n+1)/2 squared is n²(n+1)²/4."
+      },
+      {
+        "id": "s2_base",
+        "kind": "equation",
+        "label": "Check S(1)",
+        "marks": 1,
+        "mark_note": "Step 1",
+        "margin_note": "One mark. Work out BOTH sides separately at n = 1 and say they are equal.",
+        "lines": [
+          "Step 1 — check S(1)",
+          "L.H.S of S(1) = 1³ = 1",
+          "R.H.S of S(1) = 1²(2)²/4 = 4/4 = 1",
+          "∴ L.H.S = R.H.S, so S(1) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at n = 1 the left side is 1 and the right side is 1 times 4 over 4, which is also 1, so S(1) is true.",
+          "accept": [
+            "left side is one cubed which is one and right side is four over four which is one",
+            "put n equals one in both sides and both come to one",
+            "the first case gives one on each side",
+            "n equals one pettina rendu sides one vasthai"
+          ],
+          "reject": [
+            "s of one is true",
+            "check the base case",
+            "verify for n equals one"
+          ],
+          "heard_as": [
+            "l h s",
+            "r h s",
+            "one cubed",
+            "four over four",
+            "s of one"
+          ]
+        },
+        "why": "Induction needs a true first case to start from. However good the inductive step is, without S(1) the chain has nothing to stand on.",
+        "common_mistakes": [
+          "Asserting S(1) is true without working out both sides.",
+          "Reading 1²(2)²/4 as 1²(2)/4 and getting 1/2."
+        ],
+        "memory_tip": "At n = 1: left side 1, right side 4/4 = 1. Write both, then write that they are equal."
+      },
+      {
+        "id": "s3_assume",
+        "kind": "equation",
+        "label": "Assume S(k) is true",
+        "marks": 1,
+        "mark_note": "Step 2",
+        "margin_note": "One mark. Assume it for ONE value k and number the line (1) — Step 3 quotes that number.",
+        "lines": [
+          "Step 2 — assume S(k) is true, k ∈ N",
+          "S(k): 1³ + 2³ + … + k³",
+          "        = k²(k+1)²/4   …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(k) is assumed true for some k in N — the sum of cubes up to k³ equals k²(k+1)²/4 — and the line is numbered (1).",
+          "accept": [
+            "assume it for k so the sum up to k cubed equals k squared into k plus one squared over four",
+            "suppose s of k holds and call that equation one",
+            "take it as true for one value k in the naturals and number the line",
+            "k ki true ani assume chesi equation one ga rastam"
+          ],
+          "reject": [
+            "assume it is true",
+            "let it be true for k",
+            "then I assume s of k"
+          ],
+          "heard_as": [
+            "assume",
+            "s of k",
+            "k cubed",
+            "equation one",
+            "induction hypothesis"
+          ]
+        },
+        "why": "This is the assumption the method rests on. It is granted for one value only, and Step 3 has to earn the right to pass it on to the next value.",
+        "common_mistakes": [
+          "Assuming the statement for ALL k, which assumes what is being proved.",
+          "Not numbering the line, so Step 3 cannot cite it."
+        ],
+        "memory_tip": "Assume for one k and number the line (1). Step 3 adds the next term to that numbered line."
+      },
+      {
+        "id": "s4_inductive",
+        "kind": "equation",
+        "label": "Show S(k+1) follows",
+        "marks": 1,
+        "mark_note": "Step 3",
+        "margin_note": "One mark, and the longest step on the page. Add (k+1)³ to both sides of (1), then take (k+1)² out as a common factor.",
+        "lines": [
+          "Step 3 — show S(k+1) is true",
+          "Add (k+1)³ to both sides of (1):",
+          "L.H.S = k²(k+1)²/4 + (k+1)³",
+          "= [k²(k+1)² + 4(k+1)³]/4",
+          "= (k+1)²[k² + 4(k+1)]/4",
+          "= (k+1)²(k² + 4k + 4)/4",
+          "= (k+1)²(k+2)²/4 = R.H.S",
+          "So S(k+1) is true whenever S(k) is true."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (k+1)³ is added to both sides of (1), (k+1)² comes out as a common factor, and k² + 4k + 4 factorises to (k+2)², giving the formula with n replaced by k+1.",
+          "accept": [
+            "add k plus one cubed to both sides then take k plus one squared out and the bracket becomes k plus two squared",
+            "put in the next term take the common factor out and you get k plus one squared into k plus two squared over four",
+            "k squared plus four k plus four is a perfect square so it becomes k plus two squared",
+            "next term add chesi common factor teeste k plus two squared vasthundi"
+          ],
+          "reject": [
+            "I show s of k plus one",
+            "add the next term",
+            "then it follows"
+          ],
+          "heard_as": [
+            "k plus one cubed",
+            "common factor",
+            "k plus two squared",
+            "perfect square",
+            "over four"
+          ]
+        },
+        "why": "The added term (k+1)³ shares the factor (k+1)² with the assumed sum. Taking that factor out leaves k² + 4k + 4, which is (k+2)² — exactly the bracket the formula needs at k+1.",
+        "common_mistakes": [
+          "Adding (k+1)² instead of (k+1)³ as the next term.",
+          "Expanding everything into a quartic instead of factorising, which will not simplify.",
+          "Stopping before writing = R.H.S, so the step does not show what was asked."
+        ],
+        "memory_tip": "Add (k+1)³, take (k+1)² out as a common factor, and k² + 4k + 4 folds into (k+2)²."
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude by P.M.I",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark is for naming the principle. One sentence, one full mark.",
+        "lines": [
+          "Hence, by the principle of finite",
+          "Mathematical Induction, S(n) is true",
+          "for all n ∈ N."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That S(1) is true and S(k) implies S(k+1), so by the principle of mathematical induction the result holds for every natural number n.",
+          "accept": [
+            "since s of one is true and s of k gives s of k plus one by the principle of mathematical induction it holds for all n",
+            "hence by p m i the statement is true for every natural number",
+            "the base case and the inductive step together give it for all n in n",
+            "p m i prakaram anni natural numbers ki true"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is true",
+            "that completes the proof"
+          ],
+          "heard_as": [
+            "p m i",
+            "principle of mathematical induction",
+            "for all n",
+            "hence"
+          ]
+        },
+        "why": "The earlier steps prove two single statements — one about n = 1 and one about a step. Only the principle turns them into a claim about every n.",
+        "common_mistakes": [
+          "Writing only 'hence proved' and never naming the principle.",
+          "Claiming it for all real numbers instead of all n ∈ N."
+        ],
+        "memory_tip": "The closing sentence names the principle and is worth a full mark on its own."
+      }
+    ]
+  }
+}

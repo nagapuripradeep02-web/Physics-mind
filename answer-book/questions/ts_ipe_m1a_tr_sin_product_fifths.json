@@ -1,0 +1,180 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sin_product_fifths",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that sin(π/5) sin(2π/5) sin(3π/5) sin(4π/5) = 5/16.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply 2 sin A sin B",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the exact values and square",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 36(i), book p.91. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on the product-to-sum step and on the closing substitution; folding the two supplementary angles stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: the product was evaluated to 12 decimal places as 0.312500000000, which is exactly 5/16. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_fold_the_supplements",
+        "kind": "equation",
+        "label": "Fold the supplementary angles",
+        "marks": 0,
+        "margin_note": "π/5 = 36° and 2π/5 = 72°. The last two angles are 180° minus the first two, so the whole product is [sin 36° sin 72°] squared.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "sin(3π/5) = sin(π − 2π/5) = sin(2π/5)",
+          "sin(4π/5) = sin(π − π/5) = sin(π/5)",
+          "L.H.S = sin²(π/5) · sin²(2π/5)",
+          "= [sin 36° · sin 72°]²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(3π/5) = sin(2π/5) and sin(4π/5) = sin(π/5), so the product is [sin 36° sin 72°]².",
+          "accept": [
+            "sin of pi minus theta is sin theta so the last two repeat the first two",
+            "three pi by five is the supplement of two pi by five",
+            "the product becomes sin thirty six sin seventy two whole squared",
+            "supplement kabatti last rendu first rendu laage untayi",
+            "fold the last two angles onto the first two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "pi minus theta",
+            "supplement",
+            "sin thirty six",
+            "sin seventy two",
+            "squared"
+          ]
+        },
+        "why": "The third and fourth angles are the supplements of the second and first, so the four-factor product is the square of a two-factor product.",
+        "common_mistakes": [
+          "Writing sin(π − θ) as −sin θ, which is the rule for cosine.",
+          "Leaving all four factors and trying to work out each one."
+        ],
+        "memory_tip": "sin(π − θ) = sin θ, so the last two factors repeat the first two."
+      },
+      {
+        "id": "s2_product_to_sum",
+        "kind": "equation",
+        "label": "Apply 2 sin A sin B",
+        "marks": 1,
+        "mark_note": "Formula",
+        "margin_note": "First mark. cos(36° − 72°) = cos(−36°) = cos 36°, and cos 108° is negative because 108° is in the second quadrant.",
+        "lines": [
+          "2 sin A sin B = cos(A − B) − cos(A + B)",
+          "2 sin 36° sin 72° = cos 36° − cos 108°",
+          "cos 108° = cos(180° − 72°) = −cos 72°",
+          "∴ 2 sin 36° sin 72° = cos 36° + cos 72°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2 sin A sin B = cos(A − B) − cos(A + B) gives cos 36° + cos 72° after reducing cos 108°.",
+          "accept": [
+            "two sin a sin b is cos of a minus b minus cos of a plus b",
+            "cos one o eight is minus cos seventy two",
+            "so twice the product is cos thirty six plus cos seventy two",
+            "product ni cosines sum ga marchali",
+            "use the product to sum formula for two sines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "the answer is five by sixteen"
+          ],
+          "heard_as": [
+            "two sin a sin b",
+            "cos a minus b",
+            "cos one o eight",
+            "cos seventy two"
+          ]
+        },
+        "why": "Turning the product into a sum of cosines is what brings in 36° and 72°, the two angles of this chapter whose exact cosines are known.",
+        "common_mistakes": [
+          "Using cos(A + B) − cos(A − B), which gives the wrong sign.",
+          "Taking cos 108° as +cos 72°."
+        ],
+        "memory_tip": "In 2 sin A sin B the difference comes first and the sum second, with a minus between."
+      },
+      {
+        "id": "s3_substitute_and_square",
+        "kind": "boxed_final",
+        "label": "Substitute the exact values and square",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. The sum of the two cosines is √5/2, so the single product is √5/4, and the answer is that squared.",
+        "lines": [
+          "cos 36° = (√5 + 1)/4, cos 72° = (√5 − 1)/4",
+          "2 sin 36° sin 72° = 2√5/4 = √5/2",
+          "∴ sin 36° sin 72° = √5/4",
+          "L.H.S = (√5/4)² = 5/16",
+          {
+            "text": "∴ The product equals 5/16",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 36° + cos 72° = √5/2, so sin 36° sin 72° = √5/4 and the product is 5/16.",
+          "accept": [
+            "the two cosines add to root five by two so the product is root five by four",
+            "square root five by four to get five by sixteen",
+            "the one cancels and the root five doubles",
+            "root five by four square chesthe five by sixteen",
+            "the answer is five by sixteen"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "use the product to sum formula for two sines"
+          ],
+          "heard_as": [
+            "root five by four",
+            "five by sixteen",
+            "square",
+            "cos thirty six"
+          ]
+        },
+        "why": "Adding the two exact cosines cancels the 1 and doubles the √5. Squaring at the end is what turns √5 into 5 and 4 into 16.",
+        "common_mistakes": [
+          "Forgetting to divide by 2 before squaring.",
+          "Squaring only the numerator and leaving the denominator as 4."
+        ],
+        "memory_tip": "√5/4 squared is 5/16: the root disappears and the 4 becomes 16."
+      }
+    ]
+  }
+}

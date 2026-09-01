@@ -1,0 +1,232 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_sym_skew_decomposition_proof",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that every square matrix can be expressed uniquely as the sum of a symmetric matrix and a skew-symmetric matrix.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write A as the sum of two matrices",
+      "marks": 1
+    },
+    {
+      "label": "Show one is symmetric and the other skew-symmetric",
+      "marks": 1
+    },
+    {
+      "label": "Assume a second such sum and transpose it",
+      "marks": 1
+    },
+    {
+      "label": "Solve the pair to force the two matrices",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.46, chapter 5 MATRICES, Short Answer question 19(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives HALF the marks to uniqueness, which is the half most answers leave out: the word \"uniquely\" is in the stem, and constructing one such sum proves existence only. Steps 3 and 4 are the uniqueness argument split into its two moves, taking the transpose and then solving the pair, because each is a separate thing to remember. APPEARANCE TAG NOT PROMOTED: the source prints a year tag reading Mar-03 beside this question. appearances[] is left empty — March 2003 predates the formation of Telangana and its board, so the tag cannot be a ts_ipe appearance, and this book gives no board name against it. Recorded here as a source claim, not carried into the card. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say what two matrices you build, why each has the property claimed, and how you show there is no other pair.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_construct",
+        "kind": "equation",
+        "label": "Build the two matrices",
+        "marks": 1,
+        "mark_note": "Construction",
+        "margin_note": "First mark. The two halves are ½(A + Aᵀ) and ½(A − Aᵀ). Adding them, the two Aᵀ terms cancel and the two A terms give 2A, so the sum is A.",
+        "memory_tip": "Half the sum plus half the difference: the Aᵀ terms cancel and the A terms add back to A.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A be a square matrix. Write",
+          "S = ½(A + Aᵀ) and K = ½(A − Aᵀ).",
+          "Then S + K = ½(A + Aᵀ + A − Aᵀ)",
+          "= ½(2A) = A."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A is written as half the sum of A and its transpose plus half the difference, and that adding those two matrices gives A back.",
+          "accept": [
+            "take S as half of A plus A transpose and K as half of A minus A transpose",
+            "write A as half the sum plus half the difference and they add back to A",
+            "the two transposes cancel when you add them so the sum is A",
+            "half A plus A transpose and half A minus A transpose rasi kalipithe A ne vasthundi",
+            "split A into a half sum part and a half difference part"
+          ],
+          "reject": [
+            "split the matrix into two parts",
+            "write A as a sum",
+            "use the transpose"
+          ],
+          "heard_as": [
+            "half of A plus A transpose",
+            "A minus A transpose",
+            "S plus K",
+            "transpose"
+          ]
+        },
+        "why": "This construction is the whole existence half of the proof, and it works for every square matrix because Aᵀ always exists and always has the same order as A.",
+        "common_mistakes": [
+          "Dropping the ½, so the two parts add to 2A instead of A.",
+          "Writing ½(A − Aᵀ) with the terms the wrong way round, which changes its sign."
+        ]
+      },
+      {
+        "id": "s2_check",
+        "kind": "equation",
+        "label": "Check the two properties",
+        "marks": 1,
+        "mark_note": "Symmetry check",
+        "margin_note": "Second mark. Use (P + Q)ᵀ = Pᵀ + Qᵀ and (Aᵀ)ᵀ = A. Transposing S swaps the two terms and gives S again; transposing K swaps them and gives −K.",
+        "memory_tip": "Transposing swaps the two terms: the sum comes back unchanged, the difference comes back with its sign flipped.",
+        "lines": [
+          "Use (P + Q)ᵀ = Pᵀ + Qᵀ and (Aᵀ)ᵀ = A.",
+          "Sᵀ = ½(Aᵀ + A) = S, so S is symmetric.",
+          "Kᵀ = ½(Aᵀ − A) = −K, so K is skew-symmetric.",
+          "So A = S + K is one such sum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That transposing S gives S back so S is symmetric, and transposing K gives −K so K is skew-symmetric, using the transpose of a sum and the double transpose.",
+          "accept": [
+            "transpose S and the two terms swap giving S back so it is symmetric",
+            "K transpose is half A transpose minus A which is minus K so K is skew symmetric",
+            "use that the transpose of a sum is the sum of the transposes and A transpose transpose is A",
+            "S transpose S ne vasthundi, K transpose minus K vasthundi",
+            "check each part against the definition of symmetric and skew symmetric"
+          ],
+          "reject": [
+            "S is symmetric",
+            "K is skew symmetric",
+            "check the properties"
+          ],
+          "heard_as": [
+            "S transpose",
+            "K transpose",
+            "symmetric",
+            "skew symmetric",
+            "minus K"
+          ]
+        },
+        "why": "Naming the two matrices is not enough; the question says symmetric and skew-symmetric, so each has to be tested against its definition. Both tests are one line of transposing.",
+        "common_mistakes": [
+          "Asserting that S is symmetric without transposing it.",
+          "Concluding Kᵀ = K, which would make K symmetric instead of skew-symmetric."
+        ]
+      },
+      {
+        "id": "s3_suppose",
+        "kind": "equation",
+        "label": "Assume a second sum",
+        "marks": 1,
+        "mark_note": "Second sum",
+        "margin_note": "Third mark, and the start of the uniqueness half. Suppose SOME pair P, Q does the same job. Transposing A = P + Q gives Aᵀ = P − Q, because P is symmetric and Q is skew.",
+        "memory_tip": "Transposing the second sum turns the plus into a minus, because the skew part changes sign.",
+        "lines": [
+          "For uniqueness, suppose A = P + Q as well,",
+          "with Pᵀ = P and Qᵀ = −Q.",
+          "Take the transpose of both sides:",
+          "Aᵀ = Pᵀ + Qᵀ = P − Q."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a second decomposition A = P + Q is assumed, with P symmetric and Q skew, and that transposing gives Aᵀ = P − Q.",
+          "accept": [
+            "suppose there is another pair P and Q with P symmetric and Q skew symmetric",
+            "transpose A equals P plus Q to get A transpose equals P minus Q",
+            "assume a second such sum and take the transpose of both sides",
+            "inko pair P plus Q ani anukuni transpose teeste A transpose equals P minus Q",
+            "the skew part changes sign when you transpose so the plus becomes a minus"
+          ],
+          "reject": [
+            "assume it is unique",
+            "take the transpose",
+            "suppose there is another"
+          ],
+          "heard_as": [
+            "P plus Q",
+            "A transpose",
+            "P minus Q",
+            "uniqueness",
+            "suppose"
+          ]
+        },
+        "why": "Uniqueness cannot be shown by looking at the pair already built. It has to start from an arbitrary pair that works, and then force that pair to be the one already built.",
+        "common_mistakes": [
+          "Skipping uniqueness entirely, although the stem says \"uniquely\".",
+          "Writing Aᵀ = P + Q, which drops the sign change on Q under transposing."
+        ]
+      },
+      {
+        "id": "s4_solve",
+        "kind": "boxed_final",
+        "label": "Solve the pair",
+        "marks": 1,
+        "mark_note": "Uniqueness",
+        "margin_note": "Last mark. Two equations, two unknown matrices. Adding them removes Q and gives P; subtracting them removes P and gives Q. Both come out as the matrices already built, so no other pair is possible.",
+        "memory_tip": "Add the two equations to get P, subtract them to get Q — the same trick as solving two linear equations.",
+        "lines": [
+          "Add A = P + Q and Aᵀ = P − Q:",
+          "A + Aᵀ = 2P, so P = ½(A + Aᵀ) = S.",
+          "Subtract them: A − Aᵀ = 2Q, so",
+          "Q = ½(A − Aᵀ) = K.",
+          "P and Q are forced, so the sum is unique.",
+          {
+            "text": "∴ A = ½(A + Aᵀ) + ½(A − Aᵀ), uniquely",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding the two equations gives P = ½(A + Aᵀ) and subtracting them gives Q = ½(A − Aᵀ), so any such pair must be the one already constructed and the decomposition is unique.",
+          "accept": [
+            "add the two equations to get two P and subtract them to get two Q",
+            "P must be half of A plus A transpose and Q must be half of A minus A transpose so the pair is forced",
+            "solving the two equations shows there is no other choice so the sum is unique",
+            "rendu equations add cheste P, subtract cheste Q vasthundi, so unique",
+            "the pair is determined completely so the decomposition is unique"
+          ],
+          "reject": [
+            "hence it is unique",
+            "so P equals S",
+            "solve the equations"
+          ],
+          "heard_as": [
+            "add the equations",
+            "two P",
+            "half of A plus A transpose",
+            "unique",
+            "forced"
+          ]
+        },
+        "why": "Uniqueness means no freedom is left. Adding and subtracting the two equations pins both P and Q down completely, which is exactly what the word \"uniquely\" in the question asks for.",
+        "common_mistakes": [
+          "Stopping at existence and never showing the pair is forced.",
+          "Adding the equations and writing P instead of 2P on the right."
+        ]
+      }
+    ]
+  }
+}

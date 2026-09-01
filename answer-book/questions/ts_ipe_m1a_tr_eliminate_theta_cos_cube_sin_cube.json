@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_eliminate_theta_cos_cube_sin_cube",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Eliminate θ from x = a cos³θ and y = b sin³θ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write cos θ and sin θ as cube roots",
+      "marks": 1
+    },
+    {
+      "label": "Use cos²θ + sin²θ = 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 17, book p.85. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards isolating cos θ and sin θ as cube roots first and applying cos²θ + sin²θ = 1 second, since the identity is what actually removes θ. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically with a = 2.7, b = −1.4 and θ = 200°: x = −2.2403775571 and y = 0.0560122592, and (x/a)²⁄³ + (y/b)²⁄³ = 1.0000000000. Negative a, negative b and a third-quadrant θ were used on purpose, because a real cube root keeps the sign of its argument and so the relation carries no ± branch."
+  },
+  "recall_prompt": "Say how you would eliminate θ here — what you take from each equation, and which identity finishes it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cube_roots",
+        "kind": "equation",
+        "label": "Write cos θ and sin θ as cube roots",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Dividing needs a ≠ 0 and b ≠ 0. A real cube root is unique, so cos θ and sin θ come out with no ± sign — unlike a square root.",
+        "memory_tip": "A real number has exactly one real cube root, so there is no ± sign here. Take the cube root of each ratio.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here a ≠ 0 and b ≠ 0, so we may divide.",
+          "x = a cos³θ ⇒ cos³θ = x/a",
+          "y = b sin³θ ⇒ sin³θ = y/b",
+          "A real number has exactly one real cube root,",
+          "so no ± sign is needed:",
+          "cos θ = (x/a)¹⁄³,  sin θ = (y/b)¹⁄³"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each equation is divided by its constant and the cube root taken, giving cos θ = (x/a)¹⁄³ and sin θ = (y/b)¹⁄³.",
+          "accept": [
+            "divide by a and by b then take the cube root of each side",
+            "cos theta is x by a to the power one third and sin theta is y by b to the power one third",
+            "take cube roots so there is no plus or minus",
+            "a tho, b tho divide chesi cube root teeskuntam",
+            "isolate cos cubed theta and sin cubed theta first"
+          ],
+          "reject": [
+            "square both sides",
+            "that is the answer",
+            "add the two equations"
+          ],
+          "heard_as": [
+            "cube root",
+            "x by a",
+            "y by b",
+            "one third power"
+          ]
+        },
+        "why": "Both equations are cubes, and a real cube root is unique, so each ratio gives the trigonometric ratio itself with no sign case. Dividing is only allowed because a and b are not zero.",
+        "common_mistakes": [
+          "Writing a ± sign, which a cube root does not need.",
+          "Dividing by a and b without stating that they are not zero."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Use cos²θ + sin²θ = 1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Squaring the two cube roots turns them into two-thirds powers, and cos²θ + sin²θ = 1 holds for every θ, so θ disappears.",
+        "memory_tip": "Square both cube roots and add. The identity cos²θ + sin²θ = 1 is what removes θ.",
+        "lines": [
+          "Square both and add:",
+          "cos²θ + sin²θ = (x/a)²⁄³ + (y/b)²⁄³",
+          "But cos²θ + sin²θ = 1 for every θ, so",
+          {
+            "text": "∴ (x/a)²⁄³ + (y/b)²⁄³ = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring both and adding gives (x/a)²⁄³ + (y/b)²⁄³ = 1 by cos²θ + sin²θ = 1.",
+          "accept": [
+            "square both and add so you get x by a to the two thirds plus y by b to the two thirds equals one",
+            "use cos squared plus sin squared equals one",
+            "the answer is x over a power two by three plus y over b power two by three equals one",
+            "rendu square chesi add cheste one vastundi",
+            "adding the squares removes theta"
+          ],
+          "reject": [
+            "take the cube root",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two thirds",
+            "cos squared plus sin squared",
+            "equals one",
+            "x by a"
+          ]
+        },
+        "why": "θ disappears because cos²θ + sin²θ = 1 holds for every θ. Squaring the two cube roots turns each into a two-thirds power, and the relation left between x and y is the answer.",
+        "common_mistakes": [
+          "Adding the cube roots instead of their squares.",
+          "Writing (x/a)³ + (y/b)³ = 1, which is not what the identity gives."
+        ]
+      }
+    ]
+  }
+}

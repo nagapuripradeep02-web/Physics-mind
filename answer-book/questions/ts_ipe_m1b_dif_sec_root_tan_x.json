@@ -52,7 +52,7 @@
             "text": "Sol:",
             "style": "heading"
           },
-          "Let y = sec(√(tan x))",
+          "Let y = sec(√(tan x)),  where tan x ≥ 0",
           "There are three layers: sec is outside, √ is next, and tan x is inside.",
           "Take u = √(tan x). Then y = sec u and d/dx(sec u) = sec u · tan u · du/dx",
           "∴ dy/dx = sec(√(tan x))·tan(√(tan x)) · d/dx(√(tan x))"

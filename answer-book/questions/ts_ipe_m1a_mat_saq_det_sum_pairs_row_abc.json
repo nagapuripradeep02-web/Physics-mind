@@ -1,0 +1,234 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_det_sum_pairs_row_abc",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the determinant with rows (b+c, c+a, a+b), (a+b, b+c, c+a) and (a, b, c) is a³ + b³ + c³ − 3abc.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Add R₃ to R₁ and take (a+b+c) out",
+      "marks": 1
+    },
+    {
+      "label": "Simplify R₂ by R₂ − R₃",
+      "marks": 1
+    },
+    {
+      "label": "Expand the determinant",
+      "marks": 1
+    },
+    {
+      "label": "Apply the standard identity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.42, chapter 5 MATRICES, Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark each to the two row operations, the expansion, and the standard identity that finishes it. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Matrices carries a Section B slot and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this one — name each row operation and the identity at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_add_row",
+        "kind": "equation",
+        "label": "Add R₃ to R₁ and take (a+b+c) out",
+        "marks": 1,
+        "mark_note": "Row operation",
+        "margin_note": "First mark. Add R₃ to R₁ and every entry of R₁ turns into the same expression a + b + c, which can then be taken outside. The answer already contains that factor.",
+        "memory_tip": "R₁ + R₃ makes every entry of the top row a + b + c, and that factor comes straight out.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let Δ be the given determinant:",
+          {
+            "text": "\\Delta = \\begin{vmatrix} b+c & c+a & a+b \\\\ a+b & b+c & c+a \\\\ a & b & c \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Apply R₁ → R₁ + R₃. Every entry of R₁",
+          "becomes a + b + c, so it comes out:",
+          {
+            "text": "\\Delta = (a+b+c)\\begin{vmatrix} 1 & 1 & 1 \\\\ a+b & b+c & c+a \\\\ a & b & c \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R₁ → R₁ + R₃ makes the top row constant at a+b+c, which is taken outside.",
+          "accept": [
+            "add the third row to the first row",
+            "every entry of the first row becomes a plus b plus c so take it out",
+            "apply R one plus R three and pull a plus b plus c outside",
+            "R one plus R three cheste top row antha a plus b plus c avutundi",
+            "the top row turns into all ones after the factor comes out"
+          ],
+          "reject": [
+            "do a row operation",
+            "add the rows"
+          ],
+          "heard_as": [
+            "R one plus R three",
+            "a plus b plus c",
+            "take it out",
+            "top row"
+          ]
+        },
+        "why": "Adding one row to another leaves the value unchanged, and a³ + b³ + c³ − 3abc has (a+b+c) as a factor — so producing that factor early is the natural first move.",
+        "common_mistakes": [
+          "Expanding the 3×3 determinant directly, which gives a long expression that is hard to factorise.",
+          "Taking (a+b+c) out of a row where the entries are not all equal to it."
+        ]
+      },
+      {
+        "id": "s2_second_row",
+        "kind": "equation",
+        "label": "Simplify R₂ by R₂ − R₃",
+        "marks": 1,
+        "mark_note": "Row operation",
+        "margin_note": "Second mark. R₂ − R₃ removes a from the first entry, b from the second and c from the third, leaving the short row (b, c, a).",
+        "memory_tip": "R₂ − R₃ turns (a+b, b+c, c+a) into the short row (b, c, a).",
+        "lines": [
+          "Apply R₂ → R₂ − R₃:",
+          {
+            "text": "\\Delta = (a+b+c)\\begin{vmatrix} 1 & 1 & 1 \\\\ b & c & a \\\\ a & b & c \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That R₂ → R₂ − R₃ reduces the middle row to (b, c, a).",
+          "accept": [
+            "subtract the third row from the second row",
+            "the middle row becomes b, c, a",
+            "apply R two minus R three to shorten the second row",
+            "R two minus R three cheste b c a vasthundi",
+            "a plus b minus a is b, so the row becomes single letters"
+          ],
+          "reject": [
+            "do another row operation",
+            "simplify the row"
+          ],
+          "heard_as": [
+            "R two minus R three",
+            "b c a",
+            "middle row",
+            "row operation"
+          ]
+        },
+        "why": "Each entry of R₂ is a sum of two letters, and the entry below it is one of those two. Subtracting leaves a single letter, which makes the expansion short.",
+        "common_mistakes": [
+          "Subtracting in the wrong direction and getting (−b, −c, −a).",
+          "Forgetting that the factor (a+b+c) stays outside during this operation."
+        ]
+      },
+      {
+        "id": "s3_expand",
+        "kind": "equation",
+        "label": "Expand the determinant",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "Third mark. The top row is all 1s, so expanding along it is the easiest route. Keep the + − + signs: the middle term is subtracted.",
+        "memory_tip": "A top row of all 1s makes the expansion three small 2×2 determinants.",
+        "lines": [
+          "Expanding along R₁:",
+          "= (a+b+c)[(c² − ab) − (bc − a²)",
+          "                 + (b² − ca)]",
+          "= (a+b+c)(a² + b² + c² − ab − bc − ca)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding along the row of 1s gives (a+b+c)(a²+b²+c²−ab−bc−ca).",
+          "accept": [
+            "expand along the first row of ones",
+            "the three minors give a squared plus b squared plus c squared minus ab minus bc minus ca",
+            "keep the plus minus plus signs so the middle term is subtracted",
+            "ones unna row along expand cheyyali",
+            "it becomes a plus b plus c into the second bracket"
+          ],
+          "reject": [
+            "expand it",
+            "open the determinant"
+          ],
+          "heard_as": [
+            "expand along R one",
+            "a squared plus b squared plus c squared",
+            "minus ab minus bc minus ca",
+            "plus minus plus"
+          ]
+        },
+        "why": "With 1s along the top row each cofactor is just a 2×2 determinant, and the three of them collect into the second bracket of the standard identity.",
+        "common_mistakes": [
+          "Using + + + and so getting +bc instead of −bc.",
+          "Collecting only two of the three cross terms ab, bc and ca."
+        ]
+      },
+      {
+        "id": "s4_identity",
+        "kind": "boxed_final",
+        "label": "Apply the standard identity",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Last mark. The two brackets are exactly the standard factorisation of a³ + b³ + c³ − 3abc, so the proof ends by naming it — no further multiplying out is needed.",
+        "memory_tip": "(a+b+c)(a²+b²+c²−ab−bc−ca) is the standard form of a³ + b³ + c³ − 3abc.",
+        "lines": [
+          "This is the standard factorisation",
+          "(a+b+c)(a²+b²+c²−ab−bc−ca)",
+          "= a³ + b³ + c³ − 3abc.",
+          {
+            "text": "∴ Δ = a³ + b³ + c³ − 3abc",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (a+b+c)(a²+b²+c²−ab−bc−ca) is the standard factorisation of a³+b³+c³−3abc, finishing the proof.",
+          "accept": [
+            "that product is the standard identity for a cubed plus b cubed plus c cubed minus three abc",
+            "use the known factorisation to finish",
+            "so delta equals a cubed plus b cubed plus c cubed minus three abc",
+            "idi standard identity kabatti direct ga raasukovachu",
+            "the two brackets multiply to give the required expression"
+          ],
+          "reject": [
+            "hence proved",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "standard identity",
+            "a cubed plus b cubed plus c cubed",
+            "three abc",
+            "factorisation"
+          ]
+        },
+        "why": "The identity is standard algebra from an earlier class. Recognising it saves multiplying two brackets out and reaching the same nine terms the long way.",
+        "common_mistakes": [
+          "Multiplying the brackets out and stopping before the six cross terms cancel.",
+          "Writing the second bracket as a² + b² + c² + ab + bc + ca."
+        ]
+      }
+    ]
+  }
+}

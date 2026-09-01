@@ -1,0 +1,151 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_define_inverse",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the inverse of a matrix.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the definition",
+      "marks": 1
+    },
+    {
+      "label": "Give the condition and an example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.36, chapter 5 MATRICES, Very Short Answer question 23. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the definition AB = BA = I separately from the existence condition det A ≠ 0 with a worked example, because a definition that omits the condition describes something that need not exist. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Related cards in the same unit: ts_ipe_m1a_mat_vsaq_inverse_1_2_3_minus5 and ts_ipe_m1a_mat_saq_inverse_formula_proof use the inverse; this question asks only for the definition."
+  },
+  "recall_prompt": "Say the definition of the inverse, and say when it exists.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "State the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. Both products are needed: AB = I and BA = I. Write the order n once, because the inverse is defined only for square matrices.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Inverse of a Matrix:",
+            "style": "heading"
+          },
+          "Let A be a square matrix of order n. If there is",
+          "a square matrix B of the same order such that",
+          "AB = BA = I, where I is the unit matrix of",
+          "order n, then B is called the inverse of A.",
+          "It is written B = A⁻¹."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That B is the inverse of the square matrix A when AB = BA = I, and that it is written A⁻¹.",
+          "accept": [
+            "B is the inverse of A if A B equals B A equals the unit matrix",
+            "the inverse multiplied either way gives the identity",
+            "it is written A to the power minus one",
+            "A B equals B A equals I aithe B is A inverse",
+            "both products with the inverse give the unit matrix"
+          ],
+          "reject": [
+            "it is the inverse",
+            "one over A"
+          ],
+          "heard_as": [
+            "inverse",
+            "A inverse",
+            "unit matrix",
+            "identity",
+            "A B equals B A"
+          ]
+        },
+        "why": "Both products are written because matrix multiplication does not commute in general, so AB = I alone is a weaker statement. For square matrices of the same order the two conditions turn out to be equivalent, but the definition states both.",
+        "common_mistakes": [
+          "Writing A⁻¹ = 1/A, which has no meaning for matrices.",
+          "Giving only AB = I and leaving out BA = I.",
+          "Defining an inverse for a matrix that is not square."
+        ],
+        "memory_tip": "Inverse means the product either way is the unit matrix: AB = BA = I."
+      },
+      {
+        "id": "s2_condition",
+        "kind": "boxed_final",
+        "label": "Give the condition and an example",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The condition det A ≠ 0 is part of the answer, not an afterthought. A singular matrix has no inverse at all.",
+        "lines": [
+          "A⁻¹ exists if and only if det A ≠ 0, that is",
+          "only when A is non-singular. It is then unique,",
+          "and A⁻¹ = (Adj A)/(det A).",
+          {
+            "text": "A = \\begin{bmatrix} 2 & 1 \\\\ 3 & 2 \\end{bmatrix}, \\quad \\det A = 1 \\neq 0",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "A^{-1} = \\begin{bmatrix} 2 & -1 \\\\ -3 & 2 \\end{bmatrix}, \\quad AA^{-1} = I",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ AB = BA = I means B = A⁻¹, det A ≠ 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A⁻¹ exists if and only if det A ≠ 0, that it is unique, and that A⁻¹ = (Adj A)/(det A).",
+          "accept": [
+            "the inverse exists if and only if the determinant is not zero",
+            "only a non singular matrix has an inverse",
+            "A inverse equals adjoint of A divided by determinant of A",
+            "determinant zero kaakapothe ne inverse untundi",
+            "the inverse is unique when it exists"
+          ],
+          "reject": [
+            "find the inverse",
+            "the determinant"
+          ],
+          "heard_as": [
+            "determinant not zero",
+            "non singular",
+            "adjoint over determinant",
+            "unique"
+          ]
+        },
+        "why": "The determinant sits in the denominator of A⁻¹ = (Adj A)/(det A), so a zero determinant leaves nothing to divide by. That is why the condition belongs inside the definition rather than being added later.",
+        "common_mistakes": [
+          "Saying every square matrix has an inverse.",
+          "Writing A⁻¹ = (det A)/(Adj A), with the two the wrong way round.",
+          "Giving an example whose determinant is 0."
+        ],
+        "memory_tip": "No inverse without a non-zero determinant, because det A is the divisor in (Adj A)/(det A)."
+      }
+    ]
+  }
+}

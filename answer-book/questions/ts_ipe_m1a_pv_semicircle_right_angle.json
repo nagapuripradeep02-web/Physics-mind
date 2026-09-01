@@ -1,0 +1,350 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_semicircle_right_angle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the angle in a semicircle is a right angle.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the circle with the centre as origin",
+      "marks": 1
+    },
+    {
+      "label": "Write PA and PB as vectors",
+      "marks": 1
+    },
+    {
+      "label": "Show the dot product is zero",
+      "marks": 1
+    },
+    {
+      "label": "Conclude the angle is a right angle",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 6, book p.68. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. This is a general proof, so it was checked a second way on a concrete instance: unit circle, A = (1, 0), B = (−1, 0), P = (3/5, 4/5), giving PA = (2/5, −4/5) and PB = (−8/5, −4/5), whose dot product is −16/25 + 16/25 = 0. The proof itself turns only on |OA| = |OP| = r, and the step excluding P = A and P = B is written out because a zero vector is perpendicular to everything and would make the conclusion empty. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: choosing the origin at the centre, writing the two sides as vector differences, showing their dot product vanishes, and drawing the conclusion. The figure carries no mark — an examiner marks the algebra — but it is drawn because the lettering cannot be read without it. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove the angle in a semicircle is a right angle using vectors — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Put the origin at the centre",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. The whole proof depends on this choice: with the centre as origin, the two ends of a diameter are a and −a, and every point of the circle has position vector of length r.",
+        "memory_tip": "Put the origin at the CENTRE, so the two ends of the diameter are a and −a.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take the centre O of the circle as the",
+          "origin, and let the radius be r.",
+          "Let AB be a diameter and let P be any",
+          "point on the circle, P ≠ A and P ≠ B.",
+          "Then OA = a, OB = −a, OP = p,",
+          "with |a| = r and |p| = r."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the centre is taken as origin, so the ends of the diameter are a and −a and the point on the circle is p, with |a| = |p| = r.",
+          "accept": [
+            "take the centre as the origin so the diameter ends are a and minus a",
+            "let the position vector of P be p with length equal to the radius",
+            "centre at the origin, both a and p have length r",
+            "centre ni origin ga teeskunte diameter ends a and minus a avuthai",
+            "set up the circle with the centre as origin and radius r"
+          ],
+          "reject": [
+            "draw the circle",
+            "that is the answer",
+            "take the dot product"
+          ],
+          "heard_as": [
+            "centre",
+            "origin",
+            "diameter",
+            "minus a",
+            "radius r"
+          ]
+        },
+        "why": "A diameter is a chord through the centre, so its two ends are exactly opposite in position from the centre. Only the centre-as-origin choice turns that fact into the clean pair a and −a.",
+        "common_mistakes": [
+          "Taking A as the origin, which loses the symmetry and leaves an unusable expression.",
+          "Forgetting to say that P lies on the circle, so |p| = r is never available."
+        ]
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Draw the circle",
+        "marks": 0,
+        "margin_note": "Worth no mark but worth drawing. AB must pass through the centre — that is what makes it a diameter and what the whole proof uses. P is any other point on the circle.",
+        "memory_tip": "The chord AB must pass through the centre, otherwise the result is not true.",
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a circle is drawn with centre O, a diameter AB through O, and a point P on the circle joined to A and to B. Naming the drawing is full credit — it cannot be spoken.",
+          "accept": [
+            "draw a circle with centre O and a diameter A B",
+            "mark a point P on the circle and join P to A and to B",
+            "sketch the circle, the diameter and the two lines from P",
+            "circle geesi diameter A B, tarvatha P nunchi rendu lines geeyali",
+            "show the angle A P B at the point on the circle"
+          ],
+          "reject": [
+            "draw it",
+            "make a figure"
+          ],
+          "heard_as": [
+            "circle",
+            "diameter",
+            "centre",
+            "point P",
+            "angle A P B"
+          ]
+        },
+        "why": "The lettering A, B, P and O means nothing until it is placed. The picture is what shows that PA and PB are the two sides of the angle being measured, and that AB runs straight through O.",
+        "common_mistakes": [
+          "Drawing AB as an ordinary chord that misses the centre.",
+          "Placing P at A or at B, where the angle does not exist."
+        ],
+        "figure": {
+          "id": "semicircle_right_angle",
+          "width": 280,
+          "height": 200,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "circle",
+              "d": "M 66 100 A 74 74 0 1 0 214 100 A 74 74 0 1 0 66 100",
+              "ms": 3700
+            },
+            {
+              "type": "stroke",
+              "id": "diameter_ab",
+              "d": "M 66 100 L 214 100",
+              "ms": 2100
+            },
+            {
+              "type": "stroke",
+              "id": "side_pa",
+              "d": "M 103 36 L 66 100",
+              "ms": 1050
+            },
+            {
+              "type": "stroke",
+              "id": "side_pb",
+              "d": "M 103 36 L 214 100",
+              "ms": 1830
+            },
+            {
+              "type": "stroke",
+              "id": "right_angle_mark",
+              "d": "M 97 46 L 107 52 L 113 42",
+              "ms": 330
+            },
+            {
+              "type": "stroke",
+              "id": "centre_dot",
+              "d": "M 138 100 L 142 100",
+              "ms": 60,
+              "w": 4
+            },
+            {
+              "type": "label",
+              "id": "lbl_a",
+              "x": 46,
+              "y": 108,
+              "text": "A",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_b",
+              "x": 220,
+              "y": 108,
+              "text": "B",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_p",
+              "x": 84,
+              "y": 28,
+              "text": "P",
+              "ms": 200,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 134,
+              "y": 122,
+              "text": "O",
+              "ms": 200,
+              "em": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "s3_sides",
+        "kind": "equation",
+        "label": "Write PA and PB as vectors",
+        "marks": 1,
+        "mark_note": "The two sides",
+        "margin_note": "Second mark. The angle at P is between the vectors that START at P, so both are written as end minus P. Writing AP and BP instead would flip both signs and change nothing, but mixing one of each is a real error.",
+        "memory_tip": "The angle at P is between vectors that start at P: end point minus P, both times.",
+        "lines": [
+          "The angle at P is the angle between the",
+          "vectors PA and PB.",
+          "PA = OA − OP = a − p",
+          "PB = OB − OP = −a − p"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That PA = a − p and PB = −a − p, both written as the far point minus P.",
+          "accept": [
+            "P A is a minus p and P B is minus a minus p",
+            "both vectors start at P so subtract p from each end point",
+            "write the two sides of the angle as position vector differences",
+            "PA ante a minus p, PB ante minus a minus p",
+            "the angle at P needs both arrows drawn away from P"
+          ],
+          "reject": [
+            "write the vectors",
+            "that is the answer",
+            "now dot them"
+          ],
+          "heard_as": [
+            "P A",
+            "P B",
+            "a minus p",
+            "minus a minus p"
+          ]
+        },
+        "why": "An angle at a point is measured between two vectors that both start at that point. Writing PA = OA − OP is the standard way to build such a vector from position vectors.",
+        "common_mistakes": [
+          "Writing PA as p − a, which points from A to P instead.",
+          "Using AP for one side and PB for the other, which measures the wrong angle."
+        ]
+      },
+      {
+        "id": "s4_dot",
+        "kind": "equation",
+        "label": "Show the dot product is zero",
+        "marks": 1,
+        "mark_note": "Dot product",
+        "margin_note": "Third mark, and the heart of the proof. The cross terms a·p and p·a are equal and opposite in sign, so they cancel, and only the two squared lengths survive — and they are both r².",
+        "memory_tip": "The cross terms cancel because a·p = p·a, so only −|a|² + |p|² is left.",
+        "lines": [
+          "PA · PB = (a − p)·(−a − p)",
+          "  = −a·a − a·p + p·a + p·p",
+          "  = −|a|² + |p|²    (as a·p = p·a)",
+          "  = −r² + r²",
+          "  = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding (a − p)·(−a − p) leaves −|a|² + |p|², which is −r² + r² = 0.",
+          "accept": [
+            "expand the dot product and the cross terms cancel",
+            "you are left with minus mod a squared plus mod p squared which is zero",
+            "both lengths are the radius so the difference is zero",
+            "cross terms cancel ayipothai, minus r square plus r square zero",
+            "the dot product of P A and P B comes out zero"
+          ],
+          "reject": [
+            "take the dot product",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "dot product",
+            "cross terms",
+            "mod a squared",
+            "zero",
+            "r squared"
+          ]
+        },
+        "why": "The product (a − p)·(−a − p) is a difference of squares in disguise. Because A and B are the two ends of a diameter, the same a appears in both brackets with opposite signs, and that is what makes the squares subtract.",
+        "common_mistakes": [
+          "Losing a sign when multiplying out the second bracket.",
+          "Treating a·p and p·a as different quantities so the cancellation is missed."
+        ]
+      },
+      {
+        "id": "s5_conclude",
+        "kind": "boxed_final",
+        "label": "Conclude the angle is 90°",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. A dot product of zero means perpendicular only when neither vector is the zero vector, so the exclusion P ≠ A, P ≠ B earns this line rather than being left unsaid.",
+        "memory_tip": "Zero dot product means perpendicular only if neither vector is the zero vector.",
+        "lines": [
+          "P is neither A nor B, so PA ≠ 0 and",
+          "PB ≠ 0.",
+          "Two non-zero vectors whose dot product",
+          "is zero are perpendicular.",
+          {
+            "text": "∴ ∠APB = 90°",
+            "style": "boxed"
+          },
+          "So the angle in a semicircle is a right",
+          "angle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That since neither PA nor PB is the zero vector, a zero dot product means they are perpendicular, so angle APB = 90°.",
+          "accept": [
+            "neither vector is zero so a zero dot product means perpendicular",
+            "the angle A P B is ninety degrees",
+            "that proves the angle in a semicircle is a right angle",
+            "rendu vectors zero kaadu kabatti perpendicular, angle ninety degrees",
+            "hence the angle at P is a right angle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "the dot product is zero"
+          ],
+          "heard_as": [
+            "ninety degrees",
+            "right angle",
+            "perpendicular",
+            "non zero"
+          ]
+        },
+        "why": "The zero vector has a zero dot product with every vector, so without excluding P = A and P = B the last step would not follow. Saying so is what turns the computation into a proof.",
+        "common_mistakes": [
+          "Stopping at the dot product without stating the conclusion.",
+          "Omitting the condition that P is different from A and B."
+        ]
+      }
+    ]
+  }
+}

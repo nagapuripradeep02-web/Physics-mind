@@ -1,0 +1,311 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos2_sum_three_half_pi",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 12,
+  "question_text": "If A + B + C = 3π/2, prove that cos 2A + cos 2B + cos 2C = 1 − 4 sin A sin B sin C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the 3π/2 condition",
+      "marks": 1
+    },
+    {
+      "label": "Pair the first two cosines",
+      "marks": 2
+    },
+    {
+      "label": "Use the condition to convert",
+      "marks": 2
+    },
+    {
+      "label": "Expand cos 2C",
+      "marks": 1
+    },
+    {
+      "label": "Convert sin C inside the bracket",
+      "marks": 1
+    },
+    {
+      "label": "Apply the difference formula and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), the TRANSFORMATIONS banner (the book prints TRANSFORMATIONS as a separate un-numbered chapter-style banner immediately after chapter 8's VSAQ run, and restarts its numbering at 1 — we ship both under one unit, ordered by the syllabus, and never mirror the book's arrangement), Long Answer question 7(i), book p.102. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives its two two-mark blocks to the pairing and to the substitution cos(3π/2 − C) = −sin C, because that minus sign is where this question is actually lost; the remaining moves are one mark each. THE CONDITION IS 3π/2, NOT π AND NOT π/2, AND THAT DECIDES TWO SIGNS: A + B = 3π/2 − C gives cos(A+B) = −sin C, and C = 3π/2 − (A+B) gives sin C = −cos(A+B). Both minus signs are needed, and they are what turn the π/2 version's answer (1 + 4 sin A sin B sin C) into this one (1 − 4 sin A sin B sin C). A student who substitutes A + B = π − C here gets the wrong sign twice. NUMERIC CHECK (before authoring and again after): at A = 100°, B = 80°, C = 90°, which sums to 270°, L.H.S = −2.8793852416 and R.H.S = −2.8793852416; re-checked on a second, non-right-angled witness A = 110°, B = 95°, C = 65°, where both sides equal −2.3936398058. The printed identity is correct as stated. Paper position: Maths-1A Section C prints 3 long answers and the student answers any 2, at 8 marks each (2026-27 pattern). This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this identity — name each move in order, and say what the 3π/2 condition does to the signs.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Trigonometric Ratios and Transformations · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the 3π/2 condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. The condition here is 3π/2. It is used twice below and it puts a minus sign on BOTH substitutions.",
+        "memory_tip": "The sum is 3π/2 here. This condition puts a minus sign on both substitutions, and that minus is the whole difference from the π/2 version.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given A + B + C = 3π/2",
+          "⇒ A + B = 3π/2 − C",
+          "The sum is 3π/2 here, not π."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the condition is A + B + C = 3π/2 and it is rearranged to A + B = 3π/2 − C.",
+          "accept": [
+            "the sum is three pi by two so A plus B equals three pi by two minus C",
+            "write the condition first and rearrange it",
+            "state the angle condition, and note it is three pi by two",
+            "modata condition rasi, A plus B ni three pi by two minus C ga rayali",
+            "write down the given sum in the form the proof needs"
+          ],
+          "reject": [
+            "write the given",
+            "start the proof"
+          ],
+          "heard_as": [
+            "three pi by two",
+            "A plus B plus C",
+            "angle condition",
+            "rearrange"
+          ]
+        },
+        "why": "The statement is false without the condition and false with the wrong one. Writing A + B = 3π/2 − C now fixes the sign of both substitutions below.",
+        "common_mistakes": [
+          "Using A + B = π − C, which is the triangle condition and reverses the sign.",
+          "Starting the transformation before writing the condition."
+        ]
+      },
+      {
+        "id": "s2_pair",
+        "kind": "equation",
+        "label": "Pair the first two cosines",
+        "marks": 2,
+        "mark_note": "Sum to product",
+        "margin_note": "Two of the eight marks. cos C + cos D = 2 cos((C+D)/2) cos((C−D)/2), applied to cos 2A + cos 2B. The 2s inside cancel the halves.",
+        "memory_tip": "Pair the first two only. The halves in the formula cancel the 2s in cos 2A and cos 2B.",
+        "lines": [
+          "L.H.S = (cos2A + cos2B) + cos2C",
+          "= 2 cos(A+B) cos(A−B) + cos2C",
+          "  [∵ cos p + cos q = 2 cos((p+q)/2) cos((p−q)/2)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 2A + cos 2B becomes 2 cos(A+B) cos(A−B).",
+          "accept": [
+            "group the first two and apply cos C plus cos D to get two cos of A plus B into cos of A minus B",
+            "the halves cancel leaving A plus B and A minus B",
+            "apply the sum to product formula to the first two terms",
+            "modati rendu group chesi sum to product apply cheyyali",
+            "convert the first pair into a product"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two cos A plus B",
+            "cos A minus B",
+            "sum to product"
+          ]
+        },
+        "why": "The 2s inside cos 2A and cos 2B are halved by the formula, so the double angles become plain A + B and A − B, and A + B is what the condition can replace.",
+        "common_mistakes": [
+          "Pairing cos 2B with cos 2C, which leaves nothing the condition can act on.",
+          "Forgetting to halve the sum and the difference."
+        ]
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Use the condition",
+        "marks": 2,
+        "mark_note": "Substitution",
+        "margin_note": "Two marks, and the sign here decides the whole answer. cos(3π/2 − θ) = −sin θ, so a minus sign enters the expression.",
+        "memory_tip": "cos(3π/2 − θ) = −sin θ. The MINUS is what makes the answer 1 − 4 sin A sin B sin C instead of 1 + 4 sin A sin B sin C.",
+        "lines": [
+          "cos(A+B) = cos(3π/2 − C) = −sinC",
+          "  [∵ cos(3π/2 − θ) = −sinθ]",
+          "L.H.S = −2 sinC cos(A−B) + cos2C"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(A+B) = cos(3π/2 − C) = −sin C, with the minus sign.",
+          "accept": [
+            "cos of three pi by two minus C is minus sin C",
+            "the cosine becomes a negative sine under the three pi by two shift",
+            "use the condition and keep the minus sign",
+            "cos three pi by two minus C ante minus sin C",
+            "apply the angle condition, it gives minus sin C"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "three pi by two minus C",
+            "minus sin C",
+            "condition",
+            "cos A plus B"
+          ]
+        },
+        "why": "3π/2 − θ lands in the third quadrant, where cosine is negative, so the shift carries a minus sign. That single sign separates this question from the π/2 version.",
+        "common_mistakes": [
+          "Writing cos(3π/2 − C) = +sin C and losing the minus.",
+          "Writing cos(3π/2 − C) = −cos C, which mixes up the shift."
+        ]
+      },
+      {
+        "id": "s4_double",
+        "kind": "equation",
+        "label": "Expand cos 2C",
+        "marks": 1,
+        "mark_note": "Double angle",
+        "margin_note": "Sixth mark. cos 2θ has three forms; only 1 − 2 sin²θ leaves a standalone 1, which is the first term on the right-hand side.",
+        "memory_tip": "Choose cos 2C = 1 − 2 sin²C out of the three forms — it is the one that produces the 1 on the right.",
+        "lines": [
+          "cos2C = 1 − 2 sin²C",
+          "L.H.S = 1 − 2 sinC cos(A−B) − 2 sin²C",
+          "= 1 − 2 sinC [cos(A−B) + sinC]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos 2C = 1 − 2 sin²C is chosen, and 2 sin C is factored out of the remaining two terms.",
+          "accept": [
+            "cos two C is one minus two sin squared C and then take two sin C common",
+            "use the form of cos two theta that gives a one",
+            "the one on the right comes straight from the double angle formula",
+            "cos two C ni one minus two sin square C ga rasi two sin C common teeyali",
+            "expand the double angle and factor"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "one minus two sin squared",
+            "two sin C",
+            "common",
+            "double angle"
+          ]
+        },
+        "why": "The right-hand side opens with a 1, so a 1 has to be manufactured. Of the three forms of cos 2θ only 1 − 2 sin²θ leaves one standing on its own.",
+        "common_mistakes": [
+          "Using cos 2C = 2 cos²C − 1, which produces cosines the answer does not want.",
+          "Pulling the 1 inside the bracket."
+        ]
+      },
+      {
+        "id": "s5_bracket",
+        "kind": "equation",
+        "label": "Convert sin C inside the bracket",
+        "marks": 1,
+        "mark_note": "Second substitution",
+        "margin_note": "Seventh mark. The condition is used a SECOND time, and it carries a minus sign again: sin(3π/2 − θ) = −cos θ. That turns the bracket into a DIFFERENCE of cosines.",
+        "memory_tip": "sin(3π/2 − θ) = −cos θ. The second minus turns the plus inside the bracket into a minus.",
+        "lines": [
+          "C = 3π/2 − (A+B)",
+          "⇒ sinC = sin(3π/2 − (A+B)) = −cos(A+B)",
+          "Bracket = cos(A−B) − cos(A+B)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin C inside the bracket equals −cos(A+B), so the bracket becomes cos(A−B) − cos(A+B).",
+          "accept": [
+            "sin C is minus cos of A plus B so the bracket becomes a difference of cosines",
+            "use the condition again on the inside sin C and keep the minus",
+            "the plus inside the bracket turns into a minus",
+            "bracket lo sin C ni minus cos A plus B ga marchali",
+            "sin three pi by two minus theta is minus cos theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus cos A plus B",
+            "inside the bracket",
+            "cos A minus B",
+            "difference of cosines"
+          ]
+        },
+        "why": "The sin C outside stays; only the one inside converts. It converts to −cos(A+B), and that minus is what makes the bracket a difference the product formula can close.",
+        "common_mistakes": [
+          "Converting both sin C terms instead of only the inside one.",
+          "Writing sin(3π/2 − θ) = +cos θ, which leaves the bracket as a sum."
+        ]
+      },
+      {
+        "id": "s6_final",
+        "kind": "boxed_final",
+        "label": "Apply the difference formula",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. cos(A−B) − cos(A+B) = 2 sin A sin B closes the proof. Write \"= R.H.S\" so the examiner can see it landed.",
+        "memory_tip": "cos(A−B) − cos(A+B) = 2 sin A sin B. The two 2s multiply to give the 4.",
+        "lines": [
+          "cos(A−B) − cos(A+B) = 2 sinA sinB",
+          "L.H.S = 1 − 2 sinC · 2 sinA sinB",
+          {
+            "text": "= 1 − 4 sinA sinB sinC = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(A−B) − cos(A+B) = 2 sin A sin B, giving 1 − 4 sin A sin B sin C.",
+          "accept": [
+            "cos A minus B minus cos A plus B is two sin A sin B so the answer is one minus four sin A sin B sin C",
+            "the bracket becomes two sin A sin B and the two twos give four",
+            "apply the cosine difference formula to finish",
+            "bracket lo two sin A sin B vasthundi, rendu twos kalisi four",
+            "the final answer is one minus four sin A sin B sin C"
+          ],
+          "reject": [
+            "that is the answer",
+            "then I get it",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two sin A sin B",
+            "one minus four",
+            "difference of cosines",
+            "sin A sin B sin C"
+          ]
+        },
+        "why": "A difference of two cosines is a product of two sines. The 4 comes from the 2 taken out in step 4 times the 2 this formula supplies, and the leading 1 is already in place.",
+        "common_mistakes": [
+          "Using cos(A+B) − cos(A−B), which reverses the sign.",
+          "Dropping the leading 1 while writing the final line."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_define_adjoint",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the adjoint of a matrix.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the definition",
+      "marks": 1
+    },
+    {
+      "label": "Show it on a 2×2 matrix",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.36, chapter 5 MATRICES, Very Short Answer question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the stated definition and a worked example separately, which is how a two-mark definition question is answered in full. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Related cards in the same unit: ts_ipe_m1a_mat_vsaq_adj_inverse_2x2 and ts_ipe_m1a_mat_saq_adj_inverse_1_3_3 compute an adjoint; this question asks only for the definition, so they are not duplicates."
+  },
+  "recall_prompt": "Say the definition of the adjoint, and give the 2×2 rule.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "State the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. The word TRANSPOSE is the half students drop. The cofactor matrix on its own is not the adjoint.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Adjoint of a Matrix:",
+            "style": "heading"
+          },
+          "Let A = [aᵢⱼ] be a square matrix, and let Aᵢⱼ be",
+          "the cofactor of the entry aᵢⱼ.",
+          "The matrix [Aᵢⱼ] is called the cofactor matrix.",
+          "The TRANSPOSE of the cofactor matrix is called",
+          "the adjoint of A, and is written Adj A."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the adjoint of A is the TRANSPOSE of the matrix of cofactors of A.",
+          "accept": [
+            "the adjoint is the transpose of the cofactor matrix",
+            "form the matrix of cofactors and then transpose it",
+            "Adj A equals the cofactor matrix transposed",
+            "cofactor matrix ki transpose teeste adjoint vastundi",
+            "replace each entry by its cofactor and then take the transpose"
+          ],
+          "reject": [
+            "it is the adjoint",
+            "the cofactor matrix"
+          ],
+          "heard_as": [
+            "adjoint",
+            "Adj A",
+            "cofactor matrix",
+            "transpose"
+          ]
+        },
+        "why": "The adjoint is two moves, not one: cofactors first, then transpose. Leaving the transpose out gives a different matrix, and the identity A(Adj A) = |A| I then fails, which is why the adjoint is defined this way.",
+        "common_mistakes": [
+          "Calling the cofactor matrix itself the adjoint.",
+          "Using minors instead of cofactors, so the signs are lost.",
+          "Defining the adjoint for a matrix that is not square."
+        ],
+        "memory_tip": "Adjoint is two moves: cofactors first, then transpose."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "Show it on a 2×2 matrix",
+        "marks": 1,
+        "mark_note": "Example",
+        "margin_note": "Second mark. The 2×2 rule is worth quoting: swap the diagonal entries and change the sign of the other two. The identity A(Adj A) = |A| I is the property the adjoint is built for.",
+        "lines": [
+          "For a 2×2 matrix the rule is short:",
+          {
+            "text": "A = \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\;\\Rightarrow\\; \\text{Adj } A = \\begin{bmatrix} d & -b \\\\ -c & a \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Swap the two diagonal entries, and change the",
+          "sign of the other two.",
+          "For any square A, A(Adj A) = (Adj A)A = |A| I.",
+          {
+            "text": "∴ Adj A = the transpose of [Aᵢⱼ]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a 2×2 matrix the adjoint swaps the diagonal entries and changes the sign of the other two, and that A(Adj A) = |A| I.",
+          "accept": [
+            "for a two by two matrix swap a and d and change the signs of b and c",
+            "Adj of a b c d is d minus b minus c a",
+            "A times Adj A equals the determinant times the identity",
+            "two by two ki diagonal swap chesi, migilina rendintiki sign marchali",
+            "the adjoint times the matrix gives determinant times identity"
+          ],
+          "reject": [
+            "give an example",
+            "the adjoint"
+          ],
+          "heard_as": [
+            "swap the diagonal",
+            "change the sign",
+            "d minus b minus c a",
+            "determinant times identity"
+          ]
+        },
+        "why": "The 2×2 case makes the definition concrete in one line, and the identity A(Adj A) = |A| I says what the adjoint is for: divide it by the determinant and the inverse appears.",
+        "common_mistakes": [
+          "Swapping b and c instead of a and d.",
+          "Changing the sign of all four entries.",
+          "Writing A(Adj A) = I and leaving out the determinant."
+        ],
+        "memory_tip": "For 2×2: swap the diagonal pair, flip the sign of the other pair."
+      }
+    ]
+  }
+}

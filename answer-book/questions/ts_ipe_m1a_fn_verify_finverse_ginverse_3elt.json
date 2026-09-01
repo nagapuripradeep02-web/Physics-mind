@@ -1,0 +1,233 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_verify_finverse_ginverse_3elt",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Let A = {1, 2, 3}, B = {a, b, c} and C = {p, q, r}. If f: A→B and g: B→C are defined by f = {(1, a), (2, c), (3, b)} and g = {(a, q), (b, r), (c, p)}, show that f⁻¹og⁻¹ = (gof)⁻¹.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Check f and g are bijections",
+      "marks": 1
+    },
+    {
+      "label": "Find gof",
+      "marks": 1
+    },
+    {
+      "label": "Write the three inverses",
+      "marks": 1
+    },
+    {
+      "label": "Form f⁻¹og⁻¹ and compare",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 2 FUNCTIONS, Short Answer question 1, book p.16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape is the one this bank uses for a Maths-1A Section B question; here each mark buys one of the four separate objects the student has to produce — the bijection check, the composition gof, the three reversed sets, and the element-by-element comparison. Paper position: Maths-1A Section B prints 8 short answer questions, the student answers any 6, and each carries 4 marks (2026-27 pattern). The printed left gutter is intact on book p.16, so the source book's zero star count on this question is a reading rather than a clipped count; the book prints no appearance year for it, so appearances[] is empty. This card is the finite-set verification of the general theorem in ts_ipe_m1a_fn_gof_inverse_reverse in this same unit, so the two are not duplicates. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would check this — what you work out first, and how you compare the two sides at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bijections",
+        "kind": "equation",
+        "label": "Check f and g are bijections",
+        "marks": 1,
+        "mark_note": "Bijections",
+        "margin_note": "One of the four marks. Reversing pairs is allowed only when the images are all different and cover the whole codomain. Read the second coordinates before writing any inverse.",
+        "memory_tip": "Look at the second coordinates only. All different, and covering the codomain, means the inverse exists.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f = {(1,a), (2,c), (3,b)} is a bijection:",
+          "a, c, b are different and cover B.",
+          "g = {(a,q), (b,r), (c,p)} is a bijection:",
+          "q, r, p are different and cover C.",
+          "So f⁻¹ and g⁻¹ both exist."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f and g are bijections because their images are all different and cover the codomain, so f⁻¹ and g⁻¹ exist.",
+          "accept": [
+            "the images are all different and they cover the codomain so both are bijections and the inverses exist",
+            "check one one and onto first so that f inverse and g inverse are functions",
+            "a c b are different and cover B and q r p are different and cover C",
+            "rendu functions bijections kabatti inverses unnai",
+            "both are one one and onto so both can be reversed"
+          ],
+          "reject": [
+            "reverse every pair",
+            "f inverse is a comma one",
+            "there are three pairs so it is a bijection"
+          ],
+          "heard_as": [
+            "bijection",
+            "one one and onto",
+            "cover B",
+            "inverse exists"
+          ]
+        },
+        "why": "f⁻¹ and g⁻¹ are functions only when f and g are bijections, so this check is what makes the rest of the question legal.",
+        "common_mistakes": [
+          "Writing f⁻¹ without first checking that f is one one and onto.",
+          "Calling f a bijection because it has three pairs, without looking at the images."
+        ]
+      },
+      {
+        "id": "s2_gof",
+        "kind": "equation",
+        "label": "Find gof",
+        "marks": 1,
+        "mark_note": "gof",
+        "margin_note": "The second mark. Work each element of A through f first, then through g. The first coordinate stays the same and the final image becomes the second.",
+        "memory_tip": "In gof, f acts first. Read the symbol right to left: f, then g.",
+        "lines": [
+          "gof: A→C, where (gof)(x) = g(f(x)).",
+          "(gof)(1) = g(a) = q",
+          "(gof)(2) = g(c) = p",
+          "(gof)(3) = g(b) = r",
+          "∴ gof = {(1,q), (2,p), (3,r)}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That gof applies f first and then g, giving gof = {(1,q), (2,p), (3,r)}.",
+          "accept": [
+            "f acts first then g so one goes to a then to q, two goes to c then to p, three goes to b then to r",
+            "gof is one q two p three r",
+            "apply f first and then g to each element of A",
+            "mundu f apply cheyyali taruvata g, so gof vasthundi",
+            "each element of A goes through f and then through g"
+          ],
+          "reject": [
+            "g acts first and then f",
+            "the images are all different so it is a bijection",
+            "reverse the pairs"
+          ],
+          "heard_as": [
+            "g of f of x",
+            "one q",
+            "two p",
+            "three r"
+          ]
+        },
+        "why": "gof means f first and then g. The inner function is written on the right, so the chain 1 → a → q runs in the opposite order to the way the symbol is read.",
+        "common_mistakes": [
+          "Computing fog instead of gof.",
+          "Applying g to the first coordinate 1 instead of to f(1) = a."
+        ]
+      },
+      {
+        "id": "s3_inverses",
+        "kind": "equation",
+        "label": "Write the three inverses",
+        "marks": 1,
+        "mark_note": "Reverse pairs",
+        "margin_note": "The third mark. Swap the two coordinates of every pair. The domain of (gof)⁻¹ is C, the domain of f⁻¹ is B, and the domain of g⁻¹ is C.",
+        "memory_tip": "An inverse only swaps the coordinates of each pair. Every pair is written the other way round.",
+        "lines": [
+          "gof is a bijection, so its inverse exists.",
+          "Reverse the pairs of gof, f and g:",
+          "(gof)⁻¹ = {(q,1), (p,2), (r,3)}   …(1)",
+          "f⁻¹ = {(a,1), (c,2), (b,3)}",
+          "g⁻¹ = {(q,a), (r,b), (p,c)}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the inverse of a finite function is found by swapping the coordinates of every pair, giving (gof)⁻¹ = {(q,1), (p,2), (r,3)}, f⁻¹ = {(a,1), (c,2), (b,3)} and g⁻¹ = {(q,a), (r,b), (p,c)}.",
+          "accept": [
+            "swap the two coordinates of every pair to get each inverse",
+            "g o f inverse is q one p two r three",
+            "f inverse is a one c two b three and g inverse is q a r b p c",
+            "prathi pair reverse cheste inverse vasthundi",
+            "write all three inverses by reversing the pairs"
+          ],
+          "reject": [
+            "f acts first and then g",
+            "the images cover the codomain",
+            "both sides give the same value"
+          ],
+          "heard_as": [
+            "g o f inverse",
+            "f inverse",
+            "g inverse",
+            "reverse the pairs"
+          ]
+        },
+        "why": "The inverse of a finite function is found by swapping the two coordinates of every pair. Nothing is computed here, so the only thing that can go wrong is the direction.",
+        "common_mistakes": [
+          "Leaving one pair unreversed.",
+          "Writing g⁻¹ with domain B instead of C."
+        ]
+      },
+      {
+        "id": "s4_compare",
+        "kind": "boxed_final",
+        "label": "Form f⁻¹og⁻¹ and compare",
+        "marks": 1,
+        "mark_note": "Both agree",
+        "margin_note": "The fourth mark. Two sets of pairs are equal when they hold the same pairs, whatever order they are written in. Compare pair by pair.",
+        "memory_tip": "The inverse reverses the order: (gof)⁻¹ has to undo g first, so g⁻¹ comes first.",
+        "lines": [
+          "f⁻¹og⁻¹ means g⁻¹ first, then f⁻¹.",
+          "(f⁻¹og⁻¹)(p) = f⁻¹(c) = 2",
+          "(f⁻¹og⁻¹)(q) = f⁻¹(a) = 1",
+          "(f⁻¹og⁻¹)(r) = f⁻¹(b) = 3",
+          "∴ f⁻¹og⁻¹ = {(p,2), (q,1), (r,3)}   …(2)",
+          "(1) and (2) hold the same three pairs.",
+          {
+            "text": "∴ f⁻¹og⁻¹ = (gof)⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f⁻¹og⁻¹ applies g⁻¹ first, giving {(p,2), (q,1), (r,3)}, which holds the same three pairs as (gof)⁻¹, so the two are equal.",
+          "accept": [
+            "g inverse acts first so p goes to c then to two, q goes to a then to one, r goes to b then to three",
+            "f inverse o g inverse is p two q one r three which is the same set as g o f inverse",
+            "both sides hold the same three pairs so they are equal",
+            "rendu sets lo same three pairs unnai, so equal",
+            "the two sides agree at p q and r"
+          ],
+          "reject": [
+            "f inverse acts first and then g inverse",
+            "reverse the pairs of g o f",
+            "the images are all different"
+          ],
+          "heard_as": [
+            "f inverse o g inverse",
+            "p two",
+            "q one",
+            "same pairs"
+          ]
+        },
+        "why": "Both sides start from C and end in A, so once the three values match the two functions are equal. The order is reversed on the right hand side, and that reversal is the content of the result.",
+        "common_mistakes": [
+          "Composing f⁻¹ first and g⁻¹ second.",
+          "Saying the two sets differ because the pairs are written in a different order."
+        ]
+      }
+    ]
+  }
+}

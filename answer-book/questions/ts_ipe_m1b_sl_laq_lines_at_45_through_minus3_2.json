@@ -1,0 +1,274 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_lines_at_45_through_minus3_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the equations of the straight lines passing through the point (−3, 2) and making an angle of 45° with the straight line 3x − y + 4 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Slope of the given line",
+      "marks": 1
+    },
+    {
+      "label": "Write the 45° condition",
+      "marks": 2
+    },
+    {
+      "label": "Open the modulus",
+      "marks": 2
+    },
+    {
+      "label": "Solve both branches",
+      "marks": 2
+    },
+    {
+      "label": "Write both lines",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.156, chapter 3 THE STRAIGHT LINE, Long Answer question 12(i). **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the angle condition and the two branches it opens: two marks for writing tan 45° = |(m − m₁)/(1 + m m₁)|, two for opening the modulus and two for solving both branches, with one each for the given slope and the two final lines. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Both answers were substituted back. 2x + y + 4 = 0 gives −6 + 2 + 4 = 0 at (−3, 2) and its slope −2 gives tan θ = |(3 + 2)/(1 − 6)| = 1; x − 2y + 7 = 0 gives −3 − 4 + 7 = 0 at (−3, 2) and its slope 1/2 gives tan θ = |(3 − 1/2)/(1 + 3/2)| = 1. A second check: the two answers have slopes −2 and 1/2, whose product is −1, so they are perpendicular to each other — which is exactly what two lines at 45° on either side of one line must be."
+  },
+  "recall_prompt": "Say how you would solve this — name the angle formula, and say why the answer has two lines in it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given_slope",
+        "kind": "equation",
+        "label": "Slope of the given line",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Read the slope as −a/b, watching the sign of b, and name the unknown slope m.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given line:  3x − y + 4 = 0",
+          "Its slope  m₁ = −a/b = −3/(−1) = 3",
+          "Let the slope of a required line be m.",
+          "Each required line passes through (−3, 2)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the given line has slope 3 and the unknown slope is called m.",
+          "accept": [
+            "the slope of the given line is three",
+            "read the slope as minus a over b",
+            "b is minus one so the slope is plus three",
+            "minus a by b theesthe three vasthundi",
+            "let the required slope be m"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "slope",
+            "three",
+            "minus a over b",
+            "m"
+          ]
+        },
+        "why": "The angle formula needs both slopes, and only one of them is given, so the other is carried as the unknown from the start.",
+        "common_mistakes": [
+          "Reading the slope of 3x − y + 4 = 0 as −3 by forgetting the sign of b.",
+          "Taking 4 as part of the slope."
+        ],
+        "memory_tip": "Slope is −a/b. Here b = −1, so the two minus signs cancel and the slope is +3."
+      },
+      {
+        "id": "s2_angle_condition",
+        "kind": "equation",
+        "label": "Write the 45° condition",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Write the angle formula in full, then put tan 45° = 1 so the whole modulus equals 1.",
+        "lines": [
+          "The angle between the two lines is 45°, so",
+          "tan 45° = |(m − m₁)/(1 + m m₁)|",
+          "⇒ 1 = |(m − 3)/(1 + 3m)|"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan 45° = 1 gives 1 = |(m − 3)/(1 + 3m)|.",
+          "accept": [
+            "tan forty five is one so the modulus equals one",
+            "write the angle between two lines formula",
+            "one equals mod m minus three over one plus three m",
+            "angle formula rasi tan forty five one pettali",
+            "the tangent of the angle between the lines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan forty five",
+            "angle formula",
+            "modulus equals one",
+            "one plus three m"
+          ]
+        },
+        "why": "tan 45° = 1 is what turns the angle statement into a plain algebraic equation with only m in it.",
+        "common_mistakes": [
+          "Using sin 45° or cos 45° instead of tan 45°.",
+          "Writing the denominator as 1 − m₁m₂."
+        ],
+        "memory_tip": "tan θ = |(m − m₁)/(1 + m m₁)|, and tan 45° = 1, so the modulus itself equals 1."
+      },
+      {
+        "id": "s3_open_modulus",
+        "kind": "equation",
+        "label": "Open the modulus",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Cross-multiply to clear the fraction, then remove the modulus as ±. Both signs are kept.",
+        "lines": [
+          "⇒ |m − 3| = |1 + 3m|",
+          "⇒ m − 3 = ±(1 + 3m)",
+          "A 45° turn can be made either way from the",
+          "given line, so both signs give a real line."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the modulus opens as m − 3 = ±(1 + 3m).",
+          "accept": [
+            "remove the modulus as plus or minus",
+            "m minus three equals plus or minus one plus three m",
+            "both signs are kept because there are two such lines",
+            "mod theeste rendu cases vasthaayi",
+            "one line each way from the given line"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "plus or minus",
+            "two cases",
+            "modulus",
+            "either way"
+          ]
+        },
+        "why": "There are two lines through a point at 45° to a given line, one turned each way, and the ± is exactly where they come from.",
+        "common_mistakes": [
+          "Dropping the ± and reporting only one line.",
+          "Squaring both sides and then losing one root while solving."
+        ],
+        "memory_tip": "Two lines at 45°: one turned each way. The ± is not a choice, it is both answers."
+      },
+      {
+        "id": "s4_solve_branches",
+        "kind": "equation",
+        "label": "Solve both branches",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Solve each branch on its own line. As a check, the two slopes must multiply to −1.",
+        "lines": [
+          "Taking +:  m − 3 = 1 + 3m",
+          "⇒ −2m = 4  ⇒  m = −2",
+          "Taking −:  m − 3 = −1 − 3m",
+          "⇒ 4m = 2  ⇒  m = 1/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two branches give m = −2 and m = 1/2.",
+          "accept": [
+            "the slopes are minus two and one half",
+            "solve each branch to get minus two and half",
+            "the two slopes multiply to minus one",
+            "rendu branches solve chesthe minus two and half vasthaayi",
+            "m equals minus two or m equals one by two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus two",
+            "one half",
+            "both branches",
+            "minus one"
+          ]
+        },
+        "why": "Each branch is a simple linear equation, and the two slopes it gives, −2 and 1/2, multiply to −1, which is a quick check that they are correct.",
+        "common_mistakes": [
+          "A sign slip when the minus is taken over (1 + 3m).",
+          "Reporting m = 2 instead of m = −2."
+        ],
+        "memory_tip": "Check the pair: two lines at 45° on either side of one line are perpendicular to each other, so the two slopes must multiply to −1."
+      },
+      {
+        "id": "s5_both_lines",
+        "kind": "boxed_final",
+        "label": "Write both lines",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Put each slope into y − y₁ = m(x − x₁) at (−3, 2) and clear the fraction in the second one.",
+        "lines": [
+          "Through (−3, 2) with m = −2:",
+          "y − 2 = −2(x + 3)  ⇒  2x + y + 4 = 0",
+          "Through (−3, 2) with m = 1/2:",
+          "2(y − 2) = x + 3  ⇒  x − 2y + 7 = 0",
+          "∴ The two lines are",
+          {
+            "text": "2x + y + 4 = 0  and  x − 2y + 7 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two lines are 2x + y + 4 = 0 and x − 2y + 7 = 0.",
+          "accept": [
+            "the lines are two x plus y plus four equals zero and x minus two y plus seven equals zero",
+            "put each slope into the point slope form at minus three comma two",
+            "both slopes give a line so there are two answers",
+            "rendu slopes ni point slope form lo pedithe rendu lines vasthaayi",
+            "x minus two y plus seven equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x plus y plus four",
+            "x minus two y plus seven",
+            "point slope form",
+            "two lines"
+          ]
+        },
+        "why": "The question asks for equations in the plural, so both slopes are carried back through the point-slope form at the given point.",
+        "common_mistakes": [
+          "Reporting only one of the two lines.",
+          "Using the point (3, −2) instead of (−3, 2)."
+        ],
+        "memory_tip": "Same point, two slopes, two equations. Clear the half by multiplying both sides by 2."
+      }
+    ]
+  }
+}

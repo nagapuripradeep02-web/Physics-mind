@@ -1,0 +1,183 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_sin_three_fifth_eight_seventeenth",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that Sin⁻¹(3/5) + Sin⁻¹(8/17) = Cos⁻¹(36/85).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Name the angles and their ratios",
+      "marks": 1
+    },
+    {
+      "label": "Expand cos of the sum",
+      "marks": 2
+    },
+    {
+      "label": "Check the range and close",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.112, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 2(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. Half the marks sit on the expansion of cos(A + B), because choosing cosine rather than sine is the decision the whole answer turns on. NOTATION: the book prints the inverse functions in lower case (sin⁻¹, cos⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. Both sides were checked numerically to twelve decimal places: arcsin(0.6) + arcsin(8/17) = arccos(36/85) = 1.133458435047. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trigonometric Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_name_the_angles_and_ratios",
+        "kind": "equation",
+        "label": "Name the angles and their ratios",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Both cosines come from Pythagorean triples, and both are positive because the angles are first-quadrant.",
+        "memory_tip": "3-4-5 and 8-15-17 are the two triangles. Both angles are first-quadrant, so both cosines are positive.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A = Sin⁻¹(3/5) ⇒ sinA = 3/5",
+          "Let B = Sin⁻¹(8/17) ⇒ sinB = 8/17",
+          "Both values are positive,",
+          "so A, B ∈ (0, π/2).",
+          "∴ cosA = 4/5 and cosB = 15/17"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A and B are first-quadrant angles with cosA = 4/5 and cosB = 15/17.",
+          "accept": [
+            "let a be sin inverse three fifths and b be sin inverse eight seventeenths, then cos a is four fifths and cos b is fifteen seventeenths",
+            "both are first quadrant so both cosines are positive",
+            "use the three four five and the eight fifteen seventeen triangles",
+            "rendu angles first quadrant lo unnayi, cosines positive",
+            "write the cosines of both angles"
+          ],
+          "reject": [
+            "expand cos of the sum",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin inverse three fifths",
+            "eight seventeenths",
+            "fifteen seventeenths",
+            "first quadrant"
+          ]
+        },
+        "why": "Sin⁻¹ of a positive number is a first-quadrant angle, so both cosines are the positive roots. A negative root here would break the proof.",
+        "common_mistakes": [
+          "Taking cosB as negative.",
+          "Using 9/17 in place of 15/17."
+        ]
+      },
+      {
+        "id": "s2_expand_cos_of_the_sum",
+        "kind": "equation",
+        "label": "Expand cos of the sum",
+        "marks": 2,
+        "mark_note": "Formula",
+        "margin_note": "Half the marks. Choosing cosine is the real decision here; the arithmetic after it is one line.",
+        "memory_tip": "The answer is asked as a Cos⁻¹, so expand cos(A + B): cos cos minus sin sin.",
+        "lines": [
+          "cos(A + B) = cosA cosB − sinA sinB",
+          "= (4/5)(15/17) − (3/5)(8/17)",
+          "= 60/85 − 24/85",
+          "= 36/85"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos(A + B) is expanded as cos cos minus sin sin and comes to 36/85.",
+          "accept": [
+            "expand cos of a plus b as cos a cos b minus sin a sin b",
+            "sixty over eighty five minus twenty four over eighty five is thirty six over eighty five",
+            "use the cosine formula because the answer is a cos inverse",
+            "cos a plus b formula rasi, thirty six by eighty five vasthundi",
+            "the cosine of the sum is thirty six eighty fifths"
+          ],
+          "reject": [
+            "name the angles and their ratios",
+            "check the range",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cos a plus b",
+            "thirty six over eighty five",
+            "sixty eighty fifths",
+            "minus sin sin"
+          ]
+        },
+        "why": "Cosine is used rather than sine because the answer is asked as a Cos⁻¹. Expanding sin(A + B) would give 77/85 and would not match the statement.",
+        "common_mistakes": [
+          "Expanding sin(A + B) instead.",
+          "Writing a plus sign between the two products."
+        ]
+      },
+      {
+        "id": "s3_check_the_range_and_close",
+        "kind": "boxed_final",
+        "label": "Check the range and close",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. The range line is not decoration — without it the final equality is only a statement about cosines, not about the angles.",
+        "memory_tip": "Cos⁻¹ returns angles in [0, π]. Two first-quadrant angles add to less than π, so the step is safe.",
+        "lines": [
+          "A, B ∈ (0, π/2) ⇒ A + B ∈ (0, π)",
+          "[0, π] is the range of Cos⁻¹, so the",
+          "angle A + B is fixed by its cosine:",
+          "A + B = Cos⁻¹(36/85)",
+          {
+            "text": "∴ Sin⁻¹(3/5) + Sin⁻¹(8/17) = Cos⁻¹(36/85)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A + B is shown to lie in [0, π], so it equals Cos⁻¹(36/85).",
+          "accept": [
+            "two first quadrant angles add to less than pi so the sum is in the range of cos inverse",
+            "since a plus b lies between zero and pi we can write it as cos inverse thirty six by eighty five",
+            "check the range before writing the last line",
+            "range zero nunchi pi varaku undi, so cos inverse rayochu",
+            "the sum lies in the principal range so the result follows"
+          ],
+          "reject": [
+            "expand cos of the sum",
+            "cos a is four fifths",
+            "then I get it"
+          ],
+          "heard_as": [
+            "range of cos inverse",
+            "zero to pi",
+            "a plus b",
+            "thirty six over eighty five"
+          ]
+        },
+        "why": "cos(A + B) = 36/85 alone does not fix A + B, because many angles share that cosine. Showing A + B lies in [0, π] is what makes Cos⁻¹(36/85) the right one.",
+        "common_mistakes": [
+          "Stopping at cos(A + B) = 36/85.",
+          "Claiming the range without naming [0, π]."
+        ]
+      }
+    ]
+  }
+}

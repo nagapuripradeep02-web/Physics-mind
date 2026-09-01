@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_vsaq_pentagon_lambda_ac",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "ABCDE is a pentagon. If the sum of the vectors AB, AE, BC, DC, ED and AC is λ AC, find the value of λ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Group the terms into routes",
+      "marks": 1
+    },
+    {
+      "label": "Use the triangle law",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.61, chapter 6 ADDITION OF VECTORS, Very Short Answer question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question: the first mark is for regrouping the six vectors into routes that run from A to C, the second for applying the triangle law to each route and reading off λ. This book prints almost no exam-appearance years, so appearances[] is empty — Addition of Vectors has long been examined, we simply have no sourced years for this question. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The answer λ = 3 was also checked a second way, by writing all six vectors in position vectors: (b−a) + (e−a) + (c−b) + (c−d) + (d−e) + (c−a) = 3c − 3a = 3 AC. The result holds for any five points, so nothing about the shape of the pentagon is used."
+  },
+  "recall_prompt": "Say how you would add these six vectors — say how you group them and which rule you use.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Addition of Vectors · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Group the terms into routes",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Do not add the six in the printed order. Sort them into journeys that start at A and finish at C: A to B to C, and A to E to D to C. The sixth term is AC itself.",
+        "memory_tip": "Sort the six into journeys from A to C: A→B→C, and A→E→D→C. The sixth term is AC already.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let S = AB + AE + BC + DC + ED + AC",
+          "Group them into routes from A to C:",
+          "S = (AB + BC) + (AE + ED + DC) + AC"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the six terms are regrouped as (AB + BC), (AE + ED + DC) and the standalone AC.",
+          "accept": [
+            "group AB with BC and AE with ED and DC, leaving AC on its own",
+            "sort them into paths from A to C, one through B and one through E and D",
+            "rearrange into nose to tail chains that start at A and end at C",
+            "A nunchi C varaku routes ga group cheyyali",
+            "regroup so each bracket runs from A to C"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "AB plus BC",
+            "AE plus ED plus DC",
+            "group",
+            "routes from A to C"
+          ]
+        },
+        "why": "Vector addition does not depend on the order of the terms, so the six may be regrouped freely. Choosing brackets in which each middle letter repeats is what makes the sum collapse.",
+        "common_mistakes": [
+          "Adding the six in the printed order and getting nothing that cancels.",
+          "Reading DC as CD, which reverses that term.",
+          "Leaving out the AC that is already in the list."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Use the triangle law",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. PQ + QR = PR is the triangle law, and it extends to a chain of any length. Three routes from A to C give three copies of AC, so λ = 3.",
+        "memory_tip": "Any nose-to-tail route from A to C adds up to AC. Three routes here, so 3AC and λ = 3.",
+        "lines": [
+          "By the triangle law,",
+          "AB + BC = AC and AE + ED + DC = AC",
+          "∴ S = AC + AC + AC = 3AC",
+          "Given S = λ AC, so λ AC = 3AC",
+          {
+            "text": "∴ λ = 3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each bracket collapses to AC by the triangle law, giving 3AC in all, so λ = 3.",
+          "accept": [
+            "each bracket gives AC so the sum is three AC and lambda is three",
+            "AB plus BC is AC and AE plus ED plus DC is AC, with the AC already there that makes three",
+            "by the triangle law every route from A to C is AC, so lambda is three",
+            "prathi route AC ye, so moodu AC, lambda three",
+            "the total is three AC so lambda equals three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "triangle law",
+            "three AC",
+            "lambda equals three",
+            "nose to tail"
+          ]
+        },
+        "why": "Adding vectors nose to tail from A to C gives AC by whatever route is taken. That is the same fact as saying the sides of a closed polygon, taken in order, add to the zero vector, and it needs no property of the pentagon at all.",
+        "common_mistakes": [
+          "Answering λ = 2 by forgetting the AC that was already in the list.",
+          "Assuming the pentagon has to be regular for the result to hold."
+        ]
+      }
+    ]
+  }
+}

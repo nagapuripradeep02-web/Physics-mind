@@ -1,0 +1,354 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_cramer_2x_y_3z_8",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "By using Cramer's rule, solve 2x − y + 3z = 8, −x + 2y + z = 4, 3x + y − 4z = 0.",
+  "appearances": [
+    {
+      "year": 2007
+    }
+  ],
+  "mark_split": [
+    {
+      "label": "Write the system as AX = D",
+      "marks": 1
+    },
+    {
+      "label": "Find Δ = det A and check it is not zero",
+      "marks": 1
+    },
+    {
+      "label": "Find Δ₁",
+      "marks": 1
+    },
+    {
+      "label": "Find Δ₂",
+      "marks": 1
+    },
+    {
+      "label": "Find Δ₃",
+      "marks": 1
+    },
+    {
+      "label": "Apply Cramer's rule and state the solution",
+      "marks": 3
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.57, chapter 5 MATRICES, Long Answer question 9(vii), Cramer's-rule route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1+1+3 split gives one mark to each of the four determinants and three to the rule plus the stated solution, matching every other Cramer's-rule answer in this unit. ONE CARD PER METHOD: the book asks this one system by the Gauss-Jordan method, by Cramer's rule and by matrix inversion. The matrix-inversion route was already in the bank as ts_ipe_m1a_mat_inverse_2x_y_3z_8, so only two cards were authored here: this one and ts_ipe_m1a_mat_gauss_2x_y_3z_8. All three land on the same solution x = 2, y = 2, z = 2. EQUATION ORDER: the book prints this system as 3x + y − 4z = 0, −x + 2y + z = 4, 2x − y + 3z = 8. This card writes the same three equations in the order 2x − y + 3z = 8, −x + 2y + z = 4, 3x + y − 4z = 0, which is the order its already-authored matrix-inversion sibling ts_ipe_m1a_mat_inverse_2x_y_3z_8 uses. Reordering equations changes neither the system nor its solution; it does flip the sign of Δ (−38 in this order, +38 in the printed one), and Cramer's rule is unaffected because every Δᵢ flips with it. APPEARANCE: the book prints the year tag Mar-2007 beside this question's Gauss-Jordan sub-header, not beside the question number. The appearances entry records the year the SOURCE BOOK prints; we have not checked it against a TSBIE paper, which is why it carries no board key. Working checked twice: Δ was expanded along R₁ and again along R₂, both giving −38, and the solution was substituted back into all three original equations (8 = 8, 4 = 4, 0 = 0). Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this by Cramer's rule — say what four determinants you need, how you build each one, how you get x, y and z, and how you check them.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_matrix_form",
+        "kind": "equation",
+        "label": "Write it as AX = D",
+        "marks": 1,
+        "mark_note": "Matrix form",
+        "margin_note": "First mark. A holds the coefficients in x, y, z order, X holds the unknowns, D holds the right-hand sides. Write the equations out in x, y, z order before building A — a missing term is the commonest error in the whole question.",
+        "memory_tip": "Line the equations up in x, y, z order first, so A holds the coefficients in the right places.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The system in matrix form is AX = D, where",
+          {
+            "text": "A = \\begin{bmatrix} 2 & -1 & 3 \\\\ -1 & 2 & 1 \\\\ 3 & 1 & -4 \\end{bmatrix}, \\ X = \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}, \\ D = \\begin{bmatrix} 8 \\\\ 4 \\\\ 0 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the system is written as AX = D, with A the coefficient matrix, X the column of unknowns and D the column of constants.",
+          "accept": [
+            "write the system as A X equals D where A is the coefficient matrix X is x y z and D is the constants",
+            "put it in matrix form with the coefficients in A the unknowns in X and the right hand sides in D",
+            "first write A X equals D taking the coefficients into A",
+            "modata AX equals D form lo rasta, A lo coefficients, D lo right side values",
+            "form the coefficient matrix the variable column and the constant column"
+          ],
+          "reject": [
+            "write the matrix",
+            "put it in matrix form",
+            "make the matrices"
+          ],
+          "heard_as": [
+            "AX equals D",
+            "coefficient matrix",
+            "A X D",
+            "constants"
+          ]
+        },
+        "why": "Cramer's rule is a recipe that reads off this matrix. Getting A right is the only place where the original equations are used, so every later step inherits any mistake made here.",
+        "common_mistakes": [
+          "Writing the coefficients in the order they appear rather than in x, y, z order.",
+          "Missing a coefficient of 1 or −1 because the letter is written with no number in front.",
+          "Putting the constants into A instead of D."
+        ]
+      },
+      {
+        "id": "s2_delta",
+        "kind": "equation",
+        "label": "Find Δ",
+        "marks": 1,
+        "mark_note": "Δ",
+        "margin_note": "Second mark. Δ is the determinant of A itself, and it must be non-zero or Cramer's rule cannot be used at all — so say so in writing. Expand it a second time along a different row or column: a wrong Δ spoils all three answers at once and still looks like an answer.",
+        "memory_tip": "Expand Δ twice, along a row and then along a column. A wrong Δ spoils all three unknowns at once.",
+        "lines": [
+          {
+            "text": "\\Delta = \\det A = \\begin{vmatrix} 2 & -1 & 3 \\\\ -1 & 2 & 1 \\\\ 3 & 1 & -4 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 2(−8−1) + 1(4−3) + 3(−1−6)",
+          "= −18 + 1 − 21 = −38",
+          "Along R₂: −(−1)(1) + 2(−17) − 1(5) = −38",
+          "Δ = −38 ≠ 0, so Cramer's rule applies."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ is the determinant of the coefficient matrix, that it works out to −38, and that being non-zero is what allows Cramer's rule to be used.",
+          "accept": [
+            "delta is the determinant of A which comes to minus thirty eight and since it is not zero cramer's rule can be used",
+            "find the determinant of the coefficient matrix it is minus thirty eight which is not zero",
+            "expand det A twice to get minus thirty eight which is non zero so the method works",
+            "delta equals det A minus thirty eight, zero kaadu kabatti cramer rule use cheyyochu",
+            "the determinant of A is minus thirty eight and it must be non zero for this rule"
+          ],
+          "reject": [
+            "find the determinant",
+            "calculate delta",
+            "expand the determinant"
+          ],
+          "heard_as": [
+            "delta",
+            "det A",
+            "minus thirty eight",
+            "not equal to zero",
+            "non zero"
+          ]
+        },
+        "why": "Cramer's rule divides by Δ. If Δ were zero the division would be impossible and the system would have either no solution or infinitely many — so the check is part of the method, not a formality.",
+        "common_mistakes": [
+          "Computing Δ but never writing that it is non-zero.",
+          "Getting the sign pattern wrong when expanding: it is plus, minus, plus along the top row.",
+          "Using the constants column somewhere inside Δ."
+        ]
+      },
+      {
+        "id": "s3_delta1",
+        "kind": "equation",
+        "label": "Find Δ₁",
+        "marks": 1,
+        "mark_note": "Δ₁",
+        "margin_note": "Third mark. Δ₁ is Δ with the FIRST column replaced by the constants 8, 4, 0. Columns 2 and 3 are untouched. Replace, never insert.",
+        "memory_tip": "Δ₁ REPLACES the first column with the constants. Columns 2 and 3 are untouched — replace, never insert.",
+        "lines": [
+          "Replace C₁ of Δ by the constants:",
+          {
+            "text": "\\Delta_1 = \\begin{vmatrix} 8 & -1 & 3 \\\\ 4 & 2 & 1 \\\\ 0 & 1 & -4 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 8(−8−1) + 1(−16−0) + 3(4−0)",
+          "= −72 − 16 + 12 = −76"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ₁ is formed by replacing the first column of Δ with the constants, and that it works out to −76.",
+          "accept": [
+            "delta one is delta with the first column replaced by the constants and it comes to minus seventy six",
+            "put the constants into the first column and expand to get minus seventy six",
+            "replace column one with the right hand side values giving delta one equal to minus seventy six",
+            "first column place lo constants pettithe delta one minus seventy six vasthundi",
+            "swap the first column for the constant column and the determinant is minus seventy six"
+          ],
+          "reject": [
+            "find delta one",
+            "calculate the next determinant",
+            "replace a column"
+          ],
+          "heard_as": [
+            "delta one",
+            "first column",
+            "constants",
+            "minus seventy six"
+          ]
+        },
+        "why": "Δ₁ pairs with x because x is the first unknown. The subscript is a position, not a name — which is why the constants go into column one and nowhere else.",
+        "common_mistakes": [
+          "Replacing a row instead of a column.",
+          "Replacing the second column and later dividing it into x.",
+          "Adding a fourth column instead of replacing one."
+        ]
+      },
+      {
+        "id": "s4_delta2",
+        "kind": "equation",
+        "label": "Find Δ₂",
+        "marks": 1,
+        "mark_note": "Δ₂",
+        "margin_note": "Fourth mark. Same move, second column. Column 1 goes back to the coefficients of x — a common slip is to leave the constants there from the previous step.",
+        "memory_tip": "Second column now, and column 1 goes BACK to the x coefficients. Leaving the constants there is the usual slip.",
+        "lines": [
+          "Replace C₂ of Δ by the constants:",
+          {
+            "text": "\\Delta_2 = \\begin{vmatrix} 2 & 8 & 3 \\\\ -1 & 4 & 1 \\\\ 3 & 0 & -4 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 2(−16−0) − 8(4−3) + 3(0−12)",
+          "= −32 − 8 − 36 = −76"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ₂ is formed by replacing the second column of Δ with the constants, and that it works out to −76.",
+          "accept": [
+            "delta two is delta with the second column replaced by the constants and it equals minus seventy six",
+            "put the constants into the middle column and expand to get minus seventy six",
+            "replace column two with the constant column giving minus seventy six",
+            "second column lo constants pettithe delta two minus seventy six vasthundi",
+            "the middle column becomes the constants and the determinant is minus seventy six"
+          ],
+          "reject": [
+            "find delta two",
+            "do the same again",
+            "replace the next column"
+          ],
+          "heard_as": [
+            "delta two",
+            "second column",
+            "middle column",
+            "minus seventy six"
+          ]
+        },
+        "why": "Each unknown gets the determinant whose replaced column is that unknown's own column in A. y sits in column two, so Δ₂ is y's determinant.",
+        "common_mistakes": [
+          "Leaving the constants in column one from the previous step, so two columns are wrong at once.",
+          "Forgetting the minus in front of the middle term when expanding along the top row."
+        ]
+      },
+      {
+        "id": "s5_delta3",
+        "kind": "equation",
+        "label": "Find Δ₃",
+        "marks": 1,
+        "mark_note": "Δ₃",
+        "margin_note": "Fifth mark. Last one — third column replaced, the other two back to the coefficients.",
+        "memory_tip": "Third column replaced, the other two back to the coefficients.",
+        "lines": [
+          "Replace C₃ of Δ by the constants:",
+          {
+            "text": "\\Delta_3 = \\begin{vmatrix} 2 & -1 & 8 \\\\ -1 & 2 & 4 \\\\ 3 & 1 & 0 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= 2(0−4) + 1(0−12) + 8(−1−6)",
+          "= −8 − 12 − 56 = −76"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Δ₃ is formed by replacing the third column of Δ with the constants, and that it works out to −76.",
+          "accept": [
+            "delta three is delta with the third column replaced by the constants and it comes to minus seventy six",
+            "put the constants into the last column and expand to get minus seventy six",
+            "replace column three with the constant column giving minus seventy six",
+            "third column lo constants pettithe delta three minus seventy six vasthundi",
+            "the last column becomes the constants and the determinant is minus seventy six"
+          ],
+          "reject": [
+            "find delta three",
+            "do the last one",
+            "replace the third column"
+          ],
+          "heard_as": [
+            "delta three",
+            "third column",
+            "last column",
+            "minus seventy six"
+          ]
+        },
+        "why": "Three unknowns need three replaced determinants, plus Δ itself. Four determinants is always the cost of Cramer's rule on a 3×3 system, and knowing that in advance is how you budget the time.",
+        "common_mistakes": [
+          "Stopping after Δ₂ and trying to find z by substitution.",
+          "Leaving an earlier replacement in place."
+        ]
+      },
+      {
+        "id": "s6_solve",
+        "kind": "boxed_final",
+        "label": "Apply Cramer's rule",
+        "marks": 3,
+        "mark_note": "Solution",
+        "margin_note": "The last three marks. Δ₁, Δ₂ and Δ₃ are all −76 and Δ is −38, so x, y and z all come out as 2. Three equal answers look suspicious but are correct here; the substitution check is what settles that.",
+        "memory_tip": "Each unknown is its own determinant over Δ. Then put the three values back into all three original equations before you stop.",
+        "lines": [
+          "By Cramer's rule:",
+          "x = Δ₁/Δ = (−76)/(−38) = 2",
+          "y = Δ₂/Δ = (−76)/(−38) = 2",
+          "z = Δ₃/Δ = (−76)/(−38) = 2",
+          "Substitute back into the three equations:",
+          "2(2) − 2 + 3(2) = 8  ✓",
+          "−2 + 2(2) + 2 = 4  ✓",
+          "3(2) + 2 − 4(2) = 0  ✓",
+          {
+            "text": "∴ x = 2, y = 2, z = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each unknown is its own determinant divided by Δ, giving x = 2, y = 2, z = 2, and that the values are checked in all three original equations.",
+          "accept": [
+            "x is delta one by delta y is delta two by delta and z is delta three by delta giving x equals two y equals two z equals two",
+            "divide each of the three determinants by delta to get x equals two y equals two z equals two",
+            "by cramer's rule each unknown is its own determinant over delta so the solution is x equals two y equals two z equals two",
+            "prathi determinant ni delta tho divide cheste x equals two y equals two z equals two vasthundi",
+            "delta one over delta gives x and similarly y and z then substitute back to check"
+          ],
+          "reject": [
+            "then I get the answer",
+            "divide by delta",
+            "x equals two y equals two z equals two"
+          ],
+          "heard_as": [
+            "delta one by delta",
+            "cramer's rule",
+            "substitute back",
+            "x equals two",
+            "y equals two",
+            "z equals two"
+          ]
+        },
+        "why": "The whole method exists so that each unknown can be found on its own, without eliminating anything. Substituting back is the only check that catches a slip inside Δ₁, Δ₂ or Δ₃, because an error there spoils one unknown and leaves the other two looking right.",
+        "common_mistakes": [
+          "Dividing Δ by Δ₁ instead of Δ₁ by Δ.",
+          "Losing a sign: a negative divided by a negative is positive.",
+          "Stopping without substituting the three values back into all three equations."
+        ]
+      }
+    ]
+  }
+}

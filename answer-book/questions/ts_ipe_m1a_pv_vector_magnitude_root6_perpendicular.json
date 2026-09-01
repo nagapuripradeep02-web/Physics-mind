@@ -1,0 +1,238 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_vector_magnitude_root6_perpendicular",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the vector having magnitude √6 that is perpendicular to both 2i − k and 3j − i − k.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the cross product",
+      "marks": 1
+    },
+    {
+      "label": "Expand the determinant",
+      "marks": 1
+    },
+    {
+      "label": "Find the unit vector along a × b",
+      "marks": 1
+    },
+    {
+      "label": "Scale it to magnitude √6",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 5, book p.68. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. The stem prints the second vector as 3j − i − k; it is rewritten here in the usual i, j, k order as −i + 3j − k, which is the same vector. Computed twice: a × b = 3i + 3j + 6k by determinant expansion, |a × b| = √54 = 3√6, so the unit vector is (i + j + 2k)/√6 and the required vector is ±(i + j + 2k). Checked a second way directly on the answer: (i + j + 2k)·(2i − k) = 2 − 2 = 0, (i + j + 2k)·(−i + 3j − k) = −1 + 3 − 2 = 0, and |i + j + 2k| = √(1 + 1 + 4) = √6. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: setting up the cross product, expanding it, turning it into a unit vector, and scaling that to the required length. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would build a vector of a given length that is perpendicular to two given vectors — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Set up the cross product",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Perpendicular to BOTH given vectors means along their cross product. Rewrite the second vector in i, j, k order before writing the determinant, or a term lands in the wrong column.",
+        "memory_tip": "Perpendicular to two vectors at once means along their cross product.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = 2i + 0j − k and",
+          "b = −i + 3j − k.",
+          "(The stem writes b as 3j − i − k.)",
+          "A vector perpendicular to both a and b",
+          "lies along a × b.",
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & 0 & -1 \\\\ -1 & 3 & -1 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a vector perpendicular to both given vectors lies along their cross product, so a × b is written as a determinant.",
+          "accept": [
+            "perpendicular to both means along the cross product a cross b",
+            "write the determinant with i j k on top and the two vectors below",
+            "take the cross product of the two given vectors",
+            "rendintiki perpendicular kavali ante cross product teeskovali",
+            "set up a cross b as a three by three determinant"
+          ],
+          "reject": [
+            "take the dot product",
+            "that is the answer",
+            "find the magnitude first"
+          ],
+          "heard_as": [
+            "cross product",
+            "a cross b",
+            "determinant",
+            "perpendicular"
+          ]
+        },
+        "why": "The cross product of two vectors is perpendicular to both of them by definition, so it is the only construction that meets the condition without solving simultaneous equations.",
+        "common_mistakes": [
+          "Using the dot product, which gives a number and not a vector.",
+          "Writing 3j − i − k straight into the determinant, so the −1 lands in the j column."
+        ]
+      },
+      {
+        "id": "s2_expand",
+        "kind": "equation",
+        "label": "Expand the determinant",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "Second mark. Expand along the top row. The j term already carries a minus sign from the expansion, so a negative inside the bracket makes the j component positive here.",
+        "memory_tip": "The middle term of a cross product expansion always carries its own minus sign.",
+        "lines": [
+          "= i[(0)(−1) − (−1)(3)]",
+          "  − j[(2)(−1) − (−1)(−1)]",
+          "  + k[(2)(3) − (0)(−1)]",
+          "= i(0 + 3) − j(−2 − 1) + k(6 − 0)",
+          "= 3i + 3j + 6k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding the determinant gives a × b = 3i + 3j + 6k.",
+          "accept": [
+            "expanding gives three i plus three j plus six k",
+            "the cross product comes to three i three j six k",
+            "expand along the first row and collect the three components",
+            "expand cheste three i plus three j plus six k vasthundi",
+            "a cross b is three i plus three j plus six k"
+          ],
+          "reject": [
+            "expand the determinant",
+            "that is the answer",
+            "now divide by the magnitude"
+          ],
+          "heard_as": [
+            "three i",
+            "three j",
+            "six k",
+            "expand"
+          ]
+        },
+        "why": "Each component of the cross product is a 2 × 2 determinant of the other two columns, and the sign pattern plus, minus, plus is what keeps the result perpendicular to both rows.",
+        "common_mistakes": [
+          "Forgetting the minus in front of the j term.",
+          "Sign slip on (−1)(−1), which is +1, not −1."
+        ]
+      },
+      {
+        "id": "s3_unit",
+        "kind": "equation",
+        "label": "Find the unit vector",
+        "marks": 1,
+        "mark_note": "Unit vector",
+        "margin_note": "Third mark. Divide the cross product by its own length. Take the common factor 3 out first — the arithmetic is much shorter than dividing each component by 3√6.",
+        "memory_tip": "Pull out the common factor before dividing: 3i + 3j + 6k is 3(i + j + 2k).",
+        "lines": [
+          "|a × b| = √(3² + 3² + 6²)",
+          "  = √(9 + 9 + 36) = √54 = 3√6",
+          "Unit vector along a × b",
+          "  = (3i + 3j + 6k)/(3√6)",
+          "  = (i + j + 2k)/√6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |a × b| = √54 = 3√6, so the unit vector along it is (i + j + 2k)/√6.",
+          "accept": [
+            "the magnitude is root fifty four which is three root six",
+            "divide the cross product by its magnitude to get the unit vector",
+            "the unit vector is i plus j plus two k all over root six",
+            "magnitude three root six, unit vector i plus j plus two k by root six",
+            "take out the common three and then divide by root six"
+          ],
+          "reject": [
+            "find the magnitude",
+            "that is the answer",
+            "multiply by root six"
+          ],
+          "heard_as": [
+            "root fifty four",
+            "three root six",
+            "unit vector",
+            "i plus j plus two k"
+          ]
+        },
+        "why": "The direction is now fixed but the length is not. Dividing by the length strips the size away and leaves only the direction, which is what can then be scaled to any required magnitude.",
+        "common_mistakes": [
+          "Dividing by 54 instead of by √54.",
+          "Leaving the answer as the cross product itself, which has length 3√6 and not √6."
+        ]
+      },
+      {
+        "id": "s4_scale",
+        "kind": "boxed_final",
+        "label": "Scale to magnitude √6",
+        "marks": 1,
+        "mark_note": "Required vector",
+        "margin_note": "Last mark. Multiply the unit vector by the required length √6, and the √6 in the denominator cancels. Both signs are correct answers, so write ±.",
+        "memory_tip": "Required vector = required length × unit vector, and both signs work.",
+        "lines": [
+          "Required vector",
+          "  = √6 × (i + j + 2k)/√6",
+          "  = i + j + 2k",
+          "The opposite vector is perpendicular to a",
+          "and b as well, so either sign is correct.",
+          {
+            "text": "∴ Required vector = ±(i + j + 2k)",
+            "style": "boxed"
+          },
+          "Check: |i + j + 2k| = √(1 + 1 + 4) = √6"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That multiplying the unit vector by √6 gives ±(i + j + 2k), with both signs accepted.",
+          "accept": [
+            "multiply the unit vector by root six to get plus or minus i plus j plus two k",
+            "the root six cancels and the answer is i plus j plus two k",
+            "both the vector and its negative are correct answers",
+            "root six tho multiply cheste i plus j plus two k vasthundi",
+            "the required vector is plus or minus i plus j plus two k"
+          ],
+          "reject": [
+            "multiply by root six",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "root six",
+            "plus or minus",
+            "i plus j plus two k",
+            "required vector"
+          ]
+        },
+        "why": "A unit vector times a required length is a vector with that length in the same direction. The negative of it points the opposite way but is still at right angles to both given vectors, so it satisfies the question equally.",
+        "common_mistakes": [
+          "Giving only one sign when both are correct.",
+          "Multiplying by 6 instead of √6."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_maxmin_shifted_angle_root2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the maximum and minimum values of f(x) = cos(x + π/3) + 2√2 sin(x + π/3) − 3 over ℝ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute θ = x + π/3 and find √(a² + b²)",
+      "marks": 1
+    },
+    {
+      "label": "Apply the maximum and minimum formulas",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.82, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 4(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to naming the shifted angle and computing √(a² + b²) = 3 and one to adding the constant −3 to both ends. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Substitute θ = x + π/3 and find √(a² + b²)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The shift inside the angle changes nothing: as x takes every real value, so does x + π/3. Square 2√2 carefully — it is 8.",
+        "memory_tip": "A shift inside the angle never changes the maximum. Square 2√2 as 4 × 2 = 8, so √(1 + 8) = 3.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let θ = x + π/3. As x takes every real",
+          "value, so does θ.",
+          "f = cos θ + 2√2 sin θ − 3",
+          "Compare with a cos θ + b sin θ + c:",
+          "a = 1, b = 2√2, c = −3",
+          "(2√2)² = 4 × 2 = 8",
+          "√(a² + b²) = √(1 + 8) = √9 = 3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That θ = x + π/3 still takes every real value, and with a = 1, b = 2√2, c = −3 the root √(a² + b²) is 3.",
+          "accept": [
+            "put theta equal to x plus pi by three and the shift changes nothing",
+            "a is one, b is two root two and c is minus three",
+            "two root two squared is eight so root one plus eight is three",
+            "theta ga substitute chesi, root nine ante three",
+            "the root of a squared plus b squared is three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "theta",
+            "two root two",
+            "eight",
+            "root nine",
+            "three"
+          ]
+        },
+        "why": "The maximum of a cos θ + b sin θ depends only on a and b, and θ = x + π/3 still takes every real value. So the shift can be named once and then set aside.",
+        "common_mistakes": [
+          "Taking (2√2)² as 4√2 or as 4.",
+          "Expanding cos(x + π/3) and sin(x + π/3) first, which is long and not needed."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "equation",
+        "label": "Apply the maximum and minimum formulas",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The −3 moves BOTH answers down by 3, not just one. The maximum comes out as exactly 0, so f(x) is never positive.",
+        "memory_tip": "The constant −3 moves both ends down: 3 − 3 = 0 at the top and −3 − 3 = −6 at the bottom.",
+        "lines": [
+          "Maximum = c + √(a² + b²) = −3 + 3 = 0",
+          "Minimum = c − √(a² + b²) = −3 − 3 = −6",
+          {
+            "text": "∴ Maximum = 0, Minimum = −6",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the maximum is 0 and the minimum is −6, after the constant −3 is added to both ends.",
+          "accept": [
+            "minus three plus three is zero and minus three minus three is minus six",
+            "the maximum is zero and the minimum is minus six",
+            "the constant shifts both answers down by three",
+            "constant ni rendu chotla add cheyyali, zero and minus six",
+            "the answers are zero and negative six"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "zero",
+            "minus six",
+            "maximum",
+            "minimum",
+            "constant"
+          ]
+        },
+        "why": "Adding a constant moves the whole graph up or down without changing its height, so the same constant is added to the maximum and to the minimum.",
+        "common_mistakes": [
+          "Subtracting the 3 from only one of the two answers.",
+          "Giving 3 and −3 by dropping the constant."
+        ]
+      }
+    ]
+  }
+}

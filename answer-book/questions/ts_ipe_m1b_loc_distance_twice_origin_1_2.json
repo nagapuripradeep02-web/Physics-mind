@@ -1,0 +1,217 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_loc_distance_twice_origin_1_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Locus"
+  },
+  "chapter": "Locus",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of locus of a point P such that the distance of P from the origin is twice the distance of P from A(1, 2).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the given condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the distances",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the locus",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 9, book p.136. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 rewards reading the sentence as OP = 2PA and squaring it, then substituting the two distances, and gives the remaining two marks to the collection of terms that leaves the circle. The unmarked opening step names the moving point and carries no mark of its own. Answer cross-checked by substituting the point (2, 4), whose distance from the origin is 2√5 and from A is √5, and which satisfies the final equation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say which distance is the bigger one, and name the shape the locus turns out to be.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locus · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_locus_point",
+        "kind": "text",
+        "label": "Take the locus point",
+        "marks": 0,
+        "margin_note": "No mark of its own. One of the two fixed points is the origin, so one distance is just √(x² + y²) and needs no bracket.",
+        "memory_tip": "One fixed point is the origin, so that distance is plain √(x² + y²) with no bracket.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P = (x, y) be a point on the locus.",
+          "Given O = (0, 0) and A = (1, 2)"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the moving point is named P = (x, y) and the two fixed points are the origin and A(1, 2).",
+          "accept": [
+            "let P be x comma y",
+            "take the locus point as P x y",
+            "the two fixed points are the origin and one comma two",
+            "locus point ni P x y ga teesukovali",
+            "name the moving point P with coordinates x and y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "let P be x y",
+            "the origin",
+            "one comma two",
+            "locus point"
+          ]
+        },
+        "why": "Every locus question starts the same way: the moving point gets coordinates, and the condition is then written in terms of those coordinates.",
+        "common_mistakes": [
+          "Giving the moving point fixed numbers instead of (x, y).",
+          "Treating the origin as the moving point."
+        ]
+      },
+      {
+        "id": "s2_write_the_given_condition",
+        "kind": "equation",
+        "label": "Write the given condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The sentence says the distance FROM THE ORIGIN is the larger one, so the 2 sits with PA. Squaring turns the 2 into a 4.",
+        "memory_tip": "The 2 goes with PA, the smaller distance. Squaring turns that 2 into a 4.",
+        "lines": [
+          "Given condition: OP = 2 PA",
+          "⇒ OP² = 4 PA²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the condition is OP = 2PA and that squaring it gives OP² = 4PA².",
+          "accept": [
+            "the distance from the origin is twice the distance from A so O P equals two P A",
+            "square both sides to get O P squared equals four P A squared",
+            "write the given condition as O P is two times P A",
+            "origin nunchi distance rendintlu, so O P equals two P A",
+            "squaring makes the two into a four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "O P equals two P A",
+            "O P squared",
+            "four P A squared",
+            "given condition"
+          ]
+        },
+        "why": "Squaring is safe here because both distances are positive, so no extra solution is created by removing the square roots.",
+        "common_mistakes": [
+          "Writing PA = 2OP, which reverses the sentence.",
+          "Squaring to OP² = 2PA² and leaving the 2 unsquared."
+        ]
+      },
+      {
+        "id": "s3_substitute_the_distances",
+        "kind": "equation",
+        "label": "Substitute the distances",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The 4 multiplies the whole bracket, so every one of its six terms is multiplied, including the constants 1 and 4.",
+        "memory_tip": "The 4 multiplies the WHOLE bracket — all six terms, constants included.",
+        "lines": [
+          "⇒ x² + y² = 4[(x−1)² + (y−2)²]",
+          "⇒ x² + y² = 4[x² − 2x + 1 + y² − 4y + 4]",
+          "⇒ x² + y² = 4x² + 4y² − 8x − 16y + 20"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both squared distances go in as coordinates, with the 4 multiplying the whole A bracket.",
+          "accept": [
+            "put x squared plus y squared on the left and the distance from A on the right",
+            "substitute the distance formula and keep the four outside the bracket",
+            "expand x minus one whole squared plus y minus two whole squared",
+            "distance formula substitute chesi four ni bracket antha multiply cheyyali",
+            "four into the whole A bracket"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "distance formula",
+            "whole squared",
+            "four into",
+            "substitute"
+          ]
+        },
+        "why": "The origin side has no brackets at all, so the only expansion needed is on the right, which keeps this substitution short.",
+        "common_mistakes": [
+          "Multiplying only x² and y² inside the bracket by 4.",
+          "Expanding (y − 2)² as y² − 4y + 2."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_locus",
+        "kind": "boxed_final",
+        "label": "Simplify to the locus",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. The x² and y² coefficients survive equal (both 3), so this locus is a circle. Check: (2, 4) is twice as far from the origin as from A, and it satisfies the final equation.",
+        "memory_tip": "Both squared coefficients come out 3 — equal, so the locus is a circle.",
+        "lines": [
+          "⇒ 4x² − x² + 4y² − y² − 8x − 16y + 20 = 0",
+          "⇒ 3x² + 3y² − 8x − 16y + 20 = 0",
+          {
+            "text": "∴ Locus: 3x² + 3y² − 8x − 16y + 20 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That moving everything to one side gives the circle 3x² + 3y² − 8x − 16y + 20 = 0.",
+          "accept": [
+            "bring everything to one side to get three x squared plus three y squared minus eight x minus sixteen y plus twenty equals zero",
+            "the x squared and y squared coefficients are both three so it is a circle",
+            "subtract the left side from the right and simplify",
+            "anni terms okavaipuku teesthe circle vasthundi",
+            "the locus is a circle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three x squared",
+            "three y squared",
+            "minus eight x",
+            "plus twenty",
+            "circle"
+          ]
+        },
+        "why": "A ratio of distances that is not 1 : 1 always gives a circle, so equal x² and y² coefficients are the check that the working is right.",
+        "common_mistakes": [
+          "Cancelling x² against 4x² but forgetting y² against 4y².",
+          "Dropping the constant 20 while moving terms across."
+        ]
+      }
+    ]
+  }
+}

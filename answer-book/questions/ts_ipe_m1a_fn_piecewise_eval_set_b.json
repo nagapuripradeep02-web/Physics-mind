@@ -1,0 +1,150 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_piecewise_eval_set_b",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f is defined by f(x) = x + 2 for x > 1, f(x) = 2 for −1 ≤ x ≤ 1 and f(x) = x − 1 for −3 < x < −1, find the values of f(3), f(0), f(−1.5), f(2) + f(−2) and f(−5).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The four values and the sum f(2) + f(−2)",
+      "marks": 1
+    },
+    {
+      "label": "f(−5) is not defined, with the reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.14, chapter 2 FUNCTIONS, Very Short Answer question 23(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the points a branch covers, including the sum f(2) + f(−2) that needs two different branches, and one to the point −5, which no branch covers, because that is a different piece of reasoning. The domain the three branches actually make, (−3, ∞), is carried in the written lines and in the boxed answer, where the student reads it, not only in this note. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer this — how you match each number to a branch, and what happens at −5.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_match_each_point",
+        "kind": "equation",
+        "label": "Match each point to its branch",
+        "marks": 1,
+        "mark_note": "The values and the sum",
+        "margin_note": "One mark for the four values and the sum. The two points 2 and −2 sit in different branches, so write both branches out before adding.",
+        "memory_tip": "Draw the three conditions on a number line, place each number on it, and only then substitute.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = x + 2 for x > 1 … (1)",
+          "f(x) = 2 for −1 ≤ x ≤ 1 … (2)",
+          "f(x) = x − 1 for −3 < x < −1 … (3)",
+          "3 > 1, so use (1): f(3) = 3 + 2 = 5",
+          "−1 ≤ 0 ≤ 1, so use (2): f(0) = 2",
+          "−3 < −1.5 < −1, so use (3):",
+          "f(−1.5) = −1.5 − 1 = −2.5",
+          "2 > 1, so use (1): f(2) = 2 + 2 = 4",
+          "−3 < −2 < −1, so use (3): f(−2) = −3",
+          "∴ f(2) + f(−2) = 4 + (−3) = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each number is tested against the three conditions first, giving f(3) = 5, f(0) = 2, f(−1.5) = −2.5, and f(2) + f(−2) = 4 − 3 = 1 from two different branches.",
+          "accept": [
+            "three is greater than one so x plus two gives five",
+            "zero is between minus one and one so the value is just two",
+            "minus one point five is between minus three and minus one so x minus one gives minus two point five",
+            "two uses the first branch and minus two uses the third branch so the sum is four minus three which is one",
+            "rendu points rendu different branches lo unnayi so separate ga compute chesi add cheyyali"
+          ],
+          "reject": [
+            "I substitute in the formula",
+            "both values use the same branch",
+            "minus five has no branch"
+          ],
+          "heard_as": [
+            "x plus two",
+            "x minus one",
+            "constant two",
+            "branch",
+            "minus one point five",
+            "sum"
+          ]
+        },
+        "why": "Every number has to be tested against the three conditions before a formula is used, and f(2) + f(−2) is the point of the question: the two numbers sit in different branches, so the two values come from different rules.",
+        "common_mistakes": [
+          "Reading the middle branch f(x) = 2 as f(x) = 2x.",
+          "Using x + 2 for f(−2); the point −2 satisfies −3 < x < −1, not x > 1.",
+          "Writing f(2) + f(−2) as f(0), because f is not additive."
+        ]
+      },
+      {
+        "id": "s2_point_with_no_branch",
+        "kind": "boxed_final",
+        "label": "The point −5 has no branch",
+        "marks": 1,
+        "mark_note": "f(−5) not defined",
+        "margin_note": "The second mark is the reason. Show all three conditions failing, or name the domain (−3, ∞), before writing that f(−5) is not defined.",
+        "memory_tip": "The domain is the union of the three branch conditions. Here they join to give (−3, ∞), so nothing at or below −3 has a value.",
+        "lines": [
+          "At x = −5 all three conditions fail:",
+          "−5 > 1 is false, −1 ≤ −5 ≤ 1 is false,",
+          "and −3 < −5 < −1 is false.",
+          "The three branches together cover",
+          "(−3, −1) ∪ [−1, 1] ∪ (1, ∞) = (−3, ∞).",
+          "So the domain of f is (−3, ∞), and −5 < −3.",
+          {
+            "text": "∴ f(−5) is not defined.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three branches together give the domain (−3, ∞), that −5 lies outside it, and so f(−5) has no value.",
+          "accept": [
+            "minus five is not greater than one not between minus one and one and not greater than minus three",
+            "the three branches join to give the domain minus three to infinity",
+            "minus five is outside the domain so f of minus five is not defined",
+            "no rule reaches minus five so the function has no value there",
+            "domain (−3, ∞) ye, minus five daanilo ledhu kabatti not defined"
+          ],
+          "reject": [
+            "use x minus one",
+            "f of minus five is minus six",
+            "the value is two"
+          ],
+          "heard_as": [
+            "not defined",
+            "undefined",
+            "domain",
+            "minus three to infinity",
+            "outside",
+            "minus five"
+          ]
+        },
+        "why": "The three branches join without a gap, but they stop at −3: their union is (−3, ∞). A number to the left of −3 satisfies no condition, so no rule applies and f has no value there.",
+        "common_mistakes": [
+          "Extending x − 1 past −3 and writing f(−5) = −6.",
+          "Answering f(−5) = 0, when no branch gives any value at all.",
+          "Writing not defined with no working, which earns no reason mark."
+        ]
+      }
+    ]
+  }
+}

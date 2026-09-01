@@ -1,0 +1,23 @@
+# OUR BANK — mathematics_1b unit 5: 3D-Coordinates (Maths-1B)  (10 cards)
+# source index: answer-book/sources/chaitanya_m1b_ch05_three_dimensional_coordinates.json
+
+[VSAQ] ts_ipe_m1b_td_vertex_c_centroid_origin
+    Find the coordinates of the vertex 'C' of △ABC if its centroid is the origin and the vertices A, B are (1,1,1) and (−2,4,1) respectively.
+[VSAQ] ts_ipe_m1b_td_fourth_vertex_tetrahedron
+    If (3,2,−1), (4,1,1) and (6,2,5) are three vertices and (4,2,2) is the centroid of a tetrahedron, find the fourth vertex of that tetrahedron.
+[VSAQ] ts_ipe_m1b_td_fourth_vertex_parallelogram
+    Find the fourth vertex of the parallelogram whose consecutive vertices are (2,4,−1), (3,6,−1) and (4,5,1).
+[VSAQ] ts_ipe_m1b_td_xz_plane_ratio
+    Find the ratio in which the XZ-plane divides line joining A(−2,3,4) & B(1,2,3). Also find the point of Intersection.
+[VSAQ] ts_ipe_m1b_td_yz_plane_ratio
+    Find the ratio in which the YZ-plane divides the line joining A(2,4,5) and B(3,5,−4). Also find the point of intersection.
+[VSAQ] ts_ipe_m1b_td_equilateral_triangle
+    Show that the points (1,2,3), (2,3,1) and (3,1,2) form an equilateral triangle.
+[VSAQ] ts_ipe_m1b_td_collinear_1_2_3
+    Show that the points (1,2,3), (7,0,1), (−2,3,4) are collinear.
+[VSAQ] ts_ipe_m1b_td_collinear_5_4_2
+    Show that the points (5,4,2), (6,2,−1), (8,−2,−7) are collinear.
+[VSAQ] ts_ipe_m1b_td_sqp_collinear_and_ratio
+    Show that the points A(3,2,−4), B(5,4,−6) and C(9,8,−10) are collinear and find the ratio in which B divides AC.
+[VSAQ] ts_ipe_m1b_td_sqp_distance_find_x
+    If the distance between the points (5,−1,7) and (x,5,1) is 9 units, find the values of x.

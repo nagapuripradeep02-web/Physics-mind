@@ -1,0 +1,136 @@
+{
+    "schema_version": "answer_book_v1",
+    "question_id": "ts_ipe_m1a_fn_combo_3f_minus_2g",
+    "board": "ts_ipe",
+    "board_label": "Telangana — Board of Intermediate Education",
+    "subject": "mathematics",
+    "year_cycle": "first_year",
+    "class_label": "Intermediate I Year (Class 11)",
+    "unit": {
+        "number": 2,
+        "name": "Functions"
+    },
+    "chapter": "Functions",
+    "qtype": "VSAQ",
+    "marks_total": 2,
+    "paper_section": "Section A",
+    "expected_time_min": 4,
+    "question_text": "If f(x) = 2x − 1 and g(x) = x², find (3f − 2g)(x).",
+    "appearances": [],
+    "mark_split": [
+        {
+            "label": "Meaning of (3f − 2g)(x)",
+            "marks": 1
+        },
+        {
+            "label": "Simplified form and domain",
+            "marks": 1
+        }
+    ],
+    "verification": {
+        "status": "unverified",
+        "needs_teacher_verification": true,
+        "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 16(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing 3f(x) − 2g(x) with the substitution first and the simplified form with its domain second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    },
+    "recall_prompt": "Say how you would find (3f − 2g)(x) — what the combination means, the simplified form, and the domain.",
+    "answer": {
+        "page_header": [
+            "Section A — Very Short Answer Question",
+            "Functions · 2 marks"
+        ],
+        "steps": [
+            {
+                "id": "s1_meaning",
+                "kind": "equation",
+                "label": "Write what the combination means",
+                "marks": 1,
+                "mark_note": "Meaning of (3f − 2g)(x)",
+                "margin_note": "First mark. A combination of functions is worked one x at a time: 3 times f(x), minus 2 times g(x), at the same x.",
+                "lines": [
+                    {
+                        "text": "Sol:",
+                        "style": "heading"
+                    },
+                    "f(x) = 2x − 1 and g(x) = x², both on R",
+                    "(3f − 2g)(x) = 3f(x) − 2g(x)",
+                    "= 3(2x − 1) − 2(x²)"
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That (3f − 2g)(x) means 3f(x) − 2g(x), which is 3(2x − 1) − 2x².",
+                    "accept": [
+                        "three f minus two g means three times f of x minus two times g of x",
+                        "substitute so it is three into two x minus one minus two x squared",
+                        "combine the two outputs at the same x",
+                        "outputs ni combine cheyyali same x daggara",
+                        "write three f of x minus two g of x first"
+                    ],
+                    "reject": [
+                        "I combine them",
+                        "subtract the functions",
+                        "then simplify"
+                    ],
+                    "heard_as": [
+                        "three f minus two g",
+                        "three f of x",
+                        "two g of x",
+                        "outputs",
+                        "same x"
+                    ]
+                },
+                "why": "Functions are combined output by output: at each x you take 3f(x) and subtract 2g(x). Writing that line before substituting is what earns this mark.",
+                "memory_tip": "3f − 2g acts at one x at a time: 3 times f(x), minus 2 times g(x).",
+                "common_mistakes": [
+                    "Multiplying the inputs, writing f(3x) − g(2x).",
+                    "Dropping the 2 and writing 3f(x) − g(x)."
+                ]
+            },
+            {
+                "id": "s2_simplify",
+                "kind": "boxed_final",
+                "label": "Simplify and state the domain",
+                "marks": 1,
+                "mark_note": "Simplified form and domain",
+                "margin_note": "Second mark. Expand and collect. Both parts are polynomials, so the combination is defined for every real x — write that down.",
+                "lines": [
+                    "= 6x − 3 − 2x²",
+                    "f and g are defined for every real x,",
+                    "so the combination is too.",
+                    {
+                        "text": "(3f − 2g)(x) = −2x² + 6x − 3, x ∈ R",
+                        "style": "boxed"
+                    }
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That the simplified form is −2x² + 6x − 3 and the domain is R.",
+                    "accept": [
+                        "six x minus three minus two x squared",
+                        "the answer is minus two x squared plus six x minus three",
+                        "both are polynomials so the domain is all real numbers",
+                        "rendu polynomials kabatti domain R",
+                        "simplify and the domain is R"
+                    ],
+                    "reject": [
+                        "simplify it",
+                        "that is the answer",
+                        "collect the terms"
+                    ],
+                    "heard_as": [
+                        "minus two x squared",
+                        "six x minus three",
+                        "domain",
+                        "all real numbers",
+                        "R"
+                    ]
+                },
+                "why": "The domain of a combination is the set where BOTH functions are defined. Two polynomials are defined everywhere, so the domain is R and no value has to be excluded.",
+                "memory_tip": "The domain of a combination is where both functions are defined. Two polynomials give R.",
+                "common_mistakes": [
+                    "Sign slip: writing 6x + 3 − 2x² after multiplying 3 into (2x − 1).",
+                    "Leaving the answer without saying the domain is R."
+                ]
+            }
+        ]
+    }
+}

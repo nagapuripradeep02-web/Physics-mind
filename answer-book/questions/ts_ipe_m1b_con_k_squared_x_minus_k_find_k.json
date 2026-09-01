@@ -132,6 +132,7 @@
         "why": "Writing all three quantities separately makes the next line a simple equation, and it forces an explicit decision about which piece the point x = 1 belongs to.",
         "common_mistakes": [
           "Taking f(1) = 2 from the piece x < 1, when that piece does not include 1.",
+          "Equating the two one-sided limits to each other but forgetting that both must also equal f(1).",
           "Reading the left limit from k²x − k instead of from the constant piece x < 1."
         ]
       },

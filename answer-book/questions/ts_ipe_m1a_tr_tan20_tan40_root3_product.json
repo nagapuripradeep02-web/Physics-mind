@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_tan20_tan40_root3_product",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of tan20° + tan40° + √3 tan20° tan40°.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Start from tan(20° + 40°)",
+      "marks": 1
+    },
+    {
+      "label": "Rearrange to the asked expression",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.85, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to starting from tan(20° + 40°) and one to rearranging the expansion into the expression that was asked for. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Start from tan(20° + 40°)",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. 20° + 40° = 60° and tan60° = √3, which is the √3 already standing in the question.",
+        "memory_tip": "20° + 40° = 60°, and tan60° = √3 — the same √3 the question shows.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "We take 20° + 40° = 60°",
+          "⇒ tan(20° + 40°) = tan60° = √3",
+          "  [∵ tan(A+B) = (tanA + tanB)/(1 − tanA tanB)]",
+          "∴ (tan20° + tan40°)/(1 − tan20° tan40°) = √3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two angles add to 60°, so the tan(A+B) formula is written with tan60° = √3 on the right.",
+          "accept": [
+            "twenty plus forty is sixty so start from tan sixty which is root three",
+            "use the tan A plus B formula with the two angles",
+            "write tan of twenty plus forty equals root three and expand",
+            "twenty plus forty ante sixty, tan sixty root three",
+            "expand tan of the sum"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan twenty plus forty",
+            "tan sixty",
+            "root three",
+            "tan A plus B"
+          ]
+        },
+        "why": "The √3 in the third term is a hint. It is tan60°, and 60° is the sum of the two angles in the question, so the sum formula is the right starting point.",
+        "common_mistakes": [
+          "Trying to find tan20° and tan40° separately.",
+          "Using the tan(A − B) formula."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Rearrange to the asked expression",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Cross multiply, expand the bracket, then move the product term to the left side.",
+        "memory_tip": "Cross multiply, then move √3 tan20° tan40° to the left. What is left on the right is √3.",
+        "lines": [
+          "Cross multiplying:",
+          "tan20° + tan40° = √3(1 − tan20° tan40°)",
+          "= √3 − √3 tan20° tan40°",
+          "Adding √3 tan20° tan40° to both sides:",
+          {
+            "text": "∴ Value = √3",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cross multiplying and moving the product term across gives the value √3.",
+          "accept": [
+            "cross multiply and expand root three into the bracket",
+            "move the product term to the left and the answer is root three",
+            "the value is root three",
+            "cross multiply chesi term move cheste root three vasthundi",
+            "root three minus root three tan twenty tan forty, so it cancels"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cross multiply",
+            "root three",
+            "move the term",
+            "expand the bracket"
+          ]
+        },
+        "why": "The √3 tan20° tan40° that the question adds is exactly the term the expansion subtracts, so the two cancel and only √3 is left.",
+        "common_mistakes": [
+          "Forgetting to multiply √3 into both terms of the bracket.",
+          "Leaving the answer as √3(1 − tan20° tan40°)."
+        ]
+      }
+    ]
+  }
+}

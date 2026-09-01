@@ -1,0 +1,180 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_classify_x_squared_onto_nonneg",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Decide with justification whether f: R→[0, ∞) defined by f(x) = x² is an injection, a surjection or a bijection.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Counterexample showing f is not one one",
+      "marks": 1
+    },
+    {
+      "label": "Proof that f is onto",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 18(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the counterexample that kills one one and one to the onto argument, because the question asks about both properties and a student who settles only one still earns half. The verdict line carries no mark and is authored for the student, not for the examiner. The codomain printed in the stem is [0, ∞), not R, and the onto argument is answered against that codomain; the same rule x² read as a map from R to R would NOT be onto, which is the confusion this part tests. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would decide this — what kills one one, and how the codomain makes the onto part work.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_not_one_one",
+        "kind": "equation",
+        "label": "Show f is not one one",
+        "marks": 1,
+        "mark_note": "Not one one",
+        "margin_note": "First mark. To disprove one one you need ONE pair of different inputs with the same image. Write both values out; naming the pair without computing f does not earn it.",
+        "memory_tip": "To break one one you need only one pair. A number and its negative have the same square.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f: R→[0, ∞), f(x) = x²",
+          "Domain = R, codomain = [0, ∞)",
+          "f(−1) = (−1)² = 1 and f(1) = 1² = 1",
+          "So f(−1) = f(1) but −1 ≠ 1.",
+          "∴ f is not one one (not an injection)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f(−1) = f(1) = 1 while −1 ≠ 1, so two different inputs share an image and f is not one one.",
+          "accept": [
+            "f of minus one is one and f of one is one but minus one is not equal to one so it is not one one",
+            "a number and its negative have the same square so the function is not injective",
+            "take one and minus one both give image one so one one fails",
+            "minus one and one rendu ki image one so not one one",
+            "two different inputs have the same square so f is not an injection"
+          ],
+          "reject": [
+            "x squared is not one one",
+            "it fails the horizontal line test",
+            "I show it is not injective"
+          ],
+          "heard_as": [
+            "f of minus one",
+            "f of one",
+            "one one",
+            "injection",
+            "not injective"
+          ]
+        },
+        "why": "One one is a statement about EVERY pair of inputs, so a single pair that breaks it is enough to disprove it. The domain here is all of R, which is what makes both 1 and −1 available.",
+        "common_mistakes": [
+          "Trying to prove it is one one by assuming x₁² = x₂², which only gives x₁ = ±x₂.",
+          "Naming the pair 1 and −1 without writing that both images equal 1."
+        ]
+      },
+      {
+        "id": "s2_onto",
+        "kind": "equation",
+        "label": "Prove f is onto",
+        "marks": 1,
+        "mark_note": "Onto",
+        "margin_note": "Second mark. The codomain is [0, ∞), so y is never negative and √y is always a real number. That is the whole reason this map is onto.",
+        "memory_tip": "The codomain is [0, ∞), so y ≥ 0 and √y is real. Take x = √y and the image is y.",
+        "lines": [
+          "Let y ∈ [0, ∞), so y ≥ 0.",
+          "Then √y is a real number, so √y ∈ R.",
+          "f(√y) = (√y)² = y",
+          "So every y in [0, ∞) has a pre-image in R.",
+          "∴ f is onto (a surjection)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for an arbitrary y ≥ 0 in the codomain, √y lies in the domain R and f(√y) = y, so every element of [0, ∞) is reached.",
+          "accept": [
+            "take any y in zero to infinity then root y is real and f of root y is y so it is onto",
+            "every non negative number is the square of its square root so the map is surjective",
+            "since y is at least zero root y exists in R and gives image y",
+            "y greater than or equal to zero kabatti root y real so f of root y equals y",
+            "each y in the codomain has pre image root y so f is onto"
+          ],
+          "reject": [
+            "x squared is always onto",
+            "the range is all real numbers",
+            "I prove it is a surjection"
+          ],
+          "heard_as": [
+            "onto",
+            "surjection",
+            "root y",
+            "square root of y",
+            "zero to infinity",
+            "pre image"
+          ]
+        },
+        "why": "Onto depends on the codomain the question names. Over the codomain [0, ∞) every y is non negative, so √y is real and the pre-image exists. Read as a map from R to R the same rule would miss every negative number and would not be onto.",
+        "common_mistakes": [
+          "Answering for the codomain R instead of [0, ∞) and calling f not onto.",
+          "Writing x = ±√y; one pre-image is enough, and ±√y is not a single number."
+        ]
+      },
+      {
+        "id": "s3_verdict",
+        "kind": "boxed_final",
+        "label": "State the verdict",
+        "marks": 0,
+        "margin_note": "No separate mark, but write it. Only one of the three words fits here, and it is the weaker one.",
+        "memory_tip": "Onto but not one one means surjection only. A bijection needs both.",
+        "lines": [
+          "f is onto but not one one.",
+          {
+            "text": "∴ f is a surjection, not a bijection.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is a surjection only: it is onto but not one one, so it is not a bijection.",
+          "accept": [
+            "it is onto but not one one so it is only a surjection",
+            "f is a surjection and not a bijection",
+            "since one one fails it cannot be a bijection it is just onto",
+            "onto avutundi kaani one one kaadu so surjection only",
+            "the verdict is surjection not injection and not bijection"
+          ],
+          "reject": [
+            "hence proved",
+            "so it is a bijection",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "surjection",
+            "surjective",
+            "bijection",
+            "not one one",
+            "onto"
+          ]
+        },
+        "why": "The question offered three words, so the answer must pick one and tie it to the two arguments above. Bijection is wrong here because one property failed.",
+        "common_mistakes": [
+          "Calling it a bijection because the onto proof worked.",
+          "Stopping after the two arguments and never naming the verdict."
+        ]
+      }
+    ]
+  }
+}

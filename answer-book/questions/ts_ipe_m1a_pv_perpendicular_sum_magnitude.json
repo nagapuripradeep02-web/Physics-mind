@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_perpendicular_sum_magnitude",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If |a| = 2, |b| = 3, |c| = 4 and each of a, b, c is perpendicular to the sum of the other two vectors, find |a + b + c|.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the three conditions as dot products",
+      "marks": 1
+    },
+    {
+      "label": "Add them to get a·b + b·c + c·a = 0",
+      "marks": 1
+    },
+    {
+      "label": "Expand |a + b + c|²",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and take the square root",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 7 PRODUCT OF VECTORS, Short Answer question 7, book p.68. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. Computed twice. Route one, the route on the page: adding a·(b + c) = 0, b·(c + a) = 0 and c·(a + b) = 0 gives 2(a·b + b·c + c·a) = 0, so the identity |a + b + c|² = |a|² + |b|² + |c|² + 2(a·b + b·c + c·a) leaves 4 + 9 + 16 = 29 and |a + b + c| = √29 ≈ 5.385. Route two, checked separately: a·(b + c) = 0 means a·(a + b + c) = |a|² = 4, and likewise b·(a + b + c) = 9 and c·(a + b + c) = 16; adding those three gives (a + b + c)·(a + b + c) = 29 directly. Both routes give 29. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: turning the words into dot-product equations, adding them, expanding the square of the sum, and substituting. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Product of Vectors carries a Section B slot on the paper and also appears in Section C. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the length of a + b + c from these conditions — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conditions",
+        "kind": "equation",
+        "label": "Write the three conditions",
+        "marks": 1,
+        "mark_note": "Conditions",
+        "margin_note": "First mark. Three separate sentences in the question become three separate equations. Each vector is perpendicular to the sum of the OTHER two, so no equation contains a vector dotted with itself.",
+        "memory_tip": "Perpendicular means dot product zero. Three vectors give three equations, not one.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Two vectors are perpendicular when their",
+          "dot product is zero. So",
+          "a·(b + c) = 0    …(1)",
+          "b·(c + a) = 0    …(2)",
+          "c·(a + b) = 0    …(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each perpendicularity statement becomes a dot product equal to zero: a·(b + c) = 0, b·(c + a) = 0 and c·(a + b) = 0.",
+          "accept": [
+            "perpendicular means the dot product is zero so write three equations",
+            "a dot b plus c is zero, b dot c plus a is zero, c dot a plus b is zero",
+            "each vector dotted with the sum of the other two gives zero",
+            "perpendicular ante dot product zero, moodu equations rasthaam",
+            "turn the three conditions into three dot product equations"
+          ],
+          "reject": [
+            "write the conditions",
+            "that is the answer",
+            "square both sides"
+          ],
+          "heard_as": [
+            "dot product",
+            "zero",
+            "three equations",
+            "perpendicular"
+          ]
+        },
+        "why": "The question gives its information in words. Only after each condition is a dot product equation can the algebra of the scalar product be used on it.",
+        "common_mistakes": [
+          "Writing only one equation instead of all three.",
+          "Including the vector itself in its own bracket, for example a·(a + b + c)."
+        ]
+      },
+      {
+        "id": "s2_add",
+        "kind": "equation",
+        "label": "Add the three conditions",
+        "marks": 1,
+        "mark_note": "Sum of conditions",
+        "margin_note": "Second mark. Every pair appears twice in the sum, once each way round, and the dot product is commutative, so the six terms collapse to twice the three distinct products.",
+        "memory_tip": "Adding all three conditions makes each pair appear twice, so the total is 2(a·b + b·c + c·a).",
+        "lines": [
+          "Adding (1), (2) and (3):",
+          "a·b + a·c + b·c + b·a + c·a + c·b = 0",
+          "The dot product is commutative, so",
+          "2(a·b + b·c + c·a) = 0",
+          "∴ a·b + b·c + c·a = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding the three equations gives 2(a·b + b·c + c·a) = 0, so a·b + b·c + c·a = 0.",
+          "accept": [
+            "add the three equations and every pair appears twice",
+            "two times a dot b plus b dot c plus c dot a equals zero",
+            "the sum of the three pairwise dot products is zero",
+            "moodu equations add cheste rendu rettu vasthundi, so sum zero",
+            "using commutativity the six terms become three doubled terms"
+          ],
+          "reject": [
+            "add them",
+            "that is the answer",
+            "so the vectors are perpendicular"
+          ],
+          "heard_as": [
+            "add the equations",
+            "commutative",
+            "twice",
+            "a dot b",
+            "zero"
+          ]
+        },
+        "why": "The expansion of |a + b + c|² needs exactly the quantity a·b + b·c + c·a, and adding the three given conditions is the shortest way to show that quantity is zero.",
+        "common_mistakes": [
+          "Concluding that each individual dot product is zero, which the question does not say.",
+          "Forgetting the factor 2 when collecting the pairs."
+        ]
+      },
+      {
+        "id": "s3_expand",
+        "kind": "equation",
+        "label": "Expand the square of the sum",
+        "marks": 1,
+        "mark_note": "Expansion",
+        "margin_note": "Third mark. The square of a sum of three vectors follows the same pattern as ordinary algebra: three squares and twice each of the three cross products.",
+        "memory_tip": "Square of a sum of three: three squares plus twice each of the three pairs.",
+        "lines": [
+          "|a + b + c|²",
+          "  = (a + b + c)·(a + b + c)",
+          "  = |a|² + |b|² + |c|²",
+          "     + 2(a·b + b·c + c·a)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |a + b + c|² = |a|² + |b|² + |c|² + 2(a·b + b·c + c·a).",
+          "accept": [
+            "the square of the sum is the sum of the squares plus twice the pairs",
+            "expand a plus b plus c dotted with itself",
+            "mod a squared plus mod b squared plus mod c squared plus two times the pairs",
+            "sum square ante moodu squares plus two times pairs",
+            "dot the sum with itself and collect terms"
+          ],
+          "reject": [
+            "expand it",
+            "that is the answer",
+            "take the square root"
+          ],
+          "heard_as": [
+            "square of the sum",
+            "mod a squared",
+            "twice",
+            "pairs"
+          ]
+        },
+        "why": "The length of a vector is found through its dot product with itself, so the only way to reach |a + b + c| is to expand |a + b + c|² first.",
+        "common_mistakes": [
+          "Writing |a + b + c| = |a| + |b| + |c|, which is false unless all three point the same way.",
+          "Dropping the factor 2 in front of the cross products."
+        ]
+      },
+      {
+        "id": "s4_substitute",
+        "kind": "boxed_final",
+        "label": "Substitute and take the root",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. The whole cross-product bracket is zero, so only the three squared lengths survive. 29 is not a perfect square, so leave the answer as √29.",
+        "memory_tip": "With the cross terms zero, only 2² + 3² + 4² is left.",
+        "lines": [
+          "|a + b + c|² = 2² + 3² + 4² + 2(0)",
+          "  = 4 + 9 + 16",
+          "  = 29",
+          {
+            "text": "∴ |a + b + c| = √29",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting the given lengths and the zero cross-term gives 29, so |a + b + c| = √29.",
+          "accept": [
+            "four plus nine plus sixteen is twenty nine so the answer is root twenty nine",
+            "the cross terms vanish and only the squares are left",
+            "the magnitude is root twenty nine",
+            "cross terms zero, so twenty nine, root twenty nine answer",
+            "substitute two three and four and take the square root"
+          ],
+          "reject": [
+            "substitute the values",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "twenty nine",
+            "root twenty nine",
+            "four plus nine plus sixteen"
+          ]
+        },
+        "why": "The condition in the question exists only to make the cross terms zero. Once they are gone the three lengths behave like the sides of a box, and the answer is the length of its long diagonal.",
+        "common_mistakes": [
+          "Giving 29 as the final answer instead of √29.",
+          "Writing √29 as 2 + 3 + 4 = 9 by adding the lengths."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,268 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_parametric_distance_3pi_over_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "A straight line through Q(2, 3) makes an angle 3π/4 with the negative direction of the X-axis. If it meets the line x + y − 7 = 0 at P, find the distance PQ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the inclination",
+      "marks": 1
+    },
+    {
+      "label": "Write the parametric point",
+      "marks": 2
+    },
+    {
+      "label": "Put P on the given line",
+      "marks": 2
+    },
+    {
+      "label": "Solve for r",
+      "marks": 2
+    },
+    {
+      "label": "Name P and state PQ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 18, book p.160. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the five moves the answer takes — one mark for turning the given angle into the inclination, two for building the parametric point, two for substituting it into the given line, two for solving the resulting equation in r, and one for naming P and reading the distance off r. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SOURCE DEFECT, recorded not repaired: the book prints “makes on angles”, a typo for “makes an angle”, and the card uses the sensible reading. The stem measures the angle from the NEGATIVE X-direction, which gives inclination π/4, not 3π/4. That reading is forced, not chosen: an inclination of 3π/4 gives slope −1, which is parallel to x + y − 7 = 0, so the two lines would never meet and the question would have no answer. The card says so in the first step."
+  },
+  "recall_prompt": "Say how you would solve this — say how you get the inclination, what the parametric point is, and what r means at the end.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_the_inclination",
+        "kind": "equation",
+        "label": "Find the inclination",
+        "marks": 1,
+        "margin_note": "First mark. The angle is given from the NEGATIVE X-direction, so subtract it from π. Taking 3π/4 itself gives slope −1, which is parallel to x + y − 7 = 0 and never meets it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Angle with the negative X-direction = 3π/4",
+          "∴ Inclination θ = π − 3π/4 = π/4 = 45°",
+          "cos 45° = 1/√2,  sin 45° = 1/√2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle given from the negative X-direction is converted to the inclination π/4.",
+          "accept": [
+            "the angle is from the negative X axis so subtract from pi",
+            "inclination is pi minus three pi by four which is pi by four",
+            "convert the given angle into the angle with the positive X axis",
+            "negative X direction nunchi ichaaru kabatti pi minus cheyyali",
+            "theta is forty five degrees"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "inclination",
+            "pi by four",
+            "negative X axis",
+            "forty five degrees"
+          ]
+        },
+        "why": "The parametric form measures the angle from the POSITIVE X-axis, and the question measures it from the negative one, so it has to be converted before anything else is written.",
+        "common_mistakes": [
+          "Using 3π/4 itself as the inclination.",
+          "Measuring the angle from the Y-axis instead."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "Inclination is always measured from the POSITIVE X-axis: given from the negative side, subtract from π."
+      },
+      {
+        "id": "s2_parametric_point",
+        "kind": "equation",
+        "label": "Write the parametric point",
+        "marks": 2,
+        "margin_note": "The next two marks. Any point at distance r from Q along the line is (x₁ + r cos θ, y₁ + r sin θ). This turns an unknown POINT into one unknown NUMBER.",
+        "lines": [
+          "Let PQ = r and Q(x₁, y₁) = (2, 3)",
+          "P = (x₁ + r cos θ, y₁ + r sin θ)",
+          "= (2 + r cos 45°, 3 + r sin 45°)",
+          "∴ P = (2 + r/√2, 3 + r/√2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P is written as (x₁ + r cos θ, y₁ + r sin θ) with Q and the inclination.",
+          "accept": [
+            "P is x one plus r cos theta comma y one plus r sin theta",
+            "write the point at distance r in parametric form",
+            "use the parametric form with Q as the base point",
+            "parametric form lo P ni rayali",
+            "two plus r by root two comma three plus r by root two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "r cos theta",
+            "r sin theta",
+            "parametric point",
+            "distance r"
+          ]
+        },
+        "why": "One unknown r replaces two unknown coordinates, which is why the parametric form is shorter here than solving the two lines together.",
+        "common_mistakes": [
+          "Swapping cos θ and sin θ between the two coordinates.",
+          "Leaving r out of one of the two coordinates."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "A point at distance r along the line is (x₁ + r cos θ, y₁ + r sin θ)."
+      },
+      {
+        "id": "s3_put_p_on_the_line",
+        "kind": "equation",
+        "label": "Put P on the given line",
+        "marks": 2,
+        "margin_note": "The next two marks. P is stated to lie on x + y − 7 = 0, so its coordinates satisfy that equation. Substituting leaves one equation in r alone.",
+        "lines": [
+          "P lies on x + y − 7 = 0, so",
+          "(2 + r/√2) + (3 + r/√2) − 7 = 0",
+          "⇒ 5 + 2r/√2 − 7 = 0",
+          "⇒ 2r/√2 = 2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the parametric coordinates of P are substituted into x + y − 7 = 0.",
+          "accept": [
+            "substitute the parametric point into the given line",
+            "P lies on the line so put its coordinates in",
+            "this leaves one equation in r",
+            "P line meeda undi kabatti substitute cheyyali",
+            "put two plus r by root two and three plus r by root two into the line"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "lies on the line",
+            "equation in r"
+          ]
+        },
+        "why": "Everything before this was setting up; this is the step that uses the line P sits on.",
+        "common_mistakes": [
+          "Substituting into the wrong line.",
+          "Dropping the −7 while collecting the constants."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "P lies on the given line, so substituting produces one equation in r alone."
+      },
+      {
+        "id": "s4_solve_for_r",
+        "kind": "equation",
+        "label": "Solve for r",
+        "marks": 2,
+        "margin_note": "Two more marks. 2/√2 is √2, so the equation is already linear in r. Rationalise once and the distance is out.",
+        "lines": [
+          "2r/√2 = r√2,  so  r√2 = 2",
+          "⇒ r = 2/√2 = √2",
+          "r is positive, so P lies where x increases."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving the equation gives r = √2.",
+          "accept": [
+            "solve the linear equation to get r equals root two",
+            "two by root two is root two so r is root two",
+            "r comes out as root two",
+            "r value root two vasthundi",
+            "simplify and get r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "r equals root two",
+            "solve for r",
+            "rationalise"
+          ]
+        },
+        "why": "r is a SIGNED distance along the line: a positive r puts P on one side of Q and a negative r on the other, so its sign says which way P lies.",
+        "common_mistakes": [
+          "Leaving the answer as 2/√2 without rationalising.",
+          "Treating a negative r as an error rather than as the other direction."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "r is a SIGNED distance: its sign tells you which side of Q the point is on."
+      },
+      {
+        "id": "s5_name_p_and_pq",
+        "kind": "boxed_final",
+        "label": "Name P and state PQ",
+        "marks": 1,
+        "margin_note": "Last mark. Putting r back gives P, and substituting P into the given line checks the whole answer in one line.",
+        "lines": [
+          "P = (2 + √2/√2, 3 + √2/√2) = (3, 4)",
+          "Check: 3 + 4 − 7 = 0, so P is on the line.",
+          {
+            "text": "∴ PQ = r = √2 units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P is (3, 4) and the distance PQ is √2 units.",
+          "accept": [
+            "P is three comma four and P Q is root two",
+            "put r back to get the point and the distance",
+            "the distance P Q is root two units",
+            "P point three comma four, distance root two",
+            "r itself is the distance so the answer is root two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three comma four",
+            "root two",
+            "distance P Q",
+            "units"
+          ]
+        },
+        "why": "r was DEFINED as the distance along the line, so no distance formula is needed — and putting P back into the line is a free check of every step above.",
+        "common_mistakes": [
+          "Applying the distance formula again after finding P.",
+          "Writing the answer without units."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "The distance PQ IS r — and putting P back into the line checks every step above."
+      }
+    ]
+  }
+}

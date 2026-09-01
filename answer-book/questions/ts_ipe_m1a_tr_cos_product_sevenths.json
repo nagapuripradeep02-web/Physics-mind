@@ -1,0 +1,179 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos_product_sevenths",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that cos(2π/7) · cos(4π/7) · cos(8π/7) = 1/8.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Multiply and divide by 2³ sin θ",
+      "marks": 1
+    },
+    {
+      "label": "Reduce sin 8θ and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 36(iii), book p.91. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The two marks sit on the step that manufactures the sine and on the closing reduction; naming the doubling chain stays on the page as unmarked working. Paper position: Maths-1A Section A runs Q1-Q10 at 2 marks each, all compulsory, and Trigonometric Ratios and Transformations holds two of those ten slots. NUMERIC CHECK before authoring: the product was evaluated to 12 decimal places as 0.125000000000, which is exactly 1/8. Three cosines give 2³ = 8, and the count of doublings was checked against that. PRINTED DEFECT recorded, not repaired: the stem prints a colon between the second and third factors where a product dot belongs; it is a typesetting slip and the question is read as a product, which is the only reading that makes the printed value 1/8 correct. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this one — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_see_the_doubling_chain",
+        "kind": "equation",
+        "label": "See the doubling chain",
+        "marks": 0,
+        "margin_note": "The angles 2π/7, 4π/7, 8π/7 double each time, so this is the standard chain cos θ cos 2θ cos 4θ with θ = 2π/7.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Put θ = 2π/7.",
+          "Then 4π/7 = 2θ and 8π/7 = 4θ",
+          "L.H.S = cos θ · cos 2θ · cos 4θ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That θ = 2π/7 makes the three angles θ, 2θ and 4θ.",
+          "accept": [
+            "put theta as two pi by seven so the others are two theta and four theta",
+            "the angles double each time",
+            "it is cos theta cos two theta cos four theta",
+            "theta ni two pi by seven ga teeskuntam",
+            "name the smallest angle theta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two pi by seven",
+            "theta",
+            "two theta",
+            "four theta",
+            "double"
+          ]
+        },
+        "why": "The three angles already double, so no rewriting is needed. Naming the smallest angle θ makes the chain visible in one line.",
+        "common_mistakes": [
+          "Trying to work out each cosine as a decimal.",
+          "Taking θ as π/7 instead of 2π/7."
+        ],
+        "memory_tip": "Name the smallest angle θ. The other two are then 2θ and 4θ with nothing to change."
+      },
+      {
+        "id": "s2_multiply_and_divide",
+        "kind": "equation",
+        "label": "Multiply and divide by 2³ sin θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Count the cosines: three, so introduce 2³ sin θ. Each 2 pairs with the sine just made and the next cosine, doubling the angle once.",
+        "lines": [
+          "Multiply and divide by 2³ sin θ:",
+          "= (1/(8 sin θ)) (2 sin θ cos θ)",
+          "  · (2 cos 2θ)(2 cos 4θ)",
+          "= (1/(8 sin θ)) sin 8θ",
+          "  [sin 2θ = 2 sin θ cos θ, used three times]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2³ sin θ is introduced top and bottom, and sin 2θ = 2 sin θ cos θ is applied three times to reach sin 8θ.",
+          "accept": [
+            "multiply and divide by eight sin theta so a sine appears",
+            "each two pairs with the sine and the next cosine to double the angle",
+            "three cosines so three twos and the chain ends at sin eight theta",
+            "eight sin theta tho multiply and divide cheyyali",
+            "manufacture a sine and use the double angle three times"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "sin eight theta is sin two pi by seven"
+          ],
+          "heard_as": [
+            "eight sin theta",
+            "multiply and divide",
+            "double angle",
+            "sin eight theta"
+          ]
+        },
+        "why": "There is no sine on the left, so one is introduced by multiplying and dividing by the same quantity. Three cosines need three 2s, which is why the denominator is 2³ = 8.",
+        "common_mistakes": [
+          "Multiplying by sin θ without also dividing by it.",
+          "Using two 2s instead of three and getting 1/4."
+        ],
+        "memory_tip": "One 2 per cosine. Three cosines means 2³ = 8, and the last angle reached is 8θ."
+      },
+      {
+        "id": "s3_reduce_and_finish",
+        "kind": "boxed_final",
+        "label": "Reduce sin 8θ and finish",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. 16π/7 is one full turn of 2π = 14π/7 plus 2π/7, so sin 8θ is sin θ again and the two sines cancel.",
+        "lines": [
+          "8θ = 16π/7 = 2π + 2π/7",
+          "sin(16π/7) = sin(2π/7) = sin θ",
+          "L.H.S = sin θ / (8 sin θ)",
+          {
+            "text": "= 1/8 = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(16π/7) = sin(2π/7) = sin θ, which cancels the introduced sine and leaves 1/8.",
+          "accept": [
+            "sixteen pi by seven is two pi plus two pi by seven",
+            "sin eight theta comes back to sin theta",
+            "the sines cancel and one by eight is left",
+            "sines cancel ayi one by eight vasthundi",
+            "the answer is one by eight"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "manufacture a sine and use the double angle three times"
+          ],
+          "heard_as": [
+            "two pi plus",
+            "sixteen pi by seven",
+            "cancel",
+            "one by eight"
+          ]
+        },
+        "why": "sin(2π + x) = sin x removes the full turn and returns the very sine that was introduced at the start, so it cancels and only the 8 is left.",
+        "common_mistakes": [
+          "Cancelling sin θ before reducing sin(16π/7).",
+          "Taking sin(16π/7) as −sin(2π/7)."
+        ],
+        "memory_tip": "16π/7 is just over one full turn. Take out 2π and the leftover is the starting angle."
+      }
+    ]
+  }
+}

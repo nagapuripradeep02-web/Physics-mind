@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_concurrent_family_3a_2b_4c",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "If 3a+2b+4c=0, show that ax+by+c=0 represents a family of concurrent lines, and find the point of concurrency.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rewrite the condition to match the line",
+      "marks": 1
+    },
+    {
+      "label": "Read off the fixed point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 39, book p.147. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for dividing the condition by the coefficient of c so that it lines up with ax + by + c = 0, and one for reading the fixed point off and saying why that proves concurrency. The point (3/4, 1/2) was checked on three separate members of the family, including the two degenerate ones a = 0 and b = 0. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what you divide the given condition by, and what the numbers left in front of a and b then mean.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rewrite_condition",
+        "kind": "equation",
+        "label": "Rewrite the condition to match the line",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. In ax + by + c = 0 the constant c has coefficient 1, so the given condition must be divided by 4 to look the same.",
+        "memory_tip": "Make the c terms match first: divide the whole condition by the number in front of c.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given  3a + 2b + 4c = 0  ……(1)",
+          "Given family  ax + by + c = 0  ……(2)",
+          "In (2) the constant c has coefficient 1,",
+          "so divide (1) by 4:",
+          "⇒ (3/4)a + (2/4)b + c = 0",
+          "⇒ a(3/4) + b(1/2) + c = 0  ……(3)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the condition is divided by 4 so that its c term matches the c in ax + by + c = 0.",
+          "accept": [
+            "divide the condition by four so c has coefficient one",
+            "make the condition look like a x plus b y plus c",
+            "three by four a plus half b plus c equals zero",
+            "c coefficient one avvalani four tho divide cheyyali",
+            "match the two expressions"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "divide by four",
+            "three by four",
+            "one by two",
+            "coefficient of c"
+          ]
+        },
+        "why": "Two expressions can only be compared term by term when they are written the same way, and the family's constant term is plain c; dividing the condition by 4 is the only step needed to make the comparison legal.",
+        "common_mistakes": [
+          "Dividing by 3 or by 2 instead of by the coefficient of c.",
+          "Reading the point straight off as (3, 2) with no division at all."
+        ]
+      },
+      {
+        "id": "s2_read_off_point",
+        "kind": "boxed_final",
+        "label": "Read off the fixed point",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Comparing (3) with ax + by + c = 0 shows that x = 3/4, y = 1/2 satisfies every line of the family, which is what concurrency means.",
+        "memory_tip": "After the division, the number multiplying a is x and the number multiplying b is y.",
+        "lines": [
+          "Compare (3) with ax + by + c = 0.",
+          "(3) says that x = 3/4, y = 1/2 satisfies",
+          "ax + by + c = 0 for every a, b, c obeying (1).",
+          "So every line of the family passes through",
+          "that one point, and the family is concurrent.",
+          {
+            "text": "∴ Point of concurrency is (3/4, 1/2)",
+            "style": "boxed"
+          },
+          "Check: a = 4, b = 0 gives c = −3 and the line",
+          "4x − 3 = 0, that is x = 3/4;  a = 0, b = 2",
+          "gives c = −1 and 2y − 1 = 0, that is y = 1/2."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That comparing with ax + by + c = 0 gives the fixed point (3/4, 1/2), which every line of the family passes through.",
+          "accept": [
+            "the point is three by four comma one by two",
+            "x is what multiplies a and y is what multiplies b",
+            "every line passes through that point so they are concurrent",
+            "point of concurrency three by four comma half",
+            "compare with a x plus b y plus c"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three by four",
+            "one by two",
+            "point of concurrency",
+            "concurrent"
+          ]
+        },
+        "why": "A point that satisfies ax + by + c = 0 for every allowed a, b and c lies on every line of the family, so all the lines pass through it. That single statement both proves concurrency and names the point.",
+        "common_mistakes": [
+          "Writing the point as (1/2, 3/4), with the coordinates swapped.",
+          "Proving concurrency for two chosen lines only, instead of for the whole family."
+        ]
+      }
+    ]
+  }
+}

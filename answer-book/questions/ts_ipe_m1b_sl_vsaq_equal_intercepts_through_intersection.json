@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_equal_intercepts_through_intersection",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the equation of the straight line that makes equal non-zero intercepts on the coordinate axes and passes through the point of intersection of 2x−5y+1=0 and x−3y−4=0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the point of intersection",
+      "marks": 1
+    },
+    {
+      "label": "Use equal intercepts and finish",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 34, book p.146. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for solving the two given lines and one for using the equal-intercept condition in the intercept form and finishing. The word non-zero in the stem is load-bearing — x + y = 0 also has two equal intercepts, both zero — and that is stated on the page rather than only here. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what you find first, and which form of the line uses the equal-intercept condition most cheaply.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_point_of_intersection",
+        "kind": "equation",
+        "label": "Find the point of intersection",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The second line gives x in terms of y in one move, so substitution is quicker here than elimination.",
+        "memory_tip": "If one equation has a coefficient of 1, make that letter the subject and substitute.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given lines  2x − 5y + 1 = 0  ……(1)",
+          "and  x − 3y − 4 = 0  ……(2)",
+          "(2) ⇒ x = 3y + 4",
+          "In (1):  2(3y + 4) − 5y + 1 = 0",
+          "⇒ 6y + 8 − 5y + 1 = 0  ⇒  y = −9",
+          "Then x = 3(−9) + 4 = −23",
+          "∴ Point of intersection is (−23, −9)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving the two given lines gives the point (−23, −9).",
+          "accept": [
+            "make x the subject in the second line and substitute",
+            "y comes out as minus nine and x as minus twenty three",
+            "solve the two given lines first",
+            "rendu lines solve chesi point teesukovali",
+            "the point of intersection is minus twenty three comma minus nine"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x equals three y plus four",
+            "y equals minus nine",
+            "minus twenty three",
+            "point of intersection"
+          ]
+        },
+        "why": "The required line is not fixed by the intercept condition alone; the one point it must pass through has to be found first, and it is the meeting point of the two given lines.",
+        "common_mistakes": [
+          "Sign slip on the constant, giving y = 9 instead of y = −9.",
+          "Finding y and stopping without going back for x."
+        ]
+      },
+      {
+        "id": "s2_equal_intercepts",
+        "kind": "boxed_final",
+        "label": "Use equal intercepts and finish",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Equal intercepts collapses the intercept form to x + y = a, and the point then fixes the single unknown a.",
+        "memory_tip": "Equal intercepts means x + y = a. The word non-zero is what throws out a = 0.",
+        "lines": [
+          "Intercepts are equal and non-zero, so take",
+          "them as a, a in the intercept form:",
+          "x/a + y/a = 1  ⇒  x + y = a  ……(3)",
+          "(−23, −9) lies on (3)",
+          "⇒ −23 − 9 = a  ⇒  a = −32",
+          {
+            "text": "∴ x + y + 32 = 0",
+            "style": "boxed"
+          },
+          "Check: at (−23, −9), −23 − 9 + 32 = 0.",
+          "Both intercepts are −32: equal, and not zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equal intercepts gives x + y = a and the point makes a = −32, so the line is x + y + 32 = 0.",
+          "accept": [
+            "take both intercepts as a so the line is x plus y equals a",
+            "substitute the point to get a equals minus thirty two",
+            "the line is x plus y plus thirty two equals zero",
+            "rendu intercepts a a teesukovali",
+            "equal intercepts so x plus y equals a"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x plus y equals a",
+            "minus thirty two",
+            "x plus y plus thirty two",
+            "intercept form"
+          ]
+        },
+        "why": "A condition stated about intercepts is cheapest in the intercept form, because it removes one unknown before the point is used. The stem says non-zero to rule out x + y = 0, whose two intercepts are equal but both zero; here the point gives a = −32, so that case does not arise.",
+        "common_mistakes": [
+          "Writing x − y = a, which is the equal in size but opposite in sign case.",
+          "Stopping at a = −32 without writing the equation of the line."
+        ]
+      }
+    ]
+  }
+}

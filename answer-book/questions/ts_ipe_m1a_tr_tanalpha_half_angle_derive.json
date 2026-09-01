@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_tanalpha_half_angle_derive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that tan α = sin 2α/(1 + cos 2α), and use it to obtain the values of tan 15° and tan 22½°.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Prove the identity",
+      "marks": 1
+    },
+    {
+      "label": "Put α = 15° and α = 22½°",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 20, book p.86. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the proof first and the two substituted values second, because the question asks for a proof and then for two numbers, and a student who proves the identity but stops there has done half the work. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically: sin 2α/(1 + cos 2α) equals tan α to ten decimal places at α = 15°, 22½°, 37° and 110°, and it has no value at α = 90° where 1 + cos 2α = 0 — that is the cos α ≠ 0 condition, and it is stated on the page, not parked here. tan 15° = 0.2679491924 = 2 − √3 and tan 22½° = 0.4142135624 = √2 − 1."
+  },
+  "recall_prompt": "Say how you would prove this identity, and say which angles you would put in to get tan 15° and tan 22½°.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_prove",
+        "kind": "equation",
+        "label": "Prove the identity",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Choose the cos 2α form that leaves 2cos²α. The cancelling needs cos α ≠ 0, which is the same as 1 + cos 2α ≠ 0.",
+        "memory_tip": "Pick the cos 2α form that leaves 2cos²α: 1 + cos 2α = 2cos²α. Then one cos α cancels.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Take cos α ≠ 0, so that tan α exists.",
+          "sin 2α = 2 sin α cos α",
+          "1 + cos 2α = 1 + 2cos²α − 1 = 2cos²α",
+          "This is not 0, because cos α ≠ 0.",
+          "sin 2α/(1 + cos 2α) = 2 sin α cos α/2cos²α",
+          "= sin α/cos α = tan α"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 1 + cos 2α = 2cos²α and sin 2α = 2 sin α cos α, so one cos α cancels and tan α is left.",
+          "accept": [
+            "one plus cos two alpha is two cos squared alpha and sin two alpha is two sin alpha cos alpha so it cancels to tan alpha",
+            "use the cos two alpha form with two cos squared",
+            "the two and one cos alpha cancel leaving sin over cos",
+            "one plus cos two alpha ante two cos square alpha, cancel cheste tan alpha",
+            "expand both and cancel to get tan alpha"
+          ],
+          "reject": [
+            "put alpha equal to fifteen",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two cos squared",
+            "sin two alpha",
+            "cancel",
+            "tan alpha"
+          ]
+        },
+        "why": "The denominator 1 + cos 2α is exactly 2cos²α, so one cos α cancels from the top and the bottom and tan α is left. The cancelling needs cos α ≠ 0, which is the same condition as 1 + cos 2α ≠ 0.",
+        "common_mistakes": [
+          "Writing 1 + cos 2α as 2sin²α instead of 2cos²α.",
+          "Cancelling cos α without stating that cos α is not 0."
+        ]
+      },
+      {
+        "id": "s2_values",
+        "kind": "boxed_final",
+        "label": "Put α = 15° and α = 22½°",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Choose α so that 2α is a standard angle. Both denominators come out as 2 + √3 and √2 + 1, and each rationalises to 1 because 4 − 3 = 1 and 2 − 1 = 1.",
+        "memory_tip": "Choose α so that 2α is a standard angle: 15° gives 30°, and 22½° gives 45°.",
+        "lines": [
+          "cos 15° and cos 22½° are not 0, so the rule",
+          "applies to both.",
+          "α = 15°: tan 15° = sin 30°/(1 + cos 30°)",
+          "= (1/2)/(1 + √3/2) = 1/(2 + √3) = 2 − √3",
+          "α = 22½°: tan 22½° = sin 45°/(1 + cos 45°)",
+          "= (1/√2)/(1 + 1/√2) = 1/(√2 + 1) = √2 − 1",
+          {
+            "text": "∴ tan 15° = 2 − √3,  tan 22½° = √2 − 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That α = 15° gives tan 15° = 2 − √3 and α = 22½° gives tan 22½° = √2 − 1.",
+          "accept": [
+            "put alpha fifteen so two alpha is thirty and you get two minus root three",
+            "put alpha twenty two and a half so two alpha is forty five and you get root two minus one",
+            "tan fifteen is two minus root three and tan twenty two and a half is root two minus one",
+            "alpha fifteen pettite two alpha thirty avutundi, answer two minus root three",
+            "rationalise one over two plus root three to get two minus root three"
+          ],
+          "reject": [
+            "one plus cos two alpha is two cos squared",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "two minus root three",
+            "root two minus one",
+            "sin thirty",
+            "rationalise"
+          ]
+        },
+        "why": "Doubling the angle is what makes the identity useful: 2α is a standard angle (30° and 45°) even when α is not. Both answers come out already rationalised, because 4 − 3 = 1 and 2 − 1 = 1.",
+        "common_mistakes": [
+          "Leaving the answer as 1/(2 + √3) without rationalising.",
+          "Reading sin 2α as 2 sin α."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+# OUR BANK — mathematics_1b unit 3: The Straight Line (Maths-1B)  (44 cards)
+# source index: answer-book/sources/chaitanya_m1b_ch03_the_straight_line.json
+
+[LAQ] ts_ipe_m1b_sl_circumcentre_1_3_minus3_5_5_minus1
+    Find the circumcentre of the triangle whose vertices are (1,3), (−3,5), (5,−1).
+[LAQ] ts_ipe_m1b_sl_circumcentre_1_3_0_minus2_minus3_1
+    Find the circumcentre of triangle whose vertices are (1,3), (0,−2), (−3,1).
+[LAQ] ts_ipe_m1b_sl_circumcentre_minus2_3_2_minus1_4_0
+    Find the circumcentre of the triangle whose vertices are (−2,3), (2,−1), (4,0).
+[LAQ] ts_ipe_m1b_sl_orthocentre_5_minus2_minus1_2_1_4
+    Find the orthocentre of the triangle whose vertices are (5,−2), (−1,2), (1,4).
+[LAQ] ts_ipe_m1b_sl_orthocentre_minus2_minus1_6_minus1_2_5
+    Find the orthocentre of the triangle whose vertices are (−2,−1), (6,−1), (2,5).
+[LAQ] ts_ipe_m1b_sl_orthocentre_minus5_minus7_13_2_minus5_6
+    Find the orthocentre of the triangle whose vertices are (−5,−7), (13,2), (−5,6).
+[LAQ] ts_ipe_m1b_sl_orthocentre_from_sides_7x_y_10
+    Find the orthocentre of the triangle whose sides are 7x+y−10=0, x−2y+5=0, x+y+2=0.
+[LAQ] ts_ipe_m1b_sl_orthocentre_from_sides_x_y_10
+    Find the orthocentre of the triangle whose sides are x+y+10=0, x−y−2=0, 2x+y−7=0.
+[LAQ] ts_ipe_m1b_sl_circumcentre_from_sides_x_y_2
+    Find the circumcentre of the triangle whose sides are x+y+2=0, 5x−y−2=0, x−2y+5=0.
+[LAQ] ts_ipe_m1b_sl_circumcentre_from_sides_3x_y_5
+    Find the circumcentre of the triangle whose sides are 3x−y−5=0, x+2y−4=0, 5x+3y+1=0.
+[LAQ] ts_ipe_m1b_sl_foot_of_perpendicular_proof
+    If Q(h,k) is the foot of the perpendicular of P(x₁,y₁) on the line ax+by+c=0 then prove that (h−x₁) : a = (k−y₁) : b = −(ax₁+by₁+c) : (a²+b²).
+[LAQ] ts_ipe_m1b_sl_image_of_point_proof
+    If Q(h,k) is the image of the point P(x₁,y₁) with respect to the straight line ax+by+c=0 then prove that (h−x₁) : a = (k−y₁) : b = −2(ax₁+by₁+c) : (a²+b²).
+[VSAQ] ts_ipe_m1b_sl_concurrent_find_k
+    Find the value of k, if the lines 2x−3y+k=0, 3x−4y−13=0, 8x−11y−33=0 are concurrent.
+[VSAQ] ts_ipe_m1b_sl_concurrent_find_p
+    Find the value of p, if the lines 3x+4y=5, 2x+3y=4, px+4y=6 are concurrent.
+[VSAQ] ts_ipe_m1b_sl_concurrent_point_of_concurrency
+    Show that the lines 2x+y−3=0, 3x+2y−2=0 and 2x−3y−23=0 are concurrent and find the point of concurrency.
+[VSAQ] ts_ipe_m1b_sl_parallel_through_intersection
+    Find the equation of the straight line parallel to the line 3x+4y=7 and passing through the point of intersection of the lines x−2y−3=0 and x+3y−6=0.
+[LAQ] ts_ipe_m1b_sl_perpendicular_through_intersection
+    Find the equation of the line passing through the point of intersection of 2x+3y=1, 3x+4y=6 and perpendicular to the line 5x−2y=7.
+[LAQ] ts_ipe_m1b_sl_angle_45_find_k
+    Find the value of k if the angle between the straight lines 4x−y+7=0, kx−5y−9=0 is 45°.
+[SAQ] ts_ipe_m1b_sl_parametric_distance_slope_one
+    A straight line with slope 1 passes through Q(−3,5) meets the line x+y−6=0 at P. Find the distance PQ.
+[LAQ] ts_ipe_m1b_sl_parametric_distance_pi_over_6
+    A straight line through Q(√3,2) makes an angle π/6 with the positive direction of the X-axis. If the straight line intersects the line √3x−4y+8=0 at P, find the distance PQ.
+[VSAQ] ts_ipe_m1b_sl_points_at_distance_five
+    Find the points on the line 3x−4y−1=0 which are at a distance of 5 units from the point (3,2).
+[VSAQ] ts_ipe_m1b_sl_concurrent_cubes_proof
+    If the straight lines ax+by+c=0, bx+cy+a=0 and cx+ay+b=0 are concurrent, then prove that a³+b³+c³=3abc.
+[LAQ] ts_ipe_m1b_sl_normal_form_intercepts
+    Transform the equation x/a + y/b = 1 into normal form. If the perpendicular distance of the straight line from the Origin is p then deduce that 1/p² = 1/a² + 1/b².
+[VSAQ] ts_ipe_m1b_sl_vsaq_slope_find_x
+    Find the value of x, if the slope of the line passing through (2,5) and (x,3) is 2.
+[VSAQ] ts_ipe_m1b_sl_vsaq_parallel_find_y
+    Find the value of y, if the line joining (3,y), (2,7) is parallel to the line joining the points (−1,4), (0,6).
+[VSAQ] ts_ipe_m1b_sl_vsaq_equal_intercepts
+    Find the equation of the straight line passing through (−4,5) and cutting off equal intercepts on the coordinate axes.
+[VSAQ] ts_ipe_m1b_sl_vsaq_intercepts_sum_zero_minus2_4
+    Find the equation of the straight line passing through the point (−2,4) and making intercepts, whose sum is zero.
+[VSAQ] ts_ipe_m1b_sl_vsaq_intercepts_sum_zero_2_3
+    Find the equation of the straight line passing through the point (2,3) and making intercepts, whose sum is zero.
+[VSAQ] ts_ipe_m1b_sl_vsaq_transform_4x_minus_3y_12
+    Transform the equation 4x−3y+12=0 into (i) slope intercept form (ii) intercept form.
+[VSAQ] ts_ipe_m1b_sl_vsaq_transform_root3x_plus_y_4
+    Transform the equation √3x+y=4 into (i) slope intercept form (ii) intercept form.
+[VSAQ] ts_ipe_m1b_sl_vsaq_normal_form_x_y_1
+    Reduce the equation x+y+1=0 into normal form.
+[VSAQ] ts_ipe_m1b_sl_vsaq_normal_form_3x_4y_12
+    Transform the equation 3x+4y+12=0 into normal form.
+[VSAQ] ts_ipe_m1b_sl_vsaq_parallel_through_5_4
+    Find the equation of the straight line parallel to the line 2x+3y+7=0 and passing through the point (5,4).
+[VSAQ] ts_ipe_m1b_sl_vsaq_perpendicular_through_4_minus3
+    Find the equation of the straight line perpendicular to the line 5x−3y+1=0 and passing through the point (4,−3).
+[VSAQ] ts_ipe_m1b_sl_vsaq_area_with_axes
+    Find the area of the triangle formed by the line 3x−4y+12=0 with the coordinate axes.
+[VSAQ] ts_ipe_m1b_sl_vsaq_area_find_a
+    Find the value of a if the area of the triangle formed by the lines x=0, y=0, 3x+4y=a is 6 sq.units.
+[VSAQ] ts_ipe_m1b_sl_vsaq_ratio_divides_0_0_minus2_1
+    Find the ratio in which the straight line 2x+3y−5=0 divides the line joining points (0,0) and (−2,1).
+[VSAQ] ts_ipe_m1b_sl_vsaq_ratio_divides_2_3_2_10
+    Find the ratio in which the straight line 2x+3y−20=0 divides the line joining the points (2,3) and (2,10).
+[VSAQ] ts_ipe_m1b_sl_vsaq_parallel_distance_5x_3y
+    Find the distance between the parallel lines 5x−3y−4=0, 10x−6y−9=0.
+[VSAQ] ts_ipe_m1b_sl_vsaq_parallel_distance_3x_4y
+    Find the distance between the parallel lines 3x+4y−3=0 and 6x+8y−1=0.
+[VSAQ] ts_ipe_m1b_sl_vsaq_concurrent_find_p
+    Find the value of p, if the straight lines x+p=0, y+2=0, 3x+2y+5=0 are concurrent.
+[VSAQ] ts_ipe_m1b_sl_sqp_parallel_find_k
+    Find the value of k, if the straight lines 6x−10y+3=0 and kx−5y+8=0 are parallel.
+[VSAQ] ts_ipe_m1b_sl_sqp_perpendicular_find_p
+    Find the value of p, if the straight lines 3x+7y−1=0, 7x−py+3=0 are mutually perpendicular.
+[VSAQ] ts_ipe_m1b_sl_sqp_angle_with_y_axis
+    Find the angle which the straight line y = √3x − 4 makes with the Y-axis.

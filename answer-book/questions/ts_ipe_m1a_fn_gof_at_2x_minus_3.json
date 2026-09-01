@@ -1,0 +1,137 @@
+{
+    "schema_version": "answer_book_v1",
+    "question_id": "ts_ipe_m1a_fn_gof_at_2x_minus_3",
+    "board": "ts_ipe",
+    "board_label": "Telangana — Board of Intermediate Education",
+    "subject": "mathematics",
+    "year_cycle": "first_year",
+    "class_label": "Intermediate I Year (Class 11)",
+    "unit": {
+        "number": 2,
+        "name": "Functions"
+    },
+    "chapter": "Functions",
+    "qtype": "VSAQ",
+    "marks_total": 2,
+    "paper_section": "Section A",
+    "expected_time_min": 4,
+    "question_text": "If f: R→R and g: R→R are defined by f(x) = 3x − 1 and g(x) = x² + 1, find (gof)(2x − 3).",
+    "appearances": [],
+    "mark_split": [
+        {
+            "label": "Value of f(2x − 3)",
+            "marks": 1
+        },
+        {
+            "label": "Value of (gof)(2x − 3)",
+            "marks": 1
+        }
+    ],
+    "verification": {
+        "status": "unverified",
+        "needs_teacher_verification": true,
+        "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 13(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards the inner value f(2x − 3) = 6x − 10 first and the squared, simplified outer value second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    },
+    "recall_prompt": "Say how you would find (gof)(2x − 3) — which function acts first, and how the square is expanded.",
+    "answer": {
+        "page_header": [
+            "Section A — Very Short Answer Question",
+            "Functions · 2 marks"
+        ],
+        "steps": [
+            {
+                "id": "s1_inner",
+                "kind": "equation",
+                "label": "Apply f to 2x − 3",
+                "marks": 1,
+                "mark_note": "Value of f(2x − 3)",
+                "margin_note": "First mark. f is the inner function in gof, so 2x − 3 goes into f. Multiply 3 across the whole bracket before subtracting 1.",
+                "lines": [
+                    {
+                        "text": "Sol:",
+                        "style": "heading"
+                    },
+                    "f(x) = 3x − 1, g(x) = x² + 1",
+                    "(gof)(2x − 3) = g[f(2x − 3)]",
+                    "f(2x − 3) = 3(2x − 3) − 1",
+                    "= 6x − 9 − 1 = 6x − 10"
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That f acts first on 2x − 3, giving 3(2x − 3) − 1 = 6x − 10.",
+                    "accept": [
+                        "f acts first so f of two x minus three is six x minus ten",
+                        "three times two x minus three is six x minus nine then minus one",
+                        "the inner function gives six x minus ten",
+                        "modata f apply cheste six x minus ten vastundi",
+                        "put two x minus three into f and get six x minus ten"
+                    ],
+                    "reject": [
+                        "I substitute",
+                        "first I find the composition",
+                        "apply both functions"
+                    ],
+                    "heard_as": [
+                        "g o f",
+                        "gof",
+                        "two x minus three",
+                        "six x minus ten",
+                        "inner"
+                    ]
+                },
+                "why": "In gof the function on the right acts first, so the input 2x − 3 is put into f. The result 6x − 10 is what g will receive.",
+                "memory_tip": "In gof, f acts first. Multiply 3 into the whole bracket: 6x − 9, then subtract 1.",
+                "common_mistakes": [
+                    "Applying g first, which computes fog and gives a different expression.",
+                    "Writing 6x − 3 − 1 by multiplying 3 into 2x only."
+                ]
+            },
+            {
+                "id": "s2_outer",
+                "kind": "boxed_final",
+                "label": "Apply g to that output",
+                "marks": 1,
+                "mark_note": "Value of (gof)(2x − 3)",
+                "margin_note": "Second mark. g squares whatever it receives, so square the whole bracket 6x − 10 and then add 1.",
+                "lines": [
+                    "∴ (gof)(2x − 3) = g(6x − 10)",
+                    "= (6x − 10)² + 1",
+                    "= 36x² − 120x + 100 + 1",
+                    {
+                        "text": "(gof)(2x − 3) = 36x² − 120x + 101",
+                        "style": "boxed"
+                    }
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That g squares the output 6x − 10 and adds 1, giving 36x² − 120x + 101.",
+                    "accept": [
+                        "g of six x minus ten is six x minus ten all squared plus one",
+                        "expand the square to thirty six x squared minus one twenty x plus one hundred then add one",
+                        "the answer is thirty six x squared minus one twenty x plus one hundred and one",
+                        "square cheste thirty six x square minus one twenty x plus hundred and one",
+                        "square the whole bracket and add one"
+                    ],
+                    "reject": [
+                        "then square it",
+                        "add one",
+                        "that is the answer"
+                    ],
+                    "heard_as": [
+                        "six x minus ten",
+                        "squared",
+                        "thirty six x squared",
+                        "one twenty x",
+                        "one hundred and one"
+                    ]
+                },
+                "why": "g(x) = x² + 1 squares its input, and the input here is 6x − 10, not x. Squaring the whole bracket is where the middle term −120x comes from.",
+                "memory_tip": "(6x − 10)² = (6x)² − 2(6x)(10) + 10² = 36x² − 120x + 100. Never square the two terms separately.",
+                "common_mistakes": [
+                    "Writing (6x − 10)² as 36x² + 100 and losing the middle term.",
+                    "Squaring 2x − 3 instead of the output 6x − 10."
+                ]
+            }
+        ]
+    }
+}

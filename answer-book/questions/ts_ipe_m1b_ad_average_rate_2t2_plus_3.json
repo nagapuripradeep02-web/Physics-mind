@@ -126,7 +126,7 @@
             "four minus two"
           ]
         },
-        "why": "The answer can be checked against the derivative: f′(t) = 4t gives 8 at t = 2 and 16 at t = 4, and 12 lies between them, as an average rate over the interval must.",
+        "why": "The answer can be checked against the derivative: f′(t) = 4t gives 8 at t = 2 and 16 at t = 4, and 12 lies between them because f′(t) = 4t is increasing here. The mean value theorem is what guarantees the average rate equals f′(c) for some c in (2, 4); that c is 3.",
         "common_mistakes": [
           "Writing 12t, as if the answer were still a function of t.",
           "Giving 24, the change in s, as the rate.",

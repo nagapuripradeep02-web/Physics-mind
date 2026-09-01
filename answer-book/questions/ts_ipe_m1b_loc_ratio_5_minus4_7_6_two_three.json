@@ -1,0 +1,220 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_loc_ratio_5_minus4_7_6_two_three",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Locus"
+  },
+  "chapter": "Locus",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of locus of P, if the ratio of the distance from P to (5, −4) and (7, 6) is 2 : 3.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the given condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the distances",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the locus",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 3, book p.134. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 rewards the two method moves separately — turning the ratio into 9PA² = 4PB², then putting the distance formula in — and gives the remaining two marks to the expansion that produces the circle, which is where the arithmetic is lost. The unmarked opening step names the moving point and carries no mark of its own. Answer cross-checked by substituting the point (29/5, 0), which divides the join of the two given points in the ratio 2 : 3 and satisfies the final equation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what you would do with the ratio first, and name the shape the locus turns out to be.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locus · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_locus_point",
+        "kind": "text",
+        "label": "Take the locus point",
+        "marks": 0,
+        "margin_note": "No mark of its own. A ratio question, not a sum — a ratio squares away in one move, so no square root ever has to be isolated.",
+        "memory_tip": "A ratio, not a sum — a ratio squares away in one move, so no root is ever isolated.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P = (x, y) be a point on the locus.",
+          "Given points A = (5, −4), B = (7, 6)"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the moving point is named P = (x, y) and the two fixed points are written down.",
+          "accept": [
+            "let P be x comma y",
+            "take the locus point as P x y",
+            "P equals x comma y is on the locus",
+            "locus point ni P x y ga teesukovali",
+            "name the moving point P with coordinates x and y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "let P be x y",
+            "P is x comma y",
+            "locus point"
+          ]
+        },
+        "why": "Every locus question starts the same way: the moving point gets coordinates, and the condition is then written in terms of those coordinates.",
+        "common_mistakes": [
+          "Giving the moving point fixed numbers instead of (x, y).",
+          "Mixing up which points are fixed and which one moves."
+        ]
+      },
+      {
+        "id": "s2_write_the_given_condition",
+        "kind": "equation",
+        "label": "Write the given condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Cross-multiply the ratio first, then square both sides together. Squaring 3PA = 2PB gives 9PA² = 4PB² — the numbers get squared too.",
+        "memory_tip": "Cross-multiply first, then square. The numbers get squared as well: 3 and 2 become 9 and 4.",
+        "lines": [
+          "Given condition: PA / PB = 2 / 3",
+          "⇒ 3 PA = 2 PB",
+          "⇒ 9 PA² = 4 PB²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the ratio is cross-multiplied to 3PA = 2PB and then squared to 9PA² = 4PB².",
+          "accept": [
+            "cross multiply to get three P A equals two P B then square it",
+            "P A by P B is two by three so three P A is two P B",
+            "square both sides to get nine P A squared equals four P B squared",
+            "ratio ni cross multiply chesi square cheyyali",
+            "nine times P A squared equals four times P B squared"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three P A",
+            "two P B",
+            "nine P A squared",
+            "four P B squared",
+            "cross multiply"
+          ]
+        },
+        "why": "A ratio of two distances squares cleanly in one step, so both square roots disappear together and no term is left outside.",
+        "common_mistakes": [
+          "Writing 2PA = 3PB, which turns the ratio upside down.",
+          "Squaring to 3PA² = 2PB² and leaving the numbers unsquared."
+        ]
+      },
+      {
+        "id": "s3_substitute_the_distances",
+        "kind": "equation",
+        "label": "Substitute the distances",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. Put the squared distance formula into both brackets. The two fixed points share no coordinate here, so all four numbers change between the brackets.",
+        "memory_tip": "Expand each bracket on its own line first — four numbers change between the two brackets, not one.",
+        "lines": [
+          "⇒ 9[(x−5)² + (y+4)²] = 4[(x−7)² + (y−6)²]",
+          "LHS bracket: x² − 10x + 25 + y² + 8y + 16",
+          "RHS bracket: x² − 14x + 49 + y² − 12y + 36"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both squared distances are written in coordinates, with 9 multiplying the A bracket and 4 the B bracket.",
+          "accept": [
+            "substitute the distance formula into both sides keeping the nine and the four outside",
+            "put x minus five whole squared plus y plus four whole squared on the left",
+            "expand both brackets in coordinates",
+            "distance formula substitute chesi rendu brackets expand cheyyali",
+            "nine into the A bracket and four into the B bracket"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "distance formula",
+            "whole squared",
+            "nine into",
+            "four into",
+            "substitute"
+          ]
+        },
+        "why": "Expanding each bracket on its own line keeps the six terms visible before the 9 and the 4 are multiplied in, which is where most sign slips happen.",
+        "common_mistakes": [
+          "Expanding (y + 4)² as y² − 8y + 16.",
+          "Multiplying only the first term of a bracket by 9 or by 4."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_locus",
+        "kind": "boxed_final",
+        "label": "Simplify to the locus",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. The x² and y² coefficients survive equal (both 5), so this locus is a circle. Check: the point (29/5, 0) divides the join of A and B in the ratio 2 : 3 and satisfies the final equation.",
+        "memory_tip": "The x² and y² coefficients survive equal, so the locus is a circle — never a straight line.",
+        "lines": [
+          "⇒ 9x² + 9y² − 90x + 72y + 369",
+          "      = 4x² + 4y² − 56x − 48y + 340",
+          "⇒ 5x² + 5y² − 34x + 120y + 29 = 0",
+          {
+            "text": "∴ Locus: 5x² + 5y² − 34x + 120y + 29 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That collecting terms gives the circle 5x² + 5y² − 34x + 120y + 29 = 0.",
+          "accept": [
+            "collect all the terms to get five x squared plus five y squared minus thirty four x plus one twenty y plus twenty nine equals zero",
+            "the x squared and y squared coefficients are both five so it is a circle",
+            "bring everything to one side and simplify",
+            "anni terms okavaipuku teesukoni simplify chesthe circle vasthundi",
+            "the locus is a circle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "five x squared",
+            "five y squared",
+            "thirty four x",
+            "one twenty y",
+            "circle"
+          ]
+        },
+        "why": "When two distances are in a fixed ratio that is not 1 : 1, the locus is always a circle. Equal x² and y² coefficients are the sign that the algebra landed right.",
+        "common_mistakes": [
+          "Losing the constant, which is 369 − 340 = 29.",
+          "Collecting 72y and 48y as 24y instead of 120y."
+        ]
+      }
+    ]
+  }
+}

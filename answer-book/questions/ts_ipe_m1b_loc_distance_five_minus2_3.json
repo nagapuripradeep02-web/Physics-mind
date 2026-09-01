@@ -1,0 +1,215 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_loc_distance_five_minus2_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 1,
+    "name": "Locus"
+  },
+  "chapter": "Locus",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation to the locus of the point which is at a distance of 5 units from (−2, 3) in the xy-plane.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the given condition",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the distance",
+      "marks": 1
+    },
+    {
+      "label": "Simplify to the locus",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 1 LOCUS, Short Answer question 10(i), book p.136. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split 1+1+2 rewards squaring the fixed distance, then putting the distance formula in, and gives the remaining two marks to the expansion and the collection of the constant, which is the only place this short question can go wrong. The unmarked opening step names the moving point and carries no mark of its own. Answer cross-checked by substituting the point (3, 3), which is exactly 5 units to the right of (−2, 3) and satisfies the final equation. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — name the shape before you start, and say what you do to the 5.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Locus · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_locus_point",
+        "kind": "text",
+        "label": "Take the locus point",
+        "marks": 0,
+        "margin_note": "No mark of its own. A fixed distance from a fixed point is a circle, so the answer is known in shape before any algebra is done — centre (−2, 3), radius 5.",
+        "memory_tip": "Fixed distance from a fixed point means a circle: centre (−2, 3), radius 5.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let P = (x, y) be a point on the locus.",
+          "Given point A = (−2, 3) and PA = 5"
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That the moving point is named P = (x, y), with the fixed point A(−2, 3) and the fixed distance 5.",
+          "accept": [
+            "let P be x comma y",
+            "take the locus point as P x y",
+            "the fixed point is minus two comma three and the distance is five",
+            "locus point ni P x y ga teesukovali",
+            "this is a circle of radius five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "let P be x y",
+            "minus two comma three",
+            "radius five",
+            "locus point"
+          ]
+        },
+        "why": "Naming the shape first tells you what the final equation must look like: equal x² and y² coefficients and no xy term.",
+        "common_mistakes": [
+          "Giving the moving point fixed numbers instead of (x, y).",
+          "Reading (−2, 3) as the moving point."
+        ]
+      },
+      {
+        "id": "s2_write_the_given_condition",
+        "kind": "equation",
+        "label": "Write the given condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Square the condition before substituting anything. The 5 becomes 25, not 10.",
+        "memory_tip": "Square the 5 to 25, not double it to 10.",
+        "lines": [
+          "Given condition: PA = 5",
+          "⇒ PA² = 25"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the condition PA = 5 is squared to PA² = 25.",
+          "accept": [
+            "the distance from A is five so P A squared is twenty five",
+            "square the condition first",
+            "P A equals five, square both sides",
+            "P A equals five, square chesthe twenty five",
+            "write P A squared equals twenty five"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "P A equals five",
+            "P A squared",
+            "twenty five",
+            "square both sides"
+          ]
+        },
+        "why": "Squaring first removes the root sign before the coordinates arrive, so the working stays free of square roots throughout.",
+        "common_mistakes": [
+          "Writing PA² = 5 and never squaring the right side.",
+          "Writing PA² = 10 instead of 25."
+        ]
+      },
+      {
+        "id": "s3_substitute_the_distance",
+        "kind": "equation",
+        "label": "Substitute the distance",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Second mark. The fixed point is (−2, 3), so x − (−2) becomes x + 2. The sign inside the bracket is the opposite of the sign of the coordinate.",
+        "memory_tip": "x − (−2) is x + 2 — the bracket carries the opposite sign to the coordinate.",
+        "lines": [
+          "⇒ (x + 2)² + (y − 3)² = 25",
+          "⇒ x² + 4x + 4 + y² − 6y + 9 = 25"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the squared distance is written as (x + 2)² + (y − 3)² = 25 and expanded.",
+          "accept": [
+            "x plus two whole squared plus y minus three whole squared equals twenty five",
+            "substitute the distance formula with the fixed point minus two comma three",
+            "expand both brackets",
+            "distance formula substitute chesi expand cheyyali",
+            "the minus two makes the bracket x plus two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x plus two whole squared",
+            "y minus three whole squared",
+            "twenty five",
+            "expand"
+          ]
+        },
+        "why": "This line is already the standard circle form (x − h)² + (y − k)² = r², so a student who stops here has still written a correct locus in centre-radius form.",
+        "common_mistakes": [
+          "Writing (x − 2)² for a fixed x-coordinate of −2.",
+          "Expanding (y − 3)² as y² − 6y + 3."
+        ]
+      },
+      {
+        "id": "s4_simplify_to_the_locus",
+        "kind": "boxed_final",
+        "label": "Simplify to the locus",
+        "marks": 2,
+        "mark_note": "Solution",
+        "margin_note": "The last two marks. Collect 4 + 9 = 13 first, then take the 25 across to get −12. Check: (3, 3) is 5 units from (−2, 3) and satisfies this equation.",
+        "memory_tip": "Add the two bracket constants first (4 + 9 = 13), then take the 25 across.",
+        "lines": [
+          "⇒ x² + y² + 4x − 6y + 13 − 25 = 0",
+          "⇒ x² + y² + 4x − 6y − 12 = 0",
+          {
+            "text": "∴ Locus: x² + y² + 4x − 6y − 12 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That collecting the constants gives x² + y² + 4x − 6y − 12 = 0.",
+          "accept": [
+            "collect the constants to get x squared plus y squared plus four x minus six y minus twelve equals zero",
+            "four plus nine minus twenty five is minus twelve",
+            "bring the twenty five across and simplify",
+            "constants collect chesthe minus twelve vasthundi",
+            "the locus is a circle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus twelve",
+            "four x",
+            "minus six y",
+            "x squared plus y squared"
+          ]
+        },
+        "why": "The general circle form x² + y² + 2gx + 2fy + c = 0 is what the examiner expects here, and its coefficients read straight back to the centre (−2, 3) and radius 5.",
+        "common_mistakes": [
+          "Leaving 13 − 25 as +12 instead of −12.",
+          "Stopping at 13 − 25 without combining it."
+        ]
+      }
+    ]
+  }
+}

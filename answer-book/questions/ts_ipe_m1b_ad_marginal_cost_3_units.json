@@ -130,7 +130,7 @@
         "why": "The answer is a rate, so it carries the unit rupees per unit of output. The two small terms nearly cancel, which is why the value sits just above 30.",
         "common_mistakes": [
           "Writing 30 and losing the 0.015.",
-          "Rounding to 30.02 when the question asks for no rounding.",
+          "Rounding to 30.02. The value 30.015 is exact and terminating, so there is nothing to round.",
           "Leaving the answer with no unit."
         ]
       }

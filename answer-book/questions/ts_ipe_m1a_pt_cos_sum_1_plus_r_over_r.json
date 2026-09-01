@@ -1,0 +1,228 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_cos_sum_1_plus_r_over_r",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "In a △ABC, show that cos A + cos B + cos C = 1 + r/R.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Pair cos A with cos B",
+      "marks": 1
+    },
+    {
+      "label": "Write cos C with the half angle",
+      "marks": 1
+    },
+    {
+      "label": "Use the difference of cosines",
+      "marks": 1
+    },
+    {
+      "label": "Read the product as r/R",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.127, chapter 12 PROPERTIES OF TRIANGLES, Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to each of the four moves the answer is marked on — pairing cos A with cos B, opening cos C in the half angle, turning the bracket into a product, and reading that product as r/R. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks; Properties of Triangles is one of the units that fills that section. Verified numerically before authoring: for a = 4, b = 5, c = 6 the left side is 1.437500 and 1 + r/R is 1.437500; for a = 2, b = 3, c = 4 both come to 1.312500. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Properties of Triangles · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pair_cos_a_with_cos_b",
+        "kind": "equation",
+        "label": "Pair cos A with cos B",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Pair the first two cosines with the sum-to-product formula, then use (A+B)/2 = 90° − C/2 so the first factor is written in C.",
+        "memory_tip": "cos A + cos B = 2 cos((A+B)/2) cos((A−B)/2), and (A+B)/2 = 90° − C/2 makes the first factor sin(C/2).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = cos A + cos B + cos C",
+          "cos A + cos B",
+          "= 2 cos((A+B)/2) cos((A−B)/2)",
+          "= 2 sin(C/2) cos((A−B)/2)",
+          "   [∵ (A+B)/2 = 90° − C/2]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos A + cos B = 2 cos((A+B)/2) cos((A−B)/2) and that (A+B)/2 = 90° − C/2 turns the first factor into sin(C/2).",
+          "accept": [
+            "pair the first two cosines as two cos half A plus B cos half A minus B",
+            "half of A plus B is ninety minus half C so the first factor is sin half C",
+            "use sum to product on cos A plus cos B",
+            "A plus B by two ante ninety minus C by two, so sin half C vasthundi",
+            "it becomes two sin half C cos half A minus B"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I simplify"
+          ],
+          "heard_as": [
+            "cos A plus cos B",
+            "sin half C",
+            "ninety minus",
+            "sum to product"
+          ]
+        },
+        "why": "The sum-to-product formula turns two cosines into one product, and (A+B)/2 = 90° − C/2 rewrites the first factor in C — the same angle the third term already carries.",
+        "common_mistakes": [
+          "Using the difference formula and getting a product of sines.",
+          "Writing cos((A+B)/2) = cos(C/2) without the 90° step."
+        ]
+      },
+      {
+        "id": "s2_write_cos_c_with_the_half_angle",
+        "kind": "equation",
+        "label": "Write cos C with the half angle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. cos C = 1 − 2 sin²(C/2) is the form that shares sin(C/2) with the pair above, so 2 sin(C/2) comes out of a bracket.",
+        "memory_tip": "Choose cos C = 1 − 2 sin²(C/2), not 2 cos²(C/2) − 1 — the sin(C/2) is the factor shared with the pair.",
+        "lines": [
+          "cos C = 1 − 2 sin²(C/2)",
+          "∴ L.H.S = 1 + 2 sin(C/2) cos((A−B)/2)",
+          "   − 2 sin²(C/2)",
+          "= 1 + 2 sin(C/2)[cos((A−B)/2)",
+          "   − sin(C/2)]"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos C is written as 1 − 2 sin²(C/2) so that 2 sin(C/2) is common, giving 1 + 2 sin(C/2)[cos((A−B)/2) − sin(C/2)].",
+          "accept": [
+            "write cos C as one minus two sin squared half C",
+            "that leaves sin half C common so take two sin half C outside",
+            "the one stays outside and the rest goes in a bracket",
+            "cos C ni one minus two sin square half C ga rasi common teestam",
+            "choose the sine form of the double angle so the factor matches"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "expand cos C"
+          ],
+          "heard_as": [
+            "one minus two sin squared",
+            "half C",
+            "common factor",
+            "bracket"
+          ]
+        },
+        "why": "Writing cos C as 1 − 2 sin²(C/2) puts a sin(C/2) in the third term as well, so all the remaining terms share one factor and it can be taken outside a bracket.",
+        "common_mistakes": [
+          "Using cos C = 2 cos²(C/2) − 1, which shares no factor with the pair above.",
+          "Dropping the 1 that the double-angle form leaves behind."
+        ]
+      },
+      {
+        "id": "s3_use_the_difference_of_cosines",
+        "kind": "equation",
+        "label": "Use the difference of cosines",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Read sin(C/2) back as cos((A+B)/2) so the bracket is a difference of two cosines; it becomes 2 sin(A/2) sin(B/2).",
+        "memory_tip": "Turn sin(C/2) back into cos((A+B)/2), so the bracket is cos((A−B)/2) − cos((A+B)/2) = 2 sin(A/2) sin(B/2).",
+        "lines": [
+          "sin(C/2) = cos((A+B)/2), so the bracket is",
+          "cos((A−B)/2) − cos((A+B)/2)",
+          "= 2 sin(A/2) sin(B/2)",
+          "∴ L.H.S = 1 + 4 sin(A/2)sin(B/2)sin(C/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin(C/2) = cos((A+B)/2), so the bracket is cos((A−B)/2) − cos((A+B)/2) = 2 sin(A/2) sin(B/2), giving 1 + 4 sin(A/2)sin(B/2)sin(C/2).",
+          "accept": [
+            "sin half C is cos half A plus B so the bracket is a difference of cosines",
+            "cos half A minus B minus cos half A plus B is two sin half A sin half B",
+            "so the whole thing is one plus four sin half A sin half B sin half C",
+            "difference of cosines vaadithe two sin half A sin half B vasthundi",
+            "the bracket becomes a product of two half angle sines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then it simplifies"
+          ],
+          "heard_as": [
+            "difference of cosines",
+            "sin half A",
+            "sin half B",
+            "four sin half"
+          ]
+        },
+        "why": "Reading sin(C/2) as cos((A+B)/2) makes the bracket a difference of two cosines, and the standard formula turns that into a product of two half-angle sines.",
+        "common_mistakes": [
+          "Getting the sign wrong in cos X − cos Y = 2 sin((X+Y)/2) sin((Y−X)/2).",
+          "Leaving the bracket as it is and stopping there."
+        ]
+      },
+      {
+        "id": "s4_read_the_product_as_r_over_r",
+        "kind": "boxed_final",
+        "label": "Read the product as r/R",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The last mark. r = 4R sin(A/2)sin(B/2)sin(C/2) is the in-radius formula; dividing it by R turns the product into r/R.",
+        "memory_tip": "r = 4R sin(A/2) sin(B/2) sin(C/2) — all three SINES for the in-radius. Divide by R to read off r/R.",
+        "lines": [
+          "Now r = 4R sin(A/2) sin(B/2) sin(C/2)",
+          "⇒ 4 sin(A/2) sin(B/2) sin(C/2) = r/R",
+          {
+            "text": "∴ cos A + cos B + cos C = 1 + r/R",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r = 4R sin(A/2)sin(B/2)sin(C/2), so the product equals r/R and the sum is 1 + r/R.",
+          "accept": [
+            "r is four R sin half A sin half B sin half C so the product is r over R",
+            "divide the in radius formula by R and you get r over R",
+            "so the answer is one plus r over R",
+            "in radius formula prakaram four sin sin sin equals r by R",
+            "all three are sines for the in radius"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "so it is one plus something"
+          ],
+          "heard_as": [
+            "four R sin half",
+            "in radius",
+            "r over R",
+            "one plus r by R"
+          ]
+        },
+        "why": "The product that appeared is exactly the in-radius formula r = 4R sin(A/2)sin(B/2)sin(C/2) read backwards, so dividing it by R gives r/R and the proof closes.",
+        "common_mistakes": [
+          "Using r = 4R cos(A/2)cos(B/2)cos(C/2), which is not the in-radius.",
+          "Writing R/r instead of r/R."
+        ]
+      }
+    ]
+  }
+}

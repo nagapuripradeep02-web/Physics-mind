@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos36_special_value",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that cos36° = (√5 + 1)/4.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up cos3θ = −cos2θ",
+      "marks": 1
+    },
+    {
+      "label": "Solve for cosθ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.95, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 44(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to setting up cos3θ = −cos2θ from 5θ = 180° and one to solving the resulting equation and rejecting the root the angle does not allow. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Set up cos3θ = −cos2θ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. 36° is one fifth of 180°, so 2θ and 3θ are supplementary and cos3θ = −cos2θ. Expand both sides.",
+        "memory_tip": "36° is one fifth of 180°, so 3θ = 180° − 2θ and cos3θ = −cos2θ.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let θ = 36°. Then 5θ = 180°",
+          "⇒ 3θ = 180° − 2θ",
+          "⇒ cos3θ = cos(180° − 2θ) = −cos2θ",
+          "⇒ 4cos³θ − 3cosθ = −(2cos²θ − 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 5θ = 180° gives 3θ = 180° − 2θ, so cos3θ = −cos2θ, and both sides are expanded.",
+          "accept": [
+            "five theta is one eighty so two theta and three theta are supplementary",
+            "cos three theta equals minus cos two theta",
+            "expand as four cos cubed minus three cos equals minus two cos squared plus one",
+            "five theta one eighty kabatti cos three theta equals minus cos two theta",
+            "thirty six is one fifth of one eighty"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "five theta",
+            "cos three theta",
+            "minus cos two theta",
+            "four cos cubed"
+          ]
+        },
+        "why": "36° is one fifth of 180°. That is the only special fact about it, and it is what turns the question into an equation in cosθ.",
+        "common_mistakes": [
+          "Writing cos(180° − 2θ) as +cos2θ.",
+          "Writing cos3θ as 3cosθ − 4cos³θ."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Solve for cosθ",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The cubic factors as (c + 1)(4c² − 2c − 1). Reject c = −1 because 36° is not 180°, then take the positive root. A shorter route once part (i) is known: cos36° = 1 − 2sin²18° gives the same value.",
+        "memory_tip": "Factor out (c + 1) and reject it, since 36° is not 180°. Then take the positive root.",
+        "lines": [
+          "Put c = cosθ:",
+          "4c³ + 2c² − 3c − 1 = 0",
+          "⇒ (c + 1)(4c² − 2c − 1) = 0",
+          "c = cos36° ≠ −1, so 4c² − 2c − 1 = 0",
+          "⇒ c = (2 ± √20)/8 = (1 ± √5)/4",
+          "36° is acute, so c > 0",
+          {
+            "text": "∴ cos36° = (√5 + 1)/4",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cubic factors, c = −1 is rejected, and the positive root of 4c² − 2c − 1 = 0 is (√5 + 1)/4.",
+          "accept": [
+            "write it as a cubic in c and take out the factor c plus one",
+            "c equals minus one is rejected because thirty six is not one eighty",
+            "solve four c squared minus two c minus one equals zero",
+            "positive root theeskunte root five plus one by four vasthundi",
+            "so cos thirty six is root five plus one by four"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "c plus one",
+            "four c squared",
+            "root five plus one",
+            "positive root"
+          ]
+        },
+        "why": "c = −1 does solve the cubic, because cos180° = −1 also satisfies 3θ = 180° − 2θ. It has to be rejected by name, since θ here is 36° and not 180°.",
+        "common_mistakes": [
+          "Keeping c = −1 as an answer.",
+          "Taking the negative root (1 − √5)/4."
+        ]
+      }
+    ]
+  }
+}

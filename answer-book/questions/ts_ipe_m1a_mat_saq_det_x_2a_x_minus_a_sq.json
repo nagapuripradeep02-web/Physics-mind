@@ -1,0 +1,243 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_det_x_2a_x_minus_a_sq",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the determinant with rows (x, a, a), (a, x, a) and (a, a, x) is equal to (x + 2a)(x − a)².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply C₁ → C₁ + C₂ + C₃",
+      "marks": 1
+    },
+    {
+      "label": "Take out the common factor x + 2a",
+      "marks": 1
+    },
+    {
+      "label": "Apply R₂ → R₂ − R₁ and R₃ → R₃ − R₁",
+      "marks": 1
+    },
+    {
+      "label": "Expand the triangular determinant",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.45, chapter 5 MATRICES, Short Answer question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape gives one mark to each of the four independent moves — the column addition that produces the equal entries, the factoring, the two row subtractions that make the determinant triangular, and the diagonal product — because each can be right or wrong on its own and a student who reaches the triangular form has clearly earned three of four. Independently checked before authoring, by two numerical substitutions: x = 5, a = 2 gives determinant 81 and (5+4)(3)² = 81; x = 1, a = −3 gives determinant −80 and (1−6)(4)² = −80. Both sides agree. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say which column operation you start with, what comes out as a factor, which rows you subtract, and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_col_op",
+        "kind": "equation",
+        "label": "Add the columns",
+        "marks": 1,
+        "mark_note": "Column operation",
+        "margin_note": "First mark. Every row of this determinant adds up to the same thing, x + 2a. Adding all three columns into the first is what makes that visible.",
+        "memory_tip": "Every row here adds up to x + 2a, so add all three columns into the first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\Delta = \\begin{vmatrix} x & a & a \\\\ a & x & a \\\\ a & a & x \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Every row adds up to x + 2a, so apply",
+          "C₁ → C₁ + C₂ + C₃.",
+          {
+            "text": "\\Delta = \\begin{vmatrix} x+2a & a & a \\\\ x+2a & x & a \\\\ x+2a & a & x \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That all three columns are added into the first, because every row of this determinant has the same total x + 2a.",
+          "accept": [
+            "add column two and column three to column one because every row sums to x plus two a",
+            "apply C one goes to C one plus C two plus C three",
+            "each row adds up to the same value so put that in the first column",
+            "prathi row sum x plus two a, so columns anni C one lo kalapali",
+            "the column operation makes the first column constant"
+          ],
+          "reject": [
+            "apply a column operation",
+            "simplify the determinant",
+            "add the columns"
+          ],
+          "heard_as": [
+            "C one plus C two plus C three",
+            "column operation",
+            "x plus two a",
+            "row sum"
+          ]
+        },
+        "why": "The determinant is symmetric in the sense that every row has the same total. Adding the columns is the standard way to turn that hidden fact into a visible common factor.",
+        "common_mistakes": [
+          "Adding the ROWS instead of the columns, which does not give a constant column.",
+          "Writing x + 2a as x + a because only one a was added."
+        ]
+      },
+      {
+        "id": "s2_factor",
+        "kind": "equation",
+        "label": "Take out x + 2a",
+        "marks": 1,
+        "mark_note": "Common factor",
+        "margin_note": "Second mark. A factor common to every entry of one COLUMN comes out of the determinant once. Column 1 becomes all 1s.",
+        "memory_tip": "A factor common to a whole column comes out once, and leaves that column as all 1s.",
+        "lines": [
+          "Column 1 now has x + 2a in every position,",
+          "so take it out of the determinant.",
+          {
+            "text": "\\Delta = (x+2a)\\begin{vmatrix} 1 & a & a \\\\ 1 & x & a \\\\ 1 & a & x \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That x + 2a is common to the whole first column and comes out of the determinant once, leaving 1s in that column.",
+          "accept": [
+            "take x plus two a out of the first column leaving ones",
+            "the common factor comes outside the determinant once",
+            "factor x plus two a out of column one",
+            "first column nunchi x plus two a bayataki teeyali",
+            "pull the common bracket in front and the column becomes all ones"
+          ],
+          "reject": [
+            "take out the factor",
+            "simplify",
+            "factorise it"
+          ],
+          "heard_as": [
+            "x plus two a",
+            "common factor",
+            "take out",
+            "column of ones"
+          ]
+        },
+        "why": "This is the first of the two brackets in the answer, and it is now fixed. Everything that follows only has to produce (x − a)².",
+        "common_mistakes": [
+          "Taking the factor out three times, once for each entry of the column.",
+          "Leaving 0 instead of 1 in the first column after removing the factor."
+        ]
+      },
+      {
+        "id": "s3_row_ops",
+        "kind": "equation",
+        "label": "Subtract R₁",
+        "marks": 1,
+        "mark_note": "Row operations",
+        "margin_note": "Third mark. Subtracting row 1 from rows 2 and 3 clears the first column below the top and leaves x − a in one position of each row. The determinant is now triangular.",
+        "memory_tip": "Subtract row 1 from rows 2 and 3 — the zeros below the diagonal make it triangular.",
+        "lines": [
+          "Apply R₂ → R₂ − R₁ and R₃ → R₃ − R₁.",
+          "R₂ becomes (0, x − a, 0) and R₃ becomes",
+          "(0, 0, x − a).",
+          {
+            "text": "\\Delta = (x+2a)\\begin{vmatrix} 1 & a & a \\\\ 0 & x-a & 0 \\\\ 0 & 0 & x-a \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That row 1 is subtracted from rows 2 and 3, giving zeros in the first column and x − a in the remaining positions, so the determinant becomes triangular.",
+          "accept": [
+            "subtract row one from row two and from row three",
+            "R two minus R one and R three minus R one give zeros below the diagonal",
+            "the row operations leave x minus a on the diagonal and zeros under it",
+            "row one ni row two, row three nunchi teeste triangular form vasthundi",
+            "after subtracting row one the determinant is upper triangular"
+          ],
+          "reject": [
+            "apply row operations",
+            "subtract the rows",
+            "make it triangular"
+          ],
+          "heard_as": [
+            "R two minus R one",
+            "row operations",
+            "x minus a",
+            "triangular",
+            "zeros"
+          ]
+        },
+        "why": "Both row 2 and row 3 are subtracted from the SAME row 1, not from each other. That is what leaves a zero in every position of those rows except one, which is what makes the final step a single multiplication.",
+        "common_mistakes": [
+          "Using R₃ → R₃ − R₂ instead of R₃ − R₁, which leaves no triangular form.",
+          "Writing a − x instead of x − a and flipping the sign twice over."
+        ]
+      },
+      {
+        "id": "s4_expand",
+        "kind": "boxed_final",
+        "label": "Multiply the diagonal",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. For a triangular determinant the value is just the product of the diagonal entries: 1 × (x − a) × (x − a).",
+        "memory_tip": "A triangular determinant is just the product of its diagonal entries.",
+        "lines": [
+          "The determinant is now upper triangular, so it",
+          "equals the product of its diagonal entries:",
+          "1 × (x − a) × (x − a) = (x − a)².",
+          {
+            "text": "∴ Δ = (x + 2a)(x − a)²",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a triangular determinant equals the product of its diagonal entries, giving (x − a)², which with the factor already taken out gives the required result.",
+          "accept": [
+            "a triangular determinant is the product of the diagonal so we get x minus a squared",
+            "one times x minus a times x minus a gives x minus a whole squared",
+            "multiply the diagonal entries and combine with x plus two a",
+            "triangular determinant ki diagonal product ne answer",
+            "the diagonal gives x minus a squared so the result follows"
+          ],
+          "reject": [
+            "hence proved",
+            "expand the determinant",
+            "we get the answer"
+          ],
+          "heard_as": [
+            "triangular",
+            "product of the diagonal",
+            "x minus a squared",
+            "hence proved"
+          ]
+        },
+        "why": "Expanding a triangular determinant along the first column gives one term, and the same happens again inside it. Naming the diagonal rule saves both expansions.",
+        "common_mistakes": [
+          "Expanding the full 3×3 by cofactors and making an arithmetic slip.",
+          "Writing (x − a) once instead of squared."
+        ]
+      }
+    ]
+  }
+}

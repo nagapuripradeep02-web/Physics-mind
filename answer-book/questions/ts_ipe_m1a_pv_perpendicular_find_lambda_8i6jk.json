@@ -1,0 +1,223 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_perpendicular_find_lambda_8i6jk",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "For what value of λ are the vectors i − λj + 2k and 8i + 6j − k at right angles?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State the condition for right angles",
+      "marks": 1
+    },
+    {
+      "label": "Write the dot product",
+      "marks": 1
+    },
+    {
+      "label": "Solve for λ",
+      "marks": 1
+    },
+    {
+      "label": "Check by substitution",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.73, chapter 7 PRODUCT OF VECTORS, Short Answer question 26(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark each to the condition, the dot product, the solving and the check. NOTE ON LENGTH: the book files this under Short Answer, so the card carries the 4 marks a Maths-1A Section B question is worth (PAPER_PATTERNS holds every SAQ to 4). The mathematics is one line of dot product, so the fourth mark is given to the substitution check rather than to invented working. This is a DOT-product question, not a scalar-triple-product one, although it sits among the box-product items in this section. Checked: with λ = 1, (1)(8) + (−1)(6) + (2)(−1) = 8 − 6 − 2 = 0 exactly. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find λ — the condition for right angles, the dot product, and the check at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "State the condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "First mark. Dot product zero is perpendicular; cross product zero is parallel. Do not swap them.",
+        "memory_tip": "Dot is zero for perpendicular, cross is zero for parallel.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let a = i − λj + 2k and b = 8i + 6j − k.",
+          "Two non-zero vectors are at right angles",
+          "exactly when a·b = 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That two non-zero vectors are at right angles exactly when their dot product is zero.",
+          "accept": [
+            "at right angles means the dot product is zero",
+            "set a dot b equal to zero",
+            "perpendicular vectors have zero dot product",
+            "perpendicular ante dot product zero",
+            "the condition is a dot b equals zero"
+          ],
+          "reject": [
+            "eight minus six lambda minus two",
+            "lambda is one",
+            "then I get it"
+          ],
+          "heard_as": [
+            "dot product",
+            "zero",
+            "right angles",
+            "perpendicular"
+          ]
+        },
+        "why": "a·b = |a||b|cos θ, and neither length is zero here, so the product vanishes only when cos θ = 0, that is θ = 90°.",
+        "common_mistakes": [
+          "Using a × b = 0, which is the condition for parallel vectors.",
+          "Setting a·b to 1."
+        ]
+      },
+      {
+        "id": "s2_dot",
+        "kind": "equation",
+        "label": "Write the dot product",
+        "marks": 1,
+        "mark_note": "Dot product",
+        "margin_note": "Second mark. Match i with i, j with j, k with k. The signs of the components travel with them.",
+        "memory_tip": "Three products, one per axis, then add. Nothing crosses between axes.",
+        "lines": [
+          "a·b = (1)(8) + (−λ)(6) + (2)(−1)",
+          "= 8 − 6λ − 2",
+          "= 6 − 6λ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the dot product is 8 − 6λ − 2, that is 6 − 6λ.",
+          "accept": [
+            "one times eight, minus lambda times six, two times minus one",
+            "the dot product is eight minus six lambda minus two",
+            "that simplifies to six minus six lambda",
+            "dot product six minus six lambda avthundi",
+            "multiply matching components and add"
+          ],
+          "reject": [
+            "set the dot product to zero",
+            "lambda is one",
+            "hence proved"
+          ],
+          "heard_as": [
+            "six minus six lambda",
+            "dot product",
+            "eight minus two",
+            "components"
+          ]
+        },
+        "why": "The dot product multiplies matching components and adds them, so each of the three coordinate pairs contributes one term.",
+        "common_mistakes": [
+          "Dropping the minus that travels with the −λ component.",
+          "Multiplying the i part of one vector by the j part of the other."
+        ]
+      },
+      {
+        "id": "s3_solve",
+        "kind": "equation",
+        "label": "Solve for λ",
+        "marks": 1,
+        "mark_note": "Solve",
+        "margin_note": "Third mark. A single linear equation, so a single answer.",
+        "memory_tip": "6 − 6λ = 0 means 6λ = 6, so λ = 1. Move the term across before dividing.",
+        "lines": [
+          "6 − 6λ = 0",
+          "⇒ 6λ = 6",
+          "⇒ λ = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 6 − 6λ = 0 gives λ = 1.",
+          "accept": [
+            "six minus six lambda is zero so six lambda is six",
+            "lambda equals one",
+            "move the term across and divide by six",
+            "six lambda six, so lambda one",
+            "solve the linear equation for lambda"
+          ],
+          "reject": [
+            "the dot product is six minus six lambda",
+            "check by substitution",
+            "then I get it"
+          ],
+          "heard_as": [
+            "lambda equals one",
+            "six lambda",
+            "divide by six"
+          ]
+        },
+        "why": "The equation is linear in λ, so there is exactly one value that makes the two vectors perpendicular.",
+        "common_mistakes": [
+          "Writing 6 − 6λ = 0 as λ = −1.",
+          "Dividing only one side by 6."
+        ]
+      },
+      {
+        "id": "s4_check",
+        "kind": "boxed_final",
+        "label": "Check by substitution",
+        "marks": 1,
+        "mark_note": "Check",
+        "margin_note": "Last mark. One line of arithmetic proves the answer; the check is worth writing out.",
+        "memory_tip": "8 − 6 − 2 = 0. Write the check; it costs one line and proves the answer.",
+        "lines": [
+          "With λ = 1 the vectors are",
+          "i − j + 2k and 8i + 6j − k.",
+          "Dot: 8 − 6 − 2 = 0  ✓",
+          {
+            "text": "∴ λ = 1",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting λ = 1 gives a dot product of exactly zero.",
+          "accept": [
+            "put lambda equals one back and the dot product is eight minus six minus two",
+            "that is zero, so the vectors are perpendicular",
+            "the check confirms lambda is one",
+            "lambda one pettina dot product zero vasthundi",
+            "substitute and verify the dot product is zero"
+          ],
+          "reject": [
+            "solve the linear equation",
+            "state the condition",
+            "then I get it"
+          ],
+          "heard_as": [
+            "eight minus six minus two",
+            "zero",
+            "lambda equals one",
+            "check"
+          ]
+        },
+        "why": "Substituting the value back shows the dot product really is zero, so the two vectors really are at right angles.",
+        "common_mistakes": [
+          "Giving λ = 1 with no check line.",
+          "Checking with the original −λj instead of −j."
+        ]
+      }
+    ]
+  }
+}

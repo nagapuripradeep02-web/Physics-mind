@@ -80,7 +80,7 @@
             "d N by d t"
           ]
         },
-        "why": "Every other question in this group substitutes a time and reads off a rate. This one gives the rate, so the derivative is equated to 300 and the equation is solved for t.",
+        "why": "Most rate questions give the instant and ask for the rate. This one gives the rate and asks for the instant, so the derivative goes on the left of an equals sign and the equation is solved for t.",
         "common_mistakes": [
           "Setting t³ = 300, which answers a different question.",
           "Substituting t = 300 into the derivative.",

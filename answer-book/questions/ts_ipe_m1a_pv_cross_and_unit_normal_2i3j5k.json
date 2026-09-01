@@ -1,0 +1,188 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_cross_and_unit_normal_2i3j5k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If a = 2i − 3j + 5k and b = −i + 4j + 2k, find a × b and a unit vector perpendicular to both a and b.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find a × b",
+      "marks": 2
+    },
+    {
+      "label": "Find |a × b|",
+      "marks": 1
+    },
+    {
+      "label": "Write the unit vector, with both signs",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.72, chapter 7 PRODUCT OF VECTORS, Short Answer question 23(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 2+1+1 split gives half the marks to the determinant, because the stem asks for a × b in its own right, and separates the magnitude from the final division so that the ± is written where the student can see it earn a mark. ANSWERS ARE DETERMINATE, not a method sketch: a × b = −26i − 9j + 5k and the unit vectors are ± (−26i − 9j + 5k)/√782. VERIFIED: the cross product dotted with a = (2, −3, 5) gives −52 + 27 + 25 = 0 and dotted with b = (−1, 4, 2) gives 26 − 36 + 10 = 0, so it is perpendicular to both; its squared length is 676 + 81 + 25 = 782, so the squared length of the reported unit vector is 782/782 = 1 exactly. 782 = 2 × 17 × 23 carries no square factor, so √782 does not simplify. BOTH SIGNS ARE ANSWERS: a plane has two unit normals, one on each side, and the card says so on the line the student reads. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Product of Vectors supplies at least one of those eight on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer both parts — say why the final answer carries two signs.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cross_product",
+        "kind": "equation",
+        "label": "Find a × b",
+        "marks": 2,
+        "mark_note": "Cross product",
+        "margin_note": "Half the marks. Keep a on the second row and b on the third, in the order the stem names them. The j term of the expansion carries its own minus sign.",
+        "memory_tip": "The j term of a 3 × 3 expansion always carries a minus of its own — write it before working out the bracket.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "a = (2, −3, 5) and b = (−1, 4, 2).",
+          {
+            "text": "a \\times b = \\begin{vmatrix} i & j & k \\\\ 2 & -3 & 5 \\\\ -1 & 4 & 2 \\end{vmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "= i(−6 − 20) − j(4 + 5) + k(8 − 3)",
+          "= −26i − 9j + 5k"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a × b = −26i − 9j + 5k, from the determinant with a on the upper row.",
+          "accept": [
+            "a cross b is minus twenty six i minus nine j plus five k",
+            "expand the determinant with a above b",
+            "the cross product comes out minus twenty six i minus nine j plus five k",
+            "determinant lo a pai row, b kinda row",
+            "the j term takes a minus sign"
+          ],
+          "reject": [
+            "divide by the magnitude",
+            "plus or minus",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus twenty six",
+            "minus nine j",
+            "five k",
+            "determinant"
+          ]
+        },
+        "why": "The cross product of two vectors is perpendicular to both of them, so this single determinant answers the first part and prepares the second. Row order matters: swapping a and b reverses every sign.",
+        "common_mistakes": [
+          "Dropping the minus in front of the j term.",
+          "Putting b on the upper row, which negates the answer."
+        ]
+      },
+      {
+        "id": "s2_magnitude",
+        "kind": "equation",
+        "label": "Find |a × b|",
+        "marks": 1,
+        "mark_note": "Magnitude",
+        "margin_note": "Third mark. Check the cross product first by dotting it with a and with b — both must give 0 — then take the square root of the sum of squares.",
+        "memory_tip": "Dot the result with both inputs and expect 0 each time before spending a line on the square root.",
+        "lines": [
+          "Check: (a × b)·a = −52 + 27 + 25 = 0",
+          "and (a × b)·b = 26 − 36 + 10 = 0",
+          "|a × b| = √(676 + 81 + 25)",
+          {
+            "text": "= √782",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the cross product checks out perpendicular to both, and its magnitude is √782.",
+          "accept": [
+            "dot it with a and with b, both give zero",
+            "the magnitude is root of six seventy six plus eighty one plus twenty five",
+            "the length of a cross b is root seven eight two",
+            "rendu dot products zero vasthe correct",
+            "square root of seven hundred eighty two"
+          ],
+          "reject": [
+            "plus or minus",
+            "expand the determinant",
+            "the answer is the unit vector"
+          ],
+          "heard_as": [
+            "root seven eight two",
+            "dot product zero",
+            "magnitude",
+            "six seventy six"
+          ]
+        },
+        "why": "The cross product must be perpendicular to both inputs, so both dot products are 0. That is a complete check on the determinant and it costs two lines.",
+        "common_mistakes": [
+          "Adding the components instead of squaring them.",
+          "Trying to simplify √782, which has no square factor."
+        ]
+      },
+      {
+        "id": "s3_unit_vector",
+        "kind": "boxed_final",
+        "label": "Write the unit vector",
+        "marks": 1,
+        "mark_note": "Unit vector",
+        "margin_note": "Last mark. Divide the cross product by its own length. Both directions along that line are unit vectors, so the answer carries a ± sign.",
+        "memory_tip": "A unit vector is the vector over its own length, and BOTH signs are correct — write the ±.",
+        "lines": [
+          "Unit vector = ± (a × b)/|a × b|",
+          "A plane has two sides, so both",
+          "directions are correct answers.",
+          {
+            "text": "∴ ± (−26i − 9j + 5k)/√782",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing a × b by √782 gives ± (−26i − 9j + 5k)/√782, with both signs.",
+          "accept": [
+            "divide the cross product by root seven eight two",
+            "the answer is plus or minus minus twenty six i minus nine j plus five k over root seven eight two",
+            "both signs are correct because there are two unit normals",
+            "plus or minus rendu correct, root seven eight two tho divide",
+            "the unit vector is the cross product over its own length"
+          ],
+          "reject": [
+            "the magnitude is root seven eight two",
+            "expand the determinant",
+            "hence proved"
+          ],
+          "heard_as": [
+            "plus or minus",
+            "over root seven eight two",
+            "unit vector",
+            "divide"
+          ]
+        },
+        "why": "Dividing a vector by its own length leaves a vector of length 1 in the same direction. There are two such directions, one on each side of the plane of a and b, so both signs are correct answers.",
+        "common_mistakes": [
+          "Omitting the ± sign and giving only one direction.",
+          "Dividing by |a| or by |b| instead of by |a × b|."
+        ]
+      }
+    ]
+  }
+}

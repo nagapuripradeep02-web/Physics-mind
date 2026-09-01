@@ -93,7 +93,7 @@
           "Taking three roots from the cubic without checking that two of them are not real.",
           "Getting y = −2 and x = −1 by putting the coordinates in the wrong order."
         ],
-        "memory_tip": "A rectangular hyperbola xy = c always gives y = c/x, and substituting that turns the other equation into a cubic."
+        "memory_tip": "A rectangular hyperbola xy = c always gives y = c/x. Substituting that and clearing the x in the denominator raises the degree; here it gives a cubic."
       },
       {
         "id": "s2_slopes",

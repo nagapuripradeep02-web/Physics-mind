@@ -1,0 +1,27 @@
+# OUR BANK — mathematics_1b unit 1: Locus (Maths-1B)  (12 cards)
+# source index: answer-book/sources/chaitanya_m1b_ch01_locus.json
+
+[SAQ] ts_ipe_m1b_loc_right_angle_4_0_0_4
+    Find the equation of locus of P, if the line segment joining (4,0) and (0,4) subtends a right angle at P.
+[SAQ] ts_ipe_m1b_loc_right_angle_hypotenuse_0_6_6_0
+    The ends of the hypotenuse of a right angled triangle are (0,6) and (6,0). Find the equation of locus of its third vertex.
+[SAQ] ts_ipe_m1b_loc_right_angle_2_3_minus1_5
+    Find the equation of locus of P, if the line segment joining (2,3) and (−1,5) subtends a right angle at P.
+[SAQ] ts_ipe_m1b_loc_area_5_3_3_minus2_nine
+    A(5,3) and B(3,−2) are two fixed points. Find the equation of locus of P, so that the area of triangle PAB is 9 sq.units.
+[SAQ] ts_ipe_m1b_loc_area_2_3_minus3_4_eight_point_five
+    A(2,3) and B(−3,4) are two given points. Find the equation of the locus of P so that the area of the triangle PAB is 8.5 sq.units.
+[SAQ] ts_ipe_m1b_loc_pa2_pb2_twice_pc2
+    A(1,2), B(2,−3), C(−2,3) are 3 points. A point P moves such that PA² + PB² = 2PC². Show that the equation to the locus of P is 7x − 7y + 4 = 0.
+[SAQ] ts_ipe_m1b_loc_sum_distances_2_3_2_minus3_eight
+    Find the equation of locus of a point P, if A = (2,3), B = (2,−3) and PA + PB = 8.
+[SAQ] ts_ipe_m1b_loc_sum_distances_0_2_0_minus2_six
+    Find the equation of locus of a point, the sum of whose distances from (0,2) and (0,−2) is 6 units.
+[SAQ] ts_ipe_m1b_loc_ratio_2_3_2_minus3_two_three
+    If the distance from 'P' to the points (2,3) and (2,−3) are in the ratio 2:3, then find the equation of locus of P.
+[SAQ] ts_ipe_m1b_loc_diff_distances_minus5_0_5_0_eight
+    Find the equation of locus of a point the difference of whose distances from (−5,0) and (5,0) is 8 units.
+[SAQ] ts_ipe_m1b_loc_diff_distances_4_0_minus4_0_four
+    Find the equation of locus P, if A = (4,0), B = (−4,0) and |PA − PB| = 4.
+[SAQ] ts_ipe_m1b_loc_distance_twice_3_0_minus3_0
+    Find the equation of locus of a point P, if the distance of P from A(3,0) is twice the distance of P from B(−3,0).

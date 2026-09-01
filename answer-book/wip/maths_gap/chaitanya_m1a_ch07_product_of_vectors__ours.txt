@@ -1,0 +1,67 @@
+# OUR BANK — mathematics unit 7: Product of Vectors (Maths-1A)  (32 cards)
+# source index: answer-book/sources/chaitanya_m1a_ch07_product_of_vectors.json
+
+[LAQ] ts_ipe_m1a_pv_axb_dot_bxc
+    If a = 2i+j−k, b = −i+2j−4k and c = i+j+k, then find (a×b)·(b×c).
+[LAQ] ts_ipe_m1a_pv_axb_cross_cxd
+    If a = 2i+j−3k, b = i−2j+k, c = −i+j−4k and d = i+j+k, then compute |(a×b)×(c×d)|.
+[LAQ] ts_ipe_m1a_pv_two_triple_products
+    If a = i−2j+3k, b = 2i+j+k and c = i+j+2k, then find |(a×b)×c| and |a×(b×c)|.
+[LAQ] ts_ipe_m1a_pv_triple_product_pair
+    If a = i−2j+k, b = 2i+j+k and c = i+2j−k, then find a×(b×c) and |(a×b)×c|.
+[LAQ] ts_ipe_m1a_pv_skew_lines_distance
+    Find the shortest distance between the skew lines r = (6i+2j+2k) + t(i−2j+2k) and r = (−4i−k) + s(3i−2j−2k).
+[LAQ] ts_ipe_m1a_pv_distance_ab_cd
+    If A = (1, −2, −1), B = (4, 0, −3), C = (1, 2, −1) and D = (2, −4, −5), then find the distance between the lines AB and CD.
+[LAQ] ts_ipe_m1a_pv_triple_product_identity
+    If a, b, c are three vectors, then prove that (a×b)×c = (c·a)b − (c·b)a.
+[LAQ] ts_ipe_m1a_pv_sqp_box_product_square
+    For any three vectors a, b, c prove that [b×c  c×a  a×b] = [a b c]².
+[SAQ] ts_ipe_m1a_pv_saq_a_cross_bxc
+    If a = (1, −1, −6), b = (1, −3, 4) and c = (2, −5, 3), then compute a×(b×c).
+[SAQ] ts_ipe_m1a_pv_saq_verify_perpendicular
+    If a = 2i+3j+4k, b = i+j−k and c = i−j+k, then compute a×(b×c) and verify that it is perpendicular to a.
+[SAQ] ts_ipe_m1a_pv_saq_triangle_area
+    Find the area of the triangle formed with the points A(1,2,3), B(2,3,1) and C(3,1,2).
+[SAQ] ts_ipe_m1a_pv_saq_unit_normal_plane
+    Find the unit vector perpendicular to the plane passing through the points (1,2,3), (2,−1,1) and (1,2,−4).
+[SAQ] ts_ipe_m1a_pv_saq_tetrahedron_edges
+    Find the volume of the tetrahedron having the edges i+j+k, i−j and i+2j+k.
+[SAQ] ts_ipe_m1a_pv_saq_tetrahedron_vertices
+    Find the volume of the tetrahedron whose vertices are (1,2,1), (3,2,5), (2,−1,0) and (−1,0,1).
+[SAQ] ts_ipe_m1a_pv_saq_cube_diagonals
+    Prove that the smaller angle θ between any two diagonals of a cube is given by cos θ = 1/3.
+[SAQ] ts_ipe_m1a_pv_sqp_unit_normal_pqr
+    Find a unit vector perpendicular to the plane determined by the points P(1, −1, 2), Q(2, 0, −1) and R(0, 2, 1).
+[SAQ] ts_ipe_m1a_pv_sqp_twice_triangle_area
+    If a, b and c represent the vertices A, B and C respectively of triangle ABC, then prove that |(a×b) + (b×c) + (c×a)| is twice the area of triangle ABC.
+[SAQ] ts_ipe_m1a_pv_sqp_parallelogram_diagonals
+    The vectors AB = 3i − 2j + 2k and AD = i − 2k represent adjacent sides of a parallelogram ABCD. Find the angle between the diagonals.
+[VSAQ] ts_ipe_m1a_pv_vsaq_sum_diff_perpendicular
+    If a = i + 2j − 3k and b = 3i − j + 2k, then show that a+b and a−b are perpendicular to each other.
+[VSAQ] ts_ipe_m1a_pv_vsaq_equal_sum_diff_angle
+    If |a + b| = |a − b|, then find the angle between a and b.
+[VSAQ] ts_ipe_m1a_pv_vsaq_perpendicular_find_lambda
+    If the vectors 2i + λj − k and 4i − 2j + 2k are perpendicular to each other, then find λ.
+[VSAQ] ts_ipe_m1a_pv_vsaq_perpendicular_quadratic
+    If the vectors λi − 3j + 5k and 2λi − λj − k are perpendicular to each other, then find λ.
+[VSAQ] ts_ipe_m1a_pv_vsaq_angle_between_vectors
+    Find the angle between the vectors i + 2j + 3k and 3i − j + 2k.
+[VSAQ] ts_ipe_m1a_pv_vsaq_angle_between_planes
+    Find the angle between the planes r·(2i − j + 2k) = 3 and r·(3i + 6j + k) = 4.
+[VSAQ] ts_ipe_m1a_pv_vsaq_parallelogram_sides
+    Find the area of the parallelogram whose adjacent sides are a = 2j − k and b = −i + k.
+[VSAQ] ts_ipe_m1a_pv_vsaq_parallelogram_diagonals
+    Find the area of the parallelogram whose diagonals are 3i + j − 2k and i − 3j + 4k.
+[VSAQ] ts_ipe_m1a_pv_vsaq_unit_normal_two_vectors
+    Find a unit vector perpendicular to the plane containing the vectors a = 4i + 3j − k and b = 2i − 6j − 3k.
+[VSAQ] ts_ipe_m1a_pv_vsaq_find_sin_theta
+    Let a = 2i − j + k and b = 3i + 4j − k. If θ is the angle between a and b, then find sin θ.
+[VSAQ] ts_ipe_m1a_pv_vsaq_triangle_area_sides
+    Find the area of the triangle having 3i + 4j and −5i + 7j as adjacent sides.
+[VSAQ] ts_ipe_m1a_pv_vsaq_magnitude_cross_product
+    If a = 2i − j + k and b = i − 3j − 5k, then find |a × b|.
+[VSAQ] ts_ipe_m1a_pv_sqp_projection_vector
+    If a = i − j − k and b = 2i − 3j + k, then find the projection VECTOR of b on a.
+[VSAQ] ts_ipe_m1a_pv_sqp_sin_theta_ij_jk
+    If θ is the angle between the vectors i + j and j + k, then find sin θ.

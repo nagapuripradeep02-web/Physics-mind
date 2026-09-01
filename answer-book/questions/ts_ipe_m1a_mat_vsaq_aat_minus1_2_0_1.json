@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_aat_minus1_2_0_1",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A is the matrix with rows (−1, 2) and (0, 1), then find AAᵀ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write Aᵀ",
+      "marks": 1
+    },
+    {
+      "label": "Multiply A by Aᵀ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 12, book p.33. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to writing the transpose and one to the row-by-column product, because writing Aᵀ with the entries in the wrong places is where this question is usually lost. CHECKED TWO WAYS: the four entries were computed position by position (5, 2, 2, 1), and the answer was then tested against two properties it must have — AAᵀ is symmetric, and det(AAᵀ) = (det A)² = (−1)² = 1, which the answer 5(1) − 2(2) = 1 satisfies. Related card in the same unit: ts_ipe_m1a_mat_vsaq_a_plus_transpose asks for A + A′ and AA′ for a different 2×2 matrix, so the two are not duplicates. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find AAᵀ for this 2×2 matrix.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transpose",
+        "kind": "equation",
+        "label": "Write Aᵀ",
+        "marks": 1,
+        "mark_note": "Transpose",
+        "margin_note": "First mark. Aᵀ exchanges rows with columns: the entry in row 1 column 2 moves to row 2 column 1. Write it out before multiplying anything.",
+        "memory_tip": "Row 1 of A becomes column 1 of Aᵀ. The two diagonal entries never move.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "A = \\begin{bmatrix} -1 & 2 \\\\ 0 & 1 \\end{bmatrix}, \\quad A^{T} = \\begin{bmatrix} -1 & 0 \\\\ 2 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "A is 2×2, so AAᵀ is 2×2 as well."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Aᵀ is written by exchanging rows with columns, giving rows (−1, 0) and (2, 1).",
+          "accept": [
+            "write the transpose by making rows into columns",
+            "A transpose has rows minus one zero and two one",
+            "the two off diagonal entries swap places",
+            "rows ni columns ga marchi A transpose rasukovali",
+            "transpose first, the diagonal stays the same"
+          ],
+          "reject": [
+            "take the transpose",
+            "write A dash"
+          ],
+          "heard_as": [
+            "A transpose",
+            "rows become columns",
+            "minus one",
+            "two one"
+          ]
+        },
+        "why": "The transpose is defined position by position: the entry aᵢⱼ of A becomes the entry in row j column i of Aᵀ. Writing it out is what stops the two indices being swapped by accident.",
+        "common_mistakes": [
+          "Reversing the order of the rows instead of exchanging rows with columns.",
+          "Changing the signs of the entries while transposing."
+        ]
+      },
+      {
+        "id": "s2_product",
+        "kind": "boxed_final",
+        "label": "Multiply A by Aᵀ",
+        "marks": 1,
+        "mark_note": "Product",
+        "margin_note": "Second mark. Each entry is a row of A times a column of Aᵀ. The answer must come out symmetric — AAᵀ always does — which is a free check.",
+        "memory_tip": "AAᵀ is always symmetric. If the two off-diagonal entries differ, one of them is wrong.",
+        "lines": [
+          {
+            "text": "AA^{T} = \\begin{bmatrix} -1 & 2 \\\\ 0 & 1 \\end{bmatrix}\\begin{bmatrix} -1 & 0 \\\\ 2 & 1 \\end{bmatrix} = \\begin{bmatrix} 1+4 & 0+2 \\\\ 0+2 & 0+1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "= \\begin{bmatrix} 5 & 2 \\\\ 2 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          {
+            "text": "∴ AAᵀ has rows (5, 2) and (2, 1)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the product is taken row by column, giving the symmetric matrix with rows (5, 2) and (2, 1).",
+          "accept": [
+            "multiply row by column to get five two and two one",
+            "the answer is five, two, two, one and it is symmetric",
+            "first row times first column gives one plus four which is five",
+            "row into column multiply cheste five two two one vasthundi",
+            "AA transpose is the symmetric matrix with five on the top left"
+          ],
+          "reject": [
+            "multiply them",
+            "that is the product"
+          ],
+          "heard_as": [
+            "five",
+            "two",
+            "row by column",
+            "symmetric"
+          ]
+        },
+        "why": "Matrix multiplication pairs a row of the first matrix with a column of the second. Because the second matrix is Aᵀ, each entry is a dot product of two rows of A, which is why the result is symmetric.",
+        "common_mistakes": [
+          "Multiplying the matrices entry by entry instead of row by column.",
+          "Computing AᵀA, which is a different matrix here."
+        ]
+      }
+    ]
+  }
+}

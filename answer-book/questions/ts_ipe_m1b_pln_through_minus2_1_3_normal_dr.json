@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pln_through_minus2_1_3_normal_dr",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "The Plane"
+  },
+  "chapter": "The Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the equation of the plane passing through the point (−2, 1, 3) and having (3, −5, 4) as the direction ratios of its normal.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the point-and-normal form",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and simplify",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 7 THE PLANE, Very Short Answer question 8, book p.183. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split rewards writing the point-and-normal form of a plane first, and expanding it to the required equation second — the shape this bank uses for every Maths-1B Section A question, and the same cut as the parallel-plane cards already in this unit. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what the direction ratios of the normal give you, and which form of the plane equation you write.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_point_and_normal_form",
+        "kind": "equation",
+        "label": "Write the point-and-normal form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A point on the plane and the direction ratios of its normal fix the plane completely, and the point-and-normal form uses both at once.",
+        "memory_tip": "The normal's direction ratios ARE the coefficients of x, y and z in the plane equation.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Here (x₁, y₁, z₁) = (−2, 1, 3) and the",
+          "normal has (a, b, c) = (3, −5, 4)",
+          "The plane through (x₁, y₁, z₁) whose normal",
+          "has direction ratios (a, b, c) is",
+          "a(x − x₁) + b(y − y₁) + c(z − z₁) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point-and-normal form a(x − x₁) + b(y − y₁) + c(z − z₁) = 0 is written with the given point and the given normal ratios.",
+          "accept": [
+            "use a into x minus x one plus b into y minus y one plus c into z minus z one equals zero",
+            "the normal's direction ratios are the coefficients",
+            "a point and a normal fix the plane",
+            "point and normal form rasi values pettali",
+            "write the point and normal form first"
+          ],
+          "reject": [
+            "expand the brackets and collect the constants",
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "point and normal form",
+            "direction ratios",
+            "coefficients",
+            "a into x minus x one"
+          ]
+        },
+        "why": "Every point of the plane makes a line with (x₁, y₁, z₁) that is perpendicular to the normal, and that perpendicular condition written out is exactly this equation.",
+        "common_mistakes": [
+          "Swapping the point and the normal ratios in the formula.",
+          "Using the direction ratios of a line lying in the plane instead of the normal's."
+        ]
+      },
+      {
+        "id": "s2_substitute_and_simplify",
+        "kind": "boxed_final",
+        "label": "Substitute and simplify",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. The point has a negative coordinate, so x − (−2) becomes x + 2. Expand all three brackets, then collect the constants and check the point satisfies the answer.",
+        "memory_tip": "x − (−2) becomes x + 2 — a negative coordinate flips the sign inside the bracket.",
+        "lines": [
+          "⇒ 3(x + 2) − 5(y − 1) + 4(z − 3) = 0",
+          "⇒ 3x + 6 − 5y + 5 + 4z − 12 = 0",
+          "⇒ 3x − 5y + 4z − 1 = 0",
+          "Check: at (−2, 1, 3) the left side is",
+          "−6 − 5 + 12 − 1 = 0",
+          {
+            "text": "∴ 3x − 5y + 4z − 1 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That expanding gives 3x − 5y + 4z − 1 = 0, and that the given point satisfies it.",
+          "accept": [
+            "substitute and expand the three brackets",
+            "the plane is three x minus five y plus four z minus one equals zero",
+            "put the point back in and the left side comes to zero",
+            "expand chesi constants collect cheyyali",
+            "the coefficients stay three, minus five and four"
+          ],
+          "reject": [
+            "use the point and normal form of the plane",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "expand",
+            "collect",
+            "minus one equals zero",
+            "check the point"
+          ]
+        },
+        "why": "The coefficients must come out unchanged as 3, −5 and 4, because only the constant term depends on which point the plane passes through. Substituting the point back is the quick test that the constant is right.",
+        "common_mistakes": [
+          "Writing 3(x − 2) instead of 3(x + 2) for the negative coordinate.",
+          "Adding the constants wrongly and getting +1 in place of −1."
+        ]
+      }
+    ]
+  }
+}

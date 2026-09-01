@@ -1,0 +1,137 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_line_from_midpoint_pq",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "A straight line meets the coordinate axes at A and B. Find the equation of the straight line when (p, q) is the midpoint of AB.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use the midpoint",
+      "marks": 1
+    },
+    {
+      "label": "Write the intercept form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 22, book p.143. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. PRINTED DEFECT RECORDED: the book's stem ends \"when (p, q) bisects.\" with the object of the verb missing. Only one reading is possible, since A and B are the only two points named and a point can bisect only a segment, so the card is authored on the sensible reading that (p, q) is the midpoint of AB, and question_text says so plainly. No number was changed and nothing was added beyond naming the omitted object. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for turning the midpoint into a = 2p and b = 2q, and the second for the intercept form and the final tidy. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Answer checked by substitution: x/p + y/q = 2 is satisfied at A(2p, 0) because 2p/p + 0 = 2, and at B(0, 2q) because 0 + 2q/q = 2. The midpoint of those two points is ((2p + 0)/2, (0 + 2q)/2) = (p, q), which is the condition the question sets."
+  },
+  "recall_prompt": "Say how you would solve this — say how you name the two axis points, and what the midpoint tells you about them.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_use_the_midpoint",
+        "kind": "equation",
+        "label": "Use the midpoint",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A point on the X-axis has y = 0 and a point on the Y-axis has x = 0, so A and B can be written with one unknown each before the midpoint is used.",
+        "memory_tip": "A point on the X-axis is (a, 0); a point on the Y-axis is (0, b). One unknown each.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let the line meet the axes at",
+          "A(a, 0) on the X-axis and B(0, b) on the Y-axis",
+          "Midpoint of AB is ((a + 0)/2, (0 + b)/2)",
+          "= (a/2, b/2).  This is given as (p, q)",
+          "⇒ a/2 = p and b/2 = q",
+          "⇒ a = 2p and b = 2q"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A is taken as (a, 0) and B as (0, b), and the midpoint condition gives a = 2p, b = 2q.",
+          "accept": [
+            "take a as a comma zero and b as zero comma b",
+            "the midpoint is a by two comma b by two",
+            "a is two p and b is two q",
+            "midpoint formula vaadithe a two p avuthundi",
+            "the intercepts are double the midpoint coordinates"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "use the intercept form"
+          ],
+          "heard_as": [
+            "a comma zero",
+            "zero comma b",
+            "a by two comma b by two",
+            "two p and two q"
+          ]
+        },
+        "why": "The midpoint of a segment has coordinates that are the averages of the endpoints, so each intercept is twice the matching coordinate of (p, q).",
+        "common_mistakes": [
+          "Writing a = p/2 and b = q/2, which halves the intercepts instead of doubling them.",
+          "Taking A as (a, b), which ignores that A is on an axis."
+        ]
+      },
+      {
+        "id": "s2_write_the_intercept_form",
+        "kind": "boxed_final",
+        "label": "Write the intercept form",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Put the two intercepts into x/a + y/b = 1 and clear the 2 from the denominators. The line exists only when p and q are both non-zero.",
+        "memory_tip": "Intercept form is x/a + y/b = 1. Two intercepts in, one equation out.",
+        "lines": [
+          "Intercept form is  x/a + y/b = 1",
+          "⇒ x/(2p) + y/(2q) = 1,  p ≠ 0, q ≠ 0",
+          "Multiply both sides by 2:",
+          {
+            "text": "∴ x/p + y/q = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the intercept form with intercepts 2p and 2q gives x/(2p) + y/(2q) = 1, that is x/p + y/q = 2.",
+          "accept": [
+            "x by a plus y by b equals one",
+            "x by two p plus y by two q equals one",
+            "multiply by two to get x by p plus y by q equals two",
+            "intercept form lo pettina answer vasthundi",
+            "the answer is x by p plus y by q equals two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "the midpoint is a by two comma b by two"
+          ],
+          "heard_as": [
+            "intercept form",
+            "x by p plus y by q",
+            "equals two",
+            "multiply by two"
+          ]
+        },
+        "why": "If p or q were 0 one intercept would be 0, so the line would pass through the origin and the intercept form x/a + y/b = 1 could not be written at all. That is why both must be non-zero.",
+        "common_mistakes": [
+          "Leaving the answer as x/(2p) + y/(2q) = 1 when the tidier form is asked for.",
+          "Multiplying only the left side by 2 and writing x/p + y/q = 1."
+        ]
+      }
+    ]
+  }
+}

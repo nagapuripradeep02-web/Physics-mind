@@ -1,0 +1,136 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_triple_composition_constant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f(x) = 2, g(x) = x² and h(x) = 2x for all x ∈ R, find (fo(goh))(x).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Value of (goh)(x)",
+      "marks": 1
+    },
+    {
+      "label": "Value of f at that expression",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.10, chapter 2 FUNCTIONS, Very Short Answer question 10(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the inner composition (goh)(x) = 4x² and one to seeing that a constant function returns 2 whatever it is given. WHAT THE BOOK PRINTS: the stem is printed as (fo(goh)(x)), which is one closing bracket short. We authored the only reading that parses, (fo(goh))(x) — f applied to the composition g o h. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find (fo(goh))(x) — the order the three functions act in, and why the answer is a single number.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_goh",
+        "kind": "equation",
+        "label": "Work the inner pair g o h",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. h is innermost, so h acts first and g squares its output. Getting (goh)(x) = 4x² earns this mark on its own.",
+        "memory_tip": "Work from the inside out: h first, then g, then f.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "h is innermost, so h acts first, then g.",
+          "(goh)(x) = g[h(x)] = g(2x)",
+          "= (2x)² = 4x²"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That h acts first giving 2x, and g squares it, so (goh)(x) = 4x².",
+          "accept": [
+            "h acts first giving two x then g squares it so g o h of x is four x squared",
+            "g of two x is two x whole squared which is four x squared",
+            "the inner composition is four x squared",
+            "modata h apply chesthe two x vastundi appudu g square chestundi four x squared",
+            "square two x to get four x squared"
+          ],
+          "reject": [
+            "I work the inside first",
+            "then f acts on it",
+            "the answer is two"
+          ],
+          "heard_as": [
+            "g o h",
+            "goh",
+            "two x squared",
+            "four x squared",
+            "innermost"
+          ]
+        },
+        "why": "The brackets say g o h is worked out first, and inside that pair h is the inner function. Squaring 2x squares both the 2 and the x, which is why the coefficient is 4 and not 2.",
+        "common_mistakes": [
+          "Writing (2x)² as 2x², squaring only the x.",
+          "Taking g first and computing h(x²) = 2x²."
+        ]
+      },
+      {
+        "id": "s2_constant",
+        "kind": "boxed_final",
+        "label": "Apply the constant function f",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. State that f is a constant function before writing the answer — that sentence is what shows the 4x² was understood and then correctly ignored.",
+        "memory_tip": "A constant function ignores its input. Whatever goes in, 2 comes out.",
+        "lines": [
+          "Now apply f to 4x²:",
+          "f is the constant function f(x) = 2,",
+          "so f(t) = 2 for every real number t.",
+          "∴ f(4x²) = 2",
+          {
+            "text": "∴ (fo(goh))(x) = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is a constant function, so f of 4x² is 2 and the whole composition is the constant 2.",
+          "accept": [
+            "f is a constant function so f of four x squared is two",
+            "whatever you put into f you get two so the answer is two",
+            "f takes every input to two so the composition is two",
+            "f constant function kabatti input em ichina two ye vastundi",
+            "the answer is two"
+          ],
+          "reject": [
+            "the answer is four x squared",
+            "then apply f",
+            "substitute and simplify"
+          ],
+          "heard_as": [
+            "constant function",
+            "f of four x squared",
+            "two",
+            "every input"
+          ]
+        },
+        "why": "f has the same value 2 at every input, so the expression 4x² never reaches the answer. The composition is itself a constant function, which is why the answer carries no x.",
+        "common_mistakes": [
+          "Writing f(4x²) = 4x², treating f as the identity function.",
+          "Writing f(4x²) = 8x², treating f(x) = 2 as multiply by 2."
+        ]
+      }
+    ]
+  }
+}

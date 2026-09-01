@@ -1,0 +1,280 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_lines_through_intersection_distance_2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the equations of the straight lines passing through the point of intersection of the lines 3x + 2y + 4 = 0 and 2x + 5y = 1 whose distance from (2, −1) is 2.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the point of intersection",
+      "marks": 2
+    },
+    {
+      "label": "Write the line through it",
+      "marks": 1
+    },
+    {
+      "label": "Apply the distance condition",
+      "marks": 2
+    },
+    {
+      "label": "Solve for the slope",
+      "marks": 2
+    },
+    {
+      "label": "Write both lines",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.155, chapter 3 THE STRAIGHT LINE, Long Answer question 10. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split puts two marks on each of the two pieces of real work — finding the meeting point and turning the distance condition into an equation in m — two more on solving it, and one each on writing the line through the point and on reporting both answers. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Both answers were substituted back before they were written: y − 1 = 0 passes through (−2, 1) and its distance from (2, −1) is |−1 − 1| = 2, and 4x + 3y + 5 = 0 gives −8 + 3 + 5 = 0 at (−2, 1) and |8 − 3 + 5|/5 = 2 at (2, −1). The pair was also reached a second way, through the family (3x + 2y + 4) + λ(2x + 5y − 1) = 0, which gives λ = 1/14 and λ = −3/2 and the same two lines."
+  },
+  "recall_prompt": "Say how you would solve this — name the point every answer must pass through, and say why the question has two answers.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_intersection",
+        "kind": "equation",
+        "label": "Find the point of intersection",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "The first two marks. Make one column of coefficients match, subtract, and put the value back into either line for the second coordinate.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given lines  3x + 2y + 4 = 0  ……(1)",
+          "and  2x + 5y − 1 = 0  ……(2)",
+          "(1) × 5:  15x + 10y + 20 = 0",
+          "(2) × 2:  4x + 10y − 2 = 0",
+          "Subtracting,  11x + 22 = 0  ⇒  x = −2",
+          "From (2),  −4 + 5y − 1 = 0  ⇒  y = 1",
+          "∴ The lines meet at P(−2, 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two given lines meet at P(−2, 1).",
+          "accept": [
+            "solve the two lines together to get minus two and one",
+            "the point of intersection is minus two comma one",
+            "make the y coefficients equal and subtract",
+            "rendu lines solve chesthe minus two comma one vasthundi",
+            "P is minus two one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "point of intersection",
+            "minus two",
+            "one",
+            "subtract"
+          ]
+        },
+        "why": "Every line asked for has to pass through this one point, so nothing else in the question can be started until it is found.",
+        "common_mistakes": [
+          "Writing 2x + 5y = 1 as 2x + 5y + 1 = 0 when moving the 1 across.",
+          "Solving the pair but forgetting to put the value back to find y."
+        ],
+        "memory_tip": "Match one column, subtract, then put the value BACK. Move the 1 across as −1, not +1."
+      },
+      {
+        "id": "s2_line_through_p",
+        "kind": "equation",
+        "label": "Write the line through it",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. Test the vertical line first, then write the point-slope form through P and bring it to ax + by + c = 0 shape.",
+        "lines": [
+          "The vertical line x = −2 through P is at",
+          "distance |2 − (−2)| = 4 from (2, −1), not 2,",
+          "so the required line has a slope m.",
+          "y − 1 = m(x + 2)",
+          "⇒ mx − y + 2m + 1 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the line through P is y − 1 = m(x + 2), after the vertical line is ruled out.",
+          "accept": [
+            "write y minus one equals m into x plus two",
+            "use the point slope form through P",
+            "check the vertical line separately first",
+            "point slope form vaadali P gunda",
+            "m x minus y plus two m plus one equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "point slope form",
+            "vertical line",
+            "y minus one",
+            "x plus two"
+          ]
+        },
+        "why": "The slope form misses vertical lines, so the vertical line through P is tested separately and ruled out before m is introduced.",
+        "common_mistakes": [
+          "Starting from y = mx + c and never using the point P.",
+          "Never checking the vertical line, so a possible answer is not ruled out."
+        ],
+        "memory_tip": "The slope form cannot describe a vertical line, so check x = −2 by hand first, then use y − y₁ = m(x − x₁)."
+      },
+      {
+        "id": "s3_distance_condition",
+        "kind": "equation",
+        "label": "Apply the distance condition",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Put (2, −1) into |ax + by + c|/√(a² + b²) for the line just written, set it equal to 2, and take the common factor 2 out.",
+        "lines": [
+          "Its distance from (2, −1) is 2, so",
+          "|m(2) − (−1) + 2m + 1| / √(m² + 1) = 2",
+          "⇒ |4m + 2| = 2√(m² + 1)",
+          "⇒ |2m + 1| = √(m² + 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That putting (2, −1) into the distance formula gives |2m + 1| = √(m² + 1).",
+          "accept": [
+            "put two comma minus one into the distance formula",
+            "mod four m plus two over root m squared plus one equals two",
+            "cancel the two to get mod two m plus one equals root m squared plus one",
+            "distance formula lo two comma minus one pettali",
+            "the distance condition gives an equation in m"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "distance formula",
+            "four m plus two",
+            "root m squared plus one",
+            "equals two"
+          ]
+        },
+        "why": "The distance condition is the only equation in the question, and writing it with the modulus kept is what turns a geometry statement into algebra.",
+        "common_mistakes": [
+          "Putting the coordinates of P into the distance formula instead of (2, −1).",
+          "Cancelling the 2 on the right without dividing the left side as well."
+        ],
+        "memory_tip": "The POINT goes into the formula, the LINE gives the coefficients. Here 4m + 2 has a factor 2 that cancels the 2 on the right."
+      },
+      {
+        "id": "s4_solve_m",
+        "kind": "equation",
+        "label": "Solve for the slope",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Square, cancel the 1 on both sides, and take m out as a common factor. Never divide by m — that throws away the answer m = 0.",
+        "lines": [
+          "Squaring both sides,",
+          "4m² + 4m + 1 = m² + 1",
+          "⇒ 3m² + 4m = 0",
+          "⇒ m(3m + 4) = 0",
+          "⇒ m = 0  (or)  m = −4/3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That squaring gives 3m² + 4m = 0, so m = 0 or m = −4/3.",
+          "accept": [
+            "square both sides and get three m squared plus four m equals zero",
+            "take m as a common factor to get m equals zero or minus four by three",
+            "the two slopes are zero and minus four over three",
+            "m ni common ga teesthe rendu values vasthaayi",
+            "do not divide by m"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "square both sides",
+            "m equals zero",
+            "minus four by three",
+            "common factor"
+          ]
+        },
+        "why": "Squaring removes the modulus and both roots are kept, because the two lines through P at distance 2 are genuinely two different lines.",
+        "common_mistakes": [
+          "Dividing by m and losing the root m = 0.",
+          "Writing 4m² + 4m + 1 = m² + 1 as 3m² + 4m + 2 = 0."
+        ],
+        "memory_tip": "Take m OUT as a factor, never divide by it. Dividing by m loses the line y = 1."
+      },
+      {
+        "id": "s5_both_lines",
+        "kind": "boxed_final",
+        "label": "Write both lines",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Put each slope back into y − 1 = m(x + 2) and clear the fractions. Both lines are part of the answer.",
+        "lines": [
+          "m = 0:  y − 1 = 0",
+          "m = −4/3:  3(y − 1) = −4(x + 2)",
+          "⇒ 3y − 3 = −4x − 8",
+          "⇒ 4x + 3y + 5 = 0",
+          "∴ The required lines are",
+          {
+            "text": "y − 1 = 0  and  4x + 3y + 5 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two lines are y − 1 = 0 and 4x + 3y + 5 = 0.",
+          "accept": [
+            "the lines are y equals one and four x plus three y plus five equals zero",
+            "put each slope back into the point slope form",
+            "both slopes give a line so there are two answers",
+            "rendu slopes ki rendu lines rasthaam",
+            "y minus one equals zero and four x plus three y plus five equals zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "y minus one",
+            "four x plus three y plus five",
+            "two lines",
+            "both answers"
+          ]
+        },
+        "why": "The question asks for equations, in the plural, so both slopes have to be carried back through the point-slope form and written out.",
+        "common_mistakes": [
+          "Reporting only one of the two lines.",
+          "Leaving the answer as a slope instead of an equation."
+        ],
+        "memory_tip": "Two slopes means TWO equations. Put each one back into the point-slope form and clear the fraction."
+      }
+    ]
+  }
+}

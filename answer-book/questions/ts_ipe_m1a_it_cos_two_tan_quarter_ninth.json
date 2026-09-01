@@ -1,0 +1,183 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_cos_two_tan_quarter_ninth",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Prove that cos[2(Tan⁻¹(1/4) + Tan⁻¹(2/9))] = 3/5.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Add the two inverse tangents",
+      "marks": 2
+    },
+    {
+      "label": "Double the angle",
+      "marks": 1
+    },
+    {
+      "label": "Simplify and close",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.113, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 4(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. Half the marks sit on the addition of the two inverse tangents, because that step carries both the formula and the condition xy < 1 that makes it valid. NOTATION: the book prints the inverse functions in lower case (tan⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. Checked numerically to twelve decimal places: cos(2(arctan(0.25) + arctan(2/9))) = 0.600000000000, and the inner sum equals arctan(0.5) = 0.463647609001. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trigonometric Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_add_the_two_inverse_tangents",
+        "kind": "equation",
+        "label": "Add the two inverse tangents",
+        "marks": 2,
+        "mark_note": "Formula",
+        "margin_note": "Half the marks. The 17s cancel, which is why the fraction reduces to 1/2.",
+        "memory_tip": "Check xy < 1 before adding two Tan⁻¹ terms. Here xy = 1/18, so no π is added.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Tan⁻¹x + Tan⁻¹y = Tan⁻¹((x + y)/(1 − xy))",
+          "and this holds only when xy < 1.",
+          "Here x = 1/4, y = 2/9,",
+          "so xy = 2/36 = 1/18 < 1  ✓",
+          "Tan⁻¹(1/4) + Tan⁻¹(2/9)",
+          "= Tan⁻¹((1/4 + 2/9)/(1 − 1/18))",
+          "= Tan⁻¹((17/36)/(17/18)) = Tan⁻¹(1/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two inverse tangents are added with the formula, the condition xy < 1 is checked, and the sum is Tan⁻¹(1/2).",
+          "accept": [
+            "add the two tan inverses with the formula after checking that the product is less than one",
+            "x y is one over eighteen so the plain formula applies and the sum is tan inverse one half",
+            "the seventeens cancel leaving tan inverse of a half",
+            "x y one by eighteen, condition satisfy avthundi, sum tan inverse half",
+            "combine the two inverse tangents into one"
+          ],
+          "reject": [
+            "double the angle",
+            "the answer is three fifths",
+            "hence proved"
+          ],
+          "heard_as": [
+            "tan inverse one quarter",
+            "two ninths",
+            "one over eighteen",
+            "tan inverse one half"
+          ]
+        },
+        "why": "When xy > 1 the formula needs an extra π on the right-hand side. The product 1/18 is well below 1, so the plain formula is the correct one here.",
+        "common_mistakes": [
+          "Using the formula without checking xy < 1.",
+          "Writing the denominator as 1 + xy."
+        ]
+      },
+      {
+        "id": "s2_double_the_angle",
+        "kind": "equation",
+        "label": "Double the angle",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The tangent form of cos2θ is chosen because tanθ is the only ratio already in hand.",
+        "memory_tip": "cos2θ = (1 − tan²θ)/(1 + tan²θ) works straight from tanθ, with no triangle needed.",
+        "lines": [
+          "Let θ = Tan⁻¹(1/2) ⇒ tanθ = 1/2",
+          "cos2θ = (1 − tan²θ)/(1 + tan²θ)",
+          "= (1 − 1/4)/(1 + 1/4)",
+          "= (3/4)/(5/4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos2θ is written in terms of tanθ and evaluated at tanθ = 1/2.",
+          "accept": [
+            "use cos two theta equals one minus tan squared over one plus tan squared",
+            "with tan theta a half it becomes three quarters over five quarters",
+            "the tangent form avoids finding the sine and cosine separately",
+            "cos two theta formula tan lo rasi, three by four over five by four",
+            "double the angle using the tangent form"
+          ],
+          "reject": [
+            "add the two inverse tangents",
+            "the answer is three fifths",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos two theta",
+            "one minus tan squared",
+            "three quarters over five quarters",
+            "tan theta half"
+          ]
+        },
+        "why": "Writing cos2θ in terms of tanθ avoids finding sinθ and cosθ separately. The tangent is the only ratio already known.",
+        "common_mistakes": [
+          "Turning the fraction upside down.",
+          "Writing tan²θ as 1/2 instead of 1/4."
+        ]
+      },
+      {
+        "id": "s3_simplify_and_close",
+        "kind": "boxed_final",
+        "label": "Simplify and close",
+        "marks": 1,
+        "mark_note": "Result",
+        "margin_note": "Last mark. θ was only a name for the combined angle, so 2θ is exactly the bracket the question doubles.",
+        "memory_tip": "(3/4) ÷ (5/4) = 3/5 — the quarters cancel.",
+        "lines": [
+          "= 3/5",
+          "and 2θ = 2(Tan⁻¹(1/4) + Tan⁻¹(2/9))",
+          {
+            "text": "∴ cos[2(Tan⁻¹(1/4) + Tan⁻¹(2/9))] = 3/5",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (3/4)/(5/4) reduces to 3/5 and that 2θ is the bracket in the question.",
+          "accept": [
+            "the quarters cancel so the value is three fifths",
+            "two theta is the whole bracket doubled so the left side is three fifths",
+            "three quarters divided by five quarters is three by five",
+            "quarters cancel ayi three by five vasthundi",
+            "the left hand side comes to three fifths"
+          ],
+          "reject": [
+            "double the angle",
+            "the product is one over eighteen",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three fifths",
+            "two theta",
+            "quarters cancel",
+            "three by five"
+          ]
+        },
+        "why": "The 4s cancel in (3/4)/(5/4), so the whole expression comes to exactly 3/5 and not to a decimal.",
+        "common_mistakes": [
+          "Leaving the answer as (3/4)/(5/4).",
+          "Forgetting that 2θ is the whole bracket doubled."
+        ]
+      }
+    ]
+  }
+}

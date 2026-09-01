@@ -1,0 +1,150 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_perp_bisector_find_b_from_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "x−3y−5=0 is the perpendicular bisector of the line segment joining the points A and B. Given A=(−1,−3), find the coordinates of B.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write both bisector conditions",
+      "marks": 1
+    },
+    {
+      "label": "Solve for B",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 41, book p.148. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for writing BOTH bisector conditions as two equations in h and k, and one for solving them. B = (−8/5, −6/5) was obtained twice by independent routes — the two-condition route written on the page, and the reflection formula (x − x₁)/a = (y − y₁)/b = −2(ax₁ + by₁ + c)/(a² + b²) — and then checked: the midpoint (−13/10, −21/10) satisfies x − 3y − 5 = 0, and the slope of AB is −3, so (1/3)(−3) = −1. The fractional answer is correct, not a slip. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say the two things a perpendicular bisector tells you, and how many unknowns you are solving for.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_both_conditions",
+        "kind": "equation",
+        "label": "Write both bisector conditions",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A perpendicular bisector gives TWO facts, not one: the midpoint is on the line, and the segment is perpendicular to it. Two unknowns need two equations.",
+        "memory_tip": "Perpendicular bisector = midpoint on the line AND segment perpendicular to it. Two conditions, two unknowns.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let B = (h, k).  Given A = (−1, −3)",
+          "Given line  x − 3y − 5 = 0, slope = 1/3",
+          "A perpendicular bisector gives BOTH:",
+          "(i) the midpoint of AB lies on the line,",
+          "(ii) AB is perpendicular to the line.",
+          "(i) Midpoint = ((h − 1)/2, (k − 3)/2)",
+          "⇒ (h − 1)/2 − 3(k − 3)/2 − 5 = 0",
+          "⇒ h − 1 − 3k + 9 − 10 = 0",
+          "⇒ h − 3k − 2 = 0  ……(1)",
+          "(ii) Slope of AB = (k + 3)/(h + 1) = −3,",
+          "since (1/3)(−3) = −1",
+          "⇒ k + 3 = −3h − 3",
+          "⇒ 3h + k + 6 = 0  ……(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both conditions are written: the midpoint of AB lies on the line, and AB is perpendicular to it.",
+          "accept": [
+            "the midpoint lies on the line and a b is perpendicular to it",
+            "two conditions give two equations in h and k",
+            "slope of a b is minus three because the line has slope one third",
+            "midpoint line meeda untundi and perpendicular kuda",
+            "write both conditions not just one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "midpoint",
+            "perpendicular",
+            "slope minus three",
+            "h and k"
+          ]
+        },
+        "why": "Either condition alone still produces a line and an answer, which is why leaving one out feels safe and is not. Through the midpoint alone allows every line through that midpoint, and perpendicular alone allows every line in that direction; only both together fix B.",
+        "common_mistakes": [
+          "Using only the midpoint condition, which leaves B undetermined.",
+          "Taking the slope of AB as 1/3, the slope of the line itself."
+        ]
+      },
+      {
+        "id": "s2_solve_for_b",
+        "kind": "boxed_final",
+        "label": "Solve for B",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Two linear equations in h and k. Substituting (2) into (1) is quickest, and the answer is a pair of fractions.",
+        "memory_tip": "Make one unknown the subject in the simpler equation, substitute into the other, then go back for it.",
+        "lines": [
+          "(2) ⇒ k = −3h − 6. Put this in (1):",
+          "h − 3(−3h − 6) − 2 = 0",
+          "⇒ h + 9h + 18 − 2 = 0  ⇒  10h = −16",
+          "⇒ h = −8/5",
+          "Then k = −3(−8/5) − 6 = 24/5 − 30/5 = −6/5",
+          {
+            "text": "∴ B = (−8/5, −6/5)",
+            "style": "boxed"
+          },
+          "Check: midpoint of AB = (−13/10, −21/10) and",
+          "−13/10 + 63/10 − 50/10 = 0, so it is on the",
+          "line.  Slope of AB = (9/5)/(−3/5) = −3, and",
+          "(1/3)(−3) = −1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving the two equations gives B = (−8/5, −6/5).",
+          "accept": [
+            "substitute k equals minus three h minus six into the first equation",
+            "ten h equals minus sixteen so h is minus eight fifths",
+            "b is minus eight by five comma minus six by five",
+            "rendu equations solve chesthe b vasthundi",
+            "the answer has fractions"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus eight by five",
+            "minus six by five",
+            "ten h equals minus sixteen",
+            "b equals"
+          ]
+        },
+        "why": "B is the mirror image of A in the given line, so the same answer also comes from the reflection formula; solving the two conditions is the version that needs no formula to be remembered.",
+        "common_mistakes": [
+          "Sign slip in −3(−3h − 6), giving 10h = 16.",
+          "Rounding −8/5 to −1.6 and losing the exact form."
+        ]
+      }
+    ]
+  }
+}

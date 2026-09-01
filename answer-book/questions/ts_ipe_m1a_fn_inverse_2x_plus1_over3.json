@@ -1,0 +1,176 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_inverse_2x_plus1_over3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the inverse of f: R→R defined by f(x) = (2x + 1)/3.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Make x the subject",
+      "marks": 1
+    },
+    {
+      "label": "The inverse function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 17(v). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to making x the subject and one to the finished inverse function, because those are the two places a student can go wrong. The check step, which shows f(f⁻¹(x)) = x and names the domain the inverse lives on, carries no mark and is authored for the student, not for the examiner. The book prints this part as v) and skips iv), so the part label recorded here is the printed one. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the inverse — the first move, the finished function, and how you check it.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_solve",
+        "kind": "equation",
+        "label": "Make x the subject",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark is the method: put f(x) = y and solve for x. Clear the 3 first, then the 1, then the 2 — the reverse of the order they were applied.",
+        "memory_tip": "Undo in reverse order. The last thing done to x was divide by 3, so multiply by 3 first.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f: R→R, f(x) = (2x + 1)/3",
+          "Take f(x) = y ⇒ x = f⁻¹(y)",
+          "(2x + 1)/3 = y ⇒ 2x + 1 = 3y",
+          "⇒ 2x = 3y − 1 ⇒ x = (3y − 1)/2",
+          "∴ f⁻¹(y) = (3y − 1)/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That you set f(x) = y, which means x = f⁻¹(y), and then solve (2x + 1)/3 = y for x to get (3y − 1)/2.",
+          "accept": [
+            "take f of x equals y so x is f inverse of y then solve two x plus one by three equals y and get x equals three y minus one by two",
+            "put y equal to two x plus one over three and make x the subject",
+            "multiply both sides by three then subtract one then divide by two",
+            "f of x equals y anukoni x ni solve chesthe three y minus one by two",
+            "rearrange to get x in terms of y as three y minus one over two"
+          ],
+          "reject": [
+            "I find the inverse",
+            "swap x and y",
+            "solve for x"
+          ],
+          "heard_as": [
+            "f of x equals y",
+            "f inverse",
+            "two x plus one by three",
+            "three y minus one by two"
+          ]
+        },
+        "why": "The inverse undoes the function, so making x the subject is exactly what finding the inverse means. Every inverse question in this chapter is this one move.",
+        "common_mistakes": [
+          "Writing f⁻¹(x) = 3/(2x + 1), which is the reciprocal, not the inverse.",
+          "Subtracting 1 before multiplying by 3, which gives (3y − 3)/2."
+        ]
+      },
+      {
+        "id": "s2_check",
+        "kind": "equation",
+        "label": "Check the answer",
+        "marks": 0,
+        "margin_note": "No mark for this, but it is a 20-second check that catches a sign slip. Feed the inverse back into f and see whether x comes out.",
+        "memory_tip": "Test it: put the inverse into f. If f(f⁻¹(x)) comes back as x, the inverse is right.",
+        "lines": [
+          "Rename y as x: f⁻¹(x) = (3x − 1)/2",
+          "Check: f(f⁻¹(x)) = (2·(3x − 1)/2 + 1)/3",
+          "= (3x − 1 + 1)/3 = 3x/3 = x",
+          "f is one one and onto, so f⁻¹ exists",
+          "on all of R. So f⁻¹: R→R."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting f⁻¹(x) into f returns x, and that the inverse is a function from R to R.",
+          "accept": [
+            "put f inverse of x into f and you get two times three x minus one by two plus one all over three which is x",
+            "f of f inverse of x comes back as x so the inverse is correct",
+            "check by composing f with f inverse and getting x",
+            "f lo f inverse pettthe x ye vastundi so it is correct",
+            "the inverse is a function from R to R because f is one one and onto"
+          ],
+          "reject": [
+            "I check the answer",
+            "verify it",
+            "substitute back"
+          ],
+          "heard_as": [
+            "f of f inverse of x",
+            "equals x",
+            "R to R",
+            "one one and onto"
+          ]
+        },
+        "why": "A wrong sign or a wrong order of operations is invisible in the answer line but shows up at once in this check. The domain of f⁻¹ is the codomain of f, which here is R.",
+        "common_mistakes": [
+          "Leaving the answer in y and never renaming the variable to x.",
+          "Saying the inverse exists without noting that f is one one and onto."
+        ]
+      },
+      {
+        "id": "s3_answer",
+        "kind": "boxed_final",
+        "label": "Write the inverse",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark is the finished function, written in x. State the map R→R with it so the domain of the inverse is on the page.",
+        "memory_tip": "The answer must be a function of x, so rename y as x in the last line.",
+        "lines": [
+          "∴ f⁻¹: R→R is given by",
+          {
+            "text": "f⁻¹(x) = (3x − 1)/2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f⁻¹(x) = (3x − 1)/2, a function from R to R.",
+          "accept": [
+            "f inverse of x is three x minus one by two",
+            "the inverse function is three x minus one over two",
+            "f inverse maps R to R and equals three x minus one by two",
+            "f inverse of x ante three x minus one by two",
+            "the answer is three x minus one divided by two"
+          ],
+          "reject": [
+            "that is the inverse",
+            "so we get the answer",
+            "f inverse is found"
+          ],
+          "heard_as": [
+            "f inverse of x",
+            "three x minus one by two",
+            "over two",
+            "R to R"
+          ]
+        },
+        "why": "A function is normally written in x, so the last line renames the variable. Naming the map R→R shows the inverse is defined for every real number.",
+        "common_mistakes": [
+          "Writing (3x + 1)/2, undoing the wrong sign.",
+          "Writing (x − 1)/2 or 3(x − 1)/2, dropping or misplacing the 3."
+        ]
+      }
+    ]
+  }
+}

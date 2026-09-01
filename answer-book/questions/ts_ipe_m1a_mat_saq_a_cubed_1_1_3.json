@@ -1,0 +1,207 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_saq_a_cubed_1_1_3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "If A is the matrix with rows (1, 1, 3), (5, 2, 6) and (−2, −1, −3), then find A³.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find A²",
+      "marks": 1
+    },
+    {
+      "label": "Find A³ = A²·A",
+      "marks": 2
+    },
+    {
+      "label": "Check the result with A·A²",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.46, chapter 5 MATRICES, Short Answer question 18(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1 shape puts half the marks on A³ because it can only be reached after A² and so carries the compounding risk — an error in A² is invisible until A³ comes out wrong — and keeps a whole mark for the second route A·A², because the answer here is the zero matrix and a student who reaches O by a slip has no other way to tell. The same 1+2+1 is used on the neighbouring A³ card in this unit. Independently computed before authoring, both ways: A² has rows (0, 0, 0), (3, 3, 9) and (−1, −1, −3); A²·A gives the 3×3 zero matrix and A·A² gives the 3×3 zero matrix, so the two routes agree. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, each worth 4 marks, under the 2026-27 pattern; Matrices supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find A³ — say what you work out first, how you use it, and how you check the answer.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Matrices · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_a_squared",
+        "kind": "equation",
+        "label": "Find A²",
+        "marks": 1,
+        "mark_note": "A squared",
+        "margin_note": "First mark. Multiply row by column, watching the negatives. Row 1 against column 1 is 1 + 5 − 6 = 0, and the whole first row of A² turns out to be zero.",
+        "memory_tip": "Multiply row by column, watching the negatives: row 1 against column 1 is 1 + 5 − 6 = 0.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "A^2 = A \\cdot A = \\begin{bmatrix} 1 & 1 & 3 \\\\ 5 & 2 & 6 \\\\ -2 & -1 & -3 \\end{bmatrix}\\begin{bmatrix} 1 & 1 & 3 \\\\ 5 & 2 & 6 \\\\ -2 & -1 & -3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Row 1 × column 1: 1 + 5 − 6 = 0",
+          "Row 1 × column 3: 3 + 6 − 9 = 0",
+          "Row 2 × column 3: 15 + 12 − 18 = 9",
+          {
+            "text": "A^2 = \\begin{bmatrix} 0 & 0 & 0 \\\\ 3 & 3 & 9 \\\\ -1 & -1 & -3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "The whole first row of A² is zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A² is A multiplied by itself, row against column, and that the first row of the result comes out all zeros.",
+          "accept": [
+            "A squared is A times A by row into column multiplication",
+            "multiply the matrix by itself and the first row comes out all zeros",
+            "work out A into A carefully because of the negative entries",
+            "A square ante A into A, row into column multiply cheyyali",
+            "find the product of A with itself first"
+          ],
+          "reject": [
+            "square the matrix",
+            "find A squared",
+            "square each entry"
+          ],
+          "heard_as": [
+            "A squared",
+            "A into A",
+            "row into column",
+            "first row zero"
+          ]
+        },
+        "why": "A³ is built from A², so this matrix is used again in the next step. A row of zeros appearing here is a strong hint about what A³ will be, and it is worth checking one entry twice before going on.",
+        "common_mistakes": [
+          "Squaring each entry instead of multiplying the matrices.",
+          "Dropping a minus sign when a negative entry meets a negative entry.",
+          "Multiplying column by row."
+        ]
+      },
+      {
+        "id": "s2_a_cubed",
+        "kind": "equation",
+        "label": "Find A³",
+        "marks": 2,
+        "mark_note": "A cubed",
+        "margin_note": "Half the marks. A³ = A²·A — use the matrix just found, not A three times over. Row 1 of A² is zero, so row 1 of A³ is zero without any work; the other six entries all cancel.",
+        "memory_tip": "A³ = A²·A. A zero row in A² stays a zero row in the product, so only six entries need working out.",
+        "lines": [
+          {
+            "text": "A^3 = A^2 \\cdot A = \\begin{bmatrix} 0 & 0 & 0 \\\\ 3 & 3 & 9 \\\\ -1 & -1 & -3 \\end{bmatrix}\\begin{bmatrix} 1 & 1 & 3 \\\\ 5 & 2 & 6 \\\\ -2 & -1 & -3 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Row 1 of A² is zero, so row 1 of A³ is zero.",
+          "Row 2 × column 1: 3 + 15 − 18 = 0",
+          "Row 2 × column 3: 9 + 18 − 27 = 0",
+          "Row 3 × column 1: −1 − 5 + 6 = 0",
+          "Row 3 × column 3: −3 − 6 + 9 = 0",
+          {
+            "text": "A^3 = \\begin{bmatrix} 0 & 0 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{bmatrix} = O",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That A³ is found as A² multiplied by A, reusing the matrix already computed, and that every entry of the product comes out zero.",
+          "accept": [
+            "A cubed is A squared times A so multiply the matrix already found by A",
+            "use A squared and multiply it by A again and every entry becomes zero",
+            "the product of A squared and A is the zero matrix",
+            "A cube ante A square ni A tho multiply cheyyali, anni zeros vasthai",
+            "multiply the previous result by A once more and it all cancels"
+          ],
+          "reject": [
+            "find A cubed",
+            "multiply again",
+            "cube the matrix"
+          ],
+          "heard_as": [
+            "A cubed",
+            "A squared into A",
+            "zero matrix",
+            "all zeros",
+            "O"
+          ]
+        },
+        "why": "Matrix multiplication is associative, so A·A·A can be grouped as (A·A)·A. Reusing A² halves the work, and that is why the steps are in this order.",
+        "common_mistakes": [
+          "Multiplying A by A by A from scratch and making a fresh arithmetic error.",
+          "Writing the answer as 0 instead of O — the answer is a matrix, not a number.",
+          "Sign slips: 3 + 15 − 18 is 0, but 3 + 15 + 18 is not."
+        ]
+      },
+      {
+        "id": "s3_check",
+        "kind": "boxed_final",
+        "label": "Check with A·A²",
+        "marks": 1,
+        "mark_note": "Check",
+        "margin_note": "Last mark. A zero answer is easy to reach by mistake, so multiply the other way round as well. Row 1 of A is (1, 1, 3) and column 1 of A² is (0, 3, −1), giving 0 + 3 − 3 = 0.",
+        "memory_tip": "A zero answer is easy to reach by a slip, so multiply the other way round and confirm it.",
+        "lines": [
+          "Matrix multiplication is associative, so A·A²",
+          "must give the same answer. Row 1 of A is",
+          "(1, 1, 3) and column 1 of A² is (0, 3, −1):",
+          "0 + 3 − 3 = 0. Every entry comes out 0 again.",
+          {
+            "text": "∴ A³ = O, the zero matrix",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the answer is checked by computing A·A² as well, that this gives the zero matrix too, and that A³ is therefore O.",
+          "accept": [
+            "check by working out A times A squared and it also gives the zero matrix",
+            "multiplication is associative so A into A squared must match and it does",
+            "the second route gives all zeros as well so A cubed is O",
+            "A ni A square tho multiply chesina kuda zero matrix ne vasthundi",
+            "confirm the zero answer by multiplying in the other grouping"
+          ],
+          "reject": [
+            "so A cubed is zero",
+            "hence proved",
+            "check the answer"
+          ],
+          "heard_as": [
+            "A into A squared",
+            "associative",
+            "zero matrix",
+            "O",
+            "check"
+          ]
+        },
+        "why": "The zero matrix is the one answer an arithmetic slip is most likely to produce by accident, since a single wrong entry can cancel everything. Doing the product the other way round is a cheap independent test.",
+        "common_mistakes": [
+          "Accepting a zero answer without any check.",
+          "Writing \"A³ = 0\" instead of \"A³ = O\", the zero matrix."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_plane_perpendicular_to_vector",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the equation of the plane passing through the point (3, −2, −1) and perpendicular to the vector (4, 7, −4).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the point and the normal as vectors",
+      "marks": 1
+    },
+    {
+      "label": "State the perpendicularity condition",
+      "marks": 1
+    },
+    {
+      "label": "Expand it in coordinates",
+      "marks": 1
+    },
+    {
+      "label": "Simplify and check the point",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.73, chapter 7 PRODUCT OF VECTORS, Short Answer question 30. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards writing the point and the normal as vectors, stating the perpendicularity condition, expanding it in coordinates, and simplifying to the finished equation. PRINTED DEFECT RECORDED: the book prints the point as (3, −2, −1) in the stem, but its own working carries a third component of +1, that is (3, −2, 1). This card is authored from the stem as printed, (3, −2, −1), which gives 4x + 7y − 4z − 2 = 0; the book's working point would give 4x + 7y − 4z + 6 = 0. Nothing was silently repaired and nothing was skipped. Paper position: Maths-1A Section B prints 8 short answers at 4 marks each and the student answers any 6; Product of Vectors is one of the units that can fill a Section-B slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the equation of a plane through a given point with a given normal vector.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Product of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Write the vectors",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. The vector (4, 7, −4) is given as a triple, so write it in i, j, k form before using it. r is the position vector of a general point of the plane.",
+        "memory_tip": "A triple in brackets is a vector. Write it in i, j, k form before using it.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A be the point (3, −2, −1), so",
+          "a = 3i − 2j − k",
+          "The normal is n = 4i + 7j − 4k",
+          "Let P(x, y, z) be any point of the plane,",
+          "so r = xi + yj + zk"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the point and the normal are written as vectors a = 3i − 2j − k and n = 4i + 7j − 4k, with r a general point.",
+          "accept": [
+            "write the point as three i minus two j minus k and the normal as four i plus seven j minus four k",
+            "turn the two triples into i j k vectors",
+            "let r be the position vector of any point of the plane",
+            "point ni vector ga rasta, normal ni kuda",
+            "a is three i minus two j minus k and n is four i plus seven j minus four k"
+          ],
+          "reject": [
+            "the condition is r minus a dot n is zero",
+            "expand in coordinates",
+            "then I get it"
+          ],
+          "heard_as": [
+            "position vector",
+            "normal",
+            "three i minus two j",
+            "four i plus seven j"
+          ]
+        },
+        "why": "The plane equation is built from a dot product, and a dot product needs vectors, not coordinate triples.",
+        "common_mistakes": [
+          "Reading (4, 7, −4) as a point instead of the normal vector.",
+          "Missing the minus sign on the third coordinate of the point."
+        ]
+      },
+      {
+        "id": "s2_condition",
+        "kind": "equation",
+        "label": "State the condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "Second mark. AP is drawn inside the plane, and n is at right angles to the plane, so their dot product is zero. That one equation IS the plane.",
+        "memory_tip": "Every line drawn inside the plane is at right angles to the normal, so the dot product is zero.",
+        "lines": [
+          "AP lies in the plane and n is at right",
+          "angles to the plane, so AP ⊥ n.",
+          "AP = r − a, hence",
+          "(r − a)·n = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r − a lies in the plane and is therefore at right angles to n, giving (r − a)·n = 0.",
+          "accept": [
+            "r minus a lies in the plane so its dot product with the normal is zero",
+            "the condition is r minus a dot n equals zero",
+            "AP is perpendicular to the normal",
+            "r minus a dot n zero avthundi",
+            "any line inside the plane is at right angles to the normal"
+          ],
+          "reject": [
+            "write the point and the normal",
+            "expand in coordinates",
+            "hence proved"
+          ],
+          "heard_as": [
+            "r minus a",
+            "dot n",
+            "zero",
+            "perpendicular",
+            "condition"
+          ]
+        },
+        "why": "A plane is exactly the set of points P for which AP is at right angles to the normal. Writing that as a dot product turns the geometry into one equation.",
+        "common_mistakes": [
+          "Writing r·n = 0, which is the plane through the origin instead.",
+          "Taking a cross product, which gives a vector and not an equation."
+        ]
+      },
+      {
+        "id": "s3_expand",
+        "kind": "equation",
+        "label": "Expand in coordinates",
+        "marks": 1,
+        "mark_note": "Expand",
+        "margin_note": "Third mark. Subtract the point coordinate by coordinate. x − 3, then y − (−2) = y + 2, then z − (−1) = z + 1.",
+        "memory_tip": "Subtracting a negative coordinate adds. y + 2 and z + 1, not y − 2 and z − 1.",
+        "lines": [
+          "r − a = (x − 3)i + (y + 2)j + (z + 1)k",
+          "So the condition becomes",
+          "4(x − 3) + 7(y + 2) − 4(z + 1) = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r − a is (x − 3)i + (y + 2)j + (z + 1)k and the dot product with n gives 4(x − 3) + 7(y + 2) − 4(z + 1) = 0.",
+          "accept": [
+            "r minus a is x minus three, y plus two, z plus one",
+            "four times x minus three plus seven times y plus two minus four times z plus one equals zero",
+            "expand the dot product coordinate by coordinate",
+            "y plus two and z plus one, minus sign valla plus avthundi",
+            "write out the dot product in x y z"
+          ],
+          "reject": [
+            "state the condition",
+            "simplify",
+            "then I get it"
+          ],
+          "heard_as": [
+            "x minus three",
+            "y plus two",
+            "z plus one",
+            "expand"
+          ]
+        },
+        "why": "Subtracting a negative coordinate adds, so two of the three brackets carry a plus. That is where most of the marks are lost on this question.",
+        "common_mistakes": [
+          "Writing y − 2 and z − 1 instead of y + 2 and z + 1.",
+          "Multiplying the brackets by the coordinates of the point instead of the normal."
+        ]
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Simplify",
+        "marks": 1,
+        "mark_note": "Equation",
+        "margin_note": "Last mark. The three constants are −12, +14 and −4, which add to −2. Put the point back in as a one-line check.",
+        "memory_tip": "The constants are −12, +14 and −4, and they add to −2.",
+        "lines": [
+          "4x − 12 + 7y + 14 − 4z − 4 = 0",
+          {
+            "text": "4x + 7y − 4z − 2 = 0",
+            "style": "boxed"
+          },
+          "Check (3, −2, −1): 12 − 14 + 4 − 2 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the equation simplifies to 4x + 7y − 4z − 2 = 0, and that the given point satisfies it.",
+          "accept": [
+            "the plane is four x plus seven y minus four z minus two equals zero",
+            "the constants add to minus two",
+            "putting the point back gives zero so the answer is right",
+            "final answer four x plus seven y minus four z equals two",
+            "collect the constants and write the equation"
+          ],
+          "reject": [
+            "expand in coordinates",
+            "state the condition",
+            "hence proved"
+          ],
+          "heard_as": [
+            "minus two",
+            "equals zero",
+            "four x plus seven y",
+            "check"
+          ]
+        },
+        "why": "Collecting the constants is the only arithmetic in the question, so the substitution check at the end is worth the one extra line.",
+        "common_mistakes": [
+          "Adding the three constants to −22 or +2 by a sign slip.",
+          "Leaving the answer with the brackets unexpanded."
+        ]
+      }
+    ]
+  }
+}

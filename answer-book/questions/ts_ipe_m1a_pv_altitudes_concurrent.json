@@ -1,0 +1,324 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pv_altitudes_concurrent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "Product of Vectors"
+  },
+  "chapter": "Product of Vectors",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 14,
+  "question_text": "Prove that in any triangle the altitudes are concurrent.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Set up the triangle and name the meeting point",
+      "marks": 1
+    },
+    {
+      "label": "Take that point as the origin",
+      "marks": 1
+    },
+    {
+      "label": "Write the first perpendicularity condition",
+      "marks": 2
+    },
+    {
+      "label": "Write the second perpendicularity condition",
+      "marks": 2
+    },
+    {
+      "label": "Add the two conditions",
+      "marks": 1
+    },
+    {
+      "label": "Read off the third altitude and conclude",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.79, chapter 7 PRODUCT OF VECTORS, Long Answer question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+2+2+1+1 split gives two marks to each of the two perpendicularity conditions, because writing them as dot products is the whole method, and keeps single marks for the set-up, the addition and the conclusion. Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Product of Vectors is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove that the three altitudes of a triangle meet at one point.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Product of Vectors · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "Set up the triangle",
+        "marks": 1,
+        "mark_note": "Set-up",
+        "margin_note": "First mark. Two of the three altitudes are taken first, and the proof shows the third passes through where they cross. Saying why those two must cross is part of the mark.",
+        "memory_tip": "Start with TWO altitudes, not three. The third is what the proof produces.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let ABC be a triangle. An altitude is",
+          "the line through a vertex at right",
+          "angles to the opposite side. All three",
+          "lie in the plane of the triangle.",
+          "BC and CA are not parallel, so the",
+          "altitude through A and the altitude",
+          "through B are not parallel and must",
+          "meet. Let them meet at O."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That two of the altitudes must cross, because the sides they are at right angles to are not parallel, and that their meeting point is called O.",
+          "accept": [
+            "take the altitudes through A and B, they are not parallel so they meet at a point O",
+            "two altitudes must cross because BC and CA are not parallel",
+            "call the point where two altitudes meet O",
+            "rendu altitudes kalustai, aa point ni O ani rasta",
+            "start with two altitudes and name their meeting point"
+          ],
+          "reject": [
+            "take O as the origin",
+            "write the dot products",
+            "hence proved"
+          ],
+          "heard_as": [
+            "altitude",
+            "meet at O",
+            "not parallel",
+            "two altitudes"
+          ]
+        },
+        "why": "Concurrency is always proved this way: take the point where two of the lines cross and show the third passes through it. Assuming all three meet would assume the result.",
+        "common_mistakes": [
+          "Assuming all three altitudes already meet, which is the thing being proved.",
+          "Defining the altitude as the line to the midpoint, which is the median."
+        ]
+      },
+      {
+        "id": "s2_origin",
+        "kind": "text",
+        "label": "Take O as the origin",
+        "marks": 1,
+        "mark_note": "Origin at O",
+        "margin_note": "Second mark. Placing the origin at O is what makes OA simply a, with no subtraction. Every dot product below stays short because of this one choice.",
+        "memory_tip": "Put the origin at O, and then OA is just a — no subtraction anywhere.",
+        "lines": [
+          "Take O as the origin and let a, b, c be",
+          "the position vectors of A, B, C.",
+          "Then OA = a, OB = b, OC = c and",
+          "BC = c − b, CA = a − c, BA = a − b."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That O is taken as the origin, so the position vectors of A, B, C are a, b, c and the sides are their differences.",
+          "accept": [
+            "take O as the origin so OA is a, OB is b and OC is c",
+            "with O at the origin the sides are c minus b, a minus c and a minus b",
+            "put the origin at the meeting point",
+            "O ni origin ga theeskunte OA ante a matrame",
+            "let a b c be the position vectors from O"
+          ],
+          "reject": [
+            "set up the triangle",
+            "add the two conditions",
+            "then I get it"
+          ],
+          "heard_as": [
+            "origin",
+            "position vectors",
+            "c minus b",
+            "a minus b"
+          ]
+        },
+        "why": "The origin can be placed anywhere, and placing it at O removes every subtraction from the vectors along the altitudes. That is what keeps the algebra to three short lines.",
+        "common_mistakes": [
+          "Taking A as the origin, which leaves OA as a difference and lengthens every line.",
+          "Writing BC as b − c, which is the vector from C to B."
+        ]
+      },
+      {
+        "id": "s3_first",
+        "kind": "equation",
+        "label": "First altitude",
+        "marks": 2,
+        "mark_note": "OA ⊥ BC",
+        "margin_note": "Two marks. O lies on the altitude through A, so the line OA is at right angles to BC. Written as a dot product and expanded, this is equation (1).",
+        "memory_tip": "O is on the altitude through A, so OA is at right angles to BC.",
+        "lines": [
+          "O lies on the altitude through A, so",
+          "OA ⊥ BC :",
+          "a·(c − b) = 0",
+          "a·c − a·b = 0    …(1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That O lying on the altitude through A means a·(c − b) = 0, which expands to a·c − a·b = 0.",
+          "accept": [
+            "O is on the altitude through A so a dot c minus b is zero",
+            "that expands to a dot c minus a dot b equals zero",
+            "OA is at right angles to BC",
+            "a dot c minus b zero, expand cheste a dot c minus a dot b",
+            "the first condition is a dot c equals a dot b"
+          ],
+          "reject": [
+            "the second condition",
+            "add the two",
+            "hence proved"
+          ],
+          "heard_as": [
+            "a dot c",
+            "a dot b",
+            "perpendicular",
+            "equation one"
+          ]
+        },
+        "why": "A right angle between two vectors is exactly a zero dot product. Expanding it separates the products so that the two conditions can be added later.",
+        "common_mistakes": [
+          "Pairing A with a side through A instead of the opposite side BC.",
+          "Using a × (c − b) = 0, which says parallel and not at right angles."
+        ]
+      },
+      {
+        "id": "s4_second",
+        "kind": "equation",
+        "label": "Second altitude",
+        "marks": 2,
+        "mark_note": "OB ⊥ CA",
+        "margin_note": "Two marks. The same statement for B, with the letters moved on one place. Note that b·a is written as a·b so the two equations can be added.",
+        "memory_tip": "The same statement with the letters moved on one place: A to B, BC to CA.",
+        "lines": [
+          "O lies on the altitude through B, so",
+          "OB ⊥ CA :",
+          "b·(a − c) = 0",
+          "a·b − b·c = 0    …(2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That O lying on the altitude through B means b·(a − c) = 0, which expands to a·b − b·c = 0.",
+          "accept": [
+            "O is on the altitude through B so b dot a minus c is zero",
+            "that gives a dot b minus b dot c equals zero",
+            "OB is at right angles to CA",
+            "rendo condition a dot b minus b dot c zero",
+            "the second condition is a dot b equals b dot c"
+          ],
+          "reject": [
+            "the first condition",
+            "add the two",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "b dot a",
+            "b dot c",
+            "equation two",
+            "perpendicular"
+          ]
+        },
+        "why": "A dot product does not change when its two vectors are swapped, so b·a can be written as a·b. That is what makes the two equations line up for adding.",
+        "common_mistakes": [
+          "Leaving the term as b·a, so the cancellation in the next step is not visible.",
+          "Pairing B with BC instead of with the opposite side CA."
+        ]
+      },
+      {
+        "id": "s5_add",
+        "kind": "equation",
+        "label": "Add the two conditions",
+        "marks": 1,
+        "mark_note": "Add",
+        "margin_note": "Seventh mark. The a·b terms have opposite signs, so they cancel when the two equations are added. What is left involves only b, c and a.",
+        "memory_tip": "The a·b terms carry opposite signs, so adding removes them.",
+        "lines": [
+          "Adding (1) and (2), the a·b terms cancel:",
+          "a·c − b·c = 0",
+          "(a − b)·c = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That adding (1) and (2) cancels the a·b terms and leaves a·c − b·c = 0, that is (a − b)·c = 0.",
+          "accept": [
+            "add the two equations, a dot b cancels and a dot c minus b dot c is left",
+            "the sum gives a minus b dotted with c equals zero",
+            "the middle terms cancel because their signs are opposite",
+            "rendu add cheste a dot b cancel avthundi",
+            "we are left with a minus b dot c equals zero"
+          ],
+          "reject": [
+            "the first condition",
+            "the third altitude",
+            "hence proved"
+          ],
+          "heard_as": [
+            "cancel",
+            "a dot c minus b dot c",
+            "a minus b",
+            "add"
+          ]
+        },
+        "why": "The two conditions were written in the same letters on purpose. Adding them removes the shared term and leaves exactly the third condition.",
+        "common_mistakes": [
+          "Subtracting the two equations, which leaves a·c + b·c − 2a·b and no third condition.",
+          "Thinking the a·b terms add rather than cancel, and being left with 2a·b."
+        ]
+      },
+      {
+        "id": "s6_conclude",
+        "kind": "boxed_final",
+        "label": "The third altitude",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. (a − b) is BA, so this says OC is at right angles to AB. That is exactly the altitude through C, and O is on it.",
+        "memory_tip": "a − b is BA, so the result says OC is at right angles to AB.",
+        "lines": [
+          "Now a − b = BA, so c·BA = 0, that is",
+          "OC ⊥ AB.",
+          "So O lies on the line through C at right",
+          "angles to AB, which is the third altitude.",
+          {
+            "text": "The three altitudes meet at O.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That (a − b) is BA, so OC is at right angles to AB, which puts O on the third altitude and proves the three are concurrent.",
+          "accept": [
+            "a minus b is BA so OC is at right angles to AB, the third altitude",
+            "O lies on all three altitudes so they are concurrent",
+            "the third altitude also passes through O",
+            "moodava altitude kuda O gunda velthundi",
+            "hence the three altitudes meet at one point"
+          ],
+          "reject": [
+            "add the two conditions",
+            "the second condition",
+            "then I get it"
+          ],
+          "heard_as": [
+            "third altitude",
+            "concurrent",
+            "OC",
+            "AB",
+            "meet at O"
+          ]
+        },
+        "why": "The algebra finishes one line before the proof does. Naming a − b as BA is what turns the dot product back into a statement about altitudes.",
+        "common_mistakes": [
+          "Stopping at (a − b)·c = 0 without saying what it means.",
+          "Naming the point of concurrence without saying the third altitude passes through it."
+        ]
+      }
+    ]
+  }
+}

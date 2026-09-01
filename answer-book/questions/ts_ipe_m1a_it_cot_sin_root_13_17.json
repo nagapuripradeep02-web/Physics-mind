@@ -1,0 +1,183 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_it_cot_sin_root_13_17",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Inverse Trigonometric Functions"
+  },
+  "chapter": "Inverse Trigonometric Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that cot(Sin⁻¹√(13/17)) = sin(Tan⁻¹(2/3)).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Work out the left side",
+      "marks": 2
+    },
+    {
+      "label": "Work out the right side",
+      "marks": 1
+    },
+    {
+      "label": "Compare the two sides",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.113, chapter 10 INVERSE TRIGONOMETRIC FUNCTIONS, Short Answer question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. Half the marks sit on the left side because it carries the square root and the sign decision; the right side is a single triangle. NOTATION: the book prints the inverse functions in lower case (sin⁻¹, tan⁻¹); they are written here with capitals to match the principal-value convention used across the rest of this unit. Checked numerically to twelve decimal places: cot(arcsin(√(13/17))) = sin(arctan(2/3)) = 0.554700196225 = 2/√13. Paper position: Maths-1A Section B prints eight short answers of which the student writes any six, at 4 marks each, under the 2026-27 pattern; Inverse Trigonometric Functions is an SAQ-only unit, so the paper gives it no Section-A and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order, and say which formula you reach for and why.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Inverse Trigonometric Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_work_out_the_left_side",
+        "kind": "equation",
+        "label": "Work out the left side",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. The √17 cancels between the numerator and the denominator, which is why the left side is so short.",
+        "memory_tip": "√17 appears on the top and the bottom of cotθ and cancels, leaving 2/√13.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let θ = Sin⁻¹√(13/17)",
+          "⇒ sinθ = √(13/17), and θ ∈ (0, π/2)",
+          "cos²θ = 1 − 13/17 = 4/17",
+          "θ is first quadrant, so cosθ = 2/√17",
+          "L.H.S = cotθ = cosθ/sinθ",
+          "= (2/√17)/(√13/√17) = 2/√13"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That θ is a first-quadrant angle, cosθ = 2/√17, and cotθ = 2/√13.",
+          "accept": [
+            "call the angle theta, its sine is root thirteen over seventeen so its cosine is two over root seventeen",
+            "the root seventeen cancels leaving two over root thirteen",
+            "theta is first quadrant so take the positive root for the cosine",
+            "theta first quadrant lo undi, cos positive, cot two by root thirteen",
+            "the left side comes to two over root thirteen"
+          ],
+          "reject": [
+            "work out the right side",
+            "both sides are equal",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin inverse root thirteen over seventeen",
+            "two over root seventeen",
+            "cot theta",
+            "two over root thirteen"
+          ]
+        },
+        "why": "Sin⁻¹ of a positive number is a first-quadrant angle, so the positive square root is the only correct one for cosθ.",
+        "common_mistakes": [
+          "Taking cosθ as the negative root.",
+          "Writing cotθ as sinθ/cosθ."
+        ]
+      },
+      {
+        "id": "s2_work_out_the_right_side",
+        "kind": "equation",
+        "label": "Work out the right side",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Third mark. The 2, 3, √13 triangle gives the sine in one line, with no formula needed.",
+        "memory_tip": "tanφ = 2/3 gives a 2, 3, √13 triangle, so sinφ = 2/√13.",
+        "lines": [
+          "Let φ = Tan⁻¹(2/3) ⇒ tanφ = 2/3",
+          "φ ∈ (0, π/2), so sinφ is positive.",
+          "Opposite 2, adjacent 3,",
+          "hypotenuse √(2² + 3²) = √13",
+          "R.H.S = sinφ = 2/√13"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tanφ = 2/3 gives a hypotenuse of √13 and sinφ = 2/√13.",
+          "accept": [
+            "tan phi is two thirds so the sides are two and three and the hypotenuse is root thirteen",
+            "the sine of phi is two over root thirteen",
+            "phi is first quadrant so the sine is positive",
+            "two three root thirteen triangle, sin phi two by root thirteen",
+            "the right side is two over root thirteen"
+          ],
+          "reject": [
+            "work out the left side",
+            "both sides are equal",
+            "hence proved"
+          ],
+          "heard_as": [
+            "tan inverse two thirds",
+            "root thirteen",
+            "sin phi",
+            "hypotenuse"
+          ]
+        },
+        "why": "For a first-quadrant angle with tanφ = 2/3, the hypotenuse is √13 and the sine is the positive value 2/√13.",
+        "common_mistakes": [
+          "Writing sinφ as 2/3.",
+          "Using √5 instead of √13 for the hypotenuse."
+        ]
+      },
+      {
+        "id": "s3_compare_the_two_sides",
+        "kind": "boxed_final",
+        "label": "Compare the two sides",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "Last mark. Say in words that the two sides are equal — a proof is not finished until the comparison is written.",
+        "memory_tip": "Both sides come to 2/√13. Rationalise once at the end: 2√13/13.",
+        "lines": [
+          "Both sides equal 2/√13,",
+          "that is 2√13/13.",
+          {
+            "text": "∴ cot(Sin⁻¹√(13/17)) = sin(Tan⁻¹(2/3))",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both sides equal 2/√13 and the equality is stated.",
+          "accept": [
+            "both sides come to two over root thirteen so the statement is proved",
+            "the left side equals the right side",
+            "rationalised it is two root thirteen over thirteen",
+            "rendu sides two by root thirteen, so proved",
+            "the two values agree so the result follows"
+          ],
+          "reject": [
+            "the hypotenuse is root thirteen",
+            "cos theta is two over root seventeen",
+            "then I get it"
+          ],
+          "heard_as": [
+            "both sides",
+            "two over root thirteen",
+            "two root thirteen over thirteen",
+            "equal"
+          ]
+        },
+        "why": "The two sides are built from different inverse functions but give the same first-quadrant ratio, so the equality is exact and not approximate.",
+        "common_mistakes": [
+          "Leaving the two values side by side without stating they are equal.",
+          "Rationalising 2/√13 wrongly as √13/13."
+        ]
+      }
+    ]
+  }
+}

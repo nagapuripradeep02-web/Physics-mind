@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_a_plus_b_pi4_tan_cot_products",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If A + B = π/4, prove that (a) (1 + tan A)(1 + tan B) = 2 and (b) (cot A − 1)(cot B − 1) = 2.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Part (a) from tan(A + B) = 1",
+      "marks": 1
+    },
+    {
+      "label": "Part (b) from cot(A + B) = 1",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 31(ii), book p.88. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The book prints the two lettered parts under one condition, so they stay in one card and the 1 + 1 gives one mark to each part. Part (a) needs tan A and tan B to exist and part (b) needs cot A and cot B to exist; the two conditions are different and each is written into its own step. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten, under the 2026-27 pattern; Trigonometric Ratios and Transformations supplies two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove both parts — name the formula each part starts from.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_part_a",
+        "kind": "equation",
+        "label": "Part (a) from tan(A + B) = 1",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. tan(π/4) = 1 makes the numerator equal the denominator, which gives tan A + tan B + tan A tan B = 1 — exactly the three terms the bracket produces.",
+        "memory_tip": "tan(π/4) = 1, so tan A + tan B = 1 − tan A tan B. Expanding the bracket gives 1 plus that same sum.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "(a) For tan A and tan B to exist, neither",
+          "A nor B is an odd multiple of π/2.",
+          "tan(A + B) = tan(π/4) = 1",
+          "⇒ (tan A + tan B)/(1 − tan A tan B) = 1",
+          "⇒ tan A + tan B + tan A tan B = 1",
+          "(1 + tan A)(1 + tan B)",
+          "= 1 + (tan A + tan B + tan A tan B)",
+          {
+            "text": "= 1 + 1 = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan(A + B) = 1 gives tan A + tan B + tan A tan B = 1, and that expanding the bracket produces 1 plus that sum.",
+          "accept": [
+            "tan of pi by four is one so the numerator equals the denominator",
+            "tan A plus tan B plus tan A tan B equals one",
+            "expand the bracket and you get one plus that sum",
+            "tan pi by four one kabatti, mottam sum one avthundi",
+            "so the product is two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "cot of pi by four is one"
+          ],
+          "heard_as": [
+            "tan pi by four",
+            "tan A plus tan B",
+            "tan A tan B",
+            "equals two"
+          ]
+        },
+        "why": "tan(π/4) = 1 turns the given condition into tan A + tan B + tan A tan B = 1, and that sum is exactly the three extra terms produced by expanding (1 + tan A)(1 + tan B). The expansion and the condition give the same three terms, which is why the proof is short.",
+        "common_mistakes": [
+          "Expanding (1 + tan A)(1 + tan B) as 1 + tan A tan B.",
+          "Stopping at tan A + tan B = 1 − tan A tan B without expanding the bracket."
+        ]
+      },
+      {
+        "id": "s2_part_b",
+        "kind": "boxed_final",
+        "label": "Part (b) from cot(A + B) = 1",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. cot(π/4) = 1 as well. Work in cotangents directly — turning every cotangent into 1/tan makes the algebra much longer.",
+        "memory_tip": "cot(π/4) = 1 too. Use the cotangent addition formula so no fraction is ever created.",
+        "lines": [
+          "(b) For cot A and cot B to exist, neither",
+          "A nor B is a multiple of π.",
+          "cot(A + B) = cot(π/4) = 1",
+          "⇒ (cot A cot B − 1)/(cot A + cot B) = 1",
+          "⇒ cot A cot B − cot A − cot B = 1",
+          "(cot A − 1)(cot B − 1)",
+          "= cot A cot B − cot A − cot B + 1",
+          {
+            "text": "= 1 + 1 = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cot(A + B) = 1 gives cot A cot B − cot A − cot B = 1, and that expanding the bracket produces that expression plus 1.",
+          "accept": [
+            "cot of pi by four is one so use the cot addition formula",
+            "cot A cot B minus cot A minus cot B equals one",
+            "expand the bracket and add one",
+            "cot formula vaadithe fraction raadu, direct ga vasthundi",
+            "again the answer is two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it",
+            "tan A plus tan B plus tan A tan B equals one"
+          ],
+          "heard_as": [
+            "cot pi by four",
+            "cot A cot B",
+            "cot addition formula",
+            "equals two"
+          ]
+        },
+        "why": "Part (b) is part (a) written in cotangents. Starting from the cotangent addition formula keeps every term a whole cotangent, so no fractions appear; replacing each cot by 1/tan reaches the same answer through much longer algebra.",
+        "common_mistakes": [
+          "Writing cot(A + B) = (cot A cot B + 1)/(cot A + cot B).",
+          "Expanding (cot A − 1)(cot B − 1) without the +1 term."
+        ]
+      }
+    ]
+  }
+}

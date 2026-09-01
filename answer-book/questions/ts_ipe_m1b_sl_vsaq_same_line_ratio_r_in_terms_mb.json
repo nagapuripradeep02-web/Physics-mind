@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_same_line_ratio_r_in_terms_mb",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "The equations ax+by+c=0 and lx+my+n=0 represent one and the same straight line, and r=l/a=n/c. Write the value of r in terms of m and b.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the same-line condition",
+      "marks": 1
+    },
+    {
+      "label": "Read r off the middle ratio",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 28, book p.144 (the printed folio is hidden or clipped on this scan; the page is taken from the strictly consecutive neighbours). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split gives one mark for stating that the coefficients of the two equations are proportional and one for naming the middle ratio as r. The question implicitly assumes a, b and c are all non-zero, which is what makes the three ratios meaningful; that condition is stated on the page. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what it means for two equations to be the same line, and where m and b sit in that statement.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_same_line_condition",
+        "kind": "equation",
+        "label": "Write the same-line condition",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Two equations describe one line only when one is a non-zero multiple of the other, so all three coefficient ratios are equal.",
+        "memory_tip": "One line, one multiplier: l/a = m/b = n/c is the same number written three times.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given lines  ax + by + c = 0  ……(1)",
+          "and  lx + my + n = 0  ……(2)",
+          "(1) and (2) are one and the same line,",
+          "so their coefficients are proportional:",
+          "l/a = m/b = n/c   (a, b, c all non-zero)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the same line forces l/a = m/b = n/c.",
+          "accept": [
+            "the coefficients are proportional",
+            "l by a equals m by b equals n by c",
+            "one equation is a multiple of the other",
+            "coefficients proportional ga untayi",
+            "all three ratios are equal"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "l by a",
+            "m by b",
+            "n by c",
+            "proportional"
+          ]
+        },
+        "why": "Multiplying an equation by a non-zero number does not change the line it describes, and that is the only way two equations can describe the same line, so every coefficient is scaled by the one same factor.",
+        "common_mistakes": [
+          "Equating only two of the three ratios and stopping there.",
+          "Pairing l with b and m with a instead of matching like with like."
+        ]
+      },
+      {
+        "id": "s2_read_r",
+        "kind": "boxed_final",
+        "label": "Read r off the middle ratio",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. r is defined as the common ratio, and m/b is that same common ratio, so the answer is one line.",
+        "memory_tip": "r is the common ratio, so r equals whichever of the three ratios you are asked for.",
+        "lines": [
+          "Given  r = l/a = n/c",
+          "So r is the common ratio of the chain,",
+          "and m/b is that same common ratio.",
+          {
+            "text": "∴ r = m/b",
+            "style": "boxed"
+          },
+          "Check: 2x + 3y + 4 = 0 and 6x + 9y + 12 = 0 are",
+          "the same line; r = 6/2 = 3, n/c = 12/4 = 3,",
+          "and m/b = 9/3 = 3."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r = m/b, because m/b is the same common ratio as l/a and n/c.",
+          "accept": [
+            "r equals m by b",
+            "m over b is the same common ratio",
+            "the middle ratio is also r",
+            "r ante m by b",
+            "all three ratios equal r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "r equals m by b",
+            "m over b",
+            "common ratio"
+          ]
+        },
+        "why": "The question already names two of the three equal ratios as r, so the third is r as well; nothing has to be solved.",
+        "common_mistakes": [
+          "Writing r = b/m, with the ratio upside down.",
+          "Answering with l/a again instead of the ratio the question asks for."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pln_perpendicular_x_axis_2_3_4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "The Plane"
+  },
+  "chapter": "The Plane",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the equation of the plane passing through (2, 3, 4) and perpendicular to the x-axis.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Take the X-axis as the normal",
+      "marks": 1
+    },
+    {
+      "label": "Write and simplify the plane",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 7 THE PLANE, Very Short Answer question 11, book p.183. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split rewards recognising that a plane perpendicular to the X-axis has the X-axis as its normal, and then writing the plane from the point-and-normal form. This book prints almost no exam-appearance years, so appearances[] is empty; the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say what perpendicular to the x-axis tells you about the normal, and which coordinate of the point you then use.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Plane · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_take_the_x_axis_as_the_normal",
+        "kind": "equation",
+        "label": "Take the X-axis as the normal",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. A plane perpendicular to a line has that line as its normal, so the X-axis itself is the normal here and its direction ratios are (1, 0, 0).",
+        "memory_tip": "Perpendicular to the X-axis means the X-axis IS the normal, with direction ratios (1, 0, 0).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The plane is perpendicular to the X-axis,",
+          "so the X-axis itself is the normal line to",
+          "the plane.",
+          "d.r's of the X-axis are (1, 0, 0), so",
+          "(a, b, c) = (1, 0, 0)",
+          "Here (x₁, y₁, z₁) = (2, 3, 4)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the plane is perpendicular to the X-axis, so the X-axis is its normal with direction ratios (1, 0, 0).",
+          "accept": [
+            "perpendicular to the X axis means the X axis is the normal",
+            "the direction ratios of the normal are one, zero, zero",
+            "a plane perpendicular to a line has that line as its normal",
+            "X axis ye normal, so d r's one zero zero",
+            "take a as one and b and c as zero"
+          ],
+          "reject": [
+            "the plane is x equals two",
+            "that is the answer",
+            "then I get it"
+          ],
+          "heard_as": [
+            "perpendicular to the X axis",
+            "normal",
+            "one zero zero",
+            "direction ratios"
+          ]
+        },
+        "why": "The normal of a plane is the direction that is perpendicular to every line in it, so saying the plane is perpendicular to the X-axis is the same as saying the X-axis points along the normal.",
+        "common_mistakes": [
+          "Taking (1, 0, 0) as a line lying in the plane instead of the normal.",
+          "Writing the direction ratios of the Y-axis or the Z-axis by mistake."
+        ]
+      },
+      {
+        "id": "s2_write_and_simplify_the_plane",
+        "kind": "boxed_final",
+        "label": "Write and simplify the plane",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Second mark. Two of the three coefficients are 0, so the y and z brackets become zero and only the x coordinate of the point is left.",
+        "memory_tip": "b and c are 0, so the y and z terms become zero and only x = 2 is left.",
+        "lines": [
+          "a(x − x₁) + b(y − y₁) + c(z − z₁) = 0",
+          "⇒ 1(x − 2) + 0(y − 3) + 0(z − 4) = 0",
+          "⇒ x − 2 = 0",
+          "Check: the point (2, 3, 4) has x = 2, so it",
+          "lies on the plane x = 2.",
+          {
+            "text": "∴ x = 2,  that is  x − 2 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting into the point-and-normal form gives x = 2.",
+          "accept": [
+            "put one, zero, zero and the point into the point and normal form",
+            "the y and z terms are multiplied by zero so they go",
+            "the plane is x equals two",
+            "y and z terms zero avuthayi, x equals two migulutundi",
+            "the answer is x minus two equals zero"
+          ],
+          "reject": [
+            "the X axis is the normal to the plane",
+            "that is the answer",
+            "hence proved"
+          ],
+          "heard_as": [
+            "x equals two",
+            "x minus two",
+            "zero times",
+            "point and normal form"
+          ]
+        },
+        "why": "The answer keeps only the x coordinate of the given point, because moving in the y or z direction does not change which plane a point is on when the normal points along the X-axis. This plane is also parallel to the YZ-plane.",
+        "common_mistakes": [
+          "Using the y or z coordinate and writing y = 3 or z = 4.",
+          "Writing x = 0, which is the YZ-plane and does not pass through the given point."
+        ]
+      }
+    ]
+  }
+}

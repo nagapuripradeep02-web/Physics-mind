@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_piecewise_eval_set_a",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If f is defined by f(x) = 3x − 2 for x ≥ 3, f(x) = x² − 2 for −2 ≤ x ≤ 2 and f(x) = 2x + 1 for x < −3, find the values of f(4), f(2.5), f(−2), f(−4), f(0) and f(−7).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The five values that a branch does give",
+      "marks": 1
+    },
+    {
+      "label": "f(2.5) is not defined, with the reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.14, chapter 2 FUNCTIONS, Very Short Answer question 23(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape gives one mark to the five points that a branch covers and one to the point 2.5, which no branch covers, because the second is a different piece of reasoning and not one more substitution. The gaps in the definition are carried in the written lines and in the boxed answer, where the student reads them, not only in this note. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer this — how you pick a branch for each number, and what you do about 2.5.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_match_each_point",
+        "kind": "equation",
+        "label": "Match each point to its branch",
+        "marks": 1,
+        "mark_note": "The five values",
+        "margin_note": "One mark for the five values. Write beside every value the condition you used, so the examiner sees the branch was chosen and not guessed.",
+        "memory_tip": "Test the number against every condition first, then substitute. The condition chooses the formula.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "f(x) = 3x − 2 for x ≥ 3 … (1)",
+          "f(x) = x² − 2 for −2 ≤ x ≤ 2 … (2)",
+          "f(x) = 2x + 1 for x < −3 … (3)",
+          "4 ≥ 3, so use (1): f(4) = 12 − 2 = 10",
+          "−2 ≤ −2 ≤ 2, so use (2): f(−2) = 4 − 2 = 2",
+          "−4 < −3, so use (3): f(−4) = −8 + 1 = −7",
+          "−2 ≤ 0 ≤ 2, so use (2): f(0) = 0 − 2 = −2",
+          "−7 < −3, so use (3): f(−7) = −14 + 1 = −13"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each number is first tested against the three conditions, and only the branch whose condition holds is substituted into, giving 10, 2, −7, −2 and −13.",
+          "accept": [
+            "check which condition the number satisfies and then use that formula",
+            "four is at least three so three x minus two gives ten",
+            "minus two and zero are between minus two and two so use x squared minus two",
+            "minus four and minus seven are less than minus three so use two x plus one",
+            "e number ki e condition satisfy avutundo choosi aa formula substitute cheyyali"
+          ],
+          "reject": [
+            "I substitute the values",
+            "I use the given formula",
+            "2.5 has no branch"
+          ],
+          "heard_as": [
+            "three x minus two",
+            "x squared minus two",
+            "two x plus one",
+            "branch",
+            "condition",
+            "greater than or equal"
+          ]
+        },
+        "why": "A piecewise rule gives a value only through the branch whose condition the number satisfies, so the branch has to be settled before any arithmetic is done.",
+        "common_mistakes": [
+          "Using the first branch for every number instead of testing the condition.",
+          "Writing (−2)² as −4, which turns f(−2) = 2 into f(−2) = −6.",
+          "Reading −2 ≤ x ≤ 2 as a strict inequality, which wrongly leaves out x = −2."
+        ]
+      },
+      {
+        "id": "s2_point_with_no_branch",
+        "kind": "boxed_final",
+        "label": "The point 2.5 has no branch",
+        "marks": 1,
+        "mark_note": "f(2.5) not defined",
+        "margin_note": "The second mark is the reason, not the phrase. Show all three conditions failing, then write that f(2.5) is not defined.",
+        "memory_tip": "The domain is the union of the three branch conditions. Anything the union misses has no value at all.",
+        "lines": [
+          "At x = 2.5 all three conditions fail:",
+          "2.5 ≥ 3 is false, −2 ≤ 2.5 ≤ 2 is false,",
+          "and 2.5 < −3 is false.",
+          "The three branches cover only these x:",
+          "(−∞, −3) ∪ [−2, 2] ∪ [3, ∞).",
+          "So no rule covers [−3, −2) or (2, 3),",
+          "and the point 2.5 lies in the gap (2, 3).",
+          {
+            "text": "∴ f(2.5) is not defined.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2.5 satisfies none of the three conditions, so it lies outside the domain and f(2.5) has no value.",
+          "accept": [
+            "two point five is not at least three not between minus two and two and not less than minus three",
+            "no branch covers two point five so f of two point five is not defined",
+            "the definition leaves a gap between two and three and two point five is in it",
+            "there is no rule for two point five so the function has no value there",
+            "e branch loki raadu kabatti f of two point five not defined"
+          ],
+          "reject": [
+            "use x squared minus two",
+            "f of two point five is four point two five",
+            "the answer is zero"
+          ],
+          "heard_as": [
+            "not defined",
+            "undefined",
+            "gap",
+            "domain",
+            "two point five",
+            "no branch"
+          ]
+        },
+        "why": "A piecewise definition gives a value only where a branch condition holds. Between the branches there is no rule at all, so the function simply has no value there, and saying so is the complete answer.",
+        "common_mistakes": [
+          "Forcing 2.5 into the branch x ≥ 3 because 2.5 is close to 3.",
+          "Using x² − 2 at x = 2.5, although that branch stops at x = 2.",
+          "Writing f(2.5) = 0 instead of saying that f(2.5) is not defined."
+        ]
+      }
+    ]
+  }
+}

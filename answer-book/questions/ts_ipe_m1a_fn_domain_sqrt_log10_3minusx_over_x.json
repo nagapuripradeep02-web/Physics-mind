@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_domain_sqrt_log10_3minusx_over_x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the domain of the real valued function f(x) = √(log₁₀((3 − x)/x)).",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Conditions for the function to be defined",
+      "marks": 1
+    },
+    {
+      "label": "The domain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.13, chapter 2 FUNCTIONS, Very Short Answer question 19 part (b-iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape rewards the conditions the expression forces and the final interval as two separate pieces of work, which is how a domain question is marked. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find this domain — the conditions the formula forces, and the answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "equation",
+        "label": "Write both conditions",
+        "marks": 1,
+        "mark_note": "Condition",
+        "margin_note": "One of the two marks is for the conditions alone. Write every one of them down before solving any.",
+        "memory_tip": "A root over a logarithm needs the logarithm at least 0, and log₁₀ 1 = 0, so the input must be at least 1.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The logarithm needs (3 − x)/x > 0",
+          "The root needs log₁₀((3 − x)/x) ≥ 0",
+          "Now log₁₀ 1 = 0, so the second condition means",
+          "(3 − x)/x ≥ 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the logarithm needs a positive input and the root needs the logarithm at least zero, which means (3 − x)/x is at least 1.",
+          "accept": [
+            "log of the fraction must be at least zero so the fraction must be at least one",
+            "log ten of one is zero so three minus x over x is greater than or equal to one",
+            "the inside of the root is a logarithm so it cannot be negative",
+            "log value zero kanna takkuva raakoodadu so fraction one kanna ekkuva undali",
+            "two conditions the fraction positive and the log non negative"
+          ],
+          "reject": [
+            "I write the condition",
+            "I find the domain",
+            "then I solve it"
+          ],
+          "heard_as": [
+            "logarithm",
+            "log base ten",
+            "three minus x over x",
+            "greater than or equal to one",
+            "non negative",
+            "root"
+          ]
+        },
+        "why": "Two rules stack. The logarithm needs a positive input, and the square root needs the logarithm itself to be non-negative. The second is the stronger one, because a logarithm is at least 0 only when its input is at least 1.",
+        "common_mistakes": [
+          "Using only (3 − x)/x > 0 and answering (0, 3), which ignores the square root.",
+          "Reading log₁₀ 1 as 1 instead of 0."
+        ]
+      },
+      {
+        "id": "s2_domain",
+        "kind": "boxed_final",
+        "label": "Solve the stronger condition",
+        "marks": 1,
+        "mark_note": "Domain",
+        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "memory_tip": "Bring the 1 across before solving. Never multiply by x, whose sign is not yet known.",
+        "lines": [
+          "(3 − x)/x ≥ 1 gives (3 − x)/x − 1 ≥ 0",
+          "⇒ (3 − 2x)/x ≥ 0",
+          "If x < 0 the top 3 − 2x is positive,",
+          "so the quotient is negative and x < 0 fails.",
+          "So x > 0, and then 3 − 2x ≥ 0 gives x ≤ 3/2.",
+          "Here (3 − x)/x ≥ 1 > 0,",
+          "so the first condition holds as well.",
+          {
+            "text": "∴ Domain = (0, 3/2]",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That moving the 1 across gives (3 − 2x)/x ≥ 0, whose solution is 0 < x ≤ 3/2.",
+          "accept": [
+            "subtract one to get three minus two x over x at least zero and solve",
+            "the answer is zero to three by two with three by two included",
+            "x must be positive and at most one point five",
+            "zero nunchi three by two varaku three by two kalipi",
+            "open at zero and closed at three halves"
+          ],
+          "reject": [
+            "that is the domain",
+            "hence the answer",
+            "I write the interval"
+          ],
+          "heard_as": [
+            "logarithm",
+            "log base ten",
+            "three minus x over x",
+            "greater than or equal to one",
+            "non negative",
+            "root",
+            "domain",
+            "interval",
+            "union",
+            "closed",
+            "open"
+          ]
+        },
+        "why": "Comparing a quotient with 1 is only safe after moving everything to one side, because multiplying by x would need the sign of x, which is not yet known. Checking x < 0 separately is what rules that half out.",
+        "common_mistakes": [
+          "Multiplying both sides by x and losing the case x < 0.",
+          "Writing (0, 3/2) with a round bracket, although x = 3/2 gives log₁₀ 1 = 0 and √0 = 0."
+        ]
+      }
+    ]
+  }
+}

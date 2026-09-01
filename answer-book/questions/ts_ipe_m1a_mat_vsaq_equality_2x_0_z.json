@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_equality_2x_0_z",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the matrix with rows (x−1, 2, y−5), (2x, 0, z) and (1, −1, 1+a) equals the matrix with rows (1−x, 2, −y), (2, 0, 2) and (1, −1, 1), then find the values of x, y, z and a.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Equate corresponding elements",
+      "marks": 1
+    },
+    {
+      "label": "Solve for x, y, z and a",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 5 MATRICES, Very Short Answer question 2(ii), book p.31. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split gives one mark to turning the matrix equation into separate element equations and one to solving them, because a student who only equates the positions has done the matrix half of the question. This matrix carries a built-in consistency check that the answer uses: position (1,1) gives x − 1 = 1 − x and position (2,1) gives 2x = 2, and both give x = 1. Related card in the same unit: ts_ipe_m1a_mat_vsaq_equality_3x3 is a different 3×3 equality question from another source book, so the two are not duplicates. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find x, y, z and a from this matrix equation.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equate",
+        "kind": "equation",
+        "label": "Equate corresponding elements",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Two matrices are equal only when every entry in the same position is equal. Write down only the positions that carry an unknown; the rest are already identical.",
+        "memory_tip": "Same position, same value. Nine positions here, but only four of them carry an unknown.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "\\begin{bmatrix} x-1 & 2 & y-5 \\\\ 2x & 0 & z \\\\ 1 & -1 & 1+a \\end{bmatrix} = \\begin{bmatrix} 1-x & 2 & -y \\\\ 2 & 0 & 2 \\\\ 1 & -1 & 1 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "Both are 3×3, so equate each position:",
+          "x − 1 = 1 − x,  2x = 2,",
+          "y − 5 = −y,  z = 2,  1 + a = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That equal matrices have equal corresponding entries, which turns the matrix equation into separate element equations.",
+          "accept": [
+            "equal matrices means every corresponding entry is equal so I get separate equations",
+            "compare each position and write the equation it gives",
+            "match entry by entry and only four positions have unknowns",
+            "corresponding elements equate cheste chinna equations vasthai",
+            "equate the entries in the same row and column"
+          ],
+          "reject": [
+            "equate them",
+            "compare the two matrices"
+          ],
+          "heard_as": [
+            "corresponding elements",
+            "equate",
+            "same position",
+            "equal matrices"
+          ]
+        },
+        "why": "Matrix equality is defined entry by entry: same order, and the same number in every position. That definition is the whole method here.",
+        "common_mistakes": [
+          "Matching entries in the wrong positions.",
+          "Skipping the position (2,1) equation, which is the check on x."
+        ]
+      },
+      {
+        "id": "s2_solve",
+        "kind": "boxed_final",
+        "label": "Solve for x, y, z and a",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Each equation holds one unknown, so each is a one-line solve. y is not a whole number here, and that is correct — do not round it.",
+        "memory_tip": "Two different positions give x, and both give x = 1. If they disagreed, the equality could not hold.",
+        "lines": [
+          "x − 1 = 1 − x ⇒ 2x = 2 ⇒ x = 1",
+          "The entry 2x = 2 gives x = 1 as well.",
+          "y − 5 = −y ⇒ 2y = 5 ⇒ y = 5/2",
+          "z = 2, and 1 + a = 1 ⇒ a = 0",
+          {
+            "text": "∴ x = 1, y = 5/2, z = 2, a = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving the element equations gives x = 1, y = 5/2, z = 2 and a = 0.",
+          "accept": [
+            "x is one, y is five by two, z is two and a is zero",
+            "solve each small equation to get one, five by two, two and zero",
+            "both x equations give x equals one, then y is two point five",
+            "prathi equation solve cheste x one y five by two z two a zero",
+            "the four values are one, five halves, two and zero"
+          ],
+          "reject": [
+            "solve them",
+            "find the four values"
+          ],
+          "heard_as": [
+            "one",
+            "five by two",
+            "two point five",
+            "zero"
+          ]
+        },
+        "why": "Every equation here involves a single unknown, so none of them needs the others. That is why this is a 2-mark question and not a simultaneous-equations one.",
+        "common_mistakes": [
+          "Writing y = 5 by reading y − 5 = −y as y − 5 = 0.",
+          "Writing a = 1 instead of a = 0 from 1 + a = 1."
+        ]
+      }
+    ]
+  }
+}

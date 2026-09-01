@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_cot_half_ap_sides_ap",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "In △ABC, if cot(A/2), cot(B/2), cot(C/2) are in A.P., prove that a, b, c are in A.P.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write each cotangent over Δ",
+      "marks": 1
+    },
+    {
+      "label": "Use the A.P. condition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.123, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to putting the three cotangents over Δ and one to the A.P. condition that reduces them to 2b = a + c. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Properties of Triangles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_each_cotangent",
+        "kind": "equation",
+        "label": "Write each cotangent over Δ",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. cot(A/2) = s(s−a)/Δ: the bracket carries the SAME letter as the angle, which is the opposite of tan(A/2).",
+        "memory_tip": "cot(A/2) = s(s−a)/Δ — the bracket carries the same letter as the angle. tan(A/2) uses the other two.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "cot(A/2) = √(s(s−a)/((s−b)(s−c)))",
+          "= s(s−a)/√(s(s−a)(s−b)(s−c))",
+          "= s(s−a)/Δ",
+          "Similarly cot(B/2) = s(s−b)/Δ",
+          "and cot(C/2) = s(s−c)/Δ"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cot(A/2) = s(s−a)/Δ, and the same pattern gives cot(B/2) and cot(C/2).",
+          "accept": [
+            "cot half A is s into s minus a over delta",
+            "multiply top and bottom so the denominator becomes Heron's product",
+            "the bracket carries the same letter as the angle",
+            "cot half A ante s into s minus a by delta",
+            "write all three cotangents over delta"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "s into s minus a",
+            "delta",
+            "cot half A",
+            "Heron"
+          ]
+        },
+        "why": "An arithmetic progression is a statement about differences, and differences are easy only when the three terms share a factor. Written over Δ, all three carry the same s/Δ.",
+        "common_mistakes": [
+          "Writing cot(A/2) = (s−b)(s−c)/Δ, which is tan(A/2).",
+          "Pairing (s−b) with the angle A."
+        ]
+      },
+      {
+        "id": "s2_use_the_ap_condition",
+        "kind": "boxed_final",
+        "label": "Use the A.P. condition",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The other mark. Dividing by s/Δ is allowed because s and Δ are both positive; then the 2s cancels from both sides.",
+        "memory_tip": "Three terms are in A.P. when twice the middle equals the sum of the outer two: 2cot(B/2) = cot(A/2) + cot(C/2).",
+        "lines": [
+          "cot(A/2), cot(B/2), cot(C/2) are in A.P., so",
+          "2 cot(B/2) = cot(A/2) + cot(C/2)",
+          "⇒ 2s(s−b)/Δ = s(s−a)/Δ + s(s−c)/Δ",
+          "s > 0 and Δ > 0, so divide by s/Δ:",
+          "2(s−b) = (s−a) + (s−c) = 2s − (a+c)",
+          "⇒ 2s − 2b = 2s − (a+c) ⇒ 2b = a + c",
+          {
+            "text": "∴ a, b, c are in A.P.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 2cot(B/2) = cot(A/2) + cot(C/2) reduces to 2(s−b) = (s−a) + (s−c), giving 2b = a + c.",
+          "accept": [
+            "twice the middle term equals the sum of the other two",
+            "the common factor s over delta cancels",
+            "two s minus two b equals two s minus a plus c so two b is a plus c",
+            "madhya term ki rendu rettu ante migatha rendintiki sum",
+            "cancel s over delta and the two s to get two b equals a plus c"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "twice the middle",
+            "s over delta",
+            "two b equals a plus c",
+            "A P"
+          ]
+        },
+        "why": "Three numbers are in A.P. when twice the middle one equals the sum of the outer two. The common factor s/Δ divides out, and the 2s on both sides cancels, leaving only 2b = a + c.",
+        "common_mistakes": [
+          "Writing cot(A/2) + cot(B/2) = 2cot(C/2), which uses the wrong middle term.",
+          "Cancelling the 2s wrongly and finishing with b = a + c."
+        ]
+      }
+    ]
+  }
+}

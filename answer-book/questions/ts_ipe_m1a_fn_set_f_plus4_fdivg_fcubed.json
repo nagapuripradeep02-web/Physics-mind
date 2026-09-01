@@ -1,0 +1,229 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_set_f_plus4_fdivg_fcubed",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If f = {(4, 5), (5, 6), (6, −4)} and g = {(4, −4), (6, 5), (8, 5)}, then find (i) f + 4 (ii) f/g (iii) f³.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the domains",
+      "marks": 1
+    },
+    {
+      "label": "Find f + 4",
+      "marks": 1
+    },
+    {
+      "label": "Find f/g",
+      "marks": 1
+    },
+    {
+      "label": "Find f³",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 2 FUNCTIONS, Short Answer question 4, book p.16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape is the one this bank uses for a Maths-1A Section B question; here the first mark buys the domain decision that governs all three parts, and one mark each buys the three answers. Paper position: Maths-1A Section B prints 8 short answer questions, the student answers any 6, and each carries 4 marks (2026-27 pattern). PARTS COVERED: the book prints ten sub-parts (i)–(x) on this one pair of sets; this card answers the book's (iv) f + 4, (vi) f/g and (x) f³, renumbered here as (i), (ii) and (iii) so the card reads without gaps. The other seven sub-parts are answered by ts_ipe_m1a_fn_sqp_seven_operations in this same unit, so the two cards are siblings covering one book question between them, not duplicates. appearances[] is empty because the source book prints no year for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would answer all three parts — which domain each one uses, and what the operation does to the images.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_domains",
+        "kind": "equation",
+        "label": "Find the domains",
+        "marks": 1,
+        "mark_note": "Domains",
+        "margin_note": "One of the four marks, and the decision that governs all three parts. f + 4 and f³ keep f's own domain {4, 5, 6}; only f/g is cut down to the intersection {4, 6}.",
+        "memory_tip": "One function alone keeps its own domain. Two functions together need the intersection.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Domain of f = {4, 5, 6}",
+          "Domain of g = {4, 6, 8}",
+          "f + 4 and f³ use f alone, so both have",
+          "domain {4, 5, 6}.",
+          "f/g needs both f and g, so its domain is",
+          "the intersection {4, 6}, where also g ≠ 0."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f + 4 and f³ keep f's own domain {4, 5, 6}, while f/g uses the intersection {4, 6} with the zeros of g removed.",
+          "accept": [
+            "f plus four and f cubed use f alone so the domain stays four five six",
+            "f by g needs both functions so take the intersection four and six",
+            "the domain of a quotient also needs g not equal to zero",
+            "f okkate unte f domain, rendu unte intersection teesukovali",
+            "two of the parts keep f's domain and only the quotient is cut down"
+          ],
+          "reject": [
+            "add four to each image",
+            "cube each image",
+            "the union is four five six and eight"
+          ],
+          "heard_as": [
+            "domain of f",
+            "intersection",
+            "four and six",
+            "g not zero"
+          ]
+        },
+        "why": "The domain decides which preimages appear in each answer, and it is not the same for the three parts. Two of them use f alone; only the quotient needs both functions.",
+        "common_mistakes": [
+          "Using the intersection {4, 6} for f + 4 and f³ as well.",
+          "Taking the union {4, 5, 6, 8} for f/g."
+        ]
+      },
+      {
+        "id": "s2_f_plus_4",
+        "kind": "equation",
+        "label": "Find f + 4",
+        "marks": 1,
+        "mark_note": "Part (i)",
+        "margin_note": "The second mark. Add 4 to the image only. The pair (6, 0) stays, because a value of zero is still a value.",
+        "memory_tip": "Add 4 to the second coordinate only. The inputs 4, 5 and 6 do not move.",
+        "lines": [
+          "(i) f + 4 adds 4 to each image.",
+          "f + 4 = {(4, 5+4), (5, 6+4), (6, −4+4)}",
+          "  = {(4, 9), (5, 10), (6, 0)}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 4 is added to each image, leaving the first coordinates alone: f + 4 = {(4, 9), (5, 10), (6, 0)}.",
+          "accept": [
+            "add four to every image so you get four nine five ten and six zero",
+            "the inputs stay the same and four is added to each output",
+            "f plus four is four comma nine five comma ten six comma zero",
+            "second coordinate ki four add cheyyali, inputs marave",
+            "the pair at six becomes zero and it is still kept"
+          ],
+          "reject": [
+            "the domain is the intersection four and six",
+            "cube each image",
+            "add four to the preimage"
+          ],
+          "heard_as": [
+            "f plus four",
+            "four nine",
+            "five ten",
+            "six zero"
+          ]
+        },
+        "why": "The 4 here is the constant function 4, which is defined for every real number, so it takes nothing away from f's domain. Only the second coordinate changes.",
+        "common_mistakes": [
+          "Adding 4 to the first coordinate as well.",
+          "Dropping the pair (6, 0) because the value is zero."
+        ]
+      },
+      {
+        "id": "s3_f_over_g",
+        "kind": "equation",
+        "label": "Find f/g",
+        "marks": 1,
+        "mark_note": "Part (ii)",
+        "margin_note": "The third mark. Two conditions, not one: both functions defined, and g not zero. Check g(4) and g(6) in writing before dividing.",
+        "memory_tip": "For f/g check two things at each point: both functions defined, and g not zero.",
+        "lines": [
+          "(ii) On {4, 6}: g(4) = −4 and g(6) = 5.",
+          "Neither is 0, so both pairs are kept.",
+          "f/g = {(4, 5/(−4)), (6, (−4)/5)}",
+          "  = {(4, −5/4), (6, −4/5)}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That on the intersection {4, 6} neither g value is zero, so f/g = {(4, −5/4), (6, −4/5)}.",
+          "accept": [
+            "on four and six g is minus four and five and neither is zero so both pairs stay",
+            "f by g is four comma minus five by four and six comma minus four by five",
+            "divide the image of f by the image of g at each shared point",
+            "g zero kaadu kabatti rendu pairs untai",
+            "the quotient is minus five by four and minus four by five"
+          ],
+          "reject": [
+            "add four to each image",
+            "the domain of f is four five six",
+            "divide g by f"
+          ],
+          "heard_as": [
+            "f by g",
+            "minus five by four",
+            "minus four by five",
+            "not zero"
+          ]
+        },
+        "why": "A quotient needs the bottom function to be non zero as well as defined, so the domain of f/g is the intersection with the zeros of g removed. Nothing extra is removed here, but the check still has to be written.",
+        "common_mistakes": [
+          "Writing the quotient at 5 or 8, where one of the two functions is undefined.",
+          "Dividing g by f instead of f by g."
+        ]
+      },
+      {
+        "id": "s4_f_cubed",
+        "kind": "boxed_final",
+        "label": "Find f³",
+        "marks": 1,
+        "mark_note": "Part (iii)",
+        "margin_note": "The fourth mark. f³ cubes the IMAGE. A cube keeps the sign, so (−4)³ = −64, not 64.",
+        "memory_tip": "f³ cubes the image, and a cube keeps the sign: (−4)³ = −64.",
+        "lines": [
+          "(iii) f³ cubes each image, so the domain is",
+          "f's own {4, 5, 6}.",
+          "f³ = {(4, 5³), (5, 6³), (6, (−4)³)}",
+          "  = {(4, 125), (5, 216), (6, −64)}",
+          {
+            "text": "All three results are as listed above.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f³ cubes each image over f's own domain, giving f³ = {(4, 125), (5, 216), (6, −64)}, with the negative image staying negative.",
+          "accept": [
+            "cube each image so you get four one two five five two one six and six minus sixty four",
+            "f cubed uses f alone so all three pairs stay",
+            "minus four cubed is minus sixty four because a cube keeps the sign",
+            "prathi image ni cube cheyyali, sign marad",
+            "f cubed is not f composed with itself three times"
+          ],
+          "reject": [
+            "the domain is the intersection four and six",
+            "divide the image of f by the image of g",
+            "minus four cubed is sixty four"
+          ],
+          "heard_as": [
+            "f cubed",
+            "one two five",
+            "two one six",
+            "minus sixty four"
+          ]
+        },
+        "why": "f³ means the image cubed, not f composed with itself three times. A cube keeps the sign, so the negative image stays negative — unlike f², where it would not.",
+        "common_mistakes": [
+          "Reading f³ as fofof, the composition.",
+          "Writing (−4)³ as 64."
+        ]
+      }
+    ]
+  }
+}

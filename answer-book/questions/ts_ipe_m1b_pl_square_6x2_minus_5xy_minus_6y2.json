@@ -1,0 +1,238 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_pl_square_6x2_minus_5xy_minus_6y2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 4,
+    "name": "Pair of Straight Lines"
+  },
+  "chapter": "Pair of Straight Lines",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Show that the pair of lines 6x² − 5xy − 6y² = 0 and the pair 6x² − 5xy − 6y² + x + 5y − 1 = 0 form a square.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Split the first pair",
+      "marks": 1
+    },
+    {
+      "label": "Split the second pair",
+      "marks": 1
+    },
+    {
+      "label": "Show the adjacent sides are perpendicular",
+      "marks": 1
+    },
+    {
+      "label": "Show the two distances are equal",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 4 PAIR OF STRAIGHT LINES, Short Answer question 17(i), book p.172. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split is 1+1+1+1 because a square needs BOTH facts and each fact needs its own pair split first: one mark for each factorisation, one for the right angle, one for the equal distances. Neither of the last two marks can be earned without the other having been made possible. A rhombus has equal sides without right angles and a rectangle has right angles without equal sides, so a proof that stops after either one is incomplete. Both factorisations were checked by multiplying the factors back out. Paper position: Maths-1B Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — say what two facts a square needs, and how you get each one from the four lines.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Pair of Straight Lines · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_split_first_pair",
+        "kind": "equation",
+        "label": "Split the first pair",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Split the middle term: 6 × (−6) = −36 and (+4)(−9) = −36 with 4 − 9 = −5. These two lines pass through the origin.",
+        "memory_tip": "Split −5xy as +4xy − 9xy, because 4 × (−9) = −36 = 6 × (−6).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "6x² − 5xy − 6y² = 0   ……(1)",
+          "6x² − 5xy − 6y² + x + 5y − 1 = 0   ……(2)",
+          "(1) ⇒ 6x² + 4xy − 9xy − 6y² = 0",
+          "⇒ 2x(3x + 2y) − 3y(3x + 2y) = 0",
+          "⇒ (2x − 3y)(3x + 2y) = 0",
+          "So (1) gives L₁: 2x − 3y = 0",
+          "and L₂: 3x + 2y = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first pair factorises as (2x − 3y)(3x + 2y) = 0, giving L₁ and L₂ through the origin.",
+          "accept": [
+            "split the middle term into plus four x y and minus nine x y",
+            "the first pair factorises as two x minus three y into three x plus two y",
+            "these two lines pass through the origin",
+            "middle term split chesi factorise cheyyali",
+            "L one is two x minus three y and L two is three x plus two y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two x minus three y",
+            "three x plus two y",
+            "split the middle term",
+            "through the origin"
+          ]
+        },
+        "why": "The first pair is homogeneous, so both its lines pass through the origin and give the two directions the whole figure is built from.",
+        "common_mistakes": [
+          "Reading the xy coefficient as h instead of 2h, so h = −5 instead of −5/2.",
+          "Splitting −5xy as −2xy − 3xy, whose product is not −36x²y²."
+        ]
+      },
+      {
+        "id": "s2_split_second_pair",
+        "kind": "equation",
+        "label": "Split the second pair",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. The second pair has the same second-degree part, so its factors are the same two brackets with constants added. Read the constants off the x and y coefficients, then check them against the constant term.",
+        "memory_tip": "Same second-degree part means the same two brackets, each with a constant added.",
+        "lines": [
+          "(2) has the same second degree terms, so",
+          "let (2) ≡ (2x − 3y + c)(3x + 2y + d)",
+          "x term: 2d + 3c = 1;  y term: 2c − 3d = 5",
+          "Solving these two, c = 1 and d = −1.",
+          "Constant: cd = (1)(−1) = −1, as in (2).",
+          "Multiplying back: (2x − 3y + 1)(3x + 2y − 1)",
+          "   = 6x² − 5xy − 6y² + x + 5y − 1 = (2)",
+          "So L₃: 2x − 3y + 1 = 0, L₄: 3x + 2y − 1 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the second pair factorises as (2x − 3y + 1)(3x + 2y − 1) = 0, with the constants found from the x and y coefficients and checked against the constant term.",
+          "accept": [
+            "the second pair has the same brackets with constants c and d added",
+            "compare the x and y coefficients to get c equals one and d equals minus one",
+            "check c times d against the constant term minus one",
+            "same brackets ki constants add chesi compare cheyyali",
+            "L three is two x minus three y plus one and L four is three x plus two y minus one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "c and d",
+            "compare coefficients",
+            "two x minus three y plus one",
+            "three x plus two y minus one"
+          ]
+        },
+        "why": "The constant term is not used to FIND c and d — it is the independent check that the two lines really are a factorisation of (2) and not just a guess that matches the first-degree terms.",
+        "common_mistakes": [
+          "Putting the constants in the wrong brackets, giving c = −1 and d = 1.",
+          "Skipping the check cd = −1 against the constant term of (2)."
+        ]
+      },
+      {
+        "id": "s3_perpendicular",
+        "kind": "equation",
+        "label": "Show the adjacent sides are perpendicular",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "One mark. L₁ and L₃ are parallel, and so are L₂ and L₄, so the four lines already make a parallelogram. The dot product of the two normals then makes it a rectangle.",
+        "memory_tip": "Two parallel pairs give a parallelogram; a zero dot product of the normals upgrades it to a rectangle.",
+        "lines": [
+          "L₁ ∥ L₃ and L₂ ∥ L₄, so the four lines",
+          "form a parallelogram.",
+          "Normal of L₁ is (2, −3); of L₂ is (3, 2).",
+          "(2)(3) + (−3)(2) = 6 − 6 = 0",
+          "∴ L₁ ⊥ L₂, so the figure is a rectangle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two pairs are parallel and the normals of L₁ and L₂ have dot product zero, so the figure is a rectangle.",
+          "accept": [
+            "L one and L three have the same left hand side so they are parallel",
+            "the normals are two comma minus three and three comma two",
+            "their dot product is six minus six which is zero so the lines are perpendicular",
+            "normals dot product zero so perpendicular",
+            "the figure is a rectangle so far"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "parallel",
+            "dot product",
+            "six minus six",
+            "rectangle"
+          ]
+        },
+        "why": "A rectangle satisfies one of the two conditions a square needs. Stopping here would prove only that the angles are right, and a rectangle that is not a square also has right angles.",
+        "common_mistakes": [
+          "Testing L₁ against L₃, which are parallel, instead of against L₂.",
+          "Concluding a square from the right angle alone."
+        ]
+      },
+      {
+        "id": "s4_equal_distances",
+        "kind": "boxed_final",
+        "label": "Show the two distances are equal",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. The distance between one pair of parallel lines IS the length of the side lying along the other pair, because the sides meet at right angles. Both come out 1/√13, so adjacent sides are equal.",
+        "memory_tip": "The gap between one parallel pair is the side length along the other pair, since they meet at right angles.",
+        "lines": [
+          "Distance between L₁ and L₃",
+          "   = |0 − 1| / √(4 + 9) = 1/√13",
+          "Distance between L₂ and L₄",
+          "   = |0 − (−1)| / √(9 + 4) = 1/√13",
+          "Each side equals the distance between the",
+          "other pair, so adjacent sides are equal.",
+          {
+            "text": "∴ The four lines form a square.",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both distances between parallel pairs are 1/√13, so with the right angles the figure is a square.",
+          "accept": [
+            "the distance between two parallel lines is the difference of the constants over root a squared plus b squared",
+            "both distances come out one over root thirteen",
+            "equal distances plus right angles make it a square",
+            "rendu distances same ga vasthaayi so square",
+            "the adjacent sides are equal so it is a square"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "one by root thirteen",
+            "distance between parallel lines",
+            "adjacent sides equal",
+            "square"
+          ]
+        },
+        "why": "A square needs both facts together. A rhombus has equal sides without right angles and a rectangle has right angles without equal sides, so only the two together settle it.",
+        "common_mistakes": [
+          "Using different denominators for the two distances when both are √13.",
+          "Comparing L₁ with L₄, which are not parallel, so no distance formula applies."
+        ]
+      }
+    ]
+  }
+}

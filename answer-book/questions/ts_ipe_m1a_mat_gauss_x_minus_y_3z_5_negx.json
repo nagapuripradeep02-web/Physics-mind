@@ -1,0 +1,316 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_gauss_x_minus_y_3z_5_negx",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 13,
+  "question_text": "By the Gauss-Jordan method, solve x − y + 3z = 5, 4x + 2y − z = 0, −x + 3y + z = 5.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the augmented matrix [A D]",
+      "marks": 1
+    },
+    {
+      "label": "Clear column 1 below the leading entry",
+      "marks": 2
+    },
+    {
+      "label": "Reach a leading 1 in the last row",
+      "marks": 1
+    },
+    {
+      "label": "Clear upwards to the identity",
+      "marks": 3
+    },
+    {
+      "label": "Read off the solution",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.55, chapter 5 MATRICES, Long Answer question 9(v), Gauss-Jordan route. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+2+1+3+1 split matches every other unique-solution Gauss-Jordan answer in this unit. ONE CARD PER METHOD: the book asks this one system by Cramer's rule, by matrix inversion and by the Gauss-Jordan method, and this bank answers each method on its own card so that a student who opens one never has to read another. The siblings are ts_ipe_m1a_mat_cramer_x_minus_y_3z_5_negx and ts_ipe_m1a_mat_inverse_x_minus_y_3z_5_negx, and all three land on the same solution x = 0, y = 1, z = 2. A DIFFERENT system of a similar shape is already in the bank as ts_ipe_m1a_mat_cramer_x_minus_y_3z_5, whose third equation is x + 3y + z = 5 with a positive x; that card is not a duplicate of this one. PRINTED DEFECT IN THE STEM: the book prints the third equation as −x + 3y + 3z = 5, but every matrix it then writes uses the row (−1, 3, 1), that is −x + 3y + z = 5, and the book's own Δ = 50 and answer (0, 1, 2) belong to that version. This card is authored on −x + 3y + z = 5. The arithmetic settles it: with the printed 3z the determinant is 62, not 50, and the solution is x = 10/31, y = 5/31, z = 50/31 — fractions the book never prints; with z the determinant is 50 and the solution is (0, 1, 2), exactly what the book states. The book also mis-sets \"x − y + 33 = 5\" for x − y + 3z = 5 in its Cramer's-rule restatement of the same system. Both misprints are recorded here rather than silently repaired. Working checked twice: Δ = det A was expanded along R₁ and again along C₁, both giving 50, so the system was known to have one solution before the row reduction started, and the solution was substituted back into all three original equations (5 = 5, 0 = 0, 5 = 5). Paper position: Maths-1A Section C prints 3 long answers at 8 marks each and the student answers any 2; Matrices is one of the units that can fill a Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this by the Gauss-Jordan method — say what matrix you write down first, which direction you clear in, and how you check the answer.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Matrices · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_augmented",
+        "kind": "equation",
+        "label": "Write the augmented matrix",
+        "marks": 1,
+        "mark_note": "Augmented matrix",
+        "margin_note": "First mark. The augmented matrix is A with the constants column joined on. The rule down the middle is not decoration — it marks where the equals sign was, and every row operation acts across it.",
+        "memory_tip": "The augmented matrix is A with the constants column joined on; the rule marks where the equals sign was.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The system in matrix form is AX = D, where",
+          {
+            "text": "A = \\begin{bmatrix} 1 & -1 & 3 \\\\ 4 & 2 & -1 \\\\ -1 & 3 & 1 \\end{bmatrix}, \\ X = \\begin{bmatrix} x \\\\ y \\\\ z \\end{bmatrix}, \\ D = \\begin{bmatrix} 5 \\\\ 0 \\\\ 5 \\end{bmatrix}",
+            "render": "katex",
+            "style": "eq"
+          },
+          "The augmented matrix is",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 4 & 2 & -1 & 0 \\\\ -1 & 3 & 1 & 5 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the augmented matrix [A | D] is written — the coefficient matrix with the constants column attached.",
+          "accept": [
+            "write the augmented matrix A D with the constants joined on to the coefficient matrix",
+            "form A given D by putting the right hand side as a fourth column",
+            "write the coefficient matrix together with the constants column",
+            "augmented matrix rasta, coefficients tho patu constants column kuda",
+            "attach the constants to A to make the augmented matrix"
+          ],
+          "reject": [
+            "write the matrix",
+            "make the augmented matrix",
+            "write A and D"
+          ],
+          "heard_as": [
+            "augmented matrix",
+            "A D",
+            "constants column",
+            "fourth column"
+          ]
+        },
+        "why": "Every row of the augmented matrix IS one of the original equations. That is why a row operation is legal — adding one equation to another never changes the solution set.",
+        "common_mistakes": [
+          "Writing A alone and doing the row operations without the constants.",
+          "Putting the constants in as a fourth ROW instead of a fourth column.",
+          "Writing the coefficients in the order they appear rather than in x, y, z order."
+        ]
+      },
+      {
+        "id": "s2_forward",
+        "kind": "equation",
+        "label": "Clear column 1",
+        "marks": 2,
+        "mark_note": "Forward elimination",
+        "margin_note": "Two marks. The top-left entry is already 1. Row 3 begins with −1, so it is ADDED rather than subtracted. Halving the new row 3 gives a leading 1 in column 2, so swap it up into the pivot position.",
+        "memory_tip": "Row 3 begins with −1, so ADD row 1 to it. Then halve it to get a leading 1 and swap it up.",
+        "lines": [
+          "R₂ → R₂ − 4R₁,  R₃ → R₃ + R₁",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 0 & 6 & -13 & -20 \\\\ 0 & 2 & 4 & 10 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₃ → R₃ × ½, then R₂ ↔ R₃",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 0 & 1 & 2 & 5 \\\\ 0 & 6 & -13 & -20 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a leading 1 is obtained in the top-left position and then used to make the rest of column 1 zero.",
+          "accept": [
+            "get a one in the top left corner then subtract multiples of row one to make the rest of the first column zero",
+            "use the leading one to clear column one below it",
+            "make the first column zeros under the leading entry using row operations",
+            "first column lo leading one techi, kinda unna entries ni zero chestham",
+            "swap or subtract to get a one on top then knock out the entries below it"
+          ],
+          "reject": [
+            "do row operations",
+            "clear the column",
+            "reduce the matrix"
+          ],
+          "heard_as": [
+            "leading one",
+            "first column",
+            "zeros below",
+            "row operations",
+            "eliminate"
+          ]
+        },
+        "why": "Gauss-Jordan works one column at a time, and it needs a 1 at the pivot first. Making zeros before you have that 1 is what forces fractions into the working.",
+        "common_mistakes": [
+          "Clearing the column with a pivot that is not 1, which forces fractions into every later row.",
+          "Applying an operation to only part of a row — every entry moves, including the constant.",
+          "Changing the pivot row while using it to clear the others."
+        ]
+      },
+      {
+        "id": "s3_pivot",
+        "kind": "equation",
+        "label": "Reach a leading 1 in R₃",
+        "marks": 1,
+        "mark_note": "Last pivot",
+        "margin_note": "Fourth mark. Once row 3 reads 0 0 1 with a number after the rule, z = 2 is already known — everything from here is bookkeeping to get x and y out.",
+        "memory_tip": "Once row 3 reads 0 0 1, z is known; everything after is bookkeeping for x and y.",
+        "lines": [
+          "R₃ → R₃ − 6R₂",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 0 & 1 & 2 & 5 \\\\ 0 & 0 & -25 & -50 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₃ → R₃ × (−1/25)",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 3 & 5 \\\\ 0 & 1 & 2 & 5 \\\\ 0 & 0 & 1 & 2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the last row is reduced to 0, 0, 1 with the value of z after the rule — that is, the third pivot is made 1.",
+          "accept": [
+            "reduce the last row to zero zero one so that z is read directly",
+            "make the third pivot a one by dividing the row",
+            "get the bottom row to zero zero one which gives z",
+            "last row ni zero zero one ga marchali, appudu z telustundi",
+            "divide the bottom row so the pivot becomes one and z is known"
+          ],
+          "reject": [
+            "do more row operations",
+            "clear the second column",
+            "divide the row"
+          ],
+          "heard_as": [
+            "zero zero one",
+            "pivot",
+            "last row",
+            "z equals",
+            "bottom row"
+          ]
+        },
+        "why": "This is the point where Gauss elimination would stop and back-substitute. Gauss-Jordan carries on and clears upwards too, which is why the answer needs no substitution at all.",
+        "common_mistakes": [
+          "Dividing the row by the wrong entry.",
+          "Dividing the coefficients but not the constant after the rule.",
+          "Stopping here and calling it the answer; only z is known so far."
+        ]
+      },
+      {
+        "id": "s4_backward",
+        "kind": "equation",
+        "label": "Clear upwards",
+        "marks": 3,
+        "mark_note": "Backward elimination",
+        "margin_note": "Three marks. Row 1 carries −1 in column 2, so the last move ADDS row 2 rather than subtracting it. The answer x = 0 is a real answer, not an empty box.",
+        "memory_tip": "Row 1 carries −1 in column 2, so the last move ADDS row 2 instead of subtracting it.",
+        "lines": [
+          "R₁ → R₁ − 3R₃,  R₂ → R₂ − 2R₃",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & -1 & 0 & -1 \\\\ 0 & 1 & 0 & 1 \\\\ 0 & 0 & 1 & 2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          },
+          "R₁ → R₁ + R₂",
+          {
+            "text": "\\left[\\begin{array}{ccc|c} 1 & 0 & 0 & 0 \\\\ 0 & 1 & 0 & 1 \\\\ 0 & 0 & 1 & 2 \\end{array}\\right]",
+            "render": "katex",
+            "style": "eq"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the elimination is then run upwards — using the lower rows to clear the entries ABOVE the pivots, until only the diagonal is left.",
+          "accept": [
+            "now clear upwards using the bottom row to remove the entries above the pivots",
+            "work from the bottom up making the entries above each pivot zero",
+            "eliminate above the diagonal so only the pivots are left",
+            "ippudu paina unna entries ni kuda zero chestham, kinda nunchi paiki",
+            "use row three then row two to clear everything above them"
+          ],
+          "reject": [
+            "do more row operations",
+            "reduce it fully",
+            "clear the matrix"
+          ],
+          "heard_as": [
+            "clear upwards",
+            "above the pivot",
+            "bottom up",
+            "diagonal",
+            "identity"
+          ]
+        },
+        "why": "Clearing upwards as well as downwards is the ONLY difference between Gauss-Jordan and plain Gauss elimination. It buys you an answer you can read straight off, with no back-substitution.",
+        "common_mistakes": [
+          "Stopping at the triangular form and back-substituting; that is Gauss, not Gauss-Jordan.",
+          "Clearing upwards before the pivots are 1, which reintroduces fractions.",
+          "Forgetting to carry the operation across the rule into the constant."
+        ]
+      },
+      {
+        "id": "s5_read",
+        "kind": "boxed_final",
+        "label": "Read off the solution",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "Last mark. x = 0 is a value like any other — write it down. Then put all three values back into the three original equations.",
+        "memory_tip": "Each row is now a one-letter equation, so the answer is read off with no substitution. Then check it in the original equations.",
+        "lines": [
+          "Each row is now a single equation:",
+          "Row 1: x = 0,  Row 2: y = 1,  Row 3: z = 2",
+          "Check: 0 − 1 + 3(2) = 5  ✓",
+          "4(0) + 2(1) − 2 = 0  ✓",
+          "−0 + 3(1) + 2 = 5  ✓",
+          {
+            "text": "∴ x = 0, y = 1, z = 2",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That each row of the reduced matrix reads as one equation, giving x = 0, y = 1, z = 2, and that the values are checked in the original equations.",
+          "accept": [
+            "each row is now one equation so read x y and z straight off",
+            "the reduced matrix gives x equals zero y equals one z equals two directly with no substitution",
+            "read the answers from the last column and then check them",
+            "prathi row oke equation kabatti x y z direct ga chadavachu",
+            "the three rows give the three unknowns immediately"
+          ],
+          "reject": [
+            "then I get the answer",
+            "that is the solution",
+            "read the matrix"
+          ],
+          "heard_as": [
+            "read off",
+            "each row",
+            "x equals zero",
+            "y equals one",
+            "z equals two"
+          ]
+        },
+        "why": "A row reading 0 0 1 | 2 is literally the equation z = 2. Understanding that the matrix never stopped being the equations is what makes the whole method feel less like a recipe, and substituting back is what proves no row operation went wrong.",
+        "common_mistakes": [
+          "Reading the values in the wrong order.",
+          "Reading the answer off an earlier matrix instead of the final one.",
+          "Stopping without substituting the three values back into all three equations."
+        ]
+      }
+    ]
+  }
+}

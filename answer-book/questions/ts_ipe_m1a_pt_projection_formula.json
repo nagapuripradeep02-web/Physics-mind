@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_pt_projection_formula",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Properties of Triangles"
+  },
+  "chapter": "Properties of Triangles",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that in △ABC, a = b cos C + c cos B.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write both cosines by the cosine rule",
+      "marks": 1
+    },
+    {
+      "label": "Cancel and add",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.123, chapter 12 PROPERTIES OF TRIANGLES, Very Short Answer question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to substituting the cosine rule for both cosines and one to the cancellation that leaves a. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Properties of Triangles supplies one of them. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each standard result you use and the order you use them in.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Properties of Triangles · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_both_cosines",
+        "kind": "equation",
+        "label": "Write both cosines by the cosine rule",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "Half the marks. cos C sits over 2ab and cos B over 2ca — the two sides that meet at that angle.",
+        "memory_tip": "The denominator of a cosine is twice the product of the two sides that meet at that angle: cos C over 2ab, cos B over 2ca.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "R.H.S = b cos C + c cos B",
+          "By the cosine rule,",
+          "cos C = (a² + b² − c²)/(2ab)",
+          "cos B = (c² + a² − b²)/(2ca)",
+          "∴ R.H.S = b(a²+b²−c²)/(2ab)",
+          {
+            "text": "+ c(c²+a²−b²)/(2ca)",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos C = (a²+b²−c²)/(2ab) and cos B = (c²+a²−b²)/(2ca) are substituted into b cos C + c cos B.",
+          "accept": [
+            "write both cosines by the cosine rule and put them into the right hand side",
+            "cos C is a squared plus b squared minus c squared over two a b",
+            "the denominator is twice the product of the two sides meeting at the angle",
+            "cosine rule vaadi rendu cosines rasi substitute cheyyali",
+            "start from the right hand side and expand the cosines"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cosine rule",
+            "two a b",
+            "two c a",
+            "cos C"
+          ]
+        },
+        "why": "The left side is a plain side and the right side carries two cosines, so the cosines must go first. The cosine rule is the only result that writes a cosine using the three sides.",
+        "common_mistakes": [
+          "Using cos C = (a² + b² − c²)/(2bc) with the wrong pair of sides.",
+          "Starting from the left side, which has nothing to expand."
+        ]
+      },
+      {
+        "id": "s2_cancel_and_add",
+        "kind": "boxed_final",
+        "label": "Cancel and add",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "margin_note": "The other mark. Both fractions reduce to a denominator of 2a, and then b² and c² cancel in pairs.",
+        "memory_tip": "After cancelling, both fractions sit over 2a; b² and c² then cancel in pairs and leave 2a².",
+        "lines": [
+          "= (a²+b²−c²)/(2a) + (c²+a²−b²)/(2a)",
+          "= [(a²+b²−c²) + (a²+c²−b²)]/(2a)",
+          "= (2a²)/(2a) = a",
+          {
+            "text": "∴ b cos C + c cos B = a = L.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both terms reduce to a denominator of 2a, b² and c² cancel, and 2a²/(2a) = a.",
+          "accept": [
+            "the b cancels and the c cancels so both are over two a",
+            "b squared and c squared cancel leaving two a squared",
+            "two a squared over two a is a",
+            "b and c cancel ayipoyi rendu two a meeda vasthayi",
+            "add the two fractions and everything but two a squared cancels"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two a",
+            "b squared cancels",
+            "two a squared",
+            "equals a"
+          ]
+        },
+        "why": "The b outside cancels the b in 2ab and the c cancels the c in 2ca, so both fractions land on the same denominator 2a. Then b² and c² cancel in pairs and only 2a² is left.",
+        "common_mistakes": [
+          "Cancelling the a instead of the b, leaving different denominators.",
+          "Losing a sign so that b² and c² do not cancel."
+        ]
+      }
+    ]
+  }
+}

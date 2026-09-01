@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_mat_vsaq_define_symmetric_skew",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 5,
+    "name": "Matrices"
+  },
+  "chapter": "Matrices",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define symmetric and skew symmetric matrices.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Define a symmetric matrix",
+      "marks": 1
+    },
+    {
+      "label": "Define a skew symmetric matrix",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.34, chapter 5 MATRICES, Very Short Answer question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards each of the two definitions the question names, so a student who writes only one of them earns exactly half. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Related cards in the same unit: ts_ipe_m1a_mat_vsaq_symmetric_find_x and ts_ipe_m1a_mat_vsaq_skew_symmetric_find_x each open with one of these definitions and then solve for an unknown; this question asks for both definitions and nothing else, so the three are not duplicates."
+  },
+  "recall_prompt": "Say both definitions, and say what skew symmetry forces the diagonal entries to be.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Matrices · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_symmetric",
+        "kind": "text",
+        "label": "Define a symmetric matrix",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. Write the condition in symbols, Aᵀ = A, and in entries, aⱼᵢ = aᵢⱼ. Either form earns it; both together are safest.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          {
+            "text": "Symmetric Matrix:",
+            "style": "heading"
+          },
+          "A square matrix A = [aᵢⱼ] is called symmetric",
+          "if Aᵀ = A, that is aⱼᵢ = aᵢⱼ for all i and j.",
+          "Example: the matrix with rows (1, 2) and (2, 5)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a square matrix is symmetric when it equals its own transpose, Aᵀ = A.",
+          "accept": [
+            "a square matrix is symmetric if it equals its transpose",
+            "symmetric means A equals A transpose",
+            "the entry in row j column i equals the entry in row i column j",
+            "symmetric ante A equals A transpose",
+            "transposing the matrix changes nothing"
+          ],
+          "reject": [
+            "it is symmetric",
+            "define symmetric"
+          ],
+          "heard_as": [
+            "symmetric",
+            "A equals A transpose",
+            "transpose",
+            "square matrix"
+          ]
+        },
+        "why": "Symmetry is a reflection across the principal diagonal, so the condition ties each entry to the one in the mirrored position. The word square belongs in the definition, because only a square matrix can equal its own transpose.",
+        "common_mistakes": [
+          "Writing Aᵀ = −A, which is the skew symmetric condition.",
+          "Leaving out the word square.",
+          "Saying only that the matrix looks the same, with no condition."
+        ],
+        "memory_tip": "Symmetric: fold along the principal diagonal and the two halves match, Aᵀ = A."
+      },
+      {
+        "id": "s2_skew_symmetric",
+        "kind": "boxed_final",
+        "label": "Define a skew symmetric matrix",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Second mark. Aᵀ = −A. The line aᵢᵢ = −aᵢᵢ is worth writing: it shows why every principal diagonal entry has to be 0.",
+        "lines": [
+          {
+            "text": "Skew Symmetric Matrix:",
+            "style": "heading"
+          },
+          "A square matrix A = [aᵢⱼ] is called skew",
+          "symmetric if Aᵀ = −A, that is aⱼᵢ = −aᵢⱼ.",
+          "Putting j = i gives aᵢᵢ = −aᵢᵢ, so 2aᵢᵢ = 0.",
+          "So every principal diagonal entry is 0.",
+          "Example: the matrix with rows (0, 3) and (−3, 0).",
+          {
+            "text": "∴ Symmetric: Aᵀ = A;  skew: Aᵀ = −A",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a square matrix is skew symmetric when Aᵀ = −A, and that this forces every diagonal entry to be zero.",
+          "accept": [
+            "skew symmetric means A transpose equals minus A",
+            "the entry in row j column i is minus the entry in row i column j",
+            "putting j equal to i gives a i i equals minus a i i so the diagonal is zero",
+            "skew symmetric ante A transpose equals minus A, diagonal anni zero",
+            "every principal diagonal entry must be zero"
+          ],
+          "reject": [
+            "it is skew symmetric",
+            "the same with a minus"
+          ],
+          "heard_as": [
+            "skew symmetric",
+            "minus A transpose",
+            "diagonal zero",
+            "negative"
+          ]
+        },
+        "why": "The sign flip is the whole difference between the two definitions, and it has one consequence a marker looks for: a diagonal entry is its own mirror image, so it must equal its own negative and therefore be zero.",
+        "common_mistakes": [
+          "Writing Aᵀ = A for the skew symmetric case.",
+          "Giving an example with a non-zero diagonal entry.",
+          "Saying the diagonal is zero without showing why."
+        ],
+        "memory_tip": "Skew symmetric: same mirror, opposite sign, so the diagonal has to be 0."
+      }
+    ]
+  }
+}

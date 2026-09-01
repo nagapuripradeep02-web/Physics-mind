@@ -1,0 +1,237 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_vec_direction_angles_two_points",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 6,
+    "name": "Addition of Vectors"
+  },
+  "chapter": "Addition of Vectors",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 9,
+  "question_text": "Find the angles made by the straight line passing through the points (1, −3, 2) and (3, −5, 1) with the coordinate axes.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the direction vector AB",
+      "marks": 1
+    },
+    {
+      "label": "Find its magnitude",
+      "marks": 1
+    },
+    {
+      "label": "Write the direction cosines",
+      "marks": 1
+    },
+    {
+      "label": "State the three angles",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.64, chapter 6 ADDITION OF VECTORS, Short Answer question 6(iii). Only the question was taken — the solution, the step order and the mark split are this answer book's own work, see docs/ORIGINALITY_MATHS.md. The direction vector is AB = 2i − 2j − k with |AB| = 3, so the direction cosines are 2/3, −2/3, −1/3 and the angles are Cos⁻¹(2/3), Cos⁻¹(−2/3), Cos⁻¹(−1/3). Checked a second way with the identity l² + m² + n² = (4 + 4 + 1)/9 = 1. A line has two opposite directions, so BA gives the three supplementary angles; the card states that rather than leaving it unsaid, because a student whose answer reads Cos⁻¹(−2/3), Cos⁻¹(2/3), Cos⁻¹(1/3) has not made an error. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 split rewards the four separate acts: the direction vector, its magnitude, the direction cosines, and the angles written as inverse cosines. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1A Section B runs Q11 to Q18 at 4 marks each, answer any 6 of 8, under the 2026-27 pattern; Addition of Vectors has no Section C slot on the paper, so the unit is SAQ and VSAQ only. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would find the angles a line makes with the axes — say what you build from the two points and what you do with it.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Addition of Vectors · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_direction",
+        "kind": "equation",
+        "label": "Find the direction vector",
+        "marks": 1,
+        "mark_note": "Direction vector",
+        "margin_note": "First mark. The line is fixed by its direction, and the direction of a line through two points is the vector joining them. Subtract coordinate by coordinate.",
+        "memory_tip": "The direction of a line through two points is the second point minus the first, coordinate by coordinate.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A = (1, −3, 2) and B = (3, −5, 1).",
+          "OA = i − 3j + 2k,  OB = 3i − 5j + k",
+          "AB = OB − OA",
+          "  = (3−1)i + (−5+3)j + (1−2)k",
+          "  = 2i − 2j − k",
+          "AB is a direction vector of the line."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That AB = OB − OA = 2i − 2j − k is taken as the direction vector of the line.",
+          "accept": [
+            "the direction vector is B minus A which is two i minus two j minus k",
+            "subtract the position vectors of the two points",
+            "AB is OB minus OA and that gives the direction of the line",
+            "AB ante OB minus OA, two i minus two j minus k vasthundi",
+            "take the vector joining the two given points"
+          ],
+          "reject": [
+            "find the vector",
+            "subtract them",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "direction vector",
+            "AB",
+            "OB minus OA",
+            "two i minus two j minus k"
+          ]
+        },
+        "why": "Angles with the axes depend only on which way the line points, not on where it sits. Any vector along the line carries that information, and the join of the two given points is the easiest one to build.",
+        "common_mistakes": [
+          "Subtracting the wrong way round, which reverses all three signs.",
+          "A sign slip on the y term, where the coordinate is already negative."
+        ]
+      },
+      {
+        "id": "s2_magnitude",
+        "kind": "equation",
+        "label": "Find its magnitude",
+        "marks": 1,
+        "mark_note": "Magnitude",
+        "margin_note": "Second mark. Square each component with its sign, add, take the square root. The 9 here is exact, so the direction cosines come out as neat thirds.",
+        "memory_tip": "Square each component with its sign, add, then take the square root. Here it is an exact 3.",
+        "lines": [
+          "|AB| = √(2² + (−2)² + (−1)²)",
+          "     = √(4 + 4 + 1) = √9 = 3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That |AB| = √(4 + 4 + 1) = 3.",
+          "accept": [
+            "the magnitude is the square root of four plus four plus one which is three",
+            "root nine is three",
+            "take the modulus of the direction vector",
+            "magnitude root nine ante three",
+            "square the components add them and take the root"
+          ],
+          "reject": [
+            "find the magnitude",
+            "it is three",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "magnitude",
+            "root nine",
+            "three",
+            "modulus"
+          ]
+        },
+        "why": "Direction cosines are the components of a vector of length 1, so the length of the direction vector is what every component must be divided by.",
+        "common_mistakes": [
+          "Writing (−2)² as −4 by squaring only the 2.",
+          "Adding the components instead of their squares."
+        ]
+      },
+      {
+        "id": "s3_cosines",
+        "kind": "equation",
+        "label": "Write the direction cosines",
+        "marks": 1,
+        "mark_note": "Direction cosines",
+        "margin_note": "Third mark. Divide each component by the magnitude. Keep the minus signs — they are what say the line points backwards along the y and z axes.",
+        "memory_tip": "Divide every component by the length. Keep the minus signs, and check l² + m² + n² = 1.",
+        "lines": [
+          "The direction cosines are the components",
+          "of the unit vector along AB:",
+          "l = 2/3,  m = −2/3,  n = −1/3",
+          "Check: l² + m² + n²",
+          "  = (4 + 4 + 1)/9 = 9/9 = 1"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing each component by 3 gives the direction cosines l = 2/3, m = −2/3, n = −1/3, and that their squares add to 1.",
+          "accept": [
+            "divide each component by three to get two thirds minus two thirds and minus one third",
+            "the direction cosines are the components of the unit vector",
+            "the squares of the three direction cosines add up to one",
+            "prathi component ni three tho divide cheste direction cosines vasthai",
+            "keep the minus signs on the second and third ones"
+          ],
+          "reject": [
+            "find the direction cosines",
+            "divide by three",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "direction cosines",
+            "two thirds",
+            "minus one third",
+            "unit vector",
+            "l m n"
+          ]
+        },
+        "why": "A unit vector's components are the cosines of the angles it makes with the axes, because each component is the projection of a length of 1 onto that axis. The identity l² + m² + n² = 1 is a free check on the arithmetic.",
+        "common_mistakes": [
+          "Dropping the minus signs and reporting all three cosines as positive.",
+          "Dividing by 9 instead of by 3."
+        ]
+      },
+      {
+        "id": "s4_angles",
+        "kind": "boxed_final",
+        "label": "State the three angles",
+        "marks": 1,
+        "mark_note": "Angles",
+        "margin_note": "Last mark. Turn each cosine into an angle and say which axis each one belongs to. A negative cosine gives an obtuse angle, which is correct, not an error to be tidied away.",
+        "memory_tip": "One angle per axis, in the order x, y, z. A negative cosine simply means an obtuse angle.",
+        "lines": [
+          "Let α, β, γ be the angles the line makes",
+          "with the x, y and z axes. Then",
+          "cos α = 2/3,  cos β = −2/3,  cos γ = −1/3",
+          {
+            "text": "∴ α = Cos⁻¹(2/3),  β = Cos⁻¹(−2/3),",
+            "style": "boxed"
+          },
+          {
+            "text": "γ = Cos⁻¹(−1/3)",
+            "style": "boxed"
+          },
+          "Taking BA instead reverses all three signs",
+          "and gives the supplementary angles."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angles with the x, y and z axes are Cos⁻¹(2/3), Cos⁻¹(−2/3) and Cos⁻¹(−1/3).",
+          "accept": [
+            "the angles are cos inverse two thirds cos inverse minus two thirds and cos inverse minus one third",
+            "each direction cosine becomes an angle by taking the inverse cosine",
+            "the angle with the y axis is obtuse because its cosine is negative",
+            "cos inverse teeskunte angles vasthai, x y z axes tho",
+            "the opposite direction gives the supplementary angles"
+          ],
+          "reject": [
+            "find the angles",
+            "take cos inverse",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "cos inverse",
+            "two thirds",
+            "minus one third",
+            "x axis",
+            "supplementary"
+          ]
+        },
+        "why": "The question asked for angles, not cosines, so the inverse cosine is the last required step. A line has two opposite directions, so the second set of answers is equally correct and worth naming.",
+        "common_mistakes": [
+          "Leaving the answer as the direction cosines and never writing the angles.",
+          "Making all three angles acute by dropping the minus signs.",
+          "Pairing the angles with the wrong axes."
+        ]
+      }
+    ]
+  }
+}

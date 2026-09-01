@@ -1,0 +1,109 @@
+# OUR BANK — mathematics unit 8: Trigonometric Ratios and Transformations (Maths-1A)  (53 cards)
+# source index: answer-book/sources/chaitanya_m1a_ch08_trig_ratios_and_transformations.json
+
+[LAQ] ts_ipe_m1a_tr_sin2a_sum
+    If A + B + C = 180°, then show that sin2A + sin2B + sin2C = 4 sinA sinB sinC.
+[LAQ] ts_ipe_m1a_tr_cos2a_sum
+    If A, B, C are angles of a triangle, then prove that cos2A + cos2B + cos2C = −1 − 4 cosA cosB cosC.
+[LAQ] ts_ipe_m1a_tr_sin_half_squares
+    If A, B, C are angles of a triangle, then prove that sin²(A/2) + sin²(B/2) + sin²(C/2) = 1 − 2 sin(A/2) sin(B/2) sin(C/2).
+[LAQ] ts_ipe_m1a_tr_sin_half_minus_c
+    If A, B, C are angles of a triangle, then prove that sin²(A/2) + sin²(B/2) − sin²(C/2) = 1 − 2 cos(A/2) cos(B/2) sin(C/2).
+[LAQ] ts_ipe_m1a_tr_cos_half_squares
+    If A + B + C = π, then prove that cos²(A/2) + cos²(B/2) + cos²(C/2) = 2(1 + sin(A/2) sin(B/2) sin(C/2)).
+[LAQ] ts_ipe_m1a_tr_cosa_cosb_minus_cosc
+    If A, B, C are angles in a triangle, then prove that cosA + cosB − cosC = −1 + 4 cos(A/2) cos(B/2) sin(C/2).
+[LAQ] ts_ipe_m1a_tr_sin_s_minus_a
+    If A + B + C = 2S, then prove that sin(S−A) + sin(S−B) + sinC = 4 cos((S−A)/2) cos((S−B)/2) sin(C/2).
+[LAQ] ts_ipe_m1a_tr_cos_s_minus_a
+    If A + B + C = 2S, then prove that cos(S−A) + cos(S−B) + cosC = −1 + 4 cos((S−A)/2) cos((S−B)/2) cos(C/2).
+[LAQ] ts_ipe_m1a_tr_sqp_sin_sq_sum
+    If A, B, C are angles in a triangle, then prove that sin²A + sin²B − sin²C = 2 sin A sin B cos C.
+[LAQ] ts_ipe_m1a_tr_sqp_cos_double_half_pi
+    If A + B + C = π/2, then prove that cos 2A + cos 2B + cos 2C = 1 + 4 sin A sin B sin C.
+[LAQ] ts_ipe_m1a_tr_sqp_sin_double_zero_sum
+    If A + B + C = 0, then prove that sin 2A + sin 2B + sin 2C = −4 sin A sin B sin C.
+[LAQ] ts_ipe_m1a_tr_sqp_cos_s_minus
+    If A + B + C = 2S, then prove that cos(S−A) + cos(S−B) + cos(S−C) + cos S = 4 cos(A/2) cos(B/2) cos(C/2).
+[LAQ] ts_ipe_m1a_tr_sqp_sin_a_b_minus_c
+    If A, B, C are angles in a triangle, prove that sin A + sin B − sin C = 4 sin(A/2) sin(B/2) cos(C/2).
+[VSAQ] ts_ipe_m1a_tr_saq_tan_plus_cot
+    Prove that tanA + cotA = 2 cosec2A.
+[VSAQ] ts_ipe_m1a_tr_saq_cot_minus_tan
+    Prove that cotA − tanA = 2 cot2A.
+[VSAQ] ts_ipe_m1a_tr_saq_one_over_sin10
+    Show that 1/sin10° − √3/cos10° = 4.
+[VSAQ] ts_ipe_m1a_tr_saq_root3_csc20
+    Show that √3 cosec20° − sec20° = 4.
+[VSAQ] ts_ipe_m1a_tr_saq_acos2t_bsin2t
+    If tanθ = b/a, then prove that a cos2θ + b sin2θ = a.
+[VSAQ] ts_ipe_m1a_tr_saq_sin_fourth_powers
+    Show that sin⁴(π/8) + sin⁴(3π/8) + sin⁴(5π/8) + sin⁴(7π/8) = 3/2.
+[VSAQ] ts_ipe_m1a_tr_saq_cos_fourth_powers
+    Show that cos⁴(π/8) + cos⁴(3π/8) + cos⁴(5π/8) + cos⁴(7π/8) = 3/2.
+[SAQ] ts_ipe_m1a_tr_saq_product_pi_eight
+    Show that (1 + cos(π/8))(1 + cos(3π/8))(1 + cos(5π/8))(1 + cos(7π/8)) = 1/8.
+[VSAQ] ts_ipe_m1a_tr_saq_product_pi_ten
+    Prove that (1 + cos(π/10))(1 + cos(3π/10))(1 + cos(7π/10))(1 + cos(9π/10)) = 1/16.
+[VSAQ] ts_ipe_m1a_tr_saq_cos_a_2a_4a_8a
+    Prove that cosA · cos2A · cos4A · cos8A = sin16A / (16 sinA).
+[VSAQ] ts_ipe_m1a_tr_sqp_cot_product_one
+    Show that cot(π/16) · cot(2π/16) · cot(3π/16) · … · cot(7π/16) = 1.
+[SAQ] ts_ipe_m1a_tr_sqp_cos_sq_tenths
+    Show that cos²(π/10) + cos²(4π/10) + cos²(6π/10) + cos²(9π/10) = 2.
+[VSAQ] ts_ipe_m1a_tr_sqp_cos_sq_eighths
+    Prove that cos²(π/8) + cos²(3π/8) + cos²(5π/8) + cos²(7π/8) = 2.
+[VSAQ] ts_ipe_m1a_tr_vsaq_period_cos_3x
+    Find the period of the function f(x) = cos(3x + 5) + 7.
+[VSAQ] ts_ipe_m1a_tr_vsaq_period_cos_fraction
+    Find the period of the function f(x) = cos((4x + 9)/5).
+[VSAQ] ts_ipe_m1a_tr_vsaq_period_tan5x
+    Find the period of tan5x.
+[VSAQ] ts_ipe_m1a_tr_vsaq_period_sum_squares
+    Find the period of tan(x + 4x + 9x + … + n²x).
+[VSAQ] ts_ipe_m1a_tr_vsaq_cosine_period_seven
+    Find a cosine function whose period is 7.
+[VSAQ] ts_ipe_m1a_tr_vsaq_sine_period_two_thirds
+    Find a sine function whose period is 2/3.
+[VSAQ] ts_ipe_m1a_tr_vsaq_maxmin_3cos_4sin
+    Find the maximum and minimum values of f(x) = 3cosx + 4sinx.
+[VSAQ] ts_ipe_m1a_tr_vsaq_maxmin_3sin_4cos
+    Find the maximum and minimum values of f(x) = 3sinx − 4cosx.
+[VSAQ] ts_ipe_m1a_tr_vsaq_maxmin_with_constant
+    Find the maximum and minimum values of f(x) = 5sinx + 12cosx − 13.
+[VSAQ] ts_ipe_m1a_tr_vsaq_range_7cos_24sin
+    Find the range of 7cosx − 24sinx + 5.
+[VSAQ] ts_ipe_m1a_tr_vsaq_sin330_cos120
+    Find the value of sin330° · cos120° + cos210° · sin300°.
+[VSAQ] ts_ipe_m1a_tr_vsaq_cos340_cos40
+    Show that cos340° · cos40° + sin200° · sin140° = 1/2.
+[VSAQ] ts_ipe_m1a_tr_vsaq_cos9_sin9_cot36
+    Prove that (cos9° + sin9°)/(cos9° − sin9°) = cot36°.
+[VSAQ] ts_ipe_m1a_tr_vsaq_theta_third_quadrant
+    If tanθ = (cos11° + sin11°)/(cos11° − sin11°) and θ is in the third quadrant, then find θ.
+[VSAQ] ts_ipe_m1a_tr_vsaq_sin50_sin70_sin10
+    Prove that sin50° − sin70° + sin10° = 0.
+[VSAQ] ts_ipe_m1a_tr_vsaq_cos42_cos78_cos162
+    Show that cos42° + cos78° + cos162° = 0.
+[VSAQ] ts_ipe_m1a_tr_vsaq_tan50_tan40
+    Prove that tan50° − tan40° = 2 tan10°.
+[VSAQ] ts_ipe_m1a_tr_vsaq_tan70_tan20
+    Prove that tan70° − tan20° = 2 tan50°.
+[VSAQ] ts_ipe_m1a_tr_vsaq_tan160_tan110
+    If tan20° = λ, then show that (tan160° − tan110°)/(1 + tan160° · tan110°) = (1 − λ²)/(2λ).
+[VSAQ] ts_ipe_m1a_tr_vsaq_cos48_cos12
+    Find the value of cos48° · cos12°.
+[VSAQ] ts_ipe_m1a_tr_vsaq_sin42_cos78
+    Prove that sin²42° − cos²78° = (√5 + 1)/8.
+[VSAQ] ts_ipe_m1a_tr_vsaq_cos52_sin22
+    Find the value of cos²52½° − sin²22½°.
+[VSAQ] ts_ipe_m1a_tr_vsaq_acos_bsin_c
+    If a cosθ − b sinθ = c, then show that a sinθ + b cosθ = ±√(a² + b² − c²).
+[VSAQ] ts_ipe_m1a_tr_vsaq_3sin_4cos_five
+    If 3sinθ + 4cosθ = 5, then find the value of 4sinθ − 3cosθ.
+[VSAQ] ts_ipe_m1a_tr_sqp_sin_minus_third
+    If sin θ = −1/3 and θ does not lie in the third quadrant, find the value of (i) cos θ (ii) cot θ.
+[VSAQ] ts_ipe_m1a_tr_sqp_sin_four_fifths
+    If sin θ = 4/5 and θ is not in the first quadrant, find the value of cos θ.
+[VSAQ] ts_ipe_m1a_tr_sqp_sin_squared_diff
+    Find the value of sin² 82½° − sin² 22½°.

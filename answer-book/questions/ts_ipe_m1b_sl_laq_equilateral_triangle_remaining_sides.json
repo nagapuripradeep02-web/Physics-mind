@@ -1,0 +1,285 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_equilateral_triangle_remaining_sides",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "The base of an equilateral triangle is x + y − 2 = 0 and the opposite vertex is (2, −1). Find the equations of the remaining two sides.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Slope of the base",
+      "marks": 1
+    },
+    {
+      "label": "Write the 60° condition",
+      "marks": 2
+    },
+    {
+      "label": "Open the modulus",
+      "marks": 2
+    },
+    {
+      "label": "Solve both branches",
+      "marks": 2
+    },
+    {
+      "label": "Write the two sides",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), book p.155, chapter 3 THE STRAIGHT LINE, Long Answer question 11. **Only the question was taken. The solution, the step order and the mark split are this answer book's own work** — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the angle condition, which is the whole idea of the question: two marks for writing it, two for opening the modulus and two for solving both branches, with one each for reading the base slope and writing the two lines out. This book prints almost no exam-appearance years, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. Paper position: Maths-1B Section C prints 3 long answer questions at 8 marks each and the student answers any 2, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The two sides were checked by finding the vertices. They meet the base at ((15 + √3)/6, (−3 − √3)/6) and ((15 − √3)/6, (−3 + √3)/6), which are about (2.7887, −0.7887) and (2.2113, −0.2113). All three sides then measure √(2/3) ≈ 0.8165, so the triangle really is equilateral. The altitude from (2, −1) to the base is |2 − 1 − 2|/√2 = 1/√2, and (√3/2) × 0.8165 = 0.7071 = 1/√2 agrees."
+  },
+  "recall_prompt": "Say how you would solve this — name the angle you use, and say why the answer has two lines in it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_slope_of_base",
+        "kind": "equation",
+        "label": "Slope of the base",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Read the base slope as −a/b and say clearly that both missing sides pass through the given vertex and meet the base at 60°.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Base:  x + y − 2 = 0",
+          "Its slope  m₁ = −a/b = −1/1 = −1",
+          "Each of the other two sides passes through",
+          "the vertex A(2, −1) and meets the base at 60°.",
+          "Let the slope of such a side be m."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the base has slope −1 and both missing sides meet it at 60° through (2, −1).",
+          "accept": [
+            "the base slope is minus one",
+            "both sides make sixty degrees with the base",
+            "every angle of an equilateral triangle is sixty degrees",
+            "base slope minus one, rendu sides sixty degrees chesthaayi",
+            "the missing sides pass through two comma minus one"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "base slope",
+            "minus one",
+            "sixty degrees",
+            "equilateral"
+          ]
+        },
+        "why": "Every angle of an equilateral triangle is 60°, so both remaining sides make 60° with the base — that is the only fact the question gives.",
+        "common_mistakes": [
+          "Reading the slope of x + y − 2 = 0 as 1.",
+          "Using 30° instead of 60° for the angle at the base."
+        ],
+        "memory_tip": "Every angle of an equilateral triangle is 60°, so BOTH missing sides meet the base at 60°."
+      },
+      {
+        "id": "s2_angle_condition",
+        "kind": "equation",
+        "label": "Write the 60° condition",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Quote tan θ = |(m − m₁)/(1 + m m₁)| in full before substituting, and use tan 60° = √3.",
+        "lines": [
+          "The angle between the base and a side is 60°.",
+          "tan 60° = |(m − m₁)/(1 + m m₁)|",
+          "⇒ √3 = |(m − (−1))/(1 + m(−1))|",
+          "⇒ √3 = |(m + 1)/(1 − m)|"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That tan 60° = |(m − m₁)/(1 + m m₁)| gives √3 = |(m + 1)/(1 − m)|.",
+          "accept": [
+            "tan sixty equals mod m plus one over one minus m",
+            "use the angle between two lines formula",
+            "tan sixty is root three",
+            "angle formula rasi tan sixty root three pettali",
+            "root three equals mod of m plus one by one minus m"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan sixty",
+            "root three",
+            "angle formula",
+            "m plus one"
+          ]
+        },
+        "why": "The side lengths are not given, so the only way into the question is the angle between two lines written through their slopes.",
+        "common_mistakes": [
+          "Using sin 60° or cos 60° in place of tan 60°.",
+          "Writing the denominator as 1 − m₁m₂."
+        ],
+        "memory_tip": "tan θ = |(m − m₁)/(1 + m m₁)|, and tan 60° = √3. The angle, not the side length, is what is given."
+      },
+      {
+        "id": "s3_open_modulus",
+        "kind": "equation",
+        "label": "Open the modulus",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Clear the modulus as ±, and say why both signs are kept: the two answers are the two remaining sides of the same triangle.",
+        "lines": [
+          "⇒ |m + 1| = √3 |1 − m|",
+          "⇒ m + 1 = ±√3 (1 − m)",
+          "The plus and the minus give two answers,",
+          "and both are wanted: they are the two",
+          "remaining sides of the triangle."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the modulus opens as m + 1 = ±√3(1 − m), and both signs are kept.",
+          "accept": [
+            "remove the modulus as plus or minus",
+            "m plus one equals plus or minus root three into one minus m",
+            "both signs are kept because the triangle has two remaining sides",
+            "mod theeste plus or minus rendu cases vasthaayi",
+            "the two branches are the two sides"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "plus or minus",
+            "two branches",
+            "modulus",
+            "two sides"
+          ]
+        },
+        "why": "The modulus stands for two equations, and here both of them are wanted — the triangle has two remaining sides, not one.",
+        "common_mistakes": [
+          "Dropping the ± and finding only one side.",
+          "Opening the modulus on only one of the two brackets."
+        ],
+        "memory_tip": "The ± is not a choice here. The two branches ARE the two remaining sides, one on each side of the altitude."
+      },
+      {
+        "id": "s4_solve_branches",
+        "kind": "equation",
+        "label": "Solve both branches",
+        "marks": 2,
+        "mark_note": "Method",
+        "margin_note": "Two marks. Solve each branch on its own line and rationalise. The two slopes come out as 2 − √3 and 2 + √3, which are tan 15° and tan 75°.",
+        "lines": [
+          "Taking +:  m + 1 = √3 − √3 m",
+          "⇒ m(1 + √3) = √3 − 1",
+          "⇒ m = (√3 − 1)/(√3 + 1)",
+          "⇒ m = (√3 − 1)²/2 = (4 − 2√3)/2 = 2 − √3",
+          "Taking −:  m + 1 = −√3 + √3 m",
+          "⇒ m(1 − √3) = −(√3 + 1)",
+          "⇒ m = (√3 + 1)/(√3 − 1)",
+          "⇒ m = (√3 + 1)²/2 = (4 + 2√3)/2 = 2 + √3"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two branches give m = 2 − √3 and m = 2 + √3.",
+          "accept": [
+            "the slopes are two minus root three and two plus root three",
+            "rationalise the denominator to get two minus root three",
+            "solve each branch separately for m",
+            "rendu branches solve chesthe two minus root three vasthundi",
+            "m equals two plus root three from the other branch"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "two minus root three",
+            "two plus root three",
+            "rationalise",
+            "both branches"
+          ]
+        },
+        "why": "Both slopes have a surd in the denominator, so each one is rationalised before it is used, which also shows the two slopes are 2 − √3 and 2 + √3.",
+        "common_mistakes": [
+          "Leaving the slope as (√3 − 1)/(√3 + 1) and substituting it unrationalised.",
+          "A sign slip when the minus is taken over the bracket (1 − m)."
+        ],
+        "memory_tip": "Multiply top and bottom by the same surd bracket. (√3 − 1)/(√3 + 1) becomes (√3 − 1)²/2 = 2 − √3."
+      },
+      {
+        "id": "s5_two_sides",
+        "kind": "boxed_final",
+        "label": "Write the two sides",
+        "marks": 1,
+        "mark_note": "Solution",
+        "margin_note": "The last mark. Use y − y₁ = m(x − x₁) at A(2, −1) for each slope and expand carefully — the constant carries a surd.",
+        "lines": [
+          "Through A(2, −1) with m = 2 − √3:",
+          "y + 1 = (2 − √3)(x − 2)",
+          "Through A(2, −1) with m = 2 + √3:",
+          "y + 1 = (2 + √3)(x − 2)",
+          "∴ The remaining two sides are",
+          {
+            "text": "(2 − √3)x − y + 2√3 − 5 = 0",
+            "style": "boxed"
+          },
+          {
+            "text": "(2 + √3)x − y − 2√3 − 5 = 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the two sides are (2 − √3)x − y + 2√3 − 5 = 0 and (2 + √3)x − y − 2√3 − 5 = 0.",
+          "accept": [
+            "put each slope into the point slope form at two comma minus one",
+            "the two sides are two minus root three x minus y plus two root three minus five equals zero and its partner",
+            "both sides pass through the given vertex",
+            "rendu slopes ni point slope form lo pedithe rendu sides vasthaayi",
+            "expand two plus root three into x minus two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "point slope form",
+            "two root three",
+            "the remaining sides",
+            "minus five"
+          ]
+        },
+        "why": "Both slopes pass through the same vertex, so the point-slope form is used twice with the same point and the two answers are written out in full.",
+        "common_mistakes": [
+          "Multiplying out (2 ∓ √3)(x − 2) and losing one of the surd terms.",
+          "Reporting slopes instead of equations of lines."
+        ],
+        "memory_tip": "Same point, two slopes. Expand (2 ∓ √3)(x − 2) term by term so the 2√3 in the constant is not lost."
+      }
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_cos100_cos40_sin100_sin40",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Prove that cos100° cos40° + sin100° sin40° = 1/2.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Recognise the cos(A − B) expansion",
+      "marks": 1
+    },
+    {
+      "label": "Write the standard value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.87, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 24. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to recognising the cos(A − B) expansion and one to the standard value that closes the proof. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would prove this — name each move in order.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Recognise the cos(A − B) expansion",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. cosA cosB + sinA sinB = cos(A − B), with A = 100° and B = 40°.",
+        "memory_tip": "A plus sign between the two products means a minus sign inside the bracket: cos(A − B).",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = cos100° cos40° + sin100° sin40°",
+          "= cos(100° − 40°)",
+          "  [∵ cosA cosB + sinA sinB = cos(A − B)]",
+          "= cos60°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cosA cosB + sinA sinB = cos(A − B) is recognised, giving cos60°.",
+          "accept": [
+            "cos A cos B plus sin A sin B is cos of A minus B",
+            "the left side is cos of one hundred minus forty",
+            "it reduces to cos sixty",
+            "cos A minus B formula apply cheste cos sixty vasthundi",
+            "plus sign means minus inside the bracket"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos A minus B",
+            "cos sixty",
+            "one hundred minus forty",
+            "expansion"
+          ]
+        },
+        "why": "The plus sign between the two products is the mark of cos(A − B). With a minus sign between them it would be cos(A + B) instead.",
+        "common_mistakes": [
+          "Using cos(A + B), which has a minus sign between the products.",
+          "Expanding cos100° and sin100° separately."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Write the standard value",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. 100° − 40° = 60° and cos60° = 1/2, which is the right hand side.",
+        "memory_tip": "100° − 40° = 60°, and cos60° = 1/2.",
+        "lines": [
+          "cos60° = 1/2",
+          "= R.H.S",
+          {
+            "text": "∴ L.H.S = 1/2 = R.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That cos60° = 1/2, which equals the right hand side.",
+          "accept": [
+            "cos sixty is one half",
+            "that equals the right hand side so it is proved",
+            "the difference is sixty and cos sixty is a half",
+            "cos sixty ante one by two, so proved",
+            "left hand side equals right hand side"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cos sixty",
+            "one half",
+            "right hand side",
+            "proved"
+          ]
+        },
+        "why": "60° is a standard angle, so the value is exact. Nothing has to be approximated anywhere in this proof.",
+        "common_mistakes": [
+          "Writing cos60° = √3/2, which is cos30°.",
+          "Stopping at cos60° without writing its value."
+        ]
+      }
+    ]
+  }
+}

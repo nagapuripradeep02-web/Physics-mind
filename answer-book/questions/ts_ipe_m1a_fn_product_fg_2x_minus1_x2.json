@@ -1,0 +1,136 @@
+{
+    "schema_version": "answer_book_v1",
+    "question_id": "ts_ipe_m1a_fn_product_fg_2x_minus1_x2",
+    "board": "ts_ipe",
+    "board_label": "Telangana — Board of Intermediate Education",
+    "subject": "mathematics",
+    "year_cycle": "first_year",
+    "class_label": "Intermediate I Year (Class 11)",
+    "unit": {
+        "number": 2,
+        "name": "Functions"
+    },
+    "chapter": "Functions",
+    "qtype": "VSAQ",
+    "marks_total": 2,
+    "paper_section": "Section A",
+    "expected_time_min": 4,
+    "question_text": "If f(x) = 2x − 1 and g(x) = x², find (fg)(x).",
+    "appearances": [],
+    "mark_split": [
+        {
+            "label": "Meaning of (fg)(x)",
+            "marks": 1
+        },
+        {
+            "label": "Expanded form and domain",
+            "marks": 1
+        }
+    ],
+    "verification": {
+        "status": "unverified",
+        "needs_teacher_verification": true,
+        "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.11, chapter 2 FUNCTIONS, Very Short Answer question 16(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing the product f(x)·g(x) first and the expanded form with its domain second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+    },
+    "recall_prompt": "Say how you would find (fg)(x) — what fg means, the expanded form, and the domain.",
+    "answer": {
+        "page_header": [
+            "Section A — Very Short Answer Question",
+            "Functions · 2 marks"
+        ],
+        "steps": [
+            {
+                "id": "s1_meaning",
+                "kind": "equation",
+                "label": "Multiply the two outputs",
+                "marks": 1,
+                "mark_note": "Meaning of (fg)(x)",
+                "margin_note": "First mark. (fg)(x) is a product of VALUES, not a composition: f(x) times g(x) at the same x.",
+                "lines": [
+                    {
+                        "text": "Sol:",
+                        "style": "heading"
+                    },
+                    "f(x) = 2x − 1 and g(x) = x², both on R",
+                    "(fg)(x) = f(x) · g(x)",
+                    "= (2x − 1)(x²)"
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That (fg)(x) = f(x)·g(x) = (2x − 1)x², a product of values and not a composition.",
+                    "accept": [
+                        "f g of x is f of x times g of x",
+                        "multiply two x minus one by x squared",
+                        "it is a product of the two values not a composition",
+                        "product teeskovali composition kaadu",
+                        "write f of x into g of x"
+                    ],
+                    "reject": [
+                        "I combine them",
+                        "apply both",
+                        "then simplify"
+                    ],
+                    "heard_as": [
+                        "f g of x",
+                        "product",
+                        "times",
+                        "two x minus one",
+                        "x squared"
+                    ]
+                },
+                "why": "fg and fog are different operations. fg multiplies the two outputs at the same x; fog puts one output inside the other. This line shows which one was used.",
+                "memory_tip": "fg means multiply, fog means substitute. There is no small circle in fg.",
+                "common_mistakes": [
+                    "Reading (fg)(x) as (fog)(x) and computing f(x²).",
+                    "Adding the outputs instead of multiplying them."
+                ]
+            },
+            {
+                "id": "s2_expand",
+                "kind": "boxed_final",
+                "label": "Expand and state the domain",
+                "marks": 1,
+                "mark_note": "Expanded form and domain",
+                "margin_note": "Second mark. Multiply x² into each term of the bracket, and say the domain is R because both parts are polynomials.",
+                "lines": [
+                    "= 2x · x² − 1 · x²",
+                    "f and g are defined for every real x,",
+                    "so the product is too.",
+                    {
+                        "text": "(fg)(x) = 2x³ − x², x ∈ R",
+                        "style": "boxed"
+                    }
+                ],
+                "recall": {
+                    "credit": "say_it",
+                    "must_convey": "That the product expands to 2x³ − x² and the domain is R.",
+                    "accept": [
+                        "two x into x squared is two x cubed and one into x squared is x squared",
+                        "the answer is two x cubed minus x squared",
+                        "the domain is all real numbers because both are polynomials",
+                        "domain R endukante rendu polynomials",
+                        "multiply through and get two x cubed minus x squared"
+                    ],
+                    "reject": [
+                        "expand it",
+                        "that is the answer",
+                        "multiply them"
+                    ],
+                    "heard_as": [
+                        "two x cubed",
+                        "minus x squared",
+                        "domain",
+                        "all real numbers",
+                        "R"
+                    ]
+                },
+                "why": "Multiplying a bracket by x² adds 2 to the power of each term inside it. The domain of a product is where both functions are defined, and two polynomials are defined everywhere.",
+                "memory_tip": "Multiplying by x² adds 2 to every power: 2x becomes 2x³, and 1 becomes x².",
+                "common_mistakes": [
+                    "Writing 2x³ − 1 by multiplying x² into the first term only.",
+                    "Leaving the answer without saying the domain is R."
+                ]
+            }
+        ]
+    }
+}

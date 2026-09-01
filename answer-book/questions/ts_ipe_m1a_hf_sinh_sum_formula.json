@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_hf_sinh_sum_formula",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Hyperbolic Functions"
+  },
+  "chapter": "Hyperbolic Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "For x, y ∈ R, prove that sinh(x + y) = sinh x cosh y + cosh x sinh y.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitute the definitions",
+      "marks": 1
+    },
+    {
+      "label": "Cancel and read off sinh(x + y)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.118, chapter 11 HYPERBOLIC FUNCTIONS, Very Short Answer question 8(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards writing both products from the exponential definitions first and the cancellation that leaves sinh(x + y) second. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory; Hyperbolic Functions is a VSAQ-only unit on this paper, with no Section-B and no Section-C slot. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula or definition you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Hyperbolic Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Substitute the definitions",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Start from the right side, which has something to expand. Every definition has a 2 below it, so the two products share a denominator of 4.",
+        "memory_tip": "Each definition has a 2 below, so a product of two of them has 4 below. Work with 4·R.H.S and divide at the end.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "R.H.S = sinh x cosh y + cosh x sinh y",
+          "Each definition has a 2 below, so take 4·R.H.S",
+          "4·R.H.S = (eˣ − e⁻ˣ)(eʸ + e⁻ʸ)",
+          {
+            "text": "+ (eˣ + e⁻ˣ)(eʸ − e⁻ʸ)",
+            "style": "indent"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both terms on the right are replaced by their exponential definitions, giving two products over a common denominator of 4.",
+          "accept": [
+            "substitute the exponential definitions for sinh and cosh on the right side",
+            "each definition has a two below so the product has four below",
+            "write four times the right side as two products of brackets",
+            "right side lo definitions substitute chesi four times rasta",
+            "replace sinh and cosh by e to the x forms"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "definitions",
+            "four times",
+            "brackets",
+            "e to the x"
+          ]
+        },
+        "why": "The left side sinh(x + y) is already in its simplest form, so there is nothing to do to it. The right side is the one with two products waiting to be expanded.",
+        "common_mistakes": [
+          "Using a denominator of 2 instead of 4 for a product of two definitions.",
+          "Pairing sinh x with sinh y instead of sinh x with cosh y."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Cancel and read off sinh(x + y)",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The eˣ⁻ʸ terms and the eʸ⁻ˣ terms have opposite signs in the two brackets, so they cancel and only the x + y terms survive.",
+        "memory_tip": "The mixed terms eˣ⁻ʸ and eʸ⁻ˣ appear once with a plus and once with a minus, so they cancel in pairs.",
+        "lines": [
+          "= (eˣ⁺ʸ + eˣ⁻ʸ − eʸ⁻ˣ − e⁻⁽ˣ⁺ʸ⁾)",
+          {
+            "text": "+ (eˣ⁺ʸ − eˣ⁻ʸ + eʸ⁻ˣ − e⁻⁽ˣ⁺ʸ⁾)",
+            "style": "indent"
+          },
+          "= 2eˣ⁺ʸ − 2e⁻⁽ˣ⁺ʸ⁾",
+          "∴ R.H.S = (eˣ⁺ʸ − e⁻⁽ˣ⁺ʸ⁾)/2",
+          {
+            "text": "= sinh(x + y) = L.H.S",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the mixed terms cancel in pairs, leaving (eˣ⁺ʸ − e⁻⁽ˣ⁺ʸ⁾)/2, which is sinh(x + y).",
+          "accept": [
+            "the mixed terms cancel and only the x plus y terms are left",
+            "two e to the x plus y minus two e to the minus x plus y over four",
+            "what remains is e to the x plus y minus e to the minus x plus y over two which is sinh x plus y",
+            "middle terms cancel ayi sinh x plus y vasthundi",
+            "the result is sinh of x plus y"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "cancel",
+            "x plus y",
+            "sinh x plus y",
+            "over two"
+          ]
+        },
+        "why": "Reading (eˣ⁺ʸ − e⁻⁽ˣ⁺ʸ⁾)/2 back as sinh(x + y) is the definition used in reverse, with x + y in the place of the single variable.",
+        "common_mistakes": [
+          "Losing a sign on eʸ⁻ˣ, so the mixed terms fail to cancel.",
+          "Dividing by 2 instead of 4 when going back from 4·R.H.S."
+        ]
+      }
+    ]
+  }
+}

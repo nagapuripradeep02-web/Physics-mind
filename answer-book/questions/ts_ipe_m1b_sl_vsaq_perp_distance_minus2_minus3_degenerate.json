@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_vsaq_perp_distance_minus2_minus3_degenerate",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 5,
+  "question_text": "Find the length of the perpendicular drawn from the point (−2, −3) to the straight line 5x − 2y + 4 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write the distance formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitute and read the distance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Very Short Answer question 11, book p.141. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. DEGENERATE AS PRINTED, AND AUTHORED THAT WAY: the stem is reproduced exactly as the book prints it, and with those numbers 5(−2) − 2(−3) + 4 = −10 + 6 + 4 = 0, so the point lies ON the line and the perpendicular distance is 0. That is the correct answer to the question as printed, not a defect in this card, and it has NOT been repaired into a non-zero distance by changing a coefficient or a coordinate. Whether the book intended a different constant term cannot be known from the stem alone, so nothing has been guessed. The answer therefore teaches the case a student meets often on a board paper: a zero numerator is the test for a point lying on a line, and 0 is a valid distance. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The 1+1 split gives the first mark for the formula with its modulus and square root written correctly, and the second for the substitution and the conclusion; a candidate who writes the formula correctly still earns the first mark whatever the numerator turns out to be. Paper position: Maths-1B Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say the distance formula, then say what a zero numerator tells you.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "The Straight Line · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_the_distance_formula",
+        "kind": "equation",
+        "label": "Write the distance formula",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. Two things carry marks in this formula and both are easy to drop: the modulus on top and the square root below.",
+        "memory_tip": "Distance = |line at the point| divided by √(a² + b²). Modulus on top, square root below.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Given point P(x₁, y₁) = (−2, −3)",
+          "Given line is 5x − 2y + 4 = 0",
+          "∴ a = 5, b = −2, c = 4",
+          "Distance d = |ax₁ + by₁ + c| / √(a² + b²)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the perpendicular distance formula |ax₁ + by₁ + c| / √(a² + b²) is written, with a = 5, b = −2, c = 4.",
+          "accept": [
+            "mod a x one plus b y one plus c by root a squared plus b squared",
+            "a is five b is minus two c is four",
+            "use the perpendicular distance formula",
+            "perpendicular distance formula rayali",
+            "modulus on top and square root below"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "the numerator comes out zero"
+          ],
+          "heard_as": [
+            "a x one plus b y one plus c",
+            "root a squared plus b squared",
+            "perpendicular distance",
+            "modulus"
+          ]
+        },
+        "why": "√(a² + b²) is the length of the vector (a, b) at right angles to the line, and dividing by it turns the raw value ax₁ + by₁ + c into a true length.",
+        "common_mistakes": [
+          "Writing a² + b² without the square root.",
+          "Reading b as 2 instead of −2."
+        ]
+      },
+      {
+        "id": "s2_substitute_and_read_the_distance",
+        "kind": "boxed_final",
+        "label": "Substitute and read the distance",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. The numerator comes out 0 here. That is not a slip: it says P satisfies the equation of the line, so P is a point of the line itself and there is no gap to measure.",
+        "memory_tip": "A zero numerator is the test for a point lying on a line. Its distance is then 0, and 0 is a real answer.",
+        "lines": [
+          "ax₁ + by₁ + c = 5(−2) − 2(−3) + 4",
+          "= −10 + 6 + 4 = 0",
+          "The value is 0, so P satisfies the line.",
+          "That is, P lies on the line itself.",
+          "√(a² + b²) = √(25 + 4) = √29",
+          "∴ d = |0|/√29 = 0",
+          {
+            "text": "∴ Length of the perpendicular is 0",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That 5(−2) − 2(−3) + 4 = 0, so the point lies on the line and the distance is 0.",
+          "accept": [
+            "minus ten plus six plus four is zero",
+            "the point satisfies the equation of the line",
+            "the point lies on the line so the distance is zero",
+            "point line meeda undi so distance zero",
+            "the numerator is zero so d is zero"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "use the perpendicular distance formula"
+          ],
+          "heard_as": [
+            "equals zero",
+            "lies on the line",
+            "root twenty nine",
+            "distance is zero"
+          ]
+        },
+        "why": "The foot of the perpendicular from P is the nearest point of the line to P. When P is already a point of the line, that nearest point is P itself, so the perpendicular has length 0.",
+        "common_mistakes": [
+          "Treating the 0 as an error and changing a sign to force a non-zero answer.",
+          "Writing the answer as 0/√29 without simplifying it to 0."
+        ]
+      }
+    ]
+  }
+}

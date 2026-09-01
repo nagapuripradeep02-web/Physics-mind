@@ -1,0 +1,269 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_parametric_distance_parallel_y_root3x",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "A straight line parallel to the line y = √3x passes through Q(2, 3) and cuts the line 2x + 4y − 27 = 0 at P. Find the length of PQ.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Find the inclination",
+      "marks": 1
+    },
+    {
+      "label": "Write the parametric point",
+      "marks": 2
+    },
+    {
+      "label": "Put P on the given line",
+      "marks": 2
+    },
+    {
+      "label": "Solve for r",
+      "marks": 2
+    },
+    {
+      "label": "Rationalise and state PQ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 19, book p.160. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split rewards the five moves the answer takes — one mark for reading the inclination off the parallel line, two for the parametric point, two for the substitution, two for collecting the r terms and solving, and one for rationalising the denominator, which is the only tidy-up left. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would solve this — say how the parallel line gives you the angle, and what r means at the end.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_find_the_inclination",
+        "kind": "equation",
+        "label": "Find the inclination",
+        "marks": 1,
+        "margin_note": "First mark. Parallel lines have the same slope, so the given line hands over tan θ directly. The parametric form needs θ itself, not the slope.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The line is parallel to y = √3x",
+          "Parallel lines have equal slopes, so",
+          "tan θ = √3  ⇒  θ = 60°",
+          "cos 60° = 1/2,  sin 60° = √3/2"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the parallel line gives slope √3, so the inclination is 60°.",
+          "accept": [
+            "parallel lines have the same slope so tan theta is root three",
+            "theta is sixty degrees",
+            "read the slope off y equals root three x",
+            "parallel kabatti same slope, theta sixty degrees",
+            "get the angle from the slope root three"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "parallel",
+            "slope root three",
+            "sixty degrees",
+            "tan theta"
+          ]
+        },
+        "why": "The parametric form needs an ANGLE, and a parallel line supplies it through its slope, so converting tan θ = √3 into θ = 60° is the first move.",
+        "common_mistakes": [
+          "Using √3 in place of cos θ or sin θ.",
+          "Taking θ as 30° by reading the slope upside down."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "Parallel means the SAME slope, so the given line hands over tan θ straight away."
+      },
+      {
+        "id": "s2_parametric_point",
+        "kind": "equation",
+        "label": "Write the parametric point",
+        "marks": 2,
+        "margin_note": "The next two marks. Q is the base point and r is the unknown distance, so P is (x₁ + r cos θ, y₁ + r sin θ) with the 60° values put in.",
+        "lines": [
+          "Let PQ = r and Q(x₁, y₁) = (2, 3)",
+          "P = (x₁ + r cos θ, y₁ + r sin θ)",
+          "= (2 + r cos 60°, 3 + r sin 60°)",
+          "∴ P = (2 + r/2, 3 + √3r/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P is written as (2 + r/2, 3 + √3r/2) using the parametric form.",
+          "accept": [
+            "P is x one plus r cos theta comma y one plus r sin theta",
+            "P is two plus r by two comma three plus root three r by two",
+            "write the parametric point with Q as the base",
+            "parametric form lo P rayali",
+            "put cos sixty and sin sixty into the parametric form"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "r cos theta",
+            "r sin theta",
+            "parametric point",
+            "two plus r by two"
+          ]
+        },
+        "why": "One unknown r replaces two unknown coordinates, so the substitution below produces a single equation instead of a pair.",
+        "common_mistakes": [
+          "Swapping cos θ and sin θ between the two coordinates.",
+          "Writing √3r/2 as √(3r)/2."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "A point at distance r along the line is (x₁ + r cos θ, y₁ + r sin θ)."
+      },
+      {
+        "id": "s3_put_p_on_the_line",
+        "kind": "equation",
+        "label": "Put P on the given line",
+        "marks": 2,
+        "margin_note": "The next two marks. P is on 2x + 4y − 27 = 0, so substituting turns the geometry into one equation in r. Distribute both coefficients across both parts.",
+        "lines": [
+          "P lies on 2x + 4y − 27 = 0, so",
+          "2(2 + r/2) + 4(3 + √3r/2) − 27 = 0",
+          "⇒ 4 + r + 12 + 2√3r − 27 = 0",
+          "⇒ r + 2√3r − 11 = 0"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the parametric coordinates are substituted into 2x + 4y − 27 = 0.",
+          "accept": [
+            "substitute the parametric point into the given line",
+            "P lies on the line so put its coordinates in",
+            "collect the r terms and the constants",
+            "P ni line lo substitute cheyyali",
+            "this gives one equation in r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "substitute",
+            "lies on the line",
+            "collect the r terms"
+          ]
+        },
+        "why": "This is the only place the second line is used, so the substitution is what actually locates P.",
+        "common_mistakes": [
+          "Multiplying 4 into only one part of the second coordinate.",
+          "Losing the √3 while collecting the r terms."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "P lies on the given line, so substituting leaves one equation in r alone."
+      },
+      {
+        "id": "s4_solve_for_r",
+        "kind": "equation",
+        "label": "Solve for r",
+        "marks": 2,
+        "margin_note": "Two more marks. Both r terms are linear, so take r out as a common factor and divide once.",
+        "lines": [
+          "⇒ r(1 + 2√3) = 11",
+          "∴ r = 11/(2√3 + 1)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r is taken out as a common factor to give r = 11/(2√3 + 1).",
+          "accept": [
+            "take r common and divide",
+            "r into one plus two root three equals eleven",
+            "r is eleven over two root three plus one",
+            "r common teesi divide cheyyali",
+            "solve the linear equation for r"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "take r common",
+            "eleven over",
+            "two root three plus one"
+          ]
+        },
+        "why": "The equation is linear in r even though it carries a surd, so one division finishes it — no quadratic and no second root.",
+        "common_mistakes": [
+          "Squaring the equation, which is not needed and creates a false second root.",
+          "Dividing only one term by (2√3 + 1)."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "Both r terms are linear, so take r common and divide once."
+      },
+      {
+        "id": "s5_rationalise",
+        "kind": "boxed_final",
+        "label": "Rationalise and state PQ",
+        "marks": 1,
+        "margin_note": "Last mark. Multiply above and below by the conjugate (2√3 − 1). The denominator becomes 12 − 1 = 11, which cancels the 11 on top exactly.",
+        "lines": [
+          "Multiply above and below by (2√3 − 1):",
+          "r = 11(2√3 − 1)/((2√3)² − 1²)",
+          "= 11(2√3 − 1)/11",
+          {
+            "text": "∴ PQ = r = 2√3 − 1 units",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rationalising by the conjugate gives PQ = 2√3 − 1 units.",
+          "accept": [
+            "multiply above and below by two root three minus one",
+            "the denominator becomes twelve minus one which is eleven",
+            "P Q is two root three minus one",
+            "conjugate tho rationalise cheyyali",
+            "rationalise the denominator to finish"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "rationalise",
+            "conjugate",
+            "two root three minus one",
+            "units"
+          ]
+        },
+        "why": "A surd left in a denominator is not a finished answer, and here the conjugate cancels the 11 exactly, so the distance comes out in whole surd form.",
+        "common_mistakes": [
+          "Leaving the answer as 11/(2√3 + 1).",
+          "Using (2√3 + 1) again instead of the conjugate."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "Multiply by the conjugate: (2√3)² − 1² = 11, which cancels the 11 on top."
+      }
+    ]
+  }
+}

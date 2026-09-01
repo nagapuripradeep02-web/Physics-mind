@@ -1,0 +1,135 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_sin_sq_52_sin_sq_22",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Find the value of sin²52½° − sin²22½°.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Apply the sin² − sin² identity",
+      "marks": 1
+    },
+    {
+      "label": "Substitute the exact values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.83, chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 7(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The split gives one mark to naming and applying the identity and one to substituting the exact values and reaching the surd. Paper position: Maths-1A Section A prints ten very short answers of 2 marks each and the student writes all ten; Trigonometric Ratios and Transformations supplies two of those slots on almost every paper. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would do this one — name the formula you use and how you finish.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method",
+        "kind": "equation",
+        "label": "Apply the sin² − sin² identity",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. sin²A − sin²B = sin(A+B) sin(A−B). Here A + B = 75° and A − B = 30°.",
+        "memory_tip": "sin²A − sin²B = sin(A+B) sin(A−B). The halves add to 75° and subtract to 30°.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "L.H.S = sin²52½° − sin²22½°",
+          "= sin(52½° + 22½°) sin(52½° − 22½°)",
+          "  [∵ sin²A − sin²B = sin(A+B) sin(A−B)]",
+          "= sin75° sin30°"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin²A − sin²B = sin(A+B) sin(A−B) is applied, giving sin75° sin30°.",
+          "accept": [
+            "use sin squared minus sin squared equals sin of the sum times sin of the difference",
+            "the halves add to seventy five and subtract to thirty",
+            "apply the identity to get sin seventy five sin thirty",
+            "identity apply cheste sin seventy five sin thirty vasthundi",
+            "write it as sin seventy five times sin thirty"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "sin seventy five",
+            "sin thirty",
+            "sum and difference",
+            "identity"
+          ]
+        },
+        "why": "Both terms are sine squares, so this is the sin²A − sin²B form and not the mixed cos²A − sin²B form used in the previous part.",
+        "common_mistakes": [
+          "Using cos²A − sin²B, which needs the first term to be a cosine.",
+          "Adding the halves wrongly and getting 74° instead of 75°."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Substitute the exact values",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. sin75° = (√3 + 1)/(2√2) and sin30° = ½. Multiply and simplify.",
+        "memory_tip": "sin75° = cos15° = (√3 + 1)/(2√2), and sin30° = 1/2 halves it.",
+        "lines": [
+          "sin75° = cos15° = (√3 + 1)/(2√2)",
+          "sin30° = 1/2",
+          "= [(√3 + 1)/(2√2)] × (1/2)",
+          {
+            "text": "∴ Value = (√3 + 1)/(4√2)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That sin75° = (√3 + 1)/(2√2) and sin30° = 1/2 are substituted, giving (√3 + 1)/(4√2).",
+          "accept": [
+            "sin seventy five is root three plus one over two root two",
+            "sin thirty is a half so the answer is halved",
+            "multiply them to get root three plus one over four root two",
+            "rendu values multiply cheste root three plus one by four root two",
+            "the answer is root three plus one by four root two"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "root three plus one",
+            "two root two",
+            "four root two",
+            "sin thirty is a half"
+          ]
+        },
+        "why": "75° and 15° are complementary, so sin75° is the same number as cos15°. Both angles are positive and acute here, so the value stays positive.",
+        "common_mistakes": [
+          "Using sin75° = (√3 − 1)/(2√2), which is sin15°.",
+          "Forgetting the 1/2 that comes from sin30°."
+        ]
+      }
+    ]
+  }
+}

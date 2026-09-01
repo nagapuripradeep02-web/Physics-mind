@@ -1,0 +1,235 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_verify_gof_inverse_via_ginverse_4elt",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Let f: A→B and g: B→A be defined by f = {(1, a), (2, c), (4, d), (3, b)} and g⁻¹ = {(2, a), (4, b), (1, c), (3, d)}. Verify that (gof)⁻¹ = f⁻¹og⁻¹.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Write g from the given g⁻¹",
+      "marks": 1
+    },
+    {
+      "label": "Find gof",
+      "marks": 1
+    },
+    {
+      "label": "Write (gof)⁻¹ and f⁻¹",
+      "marks": 1
+    },
+    {
+      "label": "Form f⁻¹og⁻¹ and compare",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 2 FUNCTIONS, Short Answer question 2, book p.16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1+1+1 shape is the one this bank uses for a Maths-1A Section B question; here each mark buys one of the four objects the student has to build in order — g, then gof, then the two reversed sets, then the comparison. Paper position: Maths-1A Section B prints 8 short answer questions, the student answers any 6, and each carries 4 marks (2026-27 pattern). The source book's own MODEL PAPER-IA puts this question at Q11, Section II, which is that paper's single Functions short-answer slot; that is the book's claim about its own model paper, not a printed board appearance, so appearances[] is empty. ON THE STEM: the printed stem never names A and B. They are read off the pairs as A = {1, 2, 3, 4} and B = {a, b, c, d}, which is the only reading under which f: A→B and g: B→A are both defined; the stem is well posed on that reading and has not been altered. Note also that g is supplied through g⁻¹, so the first thing the answer has to do is produce g. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say how you would verify this — what you have to build from the given g⁻¹, and what you compare at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Functions · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_write_g",
+        "kind": "equation",
+        "label": "Write g from the given g⁻¹",
+        "marks": 1,
+        "mark_note": "Write g",
+        "margin_note": "One of the four marks. The question hands you g⁻¹, not g. Reverse its four pairs first, and check that the result has domain B.",
+        "memory_tip": "g is not given. Reverse the pairs of g⁻¹ first, and check the domain comes out as B.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "The pairs give A = {1, 2, 3, 4} and",
+          "B = {a, b, c, d}.",
+          "g⁻¹ = {(2,a), (4,b), (1,c), (3,d)}",
+          "Reverse each pair to get g: B→A.",
+          "g = {(a,2), (b,4), (c,1), (d,3)}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That g itself is not given, so its four pairs are obtained by reversing g⁻¹, giving g = {(a,2), (b,4), (c,1), (d,3)} with domain B.",
+          "accept": [
+            "g is not given so reverse the pairs of g inverse to get g",
+            "g is a two b four c one d three",
+            "read A and B off the pairs and then build g from g inverse",
+            "g ivvaledu, g inverse pairs reverse cheste g vasthundi",
+            "the reversed set has domain B which is what g needs"
+          ],
+          "reject": [
+            "apply f first and then g",
+            "reverse the pairs of g o f",
+            "g inverse is two a four b one c three d"
+          ],
+          "heard_as": [
+            "g inverse",
+            "reverse the pairs",
+            "domain B",
+            "a two"
+          ]
+        },
+        "why": "g itself is not given, only g⁻¹. Every later step needs g, so writing it out first stops the composition being done with the wrong function.",
+        "common_mistakes": [
+          "Using g⁻¹ in place of g when working out gof.",
+          "Writing g with domain A instead of B."
+        ]
+      },
+      {
+        "id": "s2_find_gof",
+        "kind": "equation",
+        "label": "Find gof",
+        "marks": 1,
+        "mark_note": "gof",
+        "margin_note": "The second mark. f first, then g. Each element of A comes back to an element of A, so gof runs from A to A.",
+        "memory_tip": "f carries 1 to a, then g carries a to 2. Follow one element the whole way before starting the next.",
+        "lines": [
+          "f = {(1,a), (2,c), (3,b), (4,d)}",
+          "(gof)(1) = g(a) = 2",
+          "(gof)(2) = g(c) = 1",
+          "(gof)(3) = g(b) = 4",
+          "(gof)(4) = g(d) = 3",
+          "∴ gof = {(1,2), (2,1), (3,4), (4,3)}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That gof applies f then g, so gof = {(1,2), (2,1), (3,4), (4,3)}, a function from A to A.",
+          "accept": [
+            "one goes to a then to two, two goes to c then to one, three goes to b then to four, four goes to d then to three",
+            "g o f is one two two one three four four three",
+            "f first then g so the composition runs from A back to A",
+            "mundu f taruvata g apply cheste gof vasthundi",
+            "each element of A comes back to an element of A"
+          ],
+          "reject": [
+            "reverse the pairs of g inverse",
+            "g acts first and then f",
+            "both sides hold the same four pairs"
+          ],
+          "heard_as": [
+            "g of f of one",
+            "one two",
+            "three four",
+            "A to A"
+          ]
+        },
+        "why": "gof takes A to B by f and then B to A by g, so gof is a function from A to A. Working one element at a time is the whole method for a finite function.",
+        "common_mistakes": [
+          "Applying g before f.",
+          "Pairing the image of f with the wrong first coordinate."
+        ]
+      },
+      {
+        "id": "s3_invert",
+        "kind": "equation",
+        "label": "Write (gof)⁻¹ and f⁻¹",
+        "marks": 1,
+        "mark_note": "Reverse pairs",
+        "margin_note": "The third mark. Reverse the four pairs of gof, then reorder them by first coordinate so the comparison at the end is easy. Write f⁻¹ here too, because the last step needs it.",
+        "memory_tip": "Reverse every pair, then reorder by the first coordinate. Reordering does not change the set.",
+        "lines": [
+          "gof is a bijection, so reverse every pair:",
+          "(gof)⁻¹ = {(2,1), (1,2), (4,3), (3,4)}",
+          "  = {(1,2), (2,1), (3,4), (4,3)}   …(1)",
+          "Reverse the pairs of f as well:",
+          "f⁻¹ = {(a,1), (c,2), (b,3), (d,4)}"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That reversing the pairs of gof gives (gof)⁻¹ = {(1,2), (2,1), (3,4), (4,3)}, and that f⁻¹ = {(a,1), (c,2), (b,3), (d,4)}.",
+          "accept": [
+            "reverse the four pairs of g o f to get its inverse",
+            "g o f inverse is one two two one three four four three",
+            "f inverse is a one c two b three d four",
+            "prathi pair reverse chesi first coordinate prakaram reorder cheyyali",
+            "reordering the pairs does not change the set"
+          ],
+          "reject": [
+            "reverse the pairs of g inverse",
+            "one goes to a then to two",
+            "the two sides agree at every element"
+          ],
+          "heard_as": [
+            "g o f inverse",
+            "f inverse",
+            "reverse every pair",
+            "reorder"
+          ]
+        },
+        "why": "gof happens to send 1 to 2 and 2 back to 1, so its inverse comes out as the same set of pairs. That is a property of these particular numbers, not a rule, and it is worth checking rather than reading as a slip.",
+        "common_mistakes": [
+          "Writing (gof)⁻¹ = gof without reversing the pairs first.",
+          "Reversing only some of the four pairs."
+        ]
+      },
+      {
+        "id": "s4_compose_compare",
+        "kind": "boxed_final",
+        "label": "Form f⁻¹og⁻¹ and compare",
+        "marks": 1,
+        "mark_note": "Both agree",
+        "margin_note": "The fourth mark. Use the given g⁻¹ as it stands here — it does not need reversing again. Compare the four pairs with line (1) one at a time.",
+        "memory_tip": "The given g⁻¹ is used unchanged in this step. Only g needed reversing, back in the first step.",
+        "lines": [
+          "f⁻¹og⁻¹ means g⁻¹ first, then f⁻¹.",
+          "(f⁻¹og⁻¹)(1) = f⁻¹(c) = 2",
+          "(f⁻¹og⁻¹)(2) = f⁻¹(a) = 1",
+          "(f⁻¹og⁻¹)(3) = f⁻¹(d) = 4",
+          "(f⁻¹og⁻¹)(4) = f⁻¹(b) = 3",
+          "∴ f⁻¹og⁻¹ = {(1,2), (2,1), (3,4), (4,3)}",
+          "This is the same set of four pairs as (1).",
+          {
+            "text": "∴ (gof)⁻¹ = f⁻¹og⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f⁻¹og⁻¹ applies g⁻¹ first, giving {(1,2), (2,1), (3,4), (4,3)}, which is the same set as (gof)⁻¹, so the two are equal.",
+          "accept": [
+            "g inverse acts first so one goes to c then to two, two goes to a then to one, three goes to d then to four, four goes to b then to three",
+            "f inverse o g inverse is one two two one three four four three",
+            "both sides hold the same four pairs so they are equal",
+            "rendu vaipula same four pairs vasthai, so equal",
+            "the composition is done in the reversed order and it matches"
+          ],
+          "reject": [
+            "g inverse o f inverse",
+            "reverse the pairs of g o f",
+            "f first then g"
+          ],
+          "heard_as": [
+            "f inverse o g inverse",
+            "one two",
+            "four three",
+            "same four pairs"
+          ]
+        },
+        "why": "Both sides are functions from A to A, so the check is only whether the four values match. The reversed order f⁻¹og⁻¹, and not g⁻¹of⁻¹, is what the result states.",
+        "common_mistakes": [
+          "Working out g⁻¹of⁻¹ instead of f⁻¹og⁻¹.",
+          "Using g instead of g⁻¹ in the composition."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1b_sl_laq_angles_of_triangle_three_lines",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics_1b",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 3,
+    "name": "The Straight Line"
+  },
+  "chapter": "The Straight Line",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Find the angles of the triangle whose sides are x + y − 4 = 0, 2x + y − 6 = 0 and 5x + 3y − 15 = 0.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Read the three slopes",
+      "marks": 1
+    },
+    {
+      "label": "Find the three vertices",
+      "marks": 1
+    },
+    {
+      "label": "Angle between each pair of lines",
+      "marks": 3
+    },
+    {
+      "label": "Correct the obtuse angle",
+      "marks": 2
+    },
+    {
+      "label": "State the three angles",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IB (2026-27 edition), chapter 3 THE STRAIGHT LINE, Long Answer question 23, book p.161. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints a chapter-level marks banner over this section but no per-step allocation on any answer. The split puts three of the eight marks on the three applications of the angle formula, which is the bulk of the work, and two more on the sum check that identifies the obtuse angle — the step that separates a correct answer from a plausible wrong one. Reading the slopes and finding the vertices take one mark each because both are short, and the final statement takes one. This book prints almost no exam-appearance years, so appearances[] is empty. Paper position: Maths-1B Section C runs Q19 to Q21 at 8 marks each, answer any 2 of 3, under the 2026-27 pattern. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. AUTHOR NOTE on the answer: tan θ = |(m₁ − m₂)/(1 + m₁m₂)| carries a modulus, so it returns the ACUTE angle between each pair of lines. The three acute values here are Tan⁻¹(1/3), Tan⁻¹(1/13) and Tan⁻¹(1/4), which add to 36°52′, not 180° — so they are NOT the three interior angles. The interior angle at the vertex where x + y − 4 = 0 meets 2x + y − 6 = 0 is the obtuse one, π − Tan⁻¹(1/3). The card derives that, checks the sum reaches 180°, and confirms the same three angles independently from the vertices A(2, 2), B(3, 0) and C(3/2, 5/2) by the cosine rule. A solution that stops at the three acute values is a common and wrong finish, and the card says so."
+  },
+  "recall_prompt": "Say how you would solve this — say which formula gives each angle, and how you check the three answers at the end.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "The Straight Line · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_three_slopes",
+        "kind": "equation",
+        "label": "Read the three slopes",
+        "marks": 1,
+        "margin_note": "First mark. Read each slope off the coefficients as −a/b. The angle formula fails on a vertical line, so it is worth saying that none of the three is vertical.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "x + y − 4 = 0 ……(1),  m₁ = −1",
+          "2x + y − 6 = 0 ……(2),  m₂ = −2",
+          "5x + 3y − 15 = 0 ……(3),  m₃ = −5/3",
+          "No side is vertical, so all three slopes exist."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three slopes −1, −2 and −5/3 are read off the coefficients.",
+          "accept": [
+            "read each slope as minus a over b",
+            "the slopes are minus one minus two and minus five by three",
+            "number the three lines and take their slopes",
+            "moodu lines ki slopes teesukovali",
+            "none of the lines is vertical so the slopes exist"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "minus a over b",
+            "three slopes",
+            "minus five by three",
+            "vertical"
+          ]
+        },
+        "why": "Every angle in this question comes from a PAIR of slopes, so all three are needed before any angle can be written.",
+        "common_mistakes": [
+          "Reading the slope of 5x + 3y − 15 = 0 as −3/5.",
+          "Dropping a minus sign on one of the three."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "Read every slope as −a/b, and check first that no side is vertical."
+      },
+      {
+        "id": "s2_three_vertices",
+        "kind": "equation",
+        "label": "Find the three vertices",
+        "marks": 1,
+        "margin_note": "One mark. Each vertex is where two of the sides meet, so solve the three pairs. The vertices say WHICH angle sits at which corner, and give an independent check at the end.",
+        "lines": [
+          "A = (1) ∩ (2):  subtract ⇒ x = 2, then y = 2",
+          "∴ A = (2, 2)",
+          "B = (2) ∩ (3):  x = 3, y = 0  ⇒  B(3, 0)",
+          "C = (3) ∩ (1):  x = 3/2, y = 5/2",
+          "∴ C = (3/2, 5/2)"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three vertices A(2, 2), B(3, 0) and C(3/2, 5/2) are found by solving the pairs.",
+          "accept": [
+            "solve each pair of lines to get a vertex",
+            "the vertices are two comma two, three comma zero and three by two comma five by two",
+            "each corner is where two sides meet",
+            "prathi jantha solve chesthe vertex vasthundi",
+            "find all three corners of the triangle"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "three vertices",
+            "two comma two",
+            "three comma zero",
+            "corners"
+          ]
+        },
+        "why": "The formula gives the angle between two LINES; the vertices are what attach each angle to a named corner of the triangle, and they also allow a separate check by the cosine rule.",
+        "common_mistakes": [
+          "Pairing the wrong two lines for a vertex.",
+          "Solving only two pairs and guessing the third vertex."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "A vertex is where TWO sides meet, so solve the lines in pairs."
+      },
+      {
+        "id": "s3_pairwise_angles",
+        "kind": "equation",
+        "label": "Angle between each pair of lines",
+        "marks": 3,
+        "margin_note": "The next three marks. Apply tan θ = |(m₁ − m₂)/(1 + m₁m₂)| to each pair. The modulus means every value that comes out is the ACUTE angle between that pair.",
+        "lines": [
+          "Use tan θ = |(m₁ − m₂)/(1 + m₁m₂)|",
+          "The modulus gives the ACUTE angle each time.",
+          "(1) & (2):  tan α = |(−1 + 2)/(1 + 2)| = 1/3",
+          "(2) & (3):  tan β = |(−2 + 5/3)/(1 + 10/3)|",
+          "= |(−1/3)/(13/3)| = 1/13",
+          "(3) & (1):  tan γ = |(−1 + 5/3)/(1 + 5/3)|",
+          "= |(2/3)/(8/3)| = 1/4",
+          "α = Tan⁻¹(1/3) = 18°26′",
+          "β = Tan⁻¹(1/13) = 4°24′,  γ = Tan⁻¹(1/4) = 14°2′"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle formula is applied to all three pairs, giving acute angles Tan⁻¹(1/3), Tan⁻¹(1/13) and Tan⁻¹(1/4).",
+          "accept": [
+            "apply the tangent formula to each pair of lines",
+            "the three acute angles are tan inverse one third, one thirteenth and one quarter",
+            "the modulus gives the acute angle every time",
+            "prathi jantha ki angle formula apply cheyyali",
+            "get the acute angle between each pair"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "tan theta",
+            "acute angle",
+            "tan inverse",
+            "each pair"
+          ]
+        },
+        "why": "The formula is about two lines, not about a triangle, so it cannot know which side of the crossing the triangle sits on — that is why the next step is needed.",
+        "common_mistakes": [
+          "Pairing the same two lines twice and missing a third angle.",
+          "Dropping the modulus and reporting a negative tangent."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "The modulus makes every one of these the ACUTE angle between two lines, not the interior angle of the triangle."
+      },
+      {
+        "id": "s4_correct_the_obtuse",
+        "kind": "equation",
+        "label": "Correct the obtuse angle",
+        "marks": 2,
+        "margin_note": "Two more marks. The three acute values add to 36°52′, not 180°, so at least one interior angle is obtuse. β + γ = α exactly, which names ∠A as the obtuse one.",
+        "lines": [
+          "α + β + γ = 18°26′ + 4°24′ + 14°2′ = 36°52′",
+          "That is not 180°, so one angle is obtuse.",
+          "β + γ = Tan⁻¹(1/13) + Tan⁻¹(1/4)",
+          "= Tan⁻¹((1/13 + 1/4)/(1 − 1/52)) = Tan⁻¹(1/3)",
+          "So β + γ = α, and ∠A must be π − α"
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the acute values do not sum to 180°, so the angle at A is taken as π − α.",
+          "accept": [
+            "the three acute angles do not add up to one eighty",
+            "so one interior angle must be obtuse",
+            "the angle at A is pi minus tan inverse one third",
+            "moodu angles kalipithe one eighty raadu kabatti okati obtuse",
+            "take the supplement of the acute angle at A"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "hence proved",
+            "that is the answer",
+            "then I get it",
+            "the acute angles are the answer"
+          ]
+        },
+        "why": "Two crossing lines make two pairs of angles, θ and 180° − θ, and the triangle uses whichever one lies inside it. The sum test is what decides which, and it must reach 180°.",
+        "common_mistakes": [
+          "Reporting the three acute values as the angles of the triangle.",
+          "Taking the supplement of all three angles instead of one."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "The three angles of ANY triangle add to 180° — if the acute values do not, take the supplement of one."
+      },
+      {
+        "id": "s5_state_the_angles",
+        "kind": "boxed_final",
+        "label": "State the three angles",
+        "marks": 1,
+        "margin_note": "Last mark. The corrected sum reaches 180° exactly, and the cosine rule on A(2, 2), B(3, 0), C(3/2, 5/2) gives the same three angles independently.",
+        "lines": [
+          "∠A + ∠B + ∠C = 161°34′ + 4°24′ + 14°2′ = 180°",
+          {
+            "text": "∴ ∠A = π − Tan⁻¹(1/3)  (obtuse)",
+            "style": "boxed"
+          },
+          {
+            "text": "∠B = Tan⁻¹(1/13),  ∠C = Tan⁻¹(1/4)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the three angles are π − Tan⁻¹(1/3), Tan⁻¹(1/13) and Tan⁻¹(1/4), and that they now sum to 180°.",
+          "accept": [
+            "the angles are pi minus tan inverse one third, tan inverse one thirteenth and tan inverse one quarter",
+            "check that the three add to one eighty",
+            "angle A is obtuse and the other two are acute",
+            "moodu angles kalipithe one eighty vasthundi",
+            "state all three angles with the obtuse one first"
+          ],
+          "reject": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ],
+          "heard_as": [
+            "that is the answer",
+            "hence proved",
+            "then I get it"
+          ]
+        },
+        "why": "The sum reaching 180° is the proof that the right angle was made obtuse, and the cosine rule on the three vertices confirms the same values by a completely separate route.",
+        "common_mistakes": [
+          "Writing the answer without saying which angle is obtuse.",
+          "Skipping the sum check, which is the only test that the correction was right."
+        ],
+        "mark_note": "Method",
+        "memory_tip": "The sum reaching 180° exactly is the check that you made the RIGHT angle obtuse."
+      }
+    ]
+  }
+}

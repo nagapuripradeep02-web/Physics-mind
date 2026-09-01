@@ -1,0 +1,140 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_tr_tan2x_formula_positive_range",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "Trigonometric Ratios and Transformations"
+  },
+  "chapter": "Trigonometric Ratios and Transformations",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "For what values of x in the first quadrant is (2 tan x)/(1 − tan²x) positive?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Recognise the tan 2x form",
+      "marks": 1
+    },
+    {
+      "label": "Find where tan 2x is positive",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), chapter 8 TRIGONOMETRIC RATIOS, Very Short Answer question 21, book p.86. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 split rewards recognising the expression as tan 2x first — with the point x = π/4 where it has no value named there — and the sign interval second, because the answer is a set and a bare inequality without the excluded point is incomplete. Paper position: Maths-1A Section A runs Q1 to Q10 at 2 marks each, all compulsory, under the 2026-27 pattern; Trigonometric Ratios and Transformations holds two of those ten slots. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Checked numerically: (2 tan x)/(1 − tan²x) equals tan 2x to ten decimal places at x = 1°, 30°, 44.9°, 45.1°, 60° and 89°; it is positive at 1° and 30°, negative at 60° and 89°, and at x = 45° the denominator is 0 so the expression has no value. Reading of the stem: 'in the first quadrant' is taken as the open interval 0 < x < π/2, which is why x = 0 is not in the answer — at x = 0 the value is 0, and 0 is not positive."
+  },
+  "recall_prompt": "Say what this expression really is, and say which values of x in the first quadrant make it positive.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Trigonometric Ratios and Transformations · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_form",
+        "kind": "equation",
+        "label": "Recognise the tan 2x form",
+        "marks": 1,
+        "mark_note": "Method",
+        "margin_note": "First mark. The expression is the tan 2x formula. It has no value where 1 − tan²x = 0, and in the first quadrant that is x = π/4, so that point must be named.",
+        "memory_tip": "2t/(1 − t²) with t = tan x is the tan 2x formula. It fails only where 1 − tan²x = 0, that is at x = π/4.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "In the first quadrant 0 < x < π/2.",
+          "There tan x is defined, and",
+          "(2 tan x)/(1 − tan²x) = tan 2x",
+          "This needs 1 − tan²x ≠ 0, so tan x ≠ 1.",
+          "At x = π/4, tan x = 1 and the expression",
+          "has no value, so x = π/4 is left out."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the expression is tan 2x, and that x = π/4 is excluded because the denominator is 0 there.",
+          "accept": [
+            "two tan x over one minus tan squared x is tan two x",
+            "it is the tan two x formula so the question is about the sign of tan two x",
+            "at x equals pi by four the denominator is zero so that point is left out",
+            "idi tan two x formula, pi by four daggara denominator zero",
+            "recognise the double angle tangent formula"
+          ],
+          "reject": [
+            "the answer is zero to pi by four",
+            "that is the answer",
+            "tan two x is positive"
+          ],
+          "heard_as": [
+            "tan two x",
+            "pi by four",
+            "denominator zero",
+            "double angle"
+          ]
+        },
+        "why": "The expression is exactly the tan 2x formula, so the question is really about the sign of tan 2x. The one point where the formula has no value is x = π/4, and it has to be named rather than quietly skipped.",
+        "common_mistakes": [
+          "Reading only the numerator 2 tan x and ignoring the denominator.",
+          "Forgetting that x = π/4 makes the denominator 0."
+        ]
+      },
+      {
+        "id": "s2_answer",
+        "kind": "boxed_final",
+        "label": "Find where tan 2x is positive",
+        "marks": 1,
+        "mark_note": "Answer",
+        "margin_note": "Second mark. Doubling sends 0 < x < π/2 onto 0 < 2x < π. Tangent is positive on the first half of that and negative on the second, so the answer is the open interval (0, π/4).",
+        "memory_tip": "Doubling turns 0 < x < π/2 into 0 < 2x < π. Tangent is positive on the first half only, so x < π/4.",
+        "lines": [
+          "0 < x < π/2 gives 0 < 2x < π.",
+          "tan 2x is positive only for 0 < 2x < π/2,",
+          "that is for 0 < x < π/4.",
+          "For π/4 < x < π/2, 2x lies in the second",
+          "quadrant and tan 2x is negative.",
+          {
+            "text": "∴ x ∈ (0, π/4), that is 0° < x < 45°",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the set is the open interval 0 < x < π/4, equivalently 0° < x < 45°.",
+          "accept": [
+            "two x lies between zero and pi so tan two x is positive only up to pi by two, that is x less than pi by four",
+            "the answer is x between zero and pi by four",
+            "zero degrees to forty five degrees, not including the ends",
+            "x zero nunchi pi by four varaku, forty five degrees kanna thakkuva",
+            "beyond pi by four the double angle is in the second quadrant so it is negative"
+          ],
+          "reject": [
+            "the whole first quadrant",
+            "it is the tan two x formula",
+            "that is the answer"
+          ],
+          "heard_as": [
+            "pi by four",
+            "forty five degrees",
+            "second quadrant",
+            "open interval"
+          ]
+        },
+        "why": "Doubling x sends the open first quadrant (0, π/2) onto (0, π). Tangent is positive on the first half of that range and negative on the second, so only x < π/4 survives. At x = 0 the value is 0, which is not positive, so 0 is not in the set either.",
+        "common_mistakes": [
+          "Giving the whole first quadrant as the answer.",
+          "Including x = π/4, where the expression has no value.",
+          "Writing 0 ≤ x, although the value at x = 0 is 0 and 0 is not positive."
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_m1a_fn_define_even_odd_function",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "mathematics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 2,
+    "name": "Functions"
+  },
+  "chapter": "Functions",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define an even function and an odd function.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Define an even function",
+      "marks": 1
+    },
+    {
+      "label": "Define an odd function",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Mathematics-IA (2026-27 edition), book p.15, chapter 2 FUNCTIONS, Very Short Answer question 27. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. ⚠ THE MARK SPLIT IS OURS, NOT THE BOOK'S: the Mathematics-IA volume prints no per-step mark allocation on any answer. The 1+1 shape is the one this bank uses for a Maths-1A Section A question, and here it also matches the question itself, which asks for two definitions. The condition on the domain, that x ∈ A implies −x ∈ A, is stated in the written lines because without it neither definition can be tested. Paper position: Maths-1A Section A runs Q1–Q10 at 2 marks each, all compulsory. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "recall_prompt": "Say the two definitions in your own words, and give one example of each.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Functions · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define_even",
+        "kind": "text",
+        "label": "Define an even function",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "First mark. The examiner reads for the equation f(−x) = f(x) and for the words \"for every x in the domain\". A bare example earns nothing.",
+        "memory_tip": "Even means the sign of x does not matter: changing x to −x leaves the value unchanged.",
+        "lines": [
+          {
+            "text": "Sol:",
+            "style": "heading"
+          },
+          "Let A ⊆ R be a set such that x ∈ A ⇒ −x ∈ A.",
+          "A function f: A → R is called an EVEN function",
+          "if f(−x) = f(x) for every x ∈ A.",
+          "For example, f(x) = x² and f(x) = cos x are",
+          "even functions on R."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is even when f(−x) = f(x) for every x in a domain that contains −x whenever it contains x.",
+          "accept": [
+            "f is even if f of minus x equals f of x for every x in the domain",
+            "changing the sign of x does not change the value",
+            "the domain must contain minus x whenever it contains x",
+            "x squared and cos x are even functions",
+            "f of minus x equals f of x ayithe adi even function"
+          ],
+          "reject": [
+            "f of minus x equals minus f of x",
+            "x cubed and sin x are examples",
+            "that is the odd one"
+          ],
+          "heard_as": [
+            "even function",
+            "f of minus x equals f of x",
+            "domain",
+            "x squared",
+            "cos x"
+          ]
+        },
+        "why": "The condition on A comes first because f(−x) has to exist before it can be compared with f(x). A definition without it is being applied to points that may not be in the domain.",
+        "common_mistakes": [
+          "Writing f(x) = f(x), which is true for every function and says nothing.",
+          "Giving only the example x² and never writing the condition f(−x) = f(x).",
+          "Leaving out \"for every x in the domain\", so the definition rests on one value."
+        ]
+      },
+      {
+        "id": "s2_define_odd",
+        "kind": "boxed_final",
+        "label": "Define an odd function",
+        "marks": 1,
+        "mark_note": "Definition",
+        "margin_note": "Second mark. The minus sign on the right is the whole difference from the even case. Add one example, and say that a function may be neither.",
+        "memory_tip": "Odd means the sign of x carries through to the value: change x to −x and the answer changes sign.",
+        "lines": [
+          "A function f: A → R is called an ODD function",
+          "if f(−x) = −f(x) for every x ∈ A,",
+          "where A again satisfies x ∈ A ⇒ −x ∈ A.",
+          "For example, f(x) = x³ and f(x) = sin x are",
+          "odd functions on R.",
+          "A function need not be either: f(x) = x + 1 is",
+          "neither, since f(−1) = 0 but f(1) = 2.",
+          {
+            "text": "∴ even: f(−x) = f(x), odd: f(−x) = −f(x)",
+            "style": "boxed"
+          }
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That f is odd when f(−x) = −f(x) for every x in the domain, and that a function may be neither even nor odd.",
+          "accept": [
+            "f is odd if f of minus x equals minus f of x for every x in the domain",
+            "changing the sign of x changes the sign of the value",
+            "x cubed and sin x are odd functions",
+            "a function can be neither even nor odd",
+            "f of minus x equals minus f of x ayithe adi odd function"
+          ],
+          "reject": [
+            "f of minus x equals f of x",
+            "x squared and cos x are examples",
+            "that is the even one"
+          ],
+          "heard_as": [
+            "odd function",
+            "f of minus x equals minus f of x",
+            "x cubed",
+            "sin x",
+            "neither"
+          ]
+        },
+        "why": "The only change from the even definition is the minus sign on the right, and that single sign is what the mark is for. Saying that a function may be neither shows the two definitions are tests, not two groups that every function must belong to.",
+        "common_mistakes": [
+          "Writing f(−x) = −f(−x), which mixes the two sides up.",
+          "Claiming every function is either even or odd.",
+          "Giving sin x as an even function and cos x as an odd one; the two are swapped."
+        ]
+      }
+    ]
+  }
+}
