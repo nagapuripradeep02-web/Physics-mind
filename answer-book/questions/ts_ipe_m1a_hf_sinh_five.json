@@ -80,10 +80,10 @@
             "x squared plus one"
           ]
         },
-        "why": "The formula is worth a mark on its own, so writing it costs one line and earns one mark even if the arithmetic then slips.",
+        "why": "The formula is worth a mark on its own, so writing it costs one line and earns one mark even if the arithmetic then slips. Deriving the same result from eˣ − e⁻ˣ = 10 also works and is correct, but the quoted log form is one line and carries the method mark.",
         "common_mistakes": [
           "Using the Cosh⁻¹ form with −1.",
-          "Starting from the exponential definition."
+          "Reading Sinh⁻¹x as 1/sinh x instead of the inverse function."
         ]
       },
       {

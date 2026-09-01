@@ -106,7 +106,7 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That substituting gives eˣ sin x + xeˣ sin x + xeˣ cos x, which factors as eˣ[(1 + x) sin x + x cos x].",
+          "must_convey": "That substituting gives eˣ sin x + xeˣ sin x + xeˣ cos x, which is already a complete answer, and that taking eˣ out gives eˣ[(1 + x) sin x + x cos x].",
           "accept": [
             "e power x sin x plus x e power x sin x plus x e power x cos x",
             "take e power x common from all three terms",
@@ -126,10 +126,10 @@
             "three terms"
           ]
         },
-        "why": "Factoring eˣ out is what turns three long terms into the short printed form, and it also makes a sign slip visible because every term inside the bracket is positive.",
+        "why": "The three-term form eˣ sin x + xeˣ sin x + xeˣ cos x is already a complete and correct answer. Factoring eˣ out is not required for the mark, but it is the compact form worth writing, and it makes a sign slip visible because every term inside the bracket is positive.",
         "common_mistakes": [
           "Writing d/dx(eˣ) as xeˣ⁻¹, treating eˣ as a power of x.",
-          "Leaving the answer as three unfactored terms and losing the tidy form the key expects."
+          "Taking eˣ out but dropping the sin x from the first term, writing eˣ[x sin x + x cos x]."
         ]
       }
     ]

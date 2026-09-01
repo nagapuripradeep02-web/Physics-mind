@@ -45,14 +45,14 @@
         "label": "Combine over the common denominator",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Each piece alone increases without bound as x → 2, so neither may be given a limit on its own. Combine them into one fraction first.",
+        "margin_note": "First mark. Neither piece has a limit as x → 2: each grows without bound in size, and the sign differs on the two sides. Combine them into one fraction first.",
         "memory_tip": "x² − 4 already contains x − 2, so the common denominator is x² − 4 itself — nothing new has to be built.",
         "lines": [
           {
             "text": "Sol:",
             "style": "heading"
           },
-          "Each part alone increases without bound as x → 2, so the two are combined into one fraction.",
+          "Neither part has a limit as x → 2 — each grows without bound in size — so the two are combined into one fraction.",
           "x² − 4 = (x − 2)(x + 2), so the common denominator is (x − 2)(x + 2)",
           "1/(x − 2) − 4/(x² − 4) = (x + 2)/[(x − 2)(x + 2)] − 4/[(x − 2)(x + 2)]",
           "= (x + 2 − 4)/[(x − 2)(x + 2)] = (x − 2)/[(x − 2)(x + 2)]"

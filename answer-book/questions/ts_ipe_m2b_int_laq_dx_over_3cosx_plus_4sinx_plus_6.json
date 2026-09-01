@@ -40,7 +40,7 @@
     "needs_teacher_verification": true,
     "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B, book printed p.30 (PDF page 29) — LAQ chapter 3 ‘Integration’, sub-head INTEGRATION-III, answer 23, no printed appearance tags on this question. No SSP banner on this page; chapter star rank ★★★ still applies. no printed margin mark tags or tick-box splits appear anywhere in the Integration LAQ chapter — this card's mark split is OURS, patterned on the 7-mark shapes printed elsewhere in the book (e.g. 2+2+2+1, 1+1+2+2+1). This card's final answer was re-derived independently and matches the book's printed line exactly — no error found here. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
-  "insider_note": "Compare this to answer 21 right above it: the extra constant +6 in the denominator is what turns the completed square from a DIFFERENCE (log formula) into a SUM (Tan⁻¹ formula) — the same substitution, a genuinely different standard result at the end.",
+  "insider_note": "Compare this with the same integral without the +6: the extra constant in the denominator is what turns the completed square from a DIFFERENCE (log formula) into a SUM (Tan⁻¹ formula) — the same substitution, a genuinely different standard result at the end.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
@@ -62,9 +62,9 @@
           "Put tan(x/2) = t ⇒ sinx = 2t/(1+t²),",
           "cosx = (1−t²)/(1+t²), dx = 2dt/(1+t²)"
         ],
-        "why": "The same universal substitution as answers 21 and 22, now applied to a denominator that also carries a constant term.",
+        "why": "The same universal substitution t = tan(x/2), now applied to a denominator that also carries a constant term.",
         "common_mistakes": [
-          "Forgetting the constant 6 needs the common denominator (1+t²) too, exactly as in answer 22.",
+          "Forgetting the constant 6 needs the common denominator (1+t²) too, exactly as the sinx and cosx terms do.",
           "Sign error copying the cosx formula."
         ],
         "memory_tip": "Every term in the denominator — trig ratios AND any constant — goes over the same (1+t²)."
@@ -106,9 +106,9 @@
             "style": "eq"
           }
         ],
-        "why": "This time the completed square leaves a POSITIVE constant, 11/9, so the quadratic is a sum of squares — the Tan⁻¹ formula applies here, unlike the log formula needed in answer 21.",
+        "why": "This time the completed square leaves a POSITIVE constant, 11/9, so the quadratic is a sum of squares — the Tan⁻¹ formula applies here, unlike the log formula a DIFFERENCE of squares needs.",
         "common_mistakes": [
-          "Reaching for the log formula out of habit, copying answer 21's method without checking the sign.",
+          "Reaching for the log formula out of habit, copying the difference-of-squares method without checking the sign.",
           "Arithmetic slip computing 16/9 from (4/3)²."
         ],
         "memory_tip": "Positive constant after completing the square ⇒ Tan⁻¹; negative ⇒ log — check the sign every time."

@@ -69,7 +69,7 @@
           "Writing g′ = k instead of k/2 — g′ is always half the coefficient of x.",
           "Reusing the r₁ = 2 and c = 41 values but forgetting c′ = −59 makes −c′ = +59 inside r₂'s square root."
         ],
-        "memory_tip": "Only the SECOND circle's parameters change here compared with answer 119.2 — the first circle, and so r₁, are identical to that earlier question."
+        "memory_tip": "Only the SECOND circle's parameters change here — the first circle, and so r₁, stay exactly as given."
       },
       {
         "id": "s2_angle_formula_solve_k",

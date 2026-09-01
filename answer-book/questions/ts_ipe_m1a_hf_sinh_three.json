@@ -136,11 +136,11 @@
         },
         "why": "sinh x = 3 and x = Sinh⁻¹(3) say the same thing. Reading the given equation as an inverse is what lets the formula be used at all.",
         "common_mistakes": [
-          "Trying to solve the exponential definition from scratch.",
+          "Reading sinh x = 3 as x = sinh 3 instead of x = Sinh⁻¹(3).",
           "Writing √10 as √9 + √1 = 4."
         ]
       }
     ]
   },
-  "insider_note": "Quote Sinh⁻¹x = logₑ(x + √(x² + 1)) and substitute; no rearranging of exponentials is wanted. The root gives √10, not √8, because it is x² + 1 and not x² − 1."
+  "insider_note": "Quote Sinh⁻¹x = logₑ(x + √(x² + 1)) and substitute; rearranging the exponential definition reaches the same answer, but it takes several more lines. The root gives √10, not √8, because it is x² + 1 and not x² − 1."
 }

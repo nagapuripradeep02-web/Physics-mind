@@ -176,7 +176,7 @@
         },
         "why": "sin(180° − θ) = sin θ is what turns sin(A+B) into sin C. Without the angle condition the two terms would never share a factor.",
         "common_mistakes": [
-          "Writing sin(180° − C) = −sin C, which is the cosine rule not the sine one.",
+          "Writing sin(180° − C) = −sin C. That is what happens to the COSINE: cos(180° − θ) = −cos θ, but sin(180° − θ) = +sin θ.",
           "Forgetting to use the condition at all."
         ]
       },
@@ -186,7 +186,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
         "memory_tip": "Take 2 sinC out, then use cos(180° − θ) = −cos θ so the bracket becomes a difference.",
         "lines": [
           "= 2 sinC [cos(A−B) + cosC]",

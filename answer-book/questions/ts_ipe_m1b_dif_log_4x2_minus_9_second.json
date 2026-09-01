@@ -53,7 +53,7 @@
             "style": "heading"
           },
           "4x² − 9 = (2x − 3)(2x + 3), and the logarithm of a product is the sum of the logarithms.",
-          "∴ y = log(2x − 3) + log(2x + 3),  4x² − 9 > 0",
+          "∴ y = log(2x − 3) + log(2x + 3),  x > 3/2",
           "Differentiate once, using the chain rule on each term:",
           "dy/dx = 2/(2x − 3) + 2/(2x + 3)"
         ],
@@ -79,7 +79,7 @@
             "two x plus three"
           ]
         },
-        "why": "Differentiating log(4x² − 9) directly gives 8x/(4x² − 9), and the second derivative then needs the quotient rule on that. Splitting first replaces one quotient rule with two simple powers.",
+        "why": "Differentiating log(4x² − 9) directly gives 8x/(4x² − 9), and the second derivative then needs the quotient rule on that. Splitting first replaces one quotient rule with two simple powers. The split itself needs x > 3/2, where both factors are positive; the derivative it produces is the same one that holds on x < −3/2.",
         "common_mistakes": [
           "Writing log(4x² − 9) as log 4x² − log 9, which is not a valid split.",
           "Writing d/dx log(2x − 3) as 1/(2x − 3), losing the inner 2."

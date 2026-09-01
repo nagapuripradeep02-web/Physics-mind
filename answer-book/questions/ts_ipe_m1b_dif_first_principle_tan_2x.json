@@ -219,7 +219,7 @@
         "why": "The standard limit needs the same angle above and below. Writing (sin 2h)/h as 2(sin 2h)/(2h) supplies the missing 2, and that 2 is the derivative of the inside angle 2x.",
         "common_mistakes": [
           "Writing (sin 2h)/h → 1 and losing the factor 2.",
-          "Stopping at 2/cos²2x when the answer key expects 2 sec²2x."
+          "Quoting the standard derivative of tan 2x instead of working from first principles, which is what the question asks for."
         ],
         "memory_tip": "sin 2h over h is 2 times sin 2h over 2h. Put the 2 in the moment you split it."
       }

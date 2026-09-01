@@ -201,7 +201,7 @@
         "label": "Solve for r",
         "marks": 1,
         "mark_note": "Values of r",
-        "margin_note": "Sixth mark. Split −10 = −9 − 1 with (−9)(−1) = 9 = 3 × 3. The two values of r are reciprocals, which is why they give the same roots.",
+        "margin_note": "Fifth mark. Split −10 = −9 − 1 with (−9)(−1) = 9 = 3 × 3. The two values of r are reciprocals, which is why they give the same roots.",
         "memory_tip": "(3r − 1)(r − 3) = 0. The two values are reciprocals, so they give the same three roots.",
         "lines": [
           "3r² − 9r − r + 3 = 0",

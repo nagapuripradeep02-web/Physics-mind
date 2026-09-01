@@ -116,8 +116,8 @@
         "kind": "equation",
         "label": "Pair two terms",
         "marks": 3,
-        "mark_note": "Sum to product",
-        "margin_note": "Three of the eight marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
+        "mark_note": "Pythagorean identity",
+        "margin_note": "Three of the eight marks. Three squared terms will not factorise as they stand, so one of them is written as 1 − cos² to make a sin² − cos² pair appear. Quote every formula you use in brackets — the formulas are what the examiner marks.",
         "memory_tip": "Keep the minus in front of sin²(C/2); converting the wrong term gives a sum of squares instead.",
         "lines": [
           "L.H.S = sin²(A/2) + sin²(B/2) − sin²(C/2)",
@@ -199,7 +199,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
         "memory_tip": "The bracket must come out as a SUM so the cosine formula applies. Keep the leading 1.",
         "lines": [
           "= 1 − sin(C/2) [cos((A−B)/2) + sin(C/2)]",

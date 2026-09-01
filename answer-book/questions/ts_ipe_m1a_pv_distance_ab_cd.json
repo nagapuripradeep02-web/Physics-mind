@@ -148,7 +148,7 @@
             "difference"
           ]
         },
-        "why": "The formula from answer 23 needs a point and a direction for each line. Four points give exactly that, once the subtractions are done.",
+        "why": "The shortest-distance formula needs a point and a direction for each line. Four points give exactly that, once the subtractions are done.",
         "common_mistakes": [
           "Using OB as the direction instead of OB − OA.",
           "Subtracting the wrong way round."

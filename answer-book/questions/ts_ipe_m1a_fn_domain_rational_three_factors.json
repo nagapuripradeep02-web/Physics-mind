@@ -92,7 +92,7 @@
         "label": "Write the domain",
         "marks": 1,
         "mark_note": "Domain",
-        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "margin_note": "The second mark is the answer set. Write it as R minus the excluded points — this one is not an interval.",
         "memory_tip": "Remove those three points from R. The numerator plays no part.",
         "lines": [
           "∴ Domain = R − {1, 2, 3}"

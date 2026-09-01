@@ -141,7 +141,7 @@
         "label": "Use the half-angle sum identity",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two more marks. sin²(A/2) + sin²(B/2) + sin²(C/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2) — the Unit 6 identity, quoted.",
+        "margin_note": "Two more marks. sin²(A/2) + sin²(B/2) + sin²(C/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2) — the Trigonometric Ratios and Transformations identity, quoted.",
         "memory_tip": "Σsin²(A/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2), and that product is r/(4R).",
         "lines": [
           "= (1/r)[1 − 2 sin(A/2)sin(B/2)sin(C/2)]",
@@ -151,7 +151,7 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the Unit 6 identity Σsin²(A/2) = 1 − 2sin(A/2)sin(B/2)sin(C/2) is quoted, and the product replaced by r/(4R).",
+          "must_convey": "That the Trigonometric Ratios and Transformations identity Σsin²(A/2) = 1 − 2sin(A/2)sin(B/2)sin(C/2) is quoted, and the product replaced by r/(4R).",
           "accept": [
             "quote the identity that the sum of the sine squares is one minus twice the product then replace the product by r over four R",
             "use the transformations identity then the standard product result",
@@ -171,7 +171,7 @@
             "product"
           ]
         },
-        "why": "This is exactly Unit 6 answer 27.1, quoted rather than re-proved — and r = 4R sin(A/2)sin(B/2)sin(C/2) rearranges to give the product directly.",
+        "why": "This is exactly the identity Σsin²(A/2) = 1 − 2 sin(A/2)sin(B/2)sin(C/2), proved in the Trigonometric Ratios chapter and quoted rather than re-proved — and r = 4R sin(A/2)sin(B/2)sin(C/2) rearranges to give the product directly.",
         "common_mistakes": [
           "Re-proving the identity from scratch.",
           "Writing the product as r/(2R)."

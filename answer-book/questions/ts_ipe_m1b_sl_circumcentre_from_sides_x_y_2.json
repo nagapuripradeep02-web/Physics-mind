@@ -308,7 +308,7 @@
         "memory_tip": "Repeat on the second pair for the second bisector.",
         "lines": [
           "Step-5: SB = SC ⇒ √((x+3)² + (y−1)²) = √((x−1)² + (y−3)²)",
-          "⇒ (x² + 9 + 6x) + (y² − 1 + 2y) = (x² + 1 − 2x) + (y² + 9 − 6y)",
+          "⇒ (x² + 9 + 6x) + (y² + 1 − 2y) = (x² + 1 − 2x) + (y² + 9 − 6y)",
           "⇒ 6x + 2x − 2y + 6y = 0   ⇒   8x + 4y = 0   ⇒   4(2x + y) = 0",
           "⇒ 2x + y = 0  ……(5)"
         ],

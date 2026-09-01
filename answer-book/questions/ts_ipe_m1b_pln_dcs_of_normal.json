@@ -90,7 +90,7 @@
         "why": "A plane's equation carries its normal direction in its coefficients, so no geometry is needed — only normalising. The ± is there because a normal points BOTH ways out of the plane.",
         "common_mistakes": [
           "Using the constant term d as one of the ratios.",
-          "Omitting the ±, which the word 'triad' in the question is asking about."
+          "Writing the coefficients a, b, c straight down as the direction cosines, without dividing by √(a²+b²+c²)."
         ]
       },
       {
@@ -100,7 +100,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. The numbers here were chosen so the root is exactly 3, giving a clean triple.",
-        "memory_tip": "1 + 4 + 4 = 9, so the root is exactly 3 and the triple is clean. Keep the ±.",
+        "memory_tip": "1 + 4 + 4 = 9, so the root is exactly 3 and the triple is clean. The ± shows the normal points both ways.",
         "lines": [
           "∴ d.c's of x + 2y + 2z − 4 = 0 are",
           "±( 1/√(1+4+4),  2/√(1+4+4),  2/√(1+4+4) )",
@@ -112,7 +112,7 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That √(1+4+4) = 3, so the direction cosines are ±(1/3, 2/3, 2/3).",
+          "must_convey": "That √(1+4+4) = 3, so a triad of direction cosines is (1/3, 2/3, 2/3); the ± gives the opposite triad as well.",
           "accept": [
             "the root of one plus four plus four is three",
             "the direction cosines are plus or minus one third two thirds two thirds",
@@ -136,10 +136,10 @@
         "why": "The squares of the three answers add to 1/9 + 4/9 + 4/9 = 1, which is the check that they really are direction cosines.",
         "common_mistakes": [
           "Dividing by 9 rather than by 3.",
-          "Dropping the ± from the final answer."
+          "Adding the coefficients under the root instead of their squares."
         ]
       }
     ]
   },
-  "insider_note": "The word triad is asking for the ±, so both sign sets belong in the answer. Divide by √9 = 3, not by 9 — dividing by the sum of squares instead of its root is the usual slip."
+  "insider_note": "Both sign sets are valid, because a normal points both ways out of the plane; quoting one triad answers the question, and the ± shows both. Divide by √9 = 3, not by 9 — dividing by the sum of squares instead of its root is the usual slip."
 }

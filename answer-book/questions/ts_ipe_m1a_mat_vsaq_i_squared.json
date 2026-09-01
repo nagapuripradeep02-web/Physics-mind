@@ -86,7 +86,7 @@
         },
         "why": "Even with complex entries, matrix multiplication is unchanged — row against column. Only the arithmetic inside the entries is new.",
         "common_mistakes": [
-          "Squaring the entries without doing the multiplication.",
+          "Squaring the entries of a matrix that is not diagonal — entry-by-entry squaring works here only because the off-diagonal zeros make every cross term zero.",
           "Assuming a diagonal matrix cannot be multiplied."
         ]
       },

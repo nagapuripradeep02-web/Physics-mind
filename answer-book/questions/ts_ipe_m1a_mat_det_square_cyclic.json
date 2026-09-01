@@ -291,7 +291,7 @@
         "kind": "boxed_final",
         "label": "Join the two halves",
         "marks": 0,
-        "margin_note": "No separate mark — the seven are already spent — but write the line. Two results were proved separately and the question asked for all three expressions to be equal, so the last line has to name both.",
+        "margin_note": "No separate mark — all eight are already spent — but write the line. Two results were proved separately and the question asked for all three expressions to be equal, so the last line has to name both.",
         "memory_tip": "Two results were proved separately; the question asked for all three expressions, so join them.",
         "lines": [
           "From (1) and (2), both equal Δ²:",

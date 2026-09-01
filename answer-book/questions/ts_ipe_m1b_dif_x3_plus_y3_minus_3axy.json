@@ -92,7 +92,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. Divide by 3 first, then move the two dy/dx terms to one side and everything else to the other. State y² ≠ ax, where the tangent is vertical.",
-        "memory_tip": "The numerator and the denominator have the same shape with x and y exchanged: ay − x² over y² − ax.",
+        "memory_tip": "The denominator is the numerator with x and y exchanged and then the sign reversed: ay − x² on top, y² − ax below. Check the sign, not only the letters.",
         "lines": [
           "Divide throughout by 3:  x² + y²(dy/dx) − ay − ax(dy/dx) = 0",
           "Take the dy/dx terms to one side:  (y² − ax)(dy/dx) = ay − x²",

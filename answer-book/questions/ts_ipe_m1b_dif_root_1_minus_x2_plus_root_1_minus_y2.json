@@ -97,7 +97,7 @@
         "why": "Every term in the given equation is a square root of 1 minus a square, and 1 − sin²A = cos²A is the identity that removes exactly that. After the substitution no roots are left and the equation is an ordinary trigonometric one.",
         "common_mistakes": [
           "Writing √(1 − sin²A) as ±cos A. The principal value of Sin⁻¹ keeps A in [−π/2, π/2], where cos A is not negative, so only the plus sign is possible.",
-          "Substituting x = cos A instead, which leaves a sine under the root and does not match the sum formulas used in the next step."
+          "Substituting x = tan A, which leaves √(1 − tan²A) and removes no root."
         ],
         "memory_tip": "A root of the form √(1 − x²) always asks for x = sin θ. Its partner is √(1 + x²), which asks for x = tan θ."
       },
@@ -141,10 +141,10 @@
         },
         "why": "In product form both sides carry the same factor 2 cos((A + B)/2), and that shared factor is what makes the next line short. Expanding cos A, cos B, sin A and sin B separately instead leaves nothing that cancels.",
         "common_mistakes": [
-          "Writing sin C − sin D = 2 sin((C − D)/2) cos((C + D)/2) with the two half angles swapped, which puts the sine on the wrong half.",
+          "Writing sin C − sin D = 2 sin((C + D)/2) cos((C − D)/2), which puts the sine on the half sum. That is the formula for sin C + sin D.",
           "Using the product form on cos A + cos B but expanding sin A − sin B term by term, so the common factor never appears."
         ],
-        "memory_tip": "Cosine plus cosine keeps two cosines. Sine minus sine keeps a cosine first and a sine second. In both forms the half sum comes before the half difference."
+        "memory_tip": "Cosine plus cosine keeps two cosines. Sine minus sine takes the cosine of the half sum and the sine of the half difference."
       },
       {
         "id": "s3_cancel",

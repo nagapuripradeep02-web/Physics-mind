@@ -182,10 +182,10 @@
         "why": "Two transposes appear in this question — one on A at the start and one on the cofactor matrix at the end. They are unrelated, and both are required.",
         "common_mistakes": [
           "Skipping the second transpose.",
-          "Dividing by |A| when it is not 1."
+          "Forgetting to divide by the determinant on a question where it is not 1 — here it is 1, so the adjoint is already the inverse."
         ]
       }
     ]
   },
-  "insider_note": "Transpose FIRST and then invert that — the cofactors of A′ are not the cofactors of A rearranged. |A′| = 1, so the inverse is simply the adjoint."
+  "insider_note": "Transpose FIRST and then invert that. The cofactors of A′ are the cofactors of A transposed, so adj(A′) = (adj A)′ — but in the exam it is safer to write A′ down and work its nine cofactors directly. |A′| = 1, so the inverse is simply the adjoint."
 }

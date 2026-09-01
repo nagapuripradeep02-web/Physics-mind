@@ -132,9 +132,9 @@
             "shift"
           ]
         },
-        "why": "The four angles were chosen so that they pair up under a 90° shift. Spotting that pairing is the whole question.",
+        "why": "The four angles were chosen so that they pair up under a 90° shift. Spotting that pairing is the whole question. Writing 108° as 180° − 72° and 162° as 180° − 18° is also correct and reaches 2; the 90° shift is used here because it turns the two large terms into sines, so both Pythagorean pairs appear without needing cos 72° = sin 18°.",
         "common_mistakes": [
-          "Writing 108° as 180° − 72°, which works but leads to a longer route.",
+          "Writing 108° as 90° − 18°, which is 72°, not 108°.",
           "Pairing 108° with 72° instead of 18°."
         ]
       },
@@ -218,9 +218,9 @@
             "pair"
           ]
         },
-        "why": "The regrouping is the point — the terms are not in Pythagorean pairs as first written, and rearranging them is what makes the identity apply.",
+        "why": "The regrouping is the point — the terms are not in Pythagorean pairs as first written, and rearranging them is what makes the identity apply. Pairing cos²18° with cos²72° also reaches 2, but only after using cos 72° = sin 18°; pairing by the same angle needs no extra step.",
         "common_mistakes": [
-          "Pairing cos²18° with cos²72°.",
+          "Pairing cos²18° with sin²72° and calling it 1 — the identity needs the SAME angle in both terms.",
           "Trying to find the numerical value of cos 18°."
         ]
       }

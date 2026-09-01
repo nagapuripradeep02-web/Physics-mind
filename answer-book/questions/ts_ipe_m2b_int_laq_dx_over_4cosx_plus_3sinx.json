@@ -106,12 +106,12 @@
             "style": "eq"
           }
         ],
-        "why": "The quadratic 2t²−3t−2 completes to a DIFFERENCE of squares, so this is a log-formula integral, exactly like answer 20 earlier in the chapter, just now in the variable t.",
+        "why": "The quadratic 2t²−3t−2 completes to a DIFFERENCE of squares, so this is a log-formula integral, exactly like any x²−a² denominator, just now in the variable t.",
         "common_mistakes": [
           "Trying to apply the Tan⁻¹ formula here, which only applies to a SUM of squares.",
           "Losing the leading −(1/2) factor picked up in the previous step."
         ],
-        "memory_tip": "t²−a² in the completed square ⇒ log formula, carried straight from t² completing the square work in answer 20."
+        "memory_tip": "t²−a² in the completed square ⇒ log formula, the same rule that applies when the quadratic is in x."
       },
       {
         "id": "s4_final",

@@ -116,9 +116,9 @@
         "kind": "equation",
         "label": "Pair two terms",
         "marks": 3,
-        "mark_note": "Sum to product",
-        "margin_note": "Three of the eight marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
-        "memory_tip": "Three terms will not factorise as they stand, so combine TWO into a product first. Quote the formula.",
+        "mark_note": "Pythagorean identity",
+        "margin_note": "Three of the eight marks. Three squared terms will not factorise as they stand, so one of them is written as 1 − sin² to make a cos² − sin² pair appear. Quote every formula you use in brackets — the formulas are what the examiner marks.",
+        "memory_tip": "Write ONE squared term as 1 minus the other function squared: cos²(B/2) becomes 1 − sin²(B/2), so a cos² − sin² pair appears.",
         "lines": [
           "L.H.S = cos²(A/2) + cos²(B/2) + cos²(C/2)",
           "= cos²(A/2) + (1 − sin²(B/2)) + cos²(C/2)",
@@ -199,7 +199,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
         "memory_tip": "Pull the common factor out, then use the condition a SECOND time inside the bracket.",
         "lines": [
           "= 2 + sin(C/2) [cos((A−B)/2) − sin(C/2)]",
@@ -227,7 +227,7 @@
             "difference of cosines"
           ]
         },
-        "why": "The 2 plays no further part, so setting it aside keeps the factorisation clean — the same tactic as the −1 in answer 26.2.",
+        "why": "The 2 plays no further part, so setting it aside keeps the factorisation clean — the same tactic used on the other half-angle proofs in this chapter.",
         "common_mistakes": [
           "Trying to factor the 2 into the bracket.",
           "Leaving a sine inside the bracket so no formula applies."

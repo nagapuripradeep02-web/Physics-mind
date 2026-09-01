@@ -155,7 +155,7 @@
         "label": "Case (i): the first line",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
+        "margin_note": "One mark. Take the first factor, feed it back into the linear relation, and read off the ratio l : m : n. Clearing the common letter leaves whole numbers.",
         "memory_tip": "Feed the first factor back and read off the ratio l : m : n.",
         "lines": [
           "Case (i): Put m = 2n/3 in (1), then",
@@ -197,7 +197,7 @@
         "label": "Case (ii): the second line",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Two marks. The same work on the second factor. The two lines the question asks about are these two.",
+        "margin_note": "One mark. The same work on the second factor. The two lines the question asks about are these two.",
         "memory_tip": "The same on the second factor.",
         "lines": [
           "Case (ii): Put m = n/2 in (1), then",
@@ -275,7 +275,7 @@
         "why": "Direction ratios give the direction; direction cosines are that same direction scaled so the squares add to 1. Dividing by √(a²+b²+c²) is the only step between them.",
         "common_mistakes": [
           "Forgetting to divide one of the two triples.",
-          "Dropping the ± that both directions along a line allow."
+          "Dividing both triples by the same root instead of each by its own, √14 and √6."
         ]
       }
     ]

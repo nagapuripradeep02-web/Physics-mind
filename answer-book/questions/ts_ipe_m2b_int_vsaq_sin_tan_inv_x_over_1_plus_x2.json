@@ -89,7 +89,7 @@
           "Forgetting the minus sign on ∫sint dt = −cost.",
           "Forgetting to substitute Tan⁻¹x back in for t."
         ],
-        "memory_tip": "∫sint dt = −cost — the same sign rule as answer 149.1, now with Tan⁻¹x standing in for logx."
+        "memory_tip": "∫sint dt = −cost — the same sign rule, now with Tan⁻¹x standing in for logx."
       }
     ]
   }

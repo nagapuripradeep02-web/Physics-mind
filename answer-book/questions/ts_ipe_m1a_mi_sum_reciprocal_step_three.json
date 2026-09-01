@@ -189,7 +189,7 @@
         "label": "Show S(k+1) follows",
         "marks": 1,
         "mark_note": "Step 3",
-        "margin_note": "One mark, and the longest step on the page. Identical shape to question 7: add, combine, factorise, cancel.",
+        "margin_note": "One mark, and the longest step on the page. Identical shape to the other sum-of-reciprocals proofs: add, combine, factorise, cancel.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           "(k+1)th term = 1/((3k+1)(3k+4))",

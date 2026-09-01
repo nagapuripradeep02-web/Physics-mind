@@ -218,7 +218,7 @@
             "two answers"
           ]
         },
-        "why": "Two lines through a point make two pairs of angles, 45° and 135°, and both satisfy the modulus equation — so two values of k are expected, not a sign of error.",
+        "why": "The ± gives two different second lines: one turned 45° one way from 4x − y + 7 = 0, the other turned 45° the other way. Each really does make a 45° angle with the given line, so both values of k are correct answers, not a sign of error.",
         "common_mistakes": [
           "Reporting only k = 3.",
           "Sign slip when distributing the minus over (20 − k)."

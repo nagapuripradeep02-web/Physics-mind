@@ -66,7 +66,7 @@
         "why": "The conditions are the answer here, not a footnote. In an alkyl halide the same substitution happens at room temperature; in an aryl halide the C–Cl bond is shortened and strengthened by resonance, so a temperature of 623 K and a pressure of 300 atm are required. The exception is a ring that already carries strong electron withdrawing groups at positions 2, 4 and 6: 2,4,6-trinitrochlorobenzene gives its phenol with warm water alone.",
         "common_mistakes": [
           "Leaving out the temperature and the pressure. Without them this reads like an ordinary substitution, which it is not.",
-          "Writing 320 atm, which is what the book prints on this question. Its own Very Short Answer 5 gives 300 atm, the standard value."
+          "Writing 320 atm, which some books print for this question. The standard value is 300 atm."
         ],
         "memory_tip": "Dow's process: chlorobenzene, strong alkali, 623 K, 300 atm.",
         "margin_note": "Name the process. A named method is quicker for the examiner to place than a bare set of conditions."
@@ -170,5 +170,5 @@
       }
     ]
   },
-  "insider_note": "Both routes are common answers, but the two conditions are where marks go: 623 K with 300 atm for the chlorobenzene route, and 273 to 278 K for the diazotisation. The book omits the diazotisation temperature altogether and prints 320 atm here against 300 atm on book p.109."
+  "insider_note": "Both routes are common answers, but the two conditions are where marks go: 623 K with 300 atm for the chlorobenzene route, and 273 to 278 K for the diazotisation. Some books omit the diazotisation temperature altogether and print 320 atm in one place against 300 atm in another."
 }

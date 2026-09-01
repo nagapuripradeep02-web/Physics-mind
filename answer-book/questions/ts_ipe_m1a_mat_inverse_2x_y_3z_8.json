@@ -211,7 +211,7 @@
         "label": "Transpose to get Adj A",
         "marks": 1,
         "mark_note": "Adjoint and inverse",
-        "margin_note": "Fourth mark, and the step most often skipped. Adj A is the TRANSPOSE of the cofactor matrix — rows become columns. Then A⁻¹ is Adj A divided by det A.",
+        "margin_note": "Sixth mark, and the step most often skipped. Adj A is the TRANSPOSE of the cofactor matrix — rows become columns. Then A⁻¹ is Adj A divided by det A.",
         "memory_tip": "Adj A is the TRANSPOSE of the cofactor matrix — the step most often skipped. Then divide by det A.",
         "lines": [
           "Adj A is the transpose of the cofactor matrix:",
@@ -249,9 +249,9 @@
             "one by det A"
           ]
         },
-        "why": "Forgetting the transpose gives a matrix that looks right and is wrong, and nothing later in the question will reveal it. On a symmetric cofactor matrix the transpose changes nothing — which is exactly why the habit has to be written down every time.",
+        "why": "Adj A is the transpose of the cofactor matrix, and A⁻¹ is that adjoint divided by det A. Here A is symmetric, so its cofactor matrix is symmetric too and the transpose changes nothing. Write the transpose line anyway: on a question where the cofactor matrix is not symmetric, skipping it gives a matrix that looks right and is wrong, and nothing later reveals it.",
         "common_mistakes": [
-          "Using the cofactor matrix directly as the adjoint without transposing.",
+          "Dropping the minus sign from det A and writing 1/38 in place of 1/(−38).",
           "Dividing only one row by det A instead of the whole matrix.",
           "Multiplying by det A instead of dividing."
         ]

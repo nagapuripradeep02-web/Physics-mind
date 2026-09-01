@@ -186,7 +186,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
         "memory_tip": "The common factor comes out and the −1 stays OUTSIDE the bracket.",
         "lines": [
           "= −1 + 2 cos(C/2) [cos((B−A)/2) + cos(C/2)]",
@@ -215,7 +215,7 @@
             "common factor"
           ]
         },
-        "why": "Setting the constant aside before factoring is the same tactic used in answers 26.2 and 28 — it keeps the line short and the common factor visible.",
+        "why": "Setting the constant aside before factoring is the same tactic the other sum-to-product proofs in this chapter use — it keeps the line short and the common factor visible.",
         "common_mistakes": [
           "Trying to factor the −1 into the bracket.",
           "Leaving the bracket in terms of C."

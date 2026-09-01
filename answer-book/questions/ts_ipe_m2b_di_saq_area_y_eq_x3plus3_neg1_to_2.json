@@ -75,7 +75,7 @@
         "kind": "equation",
         "label": "Find the antiderivative",
         "marks": 0,
-        "margin_note": "Second mark. x⁴/4 + 3x is the antiderivative — check both terms are present before substituting limits.",
+        "margin_note": "No mark of its own. x⁴/4 + 3x is the antiderivative — check both terms are present before substituting limits.",
         "memory_tip": "∫xⁿ dx = xⁿ⁺¹/(n+1) — increase the power by one and divide by the new power.",
         "lines": [
           "∫(x³+3) dx = x⁴/4 + 3x + c",

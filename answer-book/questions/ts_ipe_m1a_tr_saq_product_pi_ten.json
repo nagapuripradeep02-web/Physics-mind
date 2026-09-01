@@ -106,7 +106,7 @@
         "label": "Pair into differences of squares",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Same pairing as answer 67 — each plus bracket with its own minus partner.",
+        "margin_note": "First mark. Pair each plus bracket with its own minus partner, so every pair becomes a difference of squares.",
         "lines": [
           "L.H.S = (1 + cos18°)(1 + cos54°)(1 − cos54°)(1 − cos18°)",
           "= (1 − cos²18°)(1 − cos²54°)",
@@ -133,7 +133,7 @@
             "difference of squares"
           ]
         },
-        "why": "Identical move to answer 67 — the two questions are the same shape with different angles.",
+        "why": "Identical move to its companion product question — the two are the same shape with different angles.",
         "common_mistakes": [
           "Pairing in the written order.",
           "Writing 1 − cos² as cos²."

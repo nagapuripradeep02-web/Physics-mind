@@ -217,7 +217,7 @@
         "why": "The numerator and denominator share no common factor once the 2 is taken out, so this is the simplest form. It also shows the derivative is zero only at x = ±√2, which is a quick check that the working is sensible.",
         "common_mistakes": [
           "Cancelling the 2 in the numerator against the 4 in the denominator, which are not factors of the whole expressions.",
-          "Leaving the denominator as a product of two quadratics when the question asks for the derivative in its simplest form."
+          "Differentiating the quotient before splitting the logarithm, which replaces a two-term subtraction with a long quotient rule."
         ],
         "memory_tip": "Check at x = 0: the answer gives 2(2)/4 = 1, and the function itself is log(2/2) = 0 there. One substitution like this catches a lost sign."
       }

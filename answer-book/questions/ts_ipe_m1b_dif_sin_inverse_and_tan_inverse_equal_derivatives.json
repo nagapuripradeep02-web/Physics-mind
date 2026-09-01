@@ -283,5 +283,5 @@
       }
     ]
   },
-  "insider_note": "Both functions differ by a constant, so their derivatives match — the given β < x < α is what keeps both radicands positive. Differentiate each separately and compare."
+  "insider_note": "Both functions reduce to the SAME angle θ, so f(x) = g(x) exactly and their derivatives match — the given β < x < α is what keeps both radicands positive. Showing f = g first is shorter than differentiating each separately."
 }

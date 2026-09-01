@@ -207,7 +207,7 @@
         },
         "why": "This differs from its neighbour by ONE word: coincident gives h² = ab, a right angle gives a + b = 0. The homogenisation before it is identical, which is why the two sit on the same page.",
         "common_mistakes": [
-          "Using h² = ab, which is the coincident condition from the facing answer.",
+          "Using h² = ab, which is the coincident-lines condition.",
           "Forgetting that the two 1's add to 2."
         ],
         "mark_note": "Solution",

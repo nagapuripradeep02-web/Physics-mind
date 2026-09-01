@@ -173,10 +173,10 @@
             "s equals minus one"
           ]
         },
-        "why": "Independence is the whole reason this works. If a, b, c were coplanar, one could be written in terms of the others and the coefficients could not be matched term by term.",
+        "why": "Independence is the whole reason this works. If a, b, c were coplanar, one could be written in terms of the others and the coefficients could not be matched term by term. The c coefficients have to agree as well: at t = −1 and s = −1 both −1 − t and 3 + 3s are 0, so the two lines really do meet.",
         "common_mistakes": [
           "Comparing coefficients without saying why it is allowed.",
-          "Solving only one equation and never checking it against the third."
+          "Losing the minus sign in −2 − 4s and solving 4s = 4, which gives s = +1."
         ]
       },
       {

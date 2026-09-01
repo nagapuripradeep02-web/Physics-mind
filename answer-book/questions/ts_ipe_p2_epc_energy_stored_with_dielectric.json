@@ -162,7 +162,7 @@
           "fixed, and that is the difference between the",
           "two cases below."
         ],
-        "margin_note": "Third mark. All three forms, and note that the fixed quantity picks the form.",
+        "margin_note": "Fourth mark. All three forms, and note that the fixed quantity picks the form.",
         "why": "The two dielectric cases are only different because one holds Q fixed and the other holds V fixed, so choosing the matching form is what parts (a) and (b) test.",
         "common_mistakes": [
           "Dropping the factor of two and writing CV² or Q²/C.",

@@ -92,7 +92,7 @@
         "label": "Apply the compound formulas",
         "marks": 2,
         "mark_note": "Conclusion",
-        "margin_note": "The other half. The first bracket is sin((A+B)/2) and the second cos((A+B)/2); then (A+B)/2 = 90° − C/2 converts both into C, and the two terms combine.",
+        "margin_note": "The other half. The first bracket is sin((A+B)/2) and the second cos((A+B)/2); the compound formula combines them into one sine of (A+B+C)/2, which is 90°.",
         "memory_tip": "The two combine into 4R sin((A+B+C)/2) = 4R sin 90° = 4R.",
         "lines": [
           "= 4R cos(C/2) sin((A+B)/2) + 4R sin(C/2) cos((A+B)/2)",

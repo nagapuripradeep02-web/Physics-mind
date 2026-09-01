@@ -134,7 +134,7 @@
             "perpendicular distance"
           ]
         },
-        "why": "This is what makes the origin version SHORTER than the general-point version in chapter answer 8: the numerator has one term instead of two.",
+        "why": "This is what makes the origin version SHORTER than the general-point version: the numerator has one term instead of two.",
         "common_mistakes": [
           "Carrying α and β through when the point is the origin.",
           "Forgetting the modulus signs."
@@ -176,7 +176,7 @@
             "numerator"
           ]
         },
-        "why": "The numerator finishes in one step because c was matched directly — all the remaining work is in the denominator, exactly as in chapter answer 8.",
+        "why": "The numerator finishes in one step because c was matched directly — all the remaining work is in the denominator, exactly as in the general-point version.",
         "common_mistakes": [
           "Adding rather than multiplying the two distances.",
           "Forgetting to multiply the two roots under one square root."
@@ -189,7 +189,7 @@
         "kind": "boxed_final",
         "label": "Convert to a, h, b and c",
         "marks": 1,
-        "margin_note": "The last mark. Add and subtract 2l₁l₂m₁m₂ under the root so it regroups as a difference of squares plus a square — the same rearrangement chapter answer 8 uses.",
+        "margin_note": "The last mark. Add and subtract 2l₁l₂m₁m₂ under the root so it regroups as a difference of squares plus a square — the same rearrangement the general-point version uses.",
         "lines": [
           "= |c| / √((l₁l₂ − m₁m₂)² + 2l₁l₂m₁m₂ + (l₁m₂ + l₂m₁)² − 2l₁m₂l₂m₁)",
           "= |c| / √((l₁l₂ − m₁m₂)² + (l₁m₂ + l₂m₁)²)",

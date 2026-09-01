@@ -99,9 +99,9 @@
         "kind": "equation",
         "label": "Pair two terms",
         "marks": 3,
-        "mark_note": "Sum to product",
-        "margin_note": "Three of the eight marks. Three terms will not factorise as they stand, so two of them are combined into a product first. Quote the formula in brackets — the formulas are what the examiner marks.",
-        "memory_tip": "Convert only TWO of the three terms — converting all three loses track.",
+        "mark_note": "Pythagorean identity",
+        "margin_note": "Three of the eight marks. Three squared terms will not factorise as they stand, so one of them is written as 1 − cos² to make a cos² − sin² pair appear. Quote every formula you use in brackets — the formulas are what the examiner marks.",
+        "memory_tip": "Convert only ONE of the three terms: sin²(A/2) becomes 1 − cos²(A/2). That is where the leading 1 comes from.",
         "lines": [
           "L.H.S = sin²(A/2) + sin²(B/2) + sin²(C/2)",
           "= (1 − cos²(A/2)) + sin²(B/2) + sin²(C/2)",
@@ -130,7 +130,7 @@
         },
         "why": "The right-hand side begins with 1, so a 1 has to be manufactured. Converting sin² into 1 − cos² is where it comes from.",
         "common_mistakes": [
-          "Converting all three terms and losing track.",
+          "Converting all three terms, so no cos² − sin² pair is left to use.",
           "Grouping the wrong two squares."
         ]
       },
@@ -182,7 +182,7 @@
         "label": "Take the common factor out",
         "marks": 1,
         "mark_note": "Factorise",
-        "margin_note": "Sixth mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
+        "margin_note": "Seventh mark. The common factor comes out, and the condition is used a SECOND time inside the bracket so that both bracket terms are the same kind of function.",
         "memory_tip": "Both bracket terms must be the same kind of function, or no formula applies. There is no 2 to take out.",
         "lines": [
           "= 1 − sin(C/2) [cos((A−B)/2) − sin(C/2)]",

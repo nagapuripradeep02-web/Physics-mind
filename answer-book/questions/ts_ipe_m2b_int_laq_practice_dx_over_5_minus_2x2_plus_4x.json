@@ -109,9 +109,9 @@
             "style": "eq"
           }
         ],
-        "why": "This is the a²−x² twin of answer 20's x²−a² log formula — same 1/(2a) coefficient, but the log argument's numerator and denominator swap places.",
+        "why": "This is the a²−x² twin of the x²−a² log formula — same 1/(2a) coefficient, but the log argument's numerator and denominator swap places.",
         "common_mistakes": [
-          "Using the x²−a² formula from answer 20 unchanged, which puts the fraction upside down here.",
+          "Using the x²−a² formula unchanged, which puts the fraction upside down here.",
           "Missing the modulus bars."
         ],
         "memory_tip": "a²−x² flips the log's fraction compared to x²−a² — (a+x)/(a−x) here, not (x−a)/(x+a)."

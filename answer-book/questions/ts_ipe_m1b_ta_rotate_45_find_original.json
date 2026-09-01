@@ -194,8 +194,8 @@
         "label": "Simplify to the answer",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last mark. The xy terms are equal and opposite and cancel; multiply through by 2 at the end.",
-        "memory_tip": "The xy terms are equal and opposite and cancel. Multiply through by 2 at the end.",
+        "margin_note": "Last mark. The xy terms are equal and opposite and cancel; multiply both sides by 2 to clear the denominator, then divide the whole line by 2 to reach 25x² + 9y² = 225.",
+        "memory_tip": "The xy terms are equal and opposite and cancel. Multiply by 2 to clear the /2, then divide the whole line by 2 to reach 25x² + 9y² = 225.",
         "lines": [
           "⇒ [17x² + 17y² + 34xy − 16y² + 16x² + 17y² + 17x² − 34xy] / 2 = 225",
           "⇒ (50x² + 18y²)/2 = 225   ⇒   50x² + 18y² = 450",
@@ -229,7 +229,7 @@
         "why": "The cross term vanishing is the check: 45° was chosen to remove it, so it must be absent both ways round.",
         "common_mistakes": [
           "Leaving an xy term in the answer.",
-          "Dividing by 2 instead of multiplying at the last step."
+          "Dividing the right side by 2 to clear the denominator, instead of multiplying both sides by 2."
         ]
       }
     ]
