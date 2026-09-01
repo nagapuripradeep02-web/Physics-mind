@@ -314,10 +314,10 @@
             "z equals"
           ]
         },
-        "why": "A row reading 0 0 1 | 3 is literally the equation z = 3. Understanding that the matrix never stopped being the equations is what makes the whole method feel less like a trick.",
+        "why": "A row reading 0 0 1 | 1 is literally the equation z = 1. Understanding that the matrix never stopped being the equations is what makes the whole method feel less like a trick.",
         "common_mistakes": [
           "Reading the values in the wrong order.",
-          "Forgetting a row left with a −1 pivot, which needs one sign flip.",
+          "Stopping at the triangular form and back-substituting — Gauss-Jordan asks for the full identity before the values are read.",
           "Never substituting back to check — x=3, y=1, z=1 in the first equation gives 9+4+5 = 18."
         ]
       }

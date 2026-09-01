@@ -185,8 +185,9 @@
         "marks": 2,
         "margin_note": "The last two marks — one for stating h² = ab, one for carrying it through. Coincident means the two lines are the SAME line, which for a pair is exactly h² = ab.",
         "lines": [
-          "If this pair of lines are coincident then  h² = ab",
-          "Here a = (1 − a²l²), b = (1 − a²m²), 2h = −2a²lm ⇒ h = −a²lm",
+          "Write the pair's coefficients as A, B, H, because the letter a is already the circle's radius here.",
+          "If this pair of lines are coincident then  H² = AB",
+          "Here A = (1 − a²l²), B = (1 − a²m²), 2H = −2a²lm ⇒ H = −a²lm",
           "⇒ (a²lm)² = (1 − a²l²)(1 − a²m²)",
           "⇒ a⁴l²m² = 1 − a²l² − a²m² + a⁴l²m²",
           "⇒ 0 = 1 − a²l² − a²m²",

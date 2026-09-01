@@ -61,7 +61,7 @@
         "kind": "text",
         "label": "Write what is given",
         "marks": 0,
-        "margin_note": "No mark of its own. Copy the three (or four) vectors out once, in i, j, k order. Every cross product below is read straight off these rows, so a slip here is repeated three times.",
+        "margin_note": "No mark of its own. Copy the three vectors out once, in i, j, k order. Every cross product below is read straight off these rows, so a slip here is repeated three times.",
         "memory_tip": "Copy the three vectors out once in i, j, k order.",
         "lines": [
           {
@@ -194,7 +194,7 @@
         "kind": "equation",
         "label": "Find b×c",
         "marks": 2,
-        "mark_note": "Combine",
+        "mark_note": "Third product",
         "margin_note": "Two marks. Second part now — a DIFFERENT inner bracket. Here the bracket is on the right, so b×c is what gets computed first.",
         "memory_tip": "Second part has a DIFFERENT inner bracket — on the right, so b×c comes first.",
         "lines": [

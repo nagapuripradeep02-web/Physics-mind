@@ -83,7 +83,7 @@
         "common_mistakes": [
           "Writing (a, b) ∈ R and (b, a) ∈ R for all a, b, which makes R the whole of A × A.",
           "Confusing it with reflexive by writing (a, a) ∈ R.",
-          "Writing the arrow the wrong way, so nothing is required of the pairs in R."
+          "Leaving out \"for all a, b ∈ A\", so the definition never says which pairs the condition applies to."
         ]
       },
       {

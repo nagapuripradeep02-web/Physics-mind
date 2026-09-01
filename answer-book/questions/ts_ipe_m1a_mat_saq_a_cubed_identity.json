@@ -150,7 +150,7 @@
         "why": "Matrix multiplication is associative, so A·A·A can be grouped as (A·A)·A. Reusing A² halves the work and is why the order of the steps matters.",
         "common_mistakes": [
           "Multiplying A by A by A from scratch and making a fresh arithmetic error.",
-          "Multiplying A·A² and A²·A as though they might differ; here they do not, but the working must still be shown.",
+          "Multiplying A² by A² and calling the result A³ — that gives A⁴; A³ is A²·A.",
           "Sign slips in the larger numbers."
         ]
       },

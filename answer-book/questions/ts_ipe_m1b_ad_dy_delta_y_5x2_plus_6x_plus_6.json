@@ -135,5 +135,5 @@
       }
     ]
   },
-  "insider_note": "dy uses the derivative and is approximate; Δy is the EXACT difference f(x + Δx) − f(x). Both are asked, so both must be computed, and they differ in the fourth decimal."
+  "insider_note": "dy uses the derivative and is approximate; Δy is the EXACT difference f(x + Δx) − f(x). Both are asked, so both must be computed, and they differ only in the sixth decimal place."
 }

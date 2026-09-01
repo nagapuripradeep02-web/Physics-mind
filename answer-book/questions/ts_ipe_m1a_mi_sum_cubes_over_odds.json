@@ -178,7 +178,7 @@
         "label": "Show S(k+1) follows",
         "marks": 1,
         "mark_note": "Step 3",
-        "margin_note": "One mark, and the longest step on the page. Unlike the earlier questions the two sides will not factorise into each other, so expand BOTH and show the same cubic.",
+        "margin_note": "One mark, and the longest step on the page. The left side does factorise, as (k+1)(2k² + 13k + 24), but that factor is hard to spot — expanding BOTH sides to the same cubic always works.",
         "lines": [
           "Step 3 — show S(k+1) is true",
           "(k+1)th term = (k+2)²/4",
@@ -192,7 +192,7 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the left side with the extra term (k+2)²/4 expands to (2k³ + 15k² + 37k + 24)/24, that the right side at k+1 expands to the same cubic, and that the two are therefore equal.",
+          "must_convey": "That the left side with the extra term (k+2)²/4 equals the right side at k+1 — either by expanding both to (2k³ + 15k² + 37k + 24)/24, or by factoring the left side as (k+1)(2k² + 13k + 24)/24, which is the right side itself.",
           "accept": [
             "expand both sides and they both come to two k cubed plus fifteen k squared plus thirty seven k plus twenty four over twenty four",
             "this one does not factorise so expand the left and the right and compare",
@@ -213,13 +213,13 @@
             "twenty four"
           ]
         },
-        "why": "The earlier questions had a common factor to pull out. This one does not, so the honest route is to expand both sides to the same cubic — slower, but it always works.",
+        "why": "2k³ + 15k² + 37k + 24 does factorise, as (k+1)(2k² + 13k + 24), which is exactly the right-hand side — a student who spots the (k+1) finishes faster and is fully correct. Spotting it under exam pressure is the hard part, so expanding both sides to the same cubic is the safer route and is the one shown.",
         "common_mistakes": [
-          "Trying to factorise and giving up when nothing comes out.",
+          "Adding the next term as (k+1)²/4 instead of (k+2)²/4.",
           "Expanding only the left side and asserting it matches.",
           "Arithmetic slips in 6(k+2)² = 6k² + 24k + 24."
         ],
-        "memory_tip": "These two sides will not factorise into each other, so EXPAND both and show the same cubic."
+        "memory_tip": "The left side factors as (k+1)(2k² + 13k + 24), which is the right side itself — but that is hard to spot, so EXPAND both sides to the same cubic."
       },
       {
         "id": "s5_conclude",

@@ -89,7 +89,7 @@
             "cos squared"
           ]
         },
-        "why": "sin² + cos² = 1 works in either direction, which is why this twin and answer 33 reach the SAME expression from opposite starting points.",
+        "why": "sin² + cos² = 1 works in either direction, which is why this question and the a = (b + c) cos θ question reach the SAME expression from opposite starting points.",
         "common_mistakes": [
           "Using 1 + sin²θ.",
           "Squaring only the numerator."
@@ -128,7 +128,7 @@
             "expand"
           ]
         },
-        "why": "From this line on the two twins are word for word identical — which is why the book prints them side by side.",
+        "why": "From this line on the working is word for word identical to the a = (b + c) cos θ question.",
         "common_mistakes": [
           "Failing to group the three terms together.",
           "Sign slip on −a²."

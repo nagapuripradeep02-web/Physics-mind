@@ -107,15 +107,15 @@
         "label": "Recognise the standard angles",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. 1/√2 is BOTH cos45° and sin45°, so this pattern is cosA cosB + sinA sinB — the cos(A−B) form, not a sine one.",
-        "memory_tip": "1/√2 is both cos 45° and sin 45°, so this is the cosA cosB + sinA sinB pattern, not a sine one.",
+        "margin_note": "Second mark. 1/√2 is BOTH cos45° and sin45°, so the left side can be read as cosA cosB + sinA sinB, the cos(A−B) form. Reading it instead as sin(x + 45°) also works; the cosine reading is the one shown here.",
+        "memory_tip": "1/√2 is both cos 45° and sin 45°, so the left side reads either as cos(x − 45°) or as sin(x + 45°). Both close; the cosine reading is used here.",
         "lines": [
           "⇒ cosx cos45° + sinx sin45° = cos30°",
           "⇒ cosx cos(π/4) + sinx sin(π/4) = cos(π/6)"
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That 1/√2 is read as cos45° and sin45°, and √3/2 as cos30° — matching the cos(A−B) pattern.",
+          "must_convey": "That 1/√2 is read as cos45° and sin45°, and √3/2 as cos30° — matching the cos(A−B) pattern. Also accept the sine reading, sin(x + 45°) = sin60°, which gives the same solutions.",
           "accept": [
             "one over root two is both cos forty five and sin forty five and root three over two is cos thirty",
             "recognise the pattern as cos A cos B plus sin A sin B",
@@ -137,8 +137,8 @@
         },
         "why": "Equal coefficients always land on 45°, because that is the one angle whose sine and cosine are the same. That is why this twin gives a cosine equation where the other gave a sine.",
         "common_mistakes": [
-          "Reading √3/2 as sin60° and finishing with a sine equation.",
-          "Using the sin(A+B) pattern."
+          "Matching 1/√2 to cos30° or sin30° instead of 45°.",
+          "Writing cosx cos45° − sinx sin45°, the cos(A+B) form, when the sign on the page is a plus."
         ]
       },
       {

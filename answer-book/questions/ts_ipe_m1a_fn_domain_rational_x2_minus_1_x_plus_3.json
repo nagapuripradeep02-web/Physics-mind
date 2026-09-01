@@ -99,7 +99,7 @@
         "label": "Write the domain",
         "marks": 1,
         "mark_note": "Domain",
-        "margin_note": "The second mark is the interval itself. Write it in interval form, and check every bracket.",
+        "margin_note": "The second mark is the answer set. Write it as R minus the three excluded points — this one is not an interval.",
         "memory_tip": "R minus {1, −1, −3} — all three roots of the denominator.",
         "lines": [
           "⇒ x ≠ 1, −1, −3",

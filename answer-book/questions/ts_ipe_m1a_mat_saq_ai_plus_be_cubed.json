@@ -95,9 +95,9 @@
             "upper triangular"
           ]
         },
-        "why": "Cubing a sum of two matrices directly would need the binomial theorem, and matrices do not generally commute, so that is dangerous. Turning the sum into ONE matrix first avoids the whole question.",
+        "why": "Cubing the sum directly needs the binomial theorem, and that expansion is only short because E² = O, which has to be shown first. Turning the sum into ONE matrix avoids that extra work.",
         "common_mistakes": [
-          "Trying to expand (aI + bE)³ by the binomial theorem without checking that I and E commute.",
+          "Expanding (aI + bE)³ by the binomial theorem without first showing E² = O, which is what makes the last two terms vanish.",
           "Writing aI as a matrix full of a.",
           "Putting b in the wrong corner; E has its 1 in the top-right."
         ]

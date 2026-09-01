@@ -275,7 +275,7 @@
         "why": "Direction ratios give the direction; direction cosines are that same direction scaled so the squares add to 1. Dividing by √(a²+b²+c²) is the only step between them.",
         "common_mistakes": [
           "Forgetting to divide one of the two triples.",
-          "Dropping the ± that both directions along a line allow."
+          "Dividing both triples by the same root instead of each by its own, √14 and √6."
         ]
       }
     ]

@@ -165,7 +165,7 @@
             "four b c"
           ]
         },
-        "why": "1 + cos A = 2cos²(A/2) is the identity the whole family turns on. Its partner, 1 − cos A = 2sin²(A/2), is what answer 34.2 uses instead.",
+        "why": "1 + cos A = 2cos²(A/2) is the identity the whole family turns on. Its partner, 1 − cos A = 2sin²(A/2), is what the a = (b − c) sec θ question uses instead.",
         "common_mistakes": [
           "Using 1 − cos A = 2sin²(A/2) here, which is the wrong half of the pair.",
           "Losing a factor of 2."

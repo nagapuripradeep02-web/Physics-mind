@@ -135,5 +135,5 @@
       }
     ]
   },
-  "insider_note": "Both dy and Δy are wanted, and here e⁵ must be evaluated numerically for the comparison. Leaving the answer in terms of e is only half of what is asked."
+  "insider_note": "Both dy and Δy are wanted, and here e⁵ must be evaluated numerically for the comparison. The exact form (e⁵ + 1)(0.02) earns the mark on its own; the decimal is what makes the comparison with Δy readable."
 }

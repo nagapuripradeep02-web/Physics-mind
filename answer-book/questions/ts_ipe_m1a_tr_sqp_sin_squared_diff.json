@@ -133,7 +133,7 @@
         "why": "105° is not a standard angle, but it splits into two that are. Choosing 60° + 45° rather than 30° + 75° keeps both parts standard.",
         "common_mistakes": [
           "Treating sin 105° as sin 60° + sin 45°.",
-          "Using 105° = 45° + 60° but mixing up which is which in the formula."
+          "Using the sin(A − B) form and writing sin60 cos45 − cos60 sin45, which gives (√3 − 1)/(2√2) — that is sin 15°, not sin 105°."
         ]
       }
     ]

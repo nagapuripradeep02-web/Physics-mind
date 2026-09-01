@@ -329,7 +329,7 @@
         "margin_note": "The last mark. m₂ − m₁ is not in the dictionary, but (m₁+m₂)² − 4m₁m₂ is — so square the difference first, then substitute (1) and clear the b's.",
         "lines": [
           "= ½ · n²√((m₁ + m₂)² − 4m₁m₂) / |l² + lm(m₁ + m₂) + m²(m₁m₂)|",
-          "  [∵ (a − b) = √((a + b)² − 4ab)]",
+          "  [∵ |p − q| = √((p + q)² − 4pq), applied to p = m₁, q = m₂]",
           "= ½ · n²√((−2h/b)² − 4(a/b)) / |l² + lm(−2h/b) + m²(a/b)|",
           "= ½ · n²√((4h² − 4ab)/b²) / |(bl² − 2hlm + am²)/b|",
           "= ½ · n²(2√(h² − ab)/b) / (|bl² − 2hlm + am²|/b)",

@@ -131,7 +131,7 @@
             "thirty three"
           ]
         },
-        "why": "cos(A+B) carries a minus where sin(A+B) carries a plus. Using the sine formula here would give 63/65 and a wrong answer.",
+        "why": "cos(A+B) carries a minus where sin(A+B) carries a plus. Putting a plus between the two products gives 48/65 + 15/65 = 63/65, which is cos(α − β), not cos(α + β).",
         "common_mistakes": [
           "Using a plus between the two products.",
           "Using the sine addition formula because the first inverse was a sine."

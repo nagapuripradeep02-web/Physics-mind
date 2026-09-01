@@ -93,9 +93,9 @@
             "one plus x squared"
           ]
         },
-        "why": "2Tan⁻¹x can be written as a Sin⁻¹, a Cos⁻¹ or a Tan⁻¹. Choosing the Cos⁻¹ form is what sets up the final identity — the other two would not close.",
+        "why": "2Tan⁻¹x can be written as a Sin⁻¹, a Cos⁻¹ or a Tan⁻¹. The Cos⁻¹ form is chosen because it matches the Sin⁻¹(4/5) already on the page and closes in one line with Sin⁻¹x + Cos⁻¹x = π/2. The Sin⁻¹ and Tan⁻¹ forms also reach π/2, but each needs one more identity.",
         "common_mistakes": [
-          "Using the Sin⁻¹ or Tan⁻¹ form and being unable to finish.",
+          "Pairing the wrong argument with the wrong inverse: (1 − x²)/(1 + x²) goes with Cos⁻¹, while 2x/(1 + x²) is the Sin⁻¹ form.",
           "Writing (1+x²)/(1−x²) upside down."
         ]
       },

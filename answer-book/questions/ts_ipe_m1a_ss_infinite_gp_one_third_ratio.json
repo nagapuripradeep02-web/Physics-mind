@@ -125,7 +125,7 @@
         "why": "Dividing by 2/3 is the same as multiplying by 3/2, which is where the answer comes from. The sum is finite even though the terms never stop.",
         "common_mistakes": [
           "Writing the answer as 2/3 by forgetting to invert the denominator.",
-          "Rounding to 1.5 and losing the exact fraction."
+          "Taking the first term as 1/3 instead of 1, which gives 1/2."
         ]
       }
     ]

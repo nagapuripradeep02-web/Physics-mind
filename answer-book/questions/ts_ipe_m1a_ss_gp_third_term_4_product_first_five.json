@@ -78,9 +78,9 @@
             "four"
           ]
         },
-        "why": "Naming the middle term a makes the five terms symmetric about it, so the powers of r cancel in pairs when they are multiplied. Writing them as a, ar, ar², ar³, ar⁴ instead leaves r¹⁰ still to be removed.",
+        "why": "Naming the middle term a makes the five terms symmetric about it, so the powers of r cancel in pairs when they are multiplied. Naming them a, ar, ar², ar³, ar⁴ also works — the product is a⁵r¹⁰ = (ar²)⁵ = 4⁵ — but the symmetric naming shows the cancellation directly.",
         "common_mistakes": [
-          "Writing the terms as a, ar, ar², ar³, ar⁴, which leaves two unknowns and no way to remove r.",
+          "Writing only three symmetric terms a/r, a, ar when the question asks for the product of five.",
           "Reading \"third term\" as ar³ instead of ar²."
         ]
       },

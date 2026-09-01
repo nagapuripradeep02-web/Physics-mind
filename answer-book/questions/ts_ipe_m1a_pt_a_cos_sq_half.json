@@ -146,7 +146,7 @@
         "label": "Use the sin2A identity",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two more marks. sin2A + sin2B + sin2C = 4 sinA sinB sinC in any triangle — the Unit 6 identity, quoted here rather than re-proved.",
+        "margin_note": "Two more marks. sin2A + sin2B + sin2C = 4 sinA sinB sinC in any triangle — the Trigonometric Ratios and Transformations identity, quoted here rather than re-proved.",
         "memory_tip": "In any triangle sin2A + sin2B + sin2C = 4 sinA sinB sinC. Quote it, do not re-prove it.",
         "lines": [
           "= R(4 sinA sinB sinC)   [∵ in a △, sin2A+sin2B+sin2C = 4 sinA sinB sinC]",

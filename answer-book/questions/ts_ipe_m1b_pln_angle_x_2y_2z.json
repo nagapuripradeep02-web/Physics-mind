@@ -145,7 +145,7 @@
         "why": "The modulus is what fixes the answer as the acute angle — without it the same two planes could report an obtuse one, since a normal points both ways.",
         "common_mistakes": [
           "Forgetting the modulus and reporting an obtuse angle.",
-          "Multiplying the two roots separately instead of keeping them under one root."
+          "Adding the two sums of squares instead of multiplying them."
         ]
       }
     ]

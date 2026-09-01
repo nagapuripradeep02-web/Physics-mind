@@ -116,7 +116,7 @@
           "Applying the orthogonality formula directly to the un-divided circle, which doubles every coefficient on the wrong side.",
           "Clearing the fraction 5g/2 by multiplying only the left side by 2 and leaving the right side as c + 2 instead of 2c + 4."
         ],
-        "memory_tip": "Divide by the leading coefficient FIRST, always, before touching the orthogonality formula — the same lesson as the radical-centre answer 53.2 in this same chapter. Whatever you multiply on the left to clear a fraction, multiply on the right too."
+        "memory_tip": "Divide by the leading coefficient FIRST, always, before touching the orthogonality formula — the same lesson as the radical-centre questions in this chapter. Whatever you multiply on the left to clear a fraction, multiply on the right too."
       },
       {
         "id": "s4_solve_final_circle",

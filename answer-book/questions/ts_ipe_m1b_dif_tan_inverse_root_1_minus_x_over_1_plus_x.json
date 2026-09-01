@@ -86,9 +86,9 @@
             "theta"
           ]
         },
-        "why": "Differentiating the expression as it stands needs the chain rule three times, on the inverse tangent, the square root and the quotient. The substitution replaces all of that with two half-angle identities and one differentiation.",
+        "why": "Differentiating the expression as it stands needs the chain rule three times, on the inverse tangent, the square root and the quotient. The substitution replaces all of that with two half-angle identities and one differentiation. Putting x = cos θ also works, because (1 − cos θ)/(1 + cos θ) = tan²(θ/2); cos 2θ is preferred only because it avoids half-angles.",
         "common_mistakes": [
-          "Substituting x = cos θ instead of cos 2θ, which leaves half-angles and does not simplify.",
+          "Substituting x = sin 2θ, which does not turn 1 − x and 1 + x into perfect squares.",
           "Differentiating directly with three nested chain rules, which is correct but long and easily lost."
         ],
         "memory_tip": "When 1 − x and 1 + x both appear, put x = cos 2θ. The two half-angle identities then turn the pair into 2sin²θ and 2cos²θ."

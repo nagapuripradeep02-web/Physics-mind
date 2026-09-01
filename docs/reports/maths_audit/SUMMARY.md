@@ -160,3 +160,50 @@ Five of the seven were live on answers.viditra.co at the time of the audit. The 
 the 204 Maths-1B calculus cards the live site is missing. Deploy remains founder-only (Rule 17).
 
 **Still open: the 111 WRONG and 192 WEAK findings.** No card outside these seven was touched.
+
+---
+
+## Prose repair pass, 2026-09-01 — all 111 WRONG findings closed
+
+Repaired across 14 group passes plus main-session work. Every gate green afterwards:
+`check:cards` on all 11 prefixes, `build:answers` 0, `check:originality` 0, `tsc` 0,
+`vitest` 443/443.
+
+**Scope discipline.** `lines[]` was off limits except where a PRINTED line was itself false —
+five cases, each re-derived first: the tautology `7(2x−2y)+8 = 14x−14y+8`; a factorisation
+whose sign was wrong; `(a−b) = √((a+b)²−4ab)` missing its modulus and reusing the pair's own
+letters; a log split declared valid on `4x²−9 > 0` when both factors are negative for
+x < −3/2; and a false statement about behaviour sitting inside the working. Where a report
+recommended a `lines[]` change that was not a printed falsehood, the correction went into
+`why` instead and was reported as such.
+
+**The `recall` rubric was the hidden half.** Adding it to the sweep found rubrics that would
+have marked CORRECT student answers wrong: two `recall.accept` entries describing a different
+card's substitution ("x minus two and y minus three" on a card that is x−3, y+4); a
+`must_convey` demanding the factored form of a derivative when the three-term form is complete;
+another requiring the ± on a question asking for *a* triad; another accepting only one of two
+equivalent general solutions. Nothing in the build looks at these fields.
+
+**Corrections to the audit itself.** Three reports cited a step that did not hold the defect,
+and several findings were already fixed by the earlier sweeps; each was verified against the
+current text rather than re-edited. One report's recommendation was declined on the mathematics
+(a third copy of a warning already on two neighbouring steps).
+
+**Two findings referred out, not fixed:**
+- `ts_ipe_m1a_fn_domain_root_9_minus_x2` — the book also asks for the range. Fixing it needs a
+  `question_text` change or a sibling card, which is a content decision, not a repair.
+- Three `mark_split` labels on half-angle cards read "sum to product" for a step that uses the
+  Pythagorean identity. `mark_split` is structural and paired with the step label, so a re-cut
+  needs both changed together.
+
+**Source-book cross-references: 1A/1B now zero.** Four sweeps were needed because each regex
+was narrower than the defect. The shapes found only by the later passes: bare "Unit 6
+identity" with no answer number; "chapter answer 8"; "the facing answer"; "on this page";
+"question 95.1"; and "answer NN" without the comparison wording the refined pattern required.
+Two physics cards referenced the BOOK's unit numbers and were wrong against ours — a Laws of
+Motion card calling itself "Unit 5" (our unit 5 is Work Power Energy) and a rotational card
+attributing the work-energy theorem to "Unit 6" when it is our unit 5.
+
+**Still open: Maths-2B carries about 20 such cross-references** ("answer 27", "answer 127",
+"answer 53.2"), far more than the first sweep's count. That is second-year material and a
+separate job. The 192 WEAK findings are also untouched.
