@@ -76,7 +76,7 @@
         "common_mistakes": [
           "Counting only the certain digits and reporting two significant figures for 11.2."
         ],
-        "memory_tip": "Read a burette: the printed marks give the certain digits, the eye estimates the last one.",
+        "memory_tip": "Read a burette: the printed marks give the certain digits, the eye estimates the last digit.",
         "margin_note": "Any measured value works as the example; state which digit is the doubtful one."
       }
     ]

@@ -70,7 +70,7 @@
         "why": "Both powers 6 and 4 are even, so the trailing factor K in the mixed-power Walli formula is π/2 rather than 1 — this is the one case where the extra π/2 appears.",
         "common_mistakes": [
           "Setting K=1 by forgetting that BOTH powers being even is what triggers the π/2 factor.",
-          "Confusing this with the previous sin⁵xcos⁴x answer, where m was odd."
+          "Confusing this with a sin⁵xcos⁴x integrand, where m is odd and no π/2 factor appears."
         ]
       },
       {

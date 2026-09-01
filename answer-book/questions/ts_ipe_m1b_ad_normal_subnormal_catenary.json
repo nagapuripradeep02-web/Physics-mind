@@ -186,7 +186,7 @@
         "common_mistakes": [
           "Using the length of the tangent formula, which divides by m as well.",
           "Writing √(y²/a²) as y²/a² — the root removes the squares, so the factor is y/a; only multiplying by y afterwards gives y²/a.",
-          "Giving the subnormal ym here, which is the next part."
+          "Giving the subnormal ym here instead of the length of the normal y√(1 + m²)."
         ],
         "memory_tip": "Length of the normal = y√(1 + m²); the length of the tangent is the same thing divided by m. The normal has no m in the denominator."
       },

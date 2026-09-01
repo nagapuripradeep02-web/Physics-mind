@@ -36,7 +36,7 @@
     "needs_teacher_verification": true,
     "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book p.69 — SAQ chapter 10 'Definite Integrals', a printed PQ (Practice Question) box sitting directly under answer 84, giving only the question and the answer '[Ans: π/4]' with no worked solution and no year tag. This card is authored as a PRACTICE QUESTION: the question and final answer are printed in the book, but every line of working below is ours, re-derived using the same King's-property method as the neighbouring answer 84 (this question is, in fact, exactly the corrected second line of answer 84's own working). Chapter star rank ★★★ applies (Star Q+ status is not separately marked for a PQ box; it follows the chapter). No margin mark tags are printed (there is no working printed at all), so the 1+1+2 split is OURS, patterned on the three genuinely printed SAQ splits in this chapter (answers 82, 83: both 1+1+2). Boundary reading: printed p.67 and printed p.72 confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
-  "insider_note": "This is the mirror image of the previous question — swap sin and cos throughout and the same King's-property method gives the same final value, π/4, confirming the two integrals are equal by symmetry.",
+  "insider_note": "This is the mirror image of ∫₀^(π/2) sin⁵x/(sin⁵x + cos⁵x) dx — swap sin and cos throughout and the same King's-property method gives the same final value, π/4, so the two integrals are equal by symmetry.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -50,7 +50,7 @@
         "marks": 1,
         "mark_note": "First form",
         "margin_note": "One mark. Label the given integral (1).",
-        "memory_tip": "This question is the sin/cos mirror of the previous one — the same method applies with the roles reversed.",
+        "memory_tip": "This is the sin/cos mirror of ∫₀^(π/2) sin⁵x/(sin⁵x + cos⁵x) dx — the same method applies with the roles reversed.",
         "lines": [
           {
             "text": "Sol:",
@@ -62,7 +62,7 @@
         "why": "Labelling the given integral (1) sets it up for comparison with its transformed second form.",
         "common_mistakes": [
           "Not stating the property line before applying it.",
-          "Confusing this integral with the previous question's sin⁵x version."
+          "Confusing this integral with the version whose numerator is sin⁵x."
         ]
       },
       {
@@ -92,7 +92,7 @@
         "label": "Add and solve",
         "marks": 2,
         "mark_note": "Solution",
-        "margin_note": "The last two marks. Same final value as the previous question, by the same reasoning.",
+        "margin_note": "The last two marks. Adding (1) and (2) makes the integrand 1, so 2J is just the length of the interval.",
         "memory_tip": "cos⁵x + sin⁵x over sin⁵x + cos⁵x is always 1 — the numerator sum always matches the denominator after this swap.",
         "lines": [
           "Adding (1) and (2): J + J",
@@ -103,9 +103,9 @@
             "style": "boxed"
           }
         ],
-        "why": "The added numerator matches the denominator exactly, so the integrand equals 1 for every x, reducing the integral to the length of the interval — exactly as in the previous question.",
+        "why": "The added numerator matches the denominator exactly, so the integrand equals 1 for every x, reducing the integral to the length of the interval, π/2.",
         "common_mistakes": [
-          "Reporting a different value from π/4 instead of noticing the answer must match the previous question by symmetry.",
+          "Reporting a value other than π/4 instead of noticing that 2J = π/2.",
           "Forgetting to divide by 2 at the end."
         ]
       }

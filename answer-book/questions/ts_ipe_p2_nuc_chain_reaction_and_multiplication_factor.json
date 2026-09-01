@@ -164,7 +164,7 @@
             "previous generation"
           ]
         },
-        "memory_tip": "K is this generation divided by the last one."
+        "memory_tip": "K is this generation divided by the previous generation."
       },
       {
         "id": "s4_sustained",

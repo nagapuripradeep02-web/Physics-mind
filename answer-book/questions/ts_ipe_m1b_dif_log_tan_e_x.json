@@ -80,7 +80,7 @@
             "du by dx"
           ]
         },
-        "why": "Naming the layers in order fixes the shape of the answer before any derivative is computed. Doing the eˣ first is the usual way the tan layer is then forgotten.",
+        "why": "Naming the layers in order fixes the shape of the result before any derivative is computed. Doing the eˣ first is the usual way the tan layer is then forgotten.",
         "common_mistakes": [
           "Writing the denominator as tan x instead of tan eˣ.",
           "Writing 1/(tan eˣ) alone, with no further derivative attached."

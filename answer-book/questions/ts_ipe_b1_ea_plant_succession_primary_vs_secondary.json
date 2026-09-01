@@ -94,7 +94,7 @@
           "Saying soil forms quickly in primary succession. It is the slowest step of all."
         ],
         "memory_tip": "No soil, make soil. Soil already there, skip the slowest step.",
-        "margin_note": "This row explains the next one, so keep them next to each other."
+        "margin_note": "This row explains the time-taken row, so keep the two next to each other."
       },
       {
         "id": "s4_time",

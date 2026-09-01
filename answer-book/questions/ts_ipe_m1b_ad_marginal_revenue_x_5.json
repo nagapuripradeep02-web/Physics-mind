@@ -45,7 +45,7 @@
         "label": "Differentiate the revenue function",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. This is a rate measure question, the twin of the marginal cost one. Differentiate term by term: 3x² gives 6x, 36x gives 36, and the constant 5 gives 0.",
+        "margin_note": "First mark. This is a rate measure question, worked exactly like marginal cost dC/dx. Differentiate term by term: 3x² gives 6x, 36x gives 36, and the constant 5 gives 0.",
         "memory_tip": "Marginal means derivative. Marginal revenue is dR/dx, exactly as marginal cost is dC/dx.",
         "lines": [
           {

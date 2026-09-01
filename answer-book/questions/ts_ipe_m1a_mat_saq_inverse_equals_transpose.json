@@ -54,7 +54,7 @@
         "label": "Restate as AAᵀ = I",
         "marks": 1,
         "mark_note": "Required to prove",
-        "margin_note": "First mark. Same move as the previous question: multiply both sides by A so the inverse disappears. A⁻¹ = Aᵀ becomes AAᵀ = I, which is one multiplication.",
+        "margin_note": "First mark. Multiply both sides by A so the inverse disappears. A⁻¹ = Aᵀ becomes AAᵀ = I, which is one multiplication.",
         "memory_tip": "Multiply both sides by A so the inverse disappears: A⁻¹ = Aᵀ becomes AAᵀ = I.",
         "lines": [
           {

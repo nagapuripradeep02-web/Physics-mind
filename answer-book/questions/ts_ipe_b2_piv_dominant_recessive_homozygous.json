@@ -122,7 +122,7 @@
         "label": "Heterozygous",
         "marks": 1,
         "mark_note": "Heterozygous",
-        "margin_note": "Definition, example, and the consequence. The gamete point ties into the next question.",
+        "margin_note": "Definition, example, and the consequence. The gamete point is what the law of segregation rests on.",
         "lines": [
           {
             "text": "TT and tt are homozygous; Tt is heterozygous",

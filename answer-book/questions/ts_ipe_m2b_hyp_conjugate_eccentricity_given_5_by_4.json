@@ -74,7 +74,7 @@
         "label": "Set up using the reciprocal identity",
         "marks": 1,
         "mark_note": "Setup",
-        "margin_note": "First mark. Reuse the identity from the previous question rather than deriving it again.",
+        "margin_note": "First mark. Quote the identity 1/e² + 1/e₁² = 1 rather than deriving it again.",
         "memory_tip": "1/e² + 1/e₁² = 1 is the fastest route here — rearrange for 1/e₁² and substitute.",
         "lines": [
           {
@@ -88,7 +88,7 @@
           "⇒ 1/e₁² = 1 − 1/e² = 1 − 1/(5/4)²",
           "= 1 − 16/25 = 9/25"
         ],
-        "why": "The fastest route to e₁ is the reciprocal identity proved in the previous question — rearrange it for 1/e₁² and substitute the given e.",
+        "why": "The fastest route to e₁ is the reciprocal identity 1/e² + 1/e₁² = 1 — rearrange it for 1/e₁² and substitute the given e.",
         "common_mistakes": [
           "Squaring 5/4 incorrectly as 5/16 or 25/16 with the wrong denominator.",
           "Subtracting 16/25 from 1 as 1/25 instead of 9/25."

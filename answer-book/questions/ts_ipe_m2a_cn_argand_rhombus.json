@@ -423,7 +423,7 @@
         },
         "why": "The question is 'show that', so the shape must be named from the two facts. The unequal-diagonals line is what makes the word 'rhombus' the exact answer.",
         "common_mistakes": [
-          "Concluding 'square' by habit from the previous question.",
+          "Concluding 'square' from the four equal sides without checking the diagonals.",
           "Ending on the last distance with no sentence."
         ]
       }

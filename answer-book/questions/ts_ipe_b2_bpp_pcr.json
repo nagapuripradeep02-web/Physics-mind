@@ -60,12 +60,12 @@
           "It makes many copies of a chosen DNA fragment,",
           "in vitro, using primers and Taq polymerase."
         ],
-        "why": "Chain reaction is literal: each cycle doubles what the last one made, which is how thirty cycles reach a billion copies.",
+        "why": "Chain reaction is literal: each cycle doubles the DNA made in the cycle before it, which is how thirty cycles reach a billion copies.",
         "common_mistakes": [
           "Expanding it as 'protein chain reaction'. It is POLYMERASE chain reaction.",
           "Saying it happens in a cell. PCR is done IN VITRO, in a tube."
         ],
-        "memory_tip": "Each cycle doubles what the last one made."
+        "memory_tip": "Each cycle doubles the DNA made in the cycle before it."
       },
       {
         "id": "s2_uses",

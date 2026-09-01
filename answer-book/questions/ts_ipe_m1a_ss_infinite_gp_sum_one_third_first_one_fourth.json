@@ -103,7 +103,7 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the G.P. is 1/4, 1/16, 1/64, … with each term one quarter of the previous one.",
+          "must_convey": "That the G.P. is 1/4, 1/16, 1/64, … with each term one quarter of the term before it.",
           "accept": [
             "the series is one fourth one sixteenth one sixty fourth and so on",
             "multiply by one fourth each time to get the terms",

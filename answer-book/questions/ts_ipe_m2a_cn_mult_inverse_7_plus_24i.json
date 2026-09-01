@@ -145,7 +145,7 @@
             "minus"
           ]
         },
-        "why": "7² + 24² = 625 = 25² — the same 7, 24, 25 triple appears in the square-root question on the next page. The answer must be split into a real part and an imaginary part to be in the form a + ib.",
+        "why": "7² + 24² = 625 = 25² — the same 7, 24, 25 triple appears when finding the square root of 7 + 24i. The answer must be split into a real part and an imaginary part to be in the form a + ib.",
         "common_mistakes": [
           "Adding 49 + 576 as 615.",
           "Leaving the answer as (7 − 24i)/625 without separating — acceptable to many examiners, but the split form is safer."

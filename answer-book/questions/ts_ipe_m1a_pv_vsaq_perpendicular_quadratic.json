@@ -54,7 +54,7 @@
         "label": "Set the dot product to zero",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Same condition as the previous question, but λ appears in BOTH vectors — so the equation will be quadratic, not linear.",
+        "margin_note": "First mark. The condition is still a·b = 0, but λ appears in BOTH vectors — so the equation will be quadratic, not linear.",
         "memory_tip": "Same condition, but λ appears in BOTH vectors — so the equation comes out quadratic, not linear.",
         "lines": [
           {

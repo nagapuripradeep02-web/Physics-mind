@@ -94,12 +94,12 @@
             "three n plus one"
           ]
         },
-        "why": "It is the same method as the previous question with d = 3 instead of 2 — recognising that is faster than starting from scratch.",
+        "why": "It is the standard sum-of-reciprocals induction, here with common difference d = 3 instead of 2 — recognising the shape is faster than starting from scratch.",
         "common_mistakes": [
-          "Carrying over 2n − 1 and 2n + 1 from the previous question out of habit.",
+          "Carrying over 2n − 1 and 2n + 1 from a d = 2 version out of habit.",
           "Taking a = 1 for the second sequence, which starts at 4."
         ],
-        "memory_tip": "Same shape as the odd-pairs question but the step is 3, so both A.P.s have d = 3: 3n − 2 and 3n + 1."
+        "memory_tip": "The denominators step by 3, so both A.P.s have d = 3: 3n − 2 and 3n + 1."
       },
       {
         "id": "s2_base",
@@ -210,7 +210,7 @@
             "factorise chesthe three k plus one cancel avuthundi"
           ],
           "reject": [
-            "same as the last one",
+            "same as the standard proof",
             "add and simplify",
             "then it follows"
           ],
@@ -272,5 +272,5 @@
       }
     ]
   },
-  "insider_note": "The same shape as the 1/(1·3) question but with d = 3, so the APs are 3n − 2 and 3n + 1. The step needs 3k² + 4k + 1 = (3k+1)(k+1) so that the (3k+1) cancels."
+  "insider_note": "The same shape as any sum of reciprocals of consecutive A.P. terms, here with d = 3, so the APs are 3n − 2 and 3n + 1. The step needs 3k² + 4k + 1 = (3k+1)(k+1) so that the (3k+1) cancels."
 }

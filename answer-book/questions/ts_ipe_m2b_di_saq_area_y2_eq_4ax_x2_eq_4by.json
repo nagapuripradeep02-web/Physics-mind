@@ -41,7 +41,7 @@
     "needs_teacher_verification": true,
     "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.71 — SAQ chapter 10 'Definite Integrals', sub-heading 'AREAS', answer 91, the last item on the page — the general-parameter version of the previous question (90), which is its a = b = 1 special case. Printed appearance: AP 19. Chapter star rank ★★★ applies. The book draws a small sketch here too, with the region hatched and labelled A — reproduced here as a figure for the same reason as answer 90. No margin mark tags are printed, so the 1+1+2 split is OURS, patterned on the identical three-stage shape of the two preceding area answers (89, 90) on this same page. Boundary reading: printed p.67 and printed p.72 confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
-  "insider_note": "Setting a = b = 1 in the final answer 16ab/3 gives 16/3 — exactly the previous question's numeric answer — a fast way to check this general-parameter result is consistent.",
+  "insider_note": "Setting a = b = 1 in the final answer 16ab/3 gives 16/3, which is the area between y² = 4x and x² = 4y — a fast way to check this general-parameter result is consistent.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -80,8 +80,8 @@
         "label": "Identify the upper and lower curves",
         "marks": 1,
         "mark_note": "Setup",
-        "margin_note": "One more mark. Same picture shape as the previous question, now with general labels y² = 4ax and x² = 4by.",
-        "memory_tip": "y² = 4ax opens sideways (upper curve); x² = 4by opens upward (lower curve) — same roles as the previous question.",
+        "margin_note": "One more mark. The picture is the same shape as the a = b = 1 case, now with general labels y² = 4ax and x² = 4by.",
+        "memory_tip": "y² = 4ax opens sideways (upper curve); x² = 4by opens upward (lower curve).",
         "figure": {
           "id": "area_two_parabolas_4ax_4by",
           "width": 300,
@@ -186,7 +186,7 @@
         "marks": 2,
         "mark_note": "Solution",
         "margin_note": "The last two marks. Carry a and b through every line of the integration — do not substitute numbers early.",
-        "memory_tip": "Set a = b = 1 in the final answer as a check — it must reduce to the previous question's 16/3.",
+        "memory_tip": "Set a = b = 1 in the final answer as a check — it must reduce to 16/3.",
         "lines": [
           "Upper curve: y² = 4ax ⇒ y = 2√a·√x.",
           "Lower curve: x² = 4by ⇒ y = x²/(4b)",
@@ -201,7 +201,7 @@
             "style": "boxed"
           }
         ],
-        "why": "The same integration as the numeric case, carried through with a and b as constants, gives two fractional multiples of ab whose difference is 16ab/3 — setting a = b = 1 recovers the previous question's 16/3, confirming the general result.",
+        "why": "The same integration as the numeric case, carried through with a and b as constants, gives two fractional multiples of ab whose difference is 16ab/3 — setting a = b = 1 recovers the area 16/3 between y² = 4x and x² = 4y, confirming the general result.",
         "common_mistakes": [
           "Losing track of a or b while raising the upper limit to the 3/2 power.",
           "An arithmetic slip in [4(ab²)^(1/3)]³ = 64ab², since (ab²)^(1/3) cubed returns exactly ab²."

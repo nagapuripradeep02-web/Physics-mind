@@ -135,7 +135,7 @@
             "negative"
           ]
         },
-        "why": "Multiplying a vector by −1 reverses it without changing its length. That single minus sign is the whole difference between this question and the previous one.",
+        "why": "Multiplying a vector by −1 reverses it without changing its length. That single minus sign is the whole difference between the unit vector and the opposite unit vector.",
         "common_mistakes": [
           "Giving the unit vector without the minus sign.",
           "Negating only one component instead of the whole vector."

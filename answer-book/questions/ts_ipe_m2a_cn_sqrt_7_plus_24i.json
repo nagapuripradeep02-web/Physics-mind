@@ -140,7 +140,7 @@
             "r plus a by two"
           ]
         },
-        "why": "Every non-zero complex number has two square roots, one the negative of the other — that is the ±. When b is positive both parts of the root share a sign; when b is negative they have opposite signs (see the next question).",
+        "why": "Every non-zero complex number has two square roots, one the negative of the other — that is the ±. When b is positive both parts of the root share a sign; when b is negative they have opposite signs.",
         "common_mistakes": [
           "Dropping the ±.",
           "Swapping (r + a)/2 and (r − a)/2 to get ±(3 + 4i), which squares to −7 + 24i.",

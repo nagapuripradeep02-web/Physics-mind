@@ -79,7 +79,7 @@
           "a non-living (abiotic) part.",
           "Ex: a lake, a pond, a forest."
         ],
-        "why": "Splitting the ecosystem into its biotic and abiotic parts turns the definition into something that can be checked against an example, and the lake is the example the long-answer question uses.",
+        "why": "Splitting the ecosystem into its biotic and abiotic parts turns the definition into something that can be checked against an example, and a lake is an example that carries both parts.",
         "common_mistakes": [
           "Giving only living things as the example. A named place such as a lake carries both parts.",
           "Writing the words biotic and abiotic without saying what they mean."
@@ -89,5 +89,5 @@
       }
     ]
   },
-  "insider_note": "A lake is the example to give: it is also the eight-mark question in this chapter, so the same words carry over."
+  "insider_note": "A lake is the example to give, because one named place carries both the biotic and the abiotic part."
 }

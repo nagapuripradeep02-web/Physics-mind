@@ -59,7 +59,7 @@
         "label": "Name the three coefficients",
         "marks": 1,
         "mark_note": "Setting up",
-        "margin_note": "First mark. The coefficient of x⁹ in (1 + x)ⁿ is ⁿC₉ — here the power of x IS the index, unlike the \"r-th term\" wording of the general question.",
+        "margin_note": "First mark. The coefficient of x⁹ in (1 + x)ⁿ is ⁿC₉ — here the power of x IS the index, unlike an \"r-th term\" wording, where the index is one less than the term number.",
         "memory_tip": "The coefficient of x⁹ is ⁿC₉ — here the power IS the index. Do not shift to ⁿC₈.",
         "lines": [
           {

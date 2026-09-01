@@ -53,7 +53,7 @@
         "label": "What co-dominance is",
         "marks": 1,
         "mark_note": "Definition",
-        "margin_note": "Definition with the words 'both' and 'fully'. This is the contrast with the next question.",
+        "margin_note": "Definition with the words 'both' and 'fully'. This is the contrast with incomplete dominance, where the heterozygote is intermediate instead.",
         "lines": [
           "CO-DOMINANCE is the condition in which BOTH",
           "alleles of a pair are EQUALLY dominant.",

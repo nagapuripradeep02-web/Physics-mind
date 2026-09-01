@@ -48,7 +48,7 @@
     "needs_teacher_verification": true,
     "note": "Source: Baby Bullet-Q, Senior Inter Maths-2B (Sri Publishers, Machilipatnam), book printed p.41 (PDF page 40) — LAQ chapter 4 'Definite Integrals', answer 35, the book's own 'BABY TIP' box on this page calls it 'VERY SIMILAR TO PREVIOUS SOLUTION' (answer 34, one page earlier). Printed appearance: TS 17, AP 20. Chapter star rank ★★★ applies. No margin mark tags are printed on this single-column page, so the 2+2+2+1 split is OURS, matching the split used for answer 34's near-identical derivation (ts_ipe_m2b_di_laq_sin2x_over_cosx_plus_sinx) and patterned on book p.22 answer 9's printed 2+2+2+1 shape. Boundary reading: printed p.37 (PDF 36) and printed p.44 (PDF 44) confirm the chapter span. No two-book union check and no board back-test were possible for Maths-2B (no second-year TSBIE Basic Learning Material on hand; the book's five Guess Papers pp.118-127 stand in for the back-test). INDEPENDENT RE-DERIVATION, 2026-08-29: this card was re-derived from scratch by an examiner pass that did not author it — every quantity recomputed from the printed equation, every result substituted back or differentiated back, and every common_mistakes and insider_note read against the card's own marked lines. That pass found 7 of the 271 cards mathematically wrong and 10 more misleading; all are corrected and each carries its own record. This sentence records WHO checked the card, because an unattributed 're-derived and correct' is only the author's opinion of their own working — and on the four worst cards here it was false."
   },
-  "insider_note": "The sub-integral ∫₀^(π/2) dx/(sinx+cosx) that appears here is the same helper integral as the preceding question (sin²x/(cosx+sinx)) — a student who reaches it should recognise the shortcut instead of re-deriving it from scratch.",
+  "insider_note": "The whole question reduces to the helper integral ∫₀^(π/2) dx/(sinx+cosx), which also appears when ∫₀^(π/2) sin²x/(cosx+sinx) dx is worked. A student who reaches it should recognise the form instead of re-deriving it from scratch.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
@@ -61,7 +61,7 @@
         "label": "Apply the property with a = π/2",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "First two marks. Only the x in front changes — the denominator is unchanged, just like the previous question.",
+        "margin_note": "First two marks. Only the x in front changes; the denominator sinx + cosx is symmetric, so it stays the same.",
         "memory_tip": "sin(π/2 − x) + cos(π/2 − x) = cosx + sinx = sinx + cosx — the denominator is symmetric, so it never changes under this property.",
         "lines": [
           {
@@ -94,7 +94,7 @@
           "= (π/2)∫₀^(π/2) dx/(sinx + cosx)",
           "⇒ I = (π/4)∫₀^(π/2) dx/(sinx + cosx)"
         ],
-        "why": "Adding the two equal forms cancels x and (π/2 − x) down to a plain π/2, leaving the same x-free integral that the preceding question also needed.",
+        "why": "Adding the two equal forms cancels x and (π/2 − x) down to a plain π/2, leaving the x-free integral ∫₀^(π/2) dx/(sinx + cosx).",
         "common_mistakes": [
           "Adding the numerators incorrectly and not getting the constant π/2.",
           "Losing the factor of 1/2 when isolating I from 2I."
@@ -106,17 +106,17 @@
         "label": "Write cosx + sinx as √2 sin(x + π/4)",
         "marks": 2,
         "mark_note": "Method",
-        "margin_note": "Two marks for the R sin(x+α) rewrite and the cosecant integral — identical setup to the previous question.",
-        "memory_tip": "sinx + cosx = √2 sin(x + π/4) — the same rewrite as the previous question, reused here.",
+        "margin_note": "Two marks for the R sin(x+α) rewrite and the cosecant integral.",
+        "memory_tip": "sinx + cosx = √2 sin(x + π/4). Dividing by it turns the integrand into a cosecant.",
         "lines": [
           "sinx + cosx = √2 sin(x + π/4)",
           "I = (π/(4√2))∫₀^(π/2) cosec(x + π/4) dx",
           "[∵ ∫cosecθ dθ = log tan(θ/2)]",
           "= (π/(4√2))[log tan((x + π/4)/2)]₀^(π/2)"
         ],
-        "why": "The same R sin(x+α) rewrite used in the previous question reduces this integral to the identical cosecant form, only now multiplied by the extra factor of π/2 that came from the numerator.",
+        "why": "The R sin(x+α) rewrite turns 1/(sinx + cosx) into (1/√2)cosec(x + π/4), so the integral becomes a cosecant integral carrying the constant π/(4√2) built from the π/4 that came out of the numerator.",
         "common_mistakes": [
-          "Missing the extra π/4 factor that appears here but not in the previous question.",
+          "Missing the π/4 factor carried down from the addition step, so the constant in front is wrong.",
           "Forgetting the 1/√2 factors inside the sine sum."
         ]
       },
@@ -127,7 +127,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "The last mark. This is exactly the answer the question asks to show — underline it.",
-        "memory_tip": "tan(3π/8) = √2 + 1 and tan(π/8) = √2 − 1 — the same pair used in the previous question.",
+        "memory_tip": "tan(3π/8) = √2 + 1 and tan(π/8) = √2 − 1, and their ratio is (√2 + 1)².",
         "lines": [
           "= (π/(4√2))[log tan(3π/8) − log tan(π/8)]",
           "= (π/(4√2)) log[(√2 + 1)/(√2 − 1)]",

@@ -183,7 +183,7 @@
             "first answer"
           ]
         },
-        "why": "Factoring the 5 out before the root keeps the arithmetic small, exactly as in the previous question.",
+        "why": "Factoring the 5 out before the root keeps the arithmetic small.",
         "common_mistakes": [
           "Crossing c×(a×b) instead, which reverses the sign.",
           "Leaving the 5 inside the square root."
