@@ -112,8 +112,8 @@
         "label": "Clear column 1",
         "marks": 2,
         "mark_note": "Forward elimination",
-        "margin_note": "Two marks. The top-left entry is already 1, so no swap is needed to start. Rows 1 and 2 of A agree in x and y, so clearing column 1 empties column 2 of row 2 at the same time — that is a feature of these numbers, not an error.",
-        "memory_tip": "Clearing column 1 also empties column 2 of row 2 here, because rows 1 and 2 agree in x and y.",
+        "margin_note": "Two marks. The top-left entry is already 1, so no swap is needed to start. Row 2 of A has exactly twice the x and y coefficients of row 1, so clearing column 1 empties column 2 of row 2 at the same time — that is a feature of these numbers, not an error.",
+        "memory_tip": "Clearing column 1 also empties column 2 of row 2 here, because row 2 has twice the x and y coefficients of row 1.",
         "lines": [
           "R₂ → R₂ − 2R₁,  R₃ → R₃ − R₁",
           {
@@ -173,7 +173,7 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the last row is reduced to 0, 0, 1 with the value of z after the rule — that is, the third pivot is made 1.",
+          "must_convey": "That row 2 cannot stay in the pivot position because its column-2 entry is zero, so rows 2 and 3 are swapped, after which the last row already reads 0, 0, 1 and gives z.",
           "accept": [
             "reduce the last row to zero zero one so that z is read directly",
             "make the third pivot a one by dividing the row",

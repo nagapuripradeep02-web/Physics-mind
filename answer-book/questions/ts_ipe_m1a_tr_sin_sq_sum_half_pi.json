@@ -260,7 +260,7 @@
         },
         "why": "A product formula needs two terms of the same kind. Converting the inside sin C back to a cosine makes the bracket a difference of two cosines.",
         "common_mistakes": [
-          "Converting both sin C terms, which cancels the factor that was just taken out.",
+          "Converting both sin C terms, which only undoes the substitution made in step 4.",
           "Leaving a minus sign outside when the bracket already carries it."
         ]
       },
@@ -270,7 +270,7 @@
         "label": "Apply the difference formula",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. cos(A−B) − cos(A+B) = 2 sin A sin B closes the proof. Write \"= R.H.S\" so the examiner can see it landed.",
+        "margin_note": "Last mark. cos(A−B) − cos(A+B) = 2 sin A sin B closes the proof. Write \"= R.H.S\" so the examiner can see the last line reaches the right-hand side.",
         "memory_tip": "cos(A−B) − cos(A+B) = 2 sin A sin B — difference of cosines gives the two sines the answer needs.",
         "lines": [
           "cos(A−B) − cos(A+B) = 2 sinA sinB",

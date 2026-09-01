@@ -138,7 +138,7 @@
         "why": "The two examples differ in one entry, so they show that being singular is a property of the numbers and not of the shape. Writing each determinant out is what turns an example into evidence.",
         "common_mistakes": [
           "Giving two examples but working out neither determinant.",
-          "Offering the zero matrix as the only singular example.",
+          "Thinking the zero matrix is the only singular matrix.",
           "Labelling the examples the wrong way round."
         ],
         "memory_tip": "A quick singular example: make one row a multiple of the other, and the determinant is 0."

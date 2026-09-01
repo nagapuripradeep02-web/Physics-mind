@@ -90,7 +90,7 @@
         },
         "why": "The right-hand side is built from half angles, so the condition has to be halved before it can be used. cos(90° − θ) = sin θ is what converts between the two.",
         "common_mistakes": [
-          "Using A + B = 180° − C, which does not fit the half angles on the right.",
+          "Using A + B = 180° − C without halving it; the right-hand side needs (A + B)/2 = 90° − C/2.",
           "Writing the condition but never rearranging it into a usable form."
         ]
       },
@@ -228,7 +228,7 @@
         "marks": 1,
         "mark_note": "Conclusion",
         "margin_note": "Last mark. The difference of the two cosines becomes a product of two half-angle sines and the proof is finished. Write \"= R.H.S\" so the examiner can see the last line reaches the right-hand side.",
-        "memory_tip": "Applying cos p + cos q with p = (A−B)/2 and q = (A+B)/2 gives exactly 2 sin(A/2) sin(B/2).",
+        "memory_tip": "Applying cos p − cos q with p = (A−B)/2 and q = (A+B)/2 gives exactly 2 sin(A/2) sin(B/2).",
         "lines": [
           "= 1 + 2 sin(C/2) (2 sin(A/2) sin(B/2))",
           "  [∵ cosC − cosD = 2 sin((C+D)/2) sin((D−C)/2)]",

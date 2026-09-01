@@ -102,7 +102,7 @@
         "label": "Form AᵀA and conclude",
         "marks": 1,
         "mark_note": "Second product",
-        "margin_note": "Second mark. AᵀA has to be computed separately — matrix multiplication is not commutative in general, so AAᵀ = I does not by itself prove AᵀA = I.",
+        "margin_note": "Second mark. The question asks for both products, so AᵀA is written out separately rather than quoted from the first.",
         "memory_tip": "Both products give I, so Aᵀ is the inverse of A. A matrix with this property is called orthogonal.",
         "lines": [
           "Each off-diagonal entry cancels:",

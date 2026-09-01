@@ -55,7 +55,7 @@
           "Given line is 4x − 3y − 10 = 0",
           "(1, −2) lies on it, because",
           "4(1) − 3(−2) − 10 = 4 + 6 − 10 = 0",
-          "It's slope  m = −a/b = −4/(−3) = 4/3",
+          "Its slope  m = −a/b = −4/(−3) = 4/3",
           "m = tanθ = 4/3  ⇒  cosθ = 3/5,  sinθ = 4/5"
         ],
         "recall": {

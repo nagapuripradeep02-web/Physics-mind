@@ -311,7 +311,7 @@
         },
         "why": "Two angles that add to π/2 have tangents that are reciprocals. That one fact converts the product of two tangents into the single tangent the question asks for.",
         "common_mistakes": [
-          "Writing tan(π/4 − β) = tan(π/4 + β), which is only true when β = 0.",
+          "Writing tan(π/4 − β) = tan(π/4 + β), which is only true when β is a multiple of π/2.",
           "Stopping at m = tan(π/4 − α) tan(π/4 − β) without reaching the asked form."
         ]
       }

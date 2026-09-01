@@ -80,7 +80,7 @@
             "period"
           ]
         },
-        "why": "The modulus changes the size of nothing, only the sign. Since sin(x + π) is exactly −sin x, taking the modulus removes the only difference between the two halves.",
+        "why": "The modulus does not change the size, only the sign. Since sin(x + π) is exactly −sin x, taking the modulus removes the only difference between the two halves.",
         "common_mistakes": [
           "Answering 2π, the period of sin x, without using the modulus.",
           "Writing sin(x + π) = sin x, which drops the minus sign."

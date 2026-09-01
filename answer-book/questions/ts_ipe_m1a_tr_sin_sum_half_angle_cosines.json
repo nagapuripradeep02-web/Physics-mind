@@ -229,7 +229,7 @@
         "label": "Apply the product formula",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. One sum formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "margin_note": "Last mark. One sum formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see the last line reaches the right-hand side.",
         "memory_tip": "cos((A−B)/2) + cos((A+B)/2) = 2 cos(A/2) cos(B/2). The two 2s multiply to give the 4.",
         "lines": [
           "= 2 cos(C/2) · 2 cos(A/2) cos(B/2)",

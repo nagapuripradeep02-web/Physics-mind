@@ -155,9 +155,9 @@
             "reduce"
           ]
         },
-        "why": "Rank is read off the echelon form and is invisible before it. The same operations that solve a system also expose its rank, which is why one reduction answers both questions.",
+        "why": "Rank is the order of the largest non-zero minor, so it can be found from A itself; row reduction is simply the quickest route, and the same operations that solve a system also expose its rank.",
         "common_mistakes": [
-          "Trying to read the rank off the original matrix.",
+          "Assuming the rank is 3 because the matrix is 3×3, without testing a minor.",
           "Treating the row of zeros as an arithmetic error and starting again.",
           "Applying an operation to part of a row and not to the constant."
         ]
@@ -214,7 +214,7 @@
         "common_mistakes": [
           "Stopping at det A = 0, which only shows the rank is below 3.",
           "Counting the columns instead of the order of the largest non-zero minor.",
-          "Reading the rank from the original matrix rather than from (1)."
+          "Counting the rows instead of finding the order of the largest non-zero minor."
         ]
       },
       {

@@ -60,7 +60,7 @@
             "style": "heading"
           },
           "Given line is 5x − 3y + 1 = 0",
-          "It's slope  m = −a/b = −5/(−3) = 5/3",
+          "Its slope  m = −a/b = −5/(−3) = 5/3",
           "⇒ Slope of its perpendicular is −1/m = −3/5"
         ],
         "recall": {

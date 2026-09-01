@@ -45,7 +45,7 @@
         "label": "Turn the sum into a product",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. cos66° = sin24°, then sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2) with C = 84° and D = 24°, giving half sum 54° and half difference 30°.",
+        "margin_note": "First mark. cos66° = sin24°, then sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2) with p = 84° and q = 24°, giving half sum 54° and half difference 30°.",
         "memory_tip": "Turn cos66° into sin24° first, then use sin p + sin q = 2 sin((p+q)/2) cos((p−q)/2).",
         "lines": [
           {

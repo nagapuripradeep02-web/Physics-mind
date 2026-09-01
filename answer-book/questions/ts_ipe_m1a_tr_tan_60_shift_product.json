@@ -99,7 +99,7 @@
         "label": "Use the identity twice for the value",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. A = 6° gives the triple 6°, 66°, 54°; A = 18° gives 18°, 78°, 42°. The extra factors tan 54° and tan 18° are reciprocals of each other, so they cancel.",
+        "margin_note": "Second mark. A = 6° gives the triple 6°, 66°, 54°; A = 18° gives 18°, 78°, 42°. The leftover ratios tan18°/tan54° and tan54°/tan18° are reciprocals, so their product is 1.",
         "memory_tip": "Each printed pair sits inside one triple: 6° with 66°, and 42° with 78°. The missing members are tan 54° and tan 18°, and they cancel.",
         "lines": [
           "Put A = 6°: tan6° tan66° tan54° = tan18°",

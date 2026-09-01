@@ -97,7 +97,7 @@
         "why": "Subtracting one row from another leaves the value of a determinant unchanged, and here it turns two of the three 1s in the first column into zeros.",
         "common_mistakes": [
           "Expanding the determinant in full and hoping the algebra factorises.",
-          "Applying R₁ → R₁ − R₂ and then using the OLD R₂ in the next operation."
+          "Doing R₂ → R₂ − R₃ first, which changes R₂ before R₁ − R₂ uses it."
         ]
       },
       {

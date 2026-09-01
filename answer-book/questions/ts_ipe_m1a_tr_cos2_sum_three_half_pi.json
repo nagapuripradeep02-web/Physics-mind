@@ -135,7 +135,7 @@
         },
         "why": "The 2s inside cos 2A and cos 2B are halved by the formula, so the double angles become plain A + B and A − B, and A + B is what the condition can replace.",
         "common_mistakes": [
-          "Pairing cos 2B with cos 2C, which leaves nothing the condition can act on.",
+          "Pairing cos 2B with cos 2C and then forgetting that B + C = 3π/2 − A, so that cos(B + C) = −sin A.",
           "Forgetting to halve the sum and the difference."
         ]
       },
@@ -217,7 +217,7 @@
         },
         "why": "The right-hand side opens with a 1, so a 1 has to be manufactured. Of the three forms of cos 2θ only 1 − 2 sin²θ leaves one standing on its own.",
         "common_mistakes": [
-          "Using cos 2C = 2 cos²C − 1, which produces cosines the answer does not want.",
+          "Using cos 2C = 2 cos²C − 1, which produces cosines where the right-hand side carries sines.",
           "Pulling the 1 inside the bracket."
         ]
       },
@@ -268,7 +268,7 @@
         "label": "Apply the difference formula",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. cos(A−B) − cos(A+B) = 2 sin A sin B closes the proof. Write \"= R.H.S\" so the examiner can see it landed.",
+        "margin_note": "Last mark. cos(A−B) − cos(A+B) = 2 sin A sin B closes the proof. Write \"= R.H.S\" so the examiner can see the last line reaches the right-hand side.",
         "memory_tip": "cos(A−B) − cos(A+B) = 2 sin A sin B. The two 2s multiply to give the 4.",
         "lines": [
           "cos(A−B) − cos(A+B) = 2 sinA sinB",

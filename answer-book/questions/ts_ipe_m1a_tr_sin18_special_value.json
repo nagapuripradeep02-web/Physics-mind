@@ -82,7 +82,7 @@
         "why": "18° is one fifth of 90°. That is the only special fact about it, and it is what turns the question into an equation that can be solved.",
         "common_mistakes": [
           "Writing cos3θ as 3cosθ − 4cos³θ.",
-          "Using cos2θ = sin3θ, which does not follow from 5θ = 90°."
+          "Using cos2θ = sin3θ, which is also true but gives a cubic in sinθ with an extra root sinθ = 1 to discard."
         ]
       },
       {

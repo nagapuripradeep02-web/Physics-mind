@@ -84,7 +84,7 @@
         },
         "why": "Rank is the order of the largest non-zero minor, so the search starts at the top order and works down only if that one is zero.",
         "common_mistakes": [
-          "Dropping a minus sign inside a 2×2 minor, such as (−1)(−1) = 1.",
+          "Dropping a minus sign inside a 2×2 minor, such as writing (−1)(−1) = −1.",
           "Reading a rank off the original matrix with no test at all."
         ]
       },

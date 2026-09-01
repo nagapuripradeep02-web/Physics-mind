@@ -176,7 +176,7 @@
         },
         "why": "sin(180° − θ) = sin θ is what turns sin(A+B) into sin C. Without the angle condition the two terms would never share a factor.",
         "common_mistakes": [
-          "Writing sin(180° − C) = −sin C, which is the cosine rule not the sine one.",
+          "Writing sin(180° − C) = −sin C. The minus belongs to cosine: cos(180° − C) = −cos C, but sin(180° − C) = +sin C.",
           "Forgetting to use the condition at all."
         ]
       },

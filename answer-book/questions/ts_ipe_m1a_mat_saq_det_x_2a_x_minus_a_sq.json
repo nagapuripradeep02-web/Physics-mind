@@ -187,7 +187,7 @@
             "zeros"
           ]
         },
-        "why": "Both row 2 and row 3 are subtracted from the SAME row 1, not from each other. That is what leaves a zero in every position of those rows except one, which is what makes the final step a single multiplication.",
+        "why": "The SAME row 1 is subtracted from both row 2 and row 3, not one of those rows from the other. That is what leaves a zero in every position of those rows except one, which is what makes the final step a single multiplication.",
         "common_mistakes": [
           "Using R₃ → R₃ − R₂ instead of R₃ − R₁, which leaves no triangular form.",
           "Writing a − x instead of x − a and flipping the sign twice over."
