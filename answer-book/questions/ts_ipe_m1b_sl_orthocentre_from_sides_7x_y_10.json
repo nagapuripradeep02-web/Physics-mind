@@ -89,7 +89,7 @@
             "point of intersection"
           ]
         },
-        "why": "When sides are given rather than vertices, every method in this chapter needs the vertices first — that extra stage is the only difference from the vertices-given questions.",
+        "why": "When sides are given rather than vertices, every method needs the vertices first — that extra stage is the only difference from a triangle whose corners are given outright.",
         "common_mistakes": [
           "Trying to use the line coefficients as if they were coordinates.",
           "Solving the wrong pair for the vertex the altitude will pass through."

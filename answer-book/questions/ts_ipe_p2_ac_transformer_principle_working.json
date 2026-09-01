@@ -65,7 +65,7 @@
           "It works on a.c. only, because the flux must",
           "keep changing."
         ],
-        "margin_note": "First mark. Name mutual induction. The a.c.-only line is the usual follow-up question.",
+        "margin_note": "First mark. Name mutual induction. Add the a.c.-only line — examiners often go on to ask why a transformer will not work on d.c.",
         "why": "The device is Faraday's law used twice — the primary current makes a changing flux, and that flux induces an emf in the secondary — and the name for that pair is mutual induction.",
         "common_mistakes": [
           "Saying self induction. The emf appears in a second, separate coil, so it is mutual induction.",

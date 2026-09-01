@@ -183,7 +183,7 @@
         "label": "Solve for y",
         "marks": 1,
         "mark_note": "Inequality in y",
-        "margin_note": "Third mark. Dividing by the positive number 4 keeps the inequality as it is. A product ≥ 0 means y is OUTSIDE the roots — y ≤ 1 or y ≥ 4 — the opposite of the range questions, and exactly what 'does not lie between' needs.",
+        "margin_note": "Third mark. Dividing by the positive number 4 keeps the inequality as it is. A product ≥ 0 means y is OUTSIDE the roots — y ≤ 1 or y ≥ 4 — the opposite of a 'lies between' answer, and exactly what 'does not lie between' needs.",
         "memory_tip": "Dividing by the positive 4 keeps the inequality. A product ≥ 0 puts y OUTSIDE the roots.",
         "lines": [
           "⇒ y² − 5y + 4 ≥ 0",
@@ -220,7 +220,7 @@
         },
         "why": "Inside or outside depends on the sign of the leading coefficient. It is positive here, and the inequality is ≥, so y is outside the two roots; that is the whole content of the claim.",
         "common_mistakes": [
-          "Writing 1 ≤ y ≤ 4 by habit from the range questions.",
+          "Writing 1 ≤ y ≤ 4 out of habit; that is the answer when the product is ≤ 0, not ≥ 0.",
           "Factorising as (y + 1)(y + 4).",
           "Dividing by 4 and reversing the inequality — only a NEGATIVE divisor reverses it."
         ]

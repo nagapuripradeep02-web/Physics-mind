@@ -526,5 +526,5 @@
       }
     ]
   },
-  "insider_note": "All four body diagonals are needed here, not the two the angle question uses. Pair the squares as (l + m ± n) with (l − m ± n) so (a + b)² + (a − b)² = 2(a² + b²) applies twice, then l² + m² + n² = 1 closes it."
+  "insider_note": "All four body diagonals are needed here, not one pair. Pair the squares as (l + m ± n) with (l − m ± n) so (a + b)² + (a − b)² = 2(a² + b²) applies twice, then l² + m² + n² = 1 closes it."
 }

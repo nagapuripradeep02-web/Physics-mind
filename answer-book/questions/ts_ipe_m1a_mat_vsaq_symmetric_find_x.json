@@ -148,5 +148,5 @@
       }
     ]
   },
-  "insider_note": "Symmetric means A = Aᵀ, so mirror entries are EQUAL and x = 6 directly. The contrast with the skew symmetric question is the sign: equal here, opposite there."
+  "insider_note": "Symmetric means A = Aᵀ, so mirror entries are EQUAL and x = 6 directly. The contrast with a skew symmetric matrix is the sign: equal here, opposite there."
 }

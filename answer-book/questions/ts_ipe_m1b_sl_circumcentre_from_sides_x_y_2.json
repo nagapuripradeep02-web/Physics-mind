@@ -90,7 +90,7 @@
             "corners"
           ]
         },
-        "why": "Unlike the orthocentre-from-sides question, which needs only two vertices, the equal-distance method compares all three — so all three corners are needed before any distance is written.",
+        "why": "The orthocentre needs only two vertices, because two altitudes already fix it, but the equal-distance method compares all three — so all three corners are needed before any distance is written.",
         "common_mistakes": [
           "Stopping after two vertices.",
           "Solving the same pair twice and getting a repeated point."
@@ -262,7 +262,7 @@
         "kind": "equation",
         "label": "First equation from SA = SB",
         "marks": 2,
-        "margin_note": "Two marks. From here the working is identical to the vertices-given questions: square SA = SB and watch the x² and y² terms cancel, leaving a straight line.",
+        "margin_note": "Two marks. The vertices are now in hand, so the working is the ordinary one: square SA = SB and watch the x² and y² terms cancel, leaving a straight line.",
         "memory_tip": "Square SA = SB; the x² and y² terms cancel and a straight line survives.",
         "lines": [
           "S(x, y) as circumcentre",

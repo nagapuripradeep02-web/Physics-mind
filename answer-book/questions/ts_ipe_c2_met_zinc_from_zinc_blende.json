@@ -69,7 +69,7 @@
             "style": "indent"
           }
         ],
-        "why": "Froth flotation is chosen because zinc blende is a sulphide, which links this step to the flotation question earlier in the unit. Crushing has to come first, because flotation acts on the surface of the particles and needs them fine.",
+        "why": "Froth flotation is chosen because zinc blende is a sulphide, and froth flotation is the concentration method that suits a sulphide ore. Crushing has to come first, because flotation acts on the surface of the particles and needs them fine.",
         "common_mistakes": [
           "Concentrating zinc blende by leaching. Leaching is used for bauxite; a sulphide ore is concentrated by froth flotation.",
           "Leaving out the crushing. Flotation needs a fine powder to work at all."
@@ -132,7 +132,7 @@
           "as a vapour and is condensed. The metal",
           "so obtained is called spelter."
         ],
-        "why": "Carbon is the reducing agent because above 983 K it lies below CO on the Ellingham diagram, which is the point of the short question earlier in this unit. The furnace runs well above the boiling point of zinc, so the metal leaves as a vapour and is condensed away from the charge.",
+        "why": "Carbon is the reducing agent because above 983 K it lies below CO on the Ellingham diagram, so it removes oxygen more readily than CO does at furnace temperature. The furnace runs well above the boiling point of zinc, so the metal leaves as a vapour and is condensed away from the charge.",
         "common_mistakes": [
           "Using CO as the reducing agent. At 1673 K carbon is the better reducing agent for ZnO.",
           "Writing ZnO + C → Zn + CO₂. One carbon atom takes the one oxygen atom of ZnO, so the product is CO."

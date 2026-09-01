@@ -50,8 +50,8 @@
         "label": "Set the period equal to 7",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. This is the period question run BACKWARDS: the period is given and the function is wanted, so the formula becomes an equation in k.",
-        "memory_tip": "This is the period question run BACKWARDS: the period is given, so 2π/k = 7 is an equation in k.",
+        "margin_note": "First mark. The period is given and the function is wanted, so the period formula becomes an equation in k.",
+        "memory_tip": "The period is given, not wanted, so 2π/k = 7 is an equation in k.",
         "lines": [
           {
             "text": "Sol:",

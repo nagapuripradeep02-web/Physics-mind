@@ -77,7 +77,7 @@
             "divisible"
           ]
         },
-        "why": "The same opening as the two solved questions before it — which is why this one is set as practice.",
+        "why": "'Divisible by 11' is a phrase, and a phrase cannot be substituted into algebra. Writing it as = 11q, with q an integer, is what makes every later step possible.",
         "common_mistakes": [
           "Reading 2·4 as the decimal two point four.",
           "Leaving it in words."

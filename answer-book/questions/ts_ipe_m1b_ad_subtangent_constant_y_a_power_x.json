@@ -53,7 +53,7 @@
         "label": "State what the subtangent is",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. The subtangent DIVIDES by the slope. Stating the formula first is what separates this question from the subnormal question, which multiplies.",
+        "margin_note": "First mark. The subtangent DIVIDES by the slope, while the subnormal multiplies by it. Stating the formula first fixes which of the two is being built.",
         "lines": [
           {
             "text": "Sol:",

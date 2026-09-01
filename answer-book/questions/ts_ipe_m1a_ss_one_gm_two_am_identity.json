@@ -82,7 +82,7 @@
         "why": "Two arithmetic means inserted between a and b make a four-term A.P., so p and q are both fixed by a single common difference. Writing that down turns the identity into ordinary algebra.",
         "common_mistakes": [
           "Treating p and q as two separate arithmetic means of a and b, each equal to (a + b)/2.",
-          "Putting a, p, q, b in G.P. instead of A.P., which is the condition for the geometric means question."
+          "Putting a, p, q, b in G.P. instead of A.P. G.P. is the condition for geometric means; p and q here are arithmetic means."
         ]
       },
       {

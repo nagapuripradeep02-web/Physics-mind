@@ -99,7 +99,7 @@
             "y plus one"
           ]
         },
-        "why": "Every value y in the range comes from some real x. Rewriting the fraction as a quadratic in x turns the range question into a discriminant question.",
+        "why": "Every value y in the range comes from some real x. Rewriting the fraction as a quadratic in x turns the search for the range into a condition on the discriminant.",
         "common_mistakes": [
           "Collecting the x terms as −(y − 1)x — the sign of −x is easy to lose.",
           "Not writing that (1) is a quadratic in x with x real.",

@@ -92,7 +92,7 @@
             "powers come down"
           ]
         },
-        "why": "This is logarithmic differentiation used for a different reason from the variable-power questions in this chapter. Nothing here forces the method, but it replaces one very long quotient-rule calculation with four one-line derivatives.",
+        "why": "This is logarithmic differentiation used for a different reason from a variable power such as xˣ, where the method is the only way in. Nothing here forces it, but it replaces one very long quotient-rule calculation with four one-line derivatives.",
         "common_mistakes": [
           "Starting the quotient rule on the whole expression and running out of room part way through.",
           "Saying the method is needed because the power rule fails, which is not true here — the powers are constants."

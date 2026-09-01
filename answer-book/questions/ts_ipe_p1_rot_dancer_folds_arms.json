@@ -53,7 +53,7 @@
             "style": "eq"
           }
         ],
-        "why": "The dancer example appears inside the conservation SAQ in both source books — the 2-mark standalone form is the same physics asked shorter.",
+        "why": "Angular momentum stays fixed only while no outside turning force acts, so that condition has to be stated before the equation is used. The dancer's own muscles move mass about, but they apply no torque about the spin axis.",
         "common_mistakes": [
           "Explaining with energy. The conserved quantity here is angular momentum."
         ],
@@ -89,7 +89,7 @@
             "style": "boxed"
           }
         ],
-        "why": "Same physics as the polar-ice-caps question run the other way: mass inward, spin faster.",
+        "why": "Iω cannot change, so if one factor falls the other must rise. Mass brought towards the axis lowers I and raises ω; mass moved away from the axis raises I and lowers ω.",
         "common_mistakes": [
           "Saying she spins faster \"because she pushes\" — no torque is applied; I changed."
         ],

@@ -174,7 +174,7 @@
             "dy by dx alone"
           ]
         },
-        "why": "Unlike the other implicit questions in this chapter, dy/dx appears in only one term here, so no collecting is needed. That is worth noticing before writing anything: it saves a whole line of work.",
+        "why": "Implicit differentiation usually leaves dy/dx in two or more terms that have to be collected on one side. Here it stands in only one term, so no collecting is needed. That is worth noticing before writing anything: it saves a whole line of work.",
         "common_mistakes": [
           "Multiplying only one of the two terms in the bracket by y/log x.",
           "Keeping the minus sign on the wrong term after the shift."

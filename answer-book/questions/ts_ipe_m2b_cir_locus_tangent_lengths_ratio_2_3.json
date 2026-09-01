@@ -119,7 +119,7 @@
         "why": "The x² and y² terms do not cancel here because the multipliers 9 and 4 differ, so 5x² + 5y² is left and the locus is a circle. Its coefficients 5, 60, 126 and 212 share no common factor, so the equation cannot be reduced.",
         "common_mistakes": [
           "Dividing the final answer by 5 and producing fractions.",
-          "Expecting a straight line, as in the locus questions where the multipliers are equal."
+          "Expecting a straight line. That happens only when the two multipliers are equal, so the x² and y² terms cancel."
         ]
       }
     ]

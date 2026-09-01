@@ -161,7 +161,7 @@
           "density below it."
         ],
         "margin_note": "Two marks for the formula alone. Write it before any number goes in.",
-        "why": "The dimensional-analysis question earlier in this chapter derives this same result, so quoting it here is enough; the marks are for the correct placing of T and μ.",
+        "why": "v = √(T/μ) is a standard result and may be quoted here without deriving it; the marks are for the correct placing of T and μ.",
         "common_mistakes": [
           "Writing v = √(μ/T). A tighter wire carries faster waves, so T belongs on top.",
           "Forgetting the square root and reporting T/μ as the speed."
