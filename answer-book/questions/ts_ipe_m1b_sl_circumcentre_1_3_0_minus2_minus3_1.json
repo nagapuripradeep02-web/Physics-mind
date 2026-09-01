@@ -395,7 +395,7 @@
             "the point"
           ]
         },
-        "why": "The circumcentre can sit outside the triangle when the triangle is obtuse, so an answer far from the vertices is not automatically wrong.",
+        "why": "Two perpendicular bisectors meet at exactly one point, so this pair of equations has a single solution — and that point is the circumcentre.",
         "common_mistakes": [
           "Subtracting the two equations the wrong way round, so the sign of y comes out reversed.",
           "Writing the coordinates the wrong way round."

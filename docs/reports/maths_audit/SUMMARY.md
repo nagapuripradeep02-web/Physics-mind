@@ -207,3 +207,84 @@ attributing the work-energy theorem to "Unit 6" when it is our unit 5.
 **Still open: Maths-2B carries about 20 such cross-references** ("answer 27", "answer 127",
 "answer 53.2"), far more than the first sweep's count. That is second-year material and a
 separate job. The 192 WEAK findings are also untouched.
+
+---
+
+## WEAK pass complete — 2026-09-01
+
+All 23 groups' WEAK tables were worked (194 tabled rows; the headline count of 192 treats two
+multi-card rows as one finding each). **219 cards changed.** Gates after: `check_cards`
+2727/2727, `check:originality` passes, `tsc` 0, every edited card still CRLF, and no `marks`,
+`marks_total`, `question_text`, `question_id` or step `id` was altered anywhere.
+
+### The auditor's suggested wording was wrong often enough to matter
+
+The `what it should say` column is a suggestion, not the convention, and roughly one row in eight
+could not be applied as written. The recurring failure is worth naming because it is the SAME
+defect the audit was created to find — **proposing a "mistake" that is not a mistake**:
+
+- a suggested `common_mistakes` entry whose error still yields the correct answer (`[x] = 2` on
+  both sides of the interval, so the "slip" changes nothing);
+- suggested replacements that were verbatim a sibling step's existing line, recreating the
+  duplication the same finding asked to remove (three separate cards);
+- a suggested `margin_note` that was verbatim the step's own `why`;
+- a suggested note describing expansion along row 2 while the card's printed working expands
+  along the top row — correct arithmetic, wrong card;
+- two findings that simply misread the working, calling cross-multiplication "dividing both
+  sides".
+
+In each case the finding's *target* was real; only the proposed text was wrong. Replacements were
+written against the card and its neighbours instead.
+
+### Defects found during the pass that are above WEAK grade
+
+- `pln_intercepts_x_minus_3y_2z` — the step label AND its `mark_split` label both read "Move the
+  constant across", but `x − 3y + 2z = 9` already has the constant on the right; the step actually
+  divides through by 9. A mark label naming work the step does not do. Now "Divide through by the
+  constant".
+- `sl_parametric_distance_pi_over_6` — labelled "Find the angle" and paid 1 mark, but the question
+  hands over π/6 and the step only writes it down. Now "Write down the given angle".
+- `td_sqp_collinear_and_ratio` — the question asks two things; every mark label named only the
+  distances, so the ratio was awarded no named mark.
+- `pl_area_triangle_proof` — a printed line asserted √((4h²−4ab)/b²) = 2√(h²−ab)/b, false for
+  b < 0. Now `|b|`; the boxed result is unchanged.
+- `dif_log_sin_log_x` — a printed line asserted sin(log x) > 0 ⟺ 0 < log x < π. False: sin θ > 0
+  on every (2kπ, (2k+1)π).
+- `fn_set_two_plus_f_and_root_f` — printed √f as an equality containing √−3 and √−1, then a
+  different value for √f two lines later.
+- `lim_x_sin_a_minus_a_sin_x` — justified a unit-8 limit ONLY by "the derivative of sin x", a
+  unit-9 result. The in-chapter sum-to-product route is now printed.
+- `vec_lines_intersect_minus_4c` — concludes the lines intersect from two of the three coefficient
+  equations without checking the third. The third does hold, so the answer is right and the proof
+  is not. **Still open** — closing it needs a step re-shape. Note the audit filed this identical
+  defect as WRONG on the sibling card and WEAK here.
+
+### The De Morgan re-cut
+
+`de_morgan_universal_1_to_7` marked the complements alone as mark 1 and BOTH laws as mark 2, while
+its twin `..._1_to_9` marks complements + law (i), then law (ii). Re-cut to match the twin; still
+1 + 1 = 2. Step ids were deliberately left alone — they are referenced by `A01.md`, no student
+sees them, and renaming would break that traceability.
+
+### Left for the founder
+
+- **Four cards whose `question_text` is itself defective**: three using a colon where a fraction
+  bar is meant, and `dc_angle_3l_plus_m_plus_5n`, whose stem does not parse (it needs "the angle
+  between **the lines** whose d.c's satisfy…"). `question_text` defines the question a student is
+  answering, so none were touched.
+- **Figure geometry** on five orthocentre/circumcentre cards: an altitude is not drawn on the true
+  perpendicular and the O dot sits off-point. That is stroke re-authoring with its own gates, not
+  a prose repair; a bad guess is worse than the current defect.
+- **Two `physics_2` cards naming a book page** — family (c), unchanged.
+
+### New, and bigger than this audit: unresolvable cross-references are bank-wide
+
+One group noticed "the twin" was systemic rather than per-card. A full-bank sweep — traversing
+every reader-facing string, excluding `verification.*` and the `recall.accept`/`heard_as` speech
+targets, and proved against a known-positive control first — finds **128 strings in 90 cards
+across all eight subjects**: 92 "the previous/next question", 16 naming another card by topic
+("the bubble question"), 9 sibling pointers, 7 "the twin", 4 "the question above".
+
+The bank has no fixed reading order, so every one of these points at nothing the reader can open.
+This is the same class as the source-book leaks and reaches subjects this audit never covered
+(chemistry, botany, zoology, physics). **Not repaired here — it is a separate, scoped job.**

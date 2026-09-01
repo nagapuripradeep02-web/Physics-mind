@@ -44,7 +44,7 @@
         "kind": "equation",
         "label": "Set up the intercepts",
         "marks": 1,
-        "margin_note": "First mark. The condition is about the INTERCEPTS, so use the intercept form x/a + y/b = 1 and let the condition choose a and b for you: sum of intercepts is zero.",
+        "margin_note": "First mark. The condition is about the INTERCEPTS, so use the intercept form x/a + y/b = 1, where the condition becomes a direct relation between a and b: the sum of the intercepts is zero.",
         "memory_tip": "Use x/a + y/b = 1 and let the condition choose b: sum zero means b = −a.",
         "lines": [
           {
@@ -124,7 +124,7 @@
             "the line is"
           ]
         },
-        "why": "One unknown is left after the condition is used, and one point is exactly enough to pin it.",
+        "why": "One unknown is left after the condition is used, and one point is exactly enough to find it.",
         "common_mistakes": [
           "Substituting the coordinates the wrong way round.",
           "Stopping at the value of a without writing the line."

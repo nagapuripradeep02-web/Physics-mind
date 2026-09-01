@@ -84,7 +84,7 @@
             "product formula"
           ]
         },
-        "why": "The formula needs a 2 in front, and there is none — so one is manufactured and paid for with the 1/2 outside.",
+        "why": "The formula needs a 2 in front and there is none, so multiply by 2 inside and divide by 2 outside. The value is unchanged and the formula now applies.",
         "common_mistakes": [
           "Applying the formula without the 2 and being out by a factor.",
           "Using the sine formula."
@@ -129,9 +129,9 @@
             "over eight"
           ]
         },
-        "why": "cos36° is one of the pentagon values, like sin18° and sin54°. They are quoted results in this course, not things to derive under exam pressure.",
+        "why": "cos36° = (√5 + 1)/4 is a standard result in this course, like sin18° and sin54°. It is quoted, not derived inside a 2-mark question.",
         "common_mistakes": [
-          "Trying to derive cos 36°.",
+          "Writing cos36° = (√5 − 1)/4, which is the value of sin18°.",
           "Adding the fractions without a common denominator."
         ]
       }

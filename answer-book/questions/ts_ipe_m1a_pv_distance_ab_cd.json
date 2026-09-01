@@ -191,7 +191,7 @@
         "why": "A and C share their i and k coordinates, so the joining vector points purely along j. Spotting that saves work in the next step.",
         "common_mistakes": [
           "Getting −4j as +4j.",
-          "Carrying phantom i or k terms through."
+          "Carrying an i or k term through when both have cancelled to zero."
         ]
       },
       {

@@ -292,7 +292,7 @@
             "first equation"
           ]
         },
-        "why": "The line produced is the perpendicular bisector of AB — the book's own panel calls it PB₁.",
+        "why": "The line produced is the perpendicular bisector of AB — every point on it is the same distance from A as from B.",
         "common_mistakes": [
           "Squaring only one side.",
           "Carrying x² terms forward instead of cancelling."

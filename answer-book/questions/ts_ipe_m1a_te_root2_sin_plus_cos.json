@@ -135,7 +135,7 @@
             "cos A minus B"
           ]
         },
-        "why": "Equal coefficients always land on 45°, because that is the one angle whose sine and cosine are the same. That is why this twin gives a cosine equation where the other gave a sine.",
+        "why": "Equal coefficients always land on 45°, because that is the one angle whose sine and cosine are the same. That is why equal coefficients give a cosine equation, where unequal ones such as √3 sinθ − cosθ give a sine one.",
         "common_mistakes": [
           "Matching 1/√2 to cos30° or sin30° instead of 45°.",
           "Writing cosx cos45° − sinx sin45°, the cos(A+B) form, when the sign on the page is a plus."

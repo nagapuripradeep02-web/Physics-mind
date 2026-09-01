@@ -159,7 +159,7 @@
         "label": "Arrange sin h over h",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Third mark. The standard limit applies only when the angle inside the sine equals the whole denominator. Here it already does, which is what makes sin 2x the shortest of the nine.",
+        "margin_note": "Third mark. The standard limit applies only when the angle inside the sine equals the whole denominator. Here it already does, which is what makes sin 2x the shortest of the first-principle questions.",
         "lines": [
           "= lim(h → 0) 2 cos(2x + h) · (sin h)/h",
           "The angle in sin h matches the h below it, so",

@@ -119,7 +119,7 @@
             "by a"
           ]
         },
-        "why": "This is the general form of the previous question — every linear function's inverse is this, which is why it is worth memorising as a shape.",
+        "why": "This is the general form of a numerical linear function such as f(x) = 5x + 4 — every linear function's inverse is this, which is why it is worth memorising as a shape.",
         "common_mistakes": [
           "Leaving the answer in y.",
           "Writing (x + b)/a."

@@ -177,7 +177,7 @@
         "why": "Everything before this was setting up; this is the step that actually uses the line P sits on.",
         "common_mistakes": [
           "Substituting into the wrong line.",
-          "Forgetting to distribute a coefficient across both parts of a coordinate."
+          "Forgetting that BOTH coordinates carry r/√2, so the two r-terms add."
         ],
         "mark_note": "Method"
       },

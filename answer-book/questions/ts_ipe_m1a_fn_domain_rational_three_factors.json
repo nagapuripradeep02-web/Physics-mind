@@ -50,7 +50,7 @@
         "label": "Write the condition",
         "marks": 1,
         "mark_note": "Condition",
-        "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
+        "margin_note": "One of the two marks is for the condition alone. Here the denominator is already factorised, so no factorising step is needed.",
         "memory_tip": "No root here — only the denominator matters. Find where it is ZERO: x = 1, 2, 3.",
         "lines": [
           "f(x) is not defined when",

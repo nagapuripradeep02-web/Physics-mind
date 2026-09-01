@@ -82,7 +82,7 @@
         },
         "why": "2f and 2 + f are different operations on the same set, and the paper asks both. Reading the notation correctly is most of the mark.",
         "common_mistakes": [
-          "Adding 2 instead of multiplying, which is the previous question.",
+          "Adding 2 instead of multiplying — that gives 2 + f, a different set.",
           "Sign slip on 2(−3) = −6."
         ]
       },

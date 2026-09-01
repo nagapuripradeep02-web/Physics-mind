@@ -48,7 +48,7 @@
         "kind": "equation",
         "label": "Write the chord and the circle",
         "marks": 0,
-        "margin_note": "No mark of its own. The chord is already given as lx + my = 1 — exactly the '= 1' form homogenisation needs — so no clearing is required here, unlike the earlier questions in the run.",
+        "margin_note": "No mark of its own. The chord is already given as lx + my = 1 — exactly the '= 1' form homogenisation needs — so no clearing is required here, unlike a chord given as ax + by = c, which must first be divided by c.",
         "lines": [
           {
             "text": "Sol:",
@@ -79,7 +79,7 @@
             "x squared plus y squared"
           ]
         },
-        "why": "Homogenisation needs the line as (something) = 1, and this question hands it over that way — which is why the whole answer is shorter than its neighbours.",
+        "why": "Homogenisation needs the line as (something) = 1, and this question already gives it that way, so no dividing-through step is needed before the homogenisation.",
         "common_mistakes": [
           "Rearranging the chord unnecessarily and introducing a sign error.",
           "Leaving the circle as x² + y² = a² and forgetting to move a² across."
@@ -172,7 +172,7 @@
         "kind": "boxed_final",
         "label": "Apply the right-angle condition",
         "marks": 2,
-        "margin_note": "The last two marks. 'Subtends a right angle at the origin' is a statement about the two lines from the origin — which is precisely the homogenised pair — so the condition is a + b = 0, the same one used three times earlier in this run.",
+        "margin_note": "The last two marks. 'Subtends a right angle at the origin' is a statement about the two lines from the origin — which is precisely the homogenised pair — so the condition is a + b = 0, the perpendicular condition for a pair of lines through the origin.",
         "lines": [
           "The chord subtends a right angle AT THE ORIGIN, and the homogenised pair is exactly the pair of lines from the origin to the chord's ends — so that pair must be perpendicular:",
           "Coeff. x² + Coeff. y² = 0",
@@ -205,7 +205,7 @@
             "equals two"
           ]
         },
-        "why": "This differs from its neighbour by ONE word: coincident gives h² = ab, a right angle gives a + b = 0. The homogenisation before it is identical, which is why the two sit on the same page.",
+        "why": "One word changes the closing condition: coincident gives h² = ab, while a right angle gives a + b = 0. The homogenisation that comes before it is identical in both cases.",
         "common_mistakes": [
           "Using h² = ab, which is the coincident-lines condition.",
           "Forgetting that the two 1's add to 2."

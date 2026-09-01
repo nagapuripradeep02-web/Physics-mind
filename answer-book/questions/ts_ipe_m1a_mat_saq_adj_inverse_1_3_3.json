@@ -49,8 +49,8 @@
         "label": "Find det A",
         "marks": 1,
         "mark_note": "Determinant",
-        "margin_note": "First mark. det A comes to 1. Any non-zero value would do, but a determinant of exactly 1 makes the last step painless, so it is worth computing carefully before starting the nine cofactors.",
-        "memory_tip": "det A = 1, which makes the last step painless — worth computing carefully.",
+        "margin_note": "First mark. det A comes to 1. Any non-zero value would do, but a determinant of exactly 1 makes the last step a division by 1, so no fractions appear — it is worth computing carefully before starting the nine cofactors.",
+        "memory_tip": "det A = 1, so the last step divides by 1 and no fractions appear — worth computing carefully.",
         "lines": [
           {
             "text": "Sol:",
@@ -93,7 +93,7 @@
             "inverse exists"
           ]
         },
-        "why": "A⁻¹ is the adjoint divided by det A. A zero determinant would mean dividing by zero, which is exactly why a singular matrix has no inverse — so this line is a gate, not a warm-up.",
+        "why": "A⁻¹ is the adjoint divided by det A. A zero determinant would mean dividing by zero, which is exactly why a singular matrix has no inverse — so this line has to be written before anything else.",
         "common_mistakes": [
           "Computing det A but never writing that it is non-zero.",
           "Getting the sign pattern wrong: plus, minus, plus along the top row.",

@@ -45,7 +45,7 @@
         "label": "Differentiate term by term",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Differentiate the sum one term at a time using d/dx(xⁿ) = nxⁿ⁻¹. The constant 1 at the front differentiates to 0, so the derivative starts at 1, not at 0 + 1 + 1.",
+        "margin_note": "First mark. Differentiate the sum one term at a time using d/dx(xⁿ) = nxⁿ⁻¹. The constant 1 at the front differentiates to 0, so the first surviving term of f′ is the 1 that comes from x.",
         "memory_tip": "Every power drops by one and the old power comes down in front, so the coefficients of f′ read 1, 2, 3 up to 100.",
         "lines": [
           {
@@ -124,7 +124,7 @@
             "hundred into hundred one by two"
           ]
         },
-        "why": "The sum formula is the whole point of the question. Adding 1 to 100 by hand would work but cannot be finished inside the four minutes a 2-mark question allows.",
+        "why": "The sum formula is the whole point of the question. Adding 1 to 100 term by term would also reach 5050, but it is far slower than the single line n(n + 1)/2.",
         "common_mistakes": [
           "Trying to add 1 + 2 + ⋯ + 100 one number at a time and running out of time.",
           "Using n(n+1)/2 with n = 99, because the last derivative term shows x⁹⁹."

@@ -46,7 +46,7 @@
         "marks": 1,
         "mark_note": "Condition",
         "margin_note": "One of the two marks is for the condition alone. Write it before any factorising.",
-        "memory_tip": "A root in a DENOMINATOR needs > 0, not ≥ 0 — zero would divide by nothing.",
+        "memory_tip": "A root in a DENOMINATOR needs > 0, not ≥ 0 — at zero the fraction is undefined.",
         "lines": [
           "f(x) is defined when 1 − x² > 0",
           "⇒ x² − 1 < 0",

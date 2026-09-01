@@ -174,7 +174,7 @@
         "why": "A limit at 3 depends only on values near 3, never on the value at 3 itself, so cancelling a factor that is zero only at 3 changes nothing about the limit.",
         "common_mistakes": [
           "Refusing to cancel because (x − 3) is 0 at x = 3, when the limit never uses that point.",
-          "Writing 6/4 as 1.2 or leaving it unsimplified when the given f(3) is a decimal."
+          "Writing 6/4 as 1.2 instead of 1.5."
         ]
       },
       {

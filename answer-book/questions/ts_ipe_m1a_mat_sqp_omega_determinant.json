@@ -45,8 +45,8 @@
         "label": "Add all three columns into C₁",
         "marks": 1,
         "mark_note": "Column operation",
-        "margin_note": "First mark. Every row sums to 1 + ω + ω², because ω³ = 1 collapses every higher power back into the same three values.",
-        "memory_tip": "Every row sums to 1 + ω + ω², because ω³ = 1 collapses higher powers back.",
+        "margin_note": "First mark. Every row holds the same three entries 1, ω and ω² in a different order, so every row sums to 1 + ω + ω².",
+        "memory_tip": "Every row holds the same three entries in a different order, so every row sums to 1 + ω + ω².",
         "lines": [
           {
             "text": "Sol:",

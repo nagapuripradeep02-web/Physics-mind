@@ -177,7 +177,7 @@
             "both pairs"
           ]
         },
-        "why": "Both pairs ending with cos(C/2) is not luck — it is why this pairing was chosen, and it is what allows the next factoring.",
+        "why": "Both pairs ending with cos(C/2) is the reason this pairing was chosen, and it is what allows the next factoring.",
         "common_mistakes": [
           "Missing that cos(−C/2) = cos(C/2).",
           "Writing 2S − C as A + B + C."

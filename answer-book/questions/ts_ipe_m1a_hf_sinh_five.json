@@ -50,7 +50,7 @@
         "label": "State the logarithmic form",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Same formula as the twin. Write it before substituting anything.",
+        "margin_note": "First mark. Same formula as every Sinh⁻¹ question. Write it before substituting anything.",
         "memory_tip": "Sinh⁻¹x = logₑ(x + √(x² + 1)). Write the formula before substituting anything.",
         "lines": [
           {

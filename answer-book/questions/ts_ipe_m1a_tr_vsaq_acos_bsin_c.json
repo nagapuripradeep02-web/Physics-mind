@@ -129,7 +129,7 @@
             "square root"
           ]
         },
-        "why": "A square root always has two signs, and nothing in the question rules either out — so the ± is part of the answer, not decoration.",
+        "why": "A square root always has two signs, and nothing in the question rules either out — so the ± is part of the answer and must be written.",
         "common_mistakes": [
           "Dropping the ± sign.",
           "Failing to see that the 2ab terms cancel."

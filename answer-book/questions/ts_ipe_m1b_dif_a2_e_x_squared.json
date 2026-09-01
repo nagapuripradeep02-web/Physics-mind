@@ -92,7 +92,7 @@
         "label": "Differentiate the inner x² and finish",
         "marks": 1,
         "mark_note": "Answer",
-        "margin_note": "Second mark. The factor 2x is the whole content of this mark. Without it the answer reads a²eˣ², which is what an examiner looks for first.",
+        "margin_note": "Second mark. The factor 2x is the whole content of this mark. Without it the answer reads a²eˣ². The 2x is the first thing an examiner looks for.",
         "memory_tip": "The 2 in the final 2a²x comes from the power 2 in x², not from the a².",
         "lines": [
           "d/dx(x²) = 2x",

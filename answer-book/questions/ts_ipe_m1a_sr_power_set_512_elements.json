@@ -125,7 +125,7 @@
           ]
         },
         "why": "Two powers of the same base are equal only when the powers are equal, so writing 512 as 2⁹ is what allows n to be read off. Halving 512 nine times down to 1 is the same check done by counting.",
-        "memory_tip": "Powers of 2 worth knowing by heart: 2⁶ = 64, 2⁷ = 128, 2⁸ = 256, 2⁹ = 512, 2¹⁰ = 1024.",
+        "memory_tip": "Powers of 2 worth remembering: 2⁶ = 64, 2⁷ = 128, 2⁸ = 256, 2⁹ = 512, 2¹⁰ = 1024.",
         "common_mistakes": [
           "Answering 512 or 256, which are counts of subsets, not of elements.",
           "Dividing 512 by 2 once and giving 256 as n.",

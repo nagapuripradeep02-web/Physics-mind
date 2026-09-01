@@ -100,7 +100,7 @@
         "label": "Write the two one-sided limits and f(1)",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark. Note which piece owns x = 1: the condition is x ≥ 1, so f(1) comes from k²x − k, not from the constant 2. Getting that wrong reverses the whole equation.",
+        "margin_note": "Second mark. Note which piece x = 1 belongs to: the condition is x ≥ 1, so f(1) comes from k²x − k, not from the constant 2. Getting that wrong reverses the whole equation.",
         "memory_tip": "The piece whose inequality carries the equals sign is the piece that gives the value at the join.",
         "lines": [
           "Left limit:   lim(x → 1⁻) f(x) = lim(x → 1⁻) 2 = 2",
@@ -129,7 +129,7 @@
             "right limit"
           ]
         },
-        "why": "Writing all three quantities separately makes the next line a simple equation, and it forces the decision about which piece owns the point x = 1 to be made explicitly.",
+        "why": "Writing all three quantities separately makes the next line a simple equation, and it forces an explicit decision about which piece the point x = 1 belongs to.",
         "common_mistakes": [
           "Taking f(1) = 2 from the piece x < 1, when that piece does not include 1.",
           "Reading the left limit from k²x − k instead of from the constant piece x < 1."
@@ -216,7 +216,7 @@
             "k equals two"
           ]
         },
-        "why": "Both roots satisfy the one condition the question imposes, so both are answers. Substituting each back into f(1) is a cheap check that costs one line.",
+        "why": "Both roots satisfy the one condition the question imposes, so both are answers. Substituting each value back into f(1) is a one-line check.",
         "common_mistakes": [
           "Giving only k = 2 and dropping the negative root.",
           "Factorising k² − k − 2 as (k + 2)(k − 1), which multiplies out to k² + k − 2."

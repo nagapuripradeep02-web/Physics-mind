@@ -128,7 +128,7 @@
             "zero"
           ]
         },
-        "why": "sin is an odd function, so sin(−θ) = −sin θ. That sign is what makes the last two terms annihilate rather than double.",
+        "why": "sin is an odd function, so sin(−θ) = −sin θ. That sign is what makes the last two terms cancel instead of adding.",
         "common_mistakes": [
           "Writing sin(−10°) = sin 10° and getting 2 sin 10°.",
           "Writing cos 60° = √3/2."

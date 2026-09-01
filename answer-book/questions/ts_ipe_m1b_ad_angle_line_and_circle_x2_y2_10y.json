@@ -89,7 +89,7 @@
         },
         "why": "The angle is measured at a shared point, and here there are two of them. Because a chord is symmetric about the line through the centre, the angle turns out to be the same at both, but that has to be shown, not assumed.",
         "common_mistakes": [
-          "Expanding (−x − 2)² as x² − 4 and losing the middle term.",
+          "Expanding (−x − 2)² as x² + 4 and losing the middle term 4x.",
           "Sign slip in −10(−x − 2), writing −10x − 20 instead of +10x + 20.",
           "Finding only one of the two points."
         ],

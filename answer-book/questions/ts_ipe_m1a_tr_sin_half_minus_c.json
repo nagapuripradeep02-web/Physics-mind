@@ -74,7 +74,7 @@
         "label": "State the angle condition",
         "marks": 1,
         "mark_note": "Condition",
-        "margin_note": "First mark. Same halved condition as the twin question — the difference between the two proofs is one sign, not one method.",
+        "margin_note": "First mark. Same halved condition as the sin²(A/2) + sin²(B/2) + sin²(C/2) question — the difference between the two proofs is one sign, not one method.",
         "memory_tip": "Same halved condition as the all-plus version — the difference between the proofs is one SIGN, not the method.",
         "lines": [
           {
@@ -105,7 +105,7 @@
             "given"
           ]
         },
-        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof leans on, and it is used at least twice below.",
+        "why": "Without the condition the statement is simply false, so it is not preamble — it is the hypothesis the whole proof uses, and it is used at least twice below.",
         "common_mistakes": [
           "Starting the transformation before writing the condition.",
           "Writing the condition but never rearranging it into a usable form."
@@ -145,7 +145,7 @@
             "one"
           ]
         },
-        "why": "The 1 on the right-hand side has to come from somewhere. Converting a sin² into 1 − cos² is where it is manufactured, exactly as in the twin.",
+        "why": "The 1 on the right-hand side has to come from somewhere. Converting a sin² into 1 − cos² is where it comes from, exactly as in the sin²(A/2) + sin²(B/2) + sin²(C/2) question.",
         "common_mistakes": [
           "Converting the wrong term and getting a sum of squares instead.",
           "Losing the minus before sin²(C/2)."
@@ -157,8 +157,8 @@
         "label": "Use the condition",
         "marks": 2,
         "mark_note": "Substitution",
-        "margin_note": "Two more marks. This is where the angle condition earns its place: it converts an expression in A and B into one in C, so that every term shares a factor.",
-        "memory_tip": "This version's identity carries a leading minus, unlike the twin's. And cos(90° − C/2) = sin(C/2).",
+        "margin_note": "Two more marks. This is where the angle condition is used: it converts an expression in A and B into one in C, so that every term shares a factor.",
+        "memory_tip": "This version's identity carries a leading minus, unlike the all-plus sin²(A/2) + sin²(B/2) + sin²(C/2) version's. And cos(90° − C/2) = sin(C/2).",
         "lines": [
           "= 1 + (−cos((A+B)/2) cos((A−B)/2)) − sin²(C/2)",
           "  [∵ sin²A − cos²B = −cos(A+B) cos(A−B)]",
@@ -187,9 +187,9 @@
             "ninety minus"
           ]
         },
-        "why": "Note the identity carries its own minus sign here, where the twin question had none. Missing it flips the whole answer.",
+        "why": "Note the identity carries its own minus sign here, where the sin²(A/2) + sin²(B/2) + sin²(C/2) question had none. Missing it flips the whole answer.",
         "common_mistakes": [
-          "Using the twin question’s identity, which has no leading minus.",
+          "Using the sin²(A/2) + sin²(B/2) + sin²(C/2) question’s identity, which has no leading minus.",
           "Writing cos(90° − C/2) = cos(C/2)."
         ]
       },
@@ -208,7 +208,7 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That sin(C/2) is factored out and the bracket becomes a SUM of two cosines — not a difference, as in the twin.",
+          "must_convey": "That sin(C/2) is factored out and the bracket becomes a SUM of two cosines — not a difference, as in the sin²(A/2) + sin²(B/2) + sin²(C/2) question.",
           "accept": [
             "take sin C over two common and the bracket becomes a sum of two cosines",
             "factor out sin C over two, the bracket adds this time",
@@ -228,7 +228,7 @@
             "common factor"
           ]
         },
-        "why": "The minus in the question became a plus inside the bracket. That is the single structural difference from the twin, and it decides the final formula.",
+        "why": "The minus in the question became a plus inside the bracket. That is the single structural difference from the sin²(A/2) + sin²(B/2) + sin²(C/2) question, and it decides the final formula.",
         "common_mistakes": [
           "Writing a difference and finishing with sines instead of cosines.",
           "Losing the leading 1."
@@ -240,7 +240,7 @@
         "label": "Apply the product formula",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity closes. Write \"= R.H.S\" so the examiner can see it landed.",
+        "margin_note": "Last mark. One more sum-or-difference formula turns the bracket into a product, and the identity is complete. Write \"= R.H.S\" so the examiner can see the proof finished.",
         "memory_tip": "Use the sum formula to finish with cosines, and do not lose the leading 1.",
         "lines": [
           "= 1 − sin(C/2) (2 cos(A/2) cos(B/2))",
@@ -272,7 +272,7 @@
             "cosines"
           ]
         },
-        "why": "A sum of cosines gives cosines; a difference gives sines. That is the whole reason this answer has cos(A/2)cos(B/2) where its twin had sin(A/2)sin(B/2).",
+        "why": "A sum of cosines gives cosines; a difference gives sines. That is the whole reason this answer has cos(A/2)cos(B/2) where the sin²(A/2) + sin²(B/2) + sin²(C/2) question had sin(A/2)sin(B/2).",
         "common_mistakes": [
           "Using the difference formula and finishing with sines.",
           "Forgetting the leading 1."

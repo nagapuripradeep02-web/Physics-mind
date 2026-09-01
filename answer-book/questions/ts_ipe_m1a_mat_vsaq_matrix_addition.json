@@ -127,5 +127,5 @@
       }
     ]
   },
-  "insider_note": "Add position by position; the sizes match, so nothing else is required. Two entries involve a negative, 8 − 4 and 5 − 1, and those are the ones to check."
+  "insider_note": "Add position by position; the sizes match, so nothing else is required. Three entries involve a negative: −1 + 1 = 0 in the first row, and 8 + (−4) and 5 + (−1) in the second. Those are the ones to check."
 }

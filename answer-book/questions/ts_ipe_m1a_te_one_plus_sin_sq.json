@@ -223,7 +223,7 @@
             "n pi plus"
           ]
         },
-        "why": "Both roots of the quadratic are valid tangents — a tangent can take any real value, unlike a sine — so unlike the twin question nothing is rejected here.",
+        "why": "Both roots of the quadratic are valid tangents — a tangent can take any real value, unlike a sine — so nothing is rejected here, as it would be in an equation that reduces to a quadratic in sinθ.",
         "common_mistakes": [
           "Reporting only the π/4 family.",
           "Trying to force 1/2 into a standard angle."

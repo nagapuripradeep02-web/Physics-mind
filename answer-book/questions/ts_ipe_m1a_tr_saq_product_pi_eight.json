@@ -165,7 +165,7 @@
             "sin squared cos squared"
           ]
         },
-        "why": "A product of a sine and cosine of the SAME angle is a double angle in disguise. Getting both into one angle is what unlocks the last step.",
+        "why": "A product of a sine and cosine of the SAME angle can be written as a double angle. Getting both into one angle is what makes the last step possible.",
         "common_mistakes": [
           "Leaving the two different angles and being unable to finish.",
           "Writing sin(3π/8) = sin(π/8)."

@@ -218,7 +218,7 @@
             "render": "katex"
           },
           {
-            "text": "= f^{-1}(b) \\quad (\\because f(a) = b)",
+            "text": "= f^{-1}(b) \\quad (\\text{where } b = f(a) \\in B)",
             "render": "katex"
           },
           {

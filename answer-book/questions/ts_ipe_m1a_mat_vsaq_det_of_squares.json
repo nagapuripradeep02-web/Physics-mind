@@ -45,8 +45,8 @@
         "label": "Write out the squares",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. Replace every square with its value before doing anything else — the pattern in the question is a distraction, not a shortcut.",
-        "memory_tip": "Replace every square with its value first — the pattern in the question is a distraction, not a shortcut.",
+        "margin_note": "First mark. Replace every square with its value before doing anything else, so the rest of the work is on a plain numerical determinant.",
+        "memory_tip": "Replace every square with its value first, then work with the plain numerical determinant.",
         "lines": [
           {
             "text": "Sol:",
@@ -79,7 +79,7 @@
             "squares"
           ]
         },
-        "why": "The squares are just numbers dressed up. Trying to spot a pattern in 1², 2², 3² wastes time — there is no shortcut here, only careful arithmetic.",
+        "why": "Once the squares are written as numbers the question is an ordinary 3×3 determinant. Row subtractions do shorten this one, but the direct expansion is safe and earns both marks.",
         "common_mistakes": [
           "Expanding with the squares still written as powers and losing track.",
           "Reading 2² as 4² somewhere in the grid."

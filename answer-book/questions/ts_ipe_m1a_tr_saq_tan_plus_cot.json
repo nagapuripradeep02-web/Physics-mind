@@ -200,9 +200,9 @@
             "reciprocal"
           ]
         },
-        "why": "The question asked for cosec, so the final line has to use that word — an equal answer written as a fraction is answering a different question.",
+        "why": "The question asks for the cosec form, so the last line must read 2 cosec 2A — stopping at 2/sin 2A leaves the proof unfinished.",
         "common_mistakes": [
-          "Leaving the answer as 2/sin2A.",
+          "Stopping at 2/sin2A, which leaves the proof unfinished.",
           "Writing sec instead of cosec."
         ],
         "memory_tip": "1/sin is cosec, so 2/sin2A is 2 cosec 2A. Name the reciprocal."

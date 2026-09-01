@@ -58,7 +58,7 @@
         "kind": "equation",
         "label": "Write the chord and the circle",
         "marks": 0,
-        "margin_note": "No mark of its own. The chord is already given as lx + my = 1 — exactly the '= 1' form homogenisation needs — so no clearing is required here, unlike the earlier questions in the run.",
+        "margin_note": "No mark of its own. The chord is already given as lx + my = 1 — exactly the '= 1' form homogenisation needs — so no clearing is required here, unlike a chord given as ax + by = c, which must first be divided by c.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,7 +89,7 @@
             "x squared plus y squared"
           ]
         },
-        "why": "Homogenisation needs the line as (something) = 1, and this question hands it over that way — which is why the whole answer is shorter than its neighbours.",
+        "why": "Homogenisation needs the line as (something) = 1, and this question already gives it that way, so no dividing-through step is needed before the homogenisation.",
         "common_mistakes": [
           "Rearranging the chord unnecessarily and introducing a sign error.",
           "Leaving the circle as x² + y² = a² and forgetting to move a² across."

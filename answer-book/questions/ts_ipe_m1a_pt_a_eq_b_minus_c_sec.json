@@ -170,7 +170,7 @@
         "why": "PLUS cos A gives a cosine half angle; MINUS cos A gives a sine one. That single rule tells you which of the two identities the answer needs, in every question of this family.",
         "common_mistakes": [
           "Using the cosine half-angle form out of habit.",
-          "Missing that the sign changed from the twins."
+          "Missing that the sign changed from the a = (b + c) cos θ question."
         ],
         "memory_tip": "A MINUS in front of cos A calls for the SINE half-angle: 1 − cos A = 2sin²(A/2)."
       },
@@ -180,7 +180,7 @@
         "label": "Take the square root",
         "marks": 1,
         "mark_note": "Conclusion",
-        "margin_note": "The last mark. Same finish as the twins, but the answer carries sin(A/2) over b − c.",
+        "margin_note": "The last mark. Same finish as the a = (b + c) cos θ question, but the answer carries sin(A/2) over b − c.",
         "lines": [
           "∴ tan θ = √(4bc sin²(A/2)/(b−c)²)",
           {
@@ -210,9 +210,9 @@
             "square root"
           ]
         },
-        "why": "Every difference between this answer and its twins traces back to one minus sign in the question — the b − c, the sine, and the tan all follow from it.",
+        "why": "Every difference between this answer and the a = (b + c) cos θ question traces back to one minus sign in the question — the b − c, the sine, and the tan all follow from it.",
         "common_mistakes": [
-          "Writing cos(A/2) by copying the twins.",
+          "Writing cos(A/2) by copying the a = (b + c) cos θ question.",
           "Writing b + c in the denominator."
         ],
         "memory_tip": "Everything under the root is a perfect square. The answer carries sin(A/2) over b − c."

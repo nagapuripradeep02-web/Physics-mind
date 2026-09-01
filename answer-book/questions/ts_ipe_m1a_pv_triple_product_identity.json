@@ -157,7 +157,7 @@
         "marks": 2,
         "mark_note": "L.H.S",
         "margin_note": "Two marks. Cross that result with c, then multiply out. Only the i component is written in full below — j and k follow exactly the same pattern with the letters rotated.",
-        "memory_tip": "Write only the i component in full; j and k follow the same pattern with the letters rotated.",
+        "memory_tip": "Writing all three components in full is correct but long. Write the i component in full and say j and k follow the same pattern with the letters rotated.",
         "lines": [
           "Now cross with c. The i component of (a×b)×c is",
           "(a₃b₁ − a₁b₃)c₃ − (a₁b₂ − a₂b₁)c₂",
@@ -191,7 +191,7 @@
         "why": "Four terms per component is what the right-hand side must also produce. Counting them is the quickest check that nothing has been dropped.",
         "common_mistakes": [
           "Dropping a term when multiplying out.",
-          "Expanding all three components in full and running out of time and space."
+          "Writing the j and k components by copying the i one instead of rotating the letters."
         ]
       },
       {
@@ -232,7 +232,7 @@
             "a one b one c one"
           ]
         },
-        "why": "The cancellation is the heart of the proof: the term that appears in both products is exactly the one that must vanish for the two sides to match.",
+        "why": "The cancellation is the key step of the proof: the term that appears in both products is exactly the one that must cancel for the two sides to match.",
         "common_mistakes": [
           "Treating c·a as a vector.",
           "Missing the cancellation and being left with six terms that will not match."

@@ -124,9 +124,9 @@
             "sixty eight x"
           ]
         },
-        "why": "Knowing the sum and the product of two numbers gives their quadratic equation directly. Checking is quick: 64 + 4 = 68 and √(64 × 4) = √256 = 16.",
+        "why": "Knowing the sum and the product of two numbers gives their quadratic equation directly. Substituting b = 68 − a into ab = 256 reaches the same quadratic and the same pair, but takes more lines. Checking is quick: 64 + 4 = 68 and √(64 × 4) = √256 = 16.",
         "common_mistakes": [
-          "Substituting b = 68 − a and expanding, which is longer and invites a sign slip.",
+          "Writing x² − 68x − 256 = 0, with the wrong sign on the product term.",
           "Giving only one root when the question asks for both numbers."
         ]
       }

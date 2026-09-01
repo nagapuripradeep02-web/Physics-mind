@@ -81,7 +81,7 @@
         },
         "why": "Two rules apply here: the root needs a non-negative inside, and the denominator forbids zero. Together they force strictly positive. Here a is taken to be positive, which is how the question is normally set; if a were negative you would write the same answer with |a| in place of a, so x < −|a| or x > |a|.",
         "common_mistakes": [
-          "Using ≥ 0 and forgetting the denominator, which wrongly includes ±a where the function blows up.",
+          "Using ≥ 0 and forgetting the denominator, which wrongly includes ±a, where the denominator is zero and the function is undefined.",
           "Writing x² > a² and then taking the square root as x > a only, which loses the whole x < −a side."
         ]
       },
@@ -125,7 +125,7 @@
             "open"
           ]
         },
-        "why": "The strict inequality is what excludes ±a, so both brackets are round — the difference from the question where the root stands alone in the numerator.",
+        "why": "The strict inequality is what excludes ±a, so both brackets are round — the difference from the plain √(x² − a²) form, where the root stands alone and zero is allowed.",
         "common_mistakes": [
           "Writing square brackets at ±a, where the denominator is zero.",
           "Giving the inside interval (−a, a), where x² − a² is negative."

@@ -240,7 +240,7 @@
             "one by det A"
           ]
         },
-        "why": "Forgetting the transpose gives a matrix that looks right and is wrong, and nothing later in the question will reveal it. On a symmetric cofactor matrix the transpose changes nothing — which is exactly why the habit has to be written down every time.",
+        "why": "Forgetting the transpose gives a matrix that looks right and is wrong, and nothing later in the question will reveal it. The cofactor matrix here is not symmetric, so the transpose really does change the entries — write that line every time.",
         "common_mistakes": [
           "Using the cofactor matrix directly as the adjoint without transposing.",
           "Dividing only one row by det A instead of the whole matrix.",

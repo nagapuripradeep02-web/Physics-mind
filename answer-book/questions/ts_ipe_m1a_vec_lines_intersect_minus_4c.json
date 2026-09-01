@@ -150,13 +150,13 @@
         "label": "Compare coefficients",
         "marks": 1,
         "mark_note": "Solve for t",
-        "margin_note": "Third mark. Three equations, two unknowns. Adding the a equation to the c equation cancels s outright and leaves t on its own.",
-        "memory_tip": "Three equations, two unknowns. Adding the a equation to the c equation cancels s outright.",
+        "margin_note": "Third mark. Comparing a, b and c gives three equations in two unknowns, and the a and c pair is enough. Adding them cancels s outright and leaves t on its own.",
+        "memory_tip": "Three equations, two unknowns — the a and c pair is enough. Adding them cancels s outright.",
         "lines": [
           "At the intersection (1) = (2). Comparing coefficients:",
           "6t = 2s − 1  ⇒  6t − 2s = −1   …(3)",
-          "8t − 4 = −2s − 3  ⇒  8t + 2s = 1   …(5)",
-          "Adding (3) and (5):  14t = 0  ⇒  t = 0"
+          "8t − 4 = −2s − 3  ⇒  8t + 2s = 1   …(4)",
+          "Adding (3) and (4):  14t = 0  ⇒  t = 0"
         ],
         "recall": {
           "credit": "say_it",
@@ -228,7 +228,7 @@
         "why": "The question named the answer, so this line is the proof landing on it. Reaching some other point would mean an arithmetic slip earlier, not a different valid answer.",
         "common_mistakes": [
           "Stopping at t = 0 without substituting.",
-          "Substituting into the second equation without first finding s."
+          "Putting t = 0 into equation (2), which is written in s, not t."
         ]
       }
     ]

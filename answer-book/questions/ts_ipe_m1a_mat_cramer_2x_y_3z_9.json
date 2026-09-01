@@ -106,7 +106,7 @@
             "constants"
           ]
         },
-        "why": "Cramer's rule is a recipe that reads off this matrix. Getting A right is the only place where the original equations are used, so every later step inherits any mistake made here.",
+        "why": "Cramer's rule is a fixed procedure applied to this matrix. Getting A right is the only place where the original equations are used, so every later step inherits any mistake made here.",
         "common_mistakes": [
           "Writing the coefficients in the order they appear rather than in x, y, z order.",
           "Missing a coefficient of 1 or −1 because the letter is written with no number in front.",

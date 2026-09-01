@@ -133,5 +133,5 @@
       }
     ]
   },
-  "insider_note": "Multiply and divide by sin x so it splits into (e^t − 1)/t and (sin x)/x, both of which go to 1. Trying to expand the exponential instead leads nowhere."
+  "insider_note": "Multiply and divide by sin x so it splits into (e^t − 1)/t and (sin x)/x, both of which go to 1. Expanding the exponential as a series is not on this syllabus — the multiply-and-divide route is the one the examiner expects."
 }

@@ -81,7 +81,7 @@
         "why": "The five means sit between the two given numbers, so the A.P. has 5 + 2 = 7 terms. Once 26 is named as the 7th term, the one unknown d comes out of a single equation.",
         "common_mistakes": [
           "Taking 26 as the 5th term instead of the 7th.",
-          "Writing a + 5d = 26, which counts only the means and leaves out one gap."
+          "Writing a + 5d = 26, which treats 26 as the 6th term. There are six gaps from the 1st term to the 7th, so it is a + 6d."
         ]
       },
       {
@@ -91,7 +91,7 @@
         "marks": 1,
         "mark_note": "Answer",
         "margin_note": "Second mark. All five values must be listed. Ending at 23 and seeing that 23 + 3 = 26 is the check the examiner expects you to have made.",
-        "memory_tip": "Keep adding 3 to 8 until you reach 26; the numbers you pass on the way are the means.",
+        "memory_tip": "Keep adding 3 to 8 until you reach 26. The five numbers between 8 and 26 are the means.",
         "lines": [
           "The means are the 2nd to the 6th terms, got by adding d = 3 each time:",
           "8 + 3 = 11,  11 + 3 = 14,  14 + 3 = 17,  17 + 3 = 20,  20 + 3 = 23",

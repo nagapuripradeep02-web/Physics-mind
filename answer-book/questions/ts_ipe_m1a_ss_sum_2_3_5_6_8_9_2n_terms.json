@@ -128,7 +128,7 @@
         },
         "why": "Both parts share the factor n/2, so the brackets can be added before multiplying, and the 2 inside 6n + 4 cancels with the half.",
         "common_mistakes": [
-          "Putting n = 2n into the sum formula, which counts every term twice.",
+          "Putting 2n into each sum formula as the term count, which totals 4n terms. Each A.P. has only n terms.",
           "Giving the answer in terms of 2n and doubling it a second time."
         ]
       }

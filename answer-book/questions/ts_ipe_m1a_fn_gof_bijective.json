@@ -115,7 +115,7 @@
         "marks": 3,
         "mark_note": "One one",
         "margin_note": "Three of the eight marks. Take two elements with the same image and work backwards through g first, then f. Quote the reason in brackets at each step — the reasons are what the examiner marks.",
-        "memory_tip": "The outer function is g, so peel g off FIRST, then f. Quote the reason in brackets at each step.",
+        "memory_tip": "The outer function is g, so remove g FIRST (using g one one), then f. Quote the reason in brackets at each step.",
         "lines": [
           {
             "text": "(i) To prove gof: A→C is one one",
@@ -157,7 +157,7 @@
         },
         "why": "One one means different inputs never share an output. The clean way to show it is to assume two inputs DO share an output and be forced to conclude they were the same input all along.",
         "common_mistakes": [
-          "Peeling off f before g — the outer function is g, so g comes off first.",
+          "Removing f before g — the outer function is g, so g is removed first.",
           "Writing the chain with no reasons in brackets; the reasons carry the marks.",
           "Claiming gof is one one because f and g are, without the argument."
         ]
@@ -168,8 +168,8 @@
         "label": "Prove gof is onto",
         "marks": 5,
         "mark_note": "Onto",
-        "margin_note": "Five of the eight marks — the bigger half. Start from any c in C and walk backwards: g onto gives you b, then f onto gives you a. Finish by showing that this a really does map to c.",
-        "memory_tip": "Start from any c in C and walk BACKWARDS: g onto gives b, then f onto gives a. Starting at a proves nothing.",
+        "margin_note": "Five of the eight marks — the bigger half. Start from any c in C and go back one step at a time: g onto gives you b, then f onto gives you a. Finish by showing that this a really does map to c.",
+        "memory_tip": "Start from any c in C and go BACK one step at a time: g onto gives b, then f onto gives a. Starting at a proves nothing.",
         "lines": [
           {
             "text": "(ii) To prove gof: A→C is onto",

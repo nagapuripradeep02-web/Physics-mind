@@ -198,7 +198,7 @@
             "render": "katex"
           },
           {
-            "text": "= f(a) \\quad (\\because I_B(b) = b)",
+            "text": "= f(a) \\quad (\\because I_B(y) = y, \\ f(a) \\in B)",
             "render": "katex"
           },
           {

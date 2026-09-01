@@ -195,7 +195,7 @@
             "one zero zero"
           ]
         },
-        "why": "Adding or subtracting one column from another leaves a determinant's value unchanged. So you may buy zeros for free, and zeros are what make the expansion short.",
+        "why": "Adding or subtracting one column from another leaves a determinant's value unchanged. So zeros can be created at no cost, and zeros are what make the expansion short.",
         "common_mistakes": [
           "Doing C₁ − C₂ instead of C₂ − C₁ and getting the sign of the answer wrong.",
           "Changing column 1 as well; the column you subtract BY must stay as it is.",

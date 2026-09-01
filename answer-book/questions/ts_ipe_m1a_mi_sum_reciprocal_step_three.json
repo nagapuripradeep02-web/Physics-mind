@@ -65,7 +65,7 @@
         "kind": "equation",
         "label": "Find the nth term",
         "marks": 0,
-        "margin_note": "Unmarked setup at 4 marks, but never skip it — same shape as the previous question but the denominators step by 3, so both A.P.s have d = 3.",
+        "margin_note": "Unmarked setup at 4 marks, but never skip it — the same shape as the other sum-of-reciprocals proofs, except that the denominators step by 3, so both A.P.s have d = 3.",
         "lines": [
           "1, 4, 7, … is an A.P: a = 1, d = 3 ⇒ 3n − 2",
           "4, 7, 10, … is an A.P: a = 4, d = 3 ⇒ 3n + 1",

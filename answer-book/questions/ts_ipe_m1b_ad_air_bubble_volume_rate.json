@@ -45,7 +45,7 @@
         "label": "Differentiate V = (4/3)πr³ with respect to t",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. An air bubble is a sphere, so V = (4/3)πr³. Here dr/dt is the one that is given and dV/dt is the unknown — the opposite way round to the balloon question.",
+        "margin_note": "First mark. An air bubble is a sphere, so V = (4/3)πr³. Here dr/dt is the one that is given and dV/dt is the unknown, so differentiate first and substitute afterwards.",
         "lines": [
           {
             "text": "Sol:",
@@ -81,13 +81,13 @@
             "half"
           ]
         },
-        "why": "This is the same relation dV/dt = 4πr²(dr/dt) as the balloon question, used in the opposite direction: there dr/dt was the unknown, here dV/dt is.",
+        "why": "The volume depends on the radius and the radius depends on the time, so differentiating V with respect to t brings dr/dt out through the chain rule. That is what turns the given radius rate into the volume rate the question asks for.",
         "common_mistakes": [
           "Using the surface area 4πr² as the volume formula.",
           "Differentiating r³ as r² without the factor 3, which loses the cancellation.",
           "Treating 1/2 cm/sec as a volume rate."
         ],
-        "memory_tip": "Differentiating the sphere's volume gives its surface area, 4πr² — write that one line and both the balloon question and this one are already half done."
+        "memory_tip": "Differentiating the sphere's volume gives its surface area, 4πr² — write that one line and any sphere rate question is already half done."
       },
       {
         "id": "s2_substitute",

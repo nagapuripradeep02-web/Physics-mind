@@ -127,7 +127,7 @@
           "Answering 1 by forgetting the 1/(x + a) factor.",
           "Writing 1/(2a) as 2a by turning the fraction over."
         ],
-        "memory_tip": "The leftover factor at the point is x + a = 2a, so the answer is its reciprocal, 1/(2a). Compare it with the x → 1 case, where the leftover is 2 and the answer is 1/2."
+        "memory_tip": "The leftover factor at the point is x + a = 2a, so the answer is its reciprocal, 1/(2a)."
       }
     ]
   },

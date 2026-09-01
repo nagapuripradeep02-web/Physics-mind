@@ -151,7 +151,7 @@
         "why": "Every point of the line is reached by choosing some t: t = 0 gives the given point, and the rest sweep out the line in both directions.",
         "common_mistakes": [
           "Writing r = ta + b, which swaps the roles.",
-          "Omitting \"t ∈ R\", which leaves the equation describing one point."
+          "Omitting \"t ∈ R\" — the range of the parameter has to be stated for the equation to describe the whole line."
         ]
       }
     ]

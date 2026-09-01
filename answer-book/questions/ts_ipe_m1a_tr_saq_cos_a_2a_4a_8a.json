@@ -165,7 +165,7 @@
             "right hand side"
           ]
         },
-        "why": "The 16 in the answer is the 2⁴ introduced at the start, and the sinA is the one manufactured with it. Nothing was added that did not have to be paid back.",
+        "why": "The 16 in the answer is the 2⁴ introduced at the start, and the sinA is the one introduced with it. Every factor put in at the start is still there in the final answer.",
         "common_mistakes": [
           "Writing 8 sinA by miscounting the 2s.",
           "Leaving the answer as a product."

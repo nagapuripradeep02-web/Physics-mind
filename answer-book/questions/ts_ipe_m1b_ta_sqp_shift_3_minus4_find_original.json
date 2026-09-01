@@ -102,7 +102,7 @@
         "label": "Write the change of axes",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "Second mark, and the one that separates this from its facing question. Going BACK to the original means X = x − h and Y = y − k — the signs are the other way round.",
+        "margin_note": "Second mark, and the one that decides the direction. Going BACK to the original means X = x − h and Y = y − k — the signs are the other way round from a forward shift.",
         "memory_tip": "Going back: X = x − h and Y = y − k. With k = −4 that gives Y = y + 4.",
         "lines": [
           "We take origin (h, k) = (3, −4), then",

@@ -265,7 +265,7 @@
         "memory_tip": "From here it is identical to the vertices-given version: square SA = SB and watch the squares cancel.",
         "lines": [
           "S(x, y) as circumcentre",
-          "Step-4: SA = SB ⇒ (x−2)² + (y−1)² = (x−1)² + (y+2)²",
+          "Step-4: SA = SB ⇒ √((x−2)² + (y−1)²) = √((x−1)² + (y+2)²)",
           "⇒ (x² − 4x + 4) + (y² − 2y + 1) = (x² − 2x + 1) + (y² + 4y + 4)",
           "⇒ −4x − 2y + 5 = −2x + 4y + 5   ⇒   −2x − 6y = 0",
           "⇒ x + 3y = 0  ……(4)"
@@ -292,7 +292,7 @@
             "first equation"
           ]
         },
-        "why": "The line produced is the perpendicular bisector of AB — the book's own panel calls it PB₁.",
+        "why": "The line produced is the perpendicular bisector of AB — every point on it is the same distance from A as from B.",
         "common_mistakes": [
           "Squaring only one side.",
           "Carrying x² terms forward instead of cancelling."
@@ -307,7 +307,7 @@
         "margin_note": "Two marks. The same move on the second pair, giving the second perpendicular bisector.",
         "memory_tip": "The same move on the second pair gives the second bisector.",
         "lines": [
-          "Step-5: SB = SC ⇒ (x−1)² + (y+2)² = (x+2)² + (y−3)²",
+          "Step-5: SB = SC ⇒ √((x−1)² + (y+2)²) = √((x+2)² + (y−3)²)",
           "⇒ (x² − 2x + 1) + (y² + 4y + 4) = (x² + 4x + 4) + (y² − 6y + 9)",
           "⇒ −2x + 4y + 5 = 4x − 6y + 13   ⇒   −6x + 10y − 8 = 0",
           "⇒ 3x − 5y + 4 = 0  ……(5)"
