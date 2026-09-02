@@ -355,7 +355,7 @@ test('a step pill jumps to the right step after a cut switch', async ({ page }) 
 });
 
 test('construction lines survive an instant placement, in every question', async ({ page }) => {
-    test.setTimeout(3_600_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981), at Maths-2A (~2238 entries), and at Maths-2B (2472). Never trim the sweep. The 2472-entry run was MEASURED at 32.8 min against the old 40-min budget — 82% of it, on a budget whose own comment stopped at 2238. One more paper would have timed out, and a timeout is not an assertion: it fails naming nothing. Raised to 60 min, matching the widest sweep below.
+    test.setTimeout(5_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981), at Maths-2A (~2238 entries), at Maths-2B (2472), and at the 2026-27 first-year Physics/Chemistry campaign. Never trim the sweep. COUNTED 2026-09-02: the default build holds 3007 live questions, so the 2472 the last raise scaled from was already 535 stale — Maths-1A/1B (+317) and the syllabus retrofit both landed without a raise. Two runs that day took 41.6 and 41.7 min of the 60-min budget (69%), and the campaign adds 714 cards: ~3721 questions x ~0.9 s = ~56 min, 93% of 60. Raised to 90 min BEFORE the cards land, because 7% headroom was judged too tight the last time it happened.
     // Measured: 90s @111q · 126s @130q · 132s @157q · 162s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -389,7 +389,7 @@ test('construction lines survive an instant placement, in every question', async
 });
 
 test('no two figure labels overlap, in any question', async ({ page }) => {
-    test.setTimeout(3_600_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981), at Maths-2A (~2238 entries), and at Maths-2B (2472). Never trim the sweep. The 2472-entry run was MEASURED at 32.8 min against the old 40-min budget — 82% of it, on a budget whose own comment stopped at 2238. One more paper would have timed out, and a timeout is not an assertion: it fails naming nothing. Raised to 60 min, matching the widest sweep below.
+    test.setTimeout(5_400_000);   // fleet sweep — raised deliberately at 4 units, at 8, at the physics+maths merge (448 questions), at botany (~945), at zoology (~1136), at Chemistry-II (~1814), at Botany-II (~1981), at Maths-2A (~2238 entries), at Maths-2B (2472), and at the 2026-27 first-year Physics/Chemistry campaign. Never trim the sweep. COUNTED 2026-09-02: the default build holds 3007 live questions, so the 2472 the last raise scaled from was already 535 stale — Maths-1A/1B (+317) and the syllabus retrofit both landed without a raise. Two runs that day took 41.6 and 41.7 min of the 60-min budget (69%), and the campaign adds 714 cards: ~3721 questions x ~0.9 s = ~56 min, 93% of 60. Raised to 90 min BEFORE the cards land, because 7% headroom was judged too tight the last time it happened.
     // Measured: 90s @111q · 132s @130q · 132s @157q · 168s @198q; slope ~0.9s/q so 900s holds to ~900 questions.
     await openFirst(page);
     const count = await page.evaluate(() => (window as any).PM_QUESTIONS.length);
@@ -670,7 +670,7 @@ test('every cut of every question totals exactly its own marks', async ({ page }
     // least N x 0.9 s before any evaluate overhead. RAISE THIS when the book grows —
     // never trim the sweep or the waits to fit, because a shortened sweep silently
     // stops checking the questions it drops.
-    test.setTimeout(3_600_000);   // the WIDEST sweep: questions x cuts, and the one master did NOT raise for Botany-II. ~1600 entries with zoology AND Physics-II; 1981 on master; ~2238 with Maths-2A; ~2509 once Maths-2B lands. At the ~1.05 s/entry this file records that is ~39 min for 2A alone against a 40-min budget (+2% headroom) and OVER budget at the combined size — and a timeout is not an assertion, so it fails naming nothing. Raised to 60 min for ~53% headroom. Never trim the sweep.
+    test.setTimeout(7_200_000);   // the WIDEST sweep: questions x cuts, and the one master did NOT raise for Botany-II. ~1600 entries with zoology AND Physics-II; 1981 on master; ~2238 with Maths-2A; 2509 once Maths-2B landed. COUNTED 2026-09-02: 3018 entries today — this sweep was already at ~53 min of its 60-min budget (89%) with nothing new authored. The 2026-27 first-year campaign adds 714 cards, so >=3732 entries x ~1.05 s = ~65 min, OVER the 60-min ceiling. Raised to 120 min. A timeout is not an assertion: it fails naming nothing. Never trim the sweep.
     // Measured: 114s @111q · 144s @130q · 168s @157q · 204s @198q -> slope ~1.05 s/question.
     // Raised to 2_400_000 on 2026-08-29. Two papers landed at once — zoology took
     // the bank to ~1340 and Senior Inter Physics adds 256 more — and this sweep had

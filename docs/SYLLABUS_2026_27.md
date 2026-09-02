@@ -226,10 +226,26 @@ question + the EXTRA lists for the retire decision: `docs/reports/syllabus_2027_
 
 Counts are entries (a printed sub-part = one entry); distinct cards will be fewer after sub-parts and
 the book's own duplicates fold into cards with cuts. The thin physics units 9–13 alone carry 154 of the
-physics gap; Thermodynamics (chemistry-5) has a new Long Answer section the bank never had. The 47
-"topic gone" extras are retire CANDIDATES only — nothing is retired without the founder's confirmation
-(decision 2026-09-02). Order of authoring (founder): physics 14 → physics 9–13 → chemistry 7–10 →
-remaining gaps/re-cuts/promotions → PROBLEM cards last (they need the PROBLEM section engine first).
+physics gap; Thermodynamics (chemistry-5) has a new Long Answer section the bank never had. Order of
+authoring (founder): physics 14 → physics 9–13 → chemistry 7–10 → remaining gaps/re-cuts/promotions →
+PROBLEM cards last.
+
+**THE 47 RETIRE CANDIDATES ARE CLOSED — NOTHING IS RETIRED (founder, 2026-09-02).** The "topic
+present?" column measured absence from ONE commercial digest, not removal from the syllabus, and the
+bank's own data says so three ways. **28 of the 47 already carry `source: "enumerated"`** and render
+as "Predicted — not asked yet" — the new edition not printing them is exactly what that tag already
+claims, so there was nothing to change. **11 were asked on real board papers**, two of them on AP 2026
+and `ts_ipe_p1_rot_vector_product_properties` four times (TS 2017, 2019, 2025 and AP 2026); retiring
+those would delete answers to questions the board still sets, and would drop `backtest:physics` below
+its 100%. The remaining **8** had no paper appearance and no predicted label, and four of them
+(molarity, normality, mass percent, the laws of chemical combination) are NCERT core this digest
+simply stopped printing. Those 8 were **relabelled `source: "enumerated"` with `stars: 0`** — the
+honest state, not deletion; the card stays answerable and its four Chaitanya stars leave the R1
+exposure count. A further **5 rows carrying real appearances but no `source`** were backfilled
+(`ap_2026_paper` / `ts_paper`) so they can never be re-flagged. **A card the current book stops
+printing is a PREDICTED card, not a dead one** — demotion is the mirror of the 48 promotions, and
+`backtest:physics` failure-mode 8 (a paper-matched card may not be `enumerated`) is the gate that
+keeps the two apart. Entry-level retirement stays built and unused; no test covers it.
 
 ### Botany / Zoology — OPEN (names)
 "5-10% cut, one or two chapters" (V6 Velugu). careers360's 2026-27 botany list has 12 units and

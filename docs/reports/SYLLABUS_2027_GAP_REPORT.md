@@ -370,3 +370,33 @@ None. Both of the unit's 2 bank rows are claimed as MATCHED-partial primaries in
 | bank ref | section | question_id | text (≤90) | topic present? |
 |---|---|---|---|---|
 | — | — | — | none — all 5 bank rows matched a book entry | — |
+
+---
+
+## DECISION — the 47 retire candidates are CLOSED, nothing retired (founder, 2026-09-02)
+
+This appendix listed 47 bank rows whose topic the 2026-27 edition stopped printing. None of them is
+retired. The "topic present?" column measures one commercial digest, not the syllabus, and the bank's
+own data settles it:
+
+| group | count | what was done |
+|---|---|---|
+| already `source: "enumerated"` | 28 | nothing — they are already badged "Predicted — not asked yet" |
+| asked on a real board paper | 11 | nothing — retiring them would delete answers the board still sets |
+| no appearance, no predicted label | 8 | relabelled `source: "enumerated"`, `stars: 0` |
+| (of the 11) missing a `source` tag | 5 | backfilled `ap_2026_paper` / `ts_paper` so they are never re-flagged |
+
+Of the 11 asked on real papers, two were on AP 2026 and `ts_ipe_p1_rot_vector_product_properties`
+was asked four times — TS 2017, 2019, 2025 and AP 2026.
+
+The 8 relabelled rows: `ts_ipe_c1_as_configuration_cr_cu`, `ts_ipe_c1_st_molarity_naoh`,
+`ts_ipe_c1_st_normality_oxalic_acid`, `ts_ipe_c1_st_mass_na2co3_for_normality`,
+`ts_ipe_c1_st_mass_percent_solute`, `ts_ipe_c1_td_lattice_enthalpy`,
+`ts_ipe_p1_msl_velocity_direction_other_than_acceleration`, `ts_ipe_p1_rot_torque_numerical_origin`.
+Four carried Chaitanya stars (2, 2, 2, 2 and 1); zeroing them removes those rows from the R1
+exposure `check:originality` counts.
+
+**The rule this establishes: a card the current book stops printing is a PREDICTED card, not a dead
+one.** Demotion is the mirror of a promotion. `backtest:physics` failure-mode 8 — a card matched to a
+real paper may not sit on an `enumerated` row — is the gate that keeps a demotion from swallowing a
+question the board actually asks.

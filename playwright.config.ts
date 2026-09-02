@@ -20,6 +20,10 @@ export default defineConfig({
   // physics+maths merge took dist to ~4 MB (2026-08-23; always passed in
   // isolation). Raised per the recorded protocol — the fleet sweeps set their
   // own longer test.setTimeout and are unaffected by this default.
+  // MEASURED 2026-09-02, before raising it again on the theory that dist had
+  // outgrown it: dist/index.html is now 20.2 MB, 5x the size this comment was
+  // written against, and a cold file:// goto still takes 1.4-1.6 s. Bundle size
+  // is not what this timeout guards, so it stays at 60s. Measure before raising.
   timeout: 60_000,
   expect: { timeout: 5_000 },
   use: {
