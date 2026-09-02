@@ -176,3 +176,79 @@ not advertise itself), so this line stays the reliable path.
 The old habit was to DELETE team rows from `ab_devices` (recorded twice in PROGRESS.md). Stop:
 deleting loses the entitlement and progress rows that hang off the device, and it cannot be undone.
 Mark instead — it is reversible, and it re-stamps the device's history in `ab_events`.
+
+## 8. The one-time cleanup (founder-gated — run ONCE, after the deploy)
+
+Written 2026-09-02 with the counts measured that day. **Run the dry-run first and compare;** if the
+numbers have moved, the historical set has changed and the lists below need re-deriving.
+
+### 8a. Dry run — see it before you change it
+
+```sql
+select actor, session_id, count(*) as rows, min(created_at)::date as first, max(created_at)::date as last
+  from ai_usage_log
+ where task_type = 'answerbook_vidi_chat'
+ group by 1, 2 order by 3 desc;
+```
+Expected on 2026-09-02: 80 rows, all `answerbook_student`, across 27 session ids.
+
+### 8b. Label the automated probes
+
+**By an explicit list, never by a regex on the session id.** The page mints
+`'ab_' + Math.random().toString(36).slice(2,10) + …`, and `toString(36)` is **not fixed width** —
+`^ab_[a-z0-9]{12}$` matches all nine of today's browser sessions but would eventually relabel a real
+student as a probe, corrupting the one number this exercise exists to produce.
+
+```sql
+update ai_usage_log
+   set actor = 'answerbook_probe'
+ where task_type = 'answerbook_vidi_chat'
+   and actor = 'answerbook_student'          -- idempotent: a re-run is a no-op
+   and session_id in (
+     'shakedown', 'oob_live_probe', 'senior_audit_probe', 'persona_verify', 'preflight',
+     'probe', 'final', 'live3', 'livecheck_deploy', 'livecheck-1', 'deploy_verify',
+     'deployverify', 'deploy-verify', 'deploy-verify-2', 'deploy-verify-2b',
+     'deploy-verify-2b-oob', 'verify-slice-live', 'verify-stepid-live'
+   );
+```
+Expected: **45 rows.**
+
+### 8c. Label the team's own browser sessions
+
+An `ip_hash` is a household or a CGNAT range, **not a person** — so read the list before running it,
+and drop any session you do not recognise as yours.
+
+```sql
+-- look first
+select session_id, count(*), min(created_at)::date, max(created_at)::date
+  from ai_usage_log
+ where task_type = 'answerbook_vidi_chat' and actor = 'answerbook_student'
+   and metadata->>'ip_hash' in (select ip_hash from ab_devices where is_internal)
+ group by 1 order by 2 desc;
+
+-- then, for the ones you confirm are yours:
+update ai_usage_log set actor = 'answerbook_team'
+ where task_type = 'answerbook_vidi_chat' and actor = 'answerbook_student'
+   and session_id in ( /* the confirmed ids */ );
+```
+Expected on 2026-09-02: **10 rows**, leaving **25** as genuine students.
+
+### 8d. Devices that share a network with a probe session
+
+Founder-approved 2026-09-02. Reversible from the dashboard with one click, so a wrongly caught
+student is a small, visible mistake rather than a silent one.
+
+```sql
+-- count first (expected 14)
+select count(*) from ab_devices
+ where not is_internal
+   and ip_hash in (select distinct metadata->>'ip_hash' from ai_usage_log
+                    where task_type = 'answerbook_vidi_chat' and actor = 'answerbook_probe');
+
+update ab_devices set is_internal = true
+ where not is_internal
+   and ip_hash in (select distinct metadata->>'ip_hash' from ai_usage_log
+                    where task_type = 'answerbook_vidi_chat' and actor = 'answerbook_probe');
+```
+
+**Never `delete` from `ab_devices`** — it takes the entitlement and progress rows with it. Mark.
