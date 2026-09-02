@@ -1,0 +1,81 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pet_ai_ml_other_field",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Physics of Emerging Technologies"
+  },
+  "chapter": "Physics of Emerging Technologies",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name another field of physics where AI and machine learning speed up discovery.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The field",
+      "marks": 1
+    },
+    {
+      "label": "The benefit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 14 Very Short Answer Question 2 (printed p.143). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Chapter 14 is new to the 2026-27 syllabus and no board has examined it, so there is no exam history to cite. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: predicting a material's properties with a trained model before it is synthesised is an established materials-science method, and particle physics is confirmed as a valid alternative field."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physics of Emerging Technologies · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_field",
+        "kind": "text",
+        "label": "The field",
+        "marks": 1,
+        "mark_note": "Field",
+        "lines": [
+          "Materials science.",
+          "Trained models predict how a new",
+          "material will behave before it is made."
+        ],
+        "why": "Materials science is applied physics of materials: a trained model can predict a candidate material's properties before the material exists. Particle physics is a second valid field, since AI is used to sift particle-collision data.",
+        "common_mistakes": [
+          "Naming astrophysics again instead of a different field — the question asks for another field.",
+          "Naming a field where these methods are not actually used, or repeating astrophysics, which the question excludes."
+        ],
+        "memory_tip": "A second field: materials science, where a trained model predicts a property first.",
+        "margin_note": "Particle physics is also accepted if the student names it clearly."
+      },
+      {
+        "id": "s2_benefit",
+        "kind": "boxed_final",
+        "label": "The benefit",
+        "marks": 1,
+        "mark_note": "Benefit",
+        "lines": [
+          "This saves time and cost, because only",
+          "the promising materials are made and",
+          "tested in the laboratory."
+        ],
+        "why": "Predicting a material's properties first means the wasted step of synthesising and testing every candidate material is avoided.",
+        "common_mistakes": [
+          "Not saying why the prediction is useful — only naming the field earns the field mark, not the benefit mark.",
+          "Describing a benefit that is not linked to prediction before synthesis."
+        ],
+        "memory_tip": "Predict first, make only the promising ones — that is the saving.",
+        "margin_note": "State the saving in cost or time to earn this mark."
+      }
+    ]
+  }
+}

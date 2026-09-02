@@ -1,0 +1,81 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pet_walking_robot_newton_laws",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Physics of Emerging Technologies"
+  },
+  "chapter": "Physics of Emerging Technologies",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Whose laws are applied to keep a walking robot balanced?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The second law",
+      "marks": 1
+    },
+    {
+      "label": "The third law",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 14 Very Short Answer Question 4 (printed p.143). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Chapter 14 is new to the 2026-27 syllabus and no board has examined it, so there is no exam history to cite. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Newton's second law (force and torque at each joint) and Newton's third law (the ground's reaction force) are confirmed as the two laws that govern a walking robot's balance."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physics of Emerging Technologies · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_second_law",
+        "kind": "text",
+        "label": "The second law",
+        "marks": 1,
+        "mark_note": "Second law",
+        "lines": [
+          "Newton's laws of motion are applied.",
+          "The second law gives the force and",
+          "torque needed at each joint to balance."
+        ],
+        "why": "Newton's second law, force equals mass times acceleration and torque equals moment of inertia times angular acceleration, sets the force and torque a joint motor must produce to keep the robot balanced.",
+        "common_mistakes": [
+          "Naming only 'Newton's laws' without identifying the second law's role.",
+          "Writing the first law, which is true but does not give the joint force and torque."
+        ],
+        "memory_tip": "Second law: force and torque at each joint, from force equals mass times acceleration.",
+        "margin_note": "Both the name Newton and the joint force-and-torque role must appear."
+      },
+      {
+        "id": "s2_third_law",
+        "kind": "boxed_final",
+        "label": "The third law",
+        "marks": 1,
+        "mark_note": "Third law",
+        "lines": [
+          "The third law explains the reaction",
+          "force the ground pushes back with,",
+          "on each foot the robot places down."
+        ],
+        "why": "By Newton's third law, the ground pushes back on the robot's foot with a force equal and opposite to the force the foot presses down with. This reaction force supports the robot's weight, and the robot stays balanced while that reaction line and its centre of mass stay over the support area of the foot.",
+        "common_mistakes": [
+          "Leaving out the ground reaction force and naming only the second law.",
+          "Saying the forces are equal without naming them as an action-reaction pair."
+        ],
+        "memory_tip": "Third law: the ground pushes back exactly as hard as the foot presses down.",
+        "margin_note": "Naming the action-reaction pair earns this mark even without the word ground."
+      }
+    ]
+  }
+}

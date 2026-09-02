@@ -231,7 +231,8 @@
           "number": 1,
           "stars": 1,
           "text": "The states of rest and motion are relative. Explain.",
-          "question_id": "ts_ipe_p1_msl_rest_and_motion_relative"
+          "question_id": "ts_ipe_p1_msl_rest_and_motion_relative",
+          "source": "ap_2026_paper"
         },
         {
           "ref": "vsaq2",
@@ -287,9 +288,10 @@
           "ref": "saq3",
           "section": "SAQ",
           "number": 3,
-          "stars": 2,
+          "stars": 0,
           "text": "Can the velocity of an object be in a direction other than the direction of acceleration of the object? Explain.",
-          "question_id": "ts_ipe_p1_msl_velocity_direction_other_than_acceleration"
+          "question_id": "ts_ipe_p1_msl_velocity_direction_other_than_acceleration",
+          "source": "enumerated"
         },
         {
           "ref": "saq4",
@@ -313,7 +315,8 @@
           "number": 6,
           "stars": 0,
           "text": "A parachutist flying in an aeroplane jumps when it is at a height of 3 km above the ground. He opens his parachute when he is about 1 km above the ground. Describe his motion.",
-          "question_id": "ts_ipe_p1_msl_parachutist_motion"
+          "question_id": "ts_ipe_p1_msl_parachutist_motion",
+          "source": "ts_paper"
         },
         {
           "ref": "saq7",
@@ -576,7 +579,8 @@
           "number": 9,
           "stars": 0,
           "text": "A man walks on a straight road from his home to a market 2.5 km away with a speed of 5 km/h. Finding the market closed, he instantly turns and walks back home with a speed of 7.5 km/h. What is (a) the magnitude of the average velocity and (b) the average speed of the man over the interval 0 to 50 min?",
-          "question_id": "ts_ipe_p1_mp_walk_avg_velocity_speed"
+          "question_id": "ts_ipe_p1_mp_walk_avg_velocity_speed",
+          "source": "ts_paper"
         },
         {
           "ref": "vsaq10",
@@ -747,7 +751,8 @@
           "number": 5,
           "stars": 1,
           "text": "Why is pulling the lawn roller preferred to pushing it?",
-          "question_id": "ts_ipe_p1_lom_pulling_vs_pushing_roller"
+          "question_id": "ts_ipe_p1_lom_pulling_vs_pushing_roller",
+          "source": "ts_paper"
         },
         {
           "ref": "saq6",
@@ -1195,7 +1200,8 @@
           "number": 2,
           "stars": 3,
           "text": "Define vector product. Explain the properties of a vector product with two examples.",
-          "question_id": "ts_ipe_p1_rot_vector_product_properties"
+          "question_id": "ts_ipe_p1_rot_vector_product_properties",
+          "source": "ts_paper"
         },
         {
           "ref": "saq3",
@@ -1331,7 +1337,8 @@
           "number": 8,
           "stars": 0,
           "text": "Find the torque of the force 7i + 3j − 5k about the origin. The force acts on a particle whose position vector is i − j + k.",
-          "question_id": "ts_ipe_p1_rot_torque_numerical_origin"
+          "question_id": "ts_ipe_p1_rot_torque_numerical_origin",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq9",
@@ -2248,7 +2255,8 @@
           "number": 1,
           "stars": 0,
           "text": "How do artificial intelligence and machine learning help scientists in astrophysics?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_ai_ml_in_astrophysics"
         },
         {
           "ref": "vsaq2",
@@ -2256,7 +2264,8 @@
           "number": 2,
           "stars": 0,
           "text": "Name one field of physics other than astrophysics where artificial intelligence and machine learning speed up discovery.",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_ai_ml_other_field"
         },
         {
           "ref": "vsaq3",
@@ -2264,7 +2273,8 @@
           "number": 3,
           "stars": 0,
           "text": "Name two branches of physics that are combined to build a robot.",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_physics_areas_in_robots"
         },
         {
           "ref": "vsaq4",
@@ -2272,7 +2282,8 @@
           "number": 4,
           "stars": 0,
           "text": "A four-legged walking robot keeps its balance using the principles of dynamics. Whose laws of motion are applied to work out the forces and torques it needs?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_walking_robot_newton_laws"
         },
         {
           "ref": "vsaq5",
@@ -2280,7 +2291,8 @@
           "number": 5,
           "stars": 0,
           "text": "Why do materials such as carbon nanotubes show very different properties at the nanoscale?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_nanoscale_property_change"
         },
         {
           "ref": "vsaq6",
@@ -2288,7 +2300,8 @@
           "number": 6,
           "stars": 0,
           "text": "Give one example of the use of nanotechnology in modern technology.",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_nanotechnology_example"
         },
         {
           "ref": "vsaq7",
@@ -2296,7 +2309,8 @@
           "number": 7,
           "stars": 0,
           "text": "Which property of a qubit lets a quantum computer do more than a classical bit?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_qubit_superposition"
         },
         {
           "ref": "vsaq8",
@@ -2304,7 +2318,8 @@
           "number": 8,
           "stars": 0,
           "text": "What is meant by the term quantum supremacy (quantum advantage)?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_quantum_supremacy"
         },
         {
           "ref": "vsaq9",
@@ -2312,7 +2327,8 @@
           "number": 9,
           "stars": 0,
           "text": "Which natural process in the universe does fusion energy copy?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_fusion_copies_stars"
         },
         {
           "ref": "vsaq10",
@@ -2320,7 +2336,8 @@
           "number": 10,
           "stars": 0,
           "text": "What is graphene? Why is it called a super material?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_graphene_super_material"
         },
         {
           "ref": "vsaq11",
@@ -2328,7 +2345,8 @@
           "number": 11,
           "stars": 0,
           "text": "Name two possible applications of graphene.",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_graphene_applications"
         },
         {
           "ref": "vsaq12",
@@ -2336,7 +2354,8 @@
           "number": 12,
           "stars": 0,
           "text": "What is the main function of the sunshield on a space telescope such as the James Webb Space Telescope, and which branch of physics does it relate to?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_space_telescope_sunshield"
         },
         {
           "ref": "vsaq13",
@@ -2344,7 +2363,8 @@
           "number": 13,
           "stars": 0,
           "text": "Which physics principle is the basis of magnetic resonance imaging (MRI)? How does it help doctors?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_mri_principle"
         },
         {
           "ref": "vsaq14",
@@ -2352,7 +2372,8 @@
           "number": 14,
           "stars": 0,
           "text": "Which property of light lets an optical fibre carry light over a long distance with very little loss?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_optical_fibre_light_property"
         },
         {
           "ref": "vsaq15",
@@ -2360,7 +2381,8 @@
           "number": 15,
           "stars": 0,
           "text": "Name two technologies based on photonics.",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_photonics_technologies"
         }
       ]
     },
@@ -2447,7 +2469,8 @@
           "number": 10,
           "stars": 0,
           "text": "Write the electronic configuration of Cr and Cu.",
-          "question_id": "ts_ipe_c1_as_configuration_cr_cu"
+          "question_id": "ts_ipe_c1_as_configuration_cr_cu",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq11",
@@ -3062,25 +3085,28 @@
           "ref": "vsaq7",
           "section": "VSAQ",
           "number": 7,
-          "stars": 2,
+          "stars": 0,
           "text": "Calculate the molarity of NaOH in the solution prepared dissolving 4gr in enough water to from 250 ml of the solution?",
-          "question_id": "ts_ipe_c1_st_molarity_naoh"
+          "question_id": "ts_ipe_c1_st_molarity_naoh",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq8",
           "section": "VSAQ",
           "number": 8,
-          "stars": 2,
+          "stars": 0,
           "text": "Calculate the normality of oxalic acid solution containing 6.3 gr H2C2O4.2H2O in 500 ml of solution?",
-          "question_id": "ts_ipe_c1_st_normality_oxalic_acid"
+          "question_id": "ts_ipe_c1_st_normality_oxalic_acid",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq9",
           "section": "VSAQ",
           "number": 9,
-          "stars": 2,
+          "stars": 0,
           "text": "Calculate the mass of Na2CO3 required to prepare 250 ml of 0.5 N solution.",
-          "question_id": "ts_ipe_c1_st_mass_na2co3_for_normality"
+          "question_id": "ts_ipe_c1_st_mass_na2co3_for_normality",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq10",
@@ -3094,9 +3120,10 @@
           "ref": "vsaq11",
           "section": "VSAQ",
           "number": 11,
-          "stars": 2,
+          "stars": 0,
           "text": "A solution is prepared by adding 2 gr of a substance A to 18 gr H2O. Calculate the mass percentage of solute?",
-          "question_id": "ts_ipe_c1_st_mass_percent_solute"
+          "question_id": "ts_ipe_c1_st_mass_percent_solute",
+          "source": "enumerated"
         },
         {
           "ref": "vsaq12",
@@ -3414,9 +3441,10 @@
           "ref": "vsaq13",
           "section": "VSAQ",
           "number": 13,
-          "stars": 1,
+          "stars": 0,
           "text": "Define lattice enthalpy.",
-          "question_id": "ts_ipe_c1_td_lattice_enthalpy"
+          "question_id": "ts_ipe_c1_td_lattice_enthalpy",
+          "source": "enumerated"
         },
         {
           "ref": "saq1",
