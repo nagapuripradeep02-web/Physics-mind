@@ -749,6 +749,7 @@
       // addEventListener here would stack a new listener per render and fire
       // renderCatalog N times on the Nth change.
       subjSel.onchange = function () {
+        Vidi.log('cat_subject', { subject: subjSel.value });
         catFilter.subject = subjSel.value;
         // Changing subject invalidates the chapter: a physics chapter is not in
         // the chemistry list, and a stale key would filter everything to zero.
@@ -793,7 +794,10 @@
       ct.className = 'ct';
       ct.textContent = String(n);
       b.appendChild(ct);
-      b.addEventListener('click', function () { catFilter.qtype = t; renderCatalog(); });
+      b.addEventListener('click', function () {
+        Vidi.log('cat_qtype', { qtype: t });
+        catFilter.qtype = t; renderCatalog();
+      });
       chipRow.appendChild(b);
     });
 
@@ -861,6 +865,7 @@
       unitSel.value = catFilter.unit;
       unitSel.className = 'cat-select' + (catFilter.unit !== 'ALL' ? ' on' : '');
       unitSel.onchange = function () {
+        Vidi.log('cat_unit', { unit: unitSel.value });
         catFilter.unit = unitSel.value;
         renderCatalog();
       };
@@ -955,6 +960,13 @@
           var authored = e.question_id !== undefined;
           var card = document.createElement(authored ? 'a' : 'div');
           card.className = 'cat-card' + (authored ? '' : ' soon');
+          // A tap on a card we have NOT written yet = demand, and the only
+          // signal that says which question to author next.
+          if (!authored) {
+            card.addEventListener('click', function () {
+              Vidi.log('soon_tap', { unit: unitKey(u), ref: e.section + ' ' + e.number });
+            });
+          }
           var ec = entryCut(e);
           if (authored) {
             card.setAttribute('href', '#/q/' + encodeURIComponent(e.question_id) +
@@ -1118,12 +1130,38 @@
       }, 1100);
     };
     no.onclick = function () {
+      Vidi.log('ask_answer', { qid: qid, k: kind, ok: false });
       ov.hidden = true;
       askConsumed = true; route();
     };
   }
 
+  /** #/notastudent/<word> — the team's own browsers say "do not count me".
+      Reuses the ask overlay's DOM, so shell.html needs no new markup. With no
+      staff word baked in (every offline build) `want` is '' and the route can
+      only ever answer "not valid". */
+  function showTeamMark(word, off) {
+    var want = (window.PM_STAFF_WORD || '').trim();
+    var ok = !!want && word === want;
+    if (ok) Vidi.markInternal(!off);
+    var ov = $('askOverlay'), yes = $('askYes'), no = $('askNo');
+    $('askText').textContent = !ok
+      ? 'That link is not valid.'
+      : (off ? 'This device is a student again. Its visits will be counted.'
+             : 'This device is marked as team. Its visits will not be counted as a student.');
+    yes.textContent = 'Open the book';
+    yes.hidden = false; no.hidden = true;
+    ov.hidden = false;
+    yes.onclick = function () { ov.hidden = true; no.hidden = false; location.hash = '#/'; };
+    no.onclick = null;
+    showCatalog();
+  }
+
   function route() {
+    // The team mark is an admin action, not reading — it resolves ABOVE the
+    // leave-question ask, so marking a phone never turns into a stage tick.
+    var ns = location.hash.match(/^#\/notastudent\/([^\/]+)(?:\/(off))?$/);
+    if (ns) { showTeamMark(decodeURIComponent(ns[1]), !!ns[2]); return; }
     if (askGuard()) return;
     // Subject keys carry underscores (mathematics_1b-3) — the old [a-z]+ never
     // matched a Maths-1B link. The optional trailing year is the post-renumbering
@@ -1735,6 +1773,9 @@
       finishCurrent = null;
       stepIndex = next;
       marksEarned += steps[next].marks;
+      // Depth of read: i of n. The single most useful number on the dashboard —
+      // it separates "opened it" from "actually read it".
+      Vidi.log('advance', { qid: question.question_id, step: steps[next].id, i: next + 1, n: steps.length });
       if (stepIndex === steps.length - 1) {
         completed = true;
         placeTotalBlock();
@@ -1782,6 +1823,7 @@
   }
 
   function goToIndex(i) {
+    Vidi.log('step_jump', { qid: question.question_id, i: i + 1 });
     if (i === stepIndex + 1 && !revealing) { advance(); return; }
     renderUpTo(i, true);
   }
@@ -1790,10 +1832,20 @@
 
   notebook.addEventListener('click', advance);
   btnNext.addEventListener('click', advance);
-  $('btnRestart').addEventListener('click', function () { renderUpTo(-1, false); });
+  $('btnRestart').addEventListener('click', function () {
+    Vidi.log('restart', { qid: question.question_id });
+    renderUpTo(-1, false);
+  });
   $('doorBack').addEventListener('click', function () { Door.show(); });
+  var searchLogTimer = null;
   $('catSearch').addEventListener('input', function () {
     catFilter.search = this.value.trim().toLowerCase();
+    // Debounced: what a student SEARCHED FOR is the signal, not each keystroke.
+    var q = catFilter.search;
+    if (searchLogTimer) clearTimeout(searchLogTimer);
+    searchLogTimer = setTimeout(function () {
+      if (q) Vidi.log('cat_search', { q: q.slice(0, 60) });
+    }, 900);
     renderCatalog();
   });
   document.addEventListener('keydown', function (e) {
@@ -2514,6 +2566,30 @@
       lsSet('pm_vidi_session', session);
     }
 
+    // One id per TAB, so two tabs are two visits but one device. sessionStorage
+    // can throw under file://, so it gets the same try/catch care as lsGet.
+    var visit = '';
+    try { visit = sessionStorage.getItem('pm_visit') || ''; } catch (e) {}
+    if (!visit) {
+      visit = 'v_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+      try { sessionStorage.setItem('pm_visit', visit); } catch (e) {}
+    }
+
+    // ── who is asking ───────────────────────────────────────────────────────
+    // The team opens this book many times a day on their own phones and
+    // laptops, and every one of those visits used to count as a student.
+    // #/notastudent/<word> writes pm_internal once per browser; the flag then
+    // rides every event batch, every sync push and every Vidi ask, and the
+    // server makes it stick to the device.
+    function isInternal() { return lsGet('pm_internal') === '1'; }
+    /** true = marked team, false = explicitly un-marked, null = never said.
+        The tri-state matters on sync: "never said" must not clear a device that
+        another browser of the same person already marked. */
+    function internalClaim() {
+      var v = lsGet('pm_internal');
+      return v === '1' ? true : (v === '0' ? false : null);
+    }
+
     // Telemetry — fire-and-forget; silently dropped with no base (offline gate).
     var evq = [];
     function log(type, data) {
@@ -2523,18 +2599,75 @@
       evq.push(e);
       if (evq.length >= 10) flush();
     }
+    /** Bounded: a dead endpoint must never grow memory for a whole session. */
+    function requeue(batch) { evq = batch.concat(evq).slice(-200); }
     function flush() {
       if (!VIDI_BASE || !evq.length) return;
       var batch = evq.splice(0, evq.length);
+      var body = { type: 'events', session_id: session, visit_id: visit, internal: isInternal(), events: batch };
+      // Sync owns the device id and mints one only when it has a base itself,
+      // so the offline build stays exactly as inert as it was.
+      if ((window.PM_SYNC_BASE || '').trim() && typeof Sync !== 'undefined') body.device_id = Sync.deviceId();
       try {
         fetch(VIDI_BASE, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ type: 'events', session_id: session, events: batch })
-        }).catch(function () {});
-      } catch (e) {}
+          body: JSON.stringify(body), keepalive: true
+        }).then(function (r) { if (!r.ok) requeue(batch); })
+          .catch(function () { requeue(batch); });
+      } catch (e) { requeue(batch); }
     }
+
+    /** #/notastudent/<word> lands here. Stored beside pm_device_id, so a device
+        id minted later in this browser inherits it; the sync push carries it to
+        the server, where it sticks to the device. */
+    function markInternal(on) {
+      lsSet('pm_internal', on ? '1' : '0');
+      log('team_mark', { on: !!on });
+      flush();
+      syncTouch();
+    }
+
+    // Visible seconds only — a tab left open behind another window is not being
+    // read. Every listener below returns early without a base, so the offline
+    // build still makes zero requests (the suite asserts exactly that).
+    var visSec = 0, dwellSeq = 0;
+    var visSince = document.visibilityState === 'visible' ? Date.now() : 0;
+    function visNow() { return visSec + (visSince ? Math.round((Date.now() - visSince) / 1000) : 0); }
     document.addEventListener('visibilitychange', function () {
-      if (document.visibilityState === 'hidden') flush();
+      if (document.visibilityState === 'hidden') { visSec = visNow(); visSince = 0; flush(); }
+      else if (!visSince) { visSince = Date.now(); }
+    });
+    setInterval(function () {
+      if (!VIDI_BASE || !visSince) return;
+      dwellSeq++;
+      log('dwell', { seq: dwellSeq, vis_s: visNow() });
+    }, 60000);
+    window.addEventListener('pagehide', function () {
+      if (VIDI_BASE) log('page_leave', { after_s: visNow() });
+      flush();
+    });
+
+    // Errors on a student's phone are invisible to us otherwise. Capped, so a
+    // loop cannot bill one batch per frame.
+    var errN = 0;
+    function onErr(kind, msg, src, line) {
+      if (!VIDI_BASE || errN >= 10) return;
+      errN++;
+      log('err', {
+        kind: kind, msg: String(msg || '').slice(0, 200),
+        src: String(src || '').slice(0, 120), line: line || 0
+      });
+    }
+    window.addEventListener('error', function (ev) {
+      if (ev && ev.target && ev.target !== window && !ev.message) {
+        onErr('resource', (ev.target.src || ev.target.href || ''), ev.target.tagName || '');
+        return;
+      }
+      onErr('js', ev && ev.message, ev && ev.filename, ev && ev.lineno);
+    }, true);
+    window.addEventListener('unhandledrejection', function (ev) {
+      var r = ev && ev.reason;
+      onErr('rejection', r && (r.message || r));
     });
 
     return {
@@ -2627,7 +2760,11 @@
         return changed;
       },
       log: log,
-      flush: flush
+      flush: flush,
+      visit: visit,
+      internal: isInternal,
+      internalClaim: internalClaim,
+      markInternal: markInternal
     };
   })();
 
@@ -3215,7 +3352,10 @@
         device_id: deviceId(),
         stages: rows(),
         plan: plan || null,
-        plan_saved_at: (plan && plan.saved_at) || null
+        plan_saved_at: (plan && plan.saved_at) || null,
+        // null = this browser never said; true/false = #/notastudent[/off].
+        // Sent every push so the flag survives a cleared server-side row.
+        internal: Vidi.internalClaim()
       };
       var done = function () {
         inFlight = false;
@@ -3318,6 +3458,8 @@
         the hash, which capture() strips before anything else reads the URL. */
     function signIn() {
       if (!BASE) return;
+      Vidi.log('sign_in_start', {});
+      Vidi.flush();               // the page leaves for Google in a moment
       var back = location.origin + location.pathname;
       location.href = BASE + '/auth/v1/authorize?provider=google&redirect_to=' + encodeURIComponent(back);
     }
@@ -3347,6 +3489,7 @@
       });
       if (!p.access_token) return false;
       s(K_AT, p.access_token);
+      Vidi.log('sign_in_done', {});
       if (p.refresh_token) s(K_RT, p.refresh_token);
       try {
         history.replaceState(null, '', location.pathname + location.search + '#/');
@@ -3536,6 +3679,8 @@
       // a successful payment lands on the catalog rather than trying to reopen
       // question index null.
       pendingUnlock = (i === null || i === undefined) ? null : { i: i, cutKey: cutKey };
+      Vidi.log('pay_start', { signed_in: Auth.signedIn() });
+      Vidi.flush();             // Razorpay takes the page from here
       sheet('Opening the payment page…', []);
       var body = { device_id: Sync.deviceId() };
       if (Auth.signedIn()) body.access_token = Auth.token();
@@ -3670,6 +3815,7 @@
     }
 
     function showLocked(i, cutKey, k) {
+      Vidi.log('lock_wall', { unit: k });
       var buttons = [];
       // ONE chapter per subject is free for EVERY student since 2026-08-27. The
       // old copy here said "you have already used your free chapter", which under
@@ -3703,6 +3849,7 @@
     }
 
     function claimFree(i, cutKey, k) {
+      Vidi.log('unlock_free', { unit: k });
       sheet('Opening your free chapter…', []);
       post({ unit_key: k, claim_free: true }, function (out) {
         adoptStanding(out);
@@ -3964,6 +4111,7 @@
         hashchange, so the catalog is shown once — here — and not again by route(). */
     function choose(group, year, stream) {
       s(KEY, JSON.stringify({ group: group, year: year, stream: stream || null, at: new Date().toISOString() }));
+      Vidi.log('door_choose', { group: group, year: year, stream: stream || null });
       applyYearLens(stream || null);
       if (location.hash && location.hash !== '#/') {
         try { history.replaceState(null, '', location.pathname + location.search + '#/'); }
@@ -5398,6 +5546,16 @@
         plan_status: Plan.modelStatus(home ? null : question.question_id) || undefined,
         tutor_context: home ? buildHomeContext() : buildVidiContext()
       };
+      // WHO is asking — for the cost ledger only. ai_usage_log has no device
+      // column, so a team ask and a student ask were the same row and every
+      // cost-per-student number was wrong. Sync owns the device id and mints
+      // one only when it has a base of its own, so the offline build still
+      // stores nothing — the suite asserts pm_device_id stays null.
+      // `internal` is sent ONLY when true: no claim is the default, and the
+      // server treats anything but a literal true as no claim.
+      if ((window.PM_SYNC_BASE || '').trim() && typeof Sync !== 'undefined') body.device_id = Sync.deviceId();
+      if (Vidi.internal()) body.internal = true;
+      Vidi.log('vidi_ask', { len: txt.length, home: home });
       postAsk(body, 1).then(function (res) {
         if (g !== gen) return;
         typing.remove();
@@ -5459,6 +5617,7 @@
     }
 
     function minWin() {
+      Vidi.log('vidi_close', { view: currentView });
       winOpen = false;
       winEl().hidden = true;
       // the pill returns wherever the window itself lives (notebook + catalog)
@@ -5499,6 +5658,7 @@
         rec.maxAlternatives = 1;
         active = true;
         btn.classList.add('rec');
+        Vidi.log('vidi_mic', {});
         rec.onresult = function (ev) {
           var t = ev.results && ev.results[0] && ev.results[0][0] ? ev.results[0][0].transcript : '';
           if (t) { $('vidiInput').value = t; vidiAsk(); }
@@ -5595,7 +5755,11 @@
         // student MEETS Vidi. After that, respect what they chose.
         var w = Vidi.getWin();
         if (!w || w.open) openWin(); else minWin();
-        Vidi.log('open_q', { qid: question.question_id, cut: cut.key });
+        Vidi.log('open_q', {
+        qid: question.question_id, cut: cut.key,
+        unit: (question.subject || 'physics') + '-' + question.unit.number,
+        subject: question.subject || 'physics'
+      });
       },
       /** View change (catalog / exam-eve). Keeps the strip current, and on the
           catalog pulses the pill until the intro has been seen. */
@@ -5606,6 +5770,7 @@
       /** The fab on the CATALOG opens the home conversation (plan status /
           onboarding). On the notebook it re-opens the question thread as-is. */
       openHome: function () {
+        Vidi.log('vidi_open', { view: currentView });
         openWin();
         if (currentView !== 'notebook') renderHome();
       },
@@ -5857,6 +6022,10 @@
     // The email arrives a moment later; repaint so the chip shows the real
     // initial rather than the placeholder dot.
     Auth.loadProfile(function () { Auth.paintChip(); });
+    // Read BEFORE Sync.init() mints one: afterwards every device looks old.
+    // This is what separates a first-ever visit from a return on this browser.
+    var hadDevice = null;
+    try { hadDevice = !!localStorage.getItem('pm_device_id'); } catch (e) {}
     Sync.init();
     Gate.init();
     // BEFORE route(): a remembered door choice decides WHICH YEAR's catalog the
@@ -5864,6 +6033,25 @@
     // the whole book — both years at once — for anyone returning with a choice
     // already made. No-op on a single-stream build.
     Door.restore();
+    // ONE app_open per page load, emitted last so Door.restore() has settled
+    // and the track/year it reports is the one the student actually sees.
+    // `newdev` distinguishes a first-ever visit from a return on this browser:
+    // read BEFORE Sync mints an id, which init() above has already done, so the
+    // key is present exactly when the device is not new to us.
+    (function () {
+      var t = null;
+      try { t = Door.chosen(); } catch (e) {}
+      var ref = '';
+      try { ref = document.referrer ? new URL(document.referrer).host : ''; } catch (e) {}
+      Vidi.log('app_open', {
+        track: (t && t.group) || null,
+        year: (t && t.year) || null,
+        ref: ref.slice(0, 60),
+        w: window.innerWidth, h: window.innerHeight,
+        signed_in: (function () { try { return Auth.signedIn(); } catch (e) { return false; } })(),
+        newdev: hadDevice === false
+      });
+    })();
     route();
     window.addEventListener('hashchange', route);
   });
