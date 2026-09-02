@@ -83,7 +83,10 @@
   applyCut(0);
 
   var QTYPE_WORD = { LAQ: 'Long Answer Question', SAQ: 'Short Answer Question',
-                     VSAQ: 'Very Short Answer Question' };
+                     VSAQ: 'Very Short Answer Question',
+                     // paper_section is "Practice" on these, so the header reads
+                     // "Practice — Problem" (2026-09-02).
+                     PROBLEM: 'Problem' };
 
   /** Derived, never literal: a hardcoded "· 8 marks" cannot follow a cut switch. */
   function pageHeaderLines() {
@@ -313,6 +316,17 @@
       question_id → {wef, reason, unit}. */
   var RETIRED = window.PM_RETIRED || {};
   function retiredOf(qid) { return RETIRED[qid] || null; }
+
+  /** The question kinds the PAPER examines — the mirror of PAPER_QTYPES in
+      src/schemas/answerBook.ts. A PROBLEM is a practice question the source book
+      prints: it IS an answer the student can open, and it counts in every
+      "N answers" figure and every chapter's readiness, but it sits on no paper
+      section and carries no board mark scheme. So every MARKS-WEIGHTED surface
+      ignores it — the study planner and its scope options, and the exam-eve
+      15-minute list, which are allocating a paper's marks and cannot allocate a
+      question the paper never asks (founder, 2026-09-02). */
+  var PAPER_QTYPES = ['VSAQ', 'SAQ', 'LAQ'];
+  function isPaperQtype(t) { return PAPER_QTYPES.indexOf(t) >= 0; }
 
   /** The 2026-27 textbooks renumbered two papers (2026-08-28): the PHYSICS book
       merged the old Units 1+2 into one and added a Unit 14, moving every chapter
@@ -757,7 +771,10 @@
     });
     var chipRow = $('qtypeChips');
     chipRow.innerHTML = '';
-    ['ALL', 'LAQ', 'SAQ', 'VSAQ'].forEach(function (t) {
+    // Paper sections first in marks order, then the practice problems, which sit
+    // on no paper at all (2026-09-02). A chip label is not always its key.
+    var CHIP_LABEL = { ALL: 'All', PROBLEM: 'Problems' };
+    ['ALL', 'LAQ', 'SAQ', 'VSAQ', 'PROBLEM'].forEach(function (t) {
       var n = t === 'ALL'
         ? scopedEntries.length
         : scopedEntries.filter(function (e) { return e.section === t; }).length;
@@ -771,7 +788,7 @@
       b.setAttribute('data-qtype', t);
       b.setAttribute('aria-pressed', catFilter.qtype === t ? 'true' : 'false');
       b.innerHTML = '';
-      b.appendChild(document.createTextNode(t === 'ALL' ? 'All' : t));
+      b.appendChild(document.createTextNode(CHIP_LABEL[t] || t));
       var ct = document.createElement('span');
       ct.className = 'ct';
       ct.textContent = String(n);
@@ -907,14 +924,23 @@
       var SECTIONS = [
         { key: 'LAQ', label: 'Long Answer Questions' },
         { key: 'SAQ', label: 'Short Answer Questions' },
-        { key: 'VSAQ', label: 'Very Short Answer Questions' }
+        { key: 'VSAQ', label: 'Very Short Answer Questions' },
+        // Last, and named for what it is: the book's practice problems, which the
+        // paper does not have a section for (2026-09-02).
+        { key: 'PROBLEM', label: 'Practice Problems' }
       ];
       function sectionLabel(sg, group) {
+        // A single mark VALUE is printed only when the group agrees on one. Every
+        // paper section does by construction; a practice-problem group does NOT —
+        // it holds both the 2-mark and the 4-mark shape — and printing the first
+        // card's number over a mixed group is how the old code would have said
+        // "2 marks" above a 4-mark problem.
+        var seen = [];
         for (var gi = 0; gi < group.length; gi++) {
           var gc = entryCut(group[gi]);
-          if (gc) return sg.label + ' · ' + gc.marks_total + ' marks';
+          if (gc && seen.indexOf(gc.marks_total) < 0) seen.push(gc.marks_total);
         }
-        return sg.label;
+        return seen.length === 1 ? sg.label + ' · ' + seen[0] + ' marks' : sg.label;
       }
       SECTIONS.forEach(function (sg) {
         var group = visible.filter(function (e) { return e.section === sg.key; });
@@ -2625,8 +2651,11 @@
       return d.getUTCFullYear() + '-' + (mm < 10 ? '0' : '') + mm + '-' + (dd < 10 ? '0' : '') + dd;
     }
 
-    var QT_RANK = { LAQ: 3, SAQ: 2, VSAQ: 1 };
-    var QT_WORDS = { LAQ: 'long answers', SAQ: 'short answers', VSAQ: 'very short answers' };
+    // PROBLEM is ranked and worded for completeness only — itemsFor drops it
+    // before any of this runs, because a plan allocates paper marks.
+    var QT_RANK = { LAQ: 3, SAQ: 2, VSAQ: 1, PROBLEM: 0 };
+    var QT_WORDS = { LAQ: 'long answers', SAQ: 'short answers', VSAQ: 'very short answers',
+                     PROBLEM: 'practice problems' };
     /** ['SAQ','VSAQ'] → 'short answers and very short answers'. */
     function scopeWords(scope) {
       var out = [];
@@ -2650,6 +2679,10 @@
           seen[e.question_id] = true;
           var q = questions[qIndexById[e.question_id]];
           if (!q) continue;
+          // A practice problem is on no paper section and carries no board mark
+          // scheme, so it cannot be given a share of a marks-weighted day. It
+          // stays open in the catalog; it never enters a plan (2026-09-02).
+          if (!isPaperQtype(q.qtype)) continue;
           if (scope && scope.indexOf(q.qtype) < 0) continue;
           items.push({
             qid: e.question_id, cut: e.cut || null, stars: e.stars || 0,
@@ -5666,7 +5699,7 @@
     var weak = [];
     for (var k = 0; k < u.questions.length; k++) {
       var e = u.questions[k];
-      if (!e.question_id) continue;
+      if (!e.question_id || !isPaperQtype(e.section)) continue;   // exam work only
       var h = Vidi.checkFor(e.question_id);
       if (h && h.total > 0 && h.best < h.total) weak.push({ e: e, r: h.best / h.total, h: h });
     }
@@ -5680,7 +5713,7 @@
       for (var m = 0; m < u.questions.length; m++) {
         if (most.length >= 7 - weak.length) break;
         var me = u.questions[m];
-        if (me.question_id && !inWeak[me.ref] && me.stars === st) most.push(me);
+        if (me.question_id && isPaperQtype(me.section) && !inWeak[me.ref] && me.stars === st) most.push(me);
       }
     }
 

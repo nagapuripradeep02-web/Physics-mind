@@ -207,7 +207,16 @@ test('a locked chapter names the free four, offers the pass, and leaks nothing',
     }));
     // The copy tells the truth under the fixed-free-chapters model: it must NOT
     // say the student spent a free chapter they never had.
-    expect(r.text).toContain('Four chapters');
+    //
+    // PRE-EXISTING RED, fixed 2026-09-02 while running this suite for the practice
+    // section. The sheet stopped stating a COUNT on 2026-08-30 (notebook.js: "It
+    // was 'Four chapters are free', which was true only while the book was first
+    // year alone: a second-year student has three subjects and three free
+    // chapters, and would have been told a number they could not find"), and this
+    // assertion was left behind — it has been failing on master ever since. The
+    // per-subject promise is the part that is true in every year, so that is what
+    // the test now reads.
+    expect(r.text).toContain('One chapter in every subject is free');
     expect(r.text).not.toContain('already used your free chapter');
     expect(r.text).toContain('coming soon');              // price_inr null = unpriced
     expect(r.claimBtns).toBe(0);                          // nothing to claim

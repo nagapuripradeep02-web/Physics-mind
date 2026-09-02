@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_strain_iron_wire_one_percent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "PROBLEM",
+  "marks_total": 2,
+  "paper_section": "Practice",
+  "expected_time_min": 4,
+  "question_text": "An iron wire is stretched by 1%. What is the strain in the wire?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The strain formula",
+      "marks": 1
+    },
+    {
+      "label": "The value, and that it has no unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "PRACTICE PROBLEM, not a paper question. The Telangana paper has no problems section, so this carries no board mark scheme and the mark split is OURS, not the book's — it uses the paper's own numeric shape so a teacher can still mark it. The question is Problem 1 of Mechanical Properties of Solids in the Sri Chaitanya \"IPE STUDY MATERIAL for Jr. Students\" (2026-27 edition): Only the question was taken; the working, the steps and the split are our own (docs/ORIGINALITY_MATHS.md). Physics hand-checked: longitudinal strain is ΔL/L, a ratio of two lengths and so a pure number; a 1% stretch is 1/100 = 0.01."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Practice — Problem",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "What strain means",
+        "marks": 1,
+        "mark_note": "strain = ΔL/L",
+        "lines": [
+          "Longitudinal strain is the change in length",
+          "divided by the original length.",
+          "strain = ΔL / L"
+        ],
+        "why": "Strain compares the stretch with the length the wire started from, so the same 1 mm stretch is a large strain in a short wire and a small one in a long wire.",
+        "common_mistakes": [
+          "Writing stress instead of strain, and dividing the force by the area."
+        ],
+        "memory_tip": "Strain is one length divided by another, so the metres cancel and nothing is left to write as a unit.",
+        "margin_note": "First mark. Write strain = ΔL/L before any number goes down."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "The value",
+        "marks": 1,
+        "mark_note": "strain = 0.01",
+        "lines": [
+          "Stretched by 1% means ΔL is 1% of L,",
+          "so ΔL / L = 1 / 100.",
+          {
+            "text": "strain = 0.01 (no unit)",
+            "style": "boxed"
+          }
+        ],
+        "why": "One per cent is one part in a hundred, so the ratio is the answer and the actual length of the wire is never needed.",
+        "common_mistakes": [
+          "Writing the answer as 1 instead of 0.01.",
+          "Giving strain a unit such as N m⁻²."
+        ],
+        "memory_tip": "Per cent means out of a hundred, so 1% is 1/100 = 0.01.",
+        "margin_note": "Second mark. Box 0.01 and write that it has no unit."
+      }
+    ]
+  },
+  "insider_note": "Two marks: one for the formula, one for the number. A bare 0.01 with no formula usually keeps only the second mark, and writing a unit after it loses the first."
+}

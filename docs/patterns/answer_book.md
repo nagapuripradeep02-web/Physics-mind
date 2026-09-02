@@ -19,7 +19,7 @@ portable physics.** A CBSE variant of the same question is a new file with a dif
 header over the same steps. There is no country/board fact inside any step.
 
 - Header: `board`, `board_label`, `subject`, `year_cycle`, `class_label`, `unit`, `chapter`,
-  `qtype` (VSAQ|SAQ|LAQ), `marks_total`, `paper_section`, `expected_time_min`,
+  `qtype` (VSAQ|SAQ|LAQ|**PROBLEM**), `marks_total`, `paper_section`, `expected_time_min`,
   `question_text`, `appearances[]`, `mark_split[]` (display only), `verification`.
 - `verification.needs_teacher_verification` — Rule 38g spirit: the mark split and appearance
   years are **claims until a board teacher confirms them**; the chrome shows this caveat.
@@ -29,6 +29,37 @@ header over the same steps. There is no country/board fact inside any step.
   One line = one rule; author ≤ ~52 chars so nothing wraps.
 - Enforced by the build: schema validity, `sum(steps[].marks) === marks_total`,
   `sum(mark_split[].marks) === marks_total`, unique step ids, filename === question_id.
+
+### The PRACTICE section — `qtype: "PROBLEM"` (founder, 2026-09-02)
+
+Every source book prints a PROBLEMS block (physics) or an NCERT *intext solved problems*
+block (chemistry): real questions a student is set, which examiners reuse, but which sit on
+**no paper section and carry no board mark scheme**. That is why they were DEFERRED on
+2026-08-20 — holding one needed a fourth section across the build, the player and the gates.
+The 2026-27 books print **328** of them and the deferred ones kept turning up on real papers,
+so they now have their own section instead of being forced into A/B/C.
+
+- Card: `qtype: "PROBLEM"`, `paper_section: "Practice"`; the player derives the page header
+  as **"Practice — Problem"** and the meta chip as `Practice · PROBLEM`.
+- Manifest row: `section: "PROBLEM"`, `ref: "prob<n>"` using the book's own problem number,
+  ordered **after** the paper sections inside the unit.
+- **Marks are a LIST, not a slot.** `PAPER_PATTERNS[subject].practice = { marks: [2, 4] }`:
+  a problem BORROWS the paper's numeric shapes — a one-step numerical is the 2-mark shape,
+  a derive-then-substitute the 4-mark shape — which also keeps it promotable, because the day
+  a paper asks one it becomes a cut of the same card at the same marks.
+- **The check FAILS CLOSED.** A subject with no `practice` key may not carry problem cards at
+  all: `allowedMarks()` returns `[]` (an error), never `undefined` (unchecked). The
+  paper-section check does the opposite and skips a subject it does not know — which is how a
+  whole paper lost its marks gate by silence on 2026-08-29. Registered today on **physics and
+  chemistry only**, the two papers whose 2026-27 books were read chapter by chapter; every
+  other paper waits until someone reads its book. Negative control:
+  `src/lib/answerBook/__tests__/practiceMarks.test.ts`.
+- **Shown everywhere, scheduled nowhere.** A problem appears in the catalog (its own
+  "Problems" chip and "Practice Problems" group) and counts in every student-visible "N
+  answers" figure — but the **study planner, its scope chooser and the exam-eve list ignore
+  it**, because those allocate a paper's marks and a question the paper never asks cannot be
+  given a share of them. One predicate governs this: `PAPER_QTYPES` in the schema, mirrored as
+  `isPaperQtype()` in `notebook.js`. Never hardcode the three strings again.
 
 **Equations are Unicode math in the handwriting font** (`− ∴ √ ² ³ θ α ⁻¹ ⊥ ∠ ° × ≈ ∵`;
 U+2212 minus, never hyphen). This is deliberate: a KaTeX-typeset fraction inside a Kalam

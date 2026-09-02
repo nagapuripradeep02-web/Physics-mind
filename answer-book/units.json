@@ -1923,6 +1923,24 @@
           "text": "Define Young’s modulus, Bulk modulus and Shear modulus.",
           "question_id": "ts_ipe_p1_sol_youngs_bulk_shear_moduli",
           "source": "ts_paper"
+        },
+        {
+          "ref": "prob1",
+          "section": "PROBLEM",
+          "number": 1,
+          "stars": 0,
+          "text": "An iron wire is stretched by 1%. What is the strain in the wire?",
+          "question_id": "ts_ipe_p1_sol_strain_iron_wire_one_percent",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "prob6",
+          "section": "PROBLEM",
+          "number": 6,
+          "stars": 0,
+          "text": "A metal wire of length 2.5 m and area of cross-section 1.5 × 10⁻⁶ m² is stretched by 2 mm. If its Young's modulus is 1.25 × 10¹¹ N m⁻², find the tension in the wire.",
+          "question_id": "ts_ipe_p1_sol_tension_from_youngs_modulus",
+          "source": "chaitanya_fastrack"
         }
       ]
     },
