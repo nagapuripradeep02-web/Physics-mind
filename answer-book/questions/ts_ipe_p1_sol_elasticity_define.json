@@ -23,15 +23,15 @@
       "marks": 1
     },
     {
-      "label": "Plasticity contrasted",
+      "label": "Plastic body defined and contrasted",
       "marks": 1
     },
     {
-      "label": "Elastic limit example",
+      "label": "One example of each",
       "marks": 1
     },
     {
-      "label": "Beyond the elastic limit",
+      "label": "The elastic limit as the boundary",
       "marks": 1
     }
   ],
@@ -77,63 +77,65 @@
           "Plasticity is the opposite property. A",
           "body that does not regain its original",
           "shape and size, and keeps the new",
-          "shape, is called plastic. Putty and wet",
-          "clay are plastic bodies."
+          "shape, is called plastic."
         ],
-        "margin_note": "Name plasticity directly as the body keeping its new shape, with an example.",
-        "why": "Naming the opposite property gives a direct contrast to elasticity, and an example makes the difference concrete rather than only definitional.",
+        "margin_note": "Name plasticity directly as the body keeping its new shape, in contrast to elasticity.",
+        "why": "Naming the opposite property gives a direct contrast to elasticity, stating plainly that the body keeps its new shape rather than returning to the old one.",
         "common_mistakes": [
           "Describing plasticity only as \"not elastic\" without saying the shape stays changed.",
-          "Giving no example of a plastic body."
+          "Calling a plastic body one that resists deformation. A plastic body deforms easily and permanently; it does not resist the change, it keeps it."
         ],
         "memory_tip": "Plastic bodies keep the new shape; elastic bodies return to the old one."
       },
       {
-        "id": "s3_wire_example",
+        "id": "s3_examples",
         "kind": "text",
-        "label": "The wire example — within the elastic limit",
+        "label": "Example: elastic and plastic",
+        "marks": 1,
+        "mark_note": "Example of each",
+        "lines": [
+          "A stretched steel wire is an elastic",
+          "body — it returns to its original",
+          "length once the load is removed.",
+          "Putty is a plastic body — it keeps",
+          "the new shape given to it and does",
+          "not return to its original shape."
+        ],
+        "margin_note": "Name one elastic body (a steel wire or a rubber band) and one plastic body (putty or wet clay).",
+        "why": "Naming a real elastic body and a real plastic body turns the two definitions into examples an examiner can check, and steel wire and putty are the standard contrasting pair for this question.",
+        "common_mistakes": [
+          "Naming only a plastic body, such as putty or wet clay, and never naming an elastic body such as a steel wire or a rubber band.",
+          "Giving an example without saying which property, elastic or plastic, it shows."
+        ],
+        "memory_tip": "Steel wire springs back; putty stays in the new shape it is given."
+      },
+      {
+        "id": "s4_elastic_limit",
+        "kind": "boxed_final",
+        "label": "The elastic limit",
         "marks": 1,
         "mark_note": "Elastic limit",
         "lines": [
-          "A stretched wire returns to its",
-          "original length once the load is",
-          "removed, as long as the load stays",
-          "below a value called the elastic",
-          "limit."
-        ],
-        "margin_note": "Name the elastic limit as the boundary within which this return happens.",
-        "why": "The wire example ties the definition to a case that later becomes the elastic limit, and naming the limit here is what the next step contrasts against.",
-        "common_mistakes": [
-          "Describing the wire example without naming the elastic limit.",
-          "Saying the wire always returns to its length, with no condition attached."
-        ],
-        "memory_tip": "The wire returns fully only while the load stays under the elastic limit."
-      },
-      {
-        "id": "s4_beyond_limit",
-        "kind": "boxed_final",
-        "label": "Beyond the elastic limit",
-        "marks": 1,
-        "mark_note": "No full recovery",
-        "lines": [
-          "Beyond the elastic limit the body no",
-          "longer returns fully to its original",
-          "shape and size when the load is",
+          "A body behaves elastically only up to",
+          "a certain load, called the elastic",
+          "limit. Beyond the elastic limit the",
+          "body no longer returns fully to its",
+          "original shape when the load is",
           "removed; some deformation remains.",
           {
-            "text": "Elastic returns; plastic stays changed.",
+            "text": "Elastic limit: boundary of elastic behaviour",
             "style": "boxed"
           }
         ],
-        "margin_note": "State plainly that the recovery is no longer complete past the elastic limit.",
-        "why": "This line completes the contrast: within the elastic limit a body behaves elastically, beyond it the same body behaves plastically, so the boundary itself carries the physics.",
+        "margin_note": "Name the elastic limit as the boundary between elastic and plastic behaviour.",
+        "why": "The elastic limit is the boundary that separates elastic behaviour from plastic behaviour, and naming it closes the definition-contrast-example arc of the answer.",
         "common_mistakes": [
           "Saying the body breaks beyond the elastic limit. It deforms permanently; breaking is a separate, later limit.",
-          "Stopping the answer at the wire example without stating what changes past the limit."
+          "Leaving the elastic limit unnamed and only saying the body behaves differently after some point."
         ],
         "memory_tip": "Past the elastic limit, some deformation stays even after the load is removed."
       }
     ]
   },
-  "insider_note": "The elastic limit is the hinge of the whole answer — leave it unnamed and the wire example earns nothing."
+  "insider_note": "The example step needs one elastic body and one plastic body named — a steel wire or a rubber band on the elastic side, not only putty or wet clay — and the elastic limit is its own separate, fourth mark."
 }

@@ -32,7 +32,7 @@
     "needs_teacher_verification": true,
     "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 1 (printed p.98). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: stress is the restoring force per unit area, σ = F/A, SI unit N m⁻²."
   },
-  "insider_note": "Both marks need the words \"restoring force\" — writing only F/A without \"restoring\" loses the definition mark.",
+  "insider_note": "The definition mark needs the words \"restoring force\" — F/A alone does not earn it. The second mark is the formula together with its unit.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

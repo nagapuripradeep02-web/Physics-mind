@@ -51,7 +51,7 @@
           "increases."
         ],
         "margin_note": "Name the direction of change, not just the word \"tensile\" — \"length increases\" is what earns the mark.",
-        "why": "Tensile stress is the case used in most numerical problems, so stating that it stretches the body sets up the sign convention for later steps.",
+        "why": "Tensile stress is the case most numerical problems use, so name the stretch and the increase in length explicitly.",
         "common_mistakes": [
           "Naming tensile stress without saying the length increases.",
           "Confusing tensile stress with shearing stress, where the force acts along the surface instead of along the length."

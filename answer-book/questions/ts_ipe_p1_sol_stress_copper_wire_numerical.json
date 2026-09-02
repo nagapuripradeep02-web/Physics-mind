@@ -84,7 +84,7 @@
           "Losing track of the negative exponent and reporting the answer as 1.27 × 10⁻⁷.",
           "Omitting the unit N m⁻² after the numeric value."
         ],
-        "memory_tip": "Same formula as before, σ = F/A — just plug in the numbers now."
+        "memory_tip": "Now use σ = F/A with the given force and the area just found."
       }
     ]
   }

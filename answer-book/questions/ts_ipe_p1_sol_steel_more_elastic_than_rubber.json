@@ -83,7 +83,7 @@
           "Calling rubber more elastic because it stretches more. Elastic means less deformation for the same stress, so a bigger stretch means LESS elastic, not more.",
           "Confusing elastic with flexible. Rubber is more flexible, but steel is more elastic."
         ],
-        "memory_tip": "Elastic means it barely moves and springs back — the small-strain material wins, so steel beats rubber.",
+        "memory_tip": "The material with the smaller strain for the same stress has the larger Young's modulus, so steel is more elastic than rubber.",
         "margin_note": "Marked for naming Y(steel) greater than Y(rubber) and stating that the larger Y is the more elastic material."
       }
     ]

@@ -77,12 +77,12 @@
             "style": "boxed"
           }
         ],
-        "why": "An elastic body regains its original shape after the deforming force is removed and returns the energy stored during the deformation, while a plastic body keeps its new shape and keeps the energy spent producing it, which is exactly why one ball bounces and the other does not.",
+        "why": "An elastic body regains its original shape after the deforming force is removed and returns the energy stored during the deformation, while in a plastic body the kinetic energy is used up deforming it permanently and is given off mostly as heat, which is exactly why one ball bounces and the other does not.",
         "common_mistakes": [
           "Naming only \"ivory is harder\" without using the words elastic and plastic, which are what the examiner is checking for.",
-          "Saying wet clay stores no energy at all. It does absorb energy; the point is that it keeps that energy as permanent deformation instead of returning it."
+          "Saying wet clay stores the energy of the fall. The kinetic energy is used up deforming the clay permanently and is given off mostly as heat, not stored for a rebound."
         ],
-        "memory_tip": "Elastic returns to shape and gives the energy back; plastic keeps the new shape and keeps the energy.",
+        "memory_tip": "Elastic returns to shape and gives the energy back; plastic uses up the energy in permanent deformation, given off as heat.",
         "margin_note": "Marked for the words \"elastic\" and \"plastic\", tied to energy being returned or kept as permanent deformation."
       }
     ]

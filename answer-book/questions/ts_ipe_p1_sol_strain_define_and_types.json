@@ -116,7 +116,7 @@
           "is the original volume."
         ],
         "margin_note": "The words \"shape stays the same\" separate this from shearing strain.",
-        "why": "Volume strain pairs with the bulk modulus B = P/(ΔV/V), so writing it as change over original volume here is what makes that later formula legible.",
+        "why": "Volume strain pairs with the bulk modulus B = −ΔP/(ΔV/V), so writing it as change over original volume here is what makes that later formula legible.",
         "common_mistakes": [
           "Saying the shape also changes. Under uniform pressure only the volume changes.",
           "Writing ΔV/ΔP in place of ΔV/V."
@@ -139,18 +139,20 @@
             "style": "eq"
           },
           {
-            "text": "= angle of shear θ (in radians)",
+            "text": "= tan θ",
             "style": "eq"
           },
+          "This is approximately θ for small angles,",
+          "and it is a pure number with no unit.",
           {
             "text": "Strain: longitudinal, volume, shear",
             "style": "boxed"
           }
         ],
         "margin_note": "Naming this as an angle θ, not a length, earns this mark.",
-        "why": "The two faces stay the same distance apart everywhere, so the ratio of the tangential displacement to that distance is a single number, and geometrically it equals the angle the body has sheared through.",
+        "why": "The two faces stay the same distance apart everywhere, so the ratio of the tangential displacement to that distance is tan θ, a single pure number; for the small angles used here, tan θ is approximately equal to θ itself.",
         "common_mistakes": [
-          "Giving shearing strain a length instead of an angle.",
+          "Giving shearing strain as the displacement alone (a length) instead of the ratio displacement over distance between the layers.",
           "Confusing it with longitudinal strain, which changes a length, not a shape."
         ],
         "memory_tip": "Shearing strain is the angle of shear θ: a sideways push tilts the body."

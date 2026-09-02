@@ -72,20 +72,21 @@
           "smaller stress at a widened end",
           "than at a rounded end.",
           {
-            "text": "σ = F/A: larger A gives smaller σ, same F",
+            "text": "σ = F/A",
             "style": "eq"
           },
+          "Larger A gives smaller σ, same F.",
           {
-            "text": "Wide ends stay below the elastic limit",
+            "text": "Wide ends keep the end stress low",
             "style": "boxed"
           }
         ],
-        "why": "A pillar's material fails once its stress crosses the elastic limit, so keeping the stress at its ends low, by making the end wide, lets the pillar carry a larger load before that limit is reached.",
+        "why": "Past the elastic limit the material deforms permanently, and at a still higher stress it breaks, so keeping the end stress low lets the pillar carry a larger load safely.",
         "common_mistakes": [
           "Saying wide ends are stronger without connecting it to the formula σ = F/A.",
           "Claiming the load itself is smaller at a widened end. The load F is the same; only the area A, and so the stress, changes."
         ],
-        "memory_tip": "Same weight, wider foot: the stress it feels drops, so it can carry more.",
+        "memory_tip": "Same load, wider end, so the stress at the end is smaller and the pillar carries more.",
         "margin_note": "Marked for stating σ = F/A and that a larger area at the widened end gives a lower stress there."
       }
     ]

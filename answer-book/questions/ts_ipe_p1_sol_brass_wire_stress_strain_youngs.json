@@ -141,11 +141,10 @@
             "style": "boxed"
           }
         ],
-        "margin_note": "Reuse the stress and strain values found above rather than starting over from F and ΔL.",
+        "margin_note": "Either route works — Y = stress/strain from parts (i) and (ii), or Y = FL/(AΔL) in one line — dividing the two answers already found is faster and less error-prone.",
         "why": "Young's modulus is defined as stress divided by strain, so once both are known from the earlier parts, this step is a single division with no new physics.",
         "common_mistakes": [
-          "Inverting the ratio and writing Y = strain / stress.",
-          "Recomputing from F and ΔL directly instead of dividing the two earlier answers."
+          "Inverting the ratio and writing Y = strain / stress."
         ],
         "memory_tip": "Y = stress/strain: divide the two answers from parts (i) and (ii)."
       }

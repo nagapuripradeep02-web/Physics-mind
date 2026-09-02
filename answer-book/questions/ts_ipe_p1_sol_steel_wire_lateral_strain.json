@@ -19,7 +19,7 @@
   "appearances": [],
   "mark_split": [
     {
-      "label": "Given data",
+      "label": "Poisson's ratio — the definition",
       "marks": 1
     },
     {
@@ -27,7 +27,7 @@
       "marks": 1
     },
     {
-      "label": "Poisson's ratio relation",
+      "label": "This wire's Poisson's ratio",
       "marks": 1
     },
     {
@@ -47,22 +47,27 @@
     ],
     "steps": [
       {
-        "id": "s1_given_data",
-        "kind": "text",
-        "label": "Given data",
+        "id": "s1_poissons_ratio_definition",
+        "kind": "equation",
+        "label": "Poisson's ratio — the definition",
         "marks": 1,
-        "mark_note": "Given data",
+        "mark_note": "Definition of σ",
         "lines": [
-          "Length L = 20 cm, increase in length",
-          "ΔL = 0.2 cm, Poisson's ratio σ = 0.19."
+          "Poisson's ratio is the ratio of the",
+          "lateral strain to the longitudinal",
+          "strain produced in a stretched wire,",
+          {
+            "text": "σ = lateral strain / longitudinal strain",
+            "style": "eq"
+          }
         ],
-        "margin_note": "Write down all three given values before starting the calculation.",
-        "why": "Poisson's ratio links two strains, so both the length data and the given ratio have to be on the page before either strain can be found.",
+        "margin_note": "State the general definition of Poisson's ratio before using any given numbers.",
+        "why": "Poisson's ratio links the two strains by definition, so stating that relation first is what turns every later step into a straightforward substitution.",
         "common_mistakes": [
-          "Starting the calculation without writing σ = 0.19 down first.",
-          "Confusing which value is the length and which is the extension."
+          "Starting straight from the numbers without stating what Poisson's ratio means.",
+          "Writing the ratio upside down, as longitudinal strain over lateral strain."
         ],
-        "memory_tip": "Three numbers to write down first: L, ΔL, and σ."
+        "memory_tip": "By definition, Poisson's ratio σ = lateral strain over longitudinal strain."
       },
       {
         "id": "s2_longitudinal_strain",
@@ -88,29 +93,24 @@
       {
         "id": "s3_poissons_relation",
         "kind": "equation",
-        "label": "Poisson's ratio relation",
+        "label": "This wire's Poisson's ratio",
         "marks": 1,
-        "mark_note": "σ = lateral/longitudinal",
+        "mark_note": "σ = 0.19",
         "lines": [
-          "Poisson's ratio is the ratio of the",
-          "lateral strain to the longitudinal",
-          "strain,",
+          "For this steel wire, the Poisson's",
+          "ratio is given as",
           {
-            "text": "σ = lateral strain / longitudinal strain",
-            "style": "eq"
-          },
-          {
-            "text": "⇒ lateral strain = σ × longitudinal strain",
+            "text": "σ = 0.19",
             "style": "eq"
           }
         ],
-        "margin_note": "Rearranging the definition of σ to solve for the lateral strain is the whole of this mark.",
-        "why": "Poisson's ratio links the two strains directly, so once the longitudinal strain is known, this rearrangement gives the lateral strain in one step.",
+        "margin_note": "Name σ = 0.19 as this wire's given Poisson's ratio before the final step multiplies by it.",
+        "why": "The general definition needs the wire's own σ value before it can turn the longitudinal strain already found into a lateral strain, so naming σ = 0.19 here is what the final step multiplies by.",
         "common_mistakes": [
-          "Inverting the ratio and writing lateral strain = longitudinal strain / σ.",
-          "Leaving the relation in words only, without the rearranged formula."
+          "Confusing σ with the longitudinal strain found in the step above — they are different numbers.",
+          "Leaving σ unstated and only using 0.19 inside the final multiplication with no explanation."
         ],
-        "memory_tip": "Lateral strain = σ × longitudinal strain: Poisson's ratio is the multiplier."
+        "memory_tip": "This wire's Poisson's ratio is given directly: σ = 0.19."
       },
       {
         "id": "s4_lateral_strain",
@@ -120,23 +120,31 @@
         "mark_note": "1.9 × 10⁻³",
         "lines": [
           {
+            "text": "lateral strain = σ × longitudinal strain",
+            "style": "eq"
+          },
+          {
             "text": "Lateral strain = 0.19 × 0.01",
             "style": "eq"
           },
           {
             "text": "Lateral strain = 1.9 × 10⁻³",
             "style": "boxed"
-          }
+          },
+          "The diameter decreases: the lateral",
+          "strain is a contraction of 1.9 × 10⁻³",
+          "of the original width."
         ],
-        "margin_note": "The value alone, with the correct power of ten, earns this mark.",
-        "why": "This step is a single multiplication of the two numbers found above, so the final answer follows directly once the relation in the previous step is written correctly.",
+        "margin_note": "The value with the correct power of ten, and noting the diameter decreases, both belong to this final mark.",
+        "why": "Rearranging σ = lateral strain / longitudinal strain for the lateral strain gives a single multiplication of the two known numbers, and the result is a decrease, since the wire's diameter contracts as its length increases.",
         "common_mistakes": [
           "Misplacing the decimal and writing 1.9 × 10⁻² instead of 10⁻³.",
-          "Reporting a percentage instead of converting back to a plain ratio."
+          "Reporting a percentage instead of converting back to a plain ratio.",
+          "Leaving out that the lateral strain is a decrease — the diameter gets thinner, not thicker."
         ],
         "memory_tip": "0.19 of a hundredth is about a fifth of a hundredth: 1.9 × 10⁻³."
       }
     ]
   },
-  "insider_note": "The whole answer is one multiplication once the longitudinal strain is found — most lost marks come from a misplaced decimal in the final power of ten."
+  "insider_note": "The final step is one multiplication once the longitudinal strain and this wire's σ are both named — most lost marks come from a misplaced decimal in the final power of ten, or leaving out that the lateral strain is a decrease."
 }

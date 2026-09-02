@@ -46,9 +46,8 @@
         "marks": 1,
         "mark_note": "Order",
         "lines": [
-          "For a given change in pressure, the",
-          "fractional change in volume is smallest",
-          "for a solid and largest for a gas.",
+          "The bulk modulus decreases in the order",
+          "solid, liquid, gas.",
           {
             "text": "B(solid) > B(liquid) > B(gas)",
             "style": "eq"
@@ -60,7 +59,7 @@
           "Writing the order the wrong way round (gas > liquid > solid).",
           "Comparing Young's modulus instead of bulk modulus."
         ],
-        "memory_tip": "Squeeze a solid, a liquid and a gas with the same push: the solid barely moves, the gas collapses most."
+        "memory_tip": "For the same increase in pressure the solid's volume changes least and the gas's changes most."
       },
       {
         "id": "s2_reason",
@@ -84,7 +83,7 @@
           "Giving no reason at all, only the order.",
           "Saying gases are 'weaker' instead of explaining the spacing between molecules."
         ],
-        "memory_tip": "Close-packed particles push back hard; spread-out particles give way easily."
+        "memory_tip": "Widely spaced gas molecules move closer under a small pressure change."
       }
     ]
   }

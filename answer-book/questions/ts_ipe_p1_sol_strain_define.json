@@ -66,10 +66,14 @@
         "mark_note": "No unit",
         "lines": [
           {
-            "text": "Strain = change in dimension / original",
+            "text": "Strain = change in dimension /",
             "style": "eq"
           },
-          "dimension. It is a ratio, so it has",
+          {
+            "text": "original dimension",
+            "style": "eq"
+          },
+          "It is a ratio, so it has",
           "no unit and no dimensions.",
           {
             "text": "Strain = Δx/x — no unit, no dimensions.",

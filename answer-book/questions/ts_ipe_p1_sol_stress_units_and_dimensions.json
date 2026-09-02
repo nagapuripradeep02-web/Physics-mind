@@ -53,7 +53,7 @@
             "style": "eq"
           }
         ],
-        "margin_note": "Name the unit AND its symbol N/m² — a bare 'pascal' without the symbol form loses this mark.",
+        "margin_note": "Give N/m² — adding its name, the pascal (Pa), makes the answer complete.",
         "why": "The unit of a quotient is the quotient of the units, so newton (force) over square metre (area) gives the unit of stress directly.",
         "common_mistakes": [
           "Writing N/m instead of N/m² — area is squared.",
