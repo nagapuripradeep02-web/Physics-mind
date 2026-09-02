@@ -1,5 +1,73 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — The 47 closed without a retirement, the sweeps raised, and physics-14 finished (2026-09-02, `feat/ipe-firstyear-2027`, PR #193 merged + LIVE)
+
+**Bottom line: nothing was retired, the Playwright ceiling was raised before it broke rather than after, and the first of the five empty chapters is authored, audited and on answers.viditra.co.** Wave A of the founder's five-wave campaign to make first-year Physics and Chemistry book-complete: 714 missing exam-section cards plus 107 re-cuts and 48 promotions, PROBLEM cards last.
+
+### The 47 "retire candidates" did not survive their own evidence
+
+The 2026-27 gap report flagged 47 bank rows whose topic the new Sri Chaitanya edition no longer prints. That column measures **one commercial digest**, not the syllabus, and the bank answered it three ways before anything was deleted:
+
+| group | count | what happened |
+|---|---|---|
+| already `source: "enumerated"` | 28 | nothing — they already render as "Predicted — not asked yet" |
+| asked on a real board paper | 11 | nothing — retiring them deletes answers the board still sets |
+| no appearance, no predicted label | 8 | relabelled `source: "enumerated"`, `stars: 0` |
+| (of the 11) missing a `source` | 5 | backfilled `ap_2026_paper` / `ts_paper` |
+
+Two of the eleven were on **AP 2026**, and `ts_ipe_p1_rot_vector_product_properties` has been asked **four times** — TS 2017, 2019, 2025 and AP 2026. Four of the eight relabelled rows are NCERT core (molarity, normality, mass percent, the laws of chemical combination) that only this digest dropped; zeroing their stars also removed them from the R1 exposure `check:originality` counts.
+
+**The rule this sets: a card the current book stops printing is a PREDICTED card, not a dead one.** Demotion is the mirror of a promotion, and `backtest:physics` failure-mode 8 — a paper-matched card may not sit on an `enumerated` row — is the gate that stops a demotion swallowing a live exam question. Entry-level retirement stays built and unused; no test covers it, and `retiredCount` is still hardcoded to 40.
+
+### Raise a fleet sweep before the wave, not after the red run
+
+Counted, not projected: the default unstreamed build the Playwright suite actually loads holds **3,007 questions and 3,018 question×cut entries**. The 2,472 the last raise scaled from was already **535 stale** — Maths-1A/1B and the syllabus retrofit both landed without a raise.
+
+| sweep | measured | after +714 | budget |
+|---|---|---|---|
+| every cut totals its own marks | ~53 min, **89% of budget with nothing new authored** | ~65 min | 60 → **120 min** |
+| construction lines, every question | 41.6 min | ~56 min | 60 → **90 min** |
+| figure labels, every question | 41.7 min | ~56 min | 60 → **90 min** |
+
+**`playwright.config.ts` was deliberately not raised.** The theory was that dist had outgrown its 60 s default, so it was measured instead: dist is **20.2 MB**, five times the size that comment cites, and a cold `file://` load still takes **1.4–1.6 s**. Bundle size is not what that timeout guards. The measurement is now in the comment so nobody raises it on the same theory again.
+
+### physics-14 — 15 cards, and that is the whole chapter
+
+The book prints no SHORT ANSWER, LONG ANSWER or PROBLEMS section for Chapter 14, so 15 Very Short Answer cards completes it. The two scan pages were opened and read before authoring rather than trusted from the index; the stems matched. Three gates are specific to this chapter and none belongs to `check_cards`: `check_originality.ts` step 5 **forbids `insider_note`** and **requires `appearances: []`** for any chapter in its `NEVER_ASKED` set, and every row keeps `stars: 0`.
+
+Two places the study material is wrong, and the cards do not follow it: **graphene** ("a million times thinner than a human hair" is nearer 200,000 — the card writes "one atom thick", which is exact) and **robots** (the book pairs electromagnetism with *thermodynamics*; the card answers mechanics and electromagnetism and records the book's pairing so a student who wrote either understands the difference).
+
+### The per-wave audit paid on its first run, and nothing else could have caught it
+
+Every automated gate was **green** — `check:cards`, `build:answers`, `check:originality`, `check:xrefs`, `check:papers`, `backtest:physics`, `vitest`, `measure:wrap`. The examiner audit then found **23 defects across 13 of the 15 cards: 7 harmful, 8 wrong, 5 weak, 3 register. None of the 23 is machine-checkable.**
+
+**Six of the seven harmful findings are the shape the second-year audit found** — a prose field contradicting its own card. Here it is `common_mistakes` calling a correct, mark-earning answer a mistake, usually contradicting the `margin_note` two lines below it. A student following those lines deletes a correct answer.
+
+**The seventh was false physics:** the card told students Newton's **first** law "does not apply to a moving, balancing robot". It applies to every body, and a robot standing balanced is first-law equilibrium.
+
+Also repaired: the **action-reaction misconception** ("the reaction force is what keeps the robot from falling" — the pair is equal and opposite whether it stands or topples); "one qubit holds more information than a 0 or a 1" (a single qubit yields one classical bit; the advantage is collective, 2ⁿ over n qubits); a bare glass rod treated as *not* a light pipe (it is — the cladding keeps the reflecting surface clean); "don't name a metal oxide" when **indium tin oxide is** the standard transparent conductor; nanotube confinement stated as flat level separation when it is **circumferential**, splitting states into sub-bands while axial states stay continuous.
+
+**Two auditor findings were declined on purpose,** with reasons in the report: materials science stays the lead answer for "another field of physics", and optics stays in the sunshield answer — both are what the printed key says. Report: `docs/reports/firstyear_2027/physics14_audit.md`.
+
+Separately, four cards cited "printed p.143" when questions 12–15 are printed on p.144. No gate looks at that, and the provenance line is the whole point of the originality boundary.
+
+### Shipped and verified against the live site, not the repo
+
+`content:push:mpc-both` then `deploy:answers` (worker `056ad3fb`). Openable answers **2,467 → 2,482**; chapters a student can open **93 → 94**; physics unit 14 shows 15 rows with 15 cards; and the served `ab_content` bundle for `physics-14` carries the repaired text, no company names, and none of the old false claim.
+
+### What is left
+
+Waves B–E, **699 cards**: physics 9–13 (125 + 4 re-cuts) · chemistry 7–10 (230, four never-authored chapters) · physics 1–8 (171 + 48 + 24) · chemistry 1–6 (173 + 55 + 24). Then PROBLEM cards — **no longer engine-blocked**, since the PRACTICE section merged the same day.
+
+Counts that must move as their wave lands: physics unit 1 `u1n` 25 (wave D), chemistry unit 4 `u4ready` 36 (wave E), chemistry `comingReady` `[0,0,0,0]` (wave C).
+
+Still to build: `answer-book/sources/coverage_2027.json` and `check:syllabus-coverage`, mirroring `answer-book/papers/matches.json` and `backtest_ipe_papers.ts`, so "first-year is complete" stops being a claim in a report. A seed extractor over the diffs' TABLE A parses 1,391 of the 1,421 book entries and reports 744 asked-missing against the report's 714 — that delta is what the gate must reconcile before it can be trusted.
+
+And a standing asymmetry worth naming: **chemistry has no real-paper corpus.** Physics is back-tested against 7 TS papers and sits at 100%. Chemistry completeness rests entirely on one commercial book.
+
+---
+
+
 ## 🧮 SESSION — The PRACTICE section: `qtype: "PROBLEM"`, the first question kind the paper does not ask (2026-09-02, `feat/answerbook-problems-section`)
 
 **Bottom line: the fourth section exists, it is gated harder than the three that came before it, and two real problems prove the path end to end.** Phase A2 of the 2026-09-02 plan; the founder reversed the 2026-08-20 deferral because the 2026-27 books print **328 practice problems** and the deferred ones kept turning up on real papers. No bulk authoring here — that is Phase C.
