@@ -54,9 +54,21 @@ Every repair agent verified its own prefix with `check_cards` (exit 0 every time
 
 PR #189 merged as `7d06f04c` → `build:answers:gated:mpc-both` → `content:push:mpc-both` (98 units / 2,454 questions, all 8 free rows correct by name) → `deploy:answers` (worker `a82efb82`). Live-verified against the site, not the artifact. Edge Function redeployed separately to **version 17**; the deployed source was read back and confirmed to carry the new clause and not the old grant.
 
-### Left open, and owned by a teacher
+### IS THE SECOND-YEAR BOOK READY FOR STUDENTS? — the honest answer (founder asked directly, 2026-09-02)
 
-`verification.status` is `unverified` on all 1,124 cards. Roughly forty teacher-gate questions are recorded in the group reports and were deliberately not settled: Popoff's rule direction, the Dow-process pressure (300 vs NCERT's 320), ligand-name dialect (chlorido vs chloro), thiocyanato vs isothiocyanato, the vitamin E deficiency wording, the octane 8 g vs 10 g answer, "Daniel" vs "Daniell", and whether a diagram earns a mark on questions that say "with a suitable diagram". **This is now the largest remaining gap in the second-year book, and no further agent work closes it.**
+**Live and usable: YES.** All four papers serve on answers.viditra.co, the repaired content is in the live bundles, and the chatbot answers. Verified against the site, not the repo.
+
+**"Everything is perfect": NO — and three gaps say why. None of them is closed by more agent work.**
+
+1. **No teacher has verified a single card.** Measured, not estimated: of the 1,124 second-year cards, **0 are `teacher_verified` and 1,124 still carry `needs_teacher_verification: true`**. This audit was a careful re-derivation; that is a different thing from a board teacher's sign-off. The group reports raise **184 numbered teacher-gate questions** that were deliberately NOT settled — Popoff's rule direction, the Dow-process pressure (300 vs NCERT's 320), ligand-name dialect (chlorido vs chloro), thiocyanato vs isothiocyanato, the vitamin E deficiency wording, the octane 8 g vs 10 g answer, "Daniel" vs "Daniell", whether a diagram earns a mark on a question that says "with a suitable diagram". Each is a place where a student writes what the card says and a Telangana examiner may disagree.
+2. **Every mark split is the bank's own claim, not the board's** — each card says so in its own `verification.note`. No second-year board paper exists in `answer-book/papers/`, so no split was ever back-tested. A student trusting "this step earns 2 marks" is trusting us.
+3. **This audit checked that what is there is CORRECT. It did not check that everything that should be there IS there.** There is no transcribed second-year source index (`answer-book/sources/` is first-year maths only), so a coverage diff against the source books was impossible. The equivalent check on Maths 1A/1B found **308 unauthored questions**. The second-year number is unknown and unmeasured.
+
+Smaller, also open: **three Chemistry-II question stems are themselves defective** and were referred out rather than rewritten, because `question_text` defines the question a student is answering — `ts_ipe_c2_df_iupac_formulae_from_names` ("Using IUPAC norms write the formulae for the following." — the eleven names exist only inside the answer steps, so the printed question cannot be attempted), `ts_ipe_c2_via_water_liquid_h2s_gas` and `ts_ipe_c2_va_ph3_weaker_base_than_nh3` (ungrammatical stems reproduced from the book). And the chatbot still drifts back to the open question on ~26% of off-paper asks, ~8% of them with real content.
+
+**The two things that would actually close the gap:** a board teacher working the 184 questions, and a coverage diff once a second-year source index exists. Only the first needs a person.
+
+### Left open, and owned by a teacher
 
 Also open: two low-rate model behaviours measured in 2,710 Maths-2B replies — one reply naming internal machinery, one walkthrough truncated at the 500-token cap — and 21 ungraded chatbot slices whose measurement is already stable at ~9.9/10.
 
