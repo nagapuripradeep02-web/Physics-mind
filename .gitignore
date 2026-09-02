@@ -155,3 +155,6 @@ answer-book/dist-*/
 # a wrap report and a rendered figure gallery, both regenerated on every run.
 answer-book/tools/out/
 smoke.pid
+
+# local smoke-run logs (detached Playwright runs write here)
+.smoke_*.log

@@ -14,11 +14,34 @@ interface UsageLogEntry {
     estimated_cost_usd: number;
     input_chars?: number;
     output_chars?: number;
+    /** Who generated the row: answerbook_student | answerbook_team |
+     *  answerbook_probe | answerbook_local | quicklearn_* | founder_test.
+     *  NOT NULL in the database, defaulting to 'founder_test'. */
+    actor?: string;
 }
 
 interface ModelStats {
     calls: number;
     cost: number;
+}
+
+/**
+ * Spend grouped by WHO caused it. Deliberately a BREAKDOWN and not a filter
+ * toggle: the totals above stay whole-company totals and keep the meaning they
+ * have always had, while this table answers the separate question "how much of
+ * that was real students, and how much was us testing?".
+ */
+function aggregateByActor(rows: UsageLogEntry[]): { actor: string; calls: number; cost: number }[] {
+    const acc: Record<string, ModelStats> = {};
+    for (const row of rows) {
+        const key = row.actor ?? "founder_test";
+        acc[key] = acc[key] ?? { calls: 0, cost: 0 };
+        acc[key].calls++;
+        acc[key].cost += row.estimated_cost_usd;
+    }
+    return Object.entries(acc)
+        .map(([actor, s]) => ({ actor, calls: s.calls, cost: s.cost }))
+        .sort((a, b) => b.cost - a.cost || b.calls - a.calls);
 }
 
 /**
@@ -80,22 +103,22 @@ export default async function AdminCostsPage() {
     const [todayRes, weekRes, monthRes, allTimeRes] = await Promise.all([
         supabaseAdmin
             .from("ai_usage_log")
-            .select("id, created_at, provider, model, estimated_cost_usd")
+            .select("id, created_at, provider, model, estimated_cost_usd, actor")
             .gte("created_at", windows.todayStart)
             .order("created_at", { ascending: false }),
         supabaseAdmin
             .from("ai_usage_log")
-            .select("id, created_at, provider, model, estimated_cost_usd")
+            .select("id, created_at, provider, model, estimated_cost_usd, actor")
             .gte("created_at", windows.sevenDaysAgo)
             .order("created_at", { ascending: false }),
         supabaseAdmin
             .from("ai_usage_log")
-            .select("id, created_at, provider, model, estimated_cost_usd")
+            .select("id, created_at, provider, model, estimated_cost_usd, actor")
             .gte("created_at", windows.thirtyDaysAgo)
             .order("created_at", { ascending: false }),
         supabaseAdmin
             .from("ai_usage_log")
-            .select("id, created_at, provider, model, estimated_cost_usd")
+            .select("id, created_at, provider, model, estimated_cost_usd, actor")
             .order("created_at", { ascending: true }),
     ]);
 
@@ -255,6 +278,38 @@ export default async function AdminCostsPage() {
                                         </tr>
                                     );
                                 })}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {/* Who caused the spend — a breakdown, never a filter. The
+                    totals above stay whole-company totals. */}
+                <div className="bg-slate-900 rounded-lg border border-slate-700 overflow-hidden">
+                    <div className="px-6 py-4 border-b border-slate-700">
+                        <h2 className="text-lg font-semibold text-white">Spend by actor (30 days)</h2>
+                        <p className="text-xs text-slate-500 mt-1">
+                            Real students vs. our own team and automated testing. Rows written before
+                            2026-09-02 carry the old default and are not a reliable split.
+                        </p>
+                    </div>
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-sm">
+                            <thead className="bg-slate-800/50">
+                                <tr>
+                                    <th className="px-6 py-3 text-left text-slate-400 font-medium">Actor</th>
+                                    <th className="px-6 py-3 text-right text-slate-400 font-medium">Calls</th>
+                                    <th className="px-6 py-3 text-right text-slate-400 font-medium">Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {aggregateByActor(monthData).map((r) => (
+                                    <tr key={r.actor} className="border-t border-slate-800">
+                                        <td className="px-6 py-3 text-slate-300 font-mono text-xs">{r.actor}</td>
+                                        <td className="px-6 py-3 text-right text-slate-400">{r.calls}</td>
+                                        <td className="px-6 py-3 text-right text-slate-300">${r.cost.toFixed(4)}</td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>

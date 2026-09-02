@@ -39,6 +39,17 @@ const CONTEXTS = arg('contexts', ROOT + '/.answerbook_logs/vidi_contexts.json');
 const PREFIX = arg('prefix', 'ts_ipe_p1');
 const OUT = arg('out', ROOT + '/.answerbook_logs/audit_' + PREFIX + '.jsonl');
 const ENDPOINT = arg('endpoint', 'http://localhost:8110/api/chat');
+// An automated run is real spend but it is NOT a student. The token labels the
+// ledger row `answerbook_probe`; it changes no limit. Make the DEFAULT safe: a
+// run that forgets the token against the live function is refused rather than
+// filed as student demand. (This script sends no Origin, so the live function
+// 403s it today anyway — the guard is for the day someone adds one.)
+const PROBE_TOKEN = process.env.AB_PROBE_TOKEN ?? '';
+if (!PROBE_TOKEN && /supabase\.co/.test(ENDPOINT)) {
+    console.error('refusing: AB_PROBE_TOKEN is unset and --endpoint is the LIVE function.');
+    console.error('  This run would be counted as real students in ai_usage_log.');
+    process.exit(1);
+}
 const CONC = Number(arg('conc', '8'));
 const LIMIT = Number(arg('limit', '0'));
 const ONLY = arg('only', '');
@@ -280,12 +291,14 @@ function flagsFor(t: T, ctx: Ctx, reply: string, stepId: string | null): { text:
     return f;
 }
 
-async function post(body: unknown): Promise<{ reply: string; cost: number; ms: number }> {
+// A record, not `unknown`, so the probe token can be merged in below.
+async function post(body: Record<string, unknown>): Promise<{ reply: string; cost: number; ms: number }> {
     const t0 = Date.now();
     for (let attempt = 0; attempt < 3; attempt++) {
         try {
             const r = await fetch(ENDPOINT, {
-                method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(PROBE_TOKEN ? { ...body, probe_token: PROBE_TOKEN } : body),
             });
             const j = await r.json() as { reply?: string; _cost_usd?: number; error?: string };
             if (j.reply) return { reply: j.reply, cost: j._cost_usd ?? 0, ms: Date.now() - t0 };

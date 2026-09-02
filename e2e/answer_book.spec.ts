@@ -2817,3 +2817,178 @@ test('Maths-1A is on the 2026-27 numbering with its two new chapters listed', as
     expect(r.u9).toContain('Trigonometric Equations');
     expect(r.u12).toContain('Properties of Triangles');
 });
+
+// ── Who is asking — the team/testing exclusion (runbook §2 + §7, 2026-09-02) ──
+// The founder and the team open this book many times a day on their own phones
+// and laptops, and Claude probes the live chat endpoint to verify deploys. All
+// of it used to count as students. Three gates: the offline build must stay
+// completely inert, the hosted build must say WHO is asking on both the
+// telemetry batch AND the ask itself (the ask is the one that reaches the money
+// in ai_usage_log), and the built file must prove it is the offline one.
+
+test('offline: #/notastudent does nothing, and no ask can leak a device id', async ({ page }) => {
+    const external: string[] = [];
+    page.on('request', (r) => {
+        const u = r.url();
+        if (!u.startsWith('file://') && !u.includes('fonts.g')) external.push(u);
+    });
+    await page.goto(URL + '#/notastudent/anything');
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    await page.waitForSelector('#askOverlay:not([hidden])');
+    expect(await page.textContent('#askText')).toContain('not valid');
+
+    const r = await page.evaluate(() => ({
+        staff: (window as any).PM_STAFF_WORD,
+        internal: localStorage.getItem('pm_internal'),
+        deviceId: localStorage.getItem('pm_device_id'),
+    }));
+    expect(r.staff).toBe('');            // the offline build carries no word,
+    expect(r.internal).toBe(null);       // so the route can mark nothing
+    expect(r.deviceId).toBe(null);
+
+    await page.click('#askYes');
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    // The ask row does not exist offline, so vidiAsk() can never run — and the
+    // PM_SYNC_BASE guard inside it is what stops Sync.deviceId() MINTING an id
+    // on a page that is supposed to touch nothing. Assert both halves: a
+    // missing guard would leave pm_device_id populated right here.
+    await openFirst(page);
+    expect(await page.evaluate(() => document.getElementById('vidiAskRow')!.hidden)).toBe(true);
+    expect(await page.evaluate(() => localStorage.getItem('pm_device_id'))).toBe(null);
+
+    await page.waitForTimeout(500);
+    expect(external).toEqual([]);
+});
+
+test('hosted: telemetry AND the ask both say who is asking, and the team route flips it', async ({ page }) => {
+    const VIDI = 'https://vidi.test/functions/v1/answerbook-vidi-chat';
+    const SYNC = 'https://sync.test/functions/v1/answerbook-sync';
+    const posts: any[] = [];
+    const syncs: any[] = [];
+    const batches = () => posts.filter((b) => b.type === 'events');
+    const asks = () => posts.filter((b) => b.type !== 'events');
+
+    await page.addInitScript(([v, s]: [string, string]) => {
+        // The data block assigns these before notebook.js reads them, so the
+        // override has to be a getter that swallows that write.
+        for (const [k, val] of [['PM_VIDI_BASE', v], ['PM_SYNC_BASE', s], ['PM_STAFF_WORD', 'secret-word']]) {
+            Object.defineProperty(window, k, { get: () => val, set: () => { }, configurable: true });
+        }
+        try { localStorage.setItem('pm_intro_done', '1'); } catch { /* file:// */ }
+    }, [VIDI, SYNC] as [string, string]);
+
+    const cors = {
+        'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type', 'Content-Type': 'application/json',
+    };
+    await page.route('https://vidi.test/**', async (route) => {
+        const req = route.request();
+        if (req.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors });
+        posts.push(JSON.parse(req.postData() || '{}'));
+        return route.fulfill({ status: 200, headers: cors, body: JSON.stringify({ ok: true, reply: 'ok' }) });
+    });
+    await page.route('https://sync.test/**', async (route) => {
+        const req = route.request();
+        if (req.method() === 'OPTIONS') return route.fulfill({ status: 204, headers: cors });
+        syncs.push(JSON.parse(req.postData() || '{}'));
+        return route.fulfill({
+            status: 200, headers: cors,
+            body: JSON.stringify({ ok: true, plan: null, plan_saved_at: null, stages: [], internal: false }),
+        });
+    });
+
+    // Open, read up to three steps (the first question may be a 2-step VSAQ),
+    // then hide the tab: the batch flushes on hidden.
+    await openFirst(page);
+    const stepCount = await page.evaluate(() => (window as any).PM_ANSWER.question.answer.steps.length);
+    const reveals = Math.min(3, stepCount);
+    for (let i = 0; i < reveals; i++) {
+        await page.evaluate(() => new Promise<void>((resolve) => {
+            document.addEventListener('pm:step-revealed', () => resolve(), { once: true });
+            (window as any).PM_ANSWER.revealNext();
+            setTimeout(() => (window as any).PM_ANSWER.revealNext(), 120);
+        }));
+    }
+    await page.evaluate(() => {
+        Object.defineProperty(document, 'visibilityState', { get: () => 'hidden', configurable: true });
+        document.dispatchEvent(new Event('visibilitychange'));
+    });
+    await expect.poll(() => batches().length, { timeout: 5000 }).toBeGreaterThan(0);
+
+    const deviceId = await page.evaluate(() => localStorage.getItem('pm_device_id'));
+    expect(deviceId).toMatch(/^[0-9a-f-]{36}$/i);
+    const all = batches().flatMap((b) => b.events || []);
+    const types = all.map((e: any) => e.t);
+    expect(types.filter((t: string) => t === 'app_open').length).toBe(1);   // once per load
+    expect(types).toContain('open_q');
+    expect(types.filter((t: string) => t === 'advance').length).toBe(reveals);
+    const adv = all.find((e: any) => e.t === 'advance');
+    expect(adv.i).toBe(1); expect(adv.n).toBeGreaterThan(0); expect(adv.qid).toBeTruthy();
+    expect(all.find((e: any) => e.t === 'open_q').unit).toMatch(/^[a-z_0-9]+-\d+$/);
+    for (const b of batches()) {
+        expect(b.device_id).toBe(deviceId);      // tied to the device
+        expect(b.visit_id).toMatch(/^v_/);       // and to the visit
+        expect(b.internal).toBe(false);          // a student, so far
+    }
+
+    // ── the ASK, not just the telemetry ─────────────────────────────────────
+    // ai_usage_log is where the money is and it has NO device column, so the
+    // ask body itself has to carry who is asking. This is the assertion that
+    // would have caught the original bug: the analytics branch instrumented
+    // telemetry and left the ask untouched, so every team ask was still
+    // written as a student.
+    await page.waitForSelector('#vidiAskRow:not([hidden])');
+    await page.fill('#vidiInput', 'why this step');
+    await page.click('#vidiSend');
+    await expect.poll(() => asks().length, { timeout: 6000 }).toBeGreaterThan(0);
+    const ask = asks()[asks().length - 1];
+    expect(ask.question).toBe('why this step');
+    expect(ask.session_id).toMatch(/^ab_/);
+    expect(ask.device_id).toBe(deviceId);        // the same id the batches carry
+    expect(ask.internal).toBeUndefined();        // no claim = a student
+    expect(ask.probe_token).toBeUndefined();     // a browser never holds the secret
+
+    // The team route with the RIGHT word flips the flag; the next batch, the
+    // next sync AND the next ask all carry it.
+    const before = batches().length;
+    await page.evaluate(() => { location.hash = '#/notastudent/secret-word'; });
+    await page.waitForSelector('#askOverlay:not([hidden])');
+    expect(await page.textContent('#askText')).toContain('marked as team');
+    expect(await page.evaluate(() => localStorage.getItem('pm_internal'))).toBe('1');
+    await expect.poll(() => batches().length, { timeout: 5000 }).toBeGreaterThan(before);
+    const marked = batches()[batches().length - 1];
+    expect(marked.internal).toBe(true);
+    expect(marked.events.some((e: any) => e.t === 'team_mark' && e.on === true)).toBe(true);
+    await expect.poll(() => syncs.some((s) => s.internal === true), { timeout: 6000 }).toBe(true);
+
+    await page.click('#askYes');
+    await openFirst(page);
+    const nAsks = asks().length;
+    await page.waitForSelector('#vidiAskRow:not([hidden])');
+    await page.fill('#vidiInput', 'and now');
+    await page.click('#vidiSend');
+    await expect.poll(() => asks().length, { timeout: 6000 }).toBeGreaterThan(nAsks);
+    expect(asks()[asks().length - 1].internal).toBe(true);   // the ledger can now tell
+    expect(asks()[asks().length - 1].probe_token).toBeUndefined();
+
+    // A WRONG word does nothing — a forwarded link cannot mark a class.
+    await page.evaluate(() => { localStorage.removeItem('pm_internal'); location.hash = '#/notastudent/wrong'; });
+    await page.waitForFunction(() => /not valid/.test(document.getElementById('askText')!.textContent || ''));
+    expect(await page.evaluate(() => localStorage.getItem('pm_internal'))).toBe(null);
+
+    // /off with the right word turns a team device back into a student.
+    await page.evaluate(() => { location.hash = '#/notastudent/secret-word/off'; });
+    await page.waitForFunction(() => /student again/.test(document.getElementById('askText')!.textContent || ''));
+    expect(await page.evaluate(() => localStorage.getItem('pm_internal'))).toBe('0');
+});
+
+test('the offline build bakes no staff word and no ask endpoint', async () => {
+    // Read the BUILT file, not the page. A hosted bundle sitting in
+    // answer-book/dist would make every "offline" gate above pass for the wrong
+    // reason — the beforeAll hook catches PM_VIDI_BASE, and this pins the staff
+    // word beside it so the team link can never ship in an emailable copy.
+    const src = readFileSync(DIST, 'utf8');
+    expect(/PM_STAFF_WORD\s*=\s*""/.test(src)).toBe(true);
+    expect(/PM_VIDI_BASE\s*=\s*""/.test(src)).toBe(true);
+});

@@ -40,6 +40,19 @@ const ENDPOINT = process.env.VIDI_ENDPOINT ?? 'http://localhost:8110';
 // Origin header, so a bare request 403s (correct guard, useless probe). Send an
 // allowlisted origin; the local dev mirror accepts any.
 const ORIGIN = process.env.VIDI_ORIGIN ?? 'http://localhost:8100';
+// An automated run is real spend but it is NOT a student. The token labels the
+// ledger row `answerbook_probe`; it changes no limit — a probe still eats the
+// per-IP budget and the daily cap, exactly as it should.
+//   $env:AB_PROBE_TOKEN = "<secret>"; npm run vidi:shakedown
+const PROBE_TOKEN = process.env.AB_PROBE_TOKEN ?? '';
+// The important half: make the DEFAULT safe. Before this guard, a session that
+// simply forgot the token silently filed 19 probe asks as real student demand.
+if (!PROBE_TOKEN && /supabase\.co/.test(ENDPOINT)) {
+    console.error('refusing: AB_PROBE_TOKEN is unset and VIDI_ENDPOINT is the LIVE function.');
+    console.error('  This run would be counted as real students in ai_usage_log.');
+    console.error('  Set AB_PROBE_TOKEN (see docs/notes/ANSWER_BOOK_ANALYTICS_RUNBOOK.md), or probe the local mirror.');
+    process.exit(1);
+}
 // The deployed function allows 4 questions per minute per IP. Firing probes back
 // to back trips it (correct guard, useless probe), so a live run must pace itself:
 // VIDI_DELAY_MS=16000 keeps one request per 15 s. The local mirror has no limit —
@@ -177,14 +190,15 @@ const TEMPLATES: Omit<Probe, 'qid' | 'id'>[] = [
 
 type Flag = { text: string; critical: boolean };
 
-/** One request. Shared by the final ask and by each replayed earlier turn. */
-async function post(body: unknown): Promise<{ reply: string; cost: number; ms: number }> {
+/** One request. Shared by the final ask and by each replayed earlier turn.
+    Typed as a record (not `unknown`) so the probe token can be merged in. */
+async function post(body: Record<string, unknown>): Promise<{ reply: string; cost: number; ms: number }> {
     const t0 = Date.now();
     try {
         const r = await fetch(ENDPOINT, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Origin: ORIGIN },
-            body: JSON.stringify(body),
+            body: JSON.stringify(PROBE_TOKEN ? { ...body, probe_token: PROBE_TOKEN } : body),
         });
         const j = await r.json() as { reply?: string; _cost_usd?: number; error?: string };
         return {
