@@ -1,0 +1,248 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Physics (2026-27 edition)",
+  "scan_file": "DocScanner (3).pdf",
+  "scan_sha256": "1abe7da6d4846e9e09d6cb7b588db8404a6268dc196f1d4128deefea6a37c016",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring: VSAQ 22 questions (24 entries — q3 and q14 carry printed sub-parts), SAQ 13 questions (14 entries — q13 carries printed sub-parts), LAQ 4, PROBLEM 2; 44 entries in all, stems restated in our own wording with every datum exact and no solution content. The FORMULAE block on scan pp.121–122 (printed 123–124) is not indexed; scan pp.124, 125 and 127 (printed 126, 127, 129) are scanned with a clipped left margin, so the printed-126 footer number and the number of VSAQ 22 are inferred from sequence and any star marker on VSAQ 21–22 cannot be confirmed.",
+  "chapter": { "number": 12, "printed_title": "THERMODYNAMICS" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 124, "scan_page": 122,
+      "stem": "State the difference between thermal equilibrium and thermodynamic equilibrium.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 1,
+      "printed_page": 124, "scan_page": 122,
+      "stem": "State the zeroth law of thermodynamics.",
+      "appearance_years": [],
+      "notes": "Printed as 'State of zeroth law of thermodynamics' — 'of' is a typo for 'the'." },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": "a", "stars": 0,
+      "printed_page": 124, "scan_page": 122,
+      "stem": "Which thermodynamic variable is defined by the zeroth law of thermodynamics?",
+      "appearance_years": [],
+      "notes": "Printed as one question: 'What thermodynamic variables can be defined by a) Zeroth Law b) First Law?' Split per printed sub-part." },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": "b", "stars": 0,
+      "printed_page": 124, "scan_page": 122,
+      "stem": "Which thermodynamic variable is defined by the first law of thermodynamics?",
+      "appearance_years": [],
+      "notes": "Part (b) of the printed question 'What thermodynamic variables can be defined by a) Zeroth Law b) First Law?'." },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 124, "scan_page": 122,
+      "stem": "Write the sign convention used for heat energy (Q) and for work (W) in thermodynamics.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 124, "scan_page": 122,
+      "stem": "Why is the internal potential energy of an ideal gas zero?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 1,
+      "printed_page": 124, "scan_page": 122,
+      "stem": "Define the specific heat capacity of a substance. On what factors does it depend?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 1,
+      "printed_page": 124, "scan_page": 122,
+      "stem": "Define one calorie. Define the mechanical equivalent of heat.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 1,
+      "printed_page": 124, "scan_page": 122,
+      "stem": "Define molar specific heat capacity.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 125, "scan_page": 123,
+      "stem": "Write the relation between the specific heats of an ideal gas.",
+      "appearance_years": [],
+      "notes": "Printed wording: 'Write the specific heat relation for an ideal gas'." },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 125, "scan_page": 123,
+      "stem": "The coolant used in a chemical plant or a nuclear plant should have a high specific heat. Why?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 125, "scan_page": 123,
+      "stem": "Define state variables, and define the equation of state.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 0,
+      "printed_page": 125, "scan_page": 123,
+      "stem": "The volume of a gas is reduced to 50% of its initial value, once by an adiabatic process and once by an isothermal process. Which of the two processes increases the pressure more?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 1,
+      "printed_page": 125, "scan_page": 123,
+      "stem": "A thermos flask containing a liquid is shaken vigorously. What happens to the temperature of the liquid?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": "i", "stars": 1,
+      "printed_page": 125, "scan_page": 123,
+      "stem": "Explain the isochoric process.",
+      "appearance_years": [],
+      "notes": "Printed as one question: 'Explain the following processes. i) Isochoric process ii) Isobaric process'. Split per printed sub-part." },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": "ii", "stars": 1,
+      "printed_page": 125, "scan_page": 123,
+      "stem": "Explain the isobaric process.",
+      "appearance_years": [],
+      "notes": "Part (ii) of the printed question 'Explain the following processes. i) Isochoric process ii) Isobaric process'." },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 125, "scan_page": 123,
+      "stem": "State the second law of thermodynamics.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 0,
+      "printed_page": 125, "scan_page": 123,
+      "stem": "Name the processes that make up the cycle of a Carnot engine.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 0,
+      "printed_page": 125, "scan_page": 123,
+      "stem": "What is a P-V diagram?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq18", "section": "VSAQ", "number": 18, "part": null, "stars": 0,
+      "printed_page": 126, "scan_page": 124,
+      "stem": "Can a room be cooled by leaving the door of an electric refrigerator open?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq19", "section": "VSAQ", "number": 19, "part": null, "stars": 0,
+      "printed_page": 126, "scan_page": 124,
+      "stem": "Why does the escaping air feel cold when the valve of a bicycle tube is opened in summer?",
+      "appearance_years": [],
+      "notes": "Printed 'value of a bicycle tube' — typo for 'valve'." },
+
+    { "ref": "vsaq20", "section": "VSAQ", "number": 20, "part": null, "stars": 0,
+      "printed_page": 126, "scan_page": 124,
+      "stem": "Why does the brake drum of an automobile get heated while the automobile moves down an incline at constant speed?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq21", "section": "VSAQ", "number": 21, "part": null, "stars": 0,
+      "printed_page": 126, "scan_page": 124,
+      "stem": "Why can a heat engine with 100% efficiency never be realised in practice?",
+      "appearance_years": [],
+      "notes": "The scan's left margin is clipped on this page; a star marker before the number, if any, is not visible." },
+
+    { "ref": "vsaq22", "section": "VSAQ", "number": 22, "part": null, "stars": 0,
+      "printed_page": 126, "scan_page": 124,
+      "stem": "State the Kelvin-Planck statement of the second law of thermodynamics.",
+      "appearance_years": [],
+      "notes": "The question number and any star marker are cut off by the clipped left margin; number 22 is inferred from sequence (it follows 21 and is the last VSAQ before the SHORT ANSWER heading)." },
+
+    { "ref": "saq1", "section": "SAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 126, "scan_page": 124,
+      "stem": "State the first law of thermodynamics and explain it.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq2", "section": "SAQ", "number": 2, "part": null, "stars": 1,
+      "printed_page": 126, "scan_page": 124,
+      "stem": "Define the two principal specific heats of a gas. Which of the two is greater, and why?",
+      "appearance_years": [],
+      "notes": "Printed 'principle specific heats' — 'principle' is a typo for 'principal'." },
+
+    { "ref": "saq3", "section": "SAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "Derive the relation between the two specific heat capacities of a gas on the basis of the first law of thermodynamics.",
+      "appearance_years": ["May-05", "May-06", "May-09", "June-11"],
+      "notes": "Citation printed as '(May-05,06,09, June-11)'. The left margin of this page is slightly clipped; no star marker is visible before the number." },
+
+    { "ref": "saq4", "section": "SAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "Explain the drawbacks of the first law of thermodynamics.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq5", "section": "SAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "Write a short note on the quasi-static process.",
+      "appearance_years": [],
+      "notes": "A sub-heading 'a) Quasi static process :' is printed under the question, but there is no part (b); treated as a single question." },
+
+    { "ref": "saq6", "section": "SAQ", "number": 6, "part": null, "stars": 1,
+      "printed_page": 128, "scan_page": 126,
+      "stem": "Obtain an expression for the work done by an ideal gas during an isothermal change.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq7", "section": "SAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 128, "scan_page": 126,
+      "stem": "Obtain an expression for the work done by an ideal gas during an adiabatic change, and explain it.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq8", "section": "SAQ", "number": 8, "part": null, "stars": 1,
+      "printed_page": 129, "scan_page": 127,
+      "stem": "Compare an isothermal process with an adiabatic process.",
+      "appearance_years": [],
+      "notes": "The left margin of this page is slightly clipped; the star marker before the number is partly cut but present." },
+
+    { "ref": "saq9", "section": "SAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 129, "scan_page": 127,
+      "stem": "Draw the P-V diagrams for the isothermal, adiabatic, isobaric and isochoric processes.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq10", "section": "SAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Obtain the relation between T and V for an adiabatic process.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq11", "section": "SAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Discuss the isochoric process and the isobaric process.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq12", "section": "SAQ", "number": 12, "part": null, "stars": 1,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Explain reversible and irreversible processes.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq13", "section": "SAQ", "number": 13, "part": "i", "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Explain the cyclic process, with an example.",
+      "appearance_years": [],
+      "notes": "Printed as one question: 'Explain the following process i) Cyclic process with example ii) Non cyclic process with example'. Split per printed sub-part." },
+
+    { "ref": "saq13", "section": "SAQ", "number": 13, "part": "ii", "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Explain the non-cyclic process, with an example.",
+      "appearance_years": [],
+      "notes": "Part (ii) of the printed question 'Explain the following process i) Cyclic process with example ii) Non cyclic process with example'." },
+
+    { "ref": "laq1", "section": "LAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 131, "scan_page": 129,
+      "stem": "Derive the relation between Cp and Cv on the basis of the first law of thermodynamics. Also determine the efficiency of a Carnot engine that operates between 127°C and 327°C.",
+      "appearance_years": [],
+      "notes": "Two asks (a derivation and a numerical) printed as one question with no part labels; kept as one entry." },
+
+    { "ref": "laq2", "section": "LAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 132, "scan_page": 130,
+      "stem": "Derive the expression for the work done in an adiabatic process. Also: heat energy of 6×10⁵ J is supplied to an ideal gas at a constant pressure of 10⁵ N/m², and the volume of the gas increases from 3 m³ to 5 m³; calculate the change in the internal energy of the gas.",
+      "appearance_years": [],
+      "notes": "Two asks (a derivation and a numerical) printed as one question with no part labels; kept as one entry." },
+
+    { "ref": "laq3", "section": "LAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 132, "scan_page": 130,
+      "stem": "Describe the working of a Carnot engine and obtain an expression for its efficiency. Also: a Carnot engine of efficiency 45% takes heat from a source maintained at a temperature of 227°C; find the temperature of the sink.",
+      "appearance_years": [],
+      "notes": "Two asks (a description with derivation, and a numerical) printed as one question with no part labels; kept as one entry." },
+
+    { "ref": "laq4", "section": "LAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 134, "scan_page": 132,
+      "stem": "State the second law of thermodynamics. How is a heat engine different from a refrigerator? Also: a heat engine takes in 1420 J of heat from the source and exhausts 660 J of heat to the sink; how much work is done by the engine?",
+      "appearance_years": [],
+      "notes": "Three asks (a statement, a comparison, and a numerical) printed as one question with no part labels; kept as one entry." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": null, "stars": 0,
+      "printed_page": 134, "scan_page": 132,
+      "stem": "A monoatomic ideal gas of volume 1 litre at N.T.P. is compressed adiabatically to half of its volume. Find the work done on the gas. Also find the work done if the compression is isothermal. Take γ = 5/3.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 0,
+      "printed_page": 135, "scan_page": 133,
+      "stem": "Five moles of hydrogen, when heated through 20 K, expand by an amount of 8.3 × 10⁻³ m³ under a constant pressure of 10⁵ N/m². If Cv = 20 J/mole K, find Cp.",
+      "appearance_years": [], "notes": null }
+  ]
+}

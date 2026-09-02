@@ -149,6 +149,15 @@ R1 is not enforced there yet. The gate prints this count on every run rather tha
 because a number that stops being printed stops being true. Bringing those subjects in scope is a
 founder decision, not a tidy-up: it means recomputing a displayed priority signal for 521 cards.
 
+**2026-09-02 — the scope is also keyed by ROW.** The 2026-27 physics/chemistry retrofit takes
+questions from the Sri Chaitanya *IPE Study Material for Jr. Students* (2026-27) and marks every such
+manifest row `source: "chaitanya_fastrack"` (the same provenance flag the maths gap fill uses: the book
+asked it, printed no split, its stars are not ours). The gate now applies R1 to every such row in any
+subject (stars must be 0), and R3/R4 to the card behind it once it exists (it must cite the book, record
+"Only the question was taken" and point at this dossier). The 521 legacy rows carry no such source value
+and remain counted-not-failed, exactly as above. Founder decision 2026-09-02: new cards never republish
+the book's stars; the legacy rows stay a separate decision.
+
 ## 7. The reverse question: did their edition take anything from ours?
 
 **We have no evidence that it did, and we should not claim it.** A full read of all 226 scanned

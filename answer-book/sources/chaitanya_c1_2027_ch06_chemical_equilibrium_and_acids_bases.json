@@ -1,0 +1,449 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Chemistry (2026-27 edition)",
+  "scan_file": "DocScanner (4).pdf",
+  "scan_sha256": "18e8d6fc6831f1e9faf11a19450559f6fb9a0c6d55982c187943449f71f26a33",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring; stems restated in our own wording, no solution content from the source book appears here, by policy. Numbering runs 1–41 across VSAQ and SAQ: VSAQ 27 entries (Q1–27, no sub-parts), SAQ 18 entries over 14 printed numbers (Q28–41; Q32 four parts a–d, Q34 two parts i/ii), LAQ 0 (the chapter prints no LONG ANSWER section). Then a NUMERICALS block with its OWN numbering 1–10 (15 entries: Q1 four parts a–d, Q2 three parts a–c) — indexed under section PROBLEM with refs num<n> so they do not collide with the INTEXT SOLVED PROBLEMS 6.1–6.25 (28 entries over 25 numbers; 6.12 four parts a–d), refs prob<n>. 88 entries in all. Scan page 82 is NOT nearly blank: it is printed page 84 carrying 6.22–6.25 and the chapter's closing '***'; the next chapter starts on scan page 83. Scan is clean and fully legible; the left edge of scan pages 71/73/75/77/79 is slightly curved but every number and datum was readable.",
+  "chapter": { "number": 6, "printed_title": "CHEMICAL EQUILIBRIUM AND ACIDS-BASES" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 72, "scan_page": 70,
+      "stem": "What does it mean to say that a reaction has reached equilibrium?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 72, "scan_page": 70,
+      "stem": "Is it correct to say that a reaction has stopped once it has reached equilibrium?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 1,
+      "printed_page": 72, "scan_page": 70,
+      "stem": "State the law of chemical equilibrium.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 1,
+      "printed_page": 72, "scan_page": 70,
+      "stem": "What is a homogeneous equilibrium? Write two homogeneous equilibrium reactions.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 1,
+      "printed_page": 72, "scan_page": 70,
+      "stem": "What is a heterogeneous equilibrium? Write two heterogeneous equilibrium reactions.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 1,
+      "printed_page": 72, "scan_page": 70,
+      "stem": "Define equilibrium constant.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 1,
+      "printed_page": 72, "scan_page": 70,
+      "stem": "Write the relation between Kp and Kc.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 72, "scan_page": 70,
+      "stem": "Under what condition are Kp and Kc numerically equal for a reaction?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 1,
+      "printed_page": 72, "scan_page": 70,
+      "stem": "Give two chemical equilibrium reactions for which Kp = Kc.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 72, "scan_page": 70,
+      "stem": "On what factors does the value of the equilibrium constant depend?",
+      "appearance_years": [], "notes": "Printed as 'value of equation constant' — typo for 'equilibrium constant'." },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 72, "scan_page": 70,
+      "stem": "Does changing the concentrations of the reactants change the numerical value of the equilibrium constant?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 0,
+      "printed_page": 72, "scan_page": 70,
+      "stem": "What is the effect of pressure on a gaseous chemical equilibrium?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 0,
+      "printed_page": 73, "scan_page": 71,
+      "stem": "What is the effect of increasing the concentration of the reactants on a chemical reaction that is at equilibrium?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 73, "scan_page": 71,
+      "stem": "Can a catalyst disturb the state of equilibrium?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 73, "scan_page": 71,
+      "stem": "Write any two factors that affect the equilibrium constant.",
+      "appearance_years": [], "notes": "Printed as 'factors effecting equilibrium constant' — typo for 'affecting'." },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 0,
+      "printed_page": 73, "scan_page": 71,
+      "stem": "Give two applications of the equilibrium constant.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 0,
+      "printed_page": 73, "scan_page": 71,
+      "stem": "What is a Bronsted base? Give one example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq18", "section": "VSAQ", "number": 18, "part": null, "stars": 1,
+      "printed_page": 73, "scan_page": 71,
+      "stem": "What is a Bronsted acid? Give one example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq19", "section": "VSAQ", "number": 19, "part": null, "stars": 0,
+      "printed_page": 73, "scan_page": 71,
+      "stem": "What is a Lewis acid? Give one example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq20", "section": "VSAQ", "number": 20, "part": null, "stars": 1,
+      "printed_page": 73, "scan_page": 71,
+      "stem": "What is a Lewis base? Give one example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq21", "section": "VSAQ", "number": 21, "part": null, "stars": 1,
+      "printed_page": 73, "scan_page": 71,
+      "stem": "What is meant by the ionic product of water?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq22", "section": "VSAQ", "number": 22, "part": null, "stars": 1,
+      "printed_page": 73, "scan_page": 71,
+      "stem": "What is the value of Kw at room temperature? What are its units?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq23", "section": "VSAQ", "number": 23, "part": null, "stars": 1,
+      "printed_page": 73, "scan_page": 71,
+      "stem": "Give two examples of salts whose aqueous solutions are basic.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq24", "section": "VSAQ", "number": 24, "part": null, "stars": 1,
+      "printed_page": 73, "scan_page": 71,
+      "stem": "Give two examples of salts whose aqueous solutions are acidic.",
+      "appearance_years": [], "notes": "Printed as 'whose aqueous solutions are acids' — typo for 'acidic'." },
+
+    { "ref": "vsaq25", "section": "VSAQ", "number": 25, "part": null, "stars": 0,
+      "printed_page": 73, "scan_page": 71,
+      "stem": "Why are the solutions of salts formed from a strong acid and a strong base neutral?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq26", "section": "VSAQ", "number": 26, "part": null, "stars": 0,
+      "printed_page": 74, "scan_page": 72,
+      "stem": "Which equation is used to calculate the pH of an acidic buffer?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq27", "section": "VSAQ", "number": 27, "part": null, "stars": 0,
+      "printed_page": 74, "scan_page": 72,
+      "stem": "In an industrial process such as the Haber process for ammonia synthesis, how does removing a product shift the equilibrium?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq28", "section": "SAQ", "number": 28, "part": null, "stars": 0,
+      "printed_page": 74, "scan_page": 72,
+      "stem": "Derive the relation between Kp and Kc for an equilibrium reaction.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq29", "section": "SAQ", "number": 29, "part": null, "stars": 0,
+      "printed_page": 74, "scan_page": 72,
+      "stem": "Define equilibrium constant. Write the equilibrium constant expression for the reaction H₂(g) + I₂(g) ⇌ 2HI(g) and for its reverse reaction. How are the two equilibrium constants related?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq30", "section": "SAQ", "number": 30, "part": null, "stars": 0,
+      "printed_page": 74, "scan_page": 72,
+      "stem": "Explain the Arrhenius concept of acids and bases. What are its limitations?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq31", "section": "SAQ", "number": 31, "part": null, "stars": 1,
+      "printed_page": 74, "scan_page": 72,
+      "stem": "What is a conjugate acid-base pair? Illustrate with examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq32a", "section": "SAQ", "number": 32, "part": "a", "stars": 1,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "Write the conjugate acid and the conjugate base of OH⁻.",
+      "appearance_years": [], "notes": "Four-part question: (a) OH⁻ (b) H₂O (c) HCO₃⁻ (d) H₂O₂." },
+
+    { "ref": "saq32b", "section": "SAQ", "number": 32, "part": "b", "stars": 1,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "Write the conjugate acid and the conjugate base of H₂O.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq32c", "section": "SAQ", "number": 32, "part": "c", "stars": 1,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "Write the conjugate acid and the conjugate base of HCO₃⁻.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq32d", "section": "SAQ", "number": 32, "part": "d", "stars": 1,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "Write the conjugate acid and the conjugate base of H₂O₂.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": null, "stars": 1,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "What is the common ion effect? Illustrate it.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq34i", "section": "SAQ", "number": 34, "part": "i", "stars": 1,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "Define solubility product. Write the solubility product expression for A₂X₃.",
+      "appearance_years": [], "notes": "The definition 'Define solubility product' is the common lead-in printed once before the two parts (i) A₂X₃ and (ii) Zr₃(PO₄)₄; it is repeated in each part's stem here." },
+
+    { "ref": "saq34ii", "section": "SAQ", "number": 34, "part": "ii", "stars": 1,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "Define solubility product. Write the solubility product expression for Zr₃(PO₄)₄.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq35", "section": "SAQ", "number": 35, "part": null, "stars": 1,
+      "printed_page": 75, "scan_page": 73,
+      "stem": "Explain the term \"hydrolysis of salts\" with examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq36", "section": "SAQ", "number": 36, "part": null, "stars": 0,
+      "printed_page": 76, "scan_page": 74,
+      "stem": "Write a short note on buffer solutions.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq37", "section": "SAQ", "number": 37, "part": null, "stars": 0,
+      "printed_page": 76, "scan_page": 74,
+      "stem": "The aqueous solution of NH₄Cl is acidic. Explain why.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq38", "section": "SAQ", "number": 38, "part": null, "stars": 0,
+      "printed_page": 76, "scan_page": 74,
+      "stem": "The aqueous solution of CH₃COONa is basic. Explain why.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq39", "section": "SAQ", "number": 39, "part": null, "stars": 1,
+      "printed_page": 76, "scan_page": 74,
+      "stem": "What is Le Chatelier's principle? Discuss briefly the factors that can influence an equilibrium.",
+      "appearance_years": [], "notes": "Printed as 'Lechatelier's principle' (one word) here and in Q40/Q41." },
+
+    { "ref": "saq40", "section": "SAQ", "number": 40, "part": null, "stars": 0,
+      "printed_page": 77, "scan_page": 75,
+      "stem": "Discuss the application of Le Chatelier's principle to the industrial synthesis of ammonia (the Haber process).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq41", "section": "SAQ", "number": 41, "part": null, "stars": 0,
+      "printed_page": 77, "scan_page": 75,
+      "stem": "Discuss the application of Le Chatelier's principle to the industrial synthesis of sulphur trioxide.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "num1a", "section": "PROBLEM", "number": 1, "part": "a", "stars": 0,
+      "printed_page": 78, "scan_page": 76,
+      "stem": "Calculate the pH of 10⁻³ M HCl.",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 1 (a). The NUMERICALS block restarts numbering at 1 after SAQ 41 and precedes the INTEXT SOLVED PROBLEMS; indexed under PROBLEM with num<n> refs. The book prints 'P^H' (capital P, superscript H) for pH throughout this block. Four parts: (a) 10⁻³ M HCl (b) 10⁻³ M H₂SO₄ (c) 10⁻⁶ M HNO₃ (d) 0.05 M H₂SO₄." },
+
+    { "ref": "num1b", "section": "PROBLEM", "number": 1, "part": "b", "stars": 0,
+      "printed_page": 78, "scan_page": 76,
+      "stem": "Calculate the pH of 10⁻³ M H₂SO₄.",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 1 (b)." },
+
+    { "ref": "num1c", "section": "PROBLEM", "number": 1, "part": "c", "stars": 0,
+      "printed_page": 78, "scan_page": 76,
+      "stem": "Calculate the pH of 10⁻⁶ M HNO₃.",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 1 (c)." },
+
+    { "ref": "num1d", "section": "PROBLEM", "number": 1, "part": "d", "stars": 0,
+      "printed_page": 78, "scan_page": 76,
+      "stem": "Calculate the pH of 0.05 M H₂SO₄.",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 1 (d)." },
+
+    { "ref": "num2a", "section": "PROBLEM", "number": 2, "part": "a", "stars": 0,
+      "printed_page": 78, "scan_page": 76,
+      "stem": "Calculate the pH of 0.001 M NaOH.",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 2 (a). Three parts: (a) 0.001 M NaOH (b) 0.01 M Ca(OH)₂ (c) 0.01 M NaOH." },
+
+    { "ref": "num2b", "section": "PROBLEM", "number": 2, "part": "b", "stars": 0,
+      "printed_page": 78, "scan_page": 76,
+      "stem": "Calculate the pH of 0.01 M Ca(OH)₂.",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 2 (b)." },
+
+    { "ref": "num2c", "section": "PROBLEM", "number": 2, "part": "c", "stars": 0,
+      "printed_page": 78, "scan_page": 76,
+      "stem": "Calculate the pH of 0.01 M NaOH.",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 2 (c). Printed as '0.01 NaOH' with the unit M omitted; the working treats it as 0.01 M." },
+
+    { "ref": "num3", "section": "PROBLEM", "number": 3, "part": null, "stars": 0,
+      "printed_page": 78, "scan_page": 76,
+      "stem": "A 0.005 M H₂SO₄ solution is diluted 100 times. Calculate the pH of the diluted solution.",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 3." },
+
+    { "ref": "num4", "section": "PROBLEM", "number": 4, "part": null, "stars": 0,
+      "printed_page": 78, "scan_page": 76,
+      "stem": "50 ml of 0.1 M NH₄OH and 25 ml of 2 M NH₄Cl are used to make a buffer. What is its pH if pKa is 4.8?",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 4. AMBIGUOUS DATUM: the stem says 'pKa is 4.8', but NH₄OH/NH₄Cl is a basic buffer whose Henderson form needs the pKb of NH₄OH; the book's own working uses 4.8 as pKb. Probable typo for pKb." },
+
+    { "ref": "num5", "section": "PROBLEM", "number": 5, "part": null, "stars": 0,
+      "printed_page": 78, "scan_page": 76,
+      "stem": "A buffer is prepared by mixing 50 ml of 0.2 M CH₃COOH and 25 ml of 0.4 M CH₃COONa. If pKa is 4.8, what is the pH of the solution?",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 5. The stem starts at the foot of printed page 78; its working is on page 79." },
+
+    { "ref": "num6", "section": "PROBLEM", "number": 6, "part": null, "stars": 0,
+      "printed_page": 79, "scan_page": 77,
+      "stem": "One litre of a buffer solution contains 0.1 mole of acetic acid and 1 mole of sodium acetate. Find its pH if the pKa of CH₃COOH is 4.8.",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 6. Printed as '0.1 mole of acetic acid add 1 mole of sodium acetate' — 'add' is a typo for 'and'." },
+
+    { "ref": "num7", "section": "PROBLEM", "number": 7, "part": null, "stars": 0,
+      "printed_page": 79, "scan_page": 77,
+      "stem": "Calculate the pH of one litre of a buffer solution containing 1 M formic acid (HCOOH) and 0.1 M sodium formate (HCOONa), given that the pKa of formic acid is 3.75.",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 7. Printed wording repeats itself ('Calculate the pH ... Find its pH.') and spells 'solition'; one question." },
+
+    { "ref": "num8", "section": "PROBLEM", "number": 8, "part": null, "stars": 0,
+      "printed_page": 79, "scan_page": 77,
+      "stem": "The solubility of Ag₂CrO₄ is 1.3 × 10⁻⁴ mol L⁻¹. What is its solubility product?",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 8." },
+
+    { "ref": "num9", "section": "PROBLEM", "number": 9, "part": null, "stars": 0,
+      "printed_page": 79, "scan_page": 77,
+      "stem": "The solubility of A₂B is 2 × 10⁻³ mol L⁻¹. What is its solubility product?",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 9." },
+
+    { "ref": "num10", "section": "PROBLEM", "number": 10, "part": null, "stars": 0,
+      "printed_page": 79, "scan_page": 77,
+      "stem": "The solubility product of a salt AB is 10⁻¹⁰ mol² L⁻². What is its solubility?",
+      "appearance_years": [], "notes": "Printed label NUMERICALS 10." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": null, "stars": 0,
+      "printed_page": 79, "scan_page": 77,
+      "stem": "For the formation of NH₃ from N₂ and H₂, the following equilibrium concentrations were obtained at 500 K: [N₂] = 1.5 × 10⁻² M, [H₂] = 3.0 × 10⁻² M and [NH₃] = 1.2 × 10⁻² M. Calculate the equilibrium constant.",
+      "appearance_years": [], "notes": "Printed label 6.1 (INTEXT SOLVED PROBLEMS; the block mirrors NCERT Class-11 Chapter 7 worked examples 7.1–7.25)." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 0,
+      "printed_page": 79, "scan_page": 77,
+      "stem": "In a sealed vessel at 800 K the equilibrium concentrations are N₂ = 3.0 × 10⁻³ M, O₂ = 4.2 × 10⁻³ M and NO = 2.8 × 10⁻³ M. What is Kc for the reaction N₂(g) + O₂(g) ⇌ 2NO(g)?",
+      "appearance_years": [], "notes": "Printed label 6.2." },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": null, "stars": 0,
+      "printed_page": 79, "scan_page": 77,
+      "stem": "PCl₅, PCl₃ and Cl₂ are at equilibrium at 500 K with concentrations 1.59 M PCl₃, 1.59 M Cl₂ and 1.41 M PCl₅. Calculate Kc for the reaction PCl₅ ⇌ PCl₃ + Cl₂.",
+      "appearance_years": [], "notes": "Printed label 6.3." },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 0,
+      "printed_page": 80, "scan_page": 78,
+      "stem": "For the equilibrium 2NOCl(g) ⇌ 2NO(g) + Cl₂(g), the value of the equilibrium constant Kc is 3.75 × 10⁻¹ at 1069 K. Calculate Kp for the reaction at this temperature.",
+      "appearance_years": [], "notes": "Printed label 6.4. PROBABLE PRINTED TYPO: the stem gives Kc = 3.75 × 10⁻¹, but the book's own working and the NCERT source (Example 7.4) use Kc = 3.75 × 10⁻⁶. Kept as printed." },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": null, "stars": 0,
+      "printed_page": 80, "scan_page": 78,
+      "stem": "The value of Kc for the reaction 2A ⇌ B + C is 2 × 10⁻³. At a given time the composition of the reaction mixture is [A] = [B] = [C] = 3 × 10⁻⁴ M. In which direction will the reaction proceed?",
+      "appearance_years": [], "notes": "Printed label 6.5." },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": null, "stars": 0,
+      "printed_page": 80, "scan_page": 78,
+      "stem": "13.8 g of N₂O₄ was placed in a 1 L reaction vessel at 400 K and allowed to reach the equilibrium N₂O₄(g) ⇌ 2NO₂(g). The total pressure at equilibrium was found to be 9.15 bar. Calculate Kc, Kp and the partial pressures at equilibrium.",
+      "appearance_years": [], "notes": "Printed label 6.6." },
+
+    { "ref": "prob7", "section": "PROBLEM", "number": 7, "part": null, "stars": 0,
+      "printed_page": 80, "scan_page": 78,
+      "stem": "The value of ΔG⊖ for the phosphorylation of glucose in glycolysis is 13.8 kJ/mol. Find the value of Kc at 298 K.",
+      "appearance_years": [], "notes": "Printed label 6.7." },
+
+    { "ref": "prob8", "section": "PROBLEM", "number": 8, "part": null, "stars": 0,
+      "printed_page": 80, "scan_page": 78,
+      "stem": "The hydrolysis of sucrose, Sucrose + H₂O ⇌ Glucose + Fructose, has equilibrium constant Kc = 2 × 10¹³ at 300 K. Calculate ΔG⊖ at 300 K.",
+      "appearance_years": [], "notes": "Printed label 6.8." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": null, "stars": 0,
+      "printed_page": 80, "scan_page": 78,
+      "stem": "What are the conjugate bases of the following Bronsted acids: HF, H₂SO₄ and HCO₃⁻?",
+      "appearance_years": [], "notes": "Printed label 6.9. The stem is on printed page 80; its answer is on page 81." },
+
+    { "ref": "prob10", "section": "PROBLEM", "number": 10, "part": null, "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "Write the conjugate acids of the following Bronsted bases: NH₂⁻, NH₃ and HCOO⁻.",
+      "appearance_years": [], "notes": "Printed label 6.10." },
+
+    { "ref": "prob11", "section": "PROBLEM", "number": 11, "part": null, "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "The species H₂O, HCO₃⁻, HSO₄⁻ and NH₃ can act both as Bronsted acids and as Bronsted bases. For each species give the corresponding conjugate acid and conjugate base.",
+      "appearance_years": [], "notes": "Printed label 6.11." },
+
+    { "ref": "prob12a", "section": "PROBLEM", "number": 12, "part": "a", "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "Classify HO⁻ as a Lewis acid or a Lewis base and show how it acts as such.",
+      "appearance_years": [], "notes": "Printed label 6.12 (a). Four parts: (a) HO⁻ (b) F⁻ (c) H⁺ (d) BCl₃." },
+
+    { "ref": "prob12b", "section": "PROBLEM", "number": 12, "part": "b", "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "Classify F⁻ as a Lewis acid or a Lewis base and show how it acts as such.",
+      "appearance_years": [], "notes": "Printed label 6.12 (b)." },
+
+    { "ref": "prob12c", "section": "PROBLEM", "number": 12, "part": "c", "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "Classify H⁺ as a Lewis acid or a Lewis base and show how it acts as such.",
+      "appearance_years": [], "notes": "Printed label 6.12 (c)." },
+
+    { "ref": "prob12d", "section": "PROBLEM", "number": 12, "part": "d", "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "Classify BCl₃ as a Lewis acid or a Lewis base and show how it acts as such.",
+      "appearance_years": [], "notes": "Printed label 6.12 (d)." },
+
+    { "ref": "prob13", "section": "PROBLEM", "number": 13, "part": null, "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "The concentration of hydrogen ion in a sample of a soft drink is 3.8 × 10⁻³ M. What is its pH?",
+      "appearance_years": [], "notes": "Printed label 6.13." },
+
+    { "ref": "prob14", "section": "PROBLEM", "number": 14, "part": null, "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "Calculate the pH of a 1.0 × 10⁻⁸ M solution of HCl.",
+      "appearance_years": [], "notes": "Printed label 6.14." },
+
+    { "ref": "prob15", "section": "PROBLEM", "number": 15, "part": null, "stars": 0,
+      "printed_page": 81, "scan_page": 79,
+      "stem": "The ionisation constant of HF is 3.2 × 10⁻⁴. Calculate the degree of dissociation of HF in its 0.02 M solution. Also calculate the concentration of all the species present (H₃O⁺, F⁻ and HF) in the solution, and its pH.",
+      "appearance_years": [], "notes": "Printed label 6.15." },
+
+    { "ref": "prob16", "section": "PROBLEM", "number": 16, "part": null, "stars": 0,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "The pH of a 0.1 M monobasic acid is 4.50. Calculate the concentrations of the species H⁺ and HA at equilibrium. Also determine the values of Ka and pKa of the monobasic acid.",
+      "appearance_years": [], "notes": "Printed label 6.16. The printed stem lists only H⁺ and HA; the NCERT source (Example 7.16) asks for H⁺, A⁻ and HA. Kept as printed." },
+
+    { "ref": "prob17", "section": "PROBLEM", "number": 17, "part": null, "stars": 0,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "Calculate the pH of a 0.08 M solution of hypochlorous acid, HOCl. The ionization constant of the acid is 2.5 × 10⁻⁵. Also determine the percent dissociation of HOCl.",
+      "appearance_years": [], "notes": "Printed label 6.17." },
+
+    { "ref": "prob18", "section": "PROBLEM", "number": 18, "part": null, "stars": 0,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "The pH of a 0.004 M hydrazine solution is 9.7. Calculate its ionization constant Kb and its pKb.",
+      "appearance_years": [], "notes": "Printed label 6.18." },
+
+    { "ref": "prob19", "section": "PROBLEM", "number": 19, "part": null, "stars": 0,
+      "printed_page": 82, "scan_page": 80,
+      "stem": "Calculate the pH of a solution in which 0.2 M NH₄Cl and 0.1 M NH₃ are present. The pKb of ammonia solution is 4.75.",
+      "appearance_years": [], "notes": "Printed label 6.19." },
+
+    { "ref": "prob20", "section": "PROBLEM", "number": 20, "part": null, "stars": 0,
+      "printed_page": 83, "scan_page": 81,
+      "stem": "Determine the degree of ionization and the pH of a 0.05 M ammonia solution. The ionization constant of ammonia can be taken from Table 7.7. Also calculate the ionization constant of the conjugate acid of ammonia.",
+      "appearance_years": [], "notes": "Printed label 6.20. EXTERNAL DATUM: 'Table 7.7' is the NCERT Class-11 table of base ionization constants and is not reprinted in this book; the value it supplies is Kb(NH₃) = 1.77 × 10⁻⁵." },
+
+    { "ref": "prob21", "section": "PROBLEM", "number": 21, "part": null, "stars": 0,
+      "printed_page": 83, "scan_page": 81,
+      "stem": "Calculate the pH of a 0.10 M ammonia solution. Then calculate the pH after 50.0 mL of this solution is treated with 25.0 mL of 0.10 M HCl. The dissociation constant of ammonia is Kb = 1.77 × 10⁻⁵.",
+      "appearance_years": [], "notes": "Printed label 6.21." },
+
+    { "ref": "prob22", "section": "PROBLEM", "number": 22, "part": null, "stars": 0,
+      "printed_page": 84, "scan_page": 82,
+      "stem": "The pKa of acetic acid and the pKb of ammonium hydroxide are 4.76 and 4.75 respectively. Calculate the pH of an ammonium acetate solution.",
+      "appearance_years": [], "notes": "Printed label 6.22." },
+
+    { "ref": "prob23", "section": "PROBLEM", "number": 23, "part": null, "stars": 0,
+      "printed_page": 84, "scan_page": 82,
+      "stem": "Calculate the solubility of A₂X₃ in pure water, assuming that neither kind of ion reacts with water. The solubility product of A₂X₃ is Ksp = 1.1 × 10⁻²³.",
+      "appearance_years": [], "notes": "Printed label 6.23." },
+
+    { "ref": "prob24", "section": "PROBLEM", "number": 24, "part": null, "stars": 0,
+      "printed_page": 84, "scan_page": 82,
+      "stem": "The Ksp values of two sparingly soluble salts, Ni(OH)₂ and AgCN, are 2.0 × 10⁻¹⁵ and 6 × 10⁻¹⁷ respectively. Which salt is more soluble? Explain.",
+      "appearance_years": [], "notes": "Printed label 6.24." },
+
+    { "ref": "prob25", "section": "PROBLEM", "number": 25, "part": null, "stars": 0,
+      "printed_page": 84, "scan_page": 82,
+      "stem": "Calculate the molar solubility of Ni(OH)₂ in 0.10 M NaOH. The ionic product of Ni(OH)₂ is 2.0 × 10⁻¹⁵.",
+      "appearance_years": [], "notes": "Printed label 6.25. Last question of the chapter; the '***' end mark follows its answer on printed page 84." }
+  ]
+}

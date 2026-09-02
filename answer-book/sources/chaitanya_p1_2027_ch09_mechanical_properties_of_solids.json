@@ -1,0 +1,194 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Physics (2026-27 edition)",
+  "scan_file": "DocScanner (3).pdf",
+  "scan_sha256": "1abe7da6d4846e9e09d6cb7b588db8404a6268dc196f1d4128deefea6a37c016",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring. Stems restated in our own wording; the physics is exact. No solution content from the source book appears in this file, by policy. Sections: VSAQ 15, SAQ 8, LAQ 0 (the chapter prints no LONG ANSWER section), PROBLEM 11 — 37 entries after splitting saq4 into parts i/ii/iii and prob7 into parts i/ii. The FORMULAE block on scan p.95 (printed p.97) is not indexed. The footer page number on scan p.101 is clipped in the scan (only a '1' is visible); it is printed 103 by sequence.",
+  "chapter": { "number": 9, "printed_title": "MECHANICAL PROPERTIES OF SOLIDS" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "Define stress and write its formula.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 1,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "A copper wire of diameter 1 mm is stretched by a force of 10 N. Find the stress in the wire.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "State the difference between tensile stress and compressive stress.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "Define hydraulic stress.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "Define strain and write its formula.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "State the units and the dimensional formula of stress.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 1,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "State Hooke's law of elasticity.",
+      "appearance_years": [], "notes": "Printed as 'Define Hooke's law of elasticity.'" },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "What are elastomers? Give examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "What is the order of the bulk modulus in the three states of matter?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "Define compressibility and write its equation.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "What is Poisson's ratio? State the limits of Poisson's ratio for steel.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 1,
+      "printed_page": 99, "scan_page": 97,
+      "stem": "Explain the statement: steel is more elastic than rubber.",
+      "appearance_years": [], "notes": "Printed wording: '\"Steel exhibits more elastic nature than rubber\" explain'." },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 0,
+      "printed_page": 99, "scan_page": 97,
+      "stem": "Why are sand heaps pyramid-shaped?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 99, "scan_page": 97,
+      "stem": "In the construction of buildings and bridges, a pillar with distributed (widened) ends is preferred to a pillar with rounded ends. Why?",
+      "appearance_years": [], "notes": "The printed answer includes a figure of two pillars, (a) with rounded ends and (b) with distributed ends; the question itself does not depend on the figure." },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 99, "scan_page": 97,
+      "stem": "Two identical solid balls, one of ivory and the other of wet clay, are dropped from the same height onto the floor. Which one rises to a greater height after striking the floor, and why?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1", "section": "SAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 99, "scan_page": 97,
+      "stem": "Dimensional formula of stress [M¹ L⁻¹ T⁻²]. (Printed question line, as is; see notes.)",
+      "appearance_years": [], "notes": "PRINTED DEFECT (probable). The question line reads only 'Dimensional formula of stress [M¹L⁻¹T⁻²]', but the printed answer defines stress and explains its three types (longitudinal or tensile, bulk or volume, shearing or tangential). The intended question is almost certainly 'Define stress and explain the types of stress', the counterpart of SAQ 2 for strain." },
+
+    { "ref": "saq2", "section": "SAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Define strain and explain the types of strain.",
+      "appearance_years": [], "notes": "The printed answer includes a figure of a sheared block ABCD showing the displaced upper face and the angle θ; the question itself does not depend on the figure." },
+
+    { "ref": "saq3", "section": "SAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "What is elasticity?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq4i", "section": "SAQ", "number": 4, "part": "i", "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "A brass wire of diameter 1 mm and length 2 m is stretched by a force of 20 N, and its length increases by 0.51 mm. Find (i) the stress in the wire.",
+      "appearance_years": [], "notes": "Parts (i), (ii) and (iii) share one printed stem." },
+
+    { "ref": "saq4ii", "section": "SAQ", "number": 4, "part": "ii", "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "A brass wire of diameter 1 mm and length 2 m is stretched by a force of 20 N, and its length increases by 0.51 mm. Find (ii) the strain in the wire.",
+      "appearance_years": [], "notes": "Parts (i), (ii) and (iii) share one printed stem." },
+
+    { "ref": "saq4iii", "section": "SAQ", "number": 4, "part": "iii", "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "A brass wire of diameter 1 mm and length 2 m is stretched by a force of 20 N, and its length increases by 0.51 mm. Find (iii) the Young's modulus of the wire.",
+      "appearance_years": [], "notes": "Parts (i), (ii) and (iii) share one printed stem." },
+
+    { "ref": "saq5", "section": "SAQ", "number": 5, "part": null, "stars": 1,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "A steel wire of length 20 cm is stretched so that its length increases by 0.2 cm. Find the lateral strain in the wire, given that the Poisson's ratio of steel is 0.19.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq6", "section": "SAQ", "number": 6, "part": null, "stars": 1,
+      "printed_page": 101, "scan_page": 99,
+      "stem": "Describe the behaviour of a wire under a gradually increasing load.",
+      "appearance_years": [], "notes": "The printed answer includes a stress-strain graph with the points A (proportionality limit), B (elastic limit), C (permanent set), D (ultimate tensile strength) and E (breaking point); the question itself does not depend on the figure." },
+
+    { "ref": "saq7", "section": "SAQ", "number": 7, "part": null, "stars": 1,
+      "printed_page": 101, "scan_page": 99,
+      "stem": "Define strain energy and derive the expression for it.",
+      "appearance_years": [], "notes": "Printed with an (or) alternative: 'Explain the concept of elastic potential energy in a stretched wire and hence obtain the expression for it.' Both wordings ask for the same derivation (the elastic potential energy stored in a stretched wire is its strain energy), so this is one entry." },
+
+    { "ref": "saq8", "section": "SAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 102, "scan_page": 100,
+      "stem": "Explain why the maximum height of a mountain on Earth is approximately 10 km.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": null, "stars": 1,
+      "printed_page": 102, "scan_page": 100,
+      "stem": "An iron wire is stretched by 1%. What is the strain in the wire?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 0,
+      "printed_page": 102, "scan_page": 100,
+      "stem": "A copper wire and an aluminium wire have lengths in the ratio 3 : 2, diameters in the ratio 2 : 3 and applied forces in the ratio 4 : 5. Find the ratio of the increases in length of the two wires. Take Y_Cu = 1.1 × 10¹¹ N/m² and Y_Al = 0.7 × 10¹¹ N/m².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": null, "stars": 0,
+      "printed_page": 102, "scan_page": 100,
+      "stem": "A brass wire of cross-sectional area 2 mm² hangs from a rigid support and a body of volume 100 cm³ is attached to its lower end. When the body is completely immersed in water, the length of the wire decreases by 0.11 mm. Find the natural length of the wire. Take Y_brass = 0.91 × 10¹¹ N m⁻² and ρ_water = 10³ kg m⁻³.",
+      "appearance_years": [], "notes": "The question does not state g; a value for g must be assumed to obtain a number (the printed working uses g = 9.8 m s⁻²)." },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 0,
+      "printed_page": 103, "scan_page": 101,
+      "stem": "Two wires are of the same material. Their radii are in the ratio 1 : 2 and their lengths are also in the ratio 1 : 2. If the extensions produced are equal, what is the ratio of the loads?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": null, "stars": 0,
+      "printed_page": 103, "scan_page": 101,
+      "stem": "Two wires of different materials have the same length and the same area of cross-section. What is the ratio of their increases in length when the same force is applied to each? Take Y₁ = 0.90 × 10¹¹ N m⁻² and Y₂ = 3.60 × 10¹¹ N m⁻².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": null, "stars": 0,
+      "printed_page": 103, "scan_page": 101,
+      "stem": "A metal wire of length 2.5 m and area of cross-section 1.5 × 10⁻⁶ m² is stretched by 2 mm. If its Young's modulus is 1.25 × 10¹¹ N m⁻², find the tension in the wire.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob7i", "section": "PROBLEM", "number": 7, "part": "i", "stars": 0,
+      "printed_page": 103, "scan_page": 101,
+      "stem": "An aluminium wire and a steel wire of the same length and the same cross-section are joined end to end. The composite wire hangs from a rigid support and a load hangs from its free end. The increase in length of the composite wire is 1.35 mm. Find (i) the ratio of the stresses in the two wires. Take Y_Al = 7 × 10¹⁰ N m⁻² and Y_steel = 2 × 10¹¹ N m⁻².",
+      "appearance_years": [], "notes": "Parts (i) and (ii) share one printed stem." },
+
+    { "ref": "prob7ii", "section": "PROBLEM", "number": 7, "part": "ii", "stars": 0,
+      "printed_page": 103, "scan_page": 101,
+      "stem": "An aluminium wire and a steel wire of the same length and the same cross-section are joined end to end. The composite wire hangs from a rigid support and a load hangs from its free end. The increase in length of the composite wire is 1.35 mm. Find (ii) the ratio of the strains in the two wires. Take Y_Al = 7 × 10¹⁰ N m⁻² and Y_steel = 2 × 10¹¹ N m⁻².",
+      "appearance_years": [], "notes": "Parts (i) and (ii) share one printed stem." },
+
+    { "ref": "prob8", "section": "PROBLEM", "number": 8, "part": null, "stars": 0,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "A cube of side 2.0 cm of some substance has its upper face displaced by 0.15 cm by a tangential force of 0.30 N, while its lower face is held fixed. Calculate the rigidity modulus of the substance.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": null, "stars": 1,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "A spherical ball of volume 1000 cm³ is subjected to a pressure of 10 atmospheres. The change in its volume is 10⁻² cm³. If the ball is made of iron, find its bulk modulus. Take atmospheric pressure = 1 × 10⁵ N m⁻².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob10", "section": "PROBLEM", "number": 10, "part": null, "stars": 0,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "A copper cube of side 1 cm is subjected to a pressure of 100 atmospheres. Find the change in its volume, given that the bulk modulus of copper is 1.4 × 10¹¹ N m⁻². Take atmospheric pressure = 1 × 10⁵ N m⁻².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob11", "section": "PROBLEM", "number": 11, "part": null, "stars": 1,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Determine the pressure required to reduce a given volume of water by 2%. The bulk modulus of water is 2.2 × 10⁹ N m⁻².",
+      "appearance_years": [], "notes": null }
+  ]
+}

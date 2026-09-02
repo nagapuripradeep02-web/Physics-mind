@@ -46,6 +46,15 @@ The only chemistry source book held is the **Sri Chaitanya Junior Fastrack**, ch
 **book pp.48–96 over 13 chapters** (PDF page = book page + 2). It carries the star ranks
 (`***`/`**`/`*`/none) that are our `pyq_frequency` signal.
 
+> **2026-09-02 — the syllabus changed under this book.** The 2026-27 first-year chemistry syllabus
+> has TEN chapters (the Sri Chaitanya 2026-27 *IPE Study Material*, `DocScanner (4).pdf`, is the
+> source in hand): States of Matter, Hydrogen and Environmental Chemistry are gone; Stoichiometry,
+> Thermodynamics and Chemical Equilibrium are now chapters 4, 5, 6; s-Block (7), p-Block 13 (8),
+> p-Block 14 (9) and General Organic Chemistry (10) follow. The bank was renumbered and States of
+> Matter retired (unit 99) on 2026-09-02 — see `docs/SYLLABUS_2026_27.md` §2. Questions taken from
+> the 2026-27 book carry `source: "chaitanya_fastrack"` and `stars: 0` (docs/ORIGINALITY_MATHS.md R1);
+> the 13-chapter page map below describes the OLD 2024 Fastrack only.
+
 **The two-book union check CANNOT be run for chemistry.** The TSBIE Basic Learning Material
 PDF in hand is physics only. Founder decision 2026-08-23: proceed Fastrack-only and record
 the gap rather than wait. The same holds for the **back-test** — no chemistry board paper is
@@ -97,8 +106,10 @@ Build-enforced, so this is not advisory:
 
 Ids are `ts_ipe_c1_<chapter-abbr>_<slug>`: `c1` = Chemistry paper 1. Abbreviations in use —
 `as` Atomic Structure, `cp` Classification/Periodicity, `cb` Chemical Bonding, `som` States of
-Matter, `st` Stoichiometry, `td` Thermodynamics, `ce` Chemical Equilibrium. **Ids are
-permanent**; a card that later moves chapter keeps its id.
+Matter (retired 2026-09-02, ids kept), `st` Stoichiometry, `td` Thermodynamics, `ce` Chemical
+Equilibrium; reserved for the 2026-27 chapters — `sb` s-Block Elements, `p13` p-Block Group 13,
+`p14` p-Block Group 14, `goc` General Organic Chemistry. **Ids are permanent**; a card that later
+moves chapter keeps its id (the `som` cards now sit under unit 99 with their ids unchanged).
 
 Catalog order is **array order** in `units.json` — there is no sort. Chemistry sits between the
 physics block and the mathematics block.

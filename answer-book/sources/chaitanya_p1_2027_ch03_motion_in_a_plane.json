@@ -1,0 +1,265 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Physics (2026-27 edition)",
+  "scan_file": "DocScanner (3).pdf",
+  "scan_sha256": "1abe7da6d4846e9e09d6cb7b588db8404a6268dc196f1d4128deefea6a37c016",
+  "internal_only": true,
+  "note": "Sections: VSAQ 20, SAQ 12, LAQ 0 (this chapter prints no LONG ANSWER section), PROBLEM 12 numbers = 17 entries after splitting printed parts; 49 entries in all. The FORMULAE block on scan pp.18–19 (printed pp.20–21) is not indexed. Stems are restated in our own wording with the physics exact; no solution content by policy; vectors are written with plain i, j, k. Scan p.28 has its right column margin clipped; scan p.25's footer page number is cut off at the edge (printed 27 by sequence). Pen marks beside a few question numbers (VSAQ 19–20, SAQ 1) are handwriting, not asterisks.",
+  "chapter": { "number": 3, "printed_title": "MOTION IN A PLANE" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 21, "scan_page": 19,
+      "stem": "Define scalar quantities and vector quantities, giving examples of each.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 21, "scan_page": 19,
+      "stem": "What is a unit vector? Write the unit vectors along the x-axis, the y-axis and the z-axis.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 21, "scan_page": 19,
+      "stem": "State the conditions under which two vectors are said to be equal.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 21, "scan_page": 19,
+      "stem": "What is the physical significance of a null (zero) vector?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 21, "scan_page": 19,
+      "stem": "State the triangle law of vector addition.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 21, "scan_page": 19,
+      "stem": "What is meant by the resolution of a vector?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 21, "scan_page": 19,
+      "stem": "A vector of magnitude A is inclined at an angle θ to the x-axis. Write the expressions for its x-component and its y-component.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 21, "scan_page": 19,
+      "stem": "What is centripetal acceleration? Write its expression in terms of the angular velocity and the radius.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 21, "scan_page": 19,
+      "stem": "State the relation between linear velocity and angular velocity in uniform circular motion.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 22, "scan_page": 20,
+      "stem": "Write the equation of the trajectory (path) of a projectile.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 22, "scan_page": 20,
+      "stem": "Rain drops fall vertically at 35 m/s and a wind blows at 12 m/s from east to west. In which direction should a person hold an umbrella so that the rain drops do not fall on him?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 0,
+      "printed_page": 22, "scan_page": 20,
+      "stem": "A vector is 3i + 4j. Find the magnitude of this vector and the angle it makes with the x-axis.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 0,
+      "printed_page": 22, "scan_page": 20,
+      "stem": "A projectile is launched with a speed of 20 m/s at an angle of 30° to the horizontal. Calculate the horizontal component of its velocity.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 22, "scan_page": 20,
+      "stem": "Two vectors of magnitudes 5 units and 12 units are perpendicular to each other. Find the magnitude of their resultant vector.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 22, "scan_page": 20,
+      "stem": "The position vector of a particle is r = 4t i + t² j. Find its velocity vector at t = 3 s.",
+      "appearance_years": [],
+      "notes": "Printed as 'Find its velocity vector t = 3 s' — the word 'at' is missing in print." },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 0,
+      "printed_page": 23, "scan_page": 21,
+      "stem": "A particle moves with a constant acceleration a = 3i + 2j m/s². Its initial velocity is 4i m/s. Find its velocity after 2 seconds.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 0,
+      "printed_page": 23, "scan_page": 21,
+      "stem": "A cricket ball is hit with an initial velocity of 28 m/s at 30° above the horizontal. Find the time the ball takes to reach its highest point. Take g = 9.8 m/s².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq18", "section": "VSAQ", "number": 18, "part": null, "stars": 0,
+      "printed_page": 23, "scan_page": 21,
+      "stem": "An object is projected so that it reaches a maximum height of 20 m. Find the vertical component of its initial velocity. Take g = 9.8 m/s².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq19", "section": "VSAQ", "number": 19, "part": null, "stars": 0,
+      "printed_page": 23, "scan_page": 21,
+      "stem": "Find the angular speed of an object that completes 5 revolutions in 2 seconds.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq20", "section": "VSAQ", "number": 20, "part": null, "stars": 0,
+      "printed_page": 23, "scan_page": 21,
+      "stem": "An object is in uniform circular motion with a speed of 10 m/s along a circular path of radius 5 m. Calculate its centripetal acceleration.",
+      "appearance_years": [],
+      "notes": "Printed typo: 'circlar path'." },
+
+    { "ref": "saq1", "section": "SAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 23, "scan_page": 21,
+      "stem": "Explain the analytical method of vector addition and derive expressions for the components of the resultant vector.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq2", "section": "SAQ", "number": 2, "part": null, "stars": 1,
+      "printed_page": 24, "scan_page": 22,
+      "stem": "State the parallelogram law of vectors. Derive expressions for the magnitude and the direction of the resultant vector.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq3", "section": "SAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 24, "scan_page": 22,
+      "stem": "Derive the equations of motion in a plane with constant acceleration, using vector notation.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq4", "section": "SAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 24, "scan_page": 22,
+      "stem": "Derive expressions for the time of flight and the maximum height of a projectile.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq5", "section": "SAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 25, "scan_page": 23,
+      "stem": "What is uniform circular motion? Derive an expression for centripetal acceleration in terms of angular speed.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq6", "section": "SAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 25, "scan_page": 23,
+      "stem": "Describe how the velocity vector and the acceleration vector are represented graphically in curved motion.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq7", "section": "SAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 25, "scan_page": 23,
+      "stem": "Derive an expression for the horizontal range of a projectile. Show that the range is maximum when the angle of projection is 45°.",
+      "appearance_years": [],
+      "notes": "Printed as 'Derive an expressions' (typo)." },
+
+    { "ref": "saq8", "section": "SAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 26, "scan_page": 24,
+      "stem": "Write the vector form of the position, the velocity and the acceleration of a particle moving in a plane, and explain each term.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq9", "section": "SAQ", "number": 9, "part": null, "stars": 1,
+      "printed_page": 26, "scan_page": 24,
+      "stem": "Show that the trajectory of an object thrown at some angle to the horizontal is a parabola.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq10", "section": "SAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 27, "scan_page": 25,
+      "stem": "Define the scalar product of two vectors. Write its properties.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq11", "section": "SAQ", "number": 11, "part": null, "stars": 1,
+      "printed_page": 27, "scan_page": 25,
+      "stem": "Define the vector product of two vectors. Explain the properties of the vector product, with two examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq12", "section": "SAQ", "number": 12, "part": null, "stars": 1,
+      "printed_page": 28, "scan_page": 26,
+      "stem": "If |a + b| = |a − b|, prove that the angle between the vectors a and b is 90°.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": "i", "stars": 0,
+      "printed_page": 28, "scan_page": 26,
+      "stem": "Ship A is 10 km due west of ship B. Ship A moves due north at a speed of 30 km/h, and ship B moves in a direction 60° west of north at a speed of 20 km/h. Find the magnitude of the velocity of ship B relative to ship A.",
+      "appearance_years": [],
+      "notes": "Parts i and ii share one setup. The book prints a numeric answer key beside the question; it is not indexed." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": "ii", "stars": 0,
+      "printed_page": 28, "scan_page": 26,
+      "stem": "Ship A is 10 km due west of ship B. Ship A moves due north at a speed of 30 km/h, and ship B moves in a direction 60° west of north at a speed of 20 km/h. Find their distance of closest approach.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": "a", "stars": 1,
+      "printed_page": 29, "scan_page": 27,
+      "stem": "For a projectile, θ is the angle of projection, R the horizontal range, h the maximum height and T the time of flight. Show that tan θ = 4h/R.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": "b", "stars": 1,
+      "printed_page": 29, "scan_page": 27,
+      "stem": "For a projectile, θ is the angle of projection, R the horizontal range, h the maximum height and T the time of flight. Show that h = gT²/8.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": "i", "stars": 1,
+      "printed_page": 29, "scan_page": 27,
+      "stem": "A projectile is fired at an angle of 60° to the horizontal with an initial velocity of 800 m/s. Find the time of flight of the projectile before it hits the ground.",
+      "appearance_years": [],
+      "notes": "Parts i, ii and iii share one setup. The value of g is not stated in the question. The book prints a numeric answer key beside the question; it is not indexed." },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": "ii", "stars": 1,
+      "printed_page": 29, "scan_page": 27,
+      "stem": "A projectile is fired at an angle of 60° to the horizontal with an initial velocity of 800 m/s. Find the horizontal distance (range) it travels before it hits the ground.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": "iii", "stars": 1,
+      "printed_page": 29, "scan_page": 27,
+      "stem": "A projectile is fired at an angle of 60° to the horizontal with an initial velocity of 800 m/s. Find the time the projectile takes to reach its maximum height.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 1,
+      "printed_page": 29, "scan_page": 27,
+      "stem": "A particle is projected at a slant from the ground. When it is at the highest point of its path, the magnitude of its position vector measured from the point of projection is √2 times the maximum height it reaches. Show that the angle of projection is tan⁻¹(2).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": null, "stars": 0,
+      "printed_page": 29, "scan_page": 27,
+      "stem": "An object is launched from a cliff 20 m above the ground, at an angle of 30° above the horizontal, with an initial speed of 30 m/s. How far does the object travel horizontally before it lands on the ground? Take g = 10 m/s².",
+      "appearance_years": [],
+      "notes": "The book prints a numeric answer key beside the question; it is not indexed." },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": null, "stars": 1,
+      "printed_page": 30, "scan_page": 28,
+      "stem": "O is a point on the ground chosen as the origin. A body first undergoes a displacement of 10√2 m towards north-east, then 10 m towards north, and finally 10√2 m towards north-west. How far is the body from the origin?",
+      "appearance_years": [],
+      "notes": "The book prints a numeric answer key beside the question; it is not indexed." },
+
+    { "ref": "prob7", "section": "PROBLEM", "number": 7, "part": null, "stars": 0,
+      "printed_page": 30, "scan_page": 28,
+      "stem": "From a point on the ground a particle is projected with initial velocity u such that its horizontal range is maximum. Find the magnitude of the average velocity of the particle during its ascent.",
+      "appearance_years": ["Mar-05"],
+      "notes": "The book prints an answer key beside the question; it is not indexed." },
+
+    { "ref": "prob8", "section": "PROBLEM", "number": 8, "part": null, "stars": 1,
+      "printed_page": 30, "scan_page": 28,
+      "stem": "A particle is projected from the ground with some initial velocity at an angle of 45° to the horizontal. It reaches a height of 7.5 m above the ground when it has travelled a horizontal distance of 10 m from the point of projection. Find the initial speed of projection. Take g = 10 m/s².",
+      "appearance_years": [],
+      "notes": "The right margin of this column is clipped in the scan, so the last one or two characters of several lines are cut off; the angle reads 45°. The book prints a numeric answer key beside the question; it is not indexed." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": null, "stars": 0,
+      "printed_page": 30, "scan_page": 28,
+      "stem": "Wind blows from the south at 5 m/s. To a cyclist the wind appears to blow from the east at 5 m/s. Show that the velocity of the cyclist is 5√2 m/s towards north-east.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob10", "section": "PROBLEM", "number": 10, "part": null, "stars": 1,
+      "printed_page": 30, "scan_page": 28,
+      "stem": "A person walking at 4 m/s finds rain drops falling at a slant into his face with a speed of 4 m/s at an angle of 30° to the vertical. Show that the actual speed of the rain drops is 4 m/s.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob11", "section": "PROBLEM", "number": 11, "part": null, "stars": 0,
+      "printed_page": 31, "scan_page": 29,
+      "stem": "A ball is thrown from the window of a building with an initial velocity of 8 m/s at an angle of 20° below the horizontal. It strikes the ground 3 s later. From what height was the ball thrown, and how far from the base of the building does the ball strike the ground?",
+      "appearance_years": [],
+      "notes": "Two quantities are asked (the height of the window and the horizontal distance from the base) with no printed part labels, so this is kept as one entry. The value of g is not stated in the question. Printed typo: 'buliding'." },
+
+    { "ref": "prob12", "section": "PROBLEM", "number": 12, "part": "a", "stars": 0,
+      "printed_page": 31, "scan_page": 29,
+      "stem": "Two balls are projected from the same point in directions 30° and 60° to the horizontal. Find the ratio of their initial velocities if they reach the same maximum height.",
+      "appearance_years": [],
+      "notes": "Parts a and b share one setup. In print the question mark sits before '(b)'." },
+
+    { "ref": "prob12", "section": "PROBLEM", "number": 12, "part": "b", "stars": 0,
+      "printed_page": 31, "scan_page": 29,
+      "stem": "Two balls are projected from the same point in directions 30° and 60° to the horizontal. Find the ratio of their initial velocities if they have the same horizontal range.",
+      "appearance_years": [], "notes": null }
+  ]
+}

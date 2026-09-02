@@ -304,7 +304,9 @@ staged — a tree that fails the build.
   cross-unit or cross-subject duplication; the drift gate only checks that an entry resolves to a
   file. The known collision is **unit 13 Biomolecules vs Junior Botany** — the botany session
   explicitly flagged "recheck when Chemistry-II opens". Units 1–2 may also brush Chemistry-I's
-  `chemistry-4` States of Matter, and unit 3 may brush Physics-I on cells and resistance.
+  States of Matter (retired as `chemistry-99` on 2026-09-02 — the 2026-27 syllabus dropped it, so
+  a Chemistry-II card may now be the only place a gas-law question lives), and unit 3 may brush
+  Physics-I on cells and resistance.
 - **Line wrap.** `npm run measure:wrap -- ts_ipe_c2` renders every authored line in real Kalam
   26px and reports overruns. Budgets: `boxed` 535px, `eq` and `indent` 568px, everything else
   624px. One line must equal one ruled row. Chemistry-I shipped at 4.1%, the worst in the bank;

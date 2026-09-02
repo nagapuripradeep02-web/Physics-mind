@@ -1,0 +1,269 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Chemistry (2026-27 edition)",
+  "scan_file": "DocScanner (4).pdf",
+  "scan_sha256": "18e8d6fc6831f1e9faf11a19450559f6fb9a0c6d55982c187943449f71f26a33",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring; stems restated in our own wording, chemistry exact, no solution content by policy. Printed numbers 1-40 run continuously: VSAQ 1-15 (16 questions, Q5 has two parts), SAQ 16-33 (21 questions, Q30 has four parts), LAQ 34-40 (11 questions, Q36 four parts, Q40 two parts), INTEXT SOLVED PROBLEMS 3.1-3.4 (4). Scan page 26 (printed 28) is an ordinary text page, not blank; the footer page number on scan page 32 is cropped off (printed 34 by sequence) and the '40' on scan page 38 is half cropped. Several questions repeat inside the chapter (Q9=Q19, Q10=Q25, Q6=3.1, Q7/Q8 = parts of Q36, Q32/Q33 = parts of Q40).",
+  "chapter": { "number": 3, "printed_title": "CHEMICAL BONDING AND MOLECULAR STRUCTURE" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 26, "scan_page": 24,
+      "stem": "State what the octet rule says.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 26, "scan_page": 24,
+      "stem": "Draw the Lewis dot structures of the sulphur atom S and the sulphide ion S²⁻.",
+      "appearance_years": [], "notes": "The book prints the ion as S⁻² (charge written before the sign)." },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 1,
+      "printed_page": 26, "scan_page": 24,
+      "stem": "Which of the two ions Ca²⁺ and Zn²⁺ is more stable? Give the reason.",
+      "appearance_years": [], "notes": "The book prints the ions as Ca⁺² and Zn⁺²." },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 1,
+      "printed_page": 26, "scan_page": 24,
+      "stem": "The Cl⁻ ion is more stable than the Cl atom. Give the reason.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5a", "section": "VSAQ", "number": 5, "part": "a", "stars": 1,
+      "printed_page": 26, "scan_page": 24,
+      "stem": "How many sigma bonds and how many pi bonds are present in C₂H₂ (acetylene)?",
+      "appearance_years": [], "notes": "The two sub-parts are printed with capital labels A) and B), the same marker the book uses for its answers." },
+
+    { "ref": "vsaq5b", "section": "VSAQ", "number": 5, "part": "b", "stars": 1,
+      "printed_page": 26, "scan_page": 24,
+      "stem": "How many sigma bonds and how many pi bonds are present in C₂H₄ (ethylene)?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 26, "scan_page": 24,
+      "stem": "Draw the Lewis dot structure of the CO molecule.",
+      "appearance_years": [], "notes": "Same question as intext solved problem 3.1 (prob1)." },
+
+    { "ref": "vsaq7a", "section": "VSAQ", "number": 7, "part": "a", "stars": 0,
+      "printed_page": 26, "scan_page": 24,
+      "stem": "Write a short note on bond angle.",
+      "appearance_years": [], "notes": "Printed as 'Write notes on (a) Bond angle' with only part (a) present; it is part (a) of LAQ 36 reprinted as a VSAQ." },
+
+    { "ref": "vsaq8d", "section": "VSAQ", "number": 8, "part": "d", "stars": 0,
+      "printed_page": 26, "scan_page": 24,
+      "stem": "Write a short note on bond order.",
+      "appearance_years": [], "notes": "Printed as 'Write notes on (d) Bond order' with only part (d) present; it is part (d) of LAQ 36 reprinted as a VSAQ." },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 1,
+      "printed_page": 27, "scan_page": 25,
+      "stem": "Define dipole moment and state its applications.",
+      "appearance_years": [], "notes": "Word-for-word the same question as SAQ 19." },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 1,
+      "printed_page": 27, "scan_page": 25,
+      "stem": "Explain the hybridisation of the central atom in the PCl₅ molecule.",
+      "appearance_years": [], "notes": "Word-for-word the same question as SAQ 25. The printed answer under this VSAQ is truncated: it starts at point 6 and shows only the last two points of the SAQ 25 answer." },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 27, "scan_page": 25,
+      "stem": "How many lone pairs of electrons are present on the central nitrogen atom in NH₃?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 0,
+      "printed_page": 27, "scan_page": 25,
+      "stem": "Using VSEPR theory, predict the shape of the ClF₃ molecule.",
+      "appearance_years": [], "notes": "The printed stem says 'the following molecules' (plural) but only ClF₃ is listed." },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 0,
+      "printed_page": 27, "scan_page": 25,
+      "stem": "Give two examples of molecules in which sp² hybridisation occurs.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 27, "scan_page": 25,
+      "stem": "State the hybridisation of the iodine atom in IF₇.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 27, "scan_page": 25,
+      "stem": "NH₃ and NF₃ are both pyramidal molecules, but NH₃ has a higher dipole moment than NF₃. Explain why.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq16", "section": "SAQ", "number": 16, "part": null, "stars": 0,
+      "printed_page": 28, "scan_page": 26,
+      "stem": "Write the general properties of ionic compounds.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq17", "section": "SAQ", "number": 17, "part": null, "stars": 0,
+      "printed_page": 28, "scan_page": 26,
+      "stem": "State Fajan's rules and give suitable examples for each.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq18", "section": "SAQ", "number": 18, "part": null, "stars": 0,
+      "printed_page": 28, "scan_page": 26,
+      "stem": "State the octet rule. Briefly explain its significance and its limitations.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq19", "section": "SAQ", "number": 19, "part": null, "stars": 1,
+      "printed_page": 29, "scan_page": 27,
+      "stem": "Define dipole moment and state its applications.",
+      "appearance_years": [], "notes": "Word-for-word the same question as VSAQ 9." },
+
+    { "ref": "saq20", "section": "SAQ", "number": 20, "part": null, "stars": 1,
+      "printed_page": 29, "scan_page": 27,
+      "stem": "Explain why the H₂O molecule has a dipole moment while the CO₂ molecule does not.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq21", "section": "SAQ", "number": 21, "part": null, "stars": 0,
+      "printed_page": 29, "scan_page": 27,
+      "stem": "Explain the formation of the H₂ molecule using valence bond theory.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq22", "section": "SAQ", "number": 22, "part": null, "stars": 0,
+      "printed_page": 30, "scan_page": 28,
+      "stem": "Explain what a polar covalent bond is, with a suitable example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq23", "section": "SAQ", "number": 23, "part": null, "stars": 1,
+      "printed_page": 30, "scan_page": 28,
+      "stem": "What are σ (sigma) and π (pi) bonds? State the differences between them.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq24", "section": "SAQ", "number": 24, "part": null, "stars": 1,
+      "printed_page": 30, "scan_page": 28,
+      "stem": "Nitrogen in ammonia is sp³ hybridised, yet the bond angle in NH₃ differs from 109°28′. Explain why.",
+      "appearance_years": [], "notes": "The angle is printed as 109°28¹ (a superscript 1 in place of the minute mark)." },
+
+    { "ref": "saq25", "section": "SAQ", "number": 25, "part": null, "stars": 1,
+      "printed_page": 31, "scan_page": 29,
+      "stem": "Explain the hybridisation of the central atom in the PCl₅ molecule.",
+      "appearance_years": [], "notes": "Word-for-word the same question as VSAQ 10." },
+
+    { "ref": "saq26", "section": "SAQ", "number": 26, "part": null, "stars": 1,
+      "printed_page": 31, "scan_page": 29,
+      "stem": "Explain the hybridisation of the central atom in the SF₆ molecule.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq27", "section": "SAQ", "number": 27, "part": null, "stars": 0,
+      "printed_page": 31, "scan_page": 29,
+      "stem": "Explain the hybridisation of the central atom in the IF₇ molecule.",
+      "appearance_years": [], "notes": "Longer form of VSAQ 14." },
+
+    { "ref": "saq28", "section": "SAQ", "number": 28, "part": null, "stars": 1,
+      "printed_page": 32, "scan_page": 30,
+      "stem": "Explain the formation of a coordinate covalent bond with one example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq29", "section": "SAQ", "number": 29, "part": null, "stars": 1,
+      "printed_page": 32, "scan_page": 30,
+      "stem": "What is a hydrogen bond? Explain the different types of hydrogen bonds with examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq30a", "section": "SAQ", "number": 30, "part": "a", "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "What is meant by the term bond order? Calculate the bond order of N₂.",
+      "appearance_years": [], "notes": "Q30 has one lead ('What is meant by the term bond order?') followed by four species a) N₂ b) O₂ c) O₂⁺ d) O₂⁻; the lead is repeated in each part's stem." },
+
+    { "ref": "saq30b", "section": "SAQ", "number": 30, "part": "b", "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "What is meant by the term bond order? Calculate the bond order of O₂.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq30c", "section": "SAQ", "number": 30, "part": "c", "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "What is meant by the term bond order? Calculate the bond order of the O₂⁺ ion.",
+      "appearance_years": [], "notes": "The book prints the cation as O₂ with a circled plus (⊕) superscript." },
+
+    { "ref": "saq30d", "section": "SAQ", "number": 30, "part": "d", "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "What is meant by the term bond order? Calculate the bond order of the O₂⁻ ion.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq31", "section": "SAQ", "number": 31, "part": null, "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "The geometries of both the NH₃ and the H₂O molecule are distorted tetrahedral, yet the bond angle in water is smaller than the bond angle in ammonia. Discuss why.",
+      "appearance_years": [], "notes": "The book prints 'geometrics' for 'geometries'." },
+
+    { "ref": "saq32", "section": "SAQ", "number": 32, "part": null, "stars": 0,
+      "printed_page": 33, "scan_page": 31,
+      "stem": "Draw the molecular orbital energy diagram of O₂. Calculate its bond order and state the magnetic nature of the O₂ molecule.",
+      "appearance_years": [], "notes": "Same as part (b) of LAQ 40." },
+
+    { "ref": "saq33a", "section": "SAQ", "number": 33, "part": "a", "stars": 1,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "Draw the molecular orbital energy diagram of N₂. Calculate its bond order and state the magnetic nature of the N₂ molecule.",
+      "appearance_years": [], "notes": "Printed as 'Give the Molecular Orbital Energy diagram of (a) N₂ ...' with a stray (a) and no (b): it is part (a) of LAQ 40 reprinted. The book prints 'Calculats' for 'Calculate'. Footer page number is cropped off in the scan; printed 34 by sequence." },
+
+    { "ref": "laq34", "section": "LAQ", "number": 34, "part": null, "stars": 0,
+      "printed_page": 34, "scan_page": 32,
+      "stem": "Explain the formation of an ionic bond with a suitable example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq35", "section": "LAQ", "number": 35, "part": null, "stars": 1,
+      "printed_page": 35, "scan_page": 33,
+      "stem": "Explain the factors that favour the formation of ionic compounds.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq36a", "section": "LAQ", "number": 36, "part": "a", "stars": 0,
+      "printed_page": 36, "scan_page": 34,
+      "stem": "Write a note on bond angle.",
+      "appearance_years": [], "notes": "Q36 is printed as one line: 'Write notes on (a) Bond angle (b) Bond Enthalpy (c) Bond length and (d) Bond order'." },
+
+    { "ref": "laq36b", "section": "LAQ", "number": 36, "part": "b", "stars": 0,
+      "printed_page": 36, "scan_page": 34,
+      "stem": "Write a note on bond enthalpy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq36c", "section": "LAQ", "number": 36, "part": "c", "stars": 0,
+      "printed_page": 36, "scan_page": 34,
+      "stem": "Write a note on bond length.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq36d", "section": "LAQ", "number": 36, "part": "d", "stars": 0,
+      "printed_page": 36, "scan_page": 34,
+      "stem": "Write a note on bond order.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq37", "section": "LAQ", "number": 37, "part": null, "stars": 1,
+      "printed_page": 36, "scan_page": 34,
+      "stem": "Give an account of VSEPR theory and its applications.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq38", "section": "LAQ", "number": 38, "part": null, "stars": 1,
+      "printed_page": 37, "scan_page": 35,
+      "stem": "What is hybridisation? Explain the different types of hybridisation that involve s and p orbitals.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq39", "section": "LAQ", "number": 39, "part": null, "stars": 0,
+      "printed_page": 38, "scan_page": 36,
+      "stem": "Write the salient features of molecular orbital theory.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq40a", "section": "LAQ", "number": 40, "part": "a", "stars": 1,
+      "printed_page": 38, "scan_page": 36,
+      "stem": "Draw the molecular orbital energy diagram of N₂ and calculate its bond order. State the magnetic nature of the N₂ molecule.",
+      "appearance_years": [], "notes": "Q40 is printed as one question covering (a) N₂ and (b) O₂ with 'the respective bond order' and the magnetic nature of both." },
+
+    { "ref": "laq40b", "section": "LAQ", "number": 40, "part": "b", "stars": 1,
+      "printed_page": 38, "scan_page": 36,
+      "stem": "Draw the molecular orbital energy diagram of O₂ and calculate its bond order. State the magnetic nature of the O₂ molecule.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": null, "stars": 0,
+      "printed_page": 39, "scan_page": 37,
+      "stem": "Draw the Lewis dot structure of the CO molecule.",
+      "appearance_years": [], "notes": "Printed label 3.1 (INTEXT SOLVED PROBLEMS). Same question as VSAQ 6." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 0,
+      "printed_page": 40, "scan_page": 38,
+      "stem": "Draw the Lewis structure of the nitrite ion, NO₂⁻.",
+      "appearance_years": [], "notes": "Printed label 3.2." },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": null, "stars": 0,
+      "printed_page": 40, "scan_page": 38,
+      "stem": "Explain the structure of the carbonate ion, CO₃²⁻, in terms of resonance.",
+      "appearance_years": [], "notes": "Printed label 3.3." },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 0,
+      "printed_page": 40, "scan_page": 38,
+      "stem": "Explain the structure of the CO₂ molecule.",
+      "appearance_years": [], "notes": "Printed label 3.4. The chapter ends after this problem; the lower half of the page is blank." }
+  ]
+}

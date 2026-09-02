@@ -1,5 +1,51 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📚 SESSION — The 2026-27 syllabus lands on Physics-I and Chemistry-I: the three cut chemistry chapters named, States of Matter retired, every chapter of both new books indexed and diffed (2026-09-02, `feat/ipe-answerbook-syllabus-2027`)
+
+**Bottom line: no card was authored, and the bank now knows exactly what it is missing.** The founder scanned the Sri Chaitanya *IPE Study Material for Jr. Students* 2026-27 edition (physics `DocScanner (3).pdf`, 142 pp.; chemistry `DocScanner (4).pdf`, 134 pp. — image-only, read visually). Physics is the 14-chapter list the bank already carried since 2026-08-28, and its Unit 14 prints **15 VSAQ and nothing else**. Chemistry is **10 chapters**: States of Matter, Hydrogen and Environmental Chemistry are gone; Stoichiometry / Thermodynamics / Equilibrium are now 4 / 5 / 6; s-Block, p-Block 13, p-Block 14 and General Organic Chemistry follow as 7–10 — four chapters the bank never had. **Marks are unchanged** (the material prints none; `PAPER_PATTERNS` untouched). Full record `docs/SYLLABUS_2026_27.md` §2; gap report `docs/reports/SYLLABUS_2027_GAP_REPORT.md`.
+
+### What changed in the desk (Phase A1 of the approved plan — structural, no content)
+
+- **First real use of the retire mechanism.** `chemistry-4` States of Matter → unit **99**, unit-level `status:"retired"` (40 files / 43 rows stay; forwarded `#/q/<id>` links render with the banner; the chapter is offered nowhere). It cannot keep number 4 — Stoichiometry owns `chemistry-4` now and the build's unit-key guard forbids two units on one key — and it never renders, so an out-of-range number is the honest label. The unit chip on a retired card shows the chapter name alone, never "Unit 99".
+- **Chemistry renumbered to the textbook**: 5/6/7 → 4/5/6, with all 123 chemistry cards' `unit.number` rewritten by regex (the build's card-vs-manifest key check forces it); units 7–10 added as coming-soon rows; physics-14's five topic labels replaced by the 15 printed VSAQ stems (restated; `source:"chaitanya_fastrack"`, `stars:0`).
+- **`LEGACY_UNIT_KEYS`** += `chemistry-4→chemistry-99, 5→4, 6→5, 7→6`. The first mapping matters: left unmapped, an old States-of-Matter link would silently open Stoichiometry. Known one-shot-marker limit recorded in the comment.
+- **Three engine gaps a retired unit exposed, all fixed:** `push_answer_content.ts` expected a bundle for every manifest unit while the build writes none for a retired one (the push would have exited 1); the hosted build's `loadQuestion` sent a retired card into the lock flow, then a 404 ("Could not reach the server") — it now shows a plain "Not in the 2026-27 syllabus" sheet with only the way back and never asks the server; the plan-less revision queue could still offer a retired card.
+- **`check:papers` was already RED on master** — 522 `chaitanya_fastrack` maths rows (the 2026-08-30 gap fill) were never added to `KNOWN_SOURCES`. Fixed; the vocabulary now carries the value.
+- **`check:originality` is scoped by ROW as well as by subject**: every `source:"chaitanya_fastrack"` manifest row in any subject must have `stars:0`, and its card (once it exists) must cite the book and record the boundary sentence; the 521 legacy starred physics/chemistry/botany/zoology rows stay counted-not-failed (founder-owned). "Physics of Emerging Technologies" joined the never-asked chapter list.
+- Tests: the pinned-fixture retire test became a real one on `ts_ipe_c1_som_aqueous_tension`; new gates for the chemistry numbering (10 live units, no 99), the legacy chemistry links (old `chemistry-5` → "Unit 4 — Stoichiometry"; old `chemistry-4` → catalog), and a gated retired-link test asserting the sheet appears and no `chemistry-*` bundle is ever requested; the gated bundle test filters retired units; the offer wall's "N chapters" is derived from `PM_UNITS` (the literal had gone stale twice in a week); "0 of 5 ready" → regex.
+- Docs: `SYLLABUS_2026_27.md` §2/§4/§5, `answer-book/README.md`, `CHEMISTRY_START_HERE.md` (+ reserved abbreviations `sb p13 p14 goc`), `patterns/answer_book.md`, `CHEMISTRY_2_START_HERE.md`, `ORIGINALITY_MATHS.md` §6b, `wrangler.answers.toml` (its free-chapter comment still said physics-4 / mathematics-4; the push script's printed reminder said mathematics-4 too — both now name the intended set: physics-3 · chemistry-3 · mathematics-6 · mathematics_1b-3).
+
+### Phase B — the index and the diff (the analysis the founder asked for)
+
+All 24 chapters transcribed into `answer-book/sources/chaitanya_{p1,c1}_2027_*.json` — **1,421 entries**, stems restated in our words, sub-parts split, PROBLEM / intext blocks included, stars kept as research signal only (R1–R6). Twenty per-chapter diffs (`docs/reports/syllabus_2027_diff/`) matched on the physics/chemistry, never the wording:
+
+| | book entries | matched | re-cuts | missing, asked sections | missing, problems | predicted rows confirmed | extras whose topic is gone |
+|---|---|---|---|---|---|---|---|
+| Physics-I | 635 | 133 | 52 | **311** | 130 | 24 | 28 |
+| Chemistry-I ch.1–6 | 457 | 118 | 55 | **173** | 110 | 24 | 19 |
+| Chemistry-I ch.7–10 | 329 | 0 | — | **230** | 88 | — | — |
+| **total** | **1,421** | 251 | **107** | **714** | **328** | **48** | 47 |
+
+The five thin physics units (9–13, built only from board papers) carry 154 of the physics gap; chemistry Thermodynamics gained a Long Answer section the bank never had; the four new chemistry chapters need 318 distinct cards after folding the book's own duplicates. The 47 "topic gone" extras are retire CANDIDATES listed in the report's appendix — nothing is retired without the founder's confirmation.
+
+### Founder decisions (AskUserQuestion, 2026-09-02)
+
+Keep EXTRA rows and retire only whole topics after confirmation · **Problems become a fourth section** (Phase A2 engine, its own PR: `qtype:"PROBLEM"`, `paper_section:"Practice"`, marks 2 or 4, the planner / exam-eve / readiness meter exclude it, student-visible counts include it — overrides the 2026-08-20 deferral) · no stars on new cards · authoring order physics 14 → physics 9–13 → chemistry 7–10 → remaining gaps, re-cuts and promotions → problems last.
+
+### Verification (desk, 2026-09-02)
+
+`npm run build:answers` green — `retired: 40 card(s)`, Unit 4 — Stoichiometry 36/36, Unit 14 0/15, 134 units · `npx tsc --noEmit` 0 · `npx vitest run` 443/443 · `check:papers` clean (was red) · `check:originality` passes over all 24 indexes (still prints the 521 legacy rows) · `check:xrefs` clean · `backtest:physics` every mapping resolves · `vidi:contexts` widest context 74% of the slice · `build:answers:gated:mpc` writes chemistry-1…10 and no 99 · targeted Playwright: 5/5 offline (retire banner, chemistry numbering, legacy links, physics numbering) and 4/4 gated (retired-link sheet, bundles, offer wall, never-sold-as-locked) · **full `smoke:answers`: 70/70 passed (2.4 h, exit 0)** — run 3, launched as a detached `cmd /c … & echo SMOKE_EXIT` process with a Monitor on its log; runs 1 and 2 were killed by machine load under the agent wave and by a harness turn boundary, not by a defect.
+
+### Lessons
+
+- **A "failed" agent notice says nothing about the disk.** 22 top-model agents in one wave hit the subscription's 5-hour session cap; 17 died at once. Every "failed" index agent had already written a complete, valid file; no diff agent had. The relaunched diff wave on `model: sonnet` finished cleanly. Fan-outs beyond ~6 agents go on sonnet unless the task needs the top model.
+- **Never run the 45-minute Playwright suite under a live wave of PDF-reading agents** — the browser worker died with a process-creation error (0xC0000142), and the harness-backgrounded re-run was stopped at a turn boundary. The final run is a detached `cmd /c … & echo SMOKE_EXIT` process with a Monitor on its log.
+- The shell transport still eats a long quoted heredoc: an EOL-aware Python replacer written to the scratchpad and run by path succeeded where the same edit inline failed twice (all six touched source files are CRLF).
+
+### NOT done, deliberately
+
+No card authored (Phase C starts with physics 14 from the index stems); the PROBLEM engine (A2) not built; nothing committed or pushed at the time of writing — the desk is handed to `git-steward` once the smoke result lands; nothing deployed (Rule 17); the `ab_content.free` UPDATE for physics-3 and the `ab_entitlements` per-unit remap check remain founder steps after the next `content:push:mpc-both`; the vault sync is proposed to the founder, not written.
+
 ## 📐 SESSION — Maths 1B's calculus half, and what a competitor's book actually proves (2026-08-30, `feat/ipe-answerbook-maths-1ab-gap`)
 
 **Bottom line: 255 new cards. Maths-1B went from 7 units to 10 — Limits and Continuity, Differentiation and Applications of Derivatives did not exist in the product at all, which is roughly a third of that paper. The two Maths-1A chapters added for the 2026-27 syllabus stopped being placeholders whose "questions" were syllabus topic labels. And the question that started the session — whether Sri Chaitanya could claim we copied them — turned out to have a strong answer that points somewhere nobody was looking.**

@@ -1,0 +1,419 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Chemistry (2026-27 edition)",
+  "scan_file": "DocScanner (4).pdf",
+  "scan_sha256": "18e8d6fc6831f1e9faf11a19450559f6fb9a0c6d55982c187943449f71f26a33",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring; stems restated in our own wording, no solution content by policy. Numbering runs continuously 1–60: VSAQ 1–28 (28 entries), SAQ 29–48 (20 printed numbers, 25 entries after sub-part splitting), LAQ 49–60 (12 printed numbers, 24 entries), plus INTEXT SOLVED PROBLEMS 7.1–7.5 (5 entries) = 82 entries. Several SAQ/LAQ items repeat VSAQ wording (16/37, 17/34, 23+24/38, 27/39, 9/58(i), 12/60). Scan pages 85, 87, 89, 91, 93 and 95 are skewed with a tight left margin but every number and star is readable; the footer of scan page 92 is cropped to '4' (printed 94).",
+  "chapter": { "number": 7, "printed_title": "s-BLOCK ELEMENTS" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 85, "scan_page": 83,
+      "stem": "Give the reasons for the diagonal relationship seen in the periodic table.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 85, "scan_page": 83,
+      "stem": "Write the complete electronic configurations of potassium (K) and lithium (Li).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 85, "scan_page": 83,
+      "stem": "Lithium salts are mostly hydrated. Explain why.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 85, "scan_page": 83,
+      "stem": "Lithium reacts with water less vigorously than sodium does. Give the reasons.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 85, "scan_page": 83,
+      "stem": "Lithium iodide is the most covalent of the alkali metal halides. Give the reasons.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 85, "scan_page": 83,
+      "stem": "In what way does lithium hydrogen carbonate differ from the other alkali metal hydrogen carbonates?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 85, "scan_page": 83,
+      "stem": "Write the complete electronic configurations of any two alkaline earth metals.",
+      "appearance_years": [], "notes": "Printed as 'alkali earth metals'." },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 85, "scan_page": 83,
+      "stem": "What are the characteristic flame colours given by the group IIA elements?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 1,
+      "printed_page": 85, "scan_page": 83,
+      "stem": "What happens when magnesium metal is burnt in air?",
+      "appearance_years": [], "notes": "Repeated as LAQ 58 part (i)." },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 85, "scan_page": 83,
+      "stem": "Lithium carbonate is less stable to heat than the other alkali metal carbonates. Explain.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 85, "scan_page": 83,
+      "stem": "What happens when hydrated Mg(NO₃)₂ is heated? Give the balanced equation.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 1,
+      "printed_page": 85, "scan_page": 83,
+      "stem": "Write the average composition of Portland cement.",
+      "appearance_years": [], "notes": "Overlaps LAQ 60 (cement)." },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 1,
+      "printed_page": 85, "scan_page": 83,
+      "stem": "Why is gypsum added to cement?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 86, "scan_page": 84,
+      "stem": "Why are the alkali metals not found in the free state in nature?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 1,
+      "printed_page": 86, "scan_page": 84,
+      "stem": "Potassium carbonate cannot be prepared by the Solvay process. Why?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 1,
+      "printed_page": 86, "scan_page": 84,
+      "stem": "Write a few applications (uses) of caustic soda.",
+      "appearance_years": [], "notes": "Repeated word for word as SAQ 37." },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 0,
+      "printed_page": 86, "scan_page": 84,
+      "stem": "Mention some uses of sodium carbonate.",
+      "appearance_years": [], "notes": "Repeated word for word as SAQ 34." },
+
+    { "ref": "vsaq18", "section": "VSAQ", "number": 18, "part": null, "stars": 0,
+      "printed_page": 86, "scan_page": 84,
+      "stem": "Describe the important uses of quick lime.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq19", "section": "VSAQ", "number": 19, "part": null, "stars": 1,
+      "printed_page": 86, "scan_page": 84,
+      "stem": "Describe the importance of plaster of Paris.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq20", "section": "VSAQ", "number": 20, "part": null, "stars": 0,
+      "printed_page": 86, "scan_page": 84,
+      "stem": "Which of the alkaline earth metal carbonates is the most stable to heat? Why?",
+      "appearance_years": [], "notes": "Printed as 'alkali earth metal carbonates'." },
+
+    { "ref": "vsaq21", "section": "VSAQ", "number": 21, "part": null, "stars": 0,
+      "printed_page": 86, "scan_page": 84,
+      "stem": "What is the chemical name of plaster of Paris? Write its formula.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq22", "section": "VSAQ", "number": 22, "part": null, "stars": 0,
+      "printed_page": 86, "scan_page": 84,
+      "stem": "What is dead burnt plaster?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq23", "section": "VSAQ", "number": 23, "part": null, "stars": 1,
+      "printed_page": 86, "scan_page": 84,
+      "stem": "Give an account of the biological importance of Na⁺ ions.",
+      "appearance_years": [], "notes": "Combined with VSAQ 24 as SAQ 38." },
+
+    { "ref": "vsaq24", "section": "VSAQ", "number": 24, "part": null, "stars": 1,
+      "printed_page": 86, "scan_page": 84,
+      "stem": "Give an account of the biological importance of K⁺ ions.",
+      "appearance_years": [], "notes": "Combined with VSAQ 23 as SAQ 38." },
+
+    { "ref": "vsaq25", "section": "VSAQ", "number": 25, "part": null, "stars": 1,
+      "printed_page": 87, "scan_page": 85,
+      "stem": "Write the importance of Mg²⁺ and Ca²⁺ ions in biological systems.",
+      "appearance_years": [], "notes": "The book prints the ions charge-first as 'Mg⁺² & Ca⁺²'." },
+
+    { "ref": "vsaq26", "section": "VSAQ", "number": 26, "part": null, "stars": 0,
+      "printed_page": 87, "scan_page": 85,
+      "stem": "Write the chemical formulae of baking soda and washing soda.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq27", "section": "VSAQ", "number": 27, "part": null, "stars": 1,
+      "printed_page": 87, "scan_page": 85,
+      "stem": "Mention the important uses of magnesium (Mg) metal.",
+      "appearance_years": [], "notes": "Repeated as SAQ 39 (printed there with 'use' singular)." },
+
+    { "ref": "vsaq28", "section": "VSAQ", "number": 28, "part": null, "stars": 0,
+      "printed_page": 87, "scan_page": 85,
+      "stem": "What is milk of lime?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq29", "section": "SAQ", "number": 29, "part": null, "stars": 0,
+      "printed_page": 87, "scan_page": 85,
+      "stem": "Alkali metals and their salts give characteristic colours to an oxidising flame. Explain the reason.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq30", "section": "SAQ", "number": 30, "part": null, "stars": 0,
+      "printed_page": 87, "scan_page": 85,
+      "stem": "Why are potassium and caesium, rather than lithium, used in photoelectric cells?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq31", "section": "SAQ", "number": 31, "part": null, "stars": 0,
+      "printed_page": 87, "scan_page": 85,
+      "stem": "Write a short note on the reactivity of the alkali metals towards air.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq32", "section": "SAQ", "number": 32, "part": "i", "stars": 0,
+      "printed_page": 88, "scan_page": 86,
+      "stem": "Give any two uses of lithium metal.",
+      "appearance_years": [], "notes": "Printed as one question: 'Give any two uses for each of the following metals (i) Lithium (ii) Sodium'." },
+
+    { "ref": "saq32", "section": "SAQ", "number": 32, "part": "ii", "stars": 0,
+      "printed_page": 88, "scan_page": 86,
+      "stem": "Give any two uses of sodium metal.",
+      "appearance_years": [], "notes": "Part (ii) of the printed two-part question 32." },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": null, "stars": 0,
+      "printed_page": 88, "scan_page": 86,
+      "stem": "Give an account of the properties of washing soda.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq34", "section": "SAQ", "number": 34, "part": null, "stars": 0,
+      "printed_page": 88, "scan_page": 86,
+      "stem": "Mention some uses of sodium carbonate.",
+      "appearance_years": [], "notes": "Word-for-word repeat of VSAQ 17." },
+
+    { "ref": "saq35", "section": "SAQ", "number": 35, "part": null, "stars": 0,
+      "printed_page": 88, "scan_page": 86,
+      "stem": "How do you obtain pure NaCl from a crude sample?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq36", "section": "SAQ", "number": 36, "part": null, "stars": 1,
+      "printed_page": 88, "scan_page": 86,
+      "stem": "What do you know about the Castner–Kellner process? Write the principle involved in it.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq37", "section": "SAQ", "number": 37, "part": null, "stars": 1,
+      "printed_page": 89, "scan_page": 87,
+      "stem": "Write a few applications (uses) of caustic soda.",
+      "appearance_years": [], "notes": "Word-for-word repeat of VSAQ 16." },
+
+    { "ref": "saq38", "section": "SAQ", "number": 38, "part": null, "stars": 1,
+      "printed_page": 89, "scan_page": 87,
+      "stem": "Give an account of the biological importance of Na⁺ and K⁺ ions.",
+      "appearance_years": [], "notes": "Combines VSAQ 23 and VSAQ 24." },
+
+    { "ref": "saq39", "section": "SAQ", "number": 39, "part": null, "stars": 1,
+      "printed_page": 89, "scan_page": 87,
+      "stem": "Mention the important uses of magnesium (Mg) metal.",
+      "appearance_years": [], "notes": "Printed with 'use' singular; otherwise a repeat of VSAQ 27." },
+
+    { "ref": "saq40", "section": "SAQ", "number": 40, "part": null, "stars": 0,
+      "printed_page": 89, "scan_page": 87,
+      "stem": "Show that Be(OH)₂ is amphoteric in nature.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq41", "section": "SAQ", "number": 41, "part": null, "stars": 1,
+      "printed_page": 89, "scan_page": 87,
+      "stem": "Write a note on the anomalous behaviour of beryllium.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq42", "section": "SAQ", "number": 42, "part": null, "stars": 0,
+      "printed_page": 89, "scan_page": 87,
+      "stem": "Beryllium shows a diagonal relationship with aluminium. Discuss.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq43", "section": "SAQ", "number": 43, "part": null, "stars": 1,
+      "printed_page": 90, "scan_page": 88,
+      "stem": "What is plaster of Paris? Write a short note on it.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq44", "section": "SAQ", "number": 44, "part": null, "stars": 0,
+      "printed_page": 90, "scan_page": 88,
+      "stem": "In what ways does lithium show similarities to magnesium in its chemical behaviour?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq45", "section": "SAQ", "number": 45, "part": null, "stars": 0,
+      "printed_page": 90, "scan_page": 88,
+      "stem": "When an alkali metal dissolves in liquid ammonia, the solution can take on different colours. Explain the reasons for this colour change.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq46", "section": "SAQ", "number": 46, "part": "i", "stars": 0,
+      "printed_page": 90, "scan_page": 88,
+      "stem": "What happens when sodium metal is dropped in water?",
+      "appearance_years": [], "notes": "Printed as one three-part question: 'What happens when (i) sodium metal is dropped in water (ii) sodium metal is heated in free supply of air (iii) sodium peroxide dissolve in water?'." },
+
+    { "ref": "saq46", "section": "SAQ", "number": 46, "part": "ii", "stars": 0,
+      "printed_page": 90, "scan_page": 88,
+      "stem": "What happens when sodium metal is heated in a free supply of air?",
+      "appearance_years": [], "notes": "Part (ii) of the printed three-part question 46." },
+
+    { "ref": "saq46", "section": "SAQ", "number": 46, "part": "iii", "stars": 0,
+      "printed_page": 90, "scan_page": 88,
+      "stem": "What happens when sodium peroxide dissolves in water?",
+      "appearance_years": [], "notes": "Part (iii) of the printed three-part question 46." },
+
+    { "ref": "saq47", "section": "SAQ", "number": 47, "part": "i", "stars": 0,
+      "printed_page": 90, "scan_page": 88,
+      "stem": "State why an aqueous solution of Na₂CO₃ is alkaline.",
+      "appearance_years": [], "notes": "Printed as one two-part question: 'State as to why (i) an aqueous solution of Na₂CO₃ is alkaline (ii) alkali metals are prepared by the electrolysis of their fused chlorides?'." },
+
+    { "ref": "saq47", "section": "SAQ", "number": 47, "part": "ii", "stars": 0,
+      "printed_page": 90, "scan_page": 88,
+      "stem": "State why the alkali metals are prepared by the electrolysis of their fused chlorides.",
+      "appearance_years": [], "notes": "Part (ii) of the printed two-part question 47." },
+
+    { "ref": "saq48", "section": "SAQ", "number": 48, "part": "a", "stars": 0,
+      "printed_page": 91, "scan_page": 89,
+      "stem": "Explain the following observation: BeO is almost insoluble in water, but BeSO₄ is soluble in water.",
+      "appearance_years": [], "notes": "Printed as one question 'How would you explain the following observations?' with parts (a) and (b)." },
+
+    { "ref": "saq48", "section": "SAQ", "number": 48, "part": "b", "stars": 0,
+      "printed_page": 91, "scan_page": 89,
+      "stem": "Explain the following observation: BaO is soluble in water, but BaSO₄ is insoluble in water.",
+      "appearance_years": [], "notes": "Part (b) of the printed two-part question 48." },
+
+    { "ref": "laq49", "section": "LAQ", "number": 49, "part": "i", "stars": 0,
+      "printed_page": 91, "scan_page": 89,
+      "stem": "Justify the inclusion of the alkali metals in the same group of the periodic table with reference to their electronic configuration.",
+      "appearance_years": [], "notes": "Printed as one LAQ with three aspects: (i) electronic configuration (ii) reducing nature (iii) oxides and hydroxides." },
+
+    { "ref": "laq49", "section": "LAQ", "number": 49, "part": "ii", "stars": 0,
+      "printed_page": 91, "scan_page": 89,
+      "stem": "Justify the inclusion of the alkali metals in the same group of the periodic table with reference to their reducing nature.",
+      "appearance_years": [], "notes": "Aspect (ii) of the printed LAQ 49." },
+
+    { "ref": "laq49", "section": "LAQ", "number": 49, "part": "iii", "stars": 0,
+      "printed_page": 91, "scan_page": 89,
+      "stem": "Justify the inclusion of the alkali metals in the same group of the periodic table with reference to their oxides and hydroxides.",
+      "appearance_years": [], "notes": "Aspect (iii) of the printed LAQ 49." },
+
+    { "ref": "laq50", "section": "LAQ", "number": 50, "part": null, "stars": 0,
+      "printed_page": 92, "scan_page": 90,
+      "stem": "Write an essay on the differences between lithium and the other alkali metals.",
+      "appearance_years": [], "notes": "Printed as 'Write on essay' (typo) and 'alkalimetals'." },
+
+    { "ref": "laq51", "section": "LAQ", "number": 51, "part": null, "stars": 1,
+      "printed_page": 92, "scan_page": 90,
+      "stem": "Discuss the preparation, properties and uses of sodium carbonate.",
+      "appearance_years": [], "notes": "Printed as 'preparartion' (typo)." },
+
+    { "ref": "laq52", "section": "LAQ", "number": 52, "part": "i", "stars": 0,
+      "printed_page": 93, "scan_page": 91,
+      "stem": "Discuss the similarities among the alkaline earth metals and the gradation in their electronic configuration.",
+      "appearance_years": [], "notes": "Printed as one LAQ ('Dissuss', typo) with three aspects: (i) electronic configuration (ii) hydration enthalpies (iii) nature of oxides and hydroxides." },
+
+    { "ref": "laq52", "section": "LAQ", "number": 52, "part": "ii", "stars": 0,
+      "printed_page": 93, "scan_page": 91,
+      "stem": "Discuss the similarities among the alkaline earth metals and the gradation in their hydration enthalpies.",
+      "appearance_years": [], "notes": "Aspect (ii) of the printed LAQ 52." },
+
+    { "ref": "laq52", "section": "LAQ", "number": 52, "part": "iii", "stars": 0,
+      "printed_page": 93, "scan_page": 91,
+      "stem": "Discuss the similarities among the alkaline earth metals and the gradation in the nature of their oxides and hydroxides.",
+      "appearance_years": [], "notes": "Aspect (iii) of the printed LAQ 52." },
+
+    { "ref": "laq53", "section": "LAQ", "number": 53, "part": "i", "stars": 0,
+      "printed_page": 93, "scan_page": 91,
+      "stem": "Discuss the carbonates of the alkaline earth metals.",
+      "appearance_years": [], "notes": "Printed as one LAQ: 'Discuss on (i) Carbonates (ii) Sulphates and (iii) Nitrates of alkaline earth metals'." },
+
+    { "ref": "laq53", "section": "LAQ", "number": 53, "part": "ii", "stars": 0,
+      "printed_page": 93, "scan_page": 91,
+      "stem": "Discuss the sulphates of the alkaline earth metals.",
+      "appearance_years": [], "notes": "Part (ii) of the printed LAQ 53." },
+
+    { "ref": "laq53", "section": "LAQ", "number": 53, "part": "iii", "stars": 0,
+      "printed_page": 93, "scan_page": 91,
+      "stem": "Discuss the nitrates of the alkaline earth metals.",
+      "appearance_years": [], "notes": "Part (iii) of the printed LAQ 53." },
+
+    { "ref": "laq54", "section": "LAQ", "number": 54, "part": null, "stars": 0,
+      "printed_page": 94, "scan_page": 92,
+      "stem": "What are the common physical and chemical features of the alkali metals?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq55", "section": "LAQ", "number": 55, "part": null, "stars": 0,
+      "printed_page": 95, "scan_page": 93,
+      "stem": "Discuss the general characteristics of the alkaline earth metals and the gradation in their properties.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq56", "section": "LAQ", "number": 56, "part": null, "stars": 1,
+      "printed_page": 96, "scan_page": 94,
+      "stem": "Discuss the various reactions that occur in the Solvay process.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq57", "section": "LAQ", "number": 57, "part": "i", "stars": 0,
+      "printed_page": 96, "scan_page": 94,
+      "stem": "Starting with sodium chloride, how would you prepare sodium metal?",
+      "appearance_years": [], "notes": "Printed as one LAQ with four targets: (i) sodium metal (ii) sodium hydroxide (iii) sodium peroxide (iv) sodium carbonate." },
+
+    { "ref": "laq57", "section": "LAQ", "number": 57, "part": "ii", "stars": 0,
+      "printed_page": 96, "scan_page": 94,
+      "stem": "Starting with sodium chloride, how would you prepare sodium hydroxide?",
+      "appearance_years": [], "notes": "Part (ii) of the printed LAQ 57." },
+
+    { "ref": "laq57", "section": "LAQ", "number": 57, "part": "iii", "stars": 0,
+      "printed_page": 96, "scan_page": 94,
+      "stem": "Starting with sodium chloride, how would you prepare sodium peroxide?",
+      "appearance_years": [], "notes": "Part (iii) of the printed LAQ 57." },
+
+    { "ref": "laq57", "section": "LAQ", "number": 57, "part": "iv", "stars": 0,
+      "printed_page": 96, "scan_page": 94,
+      "stem": "Starting with sodium chloride, how would you prepare sodium carbonate?",
+      "appearance_years": [], "notes": "Part (iv) of the printed LAQ 57." },
+
+    { "ref": "laq58", "section": "LAQ", "number": 58, "part": "i", "stars": 0,
+      "printed_page": 97, "scan_page": 95,
+      "stem": "What happens when magnesium is burnt in air?",
+      "appearance_years": [], "notes": "Printed as one LAQ with four parts: (i) magnesium burnt in air (ii) quick lime heated with silica (iii) chlorine reacts with slaked lime (iv) calcium nitrate strongly heated. Same as VSAQ 9. The printed answer has a misplaced 'Oxidation States' paragraph between parts (ii) and (iii)." },
+
+    { "ref": "laq58", "section": "LAQ", "number": 58, "part": "ii", "stars": 0,
+      "printed_page": 97, "scan_page": 95,
+      "stem": "What happens when quick lime is heated with silica?",
+      "appearance_years": [], "notes": "Part (ii) of the printed LAQ 58." },
+
+    { "ref": "laq58", "section": "LAQ", "number": 58, "part": "iii", "stars": 0,
+      "printed_page": 97, "scan_page": 95,
+      "stem": "What happens when chlorine reacts with slaked lime?",
+      "appearance_years": [], "notes": "Part (iii) of the printed LAQ 58." },
+
+    { "ref": "laq58", "section": "LAQ", "number": 58, "part": "iv", "stars": 0,
+      "printed_page": 97, "scan_page": 95,
+      "stem": "What happens when calcium nitrate is strongly heated?",
+      "appearance_years": [], "notes": "Part (iv) of the printed LAQ 58." },
+
+    { "ref": "laq59", "section": "LAQ", "number": 59, "part": null, "stars": 1,
+      "printed_page": 97, "scan_page": 95,
+      "stem": "Explain the significance of sodium, potassium, magnesium and calcium in biological fluids.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq60", "section": "LAQ", "number": 60, "part": null, "stars": 1,
+      "printed_page": 97, "scan_page": 95,
+      "stem": "Write a few lines about cement.",
+      "appearance_years": [], "notes": "Printed as 'Write few lines about cement?'. Overlaps VSAQ 12 and VSAQ 13." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "What is the oxidation state of K in KO₂?",
+      "appearance_years": [], "notes": "Printed label 7.1 (INTEXT SOLVED PROBLEMS)." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "The standard electrode potential E° is +1.36 for Cl₂/Cl⁻, +0.53 for I₂/I⁻, +0.79 for Ag⁺/Ag, −2.71 for Na⁺/Na and −3.04 for Li⁺/Li. Arrange the following species in decreasing order of reducing strength: I⁻, Ag, Cl⁻, Li, Na.",
+      "appearance_years": [], "notes": "Printed label 7.2. The symbol is printed as 'E⁻' (a misprint for E°) and the values carry no unit (volts implied)." },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "Why is KO₂ paramagnetic?",
+      "appearance_years": [], "notes": "Printed label 7.3." },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "Why does the solubility of the alkaline earth metal hydroxides in water increase down the group?",
+      "appearance_years": [], "notes": "Printed label 7.4." },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": null, "stars": 0,
+      "printed_page": 98, "scan_page": 96,
+      "stem": "Why does the solubility of the alkaline earth metal carbonates and sulphates in water decrease down the group?",
+      "appearance_years": [], "notes": "Printed label 7.5." }
+  ]
+}

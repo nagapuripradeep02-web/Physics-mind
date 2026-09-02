@@ -1,0 +1,434 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Physics (2026-27 edition)",
+  "scan_file": "DocScanner (3).pdf",
+  "scan_sha256": "1abe7da6d4846e9e09d6cb7b588db8404a6268dc196f1d4128deefea6a37c016",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring: VSAQ 29 numbered questions (53 entries after splitting printed parts — q1 four, q2 seven, q3/q4/q5/q8/q24/q28 two each, q12 three, q13 six, q27 a lead line plus two lettered parts), SAQ 11 (13 entries — q1 three parts), LAQ 9, PROBLEM 10; 85 entries in all. Stems restated in our own wording with every datum exact; no solution content from the source book appears here, by policy. The FORMULAE block on scan p.42 (printed p.44, left column) is not indexed. No asterisk is printed before any question in this chapter (all stars 0); the diagonal pen-like slash beside LAQ 1 and LAQ 2 (scan pp.48–49) is not a printed star. The scan clips the right margin of scan p.50 (printed 52), cutting the line ends of the LAQ 3 stem, and the footer of scan p.42 shows only a partial '4' (printed 44 by sequence).",
+  "chapter": { "number": 5, "printed_title": "WORK, ENERGY AND POWER" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": "a", "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "Define work.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": "b", "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "What are the conditions for work to be done?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": "c", "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "State the mathematical expressions for work.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": "d", "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "Does work have a direction?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": "a", "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "Is work done in the following case? Explain: a man pushing a wall.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": "b", "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "Is work done in the following case? Explain: a girl climbing a staircase.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": "c", "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "Is work done in the following case? Explain: a boy swimming in a tank.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": "d", "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "Is work done in the following case? Explain: a man standing at one place and holding a suitcase in his hand.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": "e", "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "Is work done in the following case? Explain: a lady cooking food.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": "f", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "Is work done in the following case? Explain: a porter carrying a load on his head while walking along a level road.",
+      "appearance_years": [], "notes": "Parts (f) and (g) of VSAQ 2 are printed at the top of p.45; the question begins on p.44." },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": "g", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "Is work done in the following case? Explain: a porter carrying a load and climbing upstairs.",
+      "appearance_years": [], "notes": "Parts (f) and (g) of VSAQ 2 are printed at the top of p.45; the question begins on p.44." },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": "a", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "State the sign of the work done by the force in this case: the work done by a man in lifting a bucket out of a well using a rope tied to the bucket.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": "b", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "State the sign of the work done by the gravitational force on the bucket in the same case (a man lifting a bucket out of a well with a rope).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": "a", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "State the sign of the work done by friction on a body sliding down an inclined plane.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": "b", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "State the sign of the work done by the gravitational force on a freely falling body.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": "a", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "State the sign of the work done by an applied force on a body moving with uniform velocity on a rough horizontal plane.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": "b", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "State the sign of the work done by the resistive force of air on a vibrating pendulum while that force brings the pendulum to rest.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "State the conditions under which a force does no work.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "One man climbs a slope and another man walks the same distance on a level road. Which of them does more work, and why?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": "a", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "State the CGS and SI units of work.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": "b", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "How is the joule related to the erg?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "State the expression for the work done by a force when the object on which the force acts is displaced in the direction opposite to the force.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "Give an example in which the displacement of a particle is perpendicular to the force acting on the particle.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "The displacement of a particle makes an angle θ with the force acting on it. For what value of θ is the work done maximum? For what value of θ is the work done minimum?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": "a", "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "What is energy? State and define the SI unit of energy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": "b", "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "Define potential energy. Give two examples of potential energy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": "c", "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "Define kinetic energy. Give four examples of kinetic energy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": "a", "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "What kind of energy does the body have in this case: a cocked (compressed) spring in an air gun?",
+      "appearance_years": [], "notes": "Printed wording: 'A cocked-up spring and an air gun'." },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": "b", "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "What kind of energy does the body have in this case: an arrow that has been shot and is in flight?",
+      "appearance_years": [], "notes": "Printed wording: 'A shooting arrow'." },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": "c", "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "What kind of energy does the body have in this case: a stone lying on the top of a house?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": "d", "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "What kind of energy does the body have in this case: water stored in a dam?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": "e", "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "What kind of energy does the body have in this case: an electron spinning around the nucleus?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": "f", "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "What kind of energy does the body have in this case: a fish moving in water?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "Give two examples of elastic potential energy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "State the law of conservation of energy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "Define work, power and energy. State the SI unit of each.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 0,
+      "printed_page": 46, "scan_page": 44,
+      "stem": "State the relation between the kinetic energy and the momentum of a body.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq18", "section": "VSAQ", "number": 18, "part": null, "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "State the expression for the kinetic energy of a particle of mass m moving at speed v.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq19", "section": "VSAQ", "number": 19, "part": null, "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "Does the kinetic energy of an object depend on its direction of motion?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq20", "section": "VSAQ", "number": 20, "part": null, "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "By what factor does the kinetic energy of a particle increase if its speed is increased by a factor of 3?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq21", "section": "VSAQ", "number": 21, "part": null, "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "What is the relation between the work done by external forces on a body and the energy of the body?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq22", "section": "VSAQ", "number": 22, "part": null, "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "What is mechanical energy?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq23", "section": "VSAQ", "number": 23, "part": null, "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "Can matter be converted into energy?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq24", "section": "VSAQ", "number": 24, "part": "a", "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "Explain the following statement in terms of energy: the total energy of a system is always conserved, no matter what internal and external forces act on the body.",
+      "appearance_years": [], "notes": "The printed heading reads 'Write the energy conversions in the following cases', but each sub-part is a statement to be explained, not a case to be classified." },
+
+    { "ref": "vsaq24", "section": "VSAQ", "number": 24, "part": "b", "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "Explain the following statement in terms of energy: the work done by the earth's gravitational force in keeping the moon in its orbit for one full revolution is zero.",
+      "appearance_years": [], "notes": "Same printed heading as part (a): 'Write the energy conversions in the following cases'." },
+
+    { "ref": "vsaq25", "section": "VSAQ", "number": 25, "part": null, "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "Define the kilowatt hour and convert it into joules.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq26", "section": "VSAQ", "number": 26, "part": null, "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "Define the electron volt and express it in joules.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq27", "section": "VSAQ", "number": 27, "part": null, "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "Define power and write its unit.",
+      "appearance_years": [], "notes": "Lead line printed before parts (a) and (b) under the same number 27; indexed as its own question because it asks something the parts do not." },
+
+    { "ref": "vsaq27", "section": "VSAQ", "number": 27, "part": "a", "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "State the absolute unit of power in the SI system.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq27", "section": "VSAQ", "number": 27, "part": "b", "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "What is horsepower? What is its magnitude in SI units?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq28", "section": "VSAQ", "number": 28, "part": "i", "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "Which physical quantity remains constant in an elastic collision?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq28", "section": "VSAQ", "number": 28, "part": "ii", "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "Which physical quantity remains constant in an inelastic collision?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq29", "section": "VSAQ", "number": 29, "part": null, "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "Define power and write the relation among force, velocity and power.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1", "section": "SAQ", "number": 1, "part": "a", "stars": 0,
+      "printed_page": 48, "scan_page": 46,
+      "stem": "Is the work done positive, zero or negative in this case: the work done by a porter on a suitcase while lifting it from the platform on to his head?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1", "section": "SAQ", "number": 1, "part": "b", "stars": 0,
+      "printed_page": 48, "scan_page": 46,
+      "stem": "Is the work done positive, zero or negative in this case: the work done by the force of gravity on a suitcase as the suitcase falls down from the porter's head?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1", "section": "SAQ", "number": 1, "part": "c", "stars": 0,
+      "printed_page": 48, "scan_page": 46,
+      "stem": "Is the work done positive, zero or negative in this case: the work done by a person on a book held in his hand while he walks with uniform speed on a horizontal road?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq2", "section": "SAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 48, "scan_page": 46,
+      "stem": "Why does a person who stands for a long time get tired, even though he does not appear to do any work?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq3", "section": "SAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 48, "scan_page": 46,
+      "stem": "What do you understand by potential energy? Explain with two examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq4", "section": "SAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 48, "scan_page": 46,
+      "stem": "How can you justify that a body kept at a greater height has more energy?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq5", "section": "SAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 48, "scan_page": 46,
+      "stem": "What is potential energy? Derive an expression for gravitational potential energy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq6", "section": "SAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 48, "scan_page": 46,
+      "stem": "A lorry and a car moving with the same momentum are brought to rest by brakes that apply equal retarding forces. Which of them comes to rest in a shorter time? Which of them comes to rest in a shorter distance?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq7", "section": "SAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 49, "scan_page": 47,
+      "stem": "Distinguish between conservative and non-conservative forces, with one example of each.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq8", "section": "SAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 49, "scan_page": 47,
+      "stem": "The work done by a force F₁ is larger than the work done by another force F₂. Is it necessary that the power delivered by F₁ is also larger than the power delivered by F₂?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq9", "section": "SAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 49, "scan_page": 47,
+      "stem": "Derive an expression for the height reached by a freely falling body after n rebounds from the floor.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq10", "section": "SAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 49, "scan_page": 47,
+      "stem": "Explain the law of conservation of energy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq11", "section": "SAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 50, "scan_page": 48,
+      "stem": "A freely falling body rebounds again and again from the same place on the ground before it finally stops. What is the total displacement of the body? Take e as the coefficient of restitution between the body and the ground.",
+      "appearance_years": [], "notes": "The stem asks for the total DISPLACEMENT, not the total distance travelled." },
+
+    { "ref": "laq1", "section": "LAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 50, "scan_page": 48,
+      "stem": "Develop the ideas of work and kinetic energy and show that they lead to the work-energy theorem.",
+      "appearance_years": [], "notes": "A diagonal pen-like slash is printed or drawn beside the number; it is not an asterisk and is not counted as a star." },
+
+    { "ref": "laq2", "section": "LAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 51, "scan_page": 49,
+      "stem": "State the law of conservation of energy. Prove the law of conservation of energy mathematically for a freely falling body.",
+      "appearance_years": [], "notes": "A diagonal pen-like slash is printed or drawn beside the number; it is not an asterisk and is not counted as a star." },
+
+    { "ref": "laq3", "section": "LAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 52, "scan_page": 50,
+      "stem": "What are collisions? Explain the possible types of collisions. Show that in a one-dimensional elastic collision, the relative velocity of approach of the two colliding bodies before the collision is equal to the relative velocity of separation after the collision.",
+      "appearance_years": [], "notes": "The right margin of scan p.50 is clipped, so the last word of each printed line of this stem is partly cut ('typ', 'on', 'relati', 'bodi', 'veloci'); the stem is reconstructed from context and from the printed answer's heading." },
+
+    { "ref": "laq4", "section": "LAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 53, "scan_page": 51,
+      "stem": "Show that when two equal masses undergo an oblique elastic collision, with the second body initially at rest, they move at right angles to each other after the collision.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq5", "section": "LAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 53, "scan_page": 51,
+      "stem": "If the forces doing work are conservative, show that the total mechanical energy of the system is conserved.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq6", "section": "LAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 54, "scan_page": 52,
+      "stem": "Obtain the expression for the potential energy of a spring.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq7", "section": "LAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 54, "scan_page": 52,
+      "stem": "State and prove the work-energy theorem for a variable force.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq8", "section": "LAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 54, "scan_page": 52,
+      "stem": "Define the coefficient of restitution and obtain the expression for it. A body falls freely from a height h and, after striking a smooth floor, rebounds to a height h/2. What is the coefficient of restitution between the floor and the body?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq9", "section": "LAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 55, "scan_page": 53,
+      "stem": "An object tied to a string is rotated in a vertical circle. Obtain expressions for the speed of the object at the highest point and at the lowest point, when the string becomes slack only at the highest point.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": null, "stars": 0,
+      "printed_page": 55, "scan_page": 53,
+      "stem": "A test tube of mass 10 grams, closed with a cork of mass 1 gram, contains some ether. When the test tube is heated, the cork flies out under the pressure of the ether gas. The test tube hangs horizontally from a weightless rigid bar of length 5 cm pivoted at a point O. What is the minimum velocity with which the cork must fly out of the tube so that the test tube describes a full vertical circle about O? Neglect the mass of the ether.",
+      "appearance_years": [], "notes": "No value of g is printed in the stem; the book's working assumes g = 10 m/s²." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 0,
+      "printed_page": 56, "scan_page": 54,
+      "stem": "A machine gun fires 360 bullets per minute, and each bullet leaves with a velocity of 600 m/s. If the mass of each bullet is 5 g, find the power of the machine gun.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": null, "stars": 0,
+      "printed_page": 56, "scan_page": 54,
+      "stem": "Water is pumped from a well 8 m deep to the surface at the rate of 3425 m³ per hour. Find the useful power used in pumping, given that 40% of the horsepower of the engine is wasted during pumping. What is the horsepower of the engine?",
+      "appearance_years": [], "notes": "The stem prints no value of g, no density of water and no watt-per-horsepower figure; the book's working assumes g = 9.8 m/s², 1000 kg per m³ and 1 HP = 746 W." },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 0,
+      "printed_page": 56, "scan_page": 54,
+      "stem": "A pump must lift 600 kg of water per minute from a well 25 m deep and eject it with a speed of 50 m/s. Calculate the power required to perform this task.",
+      "appearance_years": [], "notes": "No value of g is printed in the stem; the book's working assumes g = 9.8 m/s²." },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": null, "stars": 0,
+      "printed_page": 56, "scan_page": 54,
+      "stem": "A block of mass 5 kg, initially at rest at the origin, is acted on by a force along the positive X direction given by F = (20 + 5x) N. Calculate the work done by the force while the block moves from x = 0 to x = 4 m.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": null, "stars": 0,
+      "printed_page": 56, "scan_page": 54,
+      "stem": "A block of mass 2.5 kg slides down a smooth inclined plane, as shown in the figure. A spring of force constant 600 N/m is fixed near the bottom of the incline, lying along the slope. Find the compression of the spring just after the block strikes it. Figure: a right-angled incline of slant length 5 m, vertical height 3 m and horizontal base 4 m, with the spring along the slope near its lower end.",
+      "appearance_years": [], "notes": "Figure-dependent (3-4-5 incline). PRINTED DEFECT (probable): the stem gives mass 2.5 kg, but the printed working uses 5 kg with g = 10 m/s²; the working also takes the 'compression' to be the position where the block's speed is maximum, not the maximum compression. Founder decision needed on which reading to keep." },
+
+    { "ref": "prob7", "section": "PROBLEM", "number": 7, "part": null, "stars": 0,
+      "printed_page": 57, "scan_page": 55,
+      "stem": "A force F = −K/x² (x ≠ 0) acts on a particle along the X-axis. Find the work done by this force in moving the particle from x = a to x = 2a. Take K as a positive constant.",
+      "appearance_years": [], "notes": "Printed with a font glitch: '(x ¹ 0)' where (x ≠ 0) is intended, and 'x = ato x = 2a' for 'x = a to x = 2a'." },
+
+    { "ref": "prob8", "section": "PROBLEM", "number": 8, "part": null, "stars": 0,
+      "printed_page": 57, "scan_page": 55,
+      "stem": "A force F acting on a particle varies with position x as shown in the graph. Find the work done by the force in moving the particle from x = −a to x = 2a. Graph: F against x is a straight line through the origin, with F = −b at x = −a and F = +2b at x = +2a.",
+      "appearance_years": [], "notes": "Figure-dependent: the F–x graph is a single straight line through the origin; the axis marks are −a, +2a on x and −b, +2b on F." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": null, "stars": 0,
+      "printed_page": 57, "scan_page": 55,
+      "stem": "A ball is thrown straight down from a height of 20 m above a horizontal floor with an initial velocity of 20 m/s. After striking the floor, the ball bounces back to the same height from which it was thrown. Find the coefficient of restitution for the collision between the ball and the floor. Take g = 10 m/s².",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob10", "section": "PROBLEM", "number": 10, "part": null, "stars": 0,
+      "printed_page": 57, "scan_page": 55,
+      "stem": "A ball falls from a height of 10 m on to a hard horizontal floor and bounces repeatedly. If the coefficient of restitution is 1/√2, what is the total distance travelled by the ball before it stops rebounding?",
+      "appearance_years": [], "notes": null }
+  ]
+}
