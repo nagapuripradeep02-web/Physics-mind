@@ -1,0 +1,138 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_boyles_law_two_percent_pressure_rise",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "At constant temperature, the pressure of a fixed mass of gas is increased by 2%. Calculate the percentage decrease in its volume.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Boyle's law",
+      "marks": 1
+    },
+    {
+      "label": "New volume in terms of the old",
+      "marks": 1
+    },
+    {
+      "label": "Evaluating the new volume",
+      "marks": 1
+    },
+    {
+      "label": "Percentage decrease",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Short Answer Question 9 (printed p.141). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Boyle's law PV = P′V′ with P′ = 1.02P gives V′ = V/1.02 = 0.9804V, so the decrease is V − V′ = 0.0196V, that is 1.96%, close to but not exactly 2% — matching the brief's independently checked arithmetic."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Kinetic Theory · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_boyles_law",
+        "kind": "equation",
+        "label": "Boyle's law",
+        "marks": 1,
+        "mark_note": "PV = P′V′, P′ = 1.02P",
+        "lines": [
+          "At constant temperature, Boyle's law",
+          "gives:",
+          {
+            "text": "PV = P′V′",
+            "style": "eq"
+          },
+          "The pressure rises by 2%, so",
+          "P′ = 1.02P."
+        ],
+        "margin_note": "First mark. State Boyle's law and the new pressure in terms of the old.",
+        "why": "Boyle's law is the only relation needed at constant temperature, and a 2% rise in pressure means the new pressure is 1.02 times the old one.",
+        "common_mistakes": [
+          "Writing P′ = P + 2 instead of P′ = 1.02P, treating the 2% as an absolute number."
+        ],
+        "memory_tip": "A 2% rise multiplies P by 1.02, it does not add 2 to P."
+      },
+      {
+        "id": "s2_new_volume",
+        "kind": "equation",
+        "label": "New volume in terms of the old",
+        "marks": 1,
+        "mark_note": "V′ = V/1.02",
+        "lines": [
+          "From PV = P′V′:",
+          {
+            "text": "V′ = PV / P′ = V / 1.02",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Rearrange for V′ and keep it as a fraction of V.",
+        "why": "Rearranging Boyle's law for the new volume shows the new volume is the old volume divided by the same factor 1.02, not multiplied by it.",
+        "common_mistakes": [
+          "Multiplying V by 1.02 instead of dividing by it — pressure up means volume down."
+        ],
+        "memory_tip": "Pressure up means volume down: divide by 1.02, do not multiply."
+      },
+      {
+        "id": "s3_evaluate",
+        "kind": "equation",
+        "label": "Evaluating the new volume",
+        "marks": 1,
+        "mark_note": "V′ = 0.9804V",
+        "lines": [
+          {
+            "text": "V′ = V / 1.02 = 0.9804V",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Divide to at least four decimal places before rounding.",
+        "why": "Carrying the division to four decimal places is what makes the final percentage come out as 1.96 and not a rounded 2.",
+        "common_mistakes": [
+          "Rounding 1/1.02 to 0.98 too early and losing the small difference from 2%."
+        ],
+        "memory_tip": "One over 1.02 is 0.9804, not a clean 0.98."
+      },
+      {
+        "id": "s4_percentage",
+        "kind": "boxed_final",
+        "label": "Percentage decrease",
+        "marks": 1,
+        "mark_note": "1.96%, not 2%",
+        "lines": [
+          "Decrease in volume = V − V′",
+          "= V − 0.9804V = 0.0196V",
+          {
+            "text": "Percentage decrease = 1.96%",
+            "style": "boxed"
+          },
+          "Not exactly 2%, because V′ is found by",
+          "DIVIDING by 1.02, not by subtracting 2%."
+        ],
+        "margin_note": "Fourth mark. State 1.96%, and say briefly why it is not exactly 2%.",
+        "why": "Volume is inversely proportional to pressure, not linearly related to it, so a 2% rise in pressure and a 2% fall in volume are only approximately equal — the exact figure is 0.02/1.02 × 100, which is 1.96%.",
+        "common_mistakes": [
+          "Writing the answer as exactly 2%, matching the percentage rise in pressure without checking the arithmetic.",
+          "Subtracting 2% of V instead of computing V − V/1.02."
+        ],
+        "memory_tip": "Divide by 1.02, do not subtract 2%: that 0.02/1.02 is why it is 1.96%, not 2%."
+      }
+    ]
+  },
+  "insider_note": "The answer is 1.96%, not 2% — the volume is found by dividing by 1.02, so the exact decrease is 0.02/1.02 × 100, and a card that stops at 2% has missed the point of the question."
+}

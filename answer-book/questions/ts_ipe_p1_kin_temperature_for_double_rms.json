@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_temperature_for_double_rms",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "At what temperature does the rms speed of the molecules of a gas become double its value at 0°C, at constant pressure?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The relation",
+      "marks": 1
+    },
+    {
+      "label": "Temperature value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Very Short Answer Question 15 (printed p.138). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: v_rms ∝ √T, so doubling v_rms requires T to become 2² = 4 times as large; starting from T₁ = 0°C = 273 K, T₂ = 4 × 273 = 1092 K, arithmetic verified."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "v_rms ∝ √T",
+        "lines": [
+          "The rms speed of a gas obeys",
+          {
+            "text": "v_rms ∝ √T",
+            "style": "eq"
+          },
+          "So doubling v_rms needs T to",
+          "become 4 times as large."
+        ],
+        "margin_note": "First mark. State v_rms ∝ √T before jumping to the factor of 4.",
+        "why": "Since v_rms is proportional to the square root of T, the ratio of two rms speeds equals the square root of the ratio of their absolute temperatures; making v_rms twice as large therefore needs T to become 2² = 4 times as large.",
+        "common_mistakes": [
+          "Assuming doubling v_rms means doubling T directly. The relation is a square root, not a straight proportion.",
+          "Forgetting that T must be the absolute temperature, not the Celsius value."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rms speed is proportional to the square root of the absolute temperature, so doubling it needs T to become 4 times as large.",
+          "accept": [
+            "v rms proportional to root T",
+            "doubling v rms needs T times 4",
+            "square the speed ratio to get the temperature ratio"
+          ],
+          "reject": [
+            "T2 equals 1092 kelvin"
+          ],
+          "heard_as": [
+            "v rms proportional to root T",
+            "four times"
+          ]
+        },
+        "memory_tip": "v_rms goes as √T — to double a square root, the number inside must go up by 2² = 4."
+      },
+      {
+        "id": "s2_value",
+        "kind": "boxed_final",
+        "label": "Temperature value",
+        "marks": 1,
+        "mark_note": "T₂ = 1092 K",
+        "lines": [
+          "T₁ = 0°C = 273 K",
+          {
+            "text": "T₂ = 4 × 273 = 1092 K",
+            "style": "boxed"
+          },
+          "That is 819°C."
+        ],
+        "margin_note": "Second mark. Convert 0°C to 273 K first, then multiply by 4.",
+        "why": "T₁ = 273 K is 0°C converted to the absolute scale, so multiplying by the factor of 4 found in the first step gives the temperature at which the rms speed is double its value at 0°C.",
+        "common_mistakes": [
+          "Using 0°C as 0 K instead of converting it to 273 K on the absolute scale.",
+          "Reporting 1092°C instead of 1092 K, or not converting the final answer back to Celsius when it is asked for."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That starting from 273 K at 0°C, the required temperature is 4 times 273, which is 1092 K.",
+          "accept": [
+            "T2 equals 1092 kelvin",
+            "four times 273 is 1092",
+            "819 degree Celsius"
+          ],
+          "reject": [
+            "v rms proportional to root T"
+          ],
+          "heard_as": [
+            "1092 kelvin",
+            "819 degree Celsius"
+          ]
+        },
+        "memory_tip": "Convert first: 0°C = 273 K. Then just multiply by the factor of 4 from the relation."
+      }
+    ]
+  },
+  "insider_note": "Always convert 0°C to 273 K before multiplying — a student who multiplies 0°C × 4 gets zero and loses the second mark."
+}

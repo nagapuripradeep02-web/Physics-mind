@@ -1,0 +1,612 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_ideal_gas_pressure_derivation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 16,
+  "question_text": "Derive an expression for the pressure of an ideal gas on the basis of kinetic theory of gases. Hence give the kinetic interpretation of temperature.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The model and its assumptions",
+      "marks": 1
+    },
+    {
+      "label": "One collision",
+      "marks": 1
+    },
+    {
+      "label": "How often",
+      "marks": 1
+    },
+    {
+      "label": "Force from one molecule",
+      "marks": 1
+    },
+    {
+      "label": "Total force and pressure",
+      "marks": 1
+    },
+    {
+      "label": "Isotropy",
+      "marks": 1
+    },
+    {
+      "label": "Rewrite as energy",
+      "marks": 1
+    },
+    {
+      "label": "Kinetic interpretation of temperature",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Long Answer Question 1 (printed p.141). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The eight 1-mark step split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the momentum change per collision (−2 m v_x), the hit frequency (v_x / 2L), the force from one molecule (m v_x² / L), the isotropy step (Σv_x² = ⅓Σv²), the boxed result P = ⅓(N/V)mv̄², the energy rewrite PV = ⅔N(½mv̄²), and the final comparison with PV = Nk_BT giving ½mv̄² = (3/2)k_BT all match the standard NCERT Class-11 Chapter 13 derivation."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Kinetic Theory · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_model",
+        "kind": "text",
+        "label": "The model and its assumptions",
+        "marks": 1,
+        "mark_note": "Model and assumptions",
+        "lines": [
+          "Consider a gas of N identical molecules",
+          "of mass m, each in a cube of side L.",
+          "The molecules are point-like next to",
+          "their separation and they move randomly.",
+          "Every collision, wall or molecule, is",
+          "treated as perfectly elastic."
+        ],
+        "margin_note": "First mark. Name every assumption: point-sized molecules, random motion, and elastic collisions.",
+        "why": "The whole derivation rests on these three facts — a molecule carries no internal energy loss, so no kinetic energy is lost in a collision, and the wall receives back exactly what each molecule delivers.",
+        "common_mistakes": [
+          "Leaving out that the collisions are elastic — an inelastic collision would lose kinetic energy at every bounce.",
+          "Forgetting that the molecules are assumed point-sized, which is why molecule-molecule collisions do not need to be tracked separately."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the model is N identical molecules of mass m in a cube of side L, point-sized, moving randomly, with every collision perfectly elastic.",
+          "accept": [
+            "point-sized molecules moving randomly",
+            "every collision is perfectly elastic",
+            "N molecules of mass m in a cube of side L",
+            "first I state the model and its assumptions",
+            "molecules are treated as point particles"
+          ],
+          "reject": [
+            "pressure equals one third N over V m v bar squared",
+            "the wall receives twice m v x"
+          ],
+          "heard_as": [
+            "point-sized",
+            "elastic collisions",
+            "random motion",
+            "cube of side L"
+          ]
+        },
+        "memory_tip": "Three words to say: point-sized, random, elastic."
+      },
+      {
+        "id": "s2_figure",
+        "kind": "diagram",
+        "label": "Draw the figure",
+        "marks": 0,
+        "figure": {
+          "id": "fig_molecule_wall_collision",
+          "width": 460,
+          "height": 330,
+          "elements": [
+            {
+              "type": "stroke",
+              "id": "front_face",
+              "d": "M 130 270 L 310 270 L 310 130 L 130 130 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "back_face",
+              "d": "M 70 310 L 250 310 L 250 170 L 70 170 Z",
+              "ms": 4500
+            },
+            {
+              "type": "stroke",
+              "id": "edge_bl",
+              "d": "M 130 270 L 70 310",
+              "ms": 1030
+            },
+            {
+              "type": "stroke",
+              "id": "edge_br",
+              "d": "M 310 270 L 250 310",
+              "ms": 1030
+            },
+            {
+              "type": "stroke",
+              "id": "edge_tr",
+              "d": "M 310 130 L 250 170",
+              "ms": 1030
+            },
+            {
+              "type": "stroke",
+              "id": "edge_tl",
+              "d": "M 130 130 L 70 170",
+              "ms": 1030
+            },
+            {
+              "type": "label",
+              "id": "lbl_L",
+              "x": 200,
+              "y": 295,
+              "text": "L",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_wall",
+              "x": 318,
+              "y": 204,
+              "text": "wall",
+              "ms": 220
+            },
+            {
+              "type": "stroke",
+              "id": "molecule_dot",
+              "d": "M 185 170 L 186 170",
+              "ms": 300,
+              "w": 7
+            },
+            {
+              "type": "stroke",
+              "id": "v_in_shaft",
+              "d": "M 188 170 L 303 170",
+              "ms": 1640
+            },
+            {
+              "type": "stroke",
+              "id": "v_in_head",
+              "d": "M 295 164 L 303 170 L 295 176",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_vin",
+              "x": 225,
+              "y": 152,
+              "text": "v_x",
+              "ms": 220,
+              "em": true
+            },
+            {
+              "type": "stroke",
+              "id": "v_out_shaft",
+              "d": "M 303 225 L 188 225",
+              "ms": 1640
+            },
+            {
+              "type": "stroke",
+              "id": "v_out_head",
+              "d": "M 196 219 L 188 225 L 196 231",
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lbl_vout",
+              "x": 214,
+              "y": 250,
+              "text": "−v_x",
+              "ms": 220,
+              "em": true
+            }
+          ]
+        },
+        "margin_note": "Not marked, but draw it — the wall and the two velocity arrows make every later step easier to follow.",
+        "why": "A molecule hitting a wall and rebounding is easier to reason about once it is drawn — the same picture is what the how-often and total-force steps refer back to for the wall and its area.",
+        "common_mistakes": [
+          "Drawing the molecule hitting a corner or edge instead of the flat wall face — the derivation is about one wall, perpendicular to x.",
+          "Forgetting to show BOTH arrows — the incoming velocity and the rebound are two separate ideas worth remembering, even though this step itself carries no mark."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "That a figure is drawn at this point, showing the cube, the wall, and the molecule's velocity before and after it hits the wall.",
+          "accept": [
+            "then I draw the figure",
+            "draw the cube with the molecule and the wall",
+            "sketch the box and the incoming and rebound arrows",
+            "draw the wall and the velocity vectors",
+            "diagram of the molecule hitting the wall"
+          ],
+          "reject": [
+            "the pressure is one third N over V m v bar squared",
+            "force is m v x squared by L"
+          ],
+          "heard_as": [
+            "draw",
+            "figure",
+            "diagram",
+            "cube",
+            "wall",
+            "molecule"
+          ]
+        },
+        "memory_tip": "Draw the wall as a flat face of the cube, and the two arrows on the SAME line: one in, one back out."
+      },
+      {
+        "id": "s3_collision",
+        "kind": "equation",
+        "label": "One collision",
+        "marks": 1,
+        "mark_note": "Momentum change per hit",
+        "lines": [
+          "Take one molecule with x-velocity v_x",
+          "hitting the wall perpendicular to x.",
+          "It rebounds elastically with velocity",
+          "−v_x, so its momentum change is",
+          {
+            "text": "Δp(molecule) = −2 m v_x",
+            "style": "eq"
+          },
+          "By Newton's third law, the wall gains",
+          {
+            "text": "Δp(wall) = +2 m v_x",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Momentum reverses along x only; the wall receives what the molecule loses.",
+        "why": "The wall cannot simply absorb the hit — by Newton's third law it must receive exactly the momentum the molecule gave up, and that momentum is what becomes pressure.",
+        "common_mistakes": [
+          "Writing the momentum change as −m v_x instead of −2 m v_x — the velocity reverses, so the change is twice v_x, not once.",
+          "Forgetting Newton's third law and stating the wall's momentum gain without justifying it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a molecule's x-momentum changes by −2 m v_x on rebound, and the wall gains +2 m v_x by Newton's third law.",
+          "accept": [
+            "momentum change is minus two m v x",
+            "the molecule rebounds with minus v x",
+            "the wall gains two m v x by newton's third law",
+            "velocity reverses so the change is two m v x",
+            "delta p of the molecule is minus two m v x"
+          ],
+          "reject": [
+            "time between hits is two L by v x",
+            "force is m v x squared by L"
+          ],
+          "heard_as": [
+            "two m v x",
+            "minus v x",
+            "newton's third law",
+            "momentum change"
+          ]
+        },
+        "memory_tip": "Velocity reverses, so momentum changes by 2 m v_x, not m v_x."
+      },
+      {
+        "id": "s4_frequency",
+        "kind": "equation",
+        "label": "How often",
+        "marks": 1,
+        "mark_note": "Hits per second",
+        "lines": [
+          "Between two hits on this wall the",
+          "molecule crosses the cube and returns,",
+          "a distance 2L along x.",
+          {
+            "text": "Time between hits = 2L / v_x",
+            "style": "eq"
+          },
+          "So the number of hits per second on",
+          "this wall is",
+          {
+            "text": "Hits per second = v_x / 2L",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. The round trip to the far wall and back is 2L, not L.",
+        "why": "The force on the wall depends on how OFTEN the molecule arrives, not just how hard — so the time between hits has to be worked out before the force can be.",
+        "common_mistakes": [
+          "Using L instead of 2L — the molecule must reach the opposite wall and come back before it can hit this wall again.",
+          "Writing the frequency as 2L/v_x instead of its reciprocal v_x/2L."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the round trip between hits on the same wall is 2L, giving v_x over 2L hits per second.",
+          "accept": [
+            "the round trip is two L",
+            "time between hits is two L by v x",
+            "hits per second is v x by two L",
+            "the molecule crosses the cube and comes back",
+            "frequency is v x over two L"
+          ],
+          "reject": [
+            "force is m v x squared by L",
+            "delta p is two m v x"
+          ],
+          "heard_as": [
+            "two L",
+            "hits per second",
+            "round trip",
+            "v x by two L"
+          ]
+        },
+        "memory_tip": "The round trip is 2L, so hits per second is v_x over 2L — the reciprocal of the round-trip time."
+      },
+      {
+        "id": "s5_force",
+        "kind": "equation",
+        "label": "Force from one molecule",
+        "marks": 1,
+        "mark_note": "Force per molecule",
+        "lines": [
+          "Force is momentum delivered per",
+          "second: multiply the momentum per hit",
+          "by the number of hits per second.",
+          {
+            "text": "F = (2 m v_x) × (v_x / 2L)",
+            "style": "eq"
+          },
+          {
+            "text": "F = m v_x² / L",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Fourth mark. Force is the RATE of momentum delivery — momentum per hit times hits per second.",
+        "why": "Force is defined as the rate of change of momentum, so multiplying one hit's momentum by how often hits occur turns the single-collision result into a continuous force.",
+        "common_mistakes": [
+          "Multiplying by the number of MOLECULES here — this step is still about the ONE molecule; the sum over N comes next.",
+          "Dropping the factor of 2 carried over from the momentum change in the previous step."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the force from one molecule is momentum per hit times hits per second, giving F = m v_x squared over L.",
+          "accept": [
+            "force equals momentum delivered per second",
+            "multiply two m v x by v x over two L",
+            "F equals m v x squared by L",
+            "force from one molecule is m v x squared over L",
+            "rate of momentum delivery gives the force"
+          ],
+          "reject": [
+            "hits per second is v x by two L",
+            "pressure is F over L squared"
+          ],
+          "heard_as": [
+            "m v x squared by L",
+            "force from one molecule",
+            "momentum per second"
+          ]
+        },
+        "memory_tip": "Force = momentum per hit × hits per second = 2mv_x × v_x/2L = m v_x²/L."
+      },
+      {
+        "id": "s6_pressure",
+        "kind": "equation",
+        "label": "Total force and pressure",
+        "marks": 1,
+        "mark_note": "Pressure so far",
+        "lines": [
+          "Summing this force over all N",
+          "molecules in the gas,",
+          {
+            "text": "F = (m / L) Σ v_x²",
+            "style": "eq"
+          },
+          "Pressure is force per unit area,",
+          "and this wall has area L²:",
+          {
+            "text": "P = F / L² = (m / L³) Σ v_x²",
+            "style": "eq"
+          },
+          "Since the cube has volume V = L³,",
+          {
+            "text": "P = (m / V) Σ v_x²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Fifth mark. Write L³ as V explicitly — this is where the volume enters the formula.",
+        "why": "Adding up one molecule's force N times, then dividing by the wall's area, turns a single collision into the measurable pressure of the whole gas.",
+        "common_mistakes": [
+          "Leaving the answer as F/L² without ever substituting L³ = V.",
+          "Dividing by the wrong area — the wall the molecule strikes has area L², not L³."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That summing the force over N molecules and dividing by wall area L squared gives P = (m/V) times sum of v_x squared, using V = L cubed.",
+          "accept": [
+            "sum the force over N molecules",
+            "pressure is force over L squared",
+            "L cubed is the volume V",
+            "P equals m over V times sum v x squared",
+            "total force is m over L times sum v x squared"
+          ],
+          "reject": [
+            "isotropy gives one third",
+            "kinetic energy per unit volume"
+          ],
+          "heard_as": [
+            "sum v x squared",
+            "P equals m over V",
+            "L cubed is V",
+            "force over area"
+          ]
+        },
+        "memory_tip": "Pressure is force over area L²; write L³ as V and the volume appears."
+      },
+      {
+        "id": "s7_isotropy",
+        "kind": "equation",
+        "label": "Isotropy",
+        "marks": 1,
+        "mark_note": "Boxed pressure formula",
+        "lines": [
+          "Motion is random, so no direction is",
+          "special: the three sums are equal,",
+          {
+            "text": "Σv_x² = Σv_y² = Σv_z² = ⅓ Σv²",
+            "style": "eq"
+          },
+          "The mean square speed is v̄² = Σv² / N,",
+          "so P = (m/V) Σ v_x² becomes",
+          {
+            "text": "P = ⅓ (N/V) m v̄²",
+            "style": "boxed"
+          },
+          "This may also be written P = ⅓ ρ v̄²,",
+          "where ρ = Nm/V is the gas density."
+        ],
+        "margin_note": "Sixth mark. This is the boxed formula — write both the derivation and the alternative form P = ⅓ρv̄².",
+        "why": "Nothing in the physics singles out the x-direction — the molecule's speed is shared equally, on average, among the three directions it can move in, which is exactly why Σv_x² can be replaced by one third of Σv².",
+        "common_mistakes": [
+          "Assuming Σv_x² = Σv_y² = Σv_z² without stating WHY — it follows from random motion, not from any calculation.",
+          "Writing ⅓Nv̄² instead of ⅓(N/V)mv̄² — the mass m and the volume V must both appear."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That random motion makes the three directional sums equal, giving the boxed result P = one third (N/V) m v bar squared.",
+          "accept": [
+            "motion is random so the three sums are equal",
+            "each direction gets one third of sigma v squared",
+            "P equals one third N over V m v bar squared",
+            "pressure equals one third rho v bar squared",
+            "isotropy gives the factor of one third"
+          ],
+          "reject": [
+            "PV equals two thirds N times half m v bar squared",
+            "half m v bar squared equals three halves k B T"
+          ],
+          "heard_as": [
+            "one third",
+            "isotropy",
+            "random motion",
+            "P equals one third N over V m v bar squared"
+          ]
+        },
+        "memory_tip": "Random motion shares Σv² equally three ways, so one wall's sum is one third of the total: P = ⅓(N/V)mv̄²."
+      },
+      {
+        "id": "s8_energy",
+        "kind": "equation",
+        "label": "Rewrite as energy",
+        "marks": 1,
+        "mark_note": "Energy form of PV",
+        "lines": [
+          "Multiply the boxed result by V:",
+          {
+            "text": "PV = ⅓ N m v̄²",
+            "style": "eq"
+          },
+          "Write this as two-thirds of the",
+          "kinetic energy per molecule:",
+          {
+            "text": "PV = ⅔ N (½ m v̄²)",
+            "style": "eq"
+          },
+          "So the pressure equals two-thirds of",
+          "the translational kinetic energy",
+          "per unit volume of the gas."
+        ],
+        "margin_note": "Seventh mark. This energy form is what gets compared with the ideal gas equation next.",
+        "why": "Multiplying by V turns the pressure formula into one written in the total kinetic energy of the gas, which is the form that compares directly with the ideal gas equation PV = Nk_BT.",
+        "common_mistakes": [
+          "Forgetting to insert the ½ — the identity is ⅓mv̄² = ⅔(½mv̄²), not ⅔mv̄².",
+          "Calling ½mv̄² the energy of ALL the molecules — it is the average energy of ONE molecule."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That PV = one third N m v bar squared can be rewritten as two thirds N times half m v bar squared, the average kinetic energy per molecule.",
+          "accept": [
+            "PV equals two thirds N half m v bar squared",
+            "multiply by V and rewrite with a half",
+            "pressure times volume is two thirds the kinetic energy",
+            "one third becomes two thirds of a half",
+            "PV in terms of average kinetic energy"
+          ],
+          "reject": [
+            "P equals one third N over V m v bar squared",
+            "half m v bar squared equals three halves k B T"
+          ],
+          "heard_as": [
+            "two thirds",
+            "half m v bar squared",
+            "PV equals",
+            "kinetic energy per molecule"
+          ]
+        },
+        "memory_tip": "⅓ becomes ⅔ of a HALF: PV = ⅓Nmv̄² = ⅔N(½mv̄²)."
+      },
+      {
+        "id": "s9_temperature",
+        "kind": "boxed_final",
+        "label": "Kinetic interpretation of temperature",
+        "marks": 1,
+        "mark_note": "Kinetic interpretation",
+        "lines": [
+          "The ideal gas equation for N molecules",
+          "is PV = N k_B T. Comparing the two",
+          "expressions for PV,",
+          {
+            "text": "⅔ N (½ m v̄²) = N k_B T",
+            "style": "eq"
+          },
+          {
+            "text": "½ m v̄² = (3/2) k_B T",
+            "style": "boxed"
+          },
+          "The absolute temperature is a direct",
+          "measure of the average translational",
+          "kinetic energy of a molecule — nothing",
+          "else."
+        ],
+        "margin_note": "Eighth mark. State the meaning in words too — temperature measures average kinetic energy, not pressure or volume.",
+        "why": "This is the payoff of the whole derivation: kinetic theory and the gas equation both describe the same gas, so setting their two expressions for PV equal reveals what temperature actually IS at the molecular level.",
+        "common_mistakes": [
+          "Leaving out the ½ and writing mv̄² = (3/2)k_BT — the ½ is part of the kinetic energy on the left.",
+          "Saying temperature depends on the gas or its pressure — the result shows it depends on neither."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That comparing PV = two thirds N half m v bar squared with PV = N k B T gives half m v bar squared equals three halves k B T, so absolute temperature measures the average translational kinetic energy of a molecule.",
+          "accept": [
+            "half m v bar squared equals three halves k B T",
+            "comparing with PV equals N k B T",
+            "temperature measures the average kinetic energy",
+            "the N cancels leaving half m v bar squared",
+            "this is the kinetic interpretation of temperature"
+          ],
+          "reject": [
+            "P equals one third N over V m v bar squared",
+            "force is m v x squared over L"
+          ],
+          "heard_as": [
+            "three halves k B T",
+            "half m v bar squared",
+            "kinetic interpretation",
+            "temperature measures kinetic energy"
+          ]
+        },
+        "memory_tip": "Equate the two PV expressions: the N and the two-thirds cancel, leaving ½mv̄² = (3/2)k_BT."
+      }
+    ]
+  },
+  "insider_note": "Every one of the eight steps earns its own mark, so do not skip the isotropy argument or the ½ inside the energy rewrite — both are where marks are usually lost."
+}

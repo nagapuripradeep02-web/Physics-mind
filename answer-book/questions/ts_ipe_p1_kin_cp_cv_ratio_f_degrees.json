@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_cp_cv_ratio_f_degrees",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A gas molecule has f degrees of freedom. Derive an expression for the ratio of its two specific heats, C_P and C_V, in terms of f.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Internal energy from equipartition",
+      "marks": 1
+    },
+    {
+      "label": "C_V",
+      "marks": 1
+    },
+    {
+      "label": "C_P from Mayer's relation",
+      "marks": 1
+    },
+    {
+      "label": "The ratio γ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Short Answer Question 7 (printed p.140). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: equipartition gives U = (f/2)RT per mole, so C_V = (f/2)R; Mayer's relation gives C_P = C_V + R = ((f+2)/2)R; hence γ = C_P/C_V = (f+2)/f, matching the brief's independently checked result."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Kinetic Theory · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_internal_energy",
+        "kind": "equation",
+        "label": "Internal energy from equipartition",
+        "marks": 1,
+        "mark_note": "U = (f/2)RT",
+        "lines": [
+          "By equipartition, each degree of freedom",
+          "carries ½k_BT per molecule, so ½RT per",
+          "mole. For f degrees of freedom, the",
+          "internal energy of one mole is:",
+          {
+            "text": "U = (f/2)RT",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. State equipartition, then write U for one mole.",
+        "why": "Equipartition gives the SAME average energy to every independent way the molecule can move, so f such shares simply add.",
+        "common_mistakes": [
+          "Writing U = f·k_BT, dropping the factor of ½ that belongs to each degree of freedom."
+        ],
+        "memory_tip": "Each degree of freedom carries half RT per mole; f of them give (f/2)RT."
+      },
+      {
+        "id": "s2_cv",
+        "kind": "equation",
+        "label": "C_V",
+        "marks": 1,
+        "mark_note": "C_V = (f/2)R",
+        "lines": [
+          "C_V is the rate of change of internal",
+          "energy with temperature, at constant",
+          "volume:",
+          {
+            "text": "C_V = dU/dT = (f/2)R",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Differentiate U with respect to T to get C_V.",
+        "why": "At constant volume all the heat supplied goes into raising the internal energy, so C_V is simply the derivative of U with respect to T.",
+        "common_mistakes": [
+          "Confusing C_V with U itself and forgetting to differentiate with respect to T."
+        ],
+        "memory_tip": "C_V is just U's slope against T: (f/2)R."
+      },
+      {
+        "id": "s3_cp",
+        "kind": "equation",
+        "label": "C_P from Mayer's relation",
+        "marks": 1,
+        "mark_note": "C_P = ((f+2)/2)R",
+        "lines": [
+          "Mayer's relation for one mole of an",
+          "ideal gas:",
+          {
+            "text": "C_P = C_V + R",
+            "style": "eq"
+          },
+          {
+            "text": "C_P = (f/2)R + R = ((f + 2)/2)R",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Add R to C_V using Mayer's relation, then simplify.",
+        "why": "At constant pressure the gas also does work as it expands, so C_P must exceed C_V by exactly R per mole — that extra R is Mayer's relation.",
+        "common_mistakes": [
+          "Forgetting to add R to C_V and stating C_P = C_V.",
+          "Adding R inside the bracket incorrectly as (f + 2R)/2."
+        ],
+        "memory_tip": "C_P is always R more than C_V — Mayer's relation, one mole at a time."
+      },
+      {
+        "id": "s4_gamma",
+        "kind": "boxed_final",
+        "label": "The ratio γ",
+        "marks": 1,
+        "mark_note": "γ = (f + 2)/f",
+        "lines": [
+          {
+            "text": "γ = C_P / C_V = ((f + 2)/2)R / ((f/2)R)",
+            "style": "eq"
+          },
+          {
+            "text": "γ = (f + 2) / f",
+            "style": "boxed"
+          },
+          "Check: f = 3 gives γ = 1.67; f = 5",
+          "gives γ = 1.40."
+        ],
+        "margin_note": "Fourth mark. Divide C_P by C_V and simplify to the boxed result.",
+        "why": "The R and the factor of ½ cancel in the ratio, leaving a result that depends only on the number of degrees of freedom.",
+        "common_mistakes": [
+          "Leaving R in the final ratio instead of cancelling it.",
+          "Inverting the ratio and writing γ = f / (f + 2)."
+        ],
+        "memory_tip": "γ = 1 + 2/f: more degrees of freedom, γ closer to 1."
+      }
+    ]
+  },
+  "insider_note": "The whole derivation is two lines of algebra once U = (f/2)RT is written down — most marks are lost by not stating equipartition explicitly in the first step."
+}

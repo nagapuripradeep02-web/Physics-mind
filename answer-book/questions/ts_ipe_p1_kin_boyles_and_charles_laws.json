@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_boyles_and_charles_laws",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Boyle's law and Charles's law.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Boyle's law",
+      "marks": 1
+    },
+    {
+      "label": "Charles's law",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Very Short Answer Question 4 (printed p.136). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Boyle's law (PV = constant at fixed temperature) and Charles's law (V/T = constant at fixed pressure) are both stated with the correct held-constant quantity named, matching NCERT Class-11 Chapter 13."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_boyles",
+        "kind": "boxed_final",
+        "label": "Boyle's law",
+        "marks": 1,
+        "mark_note": "PV = constant",
+        "lines": [
+          "At constant temperature, the pressure",
+          "of a fixed mass of gas is inversely",
+          "proportional to its volume.",
+          {
+            "text": "PV = constant",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "First mark. Name the quantity held constant, then state the inverse proportionality.",
+        "why": "Held at constant temperature, molecules strike the walls with the same average speed. Squeezing the gas into a smaller volume packs the same molecules closer, so they strike the walls more often and the pressure rises exactly enough to keep PV fixed.",
+        "common_mistakes": [
+          "Forgetting to state temperature is held constant — without it, PV = constant does not hold.",
+          "Writing pressure is proportional to volume instead of inversely proportional."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at constant temperature the pressure of a fixed mass of gas is inversely proportional to its volume, PV equals constant.",
+          "accept": [
+            "pressure inversely proportional to volume",
+            "PV equals constant",
+            "constant temperature"
+          ],
+          "reject": [
+            "volume directly proportional to temperature"
+          ],
+          "heard_as": [
+            "Boyle's law",
+            "PV constant"
+          ]
+        },
+        "memory_tip": "Boyle: same temperature, squeeze the volume, the pressure goes up to match."
+      },
+      {
+        "id": "s2_charles",
+        "kind": "boxed_final",
+        "label": "Charles's law",
+        "marks": 1,
+        "mark_note": "V/T = constant",
+        "lines": [
+          "At constant pressure, the volume of",
+          "a fixed mass of gas is directly",
+          "proportional to its absolute",
+          "temperature.",
+          {
+            "text": "V/T = constant",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Name the quantity held constant, then state the direct proportionality with absolute temperature.",
+        "why": "Held at constant pressure, heating the gas raises the average speed of its molecules. To keep the pressure the same, the gas must occupy a larger volume, so volume rises in step with the absolute temperature.",
+        "common_mistakes": [
+          "Using the Celsius temperature. T must be the absolute temperature in kelvin.",
+          "Forgetting to state pressure is held constant for this law."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at constant pressure the volume of a fixed mass of gas is directly proportional to its absolute temperature, V by T equals constant.",
+          "accept": [
+            "volume directly proportional to temperature",
+            "V by T equals constant",
+            "constant pressure"
+          ],
+          "reject": [
+            "pressure inversely proportional to volume"
+          ],
+          "heard_as": [
+            "Charles's law",
+            "V by T constant"
+          ]
+        },
+        "memory_tip": "Charles: same pressure, heat it up, the volume grows to match — T in kelvin."
+      }
+    ]
+  },
+  "insider_note": "Name the quantity held constant in each law — that is where the marks are, not just the two formulas."
+}

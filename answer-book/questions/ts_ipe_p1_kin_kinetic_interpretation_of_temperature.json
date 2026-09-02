@@ -1,0 +1,159 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_kinetic_interpretation_of_temperature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the kinetic interpretation of temperature.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two expressions for PV",
+      "marks": 1
+    },
+    {
+      "label": "The comparison",
+      "marks": 1
+    },
+    {
+      "label": "The meaning",
+      "marks": 1
+    },
+    {
+      "label": "Independent of the gas",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Short Answer Question 1 (printed p.138). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: from PV = ⅔N(½mv̄²) (kinetic theory) and PV = Nk_BT (gas equation), ½mv̄² = (3/2)k_BT — the absolute temperature is a direct measure of the average translational kinetic energy of a molecule, independent of the gas, pressure or volume."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Kinetic Theory · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_expressions",
+        "kind": "equation",
+        "label": "The two expressions for PV",
+        "marks": 1,
+        "mark_note": "PV from both theories",
+        "lines": [
+          "Kinetic theory gives, for N molecules",
+          "of a gas,",
+          {
+            "text": "PV = ⅔N(½mv̄²)",
+            "style": "eq"
+          },
+          "where ½mv̄² is the average",
+          "translational kinetic energy of one",
+          "molecule.",
+          "The ideal gas equation for the same N",
+          "molecules is",
+          {
+            "text": "PV = Nk_BT",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Both expressions for PV must be written before comparing them.",
+        "why": "Both expressions give the same product PV for the same N molecules of the same gas, so they can be set equal to find what the temperature is actually measuring.",
+        "common_mistakes": [
+          "Re-deriving PV = ⅔N(½mv̄²) from the wall-collision argument here. This question asks for the meaning of temperature, not the pressure derivation — quote the result and move on.",
+          "Using different symbols for N in the two expressions. It is the same N molecules in both."
+        ],
+        "memory_tip": "Two formulas for the same PV: one from kinetic theory, one from the gas equation."
+      },
+      {
+        "id": "s2_comparison",
+        "kind": "equation",
+        "label": "The comparison",
+        "marks": 1,
+        "mark_note": "Equate and cancel N",
+        "lines": [
+          "Comparing the two expressions for PV:",
+          {
+            "text": "⅔N(½mv̄²) = Nk_BT",
+            "style": "eq"
+          },
+          "N cancels from both sides, leaving",
+          {
+            "text": "½mv̄² = (3/2)k_BT",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "This equality is the bridge between the two theories — it must appear.",
+        "why": "The N cancels because both expressions describe the same N molecules, leaving a direct relation between the average kinetic energy of one molecule and the absolute temperature.",
+        "common_mistakes": [
+          "Cancelling only one of the two N terms, leaving a stray N in the final line.",
+          "Writing k_BT instead of (3/2)k_BT for the average kinetic energy."
+        ],
+        "memory_tip": "Equate the two PV expressions and cancel N; (3/2)k_BT is left."
+      },
+      {
+        "id": "s3_meaning",
+        "kind": "text",
+        "label": "The meaning",
+        "marks": 1,
+        "mark_note": "State the meaning",
+        "lines": [
+          "The absolute temperature of a gas is a",
+          "direct measure of the average",
+          "translational kinetic energy of a",
+          "molecule.",
+          "A higher temperature means a higher",
+          "average kinetic energy, and nothing",
+          "else."
+        ],
+        "margin_note": "State the meaning in words — the equation alone does not earn this mark.",
+        "why": "The equation ½mv̄² = (3/2)k_BT has T on one side and average kinetic energy on the other, with no other physical quantity linking them, so temperature at the molecular level IS the average kinetic energy.",
+        "common_mistakes": [
+          "Saying temperature measures the total energy of the gas. It measures the average kinetic energy of ONE molecule."
+        ],
+        "memory_tip": "Temperature is not separate from kinetic energy — it IS the average kinetic energy, scaled by k_B."
+      },
+      {
+        "id": "s4_independent",
+        "kind": "boxed_final",
+        "label": "Independent of the gas",
+        "marks": 1,
+        "mark_note": "No dependence on gas, P or V",
+        "lines": [
+          "This result carries no term for which",
+          "gas it is, or for its pressure or",
+          "volume — only for the absolute",
+          "temperature.",
+          {
+            "text": "T measures average molecular KE",
+            "style": "boxed"
+          },
+          "At the same temperature, light and",
+          "heavy molecules have the same average",
+          "kinetic energy; a heavier molecule",
+          "moves slower to keep that energy the",
+          "same."
+        ],
+        "margin_note": "Name at least one thing the result does NOT depend on — gas, pressure or volume.",
+        "why": "½mv̄² = (3/2)k_BT contains no term for which gas it is, or for P or V, so the result holds for every ideal gas at a given temperature.",
+        "common_mistakes": [
+          "Saying heavier molecules have more kinetic energy at the same temperature. Their average kinetic energy is the same; only their speed is smaller."
+        ],
+        "memory_tip": "Same temperature, same average kinetic energy, whatever the gas."
+      }
+    ]
+  },
+  "insider_note": "This is an explain question about the MEANING of the result, not a derivation — quoting PV = ⅔N(½mv̄²) as a known result and moving to the comparison saves time the derivation would cost."
+}

@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_cv_monoatomic_gas",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Using the law of equipartition of energy, find the molar specific heat at constant volume (C_V) of a monoatomic gas.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Energy per mole",
+      "marks": 1
+    },
+    {
+      "label": "C_V value",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Very Short Answer Question 14 (printed p.138). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: a monoatomic molecule has 3 degrees of freedom, so by equipartition U = (3/2)RT per mole; C_V = dU/dT = (3/2)R = 1.5 × 8.31 = 12.47 J mol⁻¹ K⁻¹, arithmetic verified."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_energy",
+        "kind": "equation",
+        "label": "Energy per mole",
+        "marks": 1,
+        "mark_note": "U = (3/2)RT",
+        "lines": [
+          "A monoatomic molecule has 3",
+          "degrees of freedom, each",
+          "carrying ½k_BT. For one mole:",
+          {
+            "text": "U = (3/2)RT",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The step from ½k_BT per molecule to (3/2)RT per mole must be shown.",
+        "why": "By the law of equipartition each degree of freedom carries ½k_BT of energy per molecule, so ½RT per mole; a monoatomic molecule has 3 such degrees, giving a total internal energy of (3/2)RT for one mole.",
+        "common_mistakes": [
+          "Using ½k_BT for a whole mole instead of scaling it to ½RT.",
+          "Taking 5 degrees of freedom, which belongs to a diatomic molecule, not a monoatomic one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a monoatomic molecule has 3 degrees of freedom, so by equipartition the internal energy of one mole is (3/2)RT.",
+          "accept": [
+            "3 degrees of freedom for a monoatomic molecule",
+            "U equals three by two R T",
+            "each degree of freedom carries half k T"
+          ],
+          "reject": [
+            "C_V equals three by two R"
+          ],
+          "heard_as": [
+            "three by two R T",
+            "equipartition"
+          ]
+        },
+        "memory_tip": "3 degrees, each half k_BT: 3 × ½ = 3/2, so U = (3/2)RT per mole."
+      },
+      {
+        "id": "s2_cv",
+        "kind": "boxed_final",
+        "label": "C_V value",
+        "marks": 1,
+        "mark_note": "C_V ≈ 12.47 J mol⁻¹ K⁻¹",
+        "lines": [
+          "Differentiating with respect",
+          "to T gives C_V:",
+          {
+            "text": "C_V = dU/dT = (3/2)R",
+            "style": "eq"
+          },
+          {
+            "text": "C_V ≈ 12.47 J mol⁻¹ K⁻¹",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Give the numeric value with its unit, not just (3/2)R.",
+        "why": "C_V is defined as the rate of change of internal energy with temperature at constant volume; since U = (3/2)RT is proportional to T, its derivative is the constant (3/2)R, which equals 1.5 × 8.31 J mol⁻¹ K⁻¹.",
+        "common_mistakes": [
+          "Reporting C_V as (5/2)R, which is the diatomic value.",
+          "Leaving the answer as the fraction (3/2)R without the numeric value 12.47 J mol⁻¹ K⁻¹."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That C_V for a monoatomic gas is (3/2)R, which is about 12.47 joule per mole per kelvin.",
+          "accept": [
+            "C_V equals three by two R",
+            "12.47 joule per mole per kelvin",
+            "differentiate U with respect to T"
+          ],
+          "reject": [
+            "U equals three by two R T"
+          ],
+          "heard_as": [
+            "twelve point four seven",
+            "three by two R"
+          ]
+        },
+        "memory_tip": "C_V is the slope of U against T: since U = (3/2)RT, the slope is just (3/2)R."
+      }
+    ]
+  },
+  "insider_note": "State both the general result C_V = (3/2)R and its number, 12.47 J mol⁻¹ K⁻¹ — the number alone with no derivation loses the first mark."
+}

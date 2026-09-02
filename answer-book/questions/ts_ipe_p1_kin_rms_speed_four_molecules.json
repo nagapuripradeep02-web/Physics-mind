@@ -1,0 +1,143 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_rms_speed_four_molecules",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "The speeds of four gas molecules (in km/s) are 1, 2, 3 and 4. Find the rms speed of the molecules.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula",
+      "marks": 1
+    },
+    {
+      "label": "Sum of the squares",
+      "marks": 1
+    },
+    {
+      "label": "Mean of the squares",
+      "marks": 1
+    },
+    {
+      "label": "rms speed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Short Answer Question 6 (printed p.140). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: v_rms = √((1²+2²+3²+4²)/4) = √(30/4) = √7.5 = 2.74 km/s, and the ordinary average speed (1+2+3+4)/4 = 2.5 km/s is a different, smaller number, matching the brief's independently checked arithmetic."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Kinetic Theory · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula",
+        "marks": 1,
+        "mark_note": "v_rms = √(Σv²/N)",
+        "lines": [
+          "The rms speed is the square root of the",
+          "mean of the squares of the speeds:",
+          {
+            "text": "v_rms = √(Σv² / N)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Write the definition before touching the numbers.",
+        "why": "The ordinary mean of the speeds can hide how spread out they are, so kinetic theory always works with the mean of the squares first.",
+        "common_mistakes": [
+          "Writing the formula as the square of the mean instead of the mean of the squares."
+        ],
+        "memory_tip": "Square first, then average, then take the root — square, mean, root."
+      },
+      {
+        "id": "s2_sum_squares",
+        "kind": "equation",
+        "label": "Sum of the squares",
+        "marks": 1,
+        "mark_note": "Σv² = 30",
+        "lines": [
+          "v₁² + v₂² + v₃² + v₄²",
+          "= 1² + 2² + 3² + 4²",
+          {
+            "text": "= 1 + 4 + 9 + 16 = 30 (km/s)²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Square each speed separately, then add.",
+        "why": "Each speed is squared on its own before the four squares are added — squaring is not linear, so this step cannot be skipped.",
+        "common_mistakes": [
+          "Adding the speeds first and squaring the total: (1+2+3+4)² is not the same as 1²+2²+3²+4²."
+        ],
+        "memory_tip": "1, 4, 9, 16 — the first four square numbers, added to 30."
+      },
+      {
+        "id": "s3_mean_squares",
+        "kind": "equation",
+        "label": "Mean of the squares",
+        "marks": 1,
+        "mark_note": "mean = 7.5",
+        "lines": [
+          "Mean of the squares",
+          {
+            "text": "= 30 / 4 = 7.5 (km/s)²",
+            "style": "eq"
+          },
+          "This mean, 7.5, is found BEFORE the",
+          "square root is taken."
+        ],
+        "margin_note": "Third mark. Divide by N = 4 while the values are still squared.",
+        "why": "The mean must be taken of the squared values, not of the original speeds — this is the step most answers skip straight past.",
+        "common_mistakes": [
+          "Dividing 30 by 4 and calling it the rms speed directly, without taking the square root that follows."
+        ],
+        "memory_tip": "Thirty over four is seven point five — the mean SQUARED speed, not the answer yet."
+      },
+      {
+        "id": "s4_rms_final",
+        "kind": "boxed_final",
+        "label": "rms speed",
+        "marks": 1,
+        "mark_note": "v_rms = 2.74 km/s",
+        "lines": [
+          {
+            "text": "v_rms = √7.5",
+            "style": "eq"
+          },
+          {
+            "text": "v_rms = 2.74 km/s",
+            "style": "boxed"
+          },
+          "The ordinary average speed is",
+          "(1+2+3+4)/4 = 2.5 km/s — a different,",
+          "smaller number."
+        ],
+        "margin_note": "Fourth mark. Take the square root, then compare with the ordinary average.",
+        "why": "The square root of the mean square is always at least as large as the ordinary mean, because squaring gives extra weight to the larger speeds — that is why 2.74 km/s is larger than the plain average of 2.5 km/s.",
+        "common_mistakes": [
+          "Reporting the ordinary average speed, 2.5 km/s, as the rms speed.",
+          "Rounding √7.5 to 2.7 without carrying enough figures."
+        ],
+        "memory_tip": "rms is always a little bigger than the plain average: 2.74 against 2.5."
+      }
+    ]
+  },
+  "insider_note": "This question is testing whether the student knows rms speed is not the ordinary average. Show 7.5 as the mean of the squares, then contrast 2.74 km/s with the plain average, 2.5 km/s."
+}

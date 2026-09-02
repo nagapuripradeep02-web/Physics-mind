@@ -2422,6 +2422,204 @@
           "text": "The absolute temperature of a gas is increased 3 times. What will be the increase in rms velocity of the gas molecule?",
           "question_id": "ts_ipe_p1_kin_rms_velocity_temperature_tripled",
           "source": "ts_paper"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "State Avogadro's hypothesis and show that it follows from the kinetic theory of gases.",
+          "question_id": "ts_ipe_p1_kin_avogadro_hypothesis_kinetic_theory",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "State Boyle's law and Charles's law.",
+          "question_id": "ts_ipe_p1_kin_boyles_and_charles_laws",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Show that the pressure of a gas does not depend on the shape of its container.",
+          "question_id": "ts_ipe_p1_kin_pressure_independent_of_container_shape",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "What is the relation between the pressure and the internal energy of a gas?",
+          "question_id": "ts_ipe_p1_kin_pressure_and_internal_energy",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "What is the relation between the pressure of a gas and the average kinetic energy of a molecule?",
+          "question_id": "ts_ipe_p1_kin_pressure_and_molecular_kinetic_energy",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Define root mean square speed of gas molecules.",
+          "question_id": "ts_ipe_p1_kin_rms_speed_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Define specific heat capacity of a substance. What is its value for water?",
+          "question_id": "ts_ipe_p1_kin_specific_heat_capacity_of_water",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "What are the degrees of freedom of a molecule? Give the values for a monoatomic and a diatomic molecule.",
+          "question_id": "ts_ipe_p1_kin_degrees_of_freedom",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Using the law of equipartition of energy, find the molar specific heat at constant volume (C_V) of a monoatomic gas.",
+          "question_id": "ts_ipe_p1_kin_cv_monoatomic_gas",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "At what temperature does the rms speed of the molecules of a gas become double its value at 0°C, at constant pressure?",
+          "question_id": "ts_ipe_p1_kin_temperature_for_double_rms",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Compare the rms speeds of the molecules of a gas at temperatures 100 K and 10000 K.",
+          "question_id": "ts_ipe_p1_kin_rms_ratio_100k_to_10000k",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Find the average kinetic energy of a molecule of a gas at 27°C.",
+          "question_id": "ts_ipe_p1_kin_average_energy_at_27c",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Explain the kinetic interpretation of temperature.",
+          "question_id": "ts_ipe_p1_kin_kinetic_interpretation_of_temperature",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Explain, on the basis of the law of equipartition of energy, the specific heat capacities of monoatomic, diatomic and polyatomic gases.",
+          "question_id": "ts_ipe_p1_kin_specific_heats_by_equipartition",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain the concept of absolute zero of temperature on the basis of kinetic theory.",
+          "question_id": "ts_ipe_p1_kin_absolute_zero_kinetic_theory",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Prove that the average kinetic energy of a molecule of an ideal gas is directly proportional to the absolute temperature of the gas.",
+          "question_id": "ts_ipe_p1_kin_average_ke_proportional_to_temperature",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "At the same temperature and pressure, compare the rms speed of oxygen molecules with that of hydrogen molecules. (Molar mass of O₂ = 32, H₂ = 2 g/mol)",
+          "question_id": "ts_ipe_p1_kin_rms_ratio_oxygen_hydrogen",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "The speeds of four gas molecules (in km/s) are 1, 2, 3 and 4. Find the rms speed of the molecules.",
+          "question_id": "ts_ipe_p1_kin_rms_speed_four_molecules",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "A gas molecule has f degrees of freedom. Derive an expression for the ratio of its two specific heats, C_P and C_V, in terms of f.",
+          "question_id": "ts_ipe_p1_kin_cp_cv_ratio_f_degrees",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Calculate the total translational kinetic energy of 1 g of helium gas (molar mass 4 g/mol) at 127 °C. (R = 8.31 J mol⁻¹ K⁻¹)",
+          "question_id": "ts_ipe_p1_kin_helium_molecular_kinetic_energy",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "At constant temperature, the pressure of a fixed mass of gas is increased by 2%. Calculate the percentage decrease in its volume.",
+          "question_id": "ts_ipe_p1_kin_boyles_law_two_percent_pressure_rise",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Derive an expression for the pressure of an ideal gas on the basis of kinetic theory of gases. Hence give the kinetic interpretation of temperature.",
+          "question_id": "ts_ipe_p1_kin_ideal_gas_pressure_derivation",
+          "source": "chaitanya_fastrack"
         }
       ]
     },
