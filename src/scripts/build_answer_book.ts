@@ -267,7 +267,7 @@ if (STREAM_SUBJECTS && questions.length === 0) {
 type Retired = { wef: string; reason: string };
 type ManifestEntry = {
     ref: string;
-    section: 'VSAQ' | 'SAQ' | 'LAQ';
+    section: 'VSAQ' | 'SAQ' | 'LAQ' | 'PROBLEM';
     number: number;
     stars: number;
     text: string;
@@ -369,8 +369,10 @@ for (const u of manifest.units) {
         if (e.status === 'retired' && !e.question_id) {
             fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: a coming-soon entry cannot be retired — delete the row instead`);
         }
-        if (!['VSAQ', 'SAQ', 'LAQ'].includes(e.section)) {
-            fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: section "${e.section}" is not VSAQ/SAQ/LAQ`);
+        // PROBLEM is the practice section (2026-09-02) — a real question kind that
+        // is on no paper. src/schemas/answerBook.ts PracticeSection says why.
+        if (!['VSAQ', 'SAQ', 'LAQ', 'PROBLEM'].includes(e.section)) {
+            fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: section "${e.section}" is not VSAQ/SAQ/LAQ/PROBLEM`);
         }
         if (!(e.stars >= 0 && e.stars <= 3)) {
             fail(`${manifestPath}\n  unit ${u.number} ${e.ref}: stars must be 0-3`);

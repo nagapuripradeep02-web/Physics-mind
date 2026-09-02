@@ -1,5 +1,40 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🧮 SESSION — The PRACTICE section: `qtype: "PROBLEM"`, the first question kind the paper does not ask (2026-09-02, `feat/answerbook-problems-section`)
+
+**Bottom line: the fourth section exists, it is gated harder than the three that came before it, and two real problems prove the path end to end.** Phase A2 of the 2026-09-02 plan; the founder reversed the 2026-08-20 deferral because the 2026-27 books print **328 practice problems** and the deferred ones kept turning up on real papers. No bulk authoring here — that is Phase C.
+
+### What a PROBLEM is, and the two properties that make it different
+
+Every source book prints a PROBLEMS block (physics) or an NCERT *intext solved problems* block (chemistry). They are real questions a student is set and an examiner reuses, but they sit on **no paper section and carry no board mark scheme** — which is exactly why holding one needed a fourth section across the build, the player and the gates.
+
+- **Marks are a LIST, not a slot.** `PAPER_PATTERNS[subject].practice = { marks: [2, 4] }`. A problem *borrows* the paper's numeric shapes — a one-step numerical is the 2-mark shape, a derive-then-substitute the 4-mark shape — rather than owning one. That also keeps it promotable: the day a paper asks one, it becomes a cut of the same card at the same marks.
+- **Shown everywhere, scheduled nowhere.** A problem is an answer the student can open: it has its own **Problems** chip, its own **Practice Problems** group, and it counts in every student-visible "N answers" figure. But the **study planner, its scope chooser and the exam-eve 15-minute list ignore it**, because those allocate a paper's marks and a question the paper never asks cannot be given a share of them. One predicate governs that — `PAPER_QTYPES` in the schema, mirrored as `isPaperQtype()` in the player — so the three strings are never hardcoded again.
+
+### The gate is FAIL-CLOSED, and that is the whole point
+
+`allowedMarks(subject, qtype)` returns `[]` — an error — for a paper that declares no `practice` section, and `undefined` only for a subject absent from the table entirely. The paper-section check does the opposite: it *skips* a subject it does not know, which is how a whole paper lost its marks gate by silence on 2026-08-29. Silence must not buy a free pass twice.
+
+`practice` is registered on **physics and chemistry only** — the two papers whose 2026-27 books were read chapter by chapter on 2026-09-02 (130 physics and 198 chemistry problems indexed). Every other paper omits it and therefore *forbids* problem cards until someone reads its book: botany and zoology print no numericals at all, and the maths and second-year books have not been checked.
+
+**`src/lib/answerBook/__tests__/practiceMarks.test.ts` is the negative control**, 10 cases: both legal shapes accepted, a 3-mark problem rejected, a problem on botany rejected by name, cuts held to the same rule, and the pre-2026-27 7-mark maths long answer still rejected so the old regression cannot come back.
+
+### Two real cards, not throwaway fixtures
+
+Physics Unit 9 gained the book's Problem 1 (**2 marks** — strain of a wire stretched by 1%) and Problem 6 (**4 marks** — tension from Young's modulus, 150 N, which is the book's own answer). Both authored from the indexed stem alone, to the full bar, and both carry the `chaitanya_fastrack` provenance the 2026-09-02 originality widening now binds. That widening got its first real exercise: **removing the boundary sentence from one card fails `check:originality` by name**, and restoring it passes — a positive control, not an assumption.
+
+### A pre-existing red, found and fixed
+
+`smoke:answers:gated` was failing on master, not on this branch: the lock sheet stopped stating a free-chapter COUNT on 2026-08-30 ("it was 'Four chapters are free', which was true only while the book was first year alone"), and one assertion was never updated. Proved it predates the branch by reading both strings out of `origin/master` before touching anything. The test now reads the per-subject promise, which is the part true in every year. **CI never runs the gated suite**, which is why it stayed red for three days.
+
+### Verification
+
+`npx tsc --noEmit` 0 · `npx vitest run` **455/455** (10 new) · `npm run build:answers` green, both problems listed `[PROBLEM 2M]` / `[PROBLEM 4M]` · `check:papers` · `check:originality` (524 fastrack rows, positive control exercised) · `check:xrefs` · `backtest:physics` · `build:answers:gated:mpc` ships both in the physics-9 bundle with the `Practice — Problem` header · **`smoke:answers:gated` 31/31** (was 30/31 on master) · **`smoke:answers` SMOKE_PLACEHOLDER**.
+
+### NOT done, deliberately
+
+No bulk problem authoring (Phase C, and problems come last in the founder's order). `practice` is not registered for maths, botany, zoology or any second-year paper — each waits on its own book being read. The 47 retire candidates from 2026-09-02 are still open, and nothing here is deployed.
+
 ## 📚 SESSION — The 2026-27 syllabus lands on Physics-I and Chemistry-I: the three cut chemistry chapters named, States of Matter retired, every chapter of both new books indexed and diffed (2026-09-02, `feat/ipe-answerbook-syllabus-2027`)
 
 **Bottom line: no card was authored, and the bank now knows exactly what it is missing.** The founder scanned the Sri Chaitanya *IPE Study Material for Jr. Students* 2026-27 edition (physics `DocScanner (3).pdf`, 142 pp.; chemistry `DocScanner (4).pdf`, 134 pp. — image-only, read visually). Physics is the 14-chapter list the bank already carried since 2026-08-28, and its Unit 14 prints **15 VSAQ and nothing else**. Chemistry is **10 chapters**: States of Matter, Hydrogen and Environmental Chemistry are gone; Stoichiometry / Thermodynamics / Equilibrium are now 4 / 5 / 6; s-Block, p-Block 13, p-Block 14 and General Organic Chemistry follow as 7–10 — four chapters the bank never had. **Marks are unchanged** (the material prints none; `PAPER_PATTERNS` untouched). Full record `docs/SYLLABUS_2026_27.md` §2; gap report `docs/reports/SYLLABUS_2027_GAP_REPORT.md`.

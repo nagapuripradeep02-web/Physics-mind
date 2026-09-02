@@ -850,7 +850,7 @@ test('qtype filter chips match on the section alone, with true counts', async ({
         }, qtype);
     };
 
-    for (const t of ['LAQ', 'SAQ', 'VSAQ', 'ALL']) {
+    for (const t of ['LAQ', 'SAQ', 'VSAQ', 'PROBLEM', 'ALL']) {
         const r = await expectFilter(t);
         expect(r.chipOn, t + ' chip active').toBe(true);
         expect(r.visible, t + ' visible cards').toBe(r.want);
@@ -2537,6 +2537,100 @@ test('the home chat is never blank: a returning student with nothing due still g
     expect(text).not.toMatch(/study plan|plan your exam|exam preparation/i);
 });
 
+
+// ═══ the PRACTICE section (2026-09-02) ═══════════════════════════════════════
+// A PROBLEM is a question the source book prints and the paper does not ask. It
+// is an answer the student can open and it counts in every "N answers" figure —
+// but it sits on no paper section and carries no board mark scheme, so the
+// marks-weighted surfaces (the plan, its scope, the exam-eve list) ignore it.
+
+test('a practice problem is a real answer in the catalog, with its own chip and group', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForSelector('#catalogView:not([hidden])');
+
+    // Derived from the data, never hardcoded: the bank grows.
+    const want = await page.evaluate(() => {
+        const units = (window as any).PM_UNITS as any[];
+        let n = 0;
+        for (const u of units) {
+            for (const e of u.questions) if (e.section === 'PROBLEM' && e.question_id) n++;
+        }
+        return n;
+    });
+    expect(want).toBeGreaterThan(0);
+
+    const chip = page.locator('.cat-chip[data-qtype="PROBLEM"]');
+    expect(await chip.count()).toBe(1);
+    // The chip is labelled for a student, not with the enum key.
+    expect(await chip.textContent()).toContain('Problems');
+    await chip.click();
+    await page.waitForTimeout(120);
+    const shown = await page.evaluate(() => ({
+        cards: document.querySelectorAll('.cat-card').length,
+        heads: [...document.querySelectorAll('#catSections h3, #catSections h2')]
+            .map((h) => h.textContent || ''),
+    }));
+    expect(shown.cards).toBe(want);
+    expect(shown.heads.join(' ')).toContain('Practice Problems');
+});
+
+test('a practice problem opens with the Practice header and its own marks', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    const probe = await page.evaluate(() => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        const p = qs.filter((q) => q.qtype === 'PROBLEM');
+        return { n: p.length, marks: p.map((q) => q.marks_total).sort(), id: p[0]?.question_id };
+    });
+    expect(probe.n).toBeGreaterThan(0);
+    // Both practice shapes exist, and neither is a paper mark value by accident:
+    // a problem borrows 2 or 4, it never owns a slot.
+    for (const m of probe.marks) expect([2, 4]).toContain(m);
+
+    await page.evaluate((qid: string) => (window as any).PM_ANSWER.openQuestion(qid), probe.id);
+    await page.waitForSelector('.page', { timeout: 8000 });
+    const r = await page.evaluate(() => ({
+        header: [...document.querySelectorAll('.page-header-block .line')].map((n) => n.textContent || ''),
+        chips: [...document.querySelectorAll('.question-meta .chip')].map((n) => n.textContent || ''),
+    }));
+    // "Practice — Problem", never "Section A/B/C", and never the raw enum key.
+    expect(r.header[0]).toBe('Practice — Problem');
+    expect(r.header.join(' ')).not.toContain('Section');
+    expect(r.chips.join(' ')).toContain('Practice · PROBLEM');
+});
+
+test('the study plan never schedules a practice problem', async ({ page }) => {
+    // The whole reason PROBLEM is not a paper section: a plan allocates a
+    // paper's marks across the days left, and a question the paper never asks
+    // cannot be given a share of them.
+    await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
+    const plan = await buildPlanViaChat(page, '2026-09-21',
+        ['Mechanical Properties of Solids', 'Motion in a Plane'], '1 hour');
+
+    const qids: string[] = Object.keys(plan.learnDay).concat(plan.optional);
+    expect(qids.length).toBeGreaterThan(0);
+    const seen = await page.evaluate((ids: string[]) => {
+        const qs = (window as any).PM_QUESTIONS as any[];
+        const types = ids.map((qid) => qs.find((q) => q.question_id === qid)!.qtype);
+        // the chapter DOES hold problems — otherwise this gate proves nothing
+        const units = (window as any).PM_UNITS as any[];
+        const unit = units.find((u) => u.name === 'Mechanical Properties of Solids');
+        const problems = unit.questions.filter((e: any) => e.section === 'PROBLEM' && e.question_id).length;
+        return { types, problems };
+    }, qids);
+    expect(seen.problems).toBeGreaterThan(0);     // positive control
+    expect(seen.types).not.toContain('PROBLEM');  // and none of them was scheduled
+
+    // the scope chooser offers the paper's three sections and no fourth box
+    await page.locator('#vidiChips .vidi-chip', { hasText: 'Change my plan' }).click();
+    await page.locator('.vw-btn', { hasText: 'Change question types' }).click();
+    // The thread keeps every widget it has drawn, so the same three boxes appear
+    // once per scope chooser — the property is the DISTINCT set: no fourth kind
+    // is ever offered, because a plan cannot schedule what the paper never asks.
+    const boxes = await page.$$eval('.vw-scope-box', (ns: Element[]) =>
+        ns.map((n) => (n as HTMLInputElement).value));
+    expect([...new Set(boxes)].sort()).toEqual(['LAQ', 'SAQ', 'VSAQ']);
+});
 
 // ═══ the 2026-27 syllabus revision (2026-08-28) ═══════════════════════════════
 // Three mechanisms landed together: the physics renumbering (old Units 1+2 merged,
