@@ -27,9 +27,12 @@ routes = [
 # being mutually exclusive (content bundles are scoped per stream now, so an MPC
 # push cannot leave Botany's bundles behind to serve dead content).
 #
-# Four chapters are free to everyone — physics-4, chemistry-3, mathematics-4,
-# mathematics_1b-3, flagged `free` in ab_content and changeable with one UPDATE,
-# no redeploy. Every other chapter needs a pass (₹99 founding / ₹199 after).
+# Four chapters are free to everyone — physics-3 Motion in a Plane, chemistry-3
+# Chemical Bonding, mathematics-6 Addition of Vectors, mathematics_1b-3 The Straight
+# Line (keys as of the 2026-27 renumberings: physics 2026-08-28, maths-1A 2026-08-28,
+# chemistry 2026-09-02 — chemistry-3 did not move), flagged `free` in ab_content and
+# changeable with one UPDATE, no redeploy. Every other chapter needs a pass
+# (₹99 founding / ₹199 after).
 #
 # Rebuild+deploy:  npm run deploy:answers
 #   which runs build:answers:gated:mpc first — pointing this file at a directory

@@ -21,7 +21,10 @@ const PAPERS = join(BOOK, 'papers');
 
 // syllabus_2026_27 (2026-08-28): a coming-soon placeholder for a chapter the 2026-27 reform
 // announced but whose textbook is not yet in hand (Physics Unit 14). Never on an authored card.
-const KNOWN_SOURCES = new Set(['blm', 'enumerated', 'ap_2026_paper', 'ts_paper', 'syllabus_2026_27']);
+// chaitanya_fastrack (2026-08-30 maths; 2026-09-02 physics/chemistry): a Sri Chaitanya book asked the
+// question but printed no per-step split, so the split is ours and its stars are never published
+// (docs/ORIGINALITY_MATHS.md R1). notebook.js UNSPLIT_SOURCES keys on the same string.
+const KNOWN_SOURCES = new Set(['blm', 'enumerated', 'ap_2026_paper', 'ts_paper', 'syllabus_2026_27', 'chaitanya_fastrack']);
 
 const failures: string[] = [];
 const fail = (m: string) => failures.push(m);

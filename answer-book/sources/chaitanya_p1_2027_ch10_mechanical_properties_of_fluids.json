@@ -1,0 +1,234 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Physics (2026-27 edition)",
+  "scan_file": "DocScanner (3).pdf",
+  "scan_sha256": "1abe7da6d4846e9e09d6cb7b588db8404a6268dc196f1d4128deefea6a37c016",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring: VSAQ 19 questions (20 entries — vsaq12 has parts a and b), SAQ 14, LAQ 4, PROBLEM 7; 45 entries in all. Stems restated in our own wording with every datum exact; no solution content from the source book appears here, by policy. The FORMULAE block on scan p.103 (printed 105) is not indexed. Scan p.107 (printed 109) is cropped at the left margin, so a star marker before saq7 may be hidden. Three questions are printed twice across sections (saq14 = vsaq18, laq2 = saq5, laq4 = saq7).",
+  "chapter": { "number": 10, "printed_title": "MECHANICAL PROPERTIES OF FLUIDS" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "Define average pressure. State its SI unit and dimensional formula. Is pressure a scalar or a vector quantity?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "Define the relative density of a substance.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "Write the expression for the variation of pressure with depth in a fluid.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "What is meant by the hydrostatic paradox?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "State Archimedes' principle.",
+      "appearance_years": [], "notes": "Printed as \"Archimedi's principle\" (typo)." },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "Write the equation of continuity for fluid flow.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "State Bernoulli's principle.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "State the two conditions under which Bernoulli's theorem can be applied.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 1,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "What is the principle behind the carburetor of an automobile?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 1,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "What is the Magnus effect?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 1,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Define viscosity. Give its units and dimensional formula.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": "a", "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Explain the effect of temperature on the viscosity of liquids.",
+      "appearance_years": [], "notes": "Part (a) of a two-part question; part (b) asks about gases." },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": "b", "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Explain how the viscosity of a gas changes with temperature.",
+      "appearance_years": [], "notes": "Part (b) of a two-part question; part (a) asks about liquids." },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Write the expression for Stokes' law.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Define eddy flow in the case of a fluid.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Define the critical velocity of a fluid and give its expression.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Define surface tension. Write its SI unit and dimensional formula.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 1,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Why are liquid drops and bubbles spherical?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq18", "section": "VSAQ", "number": 18, "part": null, "stars": 1,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "What is the angle of contact? Give its values for pure water and for mercury, each in contact with glass.",
+      "appearance_years": [], "notes": "Printed again word-for-word as saq14 (scan p.108)." },
+
+    { "ref": "vsaq19", "section": "VSAQ", "number": 19, "part": null, "stars": 0,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "What is the effect of temperature on surface tension?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1", "section": "SAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "A solid sphere has a radius of 1.5 cm and a mass of 0.038 kg. Calculate the specific gravity of the sphere.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq2", "section": "SAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "State Pascal's law and write its applications.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq3", "section": "SAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "What is gauge pressure? How is a manometer used to measure pressure differences?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq4", "section": "SAQ", "number": 4, "part": null, "stars": 1,
+      "printed_page": 108, "scan_page": 106,
+      "stem": "Explain the hydraulic lift and hydraulic brakes.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq5", "section": "SAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 108, "scan_page": 106,
+      "stem": "Distinguish between streamline flow and turbulent flow of liquids.",
+      "appearance_years": [], "notes": "Printed again word-for-word as laq2 (scan p.109)." },
+
+    { "ref": "saq6", "section": "SAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 108, "scan_page": 106,
+      "stem": "Explain how Bernoulli's principle accounts for the occurrence of a heart attack in human beings.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq7", "section": "SAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 109, "scan_page": 107,
+      "stem": "What is a Venturi meter? Explain how it is used.",
+      "appearance_years": [], "notes": "The left margin of scan p.107 is cropped, so a star marker before the number 7 may be hidden; stars recorded as 0. The same question is printed as laq4 (scan p.110), where it IS starred. The printed answer relies on a figure of the tube with a U-tube manometer at the constriction; the question itself does not." },
+
+    { "ref": "saq8", "section": "SAQ", "number": 8, "part": null, "stars": 1,
+      "printed_page": 109, "scan_page": 107,
+      "stem": "What is Reynolds number? What is its significance?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq9", "section": "SAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 109, "scan_page": 107,
+      "stem": "Explain the critical Reynolds number and discuss its significance.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq10", "section": "SAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 110, "scan_page": 108,
+      "stem": "Explain Stokes' law with an application.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq11", "section": "SAQ", "number": 11, "part": null, "stars": 1,
+      "printed_page": 110, "scan_page": 108,
+      "stem": "Explain surface tension and surface energy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq12", "section": "SAQ", "number": 12, "part": null, "stars": 0,
+      "printed_page": 110, "scan_page": 108,
+      "stem": "Discuss the role of surface tension in the removal of dirt from clothes using detergents.",
+      "appearance_years": [], "notes": "Printed as \"surface tention\" (typo)." },
+
+    { "ref": "saq13", "section": "SAQ", "number": 13, "part": null, "stars": 1,
+      "printed_page": 110, "scan_page": 108,
+      "stem": "Explain how surface tension can be measured experimentally.",
+      "appearance_years": [], "notes": "The printed answer relies on a figure (a flat vertical glass plate hung from one arm of a balance above a vessel of liquid, weights on the other arm); the question itself does not." },
+
+    { "ref": "saq14", "section": "SAQ", "number": 14, "part": null, "stars": 1,
+      "printed_page": 110, "scan_page": 108,
+      "stem": "What is the angle of contact? Give its values for pure water and for mercury, each in contact with glass.",
+      "appearance_years": [], "notes": "Word-for-word repeat of vsaq18 (scan p.105), reprinted in the SAQ section with the same answer and the water/mercury glass-plate figure." },
+
+    { "ref": "laq1", "section": "LAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 111, "scan_page": 109,
+      "stem": "Explain dynamic lift with examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq2", "section": "LAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 111, "scan_page": 109,
+      "stem": "Distinguish between streamline flow and turbulent flow of liquids.",
+      "appearance_years": [], "notes": "Word-for-word repeat of saq5 (scan p.106), reprinted in the LAQ section." },
+
+    { "ref": "laq3", "section": "LAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 111, "scan_page": 109,
+      "stem": "Define the coefficient of viscosity. Explain Stokes' law, and explain the conditions under which a raindrop attains terminal velocity vₜ. Give the expression for vₜ.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq4", "section": "LAQ", "number": 4, "part": null, "stars": 1,
+      "printed_page": 112, "scan_page": 110,
+      "stem": "What is a Venturi meter? Explain how it is used.",
+      "appearance_years": [], "notes": "Word-for-word repeat of saq7 (scan p.107), reprinted in the LAQ section; starred here." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": null, "stars": 1,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "Calculate the work done in blowing a soap bubble of diameter 0.6 cm against surface tension. Surface tension of the soap solution = 2.5 × 10⁻² N m⁻¹.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 1,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "How high does methyl alcohol rise in a glass tube of diameter 0.06 cm? Surface tension of methyl alcohol = 0.023 N m⁻¹ and its density = 0.8 g cm⁻³. Assume that the angle of contact is zero.",
+      "appearance_years": [], "notes": "Printed as \"desnsity\" (typo). g is not given in the stem." },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": null, "stars": 1,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "What should be the radius of a capillary tube if water has to rise to a height of 6 cm in it? Surface tension of water = 7.2 × 10⁻² N m⁻¹.",
+      "appearance_years": [], "notes": "Printed as \"capillay tube\" (typo). g is not given in the stem, and the book's own working writes g two different ways (9.2 and 9.8 m s⁻²) — treat g = 9.8 m s⁻² as the intended value." },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 0,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "Find the depression of the meniscus in a capillary tube of diameter 0.4 mm dipped in a beaker containing mercury. Density of mercury = 13.6 × 10³ kg m⁻³, surface tension of mercury = 0.49 N m⁻¹ and angle of contact = 135°.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": null, "stars": 1,
+      "printed_page": 114, "scan_page": 112,
+      "stem": "The diameter of a soap bubble is 10 mm and its surface tension is 0.04 N m⁻¹. Find the excess pressure inside the bubble.",
+      "appearance_years": ["March-14"], "notes": "Printed citation \"(March 14)\" after the question." },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": null, "stars": 1,
+      "printed_page": 114, "scan_page": 112,
+      "stem": "The work done by an agent to form a soap bubble of radius R is W. How much energy is required to increase its radius to 2R?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob7", "section": "PROBLEM", "number": 7, "part": null, "stars": 0,
+      "printed_page": 114, "scan_page": 112,
+      "stem": "Two soap bubbles of radii R₁ and R₂ (in vacuum) coalesce under isothermal conditions. What is the radius of the new bubble? Take T as the surface tension of the soap solution.",
+      "appearance_years": [], "notes": null }
+  ]
+}

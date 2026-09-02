@@ -10,7 +10,7 @@ like a real answer booklet.
 First board: **Telangana IPE** (Intermediate Public Examination). The book opened on a
 Physics-I 8-mark LAQ (the parallelogram law of vectors) and now carries six papers:
 **Physics-I**, **Maths-1A** (Units 1-10, complete), **Maths-1B** (opened 2026-08-23),
-**Chemistry-I** (Chapters 1-7, 2026-08-23), **Botany** (all 13 chapters, 2026-08-25) and
+**Chemistry-I** (opened 2026-08-23 with the old Chapters 1-7; on the 2026-27 syllabus since 2026-09-02 — 10 chapters, States of Matter retired, s-Block / p-Block 13 / p-Block 14 / General Organic Chemistry listed as coming-soon), **Botany** (all 13 chapters, 2026-08-25) and
 **Zoology** (all 8 units, 2026-08-25 — the first subject with phased "watch it drawn" figures;
 see `answer-book/tools/` and `src/scripts/pace_figures.ts` / `check_figure_pace.ts`).
 

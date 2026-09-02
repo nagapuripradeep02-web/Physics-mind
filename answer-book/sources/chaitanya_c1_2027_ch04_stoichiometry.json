@@ -1,0 +1,484 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Chemistry (2026-27 edition)",
+  "scan_file": "DocScanner (4).pdf",
+  "scan_sha256": "18e8d6fc6831f1e9faf11a19450559f6fb9a0c6d55982c187943449f71f26a33",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring; stems restated in our own wording, no solution content by policy. Numbering runs continuously 1–44: VSAQ 1–25 (25 printed numbers, 38 entries after sub-part splitting), SAQ 26–41 (16 printed numbers, 32 entries), LAQ 42–44 (3 printed numbers, 5 entries), plus INTEXT SOLVED PROBLEMS 4.1–4.15 (15 printed labels, 20 entries) = 95 entries. No exam-year citations are printed anywhere in this chapter. Scan page 42 (printed 44) is cropped at the left margin (the number of SAQ 30 shows as '0.' and the footer as '4'), and the footer of scan page 46 (printed 48) is cropped to '8'; every other number and star is readable. The answers to 35(a) and 36(a) say 'Refer LAQ Q.1' and 'Refer LAQ Q.4', but the LAQ section of this chapter holds only questions 42–44, so both cross-references are dangling.",
+  "chapter": { "number": 4, "printed_title": "STOICHIOMETRY" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "How many moles of glucose are present in 540 g of glucose?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 1,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "Calculate the weight of 0.1 mole of sodium carbonate.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 1,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "How many molecules of glucose are present in 5.23 g of glucose?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 1,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "Calculate the number of molecules present in 1.12 × 10⁻⁷ c.c. of a gas at S.T.P.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 1,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "The empirical formula of a compound is CH₂O and its molecular weight is 90. Calculate the molecular formula of the compound.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 1,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "Calculate the volume of O₂ at S.T.P. required to burn 100 ml of acetylene completely.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 1,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "What is the redox concept? Give an example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "What is meant by significant figures?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "How many carbon atoms are present in 0.5 mole of oxalic acid (C₂H₂O₄)?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 41, "scan_page": 39,
+      "stem": "The empirical formula of a compound is CH₂ and its molar mass is 70 g/mol. What is its molecular formula?",
+      "appearance_years": [], "notes": "PRINTED DEFECT in the working, not the question: the book's answer writes 'Molecular weight = 90' and computes 90/14 = 5, which is arithmetically wrong, although the stated datum 70 g/mol also gives n = 5 and the same final formula. The stem keeps 70 g/mol as printed in the question." },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Convert 12 °C into Fahrenheit.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": "a", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Assign the oxidation number to Cr (the underlined element) in CrO₄²⁻.",
+      "appearance_years": [], "notes": "Printed as one question with parts (a)–(d): assign oxidation numbers to the underlined elements in the given species." },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": "b", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Assign the oxidation number to Mn (the underlined element) in MnO₄⁻.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": "c", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Assign the oxidation number to N (the underlined element) in HNO₂.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": "d", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Assign the oxidation number to Mn (the underlined element) in MnCl₂.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": "a", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Calculate the molar mass of KOH.",
+      "appearance_years": [], "notes": "Printed as one question with parts (a)–(d): calculate the molar masses of the given chemicals." },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": "b", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Calculate the molar mass of CH₃COOH.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": "c", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Calculate the molar mass of ammonium sulphate, (NH₄)₂SO₄.",
+      "appearance_years": [], "notes": "PRINTED TYPO: the question prints the formula as (NH₄)SO₄ (the subscript 2 on the ammonium group is missing); the book's working uses (NH₄)₂SO₄." },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": "d", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Calculate the molar mass of SO₂.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": "i", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "How many significant figures are present in 0.0025?",
+      "appearance_years": [], "notes": "Printed as one question with parts (i)–(iv)." },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": "ii", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "How many significant figures are present in 208?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": "iii", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "How many significant figures are present in 5005?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": "iv", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "How many significant figures are present in 126,000?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": "i", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Round off 34.216 to three significant figures.",
+      "appearance_years": [], "notes": "Printed as one question with parts (i)–(iv): round up the given numbers to three significant figures." },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": "ii", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Round off 10.4107 to three significant figures.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": "iii", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Round off 0.04597 to three significant figures.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": "iv", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Round off 2808 to three significant figures.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Convert 98.6 °F to Celsius.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Convert 0 °C to Kelvin.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq18", "section": "VSAQ", "number": 18, "part": null, "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Find the number of moles of H₂ in 10 g of H₂.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq19", "section": "VSAQ", "number": 19, "part": "a", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Convert 20 g of water into moles.",
+      "appearance_years": [], "notes": "Printed as one question with parts (a) and (b): convert into moles." },
+
+    { "ref": "vsaq19", "section": "VSAQ", "number": 19, "part": "b", "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Convert 22 g of CO₂ into moles.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq20", "section": "VSAQ", "number": 20, "part": null, "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Calculate the mass of 0.5 mole of water molecules.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq21", "section": "VSAQ", "number": 21, "part": null, "stars": 0,
+      "printed_page": 42, "scan_page": 40,
+      "stem": "Define the terms precision and accuracy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq22", "section": "VSAQ", "number": 22, "part": null, "stars": 0,
+      "printed_page": 43, "scan_page": 41,
+      "stem": "What is an oxidising agent and what is a reducing agent?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq23", "section": "VSAQ", "number": 23, "part": null, "stars": 0,
+      "printed_page": 43, "scan_page": 41,
+      "stem": "State the law of conservation of mass.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq24", "section": "VSAQ", "number": 24, "part": null, "stars": 0,
+      "printed_page": 43, "scan_page": 41,
+      "stem": "Define empirical formula and molecular formula.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq25", "section": "VSAQ", "number": 25, "part": null, "stars": 0,
+      "printed_page": 43, "scan_page": 41,
+      "stem": "What is the Avogadro constant?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq26", "section": "SAQ", "number": 26, "part": null, "stars": 1,
+      "printed_page": 43, "scan_page": 41,
+      "stem": "Chemical analysis of a carbon compound gave the following percentage composition by weight of the elements present: carbon = 10.06%, hydrogen = 0.84%, chlorine = 89.10%. Calculate the empirical formula.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq27", "section": "SAQ", "number": 27, "part": null, "stars": 1,
+      "printed_page": 43, "scan_page": 41,
+      "stem": "On analysis, a carbon compound gave the following percentage composition: carbon 14.5%, hydrogen 1.8%, chlorine 64.46%, oxygen 19.24%. Calculate the empirical formula of the compound.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq28", "section": "SAQ", "number": 28, "part": null, "stars": 1,
+      "printed_page": 43, "scan_page": 41,
+      "stem": "Calculate the empirical formula of a compound having the percentage composition K = 26.57%, Cr = 35.36%, O = 38.07%.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq29", "section": "SAQ", "number": 29, "part": null, "stars": 1,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "A carbon compound contains 12.8% carbon, 2.1% hydrogen and 85.1% bromine. The molecular weight of the compound is 187.9. Calculate its molecular formula.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq30", "section": "SAQ", "number": 30, "part": null, "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "Define and explain molar mass.",
+      "appearance_years": [], "notes": "The left margin of scan page 42 is cropped: the number prints as '0.' and the answer marker 'A)' is cut off. No star is visible, but a star in the cropped margin cannot be ruled out." },
+
+    { "ref": "saq31", "section": "SAQ", "number": 31, "part": null, "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "What are disproportionation reactions? Give examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq32", "section": "SAQ", "number": 32, "part": null, "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "Chlorine is prepared in the laboratory by treating manganese dioxide (MnO₂) with aqueous HCl according to the reaction 4HCl(aq) + MnO₂(s) → 2H₂O(l) + MnCl₂(aq) + Cl₂(g). How many grams of HCl react with 5.0 g of MnO₂?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": "i", "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "Assign the oxidation number to P (the underlined element) in NaH₂PO₄.",
+      "appearance_years": [], "notes": "The question line reads only 'Assign oxidation numbers to the underlined elements in each of the following species'; the eight species (i)–(viii) are printed inside the answer block, not after the question. Indexed as eight parts." },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": "ii", "stars": 0,
+      "printed_page": 44, "scan_page": 42,
+      "stem": "Assign the oxidation number to S (the underlined element) in NaHSO₄.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": "iii", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "Assign the oxidation number to P (the underlined element) in H₄P₂O₇.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": "iv", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "Assign the oxidation number to Mn (the underlined element) in K₂MnO₄.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": "v", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "Assign the oxidation number to O (the underlined element) in CaO₂.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": "vi", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "Assign the oxidation number to B (the underlined element) in NaBH₄.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": "vii", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "Assign the oxidation number to S (the underlined element) in H₂S₂O₇.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": "viii", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "Assign the oxidation number to S (the underlined element) in KAl(SO₄)₂·12H₂O.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq34", "section": "SAQ", "number": 34, "part": "i", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "What is the oxidation number of I (the underlined element) in KI₃, and how do you rationalise the result?",
+      "appearance_years": [], "notes": "As in SAQ 33, the question line names no species; the five species (i)–(v) are printed inside the answer block. Indexed as five parts." },
+
+    { "ref": "saq34", "section": "SAQ", "number": 34, "part": "ii", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "What is the oxidation number of S (the underlined element) in H₂S₄O₆, and how do you rationalise the result?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq34", "section": "SAQ", "number": 34, "part": "iii", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "What is the oxidation number of Fe (the underlined element) in Fe₃O₄, and how do you rationalise the result?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq34", "section": "SAQ", "number": 34, "part": "iv", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "What is the oxidation number of C (the underlined element) in CH₃CH₂OH, and how do you rationalise the result?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq34", "section": "SAQ", "number": 34, "part": "v", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "What is the oxidation number of C (the underlined element) in CH₃COOH, and how do you rationalise the result?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq35", "section": "SAQ", "number": 35, "part": "a", "stars": 1,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "Balance the following redox reaction by the ion-electron method: MnO₄⁻(aq) + I⁻(aq) → MnO₂(s) + I₂(s) (in basic medium).",
+      "appearance_years": [], "notes": "Printed as one question with parts (a)–(d); the stars are printed per part: (a), (b) and (d) are starred, (c) is not. The answer for (a) says 'Refer LAQ Q.1 in Stoichiometry', but no such LAQ exists in this chapter (the LAQ section holds 42–44); the same equation is worked as intext problem 4.15(a)." },
+
+    { "ref": "saq35", "section": "SAQ", "number": 35, "part": "b", "stars": 1,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "Balance the following redox reaction by the ion-electron method: MnO₄⁻(aq) + SO₂(g) → Mn²⁺(aq) + HSO₄⁻(aq) (in acidic medium).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq35", "section": "SAQ", "number": 35, "part": "c", "stars": 0,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "Balance the following redox reaction by the ion-electron method: H₂O₂(aq) + Fe²⁺(aq) → Fe³⁺(aq) + H₂O(l) (in acidic medium).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq35", "section": "SAQ", "number": 35, "part": "d", "stars": 1,
+      "printed_page": 45, "scan_page": 43,
+      "stem": "Balance the following redox reaction by the ion-electron method: Cr₂O₇²⁻(aq) + SO₂(g) → Cr³⁺(aq) + SO₄²⁻(aq) (in acidic medium).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq36", "section": "SAQ", "number": 36, "part": "a", "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "Balance the following equation in basic medium by the ion-electron method: P₄(s) + OH⁻(aq) → PH₃(g) + H₂PO₂⁻.",
+      "appearance_years": [], "notes": "Printed as one question with parts (a)–(c). The answer for (a) says 'Refer LAQ Q.4 in Stoichiometry', but no such LAQ exists in this chapter; this equation is not worked anywhere in the chapter." },
+
+    { "ref": "saq36", "section": "SAQ", "number": 36, "part": "b", "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "Balance the following equation in basic medium by the ion-electron method: N₂H₄(l) + ClO₃⁻(aq) → NO(g) + Cl⁻(g).",
+      "appearance_years": [], "notes": "The state of Cl⁻ is printed as (g), as given; it is kept as printed." },
+
+    { "ref": "saq36", "section": "SAQ", "number": 36, "part": "c", "stars": 0,
+      "printed_page": 47, "scan_page": 45,
+      "stem": "Balance the following equation in basic medium by the ion-electron method: Cl₂O₇(g) + H₂O₂(aq) → ClO₂⁻(aq) + O₂(g) + H⁺.",
+      "appearance_years": [], "notes": "The skeleton is printed with H⁺ as a product even though the medium is stated as basic; kept as printed. The book's working has no H⁺ in its final balanced equation." },
+
+    { "ref": "saq37", "section": "SAQ", "number": 37, "part": null, "stars": 0,
+      "printed_page": 48, "scan_page": 46,
+      "stem": "Balance the following redox reaction by the ion-electron method: Fe²⁺(aq) + Cr₂O₇²⁻(aq) → Fe³⁺(aq) + Cr³⁺ (in acidic solution).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq38", "section": "SAQ", "number": 38, "part": null, "stars": 0,
+      "printed_page": 49, "scan_page": 47,
+      "stem": "Explain the different types of redox reactions.",
+      "appearance_years": [], "notes": "The question number carries no star, but two sub-headings inside the answer are starred: '*d) Disproportionation reaction' and '*e) Comproportionation reaction'. Recorded as stars 0 because the stars mark answer sections, not the question." },
+
+    { "ref": "saq39", "section": "SAQ", "number": 39, "part": null, "stars": 0,
+      "printed_page": 50, "scan_page": 48,
+      "stem": "Balance the following redox reaction by the ion-electron method: C₂O₄²⁻(aq) + MnO₂(aq) → CO₂(g) + Mn²⁺(aq) (acidic solution).",
+      "appearance_years": [], "notes": "MnO₂ is printed with the state (aq); kept as printed." },
+
+    { "ref": "saq40", "section": "SAQ", "number": 40, "part": null, "stars": 0,
+      "printed_page": 50, "scan_page": 48,
+      "stem": "Balance the following redox reaction by the oxidation-number method: Cr₂O₇²⁻ + SO₃²⁻ → Cr³⁺(aq) + SO₄²⁻(aq) (acidic solution).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq41", "section": "SAQ", "number": 41, "part": null, "stars": 0,
+      "printed_page": 50, "scan_page": 48,
+      "stem": "Write the balanced equation for the oxidation of sulphite ions to sulphate ions by permanganate ion in acid medium.",
+      "appearance_years": [], "notes": "PRINTED DEFECT in the working, not the question: the book's half-reactions use SO₃²⁻ → SO₄²⁻, but its final 'by adding' step is copied from SAQ 35(b) and adds SO₂/HSO₄⁻ species instead, so the printed final equation does not match this question." },
+
+    { "ref": "laq42", "section": "LAQ", "number": 42, "part": null, "stars": 0,
+      "printed_page": 51, "scan_page": 49,
+      "stem": "Balance the following equation in basic medium: Cr(OH)₃ + IO₃⁻ → I⁻ + CrO₄²⁻.",
+      "appearance_years": [], "notes": "The arrow is printed with OH⁻ written above it to mark the basic medium." },
+
+    { "ref": "laq43", "section": "LAQ", "number": 43, "part": null, "stars": 0,
+      "printed_page": 52, "scan_page": 50,
+      "stem": "Balance the following equation by the oxidation-number method: MnO₄²⁻ + Cl₂ → MnO₄⁻ + Cl⁻.",
+      "appearance_years": [], "notes": "No medium is stated in the question." },
+
+    { "ref": "laq44", "section": "LAQ", "number": 44, "part": "i", "stars": 0,
+      "printed_page": 52, "scan_page": 50,
+      "stem": "Calculate the amount of carbon dioxide that could be produced when 1 mole of carbon is burnt in air.",
+      "appearance_years": [], "notes": "Printed as one question with parts (i)–(iii)." },
+
+    { "ref": "laq44", "section": "LAQ", "number": 44, "part": "ii", "stars": 0,
+      "printed_page": 52, "scan_page": 50,
+      "stem": "Calculate the amount of carbon dioxide that could be produced when 1 mole of carbon is burnt in 16 g of dioxygen.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq44", "section": "LAQ", "number": 44, "part": "iii", "stars": 0,
+      "printed_page": 52, "scan_page": 50,
+      "stem": "Calculate the amount of carbon dioxide that could be produced when 2 moles of carbon are burnt in 16 g of dioxygen.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": null, "stars": 0,
+      "printed_page": 52, "scan_page": 50,
+      "stem": "Calculate the molecular mass of a glucose (C₆H₁₂O₆) molecule.",
+      "appearance_years": [], "notes": "Printed label 4.1 (INTEXT SOLVED PROBLEMS)." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 0,
+      "printed_page": 52, "scan_page": 50,
+      "stem": "A compound contains 4.07% hydrogen, 24.27% carbon and 71.65% chlorine. Its molar mass is 98.96 g. What are its empirical and molecular formulas?",
+      "appearance_years": [], "notes": "Printed label 4.2. The molar mass is printed with the unit 'g' (not g/mol); kept as printed." },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": null, "stars": 0,
+      "printed_page": 53, "scan_page": 51,
+      "stem": "Calculate the amount of water (g) produced by the combustion of 16 g of methane.",
+      "appearance_years": [], "notes": "Printed label 4.3." },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 0,
+      "printed_page": 53, "scan_page": 51,
+      "stem": "How many moles of methane are required to produce 22 g of CO₂(g) after combustion?",
+      "appearance_years": [], "notes": "Printed label 4.4." },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": null, "stars": 0,
+      "printed_page": 53, "scan_page": 51,
+      "stem": "50.0 kg of N₂(g) and 10.0 kg of H₂(g) are mixed to produce NH₃(g). Calculate the NH₃(g) formed, and identify the limiting reagent in this production of NH₃.",
+      "appearance_years": [], "notes": "Printed label 4.5." },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": "i", "stars": 0,
+      "printed_page": 54, "scan_page": 52,
+      "stem": "In the reaction H₂S(g) + Cl₂(g) → 2HCl(g) + S(s), identify the species undergoing oxidation and the species undergoing reduction.",
+      "appearance_years": [], "notes": "Printed label 4.6, parts (i)–(iii)." },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": "ii", "stars": 0,
+      "printed_page": 54, "scan_page": 52,
+      "stem": "In the reaction 3Fe₃O₄(s) + 8Al(s) → 9Fe(s) + 4Al₂O₃(s), identify the species undergoing oxidation and the species undergoing reduction.",
+      "appearance_years": [], "notes": "Printed label 4.6 (ii)." },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": "iii", "stars": 0,
+      "printed_page": 54, "scan_page": 52,
+      "stem": "In the reaction 2Na(s) + H₂(g) → 2NaH(s), identify the species undergoing oxidation and the species undergoing reduction.",
+      "appearance_years": [], "notes": "Printed label 4.6 (iii)." },
+
+    { "ref": "prob7", "section": "PROBLEM", "number": 7, "part": null, "stars": 0,
+      "printed_page": 54, "scan_page": 52,
+      "stem": "Justify that the reaction 2Na(s) + H₂(g) → 2NaH(s) is a redox change.",
+      "appearance_years": [], "notes": "Printed label 4.7." },
+
+    { "ref": "prob8", "section": "PROBLEM", "number": 8, "part": null, "stars": 0,
+      "printed_page": 54, "scan_page": 52,
+      "stem": "Using Stock notation, represent the following compounds: HAuCl₄, Tl₂O, FeO, Fe₂O₃, CuI, CuO, MnO and MnO₂.",
+      "appearance_years": [], "notes": "Printed label 4.8." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": null, "stars": 0,
+      "printed_page": 55, "scan_page": 53,
+      "stem": "Justify that the reaction 2Cu₂O(s) + Cu₂S(s) → 6Cu(s) + SO₂(g) is a redox reaction. Identify the species oxidised and the species reduced, and state which acts as a reductant.",
+      "appearance_years": [], "notes": "Printed label 4.9. The printed question asks only 'which acts as a reductant'; it does not ask for the oxidant." },
+
+    { "ref": "prob10", "section": "PROBLEM", "number": 10, "part": null, "stars": 0,
+      "printed_page": 55, "scan_page": 53,
+      "stem": "Which of the species ClO⁻, ClO₂⁻, ClO₃⁻ and ClO₄⁻ do not show a disproportionation reaction, and why? Also write the reaction for each of the species that does disproportionate.",
+      "appearance_years": [], "notes": "Printed label 4.10." },
+
+    { "ref": "prob11", "section": "PROBLEM", "number": 11, "part": "a", "stars": 0,
+      "printed_page": 55, "scan_page": 53,
+      "stem": "Suggest a scheme of classification for the redox reaction N₂(g) + O₂(g) → 2NO(g).",
+      "appearance_years": [], "notes": "Printed label 4.11, parts (a)–(d): suggest a scheme of classification of the given redox reactions." },
+
+    { "ref": "prob11", "section": "PROBLEM", "number": 11, "part": "b", "stars": 0,
+      "printed_page": 55, "scan_page": 53,
+      "stem": "Suggest a scheme of classification for the redox reaction 2Pb(NO₃)₂(s) → 2PbO(s) + 2NO₂(g) + ½O₂(g).",
+      "appearance_years": [], "notes": "Printed label 4.11 (b)." },
+
+    { "ref": "prob11", "section": "PROBLEM", "number": 11, "part": "c", "stars": 0,
+      "printed_page": 55, "scan_page": 53,
+      "stem": "Suggest a scheme of classification for the redox reaction NaH(s) + H₂O(l) → NaOH(aq) + H₂(g).",
+      "appearance_years": [], "notes": "Printed label 4.11 (c)." },
+
+    { "ref": "prob11", "section": "PROBLEM", "number": 11, "part": "d", "stars": 0,
+      "printed_page": 55, "scan_page": 53,
+      "stem": "Suggest a scheme of classification for the redox reaction 2NO₂(g) + 2OH⁻(aq) → NO₂⁻(aq) + NO₃⁻(aq) + H₂O(l).",
+      "appearance_years": [], "notes": "Printed label 4.11 (d)." },
+
+    { "ref": "prob12", "section": "PROBLEM", "number": 12, "part": null, "stars": 0,
+      "printed_page": 55, "scan_page": 53,
+      "stem": "Why do the following reactions proceed differently? Pb₃O₄ + 8HCl → 3PbCl₂ + Cl₂ + 4H₂O, and Pb₃O₄ + 4HNO₃ → 2Pb(NO₃)₂ + PbO₂ + 2H₂O.",
+      "appearance_years": [], "notes": "Printed label 4.12." },
+
+    { "ref": "prob13", "section": "PROBLEM", "number": 13, "part": null, "stars": 0,
+      "printed_page": 56, "scan_page": 54,
+      "stem": "Write the net ionic equation for the reaction of potassium dichromate(VI), K₂Cr₂O₇, with sodium sulphite, Na₂SO₃, in an acid solution to give chromium(III) ion and the sulphate ion.",
+      "appearance_years": [], "notes": "Printed label 4.13." },
+
+    { "ref": "prob14", "section": "PROBLEM", "number": 14, "part": null, "stars": 0,
+      "printed_page": 56, "scan_page": 54,
+      "stem": "Permanganate ion reacts with bromide ion in basic medium to give manganese dioxide and bromate ion. Write the balanced ionic equation for the reaction.",
+      "appearance_years": [], "notes": "Printed label 4.14." },
+
+    { "ref": "prob15", "section": "PROBLEM", "number": 15, "part": "a", "stars": 1,
+      "printed_page": 57, "scan_page": 55,
+      "stem": "Balance the following redox reaction by the ion-electron method: MnO₄⁻(aq) + I⁻(aq) → MnO₂(s) + I₂(s) (in basic medium).",
+      "appearance_years": [], "notes": "Printed label 4.15. Only part (a) is printed, and the star is printed on the part label '*a)'. It is the same equation as SAQ 35(a), whose answer refers the reader elsewhere." }
+  ]
+}

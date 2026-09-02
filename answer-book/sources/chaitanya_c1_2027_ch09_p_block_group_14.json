@@ -1,0 +1,349 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Chemistry (2026-27 edition)",
+  "scan_file": "DocScanner (4).pdf",
+  "scan_sha256": "18e8d6fc6831f1e9faf11a19450559f6fb9a0c6d55982c187943449f71f26a33",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring; stems restated in our own wording, no solution content from the source book appears here, by policy. VSAQ 39 entries over 30 printed numbers (Q1 four parts, Q4 seven parts), SAQ 15 over 10 numbers (Q32 four parts, Q33 three parts; Q38 repeats VSAQ Q26 verbatim), LAQ 7 over 4 numbers (Q42 two parts, Q44 three parts), PROBLEM 6 over the 4 NCERT-numbered 'INTEXT SOLVED PROBLEMS' 9.1–9.4 (9.1 three parts). The left margin of printed pages 105, 107, 109 and 111 is cropped in the scan, so the asterisks on Q10, Q12 and Q31 are read from partly cut marks.",
+  "chapter": { "number": 9, "printed_title": "p-BLOCK ELEMENTS GROUP 14" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": "a", "stars": 0,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "State the hybridisation of carbon in CO₃²⁻.",
+      "appearance_years": [], "notes": "Four printed parts (a)–(d) under one stem 'What is the state of hybridisation of carbon in'." },
+
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": "b", "stars": 0,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "State the hybridisation of carbon in diamond.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": "c", "stars": 0,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "State the hybridisation of carbon in graphite.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": "d", "stars": 0,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "State the hybridisation of carbon in fullerene.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Suggest a reason why CO is poisonous.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 1,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Define allotropy and name the crystalline allotropes of carbon.",
+      "appearance_years": ["May 2013", "Mar 2013"], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": "a", "stars": 1,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Classify the oxide CO as neutral, acidic, basic or amphoteric.",
+      "appearance_years": [], "notes": "Seven printed parts (a)–(g) under one stem 'Classify the following oxides as neutral, acidic, basic or amphoteric'." },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": "b", "stars": 1,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Classify the oxide B₂O₃ as neutral, acidic, basic or amphoteric.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": "c", "stars": 1,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Classify the oxide SiO₂ as neutral, acidic, basic or amphoteric.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": "d", "stars": 1,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Classify the oxide CO₂ as neutral, acidic, basic or amphoteric.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": "e", "stars": 1,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Classify the oxide Al₂O₃ as neutral, acidic, basic or amphoteric.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": "f", "stars": 1,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Classify the oxide PbO₂ as neutral, acidic, basic or amphoteric.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": "g", "stars": 1,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Classify the oxide Tl₂O₃ as neutral, acidic, basic or amphoteric.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Name any two man-made silicates.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Write the outer electron configuration of the group-14 elements.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Explain how graphite works as a lubricant.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 1,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "Explain why graphite is a good conductor.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 1,
+      "printed_page": 104, "scan_page": 102,
+      "stem": "State what 'synthesis gas' is.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 1,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "State what 'producer gas' is.",
+      "appearance_years": [],
+      "notes": "Left margin cropped in the scan; a partly cut mark before '10.' is read as an asterisk." },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "Explain why diamond has a high melting point.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 1,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "Give the use of CO₂ in photosynthesis.",
+      "appearance_years": [],
+      "notes": "Left margin cropped in the scan; a partly cut mark before '12.' is read as an asterisk." },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "Explain how an excessive amount of CO₂ is responsible for global warming.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "State what silicones are.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "Give the uses of silicones.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "State the effect of water on tin.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "Write an account of SiCl₄.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq18", "section": "VSAQ", "number": 18, "part": null, "stars": 1,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "Explain why SiO₂ is a solid while CO₂ is a gas.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq19", "section": "VSAQ", "number": 19, "part": null, "stars": 1,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "Write the use of ZSM-5.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq20", "section": "VSAQ", "number": 20, "part": null, "stars": 0,
+      "printed_page": 105, "scan_page": 103,
+      "stem": "State the use of dry ice.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq21", "section": "VSAQ", "number": 21, "part": null, "stars": 1,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Describe how water gas is prepared.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq22", "section": "VSAQ", "number": 22, "part": null, "stars": 1,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Describe how producer gas is prepared.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq23", "section": "VSAQ", "number": 23, "part": null, "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Explain why the C–C bond length in graphite is shorter than the C–C bond length in diamond.",
+      "appearance_years": [], "notes": "Printed stem repeats a word: 'C–C bond length length in diamond'." },
+
+    { "ref": "vsaq24", "section": "VSAQ", "number": 24, "part": null, "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Explain why diamond is used as a precious stone.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq25", "section": "VSAQ", "number": 25, "part": null, "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Explain why producer gas is a less efficient fuel than water gas.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq26", "section": "VSAQ", "number": 26, "part": null, "stars": 1,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Explain why diamond is hard.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq27", "section": "VSAQ", "number": 27, "part": null, "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Define catenation.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq28", "section": "VSAQ", "number": 28, "part": null, "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Define allotropy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq29", "section": "VSAQ", "number": 29, "part": null, "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "Explain why graphite conducts electricity whereas diamond does not.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq30", "section": "VSAQ", "number": 30, "part": null, "stars": 0,
+      "printed_page": 106, "scan_page": 104,
+      "stem": "State how many five-membered and six-membered rings are present in fullerene.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq31", "section": "SAQ", "number": 31, "part": null, "stars": 1,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "Explain the differences in the properties of diamond and graphite on the basis of their structures.",
+      "appearance_years": [],
+      "notes": "Left margin cropped in the scan; a partly cut mark before '31.' is read as an asterisk." },
+
+    { "ref": "saq32", "section": "SAQ", "number": 32, "part": "a", "stars": 0,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "Explain what happens when silicon is heated with methyl chloride at high temperature in the presence of copper.",
+      "appearance_years": [], "notes": "Four printed parts (a)–(d) under one stem 'Explain the following'." },
+
+    { "ref": "saq32", "section": "SAQ", "number": 32, "part": "b", "stars": 0,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "Explain what happens when SiO₂ is treated with HF.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq32", "section": "SAQ", "number": 32, "part": "c", "stars": 0,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "Explain why graphite is a lubricant.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq32", "section": "SAQ", "number": 32, "part": "d", "stars": 0,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "Explain why diamond is an abrasive.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": "a", "stars": 0,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "Explain what is meant by allotropy.",
+      "appearance_years": [], "notes": "Three printed parts (a)–(c) under one stem 'What do you understand by'." },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": "b", "stars": 0,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "Explain what is meant by the inert pair effect.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": "c", "stars": 0,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "Explain what is meant by catenation.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq34", "section": "SAQ", "number": 34, "part": null, "stars": 0,
+      "printed_page": 107, "scan_page": 105,
+      "stem": "If the starting material for the manufacture of a silicone is RSiCl₃, write the structure of the product formed.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq35", "section": "SAQ", "number": 35, "part": null, "stars": 0,
+      "printed_page": 108, "scan_page": 106,
+      "stem": "Write a short note on zeolites.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq36", "section": "SAQ", "number": 36, "part": null, "stars": 0,
+      "printed_page": 108, "scan_page": 106,
+      "stem": "Write a short note on silicates.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq37", "section": "SAQ", "number": 37, "part": null, "stars": 0,
+      "printed_page": 108, "scan_page": 106,
+      "stem": "State what silicones are and describe how they are obtained.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq38", "section": "SAQ", "number": 38, "part": null, "stars": 1,
+      "printed_page": 108, "scan_page": 106,
+      "stem": "Explain why diamond is hard.",
+      "appearance_years": [], "notes": "Identical to VSAQ Q26: the book prints the same question and the same answer again in the SAQ section." },
+
+    { "ref": "saq39", "section": "SAQ", "number": 39, "part": null, "stars": 0,
+      "printed_page": 109, "scan_page": 107,
+      "stem": "Explain why a Na₂CO₃ solution turns into a suspension when it is saturated with CO₂ gas.",
+      "appearance_years": [], "notes": "Left margin cropped in the scan; no asterisk visible before '39.'." },
+
+    { "ref": "saq40", "section": "SAQ", "number": 40, "part": null, "stars": 0,
+      "printed_page": 109, "scan_page": 107,
+      "stem": "Write a note on the anomalous behaviour of carbon in group 14.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq41", "section": "LAQ", "number": 41, "part": null, "stars": 0,
+      "printed_page": 109, "scan_page": 107,
+      "stem": "State what silicones are, describe how they are prepared, give one example, and state their uses.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq42", "section": "LAQ", "number": 42, "part": "a", "stars": 0,
+      "printed_page": 109, "scan_page": 107,
+      "stem": "Explain the structure of silica, and describe how silica reacts with NaOH.",
+      "appearance_years": [],
+      "notes": "One printed stem with two parts: the structure of silica is shared, then (a) reaction with NaOH and (b) reaction with HF." },
+
+    { "ref": "laq42", "section": "LAQ", "number": 42, "part": "b", "stars": 0,
+      "printed_page": 109, "scan_page": 107,
+      "stem": "Explain the structure of silica, and describe how silica reacts with HF.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq43", "section": "LAQ", "number": 43, "part": null, "stars": 1,
+      "printed_page": 110, "scan_page": 108,
+      "stem": "Write on the allotropy of carbon.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq44", "section": "LAQ", "number": 44, "part": "a", "stars": 0,
+      "printed_page": 111, "scan_page": 109,
+      "stem": "Write a note on silicates.",
+      "appearance_years": [], "notes": "Three printed parts (a) silicates, (b) zeolites, (c) fullerenes under one stem printed as 'Write anote on' (typo for 'a note')." },
+
+    { "ref": "laq44", "section": "LAQ", "number": 44, "part": "b", "stars": 0,
+      "printed_page": 111, "scan_page": 109,
+      "stem": "Write a note on zeolites.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq44", "section": "LAQ", "number": 44, "part": "c", "stars": 0,
+      "printed_page": 111, "scan_page": 109,
+      "stem": "Write a note on fullerenes.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": "i", "stars": 0,
+      "printed_page": 111, "scan_page": 109,
+      "stem": "Select the member(s) of group 14 that form the most acidic dioxide.",
+      "appearance_years": [],
+      "notes": "Printed label 9.1 in the block headed 'INTEXT SOLVED PROBLEMS'; three printed parts (i)–(iii) under one stem 'Select the member(s) of group 14 that'." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": "ii", "stars": 0,
+      "printed_page": 111, "scan_page": 109,
+      "stem": "Select the member(s) of group 14 that are commonly found in the +2 oxidation state.",
+      "appearance_years": [], "notes": "Printed label 9.1 (ii)." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": "iii", "stars": 0,
+      "printed_page": 111, "scan_page": 109,
+      "stem": "Select the member(s) of group 14 that are used as semiconductors.",
+      "appearance_years": [], "notes": "Printed label 9.1 (iii)." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 0,
+      "printed_page": 111, "scan_page": 109,
+      "stem": "[SiF₆]²⁻ is known whereas [SiCl₆]²⁻ is not. Give possible reasons.",
+      "appearance_years": [], "notes": "Printed label 9.2." },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": null, "stars": 0,
+      "printed_page": 111, "scan_page": 109,
+      "stem": "Diamond is covalent, yet it has a high melting point. Explain why.",
+      "appearance_years": [], "notes": "Printed label 9.3." },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 0,
+      "printed_page": 111, "scan_page": 109,
+      "stem": "State what silicones are.",
+      "appearance_years": [], "notes": "Printed label 9.4. Same question as VSAQ Q14." }
+  ]
+}

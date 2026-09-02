@@ -120,7 +120,9 @@
       question.class_label,
       // The chip names the PAPER, same table as the catalog's subject chips.
       subjLabel(question.subject),
-      'Unit ' + question.unit.number + ' · ' + question.unit.name,
+      // A retired card's unit number is a sentinel (99), never a chapter number
+      // a student could look up — show the chapter name alone.
+      (retiredOf(question.question_id) ? question.unit.name : 'Unit ' + question.unit.number + ' · ' + question.unit.name),
       cut.paper_section + ' · ' + cut.qtype,
       'about ' + cut.expected_time_min + ' minutes'
     ];
@@ -246,6 +248,9 @@
     // page — Gate fetches the unit's bundle (or shows the lock sheet) and
     // re-enters here once the real question object is in place. Both
     // routes funnel through loadQuestion, so this is the WHOLE gate.
+    // A card whose chapter left the syllabus (2026-27): on the hosted build its
+    // unit has no bundle and nothing to sell, so the gate must never run for it.
+    if (questions[i] && questions[i].gated && retiredOf(questions[i].question_id)) { Gate.showRetired(i); return; }
     if (questions[i] && questions[i].gated) { Gate.showLockFlow(i, cutKey); return; }
     qIndex = i;
     question = questions[i];
@@ -317,8 +322,15 @@
       valid keys, now naming a different chapter — so a legacy key cannot be told
       from a new one by its shape. New exam-eve links therefore carry the exam
       year as a trailing segment (#/exam-eve/physics-3/2027) and saved plans carry
-      `syllabus`; anything without the marker is remapped here. Maths-1B,
-      Chemistry and Botany did not move and pass through unchanged. */
+      `syllabus`; anything without the marker is remapped here. Maths-1B and
+      Botany did not move and pass through unchanged.
+      CHEMISTRY moved on 2026-09-02: the 2026-27 book dropped States of Matter
+      (old chemistry-4), so old 5/6/7 are now 4/5/6. The retired chapter maps to
+      chemistry-99, a key no live unit has, so an old link to it lands on the
+      catalog instead of on Stoichiometry (which now owns chemistry-4). Known
+      limit: the marker is one-shot, so a chemistry-5/6/7 link that already
+      carried /2027 (written 2026-08-28 to 2026-09-02) opens the neighbouring
+      chapter — accepted; exam-eve links exist only in the Vidi triage box. */
   var SYLLABUS_YEAR = '2027';
   var LEGACY_UNIT_KEYS = {
     'physics-1': 'physics-1', 'physics-2': 'physics-1', 'physics-3': 'physics-2',
@@ -330,7 +342,9 @@
     'mathematics-3': 'mathematics-5', 'mathematics-4': 'mathematics-6',
     'mathematics-5': 'mathematics-7', 'mathematics-6': 'mathematics-8',
     'mathematics-7': 'mathematics-9', 'mathematics-8': 'mathematics-10',
-    'mathematics-9': 'mathematics-11', 'mathematics-10': 'mathematics-12'
+    'mathematics-9': 'mathematics-11', 'mathematics-10': 'mathematics-12',
+    'chemistry-4': 'chemistry-99', 'chemistry-5': 'chemistry-4',
+    'chemistry-6': 'chemistry-5', 'chemistry-7': 'chemistry-6'
   };
   function legacyUnitKey(key) {
     return Object.prototype.hasOwnProperty.call(LEGACY_UNIT_KEYS, key) ? LEGACY_UNIT_KEYS[key] : key;
@@ -2935,12 +2949,13 @@
 
     /** The plan-less revision queue (founder, 2026-08-23): anything understood
         on an EARLIER day and not yet revised, whether or not a plan exists.
-        Guarded by qIndexById so a stale stage for a removed question is inert. */
+        Guarded by qIndexById so a stale stage for a removed question is inert,
+        and by retiredOf so a chapter that left the syllabus is never revised. */
     function dueWithoutPlan(today) {
       var ids = Vidi.stageIds(), out = [];
       for (var i = 0; i < ids.length; i++) {
         var s = Vidi.stageFor(ids[i]);
-        if (s.u && !s.r && s.u < today && qIndexById[ids[i]] !== undefined) out.push(ids[i]);
+        if (s.u && !s.r && s.u < today && qIndexById[ids[i]] !== undefined && !retiredOf(ids[i])) out.push(ids[i]);
       }
       return out;
     }
@@ -3669,6 +3684,16 @@
         [{ label: 'Try again', primary: true, fn: function () { showLockFlow(i, cutKey); } }, backBtn()]);
     }
 
+    /** A forwarded link to a card whose chapter left the syllabus. The chapter
+        has no bundle on the server and no lock to open, so say why, plainly,
+        and offer the way back — never fetch, never sell. */
+    function showRetired(i) {
+      var q = questions[i];
+      var ret = q ? retiredOf(q.question_id) : null;
+      if (!ret) { location.hash = '#/'; return; }
+      sheet('Not in the ' + ret.wef + ' syllabus — ' + ret.reason + '. This chapter is no longer in the book.', [backBtn()]);
+    }
+
     function showLockFlow(i, cutKey) {
       var q = questions[i];
       if (!BASE || !q) { location.hash = '#/'; return; }
@@ -3694,6 +3719,7 @@
 
     return {
       showLockFlow: showLockFlow,
+      showRetired: showRetired,
       showPricing: showPricing,
       /** Is the chapter gate live at all? False in every ungated build, where
           the whole module is inert and no lock vocabulary should appear. */

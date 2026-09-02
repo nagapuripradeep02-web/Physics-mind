@@ -1,0 +1,222 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Chemistry (2026-27 edition)",
+  "scan_file": "DocScanner (4).pdf",
+  "scan_sha256": "18e8d6fc6831f1e9faf11a19450559f6fb9a0c6d55982c187943449f71f26a33",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring; stems restated in our own wording, no solution content from the source book appears here, by policy. VSAQ 25 entries over 19 printed numbers (Q9 five parts, Q14 and Q16 two parts each), SAQ 9 over 8 numbers (Q26 two parts; Q27 repeats Q20 verbatim), LAQ 3 over 2 numbers (Q29 two parts), PROBLEM 4 (the book prints the block as 'INTEXT SOLVED QUESTIONS', NCERT-numbered 8.1–8.4). The left margin of printed pages 100, 101 and 102 is cropped in the scan, so the leading digit or asterisk of Q12, Q17, Q18 and Q27 is partly cut off.",
+  "chapter": { "number": 8, "printed_title": "p-BLOCK ELEMENTS : GROUP 13" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 99, "scan_page": 97,
+      "stem": "Describe how the oxidation states vary across the group-13 elements from boron to thallium.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 1,
+      "printed_page": 99, "scan_page": 97,
+      "stem": "Give the reason for the higher stability of TlCl.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 99, "scan_page": 97,
+      "stem": "Explain why BF₃ acts as a Lewis acid.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 99, "scan_page": 97,
+      "stem": "State whether boric acid is a protic acid, and explain.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 99, "scan_page": 97,
+      "stem": "Describe what happens when boric acid is heated.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 99, "scan_page": 97,
+      "stem": "Describe the shapes of BF₃ and BH₄⁻ and give the hybridisation of boron in each of these species.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Explain why the atomic radius of Ga is smaller than that of Al.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 1,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Explain the inert pair effect.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": "a", "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Write the balanced equation for the reaction BF₃ + LiH →.",
+      "appearance_years": [],
+      "notes": "Five printed parts (a)–(e) under one stem 'Write the balanced equations for'. The book's answer adds an unasked part (f) for the heating of B₂H₆·2NH₃." },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": "b", "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Write the balanced equation for the reaction B₂H₆ + H₂O →.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": "c", "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Write the balanced equation for the reaction NaH + B₂H₆ →.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": "d", "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Write the balanced equation for H₃BO₃ on heating (Δ) →.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": "e", "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Write the balanced equation for B₂H₆ + NH₃ on heating (Δ) →.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Explain why boric acid is polymeric.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 1,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "State the hybridisation of boron in diborane and in borazine [B₃N₃H₆].",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Write the electronic configuration of the group-13 elements.",
+      "appearance_years": [],
+      "notes": "Left margin cropped in the scan: only '2.' of the number is visible (read as 12 from sequence); an asterisk, if printed, is cut off." },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 1,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Give the formula of borazine and state its common name.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": "a", "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Give the formula of borax.",
+      "appearance_years": [], "notes": "Two printed parts (a) borax, (b) orthoboric acid." },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": "b", "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Give the formula of orthoboric acid.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 1,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "Give two uses of aluminium.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": "a", "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "State what happens when a mixture of LiAlH₄ and BCl₃ in dry ether is warmed.",
+      "appearance_years": [], "notes": "Two printed parts (a), (b) under one stem 'What happens when'." },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": "b", "stars": 0,
+      "printed_page": 100, "scan_page": 98,
+      "stem": "State what happens when borax is heated with H₂SO₄.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 1,
+      "printed_page": 101, "scan_page": 99,
+      "stem": "Draw the structure of orthoboric acid.",
+      "appearance_years": [],
+      "notes": "Left margin cropped in the scan; a partial mark before '17.' is read as an asterisk." },
+
+    { "ref": "vsaq18", "section": "VSAQ", "number": 18, "part": null, "stars": 1,
+      "printed_page": 101, "scan_page": 99,
+      "stem": "Draw the structure of AlCl₃ as a dimer.",
+      "appearance_years": [],
+      "notes": "Left margin cropped in the scan; the asterisk before '18.' is partly cut. The book's answer is a labelled figure only (bond lengths 206 pm and 221 pm, angles 101°, 79° and 118°)." },
+
+    { "ref": "vsaq19", "section": "VSAQ", "number": 19, "part": null, "stars": 0,
+      "printed_page": 101, "scan_page": 99,
+      "stem": "Explain why metal borides containing ¹⁰B are used as protective shields.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq20", "section": "SAQ", "number": 20, "part": null, "stars": 0,
+      "printed_page": 101, "scan_page": 99,
+      "stem": "Al₂O₃ is amphoteric. Explain this with suitable reactions.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq21", "section": "SAQ", "number": 21, "part": null, "stars": 0,
+      "printed_page": 101, "scan_page": 99,
+      "stem": "Define electron deficient compounds. State whether BCl₃ is an electron deficient species, and explain.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq22", "section": "SAQ", "number": 22, "part": null, "stars": 0,
+      "printed_page": 101, "scan_page": 99,
+      "stem": "Explain the structure of boric acid.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq23", "section": "SAQ", "number": 23, "part": null, "stars": 1,
+      "printed_page": 101, "scan_page": 99,
+      "stem": "Explain the borax bead test with a suitable example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq24", "section": "SAQ", "number": 24, "part": null, "stars": 0,
+      "printed_page": 102, "scan_page": 100,
+      "stem": "Explain the structure of diborane.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq25", "section": "SAQ", "number": 25, "part": null, "stars": 0,
+      "printed_page": 102, "scan_page": 100,
+      "stem": "Give two methods of preparation of diborane.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq26", "section": "SAQ", "number": 26, "part": "a", "stars": 0,
+      "printed_page": 102, "scan_page": 100,
+      "stem": "Describe how diborane reacts with CO.",
+      "appearance_years": [], "notes": "Two printed parts (a) CO, (b) N(CH₃)₂ under one stem 'How does diborane react with'." },
+
+    { "ref": "saq26", "section": "SAQ", "number": 26, "part": "b", "stars": 0,
+      "printed_page": 102, "scan_page": 100,
+      "stem": "Describe how diborane reacts with N(CH₃)₂ (as printed).",
+      "appearance_years": [],
+      "notes": "PRINTED DEFECT (probable): the stem prints the reagent as N(CH₃)₂, but the book's answer uses trimethylamine N(CH₃)₃, which is the intended reagent." },
+
+    { "ref": "saq27", "section": "SAQ", "number": 27, "part": null, "stars": 0,
+      "printed_page": 102, "scan_page": 100,
+      "stem": "Al₂O₃ is amphoteric. Explain this with suitable reactions.",
+      "appearance_years": [],
+      "notes": "Printed number cropped at the left margin of the scan (read as 27 from sequence). Identical to Q20: the book prints the same question and the same answer twice." },
+
+    { "ref": "laq28", "section": "LAQ", "number": 28, "part": null, "stars": 0,
+      "printed_page": 102, "scan_page": 100,
+      "stem": "Describe how diborane is prepared and explain its structure.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq29", "section": "LAQ", "number": 29, "part": "a", "stars": 0,
+      "printed_page": 103, "scan_page": 101,
+      "stem": "Write any two methods of preparation of diborane, and describe how diborane reacts with carbon monoxide.",
+      "appearance_years": [],
+      "notes": "One printed stem with two parts: the two preparation methods are shared, then (a) reaction with carbon monoxide and (b) reaction with ammonia." },
+
+    { "ref": "laq29", "section": "LAQ", "number": 29, "part": "b", "stars": 0,
+      "printed_page": 103, "scan_page": 101,
+      "stem": "Write any two methods of preparation of diborane, and describe how diborane reacts with ammonia.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": null, "stars": 0,
+      "printed_page": 103, "scan_page": 101,
+      "stem": "The standard electrode potential E° for Al³⁺/Al is −1.66 V and that for Tl³⁺/Tl is +1.26 V. Predict the formation of the M³⁺ ion in solution for each metal and compare the electropositive character of the two metals.",
+      "appearance_years": [],
+      "notes": "Printed label 8.1 in the block headed 'INTEXT SOLVED QUESTIONS'. The book prints the potential symbol as E⁻ (typo for E°)." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 0,
+      "printed_page": 103, "scan_page": 101,
+      "stem": "White fumes appear around a bottle of anhydrous aluminium chloride. Give the reason.",
+      "appearance_years": [], "notes": "Printed label 8.2." },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": null, "stars": 0,
+      "printed_page": 103, "scan_page": 101,
+      "stem": "Boron is unable to form the BF₆³⁻ ion. Explain.",
+      "appearance_years": [], "notes": "Printed label 8.3." },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 0,
+      "printed_page": 103, "scan_page": 101,
+      "stem": "Explain why boric acid is considered a weak acid.",
+      "appearance_years": [], "notes": "Printed label 8.4." }
+  ]
+}
