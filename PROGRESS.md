@@ -34,6 +34,78 @@ Physics Unit 9 gained the book's Problem 1 (**2 marks** — strain of a wire str
 ### NOT done, deliberately
 
 No bulk problem authoring (Phase C, and problems come last in the founder's order). `practice` is not registered for maths, botany, zoology or any second-year paper — each waits on its own book being read. The 47 retire candidates from 2026-09-02 are still open, and nothing here is deployed.
+## 🔬 SESSION — All 1,124 second-year cards audited and repaired, and the chatbot stops volunteering the open question (2026-09-02, `fix/senior-book-audit` → PR #189)
+
+**Bottom line: every card of the four second-year papers was examined and repaired — 22 HARMFUL, 179 WRONG, 232 WEAK across 1,124 cards. Chemistry-II got its first truth audit and holds half the findings. The harmful defect has a shape: it is the `insider_note`, the line Vidi speaks to the student FIRST, contradicting its own card. Merged as `7d06f04c`, content-pushed, deployed (worker `a82efb82`), and the Edge Function redeployed to version 17 with the scope-creep clause removed.**
+
+### What was found
+
+| Paper | Cards | HARMFUL | WRONG | WEAK |
+|---|---|---|---|---|
+| Chemistry-II | 340 | 11 | 97 | 167 |
+| Physics-II | 256 | 3 | 15 | 40 |
+| Maths-2A | 257 | 1 | 30 | 9 |
+| Maths-2B | 271 | 7 | 37 | 16 |
+
+Reports: `docs/reports/senior_audit/` — 73 group files, `SUMMARY.md`, the examiner brief (`BRIEF.md`), the repair brief, `BASELINE.md`, `STATE.md`, the figure reviews and the chatbot grading.
+
+**Two different jobs — do not conflate them.** Chemistry-II had NEVER been truth-audited; its only prior content fixes came from Vidi reply graders, and `maths_audit/SUMMARY.md` wrongly claimed it had had an examiner pass. Physics-II, Maths-2A and Maths-2B got a PROSE-AND-CONSISTENCY pass on top of the answer-level examiner passes they already had at authoring time — they were **not** re-derived from scratch.
+
+### The defect shape
+
+In the maths papers the harmful finding is almost always an `insider_note` contradicting its own card: a point of contact with the wrong signs, "doubles every coefficient" where the result is actually non-linear, a focal-chord exception that does not exist (y₁y₂ = −4a² < 0 always), a latus rectum said to move with the centre, a chain giving 3π/512 under a boxed 3π/128. **Three of them call a VALID alternative method a mistake** — the "condemning correct work" defect from the 1A/1B audit, but worse, because the insider note is spoken before anything else.
+
+Chemistry-II's are chemistry: a `memory_tip` dropping p⁰ from the molar-mass formula (200 instead of 170 g/mol), Nessler's reagent cited as a SOURCE of ammonia when it is a test for it, an insider note naming the wrong one of matte/blister/pure copper, and a card asserting 300 atm "is the NCERT value" (NCERT prints 320) while marking 320 as a student error.
+
+Two `recall` rubrics on `p2_ray_compound_microscope_magnification` demanded a minus sign the card's own boxed equation lacks. Recall is grader-side, so a wrong one silently marks a CORRECT student answer wrong. The repair proved the RUBRIC was wrong, not the equations (thin lens is m = v/u; −v/u is the mirror convention), then found the same false minus in four more fields no report listed — including a `verification.note` whose own "hand-checked" chain was self-inconsistent.
+
+### Figures — render and LOOK
+
+All 146 were screenshotted and read. **Six were drawn WRONG, not mislabelled:** a reflected ray at 54.5° against an incident 61.0°, the rainbow's primary/secondary bows swapped, an inverted crystal-field barycentre, two ellipse "tangents" drawn as secants, and a parabola with a flat vertex whose drawn point had SP 67.1 vs PM 100.0 — on no parabola at all. The rainbow inversion had also reached a `recall.accept` string. One agent found what no gate or report could see: the STATIC picture was correct but the animation order faded each label onto the wrong curve.
+
+### The chatbot: scope creep, measured not guessed
+
+The situation block granted *"one short sentence offering to help with the question that IS open"*. The model read the grant as licence. Measured on the same corpus with the same frozen instrument — 1,124 out-of-bank replies each side, eight blind graders:
+
+**99.9% → 25.9%.** Refusal failure (a reply that actually answers the off-paper question) was **0 of 1,124 on both sides**, so the decline itself never broke. The counting definition here is stricter than the ~10–16% recorded in August (it counts even a bare offer), so the two are not comparable — only before-vs-after within this measurement is. Residual is mostly a bare redirect; roughly 8% still leaks content. Detail: `docs/reports/senior_audit/VIDI-SCOPE-CREEP.md`.
+
+**The gap that let it drift:** `vidiSeam.test.ts` parity-checked only `PERSONA`. This clause lives in the per-request `situation` block, which was unguarded — the mirror could certify a persona the deployed function does not run. The test now covers both and asserts the grant has not returned; **both new assertions were negative-controlled** before being trusted.
+
+### Two regressions the per-agent checks could not see
+
+Every repair agent verified its own prefix with `check_cards` (exit 0 every time) and the figure agents ran `check_figure_pace` (PASS every time). **Two whole-book measures still went red:**
+
+- **Figure label collisions 0 → 7 in 5 cards.** `check_figure_pace` measures stroke SPEED, not overlap. The real gate is the e2e label test / `find_label_clashes.mjs`, which measures RENDERED boxes in the built dist. It would have failed the suite.
+- **Line wrap 0/0/0/1 → 2/5/0/1.** No agent runs `measure:wrap` unless told. Four of the seven came from one bonus edit adding "(conc.)" to four Ostwald equations; no inline marker fits (measured: even bare `conc.` leaves S₈ at 587/568), so the concentration is now stated once in words and the insider note reworded to match.
+
+**Run `build:answers` → `find_label_clashes` → `measure:wrap` over the WHOLE book after any figure or printed-line wave, against a recorded baseline.** Both are fixed and both were re-verified after merging master in.
+
+### Verification
+
+`check:cards` ×4 · `check:p2cards` ×4 · `check:xrefs` · `check:originality` · `check:papers` · `check:figure-pace` (now including `ts_ipe_p2`) · `figcheck:m2b` 12/0 · `tsc` 0 · `vitest` 445/445 · `build:answers` 0 · `find_label_clashes` clean · `measure:wrap` 0/0/0/1 · **`smoke:answers` 70/70, exit 0** — re-run in full after merging `origin/master` (PR #187), because a branch's green result only proves it against its own base.
+
+### Shipped
+
+PR #189 merged as `7d06f04c` → `build:answers:gated:mpc-both` → `content:push:mpc-both` (98 units / 2,454 questions, all 8 free rows correct by name) → `deploy:answers` (worker `a82efb82`). Live-verified against the site, not the artifact. Edge Function redeployed separately to **version 17**; the deployed source was read back and confirmed to carry the new clause and not the old grant.
+
+### IS THE SECOND-YEAR BOOK READY FOR STUDENTS? — the honest answer (founder asked directly, 2026-09-02)
+
+**Live and usable: YES.** All four papers serve on answers.viditra.co, the repaired content is in the live bundles, and the chatbot answers. Verified against the site, not the repo.
+
+**"Everything is perfect": NO — and three gaps say why. None of them is closed by more agent work.**
+
+1. **No teacher has verified a single card.** Measured, not estimated: of the 1,124 second-year cards, **0 are `teacher_verified` and 1,124 still carry `needs_teacher_verification: true`**. This audit was a careful re-derivation; that is a different thing from a board teacher's sign-off. The group reports raise **184 numbered teacher-gate questions** that were deliberately NOT settled — Popoff's rule direction, the Dow-process pressure (300 vs NCERT's 320), ligand-name dialect (chlorido vs chloro), thiocyanato vs isothiocyanato, the vitamin E deficiency wording, the octane 8 g vs 10 g answer, "Daniel" vs "Daniell", whether a diagram earns a mark on a question that says "with a suitable diagram". Each is a place where a student writes what the card says and a Telangana examiner may disagree.
+2. **Every mark split is the bank's own claim, not the board's** — each card says so in its own `verification.note`. No second-year board paper exists in `answer-book/papers/`, so no split was ever back-tested. A student trusting "this step earns 2 marks" is trusting us.
+3. **This audit checked that what is there is CORRECT. It did not check that everything that should be there IS there.** There is no transcribed second-year source index (`answer-book/sources/` is first-year maths only), so a coverage diff against the source books was impossible. The equivalent check on Maths 1A/1B found **308 unauthored questions**. The second-year number is unknown and unmeasured.
+
+Smaller, also open: **three Chemistry-II question stems are themselves defective** and were referred out rather than rewritten, because `question_text` defines the question a student is answering — `ts_ipe_c2_df_iupac_formulae_from_names` ("Using IUPAC norms write the formulae for the following." — the eleven names exist only inside the answer steps, so the printed question cannot be attempted), `ts_ipe_c2_via_water_liquid_h2s_gas` and `ts_ipe_c2_va_ph3_weaker_base_than_nh3` (ungrammatical stems reproduced from the book). And the chatbot still drifts back to the open question on ~26% of off-paper asks, ~8% of them with real content.
+
+**The two things that would actually close the gap:** a board teacher working the 184 questions, and a coverage diff once a second-year source index exists. Only the first needs a person.
+
+### Left open, and owned by a teacher
+
+Also open: two low-rate model behaviours measured in 2,710 Maths-2B replies — one reply naming internal machinery, one walkthrough truncated at the 500-token cap — and 21 ungraded chatbot slices whose measurement is already stable at ~9.9/10.
+
 
 ## 📚 SESSION — The 2026-27 syllabus lands on Physics-I and Chemistry-I: the three cut chemistry chapters named, States of Matter retired, every chapter of both new books indexed and diffed (2026-09-02, `feat/ipe-answerbook-syllabus-2027`)
 
