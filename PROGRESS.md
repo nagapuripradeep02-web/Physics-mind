@@ -1,5 +1,35 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🚪 SESSION — viditra.co becomes a two-door chooser (2026-09-02, `claude/viditra-instagram-content-f65l81`)
+
+**Bottom line: the marketing site now asks "teacher or student?" first.** Instagram marketing starts
+with the student product (the IPE Answer Book), so the home page can no longer be teacher-only.
+
+- `website/index.html` (old teacher landing) → **`website/teachers.html`**, unchanged except the
+  masthead now links to `/`. All `#why … #pricing` anchors still work; nothing outside the site
+  linked to them (grep-verified: only `viditra.co/` root links exist).
+- **New `website/index.html`**: brand line + two doors built from the existing `.cards`/`.card.live`
+  /`.btn` pattern. Teacher door → `teachers.html` (`data-cta="door_teacher"`); Student door →
+  `https://answers.viditra.co/` (`data-cta="door_student"`) — the app's own door picks group + year,
+  so nothing is duplicated. No remembered choice, no auto-redirect (a lecturer who also uses the
+  Answer Book must never be trapped). `site-analytics.js` tracks both doors with no new wiring.
+- `css/site.css`: `.cards.doors` 2-up grid ≥640px, `.sec.chooser`, `.doorIntro` (centred intro).
+- `students.html`: "For teachers" links → `teachers.html`; stale copy fixed — "First year only"
+  → both years live, "Four chapters free" → eight (one per subject in both years, per the 2026-08-30
+  live-state note). The first-year count pill ("811 questions · 38 chapters") was replaced with
+  "First year · Second year" and NO numbers: the working tree holds 1,370 first-year MPC cards but
+  live `ab_content` was last recorded at 1,921 total incl. 1,124 second-year, so a tree-derived
+  number would overclaim until the next `content:push`.
+- Verified locally (python http.server + headless Chromium): `/`, `/teachers.html`, `/students.html`
+  200; zero console/page errors at 1280×800 and 390×844; no horizontal scroll; both doors above the
+  desktop fold (bottom edge 746px).
+- **NOT deployed.** `npm run deploy:cf-site` is founder-only (Rule 17); check `git status website/`
+  first (DISCUSSIONS.md:60 divergence warning).
+
+**Next session's first task:** founder reviews the PR, deploys the site, then the Instagram content
+pipeline (sim-clip renderer) decided in this session's strategy discussion.
+
+
 ## 📐 SESSION — Maths 1B's calculus half, and what a competitor's book actually proves (2026-08-30, `feat/ipe-answerbook-maths-1ab-gap`)
 
 **Bottom line: 255 new cards. Maths-1B went from 7 units to 10 — Limits and Continuity, Differentiation and Applications of Derivatives did not exist in the product at all, which is roughly a third of that paper. The two Maths-1A chapters added for the 2026-27 syllabus stopped being placeholders whose "questions" were syllabus topic labels. And the question that started the session — whether Sri Chaitanya could claim we copied them — turned out to have a strong answer that points somewhere nobody was looking.**

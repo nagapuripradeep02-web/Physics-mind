@@ -1,15 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" data-brand-title>
+<!--
+  index.html — the front door of viditra.co: one question, two doors.
+
+  Teacher  -> teachers.html (the teacher product page, formerly this file).
+  Student  -> https://answers.viditra.co/ (the IPE Answer Book; its own door asks
+              group MPC/BiPC/MEC and year, so nothing is duplicated here).
+
+  Deliberately NOT tagged data-brand-title: brand.js would overwrite the title
+  with the teacher tagline. No remembered choice and no auto-redirect — a
+  lecturer who also uses the Answer Book must never be trapped behind one door.
+-->
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="BnUbqcxyTbjxh7BGd8FvIgJmFhCSjPeZ21ceugC4OdQ" />
-<meta name="description" content="Viditra gives junior colleges, academies and institutes live 2D and 3D physics simulations for the Indian curriculum — CBSE, ICSE and state boards — driven by your own teachers, in your own classrooms. Founding institute plans open now.">
+<meta name="description" content="Viditra — live 2D and 3D physics simulations for teachers, and the Telangana IPE Answer Book for students: every question answered step by step, with the marks for each step.">
 <meta name="theme-color" content="#1C1B19">
 <meta property="og:site_name" content="Viditra">
-<meta property="og:title" content="Viditra — For Teachers">
-<meta property="og:description" content="Viditra gives physics teachers accurate, manipulable 2D and 3D simulations for the Indian curriculum — CBSE, ICSE and state boards — driven live in class.">
-<title>Viditra — The moving picture you can’t draw on a whiteboard.</title>
+<meta property="og:title" content="Viditra — For teachers and students">
+<meta property="og:description" content="Live physics simulations for teachers. The Telangana IPE Answer Book for students. Pick your door.">
+<title>Viditra</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,318 +34,51 @@
 
 <header class="site" id="top">
   <div class="wrap bar">
-    <a class="masthead" href="#top" aria-label="Home">
+    <a class="masthead" href="/" aria-label="Home">
       <span class="mark" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(45 12 12)"/><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="#fff" stroke-width="1.5" transform="rotate(135 12 12)"/><circle cx="18.79" cy="18.79" r="1.5" fill="#fff"/><circle cx="5.21" cy="5.21" r="1.5" fill="#fff"/><circle cx="12" cy="12" r="2.3" fill="#fff"/></svg>
       </span>
-      <span class="brand"><b data-brand="name">Viditra</b><span class="promiseLine" data-brand="promise"></span></span>
+      <span class="brand"><b data-brand="name">Viditra</b></span>
     </a>
     <nav class="nav" aria-label="Sections">
-      <a href="#why">Why</a>
-      <a href="#product">Product</a>
-      <a href="#how">How it works</a>
-      <a href="#chapters">Chapters</a>
-      <a href="#subjects">Subjects</a>
-      <a href="#about">About</a>
-      <a href="#pricing">Pricing</a>
-      <a href="students.html" data-cta="nav_students">For students</a>
+      <a href="teachers.html" data-cta="nav_teachers">For teachers</a>
+      <a href="https://answers.viditra.co/" data-cta="nav_students">For students</a>
+      <a href="contact.html">Contact</a>
     </nav>
-    <a class="btn small" data-cta="trial" href="https://app.viditra.co/join.html">Start your free trial</a>
   </div>
 </header>
 
 <main id="main">
 
-  <!-- 1 · HERO -->
-  <section class="hero">
-    <div class="wrap heroGrid">
-      <div class="heroCopy">
-        <p class="eyebrow">For physics teachers &middot; every Indian board &middot; CBSE &middot; ICSE &middot; State boards</p>
-        <h1>The <em>moving picture</em> you can&rsquo;t draw on a whiteboard.</h1>
-        <p class="lede">You spent years learning to explain what a blackboard cannot show. <span data-brand="name">Viditra</span> is the picture that finally moves &mdash; every field line, force and circuit alive on your screen, driven by you, at the pace of your lesson. The simulation stays silent. <b>Your voice is the lesson.</b></p>
-        <div class="ctas">
-          <a class="btn" data-cta="trial" href="https://app.viditra.co/join.html">Start your free trial</a>
-          <a class="btn try" data-cta="demo" href="demo/"><span class="tryIcon" aria-hidden="true">&#9654;</span>Try a live simulation</a>
-        </div>
-        <p class="ctaHint">No sign-up needed &mdash; touch a real sim right in your browser.</p>
-        <p class="ctaHint" data-brand="promise"></p>
-      </div>
-      <figure class="canvasCard heroCard">
-        <canvas id="heroField" role="img" aria-label="Animation: the three-dimensional electric field of a dipole, slowly orbiting"></canvas>
-        <figcaption>Live &mdash; the electric field of a dipole, in 3D. Computed, not drawn.</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- 2 · PROOF STRIP -->
-  <section class="strip" aria-label="Pilot facts">
-    <div class="wrap stripRow">
-      <div class="fact reveal"><b>76</b><span>simulations live, in 2D and 3D</span></div>
-      <div class="fact reveal"><b>Nine chapters</b><span>ready to teach today</span></div>
-      <div class="fact reveal"><b>State by state</b><span>reviewed with real professors</span></div>
-    </div>
-  </section>
-
-  <!-- 3 · THE CONTRAST -->
-  <section class="sec" id="why">
+  <section class="sec chooser">
     <div class="wrap">
-      <p class="eyebrow reveal">Why simulations</p>
-      <h2 class="reveal">Diagrams freeze. Physics moves.</h2>
-      <p class="sub reveal">You&rsquo;ve drawn this a hundred times &mdash; the circle, the arrows, the crosses &mdash; and said &ldquo;imagine it moving.&rdquo; Now it moves, at the pace of your explanation.</p>
-      <div class="contrastGrid">
-        <figure class="boardMock reveal">
-          <div class="boardTitle">On your board</div>
-          <svg viewBox="0 0 440 320" role="img" aria-label="A hand-drawn board diagram of a charge in a magnetic field, frozen at one instant">
-            <defs>
-              <g id="bx" stroke="#57534A" stroke-width="1.8" stroke-linecap="round" opacity=".75">
-                <path d="M-5 -5 L5 5 M5 -5 L-5 5" fill="none"/>
-              </g>
-            </defs>
-            <!-- scattered B-crosses, the way a teacher dots them in -->
-            <use href="#bx" transform="translate(48 46) rotate(8)"/>
-            <use href="#bx" transform="translate(122 42) rotate(-6)"/>
-            <use href="#bx" transform="translate(198 48) rotate(4)"/>
-            <use href="#bx" transform="translate(274 42) rotate(-8)"/>
-            <use href="#bx" transform="translate(350 48) rotate(6)"/>
-            <use href="#bx" transform="translate(392 116) rotate(-5)"/>
-            <use href="#bx" transform="translate(396 192) rotate(7)"/>
-            <use href="#bx" transform="translate(56 266) rotate(-7)"/>
-            <use href="#bx" transform="translate(130 276) rotate(5)"/>
-            <use href="#bx" transform="translate(350 272) rotate(-4)"/>
-            <use href="#bx" transform="translate(276 282) rotate(8)"/>
-            <use href="#bx" transform="translate(203 286) rotate(-6)"/>
-            <!-- the circle, freehand -->
-            <ellipse cx="205" cy="158" rx="84" ry="80" transform="rotate(-3 205 158)" fill="none"
-              stroke="#33302A" stroke-width="2" stroke-linecap="round" stroke-dasharray="11 8 14 7"/>
-            <circle cx="205" cy="158" r="2.6" fill="#33302A"/>
-            <!-- radius note -->
-            <line x1="205" y1="158" x2="147" y2="216" stroke="#33302A" stroke-width="1.4" stroke-dasharray="3 5"/>
-            <text x="164" y="184" font-size="15" font-style="italic" font-family="Georgia,serif" fill="#33302A">r</text>
-            <!-- the particle, one frozen instant -->
-            <circle cx="205" cy="78" r="5.5" fill="#33302A"/>
-            <!-- v arrow (blue marker) -->
-            <path d="M212 77 L258 73" stroke="#2F5FA8" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-            <path d="M258 73 L248 68 M258 73 L249 80" stroke="#2F5FA8" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-            <text x="264" y="70" font-size="16" font-style="italic" font-family="Georgia,serif" fill="#2F5FA8">v</text>
-            <!-- F arrow (red marker), toward the centre -->
-            <path d="M205 88 L205 124" stroke="#C0453B" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-            <path d="M205 124 L199 114 M205 124 L211 114" stroke="#C0453B" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-            <text x="213" y="120" font-size="16" font-style="italic" font-family="Georgia,serif" fill="#C0453B">F</text>
-            <!-- the two curved "it goes round this way" arrows -->
-            <path d="M287 122 Q296 154 285 188" stroke="#57534A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-            <path d="M285 188 L282 177 M285 188 L293 181" stroke="#57534A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-            <path d="M124 196 Q115 160 126 126" stroke="#57534A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-            <path d="M126 126 L118 134 M126 126 L129 137" stroke="#57534A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-            <!-- board notes -->
-            <text x="26" y="128" font-size="16" font-style="italic" font-family="Georgia,serif" fill="#33302A">F = qvB</text>
-            <text x="26" y="152" font-size="16" font-style="italic" font-family="Georgia,serif" fill="#33302A">r = mv&#8260;qB</text>
-            <text x="26" y="304" font-size="13.5" font-style="italic" font-family="Georgia,serif" fill="#57534A">&#8855; B into the board</text>
-            <text x="284" y="248" font-size="14.5" font-style="italic" font-family="Georgia,serif" fill="#8A857B" transform="rotate(-4 284 248)">&ldquo;imagine it moving&hellip;&rdquo;</text>
-          </svg>
-          <figcaption>One frozen instant. Motion by imagination.</figcaption>
-        </figure>
-        <figure class="canvasCard reveal">
-          <canvas id="cyclotron" role="img" aria-label="Animation: charged particles curving into circles in a magnetic field pointing into the page"></canvas>
-          <figcaption>In <span data-brand="name">Viditra</span> &mdash; the motion itself, live.</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4 · PRODUCT -->
-  <section class="sec alt" id="product">
-    <div class="wrap">
-      <p class="eyebrow reveal">The teaching surface</p>
-      <h2 class="reveal">Built for the way you actually teach.</h2>
-      <div class="productGrid">
-        <div class="frame reveal">
-          <div class="frameBar" aria-hidden="true"><i></i><i></i><i></i><span>Simple pendulum &mdash; state 3 of 5</span></div>
-          <div class="frameBody">
-            <canvas id="pendulum" role="img" aria-label="Animation: a pendulum whose length is changed by a slider, visibly changing its period"></canvas>
-            <div class="ctl">
-              <label for="lenSlider">Length&nbsp;L</label>
-              <input id="lenSlider" type="range" min="0" max="100" value="30" step="1" aria-label="Pendulum length">
-              <output id="lenOut" for="lenSlider">1.0 m</output>
-            </div>
-          </div>
-          <div class="frameCaption">Per-state controls &mdash; each step exposes only the slider it teaches. Try it.</div>
-        </div>
-        <ul class="features">
-          <li class="reveal"><b>Full 3D, in your hands.</b> Orbit around the field, look along the axis &mdash; see the physics from any angle, on a laptop or a phone.</li>
-          <li class="reveal"><b>Reorder the lesson mid-class.</b> Drag simulation states to match the flow of your explanation.</li>
-          <li class="reveal"><b>Draw on the physics itself.</b> A pen and whiteboard sit on top of the live simulation.</li>
-          <li class="reveal"><b>One control at a time.</b> Each state shows only the slider it teaches &mdash; the full set unlocks at the end.</li>
-          <li class="reveal"><b>Watch it click.</b> The moment the physics starts to move, you see the idea land &mdash; that look on a student&rsquo;s face is why you teach.</li>
-          <li class="reveal"><b>Accurate by construction.</b> Every frame is computed from the equations &mdash; never hand-drawn animation.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5 · HOW IT WORKS -->
-  <section class="sec" id="how">
-    <div class="wrap">
-      <p class="eyebrow reveal">How it works</p>
-      <h2 class="reveal">Three steps to a lesson they&rsquo;ll remember.</h2>
-      <ol class="steps">
-        <li class="reveal"><span class="n">1</span><b>Pick a concept</b><p>Organized by topic &mdash; matches CBSE, ICSE and state board syllabi alike.</p></li>
-        <li class="reveal"><span class="n">2</span><b>Teach it live</b><p>Step through states, draw, pause, reorder.</p></li>
-        <li class="reveal"><span class="n">3</span><b>Show, don&rsquo;t tell</b><p>Accurate motion answers the &ldquo;why&rdquo; words can&rsquo;t.</p></li>
-      </ol>
-    </div>
-    <figure class="band reveal">
-      <canvas id="generator" role="img" aria-label="Animation: a coil rotating between magnet poles, drawing the induced EMF sine wave in real time"></canvas>
-      <figcaption class="wrap">AC generator &mdash; the EMF peaks exactly when the coil is parallel to the field.</figcaption>
-    </figure>
-  </section>
-
-  <!-- 5b · CHAPTERS / COVERAGE -->
-  <section class="sec" id="chapters">
-    <div class="wrap">
-      <p class="eyebrow reveal">One library, every Indian board</p>
-      <h2 class="reveal">Find the topic you&rsquo;re teaching this week.</h2>
-      <p class="sub reveal">Organized the way physics is taught in Indian classrooms &mdash; CBSE, ICSE and state boards &mdash; not a pile of demos, but chapters built deep enough to teach start to finish. Nine chapters are ready to teach now &mdash; 76 simulations &mdash; and the library grows every month.</p>
-
-      <div class="chapGroup reveal">
-        <p class="chapLabel"><span class="pill on">Teach today</span> <span class="chapScope">Class 12 &middot; Electricity &amp; Magnetism</span></p>
-        <ul class="chapList">
-          <li class="chapRow">
-            <div class="chapHead"><span class="chapNo">Ch 1</span><b>Electric Charges &amp; Fields</b><span class="chapCount">11 sims</span></div>
-            <p class="chapConcepts">Coulomb&rsquo;s law &middot; field of a point charge &middot; force on a charge &middot; dipole field &middot; charge distributions &middot; electric flux &middot; Gauss&rsquo;s law &mdash; sphere, line, sheet &amp; solid sphere</p>
-          </li>
-          <li class="chapRow">
-            <div class="chapHead"><span class="chapNo">Ch 2</span><b>Electrostatic Potential &amp; Capacitance</b><span class="chapCount">9 sims</span></div>
-            <p class="chapConcepts">What potential means &middot; potential of a point charge &middot; dipole potential &middot; potential of a system of charges &middot; equipotential surfaces &middot; potential energy of a system &middot; potential energy in an external field &middot; the parallel-plate field &middot; capacitance</p>
-          </li>
-          <li class="chapRow">
-            <div class="chapHead"><span class="chapNo">Ch 3</span><b>Current Electricity</b><span class="chapCount">13 sims</span></div>
-            <p class="chapConcepts">Drift velocity &middot; Ohm&rsquo;s law &middot; resistivity &middot; combinations of resistors &middot; EMF &middot; internal resistance &middot; electrical power &middot; Kirchhoff&rsquo;s junction &amp; loop rules &middot; combination of cells &middot; Wheatstone bridge &middot; metre bridge &middot; potentiometer</p>
-          </li>
-          <li class="chapRow">
-            <div class="chapHead"><span class="chapNo">Ch 4</span><b>Moving Charges &amp; Magnetism</b><span class="chapCount">9 sims</span></div>
-            <p class="chapConcepts">The magnetic field B &middot; force on a moving charge &middot; the right-hand rule &middot; why magnetic force does no work &middot; circular &amp; helical motion in a uniform field &middot; why the cyclotron period doesn&rsquo;t depend on speed &middot; force between parallel currents &middot; force on a current-carrying wire</p>
-          </li>
-          <li class="chapRow">
-            <div class="chapHead"><span class="chapNo">Ch 5</span><b>Magnetism &amp; Matter</b><span class="chapCount">5 sims</span></div>
-            <p class="chapConcepts">The bar magnet as a dipole &middot; Gauss&rsquo;s law for magnetism &middot; a bar magnet in a uniform field &middot; Earth&rsquo;s magnetism &middot; magnetisation &amp; magnetic intensity</p>
-          </li>
-          <li class="chapRow">
-            <div class="chapHead"><span class="chapNo">Ch 6</span><b>Electromagnetic Induction</b><span class="chapCount">6 sims</span></div>
-            <p class="chapConcepts">Magnetic flux &middot; Faraday&rsquo;s law &middot; motional EMF &middot; the AC generator &middot; eddy currents &middot; inductance</p>
-          </li>
-          <li class="chapRow">
-            <div class="chapHead"><span class="chapNo">Ch 7</span><b>Alternating Current</b><span class="chapCount">8 sims</span></div>
-            <p class="chapConcepts">AC through a resistor &middot; phasors &middot; AC through an inductor &middot; AC through a capacitor &middot; the series LCR circuit &middot; power factor &middot; LC oscillations &middot; the transformer</p>
-          </li>
-        </ul>
+      <div class="doorIntro">
+        <p class="eyebrow reveal">Viditra</p>
+        <h1 class="reveal">Who are you here as?</h1>
+        <p class="lede reveal">Teachers get a physics simulation that moves, driven live in class. Students get the Telangana IPE Answer Book, every question answered the way it is marked. Pick your door.</p>
       </div>
 
-      <div class="chapGroup reveal">
-        <p class="chapLabel"><span class="pill on">Teach today</span> <span class="chapScope">Class 11 &middot; Mechanics</span></p>
-        <ul class="chapList">
-          <li class="chapRow">
-            <div class="chapHead"><b>Laws of Motion</b><span class="chapCount">10 sims</span></div>
-            <p class="chapConcepts">Newton&rsquo;s first law &middot; free-body diagrams &middot; the normal force &middot; connected bodies &middot; Newton&rsquo;s second law &middot; tension &middot; a block on an incline &middot; Newton&rsquo;s third law &middot; friction &middot; rolling friction</p>
-          </li>
-          <li class="chapRow">
-            <div class="chapHead"><b>Work, Energy &amp; Power</b><span class="chapCount">5 sims</span></div>
-            <p class="chapConcepts">The work&ndash;energy theorem &middot; work done by a constant force &middot; positive, negative &amp; zero work &middot; kinetic energy &middot; conservative vs non-conservative forces</p>
-          </li>
-        </ul>
-      </div>
+      <div class="cards doors">
 
-      <div class="chapGroup reveal">
-        <p class="chapLabel"><span class="pill">Coming next</span></p>
-        <ul class="chapList coming">
-          <li class="chapRow"><div class="chapHead"><span class="chapNo">Ch 8</span><b>Electromagnetic Waves</b><span class="chapCount">Planned</span></div></li>
-          <li class="chapRow"><div class="chapHead"><b>Class 11 &middot; Vectors</b><span class="chapCount">In progress</span></div></li>
-        </ul>
-      </div>
-
-      <p class="chapAsk reveal">Teaching a chapter that isn&rsquo;t here yet? <a href="#access">Tell us on the form</a> &mdash; we build next what teachers ask for first.</p>
-    </div>
-  </section>
-
-  <!-- 6 · SUBJECTS -->
-  <section class="sec alt" id="subjects">
-    <div class="wrap">
-      <p class="eyebrow reveal">Subjects</p>
-      <h2 class="reveal">Starting with physics.</h2>
-      <div class="cards">
-        <article class="card live reveal">
-          <div class="orb" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none"><g class="o2"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="currentColor" stroke-width="1.1" transform="rotate(45 12 12)"/><circle cx="18.79" cy="18.79" r="1.5" fill="currentColor"/><circle cx="5.21" cy="5.21" r="1.5" fill="currentColor"/></g><g class="o3"><ellipse cx="12" cy="12" rx="9.6" ry="4" stroke="currentColor" stroke-width="1.1" transform="rotate(135 12 12)"/></g><circle class="nuc" cx="12" cy="12" r="2" fill="currentColor"/></svg>
-          </div>
-          <h3>Physics</h3>
-          <p class="pill on">9 chapters &middot; 76 sims live</p>
-          <p>Class 12 electricity &amp; magnetism, Chapters 1&ndash;7, plus Class 11 laws of motion and work, energy &amp; power &mdash; live and interactive, with the library growing every month.</p>
+        <article class="card door live">
+          <p class="pill on">Physics &middot; every Indian board</p>
+          <h3>I teach</h3>
+          <p>Live 2D and 3D simulations of fields, forces and circuits, computed rather than drawn. You drive them state by state, at the pace of your lesson. The sim stays silent; your voice is the lesson.</p>
+          <p class="ctas"><a class="btn wide" data-cta="door_teacher" href="teachers.html">See the teacher tool</a></p>
+          <p class="ctaHint">Free trial for your physics faculty. No card.</p>
         </article>
-        <article class="card reveal">
-          <h3>Mathematics</h3>
-          <p class="pill">Coming soon</p>
-          <p>Curves, transformations and calculus you can bend with your hands.</p>
+
+        <article class="card door live">
+          <p class="pill on">Telangana IPE &middot; MPC</p>
+          <h3>I am a student</h3>
+          <p>The Answer Book: every question written out step by step, with the marks each step earns shown in the margin. First year and second year. Ask Vidi when a step is not clear.</p>
+          <p class="ctas"><a class="btn wide" data-cta="door_student" href="https://answers.viditra.co/">Open the Answer Book</a></p>
+          <p class="ctaHint">Pick your group and year there. Free chapters, no sign-up. Works on your phone.</p>
         </article>
-        <article class="card reveal">
-          <h3>Chemistry</h3>
-          <p class="pill">Coming soon</p>
-          <p>Bonds, orbitals and reactions as moving structure, not flat diagrams.</p>
-        </article>
-      </div>
-    </div>
-  </section>
 
-  <!-- 7 · ABOUT -->
-  <section class="sec" id="about">
-    <div class="wrap narrow">
-      <p class="eyebrow reveal">About</p>
-      <h2 class="reveal">Made with teachers, in classrooms.</h2>
-      <div class="prose reveal">
-        <p>Every simulation is shaped by professors teaching real students, reviewed state by state, before it ships. If it doesn&rsquo;t survive a live classroom, it doesn&rsquo;t go in.</p>
-        <p>The physics is accurate by construction: rendering engines compute each frame from the governing equations, in real time. Nothing is key-framed, nothing is approximated art &mdash; so what your students see is what the mathematics says.</p>
-        <p>And it follows the NCERT backbone &mdash; the physics doesn&rsquo;t change by board, so the same simulation teaches CBSE, ICSE and state board classrooms alike. Your lesson stays yours; the simulation is the picture inside it.</p>
       </div>
-      <p class="promise reveal" data-brand="promise">Teachers bring the creativity. Viditra brings the visibility.</p>
-    </div>
-  </section>
 
-  <!-- 8 · PRICING -->
-  <section class="sec alt" id="pricing">
-    <div class="wrap">
-      <p class="eyebrow reveal">Pricing</p>
-      <h2 class="reveal">One plan. Your whole campus.</h2>
-      <p class="sub reveal">Built for junior colleges, academies and institutes &mdash; every teacher on campus, one subscription.</p>
-      <div class="priceGrid" style="grid-template-columns:1fr;max-width:580px;margin-left:auto;margin-right:auto;">
-        <div class="priceCard inst reveal">
-          <p class="planName">Institutes &amp; junior colleges</p>
-          <p class="pill on">Founding Circle &middot; limited early slots</p>
-          <p class="priceRow">
-            <span class="priceQuote">Talk to us</span>
-          </p>
-          <p class="priceLicence">Priced per campus. Your rate is locked for as long as you stay &mdash; even as subjects and chapters keep being added.</p>
-          <p class="priceLock">The first ten institutes join as our Founding Circle at a reduced rate, locked for life. Once those places are taken, standard pricing applies.</p>
-          <ul class="priceList">
-            <li>Every physics teacher on campus &mdash; an account each</li>
-            <li>Every simulation across every live chapter &mdash; and every chapter and subject we add</li>
-            <li>Onboarding and training for your department, with your first chapter loaded and your first class taught alongside you</li>
-            <li>Priority support &mdash; a direct line to the founder, not a queue</li>
-          </ul>
-          <p class="priceTrial">We start with a free live demo class with your teachers, on your own smart board or screen, on the chapter you&rsquo;re teaching this week. No commitment until they say it works.</p>
-          <a class="btn wide" data-cta="institute" href="contact.html">Contact us</a>
-          <p class="priceFine">Tell us your college, how many physics teachers, and which chapters you teach this term &mdash; we&rsquo;ll reply the same week.</p>
-          <p class="priceFine">Covers your own live classes &mdash; online, offline, projector, smart board. Publishing the simulations in public content (YouTube, social media, recorded courses) and white-label use need a separate licence &mdash; ask us.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 9 · EARLY ACCESS -->
-  <section class="sec cta" id="access">
-    <div class="wrap narrow">
-      <h2 class="reveal">Let your teachers try it before you decide.</h2>
-      <p class="sub reveal">One week free. The full library. No card, no form. Your physics faculty sign in with Google and are teaching with these sims in the next minute &mdash; then we talk about your campus.</p>
-      <a class="btn wide reveal" data-cta="trial" href="https://app.viditra.co/join.html"><span class="tryIcon" aria-hidden="true">&#9654;</span>Start your free trial</a>
-      <p class="assurance reveal">Founding Circle &middot; the first ten institutes lock a reduced rate for life &middot; cancel anytime</p>
-      <p class="alt-mail reveal">Questions first? Email us at <a class="mailto" href="#">&nbsp;</a></p>
+      <p class="sub reveal">A lecturer who wants the Answer Book for the class: open the student door. Nothing to sign up for.</p>
     </div>
   </section>
 
@@ -348,8 +92,10 @@
       </span>
       <span class="brand"><b data-brand="name">Viditra</b></span>
     </div>
-    <p class="subjectsLine">Physics &middot; Mathematics <i>(soon)</i> &middot; Chemistry <i>(soon)</i></p>
+    <p class="subjectsLine">For teachers: Physics &middot; For students: IPE MPC, both years</p>
     <p class="legalLinks">
+      <a href="teachers.html">Teachers</a> &middot;
+      <a href="students.html">Students</a> &middot;
       <a href="terms.html">Terms</a> &middot;
       <a href="privacy.html">Privacy</a> &middot;
       <a href="refund.html">Refunds</a> &middot;
@@ -359,8 +105,6 @@
   </div>
 </footer>
 
-<script src="js/motion.js"></script>
-<script src="js/anims.js"></script>
 <script src="js/main.js"></script>
 <script src="js/site-analytics.js"></script>
 </body>
