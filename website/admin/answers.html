@@ -348,7 +348,12 @@
     $('x_excl').textContent = fmt(d.excluded_devices);
     $('x_mode').textContent = d.include_internal ? '(shown in every number below)' : '(hidden from every number below)';
     $('t_active').textContent = fmt(dv.active);
-    $('t_active_note').textContent = fmt(dv.total)+' devices known in total';
+    // `total` is bounded by the since date (devices minted before the page was
+    // instrumented carry no events and cannot be attributed to anyone), so the
+    // "known in total" phrasing belongs to total_ever. Both are shown: the
+    // period figure, then the all-time one it is drawn from.
+    $('t_active_note').textContent = fmt(dv.total)+' devices in this period · '
+      + fmt(dv.total_ever)+' known in total';
     $('t_new').textContent = fmt(dv.new);
     $('t_ret').textContent = fmt(dv.returning);
     $('t_visits').textContent = fmt(vi.n);
