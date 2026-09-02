@@ -206,7 +206,7 @@
         "why": "Reducing the fraction to 8.70 × 10³ before taking the root keeps the powers of ten in one place, which is where this numerical is usually lost.",
         "common_mistakes": [
           "Dividing 60 by 6.9 and forgetting the 10⁻³, which gives 8.7 instead of 8700.",
-          "Taking the root of the tension and the density separately."
+          "Trying to root 8.70 and 10³ separately. The power of ten is odd, so write 8.70 × 10³ as 8700 before taking the root."
         ],
         "recall": {
           "credit": "say_it",

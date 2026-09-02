@@ -77,7 +77,7 @@
           "In water the two interconvert, which is",
           "called mutarotation."
         ],
-        "why": "Glucose is the standard example because both anomers can be crystallised separately and both are stable enough to measure. Mutarotation is the direct consequence: in solution the ring opens and closes, so a pure anomer changes into the equilibrium mixture and its optical rotation drifts to a fixed value.",
+        "why": "Glucose is the standard example because both anomers can be crystallised separately and both are stable enough to measure. That side rule is written for the Fischer projection, where the C₁ –OH of the α form sits on the same side as the C₅ oxygen that closed the ring. In the Haworth ring, which is what a student draws, the rule reads: the –OH at C₁ points to the opposite side of the ring from the –CH₂OH group in the α form, and to the same side in the β form. Mutarotation is the direct consequence: in solution the ring opens and closes, so a pure anomer changes into the equilibrium mixture and its optical rotation drifts to a fixed value.",
         "common_mistakes": [
           "Calling α and β glucose enantiomers. Enantiomers are mirror images; anomers differ at one carbon only.",
           "Writing that the two forms cannot interconvert. In water they do, through the open chain form."

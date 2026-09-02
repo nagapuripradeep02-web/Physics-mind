@@ -104,13 +104,13 @@
           "integrated rate law question, and it is the",
           "starting point here."
         ],
-        "why": "The half life is not a separate law; it is one particular value read off the integrated rate equation. Quoting that equation first is therefore the whole of this mark, and it is also what makes the substitution that follows legal.",
+        "why": "The half life is not a separate law; it is one particular value read off the integrated rate equation. Quoting that equation first is therefore the whole of this mark, and it is also what makes the substitution that follows legal. The equation itself comes from integrating dx/dt = k(a − x); here it is quoted, not re-derived, so no marks are lost by not deriving it again.",
         "common_mistakes": [
           "Starting from rate = k[A] instead of the integrated form. The differential form cannot be substituted into directly.",
           "Writing k = log [a/(a − x)] / (2.303 t). In this equation the 2.303 multiplies the logarithm, because log is to base 10."
         ],
         "memory_tip": "2.303 over t, times log of a over what is left.",
-        "margin_note": "Quote the integrated equation before substituting. Half of this mark is the equation itself."
+        "margin_note": "Quote the integrated equation before substituting. This whole mark is for having it on the page."
       },
       {
         "id": "s3_first_order_half_life",

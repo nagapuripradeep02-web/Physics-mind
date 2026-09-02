@@ -53,6 +53,10 @@
         "marks": 1,
         "mark_note": "Gas phase",
         "lines": [
+          "The three amines are methylamine CH₃NH₂,",
+          "dimethylamine (CH₃)₂NH, also called",
+          "N-methylmethanamine, and trimethylamine",
+          "(CH₃)₃N, N,N-dimethylmethanamine.",
           "In the gas phase there is no solvent, so",
           "only the inductive effect operates.",
           "Each methyl group releases electron density",
@@ -81,10 +85,10 @@
         "lines": [
           "In water the strength of a base is measured",
           "by how stable its protonated cation is.",
-          "The cation R₃NH⁺ is stabilised by hydrogen",
-          "bonds to water, and the number of hydrogen",
-          "bonds it can form equals the number of N–H",
-          "hydrogens it has.",
+          "The protonated cation is stabilised by",
+          "hydrogen bonds to water, and the number of",
+          "hydrogen bonds it can form equals the",
+          "number of N–H hydrogens it has.",
           "NH₄⁺ has four, the 1° cation three, the 2°",
           "cation two, the 3° cation one.",
           "On this count alone the order is",
@@ -117,7 +121,7 @@
         ],
         "why": "The inductive effect makes the lone pair richer in electrons, but a proton cannot use it if the approach to the nitrogen is blocked. Bulky groups block that approach, so with the third alkyl group the fall from hindrance and reduced solvation is larger than the rise from induction.",
         "common_mistakes": [
-          "Treating steric hindrance and solvation as the same effect. They are separate, and the book's own answer numbers them separately.",
+          "Treating steric hindrance and solvation as the same effect. They are separate: solvation is about hydrogen bonds holding the cation, while steric hindrance is about the approach to the lone pair being blocked. Both run against the inductive effect, which is why they are easily confused.",
           "Saying steric hindrance changes the electron density on nitrogen. It changes how easily the lone pair is reached, not how rich it is."
         ],
         "memory_tip": "Three effects in all: induction one way, solvation and steric hindrance the other way.",
@@ -154,5 +158,5 @@
       }
     ]
   },
-  "insider_note": "The question asks for a change between two conditions, so both orders must be on the page — the gas phase order first, then the aqueous one. Three effects are named, not four: induction, solvation of the cation, and steric hindrance. The book's own answer numbers four points and then calls them three."
+  "insider_note": "The question asks for a change between two conditions, so both orders must be on the page — the gas phase order first, then the aqueous one. Three effects are named, not four: induction, solvation of the cation, and steric hindrance."
 }

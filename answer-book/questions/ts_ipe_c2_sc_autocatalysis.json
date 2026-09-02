@@ -82,7 +82,7 @@
         "why": "The example has to show the catalyst appearing on the product side of the equation. In the decomposition of arsine, arsenic is written as a product and is also the catalyst, so one equation carries the whole idea.",
         "common_mistakes": [
           "Writing an example where a catalyst is added from outside, such as MnO₂ in the decomposition of KClO₃. That is ordinary catalysis.",
-          "Leaving out the arrow that shows hydrogen escaping as a gas. The book prints it and it costs nothing to write."
+          "Writing the equation unbalanced, as AsH₃ → As + H₂. The balanced form is 2AsH₃ → 2As + 3H₂: two arsine molecules give two arsenic atoms and three hydrogen molecules."
         ],
         "memory_tip": "Look for the catalyst on the right side of the equation. In 2AsH₃ → 2As + 3H₂ it is the arsenic.",
         "margin_note": "One equation with the catalysing product named is enough for this mark."

@@ -78,7 +78,7 @@
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark. Dividing 32π/3003 by 2 gives the final answer 16π/3003.",
-        "memory_tip": "The denominator product for m+n=13 has SEVEN descending terms, one more than the six-term products seen earlier in this chapter.",
+        "memory_tip": "The denominator product for m+n=13 has SEVEN descending terms — the longest Walli's-formula product in this chapter.",
         "lines": [
           "2I = π∫₀^π sin⁷x cos⁶x dx",
           "= 2π∫₀^(π/2) sin⁷x cos⁶x dx",

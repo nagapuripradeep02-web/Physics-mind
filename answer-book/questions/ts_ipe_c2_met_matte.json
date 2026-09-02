@@ -48,11 +48,11 @@
           "Matte is the molten mixture obtained when",
           "the roasted copper ore is smelted with",
           "coke and silica in a blast furnace.",
-          "The iron in the charge is slagged off as",
-          "FeSiO₃, and the copper stays behind in",
-          "the matte layer below the slag."
+          "Most of the iron in the charge is slagged",
+          "off as FeSiO₃, and the copper stays behind",
+          "in the matte layer below the slag."
         ],
-        "why": "Matte is named by the stage it comes from and by its position: the slag floats on top and the matte is the heavier layer under it. Defining it as the product of smelting, and not of roasting or of bessemerisation, is what separates it from blister copper.",
+        "why": "Matte is named by the stage it comes from and by its position: the slag floats on top and the matte is the heavier layer under it. Defining it as the product of smelting, and not of roasting or of bessemerisation, is what separates it from blister copper. The iron that leaves as slag here is the FeO made during roasting; the FeS that survives roasting stays in the matte and is burnt off in the next stage, in the converter.",
         "common_mistakes": [
           "Calling matte pure copper. It is a sulphide mixture and still has to go through the Bessemer converter.",
           "Saying matte is obtained after bessemerisation. That product is blister copper; matte comes out of the smelting furnace."
@@ -86,5 +86,5 @@
       }
     ]
   },
-  "insider_note": "Matte, blister copper and pure copper are three different stages and each has its own composition. This question asks for the middle one."
+  "insider_note": "Matte, blister copper and pure copper are three stages in that order, and each has its own composition. This question asks for the first one, the product of smelting — not blister copper, which comes out of the converter."
 }

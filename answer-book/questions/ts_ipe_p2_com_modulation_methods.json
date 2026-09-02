@@ -61,7 +61,7 @@
             "style": "indent"
           }
         ],
-        "margin_note": "Second abbreviation FM, third PM — the book misprints the third as FM.",
+        "margin_note": "First mark. All three names with their abbreviations AM, FM and PM — the book misprints the third abbreviation as FM.",
         "why": "A carrier wave has exactly three properties that can be varied — amplitude, frequency and phase — so there are exactly three basic methods, one per property. The book prints 'iii) phase modulation (FM)': a misprint. The abbreviation for phase modulation is PM; FM is frequency modulation.",
         "common_mistakes": [
           "Copying the book's '(FM)' for phase modulation. Phase modulation is PM.",

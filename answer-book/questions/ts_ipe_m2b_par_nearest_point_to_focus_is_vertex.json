@@ -19,11 +19,11 @@
   "appearances": [],
   "mark_split": [
     {
-      "label": "Write the focal distance as a function of x₁",
+      "label": "Write the focal distance and show it is smallest at x₁ = 0",
       "marks": 1
     },
     {
-      "label": "Minimise it and identify the point",
+      "label": "Identify the nearest point as the vertex",
       "marks": 1
     }
   ],
@@ -41,7 +41,7 @@
       {
         "id": "s1_setup",
         "kind": "equation",
-        "label": "Write the focal distance as a function of x₁",
+        "label": "Write the focal distance and show it is smallest at x₁ = 0",
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark, for the focal distance formula and the reasoning that x₁ = 0 gives the minimum.",
@@ -66,7 +66,7 @@
       {
         "id": "s2_final",
         "kind": "boxed_final",
-        "label": "Identify the nearest point",
+        "label": "Identify the nearest point as the vertex",
         "marks": 1,
         "mark_note": "Solution",
         "margin_note": "Second mark, for identifying the minimising point as the vertex itself.",

@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 2+2+2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.75, LAQ 4): the printed answer defines a catalyst as \"a substance which increase the speed of reaction without involving in the reaction\". That is wrong. A catalyst DOES take part: it forms an intermediate with a reactant and is released again when the products form. What is true is that it is not CONSUMED, and that it is recovered chemically unchanged at the end. NCERT's wording, a substance that alters the rate of a reaction without itself undergoing any permanent chemical change, is used on this card. BOOK GAP on the same answer: the printed answer stops after \"decrease the activation energy hence increases the rate\". It never says that a catalyst does NOT change ΔH, that it lowers the forward and reverse activation energies by the SAME amount, and that it therefore leaves the equilibrium constant and the equilibrium yield unchanged and only shortens the time taken to reach equilibrium. Those are added, because they are the half of this topic a board question most often depends on. FIGURE SCOPE: the question says \"with diagram\", not \"draw a neat labelled diagram\", so the diagram step carries NO marks and the whole 2+2+2+2 split sits on the four written steps."
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 2+2+2+2 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK ERROR (book p.75, LAQ 4): the printed answer defines a catalyst as \"a substance which increase the speed of reaction without involving in the reaction\". That is wrong. A catalyst DOES take part: it forms an intermediate with a reactant and is released again when the products form. What is true is that it is not CONSUMED, and that it is recovered chemically unchanged at the end. NCERT's wording, a substance that alters the rate of a reaction without itself undergoing any permanent chemical change, is used on this card. BOOK GAP on the same answer: the printed answer stops after \"decrease the activation energy hence increases the rate\". It never says that a catalyst does NOT change ΔH, that it lowers the forward and reverse activation energies by the SAME amount, and that it therefore leaves the equilibrium constant and the equilibrium yield unchanged and only shortens the time taken to reach equilibrium. Those are added, because they are the half of this topic a board question most often depends on. FIGURE SCOPE — UNSETTLED, A TEACHER MUST RULE: the question DOES ask for a diagram (\"with diagram\"). This card nevertheless carries 0 marks on the diagram step and places the whole 2+2+2+2 split on the four written steps, on the reading that this board reserves diagram marks for a question that says \"draw a neat labelled diagram\". That reading is a CLAIM about the marking scheme, not the board's, and it is the same claim made on ts_ipe_c2_ck_activation_energy; a Telangana IPE teacher must settle whether the energy profile itself carries a mark. Until then the card must not tell a student the question does not ask for a diagram, because it does — the earlier margin note said exactly that and has been rewritten."
   },
   "answer": {
     "page_header": [
@@ -232,7 +232,7 @@
               "type": "label",
               "id": "cat_lbl_axis_y",
               "x": 16,
-              "y": 18,
+              "y": 19,
               "text": "Potential energy",
               "ms": 450,
               "sm": true
@@ -250,7 +250,7 @@
               "type": "label",
               "id": "cat_lbl_reactants",
               "x": 100,
-              "y": 115,
+              "y": 145,
               "text": "Reactants",
               "ms": 450,
               "sm": true
@@ -276,8 +276,8 @@
             {
               "type": "label",
               "id": "cat_lbl_ea_with",
-              "x": 350,
-              "y": 108,
+              "x": 296,
+              "y": 110,
               "text": "Eₐ with catalyst",
               "ms": 450,
               "sm": true
@@ -290,7 +290,7 @@
           "Marking only one activation energy arrow. Two arrows to two different peaks are what show the effect."
         ],
         "memory_tip": "Two peaks, one start, one finish. The dashed peak is the catalysed path.",
-        "margin_note": "The question does not say draw, so this earns no marks. All eight sit on the four written steps; sketch it only after they are written."
+        "margin_note": "The question does ask for a diagram, so draw this one. On this card all eight marks are placed on the four written steps, so write those first and sketch afterwards."
       }
     ]
   },

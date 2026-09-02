@@ -82,7 +82,7 @@
         "why": "The power is impossible to handle until the base is a single simple number. (1 + i)² = 1 + 2i − 1 = 2i is the step that reduces the whole base to i.",
         "common_mistakes": [
           "Writing (1 + i)² as 1 + i² = 0.",
-          "Multiplying by 1 − i and getting (1 − i)²/2 = −i, the wrong base."
+          "Turning the fraction upside down as (1 − i)/(1 + i) and then rationalising it correctly: that gives (1 − i)²/2 = −i, the wrong base. (Multiplying the given fraction above and below by 1 − i instead of 1 + i is not a mistake — it gives 2/(−2i) = i, the same base, by a longer route.)"
         ]
       },
       {

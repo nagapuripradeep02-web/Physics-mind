@@ -54,7 +54,7 @@
         "mark_note": "Doping",
         "lines": [
           "A semiconductor is a solid whose electrical",
-          "conductance lies between that of a conductor",
+          "conductivity lies between that of a conductor",
           "and that of an insulator.",
           "Pure silicon and germanium are intrinsic",
           "semiconductors, and their conductivity is too",
@@ -64,7 +64,7 @@
           "This process is called doping, and the",
           "product is an extrinsic semiconductor."
         ],
-        "why": "Doping is the step that creates both of the types the question asks about, so it has to come first. A pure crystal has every valence electron locked in a bond; the impurity is what supplies either a spare electron or a missing one.",
+        "why": "Doping is the step that creates both of the types the question asks about, so it has to come first. A pure crystal has every valence electron locked in a bond; the impurity is what supplies either a spare electron or a hole.",
         "common_mistakes": [
           "Writing that doping adds a large amount of impurity. Only a very small measured amount is added.",
           "Calling pure silicon an extrinsic semiconductor. Pure silicon is intrinsic; doping it makes it extrinsic."

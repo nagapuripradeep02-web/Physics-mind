@@ -156,7 +156,7 @@
           "Leaving out the units. S cm² mol⁻¹ has to be written on the final line.",
           "Reporting the value as the conductivity of acetic acid. It is the LIMITING MOLAR conductivity, at infinite dilution."
         ],
-        "memory_tip": "The answer is bigger than any of the three given values, because H⁺ carries current faster than Na⁺.",
+        "memory_tip": "The answer is much bigger than Λ°m(NaAc) = 91.0, because H⁺ carries current far faster than Na⁺, but it stays below Λ°m(HCl) = 425.9, because Ac⁻ is slower than Cl⁻.",
         "margin_note": "Box the answer with its units. Units alone are worth part of this mark in most schemes."
       }
     ]

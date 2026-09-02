@@ -50,8 +50,9 @@
           "They split the five d orbitals into a",
           "lower t2g set and a higher eg set.",
           "This is crystal field splitting.",
-          "Cu²⁺ is 3d⁹, so one unpaired d electron",
-          "can move from t2g to eg.",
+          "Cu²⁺ is 3d⁹, so the eg set has one",
+          "vacancy. An electron from the lower t2g",
+          "set moves up into it: a d-d transition.",
           "The salt absorbs orange-red light and",
           "transmits blue, so it looks blue."
         ],
@@ -93,5 +94,5 @@
       }
     ]
   },
-  "insider_note": "This is a two-part comparison, so answer it in two halves. Half a mark is regularly lost by explaining the blue salt in full and then writing only \"no water, so colourless\" for the other half."
+  "insider_note": "This is a two-part comparison, so answer it in two halves. The second half carries a full mark, and it is regularly lost by explaining the blue salt in full and then writing only \"no water, so colourless\" — that mark is for the reason, not for the observation."
 }

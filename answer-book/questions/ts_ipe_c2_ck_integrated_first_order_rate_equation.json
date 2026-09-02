@@ -139,7 +139,7 @@
           "Writing ln(a − x) = kt + C without the minus sign. The derivative of (a − x) with respect to x is −1.",
           "Writing log to base 10 at this stage. The integral gives the natural logarithm; the change to base 10 happens only at the last step."
         ],
-        "memory_tip": "The bracket shrinks as x grows, so the integral picks up a minus sign.",
+        "memory_tip": "The value of (a − x) falls as x rises, so ∫ dx/(a − x) = −ln (a − x), with a minus sign.",
         "margin_note": "Two marks: the integrated form and the minus sign. Number this line (1); the next step refers back to it."
       },
       {

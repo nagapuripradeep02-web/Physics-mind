@@ -87,10 +87,11 @@
           "Unpaired d electrons make an ion",
           "paramagnetic; μ = √(n(n+2)) BM, so Mn²⁺",
           "with five gives 5.92 BM.",
-          "Sc³⁺ (3d⁰) and Zn²⁺ (3d¹⁰) are the two",
-          "exceptions: colourless and diamagnetic."
+          "Sc³⁺ (3d⁰), Ti⁴⁺, Cu⁺ and Zn²⁺ (3d¹⁰)",
+          "are the exceptions: an empty or a full d",
+          "subshell is colourless and diamagnetic."
         ],
-        "why": "Colour and magnetism are the same fact read two ways: both need unpaired electrons in a partly filled d subshell. That is why the exceptions are the same pair of ions in both lists — Sc³⁺ with an empty d set and Zn²⁺ with a full one are colourless AND diamagnetic, while every ion between them in the series is coloured AND paramagnetic.",
+        "why": "Colour and magnetism are the same fact read two ways: both need unpaired electrons in a partly filled d subshell. That is why the exceptions are the same ions in both lists — an empty d set (Sc³⁺, Ti⁴⁺) or a full one (Cu⁺, Zn²⁺) is colourless AND diamagnetic, while every ion with a partly filled d subshell is coloured AND paramagnetic.",
         "common_mistakes": [
           "Saying all transition metal ions are coloured. Sc³⁺, Ti⁴⁺, Cu⁺ and Zn²⁺ are colourless.",
           "Using the total number of d electrons in μ = √(n(n+2)). Here n is the number of UNPAIRED electrons."
@@ -134,7 +135,8 @@
           "6. Alloy formation.",
           "Their atomic radii are similar, so one",
           "metal replaces another in the lattice.",
-          "Examples: brass, bronze, steel.",
+          "Examples: brass, bronze, and the alloy",
+          "steels: iron with Cr, Ni or Mn.",
           {
             "text": "7. Interstitial compounds",
             "style": "boxed"
@@ -143,7 +145,7 @@
           "spaces in the metal lattice, giving hard,",
           "high-melting solids such as TiC and TiN."
         ],
-        "why": "Alloy formation works because the atoms across a transition series differ in radius by only a few picometres, so one metal atom can occupy another's position in the lattice without distorting it. An interstitial compound is different: the small atom does not replace anything, it occupies a space between the metal atoms, and the result is far harder and higher melting than the metal itself, which is why TiC is used as a cutting-tool material.",
+        "why": "Alloy formation works because the atoms across a transition series differ in radius by only a few picometres, so one metal atom can occupy another's position in the lattice without distorting it. An interstitial compound is different: the small atom does not replace anything, it occupies a space between the metal atoms, and the result is far harder and higher melting than the metal itself, which is why TiC is used as a cutting-tool material. Plain carbon steel belongs to that second kind, because its carbon sits in the spaces; the alloy steels listed here are the ones in which a metal atom takes an iron position.",
         "common_mistakes": [
           "Confusing an alloy with an interstitial compound. In an alloy one metal atom replaces another; in an interstitial compound a small atom occupies a space.",
           "Giving every interstitial compound a whole-number formula. Many are non-stoichiometric, such as TiH₁.₇ and VH₀.₅₆."

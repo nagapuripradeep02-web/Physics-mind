@@ -63,9 +63,9 @@
         "why": "An acid and ammonia react as an acid and a base, so the salt ammonium benzoate is what forms in the cold. Heating that salt removes one molecule of water and leaves the amide. The heat is therefore a required condition, not an optional one: it is the step that makes the amide.",
         "common_mistakes": [
           "Writing benzoic acid straight to benzamide with NH₃ alone. The salt forms first and must be heated.",
-          "Leaving out the water on the right of the second equation. The amide is one water molecule lighter than the salt."
+          "Writing the ammonium salt as C₆H₅COONH₂ or C₆H₅CONH₄. Ammonium benzoate is C₆H₅COONH₄, and heating it gives the amide and water."
         ],
-        "memory_tip": "Acid plus ammonia gives the ammonium salt; heat takes out water and leaves the amide.",
+        "memory_tip": "Without heat the answer stops at ammonium benzoate. The Δ is what turns the salt into the amide.",
         "margin_note": "Write both equations. The Δ over the second arrow is what the examiner looks for."
       },
       {

@@ -68,7 +68,7 @@
           "Applying roasting to carbonate ores. Carbonates are calcined; sulphides are roasted."
         ],
         "memory_tip": "Roasting has air in it, and sulphide ores are roasted.",
-        "margin_note": "The phrase \"in the presence of air\" has to appear. Without it the definition matches calcination instead."
+        "margin_note": "The words \"in a regular supply of air\" have to appear. Without air in the definition it matches calcination instead."
       },
       {
         "id": "s2_roasting_examples",
@@ -158,5 +158,5 @@
       }
     ]
   },
-  "insider_note": "The examiner reads for one phrase in each definition: \"presence of air\" for roasting and \"absence of air\" for calcination. Everything else in this answer supports those two phrases."
+  "insider_note": "The examiner reads for one phrase in each definition: \"in a regular supply of air\" for roasting and \"in the absence of air\" for calcination. Everything else in this answer supports those two phrases."
 }

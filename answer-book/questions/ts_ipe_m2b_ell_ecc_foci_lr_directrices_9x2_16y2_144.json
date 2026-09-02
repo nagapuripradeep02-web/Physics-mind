@@ -172,7 +172,7 @@
         "why": "Each directrix is the vertical line x = a/e or x = −a/e for a horizontal ellipse — the reciprocal relation of the focus formula x = ±ae.",
         "common_mistakes": [
           "Confusing the directrix formula x = a/e with the focus formula x = ae.",
-          "Writing both directrices as one line with a single ± sign in front of 16, which does not correctly pair a sign with each line."
+          "Dividing 4 by the fraction √7/4 without turning that fraction upside down, which gives 1/√7 instead of the correct 4 × 4/√7 = 16/√7."
         ]
       }
     ]

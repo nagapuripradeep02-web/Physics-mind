@@ -76,7 +76,7 @@
           "C2 carries –CH₃",
           "C4 carries –CH(CH₃)–CH₂–CH₃",
           {
-            "text": "C₆H₃(Br)(CH₃)(C₄H₉)",
+            "text": "C₆H₃(Br)(CH₃)–CH(CH₃)–CH₂–CH₃",
             "style": "boxed"
           },
           "Molecular formula: C₁₁H₁₅Br"
@@ -91,5 +91,5 @@
       }
     ]
   },
-  "insider_note": "One mark for each structure. The sec-butyl group is where this mark is usually lost: it is joined to the ring through its middle carbon, –CH(CH₃)–CH₂–CH₃, not through an end carbon."
+  "insider_note": "One mark for each structure. The sec-butyl group is where this mark is usually lost: it is joined to the ring through its second carbon, –CH(CH₃)–CH₂–CH₃, not through an end carbon."
 }

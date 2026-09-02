@@ -59,7 +59,7 @@
           "easily, so the detergent does not stay in",
           "the water after it has been used."
         ],
-        "why": "The whole answer turns on the shape of the hydrocarbon chain, so the definition has to name it. Straight chain plus broken down by micro-organisms is the pair of facts that earns this mark; either one alone is half of it.",
+        "why": "The whole answer depends on the shape of the hydrocarbon chain, so the definition has to name it. Straight chain plus broken down by micro-organisms is the pair of facts that earns this mark; either one alone is half of it.",
         "common_mistakes": [
           "Writing that a biodegradable detergent dissolves in water. Every detergent dissolves; this one is broken down by micro-organisms.",
           "Leaving out the words straight chain. The chain shape is the whole basis of the classification."
@@ -131,7 +131,7 @@
           },
           "because they collect in rivers and ponds."
         ],
-        "why": "The name itself carries the answer: tetramethyloctyl means an eight carbon chain with four methyl branches on it, and those branches are the reason the chain is not broken down. Writing that line beside the name shows the examiner that the name was understood and not copied.",
+        "why": "The name itself states the structure: tetramethyloctyl means an eight carbon chain with four methyl branches on it, and those branches are the reason the chain is not broken down. Writing that line beside the name shows the examiner that the name was understood and not copied.",
         "common_mistakes": [
           "Writing the example with no pollution statement. The book's own note makes the pollution point part of this answer.",
           "Writing tetramethyl octane. The group is tetramethyloctyl, and it is attached to a benzenesulphonate."
@@ -141,5 +141,5 @@
       }
     ]
   },
-  "insider_note": "Answer this as four short blocks, a definition and an example for each type. The word branched is what the examiner marks, so it must appear once in each definition."
+  "insider_note": "Answer this as four short blocks, a definition and an example for each type. The chain shape word is what the examiner marks, so each definition must carry it: straight for the biodegradable one, branched for the non-biodegradable one."
 }

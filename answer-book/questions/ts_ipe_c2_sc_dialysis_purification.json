@@ -163,25 +163,25 @@
             {
               "type": "stroke",
               "id": "dl_leader_colloid",
-              "d": "M 294 196 L 270 185",
-              "ms": 380,
+              "d": "M 302 92 L 272 120",
+              "ms": 590,
               "pen": "pencil",
               "wipe": "x"
             },
             {
               "type": "label",
               "id": "dl_lbl_membrane",
-              "x": 40,
+              "x": 88,
               "y": 40,
-              "text": "semi-permeable membrane bag",
+              "text": "dialysing membrane bag",
               "ms": 450,
               "sm": true
             },
             {
               "type": "label",
               "id": "dl_lbl_colloid",
-              "x": 300,
-              "y": 200,
+              "x": 306,
+              "y": 88,
               "text": "colloidal solution",
               "ms": 450,
               "sm": true

@@ -130,7 +130,7 @@
         "why": "The branch r = 0 is not wrong, but it names one term twice; the question asks for the r that makes two DIFFERENT terms equal.",
         "common_mistakes": [
           "Stopping at r = 0.",
-          "Adding the indices as 5r + 6 = 21 and getting r = 3, then writing 5r = 21."
+          "Writing 5r = 21 instead of 5r = 15, forgetting to subtract the 6 from both sides, which gives the non-integer r = 21/5."
         ]
       }
     ]

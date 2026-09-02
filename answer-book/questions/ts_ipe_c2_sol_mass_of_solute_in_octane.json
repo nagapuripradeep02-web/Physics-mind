@@ -54,9 +54,9 @@
         "mark_note": "Data",
         "lines": [
           "Let the vapour pressure of pure octane be",
-          "p⁰ = 100 mm.",
+          "p⁰ = 100 mm Hg.",
           "The vapour pressure is reduced to 80%, so",
-          "pₛ = 80 mm.",
+          "pₛ = 80 mm Hg.",
           "Solute: M₂ = 40 g mol⁻¹, w₂ = ?",
           "Solvent, octane C₈H₁₈: w₁ = 114 g and",
           "M₁ = 114 g mol⁻¹"
@@ -67,7 +67,7 @@
           "Looking up a real vapour pressure for octane. None is needed; only the ratio pₛ/p⁰ enters the working."
         ],
         "memory_tip": "Take p⁰ = 100 and the percentage becomes the value of pₛ directly.",
-        "margin_note": "Write the assumed p⁰ = 100 mm on its own line. Without it the substitution step has no numbers to use."
+        "margin_note": "Write the assumed p⁰ = 100 mm Hg on its own line. Without it the substitution step has no numbers to use."
       },
       {
         "id": "s2_relation",
@@ -145,7 +145,7 @@
           "So 8 g of the solute must be dissolved in",
           "114 g of octane."
         ],
-        "why": "0.2 is the mole fraction of the solute, and multiplying by the molar mass 40 g mol⁻¹ turns 0.2 mol into a mass. The answer is small because the solvent here is only one mole, so a fifth of a mole of solute is already enough to pull the vapour pressure down by a fifth.",
+        "why": "Under the dilute relation 0.2 is the number of MOLES of solute, because the 114 g of octane is exactly 1 mol, so multiplying 0.2 mol by the molar mass 40 g mol⁻¹ gives the mass. Kept exactly, a relative lowering of 0.2 would mean x₂ = 0.2, which needs 0.25 mol and 10 g; the relation step says why the printed answer uses the approximate form.",
         "common_mistakes": [
           "Dividing instead of multiplying. From 0.2 = w₂/40 the mass is 0.2 × 40, not 40/0.2.",
           "Writing the answer with no unit. The answer is a mass, so it is 8 g."
@@ -155,5 +155,5 @@
       }
     ]
   },
-  "insider_note": "Everything turns on reading \"reduce its vapour pressure to 80%\" as pₛ = 0.8p⁰, and on noticing that the 114 g of octane and its 114 g mol⁻¹ molar mass cancel. After that the answer is one multiplication."
+  "insider_note": "Everything depends on reading \"reduce its vapour pressure to 80%\" as pₛ = 0.8p⁰, and on noticing that the 114 g of octane and its 114 g mol⁻¹ molar mass cancel. After that the answer is one multiplication."
 }

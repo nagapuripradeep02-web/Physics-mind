@@ -136,7 +136,7 @@
           "Writing K₃[Fe(CN)₆] for the iron(II) complex. Iron(II) with six CN⁻ gives a 4− ion, so four potassium ions are needed."
         ],
         "memory_tip": "Set the metal's oxidation number from the Roman numeral, add the ligand charges, and the rest is balancing.",
-        "margin_note": "Square brackets around the complex ion and the charge written outside. Both are marked."
+        "margin_note": "Square brackets around the complex ion, with the charge or the counter ions written outside. Both are marked."
       },
       {
         "id": "s3_group_two",
@@ -262,5 +262,5 @@
       }
     ]
   },
-  "insider_note": "Eleven formulae for four marks is roughly three formulae per mark, so one wrong bracket rarely costs a whole mark but a missing charge does. Write square brackets and the charge on every one."
+  "insider_note": "Eleven formulae for four marks is roughly three formulae per mark, so one wrong bracket rarely costs a whole mark but a missing charge does. Write square brackets round every coordination sphere, and write a charge only where the name says ion — numbers 1, 9 and 10. The other eight are neutral compounds and carry no charge."
 }

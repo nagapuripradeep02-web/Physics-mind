@@ -427,7 +427,7 @@
             }
           ]
         },
-        "margin_note": "The upper levels only: Paschen comes down to n = 3, Brackett to n = 4. Pfund comes down to n = 5.",
+        "margin_note": "The upper levels only: the figure draws two arrows, Paschen down to n = 3 and Brackett down to n = 4. Pfund is written out in the next step.",
         "why": "The upper levels sit close together, so the drops between them are small, the photon energies are low and every one of these series lies in the infrared.",
         "common_mistakes": [
           "Drawing these arrows down to n = 1. Each infrared series has its own final orbit."

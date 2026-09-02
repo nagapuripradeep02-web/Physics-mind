@@ -102,14 +102,16 @@
           "3. They work under mild conditions: a",
           "moderate temperature near 300 K and a",
           "moderate pH of about 6 to 8.",
-          "Outside this range the enzyme is denatured."
+          "Above this temperature, or far from this pH,",
+          "the enzyme is denatured and stops working.",
+          "In the cold it is only slowed."
         ],
-        "why": "Efficiency and mild conditions go together and are the pair that makes enzymes useful: an industrial catalyst may need high temperature and pressure, while an enzyme does more at body temperature. Naming the range also explains why a fever or a strong acid stops an enzyme working, because it denatures the protein.",
+        "why": "Efficiency and mild conditions go together and are the pair that makes enzymes useful: an industrial catalyst may need high temperature and pressure, while an enzyme does the same work near room and body temperature. Naming the range also explains why a fever or a strong acid stops an enzyme working, because it denatures the protein. Cold is different: it slows an enzyme without denaturing it, and the activity returns on warming.",
         "common_mistakes": [
           "Writing that enzymes work faster at high temperature. Above the moderate range the enzyme is denatured and stops.",
           "Giving a pH of 1 or 14. The working range is about 6 to 8 for most enzymes."
         ],
-        "memory_tip": "Body conditions: about 300 K and a pH near neutral.",
+        "memory_tip": "Mild conditions: about 300 K, near room and body temperature (298 to 310 K), and a pH near neutral.",
         "margin_note": "The two numbers, 300 K and pH 6 to 8, are the marked part of this step."
       },
       {
@@ -120,7 +122,7 @@
         "mark_note": "Control and amount",
         "lines": [
           {
-            "text": "Specific · efficient · mild conditions",
+            "text": "Specific, efficient, mild, controlled, trace",
             "style": "boxed"
           },
           "4. Their action can be controlled or",
@@ -130,7 +132,7 @@
           "needed, because it is not used up in the",
           "reaction."
         ],
-        "why": "Control and small quantity are both consequences of the enzyme being a catalyst rather than a reactant. Because it is recovered unchanged, a trace of it turns over a great deal of substrate; and because its action depends on its shape, a substance that alters that shape can switch it off.",
+        "why": "Control and small quantity are both consequences of the enzyme being a catalyst rather than a reactant. Because it is recovered unchanged, a trace of it can convert a great deal of substrate; and because its action depends on its shape, a substance that alters that shape can stop it working.",
         "common_mistakes": [
           "Writing that a large quantity of enzyme is needed. A very small amount is enough, because it is not consumed.",
           "Writing that an enzyme's action cannot be stopped. Inhibitors control and can stop it."

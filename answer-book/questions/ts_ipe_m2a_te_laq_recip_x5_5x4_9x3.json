@@ -328,7 +328,7 @@
         "common_mistakes": [
           "Forgetting to multiply through by x, so the equation in x is never formed.",
           "A slip inside the square root: 1 − 4 = −3, so the root is i√3, not √3.",
-          "Not simplifying the surd form of the roots at the end."
+          "Dropping this pair because the discriminant is negative — the equation has five roots, and the complex pair (1 ± i√3)/2 belongs in the final answer."
         ]
       },
       {

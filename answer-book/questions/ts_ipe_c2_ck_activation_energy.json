@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed definition and the printed relation Eₐ = threshold energy − average energy of the normal molecules are CORRECT and are kept. FIGURE SCOPE: the question says \"with a suitable diagram\", not \"draw a neat labelled diagram\", so both diagram steps carry NO marks and the whole 1+1 split sits on the two written steps. Two profiles are drawn because the printed answer prints two, endothermic and exothermic, and because the reverse activation energy Eₐ' = ET − EP can only be read off the exothermic one. NOTATION: capital-letter subscripts have no Unicode form, so the threshold, reactant and product energies are written as the plain symbols ET, ER and EP, each defined in words on the card; the activation energy keeps the subscript form Eₐ."
+    "note": "Unit 4 (Chemical Kinetics) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.73-76, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. The printed definition and the printed relation Eₐ = threshold energy − average energy of the normal molecules are CORRECT and are kept. FIGURE SCOPE — UNSETTLED, A TEACHER MUST RULE: the question DOES ask for a diagram (\"with a suitable diagram\"). This card nevertheless carries 0 marks on both diagram steps and places the whole 1+1 split on the two written steps, on the reading that this board reserves diagram marks for a question that says \"draw a neat labelled diagram\". That reading is a CLAIM about the marking scheme, not the board's, and it is the same claim made on ts_ipe_c2_ck_catalyst_effect_on_rate; a Telangana IPE teacher must settle whether the energy profile itself carries a mark. Until then the card must not tell a student the question does not ask for a diagram, because it does — the earlier insider note and both diagram margin notes said exactly that and have been rewritten. Two profiles are drawn because the printed answer prints two, endothermic and exothermic, and because the reverse activation energy Eₐ' = ET − EP can only be read off the exothermic one. NOTATION: capital-letter subscripts have no Unicode form, so the threshold, reactant and product energies are written as the plain symbols ET, ER and EP, each defined in words on the card; the activation energy keeps the subscript form Eₐ."
   },
   "answer": {
     "page_header": [
@@ -52,7 +52,7 @@
           "Only molecules that reach the threshold",
           "energy can form products."
         ],
-        "why": "Molecules at room temperature already carry energy; the activation energy is not the total energy needed but the difference between what they have on average and what they must have. That is why it is written as a difference and why raising the temperature, which raises the average, increases the rate.",
+        "why": "Molecules at room temperature already carry energy; the activation energy is not the total energy needed but the difference between what they have on average and what they must have. That is why it is written as a difference. Eₐ itself is fixed for the reaction, and raising the temperature does not lower it. What a temperature rise changes is the spread of the molecular energies: a larger fraction of the molecules then reaches the threshold, so the rate increases.",
         "common_mistakes": [
           "Calling it the total energy of the reactants. It is the extra energy above their normal average energy.",
           "Saying it is the energy released by the reaction. That is the difference between EP and ER, a separate quantity."
@@ -223,7 +223,7 @@
           "Drawing the products below the reactants. That is the exothermic picture."
         ],
         "memory_tip": "Endothermic: the curve ends higher than it started, and the peak is above both.",
-        "margin_note": "The question does not say draw, so this earns no marks. Both marks sit on the two written steps."
+        "margin_note": "The question does ask for a suitable diagram, so draw this one. On this card both marks are placed on the two written steps, so write those first."
       },
       {
         "id": "s4_exothermic_profile",
@@ -363,9 +363,9 @@
           "Marking only one arrow on this diagram. The exothermic picture is drawn precisely because it shows both Eₐ and Eₐ'."
         ],
         "memory_tip": "Exothermic: the curve ends lower than it started, and the return arrow is the longer one.",
-        "margin_note": "This diagram also earns no marks. Draw it only if the endothermic one is already finished and there is time."
+        "margin_note": "Draw this one after the endothermic profile. It is the one that shows both Eₐ and Eₐ', so it is worth the time."
       }
     ]
   },
-  "insider_note": "Two marks sit entirely on the words, because the question does not say draw. Write Eₐ = ET − ER first, then sketch, so a slow diagram cannot cost the marks."
+  "insider_note": "The question asks for a suitable diagram, so draw one. On this card both marks are placed on the two written steps, so write the definition and Eₐ = ET − ER first and sketch afterwards; a slow diagram then cannot cost the written marks."
 }

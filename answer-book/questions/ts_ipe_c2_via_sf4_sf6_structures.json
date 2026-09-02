@@ -182,7 +182,7 @@
           "d orbitals in its second shell, so OF₆ does",
           "not exist."
         ],
-        "why": "Six bond pairs and no lone pair give the one arrangement in which all six positions are the same, so every bond length and every neighbouring bond angle is identical. The last three lines are the exception that keeps the group statement honest: the ability to reach six bonds comes from empty d orbitals in the valence shell, and oxygen has none, so its covalency stops at two.",
+        "why": "Six bond pairs and no lone pair give the one arrangement in which all six positions are the same, so every bond length and every neighbouring bond angle is identical. The last three lines say where that ability stops: six bonds need empty d orbitals in the valence shell, and oxygen has none, so its covalency stops at two.",
         "common_mistakes": [
           "Writing the bond angle as 109°28' or 120°. In an octahedron every neighbouring pair of bonds is at 90°.",
           "Drawing or describing SF₆ as a flat hexagon. Four fluorine atoms lie in a square plane with one above and one below.",

@@ -23,7 +23,7 @@
       "marks": 1
     },
     {
-      "label": "The equation and symbols",
+      "label": "The equation",
       "marks": 1
     }
   ],
@@ -54,7 +54,7 @@
           "of a gas in a liquid is proportional to the",
           "pressure of the gas above the liquid."
         ],
-        "why": "A gas dissolves because its molecules are pushed into the liquid surface, so raising the pressure of that gas above the liquid raises the amount that dissolves. Measuring the dissolved amount as a mole fraction makes the relation a straight line through the origin, which is why the law can be written with a single constant.",
+        "why": "A gas dissolves because its molecules are pushed into the liquid surface, so raising the pressure of that gas above the liquid raises the amount that dissolves. Experiment shows that in a dilute solution the amount dissolved is proportional to that partial pressure, so a plot of p against the mole fraction x is a straight line through the origin and one constant, KH, describes the whole line.",
         "common_mistakes": [
           "Writing that the solubility depends on the TOTAL pressure. It is the partial pressure of that one gas that counts.",
           "Leaving out \"at a given temperature\". Solubility of a gas falls as the temperature rises, so the condition is part of the statement."

@@ -132,7 +132,7 @@
             "style": "boxed"
           }
         ],
-        "why": "Rationalising (√2+1)/(√2−1) by multiplying by (√2+1)/(√2+1) turns the denominator into 1, leaving a perfect square inside the log, whose square root cancels the outer 1/2 exactly.",
+        "why": "Rationalising (√2+1)/(√2−1) by multiplying by (√2+1)/(√2+1) turns the denominator into 1, leaving a perfect square inside the log; log(a²) = 2 log(a) turns that square into a factor of 2, which cancels the outer 1/2 exactly.",
         "common_mistakes": [
           "Leaving the answer as log[(√2+1)/(√2−1)] without rationalising.",
           "Forgetting that log(a²) = 2 log(a), which is what removes the /2 from the coefficient."

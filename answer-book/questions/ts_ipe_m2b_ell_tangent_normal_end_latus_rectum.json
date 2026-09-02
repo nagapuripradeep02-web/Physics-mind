@@ -147,26 +147,38 @@
             {
               "type": "stroke",
               "id": "ell_latus_rectum",
-              "d": "M 209 79 L 209 181",
-              "ms": 1460
+              "d": "M 209 78.65 L 209 181.35",
+              "ms": 1470
+            },
+            {
+              "type": "stroke",
+              "id": "ell_dot_s",
+              "d": "M 205.5 130 A 3.5 3.5 0 1 0 212.5 130 A 3.5 3.5 0 1 0 205.5 130",
+              "ms": 310
+            },
+            {
+              "type": "stroke",
+              "id": "ell_dot_l",
+              "d": "M 205.5 78.65 A 3.5 3.5 0 1 0 212.5 78.65 A 3.5 3.5 0 1 0 205.5 78.65",
+              "ms": 310
             },
             {
               "type": "stroke",
               "id": "ell_tangent_line",
-              "d": "M 160 65 L 260 93",
-              "ms": 1480
+              "d": "M 159 45.85 L 259 111.45",
+              "ms": 1710
             },
             {
               "type": "stroke",
               "id": "ell_normal_line",
-              "d": "M 189 150 L 229 8",
-              "ms": 2110
+              "d": "M 175.9 129.1 L 236.6 36.6",
+              "ms": 1570
             },
             {
               "type": "label",
               "id": "ell_lbl_l",
-              "x": 215,
-              "y": 72,
+              "x": 192,
+              "y": 64,
               "text": "L",
               "ms": 400,
               "em": true
@@ -182,8 +194,8 @@
             {
               "type": "label",
               "id": "ell_lbl_tangent",
-              "x": 130,
-              "y": 60,
+              "x": 92,
+              "y": 38,
               "text": "tangent",
               "ms": 400,
               "sm": true
@@ -191,8 +203,8 @@
             {
               "type": "label",
               "id": "ell_lbl_normal",
-              "x": 232,
-              "y": 20,
+              "x": 245,
+              "y": 40,
               "text": "normal",
               "ms": 400,
               "sm": true

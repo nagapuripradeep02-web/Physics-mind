@@ -93,7 +93,7 @@
         "why": "The repeat unit holds one glycine residue and one aminocaproic residue in order, which is what the alternating name states. Writing NH and not NH₂ inside the bracket matters: the second hydrogen left in the water molecule.",
         "common_mistakes": [
           "Writing NH₂ inside the repeating unit. The amide nitrogen keeps only one hydrogen.",
-          "Leaving out the subscript n. Without it the formula is a single molecule, not a polymer."
+          "Leaving out the subscript n when the structure of the polymer is asked for. Without it the formula is a single repeating unit, not a polymer. A question that asks only for the repeating unit does not need n."
         ],
         "memory_tip": "Two amide links per repeat unit, one for each monomer.",
         "margin_note": "The bracketed unit with n outside is the mark. Add the word condensation on the same line if there is room."

@@ -201,7 +201,7 @@
               "type": "label",
               "id": "lbl_y",
               "x": 168,
-              "y": 30,
+              "y": 10,
               "text": "y",
               "ms": 200,
               "sm": true

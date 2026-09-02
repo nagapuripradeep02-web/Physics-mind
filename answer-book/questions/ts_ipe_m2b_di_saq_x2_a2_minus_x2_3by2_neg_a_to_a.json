@@ -121,7 +121,7 @@
         "label": "Apply Walli's formula",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "The last mark. sin²θcos⁴θ has one odd-looking piece (the overall product is even·even = even), so the π/2 factor is present.",
+        "margin_note": "The last mark. Both powers in sin²θcos⁴θ are even (2 and 4), so Walli's formula carries the extra π/2 factor.",
         "memory_tip": "∫₀^(π/2) sin²θcos⁴θ dθ = (1)(3·1)/(6·4·2) · π/2 — both powers 2 and 4 are even, so the extra π/2 factor is included.",
         "lines": [
           "∫₀^(π/2) sin²θcos⁴θ dθ",

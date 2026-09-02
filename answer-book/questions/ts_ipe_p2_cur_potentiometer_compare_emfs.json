@@ -111,8 +111,14 @@
             {
               "type": "stroke",
               "id": "prim_left",
-              "d": "M 40 110 L 40 40 L 140 40",
-              "ms": 2430
+              "d": "M 40 110 L 40 40 L 84 40 M 114 40 L 140 40",
+              "ms": 2000
+            },
+            {
+              "type": "stroke",
+              "id": "key_lever",
+              "d": "M 114 40 L 92 26",
+              "ms": 370
             },
             {
               "type": "stroke",
@@ -137,6 +143,14 @@
               "id": "i_ah",
               "d": "M 282 34 L 272 40 L 282 46",
               "ms": 330
+            },
+            {
+              "type": "label",
+              "id": "lbl_k",
+              "x": 96,
+              "y": 18,
+              "text": "K",
+              "ms": 450
             },
             {
               "type": "label",
@@ -214,6 +228,11 @@
           "height": 240,
           "elements": [
             {
+              "type": "pause",
+              "id": "ph_cells",
+              "caption": "The wire AB and the two cells"
+            },
+            {
               "type": "stroke",
               "id": "wire_ab",
               "d": "M 40 60 L 320 60",
@@ -223,38 +242,49 @@
             {
               "type": "stroke",
               "id": "rail",
-              "d": "M 40 60 L 40 200 L 90 200",
-              "ms": 2710
+              "d": "M 40 60 L 40 200 L 98 200",
+              "ms": 2830
             },
             {
               "type": "stroke",
               "id": "branch1",
-              "d": "M 40 130 L 90 130",
-              "ms": 710
+              "d": "M 40 130 L 98 130",
+              "ms": 830
             },
             {
               "type": "stroke",
               "id": "cell1",
-              "d": "M 90 116 L 120 116 L 120 144 L 90 144 Z",
-              "ms": 1660
+              "d": "M 98 114 L 98 146 M 110 122 L 110 138",
+              "ms": 690
             },
             {
               "type": "stroke",
               "id": "branch1_out",
-              "d": "M 120 130 L 180 130 L 180 165",
-              "ms": 1360
+              "d": "M 110 130 L 132 130 M 158 130 L 180 130 L 180 165",
+              "ms": 1130
             },
             {
               "type": "stroke",
               "id": "cell2",
-              "d": "M 90 186 L 120 186 L 120 214 L 90 214 Z",
-              "ms": 1660
+              "d": "M 98 184 L 98 216 M 110 192 L 110 208",
+              "ms": 690
             },
             {
               "type": "stroke",
               "id": "branch2_out",
-              "d": "M 120 200 L 180 200 L 180 165",
-              "ms": 1360
+              "d": "M 110 200 L 132 200 M 158 200 L 180 200 L 180 165",
+              "ms": 1130
+            },
+            {
+              "type": "stroke",
+              "id": "keys",
+              "d": "M 158 130 L 138 116 M 158 200 L 138 186",
+              "ms": 700
+            },
+            {
+              "type": "pause",
+              "id": "ph_galv",
+              "caption": "Through the galvanometer to the jockey"
             },
             {
               "type": "stroke",
@@ -293,17 +323,33 @@
             {
               "type": "label",
               "id": "lbl_e1",
-              "x": 92,
+              "x": 94,
               "y": 108,
-              "text": "ε₁, K₁",
+              "text": "ε₁",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_k1",
+              "x": 142,
+              "y": 110,
+              "text": "K₁",
               "ms": 450
             },
             {
               "type": "label",
               "id": "lbl_e2",
-              "x": 92,
+              "x": 94,
               "y": 178,
-              "text": "ε₂, K₂",
+              "text": "ε₂",
+              "ms": 450
+            },
+            {
+              "type": "label",
+              "id": "lbl_k2",
+              "x": 142,
+              "y": 180,
+              "text": "K₂",
               "ms": 450
             },
             {

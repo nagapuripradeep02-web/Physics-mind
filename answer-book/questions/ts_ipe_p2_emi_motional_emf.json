@@ -19,7 +19,7 @@
   "appearances": [],
   "mark_split": [
     {
-      "label": "Setup with the figure",
+      "label": "Setup and the symbols",
       "marks": 1
     },
     {
@@ -31,7 +31,7 @@
       "marks": 1
     },
     {
-      "label": "The result ε = Blv",
+      "label": "The result: motional emf",
       "marks": 1
     }
   ],

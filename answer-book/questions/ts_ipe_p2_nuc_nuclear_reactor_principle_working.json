@@ -146,6 +146,12 @@
               "ms": 1870
             },
             {
+              "type": "stroke",
+              "id": "fuel_leader",
+              "d": "M 92 192 L 100 176",
+              "ms": 300
+            },
+            {
               "type": "pause",
               "id": "ph_coolant",
               "caption": "The coolant loop"
@@ -167,6 +173,14 @@
               "id": "coolant_in",
               "d": "M 356 170 L 250 170",
               "ms": 1510,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "coolant_in_ah",
+              "d": "M 258 165 L 250 170 L 258 175",
+              "ms": 300,
               "pen": "pencil",
               "wipe": "x"
             },
@@ -200,8 +214,8 @@
             {
               "type": "label",
               "id": "lbl_fuel",
-              "x": 64,
-              "y": 178,
+              "x": 34,
+              "y": 210,
               "text": "Fuel rods",
               "ms": 450,
               "sm": true
@@ -209,8 +223,8 @@
             {
               "type": "label",
               "id": "lbl_moderator",
-              "x": 150,
-              "y": 178,
+              "x": 104,
+              "y": 183,
               "text": "Moderator",
               "ms": 450,
               "sm": true

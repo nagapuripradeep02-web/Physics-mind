@@ -71,7 +71,7 @@
           "Writing the parametric point as (2at, at²) with the two coordinates swapped.",
           "Using a different letter a for each vertex instead of one shared a with three different parameters t."
         ],
-        "memory_tip": "One shared a, three different t's — (at², 2at) is the address of any point on y² = 4ax."
+        "memory_tip": "One shared a, three different t's — (at², 2at) gives the coordinates of any point on y² = 4ax."
       },
       {
         "id": "s2_area_determinant",
@@ -97,7 +97,7 @@
           "Not spotting the common factor in each column and trying to expand the determinant by brute force instead.",
           "Losing a sign when pulling (t₁−t₂) or (t₁−t₃) out of its column."
         ],
-        "memory_tip": "Each column of this determinant is a difference of squares in disguise — pulling out the common factor from each column is what shrinks it."
+        "memory_tip": "The top row holds differences of squares, t₁²−t₂² = (t₁−t₂)(t₁+t₂), and the bottom row holds the matching plain differences t₁−t₂ — so each column shares a factor that can be pulled out front, and that is what shrinks the determinant."
       },
       {
         "id": "s3_convert_to_y",

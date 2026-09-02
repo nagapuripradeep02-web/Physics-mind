@@ -87,7 +87,7 @@
             "style": "boxed"
           }
         ],
-        "why": "Because cubing raised the highest-order derivative itself to the power 3, that 3 is the degree; the order still counts only how many times the equation was differentiated, which stays at 2.",
+        "why": "Because cubing raised the highest-order derivative itself to the power 3, that 3 is the degree; the order is simply the order of the highest-order derivative present in the equation, d²y/dx², which is 2. Order and degree are read directly off the given equation once fractional powers are cleared, not from any count of how many times something was differentiated.",
         "common_mistakes": [
           "Reading the degree as 5 by copying the exponent that now sits on the right-hand bracket instead of on d²y/dx² itself.",
           "Assuming degree is always 1 just because order-and-degree questions often come out that way."

@@ -66,7 +66,7 @@
         "common_mistakes": [
           "Writing the order the wrong way round. The question asks for INCREASING reactivity, so the hindered ketone comes first.",
           "Giving only the steric reason. Both effects count: the alkyl groups also lower the positive charge on the carbonyl carbon.",
-          "Assuming every aldehyde beats every ketone. Benzaldehyde is an aldehyde yet is much less reactive than acetaldehyde, because the ring supplies electron density to the carbonyl carbon."
+          "Assuming every aldehyde is more reactive than every ketone. Benzaldehyde is an aldehyde yet is much less reactive than acetaldehyde, because the ring supplies electron density to the carbonyl carbon."
         ],
         "memory_tip": "Count the alkyl groups and their size: a bulky group is slowest, two methyl groups next, one methyl group faster, and no alkyl group fastest of all.",
         "margin_note": "One line of order plus one line of reason. Name both effects, steric and electronic, in the same sentence."
@@ -87,6 +87,7 @@
             "text": "< Cl₂CHCOOH",
             "style": "indent"
           },
+          "acetic < monochloro < fluoro < dichloro",
           {
             "text": "pKa  4.76    2.86    2.59   1.29",
             "style": "indent"

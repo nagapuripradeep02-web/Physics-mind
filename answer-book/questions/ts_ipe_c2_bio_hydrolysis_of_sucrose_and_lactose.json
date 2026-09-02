@@ -57,10 +57,10 @@
         "why": "Sucrose is a glucose unit joined to a fructose unit, so hydrolysis of the one glycosidic linkage returns exactly those two. The α and β labels are the configurations the two units hold inside sucrose and are what the printed answer expects.",
         "common_mistakes": [
           "Writing glucose plus glucose for sucrose. That is maltose; sucrose gives glucose and fructose.",
-          "Leaving out the α and β labels. The printed answer key gives α-D-glucose and β-D-fructose."
+          "Giving the two names without the α and β labels. The products themselves are right, but the printed answer key writes α-D-glucose and β-D-fructose, so add the labels."
         ],
         "memory_tip": "Sucrose splits into the two commonest hexoses, glucose and fructose.",
-        "margin_note": "Both products with their α and β labels earn this mark. The equation is a useful extra, not a requirement."
+        "margin_note": "Both products earn this mark, and the α and β labels match the printed key. The equation is a useful extra, not a requirement."
       },
       {
         "id": "s2_lactose",

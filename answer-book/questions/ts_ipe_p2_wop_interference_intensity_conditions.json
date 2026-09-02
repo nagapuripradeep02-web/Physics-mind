@@ -96,7 +96,7 @@
               "type": "label",
               "id": "lbl_d",
               "x": 80,
-              "y": 148,
+              "y": 132,
               "text": "d",
               "ms": 200,
               "sm": true
@@ -139,8 +139,8 @@
             {
               "type": "label",
               "id": "lbl_q",
-              "x": 64,
-              "y": 136,
+              "x": 14,
+              "y": 147,
               "text": "Q",
               "ms": 200
             },
@@ -301,7 +301,7 @@
             "R squared"
           ]
         },
-        "memory_tip": "Square and add kills α; the half-angle identity gives cos(φ/2)."
+        "memory_tip": "Square and add removes α; the half-angle identity gives cos(φ/2)."
       },
       {
         "id": "s4_intensity",

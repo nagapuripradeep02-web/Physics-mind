@@ -183,14 +183,14 @@
             {
               "type": "stroke",
               "id": "mc_leader_heads",
-              "d": "M 202 190 L 202 202",
-              "ms": 300
+              "d": "M 202 178 L 202 194",
+              "ms": 230
             },
             {
               "type": "label",
               "id": "mc_heads_lbl",
               "x": 132,
-              "y": 182,
+              "y": 170,
               "text": "heads in the water",
               "ms": 450,
               "sm": true
@@ -198,8 +198,8 @@
             {
               "type": "stroke",
               "id": "mc_leader_tails",
-              "d": "M 78 237 L 170 239",
-              "ms": 1310
+              "d": "M 78 237 L 130 238",
+              "ms": 740
             },
             {
               "type": "label",

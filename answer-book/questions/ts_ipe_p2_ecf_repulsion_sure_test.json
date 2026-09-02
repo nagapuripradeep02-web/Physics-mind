@@ -75,7 +75,7 @@
             "attraction"
           ]
         },
-        "memory_tip": "Attraction has two suspects — an opposite charge, or no charge at all."
+        "memory_tip": "Attraction has two causes — an opposite charge, or an uncharged body by induction."
       },
       {
         "id": "s2_repulsion",
@@ -116,9 +116,9 @@
             "sure test"
           ]
         },
-        "memory_tip": "Repulsion has one suspect only — like charge on both bodies."
+        "memory_tip": "Repulsion has only one cause — like charge on both bodies."
       }
     ]
   },
-  "insider_note": "The mark-winning sentence is the one the book buries: an uncharged body is also attracted by induction — that is what breaks attraction as a test."
+  "insider_note": "The mark-winning sentence is the one the book states only briefly: an uncharged body is also attracted by induction — that is why attraction is not a sure test."
 }

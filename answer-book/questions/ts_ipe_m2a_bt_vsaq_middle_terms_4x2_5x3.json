@@ -122,7 +122,7 @@
         },
         "why": "Each middle term is one r-step from the other; the powers of x rise by one because x³ replaces one x².",
         "common_mistakes": [
-          "Adding the powers as 2·9 + 3·8 = 40.",
+          "Adding only the bracket powers as 9 + 8 = 17, forgetting the 2 and the 3 from x² and x³ — the power is 2·9 + 3·8 = 42.",
           "Writing ¹⁷C₈ on both terms."
         ]
       }

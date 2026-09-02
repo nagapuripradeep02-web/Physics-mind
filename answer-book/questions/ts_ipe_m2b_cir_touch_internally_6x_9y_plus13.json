@@ -176,8 +176,8 @@
         "kind": "diagram",
         "label": "The picture",
         "marks": 0,
-        "margin_note": "No mark of its own; the question does not ask for a diagram. Draw it in rough to see that P lies beyond C₂, not between the centres.",
-        "memory_tip": "One circle inside the other, touching at one point. That point is past both centres, so the division is external.",
+        "margin_note": "No mark of its own; the question does not ask for a diagram. Draw it in rough to see that P lies beyond C₁, the smaller circle's centre, not between the centres.",
+        "memory_tip": "One circle inside the other, touching at one point. Going along the line of centres the order is C₂, then C₁, then P, so the division is external.",
         "figure": {
           "id": "cir_touch_int_1",
           "width": 470,
@@ -230,16 +230,16 @@
             {
               "type": "label",
               "id": "cir_touch_int_1_l1",
-              "x": 192,
-              "y": 154,
+              "x": 234,
+              "y": 160,
               "text": "C₁",
               "ms": 420
             },
             {
               "type": "label",
               "id": "cir_touch_int_1_l2",
-              "x": 237,
-              "y": 154,
+              "x": 176,
+              "y": 160,
               "text": "C₂",
               "ms": 420
             },
@@ -262,7 +262,7 @@
             }
           ]
         },
-        "why": "The picture shows why the section formula flips. With the small circle inside the large one, the contact point P is not between C₁ and C₂ — it lies beyond both — so the division must be external. The common tangent is again the line through P at right angles to C₁C₂.",
+        "why": "The picture shows why the section formula changes. With the small circle inside the large one, the contact point P is not between C₁ and C₂ — it lies beyond C₁, on the far side from C₂ — so the division must be external. The common tangent is again the line through P at right angles to C₁C₂.",
         "common_mistakes": [
           "Drawing the circles side by side, which is the external case and gives the wrong point.",
           "Placing the contact point between the two centres."

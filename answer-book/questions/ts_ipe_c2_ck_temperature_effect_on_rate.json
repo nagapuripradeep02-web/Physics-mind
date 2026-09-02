@@ -68,7 +68,7 @@
           "is a rise of about 3 % in T, but it can",
           "double the rate."
         ],
-        "why": "The doubling rule is the fact a student can quote, and the last sentence is the one that keeps it from being misread. A rate proportional to T would rise by 3 % for a 3 % rise in T; the measured rise is about a hundred times larger than that, which is the evidence for an exponential dependence.",
+        "why": "In the ratio k(t+10)/k(t), the letter t is the temperature in °C and the 10 is a rise of 10 °C; from step 3 onward the same reaction is described with T, the absolute temperature in kelvin, and elsewhere in this unit lowercase t means time, so say which quantity you mean when you write this ratio. The doubling rule is the fact a student can quote, and the last sentence is the one that keeps it from being misread. A rate proportional to T would rise by 3 % for a 3 % rise in T; the measured rise is about a hundred times larger than that, which is the evidence for an exponential dependence.",
         "common_mistakes": [
           "Writing that the rate is proportional to the temperature. It rises far faster than in proportion, through an exponential.",
           "Quoting the coefficient as 10. The 10 is the temperature rise in °C, not the factor by which the rate grows."

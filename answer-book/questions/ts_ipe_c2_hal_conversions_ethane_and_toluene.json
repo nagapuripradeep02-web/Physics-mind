@@ -86,7 +86,7 @@
         "why": "The chlorine goes on to the side chain, not on to the ring, when the reaction is run in light or at boiling temperature with no halogen carrier present; that gives benzyl chloride. Boiling the benzyl chloride with aqueous KOH replaces the chlorine by –OH and gives benzyl alcohol. If FeCl₃ or AlCl₃ is added and the reaction is run in the dark, the chlorine goes on to the ring instead and the products are o- and p-chlorotoluene, which cannot be turned into benzyl alcohol.",
         "common_mistakes": [
           "Adding FeCl₃ as catalyst. With a halogen carrier the chlorine goes on to the ring and gives o- and p-chlorotoluene, not benzyl chloride.",
-          "Using alcoholic KOH in step 2. Alcoholic KOH removes HCl and gives an alkene; aqueous KOH gives the alcohol.",
+          "Using alcoholic KOH in step 2. Alcoholic KOH is the reagent for elimination, but benzyl chloride has no β hydrogen and cannot give an alkene; alcoholic KOH gives benzyl ethyl ether instead. Aqueous KOH is what gives benzyl alcohol.",
           "Writing the conversion in one step. Benzyl chloride is the intermediate and must be shown."
         ],
         "memory_tip": "In light the halogen goes to the side chain; with a halogen carrier it goes to the ring.",
@@ -94,5 +94,5 @@
       }
     ]
   },
-  "insider_note": "In both parts the condition above the arrow carries as much as the equation: hν for ethane, and light with no halogen carrier for toluene. The last step is aqueous KOH, not alcoholic — alcoholic KOH would give an alkene instead of the alcohol."
+  "insider_note": "In both parts the condition above the arrow carries as much as the equation: hν for ethane, and light with no halogen carrier for toluene. The last step is aqueous KOH: it replaces –Cl by –OH and gives benzyl alcohol. Alcoholic KOH is the reagent for elimination, but benzyl chloride has no β hydrogen, so it cannot give an alkene; with alcoholic KOH the ethoxide ion competes and gives benzyl ethyl ether instead."
 }

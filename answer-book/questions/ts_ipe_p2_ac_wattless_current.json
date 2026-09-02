@@ -115,7 +115,7 @@
             "ninety degrees"
           ]
         },
-        "memory_tip": "cos carries, sin sits idle: I cos φ carries the power, I sin φ is wattless."
+        "memory_tip": "cos carries the power, sin carries none: I cos φ is the working current, I sin φ is the wattless current."
       }
     ]
   },

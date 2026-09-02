@@ -90,7 +90,7 @@
         ],
         "why": "The fastest route to e₁ is the reciprocal identity 1/e² + 1/e₁² = 1 — rearrange it for 1/e₁² and substitute the given e.",
         "common_mistakes": [
-          "Squaring 5/4 incorrectly as 5/16 or 25/16 with the wrong denominator.",
+          "Squaring 5/4 as 25/4 by squaring only the numerator, instead of the correct 25/16.",
           "Subtracting 16/25 from 1 as 1/25 instead of 9/25."
         ]
       },
@@ -101,7 +101,7 @@
         "marks": 1,
         "mark_note": "Result",
         "margin_note": "Second mark. Both 25 and 9 are perfect squares, so the root is exact.",
-        "memory_tip": "e₁ = 5/3 is bigger than e = 5/4, since the conjugate here is the 'steeper' branch shape.",
+        "memory_tip": "e₁ = 5/3 is bigger than e = 5/4, and both are greater than 1 — the identity 1/e² + 1/e₁² = 1 requires that of a hyperbola and its conjugate.",
         "lines": [
           "e₁² = 25/9",
           {

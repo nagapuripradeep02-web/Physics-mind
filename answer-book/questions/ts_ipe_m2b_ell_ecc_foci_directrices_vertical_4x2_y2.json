@@ -83,7 +83,7 @@
         "marks": 1,
         "mark_note": "Eccentricity",
         "margin_note": "Second mark. Here a² = 1, b² = 4, so a < b — the ellipse is vertical.",
-        "memory_tip": "When the y-denominator is bigger, use b² − a² over b² — the bigger axis is always on the bottom.",
+        "memory_tip": "When the y-denominator is bigger, take the square root of b² − a² and divide by b — the bigger axis length is always on the bottom.",
         "lines": [
           "Here a² = 1, b² = 4 ⇒ a = 1, b = 2.",
           "Since a < b, the ellipse is vertical.",
@@ -142,7 +142,7 @@
         "why": "The directrices of a vertical ellipse are horizontal lines y = k ± b/e — the reciprocal of the focus distance be, shifted by the same centre k.",
         "common_mistakes": [
           "Writing the directrices as vertical lines (in terms of x) instead of horizontal lines (in terms of y).",
-          "Combining both directrices onto one line with a single ± sign in front of 4, which does not pair a sign correctly with each line."
+          "Multiplying only the 4/√3 term by √3 and forgetting to multiply the −1 as well, which gives √3y = −1 ± 4 instead of √3y = −√3 ± 4."
         ]
       }
     ]

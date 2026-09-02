@@ -55,7 +55,7 @@
         "why": "A polymerisation stops each chain at a random point, so no two chains need be the same length. Any single figure would therefore be a choice of average, and these two are the useful choices.",
         "common_mistakes": [
           "Naming only one of the two. The question says types, so both are needed.",
-          "Writing atomic mass or formula mass. Those apply to a single molecule of fixed size."
+          "Writing atomic mass or formula mass. Atomic mass belongs to a single atom, and formula mass to a single molecule of fixed size; a polymer sample is neither."
         ],
         "memory_tip": "Number counts chains; weight counts mass.",
         "margin_note": "The two names are the whole mark. Write both symbols beside them."
@@ -85,7 +85,7 @@
           "Writing PDI = Mn / Mw. The weight average is on top."
         ],
         "memory_tip": "W for weight sits on top of the PDI ratio.",
-        "margin_note": "The ratio line is worth adding although the question does not ask for it; it shows the two averages were understood."
+        "margin_note": "The two names in the first step are the answer to this question, so write them there. This ratio line is the extra that shows what each average measures."
       }
     ]
   },

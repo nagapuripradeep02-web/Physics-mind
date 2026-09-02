@@ -132,7 +132,7 @@
         "why": "2Tan⁻¹(1) = π/2 and 2Tan⁻¹(−1) = −π/2; substituting both endpoints and simplifying leaves π − 2 inside the bracket, which is then halved by the outer π/2.",
         "common_mistakes": [
           "Dropping the −t / +t terms at the two limits.",
-          "Writing the final answer as π²/2 − π/2 instead of the equivalent π(π − 2)/2."
+          "Writing the final answer as π²/2 − π instead of the equivalent π(π − 2)/2."
         ]
       }
     ]

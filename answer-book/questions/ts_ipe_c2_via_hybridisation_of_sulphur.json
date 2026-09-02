@@ -55,7 +55,7 @@
         ],
         "why": "The hybridisation is counted from the number of sigma bonds plus lone pairs on the central atom, never from the number of oxygen atoms. SO₂ has two sigma bonds and one lone pair, and SO₃ has three sigma bonds and no lone pair. Both come to three, so both are sp². The pi bonds are not counted.",
         "common_mistakes": [
-          "Counting the double bonds and writing sp³ for SO₃. Only sigma bonds and lone pairs are counted; the pi bond does not use a hybrid orbital.",
+          "Counting the double bonds and writing sp³d² for SO₃. Only sigma bonds and lone pairs are counted; the pi bond does not use a hybrid orbital.",
           "Writing the same shape for both. Both are sp², but the lone pair in SO₂ makes it angular while SO₃ is trigonal planar."
         ],
         "memory_tip": "Count sigma bonds plus lone pairs. Three of them means sp², whether the molecule is SO₂ or SO₃.",
@@ -83,7 +83,7 @@
           "orbitals in its second shell, so OF₄ and OF₆",
           "do not exist."
         ],
-        "why": "SF₄ has four sigma bonds and one lone pair, which is five, so one d orbital is used and the hybridisation is sp³d. SF₆ has six sigma bonds and no lone pair, so two d orbitals are used and it is sp³d². The last two lines are the exception that makes the group trend honest: sulphur, selenium and tellurium expand the octet, oxygen never does, because the second shell has no d orbitals at all.",
+        "why": "SF₄ has four sigma bonds and one lone pair, which is five, so one d orbital is used and the hybridisation is sp³d. SF₆ has six sigma bonds and no lone pair, so two d orbitals are used and it is sp³d². The last two lines are the limit of the rule: sulphur, selenium and tellurium expand the octet, oxygen never does, because the second shell has no d orbitals at all.",
         "common_mistakes": [
           "Writing sp³d for SF₆. Six positions need six hybrid orbitals, which is sp³d².",
           "Forgetting the lone pair in SF₄ and calling it tetrahedral. Four bonds plus one lone pair is five positions, so it is see-saw inside a trigonal bipyramid.",

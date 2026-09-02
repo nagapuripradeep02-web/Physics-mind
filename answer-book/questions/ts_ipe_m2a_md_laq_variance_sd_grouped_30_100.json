@@ -134,7 +134,7 @@
         "common_mistakes": [
           "Squaring fᵢdᵢ instead of multiplying fᵢ by dᵢ²: the last column is fᵢ·dᵢ², so 3 × 9 = 27, not (−9)² = 81.",
           "Carrying a minus sign into the dᵢ² or fᵢdᵢ² column.",
-          "Adding fᵢdᵢ without the signs: −9 − 14 − 12 + 0 + 8 + 6 + 6 = −15."
+          "Adding fᵢdᵢ without the signs: 9 + 14 + 12 + 0 + 8 + 6 + 6 = 55, instead of the correct −9 − 14 − 12 + 0 + 8 + 6 + 6 = −15."
         ]
       },
       {

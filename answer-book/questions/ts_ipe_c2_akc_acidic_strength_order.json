@@ -91,9 +91,10 @@
           "spread onto ring carbon atoms.",
           "Cl withdraws electron density by the –I",
           "effect and stabilises ClCH₂COO⁻ further.",
-          "Exception: not every acid beats every",
-          "phenol — picric acid, 2,4,6-trinitrophenol,",
-          "has pKa 0.4 and is stronger than all four."
+          "Exception: not every carboxylic acid is",
+          "stronger than every phenol — picric acid,",
+          "2,4,6-trinitrophenol, has pKa 0.4 and is",
+          "stronger than all four."
         ],
         "why": "A carboxylate ion has two oxygen atoms of equal value carrying the charge, and oxygen is strongly electronegative, so the charge is held well. A phenoxide ion delocalises its charge onto carbon atoms of the ring, which hold it far less well, so phenol loses a proton much less readily. Three nitro groups on the ring change that completely, which is why the exception exists.",
         "common_mistakes": [

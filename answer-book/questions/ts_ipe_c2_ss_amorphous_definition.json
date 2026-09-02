@@ -23,7 +23,7 @@
       "marks": 1
     },
     {
-      "label": "Examples",
+      "label": "Examples and properties",
       "marks": 1
     }
   ],
@@ -56,7 +56,7 @@
         "why": "The whole idea of an amorphous solid is the ABSENCE of long range order. The particles are ordered over a few atomic distances (short range order) and then the pattern is lost, so the definition has to say both parts: irregular arrangement, short range order only.",
         "common_mistakes": [
           "Writing that the particles are arranged in no order at all. There is short range order; it is the long range order that is missing.",
-          "Calling an amorphous solid a liquid. It is a solid with a definite shape and volume."
+          "Calling an amorphous solid a true liquid. It is called a pseudo solid, or a super cooled liquid, because it does flow very slowly, but it is still a solid with a definite shape and volume."
         ],
         "memory_tip": "a- means without, morph means form. Amorphous = without a regular form.",
         "margin_note": "Say \"irregular arrangement\" and \"short range order\". Both phrases are needed for the definition mark."

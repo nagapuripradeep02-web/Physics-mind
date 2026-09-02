@@ -74,7 +74,7 @@
         "label": "Substitute and simplify",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Second mark. Multiply through by −1 at the end so the leading coefficient is positive.",
+        "margin_note": "Second mark, for the simplification itself. The polar comes out as −4x − 7y + 30 = 0; multiplying by −1 to give 4x + 7y − 30 = 0 is the usual way to present it, and either form is a correct final answer.",
         "memory_tip": "Collect the x terms, the y terms and the numbers separately before tidying.",
         "lines": [
           "With (x₁, y₁) = (1, −2):",
@@ -89,7 +89,7 @@
         "why": "The x terms give x − 5x = −4x, the y terms give −2y − 5y = −7y and the numbers give −5 + 10 + 25 = 30. Multiplying by −1 puts the answer in its usual form.",
         "common_mistakes": [
           "Writing −5(y − 2) as −5y − 10.",
-          "Leaving the answer with a negative leading coefficient, which is correct but is usually rewritten."
+          "Writing f(y + y₁) as −5(y + 2), forgetting that y₁ = −2 makes the bracket −5(y − 2)."
         ]
       }
     ]

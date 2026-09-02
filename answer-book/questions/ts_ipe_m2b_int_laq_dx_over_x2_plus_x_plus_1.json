@@ -109,7 +109,7 @@
         ],
         "why": "This is a standard, memorised result — every completing-the-square integral in this chapter ends by quoting one of the three standard forms (this one, the log form, or the Sin⁻¹ form).",
         "common_mistakes": [
-          "Confusing this with the log-form standard integral ∩dx/(x²−a²), which is used for a DIFFERENCE of squares, not a sum.",
+          "Confusing this with the log-form standard integral ∫dx/(x²−a²), which is used for a DIFFERENCE of squares, not a sum.",
           "Writing Tan⁻¹ with the argument as a/x instead of x/a."
         ],
         "memory_tip": "Check the sign in the denominator: x² PLUS a² uses the Tan⁻¹ formula; x² MINUS a² uses the log formula."

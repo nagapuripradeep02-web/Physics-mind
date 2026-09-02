@@ -85,7 +85,7 @@
         "why": "If every chain has the same mass, both averages give that mass and the ratio is exactly 1. Any spread of lengths raises Mw above Mn. Natural polymers are built by enzymes to a fixed length, while a synthetic polymerisation stops each chain at a random point.",
         "common_mistakes": [
           "Writing that PDI can be less than 1. It cannot; the smallest possible value is 1.",
-          "Writing PDI > 1 for natural polymers. Natural polymers are the ones with PDI = 1."
+          "Writing PDI > 1 for natural polymers. In this syllabus natural polymers are taken to have chains of a single length, so PDI = 1 is the value expected here."
         ],
         "memory_tip": "Natural polymers have one chain length, so PDI = 1; synthetic polymers have many, so PDI > 1.",
         "margin_note": "One line for natural polymers and one for synthetic finishes this mark."

@@ -57,8 +57,8 @@
           "Writing that glucose itself does not react with hydroxylamine. Glucose does give an oxime; it is glucose pentaacetate that does not react.",
           "Writing \"Schiff's base\" for the reagent. A Schiff base is an imine; the test uses Schiff's reagent."
         ],
-        "memory_tip": "Three tests an aldehyde should pass and glucose fails: Schiff's, NaHSO₃, and the pentaacetate with NH₂OH.",
-        "margin_note": "Any three of the listed facts earn this mark. Take care to say pentaacetate in the hydroxylamine point."
+        "memory_tip": "Three negative tests: Schiff's and NaHSO₃ on glucose itself, and NH₂OH on glucose pentaacetate.",
+        "margin_note": "All three negative tests earn this mark. Take care to say pentaacetate in the hydroxylamine point."
       },
       {
         "id": "s2_two_forms",

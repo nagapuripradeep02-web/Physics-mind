@@ -116,7 +116,7 @@
         ],
         "why": "39/4 = (√39/2)² is a POSITIVE constant, so this quadratic completes to a sum of squares — the sign to check for whether the leftover integral needs the Tan⁻¹ or log formula.",
         "common_mistakes": [
-          "Not simplifying −39/4 to a clean form before matching it to a².",
+          "Matching a = 39/4 instead of a = √39/2 — a is the square ROOT of the leftover constant 39/4, not the constant itself.",
           "Sign slip in −(3/2)²+12, which is −9/4+48/4=39/4, not −39/4 or 9/4."
         ],
         "memory_tip": "−9/4+12 = −9/4+48/4 = 39/4 — write 12 as 48/4 before combining the fractions."

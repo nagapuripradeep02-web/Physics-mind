@@ -75,7 +75,7 @@
           "Hydrogen bonds between neighbouring chains",
           "hold the sheet in its folded, pleated shape."
         ],
-        "why": "The two types are opposites in one respect that makes them easy to hold apart: the helix is coiled and its hydrogen bonds run within one chain, while the sheet is stretched and its hydrogen bonds run between chains laid alongside each other.",
+        "why": "The two types differ in one respect that makes them easy to tell apart: the helix is coiled and its hydrogen bonds run within one chain, while the sheet is stretched and its hydrogen bonds run between chains laid alongside each other.",
         "common_mistakes": [
           "Writing that the chains in a β-sheet are coiled. They are fully stretched out.",
           "Naming tertiary or quaternary structure as a third type. Only two secondary structures are asked for."

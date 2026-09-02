@@ -81,7 +81,7 @@
         "why": "Alike letters cannot be told apart, so swapping them does not give a new arrangement. The count of each repeated letter is what the formula divides by, so it must be found before anything else.",
         "common_mistakes": [
           "Treating a⁴b³c⁵ as three letters and answering 3! = 6.",
-          "Adding the exponents wrongly: 4 + 3 + 5 = 12, not 11."
+          "Miscounting the total as 11 letters — 4 + 3 + 5 = 12."
         ]
       },
       {

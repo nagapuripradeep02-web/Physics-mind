@@ -101,7 +101,7 @@
         "why": "x² is the linear factor x repeated, exactly like (x − 1)², so it needs both 1/x and 1/x² denominators. The first move is always to factorise the denominator fully so every factor is seen.",
         "common_mistakes": [
           "Writing A/x² + C/(x + 1) and missing the B/x fraction.",
-          "Treating x² as an irreducible quadratic and writing (Ax + B)/x².",
+          "Treating x² as an irreducible quadratic and writing (Ax + B)/x²; it equals A/x + B/x² but is not the marked form, and the substitutions in the next step need the split.",
           "Not taking x² common and writing a fraction over x³ + x²."
         ]
       },

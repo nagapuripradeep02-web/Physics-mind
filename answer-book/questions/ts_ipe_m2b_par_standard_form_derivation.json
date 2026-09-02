@@ -84,7 +84,7 @@
           "Then SA = AZ, so SA/AZ = 1,",
           "so A is a point on the parabola."
         ],
-        "why": "The vertex is defined as the point exactly midway between the focus and the directrix, and this same point is the one point where the focus-directrix ratio SP/PM equals 1 by simple symmetry — so the midpoint of SZ has to lie on the curve, and it becomes the natural place to put the origin.",
+        "why": "The vertex is defined as the point exactly midway between the focus and the directrix. The focus-directrix ratio SP/PM = 1 is the condition satisfied by every point of the parabola, and the midpoint of SZ satisfies it because SA = AZ — so that midpoint has to lie on the curve, and it becomes the natural place to put the origin.",
         "common_mistakes": [
           "Placing A anywhere on the axis instead of exactly at the midpoint of SZ.",
           "Skipping the SA = AZ argument and just asserting A is the vertex."
@@ -117,78 +117,78 @@
             {
               "type": "stroke",
               "id": "par_directrix",
-              "d": "M 95 30 L 95 270",
+              "d": "M 70 30 L 70 270",
               "ms": 3430
             },
             {
               "type": "stroke",
               "id": "par_curve_upper",
-              "d": "M 130 150 Q 175 150 195 90 Q 208 58 220 40",
-              "ms": 2160
+              "d": "M 130 150 Q 130 87 196.2 24",
+              "ms": 2090
             },
             {
               "type": "stroke",
               "id": "par_curve_lower",
-              "d": "M 130 150 Q 175 150 195 210 Q 208 242 220 260",
-              "ms": 2160
+              "d": "M 130 150 Q 130 213 196.2 276",
+              "ms": 2090
             },
             {
               "type": "stroke",
               "id": "par_pm_pn_segment",
-              "d": "M 195 90 L 95 90",
-              "ms": 1430
+              "d": "M 153.4 75 L 70 75 M 70 69 L 76 69 L 76 75",
+              "ms": 1360
             },
             {
               "type": "stroke",
               "id": "par_sp_segment",
-              "d": "M 165 150 L 195 90",
-              "ms": 960
+              "d": "M 190 150 L 153.4 75",
+              "ms": 1190
             },
             {
               "type": "stroke",
-              "id": "par_right_angle_m",
-              "d": "M 95 84 L 101 84 L 101 90",
-              "ms": 300
+              "id": "par_dots_asz",
+              "d": "M 126.5 150 A 3.5 3.5 0 1 0 133.5 150 A 3.5 3.5 0 1 0 126.5 150 M 186.5 150 A 3.5 3.5 0 1 0 193.5 150 A 3.5 3.5 0 1 0 186.5 150 M 66.5 150 A 3.5 3.5 0 1 0 73.5 150 A 3.5 3.5 0 1 0 66.5 150",
+              "ms": 940
             },
             {
               "type": "label",
               "id": "par_lbl_directrix",
-              "x": 62,
-              "y": 35,
+              "x": 30,
+              "y": 40,
               "text": "L=0",
               "ms": 300
             },
             {
               "type": "label",
               "id": "par_lbl_z",
-              "x": 80,
-              "y": 163,
+              "x": 48,
+              "y": 142,
               "text": "Z",
               "ms": 300
             },
             {
               "type": "label",
               "id": "par_lbl_a",
-              "x": 92,
-              "y": 205,
+              "x": 74,
+              "y": 186,
               "text": "A(0,0)",
               "ms": 300,
-              "em": true
+              "sm": true
             },
             {
               "type": "label",
               "id": "par_lbl_s",
-              "x": 170,
-              "y": 205,
+              "x": 166,
+              "y": 186,
               "text": "S(a,0)",
               "ms": 300,
-              "em": true
+              "sm": true
             },
             {
               "type": "label",
               "id": "par_lbl_p",
-              "x": 200,
-              "y": 82,
+              "x": 136,
+              "y": 66,
               "text": "P",
               "ms": 300,
               "em": true
@@ -196,7 +196,7 @@
             {
               "type": "label",
               "id": "par_lbl_m",
-              "x": 78,
+              "x": 44,
               "y": 80,
               "text": "M",
               "ms": 300,
@@ -205,8 +205,8 @@
             {
               "type": "label",
               "id": "par_lbl_n",
-              "x": 133,
-              "y": 76,
+              "x": 106,
+              "y": 68,
               "text": "N",
               "ms": 300,
               "em": true

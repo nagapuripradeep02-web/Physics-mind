@@ -52,7 +52,7 @@
           "platinum, which neither acid dissolves on",
           "its own."
         ],
-        "why": "The nitric acid oxidises the metal to its ion, and the chloride ion from the hydrochloric acid then binds that ion as a stable complex, AuCl₄⁻ or PtCl₆²⁻. Taking the metal ion out of solution in this way is what lets the oxidation continue, and it is why the mixture works when neither acid works alone.",
+        "why": "The nitric acid oxidises the metal to its ion, and the chloride ion from the hydrochloric acid then binds that ion as a stable complex, AuCl₄⁻ or PtCl₆²⁻. Binding the metal ion as a complex keeps the concentration of free Au³⁺ or Pt⁴⁺ very low, and that is what lets the nitric acid go on oxidising the metal. It is why the mixture works when neither acid works alone.",
         "common_mistakes": [
           "Writing the ratio as 1 : 3. Aqua regia is three parts concentrated HCl to one part concentrated HNO₃.",
           "Writing that it is a mixture of HCl and H₂SO₄. The oxidising acid in aqua regia is HNO₃."
@@ -91,7 +91,7 @@
           "Balancing the atoms but not the charge. Both sides of each equation must carry the same total charge."
         ],
         "memory_tip": "Gold takes four chlorides, platinum takes six. Both give NO, never NO₂.",
-        "margin_note": "One correct equation usually earns this mark; write the gold one first, it is the shorter."
+        "margin_note": "Both equations are asked for in this mark. Write the gold one first, it is the shorter, then the platinum one."
       }
     ]
   },

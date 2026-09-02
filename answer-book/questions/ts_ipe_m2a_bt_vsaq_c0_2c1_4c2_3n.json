@@ -89,7 +89,7 @@
         "why": "Every identity in the C's comes from choosing a value of x in the expansion; the multipliers tell you which value.",
         "common_mistakes": [
           "Putting x = 1 and getting 2ⁿ.",
-          "Trying to prove it by induction."
+          "Putting x = −1, which gives C₀ − C₁ + C₂ − … = 0, not this identity."
         ]
       },
       {

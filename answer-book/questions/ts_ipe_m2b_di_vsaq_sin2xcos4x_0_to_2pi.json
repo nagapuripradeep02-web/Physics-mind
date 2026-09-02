@@ -69,7 +69,7 @@
         ],
         "why": "The same even-power reasoning applies: sin²x and cos⁴x are both even powers, so the integrand survives both reflections and the range collapses to 4 times the 0-to-π/2 integral.",
         "common_mistakes": [
-          "Re-deriving from scratch instead of using the reduction ∫₀^(2π) = 4∫₀^(π/2) that both even powers allow.",
+          "Using the ×4 reduction without first checking that both f(π−x) = f(x) and f(2π−x) = f(x) hold.",
           "Losing a factor of 2 somewhere in the double reduction."
         ]
       },

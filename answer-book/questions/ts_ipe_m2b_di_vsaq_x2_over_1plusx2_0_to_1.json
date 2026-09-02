@@ -62,7 +62,7 @@
         ],
         "why": "Adding and subtracting 1 in the numerator rewrites x² as (1+x²)−1, splitting the improper fraction into a constant 1 minus the standard form 1/(1+x²), which integrates directly.",
         "common_mistakes": [
-          "Attempting a substitution instead of the simpler add-and-subtract trick.",
+          "Trying to integrate x²/(1+x²) as it stands, without first adding and subtracting 1 in the numerator.",
           "Losing the minus sign in front of 1/(1+x²)."
         ]
       },

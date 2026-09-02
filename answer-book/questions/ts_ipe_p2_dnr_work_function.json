@@ -51,7 +51,7 @@
           "from the surface of the metal."
         ],
         "margin_note": "First mark. The word minimum is part of the definition, not an extra.",
-        "why": "An electron can be removed by giving it any energy above a floor value. The work function is that floor, so without the word minimum the definition does not pick out one energy.",
+        "why": "An electron can be removed by giving it any energy above a certain lowest value. The work function is that lowest value, so without the word minimum the definition does not pick out one energy.",
         "common_mistakes": [
           "Leaving out minimum. Any larger energy also removes the electron; the work function is the smallest one that does.",
           "Saying energy to move an electron inside the metal. It is the energy to remove it from the surface."

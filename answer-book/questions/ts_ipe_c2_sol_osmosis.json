@@ -23,7 +23,7 @@
       "marks": 1
     },
     {
-      "label": "The membrane and the direction",
+      "label": "The membrane and diffusion",
       "marks": 1
     }
   ],
@@ -90,5 +90,5 @@
       }
     ]
   },
-  "insider_note": "Osmosis and osmotic pressure are asked as a pair in this book. Osmosis is the flow; osmotic pressure is the push applied to stop it. Answering one with the other loses the whole mark."
+  "insider_note": "Osmosis and osmotic pressure are usually asked as a pair. Osmosis is the flow; osmotic pressure is the push applied to stop it. Answering one with the other loses the whole mark."
 }

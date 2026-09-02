@@ -109,7 +109,7 @@
         "why": "This particular denominator happens to be a PERFECT square in t, (t+3)², which turns the leftover integral into a simple power-rule antiderivative rather than another log or Tan⁻¹.",
         "common_mistakes": [
           "Not spotting that t²+6t+9 factors as a perfect square, and instead trying to complete the square as a sum or difference.",
-          "Sign slip differentiating −1/(t+3) into 1/(t+3)² instead of −1/(t+3)²."
+          "Believing that d/dt[−1/(t+3)] = −1/(t+3)². It is actually +1/(t+3)², which is exactly why ∫2dt/(t+3)² comes out as −2/(t+3)+c and not +2/(t+3)+c."
         ],
         "memory_tip": "t²+6t+9 = (t+3)² exactly — recognise the perfect square before reaching for the log or Tan⁻¹ formula."
       },

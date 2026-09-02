@@ -143,21 +143,21 @@
             {
               "type": "stroke",
               "id": "cfs_connectors",
-              "d": "M 250 157 L 344 112 M 250 163 L 334 232",
+              "d": "M 250 157 L 344 87 M 250 163 L 334 207",
               "ms": 3040,
               "w": 1.4
             },
             {
               "type": "stroke",
               "id": "cfs_eg_level",
-              "d": "M 350 108 L 392 108 M 402 108 L 444 108",
+              "d": "M 350 83 L 392 83 M 402 83 L 444 83",
               "ms": 1200
             },
             {
               "type": "label",
               "id": "cfs_eg_label",
               "x": 350,
-              "y": 92,
+              "y": 67,
               "text": "eg (2 orbitals)",
               "ms": 700,
               "sm": true
@@ -165,14 +165,14 @@
             {
               "type": "stroke",
               "id": "cfs_t2g_level",
-              "d": "M 338 236 L 376 236 M 386 236 L 424 236 M 434 236 L 472 236",
+              "d": "M 338 211 L 376 211 M 386 211 L 424 211 M 434 211 L 472 211",
               "ms": 1630
             },
             {
               "type": "label",
               "id": "cfs_t2g_label",
               "x": 338,
-              "y": 264,
+              "y": 239,
               "text": "t2g (3 orbitals)",
               "ms": 700,
               "sm": true
@@ -180,14 +180,14 @@
             {
               "type": "stroke",
               "id": "cfs_gap_arrow",
-              "d": "M 500 108 L 500 236 M 495 117 L 500 108 L 505 117 M 495 227 L 500 236 L 505 227",
+              "d": "M 500 83 L 500 211 M 495 92 L 500 83 L 505 92 M 495 202 L 500 211 L 505 202",
               "ms": 2420
             },
             {
               "type": "label",
               "id": "cfs_delta_label",
               "x": 512,
-              "y": 178,
+              "y": 153,
               "text": "Δo",
               "ms": 450
             }
@@ -220,7 +220,7 @@
         ],
         "why": "For common aqua complexes the gap Δo happens to match photons in the visible range, which is why d-d transitions produce visible colour at all. Only the absorbed wavelength is removed and everything else passes through, so the colour observed is the complement of the colour absorbed, not the colour absorbed. The same argument explains why an ion with an empty or a full d subshell is colourless: no d-d transition is possible.",
         "common_mistakes": [
-          "Saying the solution shows the colour it absorbs. It transmits the complementary colour; a solution absorbing orange-red looks blue.",
+          "Saying the solution shows the colour it absorbs. It transmits the complementary colour; a solution absorbing orange-red looks greenish blue.",
           "Saying the electron is removed from the ion. It moves from the lower set to the upper set within the same subshell."
         ],
         "memory_tip": "Absorb one colour and transmit its complement. The complement is what is seen.",

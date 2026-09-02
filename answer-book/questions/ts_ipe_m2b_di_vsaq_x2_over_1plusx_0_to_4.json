@@ -63,7 +63,7 @@
         ],
         "why": "Adding and subtracting 1 in the numerator creates x²−1, which factors as (x−1)(x+1); the (x+1) factor cancels the denominator (1+x), leaving a plain polynomial plus one standard log term.",
         "common_mistakes": [
-          "Trying long division instead of the faster add-and-subtract-1 trick.",
+          "Leaving x²/(1+x) as an improper fraction without adding and subtracting 1 to expose the (x−1)(x+1) factor.",
           "Forgetting that (x+1) and (1+x) are the same factor and failing to cancel."
         ]
       },
@@ -86,7 +86,7 @@
         "why": "The polynomial part integrates to x²/2 − x, evaluating to 4 at x=4 and 0 at x=0; the log part gives log5 at x=4 and log1=0 at x=0, so the two pieces add to 4+log5.",
         "common_mistakes": [
           "Dropping the log1=0 term incorrectly, e.g. writing log(1+0) as 1 instead of 0.",
-          "An arithmetic slip in 16/2−4, e.g. getting 4 instead of the correct value."
+          "An arithmetic slip in 16/2−4, e.g. writing 12 by forgetting to halve the 16, instead of the correct value 4."
         ]
       }
     ]
