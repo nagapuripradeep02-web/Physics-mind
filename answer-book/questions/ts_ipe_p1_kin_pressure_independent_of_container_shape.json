@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_pressure_independent_of_container_shape",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Show that the pressure of a gas does not depend on the shape of its container.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The kinetic theory formula",
+      "marks": 1
+    },
+    {
+      "label": "Why shape does not matter",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Very Short Answer Question 5 (printed p.137). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: P = ⅓(N/V)mv̄² depends only on number density, molecular mass and mean square speed, all properties of the gas, and random isotropic molecular motion means every wall receives the same momentum per unit area regardless of container shape, matching NCERT Class-11 Chapter 13."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "boxed_final",
+        "label": "The kinetic theory formula",
+        "marks": 1,
+        "mark_note": "P = ⅓(N/V)mv̄²",
+        "lines": [
+          "From kinetic theory,",
+          {
+            "text": "P = ⅓(N/V)mv̄²",
+            "style": "boxed"
+          },
+          "N/V is the number density, m the",
+          "molecular mass and v̄² the mean",
+          "square speed — all properties of",
+          "the gas itself."
+        ],
+        "margin_note": "First mark. Write P = ⅓(N/V)mv̄² and name N/V, m and v̄².",
+        "why": "Every quantity that fixes the pressure in this formula belongs to the gas — how many molecules there are per unit volume, how heavy each one is, and how fast they move. None of these terms mentions the walls.",
+        "common_mistakes": [
+          "Writing the formula without naming what each symbol stands for.",
+          "Thinking pressure depends on the container's surface area — in the derivation the wall area combines with the cube's length to give the volume, so only N/V survives, never the area on its own."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P equals one third N by V times m times v bar squared, and every quantity in it is a property of the gas.",
+          "accept": [
+            "P equals one third N by V m v squared",
+            "number density, molecular mass, mean square speed",
+            "properties of the gas"
+          ],
+          "reject": [
+            "molecules strike every wall equally often"
+          ],
+          "heard_as": [
+            "one third N by V m v squared",
+            "number density"
+          ]
+        },
+        "memory_tip": "Every letter in P = ⅓(N/V)mv̄² belongs to the gas, none to the container."
+      },
+      {
+        "id": "s2_isotropy",
+        "kind": "text",
+        "label": "Why shape does not matter",
+        "marks": 1,
+        "mark_note": "Random motion on every wall",
+        "lines": [
+          "Molecular motion is completely",
+          "random, so molecules strike every",
+          "wall equally often from every",
+          "direction. The momentum delivered",
+          "per unit area is the same on each",
+          "wall, whatever its shape."
+        ],
+        "margin_note": "Second mark. State that molecular motion is random and strikes every wall equally, whatever its shape.",
+        "why": "A gas fills its container and its molecules move in every direction with equal likelihood. Whichever way a wall is tilted, the same fraction of molecules strikes it per second, so the force per unit area works out the same on a flat wall, a curved wall or a corner.",
+        "common_mistakes": [
+          "Saying pressure is higher on a larger wall. Pressure is force per unit area, and that ratio stays the same.",
+          "Describing the motion as directed toward the walls instead of random in every direction."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That molecular motion is random, so molecules strike every wall equally often and the pressure per unit area is the same regardless of the container's shape.",
+          "accept": [
+            "random motion strikes every wall equally",
+            "pressure is the same on every wall",
+            "does not depend on the shape"
+          ],
+          "reject": [
+            "P equals one third N by V m v squared"
+          ],
+          "heard_as": [
+            "random motion",
+            "same on every wall"
+          ]
+        },
+        "memory_tip": "Random motion hits every wall the same — a curved wall gets the same push per unit area as a flat one."
+      }
+    ]
+  },
+  "insider_note": "Write the formula first, then the random-motion argument — the formula alone does not explain why shape drops out."
+}

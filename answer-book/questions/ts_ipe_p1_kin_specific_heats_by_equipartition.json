@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_specific_heats_by_equipartition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain, on the basis of the law of equipartition of energy, the specific heat capacities of monoatomic, diatomic and polyatomic gases.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The equipartition rule",
+      "marks": 1
+    },
+    {
+      "label": "Monoatomic gas",
+      "marks": 1
+    },
+    {
+      "label": "Diatomic gas",
+      "marks": 1
+    },
+    {
+      "label": "Polyatomic gas",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Short Answer Question 2 (printed p.139). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: by equipartition C_V = (f/2)R and C_P = C_V + R for every gas; monoatomic f = 3 gives C_V = (3/2)R, C_P = (5/2)R, γ = 1.67; diatomic f = 5 gives C_V = (5/2)R, C_P = (7/2)R, γ = 1.40; polyatomic (non-linear) f = 6 gives C_V = 3R, C_P = 4R, γ = 1.33."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Kinetic Theory · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "equation",
+        "label": "The equipartition rule",
+        "marks": 1,
+        "mark_note": "C_V, C_P from f",
+        "lines": [
+          "By the law of equipartition, each",
+          "degree of freedom of a molecule",
+          "carries an average energy ½k_BT.",
+          "For one mole, with f degrees of",
+          "freedom,",
+          {
+            "text": "U = f × ½RT, C_V = f × ½R",
+            "style": "eq"
+          },
+          "and Mayer's relation gives",
+          {
+            "text": "C_P = C_V + R",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Both C_V = (f/2)R and C_P = C_V + R must be stated before using them below.",
+        "why": "Equipartition fixes C_V from the degree-of-freedom count alone, and C_P = C_V + R then holds for any gas, so only the value of f changes between the three cases that follow.",
+        "common_mistakes": [
+          "Forgetting the R in C_P = C_V + R and just doubling C_V instead."
+        ],
+        "memory_tip": "One rule, C_P = C_V + R, used for all three gases below."
+      },
+      {
+        "id": "s2_monoatomic",
+        "kind": "equation",
+        "label": "Monoatomic gas",
+        "marks": 1,
+        "mark_note": "f = 3, γ = 1.67",
+        "lines": [
+          "Monoatomic gas: f = 3, all",
+          "translational.",
+          {
+            "text": "C_V = (3/2)R, C_P = (5/2)R",
+            "style": "eq"
+          },
+          {
+            "text": "γ = C_P/C_V = 5/3 = 1.67",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Both C_V and C_P are needed, plus the value of γ.",
+        "why": "A monoatomic molecule is a point mass with no size, so it can only move — 3 translational degrees of freedom and nothing else.",
+        "common_mistakes": [
+          "Adding rotational degrees of freedom to a monoatomic molecule. A point mass has none."
+        ],
+        "memory_tip": "Monoatomic: 3 degrees, γ = 1.67, the largest γ of the three."
+      },
+      {
+        "id": "s3_diatomic",
+        "kind": "equation",
+        "label": "Diatomic gas",
+        "marks": 1,
+        "mark_note": "f = 5, γ = 1.40",
+        "lines": [
+          "Diatomic gas: f = 5 (3",
+          "translational + 2 rotational, at",
+          "ordinary temperature).",
+          {
+            "text": "C_V = (5/2)R, C_P = (7/2)R",
+            "style": "eq"
+          },
+          {
+            "text": "γ = C_P/C_V = 7/5 = 1.40",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Name both degrees of freedom: 3 translational and 2 rotational.",
+        "why": "A diatomic molecule also rotates about two axes perpendicular to the line joining the two atoms; rotation about that line itself carries no energy because the moment of inertia there is negligible.",
+        "common_mistakes": [
+          "Using f = 6 by counting a third rotational axis along the bond. That axis has negligible moment of inertia and carries no energy."
+        ],
+        "memory_tip": "Diatomic: 5 degrees, γ = 1.40 — oxygen, nitrogen, hydrogen."
+      },
+      {
+        "id": "s4_polyatomic",
+        "kind": "boxed_final",
+        "label": "Polyatomic gas",
+        "marks": 1,
+        "mark_note": "f = 6, γ = 1.33",
+        "lines": [
+          "Polyatomic gas: f = 6 (3",
+          "translational + 3 rotational, for a",
+          "non-linear molecule).",
+          {
+            "text": "C_V = 3R, C_P = 4R",
+            "style": "eq"
+          },
+          {
+            "text": "γ = C_P/C_V = 4/3 = 1.33",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "State f = 6 and both specific heats before the ratio.",
+        "why": "A non-linear polyatomic molecule can rotate about all three axes, one more rotational degree of freedom than a diatomic molecule, which raises C_V and lowers γ further.",
+        "common_mistakes": [
+          "Keeping f = 5 as for a diatomic gas. A non-linear polyatomic molecule rotates about a third axis too."
+        ],
+        "memory_tip": "Polyatomic: 6 degrees, γ = 1.33, the smallest γ of the three."
+      }
+    ]
+  },
+  "insider_note": "The three γ values 1.67, 1.40, 1.33 are worth memorising in order — they decrease as the degrees of freedom increase."
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_hydraulic_stress_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define hydraulic stress.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Nature of the stress",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 4 (printed p.98). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: hydraulic stress is the restoring force per unit area set up when a fluid compresses a body uniformly; it is a normal stress that changes the volume, not the shape."
+  },
+  "insider_note": "The mark for \"normal stress\" is often missed — students name the cause (fluid pressure) but forget to say the force acts normal to every face.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Hydraulic stress — the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Hydraulic stress is the internal",
+          "restoring force per unit area set up",
+          "when a fluid compresses a body",
+          "uniformly from all sides."
+        ],
+        "margin_note": "Say the compression is uniform and from all sides — that is what makes it hydraulic rather than another type of stress.",
+        "why": "A fluid pushes equally in every direction, so the restoring force it sets up acts normal to every face of the body at once.",
+        "common_mistakes": [
+          "Describing hydraulic stress as acting on only one face, like tensile or compressive stress.",
+          "Leaving out the word \"uniformly\", which is what distinguishes it from an unequal push."
+        ],
+        "memory_tip": "Hydraulic stress comes from a fluid pressing evenly from every side."
+      },
+      {
+        "id": "s2_nature",
+        "kind": "boxed_final",
+        "label": "Nature of the stress",
+        "marks": 1,
+        "mark_note": "Normal stress",
+        "lines": [
+          "It is a normal stress: the force acts",
+          "normal to every face of the body.",
+          {
+            "text": "Hydraulic stress changes volume, not shape.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "State that the volume changes and the shape does not — that is the second mark, not a repeat of the definition.",
+        "why": "Since the force acts normal to every face equally, the body's shape is preserved and only its volume shrinks.",
+        "common_mistakes": [
+          "Saying hydraulic stress changes the shape of the body. It changes the volume; the shape stays the same.",
+          "Calling it a tangential stress instead of a normal stress."
+        ],
+        "memory_tip": "Squeezed evenly on all sides: the volume shrinks, the shape stays the same."
+      }
+    ]
+  }
+}

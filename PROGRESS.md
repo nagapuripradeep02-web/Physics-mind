@@ -1,5 +1,84 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📘 SESSION — Wave B opens: physics-9 and physics-13, 42 cards, two audits, 49 findings (2026-09-02, `feat/ipe-firstyear-2027`)
+
+**Bottom line: two of wave B's five chapters are authored, audited, repaired and green. Every number was right both times; every defect was in the prose.** Chapters 10, 11 and 12 remain, 83 cards.
+
+### What landed
+
+| chapter | before | after | new cards |
+|---|---|---|---|
+| physics-9 Mechanical Properties of Solids | 4 rows | 26 | 15 VSAQ + 5 SAQ |
+| physics-13 Kinetic Theory | 5 rows | 27 | 12 VSAQ + 9 SAQ + 1 LAQ |
+
+physics-9 held four cards against a book asking 37 entries. The book prints three sub-parts of one brass-wire question (find the stress, the strain, the Young's modulus of the same wire); that is **one card with four steps**, not three cards. The gap report counts entries, and entries fold into cards.
+
+physics-13's Long Answer is the derivation of P = ⅓(N/V)mv̄² and then the kinetic interpretation of temperature — nine steps, eight marked, with a 0-mark diagram between the model and the first collision because the wall-and-molecule geometry is what every later step refers back to. Its figure was paced by `pace_figures` rather than by hand, and its only horizontally overlapping label pair sits 98 figure units apart against a 40-unit minimum.
+
+### Reading the scans found two book errors the transcribed index could not
+
+- **Poisson's ratio for steel prints as "027 - 0.30"** — a dropped decimal point. The card writes 0.27 to 0.30 and records the typo.
+- **The sand-heap answer explains the pyramid SHAPE by "stress increases linearly with depth"** — which is true of any heap of any shape. Dry sand supports only a limited shear stress, so a slope steeper than the angle of repose slides until it settles back, which is why the heap keeps the same slope at any size.
+
+Neither was visible in the index. **Open the scan pages before authoring a chapter.**
+
+### Two audits, 49 findings, and not one of them machine-checkable
+
+| | physics-9 | physics-13 |
+|---|---|---|
+| cards | 20 | 22 |
+| findings | 26 in 14 cards | 23 in 15 cards |
+| harmful | 3 | 5 |
+| numbers wrong | **0** | **0** |
+
+Every gate was green before each audit ran. **Seven of the eight harmful findings are the same shape: a prose field telling a student that a correct answer is wrong**, usually contradicting the card's own mark split or a margin note two lines below it.
+
+- "Both marks need the words *restoring force*" — against the card's own split.
+- "A bare pascal loses this mark" — the pascal **is** the SI unit of stress.
+- Y = FL/(AΔL) called a mistake — it is the standard one-line route.
+- The oxygen/hydrogen `why` put the heavier molar mass on top while the card's own line put the lighter one there. Following the `why` gives 4:1, the exact error the card warns against.
+- The degrees-of-freedom card said 6 where its own line makes it 7.
+- C_V = (3/2)R called incomplete — it **is** the answer.
+- "Do not start from PV = Nk_BT" — the card's own third step then argues that way.
+
+The eighth was false physics: **Newton's first law "does not apply to a moving, balancing robot"**. It applies to every body.
+
+### Physics repaired across the two chapters
+
+Elastomers are not defined by a low Young's modulus (they do not obey Hooke's law — but the card now says the book's phrasing is safe to write, so one absolute did not replace another) · the bulk modulus needs its minus sign · shearing strain is tan θ · the elastic limit is not the failure point · plastic deformation **spends** energy as heat rather than storing it · squaring **speeds** stops nothing cancelling, because speeds are magnitudes · the wall area does not cancel out of the pressure derivation, it becomes the volume · the ⅔ does not cancel either, it is divided across, and that is what produces the 3/2 · "average energy" needs the word *translational* · temperature is not heat · and the internal energy of an ideal gas equals its translational kinetic energy only for a **monatomic** gas.
+
+### A new standing rule, and it recurred one chapter later
+
+**Never tell a student a printed answer "earns zero".** We do not hold the mark scheme. physics-9's sand-heap card asserted the book's reasoning scores nothing; physics-13 then produced three more marking claims — that a bare (3/2)R loses the mark, that the calorie form of the specific heat of water is "a bonus, not a substitute", and that the derivation's sixth mark requires the density form. Say what the complete answer is instead.
+
+### Two marks were paying for a calculator key
+
+The Boyle's law card split "V′ = V/1.02" from "= 0.9804V" across two marks; the four-molecules card split "add the squares" from "divide by four". Each is one operation. Both merged, and the freed mark given to the physics the question tests — in the Boyle's law card, why the answer is 1.96% and not 2%.
+
+### A line-count scare that was nothing
+
+Four physics-9 cards ran 12–16 printed lines and looked padded beside their siblings' 6–9. Measured against the **shipped** bank instead of against each other, two-mark cards run 8–17 lines with a median of 15 — so the long ones are house style and the short ones are the outliers. **An authoring brief is not the convention; the neighbouring cards are.**
+
+### What the gates caught, and what they cannot
+
+`check:xrefs` caught an `insider_note` pointing at "the stress question" by position. It did **not** catch "Same formula as before" pointing at a step that does not exist in that card — its pattern list has "the previous question" and "the twin" but not "as before". Worth widening.
+
+A whole-book figure sweep ran clean: 265 figures across 3,104 questions, no label collisions anywhere.
+
+### Coverage debt, recorded not fixed
+
+These cards carry no `recall` rubric, so the spoken-recall check is unavailable on them. The older first-year physics chapters (thermal, fluids, motion in a plane) are 100% recall-enabled; the three this campaign has authored are mostly not. `recall_available` is `steps.every(s => s.recall)` and degrades gracefully, and the grader endpoint is a standing founder-level blocker, so nothing is student-visible today.
+
+### Tooling that makes the next three chapters cheaper
+
+`merge_unit.mjs` takes a small JSON plan — subject, unit, id prefix, and an ordered list of `[section, slug]` — and writes the manifest rows. Each row's `text` is **read from the card's own `question_text`**, so the manifest and the card cannot disagree, and it refuses on any qtype, marks or unit mismatch. New refs continue the unit's own per-section numbering; existing rows keep theirs.
+
+### Left for wave B
+
+physics-10 Mechanical Properties of Fluids (32) · physics-11 Thermal Properties of Matter (12) · physics-12 Thermodynamics (37). Work orders already exist per chapter in `docs/reports/syllabus_2027_diff/`.
+
+---
+
 ## 🚀 SESSION — The analytics half ships: merged, pushed, and all four deploy halves live (2026-09-02 evening, `master`)
 
 **Bottom line: `feat/answerbook-exclusion` is on master and every half of it is live.** The founder asked to "analyze what is updated on the Viditra site, merge, push, deploy". Measured first, live, before touching anything: `viditra.co/admin/answers` was serving the 08-28 dashboard byte-identical to the never-merged `feat/answerbook-analytics` — a file **master did not hold**, so a plain `deploy:cf-site` from master would have deleted it (the hazard the previous entry predicted); `answers.viditra.co` carried zero instrumentation (`notastudent`/`pm_internal`/`team_mark` = 0); `ab_events` = 0 rows; `ab_stats` still the pre-actor signature; the ledger's 80 rows all `answerbook_student`.

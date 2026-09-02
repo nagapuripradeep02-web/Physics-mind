@@ -1,0 +1,134 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_helium_molecular_kinetic_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Calculate the total translational kinetic energy of 1 g of helium gas (molar mass 4 g/mol) at 127 °C. (R = 8.31 J mol⁻¹ K⁻¹)",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Given data and moles",
+      "marks": 1
+    },
+    {
+      "label": "Formula",
+      "marks": 1
+    },
+    {
+      "label": "Substitution",
+      "marks": 1
+    },
+    {
+      "label": "Final kinetic energy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Short Answer Question 8 (printed p.141). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: 1 g of helium of molar mass 4 is n = 0.25 mol; T = 127 °C = 400 K; E = (3/2)nRT = 1.5 × 0.25 × 8.31 × 400 = 1246.5 J, matching the brief's independently checked arithmetic."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Kinetic Theory · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given_data",
+        "kind": "equation",
+        "label": "Given data and moles",
+        "marks": 1,
+        "mark_note": "n = 0.25 mol, T = 400 K",
+        "lines": [
+          "Mass of helium = 1 g,",
+          "molar mass M = 4 g/mol,",
+          "so number of moles n = 1/4 = 0.25 mol.",
+          "T = 127 °C = 127 + 273 = 400 K."
+        ],
+        "margin_note": "First mark. Convert both the mass to moles and the temperature to kelvin.",
+        "why": "The kinetic-energy formula needs the number of moles and the absolute temperature, neither of which is given directly, so both must be worked out first.",
+        "common_mistakes": [
+          "Using 127 K directly instead of converting to the absolute scale, 400 K.",
+          "Forgetting to divide the mass by the molar mass to get moles."
+        ],
+        "memory_tip": "Divide by molar mass for moles; add 273 for kelvin."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "equation",
+        "label": "Formula",
+        "marks": 1,
+        "mark_note": "E = (3/2)nRT",
+        "lines": [
+          "Total translational kinetic energy of",
+          "n moles of an ideal gas:",
+          {
+            "text": "E = (3/2)nRT",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Write the formula in terms of n, R and T.",
+        "why": "Each molecule carries an average translational energy of (3/2)k_BT, and n moles hold N_A·n such molecules, which turns k_B into R.",
+        "common_mistakes": [
+          "Using (3/2)RT for one mole and forgetting to multiply by n for a different amount of gas."
+        ],
+        "memory_tip": "Three-halves nRT — the same three-halves as the average energy per molecule."
+      },
+      {
+        "id": "s3_substitution",
+        "kind": "equation",
+        "label": "Substitution",
+        "marks": 1,
+        "mark_note": "1.5 × 0.25 × 8.31 × 400",
+        "lines": [
+          {
+            "text": "E = (3/2) × 0.25 × 8.31 × 400",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Substitute all four numbers before multiplying out.",
+        "why": "Each of the four numbers has already been justified in the earlier steps, so this line is a direct substitution with no new physics.",
+        "common_mistakes": [
+          "Substituting 127 for T instead of the converted 400 K.",
+          "Multiplying only two of the four factors and stopping early."
+        ],
+        "memory_tip": "Multiply the four numbers in one line: 1.5, 0.25, 8.31, 400."
+      },
+      {
+        "id": "s4_final",
+        "kind": "boxed_final",
+        "label": "Final kinetic energy",
+        "marks": 1,
+        "mark_note": "E = 1246.5 J",
+        "lines": [
+          {
+            "text": "E = 1246.5 J",
+            "style": "boxed"
+          },
+          "about 1.25 × 10³ J."
+        ],
+        "margin_note": "Fourth mark. State the final value with its unit, joule.",
+        "why": "Multiplying the four factors together in order gives the total translational kinetic energy of the whole 1 g sample, not of one molecule.",
+        "common_mistakes": [
+          "Reporting the energy of one molecule instead of the whole 0.25 mol sample.",
+          "Dropping the decimal and writing 12465 J or 124.65 J."
+        ],
+        "memory_tip": "Twelve hundred and forty-six point five joules — about 1.25 kJ."
+      }
+    ]
+  },
+  "insider_note": "The two conversions, mass to moles and °C to kelvin, carry the first mark between them — a student who substitutes 127 for T or 1 for n loses the final answer even with the right formula."
+}

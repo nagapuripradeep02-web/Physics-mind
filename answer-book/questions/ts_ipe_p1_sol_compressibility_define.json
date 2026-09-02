@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_compressibility_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define compressibility.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Formula with sign",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya *IPE Study Material for Jr. Students* 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 10 (printed p.98). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: compressibility K is the reciprocal of bulk modulus, K = 1/B = −(ΔV/V)/ΔP; the minus sign makes K positive because volume decreases (ΔV negative) as pressure increases (ΔP positive)."
+  },
+  "insider_note": "Dropping the minus sign in K = −(ΔV/V)/ΔP is the single most common way this mark is lost, even when the rest of the definition is correct.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Compressibility K is the reciprocal of the",
+          "bulk modulus B.",
+          {
+            "text": "K = 1/B",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "State both the words 'reciprocal of bulk modulus' and the symbol relation K = 1/B — either alone is incomplete.",
+        "why": "Compressibility is defined as the reciprocal of bulk modulus so that a material that is easy to compress (small B) has a large K, and a material that resists compression (large B) has a small K.",
+        "common_mistakes": [
+          "Writing K = B instead of K = 1/B.",
+          "Confusing compressibility with strain, which has no reciprocal relation to B."
+        ],
+        "memory_tip": "Compressibility and bulk modulus are opposites: K = 1/B."
+      },
+      {
+        "id": "s2_formula_sign",
+        "kind": "boxed_final",
+        "label": "Formula with the minus sign",
+        "marks": 1,
+        "mark_note": "Formula with sign",
+        "lines": [
+          "It is the fractional decrease in volume",
+          "per unit increase in pressure.",
+          {
+            "text": "K = −(ΔV/V)/ΔP",
+            "style": "eq"
+          },
+          {
+            "text": "K = 1/B = −(ΔV/V)/ΔP",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "The minus sign is part of the formula, not decoration — omitting it can cost this mark.",
+        "why": "The minus sign is there because volume decreases as pressure increases, so ΔV is negative for a positive ΔP; the minus sign makes K itself come out as a positive quantity.",
+        "common_mistakes": [
+          "Dropping the minus sign — without it K would come out negative, which is not physically meaningful.",
+          "Writing ΔP/ΔV instead of ΔV/ΔP in the fraction."
+        ],
+        "memory_tip": "Pressure up, volume down — the minus sign turns that decrease into a positive K."
+      }
+    ]
+  }
+}

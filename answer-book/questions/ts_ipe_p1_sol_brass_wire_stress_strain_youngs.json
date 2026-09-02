@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_brass_wire_stress_strain_youngs",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A brass wire of diameter 1 mm is stretched by a load of 20 N. If the original length of the wire is 2 m and the increase in length is 0.51 mm, find (i) the stress produced in the wire, (ii) the strain, and (iii) the Young's modulus of the material of the wire.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Given data and area",
+      "marks": 1
+    },
+    {
+      "label": "Stress (i)",
+      "marks": 1
+    },
+    {
+      "label": "Strain (ii)",
+      "marks": 1
+    },
+    {
+      "label": "Young's modulus (iii)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Short Answer Question 4 (printed p.100). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: d = 1 mm gives r = 0.5 × 10⁻³ m and A = πr² = 7.85 × 10⁻⁷ m²; (i) stress = F/A = 20/(7.85×10⁻⁷) = 2.55 × 10⁷ N/m²; (ii) strain = ΔL/L = (0.51×10⁻³)/2 = 2.55 × 10⁻⁴; (iii) Y = stress/strain = (2.55×10⁷)/(2.55×10⁻⁴) = 1.0 × 10¹¹ N/m². All three values match the brief's independently checked arithmetic."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Solids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given_data",
+        "kind": "equation",
+        "label": "Given data and the area",
+        "marks": 1,
+        "mark_note": "A = πr²",
+        "lines": [
+          "Diameter d = 1 mm, so radius",
+          "r = 0.5 × 10⁻³ m.",
+          "Length L = 2 m, load F = 20 N,",
+          "extension ΔL = 0.51 × 10⁻³ m.",
+          {
+            "text": "Area A = πr² = 7.85 × 10⁻⁷ m²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Convert the diameter to a radius before squaring — that is where marks are usually lost.",
+        "why": "Both the stress and the Young's modulus parts need the cross-sectional area, so it has to be worked out from the given diameter before either part can be answered.",
+        "common_mistakes": [
+          "Squaring the diameter instead of the radius. A = πr², and r is half the diameter.",
+          "Leaving ΔL in millimetres instead of converting it to metres."
+        ],
+        "memory_tip": "Halve the diameter first, then square it: r = d/2, A = πr²."
+      },
+      {
+        "id": "s2_stress",
+        "kind": "equation",
+        "label": "Part (i) — the stress",
+        "marks": 1,
+        "mark_note": "σ = F/A",
+        "lines": [
+          "(i) Stress",
+          {
+            "text": "σ = F/A = 20 / (7.85 × 10⁻⁷)",
+            "style": "eq"
+          },
+          {
+            "text": "σ = 2.55 × 10⁷ N/m²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Divide the load by the area found above; do not recompute the area here.",
+        "why": "Stress is the restoring force per unit area, and since the wire is in equilibrium, this equals the applied force divided by the cross-sectional area.",
+        "common_mistakes": [
+          "Using the diameter or the length in place of the area in the formula.",
+          "Losing track of the power of ten while dividing — work the exponent separately from the digits."
+        ],
+        "memory_tip": "σ = F/A: twenty newtons over a tiny area gives a value near 10⁷ N/m²."
+      },
+      {
+        "id": "s3_strain",
+        "kind": "equation",
+        "label": "Part (ii) — the strain",
+        "marks": 1,
+        "mark_note": "strain = ΔL/L",
+        "lines": [
+          "(ii) Strain",
+          {
+            "text": "Strain = ΔL/L = (0.51 × 10⁻³) / 2",
+            "style": "eq"
+          },
+          {
+            "text": "Strain = 2.55 × 10⁻⁴",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Keep ΔL and L in the same unit, metres, before dividing.",
+        "why": "Strain is a ratio of two lengths, so it must come out as a pure number; keeping ΔL and L both in metres is what makes that ratio correct.",
+        "common_mistakes": [
+          "Dividing by the extension instead of the original length.",
+          "Mixing units, ΔL in mm and L in m, which shifts the power of ten."
+        ],
+        "memory_tip": "Strain = ΔL/L: a fraction-of-a-millimetre stretch over a two-metre wire gives strain of order 10⁻⁴."
+      },
+      {
+        "id": "s4_youngs_modulus",
+        "kind": "boxed_final",
+        "label": "Part (iii) — Young's modulus",
+        "marks": 1,
+        "mark_note": "Y = σ/strain",
+        "lines": [
+          "(iii) Young's modulus",
+          {
+            "text": "Y = stress / strain",
+            "style": "eq"
+          },
+          {
+            "text": "Y = (2.55 × 10⁷) / (2.55 × 10⁻⁴)",
+            "style": "eq"
+          },
+          {
+            "text": "Y = 1.0 × 10¹¹ N/m²",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Either route works — Y = stress/strain from parts (i) and (ii), or Y = FL/(AΔL) in one line — dividing the two answers already found is faster and less error-prone.",
+        "why": "Young's modulus is defined as stress divided by strain, so once both are known from the earlier parts, this step is a single division with no new physics.",
+        "common_mistakes": [
+          "Inverting the ratio and writing Y = strain / stress."
+        ],
+        "memory_tip": "Y = stress/strain: divide the two answers from parts (i) and (ii)."
+      }
+    ]
+  },
+  "insider_note": "This is a straight substitution question — the area from the given diameter carries the first mark, and each part (i), (ii), (iii) is a value mark on its own, so a right method with a wrong final digit still loses that step."
+}

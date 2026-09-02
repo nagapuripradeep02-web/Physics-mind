@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_pressure_and_internal_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the relation between the pressure and the internal energy of a gas?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "PV in terms of internal energy",
+      "marks": 1
+    },
+    {
+      "label": "Pressure per unit volume",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Very Short Answer Question 7 (printed p.137). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: PV = ⅔E, with E the total translational kinetic energy of the gas, follows from PV = ⅓Nmv̄² = ⅔N(½mv̄²); dividing through by V gives P = ⅔(E/V), matching NCERT Class-11 Chapter 13. This card answers for the gas's total internal energy E — the companion question about the average kinetic energy of one molecule is a separate card."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pv_energy",
+        "kind": "boxed_final",
+        "label": "PV in terms of internal energy",
+        "marks": 1,
+        "mark_note": "PV = ⅔E",
+        "lines": [
+          "For an ideal gas the internal energy",
+          "is purely kinetic. For a monoatomic",
+          "gas, it is entirely the translational",
+          "kinetic energy E.",
+          {
+            "text": "PV = ⅔E",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "First mark. State that E is the total translational kinetic energy, then write PV = ⅔E.",
+        "why": "Kinetic theory gives PV = ⅓Nmv̄² = ⅔N(½mv̄²). The sum N(½mv̄²) over all the molecules is exactly the total translational kinetic energy E, so the same result reads PV = ⅔E.",
+        "common_mistakes": [
+          "Writing PV = E, leaving out the two-thirds factor.",
+          "Treating E as the kinetic energy of one molecule instead of the total for the whole gas."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That PV equals two thirds E, where E is the total translational kinetic energy of the gas.",
+          "accept": [
+            "PV equals two thirds E",
+            "E is the total kinetic energy",
+            "internal energy of the whole gas"
+          ],
+          "reject": [
+            "P equals two thirds n half m v squared"
+          ],
+          "heard_as": [
+            "PV equals two thirds E",
+            "total kinetic energy"
+          ]
+        },
+        "memory_tip": "E is the whole gas's energy. PV is two thirds of it."
+      },
+      {
+        "id": "s2_p_per_volume",
+        "kind": "boxed_final",
+        "label": "Pressure per unit volume",
+        "marks": 1,
+        "mark_note": "P = ⅔(E/V)",
+        "lines": [
+          {
+            "text": "P = ⅔(E/V)",
+            "style": "boxed"
+          },
+          "The pressure is two-thirds of the",
+          "translational kinetic energy per",
+          "unit volume of the gas."
+        ],
+        "margin_note": "Second mark. Rearrange PV = ⅔E to P = ⅔(E/V) and name E/V as the energy per unit volume.",
+        "why": "Dividing PV = ⅔E through by V gives the pressure directly as a fraction of the energy density E/V — a way of reading the same relation that connects a bulk, measurable quantity, pressure, to the energy packed into each unit volume of gas.",
+        "common_mistakes": [
+          "Writing P = ⅔E instead of P = ⅔(E/V) — the volume must be divided out.",
+          "Calling E/V the kinetic energy of one molecule. It is the total energy per unit volume."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P equals two thirds of E by V, the translational kinetic energy per unit volume.",
+          "accept": [
+            "P equals two thirds E by V",
+            "energy per unit volume",
+            "pressure is two thirds the energy density"
+          ],
+          "reject": [
+            "PV equals two thirds E"
+          ],
+          "heard_as": [
+            "two thirds E by V",
+            "energy per unit volume"
+          ]
+        },
+        "memory_tip": "Divide both sides of PV = ⅔E by V to get pressure as energy per unit volume."
+      }
+    ]
+  },
+  "insider_note": "This question asks for the gas's total internal energy E, not the energy of one molecule — keep E extensive throughout both steps."
+}

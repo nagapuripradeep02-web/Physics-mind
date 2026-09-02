@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_stress_units_and_dimensions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the SI unit and the dimensional formula of stress?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "SI unit",
+      "marks": 1
+    },
+    {
+      "label": "Dimensional formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya *IPE Study Material for Jr. Students* 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 6 (printed p.98). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: SI unit of stress is N/m² (pascal); dimensional formula is [M¹L⁻¹T⁻²], obtained by dividing force's dimensions [M¹L¹T⁻²] by area's dimensions [L²]."
+  },
+  "insider_note": "Examiners award one mark for the unit and one for the dimensional formula, so giving only one of the two, even correctly, costs a mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_si_unit",
+        "kind": "equation",
+        "label": "SI unit of stress",
+        "marks": 1,
+        "mark_note": "SI unit",
+        "lines": [
+          "Stress = force / area, so its unit is the",
+          "unit of force divided by the unit of area.",
+          {
+            "text": "SI unit of stress = N/m² (pascal, Pa)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Give N/m² — adding its name, the pascal (Pa), makes the answer complete.",
+        "why": "The unit of a quotient is the quotient of the units, so newton (force) over square metre (area) gives the unit of stress directly.",
+        "common_mistakes": [
+          "Writing N/m instead of N/m² — area is squared.",
+          "Forgetting the alternate name pascal (Pa) for the SI unit."
+        ],
+        "memory_tip": "Stress shares its unit with pressure: N per square metre, also called the pascal."
+      },
+      {
+        "id": "s2_dimensions",
+        "kind": "boxed_final",
+        "label": "Dimensional formula",
+        "marks": 1,
+        "mark_note": "Dimensions",
+        "lines": [
+          "Force has dimensions [M¹L¹T⁻²] and area has",
+          "dimensions [L²], so stress has dimensions",
+          {
+            "text": "[M¹L⁻¹T⁻²]",
+            "style": "eq"
+          },
+          {
+            "text": "Stress: N/m²; [M¹L⁻¹T⁻²]",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Both the SI unit and the dimensional formula must appear — one alone is half the answer.",
+        "why": "Stress equals force divided by area, and substituting the dimensional formulas of force [M¹L¹T⁻²] and area [L²] gives the dimensional formula of stress directly.",
+        "common_mistakes": [
+          "Leaving out the negative sign in the exponent of L or T.",
+          "Confusing stress's dimensions with strain, which has none."
+        ],
+        "memory_tip": "Divide force's [M¹L¹T⁻²] by area's [L²]: the L power drops from 1 to −1."
+      }
+    ]
+  }
+}

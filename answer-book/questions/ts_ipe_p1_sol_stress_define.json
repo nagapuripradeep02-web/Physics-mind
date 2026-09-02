@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_stress_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define stress.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Formula and unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 1 (printed p.98). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: stress is the restoring force per unit area, σ = F/A, SI unit N m⁻²."
+  },
+  "insider_note": "The definition mark needs the words \"restoring force\" — F/A alone does not earn it. The second mark is the formula together with its unit.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Stress — the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A deforming force sets up an",
+          "internal restoring force in a body.",
+          "Stress is this restoring force per",
+          "unit area of the cross-section."
+        ],
+        "margin_note": "The words \"restoring force per unit area\" earn this mark — the formula alone does not.",
+        "why": "The restoring force equals the applied force only while the body is in equilibrium, so a problem's given force can be used to find the stress.",
+        "common_mistakes": [
+          "Calling stress the applied force per unit area. Stress is the RESTORING force per unit area.",
+          "Leaving out \"per unit area\" and defining stress as just the restoring force."
+        ],
+        "memory_tip": "Stress = restoring force / area — the body pushes back, and stress measures that push-back over area."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Formula and unit",
+        "marks": 1,
+        "mark_note": "σ = F/A",
+        "lines": [
+          {
+            "text": "Stress σ = F/A",
+            "style": "eq"
+          },
+          "SI unit: N m⁻²",
+          {
+            "text": "σ = F/A, SI unit N m⁻²",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Give both the formula AND the unit — either alone earns only partial credit from most examiners.",
+        "why": "Stress has the same unit as pressure because both are a force divided by an area, so N m⁻² follows directly from the formula.",
+        "common_mistakes": [
+          "Writing the unit as N m² instead of N m⁻².",
+          "Omitting the unit altogether after writing the formula."
+        ],
+        "memory_tip": "Force over area gives the same unit as pressure: N m⁻²."
+      }
+    ]
+  }
+}

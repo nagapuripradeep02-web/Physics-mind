@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_average_ke_proportional_to_temperature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Prove that the average kinetic energy of a molecule of an ideal gas is directly proportional to the absolute temperature of the gas.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Kinetic theory result",
+      "marks": 1
+    },
+    {
+      "label": "Rewrite as energy",
+      "marks": 1
+    },
+    {
+      "label": "The gas equation",
+      "marks": 1
+    },
+    {
+      "label": "The proportionality",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Short Answer Question 4 (printed p.139). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: from the kinetic-theory pressure formula P = ⅓(N/V)mv̄², PV = ⅓Nmv̄² = ⅔N(½mv̄²); equating with the gas equation PV = Nk_BT gives ½mv̄² = (3/2)k_BT, so the average kinetic energy of a molecule is directly proportional to the absolute temperature."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Kinetic Theory · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_kinetic_result",
+        "kind": "equation",
+        "label": "Kinetic theory result",
+        "marks": 1,
+        "mark_note": "Start from P = ⅓(N/V)mv̄²",
+        "lines": [
+          "Kinetic theory gives the pressure of",
+          "a gas of N molecules of mass m in",
+          "volume V as",
+          {
+            "text": "P = ⅓(N/V)mv̄²",
+            "style": "eq"
+          },
+          "Multiplying both sides by V,",
+          {
+            "text": "PV = ⅓Nmv̄²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "This starting formula must be written and multiplied by V.",
+        "why": "Starting from the kinetic-theory pressure formula, rather than assuming the final result, is what makes this a proof and not a restatement.",
+        "common_mistakes": [
+          "Starting directly from ½mv̄² = (3/2)k_BT. That is the result to be proved, so it cannot be the starting point of a proof."
+        ],
+        "memory_tip": "Start from P = ⅓(N/V)mv̄², the derived kinetic-theory formula, not the final result."
+      },
+      {
+        "id": "s2_energy_form",
+        "kind": "equation",
+        "label": "Rewrite as energy",
+        "marks": 1,
+        "mark_note": "Split ⅓ into ⅔ × ½",
+        "lines": [
+          "Rewrite the right side in terms of",
+          "the kinetic energy of one molecule:",
+          {
+            "text": "⅓Nmv̄² = ⅔N(½mv̄²)",
+            "style": "eq"
+          },
+          "so",
+          {
+            "text": "PV = ⅔N(½mv̄²)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "The rewritten form PV = ⅔N(½mv̄²) must appear.",
+        "why": "Splitting the ⅓ into ⅔ times ½ turns the formula into N times the average kinetic energy of one molecule, ½mv̄², which is the quantity the proof is about.",
+        "common_mistakes": [
+          "Leaving the formula as ⅓Nmv̄² and comparing it directly with Nk_BT — the ½mv̄² term must appear before the comparison."
+        ],
+        "memory_tip": "⅓ splits into ⅔ times ½ — that ½ is the average kinetic energy per molecule."
+      },
+      {
+        "id": "s3_gas_equation",
+        "kind": "equation",
+        "label": "The gas equation",
+        "marks": 1,
+        "mark_note": "PV = Nk_BT",
+        "lines": [
+          "The ideal gas equation for N",
+          "molecules is",
+          {
+            "text": "PV = Nk_BT",
+            "style": "eq"
+          },
+          "where k_B is Boltzmann's constant and",
+          "T is the absolute temperature."
+        ],
+        "margin_note": "State the gas equation for N molecules before equating.",
+        "why": "This is the second, independent expression for the same PV, and the proof works by setting the two equal.",
+        "common_mistakes": [
+          "Writing PV = nRT and not connecting n and R to N and k_B (nR = Nk_B)."
+        ],
+        "memory_tip": "PV = Nk_BT is the gas equation written per molecule, not per mole."
+      },
+      {
+        "id": "s4_proportionality",
+        "kind": "boxed_final",
+        "label": "The proportionality",
+        "marks": 1,
+        "mark_note": "Cancel N, isolate ½mv̄²",
+        "lines": [
+          "Equating the two expressions for PV:",
+          {
+            "text": "⅔N(½mv̄²) = Nk_BT",
+            "style": "eq"
+          },
+          "N cancels from both sides, leaving",
+          {
+            "text": "½mv̄² = (3/2)k_BT",
+            "style": "boxed"
+          },
+          "Since k_B is a constant, the average",
+          "kinetic energy of a molecule is",
+          "directly proportional to the",
+          "absolute temperature."
+        ],
+        "margin_note": "The final boxed line ½mv̄² = (3/2)k_BT is where this mark is earned.",
+        "why": "Cancelling N and isolating ½mv̄² leaves an expression with only T and constants on the other side, which is exactly the definition of direct proportionality.",
+        "common_mistakes": [
+          "Stopping at ⅔N(½mv̄²) = Nk_BT without cancelling N and isolating ½mv̄² — the proportionality is not shown until this last line."
+        ],
+        "memory_tip": "Cancel the N, and only T and constants remain — that IS the proportionality."
+      }
+    ]
+  },
+  "insider_note": "This is a prove question — every algebra step from P = ⅓(N/V)mv̄² to the final line must be shown; stating ½mv̄² = (3/2)k_BT alone earns none of these marks."
+}

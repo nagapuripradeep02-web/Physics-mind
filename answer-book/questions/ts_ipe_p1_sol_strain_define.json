@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_strain_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define strain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Formula and unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 5 (printed p.98). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: strain is the change in dimension per unit original dimension; it is a ratio of two like quantities, so it carries no unit and no dimensions."
+  },
+  "insider_note": "Students often forget to state that strain has no unit — that line alone carries the second mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Strain — the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Strain is the change in dimension",
+          "per unit original dimension of a",
+          "body under a deforming force."
+        ],
+        "margin_note": "Say \"change in dimension per unit original dimension\" in full — a vague \"strain is deformation\" does not earn this mark.",
+        "why": "Dimension here covers length, volume or shape, so this one definition covers longitudinal, volume and shearing strain alike.",
+        "common_mistakes": [
+          "Defining strain only in terms of length change, which covers longitudinal strain but not volume or shearing strain.",
+          "Confusing strain with stress — strain is the deformation, stress is the force per unit area causing it."
+        ],
+        "memory_tip": "Strain is how much a body changed, per how much it started with."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Formula and unit",
+        "marks": 1,
+        "mark_note": "No unit",
+        "lines": [
+          {
+            "text": "Strain = change in dimension /",
+            "style": "eq"
+          },
+          {
+            "text": "original dimension",
+            "style": "eq"
+          },
+          "It is a ratio, so it has",
+          "no unit and no dimensions.",
+          {
+            "text": "Strain = Δx/x — no unit, no dimensions.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "State clearly that strain has no unit — it is the ratio of two lengths (or volumes), so the units cancel.",
+        "why": "Both quantities in the ratio carry the same unit, so they cancel and strain is left as a pure number.",
+        "common_mistakes": [
+          "Giving strain a unit such as m or m³.",
+          "Writing the formula without saying it is a ratio with no unit."
+        ],
+        "memory_tip": "Same units on top and bottom cancel out — strain has none."
+      }
+    ]
+  }
+}

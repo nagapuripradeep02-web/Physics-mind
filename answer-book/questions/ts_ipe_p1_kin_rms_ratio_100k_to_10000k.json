@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_kin_rms_ratio_100k_to_10000k",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 13,
+    "name": "Kinetic Theory"
+  },
+  "chapter": "Kinetic Theory",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Compare the rms speeds of the molecules of a gas at temperatures 100 K and 10000 K.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The relation",
+      "marks": 1
+    },
+    {
+      "label": "The ratio",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 13 Very Short Answer Question 16 (printed p.138). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: v_rms ∝ √T for a given gas, so v₂/v₁ = √(10000/100) = √100 = 10, arithmetic verified."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Kinetic Theory · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "v_rms ∝ √T",
+        "lines": [
+          {
+            "text": "v_rms ∝ √T",
+            "style": "eq"
+          },
+          "So the ratio of two rms speeds",
+          "equals the square root of the",
+          "ratio of the two temperatures."
+        ],
+        "margin_note": "First mark. Write v_rms ∝ √T before forming the ratio.",
+        "why": "The rms speed of a gas is proportional to the square root of the absolute temperature, so comparing two rms speeds of the same gas reduces to taking the square root of the ratio of their absolute temperatures.",
+        "common_mistakes": [
+          "Taking the ratio of the temperatures directly as the answer, without the square root.",
+          "Trying to bring in the molar mass, which cancels out because it is the same gas at both temperatures."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rms speed is proportional to the square root of the absolute temperature, so the speed ratio is the square root of the temperature ratio.",
+          "accept": [
+            "v rms proportional to root T",
+            "ratio of speeds is root of ratio of temperatures",
+            "v2 by v1 equals root T2 by T1"
+          ],
+          "reject": [
+            "v2 by v1 equals 10"
+          ],
+          "heard_as": [
+            "v rms proportional to root T",
+            "square root of the ratio"
+          ]
+        },
+        "memory_tip": "Speeds go as √T — take the square root of the temperature ratio to get the speed ratio."
+      },
+      {
+        "id": "s2_ratio",
+        "kind": "boxed_final",
+        "label": "The ratio",
+        "marks": 1,
+        "mark_note": "v₂/v₁ = 10",
+        "lines": [
+          {
+            "text": "v₂/v₁ = √(10000/100) = √100",
+            "style": "eq"
+          },
+          {
+            "text": "v₂/v₁ = 10",
+            "style": "boxed"
+          },
+          "Molecules at 10000 K move 10",
+          "times as fast as at 100 K."
+        ],
+        "margin_note": "Second mark. State which temperature the faster speed belongs to.",
+        "why": "Substituting the two given temperatures into the square-root relation gives a clean ratio of 10, because 10000/100 = 100 is a perfect square.",
+        "common_mistakes": [
+          "Reporting the ratio as 100, which is the temperature ratio, not the speed ratio.",
+          "Inverting the ratio and writing v₁/v₂ = 10 without saying which speed is larger."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rms speed at 10000 K is 10 times the rms speed at 100 K.",
+          "accept": [
+            "v2 by v1 equals 10",
+            "ten thousand K molecules are 10 times faster",
+            "root 100 is 10"
+          ],
+          "reject": [
+            "v rms proportional to root T"
+          ],
+          "heard_as": [
+            "ten times",
+            "root 100"
+          ]
+        },
+        "memory_tip": "10000/100 = 100, a perfect square, so its root is a clean 10."
+      }
+    ]
+  },
+  "insider_note": "The temperature ratio 100 is a trap — the speed ratio is its square root, 10, not 100 itself."
+}
