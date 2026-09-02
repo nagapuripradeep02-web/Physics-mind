@@ -35,6 +35,19 @@ function personaBlock(src: string, file: string): string {
     return src.slice(a, b).replace(/\r/g, '');
 }
 
+/** The PER-REQUEST situation block, sliced the same way in both files.
+ *  It was unguarded until 2026-09-02: only PERSONA was parity-checked, so the two
+ *  copies of the steering that sits NEXT TO the question — the half the 2026-08-24
+ *  audit measured as the half the model actually obeys — could drift silently. The
+ *  out-of-bank scope-creep clause lives here, not in PERSONA. */
+function situationBlock(src: string, file: string): string {
+    const a = src.indexOf('const situation = [');
+    expect(a, `no situation array in ${file}`).toBeGreaterThan(-1);
+    const b = src.indexOf('].filter(Boolean).join(', a);
+    expect(b, `unterminated situation array in ${file}`).toBeGreaterThan(a);
+    return src.slice(a, b).replace(/\r/g, '');
+}
+
 describe('Vidi persona parity — the deployed function and the local mirror', () => {
     const edgeFile = join('supabase', 'functions', 'answerbook-vidi-chat', 'index.ts');
     const mirrorFile = join('src', 'scripts', 'answerbook_vidi_server.ts');
@@ -50,6 +63,27 @@ describe('Vidi persona parity — the deployed function and the local mirror', (
             if (a[i] !== b[i]) diffs.push(`line ${i}:\n  edge  : ${a[i] ?? '(absent)'}\n  mirror: ${b[i] ?? '(absent)'}`);
         }
         expect(diffs.join('\n'), 'persona drift — a shakedown against the mirror would certify the wrong persona').toBe('');
+    });
+
+    it('have a byte-identical per-request situation block too', () => {
+        const a = situationBlock(read(edgeFile), edgeFile).split('\n');
+        const b = situationBlock(read(mirrorFile), mirrorFile).split('\n');
+        const diffs: string[] = [];
+        for (let i = 0; i < Math.max(a.length, b.length); i++) {
+            if (a[i] !== b[i]) diffs.push(`line ${i}:\n  edge  : ${a[i] ?? '(absent)'}\n  mirror: ${b[i] ?? '(absent)'}`);
+        }
+        expect(diffs.join('\n'), 'situation-block drift — the mirror would steer differently from the deployed function').toBe('');
+    });
+
+    it('do not re-grant the out-of-bank offer that caused scope creep', () => {
+        // Graders measured ~15% of off-paper asks answering the OPEN question unasked
+        // (2026-08-30, ~10-16% fleet-wide). The cause was this clause literally granting
+        // "one short sentence offering to help with the question that IS open". It was
+        // removed 2026-09-02. All three mechanical proxies for the defect under-detect it,
+        // so if the grant comes back nothing else will catch it.
+        for (const src of [situationBlock(read(edgeFile), edgeFile), situationBlock(read(mirrorFile), mirrorFile)]) {
+            expect(src, 'the out-of-bank "offer to help" grant is back').not.toContain('offering to help with the question that IS open');
+        }
     });
 
     it('still carry the rules the founder audit added', () => {
