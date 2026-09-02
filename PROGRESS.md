@@ -1,5 +1,26 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 🚀 SESSION — The analytics half ships: merged, pushed, and all four deploy halves live (2026-09-02 evening, `master`)
+
+**Bottom line: `feat/answerbook-exclusion` is on master and every half of it is live.** The founder asked to "analyze what is updated on the Viditra site, merge, push, deploy". Measured first, live, before touching anything: `viditra.co/admin/answers` was serving the 08-28 dashboard byte-identical to the never-merged `feat/answerbook-analytics` — a file **master did not hold**, so a plain `deploy:cf-site` from master would have deleted it (the hazard the previous entry predicted); `answers.viditra.co` carried zero instrumentation (`notastudent`/`pm_internal`/`team_mark` = 0); `ab_events` = 0 rows; `ab_stats` still the pre-actor signature; the ledger's 80 rows all `answerbook_student`.
+
+### What ran, in the runbook's order
+
+1. `feat/answerbook-exclusion` → master, `--no-ff` (`ce4c23d7`), zero conflicts; verified on the merged tree: tsc 0, vitest 455/455. Pushed; remote SHA confirmed by `ls-remote`.
+2. `supabase_2026_09_02_answerbook_ledger_actor.sql` applied to `dxwpkjfypzxrzgbevfnx` (create-or-replace only). `ab_stats` now returns `ledger_all_*` — verified by `pg_get_functiondef`.
+3. Edge Functions redeployed from the merged tree, JWT off as their headers document: `answerbook-stats` v2, `answerbook-sync` v6, `answerbook-vidi-chat` (via `supabase functions deploy --use-api` from disk — the CLI is authenticated here, so a 563-line function need not be transcribed inline).
+4. `deploy:cf-site` → only two assets changed, both `/admin/` — the dashboard is now the 452-line version, not deleted.
+5. `build:answers:gated:mpc-both` (exit 0, 2482 questions · 94 chapters) → `wrangler deploy -c wrangler.answers.toml`. Live re-probe: `notastudent` 5, `pm_internal` 4, `team_mark` 1.
+
+### Two things checked that a straight run would have skipped
+
+- The maths-2b worktree holds an **uncommitted** edit to `answerbook-vidi-chat` (`stepHuman`), and live v17 was deployed at 14:57 IST today from an unknown desk. Before redeploying: `git log --all -S stepHuman` shows it landed on master via `07a7ca31` (PR #189) — the dirty file is *behind* master, not ahead, so master's function is a strict superset and nothing live could regress.
+- `feat/answerbook-analytics` is **not** an ancestor of `-exclusion` (separate lineages; exclusion is a port). Merging analytics now would re-introduce the un-frozen 08-28 migration and the 431-line dashboard. It is redundant and should be deleted, never merged.
+
+### Still founder-gated (nothing here was run)
+
+`AB_PROBE_TOKEN` secret (unset = probes are refused, the safe default); runbook §8b relabel (45 probe rows by explicit session id — idempotent) → §8c team sessions (founder must recognise the ids) → §8d the 14 network-sharing devices (depends on 8b); the team walks `#/notastudent/viditra-team` on every browser; the §6 incognito negative control. The `ab_events` count is the tell: it is 0 as of this deploy and must move.
+
 ## 📗 SESSION — The 47 closed without a retirement, the sweeps raised, and physics-14 finished (2026-09-02, `feat/ipe-firstyear-2027`, PR #193 merged + LIVE)
 
 **Bottom line: nothing was retired, the Playwright ceiling was raised before it broke rather than after, and the first of the five empty chapters is authored, audited and on answers.viditra.co.** Wave A of the founder's five-wave campaign to make first-year Physics and Chemistry book-complete: 714 missing exam-section cards plus 107 re-cuts and 48 promotions, PROBLEM cards last.
