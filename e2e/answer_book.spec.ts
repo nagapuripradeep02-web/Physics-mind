@@ -2593,20 +2593,74 @@ test('the physics bank is on the 2026-27 numbering and Unit 14 is coming-soon', 
 });
 
 test('a retired card renders on a forwarded link with the syllabus banner', async ({ page }) => {
-    // No card is retired yet (the official syllabus lists are not in hand), so the
-    // banner path is exercised by pinning PM_RETIRED before the page's own data
-    // script assigns it — a setter that ignores the assignment keeps the pin.
-    const qid = 'ts_ipe_p1_um_fundamental_vs_derived_units';
-    await page.addInitScript((id: string) => {
-        const pinned = { [id]: { wef: '2026-27', reason: 'this topic was removed from the syllabus', unit: 'Physical World and Measurement' } };
-        Object.defineProperty(window, 'PM_RETIRED', { get: () => pinned, set: () => { /* pinned */ }, configurable: true });
-    }, qid);
+    // The first REAL retirement (2026-09-02): the 2026-27 chemistry book dropped
+    // States of Matter, so its 40 cards stay on file under unit 99 and leave the
+    // catalog. A forwarded link still renders, with the banner, and the unit
+    // chip shows the chapter name alone — 99 is a sentinel, not a chapter.
+    const qid = 'ts_ipe_c1_som_aqueous_tension';
     await page.goto(URL + '#/q/' + qid);
     await page.waitForSelector('.page', { timeout: 8000 });
     const chip = page.locator('.question-meta .chip-retired');
     expect(await chip.count()).toBe(1);
     expect(await chip.textContent()).toContain('Not in the 2026-27 syllabus');
-    expect(await chip.textContent()).toContain('removed from the syllabus');
+    expect(await chip.textContent()).toContain('States of Matter');
+    const chips = await page.locator('.question-meta .chip').allTextContents();
+    expect(chips.some((c) => c.includes('Unit 99'))).toBe(false);
+    expect(chips.some((c) => c.includes('States of Matter (Chemistry)'))).toBe(true);
+    // and it is offered nowhere: not in PM_UNITS, but still in PM_RETIRED
+    const r = await page.evaluate((id: string) => {
+        const units = (window as any).PM_UNITS as any[];
+        const listed = units.some((u) => u.questions.some((e: any) => e.question_id === id));
+        const retired = (window as any).PM_RETIRED || {};
+        return { listed, retiredCount: Object.keys(retired).length, unit: retired[id]?.unit };
+    }, qid);
+    expect(r.listed).toBe(false);
+    expect(r.retiredCount).toBe(40);
+    expect(r.unit).toBe('States of Matter (Chemistry)');
+});
+
+test('the chemistry bank is on the 2026-27 numbering: ten chapters, States of Matter gone', async ({ page }) => {
+    await page.goto(URL);
+    await page.waitForFunction(() => (window as any).PM_ANSWER);
+    const r = await page.evaluate(() => {
+        const units = ((window as any).PM_UNITS as any[]).filter((u) => u.subject === 'chemistry');
+        const byN: Record<number, any> = {};
+        for (const u of units) byN[u.number] = u;
+        const ready = (n: number) => byN[n]?.questions.filter((e: any) => e.question_id).length;
+        return {
+            n: units.length,
+            numbers: units.map((u) => u.number),
+            names: units.map((u) => u.name),
+            u4: byN[4]?.name, u4ready: ready(4),
+            u6: byN[6]?.name, u7: byN[7]?.name, u10: byN[10]?.name,
+            comingReady: [7, 8, 9, 10].map(ready),
+        };
+    });
+    expect(r.n).toBe(10);
+    expect(r.numbers).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);   // textbook order, no 99
+    expect(r.names.some((s: string) => s.includes('States of Matter'))).toBe(false);
+    expect(r.u4).toBe('Stoichiometry (Chemistry)');
+    expect(r.u4ready).toBe(36);
+    expect(r.u6).toBe('Chemical Equilibrium, Acids and Bases (Chemistry)');
+    expect(r.u7).toBe('s-Block Elements (Chemistry)');
+    expect(r.u10).toBe('General Organic Chemistry (Chemistry)');
+    expect(r.comingReady).toEqual([0, 0, 0, 0]);                  // listed, not written
+});
+
+test('a pre-2026-09-02 chemistry exam-eve link still lands on the chapter it meant', async ({ page }) => {
+    // Old chemistry-5 meant Stoichiometry, which is chemistry-4 in the 2026-27 book.
+    await page.goto(URL + '#/exam-eve/chemistry-5');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Unit 4 — Stoichiometry');
+    // With the year the key is taken literally: chemistry-4 IS Stoichiometry now.
+    await page.goto(URL + '#/exam-eve/chemistry-4/2027');
+    await page.waitForSelector('#examEveView:not([hidden])');
+    expect(await page.locator('#eveTitle').textContent()).toContain('Unit 4 — Stoichiometry');
+    // Old chemistry-4 meant States of Matter, which left the book: back to the catalog,
+    // never silently onto Stoichiometry.
+    await page.goto(URL + '#/exam-eve/chemistry-4');
+    await page.waitForSelector('#catalogView:not([hidden])');
+    expect(await page.locator('#examEveView').isHidden()).toBe(true);
 });
 
 test('a card that is not retired shows no syllabus banner', async ({ page }) => {

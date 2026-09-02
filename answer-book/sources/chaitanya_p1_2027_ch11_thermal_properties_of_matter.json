@@ -1,0 +1,182 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Physics (2026-27 edition)",
+  "scan_file": "DocScanner (3).pdf",
+  "scan_sha256": "1abe7da6d4846e9e09d6cb7b588db8404a6268dc196f1d4128deefea6a37c016",
+  "internal_only": true,
+  "note": "VSAQ 20, SAQ 4, LAQ 2, PROBLEM 8 (34 entries). The FORMULAE block on scan pp.113–114 (printed 115–116, ending at the top of 116 with Wien's law, Stefan's law and Newton's law of cooling) is not indexed. The left margin of scan p.114 is cropped: the number of VSAQ 2 (and any star before it) is cut off and inferred from position; the star markers before VSAQ 9, SAQ 4 and PROBLEM 1 are partially cropped but visible. The book spells Wien as 'Wein'; stems use 'Wien'.",
+  "chapter": { "number": 11, "printed_title": "THERMAL PROPERTIES OF MATTER" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 116, "scan_page": 114,
+      "stem": "State the difference between heat and temperature.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 116, "scan_page": 114,
+      "stem": "What are the lower fixed point and the upper fixed point on the Celsius scale and on the Fahrenheit scale?",
+      "appearance_years": [],
+      "notes": "The question number and any star before it are cropped off the left margin of the scan; the number 2 is inferred from its position between VSAQ 1 and VSAQ 3. Star count unknown, recorded as 0." },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 116, "scan_page": 114,
+      "stem": "Do the values of the coefficients of expansion change when the temperatures are measured on the centigrade scale instead of the Fahrenheit scale?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 1,
+      "printed_page": 116, "scan_page": 114,
+      "stem": "Can a substance contract when it is heated? Give examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 1,
+      "printed_page": 116, "scan_page": 114,
+      "stem": "Why must gaps be left between two successive rails of a railway track?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 116, "scan_page": 114,
+      "stem": "Why do liquids not have linear expansion and areal expansion?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 1,
+      "printed_page": 116, "scan_page": 114,
+      "stem": "What is latent heat of fusion?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 1,
+      "printed_page": 116, "scan_page": 114,
+      "stem": "What is latent heat of vaporisation?",
+      "appearance_years": [], "notes": "Printed spelling: 'vapourisation'." },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 1,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "Why are cooking utensils coated black? Why is the bottom of a utensil made of copper?",
+      "appearance_years": [],
+      "notes": "Two questions under one number, printed without part labels; indexed as one entry. The star marker is partially cropped at the left margin." },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 1,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "State Wien's displacement law.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "What is the specific gas constant? Is it the same for all gases?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 1,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "Does a body radiate heat at 0 K? Does it radiate heat at 0 °C?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "State the different modes of transmission of heat. Which of these modes need a material medium?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "What is regelation of ice?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "Define thermal expansion.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "What is the principle of a pressure cooker?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "The maximum intensity of radiation from a black body is found at a wavelength of 2.65 μm. What is the temperature of the radiating body? (Wien's constant = 2.9 × 10⁻³ mK)",
+      "appearance_years": [], "notes": "The same question is printed again as PROBLEM 7." },
+
+    { "ref": "vsaq18", "section": "VSAQ", "number": 18, "part": null, "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "State Newton's law of cooling.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq19", "section": "VSAQ", "number": 19, "part": null, "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "State the conditions under which Newton's law of cooling is applicable.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq20", "section": "VSAQ", "number": 20, "part": null, "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "The roofs of buildings are often painted white during summer. Why?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1", "section": "SAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 118, "scan_page": 116,
+      "stem": "Explain the Celsius and Fahrenheit scales of temperature. Obtain the relation between the Celsius and Fahrenheit scales of temperature.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq2", "section": "SAQ", "number": 2, "part": null, "stars": 1,
+      "printed_page": 118, "scan_page": 116,
+      "stem": "Pendulum clocks generally go fast in winter and slow in summer. Why?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq3", "section": "SAQ", "number": 3, "part": null, "stars": 1,
+      "printed_page": 118, "scan_page": 116,
+      "stem": "In what way is the anomalous behaviour of water an advantage to aquatic animals?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq4", "section": "SAQ", "number": 4, "part": null, "stars": 1,
+      "printed_page": 119, "scan_page": 117,
+      "stem": "Explain conduction, convection and radiation, with examples.",
+      "appearance_years": [], "notes": "The star marker is partially cropped at the left margin." },
+
+    { "ref": "laq1", "section": "LAQ", "number": 1, "part": null, "stars": 0,
+      "printed_page": 119, "scan_page": 117,
+      "stem": "Explain thermal conductivity and the coefficient of thermal conductivity. A copper bar of thermal conductivity 401 W/(mK) has one end at 104 °C and the other end at 24 °C. The length of the bar is 0.10 m and its cross-sectional area is 1.0 × 10⁻⁶ m². (a) What is the rate of heat conduction P along the bar?",
+      "appearance_years": [],
+      "notes": "The numerical part is labelled (a) but no (b) is printed, and the theory part carries no label, so the whole number is indexed as one question." },
+
+    { "ref": "laq2", "section": "LAQ", "number": 2, "part": null, "stars": 1,
+      "printed_page": 120, "scan_page": 118,
+      "stem": "State and explain Newton's law of cooling. State the conditions under which Newton's law of cooling is applicable. A body cools from 60 °C to 50 °C in 5 minutes and then to 40 °C in another 8 minutes. Find the temperature of the surroundings.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": null, "stars": 1,
+      "printed_page": 121, "scan_page": 119,
+      "stem": "At what temperature are the readings on the Kelvin scale and the Fahrenheit scale the same?",
+      "appearance_years": [], "notes": "The star marker is partially cropped at the left margin. Compare PROBLEM 8, which asks the same for Fahrenheit and Celsius." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 1,
+      "printed_page": 121, "scan_page": 119,
+      "stem": "Find the rise in temperature of an aluminium rod needed to increase its length by 1%. (Coefficient of linear expansion of aluminium α = 25 × 10⁻⁶ /°C)",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": null, "stars": 0,
+      "printed_page": 121, "scan_page": 119,
+      "stem": "How much steam at 100 °C must be passed into 100 g of water at 20 °C to raise the water temperature by 5 °C? (Latent heat of steam = 540 cal/g; specific heat of water = 1 cal/g °C)",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 0,
+      "printed_page": 121, "scan_page": 119,
+      "stem": "2 kg of air is heated at constant volume. Its temperature rises from 293 K to 313 K. The specific heat of air at constant volume is 0.718 kJ/kg K. Find the amount of heat absorbed, in kJ and in kcal. (J = 4.2 kJ/kcal)",
+      "appearance_years": [], "notes": "Printed as '293.K' (stray full stop); read as 293 K." },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": null, "stars": 0,
+      "printed_page": 121, "scan_page": 119,
+      "stem": "A clock with a brass pendulum keeps correct time at 20 °C but loses 8.212 s per day when the temperature rises to 30 °C. Calculate the coefficient of linear expansion of brass.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": null, "stars": 1,
+      "printed_page": 122, "scan_page": 120,
+      "stem": "A body cools from 60 °C to 40 °C in 7 minutes. What will its temperature be after the next 7 minutes, if the temperature of its surroundings is 10 °C?",
+      "appearance_years": [], "notes": "Printed as '10°C2 ?' — the stray '2' is taken as a typo; the surroundings temperature is read as 10 °C." },
+
+    { "ref": "prob7", "section": "PROBLEM", "number": 7, "part": null, "stars": 0,
+      "printed_page": 122, "scan_page": 120,
+      "stem": "The maximum intensity of radiation from a black body is found at a wavelength of 2.65 μm. What is the temperature of the radiating body? (Wien's constant = 2.9 × 10⁻³ mK)",
+      "appearance_years": [], "notes": "Identical to VSAQ 17." },
+
+    { "ref": "prob8", "section": "PROBLEM", "number": 8, "part": null, "stars": 0,
+      "printed_page": 122, "scan_page": 120,
+      "stem": "At what temperature are the readings on the Fahrenheit scale and the Celsius scale the same?",
+      "appearance_years": [], "notes": "Printed 'scaled' for 'scales'. Compare PROBLEM 1 (Kelvin and Fahrenheit)." }
+  ]
+}

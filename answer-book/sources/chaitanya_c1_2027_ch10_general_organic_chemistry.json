@@ -1,0 +1,704 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Chemistry (2026-27 edition)",
+  "scan_file": "DocScanner (4).pdf",
+  "scan_sha256": "18e8d6fc6831f1e9faf11a19450559f6fb9a0c6d55982c187943449f71f26a33",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring: VSAQ 23 entries (printed numbers 1–18), SAQ 12 (19–29), LAQ 30 (30–46), PROBLEM 74 (intext 10.1–10.38) — 139 entries in all; numbering runs continuously across the VSAQ/SAQ/LAQ sections, and stems are restated in our own wording with the chemistry kept exact and no solution content, by policy. Scan oddities: the left margin is cropped on several pages (the number of Q17 and the first digit of Q29 are cut off, and a star before Q6 cannot be confirmed), VSAQ 3 = LAQ 45 and SAQ 21 = LAQ 38 word for word, and problem 10.28 is printed as '1028'; drawn structures are described in words with our condensed-formula reading.",
+  "chapter": { "number": 10, "printed_title": "GENERAL ORGANIC CHEMISTRY" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 112, "scan_page": 110,
+      "stem": "What are the reagents required to convert benzene into methyl benzene?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 1,
+      "printed_page": 112, "scan_page": 110,
+      "stem": "How is nitrobenzene prepared?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 1,
+      "printed_page": 112, "scan_page": 110,
+      "stem": "Write the possible conformations of ethane and explain which one is more stable.",
+      "appearance_years": [], "notes": "Repeated word for word as LAQ 45." },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 1,
+      "printed_page": 112, "scan_page": 110,
+      "stem": "How is ethyl chloride prepared from ethylene?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": "a", "stars": 1,
+      "printed_page": 112, "scan_page": 110,
+      "stem": "Write the IUPAC name of CH₃–CH₂–CH₂–CH=CH₂.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": "b", "stars": 1,
+      "printed_page": 112, "scan_page": 110,
+      "stem": "Write the IUPAC names of the two ketones drawn as bond-line structures: a five-carbon chain with C=O on the second carbon (CH₃–CO–CH₂–CH₂–CH₃), and a five-carbon chain with C=O on the third carbon (CH₃–CH₂–CO–CH₂–CH₃).",
+      "appearance_years": [], "notes": "Both structures are printed as bond-line drawings; the condensed formulae in the stem are our reading of them." },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": "c", "stars": 1,
+      "printed_page": 112, "scan_page": 110,
+      "stem": "Write the IUPAC names of the two aromatic aldehydes drawn as ring structures: benzaldehyde with an –NO₂ group at the meta (3-) position, and benzaldehyde with an –NO₂ group at the para (4-) position.",
+      "appearance_years": [], "notes": "Both are printed as benzene-ring drawings with –CHO at the top and –NO₂ at the 3- and 4- positions respectively." },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "Write the structure of each of the following: trichloroethanoic acid, neopentane and p-nitrobenzaldehyde.",
+      "appearance_years": [], "notes": "Three unlabelled items in one printed question; kept as one entry. The left margin is cropped in the scan, so a star before the number cannot be confirmed." },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 1,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "Explain the principle of chromatography.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": "a", "stars": 0,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "Explain crystallisation.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": "b", "stars": 0,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "Explain distillation.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": "a", "stars": 0,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "Write the chemical equation for the combustion reaction of butane.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": "b", "stars": 0,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "Write the chemical equation for the combustion reaction of pentene.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": "c", "stars": 0,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "Write the chemical equation for the combustion reaction of hexyne.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "Write the equation for the preparation of ethyl alcohol from ethylene.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "What is pyrolysis?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 0,
+      "printed_page": 113, "scan_page": 111,
+      "stem": "State Markovnikov's rule.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 0,
+      "printed_page": 114, "scan_page": 112,
+      "stem": "What is a polymerisation reaction?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 114, "scan_page": 112,
+      "stem": "State Huckel's rule.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 114, "scan_page": 112,
+      "stem": "Write the reaction for the reduction of phenol.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 0,
+      "printed_page": 114, "scan_page": 112,
+      "stem": "What are ortho- and para-directing groups? Give one example of each.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 0,
+      "printed_page": 114, "scan_page": 112,
+      "stem": "What are meta-directing groups? Give one example of each.",
+      "appearance_years": [], "notes": "The question number is cut off at the left margin of the scan; 17 is inferred from the sequence (16 precedes it, 18 follows). A star, if any, is also not visible." },
+
+    { "ref": "vsaq18", "section": "VSAQ", "number": 18, "part": null, "stars": 0,
+      "printed_page": 114, "scan_page": 112,
+      "stem": "Write Kolbe's electrolytic reaction.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq19", "section": "SAQ", "number": 19, "part": "a", "stars": 0,
+      "printed_page": 114, "scan_page": 112,
+      "stem": "Write the Friedel–Crafts alkylation reaction with one example.",
+      "appearance_years": [], "notes": "Printed as 'Friedal - Crafts alkylation'." },
+
+    { "ref": "saq19", "section": "SAQ", "number": 19, "part": "b", "stars": 0,
+      "printed_page": 114, "scan_page": 112,
+      "stem": "Write the combustion reaction of benzene with one example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq20", "section": "SAQ", "number": 20, "part": null, "stars": 0,
+      "printed_page": 114, "scan_page": 112,
+      "stem": "Write any two addition reactions of benzene, with equations.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq21", "section": "SAQ", "number": 21, "part": null, "stars": 1,
+      "printed_page": 115, "scan_page": 113,
+      "stem": "What do you understand by geometrical isomerism? Explain the geometrical isomers of 2-butene.",
+      "appearance_years": [], "notes": "Repeated word for word as LAQ 38." },
+
+    { "ref": "saq22", "section": "SAQ", "number": 22, "part": null, "stars": 1,
+      "printed_page": 115, "scan_page": 113,
+      "stem": "Complete the following reaction sequence and name the products A, B and C: CaC₂ reacts with H₂O to give A; A passed through a hot metal tube gives B; B treated with AlCl₃ and CH₃Cl gives C.",
+      "appearance_years": [], "notes": "The star before the number prints faintly in the scan; read as one star." },
+
+    { "ref": "saq23", "section": "SAQ", "number": 23, "part": null, "stars": 0,
+      "printed_page": 115, "scan_page": 113,
+      "stem": "Name the products A, B and C formed in the following reaction sequence and give the equations for the reactions: ethylene with Br₂/CCl₄ gives A; A with alcoholic KOH gives B; B with Br₂ gives C.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq24", "section": "SAQ", "number": 24, "part": null, "stars": 1,
+      "printed_page": 115, "scan_page": 113,
+      "stem": "What is dehydrohalogenation? Write the equation for the formation of an alkene from an alkyl halide.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq25", "section": "SAQ", "number": 25, "part": null, "stars": 1,
+      "printed_page": 115, "scan_page": 113,
+      "stem": "Which type of compounds react with ozone? Explain with one example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq26", "section": "SAQ", "number": 26, "part": null, "stars": 0,
+      "printed_page": 116, "scan_page": 114,
+      "stem": "Give two examples each of position isomerism and functional isomerism.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq27", "section": "SAQ", "number": 27, "part": null, "stars": 0,
+      "printed_page": 116, "scan_page": 114,
+      "stem": "Explain crystallisation and sublimation, the phenomena used in the purification of organic compounds.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq28", "section": "SAQ", "number": 28, "part": null, "stars": 0,
+      "printed_page": 116, "scan_page": 114,
+      "stem": "Describe the solvent extraction method used to purify a compound.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq29", "section": "SAQ", "number": 29, "part": null, "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "Explain the estimation of phosphorus and of sulphur in a given organic compound.",
+      "appearance_years": [], "notes": "The first digit of the number is cut off at the left margin of the scan; 29 is inferred from the sequence. A star, if any, is not visible." },
+
+    { "ref": "laq30", "section": "LAQ", "number": 30, "part": null, "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "Explain the classification of hydrocarbons.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq31", "section": "LAQ", "number": 31, "part": "a", "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "Write the IUPAC name of the compound drawn as a bond-line structure: a four-carbon chain with a double bond at each end, CH₂=CH–CH=CH₂.",
+      "appearance_years": [], "notes": "Printed as a bond-line drawing; the condensed formula is our reading of it." },
+
+    { "ref": "laq31", "section": "LAQ", "number": 31, "part": "b", "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "Write the IUPAC name of CH₂=C–C≡C–CH₃ (as printed).",
+      "appearance_years": [], "notes": "PRINTED DEFECT (probable): the formula is printed as CH₂=C–C≡C–CH₃ with a hydrogen missing on the second carbon; the compound intended is CH₂=CH–C≡C–CH₃." },
+
+    { "ref": "laq31", "section": "LAQ", "number": 31, "part": "c", "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "Write the IUPAC name of CH₃CH=C(CH₃)₂.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq31", "section": "LAQ", "number": 31, "part": "d", "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "Write the IUPAC name of C₆H₅–CH₂–CH₂–CH=CH₂ (a benzene ring drawn attached to –CH₂–CH₂CH=CH₂).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq31", "section": "LAQ", "number": 31, "part": "e", "stars": 0,
+      "printed_page": 117, "scan_page": 115,
+      "stem": "Write the IUPAC name of CH₃–CH=CH–CH₂–CH=CH–CH(C₂H₅)–CH₂–CH=CH₂.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq32", "section": "LAQ", "number": 32, "part": null, "stars": 0,
+      "printed_page": 118, "scan_page": 116,
+      "stem": "Describe any two methods of preparation of ethane. Give any three reactions of ethane.",
+      "appearance_years": [], "notes": "Printed 'preperation'. The instruction '(Write any two methods from the following)' belongs to the printed answer layout." },
+
+    { "ref": "laq33", "section": "LAQ", "number": 33, "part": null, "stars": 1,
+      "printed_page": 118, "scan_page": 116,
+      "stem": "Describe two methods of preparation of ethylene.",
+      "appearance_years": [], "notes": "First ask of the printed LAQ 33; the same question continues with labelled parts a–d asking for the equations of the reactions of ethylene with the named reagents." },
+
+    { "ref": "laq33", "section": "LAQ", "number": 33, "part": "a", "stars": 1,
+      "printed_page": 118, "scan_page": 116,
+      "stem": "Give the equation for the reaction of ethylene with O₃ (ozone).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq33", "section": "LAQ", "number": 33, "part": "b", "stars": 1,
+      "printed_page": 118, "scan_page": 116,
+      "stem": "Give the equation for the reaction of ethylene with HOCl (hypohalous acid).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq33", "section": "LAQ", "number": 33, "part": "c", "stars": 1,
+      "printed_page": 118, "scan_page": 116,
+      "stem": "Give the equation for the reaction of ethylene with Baeyer's reagent (cold and dilute alkaline KMnO₄).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq33", "section": "LAQ", "number": 33, "part": "d", "stars": 1,
+      "printed_page": 118, "scan_page": 116,
+      "stem": "Give the equation for the reaction of ethylene when it is heated with O₂ at high pressure.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq34", "section": "LAQ", "number": 34, "part": null, "stars": 1,
+      "printed_page": 119, "scan_page": 117,
+      "stem": "Give two methods of preparation of acetylene. How does acetylene react with water and with ozone? Give the equations for the reactions.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq35", "section": "LAQ", "number": 35, "part": null, "stars": 1,
+      "printed_page": 120, "scan_page": 118,
+      "stem": "Describe any two methods of preparation of benzene with the corresponding equations. Why does benzene not behave like an alkene? How is methyl benzene obtained from benzene?",
+      "appearance_years": [], "notes": "Three unlabelled asks in one printed question; kept as one entry. Printed 'prepartion'." },
+
+    { "ref": "laq36", "section": "LAQ", "number": 36, "part": null, "stars": 0,
+      "printed_page": 121, "scan_page": 119,
+      "stem": "How is benzene obtained from acetylene? Give the corresponding equation. Explain the halogenation, alkylation, acylation, nitration and sulphonation of benzene.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq37", "section": "LAQ", "number": 37, "part": null, "stars": 0,
+      "printed_page": 121, "scan_page": 119,
+      "stem": "Explain the differences between structural isomers and stereoisomers.",
+      "appearance_years": [], "notes": "Printed 'stero isomers'." },
+
+    { "ref": "laq38", "section": "LAQ", "number": 38, "part": null, "stars": 1,
+      "printed_page": 122, "scan_page": 120,
+      "stem": "What do you understand by geometrical isomerism? Explain the geometrical isomers of 2-butene.",
+      "appearance_years": [], "notes": "Repeated word for word from SAQ 21." },
+
+    { "ref": "laq39", "section": "LAQ", "number": 39, "part": "a", "stars": 0,
+      "printed_page": 122, "scan_page": 120,
+      "stem": "Write a note on distillation.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq39", "section": "LAQ", "number": 39, "part": "b", "stars": 0,
+      "printed_page": 122, "scan_page": 120,
+      "stem": "Write a note on fractional distillation.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq39", "section": "LAQ", "number": 39, "part": "c", "stars": 0,
+      "printed_page": 122, "scan_page": 120,
+      "stem": "Write a note on distillation under reduced pressure.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq39", "section": "LAQ", "number": 39, "part": "d", "stars": 0,
+      "printed_page": 122, "scan_page": 120,
+      "stem": "Write a note on steam distillation.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq40", "section": "LAQ", "number": 40, "part": "a", "stars": 0,
+      "printed_page": 123, "scan_page": 121,
+      "stem": "Explain column chromatography.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq40", "section": "LAQ", "number": 40, "part": "b", "stars": 0,
+      "printed_page": 123, "scan_page": 121,
+      "stem": "Explain thin layer chromatography.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq40", "section": "LAQ", "number": 40, "part": "c", "stars": 0,
+      "printed_page": 123, "scan_page": 121,
+      "stem": "Explain partition chromatography.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq41", "section": "LAQ", "number": 41, "part": null, "stars": 1,
+      "printed_page": 124, "scan_page": 122,
+      "stem": "Explain the inductive effect with a suitable example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq42", "section": "LAQ", "number": 42, "part": null, "stars": 1,
+      "printed_page": 124, "scan_page": 122,
+      "stem": "Write a note on the mesomeric effect.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq43", "section": "LAQ", "number": 43, "part": null, "stars": 1,
+      "printed_page": 125, "scan_page": 123,
+      "stem": "Describe the resonance effect with one example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq44", "section": "LAQ", "number": 44, "part": null, "stars": 1,
+      "printed_page": 125, "scan_page": 123,
+      "stem": "Explain how many types of organic reactions are possible.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq45", "section": "LAQ", "number": 45, "part": null, "stars": 1,
+      "printed_page": 126, "scan_page": 124,
+      "stem": "Write the possible conformations of ethane and explain which one is more stable.",
+      "appearance_years": [], "notes": "Repeated word for word from VSAQ 3." },
+
+    { "ref": "laq46", "section": "LAQ", "number": 46, "part": null, "stars": 1,
+      "printed_page": 126, "scan_page": 124,
+      "stem": "Discuss Markownikoff's rule and the Kharasch effect.",
+      "appearance_years": [], "notes": "Printed with the spelling 'Markownikoff's'; VSAQ 12 spells it 'Markovnikov's'." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": "a", "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "How many σ and π bonds are present in HC≡CCH=CHCH₃?",
+      "appearance_years": [], "notes": "Printed label 10.1." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": "b", "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "How many σ and π bonds are present in CH₂=C=CHCH₃?",
+      "appearance_years": [], "notes": "Printed label 10.1." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": "a", "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "What is the type of hybridisation of each carbon in CH₃Cl?",
+      "appearance_years": [], "notes": "Printed label 10.2." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": "b", "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "What is the type of hybridisation of each carbon in (CH₃)₂CO?",
+      "appearance_years": [], "notes": "Printed label 10.2." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": "c", "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "What is the type of hybridisation of each carbon in CH₃CN?",
+      "appearance_years": [], "notes": "Printed label 10.2." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": "d", "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "What is the type of hybridisation of each carbon in HCONH₂?",
+      "appearance_years": [], "notes": "Printed label 10.2." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": "e", "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "What is the type of hybridisation of each carbon in CH₃CH=CHCN?",
+      "appearance_years": [], "notes": "Printed label 10.2." },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": "a", "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "Write the state of hybridisation of carbon in H₂C=O and the shape of the molecule.",
+      "appearance_years": [], "notes": "Printed label 10.3." },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": "b", "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "Write the state of hybridisation of carbon in CH₃F and the shape of the molecule.",
+      "appearance_years": [], "notes": "Printed label 10.3." },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": "c", "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "Write the state of hybridisation of carbon in HC≡N and the shape of the molecule.",
+      "appearance_years": [], "notes": "Printed label 10.3. PRINTED DEFECT: the formula is printed as 'HC = N' (a double bond); hydrogen cyanide HC≡N is intended." },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": "a", "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "Expand the condensed formula CH₃CH₂COCH₂CH₃ into its complete structural formula.",
+      "appearance_years": [], "notes": "Printed label 10.4." },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": "b", "stars": 0,
+      "printed_page": 127, "scan_page": 125,
+      "stem": "Expand the condensed formula CH₃CH=CH(CH₂)₃CH₃ into its complete structural formula.",
+      "appearance_years": [], "notes": "Printed label 10.4." },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": "a", "stars": 0,
+      "printed_page": 128, "scan_page": 126,
+      "stem": "Write a condensed formula and a bond-line formula for HOCH₂CH₂CH₂CH(CH₃)CH(CH₃)CH₃.",
+      "appearance_years": [], "notes": "Printed label 10.5." },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": "b", "stars": 0,
+      "printed_page": 128, "scan_page": 126,
+      "stem": "Write a condensed formula and a bond-line formula for N≡C–CH(OH)–C≡N (printed as N≡C–CH–C≡N with the OH drawn above the central carbon).",
+      "appearance_years": [], "notes": "Printed label 10.5." },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": "a", "stars": 0,
+      "printed_page": 128, "scan_page": 126,
+      "stem": "Expand the bond-line formula drawn as a cyclohexane ring with an isopropyl group, –CH(CH₃)₂, attached to one ring carbon, showing all the atoms including carbon and hydrogen.",
+      "appearance_years": [], "notes": "Printed label 10.6. Printed as a bond-line drawing; the description is our reading of it." },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": "b", "stars": 0,
+      "printed_page": 128, "scan_page": 126,
+      "stem": "Expand the bond-line formula drawn as an unbranched zigzag chain of 8 carbon atoms (octane), showing all the atoms including carbon and hydrogen.",
+      "appearance_years": [], "notes": "Printed label 10.6. Printed as a bond-line drawing; the carbon count is our reading of it." },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": "c", "stars": 0,
+      "printed_page": 128, "scan_page": 126,
+      "stem": "Expand the bond-line formula drawn as HC≡C–CH₂–CH(OH)–CH₃ (a terminal triple bond, then a CH₂, then a carbon bearing –OH, then a methyl), showing all the atoms including carbon and hydrogen.",
+      "appearance_years": [], "notes": "Printed label 10.6. Printed as a bond-line drawing; the condensed formula is our reading of it." },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": "d", "stars": 0,
+      "printed_page": 128, "scan_page": 126,
+      "stem": "Expand the bond-line formula drawn as (CH₃)₂CH–CH(CH₃)₂ (two adjacent carbons each carrying two methyl groups), showing all the atoms including carbon and hydrogen.",
+      "appearance_years": [], "notes": "Printed label 10.6. Printed as a bond-line drawing; the condensed formula is our reading of it." },
+
+    { "ref": "prob7", "section": "PROBLEM", "number": 7, "part": "a", "stars": 0,
+      "printed_page": 128, "scan_page": 126,
+      "stem": "The structure CH₃–CH(CH₃)–CH₂–CH₂–CH(CH₃)–CH(CH₃)–CH₂–CH₃ is given the IUPAC name 2,5,6-Trimethyloctane. Explain why the name given in parentheses, 3,4,7-Trimethyloctane, is incorrect.",
+      "appearance_years": [], "notes": "Printed label 10.7." },
+
+    { "ref": "prob7", "section": "PROBLEM", "number": 7, "part": "b", "stars": 0,
+      "printed_page": 128, "scan_page": 126,
+      "stem": "The structure CH₃–CH₂–CH(CH₂CH₃)–CH₂–CH(CH₃)–CH₂–CH₃ is given the IUPAC name 3-Ethyl-5-methylheptane. Explain why the name given in parentheses, 5-ethyl-3-methylheptane, is incorrect.",
+      "appearance_years": [], "notes": "Printed label 10.7." },
+
+    { "ref": "prob8", "section": "PROBLEM", "number": 8, "part": "i", "stars": 0,
+      "printed_page": 128, "scan_page": 126,
+      "stem": "Write the IUPAC name of CH₃–CH₂–CH(OH)–CH₂–CH₂–CH(CH₃)–CH₂–CH₃ (the printed structure numbers the carbons 1 to 8 from the left).",
+      "appearance_years": [], "notes": "Printed label 10.8." },
+
+    { "ref": "prob8", "section": "PROBLEM", "number": 8, "part": "ii", "stars": 0,
+      "printed_page": 129, "scan_page": 127,
+      "stem": "Write the IUPAC name of CH₃–CH₂–CO–CH₂–CO–CH₃ (the printed structure numbers the carbons 6 to 1 from the left).",
+      "appearance_years": [], "notes": "Printed label 10.8." },
+
+    { "ref": "prob8", "section": "PROBLEM", "number": 8, "part": "iii", "stars": 0,
+      "printed_page": 129, "scan_page": 127,
+      "stem": "Write the IUPAC name of CH₃–CO–CH₂–CH₂–CH₂–COOH (the printed structure numbers the carbons 6 to 1 from the left).",
+      "appearance_years": [], "notes": "Printed label 10.8." },
+
+    { "ref": "prob8", "section": "PROBLEM", "number": 8, "part": "iv", "stars": 0,
+      "printed_page": 129, "scan_page": 127,
+      "stem": "Write the IUPAC name of CH≡C–CH=CH–CH=CH₂ (the printed structure numbers the carbons 6 to 1 from the left).",
+      "appearance_years": [], "notes": "Printed label 10.8." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": "i", "stars": 0,
+      "printed_page": 129, "scan_page": 127,
+      "stem": "Derive the structure of 2-Chlorohexane.",
+      "appearance_years": [], "notes": "Printed label 10.9." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": "ii", "stars": 0,
+      "printed_page": 129, "scan_page": 127,
+      "stem": "Derive the structure of Pent-4-en-2-ol.",
+      "appearance_years": [], "notes": "Printed label 10.9." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": "iii", "stars": 0,
+      "printed_page": 129, "scan_page": 127,
+      "stem": "Derive the structure of 3-Nitrocyclohexene.",
+      "appearance_years": [], "notes": "Printed label 10.9." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": "iv", "stars": 0,
+      "printed_page": 129, "scan_page": 127,
+      "stem": "Derive the structure of Cyclohex-2-en-1-ol.",
+      "appearance_years": [], "notes": "Printed label 10.9." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": "v", "stars": 0,
+      "printed_page": 129, "scan_page": 127,
+      "stem": "Derive the structure of 6-Hydroxyheptanal.",
+      "appearance_years": [], "notes": "Printed label 10.9." },
+
+    { "ref": "prob10", "section": "PROBLEM", "number": 10, "part": "a", "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Write the structural formula of o-Ethylanisole.",
+      "appearance_years": [], "notes": "Printed label 10.10." },
+
+    { "ref": "prob10", "section": "PROBLEM", "number": 10, "part": "b", "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Write the structural formula of p-Nitroaniline.",
+      "appearance_years": [], "notes": "Printed label 10.10." },
+
+    { "ref": "prob10", "section": "PROBLEM", "number": 10, "part": "c", "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Write the structural formula of 2,3-Dibromo-1-phenylpentane.",
+      "appearance_years": [], "notes": "Printed label 10.10." },
+
+    { "ref": "prob10", "section": "PROBLEM", "number": 10, "part": "d", "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Write the structural formula of 4-Ethyl-1-fluoro-2-nitrobenzene.",
+      "appearance_years": [], "notes": "Printed label 10.10." },
+
+    { "ref": "prob11", "section": "PROBLEM", "number": 11, "part": "a", "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Using curved-arrow notation, show the formation of the reactive intermediates when the covalent bond in CH₃–SCH₃ undergoes heterolytic cleavage.",
+      "appearance_years": [], "notes": "Printed label 10.11." },
+
+    { "ref": "prob11", "section": "PROBLEM", "number": 11, "part": "b", "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Using curved-arrow notation, show the formation of the reactive intermediates when the covalent bond in CH₃–CN undergoes heterolytic cleavage.",
+      "appearance_years": [], "notes": "Printed label 10.11." },
+
+    { "ref": "prob11", "section": "PROBLEM", "number": 11, "part": "c", "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Using curved-arrow notation, show the formation of the reactive intermediates when the covalent bond in CH₃–Cu undergoes heterolytic cleavage.",
+      "appearance_years": [], "notes": "Printed label 10.11." },
+
+    { "ref": "prob12", "section": "PROBLEM", "number": 12, "part": null, "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Giving justification, categorise each of the following molecules/ions as a nucleophile or an electrophile: HS⁻, BF₃, C₂H₅O⁻, (CH₃)₃N: (nitrogen bearing a lone pair), Cl⁺, CH₃C⁺=O, H₂N⁻ and NO₂⁺.",
+      "appearance_years": [], "notes": "Printed label 10.12. The last species is printed as –NO₂ with a + charge above the N (the nitronium ion)." },
+
+    { "ref": "prob13", "section": "PROBLEM", "number": 13, "part": null, "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Identify the electrophilic centre in each of the following: CH₃CH=O, CH₃CN, CH₃I.",
+      "appearance_years": [], "notes": "Printed label 10.13." },
+
+    { "ref": "prob14", "section": "PROBLEM", "number": 14, "part": "a", "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Which bond is more polar in the pair of molecules H₃C–H and H₃C–Br?",
+      "appearance_years": [], "notes": "Printed label 10.14." },
+
+    { "ref": "prob14", "section": "PROBLEM", "number": 14, "part": "b", "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Which bond is more polar in the pair of molecules H₃C–NH₂ and H₃C–OH?",
+      "appearance_years": [], "notes": "Printed label 10.14." },
+
+    { "ref": "prob14", "section": "PROBLEM", "number": 14, "part": "c", "stars": 0,
+      "printed_page": 130, "scan_page": 128,
+      "stem": "Which bond is more polar in the pair of molecules H₃C–OH and H₃C–SH?",
+      "appearance_years": [], "notes": "Printed label 10.14." },
+
+    { "ref": "prob15", "section": "PROBLEM", "number": 15, "part": null, "stars": 0,
+      "printed_page": 131, "scan_page": 129,
+      "stem": "In which C–C bond of CH₃CH₂CH₂Br is the inductive effect expected to be the least?",
+      "appearance_years": [], "notes": "Printed label 10.15." },
+
+    { "ref": "prob16", "section": "PROBLEM", "number": 16, "part": null, "stars": 0,
+      "printed_page": 131, "scan_page": 129,
+      "stem": "Write the resonance structures of CH₃COO⁻ and show the movement of electrons by curved arrows.",
+      "appearance_years": [], "notes": "Printed label 10.16." },
+
+    { "ref": "prob17", "section": "PROBLEM", "number": 17, "part": null, "stars": 0,
+      "printed_page": 131, "scan_page": 129,
+      "stem": "Write the resonance structures of CH₂=CH–CHO and indicate the relative stability of the contributing structures.",
+      "appearance_years": [], "notes": "Printed label 10.17. PRINTED DEFECT: the formula is printed as 'CH₃ = CH–CHO'; propenal CH₂=CH–CHO is intended." },
+
+    { "ref": "prob18", "section": "PROBLEM", "number": 18, "part": null, "stars": 0,
+      "printed_page": 131, "scan_page": 129,
+      "stem": "Explain why the following two structures, I and II, cannot be the major contributors to the real structure of CH₃COOCH₃: in I the central carbon carries a positive charge and is single-bonded to a negatively charged oxygen and to –O–CH₃ (CH₃–C⁺(O⁻)–O–CH₃); in II the central carbon is single-bonded to a negatively charged oxygen and double-bonded to a positively charged oxygen that carries the methyl group (CH₃–C(O⁻)=O⁺–CH₃).",
+      "appearance_years": [], "notes": "Printed label 10.18. Both structures are printed as drawings with lone pairs shown; the condensed forms in the stem are our reading of them." },
+
+    { "ref": "prob19", "section": "PROBLEM", "number": 19, "part": null, "stars": 0,
+      "printed_page": 131, "scan_page": 129,
+      "stem": "Explain why (CH₃)₃C⁺ is more stable than CH₃CH₂⁺, and why CH₃⁺ is the least stable cation.",
+      "appearance_years": [], "notes": "Printed label 10.19." },
+
+    { "ref": "prob20", "section": "PROBLEM", "number": 20, "part": null, "stars": 0,
+      "printed_page": 131, "scan_page": 129,
+      "stem": "On complete combustion, 0.246 g of an organic compound gave 0.198 g of carbon dioxide and 0.104 g of water. Determine the percentage composition of carbon and hydrogen in the compound.",
+      "appearance_years": [], "notes": "Printed label 10.20. AMBIGUOUS DATUM: the question prints 0.104 g of water but the printed working uses 0.1014 g." },
+
+    { "ref": "prob21", "section": "PROBLEM", "number": 21, "part": null, "stars": 0,
+      "printed_page": 131, "scan_page": 129,
+      "stem": "In Dumas' method for the estimation of nitrogen, 0.3 g of an organic compound gave 50 mL of nitrogen collected at 300 K and 715 mm pressure. Calculate the percentage composition of nitrogen in the compound. (Aqueous tension at 300 K = 15 mm.)",
+      "appearance_years": [], "notes": "Printed label 10.21. Printed 'Duma's method'." },
+
+    { "ref": "prob22", "section": "PROBLEM", "number": 22, "part": null, "stars": 0,
+      "printed_page": 132, "scan_page": 130,
+      "stem": "In the estimation of nitrogen in an organic compound by Kjeldahl's method, the ammonia evolved from 0.5 g of the compound neutralised 10 mL of 1 M H₂SO₄. Find the percentage of nitrogen in the compound.",
+      "appearance_years": [], "notes": "Printed label 10.22. Printed 'estmimation'." },
+
+    { "ref": "prob23", "section": "PROBLEM", "number": 23, "part": null, "stars": 0,
+      "printed_page": 132, "scan_page": 130,
+      "stem": "In the Carius method for the estimation of halogen, 0.15 g of an organic compound gave 0.12 g of AgBr. Find the percentage of bromine in the compound.",
+      "appearance_years": [], "notes": "Printed label 10.23." },
+
+    { "ref": "prob24", "section": "PROBLEM", "number": 24, "part": null, "stars": 0,
+      "printed_page": 132, "scan_page": 130,
+      "stem": "In sulphur estimation, 0.157 g of an organic compound gave 0.4813 g of barium sulphate. What is the percentage of sulphur in the compound?",
+      "appearance_years": [], "notes": "Printed label 10.24." },
+
+    { "ref": "prob25", "section": "PROBLEM", "number": 25, "part": null, "stars": 0,
+      "printed_page": 132, "scan_page": 130,
+      "stem": "Write the structures of the different chain isomers of the alkanes with molecular formula C₆H₁₄, and write their IUPAC names.",
+      "appearance_years": [], "notes": "Printed label 10.25." },
+
+    { "ref": "prob26", "section": "PROBLEM", "number": 26, "part": null, "stars": 0,
+      "printed_page": 133, "scan_page": 131,
+      "stem": "Write the structures of the different isomeric alkyl groups with the molecular formula C₅H₁₁. Write the IUPAC names of the alcohols obtained by attaching an –OH group at the different carbons of the chain.",
+      "appearance_years": [], "notes": "Printed label 10.26." },
+
+    { "ref": "prob27", "section": "PROBLEM", "number": 27, "part": "i", "stars": 0,
+      "printed_page": 133, "scan_page": 131,
+      "stem": "Write the IUPAC name of (CH₃)₃CCH₂C(CH₃)₃.",
+      "appearance_years": [], "notes": "Printed label 10.27." },
+
+    { "ref": "prob27", "section": "PROBLEM", "number": 27, "part": "ii", "stars": 0,
+      "printed_page": 133, "scan_page": 131,
+      "stem": "Write the IUPAC name of (CH₃)₂C(C₂H₅)₂.",
+      "appearance_years": [], "notes": "Printed label 10.27." },
+
+    { "ref": "prob27", "section": "PROBLEM", "number": 27, "part": "iii", "stars": 0,
+      "printed_page": 133, "scan_page": 131,
+      "stem": "Write the IUPAC name of the compound called tetra-tert-butylmethane.",
+      "appearance_years": [], "notes": "Printed label 10.27." },
+
+    { "ref": "prob28", "section": "PROBLEM", "number": 28, "part": "i", "stars": 0,
+      "printed_page": 134, "scan_page": 132,
+      "stem": "Write the structural formula of 3,4,4,5-Tetramethylheptane.",
+      "appearance_years": [], "notes": "Printed label 10.28, misprinted as '1028' (dot missing)." },
+
+    { "ref": "prob28", "section": "PROBLEM", "number": 28, "part": "ii", "stars": 0,
+      "printed_page": 134, "scan_page": 132,
+      "stem": "Write the structural formula of 2,5-Dimethylhexane.",
+      "appearance_years": [], "notes": "Printed label 10.28, misprinted as '1028' (dot missing)." },
+
+    { "ref": "prob29", "section": "PROBLEM", "number": 29, "part": "i", "stars": 0,
+      "printed_page": 134, "scan_page": 132,
+      "stem": "Write the structure of the compound named 2-Ethylpentane. Explain why this name is incorrect and write the correct IUPAC name.",
+      "appearance_years": [], "notes": "Printed label 10.29." },
+
+    { "ref": "prob29", "section": "PROBLEM", "number": 29, "part": "ii", "stars": 0,
+      "printed_page": 134, "scan_page": 132,
+      "stem": "Write the structure of the compound named 5-Ethyl-3-methylheptane. Explain why this name is incorrect and write the correct IUPAC name.",
+      "appearance_years": [], "notes": "Printed label 10.29." },
+
+    { "ref": "prob30", "section": "PROBLEM", "number": 30, "part": null, "stars": 0,
+      "printed_page": 134, "scan_page": 132,
+      "stem": "The sodium salt of which acid is needed for the preparation of propane? Write the chemical equation for the reaction.",
+      "appearance_years": [], "notes": "Printed label 10.30." },
+
+    { "ref": "prob31", "section": "PROBLEM", "number": 31, "part": "i", "stars": 0,
+      "printed_page": 134, "scan_page": 132,
+      "stem": "Write the IUPAC name of (CH₃)₂CH–CH=CH–CH₂–CH=CH–CH(C₂H₅)–CH₃ (printed as a two-line structural drawing).",
+      "appearance_years": [], "notes": "Printed label 10.31. The single-line condensed formula is our reading of the printed drawing." },
+
+    { "ref": "prob31", "section": "PROBLEM", "number": 31, "part": "ii", "stars": 0,
+      "printed_page": 134, "scan_page": 132,
+      "stem": "Write the IUPAC name of the compound drawn as a bond-line zigzag with four alternating double bonds, CH₂=CH–CH=CH–CH=CH–CH=CH₂.",
+      "appearance_years": [], "notes": "Printed label 10.31. Printed as a bond-line drawing; the condensed formula is our reading of it." },
+
+    { "ref": "prob31", "section": "PROBLEM", "number": 31, "part": "iii", "stars": 0,
+      "printed_page": 134, "scan_page": 132,
+      "stem": "Write the IUPAC name of CH₂=C(CH₂CH₂CH₃)₂.",
+      "appearance_years": [], "notes": "Printed label 10.31." },
+
+    { "ref": "prob31", "section": "PROBLEM", "number": 31, "part": "iv", "stars": 0,
+      "printed_page": 134, "scan_page": 132,
+      "stem": "Write the IUPAC name of CH₃–CH(CH₂CH₂CH₂CH₃)–CH=C(CH₂CH₃)–CH₂–CH(CH₃)–CH₃ (printed as a multi-line structural drawing with the butyl, ethyl and methyl branches drawn above and below the main chain).",
+      "appearance_years": [], "notes": "Printed label 10.31. The single-line condensed formula is our reading of the printed drawing." },
+
+    { "ref": "prob32", "section": "PROBLEM", "number": 32, "part": null, "stars": 0,
+      "printed_page": 134, "scan_page": 132,
+      "stem": "Calculate the number of sigma (σ) and pi (π) bonds in each of the four structures (i)–(iv) of problem 10.31: (i) (CH₃)₂CH–CH=CH–CH₂–CH=CH–CH(C₂H₅)–CH₃, (ii) CH₂=CH–CH=CH–CH=CH–CH=CH₂, (iii) CH₂=C(CH₂CH₂CH₃)₂, (iv) CH₃–CH(CH₂CH₂CH₂CH₃)–CH=C(CH₂CH₃)–CH₂–CH(CH₃)–CH₃.",
+      "appearance_years": [], "notes": "Printed label 10.32. The question refers back to 'the above structures (i–iv)' of 10.31; they are restated in the stem so it stands alone." },
+
+    { "ref": "prob33", "section": "PROBLEM", "number": 33, "part": null, "stars": 0,
+      "printed_page": 134, "scan_page": 132,
+      "stem": "Write the structures and IUPAC names of the different structural isomers of the alkenes with molecular formula C₅H₁₀.",
+      "appearance_years": [], "notes": "Printed label 10.33." },
+
+    { "ref": "prob34", "section": "PROBLEM", "number": 34, "part": "i", "stars": 0,
+      "printed_page": 135, "scan_page": 133,
+      "stem": "Draw the cis and trans isomers of CHCl=CHCl and write their IUPAC names.",
+      "appearance_years": [], "notes": "Printed label 10.34." },
+
+    { "ref": "prob34", "section": "PROBLEM", "number": 34, "part": "ii", "stars": 0,
+      "printed_page": 135, "scan_page": 133,
+      "stem": "Draw the cis and trans isomers of C₂H₅C(CH₃)=C(CH₃)C₂H₅ (printed as C₂H₅CCH₃=CCH₃C₂H₅) and write their IUPAC names.",
+      "appearance_years": [], "notes": "Printed label 10.34." },
+
+    { "ref": "prob35", "section": "PROBLEM", "number": 35, "part": null, "stars": 0,
+      "printed_page": 135, "scan_page": 133,
+      "stem": "Which of the following compounds will show cis–trans isomerism? (i) (CH₃)₂C=CH–C₂H₅ (ii) CH₂=CBr₂ (iii) C₆H₅CH=CH–CH₃ (iv) CH₃CH=CClCH₃.",
+      "appearance_years": [], "notes": "Printed label 10.35. The four numbered items are the options of one question, not sub-questions." },
+
+    { "ref": "prob36", "section": "PROBLEM", "number": 36, "part": "i", "stars": 0,
+      "printed_page": 135, "scan_page": 133,
+      "stem": "Write the IUPAC name of the product obtained by the addition of HBr to hex-1-ene in the absence of peroxide.",
+      "appearance_years": [], "notes": "Printed label 10.36." },
+
+    { "ref": "prob36", "section": "PROBLEM", "number": 36, "part": "ii", "stars": 0,
+      "printed_page": 135, "scan_page": 133,
+      "stem": "Write the IUPAC name of the product obtained by the addition of HBr to hex-1-ene in the presence of peroxide.",
+      "appearance_years": [], "notes": "Printed label 10.36." },
+
+    { "ref": "prob37", "section": "PROBLEM", "number": 37, "part": null, "stars": 0,
+      "printed_page": 135, "scan_page": 133,
+      "stem": "Write the structures of the different isomers corresponding to the 5th member of the alkyne series. Write the IUPAC names of all the isomers. What type of isomerism is shown by the different pairs of isomers?",
+      "appearance_years": [], "notes": "Printed label 10.37. Printed 'iosmers'." },
+
+    { "ref": "prob38", "section": "PROBLEM", "number": 38, "part": null, "stars": 0,
+      "printed_page": 136, "scan_page": 134,
+      "stem": "How will you convert ethanoic acid into benzene?",
+      "appearance_years": [], "notes": "Printed label 10.38." }
+  ]
+}

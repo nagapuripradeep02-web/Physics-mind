@@ -1,0 +1,152 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Physics (2026-27 edition)",
+  "scan_file": "DocScanner (3).pdf",
+  "scan_sha256": "1abe7da6d4846e9e09d6cb7b588db8404a6268dc196f1d4128deefea6a37c016",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring: VSAQ 17, SAQ 9, LAQ 1, PROBLEM 1 (28 entries). The FORMULAE block on scan p.134 (printed p.136, left column) is not indexed. Stems restated in our own wording; every number, unit and symbol is exact; no solution content from the source book appears in this file, by policy. Scan oddity: the footer page numbers on scan pp.140 and 142 are clipped at the left edge (only '42' and '4' visible) and are read as 142 and 144 from the page sequence.",
+  "chapter": { "number": 13, "printed_title": "KINETIC THEORY" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 136, "scan_page": 134,
+      "stem": "Define mean free path.",
+      "appearance_years": [], "notes": "Printed heading reads 'Define mean free paths' (plural)." },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 136, "scan_page": 134,
+      "stem": "How does kinetic theory justify Avogadro's hypothesis and show that the Avogadro number is the same for different gases?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 1,
+      "printed_page": 136, "scan_page": 134,
+      "stem": "Under what conditions does a real gas behave like an ideal gas?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 136, "scan_page": 134,
+      "stem": "State Boyle's law and Charles's law.",
+      "appearance_years": [], "notes": "One stem covering two laws; the question itself has no printed sub-parts." },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 137, "scan_page": 135,
+      "stem": "Explain why the pressure of an ideal gas in a container does not depend on the shape of the container.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 1,
+      "printed_page": 137, "scan_page": 135,
+      "stem": "State Dalton's law of partial pressures.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 137, "scan_page": 135,
+      "stem": "Write the equation that relates the pressure of a gas to its internal energy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 137, "scan_page": 135,
+      "stem": "What is the relation between the pressure of a gas and the kinetic energy of a gas molecule?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 0,
+      "printed_page": 137, "scan_page": 135,
+      "stem": "Define the rms (root mean square) speed of gas molecules.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 1,
+      "printed_page": 137, "scan_page": 135,
+      "stem": "The absolute temperature of a gas is increased to 3 times its original value. What is the increase in the rms velocity of the gas molecules?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 137, "scan_page": 135,
+      "stem": "Define the specific heat capacity of water.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 0,
+      "printed_page": 137, "scan_page": 135,
+      "stem": "State the law of equipartition of energy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 1,
+      "printed_page": 138, "scan_page": 136,
+      "stem": "Explain the concept of degrees of freedom for the molecules of a gas.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 138, "scan_page": 136,
+      "stem": "Obtain the specific heat at constant volume for a monoatomic gas.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 138, "scan_page": 136,
+      "stem": "Determine the temperature at which the rms velocity of a gas becomes double its value at S.T.P. (standard temperature T = 273 K).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 0,
+      "printed_page": 138, "scan_page": 136,
+      "stem": "The temperature of an ideal gas increases from 100 K to 10000 K at constant pressure. Find the ratio of the rms speeds of the gas molecules.",
+      "appearance_years": [],
+      "notes": "PRINTED DEFECT (probable). The stem prints the final temperature as 10000 K, but the book's own working uses 1000 K (ratio 1/10). The stem is indexed as printed; 1000 K is the likely intended datum." },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 0,
+      "printed_page": 138, "scan_page": 136,
+      "stem": "Calculate the average energy of a molecule of a gas in thermal equilibrium at a temperature of 27°C. (Given K_B = 1.38 × 10⁻²³ J/K)",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq1", "section": "SAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 138, "scan_page": 136,
+      "stem": "Explain the kinetic interpretation of temperature.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq2", "section": "SAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 139, "scan_page": 137,
+      "stem": "Explain, on the basis of the law of equipartition of energy, the specific heat capacities of monoatomic, diatomic and polyatomic gases.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq3", "section": "SAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 139, "scan_page": 137,
+      "stem": "Explain the concept of absolute zero of temperature on the basis of kinetic theory.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq4", "section": "SAQ", "number": 4, "part": null, "stars": 1,
+      "printed_page": 139, "scan_page": 137,
+      "stem": "Prove that the average kinetic energy of a molecule of an ideal gas is directly proportional to the absolute temperature of the gas.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq5", "section": "SAQ", "number": 5, "part": null, "stars": 1,
+      "printed_page": 140, "scan_page": 138,
+      "stem": "What is the ratio of the rms speeds of oxygen and hydrogen molecules at the same temperature?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq6", "section": "SAQ", "number": 6, "part": null, "stars": 1,
+      "printed_page": 140, "scan_page": 138,
+      "stem": "Four molecules of a gas have speeds 1, 2, 3 and 4 km/s. Find the rms speed of the gas molecules.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq7", "section": "SAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 140, "scan_page": 138,
+      "stem": "If a gas has f degrees of freedom, find the ratio of C_P to C_V.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq8", "section": "SAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 141, "scan_page": 139,
+      "stem": "Calculate the molecular kinetic energy of 1 gram of helium (molecular weight 4) at 127°C. Given R = 8.31 J mol⁻¹ K⁻¹.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq9", "section": "SAQ", "number": 9, "part": null, "stars": 1,
+      "printed_page": 141, "scan_page": 139,
+      "stem": "When the pressure of a gas increases by 2%, what is the percentage decrease in its volume, assuming Boyle's law is obeyed?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq1", "section": "LAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 141, "scan_page": 139,
+      "stem": "Derive an expression for the pressure of an ideal gas in a container from kinetic theory, and hence give the kinetic interpretation of temperature.",
+      "appearance_years": [],
+      "notes": "The question has no figure; the printed working uses a cube-of-side-l figure with one molecule's velocity components." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": null, "stars": 0,
+      "printed_page": 142, "scan_page": 140,
+      "stem": "Determine the mean free path of a water molecule in water vapour at 373 K, taking the molecular diameter d as 3 × 10⁻¹⁰ m and the number density n as 2 × 10²⁵ m⁻³.",
+      "appearance_years": [],
+      "notes": "PRINTED TYPO. The book prints the number-density unit as 'm³'; the intended unit is m⁻³ (per cubic metre). The footer page number on this scan page is clipped ('42' visible); read as 142 from sequence." }
+  ]
+}

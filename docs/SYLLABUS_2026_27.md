@@ -172,11 +172,64 @@ That book independently confirms the two NEW 1A chapters as well — it opens at
 and carries `3. SEQUENCES & SERIES`, both **completely unstarred**, which is what a freshly typeset
 chapter with no exam-frequency history looks like. Provenance, and the rules governing our use of
 that book, are in `docs/ORIGINALITY_MATHS.md`.
-### Chemistry — OPEN (names)
-"Reduced by around 30 per cent, trimming three chapters" (Telangana Today 26 May 2026). No public
-list. NCERT's own rationalisation dropped States of Matter, Hydrogen, s-Block, p-Block and
-Environmental Chemistry; our **Unit 4 States of Matter (43 cards, 21% of the chemistry bank)** is
-the exposed unit. Nothing retired until the official list is in hand.
+### Chemistry — VERIFIED 2026-09-02 (the three cut chapters are named)
+Source: the Sri Chaitanya **"IPE STUDY MATERIAL for Jr. Students"**, 2026-27 edition, chemistry
+volume — founder's scan `DocScanner (4).pdf` (134 pages, sha256
+`18e8d6fc6831f1e9faf11a19450559f6fb9a0c6d55982c187943449f71f26a33`), every chapter banner read.
+The same edition's physics volume (`DocScanner (3).pdf`, 142 pages, sha256
+`1abe7da6d4846e9e09d6cb7b588db8404a6268dc196f1d4128deefea6a37c016`) confirms the physics map in
+§2 above chapter for chapter, and prints **Unit 14 as 15 VSAQ only** (no SAQ, no LAQ). A coaching
+compilation is not the board circular, but it follows the board's chapter list, and it is the
+first complete 2026-27 chemistry list in hand; confirm against the Telugu Akademi Contents page
+when a textbook arrives (§4).
+
+**Ten chapters, not thirteen.** Old → new:
+
+| New | Chapter | Old | Bank |
+|---|---|---|---|
+| 1 | Atomic Structure | 1 | chemistry-1 |
+| 2 | Classification of Elements and Periodicity in Properties | 2 | chemistry-2 |
+| 3 | Chemical Bonding and Molecular Structure | 3 | chemistry-3 (the free chapter — unchanged) |
+| — | **States of Matter — REMOVED** | 4 | **retired** as unit 99 (43 rows / 40 files kept; banner on forwarded links) |
+| 4 | Stoichiometry | 5 | renumbered (cards' `unit.number` rewritten) |
+| 5 | Thermodynamics | 6 | renumbered |
+| 6 | Chemical Equilibrium and Acids-Bases | 7 | renumbered |
+| — | **Hydrogen and its Compounds — REMOVED** | 8 | never authored |
+| 7 | s-Block Elements | 9 | coming-soon (2026-09-02); author from the book's chapter list |
+| 8 | p-Block Elements: Group 13 | 10 | coming-soon |
+| 9 | p-Block Elements: Group 14 | 11 | coming-soon |
+| — | **Environmental Chemistry — REMOVED** | 12 | never authored |
+| 10 | General Organic Chemistry | 13 | coming-soon (the largest chapter, 25 scan pages) |
+
+Repo effect (2026-09-02): `units.json` chemistry block reordered to 1–10 + retired 99; 123 chemistry
+cards renumbered (`som` 4→99, `st` 5→4, `td` 6→5, `ce` 7→6 — the build's unit-key agreement check
+forces it); `notebook.js` `LEGACY_UNIT_KEYS` gained `chemistry-4→99, 5→4, 6→5, 7→6` (an old
+States-of-Matter link lands on the catalog, never on Stoichiometry); `push_answer_content.ts` skips
+retired units (the build writes no bundle for them); the hosted build's `loadQuestion` shows a
+plain "not in the syllabus" sheet for a forwarded retired link instead of the lock flow;
+`check:originality` now binds every `source:"chaitanya_fastrack"` row in any subject (R1 stars 0,
+R3 boundary sentence). **First real use of the retire mechanism (§5).** The free chapter
+`chemistry-3` did not move, so the `ab_content.free` set needs only the physics-3 fix already noted.
+
+**Per-chapter question diff — DONE 2026-09-02.** Every chapter of both scans is indexed into
+`answer-book/sources/chaitanya_{p1,c1}_2027_*.json` (24 files, 1,421 entries, internal, stems restated —
+ORIGINALITY R6) and diffed unit by unit against the bank on the physics/chemistry, not the wording.
+Full report: **`docs/reports/SYLLABUS_2027_GAP_REPORT.md`**; per-chapter classification of every book
+question + the EXTRA lists for the retire decision: `docs/reports/syllabus_2027_diff/`. Headline:
+
+| | book entries | matched | re-cuts | **missing (asked sections)** | missing (problems) | predicted rows confirmed | extra rows, topic gone |
+|---|---|---|---|---|---|---|---|
+| Physics-I (14 ch.) | 635 | 133 | 52 | **311** (VSAQ 188 · SAQ 104 · LAQ 19; Unit 14's 15 VSAQ are inside these) | 130 | 24 | 28 |
+| Chemistry-I ch.1–6 | 457 | 118 | 55 | **173** (VSAQ 91 · SAQ 73 · LAQ 9) | 110 | 24 | 19 |
+| Chemistry-I ch.7–10 (never authored) | 329 | 0 | — | **230** (VSAQ 113 · SAQ 56 · LAQ 61) | 88 | — | — |
+| **total** | **1,421** | 251 | **107** | **714** | **328** | **48** | 47 |
+
+Counts are entries (a printed sub-part = one entry); distinct cards will be fewer after sub-parts and
+the book's own duplicates fold into cards with cuts. The thin physics units 9–13 alone carry 154 of the
+physics gap; Thermodynamics (chemistry-5) has a new Long Answer section the bank never had. The 47
+"topic gone" extras are retire CANDIDATES only — nothing is retired without the founder's confirmation
+(decision 2026-09-02). Order of authoring (founder): physics 14 → physics 9–13 → chemistry 7–10 →
+remaining gaps/re-cuts/promotions → PROBLEM cards last (they need the PROBLEM section engine first).
 
 ### Botany / Zoology — OPEN (names)
 "5-10% cut, one or two chapters" (V6 Velugu). careers360's 2026-27 botany list has 12 units and
@@ -196,9 +249,12 @@ back matter — three pages per book, six books.
 
 ## 4. OPEN CELLS — the Phase-4 input list (ask the lecturer)
 
-- [ ] Physics textbook: contents page (confirms the Unit-1 merge and Unit 14), syllabus page
-      (the per-chapter sub-topic list → what to retire), model paper page (confirms A/B/C).
-- [ ] Chemistry textbook: contents (which three chapters went), syllabus, model paper.
+- [x] Physics chapter list — confirmed by the Sri Chaitanya 2026-27 physics volume (2026-09-02);
+      the Unit-14 shape is 15 VSAQ. Still open from the textbook: the syllabus page's per-chapter
+      sub-topic list (whole-topic retirements inside surviving chapters) and the model paper page.
+- [x] Chemistry chapter list — the three cut chapters are States of Matter, Hydrogen and its
+      Compounds, Environmental Chemistry (Sri Chaitanya 2026-27 chemistry volume, 2026-09-02).
+      Still open from the textbook: Contents (to confirm the order), syllabus sub-topics, model paper.
 - [ ] Maths 1B textbook: contents (what moved to 1A), syllabus, model paper.
 - [ ] Maths 1A textbook: syllabus page + the exercise lists of Sets & Relations and Sequences &
       Series (the contents and model paper are already read).
@@ -207,7 +263,7 @@ back matter — three pages per book, six books.
       the file stays, the card leaves the catalog, a forwarded link shows the banner), renumber,
       add new chapters as coming-soon, author them from the textbook exercises.
 
-## 5. The retire mechanism (built 2026-08-28, unused until §4)
+## 5. The retire mechanism (built 2026-08-28; first used 2026-09-02 for Chemistry-I States of Matter)
 
 `answer-book/units.json` entry or unit: `"status": "retired", "retired": { "wef": "2026-27",
 "reason": "…plain English…" }`. Both drift checks still see the row; the build then strips it from

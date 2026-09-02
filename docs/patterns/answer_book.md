@@ -801,7 +801,10 @@ bieap.apcfss.in model papers when they publish.
   "Physical World and Measurement", a new Unit 14 "Physics of Emerging Technologies" — the bank
   is renumbered (2026-08-28) and Unit 14 is coming-soon. Maths 1A gained two chapters (Sets and
   Relations; Sequences and Series) and "repetitive problems" left; Chemistry lost three chapters
-  (names unpublished — States of Matter is the exposed unit); Botany/Zoology lost one or two.
+  (named 2026-09-02 from the Sri Chaitanya 2026-27 study material: States of Matter, Hydrogen,
+  Environmental Chemistry — States of Matter retired as unit 99, chapters 5-7 renumbered 4-6,
+  s-Block / p-Block 13 / p-Block 14 / General Organic Chemistry listed coming-soon); Botany/Zoology
+  lost one or two.
   Per-chapter sub-topic deletions were announced everywhere and published nowhere reachable: the
   official PDFs sit behind a 403 WAF, so the input is the new textbooks' Contents / Syllabus /
   Model-paper pages from a lecturer. The retire mechanism (`status: "retired"` in units.json —

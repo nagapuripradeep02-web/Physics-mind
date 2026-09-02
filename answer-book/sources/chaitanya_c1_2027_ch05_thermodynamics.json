@@ -1,0 +1,479 @@
+{
+  "source_book": "Sri Chaitanya — IPE STUDY MATERIAL for Jr. Students, Chemistry (2026-27 edition)",
+  "scan_file": "DocScanner (4).pdf",
+  "scan_sha256": "18e8d6fc6831f1e9faf11a19450559f6fb9a0c6d55982c187943449f71f26a33",
+  "internal_only": true,
+  "note": "Question index for diffing and authoring; stems restated in our own wording, no solution content by policy. Numbering runs continuously 1–68: VSAQ 1–21 (21 entries), SAQ 22–64 (43 printed numbers, 50 entries after splitting 43 into a–d and 45 into a–e), LAQ 65–68 (4 entries), plus INTEXT SOLVED PROBLEMS 5.1–5.13 (13 printed labels, 19 entries after splitting 5.1, 5.5 and 5.9) = 94 entries; problems 5.1, 5.10 and 5.11 repeat VSAQ 12–14, SAQ 44 and SAQ 46 with slightly different data. The odd scan pages 57, 59, 61, 63, 65, 67 and 69 are cropped at the left margin (the 'A)' markers are cut), so an asterisk before 29, 41, 53, 54, 64, 5.5, 5.6, 5.11 or 5.12 may have been lost; scan page 56 shows a sliver of printed page 59 along its right edge.",
+  "chapter": { "number": 5, "printed_title": "THERMODYNAMICS" },
+  "questions": [
+    { "ref": "vsaq1", "section": "VSAQ", "number": 1, "part": null, "stars": 1,
+      "printed_page": 58, "scan_page": 56,
+      "stem": "Define a system. Give an example.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq2", "section": "VSAQ", "number": 2, "part": null, "stars": 0,
+      "printed_page": 58, "scan_page": 56,
+      "stem": "A system has an adiabatic wall and ΔU = W_ad. What does this tell you about the heat and the work with respect to the system?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq3", "section": "VSAQ", "number": 3, "part": null, "stars": 0,
+      "printed_page": 58, "scan_page": 56,
+      "stem": "A system loses an amount of heat q, and no work is done on the system. What type of wall does the system have?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq4", "section": "VSAQ", "number": 4, "part": null, "stars": 0,
+      "printed_page": 58, "scan_page": 56,
+      "stem": "What is the work done in the free expansion of an ideal gas, in a reversible process and in an irreversible process?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq5", "section": "VSAQ", "number": 5, "part": null, "stars": 0,
+      "printed_page": 58, "scan_page": 56,
+      "stem": "In the equation ΔU = q − p_ex ΔV, what is the value of ΔU when the volume is held constant?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq6", "section": "VSAQ", "number": 6, "part": null, "stars": 0,
+      "printed_page": 58, "scan_page": 56,
+      "stem": "In the isothermal free expansion of an ideal gas, find the values of q and ΔU.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq7", "section": "VSAQ", "number": 7, "part": null, "stars": 0,
+      "printed_page": 58, "scan_page": 56,
+      "stem": "In an isothermal irreversible change of an ideal gas, what is the value of q?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq8", "section": "VSAQ", "number": 8, "part": null, "stars": 0,
+      "printed_page": 58, "scan_page": 56,
+      "stem": "In an isothermal reversible change of an ideal gas, what is the value of q?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq9", "section": "VSAQ", "number": 9, "part": null, "stars": 1,
+      "printed_page": 58, "scan_page": 56,
+      "stem": "State the first law of thermodynamics.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq10", "section": "VSAQ", "number": 10, "part": null, "stars": 0,
+      "printed_page": 58, "scan_page": 56,
+      "stem": "What are the sign conventions for work done on the system and for work done by the system?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq11", "section": "VSAQ", "number": 11, "part": null, "stars": 0,
+      "printed_page": 58, "scan_page": 56,
+      "stem": "What are the sign conventions for heat q when heat is transferred from the surroundings to the system, and when heat is transferred from the system to the surroundings?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq12", "section": "VSAQ", "number": 12, "part": null, "stars": 0,
+      "printed_page": 58, "scan_page": 56,
+      "stem": "No heat is absorbed by the system from the surroundings, but work w is done on the system. What type of wall does the system have?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq13", "section": "VSAQ", "number": 13, "part": null, "stars": 0,
+      "printed_page": 58, "scan_page": 56,
+      "stem": "No work is done on the system, but heat q is taken out of the system by the surroundings. What type of wall does the system have?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq14", "section": "VSAQ", "number": 14, "part": null, "stars": 0,
+      "printed_page": 59, "scan_page": 57,
+      "stem": "Work is done by the system and heat q is supplied to the system. What type of system is it?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq15", "section": "VSAQ", "number": 15, "part": null, "stars": 0,
+      "printed_page": 59, "scan_page": 57,
+      "stem": "What are the sign conventions for ΔH in exothermic reactions and in endothermic reactions?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq16", "section": "VSAQ", "number": 16, "part": null, "stars": 0,
+      "printed_page": 59, "scan_page": 57,
+      "stem": "Give the equation that relates ΔU and ΔH.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq17", "section": "VSAQ", "number": 17, "part": null, "stars": 0,
+      "printed_page": 59, "scan_page": 57,
+      "stem": "What is the relationship between Cp and Cv?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq18", "section": "VSAQ", "number": 18, "part": null, "stars": 0,
+      "printed_page": 59, "scan_page": 57,
+      "stem": "A decrease in enthalpy is not the criterion for spontaneity. Why?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq19", "section": "VSAQ", "number": 19, "part": null, "stars": 0,
+      "printed_page": 59, "scan_page": 57,
+      "stem": "Explain the relationship between the Gibbs energy change and the equilibrium constant.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq20", "section": "VSAQ", "number": 20, "part": null, "stars": 0,
+      "printed_page": 59, "scan_page": 57,
+      "stem": "If ΔH° and ΔS° are measured, it is possible to estimate ΔG°. Is this true? Why?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "vsaq21", "section": "VSAQ", "number": 21, "part": null, "stars": 0,
+      "printed_page": 59, "scan_page": 57,
+      "stem": "State the third law of thermodynamics.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq22", "section": "SAQ", "number": 22, "part": null, "stars": 1,
+      "printed_page": 59, "scan_page": 57,
+      "stem": "What are open, closed and isolated systems? Give one example of each.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq23", "section": "SAQ", "number": 23, "part": null, "stars": 0,
+      "printed_page": 59, "scan_page": 57,
+      "stem": "Define state function and state variables. Give examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq24", "section": "SAQ", "number": 24, "part": null, "stars": 0,
+      "printed_page": 59, "scan_page": 57,
+      "stem": "'Internal energy is a state function.' Explain.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq25", "section": "SAQ", "number": 25, "part": null, "stars": 0,
+      "printed_page": 60, "scan_page": 58,
+      "stem": "'Work is not a state function.' Explain.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq26", "section": "SAQ", "number": 26, "part": null, "stars": 0,
+      "printed_page": 60, "scan_page": 58,
+      "stem": "What is heat? Explain.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq27", "section": "SAQ", "number": 27, "part": null, "stars": 0,
+      "printed_page": 60, "scan_page": 58,
+      "stem": "Derive the equation for W_rev in an isothermal reversible process.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq28", "section": "SAQ", "number": 28, "part": null, "stars": 0,
+      "printed_page": 60, "scan_page": 58,
+      "stem": "Explain the state function enthalpy, H. What is the relationship between ΔU and ΔH?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq29", "section": "SAQ", "number": 29, "part": null, "stars": 1,
+      "printed_page": 61, "scan_page": 59,
+      "stem": "Show that ΔH = ΔU + Δn(g) RT.",
+      "appearance_years": [], "notes": "The asterisk before 29 is partly cut by the left-margin crop of scan page 59; read as one star." },
+
+    { "ref": "saq30", "section": "SAQ", "number": 30, "part": null, "stars": 0,
+      "printed_page": 61, "scan_page": 59,
+      "stem": "Explain extensive and intensive properties.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq31", "section": "SAQ", "number": 31, "part": null, "stars": 1,
+      "printed_page": 61, "scan_page": 59,
+      "stem": "Define heat capacity. What are Cp and Cv? Show that Cp − Cv = R.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq32", "section": "SAQ", "number": 32, "part": null, "stars": 0,
+      "printed_page": 61, "scan_page": 59,
+      "stem": "What is the enthalpy of a reaction? Explain the standard enthalpy of a reaction.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq33", "section": "SAQ", "number": 33, "part": null, "stars": 0,
+      "printed_page": 62, "scan_page": 60,
+      "stem": "Define and explain the standard enthalpy of sublimation.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq34", "section": "SAQ", "number": 34, "part": null, "stars": 0,
+      "printed_page": 62, "scan_page": 60,
+      "stem": "Define and explain the standard enthalpy of formation, ΔfH°.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq35", "section": "SAQ", "number": 35, "part": null, "stars": 0,
+      "printed_page": 62, "scan_page": 60,
+      "stem": "Define and explain the enthalpy of combustion, ΔcH°.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq36", "section": "SAQ", "number": 36, "part": null, "stars": 0,
+      "printed_page": 62, "scan_page": 60,
+      "stem": "Define and explain the enthalpy of atomisation, ΔaH°.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq37", "section": "SAQ", "number": 37, "part": null, "stars": 0,
+      "printed_page": 62, "scan_page": 60,
+      "stem": "Define and explain bond enthalpy, ΔbondH°.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq38", "section": "SAQ", "number": 38, "part": null, "stars": 0,
+      "printed_page": 62, "scan_page": 60,
+      "stem": "What is the bond enthalpy of the C–H bond in CH₄?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq39", "section": "SAQ", "number": 39, "part": null, "stars": 0,
+      "printed_page": 62, "scan_page": 60,
+      "stem": "Define heat of solution, ΔsolH°, and heat of dilution.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq40", "section": "SAQ", "number": 40, "part": null, "stars": 1,
+      "printed_page": 62, "scan_page": 60,
+      "stem": "Explain the spontaneity of a process.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq41", "section": "SAQ", "number": 41, "part": null, "stars": 0,
+      "printed_page": 63, "scan_page": 61,
+      "stem": "What is entropy? Explain with examples.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq42", "section": "SAQ", "number": 42, "part": null, "stars": 0,
+      "printed_page": 63, "scan_page": 61,
+      "stem": "Can ΔU and ΔS distinguish between irreversible and reversible processes? Explain.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq43", "section": "SAQ", "number": 43, "part": "a", "stars": 0,
+      "printed_page": 63, "scan_page": 61,
+      "stem": "Does the entropy increase in the following process? A liquid evaporates to vapour.",
+      "appearance_years": [], "notes": "Printed as one question 'In which of the following processes entropy increases?' with parts (a)–(d)." },
+
+    { "ref": "saq43", "section": "SAQ", "number": 43, "part": "b", "stars": 0,
+      "printed_page": 63, "scan_page": 61,
+      "stem": "Does the entropy increase in the following process? The temperature of a crystalline solid is lowered from 115 K to 0 K.",
+      "appearance_years": [], "notes": "Printed as one question 'In which of the following processes entropy increases?' with parts (a)–(d)." },
+
+    { "ref": "saq43", "section": "SAQ", "number": 43, "part": "c", "stars": 0,
+      "printed_page": 63, "scan_page": 61,
+      "stem": "Does the entropy increase in the following process? CaCO₃(s) → CaO(s) + CO₂(g).",
+      "appearance_years": [], "notes": "Printed as one question 'In which of the following processes entropy increases?' with parts (a)–(d)." },
+
+    { "ref": "saq43", "section": "SAQ", "number": 43, "part": "d", "stars": 0,
+      "printed_page": 63, "scan_page": 61,
+      "stem": "Does the entropy increase in the following process? Cl₂(g) → 2Cl(g).",
+      "appearance_years": [], "notes": "Printed as one question 'In which of the following processes entropy increases?' with parts (a)–(d)." },
+
+    { "ref": "saq44", "section": "SAQ", "number": 44, "part": null, "stars": 0,
+      "printed_page": 63, "scan_page": 61,
+      "stem": "For the oxidation of iron, 4Fe(s) + 3O₂(g) → 2Fe₂O₃(s), the entropy change is −549.45 J K⁻¹ mol⁻¹ at 298 K. Although the entropy change is negative, the reaction is spontaneous. Why? ΔrH° = −1648 × 10³ J mol⁻¹.",
+      "appearance_years": [], "notes": "Same question as problem 5.10, which prints the entropy change as −549.4 J K⁻¹ mol⁻¹." },
+
+    { "ref": "saq45", "section": "SAQ", "number": 45, "part": "a", "stars": 0,
+      "printed_page": 63, "scan_page": 61,
+      "stem": "Is the following formula correct? G = H − TS.",
+      "appearance_years": [], "notes": "Printed as one question 'Which formulae in the following are correct?' listing five formulae (a)–(e)." },
+
+    { "ref": "saq45", "section": "SAQ", "number": 45, "part": "b", "stars": 0,
+      "printed_page": 63, "scan_page": 61,
+      "stem": "Is the following formula correct? ΔG_sys = ΔH_sys − TΔS_sys.",
+      "appearance_years": [], "notes": "Printed as one question 'Which formulae in the following are correct?' listing five formulae (a)–(e)." },
+
+    { "ref": "saq45", "section": "SAQ", "number": 45, "part": "c", "stars": 0,
+      "printed_page": 63, "scan_page": 61,
+      "stem": "Is the following formula correct? ΔS_surr = ΔH_surr / T = −ΔH_sys / T.",
+      "appearance_years": [], "notes": "Printed as one question 'Which formulae in the following are correct?' listing five formulae (a)–(e)." },
+
+    { "ref": "saq45", "section": "SAQ", "number": 45, "part": "d", "stars": 0,
+      "printed_page": 63, "scan_page": 61,
+      "stem": "Is the following formula correct? ΔS_total = ΔS_sys + (−ΔH_sys) / T.",
+      "appearance_years": [], "notes": "Printed as one question 'Which formulae in the following are correct?' listing five formulae (a)–(e)." },
+
+    { "ref": "saq45", "section": "SAQ", "number": 45, "part": "e", "stars": 0,
+      "printed_page": 63, "scan_page": 61,
+      "stem": "Is the following formula correct? TΔS_total = TΔS_sys − ΔH_sys.",
+      "appearance_years": [], "notes": "Printed as one question 'Which formulae in the following are correct?' listing five formulae (a)–(e)." },
+
+    { "ref": "saq46", "section": "SAQ", "number": 46, "part": null, "stars": 0,
+      "printed_page": 64, "scan_page": 62,
+      "stem": "Calculate ΔrG° for the conversion of oxygen to ozone, (3/2) O₂(g) → O₃(g), at 298 K. Kp for the reaction is 2.43 × 10⁻²⁹.",
+      "appearance_years": [], "notes": "Same question as problem 5.11, which prints Kp as 2.47 × 10⁻²⁹." },
+
+    { "ref": "saq47", "section": "SAQ", "number": 47, "part": null, "stars": 0,
+      "printed_page": 64, "scan_page": 62,
+      "stem": "The sign and magnitude of the Gibbs energy change of a chemical process tell about its spontaneity and about the useful work that can be extracted from it. Explain.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq48", "section": "SAQ", "number": 48, "part": null, "stars": 0,
+      "printed_page": 64, "scan_page": 62,
+      "stem": "In a process, 701 J of heat is absorbed by a system and 394 J of work is done by the system. What is the change in internal energy for the process?",
+      "appearance_years": [], "notes": "PRINTED TYPO in the working below the question: the work is once written as 304 J; the question datum is 394 J." },
+
+    { "ref": "saq49", "section": "SAQ", "number": 49, "part": null, "stars": 0,
+      "printed_page": 64, "scan_page": 62,
+      "stem": "The reaction of cyanamide(s) with dioxygen was carried out in a bomb calorimeter, and ΔU was found to be −742.7 kJ mol⁻¹ at 298 K. Calculate the enthalpy change for the reaction at 298 K. NH₂CN(s) + (3/2) O₂(g) → N₂(g) + CO₂(g) + H₂O(l).",
+      "appearance_years": [], "notes": "Printed 'for the reaction of 298K'; read as 'at 298 K'." },
+
+    { "ref": "saq50", "section": "SAQ", "number": 50, "part": null, "stars": 0,
+      "printed_page": 64, "scan_page": 62,
+      "stem": "Calculate the number of kJ of heat needed to raise the temperature of 60.0 g of aluminium from 35 °C to 55 °C. The molar heat capacity of aluminium is 24 J mol⁻¹ K⁻¹.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq51", "section": "SAQ", "number": 51, "part": null, "stars": 0,
+      "printed_page": 64, "scan_page": 62,
+      "stem": "The enthalpy of combustion of carbon to CO₂ is −393.5 kJ mol⁻¹. Calculate the heat released when 35.2 g of CO₂ is formed from carbon and dioxygen gas.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq52", "section": "SAQ", "number": 52, "part": null, "stars": 0,
+      "printed_page": 64, "scan_page": 62,
+      "stem": "The enthalpies of formation of CO(g), CO₂(g), N₂O(g) and N₂O₄(g) are −110, −393, 81 and 9.7 kJ mol⁻¹ respectively. Find the value of ΔrH for the reaction N₂O₄(g) + 3CO(g) → N₂O(g) + 3CO₂(g).",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq53", "section": "SAQ", "number": 53, "part": null, "stars": 0,
+      "printed_page": 65, "scan_page": 63,
+      "stem": "Given N₂(g) + 3H₂(g) → 2NH₃(g); ΔrH° = −92.4 kJ mol⁻¹. What is the standard enthalpy of formation of NH₃ gas?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq54", "section": "SAQ", "number": 54, "part": null, "stars": 0,
+      "printed_page": 65, "scan_page": 63,
+      "stem": "Calculate the standard enthalpy of formation of CH₃OH(l) from the following data: CH₃OH(l) + (3/2) O₂(g) → CO₂(g) + 2H₂O(l), ΔrH° = −726 kJ mol⁻¹; C(graphite) + O₂(g) → CO₂(g), ΔcH° = −393 kJ mol⁻¹; H₂(g) + (1/2) O₂(g) → H₂O(l), ΔfH° = −286 kJ mol⁻¹.",
+      "appearance_years": [], "notes": "The stem prints the methanol state as 'CH₃OH(1)' (digit one) where the equations use (l)." },
+
+    { "ref": "saq55", "section": "SAQ", "number": 55, "part": null, "stars": 0,
+      "printed_page": 65, "scan_page": 63,
+      "stem": "Calculate the enthalpy change for the process CCl₄(g) → C(g) + 4Cl(g), and calculate the bond enthalpy of C–Cl in CCl₄(g). ΔvapH°(CCl₄) = 30.5 kJ mol⁻¹, ΔfH°(CCl₄) = −135.5 kJ mol⁻¹, ΔaH°(C) = 715.0 kJ mol⁻¹, where ΔaH° is the enthalpy of atomisation, and ΔaH°(Cl₂) = 242 kJ mol⁻¹.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq56", "section": "SAQ", "number": 56, "part": null, "stars": 0,
+      "printed_page": 65, "scan_page": 63,
+      "stem": "For an isolated system, ΔU = 0. What will ΔS be?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq57", "section": "SAQ", "number": 57, "part": null, "stars": 0,
+      "printed_page": 65, "scan_page": 63,
+      "stem": "For the reaction 2A + B → C at 298 K, ΔH = 400 kJ mol⁻¹ and ΔS = 0.2 kJ K⁻¹ mol⁻¹. At what temperature will the reaction become spontaneous, taking ΔH and ΔS to be constant over the temperature range?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq58", "section": "SAQ", "number": 58, "part": null, "stars": 0,
+      "printed_page": 65, "scan_page": 63,
+      "stem": "For the reaction 2Cl(g) → Cl₂(g), what are the signs of ΔH and ΔS?",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq59", "section": "SAQ", "number": 59, "part": null, "stars": 0,
+      "printed_page": 66, "scan_page": 64,
+      "stem": "For the reaction 2A(g) + B(g) → 2D(g), ΔU° = −10.5 kJ and ΔS° = −44.1 J K⁻¹. Calculate ΔG° for the reaction and predict whether the reaction can occur spontaneously or not.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq60", "section": "SAQ", "number": 60, "part": null, "stars": 0,
+      "printed_page": 66, "scan_page": 64,
+      "stem": "The equilibrium constant for a reaction is 10. What will be the value of ΔG°? R = 8.314 J K⁻¹ mol⁻¹, T = 300 K.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq61", "section": "SAQ", "number": 61, "part": null, "stars": 1,
+      "printed_page": 66, "scan_page": 64,
+      "stem": "State the first law of thermodynamics. Explain its mathematical notation.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq62", "section": "SAQ", "number": 62, "part": null, "stars": 1,
+      "printed_page": 66, "scan_page": 64,
+      "stem": "State the second law of thermodynamics and explain it.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq63", "section": "SAQ", "number": 63, "part": null, "stars": 0,
+      "printed_page": 66, "scan_page": 64,
+      "stem": "Explain Gibbs energy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "saq64", "section": "SAQ", "number": 64, "part": null, "stars": 0,
+      "printed_page": 67, "scan_page": 65,
+      "stem": "Explain the spontaneity of a process in terms of Gibbs energy.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq65", "section": "LAQ", "number": 65, "part": null, "stars": 2,
+      "printed_page": 67, "scan_page": 65,
+      "stem": "State and explain Hess's law of constant heat summation.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq66", "section": "LAQ", "number": 66, "part": null, "stars": 0,
+      "printed_page": 67, "scan_page": 65,
+      "stem": "Explain the experiment used to determine the internal energy change of a chemical reaction.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq67", "section": "LAQ", "number": 67, "part": null, "stars": 0,
+      "printed_page": 68, "scan_page": 66,
+      "stem": "Explain the experiment used to determine the enthalpy change of a chemical reaction.",
+      "appearance_years": [], "notes": null },
+
+    { "ref": "laq68", "section": "LAQ", "number": 68, "part": null, "stars": 0,
+      "printed_page": 68, "scan_page": 66,
+      "stem": "Explain the spontaneity of a reaction in terms of the enthalpy change, the entropy change and the Gibbs energy change.",
+      "appearance_years": [], "notes": "Printed 'interms of enthalpy hange' (typos for 'in terms of enthalpy change')." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": "i", "stars": 0,
+      "printed_page": 68, "scan_page": 66,
+      "stem": "Express the change in internal energy of a system when no heat is absorbed by the system from the surroundings but work W is done on the system. What type of wall does the system have?",
+      "appearance_years": [], "notes": "Printed label 5.1 (INTEXT SOLVED PROBLEMS); one question with parts I), II), III)." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": "ii", "stars": 0,
+      "printed_page": 68, "scan_page": 66,
+      "stem": "Express the change in internal energy of a system when no work is done on the system but an amount of heat q is taken out of the system and given to the surroundings. What type of wall does the system have?",
+      "appearance_years": [], "notes": "Printed label 5.1 (INTEXT SOLVED PROBLEMS); one question with parts I), II), III)." },
+
+    { "ref": "prob1", "section": "PROBLEM", "number": 1, "part": "iii", "stars": 0,
+      "printed_page": 68, "scan_page": 66,
+      "stem": "Express the change in internal energy of a system when an amount of work W is done by the system and an amount of heat q is supplied to the system. What type of system is it?",
+      "appearance_years": [], "notes": "Printed label 5.1 (INTEXT SOLVED PROBLEMS); one question with parts I), II), III)." },
+
+    { "ref": "prob2", "section": "PROBLEM", "number": 2, "part": null, "stars": 0,
+      "printed_page": 68, "scan_page": 66,
+      "stem": "Two litres of an ideal gas at a pressure of 10 atm expands isothermally into a vacuum until its total volume is 10 litres. How much work is done in the expansion?",
+      "appearance_years": [], "notes": "Printed label 5.2 (INTEXT SOLVED PROBLEMS)." },
+
+    { "ref": "prob3", "section": "PROBLEM", "number": 3, "part": null, "stars": 0,
+      "printed_page": 68, "scan_page": 66,
+      "stem": "Consider the same expansion as in problem 5.2 (2 litres of an ideal gas at 10 atm expanding isothermally to a total volume of 10 litres), but this time against a constant external pressure of 1 atm. How much work is done?",
+      "appearance_years": [], "notes": "Printed label 5.3 (INTEXT SOLVED PROBLEMS). Printed only as 'Consider the same expansion, but this time against a constant external pressure of 1 atm.' — the set-up and the question are those of 5.2." },
+
+    { "ref": "prob4", "section": "PROBLEM", "number": 4, "part": null, "stars": 1,
+      "printed_page": 68, "scan_page": 66,
+      "stem": "Consider the same expansion as in problem 5.2 (2 litres of an ideal gas at 10 atm, isothermal), to a final volume of 10 litres, carried out reversibly. How much work is done?",
+      "appearance_years": [], "notes": "Printed label 5.4 (INTEXT SOLVED PROBLEMS). Printed only as 'Consider the same expansion, to a final volume of 10 litres conducted reversibly.' — the set-up and the question are those of 5.2." },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": "i", "stars": 0,
+      "printed_page": 69, "scan_page": 67,
+      "stem": "If water vapour is assumed to be a perfect gas, the molar enthalpy change for the vaporisation of 1 mol of water at 1 bar and 100 °C is 41 kJ mol⁻¹. Calculate the internal energy change when 1 mol of water is vaporised at 1 bar pressure and 100 °C.",
+      "appearance_years": [], "notes": "Printed label 5.5 (INTEXT SOLVED PROBLEMS); one question with parts (i), (ii). Printed 'intrnal' for 'internal'." },
+
+    { "ref": "prob5", "section": "PROBLEM", "number": 5, "part": "ii", "stars": 0,
+      "printed_page": 69, "scan_page": 67,
+      "stem": "If water vapour is assumed to be a perfect gas, the molar enthalpy change for the vaporisation of 1 mol of water at 1 bar and 100 °C is 41 kJ mol⁻¹. Calculate the internal energy change when 1 mol of water is converted into ice.",
+      "appearance_years": [], "notes": "Printed label 5.5 (INTEXT SOLVED PROBLEMS); one question with parts (i), (ii)." },
+
+    { "ref": "prob6", "section": "PROBLEM", "number": 6, "part": null, "stars": 0,
+      "printed_page": 69, "scan_page": 67,
+      "stem": "1 g of graphite is burnt in a bomb calorimeter in excess oxygen at 298 K and 1 atmospheric pressure according to the equation C(graphite) + O₂(g) → CO₂(g). During the reaction the temperature rises from 298 K to 299 K. If the heat capacity of the bomb calorimeter is 20.7 kJ/K, what is the enthalpy change for the reaction at 298 K and 1 atm?",
+      "appearance_years": [], "notes": "Printed label 5.6 (INTEXT SOLVED PROBLEMS)." },
+
+    { "ref": "prob7", "section": "PROBLEM", "number": 7, "part": null, "stars": 0,
+      "printed_page": 69, "scan_page": 67,
+      "stem": "A swimmer coming out of a pool is covered with a film of water weighing about 18 g. How much heat must be supplied to evaporate this water at 298 K? Calculate the internal energy of vaporisation at 100 °C. ΔvapH° for water at 373 K = 40.66 kJ mol⁻¹.",
+      "appearance_years": [], "notes": "Printed label 5.7 (INTEXT SOLVED PROBLEMS)." },
+
+    { "ref": "prob8", "section": "PROBLEM", "number": 8, "part": null, "stars": 0,
+      "printed_page": 69, "scan_page": 67,
+      "stem": "The combustion of one mole of benzene takes place at 298 K and 1 atm. After combustion, CO₂(g) and H₂O(l) are produced and 3267.0 kJ of heat is liberated. Calculate the standard enthalpy of formation, ΔfH°, of benzene. The standard enthalpies of formation of CO₂(g) and H₂O(l) are −393 kJ mol⁻¹ and −285.83 kJ mol⁻¹ respectively.",
+      "appearance_years": [], "notes": "Printed label 5.8 (INTEXT SOLVED PROBLEMS). AMBIGUOUS DATUM: the stem prints ΔfH°(CO₂) = −393 kJ mol⁻¹, but the printed working (and the NCERT original) use −393.5 kJ mol⁻¹." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": "i", "stars": 0,
+      "printed_page": 70, "scan_page": 68,
+      "stem": "Predict whether the entropy increases or decreases in the following: a liquid crystallises into a solid.",
+      "appearance_years": [], "notes": "Printed label 5.9 (INTEXT SOLVED PROBLEMS); one question with parts (i)–(iv)." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": "ii", "stars": 0,
+      "printed_page": 70, "scan_page": 68,
+      "stem": "Predict whether the entropy increases or decreases in the following: the temperature of a crystalline solid is raised from 0 K to 115 K.",
+      "appearance_years": [], "notes": "Printed label 5.9 (INTEXT SOLVED PROBLEMS); one question with parts (i)–(iv)." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": "iii", "stars": 0,
+      "printed_page": 70, "scan_page": 68,
+      "stem": "Predict whether the entropy increases or decreases in the following: 2NaHCO₃(s) → Na₂CO₃(s) + CO₂(g) + H₂O(g).",
+      "appearance_years": [], "notes": "Printed label 5.9 (INTEXT SOLVED PROBLEMS); one question with parts (i)–(iv)." },
+
+    { "ref": "prob9", "section": "PROBLEM", "number": 9, "part": "iv", "stars": 0,
+      "printed_page": 70, "scan_page": 68,
+      "stem": "Predict whether the entropy increases or decreases in the following: H₂(g) → 2H(g).",
+      "appearance_years": [], "notes": "Printed label 5.9 (INTEXT SOLVED PROBLEMS); one question with parts (i)–(iv)." },
+
+    { "ref": "prob10", "section": "PROBLEM", "number": 10, "part": null, "stars": 0,
+      "printed_page": 70, "scan_page": 68,
+      "stem": "For the oxidation of iron, 4Fe(s) + 3O₂(g) → 2Fe₂O₃(s), the entropy change is −549.4 J K⁻¹ mol⁻¹ at 298 K. In spite of the negative entropy change of this reaction, why is the reaction spontaneous? (ΔrH° for this reaction is −1648 × 10³ J mol⁻¹.)",
+      "appearance_years": [], "notes": "Printed label 5.10 (INTEXT SOLVED PROBLEMS). Same question as SAQ 44, which prints −549.45 J K⁻¹ mol⁻¹." },
+
+    { "ref": "prob11", "section": "PROBLEM", "number": 11, "part": null, "stars": 0,
+      "printed_page": 71, "scan_page": 69,
+      "stem": "Calculate ΔrG° for the conversion of oxygen to ozone, (3/2) O₂(g) → O₃(g), at 298 K, if Kp for this conversion is 2.47 × 10⁻²⁹.",
+      "appearance_years": [], "notes": "Printed label 5.11 (INTEXT SOLVED PROBLEMS). Same question as SAQ 46, which prints Kp = 2.43 × 10⁻²⁹." },
+
+    { "ref": "prob12", "section": "PROBLEM", "number": 12, "part": null, "stars": 0,
+      "printed_page": 71, "scan_page": 69,
+      "stem": "Find the value of the equilibrium constant for the following reaction at 298 K: 2NH₃(g) + CO₂(g) ⇌ 2NH₂CONH₂(aq) + H₂O(l). The standard Gibbs energy change, ΔrG°, at the given temperature is −13.6 kJ mol⁻¹.",
+      "appearance_years": [], "notes": "Printed label 5.12 (INTEXT SOLVED PROBLEMS). PRINTED DEFECT (probable): the scan reads a coefficient 2 on NH₂CONH₂(aq), which does not balance; the NCERT original has NH₂CONH₂(aq) with no coefficient." },
+
+    { "ref": "prob13", "section": "PROBLEM", "number": 13, "part": null, "stars": 0,
+      "printed_page": 71, "scan_page": 69,
+      "stem": "At 60 °C, dinitrogen tetroxide is fifty percent dissociated. Calculate the standard free energy change at this temperature and at one atmosphere.",
+      "appearance_years": [], "notes": "Printed label 5.13 (INTEXT SOLVED PROBLEMS). The print runs the label into the stem as '5.1360°C, dinitrogen tetroxide…', dropping the opening word 'At'." }
+  ]
+}

@@ -43,8 +43,16 @@ const SOLUTION_MARKERS = [/\bSol\s*:/i, /\bSolution\s*:/i, /\bhence\s+proved\b/i
  * long before, and they DO republish that book's priority stars. That is a real and larger
  * exposure than anything in maths, and it is deliberately out of scope here rather than fixed.
  * It is COUNTED and printed on every run so the number stays visible instead of quietly
- * passing. Widen MATHS_SUBJECTS when the founder decides to bring those subjects in. */
+ * passing. Widen MATHS_SUBJECTS when the founder decides to bring those subjects in.
+ *
+ * 2026-09-02: the scope is ALSO keyed by ROW, not only by subject. Any manifest row with
+ * `source: "chaitanya_fastrack"` - the 2026-27 physics/chemistry retrofit uses it for every
+ * question taken from the Sri Chaitanya 2026-27 study material - is bound by R1 (stars 0) and,
+ * once its card exists, by R3/R4 (the card cites the book and records the boundary), whatever
+ * its subject. Legacy physics/chemistry rows have no such source value, so they stay in the
+ * counted-not-failed bucket above. */
 const MATHS_SUBJECTS = new Set(['mathematics', 'mathematics_1b', 'mathematics_2a', 'mathematics_2b']);
+const FASTRACK_SOURCE = 'chaitanya_fastrack';
 
 console.log('1. research index holds questions only');
 let indexed = 0;
@@ -97,15 +105,30 @@ for (const dist of ['dist', 'dist-gated', 'dist-mpc', 'dist-mpc_2']) {
     } else note(`answer-book/${dist}/index.html: clean`);
 }
 
-console.log('3. every maths card that used the book records the boundary');
+console.log('3. every card that used the book records the boundary (maths, and every chaitanya_fastrack row)');
+const manifest = JSON.parse(readFileSync(MANIFEST, 'utf8'));
+/* Rows the manifest itself says came from the book. R1 applies to the row (stars must be 0) in
+ * every subject; R3 applies to the card behind it as soon as that card exists. */
+const fastrackIds = new Set<string>();
+for (const u of manifest.units) {
+    for (const e of u.questions ?? []) {
+        if (e.source !== FASTRACK_SOURCE) continue;
+        if (e.stars) {
+            bad.push(`units.json ${u.subject ?? 'physics'}-${u.number} ${e.ref}: stars=${e.stars} on a row sourced from ${SOURCE_NAME} (${FASTRACK_SOURCE}) — its ranking is not ours to publish (R1)`);
+        }
+        if (e.question_id) fastrackIds.add(e.question_id);
+    }
+}
 const cards = readdirSync(QDIR).filter((f) => f.endsWith('.json'));
 const citedIds = new Set<string>();
 const outOfScope = new Map<string, number>();
+const cardIds = new Set<string>();
 for (const f of cards) {
     const q = JSON.parse(readFileSync(join(QDIR, f), 'utf8'));
+    cardIds.add(q.question_id);
     const n: string = q?.verification?.note ?? '';
     if (!n.includes(SOURCE_NAME)) continue;
-    if (!MATHS_SUBJECTS.has(q.subject)) {
+    if (!(MATHS_SUBJECTS.has(q.subject) || fastrackIds.has(q.question_id))) {
         outOfScope.set(q.subject, (outOfScope.get(q.subject) ?? 0) + 1);
         continue;
     }
@@ -119,10 +142,14 @@ for (const f of cards) {
         if (!hay.includes(BOUNDARY.toLowerCase())) bad.push(`${f}: cites ${SOURCE_NAME} but does not record "${BOUNDARY}"`);
         if (!hay.includes(DOSSIER.toLowerCase())) bad.push(`${f}: cites ${SOURCE_NAME} but does not point at ${DOSSIER}`);
 }
-note(`${citedIds.size} maths card(s) cite ${SOURCE_NAME}; ${indexed} question(s) indexed`);
+/* The reverse direction: a row that names the book as its source must be backed by a card that
+ * says so too — otherwise the manifest claims a provenance the card never recorded. */
+for (const id of fastrackIds) {
+    if (cardIds.has(id) && !citedIds.has(id)) bad.push(`${id}.json: its manifest row is sourced from ${SOURCE_NAME} (${FASTRACK_SOURCE}) but the card does not cite the book in verification.note`);
+}
+note(`${citedIds.size} card(s) cite ${SOURCE_NAME}; ${fastrackIds.size} manifest row(s) carry ${FASTRACK_SOURCE}; ${indexed} question(s) indexed`);
 
-console.log(`4. the book's priority stars are not republished (maths)`);
-const manifest = JSON.parse(readFileSync(MANIFEST, 'utf8'));
+console.log(`4. the book's priority stars are not republished (every cited card)`);
 for (const u of manifest.units) {
     for (const e of u.questions ?? []) {
         if (!e.question_id || !citedIds.has(e.question_id)) continue;
@@ -133,7 +160,7 @@ for (const u of manifest.units) {
 }
 
 console.log('5. a chapter new to the syllabus claims no exam history');
-const NEVER_ASKED = new Set(['Sets and Relations', 'Sequences and Series']);
+const NEVER_ASKED = new Set(['Sets and Relations', 'Sequences and Series', 'Physics of Emerging Technologies']);
 for (const f of cards) {
     const q = JSON.parse(readFileSync(join(QDIR, f), 'utf8'));
     if (!NEVER_ASKED.has(q.chapter)) continue;
