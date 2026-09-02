@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_sand_heap_pyramid_shape",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why does a heap of sand poured on the ground form a cone or pyramid shape?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The shear-stress limit",
+      "marks": 1
+    },
+    {
+      "label": "The angle of repose",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 13 (printed p.99). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: dry sand grains are held only by inter-grain friction, so a heap can carry only a limited shear stress before the grains slide, and the slope of a stable heap therefore always settles at the angle of repose, giving the same cone/pyramid shape at any size. BOOK DISCREPANCY (book p.99): the printed answer gives the reason as \"the lower layers are subjected to higher stress because of the weight above; the stress increases linearly with depth, leading to a pyramid shape\". That is true of stress in ANY heap of any shape and is not the reason for the SHAPE. The shear-stress limit and the angle of repose, written here, are the actual reason a heap always settles into a cone or pyramid."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_shear_limit",
+        "kind": "text",
+        "label": "Sand can carry only limited shear stress",
+        "marks": 1,
+        "mark_note": "Shear-stress limit",
+        "lines": [
+          "Dry sand grains are held together",
+          "only by friction between them, not",
+          "by any bonding force. A heap of",
+          "sand can carry only a limited",
+          "shearing stress before the grains",
+          "slide over each other.",
+          "The stress does rise with depth,",
+          "but that alone does not fix the",
+          "shape of the heap."
+        ],
+        "why": "A heap is built of loose grains, so the only thing holding a slope in place is friction between grains, and friction can supply only a limited shearing stress before the layers slide past each other.",
+        "common_mistakes": [
+          "Giving only \"stress increases with depth\" as the reason for the shape. That happens in a heap of any shape and does not by itself explain why the heap is a cone or pyramid.",
+          "Saying the grains are bonded together. Dry sand grains are held only by friction, with no bonding force between them."
+        ],
+        "memory_tip": "Loose grains held only by friction can take just so much shear before they slide.",
+        "margin_note": "Marked for naming friction between grains and a limited shear stress — not for the stress-with-depth statement alone."
+      },
+      {
+        "id": "s2_angle_of_repose",
+        "kind": "boxed_final",
+        "label": "The angle of repose fixes the shape",
+        "marks": 1,
+        "mark_note": "Angle of repose",
+        "lines": [
+          "A slope steeper than a certain angle,",
+          "the angle of repose, exceeds this",
+          "shear limit, so sand slides down",
+          "until the slope settles back to",
+          "that angle.",
+          {
+            "text": "Each new grain slides to the angle of repose",
+            "style": "eq"
+          },
+          {
+            "text": "Same slope at any size: cone or pyramid",
+            "style": "boxed"
+          }
+        ],
+        "why": "Because every grain added to the pile slides until the local slope returns to the angle of repose, a stable heap keeps the same slope angle whatever its size, so it grows as a cone or pyramid rather than any other shape.",
+        "common_mistakes": [
+          "Naming the angle of repose without saying it is the slope at which sliding stops. The angle itself is not the reason; reaching it is.",
+          "Describing the heap as pyramid-shaped only because of the weight above, which is the book's stress-with-depth reasoning and not the actual cause of the shape."
+        ],
+        "memory_tip": "Sand always slides back to the same angle, so every heap ends up the same shape.",
+        "margin_note": "Marked for naming the angle of repose as the slope where sliding stops, giving the heap a fixed shape."
+      }
+    ]
+  },
+  "insider_note": "Naming only 'stress increases with depth' earns zero for the second mark — the examiner is checking for the shear-stress limit and the angle of repose, the actual reason for the shape."
+}

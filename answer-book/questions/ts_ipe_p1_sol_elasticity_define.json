@@ -1,0 +1,139 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_elasticity_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define elasticity. Distinguish between elastic and plastic bodies with an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition of elasticity",
+      "marks": 1
+    },
+    {
+      "label": "Plasticity contrasted",
+      "marks": 1
+    },
+    {
+      "label": "Elastic limit example",
+      "marks": 1
+    },
+    {
+      "label": "Beyond the elastic limit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Short Answer Question 3 (printed p.100). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: elasticity is the property of regaining original shape and size once the deforming force is removed; plasticity is the body keeping its new shape; the wire example returns fully only within the elastic limit, and beyond it the recovery is incomplete."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Solids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Elasticity — the definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A deforming force changes the shape or",
+          "size of a body. Elasticity is the",
+          "property by which a body regains its",
+          "original shape and size once the",
+          "deforming force is removed."
+        ],
+        "margin_note": "The phrase \"regains its original shape and size\" is what this mark turns on.",
+        "why": "A body is called elastic only if the return to its original form happens after the force is taken away, which is why the definition names the removal of the force explicitly.",
+        "common_mistakes": [
+          "Confusing elasticity with stiffness. Elasticity is about regaining shape after the force is removed, not how much the body deforms under it.",
+          "Leaving out \"once the force is removed\"."
+        ],
+        "memory_tip": "Elastic means it goes back to its original shape once the force is gone."
+      },
+      {
+        "id": "s2_plasticity",
+        "kind": "text",
+        "label": "Contrast with plasticity",
+        "marks": 1,
+        "mark_note": "Plasticity",
+        "lines": [
+          "Plasticity is the opposite property. A",
+          "body that does not regain its original",
+          "shape and size, and keeps the new",
+          "shape, is called plastic. Putty and wet",
+          "clay are plastic bodies."
+        ],
+        "margin_note": "Name plasticity directly as the body keeping its new shape, with an example.",
+        "why": "Naming the opposite property gives a direct contrast to elasticity, and an example makes the difference concrete rather than only definitional.",
+        "common_mistakes": [
+          "Describing plasticity only as \"not elastic\" without saying the shape stays changed.",
+          "Giving no example of a plastic body."
+        ],
+        "memory_tip": "Plastic bodies keep the new shape; elastic bodies return to the old one."
+      },
+      {
+        "id": "s3_wire_example",
+        "kind": "text",
+        "label": "The wire example — within the elastic limit",
+        "marks": 1,
+        "mark_note": "Elastic limit",
+        "lines": [
+          "A stretched wire returns to its",
+          "original length once the load is",
+          "removed, as long as the load stays",
+          "below a value called the elastic",
+          "limit."
+        ],
+        "margin_note": "Name the elastic limit as the boundary within which this return happens.",
+        "why": "The wire example ties the definition to a case that later becomes the elastic limit, and naming the limit here is what the next step contrasts against.",
+        "common_mistakes": [
+          "Describing the wire example without naming the elastic limit.",
+          "Saying the wire always returns to its length, with no condition attached."
+        ],
+        "memory_tip": "The wire returns fully only while the load stays under the elastic limit."
+      },
+      {
+        "id": "s4_beyond_limit",
+        "kind": "boxed_final",
+        "label": "Beyond the elastic limit",
+        "marks": 1,
+        "mark_note": "No full recovery",
+        "lines": [
+          "Beyond the elastic limit the body no",
+          "longer returns fully to its original",
+          "shape and size when the load is",
+          "removed; some deformation remains.",
+          {
+            "text": "Elastic returns; plastic stays changed.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "State plainly that the recovery is no longer complete past the elastic limit.",
+        "why": "This line completes the contrast: within the elastic limit a body behaves elastically, beyond it the same body behaves plastically, so the boundary itself carries the physics.",
+        "common_mistakes": [
+          "Saying the body breaks beyond the elastic limit. It deforms permanently; breaking is a separate, later limit.",
+          "Stopping the answer at the wire example without stating what changes past the limit."
+        ],
+        "memory_tip": "Past the elastic limit, some deformation stays even after the load is removed."
+      }
+    ]
+  },
+  "insider_note": "The elastic limit is the hinge of the whole answer — leave it unnamed and the wire example earns nothing."
+}

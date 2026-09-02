@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_elastomers_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are elastomers? Give two examples.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya *IPE Study Material for Jr. Students* 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 8 (printed p.98). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: elastomers have a very low Young's modulus so a small stress gives a very large strain, and they return to shape when the stress is removed; natural rubber, synthetic rubber and the tissue of the aorta are standard examples."
+  },
+  "insider_note": "The two named examples are what separates a full mark from a half mark — the definition alone is not credited as a complete answer.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Elastomers are materials with a very low",
+          "Young's modulus, so a small stress produces",
+          "a very large strain.",
+          {
+            "text": "Elastomers: low Y, large strain",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "The words 'very low Young's modulus' and 'large strain' both must appear — a vague 'stretchy material' does not earn this mark.",
+        "why": "Young's modulus is stress divided by strain, so a small stress giving a large strain means the material's Y is very low compared to metals like steel.",
+        "common_mistakes": [
+          "Calling elastomers plastic materials — they return to shape, plastics do not.",
+          "Saying they have a high Young's modulus instead of a very low one."
+        ],
+        "memory_tip": "Elastomers stretch a lot for a small push and spring back, like a rubber band."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "They return to their original shape when",
+          "the stress is removed.",
+          "Examples: natural rubber, synthetic rubber,",
+          "and the tissue of the aorta.",
+          {
+            "text": "Elastomers: rubber, aorta tissue",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "At least two examples are expected; natural rubber alone is not a complete answer.",
+        "why": "Naming real materials shows the definition is being applied, not just recited, and the aorta is the standard biological example in this chapter.",
+        "common_mistakes": [
+          "Naming only one example when the mark expects at least two.",
+          "Confusing elastomers with materials that do not return to shape."
+        ],
+        "memory_tip": "Rubber band, rubber tube, and the aorta wall — all stretch far and spring back."
+      }
+    ]
+  }
+}

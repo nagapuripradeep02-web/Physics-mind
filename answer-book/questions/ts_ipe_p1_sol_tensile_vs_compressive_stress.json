@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_tensile_vs_compressive_stress",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between tensile stress and compressive stress.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Tensile stress",
+      "marks": 1
+    },
+    {
+      "label": "Compressive stress",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 3 (printed p.98). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: both are longitudinal stress with the same formula σ = F/A; tensile stress stretches the body (length increases) and compressive stress squeezes it (length decreases)."
+  },
+  "insider_note": "Examiners check that both directions of change are named — \"length increases\" and \"length decreases\" are what separate the two marks, not just the two names.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tensile",
+        "kind": "text",
+        "label": "Tensile stress",
+        "marks": 1,
+        "mark_note": "Tensile",
+        "lines": [
+          "Tensile stress: the applied forces",
+          "stretch the body, so the length",
+          "increases."
+        ],
+        "margin_note": "Name the direction of change, not just the word \"tensile\" — \"length increases\" is what earns the mark.",
+        "why": "Tensile stress is the case used in most numerical problems, so stating that it stretches the body sets up the sign convention for later steps.",
+        "common_mistakes": [
+          "Naming tensile stress without saying the length increases.",
+          "Confusing tensile stress with shearing stress, where the force acts along the surface instead of along the length."
+        ],
+        "memory_tip": "Tensile stress: pull it, and it gets longer."
+      },
+      {
+        "id": "s2_compressive",
+        "kind": "boxed_final",
+        "label": "Compressive stress",
+        "marks": 1,
+        "mark_note": "Compressive",
+        "lines": [
+          "Compressive stress: the applied",
+          "forces squeeze the body, so the",
+          "length decreases.",
+          {
+            "text": "σ = F/A both ways; direction differs.",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Say the length decreases — the formula σ = F/A is the same for both, so it does not earn this mark by itself.",
+        "why": "Compressive stress uses the same formula as tensile stress; only the direction of the deforming force and the resulting change in length differ.",
+        "common_mistakes": [
+          "Writing that compressive stress has a different formula from tensile stress.",
+          "Leaving out that the length decreases."
+        ],
+        "memory_tip": "Compressive stress: push it, and it gets shorter."
+      }
+    ]
+  }
+}

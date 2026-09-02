@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_strain_define_and_types",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define strain and explain the types of strain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition of strain",
+      "marks": 1
+    },
+    {
+      "label": "Longitudinal strain",
+      "marks": 1
+    },
+    {
+      "label": "Volume strain",
+      "marks": 1
+    },
+    {
+      "label": "Shearing strain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Short Answer Question 2 (printed p.100). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: strain = change in dimension per unit original dimension, dimensionless; the three types are longitudinal (Δl/l), volume/bulk (ΔV/V) and shearing (angle of shear θ)."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Solids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "Strain — the definition",
+        "marks": 1,
+        "mark_note": "Strain = change/original",
+        "lines": [
+          "A deforming force changes the size or",
+          "shape of a body. Strain is the",
+          "fractional change produced in a",
+          "dimension of the body.",
+          {
+            "text": "Strain = Δ(dimension)/original dimension",
+            "style": "eq"
+          },
+          "It is a ratio, so it has no unit and",
+          "no dimensions."
+        ],
+        "margin_note": "The words \"per unit original dimension\" earn this mark, not the symbol alone.",
+        "why": "Strain is defined as a ratio of two similar quantities so that the same formula describes a change in length, in volume or in shape, whatever the size of the body.",
+        "common_mistakes": [
+          "Giving strain a unit such as metre. It is a ratio of two lengths or volumes, so it has none.",
+          "Defining strain only for length and leaving out volume and shape changes."
+        ],
+        "memory_tip": "Strain is a ratio, so it never carries a unit."
+      },
+      {
+        "id": "s2_longitudinal",
+        "kind": "equation",
+        "label": "Longitudinal strain",
+        "marks": 1,
+        "mark_note": "Longitudinal",
+        "lines": [
+          "1. Longitudinal strain. When a force",
+          "along the length of a body changes its",
+          "length,",
+          {
+            "text": "Longitudinal strain = Δl / l",
+            "style": "eq"
+          },
+          "where Δl is the change in length and l",
+          "is the original length."
+        ],
+        "margin_note": "Name the type and give the ratio: change in length over original length.",
+        "why": "Longitudinal strain is the one used with Young's modulus, so writing it in change-over-original form here is what a later numerical reuses directly.",
+        "common_mistakes": [
+          "Writing l/Δl upside down. The change goes on top, the original length on the bottom.",
+          "Naming the type without giving its ratio."
+        ],
+        "memory_tip": "Longitudinal strain is Δl over l: the change over the original length."
+      },
+      {
+        "id": "s3_volume",
+        "kind": "equation",
+        "label": "Volume strain",
+        "marks": 1,
+        "mark_note": "Volume",
+        "lines": [
+          "2. Volume strain, also called bulk",
+          "strain. When a body under uniform",
+          "pressure changes its volume but not",
+          "its shape,",
+          {
+            "text": "Volume strain = ΔV / V",
+            "style": "eq"
+          },
+          "where ΔV is the change in volume and V",
+          "is the original volume."
+        ],
+        "margin_note": "The words \"shape stays the same\" separate this from shearing strain.",
+        "why": "Volume strain pairs with the bulk modulus B = P/(ΔV/V), so writing it as change over original volume here is what makes that later formula legible.",
+        "common_mistakes": [
+          "Saying the shape also changes. Under uniform pressure only the volume changes.",
+          "Writing ΔV/ΔP in place of ΔV/V."
+        ],
+        "memory_tip": "Volume strain is ΔV over V: the change over the original volume."
+      },
+      {
+        "id": "s4_shearing",
+        "kind": "boxed_final",
+        "label": "Shearing strain",
+        "marks": 1,
+        "mark_note": "Shearing",
+        "lines": [
+          "3. Shearing strain. A tangential force",
+          "displaces one face of a body relative",
+          "to the fixed opposite face. The",
+          "shearing strain is",
+          {
+            "text": "= displacement / distance between layers",
+            "style": "eq"
+          },
+          {
+            "text": "= angle of shear θ (in radians)",
+            "style": "eq"
+          },
+          {
+            "text": "Strain: longitudinal, volume, shear",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Naming this as an angle θ, not a length, earns this mark.",
+        "why": "The two faces stay the same distance apart everywhere, so the ratio of the tangential displacement to that distance is a single number, and geometrically it equals the angle the body has sheared through.",
+        "common_mistakes": [
+          "Giving shearing strain a length instead of an angle.",
+          "Confusing it with longitudinal strain, which changes a length, not a shape."
+        ],
+        "memory_tip": "Shearing strain is the angle of shear θ: a sideways push tilts the body."
+      }
+    ]
+  },
+  "insider_note": "Three of the four marks are the three types of strain. A definition with only two types still loses a mark."
+}

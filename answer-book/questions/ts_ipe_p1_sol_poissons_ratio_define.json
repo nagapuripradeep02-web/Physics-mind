@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_poissons_ratio_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define Poisson’s ratio. What are its limiting values for steel?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Limits for steel",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 11 (printed p.98). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: σ = lateral strain / longitudinal strain is a dimensionless ratio of two strains, correctly unitless; the accepted range for steel, 0.27 to 0.30, matches the standard NCERT table of Poisson's ratios. BOOK TYPO (book p.98): the printed limits for steel read \"027 - 0.30\", a dropped decimal point — the correct value, 0.27 to 0.30, is written here instead."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Poisson’s ratio σ is the ratio of the",
+          "lateral strain to the longitudinal",
+          "strain, for a rod under tension.",
+          {
+            "text": "σ = lateral strain / longitudinal strain",
+            "style": "eq"
+          },
+          "It is a pure number, with no unit."
+        ],
+        "why": "Both strains are produced by the same applied force, so their ratio is a single number that describes how much a material narrows as it stretches, independent of the actual size of the rod.",
+        "common_mistakes": [
+          "Writing σ as longitudinal strain over lateral strain. The ratio is inverted; the lateral strain goes on top.",
+          "Giving σ a unit. Strain has no unit, so the ratio of two strains has none either."
+        ],
+        "memory_tip": "Lateral over longitudinal: the sideways strain sits on top of the ratio.",
+        "margin_note": "Marked for the words \"lateral strain over longitudinal strain\" — the bare formula alone does not earn it."
+      },
+      {
+        "id": "s2_steel_limits",
+        "kind": "boxed_final",
+        "label": "Limits for steel",
+        "marks": 1,
+        "mark_note": "Limits for steel",
+        "lines": [
+          "For steel, Poisson’s ratio σ lies",
+          "between 0.27 and 0.30.",
+          {
+            "text": "σ = 0.27 to 0.30, for steel",
+            "style": "boxed"
+          }
+        ],
+        "why": "The limiting values are measured for real steel samples; they are quoted, not derived from a formula, so the numbers themselves are what the examiner is checking.",
+        "common_mistakes": [
+          "Writing the limits as \"027 to 0.30\" with the decimal point dropped — the value is 0.27, not 27.",
+          "Quoting a value outside 0 to 0.5, which is impossible for an ordinary elastic solid."
+        ],
+        "memory_tip": "Steel sits low on the scale: 0.27 to 0.30, well under the 0.5 upper limit.",
+        "margin_note": "Marked for the two numbers, 0.27 and 0.30, in that order — write the decimal point clearly."
+      }
+    ]
+  },
+  "insider_note": "Most answers lose the second mark by copying the book's dropped decimal point — write 0.27, never 027."
+}

@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_pillar_distributed_ends",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are pillars used in construction given distributed (widened) ends rather than rounded ends?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Widened ends spread the load",
+      "marks": 1
+    },
+    {
+      "label": "Lower stress means a stronger pillar",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 14 (printed p.99). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: stress σ = F/A falls as the contact area A rises for the same load F, so a widened end lowers the stress a pillar's material feels at its top and bottom, keeping it further from the elastic limit — the standard NCERT reasoning for why pillars are built with distributed ends."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_wide_ends",
+        "kind": "text",
+        "label": "Widened ends spread the load",
+        "marks": 1,
+        "mark_note": "Widened ends",
+        "lines": [
+          "A pillar with distributed, widened",
+          "ends spreads its load over a large",
+          "cross-sectional area.",
+          "A pillar with rounded ends carries",
+          "the same load on a small contact",
+          "area at its tip."
+        ],
+        "why": "The area a pillar's end presents to the load it carries is a matter of its shape alone, so widening the end is the direct way to change that area without changing the load.",
+        "common_mistakes": [
+          "Saying a rounded end is weaker without naming the small contact area as the reason.",
+          "Describing the load without comparing the contact area of a widened end to that of a rounded end."
+        ],
+        "memory_tip": "Wide end, wide contact area; round end, a small point of contact.",
+        "margin_note": "Marked for naming the large contact area of a widened end against the small contact area of a rounded end."
+      },
+      {
+        "id": "s2_lower_stress",
+        "kind": "boxed_final",
+        "label": "Lower stress means a stronger pillar",
+        "marks": 1,
+        "mark_note": "Lower stress",
+        "lines": [
+          "Since stress σ = F/A, the same load",
+          "F on a larger area A gives a",
+          "smaller stress at a widened end",
+          "than at a rounded end.",
+          {
+            "text": "σ = F/A: larger A gives smaller σ, same F",
+            "style": "eq"
+          },
+          {
+            "text": "Wide ends stay below the elastic limit",
+            "style": "boxed"
+          }
+        ],
+        "why": "A pillar's material fails once its stress crosses the elastic limit, so keeping the stress at its ends low, by making the end wide, lets the pillar carry a larger load before that limit is reached.",
+        "common_mistakes": [
+          "Saying wide ends are stronger without connecting it to the formula σ = F/A.",
+          "Claiming the load itself is smaller at a widened end. The load F is the same; only the area A, and so the stress, changes."
+        ],
+        "memory_tip": "Same weight, wider foot: the stress it feels drops, so it can carry more.",
+        "margin_note": "Marked for stating σ = F/A and that a larger area at the widened end gives a lower stress there."
+      }
+    ]
+  },
+  "insider_note": "The second mark needs the stress formula tied to the contact area, not just a bare statement that wide ends are stronger."
+}

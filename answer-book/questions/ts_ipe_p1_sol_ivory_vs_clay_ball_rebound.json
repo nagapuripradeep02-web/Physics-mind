@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_ivory_vs_clay_ball_rebound",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "An ivory ball and a wet clay ball of the same size are dropped from the same height onto a hard floor. Which one rises higher after striking the floor, and why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Which ball rises higher",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 15 (printed p.99). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: ivory has a Young's modulus far above wet clay's and behaves elastically over the impact, storing and returning the kinetic energy of the fall; wet clay is well past its elastic limit at ordinary impact forces and deforms permanently, so it returns almost none of that energy — the standard NCERT elastic-versus-plastic comparison."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_which_ball",
+        "kind": "text",
+        "label": "Which ball rises higher",
+        "marks": 1,
+        "mark_note": "Ivory rises higher",
+        "lines": [
+          "Of the two, the ivory ball rises",
+          "higher after it strikes the floor.",
+          "The wet clay ball does not rebound;",
+          "it stays flattened where it lands."
+        ],
+        "why": "The height each ball rises to after impact is a direct measure of how much of its falling kinetic energy is returned to it rather than spent deforming the ball.",
+        "common_mistakes": [
+          "Saying the clay ball rises higher because it is heavier. Weight does not decide the rebound; the material's elastic behaviour does.",
+          "Saying both balls rise to about the same height. Their rebound heights are very different."
+        ],
+        "memory_tip": "Ivory bounces back; wet clay stays where it lands.",
+        "margin_note": "Marked for naming the ivory ball as the one that rises higher, and that the clay ball does not rebound."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "boxed_final",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Elastic versus plastic",
+        "lines": [
+          "Ivory is highly elastic: it returns",
+          "almost all the stored energy as it",
+          "regains its shape, so it rebounds.",
+          "Wet clay is plastic: it deforms",
+          "permanently, and most of the",
+          "kinetic energy goes into that",
+          "permanent deformation.",
+          {
+            "text": "Elastic ivory rebounds; plastic clay does not",
+            "style": "boxed"
+          }
+        ],
+        "why": "An elastic body regains its original shape after the deforming force is removed and returns the energy stored during the deformation, while a plastic body keeps its new shape and keeps the energy spent producing it, which is exactly why one ball bounces and the other does not.",
+        "common_mistakes": [
+          "Naming only \"ivory is harder\" without using the words elastic and plastic, which are what the examiner is checking for.",
+          "Saying wet clay stores no energy at all. It does absorb energy; the point is that it keeps that energy as permanent deformation instead of returning it."
+        ],
+        "memory_tip": "Elastic returns to shape and gives the energy back; plastic keeps the new shape and keeps the energy.",
+        "margin_note": "Marked for the words \"elastic\" and \"plastic\", tied to energy being returned or kept as permanent deformation."
+      }
+    ]
+  },
+  "insider_note": "Full marks need both halves: naming the ivory ball AND explaining it with the words elastic and plastic, not just one."
+}

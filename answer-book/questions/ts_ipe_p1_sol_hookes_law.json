@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_hookes_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Hooke's law.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Statement and condition",
+      "marks": 1
+    },
+    {
+      "label": "Equation and modulus",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya *IPE Study Material for Jr. Students* 2026-27 edition, physics volume, Chapter 9 Very Short Answer Question 7 (printed p.98). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Hooke's law states stress ∝ strain for small deformations (within the elastic limit); the proportionality constant is the modulus of elasticity E, giving stress = E × strain."
+  },
+  "insider_note": "The condition 'for small deformations' is graded as its own mark — many students write stress ∝ strain but drop the condition and lose a mark.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Solids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "equation",
+        "label": "Statement of the law",
+        "marks": 1,
+        "mark_note": "Statement + condition",
+        "lines": [
+          "Hooke's law: for small deformations, the",
+          "stress in a body is directly proportional",
+          "to the strain produced in it.",
+          {
+            "text": "stress ∝ strain",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "The condition 'for small deformations' (or 'within the elastic limit') carries its own mark — omitting it loses a mark even with the correct proportionality.",
+        "why": "Hooke's law only holds up to the elastic limit of the material — beyond it stress and strain no longer stay proportional, which is why the condition must be stated.",
+        "common_mistakes": [
+          "Omitting 'for small deformations' or 'within the elastic limit' — the law is not true for every value of stress.",
+          "Writing stress = strain instead of stress ∝ strain."
+        ],
+        "memory_tip": "Hooke's law is a proportionality, not an equality — it needs a stated condition and a constant to become one."
+      },
+      {
+        "id": "s2_modulus",
+        "kind": "boxed_final",
+        "label": "Equation with modulus",
+        "marks": 1,
+        "mark_note": "Elastic modulus",
+        "lines": [
+          "Removing the proportionality sign needs a",
+          "constant of proportionality, E.",
+          {
+            "text": "stress = E × strain",
+            "style": "eq"
+          },
+          {
+            "text": "E = modulus of elasticity",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Name E as the modulus of elasticity — writing only the equation without naming the constant is incomplete.",
+        "why": "The proportionality constant E converts stress ∝ strain into a usable equation, and its value, the modulus of elasticity, is a property of the material.",
+        "common_mistakes": [
+          "Calling E the 'elastic constant' without naming it modulus of elasticity.",
+          "Writing E = stress × strain instead of stress = E × strain."
+        ],
+        "memory_tip": "E stands where the proportionality sign stood: stress = E × strain."
+      }
+    ]
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_steel_wire_lateral_strain",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A steel wire of length 20 cm and Poisson's ratio 0.19 is stretched so that its length increases by 0.2 cm. Find the lateral strain produced in the wire.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Given data",
+      "marks": 1
+    },
+    {
+      "label": "Longitudinal strain",
+      "marks": 1
+    },
+    {
+      "label": "Poisson's ratio relation",
+      "marks": 1
+    },
+    {
+      "label": "Lateral strain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Short Answer Question 5 (printed p.100). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: longitudinal strain = ΔL/L = 0.2/20 = 0.01; lateral strain = σ × longitudinal strain = 0.19 × 0.01 = 1.9 × 10⁻³. Matches the brief's independently checked arithmetic."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Solids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given_data",
+        "kind": "text",
+        "label": "Given data",
+        "marks": 1,
+        "mark_note": "Given data",
+        "lines": [
+          "Length L = 20 cm, increase in length",
+          "ΔL = 0.2 cm, Poisson's ratio σ = 0.19."
+        ],
+        "margin_note": "Write down all three given values before starting the calculation.",
+        "why": "Poisson's ratio links two strains, so both the length data and the given ratio have to be on the page before either strain can be found.",
+        "common_mistakes": [
+          "Starting the calculation without writing σ = 0.19 down first.",
+          "Confusing which value is the length and which is the extension."
+        ],
+        "memory_tip": "Three numbers to write down first: L, ΔL, and σ."
+      },
+      {
+        "id": "s2_longitudinal_strain",
+        "kind": "equation",
+        "label": "Longitudinal strain",
+        "marks": 1,
+        "mark_note": "ΔL/L = 0.01",
+        "lines": [
+          "Longitudinal strain",
+          {
+            "text": "= ΔL/L = 0.2/20 = 0.01",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "The unit cm cancels directly here, so no conversion to metres is needed.",
+        "why": "Longitudinal strain is the change in length over the original length, and since both are already in centimetres, the ratio needs no unit conversion.",
+        "common_mistakes": [
+          "Converting to metres and making an arithmetic slip. 0.2 cm/20 cm is the same ratio as in any unit.",
+          "Writing L/ΔL upside down."
+        ],
+        "memory_tip": "0.2 in 20 is the same as 1 in 100: longitudinal strain = 0.01."
+      },
+      {
+        "id": "s3_poissons_relation",
+        "kind": "equation",
+        "label": "Poisson's ratio relation",
+        "marks": 1,
+        "mark_note": "σ = lateral/longitudinal",
+        "lines": [
+          "Poisson's ratio is the ratio of the",
+          "lateral strain to the longitudinal",
+          "strain,",
+          {
+            "text": "σ = lateral strain / longitudinal strain",
+            "style": "eq"
+          },
+          {
+            "text": "⇒ lateral strain = σ × longitudinal strain",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Rearranging the definition of σ to solve for the lateral strain is the whole of this mark.",
+        "why": "Poisson's ratio links the two strains directly, so once the longitudinal strain is known, this rearrangement gives the lateral strain in one step.",
+        "common_mistakes": [
+          "Inverting the ratio and writing lateral strain = longitudinal strain / σ.",
+          "Leaving the relation in words only, without the rearranged formula."
+        ],
+        "memory_tip": "Lateral strain = σ × longitudinal strain: Poisson's ratio is the multiplier."
+      },
+      {
+        "id": "s4_lateral_strain",
+        "kind": "boxed_final",
+        "label": "Lateral strain",
+        "marks": 1,
+        "mark_note": "1.9 × 10⁻³",
+        "lines": [
+          {
+            "text": "Lateral strain = 0.19 × 0.01",
+            "style": "eq"
+          },
+          {
+            "text": "Lateral strain = 1.9 × 10⁻³",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "The value alone, with the correct power of ten, earns this mark.",
+        "why": "This step is a single multiplication of the two numbers found above, so the final answer follows directly once the relation in the previous step is written correctly.",
+        "common_mistakes": [
+          "Misplacing the decimal and writing 1.9 × 10⁻² instead of 10⁻³.",
+          "Reporting a percentage instead of converting back to a plain ratio."
+        ],
+        "memory_tip": "0.19 of a hundredth is about a fifth of a hundredth: 1.9 × 10⁻³."
+      }
+    ]
+  },
+  "insider_note": "The whole answer is one multiplication once the longitudinal strain is found — most lost marks come from a misplaced decimal in the final power of ten."
+}

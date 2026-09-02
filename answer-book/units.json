@@ -1896,6 +1896,141 @@
       "name": "Mechanical Properties of Solids",
       "questions": [
         {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Define stress.",
+          "question_id": "ts_ipe_p1_sol_stress_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "A force of 10 N is applied to a copper wire of diameter 1 mm. Calculate the stress produced in it.",
+          "question_id": "ts_ipe_p1_sol_stress_copper_wire_numerical",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Distinguish between tensile stress and compressive stress.",
+          "question_id": "ts_ipe_p1_sol_tensile_vs_compressive_stress",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Define hydraulic stress.",
+          "question_id": "ts_ipe_p1_sol_hydraulic_stress_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Define strain.",
+          "question_id": "ts_ipe_p1_sol_strain_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "What are the SI unit and the dimensional formula of stress?",
+          "question_id": "ts_ipe_p1_sol_stress_units_and_dimensions",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "State Hooke's law.",
+          "question_id": "ts_ipe_p1_sol_hookes_law",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What are elastomers? Give two examples.",
+          "question_id": "ts_ipe_p1_sol_elastomers_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Compare the bulk modulus of solids, liquids and gases.",
+          "question_id": "ts_ipe_p1_sol_bulk_modulus_order_three_states",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Define compressibility.",
+          "question_id": "ts_ipe_p1_sol_compressibility_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Define Poisson’s ratio. What are its limiting values for steel?",
+          "question_id": "ts_ipe_p1_sol_poissons_ratio_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Show that steel is more elastic than rubber.",
+          "question_id": "ts_ipe_p1_sol_steel_more_elastic_than_rubber",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Why does a heap of sand poured on the ground form a cone or pyramid shape?",
+          "question_id": "ts_ipe_p1_sol_sand_heap_pyramid_shape",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Why are pillars used in construction given distributed (widened) ends rather than rounded ends?",
+          "question_id": "ts_ipe_p1_sol_pillar_distributed_ends",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "An ivory ball and a wet clay ball of the same size are dropped from the same height onto a hard floor. Which one rises higher after striking the floor, and why?",
+          "question_id": "ts_ipe_p1_sol_ivory_vs_clay_ball_rebound",
+          "source": "chaitanya_fastrack"
+        },
+        {
           "ref": "saq1",
           "section": "SAQ",
           "number": 1,
@@ -1930,6 +2065,51 @@
           "text": "Define Young’s modulus, Bulk modulus and Shear modulus.",
           "question_id": "ts_ipe_p1_sol_youngs_bulk_shear_moduli",
           "source": "ts_paper"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Define strain and explain the types of strain.",
+          "question_id": "ts_ipe_p1_sol_strain_define_and_types",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Define elasticity. Distinguish between elastic and plastic bodies with an example.",
+          "question_id": "ts_ipe_p1_sol_elasticity_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "A brass wire of diameter 1 mm is stretched by a load of 20 N. If the original length of the wire is 2 m and the increase in length is 0.51 mm, find (i) the stress produced in the wire, (ii) the strain, and (iii) the Young's modulus of the material of the wire.",
+          "question_id": "ts_ipe_p1_sol_brass_wire_stress_strain_youngs",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "A steel wire of length 20 cm and Poisson's ratio 0.19 is stretched so that its length increases by 0.2 cm. Find the lateral strain produced in the wire.",
+          "question_id": "ts_ipe_p1_sol_steel_wire_lateral_strain",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "The elastic limit of a typical rock is about 3 × 10⁸ N m⁻². Estimate the maximum possible height of a mountain on the earth, taking the density of rock as 3 × 10³ kg m⁻³ and g = 10 m s⁻².",
+          "question_id": "ts_ipe_p1_sol_mountain_maximum_height",
+          "source": "chaitanya_fastrack"
         },
         {
           "ref": "prob1",

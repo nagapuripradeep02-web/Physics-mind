@@ -1,0 +1,153 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_sol_mountain_maximum_height",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "Mechanical Properties of Solids"
+  },
+  "chapter": "Mechanical Properties of Solids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "The elastic limit of a typical rock is about 3 × 10⁸ N m⁻². Estimate the maximum possible height of a mountain on the earth, taking the density of rock as 3 × 10³ kg m⁻³ and g = 10 m s⁻².",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Pressure at the base",
+      "marks": 1
+    },
+    {
+      "label": "Condition for the rock to hold",
+      "marks": 1
+    },
+    {
+      "label": "Substituting values",
+      "marks": 1
+    },
+    {
+      "label": "Maximum height",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 9 Short Answer Question 8 (printed p.102). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: pressure at the base of a mountain of height h is P = hρg; setting this equal to the rock's elastic limit 3 × 10⁸ N/m² with ρ = 3 × 10³ kg/m³ and g = 10 m/s² gives h = (3×10⁸)/(3×10³×10) = 10⁴ m = 10 km, the standard NCERT-style estimate."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Solids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pressure_at_base",
+        "kind": "equation",
+        "label": "Pressure at the base",
+        "marks": 1,
+        "mark_note": "P = hρg",
+        "lines": [
+          "A mountain of height h presses down on",
+          "the rock at its base under its own",
+          "weight. The pressure this produces at",
+          "the base is",
+          {
+            "text": "P = hρg",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Writing the pressure at the base as hρg is the whole of this step.",
+        "why": "The column of rock above the base acts like a fluid column for this estimate, so its weight per unit area gives the pressure the base must withstand.",
+        "common_mistakes": [
+          "Writing P = ρg without the height h.",
+          "Using the mountain's mass directly instead of its density and height."
+        ],
+        "memory_tip": "Pressure at the base of a column is height × density × g."
+      },
+      {
+        "id": "s2_condition",
+        "kind": "equation",
+        "label": "Condition for the rock to hold",
+        "marks": 1,
+        "mark_note": "P ≤ elastic limit",
+        "lines": [
+          "The rock at the base stays solid only",
+          "while this pressure stays below the",
+          "elastic limit of the rock. The",
+          "maximum height is reached when the",
+          "pressure equals the elastic limit,",
+          {
+            "text": "hρg = 3 × 10⁸ N/m²",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "State the equality — pressure equal to the elastic limit — before putting in numbers.",
+        "why": "Past the elastic limit the rock no longer returns to its original shape and starts to flow, so setting the pressure equal to the elastic limit marks the greatest height at which the base can still hold.",
+        "common_mistakes": [
+          "Substituting numbers before writing this condition down; the equation itself earns a mark.",
+          "Using the breaking stress in place of the elastic limit, though the question gives the elastic limit."
+        ],
+        "memory_tip": "The mountain grows until the base pressure reaches the rock's elastic limit."
+      },
+      {
+        "id": "s3_substitute",
+        "kind": "equation",
+        "label": "Substituting values",
+        "marks": 1,
+        "mark_note": "h = P/(ρg)",
+        "lines": [
+          {
+            "text": "h = (3 × 10⁸) / (3 × 10³ × 10)",
+            "style": "eq"
+          },
+          {
+            "text": "h = (3 × 10⁸) / (3 × 10⁴)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Multiply ρ and g first, then divide — track the powers of ten separately from the digits.",
+        "why": "Rearranging hρg = P for h and substituting the given numbers turns the condition from the previous step into a single division.",
+        "common_mistakes": [
+          "Multiplying ρ and g incorrectly and getting the wrong power of ten.",
+          "Substituting before rearranging for h."
+        ],
+        "memory_tip": "ρg = 3 × 10³ × 10 = 3 × 10⁴; divide the elastic limit by this."
+      },
+      {
+        "id": "s4_final_height",
+        "kind": "boxed_final",
+        "label": "Maximum height",
+        "marks": 1,
+        "mark_note": "h = 10 km",
+        "lines": [
+          {
+            "text": "h = 10⁴ m = 10 km",
+            "style": "eq"
+          },
+          {
+            "text": "Maximum height of a mountain ≈ 10 km",
+            "style": "boxed"
+          },
+          "Above this height the rock at the base",
+          "would flow rather than hold, which is",
+          "why mountains on the earth stay near",
+          "this height."
+        ],
+        "margin_note": "Convert the answer to kilometres and add the one-line physical reason for full credit.",
+        "why": "Converting to kilometres gives a number a student can compare to real mountains, and the closing line ties the number back to the physics that set the limit.",
+        "common_mistakes": [
+          "Leaving the answer in metres without converting to kilometres.",
+          "Stopping at the number without the one-line reason, which this mark also covers."
+        ],
+        "memory_tip": "10⁴ m is 10 km — about the height of the tallest mountains on Earth."
+      }
+    ]
+  },
+  "insider_note": "The condition hρg = elastic limit is the line most answers skip straight past — write it explicitly before substituting, and keep the one-line physical reason for the last mark."
+}
