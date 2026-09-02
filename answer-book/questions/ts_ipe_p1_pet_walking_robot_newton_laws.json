@@ -52,7 +52,7 @@
         "why": "Newton's second law, force equals mass times acceleration and torque equals moment of inertia times angular acceleration, sets the force and torque a joint motor must produce to keep the robot balanced.",
         "common_mistakes": [
           "Naming only 'Newton's laws' without identifying the second law's role.",
-          "Writing the first law instead, which does not apply to a moving, balancing robot."
+          "Writing the first law, which is true but does not give the joint force and torque."
         ],
         "memory_tip": "Second law: force and torque at each joint, from force equals mass times acceleration.",
         "margin_note": "Both the name Newton and the joint force-and-torque role must appear."
@@ -68,7 +68,7 @@
           "force the ground pushes back with,",
           "on each foot the robot places down."
         ],
-        "why": "By Newton's third law, the ground pushes back on the robot's foot with a force equal and opposite to the force the foot presses down with, and this reaction force is what keeps the robot from falling.",
+        "why": "By Newton's third law, the ground pushes back on the robot's foot with a force equal and opposite to the force the foot presses down with. This reaction force supports the robot's weight, and the robot stays balanced while that reaction line and its centre of mass stay over the support area of the foot.",
         "common_mistakes": [
           "Leaving out the ground reaction force and naming only the second law.",
           "Saying the forces are equal without naming them as an action-reaction pair."

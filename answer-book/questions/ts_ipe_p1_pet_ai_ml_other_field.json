@@ -49,10 +49,10 @@
           "Trained models predict how a new",
           "material will behave before it is made."
         ],
-        "why": "Materials science is a clear second field: a trained model can predict a candidate material's properties before the material exists. Particle physics is a second valid field, since AI is used to sift particle-collision data.",
+        "why": "Materials science is applied physics of materials: a trained model can predict a candidate material's properties before the material exists. Particle physics is a second valid field, since AI is used to sift particle-collision data.",
         "common_mistakes": [
           "Naming astrophysics again instead of a different field — the question asks for another field.",
-          "Naming a field with no stated reason for how AI or machine learning helps there."
+          "Naming a field where these methods are not actually used, or repeating astrophysics, which the question excludes."
         ],
         "memory_tip": "A second field: materials science, where a trained model predicts a property first.",
         "margin_note": "Particle physics is also accepted if the student names it clearly."

@@ -49,12 +49,12 @@
           "It can be in a combination of the states",
           "0 and 1 at the same time."
         ],
-        "why": "Superposition lets a qubit hold more information than a single 0 or a single 1, which is the basis of quantum computing power.",
+        "why": "A single qubit still gives exactly one classical bit when it is measured. The power comes from many qubits together: with n qubits, the processor represents all 2ⁿ combinations at once and works on them together.",
         "common_mistakes": [
           "Writing entanglement as the key property instead of superposition.",
-          "Saying a qubit is 0 and 1 without using the word combination."
+          "Writing that a qubit is either 0 or 1, which describes a classical bit."
         ],
-        "memory_tip": "Superposition: a qubit holds 0 and 1 together, not one or the other.",
+        "memory_tip": "Superposition: a qubit holds 0 and 1 together, not one or the other. Use the word combination.",
         "margin_note": "Entanglement may be added as extra information, not in place of this."
       },
       {

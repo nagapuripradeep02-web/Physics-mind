@@ -55,7 +55,7 @@
           "Naming mechanics without saying what it supplies — the forces and torques for motion.",
           "Writing 'physics' alone instead of naming mechanics specifically."
         ],
-        "memory_tip": "Mechanics moves the limbs: forces and torques at each joint.",
+        "memory_tip": "Mechanics gives the forces and torques that move the limbs.",
         "margin_note": "Some study materials name thermodynamics instead, for heat removal — see the note on the next step."
       },
       {
@@ -72,10 +72,10 @@
         ],
         "why": "Electric motors and most sensors work on electromagnetic principles, so electromagnetism is the second essential area for a robot's motion and sensing. A few study materials print thermodynamics as the second area instead, for the heat removed from motors and circuits — this card follows mechanics plus electromagnetism.",
         "common_mistakes": [
-          "Naming thermodynamics as the second area. Heat removal matters in a robot, but it does not supply the motion or the sensing.",
+          "Thermodynamics is accepted where the study material prints it, and mechanics with electromagnetism is the safer pair to name. The real mistake is naming an area without saying what it supplies.",
           "Naming electromagnetism without saying it supplies the motors and sensors."
         ],
-        "memory_tip": "Electromagnetism moves it: motors move the joints, sensors read the state.",
+        "memory_tip": "The motors that turn the joints and the sensors both work on electromagnetism.",
         "margin_note": "Thermodynamics, for heat removal, is also printed as the second area in some materials."
       }
     ]

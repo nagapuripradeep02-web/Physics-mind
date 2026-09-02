@@ -45,17 +45,16 @@
         "marks": 1,
         "mark_note": "Meaning",
         "lines": [
-          "Quantum supremacy is also called",
-          "quantum advantage.",
-          "It is reached by a programmable",
-          "quantum processor."
+          "A programmable quantum processor solves",
+          "a problem a classical computer cannot",
+          "finish in a practical time."
         ],
-        "why": "The term names the moment a quantum processor first outperforms every classical computer on a chosen task, not a permanent state of computers in general.",
+        "why": "Quantum supremacy is defined as the point where a programmable quantum processor solves a problem that no classical computer can finish in any practical amount of time.",
         "common_mistakes": [
-          "Writing that quantum computers are now better than all computers in general.",
-          "Leaving out the alternate name quantum advantage."
+          "Saying the classical computer takes longer, instead of saying it cannot finish in a practical time.",
+          "Omitting the comparison with classical computers entirely."
         ],
-        "memory_tip": "Quantum supremacy equals quantum advantage: one processor, one task.",
+        "memory_tip": "Definition: a quantum processor solves what no classical computer can finish in practical time.",
         "margin_note": "Both names, quantum supremacy and quantum advantage, are accepted."
       },
       {
@@ -66,19 +65,19 @@
         "mark_note": "Condition",
         "lines": [
           {
-            "text": "No classical computer can solve it",
+            "text": "One task, not general superiority.",
             "style": "boxed"
           },
-          "in any practical amount of time.",
-          "The quantum processor solves it."
+          "The quantum processor outperforms classical",
+          "computers only on that one chosen task."
         ],
-        "why": "This condition is what makes the achievement quantum supremacy rather than just a quantum computer being faster in general: no classical machine can finish the task at all in a reasonable time.",
+        "why": "This condition keeps quantum supremacy narrow: the quantum processor outperforms classical computers on the one task chosen for the demonstration, not on computing in general.",
         "common_mistakes": [
-          "Saying the classical computer takes longer instead of saying it takes an impractical amount of time.",
-          "Leaving out the word classical and only mentioning computers in general."
+          "Writing that quantum computers are now better than all computers in general.",
+          "Saying the quantum processor outperforms classical computers at every task, not just the one demonstrated."
         ],
-        "memory_tip": "The line to write: no classical computer finishes it in practical time.",
-        "margin_note": "State the comparison as classical computer versus quantum processor."
+        "memory_tip": "Condition: one task only, not general superiority over classical computers.",
+        "margin_note": "The words one task must appear. General superiority alone is not accepted."
       }
     ]
   }

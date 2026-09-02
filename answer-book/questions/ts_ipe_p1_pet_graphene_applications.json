@@ -51,8 +51,7 @@
         ],
         "why": "Graphene conducts electricity well and is almost transparent, so a thin layer of it can carry the touch signal without blocking the light from the screen.",
         "common_mistakes": [
-          "Naming glass or a metal oxide as the transparent conductor instead of graphene.",
-          "Giving only one application when the question asks for two."
+          "Naming any material other than graphene as the transparent conductor."
         ],
         "memory_tip": "Graphene is thin, strong and conducts electricity, so touchscreens use it as the transparent conductor.",
         "margin_note": "Any transparent conducting film use, including flexible displays, is accepted here."
@@ -75,7 +74,8 @@
         "why": "A graphene electrode has a very large surface area for its weight and conducts well, so more charge moves in less time and the battery charges faster.",
         "common_mistakes": [
           "Writing only the words graphene battery, with no mention of the electrode or the faster charging.",
-          "Repeating the touchscreen application instead of naming a second, different one."
+          "Repeating the touchscreen application instead of naming a second, different one.",
+          "Giving only one application when the question asks for two."
         ],
         "memory_tip": "Graphene electrode: more surface area, more charge moving, less charging time.",
         "margin_note": "A solar cell electrode is also accepted as the second application."

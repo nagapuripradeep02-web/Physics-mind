@@ -75,11 +75,10 @@
         ],
         "why": "These properties together — strength for its weight, high heat and electrical conductivity, flexibility and near transparency — are why graphene is called a super material.",
         "common_mistakes": [
-          "Writing that graphene is a million times thinner than a human hair — that printed comparison is inaccurate; write one atom thick instead.",
           "Naming only one property instead of at least two."
         ],
         "memory_tip": "Remember: one atom thick, about 200 times stronger than steel by weight.",
-        "margin_note": "Do not write a million times thinner than a hair; write one atom thick."
+        "margin_note": "The printed comparison, a million times thinner than a hair, is a loose figure; one atom thick is the exact statement, so write that instead."
       }
     ]
   }

@@ -70,7 +70,8 @@
             "style": "boxed"
           },
           "together with optics, since the",
-          "shield manages heat while the",
+          "shield blocks the incoming heat",
+          "and radiates it away, and the",
           "mirror forms the image."
         ],
         "why": "Blocking incoming heat and radiating it away is a thermal physics problem, while forming a sharp image on the mirror is an optics problem, so the sunshield and the telescope together use both branches.",
@@ -79,7 +80,7 @@
           "Naming electromagnetism alone, without heat radiation or optics."
         ],
         "memory_tip": "Heat radiating away is thermal physics; forming the image is optics — the telescope needs both.",
-        "margin_note": "Thermal physics alone, or optics alone, earns partial credit; both together is the full answer."
+        "margin_note": "Thermal physics is the branch behind how the shield itself works. Optics belongs in the full answer because the shield exists to protect the telescope's optics, not because optics alone describes the shield's working."
       }
     ]
   }

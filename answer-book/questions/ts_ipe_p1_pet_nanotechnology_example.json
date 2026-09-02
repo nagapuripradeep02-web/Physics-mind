@@ -46,15 +46,15 @@
         "mark_note": "Example",
         "lines": [
           "Targeted drug delivery is one example.",
-          "Nanoparticles carry a cancer drug",
-          "straight to the tumour cells."
+          "Nanoparticles are the carrier,",
+          "sized in nanometres, carrying the drug."
         ],
-        "why": "Nanoparticles are small enough to travel through blood vessels and reach a tumour directly, a size only nanotechnology gives access to.",
+        "why": "Nanoparticles are built at the nanometre scale, small enough to act as a carrier for the drug. That small size is why this counts as a nanotechnology example.",
         "common_mistakes": [
           "Naming a broad field such as electronics instead of one specific example.",
           "Leaving out that nanoparticles carry the drug, not an ordinary injection."
         ],
-        "memory_tip": "One example: nanoparticles deliver the drug straight to the tumour.",
+        "memory_tip": "One example: nanoparticles are a nanometre-scale carrier for the drug.",
         "margin_note": "Any correctly explained nanotechnology example is accepted."
       },
       {
@@ -65,7 +65,7 @@
         "mark_note": "Benefit",
         "lines": [
           {
-            "text": "The drug releases only at the tumour.",
+            "text": "Most of the drug is released at the tumour.",
             "style": "boxed"
           },
           "Healthy tissue receives far less of the drug",

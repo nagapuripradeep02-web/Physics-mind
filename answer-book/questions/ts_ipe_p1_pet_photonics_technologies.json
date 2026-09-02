@@ -51,7 +51,7 @@
         ],
         "why": "Photonics is the science and technology of generating, controlling and detecting light. Optical fibre telecommunication uses light pulses instead of an electric current to carry data, which allows much higher data rates over long distances.",
         "common_mistakes": [
-          "Naming the internet instead of the optical fibre link that carries it.",
+          "Writing internet with no mention of light or fibre at all.",
           "Confusing optical fibre with an ordinary copper cable."
         ],
         "memory_tip": "Photonics moves data as light pulses through optical fibre, not as current through copper.",

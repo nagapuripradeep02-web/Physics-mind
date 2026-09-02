@@ -46,16 +46,17 @@
         "mark_note": "Reason 1",
         "lines": [
           "Quantum confinement.",
-          "At a few nanometres, electron energy",
-          "levels become separated, not continuous."
+          "Confining electrons around the tube",
+          "splits electron states into separate",
+          "bands, changing how it conducts."
         ],
-        "why": "In bulk carbon the electron energy levels lie so close together they form a continuous band; confining the electrons to a few nanometres spaces the levels apart, which changes the material's electrical and optical behaviour.",
+        "why": "In a carbon nanotube, electrons are confined around the tube's circumference, so only certain electron states fit around it. This splits the electron states into separate sub-bands, which changes how the nanotube conducts electricity.",
         "common_mistakes": [
           "Writing 'quantum effects' without naming quantum confinement specifically.",
           "Describing confinement without saying the energy levels become separated."
         ],
-        "memory_tip": "Confine the electrons to nanometres, and their energy levels separate.",
-        "margin_note": "The words separated and continuous both help state this point clearly."
+        "memory_tip": "Confine electrons around the tube's circumference, and the electron states split into separate bands.",
+        "margin_note": "The words separate bands or sub-bands should appear; naming the circumference, or how the nanotube conducts, also earns credit."
       },
       {
         "id": "s2_surface_ratio",
@@ -73,7 +74,7 @@
           "Saying only 'more surface area' without linking it to the surface-to-volume ratio.",
           "Repeating quantum confinement instead of stating this as the second, separate reason."
         ],
-        "memory_tip": "Shrink the size, and most of the atoms end up on the surface.",
+        "memory_tip": "As the size gets smaller, most of the atoms lie on the surface.",
         "margin_note": "State this reason as a ratio, not just as more total surface area."
       }
     ]

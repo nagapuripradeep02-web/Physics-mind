@@ -79,7 +79,7 @@
           "Confusing very little loss with zero loss over any distance."
         ],
         "memory_tip": "Total reflection means no light is lost at the boundary, only a small amount along the path.",
-        "margin_note": "Comparing it to light escaping through the side of an ordinary glass rod is accepted here."
+        "margin_note": "The cladding keeps the reflecting surface clean and protected, so total internal reflection continues along the whole length of the fibre."
       }
     ]
   }
