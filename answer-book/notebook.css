@@ -842,6 +842,15 @@ a.eve-card:hover { border-color: rgba(43, 38, 32, 0.35); background: #FFFEF9; }
     box-shadow: 0 -10px 34px rgba(20, 26, 42, 0.30);
   }
   .vidi-head { cursor: default; }
+
+  /* Lift the pill clear of the step-advance button. Both sit in the bottom
+     corner — .vidi-fab is fixed at bottom:20px z-index:38, .btn-next sticky at
+     bottom:18px z-index:10 — so on a phone the pill lands ON TOP of Next and
+     eats the tap that advances the answer. Latent until 2026-09-02, when the
+     window stopped opening itself on a first question and the pill became what
+     every new student sees. 84px clears the button (13px padding + ~22px text
+     + 18px offset) and is still inside thumb reach. */
+  .vidi-fab { bottom: 84px; }
 }
 
 

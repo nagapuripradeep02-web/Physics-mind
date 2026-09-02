@@ -5616,8 +5616,11 @@
       syncDock();
     }
 
-    function minWin() {
-      Vidi.log('vidi_close', { view: currentView });
+    /** `silent` skips the close event. Used for the first-visit default below,
+        where nothing was ever open — logging a vidi_close there would invent a
+        student action and put a close in the funnel ahead of the open. */
+    function minWin(silent) {
+      if (!silent) Vidi.log('vidi_close', { view: currentView });
       winOpen = false;
       winEl().hidden = true;
       // the pill returns wherever the window itself lives (notebook + catalog)
@@ -5751,10 +5754,19 @@
           greet();                               // plan-aware; silent without a plan
         }
         renderVidiChips();
-        // First question ever on this device: open the window once so the
-        // student MEETS Vidi. After that, respect what they chose.
+        // First question ever on this device: START MINIMISED (founder,
+        // 2026-09-02). The window used to open itself here so the student would
+        // MEET Vidi — but measured on a phone it covers the notebook page from
+        // the first ruled line down, so the very first thing every new student
+        // saw was a chat panel, not the answer with its marks. The answer is
+        // what the book is; Vidi is the help beside it. The pill is left
+        // PULSING (markUnread) so meeting Vidi is one tap away and the intro
+        // still sits unread in the thread. After the first visit, respect what
+        // the student chose. Watch vidi_open vs open_q: if the pill is too
+        // quiet a nudge belongs on the pill, not back on top of the answer.
         var w = Vidi.getWin();
-        if (!w || w.open) openWin(); else minWin();
+        if (!w) { minWin(true); markUnread(); }
+        else if (w.open) openWin(); else minWin(true);
         Vidi.log('open_q', {
         qid: question.question_id, cut: cut.key,
         unit: (question.subject || 'physics') + '-' + question.unit.number,
