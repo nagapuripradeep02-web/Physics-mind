@@ -4,6 +4,15 @@
  *   npm run reel -- --q ts_ipe_p1_mp_projectile_motion
  *   npm run reel -- --q <id> --shot answer --out answer-book/tools/out/insta/p1.mp4
  *   npm run reel -- --shot door            # the door + group pick, no question
+ *   npm run reel -- --q <id> --speed 4     # 52s of real writing -> a 13s Reel
+ *
+ * SPEED IS A POST STEP, NEVER A SHORTER SHOT. The answer writes itself at the
+ * pace a STUDENT reads along with, and each step's marks land in the margin only
+ * when its writing finishes — so the recorder waits for that (waitWritten) and a
+ * full LAQ runs ~50s. Cutting steps to fit Instagram would film a different,
+ * lesser product. Instead the whole thing is captured and time-lapsed in ffmpeg:
+ * every step still lands, it just lands fast, which is the energy the shot wants
+ * anyway. --speed 1 keeps the real pace for a website loop or a teacher demo.
  *
  * WHY THIS EXISTS. A screen recording of Chrome's device-mode frame captures
  * only 360×640 REAL pixels on a 1080p monitor; blown up to Instagram's 1080×1920
@@ -60,7 +69,8 @@ type Beat =
     | { do: 'revealNext' }
     | { do: 'click'; selector: string }
     | { do: 'scrollTo'; y: number }
-    | { do: 'openVidi' };
+    | { do: 'openVidi' }
+    | { do: 'waitWritten'; maxMs?: number };
 
 interface Shot {
     describe: string;
@@ -75,11 +85,14 @@ const SHOTS: Record<string, Shot> = {
         beats: ({ questionId }) => [
             { do: 'wait', ms: 900 },
             { do: 'openQuestion', id: questionId },
-            { do: 'wait', ms: 2200 },              // the question card reads first
-            { do: 'revealNext' }, { do: 'wait', ms: 1500 },
-            { do: 'revealNext' }, { do: 'wait', ms: 1500 },
-            { do: 'revealNext' }, { do: 'wait', ms: 1500 },
-            { do: 'revealNext' }, { do: 'wait', ms: 2000 },
+            { do: 'wait', ms: 1800 },              // the question card reads first
+            // Each step is allowed to finish writing before the next tap — the
+            // marks ticking in the margin ARE the shot, and they land at the end
+            // of a step, so cutting a step short cuts the beat.
+            { do: 'revealNext' }, { do: 'waitWritten' }, { do: 'wait', ms: 700 },
+            { do: 'revealNext' }, { do: 'waitWritten' }, { do: 'wait', ms: 700 },
+            { do: 'revealNext' }, { do: 'waitWritten' }, { do: 'wait', ms: 700 },
+            { do: 'revealNext' }, { do: 'waitWritten' }, { do: 'wait', ms: 1600 },
         ],
     },
     door: {
@@ -96,7 +109,7 @@ const SHOTS: Record<string, Shot> = {
             { do: 'wait', ms: 800 },
             { do: 'openQuestion', id: questionId },
             { do: 'wait', ms: 1800 },
-            { do: 'revealNext' }, { do: 'wait', ms: 1400 },
+            { do: 'revealNext' }, { do: 'waitWritten' }, { do: 'wait', ms: 600 },
             { do: 'openVidi' }, { do: 'wait', ms: 2600 },
         ],
     },
@@ -149,6 +162,16 @@ async function runBeat(page: Page, b: Beat): Promise<void> {
         case 'revealNext': await page.evaluate(() => (window as any).PM_ANSWER.revealNext()); return;
         case 'click': await page.click(b.selector); return;
         case 'scrollTo': await page.evaluate((y) => window.scrollTo({ top: y, behavior: 'smooth' }), b.y); return;
+        case 'waitWritten':
+            // The answer writes itself line by line; a revealNext() sent while a
+            // step is still being written is swallowed, so a fixed 1.5s cadence
+            // recorded ONE step and three lost taps. While writing, the advance
+            // button reads "Finish this step now"; wait until it does not.
+            await page.waitForFunction(
+                () => !/^Finish/.test((document.querySelector('.btn-next')?.textContent ?? '').trim()),
+                undefined, { timeout: b.maxMs ?? 20_000 },
+            ).catch(() => { /* a very long step: move on rather than abort the shot */ });
+            return;
         case 'openVidi':
             // Since 2026-09-02 the panel starts minimised, so the pill is the
             // real way in — film what a student actually taps.
@@ -176,7 +199,7 @@ function jpegSize(file: string): { w: number; h: number } {
     throw new Error('could not read JPEG dimensions from ' + file);
 }
 
-function mux(listFile: string, out: string, fps: number): Promise<void> {
+function mux(listFile: string, out: string, fps: number, speed: number): Promise<void> {
     fs.mkdirSync(path.dirname(path.resolve(out)), { recursive: true });
     const args = [
         '-y', '-f', 'concat', '-safe', '0', '-i', listFile,
@@ -184,6 +207,9 @@ function mux(listFile: string, out: string, fps: number): Promise<void> {
         // concat durations carry the real timing into the resample. `-vsync vfr`
         // WITH `-r` is contradictory and ffmpeg refuses it outright.
         '-fps_mode', 'cfr', '-r', String(fps),
+        // setpts divides each frame's presentation time: 4 => four times faster.
+        // Applied at mux so the CAPTURE stays honest and re-timing is one flag.
+        ...(speed !== 1 ? ['-filter:v', `setpts=PTS/${speed}`] : []),
         '-c:v', 'libx264', '-preset', 'slow', '-crf', '18',
         // yuv420p or it will not play on a phone. NO scale filter: the frames
         // are already 1080×1920 and asserted so — adding one here would let a
@@ -208,6 +234,8 @@ async function main(): Promise<void> {
     }
     const questionId = arg('q', 'ts_ipe_p1_mp_projectile_motion');
     const fps = Number(arg('fps', '30'));
+    const speed = Number(arg('speed', '1'));
+    if (!Number.isFinite(speed) || speed <= 0) throw new Error('--speed must be a positive number');
     const live = flag('live');
     const dir = arg('dir', DEFAULT_DIR);
     const out = arg('out', `answer-book/tools/out/insta/${shotName}_${questionId}.mp4`);
@@ -281,13 +309,14 @@ async function main(): Promise<void> {
         const listFile = path.join(frameDir, 'frames.txt');
         fs.writeFileSync(listFile, lines.join('\n'));
 
-        await mux(listFile, out, fps);
+        await mux(listFile, out, fps, speed);
 
         const secs = frames[frames.length - 1].t - frames[0].t;
         const kb = Math.round(fs.statSync(out).size / 1024);
         console.log(`\n✓ ${out}`);
         console.log(`  ${size.w}×${size.h} native · ${frames.length} frames captured at `
-            + `${(frames.length / secs).toFixed(1)}/s · ${secs.toFixed(1)}s · ${kb} KB · ${fps} fps out`);
+            + `${(frames.length / secs).toFixed(1)}/s · ${secs.toFixed(1)}s captured`
+            + `${speed !== 1 ? ` -> ${(secs / speed).toFixed(1)}s at ${speed}x` : ''} · ${kb} KB · ${fps} fps out`);
         console.log(`  shot: ${shotName} — ${shot.describe}`);
         console.log(`  source: ${live ? LIVE_URL + '  (device marked team)' : dir + '  (localhost → answerbook_local)'}`);
     } finally {
