@@ -52,7 +52,7 @@
           "molecules of a gas."
         ],
         "margin_note": "First mark. Say square root of the mean of the squares of the speeds — all three words matter.",
-        "why": "The molecules of a gas move with a whole range of speeds, so a single typical speed has to be built from all of them. Squaring every speed before averaging keeps the negative directions from cancelling and gives extra weight to the fastest molecules.",
+        "why": "The molecules of a gas move with a whole range of speeds, so a single typical speed has to be built from all of them. Squaring gives extra weight to the faster molecules and ties the result to kinetic energy; the reason a mean is not taken over velocities is that velocity is a vector and averages to zero.",
         "common_mistakes": [
           "Calling it the average speed. The average speed and the rms speed are different numbers.",
           "Leaving out the words square and root — the name describes the exact three-step calculation."

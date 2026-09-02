@@ -70,18 +70,18 @@
         "marks": 1,
         "mark_note": "Model and assumptions",
         "lines": [
-          "Consider a gas of N identical molecules",
-          "of mass m, each in a cube of side L.",
-          "The molecules are point-like next to",
-          "their separation and they move randomly.",
-          "Every collision, wall or molecule, is",
-          "treated as perfectly elastic."
+          "Consider N identical molecules, each",
+          "of mass m, contained in a cube of side L;",
+          "their size is negligible compared with",
+          "the distance between them, and they",
+          "move randomly. Every collision, wall or",
+          "molecule, is treated as perfectly elastic."
         ],
         "margin_note": "First mark. Name every assumption: point-sized molecules, random motion, and elastic collisions.",
         "why": "The whole derivation rests on these three facts — a molecule carries no internal energy loss, so no kinetic energy is lost in a collision, and the wall receives back exactly what each molecule delivers.",
         "common_mistakes": [
           "Leaving out that the collisions are elastic — an inelastic collision would lose kinetic energy at every bounce.",
-          "Forgetting that the molecules are assumed point-sized, which is why molecule-molecule collisions do not need to be tracked separately."
+          "Thinking molecule-molecule collisions must be tracked separately — they are elastic between identical masses, so a collision only exchanges velocities and leaves the momentum delivered to the wall unchanged; the point-size assumption is about neglecting molecular volume beside the container volume."
         ],
         "recall": {
           "credit": "say_it",
@@ -474,7 +474,7 @@
           "This may also be written P = ⅓ ρ v̄²,",
           "where ρ = Nm/V is the gas density."
         ],
-        "margin_note": "Sixth mark. This is the boxed formula — write both the derivation and the alternative form P = ⅓ρv̄².",
+        "margin_note": "Sixth mark. This is the boxed formula; the density form P = ⅓ρv̄² is worth adding, but the mark is on P = ⅓(N/V)mv̄².",
         "why": "Nothing in the physics singles out the x-direction — the molecule's speed is shared equally, on average, among the three directions it can move in, which is exactly why Σv_x² can be replaced by one third of Σv².",
         "common_mistakes": [
           "Assuming Σv_x² = Σv_y² = Σv_z² without stating WHY — it follows from random motion, not from any calculation.",
@@ -521,9 +521,8 @@
             "text": "PV = ⅔ N (½ m v̄²)",
             "style": "eq"
           },
-          "So the pressure equals two-thirds of",
-          "the translational kinetic energy",
-          "per unit volume of the gas."
+          "PV is two-thirds of the total",
+          "translational kinetic energy of the gas."
         ],
         "margin_note": "Seventh mark. This energy form is what gets compared with the ideal gas equation next.",
         "why": "Multiplying by V turns the pressure formula into one written in the total kinetic energy of the gas, which is the form that compares directly with the ideal gas equation PV = Nk_BT.",
@@ -604,7 +603,7 @@
             "temperature measures kinetic energy"
           ]
         },
-        "memory_tip": "Equate the two PV expressions: the N and the two-thirds cancel, leaving ½mv̄² = (3/2)k_BT."
+        "memory_tip": "Equate the two PV expressions, cancel N, then divide by ⅔ — dividing by two-thirds is what turns k_BT into (3/2)k_BT."
       }
     ]
   },

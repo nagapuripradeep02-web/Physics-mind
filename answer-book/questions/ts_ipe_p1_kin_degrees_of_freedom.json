@@ -84,16 +84,17 @@
           "A monoatomic molecule has 3,",
           "all translational.",
           {
-            "text": "Diatomic molecule: 5 (3 trans. + 2 rot.)",
+            "text": "Diatomic molecule: 5",
             "style": "boxed"
           },
+          "3 translational + 2 rotational.",
           "Two vibrational degrees appear",
           "only at high temperature."
         ],
         "margin_note": "Second mark. Both numbers, 3 and 5, are needed; the split into translational and rotational is the extra detail.",
         "why": "A monoatomic molecule is a point mass with only three independent directions of motion. A diatomic molecule can also rotate about two axes perpendicular to its bond, giving two more independent ways to hold energy at ordinary temperature.",
         "common_mistakes": [
-          "Giving 6 degrees of freedom for a diatomic molecule by counting vibration at ordinary temperature, when vibration appears only at high temperature.",
+          "Giving 7 degrees of freedom for a diatomic molecule by counting the two vibrational degrees at ordinary temperature, when the answer is 5.",
           "Reversing the numbers and writing 5 for monoatomic and 3 for diatomic."
         ],
         "recall": {

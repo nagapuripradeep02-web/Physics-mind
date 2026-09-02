@@ -46,8 +46,8 @@
         "marks": 1,
         "mark_note": "(3/2)k_BT",
         "lines": [
-          "Average kinetic energy of a",
-          "molecule depends only on T:",
+          "Average translational kinetic energy",
+          "of a molecule depends only on T:",
           {
             "text": "Average energy = (3/2)k_BT",
             "style": "eq"
@@ -76,7 +76,7 @@
             "300 kelvin"
           ]
         },
-        "memory_tip": "Same formula every time: average energy = (3/2)k_BT, whatever the gas."
+        "memory_tip": "Average translational kinetic energy = (3/2)k_BT, the same for every gas at a given temperature."
       },
       {
         "id": "s2_value",

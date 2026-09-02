@@ -96,11 +96,10 @@
             "style": "boxed"
           }
         ],
-        "margin_note": "Second mark. Give the numeric value with its unit, not just (3/2)R.",
+        "margin_note": "Second mark. C_V = (3/2)R is the answer; adding the numeric value, 12.47 J mol⁻¹ K⁻¹, shows you can evaluate it.",
         "why": "C_V is defined as the rate of change of internal energy with temperature at constant volume; since U = (3/2)RT is proportional to T, its derivative is the constant (3/2)R, which equals 1.5 × 8.31 J mol⁻¹ K⁻¹.",
         "common_mistakes": [
-          "Reporting C_V as (5/2)R, which is the diatomic value.",
-          "Leaving the answer as the fraction (3/2)R without the numeric value 12.47 J mol⁻¹ K⁻¹."
+          "Reporting C_V as (5/2)R, which is the diatomic value."
         ],
         "recall": {
           "credit": "say_it",

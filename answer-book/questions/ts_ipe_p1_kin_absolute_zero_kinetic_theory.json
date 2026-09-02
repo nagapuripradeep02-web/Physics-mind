@@ -65,7 +65,7 @@
         "margin_note": "State the relation between average kinetic energy and T before discussing the limit.",
         "why": "This relation is the only place T appears in the kinetic picture of a gas, so its behaviour as T falls decides what absolute zero means.",
         "common_mistakes": [
-          "Starting from the ideal gas equation PV = Nk_BT instead. The energy relation connects directly to molecular motion, which this question asks about."
+          "Taking the longer route through PV = Nk_BT — that route is also valid, but the energy relation is quicker here, because the question is about molecular motion."
         ],
         "memory_tip": "Average kinetic energy and absolute temperature: one relation, ½mv̄² = (3/2)k_BT."
       },

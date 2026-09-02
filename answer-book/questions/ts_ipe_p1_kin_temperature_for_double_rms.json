@@ -52,7 +52,9 @@
             "style": "eq"
           },
           "So doubling v_rms needs T to",
-          "become 4 times as large."
+          "become 4 times as large.",
+          "The pressure being constant does not",
+          "affect this — v_rms depends only on T."
         ],
         "margin_note": "First mark. State v_rms ∝ √T before jumping to the factor of 4.",
         "why": "Since v_rms is proportional to the square root of T, the ratio of two rms speeds equals the square root of the ratio of their absolute temperatures; making v_rms twice as large therefore needs T to become 2² = 4 times as large.",
@@ -96,7 +98,7 @@
         "why": "T₁ = 273 K is 0°C converted to the absolute scale, so multiplying by the factor of 4 found in the first step gives the temperature at which the rms speed is double its value at 0°C.",
         "common_mistakes": [
           "Using 0°C as 0 K instead of converting it to 273 K on the absolute scale.",
-          "Reporting 1092°C instead of 1092 K, or not converting the final answer back to Celsius when it is asked for."
+          "Reporting 1092°C instead of 1092 K."
         ],
         "recall": {
           "credit": "say_it",

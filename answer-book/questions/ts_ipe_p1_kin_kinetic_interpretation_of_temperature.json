@@ -72,10 +72,9 @@
         "margin_note": "Both expressions for PV must be written before comparing them.",
         "why": "Both expressions give the same product PV for the same N molecules of the same gas, so they can be set equal to find what the temperature is actually measuring.",
         "common_mistakes": [
-          "Re-deriving PV = ⅔N(½mv̄²) from the wall-collision argument here. This question asks for the meaning of temperature, not the pressure derivation — quote the result and move on.",
           "Using different symbols for N in the two expressions. It is the same N molecules in both."
         ],
-        "memory_tip": "Two formulas for the same PV: one from kinetic theory, one from the gas equation."
+        "memory_tip": "Two formulas for the same PV: one from kinetic theory, one from the gas equation. You may quote PV = ⅔N(½mv̄²) as a known result — deriving it here earns nothing extra."
       },
       {
         "id": "s2_comparison",
@@ -137,14 +136,16 @@
           "volume — only for the absolute",
           "temperature.",
           {
-            "text": "T measures average molecular KE",
+            "text": "½mv̄² = (3/2)k_BT",
             "style": "boxed"
           },
+          "Temperature measures the average",
+          "kinetic energy of a molecule.",
           "At the same temperature, light and",
           "heavy molecules have the same average",
           "kinetic energy; a heavier molecule",
-          "moves slower to keep that energy the",
-          "same."
+          "moves slower, so that its average",
+          "kinetic energy is the same."
         ],
         "margin_note": "Name at least one thing the result does NOT depend on — gas, pressure or volume.",
         "why": "½mv̄² = (3/2)k_BT contains no term for which gas it is, or for P or V, so the result holds for every ideal gas at a given temperature.",

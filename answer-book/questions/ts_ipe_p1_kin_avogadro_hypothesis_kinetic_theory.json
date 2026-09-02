@@ -73,7 +73,7 @@
             "equal numbers of molecules"
           ]
         },
-        "memory_tip": "Same box, same heat, same push — same count of molecules inside."
+        "memory_tip": "Same volume, same temperature, same pressure — the same number of molecules inside."
       },
       {
         "id": "s2_kinetic_theory",

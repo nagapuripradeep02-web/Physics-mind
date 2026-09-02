@@ -46,9 +46,10 @@
         "marks": 1,
         "mark_note": "PV = ⅔E",
         "lines": [
-          "The internal energy of an ideal gas",
-          "is the total translational kinetic",
-          "energy E of all its molecules.",
+          "For an ideal gas the internal energy",
+          "is purely kinetic. For a monoatomic",
+          "gas, it is entirely the translational",
+          "kinetic energy E.",
           {
             "text": "PV = ⅔E",
             "style": "boxed"

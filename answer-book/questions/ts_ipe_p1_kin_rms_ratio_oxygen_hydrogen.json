@@ -60,7 +60,7 @@
         "margin_note": "First mark. Write the formula, then the proportionality it gives at fixed T.",
         "why": "The rms speed formula shows M in the denominator inside a square root, so the temperature and gas constant cancel when the two gases are compared at the same T.",
         "common_mistakes": [
-          "Comparing the speeds using atomic mass units directly instead of molar mass in a consistent unit.",
+          "Using the molar masses of atomic O and H, 16 and 1, instead of the molecules O₂ and H₂, 32 and 2.",
           "Forgetting the square root and taking the ratio of the masses directly."
         ],
         "memory_tip": "Heavier gas, slower molecules: v_rms goes as 1 over root M."
@@ -93,7 +93,7 @@
           "= √(2 / 32)"
         ],
         "margin_note": "Third mark. Set up the ratio with the lighter gas's mass on top.",
-        "why": "The heavier gas's molar mass belongs in the numerator of the mass ratio, because the mass ratio is inverted by the v ∝ 1/√M proportionality.",
+        "why": "Because v_rms ∝ 1/√M the mass ratio inverts, so for v(O₂)/v(H₂) the lighter gas's molar mass, M(H₂) = 2, goes in the numerator.",
         "common_mistakes": [
           "Inverting the ratio and writing √(M(O₂)/M(H₂)), which gives 4 instead of 1/4.",
           "Writing 2/32 as 1/16 without showing the substitution step."

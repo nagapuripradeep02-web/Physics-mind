@@ -60,7 +60,7 @@
         "why": "Every quantity that fixes the pressure in this formula belongs to the gas — how many molecules there are per unit volume, how heavy each one is, and how fast they move. None of these terms mentions the walls.",
         "common_mistakes": [
           "Writing the formula without naming what each symbol stands for.",
-          "Thinking pressure depends on the container's surface area — area cancels out of the derivation."
+          "Thinking pressure depends on the container's surface area — in the derivation the wall area combines with the cube's length to give the volume, so only N/V survives, never the area on its own."
         ],
         "recall": {
           "credit": "say_it",

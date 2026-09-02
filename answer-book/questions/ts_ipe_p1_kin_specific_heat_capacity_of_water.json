@@ -90,7 +90,7 @@
           "This is the same as",
           "1 cal g⁻¹ °C⁻¹."
         ],
-        "margin_note": "Second mark. Give the SI value; the cal g⁻¹ °C⁻¹ form is a bonus, not a substitute.",
+        "margin_note": "Second mark. Give the value with its unit; the SI form 4186 J kg⁻¹ K⁻¹ is the one to write, and 1 cal g⁻¹ °C⁻¹ is the same number.",
         "why": "Water needs an unusually large amount of heat to warm up compared with most substances, which is why its specific heat capacity is a commonly quoted number in the SI unit J kg⁻¹ K⁻¹.",
         "common_mistakes": [
           "Writing the value as 4186 J without the kg⁻¹ K⁻¹ unit.",

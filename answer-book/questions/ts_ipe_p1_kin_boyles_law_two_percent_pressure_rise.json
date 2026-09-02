@@ -23,11 +23,11 @@
       "marks": 1
     },
     {
-      "label": "New volume in terms of the old",
+      "label": "Inverse proportion at constant T",
       "marks": 1
     },
     {
-      "label": "Evaluating the new volume",
+      "label": "New volume, evaluated",
       "marks": 1
     },
     {
@@ -70,43 +70,49 @@
         "memory_tip": "A 2% rise multiplies P by 1.02, it does not add 2 to P."
       },
       {
-        "id": "s2_new_volume",
-        "kind": "equation",
-        "label": "New volume in terms of the old",
+        "id": "s2_inverse_proportion",
+        "kind": "text",
+        "label": "Inverse proportion at constant T",
         "marks": 1,
-        "mark_note": "V′ = V/1.02",
+        "mark_note": "P and V are inversely proportional",
+        "lines": [
+          "Because the mass is fixed and the",
+          "temperature is constant, PV stays",
+          "constant, so P and V are inversely",
+          "proportional: a rise in pressure",
+          "means a fall in volume, not a rise."
+        ],
+        "margin_note": "Second mark. State that P and V vary inversely — this is why volume falls when pressure rises.",
+        "why": "Boyle's law holds only because the mass and temperature are fixed, and PV = constant is exactly the statement that pressure and volume are inversely proportional — a rise in one must be paired with a fall in the other.",
+        "common_mistakes": [
+          "Assuming both pressure and volume increase together, without noting the inverse relationship Boyle's law describes."
+        ],
+        "memory_tip": "Fixed mass, constant temperature: P and V move in opposite directions."
+      },
+      {
+        "id": "s3_new_volume",
+        "kind": "equation",
+        "label": "New volume, evaluated",
+        "marks": 1,
+        "mark_note": "V′ = V/1.02 = 0.9804V",
         "lines": [
           "From PV = P′V′:",
           {
             "text": "V′ = PV / P′ = V / 1.02",
             "style": "eq"
-          }
-        ],
-        "margin_note": "Second mark. Rearrange for V′ and keep it as a fraction of V.",
-        "why": "Rearranging Boyle's law for the new volume shows the new volume is the old volume divided by the same factor 1.02, not multiplied by it.",
-        "common_mistakes": [
-          "Multiplying V by 1.02 instead of dividing by it — pressure up means volume down."
-        ],
-        "memory_tip": "Pressure up means volume down: divide by 1.02, do not multiply."
-      },
-      {
-        "id": "s3_evaluate",
-        "kind": "equation",
-        "label": "Evaluating the new volume",
-        "marks": 1,
-        "mark_note": "V′ = 0.9804V",
-        "lines": [
+          },
           {
-            "text": "V′ = V / 1.02 = 0.9804V",
+            "text": "V′ = 0.9804V",
             "style": "eq"
           }
         ],
-        "margin_note": "Third mark. Divide to at least four decimal places before rounding.",
-        "why": "Carrying the division to four decimal places is what makes the final percentage come out as 1.96 and not a rounded 2.",
+        "margin_note": "Third mark. Rearrange for V′ and divide to at least four decimal places.",
+        "why": "Rearranging Boyle's law for the new volume shows it is the old volume divided by 1.02, and carrying the division to four decimal places is what makes the final percentage come out as 1.96 and not a rounded 2.",
         "common_mistakes": [
+          "Multiplying V by 1.02 instead of dividing by it — pressure up means volume down.",
           "Rounding 1/1.02 to 0.98 too early and losing the small difference from 2%."
         ],
-        "memory_tip": "One over 1.02 is 0.9804, not a clean 0.98."
+        "memory_tip": "Pressure up means volume down: V′ = V/1.02 = 0.9804V, not a clean 0.98."
       },
       {
         "id": "s4_percentage",
