@@ -80,7 +80,7 @@
           "returns and the meniscus is formed again.",
           "Tailing is used as a test for ozone."
         ],
-        "why": "Only the oxide layer has to be taken off, and Hg₂O is not soluble in mercury once water is present, so plain water and shaking are enough. Nothing is added to the mercury and nothing chemical is needed, which is why the answer is one short sentence.",
+        "why": "Only the surface layer has to be taken off. The Hg₂O formed by the ozone stays in that surface layer, so shaking with water lifts it away with the water. Nothing is added to the mercury and no reagent is needed, which is why the answer is one short sentence.",
         "common_mistakes": [
           "Writing that the mercury is heated or distilled. Shaking with water is the answer the question asks for.",
           "Naming an acid or a solvent. Water alone removes the oxide layer."

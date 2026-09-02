@@ -53,7 +53,7 @@
         "label": "Recognise the log-derivative form",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "First mark. ∫f'(x)/f(x) dx = log|f(x)| — a formula worth recognising on sight.",
+        "margin_note": "First mark. ∫f'(x)/f(x) dx = log|f(x)| — a formula worth recognising immediately.",
         "memory_tip": "Whenever the numerator is the exact derivative of the denominator, the antiderivative is always a log.",
         "lines": [
           {

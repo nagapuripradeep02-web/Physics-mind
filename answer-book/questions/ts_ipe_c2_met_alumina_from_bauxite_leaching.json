@@ -97,7 +97,7 @@
         ],
         "why": "The aluminate ion has four hydroxide groups, so three water molecules are needed on the left along with the two NaOH before the hydrogen and the oxygen balance. The silicate equation is added because the question is specifically about the silica and the book prints no equation for it.",
         "common_mistakes": [
-          "Writing NaAlO₂ with no water. Sodium meta-aluminate is the older form; the hydrated form Na[Al(OH)₄] is the one used now.",
+          "Mixing the two forms. Al₂O₃ + 2NaOH + 3H₂O → 2NaAlO₂ balances neither the hydrogen nor the oxygen. Write either the older Al₂O₃ + 2NaOH → 2NaAlO₂ + H₂O or the hydrated Al₂O₃ + 2NaOH + 3H₂O → 2Na[Al(OH)₄], not a mixture of the two.",
           "Leaving out the 3H₂O. Without it the hydrogen and the oxygen do not balance."
         ],
         "memory_tip": "One alumina, two alkalis, three waters, two aluminates.",
@@ -153,7 +153,7 @@
           "This alumina is the feed for the",
           "electrolysis that gives aluminium."
         ],
-        "why": "Heating drives off the water of hydration and leaves anhydrous alumina, which is what the electrolytic cell needs. The book prints 1470 K here and 1473 K in its flow chart; the two are the same temperature written to different precision.",
+        "why": "Heating drives off the water of hydration and leaves anhydrous alumina, which is what the electrolytic cell needs. This step is written as about 1470 K here and as 1473 K in the flow-chart answer on the extraction of aluminium; the two are the same ignition temperature written to different precision, and either is accepted.",
         "common_mistakes": [
           "Stopping at the hydrated oxide. The question asks for alumina, so the water has to be driven off.",
           "Showing the water as a liquid. At 1470 K it leaves as steam."

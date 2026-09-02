@@ -81,15 +81,15 @@
           "monomer is isoprene, and vulcanisation",
           "adds the cross links."
         ],
-        "why": "Every one of these is built from a diene, so one double bond is left over in the chain after polymerisation. That leftover double bond is where sulphur forms the cross links during vulcanisation, which is what gives a rubber its elasticity.",
+        "why": "Every one of these is built from a diene, so one double bond is left over in the chain after polymerisation. That leftover double bond is where sulphur forms the cross links during vulcanisation, and those cross links are what make a stretched rubber return to its original length instead of staying deformed.",
         "common_mistakes": [
-          "Giving nylon-6,6 or terylene as an elastomer. Those are fibres, held by strong hydrogen bonds.",
+          "Giving nylon-6,6 or terylene as an elastomer. Those are fibres, held by strong intermolecular forces: hydrogen bonds in nylon-6,6 and dipole-dipole attraction in terylene.",
           "Naming Buna-S and Buna-N without their monomers. The two differ only in the second monomer, styrene against vinyl cyanide."
         ],
-        "memory_tip": "All three start from 1,3-butadiene; neoprene uses chloroprene, which is 1,3-butadiene with a chlorine on carbon 2.",
+        "memory_tip": "Buna-S and Buna-N both start from 1,3-butadiene; neoprene starts from chloroprene, which is 1,3-butadiene with a chlorine on carbon 2.",
         "margin_note": "Two examples are enough for this mark. Adding the monomers costs one line and protects the answer."
       }
     ]
   },
-  "insider_note": "The examiner looks for stretched, returns to the original length, and weak intermolecular forces between the chains. One named example finishes the second mark."
+  "insider_note": "The examiner looks for stretched, returns to the original length, and weak intermolecular forces between the chains. Two named examples finish the second mark, and adding their monomers protects it."
 }

@@ -121,7 +121,7 @@
           ]
         },
         "margin_note": "First mark. The arrow on the emitter points AWAY from the base — out of the transistor.",
-        "why": "The arrow is the only part of the symbol that tells the two transistors apart, so the whole mark rides on its direction. It marks the emitter and points the way conventional current flows in that lead. In an n-p-n transistor the emitter supplies electrons, so conventional current flows out of the emitter, and the arrow points out.",
+        "why": "The arrow is the only part of the symbol that tells the two transistors apart, so the whole mark depends on its direction. It marks the emitter and points the way conventional current flows in that lead. In an n-p-n transistor the emitter supplies electrons, so conventional current flows out of the emitter, and the arrow points out.",
         "common_mistakes": [
           "Drawing the arrow pointing into the base. That is the p-n-p symbol.",
           "Putting the arrow on the collector. The arrow is always on the emitter.",

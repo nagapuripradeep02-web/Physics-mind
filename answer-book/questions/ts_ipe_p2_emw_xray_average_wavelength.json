@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: the book (p.41) gives the X-ray wavelength range 10⁻⁸ m to 10⁻¹³ m and answers 10⁻¹⁰ m — that is the mid-point of the range taken on powers of ten (the geometric mid-point of the printed range), not the arithmetic mean; the arithmetic mean of 10⁻⁸ m and 10⁻¹³ m would be near 5 × 10⁻⁹ m."
+    "note": "The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. For this Paper-II bank the two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. Hand-checked: the book (p.41) gives the X-ray wavelength range 10⁻⁸ m to 10⁻¹³ m and answers 10⁻¹⁰ m. That is the conventional typical X-ray wavelength (1 Å), and it is NOT computed from the printed range by any averaging rule: the arithmetic mean of 10⁻⁸ m and 10⁻¹³ m is near 5 × 10⁻⁹ m, and the geometric mean (the mid-point taken on the powers of ten) is 10⁻¹⁰·⁵ ≈ 3 × 10⁻¹¹ m. Neither reproduces the book's answer, so the card quotes the standard value instead of deriving one, and says so in step s2."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -88,7 +88,7 @@
             "style": "boxed"
           }
         ],
-        "margin_note": "Second mark. The average is taken on the powers of ten, not by adding the two limits.",
+        "margin_note": "Second mark. Quote the standard value 10⁻¹⁰ m; it is not obtained by averaging the two limits.",
         "why": "10⁻¹⁰ m is the conventional typical X-ray wavelength (1 Å, about one atomic diameter), and it is the value the book marks. It is NOT an average of the two printed limits by any rule: the arithmetic mean of 10⁻⁸ m and 10⁻¹³ m is about 5 × 10⁻⁹ m, and the geometric mean is 10⁻¹⁰·⁵ ≈ 3 × 10⁻¹¹ m. Quote the standard value rather than trying to compute one from the range.",
         "common_mistakes": [
           "Averaging the two limits arithmetically and writing about 5 × 10⁻⁹ m.",

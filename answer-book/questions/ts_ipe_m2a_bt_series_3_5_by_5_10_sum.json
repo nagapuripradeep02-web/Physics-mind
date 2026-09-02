@@ -101,8 +101,7 @@
         "why": "The standard expansion of (1 − x)^(−p/q) has a k! in every denominator and a fixed ratio x/q raised to k. Until the given series is written in that exact shape, p, q and x cannot be read off.",
         "common_mistakes": [
           "Forgetting to add 1 + (3/1!)(1/5), which is 1 + 3/5, on both sides when the series starts late, so the comparison has no 1 to match.",
-          "Writing 5·10·15 as 5·3! instead of 5³·3! — every factor carries a 5.",
-          "Losing the alternating sign when the terms alternate."
+          "Writing 5·10·15 as 5·3! instead of 5³·3! — every factor carries a 5."
         ]
       },
       {

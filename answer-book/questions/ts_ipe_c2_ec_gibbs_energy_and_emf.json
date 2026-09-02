@@ -64,7 +64,7 @@
           "Mixing the two forms, writing ΔG with E°cell. The degree sign must appear on both sides or on neither."
         ],
         "memory_tip": "Charge nF moved through a potential difference E gives the work nFE, and the Gibbs energy falls by that much.",
-        "margin_note": "Write the pair: ΔG = −nFEcell and ΔG° = −nFE°cell. Writing only one of them is where half this mark goes."
+        "margin_note": "Write the pair: ΔG = −nFEcell and ΔG° = −nFE°cell. Writing only one of them is an incomplete answer."
       },
       {
         "id": "s2_symbols",
@@ -82,9 +82,9 @@
           "A positive Ecell gives a negative ΔG, so the",
           "cell reaction is spontaneous."
         ],
-        "why": "n has to be read from the balanced cell reaction and not from one half reaction, because the same reaction written with different coefficients changes n and changes ΔG with it, while Ecell stays the same. Ecell is an intensive quantity; ΔG is not.",
+        "why": "n has to be read from the BALANCED cell reaction, because the same reaction written with different coefficients changes n and changes ΔG with it, while Ecell stays the same. Ecell is an intensive quantity; ΔG is not.",
         "common_mistakes": [
-          "Taking n from one half reaction alone. n is the number of electrons that cancel when the two halves are added.",
+          "Taking n from an unbalanced half reaction. Ag⁺ + e⁻ → Ag on its own suggests n = 1, but the cell reaction Cu + 2Ag⁺ → Cu²⁺ + 2Ag moves 2 electrons. Balance the two halves first; they then carry the same n.",
           "Writing F = 96500 without units. F is a charge per mole, 96500 C mol⁻¹."
         ],
         "memory_tip": "Positive emf, negative ΔG, spontaneous cell. The three go together in that order.",

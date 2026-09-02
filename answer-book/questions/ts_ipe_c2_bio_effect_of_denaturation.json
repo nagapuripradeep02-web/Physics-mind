@@ -49,7 +49,8 @@
           "tertiary structure of the protein.",
           "The primary structure, which is the order of",
           "the amino acids, is not changed.",
-          "Only the hydrogen bonds are broken; the",
+          "The hydrogen bonds and other weak forces",
+          "holding the folded shape are broken; the",
           "peptide bonds stay intact."
         ],
         "why": "Denaturation unfolds the protein; it does not cut the chain. The forces that hold the folded shape are hydrogen bonds and other weak forces, and heating or a change of pH breaks those, while the peptide bonds that hold the sequence are far stronger and survive.",

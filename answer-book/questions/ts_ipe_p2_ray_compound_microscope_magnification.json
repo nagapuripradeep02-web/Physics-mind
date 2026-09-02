@@ -54,7 +54,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed pp.14-15 — Section C, 8 marks. The 1+1+1+1+1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. THIS IS THE ONE QUESTION IN THE CHAPTER THAT SAYS 'Draw a neat labelled diagram', so the two diagram steps carry 1 mark each; every other figure in this chapter is authored at 0 marks. UN-NUMBERED PART: the book prints an extra part c) after this answer, on ultraviolet light and magnification, with no question number of its own. It is folded into this card as a final step at ZERO marks, because it is not part of the 8-mark question the book numbers. TRANSCRIPTION: the printed description writes 'rock and pinion'; the correct name is rack and pinion, and it is written correctly here with the slip recorded in that step's why. Hand-checked physically: m = m₀ × mₑ with m₀ = −v₀/u and mₑ = 1 + D/fₑ gives m = −(v₀/u)(1 + D/fₑ); with the object close to F₀ so that u ≈ −f₀ and v₀ ≈ L, this becomes m = −(L/f₀)(1 + D/fₑ) for the image at the near point, and m ≈ −LD/(f₀fₑ) for the image at infinity. All four printed equations are correct."
+    "note": "From FAST TRACK IPE for Sr. Students (physics section), Ch.2 Ray Optics and Optical Instruments, printed pp.14-15 — Section C, 8 marks. The 1+1+1+1+1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers. THIS IS THE ONE QUESTION IN THE CHAPTER THAT SAYS 'Draw a neat labelled diagram', so the two diagram steps carry 1 mark each; every other figure in this chapter is authored at 0 marks. UN-NUMBERED PART: the book prints an extra part c) after this answer, on ultraviolet light and magnification, with no question number of its own. It is folded into this card as a final step at ZERO marks, because it is not part of the 8-mark question the book numbers. TRANSCRIPTION: the printed description writes 'rock and pinion'; the correct name is rack and pinion, and it is written correctly here with the slip recorded in that step's why. Hand-checked physically: m = m₀ × mₑ with m₀ = v₀/u (the thin-lens form, which carries no separate minus sign) and mₑ = 1 + D/fₑ gives m = (v₀/u)(1 + D/fₑ); with the object close to F₀ so that u ≈ −f₀ and v₀ ≈ L, this becomes m = −(L/f₀)(1 + D/fₑ) for the image at the near point, and m ≈ −LD/(f₀fₑ) for the image at infinity. All four printed equations are correct."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -125,6 +125,11 @@
           "height": 200,
           "elements": [
             {
+              "type": "pause",
+              "id": "ph_objective",
+              "caption": "The objective and the image I₁G₁"
+            },
+            {
               "type": "stroke",
               "id": "axis",
               "d": "M 20 70 L 380 70",
@@ -165,13 +170,13 @@
             {
               "type": "stroke",
               "id": "ray1b",
-              "d": "M 150 48 L 350 158",
+              "d": "M 150 48 L 323 143 M 190 64 L 190 76",
               "ms": 3260
             },
             {
               "type": "stroke",
               "id": "ray2",
-              "d": "M 98 48 L 350 155",
+              "d": "M 98 48 L 323 143",
               "ms": 3800
             },
             {
@@ -207,9 +212,18 @@
             {
               "type": "label",
               "id": "lbl_f0",
-              "x": 192,
-              "y": 50,
+              "x": 196,
+              "y": 64,
               "text": "F₀",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_i1",
+              "x": 328,
+              "y": 88,
+              "text": "I₁",
               "ms": 450,
               "sm": true
             },
@@ -447,7 +461,7 @@
             "objective real image, eyepiece virtual image"
           ],
           "reject": [
-            "m nought is minus v nought by u"
+            "m nought is v nought by u"
           ],
           "heard_as": [
             "working",
@@ -479,19 +493,19 @@
             "style": "eq"
           }
         ],
-        "margin_note": "Fifth mark. State the product rule and give m₀ with its minus sign.",
-        "why": "The second lens magnifies whatever the first one hands to it, so the two factors multiply rather than add. The minus sign in m₀ records that the objective inverts the image.",
+        "margin_note": "Fifth mark. State the product rule and give m₀ = v₀/u for the objective.",
+        "why": "The second lens magnifies whatever the first one hands to it, so the two factors multiply rather than add. For a thin lens the magnification is m₀ = v₀/u with no separate minus sign; the objective still inverts, because u is negative for a real object placed to its left, so v₀/u comes out negative.",
         "common_mistakes": [
           "Adding the two magnifications instead of multiplying them.",
           "Writing m₀ = −v₀/u. That is the MIRROR form; for a lens m₀ = v₀/u, and the inversion comes from u being negative."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That m = m₀ × mₑ and that m₀ = −v₀/u for the objective.",
+          "must_convey": "That m = m₀ × mₑ and that m₀ = v₀/u for the objective — no separate minus sign, because the inversion comes from u being negative.",
           "accept": [
             "m equals m nought into m e",
             "the total magnification is the product of the two",
-            "m nought is minus v nought by u",
+            "m nought is v nought by u",
             "m equals m nought into m e, product"
           ],
           "reject": [
@@ -501,7 +515,7 @@
             "product",
             "m nought",
             "m e",
-            "minus v nought by u"
+            "v nought by u"
           ]
         },
         "memory_tip": "Two lenses in a row multiply, they do not add."
@@ -534,11 +548,11 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the eyepiece acts as a simple microscope with mₑ = 1 + D/fₑ, giving m = (−v₀/u)(1 + D/fₑ).",
+          "must_convey": "That the eyepiece acts as a simple microscope with mₑ = 1 + D/fₑ, giving m = (v₀/u)(1 + D/fₑ).",
           "accept": [
             "m e is one plus D by f e",
             "the eyepiece is a simple microscope so its power is one plus D over f e",
-            "m equals minus v nought by u into one plus D by f e",
+            "m equals v nought by u into one plus D by f e",
             "eyepiece simple microscope la pani chestundi"
           ],
           "reject": [

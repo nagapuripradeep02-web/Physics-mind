@@ -73,7 +73,7 @@
         "why": "The two asymptotes, written with a common denominator, become the pair of lines bx∓ay=0; the standard result for the product of perpendicular distances from any point on the curve to this pair simplifies to a²b²/(a²+b²) using the hyperbola equation itself.",
         "common_mistakes": [
           "Writing the asymptotes as ax±by=0 instead of bx±ay=0.",
-          "Trying to substitute a specific point (x₁,y₁) instead of using the ready-made formula a²b²/(a²+b²)."
+          "Writing the product formula with a minus sign, a²b²/(a²−b²), instead of a²b²/(a²+b²)."
         ]
       },
       {

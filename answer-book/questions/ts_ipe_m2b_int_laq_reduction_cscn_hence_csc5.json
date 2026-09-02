@@ -101,12 +101,12 @@
             "style": "eq"
           }
         ],
-        "why": "cot²x = csc²x − 1 closes the loop back to I_n and I_{n−2} exactly as tan²x = sec²x − 1 does for secⁿx, but every term here carries the extra minus sign picked up in the setup step.",
+        "why": "cot²x = csc²x − 1 closes the loop back to I_n and I_{n−2} exactly as tan²x = sec²x − 1 does for secⁿx; the only difference is the leading term −cosecⁿ⁻²x cotx, which carries the minus sign picked up in the setup step, while the −(n−2)(I_n − I_{n−2}) part matches secⁿx term for term.",
         "common_mistakes": [
           "Dropping the minus sign carried from step 1 partway through this expansion.",
           "Writing cot²x = 1 − csc²x with the sign reversed."
         ],
-        "memory_tip": "Copy secⁿx's working, then put a minus sign in front of every single term — that is the whole difference."
+        "memory_tip": "Copy secⁿx's working, then put a minus sign in front of ONLY the leading power term (−cosecⁿ⁻²x cotx in place of +secⁿ⁻²x tanx) — the −(n−2)(I_n − I_{n−2}) part is exactly the same in both."
       },
       {
         "id": "s3_reduction",

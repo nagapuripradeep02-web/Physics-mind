@@ -52,9 +52,10 @@
           "and μ = √3 = 1.73 BM.",
           "Water molecules around the ion split the",
           "d orbitals into t2g and eg sets.",
-          "The unpaired electron is promoted across",
-          "the gap, absorbing orange-red light, so",
-          "the solution transmits blue."
+          "The eg set is left with one vacancy, so",
+          "a t2g electron is promoted into it.",
+          "This d-d transition absorbs orange-red",
+          "light, so the solution transmits blue."
         ],
         "why": "A d-d transition needs a partly filled d subshell, because the electron must have somewhere to move to. Cu²⁺ at 3d⁹ has exactly one vacancy, and the gap produced by the six water ligands corresponds to orange-red light, so what passes through is the complementary blue. The unpaired electron also makes the ion paramagnetic, with a spin-only moment of 1.73 BM.",
         "common_mistakes": [
@@ -83,7 +84,7 @@
           "Sc³⁺ (3d⁰) is colourless for the opposite",
           "reason: its d subshell is empty."
         ],
-        "why": "The two colourless ions of the first series sit at its two ends. Sc³⁺ is 3d⁰ and has no electron to promote; Zn²⁺ is 3d¹⁰ and has no vacancy to promote into. Every ion between them has a partly filled d subshell and is both coloured and paramagnetic. Both Sc³⁺ and Zn²⁺ are also diamagnetic, which is the same fact stated for magnetism instead of colour.",
+        "why": "The colourless ions of the first series are the ones with no partly filled d subshell. Sc³⁺ and Ti⁴⁺ are 3d⁰ and have no electron to promote; Cu⁺ and Zn²⁺ are 3d¹⁰ and have no vacancy to promote into. Every ion with a partly filled d subshell, 3d¹ to 3d⁹, is both coloured and paramagnetic. Sc³⁺ and Zn²⁺, the two named on this card, are also diamagnetic, which is the same fact stated for magnetism instead of colour.",
         "common_mistakes": [
           "Saying Zn²⁺ has no d electrons. It has ten; the point is that no empty d orbital is left in the same set.",
           "Saying all d-block ions are coloured. Sc³⁺, Ti⁴⁺, Cu⁺ and Zn²⁺ are all colourless."

@@ -68,7 +68,7 @@
         "why": "The layout here swaps A and B's roles compared with the split in which A multiplies the denominator itself — A multiplies the denominator's derivative this time — but the method is identical: match sinx, cosx, and the constant term.",
         "common_mistakes": [
           "Assuming A multiplies Dr here as it does in the other layout, without re-reading which coefficient this question actually assigns to which part.",
-          "Sign slip solving A+B=1 and −A+B=3 together (adding gives 2B=4, so B=2, then A=1−B=−1)."
+          "Writing the sinx equation as A+B=3, having forgotten that the derivative of cosx is −sinx, so the sinx coefficient is −A+B; A+B=1 and A+B=3 then contradict each other."
         ],
         "memory_tip": "A+B=1 and −A+B=3 added together gives 2B=4 directly — the fastest way to solve this particular pair."
       },
@@ -129,9 +129,9 @@
         "why": "Multiplying C=5 by the log|1+t| just found and writing t back as tan(x/2) gives the third and final term, completing the answer in x.",
         "common_mistakes": [
           "Forgetting to multiply C=5 into the log|1+t| result.",
-          "Combining the two different logs — log|cosx+sinx+1| and log|1+tan(x/2)| — into one, which they cannot be since their arguments are different."
+          "Believing the two logs cannot be combined because their arguments differ. They can be: a·logP + b·logQ = log(Qᵇ/Pᵃ) whatever P and Q are. They are left separate here only because combining them makes the answer no simpler."
         ],
-        "memory_tip": "Two DIFFERENT logs appear in this answer — one in x, one in tan(x/2) — they never combine into a single log term."
+        "memory_tip": "Two logs appear in this answer, one in x and one in tan(x/2) — they are left separate because combining them would not simplify anything, not because they cannot be combined."
       }
     ]
   }

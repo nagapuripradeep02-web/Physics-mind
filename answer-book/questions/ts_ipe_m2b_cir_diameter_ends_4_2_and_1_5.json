@@ -65,7 +65,7 @@
         "why": "The angle in a semicircle is a right angle, so for any point P on the circle the lines PA and PB are perpendicular. Writing that condition in coordinates gives exactly this product form.",
         "common_mistakes": [
           "Writing (x − x₁)(y − y₁) + (x − x₂)(y − y₂) = 0.",
-          "Finding the centre and radius first, which takes far longer."
+          "Writing (x + 4)(x + 1) + (y + 2)(y + 5) = 0, copying the coordinates with their own signs instead of subtracting them."
         ]
       },
       {

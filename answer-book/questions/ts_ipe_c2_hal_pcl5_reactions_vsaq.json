@@ -47,11 +47,11 @@
         "lines": [
           "a) With water, two products are possible.",
           {
-            "text": "PCl₅ (cold) + H₂O → POCl₃ + 2HCl",
+            "text": "PCl₅ + H₂O (a little, cold) → POCl₃ + 2HCl",
             "style": "eq"
           },
           {
-            "text": "PCl₅ (hot) + 4H₂O → H₃PO₄ + 5HCl",
+            "text": "PCl₅ + 4H₂O (excess, hot) → H₃PO₄ + 5HCl",
             "style": "eq"
           },
           "b) With ethanol the –OH group is replaced",
@@ -61,7 +61,7 @@
             "style": "eq"
           }
         ],
-        "why": "PCl₅ is hydrolysed in two stages. A small amount of cold water replaces one pair of chlorine atoms and stops at phosphorus oxychloride; with excess hot water the hydrolysis is complete and phosphoric acid is formed. With an alcohol the same chlorine transfer replaces the –OH group by –Cl, and that is one of the three standard laboratory routes to a haloalkane from an alcohol, the other two being SOCl₂ and PCl₃.",
+        "why": "PCl₅ is hydrolysed in two stages. A small amount of cold water replaces one pair of chlorine atoms and stops at phosphorus oxychloride; with excess hot water the hydrolysis is complete and phosphoric acid is formed. With an alcohol the same chlorine transfer replaces the –OH group by –Cl, and that is one of the standard laboratory routes to a haloalkane from an alcohol; the others are HX (with concentrated HCl a primary or secondary alcohol also needs anhydrous ZnCl₂), PCl₃, SOCl₂, and red phosphorus with bromine or iodine.",
         "common_mistakes": [
           "Writing H₃PO₄ for the cold water reaction. A small amount of cold water gives POCl₃; excess hot water gives H₃PO₄.",
           "Leaving POCl₃ out of the ethanol equation. Both POCl₃ and HCl are formed along with C₂H₅Cl."
@@ -89,13 +89,13 @@
           },
           "Two of the five chlorine atoms go to silver."
         ],
-        "why": "PCl₅ replaces the –OH of a carboxylic acid in the same way as it replaces the –OH of an alcohol, and the product is the acid chloride. With silver the reaction is of a different kind: it is a redox change, in which silver is oxidised to AgCl and phosphorus is reduced from the +5 state to the +3 state as PCl₃. That is the one part of this question in which no –OH group takes part.",
+        "why": "PCl₅ replaces the –OH of a carboxylic acid in the same way as it replaces the –OH of an alcohol, and the product is the acid chloride. With silver the reaction is of a different kind: it is a redox change, in which silver is oxidised to AgCl and phosphorus is reduced from the +5 state to the +3 state as PCl₃. Parts (b) and (c) are the two –OH → –Cl replacements; part (a) is the opposite change, in which the chlorine of PCl₅ is replaced by oxygen from the water, and part (d) is the redox one.",
         "common_mistakes": [
           "Writing CH₃COCl alone. All three products, CH₃COCl, POCl₃ and HCl, are needed to balance the equation.",
           "Writing AgCl₂ or Ag₂Cl. Silver chloride is AgCl, and two of them are formed."
         ],
-        "memory_tip": "Any –OH group is replaced by –Cl; only silver is different, taking two chlorine atoms and leaving PCl₃.",
-        "margin_note": "Balance each equation before moving on. Check the number of HCl molecules on each side."
+        "memory_tip": "An alcohol or an acid has its –OH replaced by –Cl; water hydrolyses PCl₅ instead, and silver takes two chlorine atoms and leaves PCl₃.",
+        "margin_note": "Balance each equation before moving on. Count the five chlorine atoms of PCl₅ across the products: 3 in POCl₃, 1 in CH₃COCl and 1 in HCl for the acid, and 2 in AgCl with 3 in PCl₃ for the silver."
       }
     ]
   },

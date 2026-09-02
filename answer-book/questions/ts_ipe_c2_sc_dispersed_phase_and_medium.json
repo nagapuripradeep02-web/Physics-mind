@@ -108,8 +108,8 @@
           "Solid or liquid in a gas = aerosol.",
           "Liquid in a liquid = emulsion.",
           "Solid in a liquid = sol.",
-          "Solid or liquid in a solid = solid sol or",
-          "gel.",
+          "Solid in a solid = solid sol.",
+          "Liquid in a solid = gel.",
           "A sol in water may also be called a",
           "hydrosol or aquasol, but that name gives",
           "the medium only, not the type."

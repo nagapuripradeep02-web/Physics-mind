@@ -141,7 +141,7 @@
           }
         ],
         "margin_note": "Third mark. Define it in words first, then write the difference formula.",
-        "why": "In one second the higher-frequency wave completes n₁ − n₂ more vibrations than the other, so the pair comes back into step n₁ − n₂ times — one loud instant each time. The formula IS that counting argument.",
+        "why": "In one second the higher-frequency wave completes n₁ − n₂ more vibrations than the other, so the pair returns to being in phase n₁ − n₂ times — one loud instant each time. The formula IS that counting argument.",
         "common_mistakes": [
           "Writing n₁ + n₂ — the sum is not heard as beats; the ear counts the DIFFERENCE.",
           "Giving a negative beat frequency — take n₁ > n₂, or write the positive difference."

@@ -138,7 +138,7 @@
         "why": "The phosphate is not just an extra group: it is what makes the polymer possible, because one phosphate can hold two sugars at once and so link unit to unit. That is why the nucleic acid chain is built of nucleotides and never of nucleosides.",
         "common_mistakes": [
           "Writing that DNA is a polymer of nucleosides. It is a polymer of nucleotides.",
-          "Writing that the chain links two bases together. The bases point inwards; the chain runs through sugar and phosphate."
+          "Writing that the chain links two bases together. The bases hang off the backbone; the chain itself runs through sugar and phosphate."
         ],
         "memory_tip": "Only the nucleotide has the phosphate, and only the phosphate can link two units.",
         "margin_note": "One sentence saying the nucleotide is the repeating unit finishes the comparison."

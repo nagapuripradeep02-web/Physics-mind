@@ -199,7 +199,7 @@
         "common_mistakes": [
           "Setting the imaginary part to zero — that is the condition for 'purely real'.",
           "Leaving the denominator in the final answer.",
-          "Writing the answer as an inequality or as x² + y² = x + y with no '= 0' form — either is fine, but the standard form is expected."
+          "Writing the answer as an inequality — the condition is an equality, so the locus is a circle, not a region. (Leaving it as x² + y² = x + y is the same locus and is not wrong, but the standard '= 0' form is expected.)"
         ]
       }
     ]

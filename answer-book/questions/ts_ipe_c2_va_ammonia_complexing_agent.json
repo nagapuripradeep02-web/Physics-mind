@@ -54,7 +54,7 @@
         ],
         "why": "A complexing agent is simply a ligand, and a ligand is a species with a lone pair to donate. Naming the lone pair, the coordinate bond and the word ligand is what turns the book's single clause into a full reason.",
         "common_mistakes": [
-          "Writing that NH₃ is basic, so it forms complexes. Basicity and ligand behaviour both come from the lone pair, but the marked word here is ligand.",
+          "Writing NH₄⁺ as the ligand. In the ammonium ion the nitrogen lone pair is already used in the fourth N–H bond, so NH₄⁺ has no pair left to donate. Only NH₃ acts as the ligand.",
           "Calling NH₃ bidentate. It has one donor atom, nitrogen, so it is monodentate."
         ],
         "memory_tip": "One lone pair on N, one coordinate bond, one donor atom, so monodentate.",
@@ -82,7 +82,7 @@
         ],
         "why": "The copper example is the one the book prints and the one an examiner recognises, and the colour change from light blue to deep blue is the visible proof that a complex has formed. The silver example is added because it also shows a solid, AgCl, dissolving. PH₃ gives no such complexes: its lone pair sits on a much larger atom and is not donated easily, which is the same reason PH₃ is a weaker base.",
         "common_mistakes": [
-          "Writing [Cu(NH₃)₄]²⁺ with the sulphate still attached inside the square bracket. Only the four NH₃ ligands go inside; SO₄²⁻ stays outside.",
+          "Writing the sulphate inside the square bracket, as [Cu(NH₃)₄SO₄]. Only the four NH₃ ligands go inside the coordination sphere; SO₄²⁻ is the counter ion and stays outside it.",
           "Giving 2 or 6 ammonia molecules for copper. The coordination number of Cu²⁺ with ammonia here is 4."
         ],
         "memory_tip": "Four ammonia molecules around Cu²⁺, deep blue. Two around Ag⁺, colourless.",

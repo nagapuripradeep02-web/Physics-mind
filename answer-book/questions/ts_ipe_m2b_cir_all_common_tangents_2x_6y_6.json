@@ -71,7 +71,7 @@
         ],
         "why": "One circle is given in general form and the other in the simplest possible form. Reading both to the same centre-and-radius pair is what makes them comparable.",
         "common_mistakes": [
-          "Treating x² + y² = 1 as having radius 1 squared, so r₂ = 1 is written as r₂² = 1 and then used as a radius.",
+          "Writing C₁ = (−1, −3) by copying g = −1 and f = −3 straight into the centre instead of using (−g, −f).",
           "Getting r₁ = √16 by taking c = −6."
         ]
       },
@@ -260,13 +260,13 @@
               "id": "cat_cap",
               "x": 24,
               "y": 218,
-              "text": "I is inside, E is outside both circles",
+              "text": "I is between the circles, E is past the smaller one",
               "ms": 520,
               "sm": true
             }
           ]
         },
-        "why": "The two centres of similitude are on the same straight line through C₁ and C₂ but on opposite sides of the picture. Marking them makes it obvious which pair of tangents is being built at each stage.",
+        "why": "The two centres of similitude both lie on the straight line through C₁ and C₂: I falls between the two circles, E falls outside them, past the smaller circle. Neither point is inside a circle. Marking them makes it obvious which pair of tangents is being built at each stage.",
         "common_mistakes": [
           "Placing E between the circles, where I belongs.",
           "Drawing the circles overlapping, which removes the transverse pair."

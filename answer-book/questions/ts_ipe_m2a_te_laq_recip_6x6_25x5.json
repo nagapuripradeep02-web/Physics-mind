@@ -311,8 +311,8 @@
         "why": "Each value of t gives two values of x, because x + 1/x = t is a quadratic in x. Solving both t values is what recovers all 6 roots of the original equation — stopping at t answers a different question.",
         "common_mistakes": [
           "Forgetting to multiply through by x, so the equation in x is never formed.",
-          "A slip inside the square root: 2x² − 5x + 2 factorises as (2x − 1)(x − 2), no formula needed.",
-          "Not simplifying the surd form of the roots at the end."
+          "Using the quadratic formula on 2x² − 5x + 2 and making an arithmetic slip that the factorisation (2x − 1)(x − 2) would have avoided.",
+          "Writing down only one root of the pair: (2x − 1)(x − 2) = 0 gives both x = 2 and x = 1/2."
         ]
       },
       {
@@ -356,7 +356,7 @@
         "common_mistakes": [
           "Forgetting to multiply through by x, so the equation in x is never formed.",
           "A slip inside the square root: 25 − 36 = −11, so the root is i√11, not √11.",
-          "Not simplifying the surd form of the roots at the end."
+          "Dropping this pair because the discriminant is negative — the equation has six roots, and the complex pair (5 ± i√11)/6 belongs in the final answer."
         ]
       },
       {

@@ -116,7 +116,7 @@
         "why": "Replacing b² with a²(1 − e²) turns the equation ab = a² − b² into one written purely in terms of a and e, ready for the final step.",
         "common_mistakes": [
           "Expanding a² − a²(1 − e²) incorrectly and losing the a²e² term.",
-          "Forgetting to divide both sides by a at all — the a on the left must stay to match a²e² on the right."
+          "Writing the substitution as b² = a²(1 + e²) instead of b² = a²(1 − e²), flipping the sign inside the bracket before it is even expanded."
         ]
       },
       {

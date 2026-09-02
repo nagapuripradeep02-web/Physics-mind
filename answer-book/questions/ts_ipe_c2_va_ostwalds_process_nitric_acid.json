@@ -54,7 +54,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and a model answer on book p.84 as Long Answer Question 2. The 1x8 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented (its printed wording, \"How does it reacts with the following.\", has a grammar error and a full stop where a question mark belongs; it is kept exactly as printed). Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK (book p.84, LAQ 2): all seven printed equations were atom-counted and ALL SEVEN BALANCE. 4NH₃ + 5O₂ → 4NO + 6H₂O (N 4, H 12, O 10 each side); 2NO + O₂ → 2NO₂ (N 2, O 4); 4NO₂ + 2H₂O + O₂ → 4HNO₃ (N 4, H 4, O 12); Cu + 4HNO₃ → Cu(NO₃)₂ + 2NO₂ + 2H₂O (Cu 1, N 4, H 4, O 12); Zn + 4HNO₃ → Zn(NO₃)₂ + 2NO₂ + 2H₂O (Zn 1, N 4, H 4, O 12); S₈ + 48HNO₃ → 8H₂SO₄ + 48NO₂ + 16H₂O (S 8, N 48, H 48, O 144); P₄ + 20HNO₃ → 4H₃PO₄ + 20NO₂ + 4H₂O (P 4, N 20, H 20, O 60). The last two match NCERT exactly. BOOK GAP THAT MATTERS: the book does not write \"conc.\" beside the metal equations, and the concentration changes the products — with DILUTE HNO₃ copper gives NO, not NO₂ (3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 2NO + 4H₂O), and zinc gives N₂O (4Zn + 10HNO₃ → 4Zn(NO₃)₂ + N₂O + 5H₂O). Both added equations were atom-counted and balance. The word conc. is written on every metal equation here and the dilute cases are recorded in the why lines. NCERT VARIANTS recorded, not followed: NCERT gives Step I at about 500 K and 9 bar over a Pt/Rh gauze, where the book gives 800 °C and 6-7 atm; and NCERT writes Step III as 3NO₂ + H₂O → 2HNO₃ + NO with the NO recycled, where the book writes the air-fed form 4NO₂ + 2H₂O + O₂ → 4HNO₃. Both forms of Step III balance and both are marked; the book's is kept and NCERT's is recorded. The book's \"68.5%\" for the distilled acid is written here as about 68%, which is the azeotrope composition NCERT quotes."
+    "note": "Unit 7 (VA Group Elements) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.83-84, from the shaded sub-box \"VA GROUP ELEMENTS\" of printed chapter 7 (\"7. VA, VIA, VIIA GROUP ELEMENTS & NOBLE GASES\"); the book prints this question and a model answer on book p.84 as Long Answer Question 2. The 1x8 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented (its printed wording, \"How does it reacts with the following.\", has a grammar error and a full stop where a question mark belongs; it is kept exactly as printed). Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK CHECK (book p.84, LAQ 2): all seven printed equations were atom-counted and ALL SEVEN BALANCE. 4NH₃ + 5O₂ → 4NO + 6H₂O (N 4, H 12, O 10 each side); 2NO + O₂ → 2NO₂ (N 2, O 4); 4NO₂ + 2H₂O + O₂ → 4HNO₃ (N 4, H 4, O 12); Cu + 4HNO₃ → Cu(NO₃)₂ + 2NO₂ + 2H₂O (Cu 1, N 4, H 4, O 12); Zn + 4HNO₃ → Zn(NO₃)₂ + 2NO₂ + 2H₂O (Zn 1, N 4, H 4, O 12); S₈ + 48HNO₃ → 8H₂SO₄ + 48NO₂ + 16H₂O (S 8, N 48, H 48, O 144); P₄ + 20HNO₃ → 4H₃PO₄ + 20NO₂ + 4H₂O (P 4, N 20, H 20, O 60). The last two match NCERT exactly. BOOK GAP THAT MATTERS: the book does not write \"conc.\" beside the metal equations, and the concentration changes the products — with DILUTE HNO₃ copper gives NO, not NO₂ (3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 2NO + 4H₂O), and zinc gives N₂O (4Zn + 10HNO₃ → 4Zn(NO₃)₂ + N₂O + 5H₂O). Both added equations were atom-counted and balance. The concentration is carried in WORDS, not inside the equations: the first line of part (a) states that the nitric acid is concentrated in all four parts, and parts (b), (c) and (d) each name concentrated nitric acid in their own first line. Writing (conc.) inside the four equations was tried and reverted — it pushed every one of them past the one-authored-line-equals-one-ruled-row width budget (Cu 578, Zn 583, S₈ 606 against 568 px; P₄ 586 against the 535 px boxed budget), and no shorter inline marker fits either. The dilute cases are recorded in the why lines. NCERT VARIANTS recorded, not followed: NCERT gives Step I at about 500 K and 9 bar over a Pt/Rh gauze, where the book gives 800 °C and 6-7 atm; and NCERT writes Step III as 3NO₂ + H₂O → 2HNO₃ + NO with the NO recycled, where the book writes the air-fed form 4NO₂ + 2H₂O + O₂ → 4HNO₃. Both forms of Step III balance and both are marked; the book's is kept and NCERT's is recorded. The book's \"68.5%\" for the distilled acid is written here as about 68%, which is the azeotrope composition NCERT quotes."
   },
   "answer": {
     "page_header": [
@@ -84,7 +84,7 @@
           "Writing NO₂ as the product of Step I. Step I gives NO; NO₂ comes in Step II.",
           "Leaving the equation unbalanced. Four NH₃ need five O₂ and give four NO with six H₂O."
         ],
-        "memory_tip": "Three steps, three oxidation states of nitrogen: −3 to +2 to +4 to +5.",
+        "memory_tip": "Three steps, three rises in oxidation state: −3 → +2 → +4 → +5.",
         "margin_note": "The equation with its catalyst and temperature is the mark. Write the catalyst above the arrow or beside it."
       },
       {
@@ -166,21 +166,21 @@
         "marks": 1,
         "mark_note": "Part (a)",
         "lines": [
-          "a) Concentrated nitric acid oxidises copper",
-          "to copper(II) nitrate and is itself reduced to",
-          "brown NO₂ gas.",
+          "In all four parts the nitric acid is concentrated.",
+          "a) It oxidises copper to copper(II) nitrate and",
+          "is itself reduced to brown NO₂ gas.",
           {
             "text": "Cu + 4HNO₃ → Cu(NO₃)₂ + 2NO₂ + 2H₂O",
             "style": "eq"
           }
         ],
-        "why": "Nitric acid is an oxidising acid, so it does not give hydrogen gas with a metal the way HCl does. The concentration changes the product: with DILUTE nitric acid copper gives NO instead, 3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 2NO + 4H₂O, so the word concentrated has to be written beside the equation.",
+        "why": "Nitric acid is an oxidising acid, so it does not give hydrogen gas with a metal the way HCl does. The concentration changes the product: with DILUTE nitric acid copper gives NO instead, 3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 2NO + 4H₂O, so the answer has to say that the acid is concentrated. The opening line here says it once for all four parts, and parts b), c) and d) each say it again.",
         "common_mistakes": [
           "Writing H₂ as a product. Nitric acid is an oxidising acid and gives no hydrogen with copper.",
           "Using NO with concentrated acid. Concentrated acid gives NO₂; dilute acid gives NO."
         ],
         "memory_tip": "Concentrated gives NO₂ (brown), dilute gives NO (colourless). Write which acid was used.",
-        "margin_note": "The word conc. beside the equation is part of this mark. Without it the products cannot be checked."
+        "margin_note": "Saying the acid is concentrated is part of this mark. Without it the products cannot be checked."
       },
       {
         "id": "s6_zinc",
@@ -254,5 +254,5 @@
       }
     ]
   },
-  "insider_note": "All four reactions are one idea — concentrated nitric acid is an oxidising agent and is reduced to NO₂ every time — and the coefficients follow from counting electrons, 48 for S₈ and 20 for P₄. Write \"conc.\" beside each equation, because with dilute acid copper gives NO and zinc gives N₂O instead."
+  "insider_note": "All four reactions are one idea — concentrated nitric acid is an oxidising agent and is reduced to NO₂ every time — and the coefficients follow from counting electrons, 48 for S₈ and 20 for P₄. Write once that the acid is concentrated in all four parts, because with dilute acid copper gives NO and zinc gives N₂O instead."
 }

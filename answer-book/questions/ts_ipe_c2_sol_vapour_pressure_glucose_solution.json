@@ -120,12 +120,12 @@
             "style": "indent"
           }
         ],
-        "why": "Working the right side out to a single number first keeps the unknown pₛ on its own on the left, so the last step is one multiplication and one subtraction. The value 0.005556 is the mole fraction of glucose, and it is small, which is the sign that the dilute approximation is safe here.",
+        "why": "Working the right side out to a single number first keeps the unknown pₛ on its own on the left, so the last step is one multiplication and one subtraction. The value 0.005556 is n₂/n₁, the moles of glucose per mole of water, which the dilute form uses in place of the mole fraction, and it is small, which is the sign that the approximation is safe here.",
         "common_mistakes": [
           "Multiplying 25 by 180 and 18 by 450. The pairing is solute mass with solvent molar mass, so it is 25 × 18 over 180 × 450.",
           "Rounding 0.005556 to 0.006 at this stage. The lowering is small, so early rounding moves the second decimal place of the answer."
         ],
-        "memory_tip": "450 over 81000 is 0.005556, and that number is the mole fraction of the glucose.",
+        "memory_tip": "450 over 81000 is 0.005556, the moles of glucose per mole of water.",
         "margin_note": "Show the single-number line 0.005556. Working the right side first is what keeps the final step short."
       },
       {

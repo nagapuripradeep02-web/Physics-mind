@@ -73,12 +73,12 @@
           "that most of the halide meets ammonia and",
           "not the amine already made."
         ],
-        "why": "Ammonolysis replaces one hydrogen of ammonia at a time, so each alkyl group needs its own halide and its own step. The order matters: the propyl group is put on first from 1-chloropropane, then the two methyl groups from chloromethane. Ammonia is a nucleophile and the halide supplies the alkyl group.",
+        "why": "Ammonolysis replaces one hydrogen of ammonia at a time, so each alkyl group needs its own halide and its own step. Here the propyl group is put on first from 1-chloropropane and the two methyl groups follow from chloromethane; what matters is that each group comes from its own halide, not the order in which they are added. Ammonia is a nucleophile and the halide supplies the alkyl group.",
         "common_mistakes": [
           "Writing the first step with the chlorine simply left out. With excess ammonia it leaves as ammonium chloride, so the equation balances.",
           "Adding all three alkyl groups in one arrow. Each substitution is a separate step with its own halide."
         ],
-        "memory_tip": "Propyl on first, then methyl, then methyl again. Three groups on nitrogen need three separate arrows.",
+        "memory_tip": "Three groups on nitrogen need three separate arrows: one 1-chloropropane and two chloromethane.",
         "margin_note": "Three balanced equations carry these two marks. Naming the final product in words finishes the answer."
       },
       {

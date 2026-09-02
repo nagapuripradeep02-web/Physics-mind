@@ -83,7 +83,7 @@
           "Writing that cryolite reduces the alumina. Nothing is reduced by cryolite; the current does the reduction at the cathode.",
           "Giving 1200 K as the melting point of alumina. It is the working temperature of the alumina and cryolite mixture, not of alumina alone."
         ],
-        "memory_tip": "Cryolite makes a melt that is cool enough to hold and good enough to conduct.",
+        "memory_tip": "Cryolite gives a melt that forms near 1200 K instead of above 2300 K, and that melt carries the current.",
         "margin_note": "Box the two effects on one line. That single line carries this mark."
       }
     ]

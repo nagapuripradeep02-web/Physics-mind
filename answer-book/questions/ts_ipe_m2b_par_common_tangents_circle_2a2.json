@@ -147,5 +147,5 @@
       }
     ]
   },
-  "insider_note": "Both roots of the quartic are expected to be considered, even though only one is real — stating why m² = −2 is rejected is worth the mark that a jump straight to m² = 1 would lose."
+  "insider_note": "Both values m² = 1 and m² = −2 are expected to be considered, even though only m² = 1 gives a real slope m, because the square of a real number is never negative — stating why m² = −2 is rejected is worth the mark that a jump straight to m² = 1 would lose."
 }

@@ -44,7 +44,7 @@
         "kind": "text",
         "label": "The observation",
         "marks": 1,
-        "mark_note": "Moving magnet, or changing current",
+        "mark_note": "Both: moving magnet, and changing current",
         "lines": [
           "When a magnet is moved towards a coil or",
           "away from it, the galvanometer joined to",
@@ -78,7 +78,7 @@
             "Henry"
           ]
         },
-        "memory_tip": "Two set-ups, one result: move the magnet, or change the current next door. The needle moves only while something is changing."
+        "memory_tip": "Two set-ups, one result: move the magnet, or change the current in a nearby coil. The needle moves only while something is changing."
       },
       {
         "id": "s2_conclusion",

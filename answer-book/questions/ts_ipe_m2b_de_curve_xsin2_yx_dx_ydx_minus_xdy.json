@@ -150,7 +150,7 @@
         "why": "Substituting the given point into the general family (2) fixes the constant c, and putting that value back gives the one curve through (1, π/4) that the question asks for.",
         "common_mistakes": [
           "Substituting the point into the un-integrated equation (1) instead of the family (2).",
-          "Writing the final answer with log|x| when the working already used log x for a positive x = 1 point, which is consistent but should not be swapped mid-answer."
+          "Reading cot(π/4) as 0 instead of 1 — 0 is the value of cot(π/2) — which gives c = 0 and the wrong particular solution cot(y/x) = log x."
         ]
       }
     ]

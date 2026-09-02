@@ -268,7 +268,7 @@
           },
           "pH regulators: lime, Na₂CO₃."
         ],
-        "why": "Each reagent has one job and the four must not be swapped. The book prints sodium ethyl xanthate as a frothing agent and then says the froth is stabilised by collectors; both are the wrong way round, and the two printed statements also disagree with each other. A xanthate is a collector, pine oil is the frothing agent, and cresol or aniline is the froth stabiliser. The corrected roles are written here.",
+        "why": "Each reagent has one job and the five classes must not be swapped. The book prints sodium ethyl xanthate as a frothing agent and then says the froth is stabilised by collectors; both are the wrong way round, and the two printed statements also disagree with each other. A xanthate is a collector, pine oil is the frothing agent, and cresol or aniline is the froth stabiliser. The corrected roles are written here.",
         "common_mistakes": [
           "Calling sodium ethyl xanthate a frothing agent. It is a collector; pine oil is the frothing agent.",
           "Saying collectors stabilise the froth. Froth stabilisers such as cresol do that; a collector acts on the mineral surface."

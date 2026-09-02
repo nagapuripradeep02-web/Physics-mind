@@ -101,8 +101,13 @@
         "figure": {
           "id": "mirage_path",
           "width": 360,
-          "height": 215,
+          "height": 300,
           "elements": [
+            {
+              "type": "pause",
+              "id": "ph_mirage",
+              "caption": "The bent ray and the image below the tree"
+            },
             {
               "type": "stroke",
               "id": "ground",
@@ -142,8 +147,8 @@
             {
               "type": "stroke",
               "id": "virtual_ray",
-              "d": "M 282 120 L 176 197",
-              "ms": 1870,
+              "d": "M 282 120 L 62 280 M 56 274 L 68 286 M 56 286 L 68 274",
+              "ms": 4200,
               "pen": "pencil",
               "wipe": "x"
             },
@@ -170,6 +175,24 @@
               "id": "arms",
               "d": "M 278 132 L 300 132",
               "ms": 310
+            },
+            {
+              "type": "label",
+              "id": "lbl_o",
+              "x": 40,
+              "y": 60,
+              "text": "O",
+              "ms": 450,
+              "em": true
+            },
+            {
+              "type": "label",
+              "id": "lbl_i",
+              "x": 36,
+              "y": 292,
+              "text": "I",
+              "ms": 450,
+              "em": true
             },
             {
               "type": "label",

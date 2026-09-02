@@ -110,8 +110,8 @@
             {
               "type": "label",
               "id": "lbl_theta",
-              "x": 192,
-              "y": 78,
+              "x": 138,
+              "y": 52,
               "text": "axis at θ",
               "ms": 200,
               "sm": true
@@ -134,7 +134,7 @@
             {
               "type": "stroke",
               "id": "p3_axis",
-              "d": "M 245 120 L 275 120",
+              "d": "M 245 96 L 275 96",
               "ms": 420,
               "pen": "pencil",
               "wipe": "x"
@@ -229,7 +229,7 @@
       {
         "id": "s3_after_p2",
         "kind": "equation",
-        "label": "Intensity after P₂ — Malus law",
+        "label": "Intensity after P₂",
         "marks": 1,
         "mark_note": "First Malus application",
         "lines": [

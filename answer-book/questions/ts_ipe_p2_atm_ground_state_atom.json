@@ -73,7 +73,7 @@
             "lowest energy"
           ]
         },
-        "memory_tip": "Ground = the floor. The atom cannot go below its lowest allowed level."
+        "memory_tip": "Ground state = the lowest allowed energy level. The atom cannot have less energy than this."
       },
       {
         "id": "s2_hydrogen",
@@ -115,7 +115,7 @@
             "electron volt"
           ]
         },
-        "memory_tip": "Hydrogen's floor: n = 1, E = −13.6 eV, r = 0.53 Å — one, minus 13.6, half an angstrom."
+        "memory_tip": "Hydrogen's ground state: n = 1, E = −13.6 eV, r = 0.53 Å — one, minus 13.6, half an angstrom."
       }
     ]
   },

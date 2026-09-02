@@ -82,7 +82,7 @@
         "why": "Each partial fraction integrates to a plain log — ∫dx/(x+1) = log|x+1|, ∫dx/(x+2) = log|x+2| — and the two are subtracted, matching the split found above.",
         "common_mistakes": [
           "Dropping the modulus bars on either log.",
-          "Combining the two logs into log|(x+1)/(x+2)| without checking that this is genuinely equal (it is, but only one form should be written, not a mix of both)."
+          "Combining the two logs with the ratio inverted, writing log|(x+2)/(x+1)|; subtracting log|x+2| puts (x+2) in the DENOMINATOR."
         ],
         "memory_tip": "Two logs subtracted — or equivalently, one log of the ratio (x+1)/(x+2) — either form is correct, but write only one."
       }

@@ -86,7 +86,7 @@
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two more marks. The 1/(1+sinx) split is the setup for the next step's trick.",
-        "memory_tip": "1/(1+sinx) always splits into 1 minus 1/(1+sinx) — write it as [1 + sinx − 1]/(1 + sinx).",
+        "memory_tip": "sinx/(1+sinx) always splits into 1 minus 1/(1+sinx) — write it as [1 + sinx − 1]/(1 + sinx).",
         "lines": [
           "Adding (1) and (2):",
           "2I = π∫₀^π sinx/(1 + sinx) dx",

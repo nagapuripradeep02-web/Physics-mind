@@ -19,11 +19,11 @@
   "appearances": [],
   "mark_split": [
     {
-      "label": "Half wave rectifier — its four points",
+      "label": "Half wave rectifier — its five points",
       "marks": 2
     },
     {
-      "label": "Full wave rectifier — its four points",
+      "label": "Full wave rectifier — its five points",
       "marks": 2
     }
   ],
@@ -44,7 +44,7 @@
         "kind": "text",
         "label": "Half wave rectifier",
         "marks": 2,
-        "mark_note": "Four points listed",
+        "mark_note": "Five points listed",
         "lines": [
           {
             "text": "Half wave rectifier:",
@@ -69,7 +69,7 @@
             "style": "indent"
           }
         ],
-        "margin_note": "Two marks. Four or five numbered points; the diode count and the half cycle used are the two that always carry marks.",
+        "margin_note": "Two marks. Five numbered points; the diode count and the half cycle used are the two that always carry marks.",
         "why": "A distinguishing question is marked point by point, so the answer has to be written as a numbered list with the SAME points in the same order for both devices. Writing a paragraph makes the examiner hunt for the comparison.",
         "common_mistakes": [
           "Writing a paragraph instead of numbered points. The marks are given point by point.",
@@ -100,7 +100,7 @@
         "kind": "text",
         "label": "Full wave rectifier",
         "marks": 2,
-        "mark_note": "Same four points, other column",
+        "mark_note": "Same five points, other column",
         "lines": [
           {
             "text": "Full wave rectifier:",

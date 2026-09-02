@@ -133,27 +133,27 @@
             {
               "type": "label",
               "id": "lbl_an_l",
-              "x": 30,
+              "x": 26,
               "y": 42,
-              "text": "an",
+              "text": "AN",
               "ms": 450,
               "sm": true
             },
             {
               "type": "label",
               "id": "lbl_n",
-              "x": 162,
-              "y": 70,
-              "text": "n",
+              "x": 164,
+              "y": 72,
+              "text": "N",
               "ms": 450,
               "sm": true
             },
             {
               "type": "label",
               "id": "lbl_an_r",
-              "x": 286,
+              "x": 292,
               "y": 42,
-              "text": "an",
+              "text": "AN",
               "ms": 450,
               "sm": true
             },

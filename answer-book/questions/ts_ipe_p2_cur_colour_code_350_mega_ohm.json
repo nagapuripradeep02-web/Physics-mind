@@ -58,7 +58,7 @@
         "why": "The code carries only two digit bands. 350 × 10⁶ has three digits, so one factor of ten moves into the multiplier to give 35 × 10⁷.",
         "common_mistakes": [
           "Keeping 350 × 10⁶ and running out of digit bands.",
-          "Writing 3.5 × 10⁸ — the code wants two whole digits, 35, not 3.5."
+          "Writing 3.5 × 10⁸ — the colour code has only two digit bands, so it needs two whole digits, 35, not 3.5."
         ],
         "recall": {
           "credit": "say_it",

@@ -92,5 +92,5 @@
       }
     ]
   },
-  "insider_note": "The negative sign in (a/t², −2a/t) is the single most commonly dropped sign in this question — a focal chord's two ends are never both on the same side of the axis unless the chord is the latus rectum."
+  "insider_note": "The negative sign in (a/t², −2a/t) is the single most commonly dropped sign in this question — a focal chord's two ends are always on opposite sides of the axis, one y-coordinate positive and one negative, for every focal chord including the latus rectum, since y₁y₂ = (2at)(−2a/t) = −4a² is always negative."
 }

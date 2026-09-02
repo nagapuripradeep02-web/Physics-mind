@@ -89,14 +89,14 @@
             {
               "type": "stroke",
               "id": "inner_top",
-              "d": "M 100 115 L 370 115",
-              "ms": 3860
+              "d": "M 70 115 L 400 115",
+              "ms": 4500
             },
             {
               "type": "stroke",
               "id": "inner_bottom",
-              "d": "M 100 165 L 370 165",
-              "ms": 3860
+              "d": "M 70 165 L 400 165",
+              "ms": 4500
             },
             {
               "type": "stroke",
@@ -109,20 +109,16 @@
             {
               "type": "stroke",
               "id": "len_line",
-              "d": "M 70 45 L 400 45",
+              "d": "M 70 45 L 400 45 M 80 38 L 70 45 L 80 52 M 390 38 L 400 45 L 390 52",
               "ms": 4500
             },
             {
               "type": "stroke",
-              "id": "len_head_left",
-              "d": "M 80 38 L 70 45 L 80 52",
-              "ms": 350
-            },
-            {
-              "type": "stroke",
-              "id": "len_head_right",
-              "d": "M 390 38 L 400 45 L 390 52",
-              "ms": 350
+              "id": "xsec",
+              "d": "M 300 115 L 300 165",
+              "ms": 710,
+              "pen": "pencil",
+              "wipe": "y"
             },
             {
               "type": "label",
@@ -145,8 +141,8 @@
             {
               "type": "label",
               "id": "lbl_s1",
-              "x": 376,
-              "y": 134,
+              "x": 350,
+              "y": 110,
               "text": "S₁",
               "ms": 450,
               "em": true
@@ -163,8 +159,8 @@
             {
               "type": "label",
               "id": "lbl_a",
-              "x": 412,
-              "y": 146,
+              "x": 306,
+              "y": 134,
               "text": "A",
               "ms": 450,
               "sm": true
@@ -188,7 +184,7 @@
             "figure"
           ]
         },
-        "memory_tip": "One axis, two solenoids: draw the long outer rails first, then the shorter pair of rails inside."
+        "memory_tip": "One axis, two solenoids: draw the outer pair of rails first, then the inner pair between them, over the same length l."
       },
       {
         "id": "s2_setup",
@@ -229,7 +225,7 @@
             "solenoid"
           ]
         },
-        "memory_tip": "Same l, same A, turns N₁ and N₂ — set the stage in one sentence before any formula."
+        "memory_tip": "Same l, same A, turns N₁ and N₂ — declare all four in one sentence before any formula."
       },
       {
         "id": "s3_flux_linkage",

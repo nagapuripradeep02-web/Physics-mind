@@ -27,7 +27,7 @@
       "marks": 1
     },
     {
-      "label": "Evaluate and simplify",
+      "label": "Apply the limits and simplify",
       "marks": 1
     }
   ],
@@ -93,7 +93,7 @@
         "label": "Apply the limits and simplify",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last two marks. Subtracting a negative value at x=−1 turns the subtraction into an addition.",
+        "margin_note": "Second mark. Subtracting a negative value at x=−1 turns the subtraction into an addition.",
         "memory_tip": "(−1)⁴ = 1, not −1 — an even power of a negative number is always positive.",
         "lines": [
           "= [(2⁴/4 + 3(2)) − ((−1)⁴/4 + 3(−1))]",

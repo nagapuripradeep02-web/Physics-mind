@@ -179,14 +179,9 @@
             {
               "type": "stroke",
               "id": "e1",
-              "d": "M 170 70 L 138 19",
-              "ms": 860
-            },
-            {
-              "type": "stroke",
-              "id": "e1_head",
-              "d": "M 147 24 L 138 19 L 139 29",
-              "ms": 300
+              "d": "M 170 70 L 138 19 M 147 24 L 138 19 L 139 29",
+              "ms": 1150,
+              "w": 3.2
             },
             {
               "type": "label",
@@ -198,9 +193,10 @@
             },
             {
               "type": "stroke",
-              "id": "e2_head",
-              "d": "M 139 111 L 138 121 L 147 116",
-              "ms": 300
+              "id": "e2",
+              "d": "M 170 70 L 138 121 M 139 111 L 138 121 L 147 116",
+              "ms": 1150,
+              "w": 3.2
             },
             {
               "type": "label",
@@ -213,7 +209,7 @@
           ]
         },
         "margin_note": "The dipole −q at A and +q at B about O, the dashed distance r up to P, and the two fields at P: E₁ along BP away from +q, E₂ along PA towards −q.",
-        "why": "The figure shows the two field arrows leaning the same amount on either side of the vertical, which is what makes the perpendicular parts cancel and the parts along the axis add.",
+        "why": "The figure shows the two field arrows leaning the same amount above and below the horizontal through P — one tilted up, one tilted down — which is what makes the perpendicular parts cancel and the parts along the axis add.",
         "common_mistakes": [
           "Drawing E₂ away from −q. The field of a negative charge points towards it.",
           "Drawing the two arrows at different angles. By symmetry the angles are equal."

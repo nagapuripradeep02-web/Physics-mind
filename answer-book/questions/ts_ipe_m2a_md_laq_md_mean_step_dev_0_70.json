@@ -145,7 +145,7 @@
         "why": "Choosing A as the middle midpoint makes the dᵢ column symmetric (−3 to 3), so the products stay small and the sum Σfᵢdᵢ = −8 is quick to check by hand.",
         "common_mistakes": [
           "Copying A = 25 from a five-class table: here the middle class is 30–40, so A = 35.",
-          "Adding fᵢdᵢ without the signs: −18 − 10 − 8 + 0 + 7 + 12 + 9 = −8, not 64.",
+          "Adding fᵢdᵢ without the signs: 18 + 10 + 8 + 0 + 7 + 12 + 9 = 64, instead of the correct −18 − 10 − 8 + 0 + 7 + 12 + 9 = −8.",
           "Using the class lower limit instead of the midpoint."
         ]
       },

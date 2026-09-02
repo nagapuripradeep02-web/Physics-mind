@@ -146,7 +146,7 @@
         "common_mistakes": [
           "Using the class lower limit (0, 10, 20, …) instead of the midpoint (5, 15, 25, …).",
           "Writing dᵢ = xᵢ − 25 and forgetting to divide by C = 10.",
-          "Adding fᵢdᵢ without the signs: −10 − 8 + 0 + 16 + 12 = 10, not 46."
+          "Adding fᵢdᵢ without the signs: 10 + 8 + 0 + 16 + 12 = 46, instead of the correct −10 − 8 + 0 + 16 + 12 = 10."
         ]
       },
       {

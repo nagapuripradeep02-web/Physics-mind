@@ -1,0 +1,2197 @@
+[
+ {
+  "qid": "ts_ipe_c1_ce_lechatelier_industrial",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-15.md"
+  ],
+  "unit": "?",
+  "paper": "?"
+ },
+ {
+  "qid": "ts_ipe_c2_akc_acetylation_cannizzaro_cross_aldol_decarboxylation",
+  "severity": "WEAK",
+  "reports": [
+   "C2-30.md"
+  ],
+  "unit": "akc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_akc_acidic_strength_order",
+  "severity": "WEAK",
+  "reports": [
+   "C2-30.md"
+  ],
+  "unit": "akc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_akc_cannizzaro_and_acetylation",
+  "severity": "WEAK",
+  "reports": [
+   "C2-30.md"
+  ],
+  "unit": "akc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_akc_increasing_order_hcn_and_acid_strength",
+  "severity": "WEAK",
+  "reports": [
+   "C2-30.md"
+  ],
+  "unit": "akc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_akc_oxidation_products_of_carbonyl_compounds",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-30.md"
+  ],
+  "unit": "akc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_akc_substituent_effect_on_acidity",
+  "severity": "WRONG",
+  "reports": [
+   "C2-30.md"
+  ],
+  "unit": "akc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_akc_tollens_reagent_with_aldehyde",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-30.md"
+  ],
+  "unit": "akc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ape_acidic_nature_of_phenols_vs_alcohols",
+  "severity": "WEAK",
+  "reports": [
+   "C2-29.md"
+  ],
+  "unit": "ape",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ape_acidity_of_phenol_phenoxide_resonance",
+  "severity": "WRONG",
+  "reports": [
+   "C2-29.md"
+  ],
+  "unit": "ape",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ape_friedel_crafts_and_nitration_of_anisole",
+  "severity": "WRONG",
+  "reports": [
+   "C2-29.md"
+  ],
+  "unit": "ape",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ape_kolbe_reimer_tiemann_williamson",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-29.md"
+  ],
+  "unit": "ape",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ape_phenol_from_cumene",
+  "severity": "WEAK",
+  "reports": [
+   "C2-28.md"
+  ],
+  "unit": "ape",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ape_propanol_vs_butane_boiling_point",
+  "severity": "WRONG",
+  "reports": [
+   "C2-28.md"
+  ],
+  "unit": "ape",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ape_reactant_for_t_butyl_alcohol_from_acetone",
+  "severity": "WEAK",
+  "reports": [
+   "C2-28.md"
+  ],
+  "unit": "ape",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ape_reagents_phenol_from_chlorobenzene",
+  "severity": "WRONG",
+  "reports": [
+   "C2-28.md"
+  ],
+  "unit": "ape",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ape_sn2_reactivity_pairs",
+  "severity": "WEAK",
+  "reports": [
+   "C2-29.md"
+  ],
+  "unit": "ape",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ape_steam_distillation_of_nitrophenols",
+  "severity": "WEAK",
+  "reports": [
+   "C2-28.md"
+  ],
+  "unit": "ape",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ape_two_preparations_of_phenol",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-28.md",
+   "C2-29.md"
+  ],
+  "unit": "ape",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_anomers",
+  "severity": "WEAK",
+  "reports": [
+   "C2-23.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_effect_of_denaturation",
+  "severity": "WRONG",
+  "reports": [
+   "C2-22.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_globular_vs_fibrous_proteins",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-22.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_glycogen_and_starch",
+  "severity": "WRONG",
+  "reports": [
+   "C2-22.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_glycosidic_linkage",
+  "severity": "WRONG",
+  "reports": [
+   "C2-22.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_hydrolysis_of_sucrose_and_lactose",
+  "severity": "WRONG",
+  "reports": [
+   "C2-22.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_monosaccharides",
+  "severity": "WEAK",
+  "reports": [
+   "C2-22.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_nucleic_acids_and_functions",
+  "severity": "WEAK",
+  "reports": [
+   "C2-23.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_preparation_of_glucose",
+  "severity": "WEAK",
+  "reports": [
+   "C2-23.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_reactions_against_open_chain_structure",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-22.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_saq_enzymes",
+  "severity": "WRONG",
+  "reports": [
+   "C2-24.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_saq_essential_and_non_essential_amino_acids",
+  "severity": "WEAK",
+  "reports": [
+   "C2-23.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_saq_glucose_with_hi_br2_hno3",
+  "severity": "WRONG",
+  "reports": [
+   "C2-23.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_saq_nucleoside_vs_nucleotide",
+  "severity": "WEAK",
+  "reports": [
+   "C2-24.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_saq_starch_vs_cellulose",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-23.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_saq_vitamin_sources_and_deficiency_diseases",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-24.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_saq_zwitter_ion",
+  "severity": "WRONG",
+  "reports": [
+   "C2-24.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_secondary_structure_of_proteins",
+  "severity": "WEAK",
+  "reports": [
+   "C2-22.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_types_of_rna",
+  "severity": "WEAK",
+  "reports": [
+   "C2-23.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_bio_vitamin_a_and_c_sources",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-23.md"
+  ],
+  "unit": "bio",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_analgesics_classification",
+  "severity": "WEAK",
+  "reports": [
+   "C2-26.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_antacids",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-25.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_antibiotics",
+  "severity": "WRONG",
+  "reports": [
+   "C2-25.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_antihistamines",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-25.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_antioxidant_meaning",
+  "severity": "WEAK",
+  "reports": [
+   "C2-26.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_antiseptics",
+  "severity": "WEAK",
+  "reports": [
+   "C2-25.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_barbiturates",
+  "severity": "WEAK",
+  "reports": [
+   "C2-25.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_biodegradable_detergents",
+  "severity": "WRONG",
+  "reports": [
+   "C2-26.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_dettol_constituents",
+  "severity": "WRONG",
+  "reports": [
+   "C2-26.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_disinfectants",
+  "severity": "WRONG",
+  "reports": [
+   "C2-25.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_drug_structures",
+  "severity": "WEAK",
+  "reports": [
+   "C2-26.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_food_preservatives",
+  "severity": "WRONG",
+  "reports": [
+   "C2-26.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_soap_vs_synthetic_detergent",
+  "severity": "WEAK",
+  "reports": [
+   "C2-26.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_tincture_of_iodine",
+  "severity": "WEAK",
+  "reports": [
+   "C2-26.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_cel_tranquilisers",
+  "severity": "WRONG",
+  "reports": [
+   "C2-25.md"
+  ],
+  "unit": "cel",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ck_activation_energy",
+  "severity": "WRONG",
+  "reports": [
+   "C2-08.md"
+  ],
+  "unit": "ck",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ck_average_rate_expression",
+  "severity": "WEAK",
+  "reports": [
+   "C2-08.md"
+  ],
+  "unit": "ck",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ck_catalyst_effect_on_rate",
+  "severity": "FIGURE",
+  "reports": [
+   "C2-08.md",
+   "FIG-C2-1.md"
+  ],
+  "unit": "ck",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ck_collision_theory",
+  "severity": "WRONG",
+  "reports": [
+   "C2-08.md"
+  ],
+  "unit": "ck",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ck_gaseous_first_order_examples",
+  "severity": "WRONG",
+  "reports": [
+   "C2-07.md"
+  ],
+  "unit": "ck",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ck_half_life_derivation_zero_first_order",
+  "severity": "WEAK",
+  "reports": [
+   "C2-08.md"
+  ],
+  "unit": "ck",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ck_half_life_equations",
+  "severity": "WEAK",
+  "reports": [
+   "C2-07.md"
+  ],
+  "unit": "ck",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ck_integrated_first_order_rate_equation",
+  "severity": "WEAK",
+  "reports": [
+   "C2-08.md"
+  ],
+  "unit": "ck",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ck_molecularity_vs_order",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-07.md"
+  ],
+  "unit": "ck",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ck_pseudo_first_order",
+  "severity": "WRONG",
+  "reports": [
+   "C2-07.md"
+  ],
+  "unit": "ck",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ck_rate_law",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-07.md"
+  ],
+  "unit": "ck",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ck_rate_of_reaction_definition",
+  "severity": "WRONG",
+  "reports": [
+   "C2-07.md"
+  ],
+  "unit": "ck",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ck_temperature_effect_on_rate",
+  "severity": "WEAK",
+  "reports": [
+   "C2-08.md"
+  ],
+  "unit": "ck",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_df_alloy_definition",
+  "severity": "WEAK",
+  "reports": [
+   "C2-18.md"
+  ],
+  "unit": "df",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_df_aqueous_cu2_blue_zn2_colourless",
+  "severity": "WRONG",
+  "reports": [
+   "C2-18.md"
+  ],
+  "unit": "df",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_df_characteristic_properties_transition",
+  "severity": "WRONG",
+  "reports": [
+   "C2-19.md"
+  ],
+  "unit": "df",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_df_chelate_ligand",
+  "severity": "WEAK",
+  "reports": [
+   "C2-18.md"
+  ],
+  "unit": "df",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_df_colour_of_transition_metal_ions",
+  "severity": "FIGURE",
+  "reports": [
+   "C2-19.md",
+   "FIG-C2-1.md"
+  ],
+  "unit": "df",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_df_hydrated_copper_sulphate_colour",
+  "severity": "WRONG",
+  "reports": [
+   "C2-18.md"
+  ],
+  "unit": "df",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_df_interstitial_compounds",
+  "severity": "WEAK",
+  "reports": [
+   "C2-19.md"
+  ],
+  "unit": "df",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_df_isomerism_in_coordination_compounds",
+  "severity": "WEAK",
+  "reports": [
+   "C2-19.md"
+  ],
+  "unit": "df",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_df_iupac_formulae_from_names",
+  "severity": "WRONG",
+  "reports": [
+   "C2-19.md"
+  ],
+  "unit": "df",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_df_mischmetal",
+  "severity": "WEAK",
+  "reports": [
+   "C2-18.md"
+  ],
+  "unit": "df",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_df_zn2_diamagnetic_mn2_paramagnetic",
+  "severity": "WRONG",
+  "reports": [
+   "C2-18.md"
+  ],
+  "unit": "df",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_conductivity_definition",
+  "severity": "WRONG",
+  "reports": [
+   "C2-02.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_cuso4_electrolysis_mass_of_copper",
+  "severity": "WEAK",
+  "reports": [
+   "C2-06.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_electrolysis_and_faraday_first_law",
+  "severity": "WEAK",
+  "reports": [
+   "C2-06.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_faraday_first_law",
+  "severity": "WEAK",
+  "reports": [
+   "C2-05.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_fuel_cell_vs_galvanic_cell",
+  "severity": "WEAK",
+  "reports": [
+   "C2-05.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_galvanic_cell_daniel_cell",
+  "severity": "WEAK",
+  "reports": [
+   "C2-05.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_gibbs_energy_and_emf",
+  "severity": "WEAK",
+  "reports": [
+   "C2-05.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_kohlrausch_hac_calculation",
+  "severity": "WRONG",
+  "reports": [
+   "C2-06.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_kohlrausch_law_explained",
+  "severity": "WEAK",
+  "reports": [
+   "C2-06.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_metallic_corrosion_of_iron",
+  "severity": "WEAK",
+  "reports": [
+   "C2-06.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_nernst_equation_metal_and_nonmetal",
+  "severity": "WEAK",
+  "reports": [
+   "C2-06.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_primary_and_secondary_batteries",
+  "severity": "WRONG",
+  "reports": [
+   "C2-05.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_prob_copper_deposited_2a",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-06.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_she_construction_working",
+  "severity": "WRONG",
+  "reports": [
+   "C2-05.md",
+   "C2-06.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_standard_hydrogen_electrode",
+  "severity": "WRONG",
+  "reports": [
+   "C2-05.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ec_types_of_batteries",
+  "severity": "WRONG",
+  "reports": [
+   "C2-05.md",
+   "C2-06.md"
+  ],
+  "unit": "ec",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_hal_conversions_ethane_and_toluene",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-27.md"
+  ],
+  "unit": "hal",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_hal_pcl5_reactions_vsaq",
+  "severity": "WRONG",
+  "reports": [
+   "C2-27.md"
+  ],
+  "unit": "hal",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_hal_racemic_retention_enantiomers",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-27.md"
+  ],
+  "unit": "hal",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_hal_structures_from_iupac_names",
+  "severity": "WRONG",
+  "reports": [
+   "C2-27.md"
+  ],
+  "unit": "hal",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_alloy_compositions",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-11.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_alumina_from_bauxite_leaching",
+  "severity": "WRONG",
+  "reports": [
+   "C2-12.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_aluminium_from_bauxite",
+  "severity": "WRONG",
+  "reports": [
+   "C2-12.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_blister_copper",
+  "severity": "WEAK",
+  "reports": [
+   "C2-12.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_c_vs_co_for_zno",
+  "severity": "WEAK",
+  "reports": [
+   "C2-11.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_copper_from_copper_pyrites",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-11.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_cryolite_role",
+  "severity": "WEAK",
+  "reports": [
+   "C2-11.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_depressant_role",
+  "severity": "WEAK",
+  "reports": [
+   "C2-12.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_froth_flotation",
+  "severity": "WEAK",
+  "reports": [
+   "C2-12.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_gangue_and_slag",
+  "severity": "WEAK",
+  "reports": [
+   "C2-11.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_matte",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-11.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_ores_of_four_metals",
+  "severity": "WEAK",
+  "reports": [
+   "C2-11.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_refining_methods",
+  "severity": "WEAK",
+  "reports": [
+   "C2-12.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_roasting_vs_calcination",
+  "severity": "WEAK",
+  "reports": [
+   "C2-12.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_silica_role_copper",
+  "severity": "WRONG",
+  "reports": [
+   "C2-11.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_met_zinc_from_zinc_blende",
+  "severity": "WEAK",
+  "reports": [
+   "C2-12.md"
+  ],
+  "unit": "met",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ng_helium_oxygen_diving_mixture",
+  "severity": "WEAK",
+  "reports": [
+   "C2-17.md"
+  ],
+  "unit": "ng",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ng_preparation_of_xenon_fluorides",
+  "severity": "WEAK",
+  "reports": [
+   "C2-17.md"
+  ],
+  "unit": "ng",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ng_structures_of_xef6_and_xeof4",
+  "severity": "WEAK",
+  "reports": [
+   "C2-17.md"
+  ],
+  "unit": "ng",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ng_uses_of_helium",
+  "severity": "WEAK",
+  "reports": [
+   "C2-17.md"
+  ],
+  "unit": "ng",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ng_uses_of_neon",
+  "severity": "WRONG",
+  "reports": [
+   "C2-17.md"
+  ],
+  "unit": "ng",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ng_why_noble_gases_are_inert",
+  "severity": "WRONG",
+  "reports": [
+   "C2-17.md"
+  ],
+  "unit": "ng",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_basicity_order_gaseous_vs_aqueous",
+  "severity": "WEAK",
+  "reports": [
+   "C2-32.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_carbylamine_reaction_equation",
+  "severity": "WEAK",
+  "reports": [
+   "C2-31.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_conversions_benzamide_and_p_bromoaniline",
+  "severity": "WEAK",
+  "reports": [
+   "C2-31.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_conversions_ethylation_and_sulphonamide",
+  "severity": "WEAK",
+  "reports": [
+   "C2-32.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_diazonium_to_benzamide_abc",
+  "severity": "WEAK",
+  "reports": [
+   "C2-31.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_ethyl_cyanide_and_isocyanide_from_alkyl_halide",
+  "severity": "WEAK",
+  "reports": [
+   "C2-32.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_ethylamine_vs_aniline_solubility",
+  "severity": "WRONG",
+  "reports": [
+   "C2-31.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_fourteen_named_reactions",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-32.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_gabriel_fails_for_aromatic_amines",
+  "severity": "WEAK",
+  "reports": [
+   "C2-31.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_hinsberg_test_distinguishing_amines",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-32.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_increasing_basic_strength_aryl_amines",
+  "severity": "WEAK",
+  "reports": [
+   "C2-31.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_iupac_names_and_amine_classes",
+  "severity": "WRONG",
+  "reports": [
+   "C2-31.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_iupac_names_four_compounds",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-31.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_prepare_dimethylpropanamine_and_propanamine",
+  "severity": "WRONG",
+  "reports": [
+   "C2-32.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ocn_sandmeyer_and_gattermann_reactions",
+  "severity": "WRONG",
+  "reports": [
+   "C2-32.md"
+  ],
+  "unit": "ocn",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_pol_biodegradable_polymer",
+  "severity": "WRONG",
+  "reports": [
+   "C2-20.md"
+  ],
+  "unit": "pol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_pol_elastomer_definition",
+  "severity": "WRONG",
+  "reports": [
+   "C2-20.md"
+  ],
+  "unit": "pol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_pol_monomers_definition",
+  "severity": "WRONG",
+  "reports": [
+   "C2-21.md"
+  ],
+  "unit": "pol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_pol_nylon_2_nylon_6_structure",
+  "severity": "WEAK",
+  "reports": [
+   "C2-21.md"
+  ],
+  "unit": "pol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_pol_phbv",
+  "severity": "WEAK",
+  "reports": [
+   "C2-20.md"
+  ],
+  "unit": "pol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_pol_polyamide_homopolymer_or_copolymer",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-20.md"
+  ],
+  "unit": "pol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_pol_polymerisation_types_four_polymers",
+  "severity": "WEAK",
+  "reports": [
+   "C2-20.md"
+  ],
+  "unit": "pol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_pol_semi_synthetic_polymers",
+  "severity": "WEAK",
+  "reports": [
+   "C2-20.md"
+  ],
+  "unit": "pol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_pol_thermoplastic_polymers",
+  "severity": "WRONG",
+  "reports": [
+   "C2-21.md"
+  ],
+  "unit": "pol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_pol_types_of_molecular_mass",
+  "severity": "WRONG",
+  "reports": [
+   "C2-21.md"
+  ],
+  "unit": "pol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_pol_vulcanisation",
+  "severity": "WEAK",
+  "reports": [
+   "C2-20.md"
+  ],
+  "unit": "pol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_pol_ziegler_natta_catalyst",
+  "severity": "WRONG",
+  "reports": [
+   "C2-21.md"
+  ],
+  "unit": "pol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_autocatalysis",
+  "severity": "WRONG",
+  "reports": [
+   "C2-09.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_brownian_movement",
+  "severity": "WEAK",
+  "reports": [
+   "C2-09.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_catalysis_classification",
+  "severity": "WRONG",
+  "reports": [
+   "C2-10.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_cmc_and_kraft_temperature",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-09.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_coagulation",
+  "severity": "WEAK",
+  "reports": [
+   "C2-09.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_collodion_solution",
+  "severity": "WRONG",
+  "reports": [
+   "C2-09.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_dialysis_purification",
+  "severity": "FIGURE",
+  "reports": [
+   "C2-10.md",
+   "FIG-C2-1.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_dispersed_phase_and_medium",
+  "severity": "WEAK",
+  "reports": [
+   "C2-10.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_emulsifying_agent",
+  "severity": "WRONG",
+  "reports": [
+   "C2-09.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_emulsions_classification",
+  "severity": "WRONG",
+  "reports": [
+   "C2-10.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_enzyme_catalysed_reactions",
+  "severity": "WEAK",
+  "reports": [
+   "C2-10.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_gold_number",
+  "severity": "WRONG",
+  "reports": [
+   "C2-09.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_hardy_schulze_rule",
+  "severity": "WEAK",
+  "reports": [
+   "C2-10.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_micelle_cleaning_action",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-C2-1.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_micelle_definition",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-09.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_promoters_and_poisons",
+  "severity": "WRONG",
+  "reports": [
+   "C2-09.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_tyndall_effect",
+  "severity": "WEAK",
+  "reports": [
+   "C2-09.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sc_types_of_adsorption",
+  "severity": "WRONG",
+  "reports": [
+   "C2-10.md"
+  ],
+  "unit": "sc",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_azeotropes",
+  "severity": "WEAK",
+  "reports": [
+   "C2-03.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_concentration_from_osmotic_pressure",
+  "severity": "WEAK",
+  "reports": [
+   "C2-04.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_freezing_point_chloroacetic_acids",
+  "severity": "WEAK",
+  "reports": [
+   "C2-04.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_henrys_law",
+  "severity": "WRONG",
+  "reports": [
+   "C2-03.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_isotonic_solutions",
+  "severity": "WEAK",
+  "reports": [
+   "C2-03.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_mass_of_solute_in_octane",
+  "severity": "WRONG",
+  "reports": [
+   "C2-04.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_molarity_10_percent_glucose",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-03.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_molarity_definition",
+  "severity": "WEAK",
+  "reports": [
+   "C2-03.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_mole_fraction_definition",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-04.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_osmosis",
+  "severity": "WRONG",
+  "reports": [
+   "C2-03.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_prob_molality_ethanoic_acid",
+  "severity": "WEAK",
+  "reports": [
+   "C2-04.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_prob_molar_mass_from_vapour_pressure",
+  "severity": "WEAK",
+  "reports": [
+   "C2-04.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_prob_mole_fraction_ethylene_glycol",
+  "severity": "WRONG",
+  "reports": [
+   "C2-04.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_raoults_law",
+  "severity": "WRONG",
+  "reports": [
+   "C2-03.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_relative_lowering_molar_mass",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-04.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_sol_vapour_pressure_glucose_solution",
+  "severity": "WEAK",
+  "reports": [
+   "C2-04.md"
+  ],
+  "unit": "sol",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ss_amorphous_definition",
+  "severity": "WRONG",
+  "reports": [
+   "C2-01.md"
+  ],
+  "unit": "ss",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ss_band_conductor_insulator",
+  "severity": "WRONG",
+  "reports": [
+   "C2-02.md"
+  ],
+  "unit": "ss",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ss_band_conductor_semiconductor",
+  "severity": "WRONG",
+  "reports": [
+   "C2-02.md"
+  ],
+  "unit": "ss",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ss_ferromagnetism",
+  "severity": "WRONG",
+  "reports": [
+   "C2-01.md"
+  ],
+  "unit": "ss",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ss_formula_pq_body_centred",
+  "severity": "WEAK",
+  "reports": [
+   "C2-02.md"
+  ],
+  "unit": "ss",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ss_frenkel_defect",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-01.md"
+  ],
+  "unit": "ss",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ss_glass_vs_quartz",
+  "severity": "WRONG",
+  "reports": [
+   "C2-01.md"
+  ],
+  "unit": "ss",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ss_lattice_points_fcc",
+  "severity": "WEAK",
+  "reports": [
+   "C2-01.md"
+  ],
+  "unit": "ss",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ss_metallic_vs_ionic_crystals",
+  "severity": "WRONG",
+  "reports": [
+   "C2-02.md"
+  ],
+  "unit": "ss",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ss_octahedral_tetrahedral_voids",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-02.md"
+  ],
+  "unit": "ss",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ss_schottky_defect",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-01.md"
+  ],
+  "unit": "ss",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_ss_semiconductor_types",
+  "severity": "WRONG",
+  "reports": [
+   "C2-02.md"
+  ],
+  "unit": "ss",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_va_ammonia_complexing_agent",
+  "severity": "WRONG",
+  "reports": [
+   "C2-13.md"
+  ],
+  "unit": "va",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_va_dinitrogen_inert_character",
+  "severity": "WRONG",
+  "reports": [
+   "C2-13.md"
+  ],
+  "unit": "va",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_va_habers_process_ammonia",
+  "severity": "WRONG",
+  "reports": [
+   "C2-14.md"
+  ],
+  "unit": "va",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_va_iron_passive_conc_hno3",
+  "severity": "TEACHER",
+  "reports": [
+   "C2-14.md"
+  ],
+  "unit": "va",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_va_nitrogen_diatomic_phosphorus_p4",
+  "severity": "WEAK",
+  "reports": [
+   "C2-13.md"
+  ],
+  "unit": "va",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_va_nitrogen_molecule_stability",
+  "severity": "WRONG",
+  "reports": [
+   "C2-13.md"
+  ],
+  "unit": "va",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_va_ostwalds_process_nitric_acid",
+  "severity": "WRONG",
+  "reports": [
+   "C2-14.md"
+  ],
+  "unit": "va",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_va_pcl5_reactions",
+  "severity": "WEAK",
+  "reports": [
+   "C2-14.md",
+   "C2-27.md"
+  ],
+  "unit": "va",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_va_ph3_weaker_base_than_nh3",
+  "severity": "WEAK",
+  "reports": [
+   "C2-13.md"
+  ],
+  "unit": "va",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_va_uses_of_ammonia",
+  "severity": "HARMFUL",
+  "reports": [
+   "C2-14.md"
+  ],
+  "unit": "va",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_va_white_phosphorus_with_naoh",
+  "severity": "WEAK",
+  "reports": [
+   "C2-14.md"
+  ],
+  "unit": "va",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_via_contact_process",
+  "severity": "WEAK",
+  "reports": [
+   "C2-15.md"
+  ],
+  "unit": "via",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_via_drying_ammonia",
+  "severity": "WRONG",
+  "reports": [
+   "C2-15.md"
+  ],
+  "unit": "via",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_via_hybridisation_of_sulphur",
+  "severity": "WRONG",
+  "reports": [
+   "C2-15.md"
+  ],
+  "unit": "via",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_via_o2_o3_paramagnetic",
+  "severity": "WEAK",
+  "reports": [
+   "C2-15.md"
+  ],
+  "unit": "via",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_via_ozone_preparation_reactions",
+  "severity": "WEAK",
+  "reports": [
+   "C2-15.md"
+  ],
+  "unit": "via",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_via_sf4_sf6_structures",
+  "severity": "WEAK",
+  "reports": [
+   "C2-15.md"
+  ],
+  "unit": "via",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_via_tailing_of_mercury",
+  "severity": "WRONG",
+  "reports": [
+   "C2-15.md"
+  ],
+  "unit": "via",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_via_water_liquid_h2s_gas",
+  "severity": "WEAK",
+  "reports": [
+   "C2-15.md"
+  ],
+  "unit": "via",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_viia_aqua_regia",
+  "severity": "WEAK",
+  "reports": [
+   "C2-16.md"
+  ],
+  "unit": "viia",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_viia_bond_enthalpy_f2_less_than_cl2",
+  "severity": "WEAK",
+  "reports": [
+   "C2-16.md"
+  ],
+  "unit": "viia",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_viia_chlorine_electrolytic_naoh_nh3",
+  "severity": "WEAK",
+  "reports": [
+   "C2-16.md"
+  ],
+  "unit": "viia",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_viia_cl2_slaked_lime_nai",
+  "severity": "WRONG",
+  "reports": [
+   "C2-16.md"
+  ],
+  "unit": "viia",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_viia_egh_fluorine_less_than_chlorine",
+  "severity": "WEAK",
+  "reports": [
+   "C2-16.md"
+  ],
+  "unit": "viia",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_viia_f2_cl2_with_water",
+  "severity": "WEAK",
+  "reports": [
+   "C2-16.md"
+  ],
+  "unit": "viia",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_c2_viia_oxoacids_of_chlorine",
+  "severity": "FIGURE",
+  "reports": [
+   "C2-16.md",
+   "FIG-C2-2.md"
+  ],
+  "unit": "viia",
+  "paper": "c2"
+ },
+ {
+  "qid": "ts_ipe_m2a_cn_argand_equilateral_triangle",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-M2.md"
+  ],
+  "unit": "cn",
+  "paper": "m2a"
+ },
+ {
+  "qid": "ts_ipe_m2b_cir_all_common_tangents_2x_6y_6",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-M2.md"
+  ],
+  "unit": "cir",
+  "paper": "m2b"
+ },
+ {
+  "qid": "ts_ipe_m2b_cir_perpendicular_tangents_from_origin_condition",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-M2.md"
+  ],
+  "unit": "cir",
+  "paper": "m2b"
+ },
+ {
+  "qid": "ts_ipe_m2b_cir_touch_internally_6x_9y_plus13",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-M2.md"
+  ],
+  "unit": "cir",
+  "paper": "m2b"
+ },
+ {
+  "qid": "ts_ipe_m2b_par_vertex_focus_directrix_axis_x2_minus4y",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-M2.md"
+  ],
+  "unit": "par",
+  "paper": "m2b"
+ },
+ {
+  "qid": "ts_ipe_p2_cur_potentiometer_compare_emfs",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-1.md"
+  ],
+  "unit": "cur",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_cur_potentiometer_internal_resistance",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-1.md"
+  ],
+  "unit": "cur",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_ecf_couple_on_dipole",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-1.md"
+  ],
+  "unit": "ecf",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_ecf_equatorial_plane_dipole_field",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-1.md"
+  ],
+  "unit": "ecf",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_emi_mutual_inductance_solenoids",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-1.md"
+  ],
+  "unit": "emi",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_mcm_torque_on_loop_and_galvanometer",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-2.md"
+  ],
+  "unit": "mcm",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_nuc_nuclear_reactor_principle_working",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-2.md"
+  ],
+  "unit": "nuc",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_ray_compound_microscope_magnification",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-2.md"
+  ],
+  "unit": "ray",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_ray_critical_angle_total_internal_reflection",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-2.md"
+  ],
+  "unit": "ray",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_ray_formation_of_mirage",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-3.md"
+  ],
+  "unit": "ray",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_ray_simple_microscope_image_formation",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-3.md"
+  ],
+  "unit": "ray",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_ray_snells_law_prism_refractive_index",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-3.md"
+  ],
+  "unit": "ray",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_wav_closed_pipe_harmonics",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-4.md"
+  ],
+  "unit": "wav",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_wav_open_pipe_harmonics",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-4.md"
+  ],
+  "unit": "wav",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_wav_resonance_velocity_of_sound",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-4.md"
+  ],
+  "unit": "wav",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_wop_interference_intensity_conditions",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-4.md"
+  ],
+  "unit": "wop",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_wop_polaroid_between_crossed_polaroids",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-4.md"
+  ],
+  "unit": "wop",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_wop_resolving_power_of_eye",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-4.md"
+  ],
+  "unit": "wop",
+  "paper": "p2"
+ },
+ {
+  "qid": "ts_ipe_p2_wop_total_internal_reflection_huygens",
+  "severity": "FIGURE",
+  "reports": [
+   "FIG-P2-4.md"
+  ],
+  "unit": "wop",
+  "paper": "p2"
+ }
+]

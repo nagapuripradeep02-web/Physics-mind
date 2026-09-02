@@ -89,7 +89,7 @@
         "why": "Pascal's identity needs two lower numbers one apart. 3 and 6 are not; 3 and 4 are. The rewrite is what makes the identity usable.",
         "common_mistakes": [
           "Applying Pascal directly to ¹⁰C₃ + ¹⁰C₆ — the lower numbers must differ by one.",
-          "Rewriting ¹⁰C₃ as ¹⁰C₇ instead, which moves further away."
+          "Rewriting ¹⁰C₃ as ¹⁰C₇ instead — ¹⁰C₇ + ¹⁰C₆ = ¹¹C₇ = ¹¹C₄ reaches the same answer, but it needs the complement rule a second time at the end."
         ]
       },
       {

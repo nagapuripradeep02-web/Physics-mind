@@ -75,7 +75,7 @@
             "h nu"
           ]
         },
-        "memory_tip": "One photon, one electron: energy in = cost to leave + speed to spare."
+        "memory_tip": "One photon, one electron: energy in = energy to leave the surface + leftover kinetic energy."
       },
       {
         "id": "s2_terms",

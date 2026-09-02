@@ -339,7 +339,7 @@
         },
         "why": "ⁿCᵣ = ⁿCₙ₋ᵣ is what makes the binomial coefficients disappear; the cube root is unique for real numbers, so a³b³ = −1 gives exactly ab = −1.",
         "common_mistakes": [
-          "Not noticing ¹¹C₄ = ¹¹C₇ and computing 330 = 330 the long way.",
+          "Mishandling the b powers when cross-multiplying: writing a³ = −b³, which gives a = −b, instead of a³ = −1/b³.",
           "Stopping at a³b³ = −1.",
           "Writing ab = 1 after losing the sign in step 6."
         ]

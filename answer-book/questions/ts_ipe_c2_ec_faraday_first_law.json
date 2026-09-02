@@ -90,7 +90,7 @@
           "Using time in minutes. t must be in seconds for the ampere and the coulomb to agree."
         ],
         "memory_tip": "One coulomb sets free Z grams, so Q coulombs set free ZQ grams, and Q is It.",
-        "margin_note": "Convert the time to seconds before using this formula. That single slip costs more marks than the law itself."
+        "margin_note": "Convert the time to seconds before using this formula. A time left in minutes gives an answer 60 times too large."
       }
     ]
   },

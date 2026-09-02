@@ -160,7 +160,7 @@
           "Mixing in a minus sign anywhere, carried by habit from the sin⁴x version done alongside it.",
           "Forgetting the +c at the very end."
         ],
-        "memory_tip": "sin⁴x and cos⁴x are structural twins — same coefficients (1/4, 3/8, 3/8), opposite name, same sign (all +)."
+        "memory_tip": "sin⁴x and cos⁴x are structural twins — same coefficients (1/4, 3/8, 3/8) — but the SIGNS differ: sin⁴x's answer keeps its first two terms negative, while cos⁴x's answer is all positive."
       }
     ]
   }

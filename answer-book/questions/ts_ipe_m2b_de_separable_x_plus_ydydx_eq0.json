@@ -50,7 +50,7 @@
         "label": "Separate the variables",
         "marks": 1,
         "mark_note": "Method",
-        "margin_note": "One mark. Move x across and divide by y to separate the two variables.",
+        "margin_note": "One mark. Move x across, then multiply through by dx to separate the two variables.",
         "memory_tip": "y·dy/dx = −x rearranges instantly to y dy = −x dx — one of the simplest separations in the chapter.",
         "lines": [
           {
@@ -63,7 +63,7 @@
         "why": "Moving x to the other side and multiplying through by dx leaves y dy on the left and −x dx on the right, which is already fully separated with nothing further to rearrange.",
         "common_mistakes": [
           "Losing the minus sign when moving x across, writing y dy = x dx instead of y dy = −x dx.",
-          "Trying to divide by x instead of by y, which does not separate the two variables correctly."
+          "Dividing by y to get dy/dx = −x/y and then integrating the right-hand side with respect to x as if y were a constant — y still depends on x, so that integration is not valid."
         ]
       },
       {

@@ -95,7 +95,7 @@
           "Writing that the zwitterion has a net positive or net negative charge. Its net charge is zero."
         ],
         "memory_tip": "Two charges, one molecule, net zero. It behaves like a salt.",
-        "margin_note": "The words \"dipolar\" and \"net charge zero\" carry this mark. The physical properties are a useful extra."
+        "margin_note": "The words \"dipolar ion\" and \"net charge zero\" carry this mark, so write \"dipolar\" here as well as in the first part. The physical properties are a useful extra."
       },
       {
         "id": "s3_figure",
@@ -194,7 +194,7 @@
         "why": "The three species are the same molecule at three different pH values, and setting them one above the other shows that adding acid or base moves the molecule one step up or one step down the same set of three forms. Written as separate equations they read as three unconnected reactions.",
         "common_mistakes": [
           "Reading the three rows as three different compounds. They are one amino acid at three pH values.",
-          "Drawing the arrows in one direction only. Both changes reverse when the pH is reversed."
+          "Drawing both arrows the same way. Adding acid moves the molecule up to the cation and adding base moves it down to the anion."
         ],
         "memory_tip": "One column of three: cation at the top, anion at the bottom, zwitterion in the middle.",
         "margin_note": "The question says define and give an example, not draw, so this earns no marks. Sketch it only if the written steps are finished."

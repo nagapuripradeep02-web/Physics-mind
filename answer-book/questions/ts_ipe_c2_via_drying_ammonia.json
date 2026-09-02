@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: \"FAST TRACK IPE for Sr. Students\", chemistry half, book pp.84-86, sub-box \"VIA GROUP ELEMENTS\" of printed chapter 7; this is VSAQ 1 of that sub-box, book p.84. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK MISPLACEMENT: this question is about ammonia, which is a VA group hydride, and it is printed as the FIRST question under the VIA GROUP ELEMENTS heading, immediately after the VA group Long Answer on Ostwald's process. It belongs to the VA group section. It is authored here because the book prints it here and the sub-box boundary is what defines this unit. BOOK GAP: the printed answer is one line, \"CaO is used for drying ammonia\", with no reason and no rejected drier. Both are written on this card, because a bare name is usually only half the mark."
+    "note": "The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Source: \"FAST TRACK IPE for Sr. Students\", chemistry half, book pp.84-86, sub-box \"VIA GROUP ELEMENTS\" of printed chapter 7; this is VSAQ 1 of that sub-box, book p.84. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK MISPLACEMENT: this question is about ammonia, which is a VA group hydride, and it is printed as the FIRST question under the VIA GROUP ELEMENTS heading, immediately after the VA group Long Answer on Ostwald's process. It belongs to the VA group section. It is authored here because the book prints it here and the sub-box boundary is what defines this unit. BOOK GAP: the printed answer is one line, \"CaO is used for drying ammonia\", with no reason and no rejected drier. Both are written on this card, because the printed one-line answer cannot fill a 2-mark item."
   },
   "answer": {
     "page_header": [
@@ -58,10 +58,10 @@
         "why": "A drying agent must remove water and leave the gas itself untouched. Quicklime is a basic oxide, so it reacts with water but not with a basic gas. That is the whole reason this one drier works when the common ones do not.",
         "common_mistakes": [
           "Naming concentrated H₂SO₄. It is the standard drier for most gases, but it reacts with ammonia.",
-          "Writing only the formula CaO with no reason. The examiner marks the word basic as much as the name."
+          "Writing CaO alone. It answers the question, but one line saying quicklime is a basic oxide makes the answer complete."
         ],
-        "memory_tip": "Ammonia is a base, so its drier must also be a base. Quicklime is the base.",
-        "margin_note": "Write the name quicklime, the formula CaO, and the word basic. The name alone is usually half the mark."
+        "memory_tip": "Ammonia is a base, so its drier must not be an acid. Quicklime is a basic oxide, so it takes the water and leaves the gas.",
+        "margin_note": "Write the name quicklime and the formula CaO. Add the word basic if there is room."
       },
       {
         "id": "s2_rejected_driers",

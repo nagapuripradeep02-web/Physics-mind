@@ -52,7 +52,7 @@
         "marks": 1,
         "mark_note": "Method",
         "margin_note": "First mark. The 6th term is Tᵣ₊₁ with r = 5: ⁹C₅ times the first entry to the power 4 times the second to the power 5.",
-        "memory_tip": "The 6th term is Tᵣ₊₁ with r = 5, not 6 — the index runs one behind.",
+        "memory_tip": "The 6th term is Tᵣ₊₁ with r = 5, not 6 — the term number is always one more than r.",
         "lines": [
           {
             "text": "Sol:",

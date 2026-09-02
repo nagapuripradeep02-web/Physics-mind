@@ -57,7 +57,7 @@
           "Writing \"one litre of solvent\". Molarity is per litre of SOLUTION.",
           "Writing grams of solute instead of moles. The mass has to be divided by the molar mass first."
         ],
-        "memory_tip": "Molarity is moles per litre of solution. Volume, so it is measured in a flask.",
+        "memory_tip": "Molarity is moles per litre of solution — the volume is made up to the mark in a volumetric flask, so it is the volume of the solution, not of the solvent.",
         "margin_note": "The word SOLUTION is the marked word in this line. Underline it."
       },
       {
@@ -89,5 +89,5 @@
       }
     ]
   },
-  "insider_note": "Molarity and molality are asked as a pair in this book. Write the temperature line on both cards, because that is the single line an examiner uses to see whether the two terms have been separated."
+  "insider_note": "Molarity and molality are usually asked as a pair. Write the temperature line in both answers, because that is the single line an examiner uses to see whether the two terms have been separated."
 }

@@ -66,8 +66,7 @@
         "why": "Mole fraction is the moles of one component divided by the TOTAL moles of the solution, which is why the denominator carries both terms. The two mole fractions must add to 1, so the water value follows by subtraction and doubles as a check on the arithmetic.",
         "common_mistakes": [
           "Dividing by the moles of water instead of by the total. That ratio is not a mole fraction.",
-          "Giving the mole fraction a unit. It is a ratio of moles, so it has none.",
-          "Stopping at the glycol value when the question names the solution. Quoting both, and showing they add to 1, costs one line."
+          "Giving the mole fraction a unit. It is a ratio of moles, so it has none."
         ],
         "memory_tip": "The two mole fractions add to 1. Work out the smaller one, then subtract.",
         "margin_note": "Box the value and add the water fraction. The two adding to 1 is a free check."

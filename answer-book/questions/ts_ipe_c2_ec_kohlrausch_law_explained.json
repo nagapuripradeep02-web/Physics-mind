@@ -167,12 +167,12 @@
             "style": "indent"
           }
         ],
-        "why": "The two salts on the right supply the acetate and the hydrogen ions that are wanted, and each of them also brings in one unwanted ion. NaCl is made of exactly those two unwanted ions, so subtracting it removes both at once.",
+        "why": "This is a general recipe and not one result for acetic acid. Any weak electrolyte can be built from strong ones: two of them are chosen to supply the two ions wanted, each brings in one spare ion, and the salt made of those two spare ions is subtracted to remove both at once.",
         "common_mistakes": [
-          "Subtracting HCl instead of NaCl. The salt subtracted has to be made of the two ions that are not wanted.",
+          "Choosing salts that do not supply the two ions wanted. Write the ions of the weak electrolyte down first, then look for strong electrolytes that carry them.",
           "Saying the value can be measured directly. For a weak electrolyte the graph of Λm against √c does not reach the axis cleanly."
         ],
-        "memory_tip": "Take the two salts carrying the ions you want, then subtract the salt made of the two leftovers.",
+        "memory_tip": "The rule is general: any weak electrolyte can be built from strong ones. Pick two salts that supply its two ions, then subtract the salt made of the two spare ions.",
         "margin_note": "Name the reason the direct method fails before giving the combination. That reason is half of this mark."
       },
       {
@@ -224,12 +224,12 @@
           "so Ka can be found from conductivity",
           "measurements alone."
         ],
-        "why": "The three applications build on one another: the first gives Λ°m, the second turns it into α, and the third turns α into Ka. Presenting them in that order shows they are one chain and not three separate facts.",
+        "why": "The three applications build on one another: the first gives Λ°m, the second turns it into α, and the third turns α into Ka. Presenting them in that order shows they are three steps of one method, not three separate facts.",
         "common_mistakes": [
           "Writing Ka = cα² with no (1 − α). The undissociated part is what sits on the bottom.",
           "Using the concentration of the ions as c. c is the total concentration of the acid taken."
         ],
-        "memory_tip": "Application 1 gives Λ°m, application 2 turns it into α, application 3 turns α into Ka. One chain, three links.",
+        "memory_tip": "Application 1 gives Λ°m, application 2 turns Λ°m into α, application 3 turns α into Ka. Each one uses the result of the one before it.",
         "margin_note": "Name the law as Ostwald's dilution law. The name is often worth part of this mark on its own."
       }
     ]

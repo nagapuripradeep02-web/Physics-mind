@@ -101,8 +101,8 @@
         },
         "why": "The standard expansion of (1 − x)^(−p/q) has a k! in every denominator and a fixed ratio x/q raised to k. Until the given series is written in that exact shape, p, q and x cannot be read off.",
         "common_mistakes": [
-          "Forgetting to add the missing terms on both sides when the series starts late, so the comparison has no 1 to match.",
-          "Losing the alternating sign when the terms alternate."
+          "Adding 1 to both sides out of habit — the bracket already begins with 1, so nothing has to be added.",
+          "Reading the ratio as 1/10 instead of 1/100 — the printed powers 1/10², 1/10⁴, 1/10⁶ are (1/100)¹, (1/100)², (1/100)³."
         ]
       },
       {

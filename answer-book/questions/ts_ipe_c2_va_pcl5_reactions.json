@@ -96,7 +96,7 @@
           "Using a coefficient of 3 as in the PCl₃ reaction. One PCl₅ converts one alcohol molecule."
         ],
         "memory_tip": "PCl₅ with an –OH always leaves POCl₃ and one HCl behind.",
-        "margin_note": "All three products must be written. Losing the HCl is the usual way half of this mark goes."
+        "margin_note": "All three products must be written. The HCl is the one most often left out."
       },
       {
         "id": "s3_acetic_acid",
@@ -149,5 +149,5 @@
       }
     ]
   },
-  "insider_note": "Parts (a), (b) and (c) all leave POCl₃ behind, and part (d) is the only redox one — that grouping is the fastest way to keep the four equations straight. It is also worth knowing that PCl₅ exists because phosphorus has vacant 3d orbitals, while NCl₅ does not exist because nitrogen has no d orbitals in its valence shell."
+  "insider_note": "Part (a) with a little cold water, and parts (b) and (c), all leave POCl₃ behind; with excess water part (a) goes all the way to H₃PO₄. Part (d) is the only redox one — that grouping is the fastest way to keep the four equations straight. It is also worth knowing that PCl₅ exists because phosphorus has vacant 3d orbitals, while NCl₅ does not exist because nitrogen has no d orbitals in its valence shell."
 }

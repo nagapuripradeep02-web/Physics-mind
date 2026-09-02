@@ -23,11 +23,11 @@
       "marks": 2
     },
     {
-      "label": "Eliminate n to get two equations in l and m",
+      "label": "Eliminate n and read off m",
       "marks": 2
     },
     {
-      "label": "Solve for m and l",
+      "label": "Solve for l",
       "marks": 2
     },
     {
@@ -75,7 +75,7 @@
       {
         "id": "s2_eliminate_n",
         "kind": "equation",
-        "label": "Eliminate n",
+        "label": "Eliminate n and read off m",
         "marks": 2,
         "mark_note": "Method",
         "margin_note": "Two marks. The second subtraction is the shortcut — it hands over m without solving two equations together.",

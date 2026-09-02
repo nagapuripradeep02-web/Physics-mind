@@ -81,7 +81,7 @@
         "why": "The question is really asking how many pairs of students there are. Using ³⁰P₂ would count each game twice, once from each player's side.",
         "common_mistakes": [
           "Using ³⁰P₂ = 870, double-counting every game.",
-          "Answering 30 × 29 = 870 for the same reason."
+          "Answering 29 — that is how many games one student plays, not the total for the class."
         ]
       },
       {

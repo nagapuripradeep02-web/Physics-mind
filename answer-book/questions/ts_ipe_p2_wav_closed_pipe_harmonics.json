@@ -137,9 +137,9 @@
             {
               "type": "label",
               "id": "lbl_an",
-              "x": 30,
+              "x": 26,
               "y": 42,
-              "text": "an",
+              "text": "AN",
               "ms": 450,
               "sm": true
             },
@@ -147,8 +147,8 @@
               "type": "label",
               "id": "lbl_n",
               "x": 306,
-              "y": 75,
-              "text": "n",
+              "y": 86,
+              "text": "N",
               "ms": 450,
               "sm": true
             },

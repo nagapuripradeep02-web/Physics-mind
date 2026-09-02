@@ -59,7 +59,7 @@
         "why": "Burning a fuel in a flame first makes heat and then the heat is turned into work, and that second step wastes most of the energy. A fuel cell carries out the same reaction as two half reactions at two electrodes, so the electrons go straight into the circuit and the heat step is skipped.",
         "common_mistakes": [
           "Calling it a battery that stores fuel. Nothing is stored; the fuel is supplied from outside while the cell runs.",
-          "Writing that the fuel is burnt. There is no flame; the same reaction is split into two electrode reactions."
+          "Writing that the fuel is burnt in a flame. There is no flame; the same reaction is split into two electrode reactions."
         ],
         "memory_tip": "Same reaction as burning, but split across two electrodes, so the energy comes out as current and not as heat.",
         "margin_note": "Name one fuel and give the overall reaction. A definition with no example rarely takes the full mark."

@@ -89,8 +89,8 @@
         ],
         "why": "A partly filled band has empty levels immediately above the filled ones, so a small voltage is enough to set the electrons moving. Where the bands overlap there is no gap to cross at all.",
         "common_mistakes": [
-          "Writing that a conductor has a small gap like a semiconductor. In a conductor the gap is either negligible or absent because the bands overlap.",
-          "Leaving out the partly filled band case. The book's own diagram shows both cases for a conductor."
+          "Writing that a conductor's gap is the same size as a semiconductor's. A semiconductor has a real gap that an electron has to be given energy to cross; in a conductor the valence band is partly filled or the bands overlap, so almost no extra energy is needed.",
+          "Leaving out the partly filled band case. A conductor qualifies either way: a partly filled valence band, or a valence band that overlaps the conduction band. Write both."
         ],
         "memory_tip": "Partly filled or overlapping. Either way the electrons have empty levels to move into.",
         "margin_note": "Both cases must appear: partly filled band AND overlapping bands."

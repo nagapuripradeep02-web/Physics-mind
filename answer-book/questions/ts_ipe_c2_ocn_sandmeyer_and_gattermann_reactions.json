@@ -46,7 +46,9 @@
         "mark_note": "Sandmeyer",
         "lines": [
           "A benzenediazonium salt is warmed with a",
-          "cuprous salt dissolved in the matching acid.",
+          "cuprous halide dissolved in the matching",
+          "halogen acid, or with CuCN in KCN solution",
+          "when the –CN group is wanted.",
           "The –N₂⁺ group is replaced by Cl, Br or CN,",
           "and nitrogen gas is given off.",
           {
@@ -77,7 +79,7 @@
           "Leaving out the nitrogen gas. Every diazonium replacement gives off N₂, and that escaping gas is why the reaction goes to completion.",
           "Writing a cupric salt. Sandmeyer's reagents are cuprous, that is copper(I): Cu₂Cl₂, Cu₂Br₂ and CuCN."
         ],
-        "memory_tip": "Cuprous salt in its own acid: chloride, bromide or cyanide goes on and nitrogen comes off.",
+        "memory_tip": "Cuprous halide in its matching acid for Cl and Br, CuCN in KCN for the nitrile. Nitrogen comes off in every case.",
         "margin_note": "Write all three products. Naming the cuprous salt as the reagent, not as a catalyst, is part of this mark."
       },
       {

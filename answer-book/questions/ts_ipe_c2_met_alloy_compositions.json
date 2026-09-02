@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK PROBLEM (book p.79, VSAQ 2), NOT SILENTLY CORRECTED: the printed German silver composition is \"Cu 25 to 40%, Zn 25 to 35%, Ni 40 to 50%\". Those three ranges cannot all be right — the lower bounds sum to 90 % and the upper bounds to 125 %. Book p.79 is the darkest page of the scan and the copper upper bound may be 30 rather than 40; the commonly printed Indian textbook figure is Cu 25 to 30 %. Commercial German silver (nickel silver) is nearer Cu 60 %, Zn 20 %, Ni 20 %, so the printed range is not the composition of the real alloy either. The book's ranges are reproduced on the card because they are what the book marks, and the disagreement is flagged here and in the step's why for a teacher to settle. The book prints brass as a single pair, Cu 60 % and Zn 40 %, rather than the wider range Cu 60 to 80 % with Zn 20 to 40 % that other textbooks give; the printed pair is used and the range is recorded in the step's why."
+    "note": "Unit 6 (Metallurgy) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", book pp.79-82, which prints the question and a model answer. The 1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK PROBLEM (book p.79, VSAQ 2), NOT SILENTLY CORRECTED: the printed German silver composition is \"Cu 25 to 40%, Zn 25 to 35%, Ni 40 to 50%\". Those three ranges cannot all be right — the lower bounds sum to 90 % and the upper bounds to 125 %. Book p.79 is the darkest page of the scan and the copper upper bound may be 30 rather than 40; the commonly printed Indian textbook figure is Cu 25 to 30 %. Commercial German silver (nickel silver) is nearer Cu 60 %, Zn 20 %, Ni 20 %, so the printed range is not the composition of the real alloy either. The book's ranges are reproduced on the card because they are what the book marks, and the disagreement is flagged HERE, in this note, for a teacher to settle. The step's why tells the student only that the percentages printed are the textbook's own figures, and no field on the card now asserts which of the three metals is the major one — the earlier common_mistakes line \"Nickel ... is the largest part of it\" was removed on 2026-09-02 because it contradicted the same step's why and pre-judged this teacher-gate question. The book prints brass as a single pair, Cu 60 % and Zn 40 %, rather than the wider range Cu 60 to 80 % with Zn 20 to 40 % that other textbooks give; the printed pair is used and the range is recorded in the step's why."
   },
   "answer": {
     "page_header": [
@@ -59,7 +59,7 @@
           "Brass is a copper and zinc alloy; bronze",
           "is a copper and tin alloy."
         ],
-        "why": "Both are copper based, so the second metal is the whole answer: zinc in brass and tin in bronze. The book prints one pair of percentages for brass; other textbooks print the wider range Cu 60 to 80 % with Zn 20 to 40 %, and the book's pair lies inside it.",
+        "why": "Both are copper based, so the second metal is the whole answer: zinc in brass and tin in bronze. Brass is also often printed as the wider range Cu 60 to 80 % with Zn 20 to 40 %, and the pair written above lies inside that range.",
         "common_mistakes": [
           "Swapping zinc and tin. Brass has zinc in it, bronze has tin.",
           "Writing the metal names without the percentages. The question asks for the composition, so the numbers carry the mark."
@@ -85,13 +85,13 @@
           "it the name, so it is also called nickel",
           "silver."
         ],
-        "why": "The three metals are the answer and nickel is the one students leave out. The printed ranges are the book's own and they do not add to 100 % at either end (25 + 25 + 40 = 90 %, and 40 + 35 + 50 = 125 %), so at least one bound is loose; the page is the darkest in the scan and the copper upper bound may be 30. Commercial German silver is nearer Cu 60 %, Zn 20 %, Ni 20 %. The book's ranges are written here because they are what the book marks, and the disagreement is recorded for a teacher to settle.",
+        "why": "The three metals are the answer, and nickel is the one students leave out. Nickel is what makes the alloy white, which is why it is also called nickel silver, and there is no silver in it at all. The percentages printed above are the textbook's own figures, so write them as ranges the way the textbook gives them.",
         "common_mistakes": [
           "Writing silver as one of the metals. German silver has no silver in it.",
-          "Leaving out nickel. Nickel is the metal that makes the alloy white and is the largest part of it."
+          "Leaving out nickel. Nickel is the metal that makes the alloy white."
         ],
         "memory_tip": "German silver = copper, zinc, nickel. No silver.",
-        "margin_note": "The three metal names earn most of this mark. The percentages are the book's own and are wide, so write them as ranges."
+        "margin_note": "The three metal names earn most of this mark. Write a percentage range against each name."
       }
     ]
   },

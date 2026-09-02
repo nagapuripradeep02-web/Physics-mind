@@ -86,7 +86,7 @@
         "why": "Since the property shows I equals its own negative, adding I to both sides gives 2I=0, so the integral must be exactly zero.",
         "common_mistakes": [
           "Concluding I is undefined instead of recognising I=0 is a valid, clean result.",
-          "Subtracting I from both sides instead of adding it, which loses the information."
+          "Dividing both sides of I = −I by I, which is division by zero here, instead of adding I to both sides to get 2I = 0."
         ]
       }
     ]

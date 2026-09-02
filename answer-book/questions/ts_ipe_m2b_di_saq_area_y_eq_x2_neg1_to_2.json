@@ -23,7 +23,7 @@
       "marks": 1
     },
     {
-      "label": "Evaluate and simplify",
+      "label": "Apply the limits and simplify",
       "marks": 1
     }
   ],
@@ -87,7 +87,7 @@
         "label": "Apply the limits and simplify",
         "marks": 1,
         "mark_note": "Solution",
-        "margin_note": "Last two marks. (−1)³ = −1 — an odd power keeps the negative sign, so subtracting it adds 1/3.",
+        "margin_note": "Second mark. (−1)³ = −1 — an odd power keeps the negative sign, so subtracting it adds 1/3.",
         "memory_tip": "8/3 + 1/3 = 9/3 = 3 — a clean whole-number answer, a useful check that the arithmetic is right.",
         "lines": [
           "= (2³/3) − ((−1)³/3) = 8/3 − (−1/3)",

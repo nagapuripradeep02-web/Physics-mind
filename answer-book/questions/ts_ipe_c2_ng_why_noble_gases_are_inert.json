@@ -79,12 +79,13 @@
           "so energy has to be supplied to add an",
           "electron, and one is not gained either.",
           "Exception: xenon, krypton and radon do form",
-          "compounds with fluorine and oxygen."
+          "compounds. Xenon forms fluorides and oxides;",
+          "krypton and radon form fluorides only."
         ],
         "why": "Neither losing an electron nor gaining one is possible. Losing an electron costs the most energy of any element in the period, and gaining one also costs energy rather than releasing it, because the added electron would have to start a new shell. The word inert is therefore an overstatement after 1962: xenon has the lowest ionisation enthalpy of the stable noble gases and reacts with fluorine and oxygen.",
         "common_mistakes": [
           "Writing that the electron gain enthalpy is nearly zero or negative. It is large and positive for every noble gas.",
-          "Writing that no noble gas forms any compound. Xenon, krypton and radon do form compounds with fluorine and oxygen."
+          "Writing that no noble gas forms any compound. Xenon forms fluorides and oxides; krypton and radon form fluorides."
         ],
         "memory_tip": "Losing an electron costs too much energy, and gaining one also costs energy, so no bond forms.",
         "margin_note": "Name both enthalpies. Naming only the high ionisation enthalpy usually reads as half this mark."

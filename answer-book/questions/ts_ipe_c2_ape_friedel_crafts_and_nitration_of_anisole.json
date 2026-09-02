@@ -143,7 +143,7 @@
         ],
         "why": "Here AlCl₃ takes the chloride from the acid chloride and gives the acylium ion CH₃CO⁺, which is the electrophile. The acyl group is bulkier than a methyl group, so the para product dominates even more strongly than in the alkylation.",
         "common_mistakes": [
-          "Writing acetic acid or acetic anhydride and forgetting the catalyst. The reagent is the acid chloride with anhydrous AlCl₃.",
+          "Writing acetic acid as the reagent, or leaving out the catalyst. A carboxylic acid does not acylate the ring; the reagent is acetyl chloride, or acetic anhydride, with anhydrous AlCl₃.",
           "Naming the products methoxytoluenes. An acyl group gives a ketone, so the products are methoxyacetophenones."
         ],
         "memory_tip": "Acid chloride gives the acylium ion, so the product is a ketone: 4-methoxyacetophenone.",

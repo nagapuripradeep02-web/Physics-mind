@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it — the figure carries 0 marks because the question does not ask for a diagram. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: a closed air column resonates at l₁ = λ/4 and again at l₂ = 3λ/4, so l₂ − l₁ = λ/2 and λ = 2(l₂ − l₁); with V = nλ this gives V = 2n(l₂ − l₁), and l₂ = 3l₁ at resonance. Using the difference of two lengths also cancels the end correction of the tube."
+    "note": "The 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it — the figure carries 0 marks because the question does not ask for a diagram. The two-book union check and the past-paper back-test are STRUCTURALLY IMPOSSIBLE for this paper: the TSBIE Basic Learning Material on hand is first-year physics only, and the paper corpus holds only Paper-I papers, so neither check was run. Physics hand-checked: a closed air column resonates at l₁ = λ/4 and again at l₂ = 3λ/4, so l₂ − l₁ = λ/2 and λ = 2(l₂ − l₁); with V = nλ this gives V = 2n(l₂ − l₁). The relation l₂ = 3l₁ holds only for an ideal tube with no end correction, so the card does not print it: in a real tube l₁ = λ/4 − e and l₂ = 3λ/4 − e, and using the difference of the two lengths cancels that end correction."
   },
   "recall_prompt": "Say what resonance is, then the two resonating lengths of the air column and how they give the velocity of sound.",
   "answer": {
@@ -98,6 +98,11 @@
           "height": 250,
           "elements": [
             {
+              "type": "pause",
+              "id": "ph_tube1",
+              "caption": "The first resonating length"
+            },
+            {
               "type": "stroke",
               "id": "t1_top",
               "d": "M 30 55 L 250 55",
@@ -130,9 +135,9 @@
             {
               "type": "label",
               "id": "t1_an",
-              "x": 22,
+              "x": 18,
               "y": 46,
-              "text": "an",
+              "text": "AN",
               "ms": 450,
               "sm": true
             },
@@ -140,8 +145,8 @@
               "type": "label",
               "id": "t1_n",
               "x": 256,
-              "y": 52,
-              "text": "n",
+              "y": 81,
+              "text": "N",
               "ms": 450,
               "sm": true
             },
@@ -149,9 +154,14 @@
               "type": "label",
               "id": "t1_len",
               "x": 100,
-              "y": 120,
+              "y": 41,
               "text": "l₁ = λ/4",
               "ms": 450
+            },
+            {
+              "type": "pause",
+              "id": "ph_tube2",
+              "caption": "The second resonating length"
             },
             {
               "type": "stroke",
@@ -185,10 +195,37 @@
             },
             {
               "type": "label",
-              "id": "t2_n",
-              "x": 74,
+              "id": "t2_an_l",
+              "x": 18,
               "y": 143,
-              "text": "n",
+              "text": "AN",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "t2_n",
+              "x": 97,
+              "y": 143,
+              "text": "N",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "t2_an_mid",
+              "x": 165,
+              "y": 143,
+              "text": "AN",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "t2_n_end",
+              "x": 256,
+              "y": 176,
+              "text": "N",
               "ms": 450,
               "sm": true
             },
@@ -243,11 +280,11 @@
             "style": "eq"
           },
           {
-            "text": "Second resonance: l₂ = 3λ/4 = 3l₁",
+            "text": "Second resonance: l₂ = 3λ/4",
             "style": "eq"
           }
         ],
-        "margin_note": "Second mark. Two loudest lengths, and their λ values — note l₂ is three times l₁.",
+        "margin_note": "Second mark. Two loudest lengths, and their λ values.",
         "why": "A closed column resonates when a node sits at the closed end and an antinode at the open end; the shortest such fit is a quarter wavelength and the next fit adds half a wavelength — that is where λ/4 and 3λ/4 come from.",
         "common_mistakes": [
           "Writing the second resonance as λ/2 — the next fit for a CLOSED column is 3λ/4; λ/2 belongs to open pipes.",

@@ -145,11 +145,25 @@
             },
             {
               "type": "stroke",
+              "id": "cir_pair_angle_1_oc",
+              "d": "M 60 115 L 240 115",
+              "ms": 2570,
+              "pen": "pencil",
+              "wipe": "x"
+            },
+            {
+              "type": "stroke",
               "id": "cir_pair_angle_1_rad",
               "d": "M 240 115 L 221 170",
               "ms": 830,
               "pen": "pencil",
               "wipe": "x"
+            },
+            {
+              "type": "stroke",
+              "id": "cir_pair_angle_1_ra",
+              "d": "M 212.5 167.1 L 215.4 158.6 L 223.9 161.5",
+              "ms": 300
             },
             {
               "type": "stroke",
@@ -188,8 +202,8 @@
             {
               "type": "label",
               "id": "cir_pair_angle_1_lth",
-              "x": 110,
-              "y": 120,
+              "x": 130,
+              "y": 110,
               "text": "θ",
               "ms": 400,
               "sm": true
@@ -208,7 +222,7 @@
               "id": "cir_pair_angle_1_cap",
               "x": 24,
               "y": 220,
-              "text": "the line to C halves the angle θ",
+              "text": "the line OC halves the angle θ",
               "ms": 520,
               "sm": true
             }

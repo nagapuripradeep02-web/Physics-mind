@@ -42,7 +42,7 @@
     "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.89 — Star Questions Plus, Complex Numbers banner, answer 180. (Book page = PDF page − 1 in this part of the scan.) THIS SECTION IS OURS: Star Questions Plus prints no mark cut and no chapter stars; the question is classed as a 2-mark VSAQ by shape and length (a modulus argument in two lines, the same shape as chapter 12's answer 113) and folded into the Complex Numbers unit as backfill. Printed appearances: AP 16, 19. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The stars on this card are the VSAQ CHAPTER's ★★★ (chapter 12, the section it joins), not this question's. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. The superscripts 100 and 99 are plain Unicode (digits, per the notation ledger); no fractional exponent, so no KaTeX. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would show a² + b² = 4 without expanding the power — what you take on both sides and what cancels.",
-  "insider_note": "Do not expand the power and do not use De Moivre — take the modulus of both sides: |√3 + i| = 2 gives 2¹⁰⁰ on the left, and the positive real number 2⁹⁹ comes out of the modulus unchanged. The finish is 2¹⁰⁰/2⁹⁹ = 2, then square.",
+  "insider_note": "Do not expand the power, and leave De Moivre alone here — it reaches the same 4, but takes several more lines. Take the modulus of both sides: |√3 + i| = 2 gives 2¹⁰⁰ on the left, and the positive real number 2⁹⁹ comes out of the modulus unchanged. The finish is 2¹⁰⁰/2⁹⁹ = 2, then square.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -56,7 +56,7 @@
         "marks": 1,
         "mark_note": "Modulus",
         "margin_note": "First mark. |√3 + i| = √(3 + 1) = 2, so the left side has modulus 2¹⁰⁰. On the right, 2⁹⁹ is a positive real number and comes out of the modulus unchanged.",
-        "memory_tip": "|zⁿ| = |z|ⁿ. Since |√3 + i| = 2, the left side is 2¹⁰⁰ — no expansion and no De Moivre.",
+        "memory_tip": "|zⁿ| = |z|ⁿ. Since |√3 + i| = 2, the left side is 2¹⁰⁰ in one line, with no expansion and no De Moivre needed.",
         "lines": [
           {
             "text": "Sol:",
@@ -89,9 +89,9 @@
             "root three plus i"
           ]
         },
-        "why": "|zⁿ| = |z|ⁿ, so the modulus of a huge power is just a power of a small modulus. The question cannot be done by expanding; the modulus is the only sensible tool, and it removes the whole (√3 + i)¹⁰⁰ in one line.",
+        "why": "|zⁿ| = |z|ⁿ, so the modulus of a huge power is just a power of a small modulus. Expanding the power is not workable and De Moivre, though correct, is longer; the modulus removes the whole (√3 + i)¹⁰⁰ in one line.",
         "common_mistakes": [
-          "Trying to expand (√3 + i)¹⁰⁰ or to use De Moivre when only a² + b² is asked.",
+          "Trying to expand (√3 + i)¹⁰⁰ term by term — the binomial has 101 terms, so it is not a workable route in a 2-mark question. (De Moivre is different: (√3 + i)¹⁰⁰ = 2¹⁰⁰cis(2π/3) = 2⁹⁹(−1 + i√3) also gives a² + b² = 4 — correct, but several lines longer than the modulus.)",
           "Writing |√3 + i| as √3 + 1 or as 4."
         ]
       },

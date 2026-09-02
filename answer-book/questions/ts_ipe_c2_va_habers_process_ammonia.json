@@ -124,16 +124,14 @@
           "5. The gases are cooled, and the ammonia",
           "condenses to a liquid and is drawn off.",
           "6. The unchanged N₂ and H₂ are returned to",
-          "the catalyst chamber.",
-          "7. The ammonia is dried over quick lime,",
-          "CaO."
+          "the catalyst chamber."
         ],
-        "why": "The process is the equilibrium conditions turned into a plant. The two steps that matter most are the removal of the ammonia by cooling, which takes a product out and lets more form, and the recirculation of the unchanged gases, which is why the low conversion at each pass is not a loss.",
+        "why": "The process is the equilibrium conditions turned into a plant. The two steps that matter most are the removal of the ammonia by cooling, which takes a product out and lets more form, and the recirculation of the unchanged gases, which is why the low conversion at each pass is not a loss. Drying over quick lime, CaO, is not a stage of this plant — the ammonia leaves the cooler as a liquid. It belongs to the laboratory preparation from NH₄Cl and Ca(OH)₂, where the ammonia gas is dried over quick lime and never over concentrated H₂SO₄, CaCl₂ or P₄O₁₀, because all three react with it.",
         "common_mistakes": [
           "Writing the ratio as 3 : 1. It is one volume of N₂ to three volumes of H₂, so 1 : 3.",
-          "Drying ammonia with concentrated H₂SO₄ or CaCl₂. Both react with ammonia; quick lime CaO is used."
+          "Writing that the whole mixture changes to ammonia in one pass. Only about 10 – 20% is changed at each pass, and the rest is sent back to the catalyst chamber."
         ],
-        "memory_tip": "Mix 1 : 3, compress, pass over hot iron, cool and condense, send the rest back, dry over CaO.",
+        "memory_tip": "Mix 1 : 3, compress, pass over hot iron, cool and condense, send the rest back.",
         "margin_note": "A numbered list of six or seven steps earns these two marks. A paragraph of the same words usually earns fewer."
       },
       {
@@ -180,7 +178,7 @@
           "Putting SO₄²⁻ inside the square bracket. Only the four ammonia ligands go inside the coordination sphere.",
           "Writing the colour as green. The tetraammine copper(II) ion is deep blue."
         ],
-        "memory_tip": "Zinc gives a white solid, copper gives a deep blue solution. Base with zinc, ligand with copper.",
+        "memory_tip": "Copper gives a deep blue solution because four ammonia molecules bond to Cu²⁺ as ligands.",
         "margin_note": "Equation plus \"deep blue\" is the marked pair. Naming the complex is a useful extra line."
       },
       {
@@ -211,5 +209,5 @@
       }
     ]
   },
-  "insider_note": "The half most often left thin is the second one: three short equations for ZnSO₄, CuSO₄ and AgCl carry three of the eight marks, so write them even if the process description has to be shortened. Say which role ammonia plays each time — base with zinc, ligand with copper and silver."
+  "insider_note": "The half most often left incomplete is the second one: three short equations for ZnSO₄, CuSO₄ and AgCl carry three of the eight marks, so write them even if the process description has to be shortened. Say which role ammonia plays each time — base with zinc, ligand with copper and silver."
 }

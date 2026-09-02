@@ -52,7 +52,7 @@
           "This C–O–C link is called the glycosidic",
           "linkage. It is an ether linkage."
         ],
-        "why": "Two facts carry the definition: a molecule of water is lost, and the bridge that is left is an oxygen atom joining two carbon atoms. Naming it an ether linkage tells a student what kind of bond it is and why dilute acid hydrolyses it back to the two sugars.",
+        "why": "Two facts carry the definition: a molecule of water is lost, and the bridge that is left is an oxygen atom joining two carbon atoms. Ether linkage names the kind of C–O–C bond it is. Dilute acid hydrolyses it back to the two sugars because the bridging carbon C₁ also carries the ring oxygen, which makes it an acetal carbon.",
         "common_mistakes": [
           "Calling it an ester or a peptide linkage. Those join an acid to an alcohol and an acid to an amine; this one joins two sugars through oxygen.",
           "Leaving out the loss of water. The linkage forms by losing H₂O, and that is half the definition."
@@ -78,12 +78,12 @@
           "Cellulose has β-glycosidic linkages between",
           "the same two carbon atoms."
         ],
-        "why": "The α or β label is fixed by the configuration at the anomeric carbon of the first sugar, and it is the only structural difference between starch and cellulose.",
+        "why": "The α or β label is fixed by the configuration at the anomeric carbon of the first sugar, and it is the difference in the linkage that makes cellulose's chains straight and starch's coiled. It is not the whole difference between the two materials: starch also branches, through C₁ to C₆ linkages in amylopectin.",
         "common_mistakes": [
           "Writing that the linkage is only in disaccharides. Every polysaccharide is held together by the same linkage.",
-          "Giving no α or β label. The two types are what distinguish starch from cellulose."
+          "Giving no α or β label. The two types are what distinguish the starch linkage from the cellulose linkage."
         ],
-        "memory_tip": "α in starch, β in cellulose; the same C₁ to C₄ bridge either way.",
+        "memory_tip": "α in starch, β in cellulose; the main chains use the same C₁ to C₄ bridge either way.",
         "margin_note": "One example of each type, α in starch and β in cellulose, finishes this mark."
       }
     ]

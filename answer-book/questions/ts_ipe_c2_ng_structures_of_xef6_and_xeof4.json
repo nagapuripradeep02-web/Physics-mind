@@ -196,14 +196,14 @@
           "The four fluorine atoms form the square base",
           "and the oxygen atom is at the apex."
         ],
-        "why": "The count is over σ bonds and lone pairs, not over bonds. The Xe=O double bond has one σ component, so xenon has five σ bonds and one lone pair, which is six regions and sp³d². The parenthetical second excited state is the book's name for the promotion that gives four unpaired electrons for the four Xe–F bonds; the Xe=O bond uses a further pair from xenon. Take an octahedron, put the lone pair in one position and the oxygen atom in the position opposite it, and the four fluorine atoms that are left form a square with the oxygen above them: a square pyramid.",
+        "why": "The count is over σ bonds and lone pairs, not over bonds. The Xe=O double bond has one σ component, so xenon has five σ bonds and one lone pair, which is six regions and sp³d². The parenthetical second excited state is the usual name for the promotion that gives four unpaired electrons for the four Xe–F bonds; the Xe=O bond uses a further pair from xenon. Take an octahedron, put the lone pair in one position and the oxygen atom in the position opposite it, and the four fluorine atoms that are left form a square with the oxygen above them: a square pyramid.",
         "common_mistakes": [
           "Counting the Xe=O double bond as two regions. Only its σ part is counted, so xenon has six regions and not seven.",
           "Calling XeOF₄ octahedral. Six electron pairs are arranged octahedrally, but one is a lone pair, so the SHAPE is square pyramidal.",
           "Putting the oxygen atom in the square base. The four fluorine atoms make the base; the oxygen atom is at the apex."
         ],
         "memory_tip": "Square pyramidal = an octahedron with one position holding the lone pair instead of an atom. The oxygen atom is at the top of the pyramid.",
-        "margin_note": "Give the reason as well as the shape: one lone pair opposite the oxygen atom. The book prints the shape with no reason, and a bare shape usually reads as one mark."
+        "margin_note": "Give the reason as well as the shape: one lone pair opposite the oxygen atom. A bare shape with no reason usually reads as one mark."
       },
       {
         "id": "s4_xeof4_drawn",
@@ -310,5 +310,5 @@
       }
     ]
   },
-  "insider_note": "Two marks for each molecule, and the two drawings earn none of them, because the question says explain and not draw. For XeOF₄ the reason matters most: the book prints the shape without one, so naming the lone pair opposite the oxygen atom is what makes the answer complete."
+  "insider_note": "Two marks for each molecule, and the two drawings earn none of them, because the question says explain and not draw. For XeOF₄ the reason matters more than the word: a bare \"square pyramidal\" usually reads as one mark, so naming the lone pair opposite the oxygen atom is what makes the answer complete."
 }

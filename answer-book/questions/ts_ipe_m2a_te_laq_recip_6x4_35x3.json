@@ -228,8 +228,8 @@
         "why": "Each value of t gives two values of x, because x + 1/x = t is a quadratic in x. Solving both t values is what recovers all 4 roots of the original equation — stopping at t answers a different question.",
         "common_mistakes": [
           "Forgetting to multiply through by x, so the equation in x is never formed.",
-          "A slip inside the square root: 3x² − 10x + 3 factorises as (3x − 1)(x − 3), no formula needed.",
-          "Not simplifying the surd form of the roots at the end."
+          "Using the quadratic formula on 3x² − 10x + 3 and making an arithmetic slip that the factorisation (3x − 1)(x − 3) would have avoided.",
+          "Writing down only one root of the pair: (3x − 1)(x − 3) = 0 gives both x = 3 and x = 1/3."
         ]
       },
       {
@@ -276,8 +276,8 @@
         "why": "Each value of t gives two values of x, because x + 1/x = t is a quadratic in x. Solving both t values is what recovers all 4 roots of the original equation — stopping at t answers a different question.",
         "common_mistakes": [
           "Forgetting to multiply through by x, so the equation in x is never formed.",
-          "A slip inside the square root: 2x² − 5x + 2 factorises as (2x − 1)(x − 2), no formula needed.",
-          "Not simplifying the surd form of the roots at the end."
+          "Using the quadratic formula on 2x² − 5x + 2 and making an arithmetic slip that the factorisation (2x − 1)(x − 2) would have avoided.",
+          "Writing down only one root of the pair: (2x − 1)(x − 2) = 0 gives both x = 2 and x = 1/2."
         ]
       }
     ]

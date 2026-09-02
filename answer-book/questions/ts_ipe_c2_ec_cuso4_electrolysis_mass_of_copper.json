@@ -92,7 +92,7 @@
         "why": "The equivalent mass is the mass deposited by one mole of electrons, so it is the atomic mass divided by the number of electrons in the electrode reaction. Reading that number off the cathode equation is what makes it a chemistry step and not a guess.",
         "common_mistakes": [
           "Using 63.5 as the equivalent mass. Copper here is Cu²⁺, so the atomic mass is divided by 2.",
-          "Dividing by the charge on the sulphate ion or by the whole formula. The 2 comes from the 2e⁻ in the cathode reaction."
+          "Taking the 2 from the formula CuSO₄ rather than from the electrode reaction. It happens to be 2 here, but the number always comes from the electrons; for Al³⁺ + 3e⁻ → Al it would be 3."
         ],
         "memory_tip": "Count the electrons in the electrode reaction, then divide the atomic mass by that number.",
         "margin_note": "Write the cathode reaction above the division. It shows where the 2 came from, and this mark is then safe."
@@ -120,7 +120,7 @@
         ],
         "why": "96500 C is the charge on one mole of electrons, so E/96500 is the mass deposited by one coulomb. Multiplying by the charge actually passed scales that up to the answer.",
         "common_mistakes": [
-          "Dividing by 96500 twice, once inside E and once outside. It appears only once.",
+          "Dividing by 96500 twice, once through Z and once again outside. Z = E/96500 already contains it. Here E = 31.75 is the equivalent mass, so 96500 appears only once.",
           "Multiplying by the current instead of the charge. Q = 900 C already contains the time."
         ],
         "memory_tip": "One coulomb deposits E/96500 grams, so 900 coulombs deposit 900 times that.",

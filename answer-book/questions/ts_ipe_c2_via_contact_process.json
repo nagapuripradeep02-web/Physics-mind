@@ -102,7 +102,7 @@
           "slow, so the plant is run at about 720 K and",
           "2 bar, which is a compromise."
         ],
-        "why": "This is the step the process is named after: the gases react on the surface of the solid catalyst, that is, in contact with it. The conditions are the marked content, and they are a compromise rather than the ideal, because the yield and the rate want opposite temperatures. Naming that compromise is what separates a full answer from a list of three equations.",
+        "why": "This is the step the process is named after: the gases react on the surface of the solid catalyst, that is, in contact with it. The conditions are the marked content, and they are a compromise rather than the ideal, because a low temperature raises the yield while a high temperature raises the rate, so the plant cannot have both. Naming that compromise is what separates a full answer from a list of equations.",
         "common_mistakes": [
           "Drawing a single arrow. The reaction is reversible, and with a single arrow the Le Chatelier argument has nothing to stand on.",
           "Writing that a high temperature is used to increase the yield. A high temperature lowers the yield of an exothermic reaction; it is used only for speed.",
@@ -166,5 +166,5 @@
       }
     ]
   },
-  "insider_note": "Three equations are easy marks and most students get them. The mark that separates answers is Step II: write the reversible arrow, V₂O₅, and one line saying the temperature is a compromise between yield and rate."
+  "insider_note": "Four equations, one for each mark, and most students get them. The mark that separates answers is Step II: write the reversible arrow, V₂O₅, and one line saying the temperature is a compromise between yield and rate."
 }

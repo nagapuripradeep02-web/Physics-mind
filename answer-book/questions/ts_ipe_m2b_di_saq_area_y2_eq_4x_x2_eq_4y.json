@@ -109,8 +109,8 @@
             {
               "type": "stroke",
               "id": "curve_y2_4x",
-              "d": "M 60 200 Q 105 200 128 152 Q 142 122 150 100",
-              "ms": 2070
+              "d": "M 60 200 Q 62 145 92 122 Q 122 104 150 100",
+              "ms": 2140
             },
             {
               "type": "label",
@@ -124,8 +124,8 @@
             {
               "type": "stroke",
               "id": "curve_x2_4y",
-              "d": "M 60 200 Q 62 145 92 122 Q 122 104 150 100",
-              "ms": 2140
+              "d": "M 60 200 Q 105 200 128 152 Q 142 122 150 100",
+              "ms": 2070
             },
             {
               "type": "label",
@@ -199,7 +199,7 @@
         ],
         "why": "Integrating the upper curve minus the lower curve from x = 0 to x = 4 (the two intersection points) and substituting the limits (the lower limit contributes 0) gives 32/3 − 16/3, a clean fraction.",
         "common_mistakes": [
-          "Computing 4^(3/2) incorrectly — it is (√4)³ = 2³ = 8, not 4×√4.",
+          "Computing 4^(3/2) incorrectly, e.g. as 4³ = 64 by reading the power as 3 instead of 3/2, when the correct value is (√4)³ = 2³ = 8.",
           "Losing the coefficient 2 in front of (2/3)x^(3/2) while combining terms."
         ]
       }

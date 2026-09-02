@@ -42,7 +42,7 @@
     "note": "Source: Baby Bullet-Q, Senior Inter Maths-2A (Sri Publishers, Machilipatnam), book p.72 — VSAQ chapter 12 Complex Numbers, answer 115. (Book page = PDF page − 1 in this part of the scan.) Printed appearances: AP 19 · TS 18. ⚠ THE 1+1 SPLIT IS OURS, NOT THE BOOK'S — no [N Marks] tags are printed in chapter 12 (book pp.70–72); it is patterned on the 1A Matrices VSAQ split (1A book p.82 prints 1+1 against answers 100 and 101). The chapter header carries ★★★ and reads '2+2 = 4 Marks'; that ★★★ is the CHAPTER's rank, not this question's, and the 2+2 is because Complex Numbers holds TWO Section-A slots. Paper position: Maths-2A Section A runs Q1–Q10 at 2 marks each, ALL COMPULSORY; Q1 and Q2 are the two Complex Numbers slots. No two-book check and no board back-test exist for this paper — recorded, not hidden. A back-test against the book's own six papers (the five Model Guess Papers plus the Bullet Model Paper, 199 slot-instances) WAS run on 2026-08-29: all 199 resolved to an authored card, and every one carried the section and marks its slot implies. That is a substitute corpus, not a board paper — it cannot show what the board asks that this book omits. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
   },
   "recall_prompt": "Say how you would show z satisfies this quadratic without substituting z into it.",
-  "insider_note": "The short route earns both marks: move the 2 across first, so squaring gives (−3i)² = −9 and the i disappears in one line. Squaring z = 2 − 3i as it stands keeps an i term that never cancels.",
+  "insider_note": "The short route earns both marks: move the 2 across first, so squaring gives (−3i)² = −9 and the i disappears in one line. Substituting z = 2 − 3i straight into z² − 4z + 13 also works and also reaches 0, but the i terms cancel only at the last step (−12i from z² against +12i from −4z), so it costs an extra line.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -90,7 +90,7 @@
         "why": "Squaring −3i gives a real number, so z is seen to satisfy a real quadratic in one step. Substituting 2 − 3i into z² − 4z + 13 also works but needs an expansion with cross terms.",
         "common_mistakes": [
           "Writing (−3i)² = +9.",
-          "Squaring z = 2 − 3i as it stands, which keeps an i term."
+          "If you substitute z = 2 − 3i directly instead, expanding (2 − 3i)² as 4 + 9i² and dropping the −12i cross term. That route is valid, but the −12i is exactly what cancels against the +12i in −4z."
         ]
       },
       {

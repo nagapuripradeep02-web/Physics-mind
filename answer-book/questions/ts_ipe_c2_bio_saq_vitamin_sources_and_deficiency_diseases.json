@@ -38,7 +38,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.103 as SAQ 10. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO, corrected here: the printed table gives the vitamin E deficiency as \"Sterility, Neurosis of heart muscles\". The word is necrosis, the death of tissue; neurosis is unrelated. The book prints this as a three-column table (Vitamin / Source / Deficiency disease); it is written here as ordinary lines because the notebook page is ruled, and a student may still lay it out as a table in the examination. The printed question ends with a question mark after a command sentence; that is dropped in question_text."
+    "note": "Unit 13 (Biomolecules) is sourced from the chemistry half of \"FAST TRACK IPE for Sr. Students\", printed chapter 10 \"BIOMOLECULES\", book pp.99-104; the book prints this question on book p.103 as SAQ 10. The 1+1+1+1 mark split is a CLAIM, not the board's, until a Telangana IPE teacher confirms it; the question itself is sourced, not invented. Neither the two-book union check nor a board back-test was possible for Chemistry-II: the TSBIE Basic Learning Material on hand is physics-only and first-year, and no second-year chemistry paper is in the corpus. BOOK TYPO, corrected here: the printed table gives the vitamin E deficiency as \"Sterility, Neurosis of heart muscles\". The word is necrosis, the death of tissue; neurosis is unrelated. NEEDS TEACHER RULING (vitamin E deficiency): the guide's \"sterility, necrosis of heart muscles\" and NCERT Class 12 Table 14.5's \"increased fragility of RBCs and muscular weakness\" are different answers to the same cell. Both are printed on the card, NCERT's first, until a Telangana IPE teacher says which the key marks; neither is asserted here as the sole answer. The book prints this as a three-column table (Vitamin / Source / Deficiency disease); it is written here as ordinary lines because the notebook page is ruled, and a student may still lay it out as a table in the examination. The printed question ends with a question mark after a command sentence; that is dropped in question_text."
   },
   "answer": {
     "page_header": [
@@ -98,16 +98,18 @@
           "Vitamin E",
           "Sources: vegetable oils such as sunflower",
           "oil, green leafy vegetables, egg yolk.",
-          "Deficiency: sterility, and necrosis of the",
-          "heart muscle."
+          "Deficiency: increased fragility of the red",
+          "blood cells, and muscular weakness.",
+          "Some texts give it as sterility and",
+          "necrosis of the heart muscle."
         ],
-        "why": "Vitamin E is fat soluble and is found with the fats and oils of the diet, which is why vegetable oils head its source list. The deficiency effect the board answer names is necrosis, meaning the death of tissue, in the heart muscle.",
+        "why": "Vitamin E is fat soluble and is found with the fats and oils of the diet, which is why vegetable oils head its source list. It protects the membrane of the red blood cell, so a shortage makes those cells fragile and weakens the muscles. Some texts give the deficiency instead as sterility and necrosis, meaning the death of tissue, in the heart muscle, so both wordings are worth knowing.",
         "common_mistakes": [
-          "Writing neurosis for necrosis. Necrosis means the death of tissue; neurosis is a different word altogether.",
-          "Naming a bone or eye disease for vitamin E. Its deficiency effects are sterility and muscle damage."
+          "Writing neurosis for necrosis, if you use that wording. Necrosis means the death of tissue; neurosis is a different word altogether.",
+          "Naming a bone or eye disease for vitamin E. Its deficiency shows in the red blood cells and in the muscles; the eye and the bone belong to vitamins A and D."
         ],
-        "memory_tip": "E is found in the oils; short of it comes sterility.",
-        "margin_note": "Spell necrosis carefully. It is a different word from neurosis and only one of them is right."
+        "memory_tip": "E is found in the oils; short of it the red blood cells become fragile and the muscles weaken.",
+        "margin_note": "Give the source and the deficiency. Spell necrosis carefully if you use that word; it is a different word from neurosis."
       },
       {
         "id": "s4_k",
@@ -130,7 +132,7 @@
           "Naming a disease for vitamin K. The deficiency effect is a longer clotting time, not a named disease.",
           "Writing that vitamin K is water soluble. A, D, E and K are the fat soluble vitamins."
         ],
-        "memory_tip": "K for koagulation; short of it, the blood is slow to clot.",
+        "memory_tip": "K is the clotting vitamin; short of it, the blood is slow to clot.",
         "margin_note": "Eight items in all, two for each of four vitamins. Count them before you move on."
       }
     ]
