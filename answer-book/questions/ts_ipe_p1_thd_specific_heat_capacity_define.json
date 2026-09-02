@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_specific_heat_capacity_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the specific heat capacity of a substance. On what factors does it depend?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "What it depends on",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 6 (printed p.124). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The two-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: S = (1/m)(dQ/dT) is heat per unit mass per degree, SI unit J kg⁻¹ K⁻¹, and it depends on the nature of the substance and the temperature at which it is measured — this is the per-unit-mass definition, distinct from the molar specific heat capacity of vsaq8, which the relation C_P − C_V = R of vsaq9 belongs to, never this one directly."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Specific heat capacity is the heat",
+          "needed to raise the temperature of",
+          "unit mass of a substance through",
+          "one degree.",
+          {
+            "text": "S = (1/m)(dQ/dT)",
+            "style": "eq"
+          },
+          {
+            "text": "SI unit: J kg⁻¹ K⁻¹",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. The definition, S = (1/m)(dQ/dT), and its SI unit.",
+        "why": "Writing S as heat per unit mass per degree keeps it different from the molar specific heat capacity of vsaq8, which uses moles in place of mass.",
+        "common_mistakes": [
+          "Leaving out unit mass — without it the definition is heat capacity, not specific heat capacity.",
+          "Giving the unit as J kg⁻¹ only, without the K⁻¹ for the degree."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That specific heat capacity is the heat needed to raise the temperature of unit mass of a substance through one degree, S equals one over m times dQ by dT, SI unit joule per kilogram per kelvin.",
+          "accept": [
+            "heat per unit mass per degree",
+            "S equals one by m dQ by dT",
+            "joule per kilogram per kelvin"
+          ],
+          "reject": [
+            "heat per mole per degree"
+          ],
+          "heard_as": [
+            "specific heat capacity",
+            "joule per kilogram kelvin"
+          ]
+        },
+        "memory_tip": "Specific means per unit mass — S is heat per kilogram per kelvin."
+      },
+      {
+        "id": "s2_factors",
+        "kind": "text",
+        "label": "What it depends on",
+        "marks": 1,
+        "mark_note": "Factors",
+        "lines": [
+          "It depends on the nature of the",
+          "substance, and on the temperature",
+          "at which it is measured."
+        ],
+        "margin_note": "Second mark. Name both factors — the substance and its temperature.",
+        "why": "The same substance has a different specific heat capacity at different temperatures, so temperature is a real second factor, not a detail of the measurement.",
+        "common_mistakes": [
+          "Naming only the substance and leaving out temperature.",
+          "Naming mass as a factor — S is defined PER unit mass, so mass itself does not change its value."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That specific heat capacity depends on the nature of the substance and on the temperature at which it is measured.",
+          "accept": [
+            "nature of the substance",
+            "depends on temperature",
+            "substance and temperature"
+          ],
+          "reject": [
+            "depends on the mass"
+          ],
+          "heard_as": [
+            "nature of the substance",
+            "temperature dependence"
+          ]
+        },
+        "memory_tip": "Two factors: what it is made of, and how hot it already is."
+      }
+    ]
+  },
+  "insider_note": "S is defined per unit MASS — contrast with the molar specific heat capacity of vsaq8, which is per mole. Keep the two straight."
+}

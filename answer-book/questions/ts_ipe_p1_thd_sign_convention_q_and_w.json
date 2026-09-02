@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_sign_convention_q_and_w",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the sign convention for heat (Q) and work (W) used in the first law of thermodynamics.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Sign convention for Q",
+      "marks": 1
+    },
+    {
+      "label": "Sign convention for W",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 4 (printed p.124). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked against NCERT Class-11 Chapter 12: heat Q is positive when supplied to the system and negative when taken out of it; work W is positive when done by the system and negative when done on it; with this convention the first law is written ΔQ = ΔU + ΔW."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_q",
+        "kind": "text",
+        "label": "Sign convention for Q",
+        "marks": 1,
+        "mark_note": "Q positive in, negative out",
+        "lines": [
+          "Q is positive when heat is",
+          "supplied TO the system.",
+          "Q is negative when heat is",
+          "taken OUT of the system."
+        ],
+        "margin_note": "First mark. Give both directions, in and out.",
+        "why": "The first law adds Q and W together on the same side of the equation, so both must use one consistent sign rule for the equation to balance.",
+        "common_mistakes": [
+          "Giving only one direction for Q, in or out, and leaving out the other.",
+          "Reversing the sign, calling heat supplied TO the system negative."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Q is positive when heat is supplied to the system and negative when heat is taken out of it.",
+          "accept": [
+            "Q positive when heat supplied to the system",
+            "Q negative when heat leaves the system"
+          ],
+          "reject": [
+            "W positive when work is done by the system"
+          ],
+          "heard_as": [
+            "Q positive",
+            "heat supplied"
+          ]
+        },
+        "memory_tip": "Q in, plus. Q out, minus."
+      },
+      {
+        "id": "s2_w",
+        "kind": "boxed_final",
+        "label": "Sign convention for W",
+        "marks": 1,
+        "mark_note": "W positive by, negative on",
+        "lines": [
+          {
+            "text": "Sign convention for W",
+            "style": "heading"
+          },
+          "W is positive when work is",
+          "done BY the system.",
+          "W is negative when work is",
+          "done ON the system.",
+          {
+            "text": "ΔQ = ΔU + ΔW",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Give both directions for W, then the equation using this convention.",
+        "why": "A system that expands does positive work on its surroundings, so calling that work positive keeps the first law consistent with energy leaving the system through work in the same way it can leave through heat.",
+        "common_mistakes": [
+          "Giving only one direction for W, by or on, and leaving out the other.",
+          "Mixing up W done BY the system with W done ON it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That W is positive when work is done by the system and negative when work is done on it, and that the first law is written ΔQ equals ΔU plus ΔW with this convention.",
+          "accept": [
+            "W positive when work done by the system",
+            "W negative when work done on the system",
+            "delta Q equals delta U plus delta W"
+          ],
+          "reject": [
+            "Q positive when heat supplied to the system"
+          ],
+          "heard_as": [
+            "W positive",
+            "work done by the system"
+          ]
+        },
+        "memory_tip": "W by, plus. W on, minus. Same pattern as Q: outward is positive."
+      }
+    ]
+  },
+  "insider_note": "State both signs for Q and both signs for W separately — a single sentence covering only one direction each loses half the marks."
+}

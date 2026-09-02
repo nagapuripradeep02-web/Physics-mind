@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_kelvin_planck_statement",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the Kelvin-Planck statement of the second law of thermodynamics.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The Kelvin-Planck statement",
+      "marks": 1
+    },
+    {
+      "label": "What it rules out",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 22 (printed p.126). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the Kelvin-Planck statement (no process working by absorbing heat from a single reservoir converts it completely into work) is the standard form, and the second half correctly identifies that it forbids an engine with no heat rejected to a sink."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The Kelvin-Planck statement",
+        "marks": 1,
+        "mark_note": "The statement",
+        "lines": [
+          "No process is possible whose sole result",
+          "is the absorption of heat from a single",
+          "reservoir and its complete conversion into",
+          "work."
+        ],
+        "margin_note": "First mark. State that no process converts heat from a single reservoir entirely into work.",
+        "why": "This one sentence is the entire content of the Kelvin-Planck statement, so both conditions need to be there, exactly as stated.",
+        "common_mistakes": [
+          "Leaving out \"single reservoir\". A process using two or more reservoirs, like an engine's usual cycle, is a different situation.",
+          "Saying no heat can ever become work. Part of the heat can; the statement is about converting ALL of it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That no process converts heat absorbed from a single reservoir completely into work.",
+          "accept": [
+            "absorption from a single reservoir",
+            "complete conversion into work",
+            "Kelvin-Planck statement"
+          ],
+          "reject": [
+            "heat cannot flow from a colder body to a hotter one"
+          ],
+          "heard_as": [
+            "Kelvin Planck",
+            "single reservoir",
+            "complete conversion"
+          ]
+        },
+        "memory_tip": "One reservoir, all converted — that is exactly the combination Kelvin-Planck rules out."
+      },
+      {
+        "id": "s2_what_it_rules_out",
+        "kind": "text",
+        "label": "What it rules out",
+        "marks": 1,
+        "mark_note": "What it forbids",
+        "lines": [
+          "This rules out an engine that takes heat",
+          "from one source and turns all of it into",
+          "work, rejecting nothing to a sink. Some",
+          "heat must always be rejected to a colder",
+          "body for the engine to keep working in a",
+          "cycle."
+        ],
+        "margin_note": "Second mark. Say this rules out an engine converting all its heat into work with none rejected.",
+        "why": "The statement is short, so the second mark checks whether its meaning for a real engine is understood too — that some heat rejected is unavoidable.",
+        "common_mistakes": [
+          "Repeating the statement in different words without saying what it forbids for an actual engine.",
+          "Saying an engine can approach 100% conversion with enough care. The statement forbids it exactly, not just as a practical difficulty."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the statement rules out an engine taking heat from one source and turning all of it into work with nothing rejected, and that every real cyclic engine must reject some heat.",
+          "accept": [
+            "engine cannot convert all its heat",
+            "some heat must be rejected",
+            "rules out complete conversion by an engine"
+          ],
+          "reject": [
+            "heat cannot flow by itself from cold to hot"
+          ],
+          "heard_as": [
+            "rules out",
+            "nothing rejected",
+            "some heat must be rejected"
+          ]
+        },
+        "memory_tip": "Picture an engine with no heat rejected at all — that is exactly the machine this statement forbids."
+      }
+    ]
+  },
+  "insider_note": "The statement is the first mark; explaining what it forbids for a real engine, in the student's own words, is the second."
+}

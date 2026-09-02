@@ -1,0 +1,216 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_isothermal_vs_adiabatic_compare",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Compare the isothermal process with the adiabatic process.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The defining condition",
+      "marks": 1
+    },
+    {
+      "label": "The P–V relation",
+      "marks": 1
+    },
+    {
+      "label": "The energy balance",
+      "marks": 1
+    },
+    {
+      "label": "The container and the curve",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Short Answer Question 8 (printed p.129). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: isothermal has ΔT = 0, PV = constant, ΔU = 0 so ΔQ = W; adiabatic has ΔQ = 0, PV^γ = constant, W = −ΔU; the adiabatic curve is the steeper of the two on a P–V diagram because γ = C_P/C_V is greater than 1."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_condition",
+        "kind": "text",
+        "label": "The defining condition",
+        "marks": 1,
+        "mark_note": "ΔT = 0 vs ΔQ = 0",
+        "lines": [
+          "Isothermal: the temperature stays",
+          "constant throughout, so ΔT = 0.",
+          "Adiabatic: no heat crosses the",
+          "boundary at any stage, so ΔQ = 0."
+        ],
+        "margin_note": "First mark. State the defining condition of each process — ΔT = 0 for one, ΔQ = 0 for the other.",
+        "why": "These are the two DEFINING conditions — everything else in the comparison follows from one or the other.",
+        "common_mistakes": [
+          "Saying the adiabatic process also has a constant temperature — the temperature changes; only the heat exchange is zero.",
+          "Confusing which symbol is held at zero for each process."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That isothermal means delta T equals zero and adiabatic means delta Q equals zero.",
+          "accept": [
+            "temperature constant for isothermal",
+            "no heat exchange for adiabatic",
+            "delta T zero and delta Q zero"
+          ],
+          "reject": [
+            "P V equals constant"
+          ],
+          "heard_as": [
+            "delta T zero",
+            "delta Q zero"
+          ]
+        },
+        "memory_tip": "Isothermal fixes the TEMPERATURE; adiabatic fixes the HEAT at zero."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "equation",
+        "label": "The P–V relation",
+        "marks": 1,
+        "mark_note": "PV = const vs PV^γ = const",
+        "lines": [
+          "Isothermal:",
+          {
+            "text": "PV = constant",
+            "style": "eq"
+          },
+          "Adiabatic:",
+          {
+            "text": "PV^γ = constant",
+            "style": "eq"
+          },
+          "γ = C_P/C_V is greater than 1."
+        ],
+        "margin_note": "Second mark. Both relations, with γ named as C_P/C_V.",
+        "why": "Both processes obey the ideal gas equation of state; what differs is the extra POWER γ on V, which comes directly from ΔQ = 0.",
+        "common_mistakes": [
+          "Writing PV^γ = constant for the isothermal process, or PV = constant for the adiabatic one.",
+          "Forgetting that γ is greater than 1, which is what makes the two curves different."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That isothermal obeys P V equals constant and adiabatic obeys P V to the gamma equals constant, with gamma greater than one.",
+          "accept": [
+            "P V equals constant",
+            "P V to the gamma equals constant",
+            "gamma is C P by C V"
+          ],
+          "reject": [
+            "delta Q equals W"
+          ],
+          "heard_as": [
+            "P V constant",
+            "P V gamma constant"
+          ]
+        },
+        "memory_tip": "The extra γ in PV^γ is what makes a process adiabatic instead of isothermal."
+      },
+      {
+        "id": "s3_energy",
+        "kind": "equation",
+        "label": "The energy balance",
+        "marks": 1,
+        "mark_note": "ΔQ = W vs W = −ΔU",
+        "lines": [
+          "Isothermal: for an ideal gas U",
+          "depends only on T, so ΔU = 0 and",
+          {
+            "text": "ΔQ = W",
+            "style": "eq"
+          },
+          "Adiabatic: ΔQ = 0, so",
+          {
+            "text": "W = −ΔU",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. State the energy balance of each process, not just its symbol.",
+        "why": "The energy balance is where the two processes differ most: one converts ALL its heat to work, the other converts none — it spends its own internal energy instead.",
+        "common_mistakes": [
+          "Writing ΔU = 0 for the adiabatic process — the temperature, and so U, does change.",
+          "Mixing up which process has ΔQ = W and which has W = −ΔU."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That isothermal has delta U equal zero so delta Q equals W, and adiabatic has delta Q equal zero so W equals minus delta U.",
+          "accept": [
+            "delta U zero delta Q equals W",
+            "delta Q zero W equals minus delta U"
+          ],
+          "reject": [
+            "P V to the gamma equals constant"
+          ],
+          "heard_as": [
+            "delta Q equals W",
+            "W equals minus delta U"
+          ]
+        },
+        "memory_tip": "Isothermal: heat becomes work. Adiabatic: work comes out of the gas's own energy."
+      },
+      {
+        "id": "s4_container_slope",
+        "kind": "text",
+        "label": "The container and the graph",
+        "marks": 1,
+        "mark_note": "Container and slope",
+        "lines": [
+          "Isothermal: a slow process with a",
+          "conducting container, so heat has",
+          "time to keep T constant.",
+          "Adiabatic: a fast process with an",
+          "insulated container, so no heat",
+          "crosses the walls.",
+          "On a P–V diagram the adiabatic",
+          "curve is the steeper of the two,",
+          "because γ is greater than 1."
+        ],
+        "margin_note": "Fourth mark. State which container matches which process, and that adiabatic is the steeper curve.",
+        "why": "The container tells you WHY one process can hold T fixed and the other cannot — a slow process gives heat time to flow, a fast one does not.",
+        "common_mistakes": [
+          "Saying the adiabatic curve is LESS steep than the isothermal — it is always the steeper of the two.",
+          "Swapping which container matches which process."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That isothermal is slow with a conducting container and adiabatic is fast with an insulated container, and the adiabatic curve is steeper because gamma is greater than one.",
+          "accept": [
+            "slow conducting container for isothermal",
+            "fast insulated container for adiabatic",
+            "adiabatic curve is steeper"
+          ],
+          "reject": [
+            "delta U zero delta Q equals W"
+          ],
+          "heard_as": [
+            "conducting container",
+            "insulated container",
+            "steeper curve"
+          ]
+        },
+        "memory_tip": "Adiabatic is FAST and INSULATED; isothermal is SLOW and CONDUCTING. Adiabatic is also the steeper curve."
+      }
+    ]
+  },
+  "insider_note": "Four contrasts, one mark each — an answer that only lists the two P–V relations and stops has written one of the four marks."
+}

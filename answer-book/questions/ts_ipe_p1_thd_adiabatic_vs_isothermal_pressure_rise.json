@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_adiabatic_vs_isothermal_pressure_rise",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The volume of a gas is reduced to 50% of its initial value, once by an adiabatic process and once by an isothermal process. Which of the two processes increases the pressure more?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Isothermal case",
+      "marks": 1
+    },
+    {
+      "label": "Adiabatic case and comparison",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 12 (printed p.125). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: for V₂ = V₁/2, the isothermal relation P₁V₁ = P₂V₂ gives P₂ = 2P₁, and the adiabatic relation P₁V₁^γ = P₂V₂^γ gives P₂ = 2^γP₁; since γ > 1 for any real gas, 2^γ > 2, so the adiabatic process raises the pressure more."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_isothermal",
+        "kind": "equation",
+        "label": "Isothermal case",
+        "marks": 1,
+        "mark_note": "Isothermal case",
+        "lines": [
+          "Isothermal: temperature stays",
+          "constant, so",
+          {
+            "text": "P₁V₁ = P₂V₂",
+            "style": "eq"
+          },
+          "With V₂ = V₁/2,",
+          {
+            "text": "P₂ = 2P₁",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "The isothermal relation and P₂ = 2P₁ together are the first mark.",
+        "why": "Boyle's law applies because the temperature is held constant, so halving the volume must exactly double the pressure.",
+        "common_mistakes": [
+          "Using P₁V₁^γ = P₂V₂^γ for the isothermal case. That relation is for the adiabatic process only.",
+          "Forgetting that V₂ = V₁/2 is what gives the factor 2 in P₂ = 2P₁."
+        ],
+        "memory_tip": "Isothermal: pressure exactly doubles when volume halves."
+      },
+      {
+        "id": "s2_adiabatic",
+        "kind": "boxed_final",
+        "label": "Adiabatic case and comparison",
+        "marks": 1,
+        "mark_note": "Adiabatic case",
+        "lines": [
+          "Adiabatic: no heat is exchanged, so",
+          {
+            "text": "P₁V₁^γ = P₂V₂^γ",
+            "style": "eq"
+          },
+          "With V₂ = V₁/2,",
+          {
+            "text": "P₂ = 2^γ P₁",
+            "style": "eq"
+          },
+          "Since γ > 1, 2^γ > 2, so",
+          {
+            "text": "2^γ P₁ > 2P₁",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "The adiabatic relation P₂ = 2^γP₁, and the comparison, are the second mark.",
+        "why": "Both cases start from the same initial pressure and halve the volume; the exponent γ makes the adiabatic pressure rise by a strictly larger factor.",
+        "common_mistakes": [
+          "Comparing 2P₁ with 2^γP₁ without stating γ > 1 as the reason 2^γP₁ is the larger one.",
+          "Mixing the two relations — using P₁V₁ = P₂V₂ for the adiabatic case, or the γ relation for the isothermal case."
+        ],
+        "memory_tip": "Adiabatic beats isothermal because 2^γ beats 2, since γ > 1."
+      }
+    ]
+  },
+  "insider_note": "Write both relations, P₂ = 2P₁ and P₂ = 2^γP₁, before concluding — the comparison alone, without both lines, does not earn the full two marks."
+}

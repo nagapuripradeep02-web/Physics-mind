@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_state_variables_and_equation_of_state",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define state variables, and define the equation of state.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "State variables",
+      "marks": 1
+    },
+    {
+      "label": "Equation of state",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 11 (printed p.125). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: pressure, volume, temperature and mass are the standard macroscopic state variables of a gas, and PV = nRT is the correct ideal-gas equation of state connecting them."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_state_variables",
+        "kind": "text",
+        "label": "State variables",
+        "marks": 1,
+        "mark_note": "State variables",
+        "lines": [
+          "State variables are the macroscopic",
+          "quantities — pressure, volume,",
+          "temperature and mass — that together",
+          "describe the equilibrium state of a",
+          "system completely."
+        ],
+        "margin_note": "The definition alone is the whole mark — name all four quantities.",
+        "why": "State variables are needed because they are the only quantities that fix the condition of a system; pin down all four and the state is fixed.",
+        "common_mistakes": [
+          "Naming only pressure, volume and temperature. Mass is also a state variable — it fixes the size of the system.",
+          "Confusing a state variable with a process such as heating. A process changes state variables; it is not one itself."
+        ],
+        "memory_tip": "Four state variables: pressure, volume, temperature, mass."
+      },
+      {
+        "id": "s2_equation_of_state",
+        "kind": "boxed_final",
+        "label": "Equation of state",
+        "marks": 1,
+        "mark_note": "Equation of state",
+        "lines": [
+          "The equation of state is the",
+          "relation connecting the state",
+          "variables of a system. For an",
+          "ideal gas it is",
+          {
+            "text": "PV = nRT",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "The relation PV = nRT for an ideal gas is the whole second mark.",
+        "why": "PV = nRT is the equation of state that joins the four state variables of an ideal gas into a single formula.",
+        "common_mistakes": [
+          "Writing PV = nRT as if it defines pressure or volume alone. It is a relation among all the state variables, not a definition of one.",
+          "Leaving n out of the formula. For a fixed system n is constant, but the equation still carries it."
+        ],
+        "memory_tip": "PV = nRT is one formula joining all four state variables."
+      }
+    ]
+  },
+  "insider_note": "Two short definitions. Name all four state variables in the first, and write PV = nRT for the second — nothing more is needed."
+}

@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_two_principal_specific_heats",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Define the two principal specific heats of a gas. Which one is greater, and why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "c_P defined",
+      "marks": 1
+    },
+    {
+      "label": "c_V defined",
+      "marks": 1
+    },
+    {
+      "label": "Why c_P is greater",
+      "marks": 1
+    },
+    {
+      "label": "The molar relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 (Thermodynamics) Short Answer Question 2 (printed p.126). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: c_P = (1/m)(ΔQ/ΔT) at constant P and c_V = (1/m)(ΔQ/ΔT) at constant V are the per-unit-mass specific heats; c_P > c_V because constant-pressure heating also does external work while constant-volume heating does not; the molar relation C_P − C_V = R holds for the MOLAR specific heats (per mole), giving c_P − c_V = R/M for the per-unit-mass forms defined in this card, where M is the molar mass."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cp",
+        "kind": "equation",
+        "label": "Specific heat at constant pressure",
+        "marks": 1,
+        "mark_note": "c_P",
+        "lines": [
+          "The specific heat at constant",
+          "pressure, c_P, is the heat needed to",
+          "raise the temperature of unit mass",
+          "of a gas by one degree, at constant",
+          "pressure.",
+          {
+            "text": "c_P = (1/m)(ΔQ/ΔT), P constant",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Say UNIT MASS and CONSTANT PRESSURE — both words are needed for the definition.",
+        "why": "The word 'unit mass' is what makes this the specific heat and not the molar specific heat — the two are different quantities with different units.",
+        "common_mistakes": [
+          "Leaving out 'constant pressure' — without it the definition does not distinguish c_P from c_V.",
+          "Writing the definition for one mole instead of unit mass — that is the MOLAR specific heat, a different quantity."
+        ],
+        "memory_tip": "c (lower case) is per unit MASS; C (upper case) is per MOLE — different quantities."
+      },
+      {
+        "id": "s2_cv",
+        "kind": "equation",
+        "label": "Specific heat at constant volume",
+        "marks": 1,
+        "mark_note": "c_V",
+        "lines": [
+          "The specific heat at constant",
+          "volume, c_V, is the heat needed to",
+          "raise the temperature of unit mass",
+          "of a gas by one degree, at constant",
+          "volume.",
+          {
+            "text": "c_V = (1/m)(ΔQ/ΔT), V constant",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "State it the same way as c_P, but with volume held constant instead of pressure.",
+        "why": "c_V is defined exactly like c_P, with the one condition swapped — comparing the two definitions side by side is what the next mark is built on.",
+        "common_mistakes": [
+          "Copying the c_P definition and forgetting to change 'pressure' to 'volume'.",
+          "Saying c_V applies only to a gas in a sealed container — it is a property of the gas, defined under the condition of constant volume."
+        ],
+        "memory_tip": "c_V holds Volume fixed; c_P holds Pressure fixed — match the letter to the condition."
+      },
+      {
+        "id": "s3_why_greater",
+        "kind": "text",
+        "label": "Why c_P is greater",
+        "marks": 1,
+        "mark_note": "c_P > c_V",
+        "lines": [
+          "c_P is greater than c_V.",
+          "At constant volume no work is",
+          "done, so all the heat raises the",
+          "internal energy alone.",
+          "At constant pressure the gas also",
+          "expands and does external work,",
+          "so more heat is needed for the",
+          "same rise in temperature."
+        ],
+        "margin_note": "Give the REASON — work done at constant pressure — not just the fact that c_P is bigger.",
+        "why": "Both specific heats raise the temperature by the same one degree; the extra heat in c_P is spent doing work, not raising the temperature further.",
+        "common_mistakes": [
+          "Stating c_P > c_V without giving the reason. The reason is the mark, not the fact alone.",
+          "Saying temperature rises more at constant pressure. The rise is the same one degree in both; it is the heat needed that differs."
+        ],
+        "memory_tip": "Constant pressure heat pays for work too, so it always costs more than constant volume heat."
+      },
+      {
+        "id": "s4_molar_relation",
+        "kind": "boxed_final",
+        "label": "The molar relation",
+        "marks": 1,
+        "mark_note": "c_P − c_V = R/M",
+        "lines": [
+          "The molar specific heats C_P and",
+          "C_V (heat per MOLE, not per unit",
+          "mass) obey a similar rule: C_P is",
+          "larger than C_V for the same",
+          "reason.",
+          "For one mole, C_P − C_V = R (R the",
+          "universal gas constant); the",
+          "per-mass forms used above satisfy",
+          {
+            "text": "c_P − c_V = R/M",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Say the MOLAR relation uses R, and the per-mass relation above uses R divided by M.",
+        "why": "c_P and C_P are different quantities with different units, so the same-looking rule (bigger minus smaller equals a gas constant) takes a different constant in each case — R for molar, R/M for per-mass.",
+        "common_mistakes": [
+          "Writing c_P − c_V = R without the /M. That relation holds only for the MOLAR specific heats.",
+          "Mixing lower-case c and upper-case C in the same line — they are different quantities and must not be interchanged."
+        ],
+        "memory_tip": "Molar minus molar gives R; per-mass minus per-mass gives R divided by M."
+      }
+    ]
+  },
+  "insider_note": "c_P and c_V here are per unit MASS, not per mole — do not write c_P − c_V = R without the /M for these."
+}

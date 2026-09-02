@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_hundred_percent_efficiency_impossible",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why can a heat engine with 100% efficiency never be realised in practice?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The Carnot efficiency limit",
+      "marks": 1
+    },
+    {
+      "label": "Why 100% cannot be reached",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 21 (printed p.126). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: for an ideal (Carnot) engine η = 1 − T₂/T₁, so η = 1 requires a sink at absolute zero, which cannot be reached; this is the same limit the Kelvin-Planck statement expresses directly, that no engine working in a cycle converts heat from a single reservoir entirely into work."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_carnot_limit",
+        "kind": "equation",
+        "label": "The Carnot efficiency limit",
+        "marks": 1,
+        "mark_note": "η = 1 − T₂/T₁",
+        "lines": [
+          "For an ideal (Carnot) engine the efficiency",
+          {
+            "text": "η = 1 − T₂/T₁",
+            "style": "eq"
+          },
+          "where T₁ is the source temperature and T₂",
+          "the sink temperature, both measured on the",
+          "absolute scale."
+        ],
+        "margin_note": "First mark. Write η = 1 − T₂/T₁ for an ideal engine between source T₁ and sink T₂.",
+        "why": "This is the limit on efficiency set by the second law, so a claim of 100% efficiency can be checked directly against it.",
+        "common_mistakes": [
+          "Writing η = 1 − T₁/T₂ with the temperatures swapped. T₂, the sink, always goes on top.",
+          "Forgetting the temperatures must be on the absolute (kelvin) scale, not Celsius."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an ideal engine's efficiency is one minus T two by T one, with T one the source and T two the sink, both on the absolute scale.",
+          "accept": [
+            "eta equals one minus T two by T one",
+            "source temperature T one, sink T two",
+            "absolute temperatures"
+          ],
+          "reject": [
+            "Q one is R T one log V two by V one"
+          ],
+          "heard_as": [
+            "eta equals one minus T two by T one",
+            "Carnot efficiency",
+            "absolute scale"
+          ]
+        },
+        "memory_tip": "The sink temperature T₂ is always the one on top of the fraction that gets subtracted."
+      },
+      {
+        "id": "s2_why_impossible",
+        "kind": "text",
+        "label": "Why 100% cannot be reached",
+        "marks": 1,
+        "mark_note": "T₂ = 0 unreachable",
+        "lines": [
+          "η = 1 needs T₂ = 0, a sink at absolute",
+          "zero, which no real process can reach.",
+          "The Kelvin-Planck statement says the same",
+          "thing directly: no engine can convert heat",
+          "from one reservoir completely into work.",
+          "So 100% efficiency stays a theoretical",
+          "limit, never realised in practice."
+        ],
+        "margin_note": "Second mark. Say η = 1 needs a sink at absolute zero, which the second law rules out.",
+        "why": "The formula and the Kelvin-Planck statement express the same limit in two different ways, one by calculation and one by direct statement.",
+        "common_mistakes": [
+          "Saying 100% efficiency is impossible only because of friction or other real-world losses. Even an ideal, loss-free engine stays below 100% efficiency.",
+          "Leaving the reason at \"the second law forbids it\" without saying what that means for T₂ or the reservoir."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That η = 1 would need a sink at absolute zero, which cannot be reached, and that this is the same limit the Kelvin-Planck statement expresses directly.",
+          "accept": [
+            "needs a sink at absolute zero",
+            "absolute zero cannot be reached",
+            "Kelvin-Planck forbids complete conversion"
+          ],
+          "reject": [
+            "heat cannot flow from a colder body to a hotter one"
+          ],
+          "heard_as": [
+            "absolute zero",
+            "cannot be reached",
+            "Kelvin Planck"
+          ]
+        },
+        "memory_tip": "100% efficiency needs a sink at absolute zero — and absolute zero is never reached."
+      }
+    ]
+  },
+  "insider_note": "Give both the formula reason (T₂ = 0 is unreachable) and the Kelvin-Planck reason — the two together are the complete answer to this question."
+}

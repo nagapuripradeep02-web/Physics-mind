@@ -2355,6 +2355,321 @@
       "name": "Thermodynamics",
       "questions": [
         {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Distinguish between thermal equilibrium and thermodynamic equilibrium.",
+          "question_id": "ts_ipe_p1_thd_thermal_vs_thermodynamic_equilibrium",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "State the zeroth law of thermodynamics. What is its significance?",
+          "question_id": "ts_ipe_p1_thd_zeroth_law",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Which thermodynamic variable is defined by a) the zeroth law of thermodynamics b) the first law of thermodynamics?",
+          "question_id": "ts_ipe_p1_thd_variables_from_zeroth_and_first_law",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "State the sign convention for heat (Q) and work (W) used in the first law of thermodynamics.",
+          "question_id": "ts_ipe_p1_thd_sign_convention_q_and_w",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "The potential energy of the molecules of an ideal gas is zero. Give the reason.",
+          "question_id": "ts_ipe_p1_thd_ideal_gas_zero_potential_energy",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Define the specific heat capacity of a substance. On what factors does it depend?",
+          "question_id": "ts_ipe_p1_thd_specific_heat_capacity_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Define one calorie. Define the mechanical equivalent of heat.",
+          "question_id": "ts_ipe_p1_thd_calorie_and_mechanical_equivalent",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Define molar specific heat capacity.",
+          "question_id": "ts_ipe_p1_thd_molar_specific_heat_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Write the relation between the specific heats of an ideal gas.",
+          "question_id": "ts_ipe_p1_thd_specific_heat_relation_ideal_gas",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "The coolant used in a chemical plant or a nuclear plant should have a high specific heat. Why?",
+          "question_id": "ts_ipe_p1_thd_coolant_high_specific_heat",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Define state variables, and define the equation of state.",
+          "question_id": "ts_ipe_p1_thd_state_variables_and_equation_of_state",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "The volume of a gas is reduced to 50% of its initial value, once by an adiabatic process and once by an isothermal process. Which of the two processes increases the pressure more?",
+          "question_id": "ts_ipe_p1_thd_adiabatic_vs_isothermal_pressure_rise",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "A thermos flask containing a liquid is shaken vigorously. What happens to the temperature of the liquid?",
+          "question_id": "ts_ipe_p1_thd_thermos_flask_shaken",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Explain the following processes: (i) isochoric process (ii) isobaric process.",
+          "question_id": "ts_ipe_p1_thd_isochoric_and_isobaric_processes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "State the second law of thermodynamics.",
+          "question_id": "ts_ipe_p1_thd_second_law_statements",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Name the processes that make up the cycle of a Carnot engine.",
+          "question_id": "ts_ipe_p1_thd_carnot_cycle_four_processes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "What is a P-V diagram?",
+          "question_id": "ts_ipe_p1_thd_pv_diagram_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Can a room be cooled by leaving the door of an electric refrigerator open?",
+          "question_id": "ts_ipe_p1_thd_refrigerator_door_open",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Why does the escaping air feel cold when the valve of a bicycle tube is opened in summer?",
+          "question_id": "ts_ipe_p1_thd_bicycle_tube_air_feels_cold",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Why does the brake drum of an automobile get heated while the automobile moves down an incline at constant speed?",
+          "question_id": "ts_ipe_p1_thd_brake_drum_heats_on_incline",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Why can a heat engine with 100% efficiency never be realised in practice?",
+          "question_id": "ts_ipe_p1_thd_hundred_percent_efficiency_impossible",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "State the Kelvin-Planck statement of the second law of thermodynamics.",
+          "question_id": "ts_ipe_p1_thd_kelvin_planck_statement",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "State and explain the first law of thermodynamics.",
+          "question_id": "ts_ipe_p1_thd_first_law_state_and_explain",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Define the two principal specific heats of a gas. Which one is greater, and why?",
+          "question_id": "ts_ipe_p1_thd_two_principal_specific_heats",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Show that C_P − C_V = R for an ideal gas.",
+          "question_id": "ts_ipe_p1_thd_cp_cv_relation_derive",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What are the limitations (drawbacks) of the first law of thermodynamics?",
+          "question_id": "ts_ipe_p1_thd_first_law_drawbacks",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "What is a quasi-static process? Explain its characteristics.",
+          "question_id": "ts_ipe_p1_thd_quasi_static_process",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Derive an expression for the work done in an isothermal process.",
+          "question_id": "ts_ipe_p1_thd_isothermal_work_derive",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Obtain an expression for the work done by an ideal gas during an adiabatic change, and explain it.",
+          "question_id": "ts_ipe_p1_thd_adiabatic_work_derive",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Compare the isothermal process with the adiabatic process.",
+          "question_id": "ts_ipe_p1_thd_isothermal_vs_adiabatic_compare",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Draw the P–V diagrams for the isothermal process, the adiabatic process, the isobaric process and the isochoric process.",
+          "question_id": "ts_ipe_p1_thd_pv_diagrams_four_processes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Obtain the relation between temperature and volume for an adiabatic process.",
+          "question_id": "ts_ipe_p1_thd_adiabatic_t_v_relation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Discuss the isochoric process and the isobaric process.",
+          "question_id": "ts_ipe_p1_thd_isochoric_and_isobaric_discuss",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Explain reversible and irreversible processes.",
+          "question_id": "ts_ipe_p1_thd_reversible_and_irreversible_processes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Explain the cyclic process, with an example. Explain the non-cyclic process, with an example.",
+          "question_id": "ts_ipe_p1_thd_cyclic_and_non_cyclic_processes",
+          "source": "chaitanya_fastrack"
+        },
+        {
           "ref": "laq1",
           "section": "LAQ",
           "number": 1,
@@ -2371,6 +2686,24 @@
           "text": "Explain reversible and irreversible processes. Describe the working of Carnot engine. Obtain an expression for the efficiency.",
           "question_id": "ts_ipe_p1_thd_carnot_engine_efficiency",
           "source": "ts_paper"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Show that C_P − C_V = R for an ideal gas, where the symbols have their usual meaning. A Carnot engine works between temperatures 127 °C and 327 °C. Calculate its efficiency.",
+          "question_id": "ts_ipe_p1_thd_cp_cv_relation_and_carnot_efficiency",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Obtain an expression for the work done during an adiabatic process. A quantity of heat 6 × 10⁵ J is supplied to a system at constant pressure 10⁵ N/m². If the volume of the system increases from 3 m³ to 5 m³, calculate the work done by the system and the change in its internal energy.",
+          "question_id": "ts_ipe_p1_thd_adiabatic_work_and_internal_energy_change",
+          "source": "chaitanya_fastrack"
         }
       ]
     },

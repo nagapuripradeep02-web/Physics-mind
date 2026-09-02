@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_cp_cv_relation_derive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that C_P − C_V = R for an ideal gas.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "At constant volume",
+      "marks": 1
+    },
+    {
+      "label": "At constant pressure",
+      "marks": 1
+    },
+    {
+      "label": "PΔV = RΔT",
+      "marks": 1
+    },
+    {
+      "label": "C_P − C_V = R",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 (Thermodynamics) Short Answer Question 3 (printed p.127). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: for one mole at constant volume ΔQ = C_V ΔT = ΔU since no work is done; at constant pressure ΔQ = C_P ΔT = ΔU + PΔV; from PV = RT at constant P, PΔV = RΔT; substituting gives C_P ΔT = C_V ΔT + RΔT, so C_P − C_V = R, where C_P and C_V are the MOLAR specific heats of one mole of an ideal gas."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_constant_volume",
+        "kind": "equation",
+        "label": "At constant volume",
+        "marks": 1,
+        "mark_note": "ΔQ = C_V ΔT = ΔU",
+        "lines": [
+          "Consider ONE MOLE of an ideal gas.",
+          "At constant volume no work is done,",
+          "so all the heat raises the internal",
+          "energy.",
+          {
+            "text": "ΔQ = C_V ΔT = ΔU",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Say ONE MOLE and NO WORK AT CONSTANT VOLUME before writing the relation.",
+        "why": "C_V is DEFINED using this exact condition — no work — so the derivation must start here, not with the general first law.",
+        "common_mistakes": [
+          "Starting from ΔQ = ΔU + ΔW directly without first setting ΔW = 0 for the constant-volume case.",
+          "Forgetting to say ONE MOLE — the whole derivation works in molar quantities."
+        ],
+        "memory_tip": "No volume change, no work — all the heat becomes internal energy, ΔQ = ΔU."
+      },
+      {
+        "id": "s2_constant_pressure",
+        "kind": "equation",
+        "label": "At constant pressure",
+        "marks": 1,
+        "mark_note": "ΔQ = C_P ΔT = ΔU + PΔV",
+        "lines": [
+          "At constant pressure the gas also",
+          "expands and does work PΔV, so more",
+          "heat is needed for the same rise",
+          "in temperature.",
+          {
+            "text": "ΔQ = C_P ΔT = ΔU + PΔV",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Include the PΔV term — this is the extra term that constant-volume heating does not have.",
+        "why": "This is the same first law applied to the OTHER condition, and the PΔV term is exactly the extra heat that makes C_P bigger than C_V.",
+        "common_mistakes": [
+          "Dropping the PΔV term and writing ΔQ = ΔU only — that is the constant-volume case, not this one.",
+          "Writing W without its constant-pressure form PΔV — at constant pressure, work equals P times the change in volume."
+        ],
+        "memory_tip": "At constant pressure, work PΔV rides along with ΔU — that is the extra heat C_P needs."
+      },
+      {
+        "id": "s3_pdv_rdt",
+        "kind": "equation",
+        "label": "PΔV in terms of R",
+        "marks": 1,
+        "mark_note": "PΔV = RΔT",
+        "lines": [
+          "For one mole, PV = RT. At constant",
+          "pressure, differencing gives",
+          {
+            "text": "PΔV = RΔT",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "This step turns the work term PΔV into RΔT — the key substitution.",
+        "why": "PV = RT is the equation of state for one mole; holding P fixed and taking the small change gives exactly the PΔV the previous step needs.",
+        "common_mistakes": [
+          "Using PV = nRT with n left in, instead of setting n = 1 for one mole.",
+          "Forgetting that P is held CONSTANT here — only V and T change."
+        ],
+        "memory_tip": "One mole, constant P: PΔV turns straight into RΔT."
+      },
+      {
+        "id": "s4_result",
+        "kind": "boxed_final",
+        "label": "The result",
+        "marks": 1,
+        "mark_note": "C_P − C_V = R",
+        "lines": [
+          "Substitute PΔV = RΔT into the",
+          "constant-pressure relation:",
+          {
+            "text": "C_P ΔT = C_V ΔT + RΔT",
+            "style": "eq"
+          },
+          "Dividing by ΔT,",
+          {
+            "text": "C_P − C_V = R",
+            "style": "boxed"
+          },
+          "C_P and C_V here are the MOLAR",
+          "specific heats, for one mole of",
+          "an ideal gas."
+        ],
+        "margin_note": "State clearly that C_P and C_V here are the MOLAR specific heats, not per unit mass.",
+        "why": "This relation holds only for the molar specific heats; the per-unit-mass forms satisfy a different relation, c_P − c_V = R/M, so the word MOLAR is not optional.",
+        "common_mistakes": [
+          "Writing C_P − C_V = R without saying these are molar specific heats — the same-looking per-mass forms c_P, c_V do NOT satisfy this relation.",
+          "Stopping at C_P ΔT = C_V ΔT + RΔT without dividing by ΔT to reach the final relation."
+        ],
+        "memory_tip": "Divide the constant-pressure equation by ΔT and the ΔT cancels, leaving C_P − C_V = R for one mole."
+      }
+    ]
+  },
+  "insider_note": "C_P − C_V = R holds for the MOLAR specific heats only — for the per-unit-mass forms c_P and c_V it becomes c_P − c_V = R/M."
+}

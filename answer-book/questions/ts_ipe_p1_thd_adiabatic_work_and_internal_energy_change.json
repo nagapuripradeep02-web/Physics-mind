@@ -1,0 +1,396 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_adiabatic_work_and_internal_energy_change",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 16,
+  "question_text": "Obtain an expression for the work done during an adiabatic process. A quantity of heat 6 × 10⁵ J is supplied to a system at constant pressure 10⁵ N/m². If the volume of the system increases from 3 m³ to 5 m³, calculate the work done by the system and the change in its internal energy.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "The adiabatic condition", "marks": 1 },
+    { "label": "Set up the work integral", "marks": 1 },
+    { "label": "Integrate", "marks": 1 },
+    { "label": "Rewrite using the gas equation", "marks": 1 },
+    { "label": "What this means for internal energy", "marks": 1 },
+    { "label": "Work at constant pressure", "marks": 1 },
+    { "label": "Apply the first law", "marks": 1 },
+    { "label": "The change in internal energy", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Long Answer Question 2 (printed p.132). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The eight 1-mark step split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the adiabatic relation PV^γ = constant, the integral W = ∫P dV reaching W = (P₁V₁ − P₂V₂)/(γ−1) = nR(T₁−T₂)/(γ−1), the first-law consequence W = −ΔU for ΔQ = 0, and the constant-pressure numerical W = PΔV = 10⁵ × 2 = 2 × 10⁵ J with ΔU = Q − W = 6×10⁵ − 2×10⁵ = 4×10⁵ J all match the standard NCERT Class-11 Chapter 12 (Thermodynamics) treatment."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Thermodynamics · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_adiabatic_condition",
+        "kind": "equation",
+        "label": "The adiabatic condition",
+        "marks": 1,
+        "mark_note": "PV^γ = constant",
+        "lines": [
+          "In an adiabatic process no heat",
+          "enters or leaves the system,",
+          "ΔQ = 0. The pressure and volume",
+          "are related by",
+          {
+            "text": "PV^γ = constant",
+            "style": "eq"
+          },
+          "where γ = C_P/C_V for the gas."
+        ],
+        "margin_note": "First mark. State ΔQ = 0 and write PV^γ = constant.",
+        "why": "This is the one relation that replaces PV = constant (isothermal) for a process with no heat exchange, and every later step is built on it.",
+        "common_mistakes": [
+          "Writing PV = constant instead of PV^γ — that is the isothermal relation, not the adiabatic one.",
+          "Forgetting to state ΔQ = 0 — that is what makes the process adiabatic in the first place."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an adiabatic process has ΔQ = 0, and that P and V are related by PV to the power gamma equals a constant.",
+          "accept": [
+            "adiabatic means no heat exchange",
+            "delta Q equals zero",
+            "P V to the power gamma is constant",
+            "gamma is C_P by C_V"
+          ],
+          "reject": [
+            "P V equals a constant"
+          ],
+          "heard_as": [
+            "no heat exchange",
+            "P V gamma",
+            "adiabatic"
+          ]
+        },
+        "memory_tip": "Adiabatic means no heat: PVᵞ = constant, with the extra γ isothermal does not have."
+      },
+      {
+        "id": "s2_work_integral",
+        "kind": "equation",
+        "label": "Set up the work integral",
+        "marks": 1,
+        "mark_note": "W = ∫P dV",
+        "lines": [
+          "The work done by the gas as it",
+          "expands from V₁ to V₂ is",
+          {
+            "text": "W = ∫ P dV   (V₁ to V₂)",
+            "style": "eq"
+          },
+          "From PV^γ = k, write P in terms",
+          "of V alone:",
+          {
+            "text": "P = k / V^γ",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Write W as ∫P dV, and P as k/V^γ.",
+        "why": "Work is always the area under a P-V curve, so writing P purely as a function of V is what lets the adiabatic curve itself be integrated.",
+        "common_mistakes": [
+          "Trying to integrate with both P and V as independent variables — P must be written as a function of V first.",
+          "Losing the constant k — it carries the values P₁V₁^γ (equally P₂V₂^γ) needed later."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work is the integral of P dV from V one to V two, with P written as k over V to the gamma using the adiabatic constant.",
+          "accept": [
+            "work is the integral of P dV",
+            "P equals k over V to the gamma",
+            "integrate from V one to V two",
+            "area under the P V curve"
+          ],
+          "reject": [
+            "P V to the power gamma is constant"
+          ],
+          "heard_as": [
+            "integral of P dV",
+            "k over V gamma",
+            "work integral"
+          ]
+        },
+        "memory_tip": "Work is the area under the curve, so write P in terms of V first."
+      },
+      {
+        "id": "s3_integrate",
+        "kind": "equation",
+        "label": "Integrate",
+        "marks": 1,
+        "mark_note": "W = (P₁V₁ − P₂V₂)/(γ − 1)",
+        "lines": [
+          "Integrating P = k V^(−γ) from",
+          "V₁ to V₂ and substituting back",
+          "k = P₁V₁^γ = P₂V₂^γ at the two",
+          "limits gives",
+          {
+            "text": "W = (P₁V₁ − P₂V₂)/(γ − 1)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Third mark. Integrate, substitute the limits, box the result.",
+        "why": "Substituting P₁V₁^γ and P₂V₂^γ back for k at the two limits is what turns the integral into a formula written purely in the measurable quantities P₁, V₁, P₂ and V₂.",
+        "common_mistakes": [
+          "Leaving the answer in terms of k instead of substituting P₁V₁^γ and P₂V₂^γ back in.",
+          "Dropping the sign, writing W = (P₂V₂ − P₁V₁)/(γ − 1) — for an expansion this must come out positive."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That integrating and substituting the limits gives W equal to P one V one minus P two V two, divided by gamma minus one.",
+          "accept": [
+            "integrate P equals k V to minus gamma",
+            "W is P one V one minus P two V two over gamma minus one",
+            "substitute the limits V one and V two",
+            "the boxed work formula"
+          ],
+          "reject": [
+            "work equals nR times T one minus T two"
+          ],
+          "heard_as": [
+            "P one V one minus P two V two",
+            "gamma minus one",
+            "integrate"
+          ]
+        },
+        "memory_tip": "The boxed form has P₁V₁ first, then P₂V₂, over γ − 1."
+      },
+      {
+        "id": "s4_rewrite_temperature",
+        "kind": "equation",
+        "label": "Rewrite using the gas equation",
+        "marks": 1,
+        "mark_note": "W = nR(T₁ − T₂)/(γ − 1)",
+        "lines": [
+          "For n moles, PV = nRT at each end",
+          "of the process, so P₁V₁ = nRT₁",
+          "and P₂V₂ = nRT₂. Substituting,",
+          {
+            "text": "W = nR(T₁ − T₂)/(γ − 1)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Fourth mark. Substitute PV = nRT at both limits.",
+        "why": "The pressure-volume form and the temperature form are the same result — writing it in T₁ and T₂ is the version wanted when temperatures, rather than pressures and volumes, are given.",
+        "common_mistakes": [
+          "Substituting PV = nRT only at one end of the process, not both.",
+          "Writing T₂ − T₁ instead of T₁ − T₂ — for an expansion the gas cools, so T₁ is the larger temperature."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting PV = nRT at both limits rewrites the work as nR times T one minus T two, over gamma minus one.",
+          "accept": [
+            "P V equals n R T at both ends",
+            "W is nR T one minus T two over gamma minus one",
+            "rewrite in terms of temperature",
+            "P one V one is nRT one"
+          ],
+          "reject": [
+            "W is P one V one minus P two V two over gamma minus one"
+          ],
+          "heard_as": [
+            "nR T one minus T two",
+            "gamma minus one",
+            "rewrite in temperature"
+          ]
+        },
+        "memory_tip": "Same result, two forms: swap P₁V₁ and P₂V₂ for nRT₁ and nRT₂."
+      },
+      {
+        "id": "s5_first_law_meaning",
+        "kind": "equation",
+        "label": "What this means for internal energy",
+        "marks": 1,
+        "mark_note": "W = −ΔU",
+        "lines": [
+          "Since the process is adiabatic,",
+          "ΔQ = 0. The first law",
+          "ΔQ = ΔU + W then gives",
+          {
+            "text": "W = −ΔU",
+            "style": "eq"
+          },
+          "In an adiabatic expansion the gas",
+          "does positive work, so ΔU is",
+          "negative: the work comes entirely",
+          "out of the internal energy, and",
+          "the gas cools."
+        ],
+        "margin_note": "Fifth mark. Apply the first law with ΔQ = 0 and state the gas cools.",
+        "why": "This is the physical meaning of the formula just derived: with no heat supplied, the ONLY source of the work done is the gas's own internal energy, so its temperature must fall as it expands.",
+        "common_mistakes": [
+          "Saying the temperature stays the same in an adiabatic expansion — that is the isothermal case; here the gas cools.",
+          "Missing the sign: work done BY the gas is positive, so ΔU = −W is negative, a decrease."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with ΔQ = 0 the first law gives W equals minus ΔU, so the work in an adiabatic expansion comes out of the internal energy and the gas cools.",
+          "accept": [
+            "delta Q is zero so W equals minus delta U",
+            "the work comes out of the internal energy",
+            "the gas cools in an adiabatic expansion",
+            "first law with no heat exchange"
+          ],
+          "reject": [
+            "W is nR T one minus T two over gamma minus one"
+          ],
+          "heard_as": [
+            "W equals minus delta U",
+            "the gas cools",
+            "internal energy"
+          ]
+        },
+        "memory_tip": "No heat in, so the work has nowhere else to come from but ΔU."
+      },
+      {
+        "id": "s6_work_constant_pressure",
+        "kind": "equation",
+        "label": "Work at constant pressure",
+        "marks": 1,
+        "mark_note": "W = PΔV",
+        "lines": [
+          "A system is held at constant",
+          "pressure P = 10⁵ N/m² while its",
+          "volume increases from 3 m³ to",
+          "5 m³. At constant pressure the",
+          "work done by the system is",
+          {
+            "text": "W = PΔV = 10⁵ × (5 − 3)",
+            "style": "eq"
+          },
+          {
+            "text": "W = 2 × 10⁵ J",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Sixth mark. W = PΔV with ΔV = 2 m³, giving 2 × 10⁵ J.",
+        "why": "This is a separate, constant-pressure process — the work is the simple W = PΔV of an isobaric change, not the adiabatic formula above, because here pressure, not heat, is held fixed.",
+        "common_mistakes": [
+          "Reaching for the adiabatic work formula from part one — this process is at constant pressure, so W = PΔV applies directly.",
+          "Using ΔV = 5 m³ instead of the change 5 − 3 = 2 m³."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at constant pressure 10 to the five, with volume changing by 2 cubic metres, the work done is 2 times 10 to the five joules.",
+          "accept": [
+            "work is P delta V",
+            "10 to the five times two",
+            "the work is 2 times 10 to the five joules",
+            "constant pressure work"
+          ],
+          "reject": [
+            "W equals nR T one minus T two over gamma minus one"
+          ],
+          "heard_as": [
+            "P delta V",
+            "2 times 10 to the five",
+            "work done"
+          ]
+        },
+        "memory_tip": "Constant pressure: work is just P times the change in volume."
+      },
+      {
+        "id": "s7_first_law_rearranged",
+        "kind": "equation",
+        "label": "Apply the first law",
+        "marks": 1,
+        "mark_note": "ΔU = Q − W",
+        "lines": [
+          "The heat supplied is",
+          "Q = 6 × 10⁵ J. The first law",
+          "ΔQ = ΔU + W rearranges to give",
+          "the change in internal energy:",
+          {
+            "text": "ΔU = Q − W",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Seventh mark. Rearrange the first law to ΔU = Q − W.",
+        "why": "The heat supplied splits between raising the internal energy and doing external work — rearranging the first law isolates the internal-energy change the question asks for.",
+        "common_mistakes": [
+          "Writing ΔU = Q + W — the work done BY the system is subtracted, not added.",
+          "Using the adiabatic work formula's W here instead of the 2 × 10⁵ J just found for this constant-pressure process."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first law rearranges to delta U equals Q minus W.",
+          "accept": [
+            "delta U equals Q minus W",
+            "rearrange the first law",
+            "heat in minus work done",
+            "delta Q equals delta U plus W rearranged"
+          ],
+          "reject": [
+            "work is P delta V"
+          ],
+          "heard_as": [
+            "delta U equals Q minus W",
+            "rearrange",
+            "first law"
+          ]
+        },
+        "memory_tip": "Heat in splits two ways: rearrange ΔQ = ΔU + W to ΔU = Q − W."
+      },
+      {
+        "id": "s8_internal_energy_change",
+        "kind": "boxed_final",
+        "label": "The change in internal energy",
+        "marks": 1,
+        "mark_note": "ΔU = 4 × 10⁵ J",
+        "lines": [
+          "Substituting Q = 6 × 10⁵ J and",
+          "W = 2 × 10⁵ J,",
+          {
+            "text": "ΔU = 6×10⁵ − 2×10⁵",
+            "style": "eq"
+          },
+          {
+            "text": "ΔU = 4 × 10⁵ J",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Eighth mark. Substitute and box ΔU = 4 × 10⁵ J.",
+        "why": "This is the number the question asks for: of the 6 × 10⁵ J supplied, 2 × 10⁵ J left the system as work and the remaining 4 × 10⁵ J stayed behind as internal energy.",
+        "common_mistakes": [
+          "Substituting the wrong work value — this is the 2 × 10⁵ J found for THIS constant-pressure process, not any adiabatic formula.",
+          "Losing a power of ten when subtracting 2 × 10⁵ from 6 × 10⁵."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting gives ΔU equal to 6 times 10 to the five minus 2 times 10 to the five, which is 4 times 10 to the five joules.",
+          "accept": [
+            "6 times 10 to the five minus 2 times 10 to the five",
+            "delta U is 4 times 10 to the five joules",
+            "the internal energy increases by 4 times 10 to the five",
+            "final answer 4 times 10 to the five joules"
+          ],
+          "reject": [
+            "work is 2 times 10 to the five joules"
+          ],
+          "heard_as": [
+            "4 times 10 to the five joules",
+            "6 minus 2",
+            "final answer"
+          ]
+        },
+        "memory_tip": "6 in, 2 out as work, 4 stays behind as internal energy — all ×10⁵ J."
+      }
+    ]
+  },
+  "insider_note": "The numerical is a separate constant-pressure process, not adiabatic — use W = PΔV directly rather than reaching for the formula from the derivation."
+}

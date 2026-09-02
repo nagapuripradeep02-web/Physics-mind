@@ -1,0 +1,119 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_brake_drum_heats_on_incline",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why does the brake drum of an automobile get heated while the automobile moves down an incline at constant speed?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Kinetic energy is unchanged",
+      "marks": 1
+    },
+    {
+      "label": "Friction turns it to heat",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 20 (printed p.126). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: at constant speed the kinetic energy is unchanged, so by energy conservation the gravitational potential energy lost going downhill is removed by the work the brakes do against friction, which appears as heat in the brake drum."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_energy_balance",
+        "kind": "text",
+        "label": "Kinetic energy is unchanged",
+        "marks": 1,
+        "mark_note": "Constant speed",
+        "lines": [
+          "Going down at constant speed, the kinetic",
+          "energy of the automobile does not change.",
+          "So the gravitational potential energy it",
+          "loses cannot be going into speed."
+        ],
+        "margin_note": "First mark. Say the kinetic energy stays constant, so the lost potential energy is not going into speed.",
+        "why": "Ruling out kinetic energy as the destination is the step that shows the lost potential energy must be going somewhere else.",
+        "common_mistakes": [
+          "Assuming constant speed means no energy is being lost at all. Energy is still being lost, just not as kinetic energy.",
+          "Skipping straight to friction without first noting the kinetic energy is unchanged."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at constant speed the kinetic energy does not change, so the lost gravitational potential energy is not going into speed.",
+          "accept": [
+            "kinetic energy stays the same",
+            "constant speed so KE unchanged",
+            "potential energy lost is not becoming speed"
+          ],
+          "reject": [
+            "brakes do work against friction"
+          ],
+          "heard_as": [
+            "constant speed",
+            "kinetic energy unchanged",
+            "potential energy lost"
+          ]
+        },
+        "memory_tip": "Constant speed means the kinetic energy is not changing — so the lost height energy must go elsewhere."
+      },
+      {
+        "id": "s2_friction_heat",
+        "kind": "text",
+        "label": "Friction turns it to heat",
+        "marks": 1,
+        "mark_note": "Friction to heat",
+        "lines": [
+          "The brakes do work against friction to hold",
+          "that constant speed. This work converts the",
+          "lost potential energy into heat in the",
+          "brake drum, which is why it gets hot."
+        ],
+        "margin_note": "Second mark. Say the brakes' work against friction turns that lost energy into heat in the drum.",
+        "why": "Friction is the only force in this picture that can remove mechanical energy from the system and leave it as heat rather than as motion.",
+        "common_mistakes": [
+          "Saying the brakes 'stop' the automobile. At constant speed the automobile keeps moving; the brakes only hold the speed steady.",
+          "Leaving the heat unexplained. Say plainly that the work done against friction appears as heat in the brake drum."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the brakes do work against friction to hold the constant speed, and that work turns the lost potential energy into heat in the brake drum.",
+          "accept": [
+            "brakes do work against friction",
+            "work becomes heat in the drum",
+            "friction converts the energy to heat"
+          ],
+          "reject": [
+            "kinetic energy is increasing"
+          ],
+          "heard_as": [
+            "friction",
+            "brake drum heats up",
+            "work against friction"
+          ]
+        },
+        "memory_tip": "Friction is the only place the lost height-energy can go if speed is not changing: it becomes heat."
+      }
+    ]
+  },
+  "insider_note": "The first step (constant speed, so KE unchanged) and the second (friction turns that energy to heat) are both needed for the complete answer."
+}

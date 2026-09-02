@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_variables_from_zeroth_and_first_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which thermodynamic variable is defined by a) the zeroth law of thermodynamics b) the first law of thermodynamics?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "a) The zeroth law",
+      "marks": 1
+    },
+    {
+      "label": "b) The first law",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 3 (printed p.124). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked against NCERT Class-11 Chapter 12: the zeroth law defines temperature, as the property equal for two systems in thermal equilibrium; the first law, ΔQ = ΔU + ΔW, defines internal energy as a state variable through the difference between heat supplied and work done."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_zeroth",
+        "kind": "text",
+        "label": "a) The zeroth law",
+        "marks": 1,
+        "mark_note": "Temperature",
+        "lines": [
+          "The zeroth law of",
+          "thermodynamics defines",
+          "temperature.",
+          "It is the property that is equal",
+          "for two systems in thermal",
+          "equilibrium."
+        ],
+        "margin_note": "First mark. Name temperature, and say it is equal for systems in equilibrium.",
+        "why": "Before the zeroth law, temperature is only a hotness felt by touch; the law gives it a working definition, as the property shared by any two systems in thermal equilibrium.",
+        "common_mistakes": [
+          "Naming internal energy for the zeroth law instead of temperature.",
+          "Leaving out that temperature is defined through thermal equilibrium."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the zeroth law defines temperature, as the property equal for two systems in thermal equilibrium.",
+          "accept": [
+            "zeroth law defines temperature",
+            "equal for systems in equilibrium"
+          ],
+          "reject": [
+            "first law defines internal energy"
+          ],
+          "heard_as": [
+            "zeroth law",
+            "temperature"
+          ]
+        },
+        "memory_tip": "Zeroth comes first, and so does temperature — the zeroth law defines it."
+      },
+      {
+        "id": "s2_first",
+        "kind": "boxed_final",
+        "label": "b) The first law",
+        "marks": 1,
+        "mark_note": "Internal energy",
+        "lines": [
+          {
+            "text": "First law: internal energy",
+            "style": "heading"
+          },
+          "The first law of",
+          "thermodynamics defines",
+          "internal energy, through",
+          {
+            "text": "ΔQ = ΔU + ΔW",
+            "style": "eq"
+          },
+          "It is a state variable, fixed",
+          "by the heat supplied and the",
+          "work done."
+        ],
+        "margin_note": "Second mark. Name internal energy, and give ΔQ = ΔU + ΔW.",
+        "why": "Heat and work both depend on the path taken, but their difference does not — that path-independent difference is what the first law identifies as internal energy, a state variable.",
+        "common_mistakes": [
+          "Naming temperature again for the first law instead of internal energy.",
+          "Writing the first law without identifying which term is the newly defined variable."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the first law defines internal energy, through ΔQ equals ΔU plus ΔW.",
+          "accept": [
+            "first law defines internal energy",
+            "delta Q equals delta U plus delta W"
+          ],
+          "reject": [
+            "equal for systems in equilibrium"
+          ],
+          "heard_as": [
+            "first law",
+            "internal energy",
+            "delta U"
+          ]
+        },
+        "memory_tip": "First law, internal energy. Both are about the U in ΔU."
+      }
+    ]
+  },
+  "insider_note": "Two different laws, two different variables — never answer both parts with the same word."
+}

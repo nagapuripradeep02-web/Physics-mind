@@ -1,0 +1,393 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_cp_cv_relation_and_carnot_efficiency",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 16,
+  "question_text": "Show that C_P − C_V = R for an ideal gas, where the symbols have their usual meaning. A Carnot engine works between temperatures 127 °C and 327 °C. Calculate its efficiency.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Constant volume path", "marks": 1 },
+    { "label": "Constant pressure path", "marks": 1 },
+    { "label": "Work term from the gas equation", "marks": 1 },
+    { "label": "Substitute and solve", "marks": 1 },
+    { "label": "State the quantities are molar", "marks": 1 },
+    { "label": "Convert to kelvin", "marks": 1 },
+    { "label": "Apply the efficiency formula", "marks": 1 },
+    { "label": "The efficiency", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Long Answer Question 1 (printed p.131). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The eight 1-mark step split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the constant-volume relation ΔQ = C_V ΔT = ΔU, the constant-pressure relation ΔQ = C_P ΔT = ΔU + PΔV, PΔV = RΔT from PV = RT at constant pressure, the substitution reaching C_P − C_V = R for MOLAR specific heats, and the Carnot efficiency η = 1 − T₂/T₁ = 1 − 400/600 = 1/3 = 33.3% with T₁ = 600 K (327 °C) and T₂ = 400 K (127 °C) all match the standard NCERT Class-11 Chapter 12 (Thermodynamics) treatment."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Thermodynamics · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_constant_volume",
+        "kind": "equation",
+        "label": "Constant volume path",
+        "marks": 1,
+        "mark_note": "ΔQ = C_V ΔT",
+        "lines": [
+          "For one mole of an ideal gas, at",
+          "constant volume no work is done, so",
+          "all the heat raises the internal",
+          "energy.",
+          {
+            "text": "ΔQ = C_V ΔT = ΔU",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. State constant volume, then ΔQ = C_V ΔT = ΔU.",
+        "why": "This fixes what C_V means physically: at constant volume every joule of heat supplied becomes internal energy, none of it is spent doing work.",
+        "common_mistakes": [
+          "Writing ΔQ = C_V ΔT without also equating it to ΔU — the equality with ΔU is the whole point of this step.",
+          "Forgetting the one mole condition — C_V here is the molar specific heat, not the specific heat per unit mass."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at constant volume, for one mole, ΔQ = C_V ΔT equals ΔU because no work is done.",
+          "accept": [
+            "at constant volume delta Q is C_V delta T",
+            "no work is done at constant volume",
+            "delta Q equals delta U at constant volume",
+            "C_V delta T equals delta U"
+          ],
+          "reject": [
+            "delta Q equals C_P delta T"
+          ],
+          "heard_as": [
+            "C_V delta T",
+            "constant volume",
+            "delta U"
+          ]
+        },
+        "memory_tip": "Constant volume: no work, so all the heat goes into ΔU."
+      },
+      {
+        "id": "s2_constant_pressure",
+        "kind": "equation",
+        "label": "Constant pressure path",
+        "marks": 1,
+        "mark_note": "ΔQ = C_P ΔT",
+        "lines": [
+          "At constant pressure the same one",
+          "mole also does work PΔV as it",
+          "expands, so the heat supplied for",
+          "the same rise in temperature is",
+          "larger.",
+          {
+            "text": "ΔQ = C_P ΔT = ΔU + PΔV",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. ΔQ = C_P ΔT = ΔU + PΔV, for the same ΔT.",
+        "why": "Comparing the same temperature rise at constant pressure against the constant-volume case is what lets the two heat capacities be subtracted in the next steps.",
+        "common_mistakes": [
+          "Leaving out the PΔV term — at constant pressure the gas does external work, so ΔQ is not just ΔU.",
+          "Using a different ΔT for this step — the comparison only works because the SAME temperature rise ΔT is used in both paths."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at constant pressure, for the same ΔT, ΔQ = C_P ΔT equals ΔU plus PΔV.",
+          "accept": [
+            "at constant pressure delta Q is C_P delta T",
+            "C_P delta T equals delta U plus P delta V",
+            "the gas also does work P delta V",
+            "same delta T at constant pressure"
+          ],
+          "reject": [
+            "delta Q equals C_V delta T"
+          ],
+          "heard_as": [
+            "C_P delta T",
+            "constant pressure",
+            "P delta V"
+          ]
+        },
+        "memory_tip": "Constant pressure: the gas also pushes outward, so C_P carries an extra PΔV."
+      },
+      {
+        "id": "s3_gas_equation",
+        "kind": "equation",
+        "label": "Work term from the gas equation",
+        "marks": 1,
+        "mark_note": "PΔV = RΔT",
+        "lines": [
+          "For one mole, PV = RT. At constant",
+          "pressure, differencing this equation",
+          "gives the work term directly:",
+          {
+            "text": "PΔV = RΔT",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. PV = RT at constant pressure gives PΔV = RΔT.",
+        "why": "PΔV is the work done in the constant-pressure step, and this line turns it into a term written with R — the ingredient the final result needs.",
+        "common_mistakes": [
+          "Applying PV = RT at the wrong step — it is used HERE, at constant pressure, not in the constant-volume step.",
+          "Writing VΔP instead of PΔV — pressure is held constant, so it is the volume that changes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That PV = RT at constant pressure gives PΔV = RΔT.",
+          "accept": [
+            "P V equals R T",
+            "at constant pressure P delta V equals R delta T",
+            "difference the ideal gas equation",
+            "P delta V is R delta T"
+          ],
+          "reject": [
+            "C_P minus C_V equals R"
+          ],
+          "heard_as": [
+            "P delta V",
+            "R delta T",
+            "ideal gas equation"
+          ]
+        },
+        "memory_tip": "Constant P, so only V changes: PΔV = RΔT falls straight out of PV = RT."
+      },
+      {
+        "id": "s4_substitute",
+        "kind": "equation",
+        "label": "Substitute and solve",
+        "marks": 1,
+        "mark_note": "C_P − C_V = R",
+        "lines": [
+          "Substitute PΔV = RΔT into the",
+          "constant-pressure equation:",
+          {
+            "text": "C_P ΔT = C_V ΔT + RΔT",
+            "style": "eq"
+          },
+          "Divide through by ΔT:",
+          {
+            "text": "C_P − C_V = R",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Substitute, cancel ΔU and ΔT, and box C_P − C_V = R.",
+        "why": "Both paths cover the same temperature rise, so ΔU is the same term in both equations — subtracting them turns the two separate heat equations into one relation between C_P, C_V and R alone.",
+        "common_mistakes": [
+          "Cancelling ΔU without saying why it cancels — it is the SAME ΔU in both equations because both paths cover the same ΔT.",
+          "Leaving R on the wrong side, writing C_V − C_P = R."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting PΔV = RΔT and subtracting the two heat equations cancels ΔU and ΔT, leaving C_P − C_V = R.",
+          "accept": [
+            "substitute R delta T into the C_P equation",
+            "subtract the two equations and delta U cancels",
+            "C_P minus C_V equals R",
+            "divide through by delta T"
+          ],
+          "reject": [
+            "P delta V equals R delta T"
+          ],
+          "heard_as": [
+            "C_P minus C_V",
+            "equals R",
+            "cancel delta U"
+          ]
+        },
+        "memory_tip": "Subtract the two ΔQ equations: ΔU cancels, only RΔT survives."
+      },
+      {
+        "id": "s5_molar",
+        "kind": "text",
+        "label": "State the quantities are molar",
+        "marks": 1,
+        "mark_note": "Molar specific heats",
+        "lines": [
+          "C_P and C_V here are the MOLAR",
+          "specific heats, for one mole of gas —",
+          "the relation C_P − C_V = R does not",
+          "hold for specific heats measured",
+          "per unit mass.",
+          "C_P is the larger of the two, because",
+          "at constant pressure the gas must",
+          "also do work as it expands."
+        ],
+        "margin_note": "Fifth mark. Say these are molar specific heats, and that C_P is the larger.",
+        "why": "The whole derivation was carried out for one mole, so the result is a statement about molar specific heats specifically — writing it beside a per-unit-mass definition without saying so is the single commonest way this answer goes wrong.",
+        "common_mistakes": [
+          "Writing C_P − C_V = R next to a per-unit-mass definition of specific heat without saying these are molar quantities.",
+          "Saying C_P and C_V are equal, or that C_P is the smaller — constant pressure always needs the extra work term, so C_P is always the larger."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That C_P and C_V in this relation are molar specific heats, one mole of gas, and that C_P is larger because of the extra work term at constant pressure.",
+          "accept": [
+            "these are molar specific heats",
+            "the relation holds for one mole",
+            "C_P is larger because of the work done",
+            "not the per unit mass specific heats"
+          ],
+          "reject": [
+            "c_P minus c_V equals R over M"
+          ],
+          "heard_as": [
+            "molar specific heats",
+            "one mole",
+            "C_P is larger"
+          ]
+        },
+        "memory_tip": "One mole throughout the derivation, so C_P − C_V = R is a MOLAR relation."
+      },
+      {
+        "id": "s6_convert",
+        "kind": "equation",
+        "label": "Convert to kelvin",
+        "marks": 1,
+        "mark_note": "T₁ and T₂ in kelvin",
+        "lines": [
+          "A Carnot engine works between a",
+          "source at 327 °C and a sink at",
+          "127 °C. The efficiency formula",
+          "needs absolute temperature, so",
+          "convert to kelvin:",
+          {
+            "text": "T₁ = 327 + 273 = 600 K",
+            "style": "eq"
+          },
+          {
+            "text": "T₂ = 127 + 273 = 400 K",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Sixth mark. Convert both temperatures to kelvin before using the formula.",
+        "why": "The efficiency formula η = 1 − T₂/T₁ only holds for absolute temperature — using the Celsius values directly is the single commonest way this numerical is lost, so the conversion earns its own mark.",
+        "common_mistakes": [
+          "Substituting 327 and 127 directly into η = 1 − T₂/T₁ without converting to kelvin first.",
+          "Swapping which temperature is the source and which is the sink — the higher temperature, 600 K, is the source T₁."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the source at 327 degrees Celsius is 600 kelvin and the sink at 127 degrees Celsius is 400 kelvin, converted before using the efficiency formula.",
+          "accept": [
+            "327 degrees celsius is 600 kelvin",
+            "127 degrees celsius is 400 kelvin",
+            "convert to kelvin before using the formula",
+            "T one is 600 K, T two is 400 K"
+          ],
+          "reject": [
+            "eta equals one minus T two by T one"
+          ],
+          "heard_as": [
+            "600 K",
+            "400 K",
+            "convert to kelvin"
+          ]
+        },
+        "memory_tip": "Add 273 before anything else: 327 °C is 600 K, 127 °C is 400 K."
+      },
+      {
+        "id": "s7_formula",
+        "kind": "equation",
+        "label": "Apply the efficiency formula",
+        "marks": 1,
+        "mark_note": "η = 1 − T₂/T₁",
+        "lines": [
+          "The efficiency of a Carnot engine is",
+          {
+            "text": "η = 1 − T₂/T₁",
+            "style": "eq"
+          },
+          "Substitute T₁ = 600 K and",
+          "T₂ = 400 K:",
+          {
+            "text": "η = 1 − 400/600 = 1 − 2/3",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Seventh mark. Write η = 1 − T₂/T₁, then substitute 400 and 600.",
+        "why": "This is the standard Carnot result — substituting the two absolute temperatures already found is what turns the formula into a number.",
+        "common_mistakes": [
+          "Writing η = T₂/T₁ without the 1 − in front.",
+          "Substituting the Celsius values here instead of the kelvin values already found."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That efficiency is one minus T two over T one, substituted as one minus 400 over 600.",
+          "accept": [
+            "eta equals one minus T two by T one",
+            "one minus 400 by 600",
+            "substitute 400 and 600",
+            "one minus two thirds"
+          ],
+          "reject": [
+            "327 degrees celsius is 600 kelvin"
+          ],
+          "heard_as": [
+            "one minus T two by T one",
+            "400 by 600",
+            "efficiency formula"
+          ]
+        },
+        "memory_tip": "η = 1 − T₂/T₁: the sink over the source, subtracted from one."
+      },
+      {
+        "id": "s8_efficiency",
+        "kind": "boxed_final",
+        "label": "The efficiency",
+        "marks": 1,
+        "mark_note": "η = 1/3 = 33.3 %",
+        "lines": [
+          {
+            "text": "η = 1 − 2/3 = 1/3",
+            "style": "eq"
+          },
+          "As a decimal and a percentage,",
+          {
+            "text": "η = 0.333 = 33.3 %",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Eighth mark. Simplify to 1/3 and state 33.3 % as the final answer.",
+        "why": "The result is worth stating in both forms — the fraction shows where it came from, and the percentage is the number an examiner and a student both recognise as the answer.",
+        "common_mistakes": [
+          "Leaving the answer as the fraction 1/3 without converting it to a percentage.",
+          "Writing 33.3 without the percent sign, which reads as a bare number rather than the efficiency."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That one minus two thirds simplifies to one third, which is 33.3 percent, the final efficiency.",
+          "accept": [
+            "one minus two thirds is one third",
+            "the efficiency is one third",
+            "33.3 percent",
+            "0.333"
+          ],
+          "reject": [
+            "one minus T two by T one"
+          ],
+          "heard_as": [
+            "one third",
+            "33.3 percent",
+            "0.333"
+          ]
+        },
+        "memory_tip": "1/3 as a percentage is 33.3 % — the final boxed answer."
+      }
+    ]
+  },
+  "insider_note": "Saying these are MOLAR specific heats and converting to kelvin before substituting are the two places this answer is most often marked down — do both explicitly."
+}

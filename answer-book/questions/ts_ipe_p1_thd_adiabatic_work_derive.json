@@ -1,0 +1,225 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_adiabatic_work_derive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Obtain an expression for the work done by an ideal gas during an adiabatic change, and explain it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Setting up",
+      "marks": 1
+    },
+    {
+      "label": "The integral",
+      "marks": 1
+    },
+    {
+      "label": "The expression",
+      "marks": 1
+    },
+    {
+      "label": "What it means",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Short Answer Question 7 (printed p.128). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: for an adiabatic process PV^γ = constant, integrating P dV from V₁ to V₂ gives W = (P₁V₁ − P₂V₂)/(γ − 1) = nR(T₁ − T₂)/(γ − 1), and with ΔQ = 0 the first law gives ΔU = −W, so an adiabatic expansion cools the gas and an adiabatic compression warms it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Setting up",
+        "marks": 1,
+        "mark_note": "Setup",
+        "lines": [
+          "In an adiabatic process the gas",
+          "exchanges no heat, so ΔQ = 0, and",
+          "it obeys",
+          {
+            "text": "PV^γ = constant",
+            "style": "eq"
+          },
+          "between the initial state (P₁, V₁)",
+          "and the final state (P₂, V₂)."
+        ],
+        "margin_note": "First mark. State ΔQ = 0 and the adiabatic relation PV^γ = constant.",
+        "why": "The whole derivation is built on two facts: no heat crosses the boundary, and the gas follows PV^γ = constant throughout the change.",
+        "common_mistakes": [
+          "Forgetting to state ΔQ = 0 first — without it the integral below has no adiabatic meaning.",
+          "Writing PV = constant, which is the isothermal relation, not the adiabatic one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That ΔQ = 0 in an adiabatic process, and the gas obeys PV^γ = constant.",
+          "accept": [
+            "delta Q equals zero",
+            "no heat is exchanged",
+            "P V to the gamma equals a constant"
+          ],
+          "reject": [
+            "W equals P one V one minus P two V two over gamma minus one"
+          ],
+          "heard_as": [
+            "delta Q zero",
+            "P V gamma constant"
+          ]
+        },
+        "memory_tip": "Adiabatic means no heat crosses the boundary: ΔQ = 0 is the first line to write."
+      },
+      {
+        "id": "s2_integrate",
+        "kind": "equation",
+        "label": "Carrying out the integral",
+        "marks": 1,
+        "mark_note": "The integral",
+        "lines": [
+          "The work done as the volume",
+          "changes from V₁ to V₂ is",
+          {
+            "text": "W = ∫ P dV",
+            "style": "eq"
+          },
+          "Writing P = K/V^γ, with",
+          "K = P₁V₁^γ, and integrating,",
+          {
+            "text": "W = K [V^(1−γ)/(1−γ)]",
+            "style": "eq"
+          },
+          "evaluated between V₁ and V₂."
+        ],
+        "margin_note": "Second mark. Substitute P = K/V^γ before integrating — do not integrate a constant P.",
+        "why": "P is not constant in an adiabatic change, so it must be written as a function of V before the integral can be done.",
+        "common_mistakes": [
+          "Treating P as constant and writing W = PΔV — that formula is for an isobaric process only.",
+          "Dropping the power (1 − γ) and integrating V^γ as if γ were 1."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the work is the integral of P dV, with P replaced by K over V to the gamma before integrating.",
+          "accept": [
+            "W equals integral of P dV from V one to V two",
+            "P equals K over V to the gamma",
+            "integrate V to the gamma"
+          ],
+          "reject": [
+            "delta Q equals zero"
+          ],
+          "heard_as": [
+            "integral of P dV",
+            "K over V gamma"
+          ]
+        },
+        "memory_tip": "P is not constant here: replace it with K/V^γ first, then integrate."
+      },
+      {
+        "id": "s3_result",
+        "kind": "equation",
+        "label": "The expression",
+        "marks": 1,
+        "mark_note": "The expression",
+        "lines": [
+          "Using K V^(1−γ) = P V, the limits",
+          "give",
+          {
+            "text": "W = (P₁V₁ − P₂V₂)/(γ − 1)",
+            "style": "eq"
+          },
+          "and with PV = nRT this is also",
+          {
+            "text": "W = nR(T₁ − T₂)/(γ − 1)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Third mark. Both forms of the expression, in P–V and in T.",
+        "why": "PV = nRT turns the pressure–volume form into a temperature form, which is the one usually quoted and used in numericals.",
+        "common_mistakes": [
+          "Writing (P₂V₂ − P₁V₁) in the numerator — the sign is reversed from the correct expression.",
+          "Leaving γ − 1 as 1 − γ without also flipping the sign of the numerator."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That W equals P one V one minus P two V two, all over gamma minus one, equal to n R times T one minus T two over gamma minus one.",
+          "accept": [
+            "P one V one minus P two V two over gamma minus one",
+            "n R T one minus T two over gamma minus one"
+          ],
+          "reject": [
+            "delta U equals minus W"
+          ],
+          "heard_as": [
+            "P one V one minus P two V two",
+            "n R T one minus T two"
+          ]
+        },
+        "memory_tip": "W = (P₁V₁ − P₂V₂)/(γ − 1): the SUBSCRIPT-1 quantity comes first in the numerator."
+      },
+      {
+        "id": "s4_meaning",
+        "kind": "boxed_final",
+        "label": "What it means",
+        "marks": 1,
+        "mark_note": "ΔU = −W",
+        "lines": [
+          "Since ΔQ = 0, the first law",
+          "ΔQ = ΔU + W gives",
+          {
+            "text": "ΔU = −W",
+            "style": "boxed"
+          },
+          "In an adiabatic expansion the gas",
+          "does positive work, so ΔU is",
+          "negative and the gas cools. In an",
+          "adiabatic compression the gas",
+          "warms."
+        ],
+        "margin_note": "Fourth mark. State ΔU = −W and its two consequences: expansion cools, compression warms.",
+        "why": "The work in an adiabatic process is not extra energy from outside — with no heat supplied, it can only come out of the gas's own internal energy.",
+        "common_mistakes": [
+          "Saying the temperature stays the same in an adiabatic process — that is the isothermal process, not this one.",
+          "Concluding the gas cools without first writing ΔU = −W to justify it."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That delta U equals minus W, so an adiabatic expansion cools the gas and an adiabatic compression heats it.",
+          "accept": [
+            "delta U equals minus W",
+            "expansion cools the gas",
+            "compression heats the gas"
+          ],
+          "reject": [
+            "P one V one minus P two V two over gamma minus one"
+          ],
+          "heard_as": [
+            "delta U minus W",
+            "gas cools",
+            "gas heats"
+          ]
+        },
+        "memory_tip": "ΔQ = 0 forces ΔU = −W: the work has nowhere to come from but the gas's own internal energy."
+      }
+    ]
+  },
+  "insider_note": "The sign in W = (P₁V₁ − P₂V₂)/(γ − 1) is the detail most answers get backwards — the subscript-1 state stays first."
+}

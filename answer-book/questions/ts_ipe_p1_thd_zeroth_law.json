@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_zeroth_law",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the zeroth law of thermodynamics. What is its significance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "Significance — the thermometer",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 2 (printed p.124). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked against NCERT Class-11 Chapter 12: the zeroth law states that if two systems are each in thermal equilibrium with a third system separately, then they are in thermal equilibrium with each other; this is the principle that lets a thermometer, as the third system, be used to compare the temperatures of two other bodies."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "The statement",
+        "lines": [
+          "If two systems are each in",
+          "thermal equilibrium with a third",
+          "system separately, then they are",
+          "in thermal equilibrium with each",
+          "other."
+        ],
+        "margin_note": "First mark. State the law for three systems, not two.",
+        "why": "The law needs a third system because equal temperature is otherwise only checked between two systems already in contact — the zeroth law lets that comparison be made through a separate instrument instead.",
+        "common_mistakes": [
+          "Stating the law for only two systems, leaving out the third system.",
+          "Saying the two systems are in equilibrium with each other WITHOUT first saying each is in equilibrium with the third system."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That if two systems are each in thermal equilibrium with a third system separately, they are in thermal equilibrium with each other.",
+          "accept": [
+            "each in equilibrium with a third system",
+            "then equilibrium with each other",
+            "third system separately"
+          ],
+          "reject": [
+            "the third system is the thermometer"
+          ],
+          "heard_as": [
+            "zeroth law",
+            "third system"
+          ]
+        },
+        "memory_tip": "Zeroth law: A with C, and B with C, so A with B. The third system links them."
+      },
+      {
+        "id": "s2_significance",
+        "kind": "boxed_final",
+        "label": "Significance — the thermometer",
+        "marks": 1,
+        "mark_note": "The thermometer",
+        "lines": [
+          {
+            "text": "Significance",
+            "style": "heading"
+          },
+          "This is what makes a",
+          "thermometer work.",
+          "The thermometer is the third",
+          "system: it is brought to thermal",
+          "equilibrium with each body in",
+          "turn, so both bodies can be",
+          "compared without touching each",
+          "other."
+        ],
+        "margin_note": "Second mark. Name the thermometer as the third system.",
+        "why": "Two bodies far apart cannot be checked for equal temperature directly, so the zeroth law is what justifies reading a thermometer against each body separately instead.",
+        "common_mistakes": [
+          "Stating the significance without naming the thermometer as the third system.",
+          "Saying the thermometer measures heat. It measures temperature."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the zeroth law is why a thermometer works: it is the third system, brought to equilibrium with each body in turn.",
+          "accept": [
+            "thermometer is the third system",
+            "compares temperature without contact between the two bodies",
+            "makes a thermometer work"
+          ],
+          "reject": [
+            "thermal equilibrium with each other"
+          ],
+          "heard_as": [
+            "thermometer",
+            "third system"
+          ]
+        },
+        "memory_tip": "The thermometer IS the third system in the zeroth law."
+      }
+    ]
+  },
+  "insider_note": "Name the thermometer as the third system for the second mark — the bare word significance without it earns nothing."
+}

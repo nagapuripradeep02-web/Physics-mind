@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_refrigerator_door_open",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Can a room be cooled by leaving the door of an electric refrigerator open?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "How the heat is rejected",
+      "marks": 1
+    },
+    {
+      "label": "Why the room warms",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 18 (printed p.126). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: a refrigerator rejects the heat it removes from its interior plus the work its compressor does, Q₁ = Q₂ + W; with the door open the room is both the cold space losing heat and the surroundings receiving Q₁, so the net effect is a small rise in room temperature, not a fall."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mechanism",
+        "kind": "text",
+        "label": "How a refrigerator works",
+        "marks": 1,
+        "mark_note": "The mechanism",
+        "lines": [
+          "No. A refrigerator removes heat from its",
+          "cold interior and rejects that heat, plus",
+          "the work done by its compressor, into the",
+          "room outside it."
+        ],
+        "margin_note": "First mark. Say a refrigerator rejects the heat removed plus the compressor's work.",
+        "why": "This mechanism is the reason the room warms rather than cools, which the next step explains.",
+        "common_mistakes": [
+          "Saying a refrigerator only moves heat, with nothing added. The compressor does work, and that work is rejected as heat too.",
+          "Answering \"yes\" outright, without saying where the extra heat goes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a refrigerator removes heat from its cold interior and rejects that heat plus the compressor's work into the room.",
+          "accept": [
+            "removes heat from inside",
+            "rejects heat plus the work done",
+            "compressor adds work"
+          ],
+          "reject": [
+            "the room is both the cold space and the surroundings"
+          ],
+          "heard_as": [
+            "removes heat",
+            "compressor",
+            "rejects"
+          ]
+        },
+        "memory_tip": "A refrigerator rejects more heat than it removes — the extra is the compressor's work."
+      },
+      {
+        "id": "s2_room_warms",
+        "kind": "text",
+        "label": "With the door open",
+        "marks": 1,
+        "mark_note": "The room warms",
+        "lines": [
+          "With the door open, the room is both the",
+          "cold space AND the surroundings that get",
+          "the rejected heat. More heat re-enters the",
+          "room than left it, so the room grows",
+          "slightly warmer, not cooler."
+        ],
+        "margin_note": "Second mark. Say the room is both the cold space and the surroundings, so it ends up slightly warmer.",
+        "why": "The extra heat is the compressor's own work turned to heat, and with the door open it can only flow back into the same room.",
+        "common_mistakes": [
+          "Saying the room stays the same temperature. The compressor keeps adding its own work as heat, so the room actually warms.",
+          "Treating the room as only the cold space. With the door open it is also the surroundings the heat is rejected into."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with the door open the room is both the cold space and the surroundings, so more heat enters it than leaves, and the room grows slightly warmer.",
+          "accept": [
+            "room is both the cold space and the surroundings",
+            "more heat comes back than left",
+            "room grows warmer, not cooler"
+          ],
+          "reject": [
+            "removes heat from inside"
+          ],
+          "heard_as": [
+            "room warms",
+            "cold space and surroundings",
+            "not cooler"
+          ]
+        },
+        "memory_tip": "The compressor's own work has to go back into the same room when the door is open."
+      }
+    ]
+  },
+  "insider_note": "The answer is no, and the full reason is the compressor's added work, not simply that heat moves — both parts belong in the answer."
+}

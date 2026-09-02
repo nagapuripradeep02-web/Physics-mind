@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_coolant_high_specific_heat",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The coolant used in a chemical plant or a nuclear plant should have a high specific heat. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the coolant must do",
+      "marks": 1
+    },
+    {
+      "label": "Why S must be large",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 10 (printed p.125). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The two-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Q = mSΔT rearranges to ΔT = Q/(mS), so for a fixed heat load Q and mass m, a larger specific heat capacity S gives a smaller temperature rise ΔT — this is why a coolant needs a high specific heat capacity to stay safe while absorbing heat."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_requirement",
+        "kind": "equation",
+        "label": "What the coolant must do",
+        "marks": 1,
+        "mark_note": "The requirement",
+        "lines": [
+          "A coolant must carry away a large",
+          "quantity of heat from the plant",
+          "while its own temperature rises",
+          "only a little. The heat absorbed",
+          "is",
+          {
+            "text": "Q = m S ΔT",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. State the requirement and write Q = mSΔT.",
+        "why": "Q = mSΔT is the formula connecting the heat carried, the coolant's mass, its specific heat capacity and its temperature rise — the rearrangement in the next step is built on it.",
+        "common_mistakes": [
+          "Describing the coolant only as something that absorbs heat, without writing Q = mSΔT.",
+          "Writing Q = mSΔT with C in place of S — this is the specific heat capacity S, not the molar specific heat C."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a coolant must carry away a large quantity of heat while its own temperature rises only a little, with Q equal to m S delta T.",
+          "accept": [
+            "carries away heat with a small temperature rise",
+            "Q equals m S delta T"
+          ],
+          "reject": [
+            "heat per mole per degree"
+          ],
+          "heard_as": [
+            "Q equals m S delta T",
+            "carries heat away"
+          ]
+        },
+        "memory_tip": "Coolant job: carry heat away, Q = mSΔT, without its own temperature climbing."
+      },
+      {
+        "id": "s2_reasoning",
+        "kind": "boxed_final",
+        "label": "Why S must be large",
+        "marks": 1,
+        "mark_note": "Why S must be large",
+        "lines": [
+          "From Q = mSΔT, for a fixed heat Q",
+          "and a fixed mass m, a larger S",
+          "gives a smaller temperature rise.",
+          "That lets the coolant absorb a",
+          "large amount of heat while",
+          "staying at a safe temperature.",
+          {
+            "text": "ΔT = Q/(mS)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Rearrange to ΔT = Q/(mS) and say the coolant, and the plant, stay safe.",
+        "why": "Rearranging for ΔT turns the formula into the actual reason a high specific heat is wanted — it shows directly that a larger S makes the coolant's own temperature rise smaller for the same heat load.",
+        "common_mistakes": [
+          "Saying a high specific heat means the coolant heats up faster — a high S means it heats up MORE SLOWLY for the same heat absorbed.",
+          "Leaving out the rearrangement ΔT = Q/(mS) and only asserting the conclusion."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That rearranging Q = mSΔT gives delta T equal to Q over m S, so a large S gives a small temperature rise for the same heat, keeping the coolant and the plant safe.",
+          "accept": [
+            "delta T equals Q over m S",
+            "large S gives small delta T",
+            "keeps the plant at a safe temperature"
+          ],
+          "reject": [
+            "high specific heat means it heats up faster"
+          ],
+          "heard_as": [
+            "delta T equals Q by m S",
+            "safe temperature"
+          ]
+        },
+        "memory_tip": "Large S in the denominator of ΔT = Q/(mS) means a small rise for the same heat."
+      }
+    ]
+  },
+  "insider_note": "The reasoning turns on rearranging Q = mSΔT to ΔT = Q/(mS) — write the rearrangement, not just the conclusion that a large S is good."
+}
