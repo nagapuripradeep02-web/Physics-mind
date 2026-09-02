@@ -57,7 +57,7 @@
             "style": "eq"
           }
         ],
-        "margin_note": "The isothermal relation and P₂ = 2P₁ together are the first mark.",
+        "margin_note": "First mark. Give the isothermal relation P₁V₁ = P₂V₂ and reach P₂ = 2P₁ for V₂ = V₁/2.",
         "why": "Boyle's law applies because the temperature is held constant, so halving the volume must exactly double the pressure.",
         "common_mistakes": [
           "Using P₁V₁^γ = P₂V₂^γ for the isothermal case. That relation is for the adiabatic process only.",
@@ -86,7 +86,9 @@
           {
             "text": "2^γ P₁ > 2P₁",
             "style": "boxed"
-          }
+          },
+          "So the adiabatic process increases the",
+          "pressure more."
         ],
         "margin_note": "The adiabatic relation P₂ = 2^γP₁, and the comparison, are the second mark.",
         "why": "Both cases start from the same initial pressure and halve the volume; the exponent γ makes the adiabatic pressure rise by a strictly larger factor.",
@@ -94,9 +96,9 @@
           "Comparing 2P₁ with 2^γP₁ without stating γ > 1 as the reason 2^γP₁ is the larger one.",
           "Mixing the two relations — using P₁V₁ = P₂V₂ for the adiabatic case, or the γ relation for the isothermal case."
         ],
-        "memory_tip": "Adiabatic beats isothermal because 2^γ beats 2, since γ > 1."
+        "memory_tip": "The adiabatic factor 2^γ is larger than the isothermal factor 2, because γ > 1."
       }
     ]
   },
-  "insider_note": "Write both relations, P₂ = 2P₁ and P₂ = 2^γP₁, before concluding — the comparison alone, without both lines, does not earn the full two marks."
+  "insider_note": "Write both relations, P₂ = 2P₁ and P₂ = 2^γP₁, before concluding — the complete answer states both and then names the adiabatic process as the one that raises the pressure more."
 }

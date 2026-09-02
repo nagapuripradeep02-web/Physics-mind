@@ -51,7 +51,7 @@
           "describe the equilibrium state of a",
           "system completely."
         ],
-        "margin_note": "The definition alone is the whole mark — name all four quantities.",
+        "margin_note": "First mark. Name all four state variables: pressure, volume, temperature and mass.",
         "why": "State variables are needed because they are the only quantities that fix the condition of a system; pin down all four and the state is fixed.",
         "common_mistakes": [
           "Naming only pressure, volume and temperature. Mass is also a state variable — it fixes the size of the system.",
@@ -75,11 +75,11 @@
             "style": "boxed"
           }
         ],
-        "margin_note": "The relation PV = nRT for an ideal gas is the whole second mark.",
+        "margin_note": "Second mark. Write the equation of state for an ideal gas, PV = nRT.",
         "why": "PV = nRT is the equation of state that joins the four state variables of an ideal gas into a single formula.",
         "common_mistakes": [
           "Writing PV = nRT as if it defines pressure or volume alone. It is a relation among all the state variables, not a definition of one.",
-          "Leaving n out of the formula. For a fixed system n is constant, but the equation still carries it."
+          "Leaving out n when the amount of gas is not one mole. PV = RT is the correct one-mole case; PV = nRT is needed otherwise."
         ],
         "memory_tip": "PV = nRT is one formula joining all four state variables."
       }

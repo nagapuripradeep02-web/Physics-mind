@@ -95,7 +95,7 @@
           "So 100% efficiency stays a theoretical",
           "limit, never realised in practice."
         ],
-        "margin_note": "Second mark. Say η = 1 needs a sink at absolute zero, which the second law rules out.",
+        "margin_note": "Second mark. Say η = 1 needs a sink at absolute zero, which is unattainable, and Kelvin-Planck forbids complete conversion outright.",
         "why": "The formula and the Kelvin-Planck statement express the same limit in two different ways, one by calculation and one by direct statement.",
         "common_mistakes": [
           "Saying 100% efficiency is impossible only because of friction or other real-world losses. Even an ideal, loss-free engine stays below 100% efficiency.",

@@ -173,45 +173,48 @@
         "kind": "boxed_final",
         "label": "Non-cyclic process — energy",
         "marks": 1,
-        "mark_note": "ΔU ≠ 0",
+        "mark_note": "ΔQ = ΔU + ΔW",
         "lines": [
           "Because the final state differs",
-          "from the initial state, the",
-          "internal energy in general also",
-          "differs:",
+          "from the initial state, nothing",
+          "forces the internal energy to",
+          "zero the way a closed cycle",
+          "does. But ΔU is zero when",
+          "the final temperature equals the",
+          "initial one, as in the",
+          "isothermal example above. Heat,",
+          "work and the change in",
+          "internal energy are always related",
+          "by the first law:",
           {
-            "text": "ΔU ≠ 0",
+            "text": "ΔQ = ΔU + ΔW",
             "style": "boxed"
-          },
-          "Heat, work and the change in",
-          "internal energy are related by",
-          "the first law, ΔQ = ΔU + ΔW,",
-          "exactly as in any single process."
+          }
         ],
-        "margin_note": "Fourth mark. ΔU ≠ 0 in general, still governed by ΔQ = ΔU + ΔW.",
+        "margin_note": "Fourth mark. Nothing forces ΔU to zero as a cycle does, but it is zero when the final temperature equals the initial one; always governed by ΔQ = ΔU + ΔW.",
         "why": "This is the one place the two processes differ in their energy bookkeeping: a cycle forces ΔU = 0 by returning to its start, while a non-cyclic process has no such constraint.",
         "common_mistakes": [
-          "Writing ΔU = 0 for a non-cyclic process by copying the cyclic result — it does not apply here.",
+          "Assuming ΔU = 0 for every non-cyclic process — it is only zero when the final temperature equals the initial one, as in the isothermal example; in general it can be non-zero.",
           "Forgetting that the first law ΔQ = ΔU + ΔW still governs a non-cyclic process, exactly as it does a cyclic one."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That delta U is not zero in general for a non-cyclic process, still governed by delta Q equals delta U plus delta W.",
+          "must_convey": "That nothing forces delta U to zero for a non-cyclic process the way a cycle does, though it is zero when the final temperature equals the initial one, always governed by delta Q equals delta U plus delta W.",
           "accept": [
-            "delta U not equal to zero",
+            "delta U is not forced to zero",
             "delta Q equals delta U plus delta W"
           ],
           "reject": [
-            "delta U equals zero"
+            "delta U is always zero"
           ],
           "heard_as": [
-            "delta U not zero",
+            "not forced to zero",
             "first law still applies"
           ]
         },
-        "memory_tip": "Different start and end state: ΔU ≠ 0 in general — no free cancellation here."
+        "memory_tip": "Different start and end state: ΔU is zero only if the final temperature matches the initial one — no automatic cancellation like a cycle."
       }
     ]
   },
-  "insider_note": "The one line that separates the two halves of this answer is ΔU = 0 for a cycle against ΔU ≠ 0 for a non-cyclic process — an answer that gives two definitions and two examples but never states this contrast has left out a mark on each half."
+  "insider_note": "The one line that separates the two halves of this answer is that a cycle forces ΔU = 0 by returning to its start, while a non-cyclic process carries no such guarantee — its ΔU is zero only when the final temperature equals the initial one, as in the isothermal example. An answer that gives two definitions and two examples but never states this contrast is missing the energy mark on each half."
 }

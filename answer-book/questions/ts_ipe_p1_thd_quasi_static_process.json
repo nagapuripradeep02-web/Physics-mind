@@ -59,7 +59,7 @@
           "equilibrium with its surroundings",
           "at every stage."
         ],
-        "margin_note": "The word SLOWLY is the definition — say it explicitly.",
+        "margin_note": "Write SLOWLY and that the system stays in thermodynamic equilibrium at every stage; slowness on its own is not the definition.",
         "why": "Thermodynamic equilibrium needs the whole system to settle at one pressure and temperature; that settling takes time, so only a slow process allows it at every single stage.",
         "common_mistakes": [
           "Saying 'a very slow process' without adding that the system stays in equilibrium throughout — slowness alone is not the definition.",
@@ -78,11 +78,8 @@
           "temperature of the system differ",
           "from those of the surroundings by",
           "only an infinitesimally small",
-          "amount:",
-          {
-            "text": "P_system = P_surroundings ± dP",
-            "style": "eq"
-          }
+          "amount: dP in pressure, dT in",
+          "temperature."
         ],
         "margin_note": "State this as the PRECISE condition, not just 'very close' in words.",
         "why": "This is what makes the process quasi-static in a checkable way — an infinitesimal difference is small enough that reversing it back needs only an infinitesimal push.",

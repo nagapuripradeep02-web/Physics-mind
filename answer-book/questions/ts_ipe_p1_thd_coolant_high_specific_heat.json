@@ -60,7 +60,7 @@
         "why": "Q = mSΔT is the formula connecting the heat carried, the coolant's mass, its specific heat capacity and its temperature rise — the rearrangement in the next step is built on it.",
         "common_mistakes": [
           "Describing the coolant only as something that absorbs heat, without writing Q = mSΔT.",
-          "Writing Q = mSΔT with C in place of S — this is the specific heat capacity S, not the molar specific heat C."
+          "Pairing the molar specific heat C with a mass instead of moles — the molar form is Q = nCΔT; per unit mass it is Q = mSΔT, and a lower-case c is the same quantity as S."
         ],
         "recall": {
           "credit": "say_it",
@@ -101,7 +101,7 @@
         "why": "Rearranging for ΔT turns the formula into the actual reason a high specific heat is wanted — it shows directly that a larger S makes the coolant's own temperature rise smaller for the same heat load.",
         "common_mistakes": [
           "Saying a high specific heat means the coolant heats up faster — a high S means it heats up MORE SLOWLY for the same heat absorbed.",
-          "Leaving out the rearrangement ΔT = Q/(mS) and only asserting the conclusion."
+          "Stopping at the conclusion with no reasoning — the reasoning is that a large S gives a smaller ΔT for the same heat load."
         ],
         "recall": {
           "credit": "say_it",
@@ -123,5 +123,5 @@
       }
     ]
   },
-  "insider_note": "The reasoning turns on rearranging Q = mSΔT to ΔT = Q/(mS) — write the rearrangement, not just the conclusion that a large S is good."
+  "insider_note": "The reasoning is Q = mSΔT rearranged to ΔT = Q/(mS): a large S keeps ΔT small for the same heat load. Writing the rearrangement secures the answer; the verbal reason on its own is already complete."
 }

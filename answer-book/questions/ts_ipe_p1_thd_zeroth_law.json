@@ -99,7 +99,7 @@
         "margin_note": "Second mark. Name the thermometer as the third system.",
         "why": "Two bodies far apart cannot be checked for equal temperature directly, so the zeroth law is what justifies reading a thermometer against each body separately instead.",
         "common_mistakes": [
-          "Stating the significance without naming the thermometer as the third system.",
+          "Naming the thermometer without saying that the zeroth law is what defines temperature — the definition is why a thermometer works, not a separate fact.",
           "Saying the thermometer measures heat. It measures temperature."
         ],
         "recall": {
@@ -122,5 +122,5 @@
       }
     ]
   },
-  "insider_note": "Name the thermometer as the third system for the second mark — the bare word significance without it earns nothing."
+  "insider_note": "The significance is that the zeroth law defines temperature and so makes a thermometer possible; naming the thermometer as the third system is the concrete application that secures the second mark."
 }

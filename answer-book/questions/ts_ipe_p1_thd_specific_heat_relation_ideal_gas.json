@@ -23,7 +23,7 @@
       "marks": 1
     },
     {
-      "label": "Why C_P is larger",
+      "label": "Symbols and the per-mass form",
       "marks": 1
     }
   ],
@@ -81,44 +81,50 @@
       },
       {
         "id": "s2_why_greater",
-        "kind": "text",
-        "label": "Why C_P is larger",
+        "kind": "equation",
+        "label": "Symbols and the per-mass form",
         "marks": 1,
-        "mark_note": "Why C_P is larger",
+        "mark_note": "Symbols and the per-mass form",
         "lines": [
-          "C_P is greater than C_V. At constant",
-          "volume all the heat supplied raises",
-          "the internal energy. At constant",
-          "pressure the gas also expands and",
-          "does external work, so more heat",
-          "is needed for the same rise in",
-          "temperature."
+          "C_P and C_V are the MOLAR specific",
+          "heats, and R is the universal gas",
+          "constant. Per unit mass, with M",
+          "the molar mass,",
+          {
+            "text": "c_P − c_V = R/M",
+            "style": "eq"
+          },
+          "C_P is greater than C_V because a",
+          "gas heated at constant pressure",
+          "also expands and does external",
+          "work, needing more heat for the",
+          "same rise in temperature."
         ],
-        "margin_note": "Second mark. State C_P > C_V and give the reason — the extra work done at constant pressure.",
-        "why": "The relation C_P − C_V = R only makes physical sense once the extra heat needed at constant pressure is accounted for — stating why C_P is the larger one is what the relation says in words.",
+        "margin_note": "Second mark. Name C_P, C_V and R, then give the per-mass form c_P − c_V = R/M.",
+        "why": "Naming what C_P, C_V and R stand for, and giving the equivalent per-unit-mass relation, shows the relation C_P − C_V = R is understood, not just copied.",
         "common_mistakes": [
-          "Saying C_V is greater than C_P — at constant pressure the gas does extra work, so C_P is the larger.",
-          "Giving no reason and only stating C_P > C_V."
+          "Writing the per-mass relation as c_P − c_V = R, leaving out the division by M.",
+          "Stopping at C_P > C_V with no reason — the reason is the extra work done at constant pressure."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That C_P is greater than C_V because at constant pressure the gas also does work as it expands, needing more heat for the same temperature rise.",
+          "must_convey": "That C_P and C_V are the molar specific heats and R is the universal gas constant, and that per unit mass the relation is c_P minus c_V equal to R over M, with M the molar mass.",
           "accept": [
-            "C P greater than C V",
-            "gas does work at constant pressure",
-            "more heat needed at constant pressure"
+            "C_P and C_V are molar, R is the gas constant",
+            "c_P minus c_V equals R over M",
+            "M is the molar mass"
           ],
           "reject": [
-            "C V greater than C P"
+            "c_P minus c_V equals R"
           ],
           "heard_as": [
-            "C P is greater",
-            "does work as it expands"
+            "c_P minus c_V",
+            "R over M"
           ]
         },
-        "memory_tip": "Constant pressure needs extra heat for the work of expansion, so C_P wins."
+        "memory_tip": "Divide R by the molar mass M to go from C_P − C_V = R to c_P − c_V = R/M; C_P is the larger of the two."
       }
     ]
   },
-  "insider_note": "Say MOLAR explicitly next to C_P − C_V = R — the per-unit-mass relation is c_P − c_V = R/M, a different formula for a different pair of quantities (see vsaq6)."
+  "insider_note": "Say MOLAR explicitly next to C_P − C_V = R — the per-unit-mass relation is c_P − c_V = R/M, for the specific heat capacity, which is per unit mass — a different formula for a different quantity."
 }

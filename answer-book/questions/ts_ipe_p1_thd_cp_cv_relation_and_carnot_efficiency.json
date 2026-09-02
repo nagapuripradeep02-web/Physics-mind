@@ -21,8 +21,8 @@
     { "label": "Constant volume path", "marks": 1 },
     { "label": "Constant pressure path", "marks": 1 },
     { "label": "Work term from the gas equation", "marks": 1 },
+    { "label": "The ideal-gas step", "marks": 1 },
     { "label": "Substitute and solve", "marks": 1 },
-    { "label": "State the quantities are molar", "marks": 1 },
     { "label": "Convert to kelvin", "marks": 1 },
     { "label": "Apply the efficiency formula", "marks": 1 },
     { "label": "The efficiency", "marks": 1 }
@@ -166,13 +166,56 @@
         "memory_tip": "Constant P, so only V changes: PΔV = RΔT falls straight out of PV = RT."
       },
       {
+        "id": "s3b_ideal_gas_step",
+        "kind": "equation",
+        "label": "The ideal-gas step",
+        "marks": 1,
+        "mark_note": "ΔU = C_V ΔT",
+        "lines": [
+          "For an ideal gas, the internal",
+          "energy depends on temperature",
+          "alone, so the SAME relation",
+          {
+            "text": "ΔU = C_V ΔT",
+            "style": "eq"
+          },
+          "found at constant volume also",
+          "holds at constant pressure, for",
+          "the same ΔT."
+        ],
+        "margin_note": "Fourth mark. ΔU depends only on T for an ideal gas, so C_V ΔT from the constant-volume step applies at constant pressure too, for the same ΔT.",
+        "why": "The first law fixes ΔU for a process, but only for an IDEAL GAS is U a function of temperature alone — that is what lets the SAME ΔU = C_V ΔT, found at constant volume, be reused for the constant-pressure path with the same ΔT.",
+        "common_mistakes": [
+          "Assuming ΔU = C_V ΔT only at constant volume — it holds for ANY process with the same ΔT, because an ideal gas's internal energy depends on temperature alone, not on volume or pressure.",
+          "Skipping this reasoning and jumping straight from the constant-pressure equation to the boxed result — the substitution needs this ideal-gas fact stated first."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for an ideal gas, internal energy depends on temperature alone, so ΔU = C_V ΔT applies with the same ΔT whether the process is at constant volume or constant pressure.",
+          "accept": [
+            "ideal gas internal energy depends only on temperature",
+            "delta U equals C_V delta T in any process",
+            "same delta U at constant pressure as at constant volume"
+          ],
+          "reject": [
+            "delta U depends on volume"
+          ],
+          "heard_as": [
+            "depends on temperature alone",
+            "same delta U"
+          ]
+        },
+        "memory_tip": "For an ideal gas, U depends on T alone — the same ΔU = C_V ΔT works at constant volume or pressure."
+      },
+      {
         "id": "s4_substitute",
         "kind": "equation",
         "label": "Substitute and solve",
         "marks": 1,
         "mark_note": "C_P − C_V = R",
         "lines": [
-          "Substitute PΔV = RΔT into the",
+          "Substitute ΔU = C_V ΔT and",
+          "PΔV = RΔT into the",
           "constant-pressure equation:",
           {
             "text": "C_P ΔT = C_V ΔT + RΔT",
@@ -182,22 +225,25 @@
           {
             "text": "C_P − C_V = R",
             "style": "boxed"
-          }
+          },
+          "C_P and C_V here are the MOLAR",
+          "specific heats, for one mole of gas."
         ],
-        "margin_note": "Fourth mark. Substitute, cancel ΔU and ΔT, and box C_P − C_V = R.",
-        "why": "Both paths cover the same temperature rise, so ΔU is the same term in both equations — subtracting them turns the two separate heat equations into one relation between C_P, C_V and R alone.",
+        "margin_note": "Fifth mark. Substitute ΔU = C_V ΔT (from the ideal-gas step) and PΔV = RΔT, then box C_P − C_V = R for molar specific heats.",
+        "why": "The previous step showed ΔU = C_V ΔT holds for this same ΔT at constant pressure too — substituting that, together with PΔV = RΔT, into the constant-pressure equation turns it into a relation between C_P, C_V and R alone, for one mole.",
         "common_mistakes": [
-          "Cancelling ΔU without saying why it cancels — it is the SAME ΔU in both equations because both paths cover the same ΔT.",
+          "Substituting PΔV = RΔT but forgetting to also replace ΔU with C_V ΔT — both substitutions are needed to reach C_P − C_V = R.",
+          "Writing C_P − C_V = R next to a per-unit-mass definition of specific heat without noting these are molar quantities.",
           "Leaving R on the wrong side, writing C_V − C_P = R."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That substituting PΔV = RΔT and subtracting the two heat equations cancels ΔU and ΔT, leaving C_P − C_V = R.",
+          "must_convey": "That substituting ΔU = C_V ΔT and PΔV = RΔT into the constant-pressure equation and dividing by ΔT gives C_P − C_V = R, for molar specific heats.",
           "accept": [
-            "substitute R delta T into the C_P equation",
-            "subtract the two equations and delta U cancels",
+            "substitute C_V delta T and R delta T",
+            "divide through by delta T",
             "C_P minus C_V equals R",
-            "divide through by delta T"
+            "these are molar specific heats"
           ],
           "reject": [
             "P delta V equals R delta T"
@@ -205,52 +251,10 @@
           "heard_as": [
             "C_P minus C_V",
             "equals R",
-            "cancel delta U"
+            "molar specific heats"
           ]
         },
-        "memory_tip": "Subtract the two ΔQ equations: ΔU cancels, only RΔT survives."
-      },
-      {
-        "id": "s5_molar",
-        "kind": "text",
-        "label": "State the quantities are molar",
-        "marks": 1,
-        "mark_note": "Molar specific heats",
-        "lines": [
-          "C_P and C_V here are the MOLAR",
-          "specific heats, for one mole of gas —",
-          "the relation C_P − C_V = R does not",
-          "hold for specific heats measured",
-          "per unit mass.",
-          "C_P is the larger of the two, because",
-          "at constant pressure the gas must",
-          "also do work as it expands."
-        ],
-        "margin_note": "Fifth mark. Say these are molar specific heats, and that C_P is the larger.",
-        "why": "The whole derivation was carried out for one mole, so the result is a statement about molar specific heats specifically — writing it beside a per-unit-mass definition without saying so is the single commonest way this answer goes wrong.",
-        "common_mistakes": [
-          "Writing C_P − C_V = R next to a per-unit-mass definition of specific heat without saying these are molar quantities.",
-          "Saying C_P and C_V are equal, or that C_P is the smaller — constant pressure always needs the extra work term, so C_P is always the larger."
-        ],
-        "recall": {
-          "credit": "say_it",
-          "must_convey": "That C_P and C_V in this relation are molar specific heats, one mole of gas, and that C_P is larger because of the extra work term at constant pressure.",
-          "accept": [
-            "these are molar specific heats",
-            "the relation holds for one mole",
-            "C_P is larger because of the work done",
-            "not the per unit mass specific heats"
-          ],
-          "reject": [
-            "c_P minus c_V equals R over M"
-          ],
-          "heard_as": [
-            "molar specific heats",
-            "one mole",
-            "C_P is larger"
-          ]
-        },
-        "memory_tip": "One mole throughout the derivation, so C_P − C_V = R is a MOLAR relation."
+        "memory_tip": "Substitute both ΔU = C_V ΔT and PΔV = RΔT into the constant-pressure equation, then divide by ΔT."
       },
       {
         "id": "s6_convert",
@@ -273,8 +277,8 @@
             "style": "eq"
           }
         ],
-        "margin_note": "Sixth mark. Convert both temperatures to kelvin before using the formula.",
-        "why": "The efficiency formula η = 1 − T₂/T₁ only holds for absolute temperature — using the Celsius values directly is the single commonest way this numerical is lost, so the conversion earns its own mark.",
+        "margin_note": "Sixth mark. Convert both temperatures to kelvin — this is what makes the substitution in the next step possible.",
+        "why": "The efficiency formula η = 1 − T₂/T₁ only holds for absolute temperature — using the Celsius values directly gives the wrong number, so the complete answer states the conversion explicitly.",
         "common_mistakes": [
           "Substituting 327 and 127 directly into η = 1 − T₂/T₁ without converting to kelvin first.",
           "Swapping which temperature is the source and which is the sink — the higher temperature, 600 K, is the source T₁."
@@ -364,7 +368,7 @@
         "margin_note": "Eighth mark. Simplify to 1/3 and state 33.3 % as the final answer.",
         "why": "The result is worth stating in both forms — the fraction shows where it came from, and the percentage is the number an examiner and a student both recognise as the answer.",
         "common_mistakes": [
-          "Leaving the answer as the fraction 1/3 without converting it to a percentage.",
+          "Stopping at the fraction 1/3 — it is already a complete correct answer; the percentage form, 33.3 %, is the conventional way to present it and is worth adding.",
           "Writing 33.3 without the percent sign, which reads as a bare number rather than the efficiency."
         ],
         "recall": {
@@ -389,5 +393,5 @@
       }
     ]
   },
-  "insider_note": "Saying these are MOLAR specific heats and converting to kelvin before substituting are the two places this answer is most often marked down — do both explicitly."
+  "insider_note": "The complete answer states explicitly that these are MOLAR specific heats, and converts both temperatures to kelvin before substituting."
 }

@@ -94,9 +94,9 @@
             "text": "ΔQ = ΔU + ΔW",
             "style": "eq"
           },
-          "It is a state variable, fixed",
-          "by the heat supplied and the",
-          "work done."
+          "It is a state variable — its",
+          "CHANGE is fixed by the first",
+          "law: ΔU = ΔQ − ΔW."
         ],
         "margin_note": "Second mark. Name internal energy, and give ΔQ = ΔU + ΔW.",
         "why": "Heat and work both depend on the path taken, but their difference does not — that path-independent difference is what the first law identifies as internal energy, a state variable.",

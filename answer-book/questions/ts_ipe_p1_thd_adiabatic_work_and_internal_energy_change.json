@@ -21,11 +21,11 @@
     { "label": "The adiabatic condition", "marks": 1 },
     { "label": "Set up the work integral", "marks": 1 },
     { "label": "Integrate", "marks": 1 },
+    { "label": "Evaluate between the limits", "marks": 1 },
     { "label": "Rewrite using the gas equation", "marks": 1 },
     { "label": "What this means for internal energy", "marks": 1 },
     { "label": "Work at constant pressure", "marks": 1 },
-    { "label": "Apply the first law", "marks": 1 },
-    { "label": "The change in internal energy", "marks": 1 }
+    { "label": "Apply the first law and find ΔU", "marks": 1 }
   ],
   "verification": {
     "status": "unverified",
@@ -133,30 +133,71 @@
         "kind": "equation",
         "label": "Integrate",
         "marks": 1,
+        "mark_note": "∫P dV = k V^(1−γ)/(1−γ)",
+        "lines": [
+          "Integrating P = k V^(−γ) with",
+          "respect to V, by the power",
+          "rule, gives the antiderivative",
+          {
+            "text": "∫P dV = k V^(1−γ)/(1−γ)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Integrate P = k V^(−γ) with respect to V.",
+        "why": "This is the calculus step of the derivation — applying the power rule to V^(−γ) is what turns the adiabatic curve into a formula; the two limits are substituted in next.",
+        "common_mistakes": [
+          "Getting the power wrong — the power rule raises V^(−γ) to V^(1−γ), divided by (1 − γ).",
+          "Dropping the constant k in front of the antiderivative — it is needed to substitute the limits back as P₁V₁ and P₂V₂ afterwards."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That integrating P equals k V to the minus gamma gives k V to the power one minus gamma, over one minus gamma.",
+          "accept": [
+            "integrate k V to the minus gamma",
+            "the antiderivative is k V to one minus gamma over one minus gamma",
+            "power rule on V to the minus gamma",
+            "k V power one minus gamma over one minus gamma"
+          ],
+          "reject": [
+            "W is P one V one minus P two V two over gamma minus one"
+          ],
+          "heard_as": [
+            "k V to one minus gamma",
+            "power rule",
+            "antiderivative"
+          ]
+        },
+        "memory_tip": "Power rule: V^(−γ) integrates to V^(1−γ) over (1 − γ)."
+      },
+      {
+        "id": "s4_evaluate_limits",
+        "kind": "equation",
+        "label": "Evaluate between the limits",
+        "marks": 1,
         "mark_note": "W = (P₁V₁ − P₂V₂)/(γ − 1)",
         "lines": [
-          "Integrating P = k V^(−γ) from",
-          "V₁ to V₂ and substituting back",
-          "k = P₁V₁^γ = P₂V₂^γ at the two",
-          "limits gives",
+          "Evaluating at V₂ and V₁, and",
+          "using P = k V^(−γ) to write",
+          "k V^(1−γ) as PV at each limit,",
+          "gives",
           {
             "text": "W = (P₁V₁ − P₂V₂)/(γ − 1)",
             "style": "boxed"
           }
         ],
-        "margin_note": "Third mark. Integrate, substitute the limits, box the result.",
-        "why": "Substituting P₁V₁^γ and P₂V₂^γ back for k at the two limits is what turns the integral into a formula written purely in the measurable quantities P₁, V₁, P₂ and V₂.",
+        "margin_note": "Fourth mark. Evaluate at the limits, box the result.",
+        "why": "Substituting k V^(1−γ) back as P₁V₁ and P₂V₂ at the two limits is what turns the antiderivative into a formula written purely in the measurable quantities P₁, V₁, P₂ and V₂.",
         "common_mistakes": [
-          "Leaving the answer in terms of k instead of substituting P₁V₁^γ and P₂V₂^γ back in.",
+          "Leaving the answer in terms of k instead of substituting P₁V₁ and P₂V₂ back in at the limits.",
           "Dropping the sign, writing W = (P₂V₂ − P₁V₁)/(γ − 1) — for an expansion this must come out positive."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That integrating and substituting the limits gives W equal to P one V one minus P two V two, divided by gamma minus one.",
+          "must_convey": "That evaluating at the two limits and writing k V to the power one minus gamma as P V gives W equal to P one V one minus P two V two, divided by gamma minus one.",
           "accept": [
-            "integrate P equals k V to minus gamma",
+            "evaluate at V one and V two",
             "W is P one V one minus P two V two over gamma minus one",
-            "substitute the limits V one and V two",
+            "substitute the limits",
             "the boxed work formula"
           ],
           "reject": [
@@ -165,13 +206,13 @@
           "heard_as": [
             "P one V one minus P two V two",
             "gamma minus one",
-            "integrate"
+            "evaluate at the limits"
           ]
         },
         "memory_tip": "The boxed form has P₁V₁ first, then P₂V₂, over γ − 1."
       },
       {
-        "id": "s4_rewrite_temperature",
+        "id": "s5_rewrite_temperature",
         "kind": "equation",
         "label": "Rewrite using the gas equation",
         "marks": 1,
@@ -185,7 +226,7 @@
             "style": "eq"
           }
         ],
-        "margin_note": "Fourth mark. Substitute PV = nRT at both limits.",
+        "margin_note": "Fifth mark. Substitute PV = nRT at both limits.",
         "why": "The pressure-volume form and the temperature form are the same result — writing it in T₁ and T₂ is the version wanted when temperatures, rather than pressures and volumes, are given.",
         "common_mistakes": [
           "Substituting PV = nRT only at one end of the process, not both.",
@@ -212,7 +253,7 @@
         "memory_tip": "Same result, two forms: swap P₁V₁ and P₂V₂ for nRT₁ and nRT₂."
       },
       {
-        "id": "s5_first_law_meaning",
+        "id": "s6_first_law_meaning",
         "kind": "equation",
         "label": "What this means for internal energy",
         "marks": 1,
@@ -231,7 +272,7 @@
           "out of the internal energy, and",
           "the gas cools."
         ],
-        "margin_note": "Fifth mark. Apply the first law with ΔQ = 0 and state the gas cools.",
+        "margin_note": "Sixth mark. Apply the first law with ΔQ = 0 and state the gas cools.",
         "why": "This is the physical meaning of the formula just derived: with no heat supplied, the ONLY source of the work done is the gas's own internal energy, so its temperature must fall as it expands.",
         "common_mistakes": [
           "Saying the temperature stays the same in an adiabatic expansion — that is the isothermal case; here the gas cools.",
@@ -258,7 +299,7 @@
         "memory_tip": "No heat in, so the work has nowhere else to come from but ΔU."
       },
       {
-        "id": "s6_work_constant_pressure",
+        "id": "s7_work_constant_pressure",
         "kind": "equation",
         "label": "Work at constant pressure",
         "marks": 1,
@@ -278,7 +319,7 @@
             "style": "eq"
           }
         ],
-        "margin_note": "Sixth mark. W = PΔV with ΔV = 2 m³, giving 2 × 10⁵ J.",
+        "margin_note": "Seventh mark. W = PΔV with ΔV = 2 m³, giving 2 × 10⁵ J.",
         "why": "This is a separate, constant-pressure process — the work is the simple W = PΔV of an isobaric change, not the adiabatic formula above, because here pressure, not heat, is held fixed.",
         "common_mistakes": [
           "Reaching for the adiabatic work formula from part one — this process is at constant pressure, so W = PΔV applies directly.",
@@ -305,56 +346,20 @@
         "memory_tip": "Constant pressure: work is just P times the change in volume."
       },
       {
-        "id": "s7_first_law_rearranged",
-        "kind": "equation",
-        "label": "Apply the first law",
+        "id": "s8_first_law_and_change",
+        "kind": "boxed_final",
+        "label": "Apply the first law and find ΔU",
         "marks": 1,
-        "mark_note": "ΔU = Q − W",
+        "mark_note": "ΔU = Q − W = 4 × 10⁵ J",
         "lines": [
           "The heat supplied is",
           "Q = 6 × 10⁵ J. The first law",
-          "ΔQ = ΔU + W rearranges to give",
-          "the change in internal energy:",
+          "ΔQ = ΔU + W rearranges to",
           {
             "text": "ΔU = Q − W",
             "style": "eq"
-          }
-        ],
-        "margin_note": "Seventh mark. Rearrange the first law to ΔU = Q − W.",
-        "why": "The heat supplied splits between raising the internal energy and doing external work — rearranging the first law isolates the internal-energy change the question asks for.",
-        "common_mistakes": [
-          "Writing ΔU = Q + W — the work done BY the system is subtracted, not added.",
-          "Using the adiabatic work formula's W here instead of the 2 × 10⁵ J just found for this constant-pressure process."
-        ],
-        "recall": {
-          "credit": "say_it",
-          "must_convey": "That the first law rearranges to delta U equals Q minus W.",
-          "accept": [
-            "delta U equals Q minus W",
-            "rearrange the first law",
-            "heat in minus work done",
-            "delta Q equals delta U plus W rearranged"
-          ],
-          "reject": [
-            "work is P delta V"
-          ],
-          "heard_as": [
-            "delta U equals Q minus W",
-            "rearrange",
-            "first law"
-          ]
-        },
-        "memory_tip": "Heat in splits two ways: rearrange ΔQ = ΔU + W to ΔU = Q − W."
-      },
-      {
-        "id": "s8_internal_energy_change",
-        "kind": "boxed_final",
-        "label": "The change in internal energy",
-        "marks": 1,
-        "mark_note": "ΔU = 4 × 10⁵ J",
-        "lines": [
-          "Substituting Q = 6 × 10⁵ J and",
-          "W = 2 × 10⁵ J,",
+          },
+          "Substituting W = 2 × 10⁵ J,",
           {
             "text": "ΔU = 6×10⁵ − 2×10⁵",
             "style": "eq"
@@ -364,31 +369,32 @@
             "style": "boxed"
           }
         ],
-        "margin_note": "Eighth mark. Substitute and box ΔU = 4 × 10⁵ J.",
-        "why": "This is the number the question asks for: of the 6 × 10⁵ J supplied, 2 × 10⁵ J left the system as work and the remaining 4 × 10⁵ J stayed behind as internal energy.",
+        "margin_note": "Eighth mark. Rearrange the first law and substitute to get ΔU = 4 × 10⁵ J.",
+        "why": "The heat supplied splits between raising the internal energy and doing external work; rearranging the first law and substituting gives the number the question asks for — of the 6 × 10⁵ J supplied, 2 × 10⁵ J left the system as work and the remaining 4 × 10⁵ J stayed behind as internal energy.",
         "common_mistakes": [
-          "Substituting the wrong work value — this is the 2 × 10⁵ J found for THIS constant-pressure process, not any adiabatic formula.",
+          "Writing ΔU = Q + W — the work done BY the system is subtracted, not added.",
+          "Using the adiabatic work formula's W here instead of the 2 × 10⁵ J found for this constant-pressure process.",
           "Losing a power of ten when subtracting 2 × 10⁵ from 6 × 10⁵."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That substituting gives ΔU equal to 6 times 10 to the five minus 2 times 10 to the five, which is 4 times 10 to the five joules.",
+          "must_convey": "That the first law rearranges to delta U equals Q minus W, and substituting gives delta U equal to 6 times 10 to the five minus 2 times 10 to the five, which is 4 times 10 to the five joules.",
           "accept": [
+            "delta U equals Q minus W",
             "6 times 10 to the five minus 2 times 10 to the five",
             "delta U is 4 times 10 to the five joules",
-            "the internal energy increases by 4 times 10 to the five",
             "final answer 4 times 10 to the five joules"
           ],
           "reject": [
             "work is 2 times 10 to the five joules"
           ],
           "heard_as": [
+            "delta U equals Q minus W",
             "4 times 10 to the five joules",
-            "6 minus 2",
             "final answer"
           ]
         },
-        "memory_tip": "6 in, 2 out as work, 4 stays behind as internal energy — all ×10⁵ J."
+        "memory_tip": "Heat in splits two ways: ΔU = Q − W = 6 − 2 = 4, all ×10⁵ J."
       }
     ]
   },

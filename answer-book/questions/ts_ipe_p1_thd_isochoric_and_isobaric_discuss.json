@@ -86,7 +86,7 @@
             "vertical line"
           ]
         },
-        "memory_tip": "Isochoric: fixed VOLUME, vertical line, zero work — nothing to push against."
+        "memory_tip": "The walls do not move, so ΔV = 0 and W = ∫P dV = 0 — a force with no displacement does no work."
       },
       {
         "id": "s2_isochoric_heat",
@@ -179,6 +179,11 @@
         "marks": 1,
         "mark_note": "ΔQ = n C_P ΔT",
         "lines": [
+          "For an ideal gas, internal energy",
+          "depends on temperature ALONE, so",
+          "ΔU = n C_V ΔT holds here too,",
+          "even though pressure, not volume,",
+          "is fixed in this process.",
           "By the first law, ΔQ = ΔU + W =",
           "n C_V ΔT + nR ΔT. Using Mayer's",
           "relation C_P = C_V + R, this is",

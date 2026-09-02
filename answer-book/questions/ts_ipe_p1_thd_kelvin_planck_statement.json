@@ -94,7 +94,7 @@
         "why": "The statement is short, so the second mark checks whether its meaning for a real engine is understood too — that some heat rejected is unavoidable.",
         "common_mistakes": [
           "Repeating the statement in different words without saying what it forbids for an actual engine.",
-          "Saying an engine can approach 100% conversion with enough care. The statement forbids it exactly, not just as a practical difficulty."
+          "Treating the shortfall from 100% as only a practical loss from friction or imperfections. Even a perfect, frictionless engine must reject some heat; complete conversion from a single reservoir is forbidden outright, though efficiency can be pushed towards, but never to, 100%."
         ],
         "recall": {
           "credit": "say_it",

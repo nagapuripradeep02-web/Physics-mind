@@ -113,7 +113,7 @@
         "why": "P is not constant in an adiabatic change, so it must be written as a function of V before the integral can be done.",
         "common_mistakes": [
           "Treating P as constant and writing W = PΔV — that formula is for an isobaric process only.",
-          "Dropping the power (1 − γ) and integrating V^γ as if γ were 1."
+          "Confusing the integrand: it is V^(−γ), not V^γ; ∫V^(−γ)dV = V^(1−γ)/(1−γ), which becomes a logarithm only if γ = 1 — the isothermal case, not this one."
         ],
         "recall": {
           "credit": "say_it",

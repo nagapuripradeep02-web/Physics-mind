@@ -52,10 +52,10 @@
           "room outside it."
         ],
         "margin_note": "First mark. Say a refrigerator rejects the heat removed plus the compressor's work.",
-        "why": "This mechanism is the reason the room warms rather than cools, which the next step explains.",
+        "why": "Over a cycle the first law gives Q_rejected = Q_removed + W, so the heat dumped into the room always exceeds the heat taken out of the cold space by the compressor's work.",
         "common_mistakes": [
           "Saying a refrigerator only moves heat, with nothing added. The compressor does work, and that work is rejected as heat too.",
-          "Answering \"yes\" outright, without saying where the extra heat goes."
+          "Answering yes. The room cannot be cooled at all, because the refrigerator adds the compressor's work to the room as heat."
         ],
         "recall": {
           "credit": "say_it",

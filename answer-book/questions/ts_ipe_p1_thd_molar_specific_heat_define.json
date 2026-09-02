@@ -52,7 +52,7 @@
           "mole of it through one degree."
         ],
         "margin_note": "First mark. Say it is per mole, not per unit mass.",
-        "why": "The word molar signals the heat is measured per MOLE of substance, in contrast to the specific heat capacity of vsaq6, which is measured per unit mass.",
+        "why": "The word molar signals the heat is measured per MOLE of substance, in contrast to the specific heat capacity, which is per unit mass.",
         "common_mistakes": [
           "Writing the same definition as specific heat capacity with mass in place of mole — the two are different quantities.",
           "Leaving out one mole and saying only unit quantity."
@@ -84,15 +84,12 @@
           "Writing n for the number of moles,",
           {
             "text": "C = ΔQ/(nΔT)",
-            "style": "eq"
-          },
-          {
-            "text": "SI unit: J mol⁻¹ K⁻¹",
             "style": "boxed"
-          }
+          },
+          "SI unit: J mol⁻¹ K⁻¹"
         ],
         "margin_note": "Second mark. C = ΔQ/(nΔT), SI unit J mol⁻¹ K⁻¹.",
-        "why": "Writing n for the number of moles in the denominator is what makes C a per-mole quantity, mirroring the per-mass form S = (1/m)(dQ/dT) of vsaq6.",
+        "why": "Writing n for the number of moles in the denominator is what makes C a per-mole quantity, mirroring the form S = (1/m)(dQ/dT) of the specific heat capacity, which is per unit mass.",
         "common_mistakes": [
           "Writing m for mass in place of n for moles — that turns C back into the per-mass specific heat capacity.",
           "Giving the unit as J kg⁻¹ K⁻¹, the per-mass unit, instead of J mol⁻¹ K⁻¹."
@@ -117,5 +114,5 @@
       }
     ]
   },
-  "insider_note": "C is per MOLE — contrast directly with S in vsaq6, which is per unit MASS. Mixing the two symbols is the commonest slip on this pair."
+  "insider_note": "C is per MOLE — contrast directly with S, the specific heat capacity, which is per unit MASS. Mixing the two symbols is the commonest slip on this pair."
 }

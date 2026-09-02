@@ -52,7 +52,7 @@
           "molecules."
         ],
         "margin_note": "First mark. Name the assumption: no intermolecular forces.",
-        "why": "Real gas molecules do attract one another weakly, but the ideal-gas model sets that attraction to zero so that its equation of state, PV = nRT, holds exactly at every pressure.",
+        "why": "Real gas molecules do attract one another weakly, but the ideal-gas model sets that attraction to zero — this removes the potential energy, and PV = nRT holds exactly only when the molecular volume is also negligible.",
         "common_mistakes": [
           "Saying an ideal gas has no forces at all. It is intermolecular attraction that is taken to be zero, not the force of collision.",
           "Naming a different assumption, such as point-sized molecules, instead of zero intermolecular force."

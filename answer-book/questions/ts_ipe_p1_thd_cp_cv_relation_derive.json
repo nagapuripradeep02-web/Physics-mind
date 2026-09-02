@@ -63,7 +63,7 @@
           }
         ],
         "margin_note": "Say ONE MOLE and NO WORK AT CONSTANT VOLUME before writing the relation.",
-        "why": "C_V is DEFINED using this exact condition — no work — so the derivation must start here, not with the general first law.",
+        "why": "The first law is applied here with ΔW = 0, which is exactly the condition that defines C_V.",
         "common_mistakes": [
           "Starting from ΔQ = ΔU + ΔW directly without first setting ΔW = 0 for the constant-volume case.",
           "Forgetting to say ONE MOLE — the whole derivation works in molar quantities."
@@ -92,7 +92,7 @@
           "Dropping the PΔV term and writing ΔQ = ΔU only — that is the constant-volume case, not this one.",
           "Writing W without its constant-pressure form PΔV — at constant pressure, work equals P times the change in volume."
         ],
-        "memory_tip": "At constant pressure, work PΔV rides along with ΔU — that is the extra heat C_P needs."
+        "memory_tip": "At constant pressure the heat supplied is shared between the internal-energy rise ΔU and the work PΔV."
       },
       {
         "id": "s3_pdv_rdt",
@@ -123,8 +123,13 @@
         "marks": 1,
         "mark_note": "C_P − C_V = R",
         "lines": [
-          "Substitute PΔV = RΔT into the",
-          "constant-pressure relation:",
+          "For an ideal gas, internal energy",
+          "depends on temperature ALONE, so",
+          "ΔU = C_V ΔT in ANY process for",
+          "the same ΔT — including this",
+          "constant-pressure one.",
+          "Substitute this and PΔV = RΔT",
+          "into the constant-pressure relation:",
           {
             "text": "C_P ΔT = C_V ΔT + RΔT",
             "style": "eq"

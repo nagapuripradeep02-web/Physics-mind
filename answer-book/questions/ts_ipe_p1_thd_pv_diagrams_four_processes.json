@@ -112,7 +112,7 @@
         "why": "The extra power γ is exactly what makes the adiabatic curve fall faster than the isothermal one — that is the one comparison this figure is drawn to show.",
         "common_mistakes": [
           "Drawing the adiabatic curve less steep than the isothermal curve — it must always be the steeper of the two.",
-          "Drawing the two curves parallel instead of crossing at a shared point."
+          "Drawing the two curves on separate axes instead of one shared set of axes, where the crossing and the relative steepness are visible together."
         ],
         "recall": {
           "credit": "say_it",
@@ -186,7 +186,7 @@
           "the area under the curve is the",
           "work done in that process."
         ],
-        "margin_note": "Fourth mark. A vertical straight line, at constant V, plus the area-under-curve rule.",
+        "margin_note": "Fourth mark. A vertical straight line, at constant V. The area-under-curve rule is a closing note about all four curves, not part of this mark.",
         "why": "A constant volume is a constant position on the horizontal axis, so the process traces a vertical line — and the shared rule for all four is that the enclosed area under each curve reads off the work.",
         "common_mistakes": [
           "Drawing a sloped line instead of a vertical one.",
@@ -212,5 +212,5 @@
       }
     ]
   },
-  "insider_note": "Examiners check the RELATIVE steepness of the two curves at their crossing point — drawing the adiabatic curve too shallow is the most common way this figure loses a mark even when everything else is correct."
+  "insider_note": "The two curves are best drawn on one shared set of axes, with the adiabatic curve visibly steeper than the isothermal one where they cross — that is what makes the comparison clear, though each curve carries its own mark."
 }

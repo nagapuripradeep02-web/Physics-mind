@@ -61,7 +61,7 @@
           "internal energy. Example: heating a",
           "gas in a closed rigid vessel."
         ],
-        "margin_note": "W = 0, ΔQ = ΔU, and the closed rigid vessel example together are the first mark.",
+        "margin_note": "First mark. Give the constant-volume definition and W = 0; the first-law form ΔQ = ΔU and the rigid-vessel example secure it.",
         "why": "Volume fixed means the boundary does not move, so W = PΔV is zero automatically — that is what makes ΔQ = ΔU the whole content of the first law here.",
         "common_mistakes": [
           "Saying no heat is exchanged in an isochoric process. It is the work that is zero, not the heat.",
@@ -92,7 +92,7 @@
           "heating water in an open vessel at",
           "atmospheric pressure."
         ],
-        "margin_note": "W = PΔV, ΔQ = ΔU + PΔV, and the open-vessel example together are the second mark.",
+        "margin_note": "Second mark. Give the constant-pressure definition and W = PΔV; the first-law form ΔQ = ΔU + PΔV and the open-vessel example secure it.",
         "why": "Pressure fixed lets the volume change freely, so the gas both warms and expands — the heat supplied must now cover both the rise in internal energy and the work of that expansion.",
         "common_mistakes": [
           "Writing W = 0 for an isobaric process. Volume changes here, so work is done; it is pressure that is held constant.",

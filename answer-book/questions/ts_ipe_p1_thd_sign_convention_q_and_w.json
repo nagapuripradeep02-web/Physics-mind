@@ -52,7 +52,7 @@
           "taken OUT of the system."
         ],
         "margin_note": "First mark. Give both directions, in and out.",
-        "why": "The first law adds Q and W together on the same side of the equation, so both must use one consistent sign rule for the equation to balance.",
+        "why": "Q and W enter the first law with opposite signs, so each needs its own separately stated direction rule.",
         "common_mistakes": [
           "Giving only one direction for Q, in or out, and leaving out the other.",
           "Reversing the sign, calling heat supplied TO the system negative."
@@ -95,7 +95,7 @@
           }
         ],
         "margin_note": "Second mark. Give both directions for W, then the equation using this convention.",
-        "why": "A system that expands does positive work on its surroundings, so calling that work positive keeps the first law consistent with energy leaving the system through work in the same way it can leave through heat.",
+        "why": "A system that expands does positive work on its surroundings, so energy leaves through work when W is positive — the opposite direction to heat entering when Q is positive. That opposite sense is exactly why the first law subtracts W: ΔU = ΔQ − ΔW.",
         "common_mistakes": [
           "Giving only one direction for W, by or on, and leaving out the other.",
           "Mixing up W done BY the system with W done ON it."
@@ -116,9 +116,9 @@
             "work done by the system"
           ]
         },
-        "memory_tip": "W by, plus. W on, minus. Same pattern as Q: outward is positive."
+        "memory_tip": "W by the system is positive, W on the system is negative — the opposite sense to Q, where heat out is negative, and that is exactly why the first law reads ΔU = ΔQ − ΔW."
       }
     ]
   },
-  "insider_note": "State both signs for Q and both signs for W separately — a single sentence covering only one direction each loses half the marks."
+  "insider_note": "State both signs for Q and both signs for W separately: heat in and heat out for Q, work by and work on the system for W."
 }

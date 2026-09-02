@@ -27,11 +27,11 @@
       "marks": 1
     },
     {
-      "label": "Why c_P is greater",
+      "label": "Which one is greater",
       "marks": 1
     },
     {
-      "label": "The molar relation",
+      "label": "Why c_P is greater",
       "marks": 1
     }
   ],
@@ -97,56 +97,55 @@
         "memory_tip": "c_V holds Volume fixed; c_P holds Pressure fixed — match the letter to the condition."
       },
       {
-        "id": "s3_why_greater",
+        "id": "s3_which_greater",
         "kind": "text",
-        "label": "Why c_P is greater",
+        "label": "Which one is greater",
         "marks": 1,
         "mark_note": "c_P > c_V",
         "lines": [
-          "c_P is greater than c_V.",
+          "c_P is greater than c_V — more",
+          "heat is needed to raise the",
+          "temperature of unit mass by one",
+          "degree at constant pressure than",
+          "at constant volume."
+        ],
+        "margin_note": "Third mark. State that c_P is the greater of the two.",
+        "why": "The direction of the inequality follows from constant-pressure heating always needing extra heat for work, which the next mark explains in full.",
+        "common_mistakes": [
+          "Reversing the inequality and writing c_V > c_P.",
+          "Writing the inequality with the molar specific heats, C_P > C_V, instead of the per-unit-mass forms this card defines."
+        ],
+        "memory_tip": "c_P is always greater than c_V — constant pressure always needs more heat."
+      },
+      {
+        "id": "s4_why_greater",
+        "kind": "boxed_final",
+        "label": "Why c_P is greater",
+        "marks": 1,
+        "mark_note": "Work done at constant pressure",
+        "lines": [
           "At constant volume no work is",
           "done, so all the heat raises the",
           "internal energy alone.",
           "At constant pressure the gas also",
           "expands and does external work,",
           "so more heat is needed for the",
-          "same rise in temperature."
-        ],
-        "margin_note": "Give the REASON — work done at constant pressure — not just the fact that c_P is bigger.",
-        "why": "Both specific heats raise the temperature by the same one degree; the extra heat in c_P is spent doing work, not raising the temperature further.",
-        "common_mistakes": [
-          "Stating c_P > c_V without giving the reason. The reason is the mark, not the fact alone.",
-          "Saying temperature rises more at constant pressure. The rise is the same one degree in both; it is the heat needed that differs."
-        ],
-        "memory_tip": "Constant pressure heat pays for work too, so it always costs more than constant volume heat."
-      },
-      {
-        "id": "s4_molar_relation",
-        "kind": "boxed_final",
-        "label": "The molar relation",
-        "marks": 1,
-        "mark_note": "c_P − c_V = R/M",
-        "lines": [
-          "The molar specific heats C_P and",
-          "C_V (heat per MOLE, not per unit",
-          "mass) obey a similar rule: C_P is",
-          "larger than C_V for the same",
-          "reason.",
-          "For one mole, C_P − C_V = R (R the",
-          "universal gas constant); the",
-          "per-mass forms used above satisfy",
+          "same rise in temperature.",
+          "The molar specific heats obey a",
+          "similar rule, C_P − C_V = R for",
+          "one mole, giving",
           {
             "text": "c_P − c_V = R/M",
             "style": "boxed"
           }
         ],
-        "margin_note": "Say the MOLAR relation uses R, and the per-mass relation above uses R divided by M.",
-        "why": "c_P and C_P are different quantities with different units, so the same-looking rule (bigger minus smaller equals a gas constant) takes a different constant in each case — R for molar, R/M for per-mass.",
+        "margin_note": "Fourth mark. Give the reason — work done at constant pressure — not just the fact.",
+        "why": "Both specific heats raise the temperature by the same one degree; the extra heat in c_P is spent doing work, not raising the temperature further.",
         "common_mistakes": [
-          "Writing c_P − c_V = R without the /M. That relation holds only for the MOLAR specific heats.",
-          "Mixing lower-case c and upper-case C in the same line — they are different quantities and must not be interchanged."
+          "Giving only the fact that c_P is greater, without saying why — the constant-pressure heat also does external work.",
+          "Saying temperature rises more at constant pressure. The rise is the same one degree in both; it is the heat needed that differs."
         ],
-        "memory_tip": "Molar minus molar gives R; per-mass minus per-mass gives R divided by M."
+        "memory_tip": "At constant pressure the heat supplied must both raise the internal energy and do the work PΔV, so more heat is needed for the same rise in temperature."
       }
     ]
   },

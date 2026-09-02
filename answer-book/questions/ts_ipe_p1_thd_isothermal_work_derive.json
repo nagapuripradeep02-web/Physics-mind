@@ -27,7 +27,7 @@
       "marks": 1
     },
     {
-      "label": "The log₁₀ form and sign",
+      "label": "Evaluating between the limits",
       "marks": 1
     },
     {
@@ -76,49 +76,56 @@
         "kind": "equation",
         "label": "Integrating",
         "marks": 1,
-        "mark_note": "W = nRT ln(V₂/V₁)",
+        "mark_note": "∫dV/V = ln V",
         "lines": [
           "Substituting and integrating,",
           {
             "text": "W = nRT ∫(dV/V), V₁ to V₂",
             "style": "eq"
           },
+          "using the standard integral",
           {
-            "text": "W = nRT ln(V₂/V₁)",
+            "text": "∫dV/V = ln V",
             "style": "eq"
           }
         ],
-        "margin_note": "This is the standard integral ∫dV/V = ln V — apply its limits directly.",
-        "why": "∫dV/V is one of the few integrals a student is expected to know outright, and applying its limits V₁ to V₂ gives the natural-log form directly.",
+        "margin_note": "This is the standard integral ∫dV/V = ln V — the substitution and the antiderivative are this mark; the limits are evaluated in the next step.",
+        "why": "∫dV/V is one of the few integrals a student is expected to know outright — recognising it as ln V is the substance of this mark.",
         "common_mistakes": [
-          "Writing the answer as nRT ln(V₁/V₂), with the limits reversed — that gives the wrong sign for an expansion.",
-          "Dropping the constant nRT outside the integral partway through."
+          "Dropping the constant nRT outside the integral partway through.",
+          "Confusing ∫dV/V with ∫V dV — the antiderivative of 1/V is ln V, not V²/2."
         ],
-        "memory_tip": "∫dV/V is ln V — put the limits V₂ over V₁, upper over lower."
+        "memory_tip": "∫dV/V is ln V — know this antiderivative outright."
       },
       {
         "id": "s3_log10_form",
         "kind": "equation",
-        "label": "The log₁₀ form and its sign",
+        "label": "Evaluating between the limits",
         "marks": 1,
-        "mark_note": "W = 2.303 nRT log₁₀(V₂/V₁)",
+        "mark_note": "W = nRT ln(V₂/V₁)",
         "lines": [
-          "Converting to base-10 logarithms,",
+          "Evaluating the integral between",
+          "its limits,",
           {
-            "text": "W = 2.303 nRT log₁₀(V₂/V₁)",
+            "text": "W = nRT[ln V] from V₁ to V₂",
             "style": "eq"
           },
+          {
+            "text": "W = nRT ln(V₂/V₁)",
+            "style": "eq"
+          },
+          "= 2.303 nRT log₁₀(V₂/V₁)",
           "For an expansion, V₂ > V₁, so W is",
           "positive: the gas does work ON the",
           "surroundings."
         ],
-        "margin_note": "State the sign explicitly — positive for expansion is often left out.",
-        "why": "ln x = 2.303 log₁₀ x is the standard conversion used throughout this chapter for numerical work, and the sign statement is what the mark scheme checks separately from the formula itself.",
+        "margin_note": "The limits substitution gives ln(V₂/V₁); the base-10 form and the sign are part of stating it fully.",
+        "why": "Evaluating [ln V] between V₁ and V₂ gives ln(V₂/V₁) directly; converting it to 2.303 log₁₀ is the conventional way to present it for numerical work, and stating the sign completes the answer.",
         "common_mistakes": [
-          "Writing the constant as 2.3 instead of 2.303 — the more precise value is expected.",
-          "Not stating the sign — leaving it implicit loses the mark even if the formula is correct."
+          "Writing the answer as nRT ln(V₁/V₂), with the limits reversed — that gives the wrong sign for an expansion.",
+          "Writing the constant as 2.3 instead of 2.303 — 2.303 is the conventional value."
         ],
-        "memory_tip": "ln x = 2.303 log₁₀ x — the 2.303 is the standard conversion factor to remember."
+        "memory_tip": "Upper limit over lower limit, V₂ over V₁ — and 2.303 log₁₀ is the same thing in base ten."
       },
       {
         "id": "s4_first_law_connection",

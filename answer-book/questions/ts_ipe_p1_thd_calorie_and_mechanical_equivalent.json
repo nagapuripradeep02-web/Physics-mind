@@ -51,11 +51,11 @@
           "of water from 14.5 °C to 15.5 °C,",
           "at a pressure of one atmosphere."
         ],
-        "margin_note": "First mark. All four numbers — one gram, 14.5 °C, 15.5 °C, one atmosphere.",
+        "margin_note": "First mark. State the definition — one gram of water from 14.5 °C to 15.5 °C; the one-atmosphere condition secures it.",
         "why": "The range 14.5 °C to 15.5 °C is fixed because the specific heat of water changes slightly with temperature, so the calorie needs one fixed interval to have a single value.",
         "common_mistakes": [
-          "Leaving out the pressure condition of one atmosphere.",
-          "Giving a rounded range such as 14 °C to 15 °C instead of the exact 14.5 °C to 15.5 °C."
+          "Giving a rounded range such as 14 °C to 15 °C instead of the exact 14.5 °C to 15.5 °C.",
+          "Leaving out the pressure condition of one atmosphere — add it to secure the answer."
         ],
         "recall": {
           "credit": "say_it",

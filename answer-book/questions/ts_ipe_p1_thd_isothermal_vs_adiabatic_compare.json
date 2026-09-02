@@ -178,9 +178,11 @@
           "Isothermal: a slow process with a",
           "conducting container, so heat has",
           "time to keep T constant.",
-          "Adiabatic: a fast process with an",
-          "insulated container, so no heat",
-          "crosses the walls.",
+          "Adiabatic: carried out rapidly",
+          "enough that no heat crosses the",
+          "insulated walls, yet still",
+          "quasi-statically — which is why",
+          "PV^γ = constant plots as a curve.",
           "On a P–V diagram the adiabatic",
           "curve is the steeper of the two,",
           "because γ is greater than 1."
@@ -193,10 +195,10 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That isothermal is slow with a conducting container and adiabatic is fast with an insulated container, and the adiabatic curve is steeper because gamma is greater than one.",
+          "must_convey": "That isothermal is slow with a conducting container, and adiabatic is carried out rapidly enough to stop heat flow yet still quasi-statically, with an insulated container; the adiabatic curve is steeper because gamma is greater than one.",
           "accept": [
             "slow conducting container for isothermal",
-            "fast insulated container for adiabatic",
+            "insulated container for adiabatic, rapid but still quasi-static",
             "adiabatic curve is steeper"
           ],
           "reject": [
@@ -208,7 +210,7 @@
             "steeper curve"
           ]
         },
-        "memory_tip": "Adiabatic is FAST and INSULATED; isothermal is SLOW and CONDUCTING. Adiabatic is also the steeper curve."
+        "memory_tip": "Adiabatic is rapid enough to stop heat flow, yet still quasi-static, and INSULATED; isothermal is SLOW and CONDUCTING. Adiabatic is also the steeper curve."
       }
     ]
   },

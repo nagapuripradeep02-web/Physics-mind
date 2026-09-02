@@ -58,16 +58,19 @@
           "actually goes.",
           "It permits heat to flow from a",
           "colder body to a hotter one, since",
-          "energy would still balance — but",
-          "this never happens in nature."
+          "energy would still balance.",
+          "Heat never flows from cold to hot",
+          "of its own accord, that is without",
+          "external work being done — this",
+          "is the Clausius form."
         ],
         "margin_note": "Give the cold-to-hot example — it is the standard illustration of this drawback.",
-        "why": "This is the textbook example that shows the gap directly: the first law has nothing to say against a process everyone knows is impossible.",
+        "why": "This is the textbook example that shows the gap directly: the first law has nothing to say against heat flowing the wrong way on its own, which the Clausius statement of the second law forbids.",
         "common_mistakes": [
           "Saying the first law is wrong. It is correct; it is only silent on direction.",
           "Giving no example — the cold-to-hot case is what makes the drawback concrete."
         ],
-        "memory_tip": "Energy balances both ways; only the second law says which way is real."
+        "memory_tip": "Cold to hot needs external work — that direction never happens BY ITSELF."
       },
       {
         "id": "s2_no_possibility",
@@ -81,6 +84,11 @@
           "It does not say whether a process",
           "consistent with that balance can",
           "actually happen at all.",
+          "Example: a gas that has spread to",
+          "fill a vessel spontaneously",
+          "re-compressing into half the",
+          "vessel conserves energy exactly,",
+          "yet this is never observed.",
           "Deciding what is possible needs a",
           "separate law."
         ],
@@ -102,11 +110,14 @@
           "The first law sets no limit on how",
           "much of a given heat can be turned",
           "into work.",
-          "It would allow an engine that",
-          "converts ALL the heat it takes in",
-          "completely into work, with none",
-          "rejected — which is never seen in",
-          "practice."
+          "It would allow an engine working",
+          "in a CYCLE to convert all the heat",
+          "it absorbs into work, with none",
+          "rejected — but no cyclic engine",
+          "can do this.",
+          "Kelvin-Planck forbids any process",
+          "whose SOLE RESULT is complete",
+          "conversion of heat into work."
         ],
         "margin_note": "This is the drawback the second law's Kelvin–Planck statement directly closes.",
         "why": "An engine at 100% efficiency conserves energy exactly as well as a real one; only a separate law about heat and work sets the actual ceiling.",
@@ -126,16 +137,23 @@
           "Direction, possibility and the",
           "efficiency limit are three separate",
           "gaps the first law leaves open.",
+          "The Clausius statement (cold to",
+          "hot needs external work) and the",
+          "Kelvin-Planck statement (no cyclic",
+          "engine converts all its heat into",
+          "work) together fix direction and",
+          "the efficiency limit, and with them",
+          "which processes are possible.",
           {
             "text": "The second law supplies all three.",
             "style": "heading"
           }
         ],
-        "margin_note": "Name all three gaps together in this closing line — direction, possibility, efficiency limit.",
-        "why": "The question asks for the drawbacks of the first law, and naming what fixes them is what shows the answer is complete, not just a list.",
+        "margin_note": "Name all three gaps, and tie the Clausius and Kelvin-Planck statements to the gaps they close.",
+        "why": "The question asks for the drawbacks of the first law; naming the Clausius and Kelvin-Planck statements against the specific gaps they close shows the answer is complete, not just a list.",
         "common_mistakes": [
           "Listing only one or two of the three gaps in the closing line and leaving the count incomplete.",
-          "Explaining what the second law says in full — the question only asks what the first law fails to do, not the second law's own statements."
+          "Naming the second law's statements without tying each one to the specific gap it closes."
         ],
         "memory_tip": "Three gaps, one law that closes them: direction, possibility, efficiency limit."
       }

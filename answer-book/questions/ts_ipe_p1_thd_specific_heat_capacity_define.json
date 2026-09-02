@@ -54,13 +54,10 @@
             "text": "S = (1/m)(dQ/dT)",
             "style": "eq"
           },
-          {
-            "text": "SI unit: J kg⁻¹ K⁻¹",
-            "style": "eq"
-          }
+          "SI unit: J kg⁻¹ K⁻¹"
         ],
         "margin_note": "First mark. The definition, S = (1/m)(dQ/dT), and its SI unit.",
-        "why": "Writing S as heat per unit mass per degree keeps it different from the molar specific heat capacity of vsaq8, which uses moles in place of mass.",
+        "why": "Writing S as heat per unit mass per degree keeps it different from the molar specific heat capacity, which is measured per mole.",
         "common_mistakes": [
           "Leaving out unit mass — without it the definition is heat capacity, not specific heat capacity.",
           "Giving the unit as J kg⁻¹ only, without the K⁻¹ for the degree."
@@ -120,5 +117,5 @@
       }
     ]
   },
-  "insider_note": "S is defined per unit MASS — contrast with the molar specific heat capacity of vsaq8, which is per mole. Keep the two straight."
+  "insider_note": "S is defined per unit MASS — contrast with the molar specific heat capacity, which is measured per mole. Keep the two straight."
 }

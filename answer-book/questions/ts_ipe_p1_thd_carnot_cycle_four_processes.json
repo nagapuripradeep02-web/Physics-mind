@@ -52,10 +52,10 @@
           "2. Adiabatic expansion: no heat is",
           "exchanged; the gas cools to T₂."
         ],
-        "margin_note": "Both expansion steps, named and in order, are the first mark.",
+        "margin_note": "First mark. Name both expansion steps, isothermal at T₁ then adiabatic, in order.",
         "why": "The two expansion steps take the gas from the source temperature down to the sink temperature, in that order, before the compression half returns it.",
         "common_mistakes": [
-          "Starting the cycle with an adiabatic step. The cycle begins with the isothermal expansion at T₁.",
+          "Naming the four processes in the wrong order. The isothermal and adiabatic steps must alternate, with heat absorbed on the isothermal step at the higher temperature and rejected on the isothermal step at the lower.",
           "Saying the temperature changes during the isothermal expansion. It changes only on the adiabatic step."
         ],
         "memory_tip": "Expand twice: isothermal first, then adiabatic."
@@ -76,7 +76,7 @@
           "The gas returns to its starting",
           "state."
         ],
-        "margin_note": "Both compression steps, named and in order, plus the closed cycle, are the second mark.",
+        "margin_note": "Second mark. Name both compression steps, isothermal at T₂ then adiabatic, in order; noting the cycle closes secures it.",
         "why": "The two compression steps mirror the expansion steps and bring the gas back to T₁ at its original pressure and volume, which is what makes the process a closed cycle.",
         "common_mistakes": [
           "Omitting that the cycle closes — the last step must return the gas to its exact starting state.",
