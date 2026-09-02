@@ -45,8 +45,13 @@ const ENDPOINT = arg('endpoint', 'http://localhost:8110/api/chat');
 // filed as student demand. (This script sends no Origin, so the live function
 // 403s it today anyway — the guard is for the day someone adds one.)
 const PROBE_TOKEN = process.env.AB_PROBE_TOKEN ?? '';
-if (!PROBE_TOKEN && /supabase\.co/.test(ENDPOINT)) {
-    console.error('refusing: AB_PROBE_TOKEN is unset and --endpoint is the LIVE function.');
+// Length-matched to the SERVER's own test (answerbook-vidi-chat requires
+// >= 16 chars, so a short token is silently ignored there and every row
+// lands as answerbook_student). Testing only for empty would let
+// AB_PROBE_TOKEN=test123 sail through the guard and reproduce the exact
+// failure this exists to prevent, quietly instead of loudly.
+if (PROBE_TOKEN.length < 16 && /supabase\.co/.test(ENDPOINT)) {
+    console.error('refusing: AB_PROBE_TOKEN is missing or shorter than 16 chars, and --endpoint is the LIVE function.');
     console.error('  This run would be counted as real students in ai_usage_log.');
     process.exit(1);
 }

@@ -1823,8 +1823,11 @@
   }
 
   function goToIndex(i) {
-    Vidi.log('step_jump', { qid: question.question_id, i: i + 1 });
+    // Tapping the NEXT step through the index is an ordinary advance, not a
+    // jump — logging above this short-circuit counted it as both and inflated
+    // every jump number by the sequential taps.
     if (i === stepIndex + 1 && !revealing) { advance(); return; }
+    Vidi.log('step_jump', { qid: question.question_id, i: i + 1 });
     renderUpTo(i, true);
   }
 
@@ -2581,6 +2584,13 @@
     // #/notastudent/<word> writes pm_internal once per browser; the flag then
     // rides every event batch, every sync push and every Vidi ask, and the
     // server makes it stick to the device.
+    // Two readers on purpose, and the asymmetry is load-bearing. EVENTS use the
+    // boolean: ab_log_events only ever SETS the flag on true and never clears
+    // it, so a plain `false` from an un-marked browser is harmless there. SYNC
+    // uses the tri-state, because ab_sync DOES honour false — making that path
+    // two-state would let one un-marked browser wipe a flag set by the
+    // dashboard or by a team Gmail on another device. Do not "make these
+    // symmetric" without changing ab_log_events first.
     function isInternal() { return lsGet('pm_internal') === '1'; }
     /** true = marked team, false = explicitly un-marked, null = never said.
         The tri-state matters on sync: "never said" must not clear a device that
@@ -2601,9 +2611,14 @@
     }
     /** Bounded: a dead endpoint must never grow memory for a whole session. */
     function requeue(batch) { evq = batch.concat(evq).slice(-200); }
+    // The server writes at most 50 events per batch (ab_log_events) and still
+    // answers 200, so anything past the 50th would be dropped while the page
+    // counted it as delivered. After one offline blip the queue can hold 200,
+    // so send in chunks of 50 and keep going while there is more.
+    var MAX_BATCH = 50;
     function flush() {
       if (!VIDI_BASE || !evq.length) return;
-      var batch = evq.splice(0, evq.length);
+      var batch = evq.splice(0, MAX_BATCH);
       var body = { type: 'events', session_id: session, visit_id: visit, internal: isInternal(), events: batch };
       // Sync owns the device id and mints one only when it has a base itself,
       // so the offline build stays exactly as inert as it was.
@@ -2612,8 +2627,10 @@
         fetch(VIDI_BASE, {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(body), keepalive: true
-        }).then(function (r) { if (!r.ok) requeue(batch); })
-          .catch(function () { requeue(batch); });
+        }).then(function (r) {
+          if (!r.ok) requeue(batch);
+          else if (evq.length) flush();   // drains 50 at a time; each pass shrinks the queue
+        }).catch(function () { requeue(batch); });
       } catch (e) { requeue(batch); }
     }
 

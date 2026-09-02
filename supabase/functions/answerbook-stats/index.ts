@@ -115,7 +115,12 @@ Deno.serve(async (req: Request) => {
         // `since` is a date the dashboard chose; anything unparseable falls back
         // to the day counting began rather than erroring.
         const sinceRaw = typeof body.since === 'string' ? Date.parse(body.since) : NaN;
-        const since = Number.isNaN(sinceRaw) ? '2026-08-28T00:00:00Z' : new Date(sinceRaw).toISOString();
+        // 2026-09-02, not 08-28: the tables were created on the 28th but the
+        // instrumented page did not ship until the 2nd, so a caller that omits
+        // `since` would otherwise be handed five days of un-instrumented,
+        // unattributable devices. The dashboard always sends `since` — this is
+        // the safety net, and it should land on the day counting really began.
+        const since = Number.isNaN(sinceRaw) ? '2026-09-02T00:00:00Z' : new Date(sinceRaw).toISOString();
         out = await rpc('ab_stats', {
             p_token: token,
             p_since: since,
