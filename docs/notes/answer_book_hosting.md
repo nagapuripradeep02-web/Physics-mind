@@ -57,12 +57,17 @@ node -e "const f=require('fs');const g=p=>{const s=f.readFileSync(p,'utf8');cons
    With no key set the function refuses politely at zero cost — safe to deploy first.
 
 2. **Local verification** (before any student link) — run the shakedown above against the DEPLOYED
-   function too (`VIDI_ENDPOINT=<function-url> npm run vidi:shakedown`, origin allowlist permitting),
-   then the page itself: `npm run build:answers:hosted`
+   function too (`VIDI_ENDPOINT=<function-url> npm run vidi:shakedown`, origin allowlist permitting).
+   **Set `AB_PROBE_TOKEN` first**: since 2026-09-02 the script REFUSES to run against a live
+   `*.supabase.co` endpoint without it, because an unlabelled probe run is filed as real student
+   demand in the ledger (that is how 45 of the first 80 rows went wrong). It labels only — a probe
+   still eats the per-IP and daily caps, so don't do this during school hours.
+   Then the page itself: `npm run build:answers:hosted`
    then `npm run serve:answers` → http://localhost:8100 (already in the default
-   allowlist). Ask a free-form question; confirm the reply, the `ai_usage_log` row
-   (`task_type=answerbook_vidi_chat`), and telemetry rows in `simulation_feedback`
-   (`interaction_data.surface = 'answer_book'`).
+   allowlist). Ask a free-form question; confirm the reply and the `ai_usage_log` row
+   (`task_type=answerbook_vidi_chat`) — it will read `actor='answerbook_local'`, since a
+   localhost origin is testing, not a student. Telemetry now lands one row per event in
+   `ab_events` (`is_internal` true for a local origin), not in `simulation_feedback`.
 
 3. **Host the page.** The dist is ONE file (`answer-book/dist/index.html`). Put it in
    the existing Cloudflare site flow (e.g. `viditra.co/answers/`). Then set the real
@@ -80,6 +85,15 @@ node -e "const f=require('fs');const g=p=>{const s=f.readFileSync(p,'utf8');cons
 
 - The `website/` tree in some desks diverges from the office's uncommitted marketing
   edits — reconcile before any `deploy:cf-site` (recorded scar).
+- **`deploy:cf-site` publishes `website/` wholesale, so it DELETES anything the deploying
+  branch lacks.** The usage dashboard (`website/admin/answers.html`) lived only on an unmerged
+  branch from 2026-08-28 to 2026-09-02; a `deploy:cf-site` from master in that window would have
+  silently removed `/admin/answers` from the live site. Check the file is present on your branch
+  before deploying, and diff against live (`curl -s https://viditra.co/admin/answers | sha1sum`)
+  so a live-only edit is never overwritten unnoticed.
+- **`AB_PROBE_TOKEN`** (secret) labels automated Vidi probes as `answerbook_probe` in
+  `ai_usage_log`. It grants no exemption from any limit. `vidi:shakedown` / `vidi:audit` refuse to
+  hit a live endpoint without it. See `ANSWER_BOOK_ANALYTICS_RUNBOOK.md` §7.
 - The emailed `file://` copy can never use chat (no verifiable origin — deliberate).
   Deterministic Vidi works fully there; the ask row hides itself.
 - Guard budgets are env vars: `AB_DAILY_USD_CAP` (default $2/day), `AB_IP_PER_MIN` (4),

@@ -66,6 +66,39 @@ Still to build: `answer-book/sources/coverage_2027.json` and `check:syllabus-cov
 And a standing asymmetry worth naming: **chemistry has no real-paper corpus.** Physics is back-tested against 7 TS papers and sits at 100%. Chemistry completeness rests entirely on one commercial book.
 
 ---
+## 🔎 SESSION — Team, founder and Claude's testing leave the student numbers (2026-09-02, `feat/answerbook-exclusion`)
+
+**Bottom line: the exclusion system already existed, half of it had never shipped, and the half that had never covered the money.** The founder asked why the usage dashboard counts his own laptop and phone, his friends' devices, and Claude's chatbot testing as students. It does — and worse than he thought.
+
+### What was actually true, measured live before any change
+
+- The device-level exclusion (`#/notastudent/<word>`, team Gmail list, per-device dashboard toggle, one-row-per-event `ab_events`) was built on `feat/answerbook-analytics` on 2026-08-28. Its **database half is live**; its **client half never shipped**. The branch never merged, master moved 176 commits, and every deploy since rebuilt answers.viditra.co from master. Verified by grepping the live bundle: `notastudent`, `pm_internal`, `ab_log_events`, `team_mark` — **0 hits each**.
+- So `ab_events` held **0 rows**. Every behaviour number on the dashboard — funnel, reading depth, by-day, top questions — was empty. Only device counts (62 / 29 team / 33 "students") and the Vidi ledger were real.
+- The ledger was never covered by the design at all: `answerbook-vidi-chat` wrote `actor:'answerbook_student'` hard-coded, the chat POST carried no device id, and `ab_stats`' own comment admitted it "counts EVERY ask including the team's". **Of 80 rows: 45 were script probes (`shakedown`, `deploy-verify*`, `senior_audit_probe`…), 10 more were browser sessions on a team device's network. 25 were real.**
+
+### What shipped here
+
+One idea: four actors — `answerbook_student` / `answerbook_team` / `answerbook_local` / `answerbook_probe` — decided from signals that already existed (`ab_device_is_internal`, the page's `pm_internal` claim, the request Origin, and a new `AB_PROBE_TOKEN` secret), with `metadata.actor_reason` recording *which* signal decided it.
+
+**Two rules hold the design up, and both are written into the code as comments so a later session cannot "optimise" them away:**
+
+1. **The actor is a LABEL, never a GUARD.** The $2/day cap and the per-IP limits still read the whole ledger, every actor included — a team ask costs the same dollar a student's does. An actor filter in `readTodayLedger()` would quietly raise our own rate limits and hand a spoofer a free budget.
+2. **The all-actors total is never hidden.** Three of the four signals are client-supplied and forgeable; the dashboard prints `everything: N ($X)` beside the student-only figure, so a forged "I am the team" can never hide real spend from the page that watches it.
+
+### Four things the port had to get right that a straight cherry-pick would have got wrong
+
+- **The 08-28 migration ends in an unqualified `update ab_devices set is_internal = true;`.** Applied then, it marked the 29 devices that existed. Re-run today it marks every device *now* — real students included — and `ab_sync` never clears a flag the page did not claim. It is committed **frozen**: a DO-NOT-RE-RUN banner, and section 10 replaced by a comment recording what ran. It also drops the `ab_sync` overload, which would break progress sync for every device at once.
+- **The obvious relabel regex is wrong.** `^ab_[a-z0-9]{12}$` looks safe because all 9 current browser sessions are 12 chars — but the client mints `'ab_' + Math.random().toString(36).slice(2,10) + …` and `toString(36)` is *not* fixed width, so it would eventually relabel genuine students as probes. The relabel goes by an explicit list of the 18 known probe session ids.
+- **33 devices are unattributable, not team.** They were minted after 08-28 by the un-instrumented page and carry no events at all. Guessing at them (the IP heuristic) mutates data on a shared-NAT signal; instead `devices.total` is now bounded by `since` and the dashboard's counting epoch moved to 2026-09-02. `total_ever` keeps the old number.
+- **`deploy:cf-site` would have deleted the dashboard.** `website/admin/answers.html` existed only on the unmerged branch; publishing `website/` from master removes what the branch lacks. Recorded in `answer_book_hosting.md`.
+
+### The guard that matters most
+
+`vidi_shakedown.ts` and `vidi_audit.ts` now **refuse to run** against a `*.supabase.co` endpoint when `AB_PROBE_TOKEN` is unset. That is the half that makes the *default* safe: a future session that simply forgets the token is stopped, instead of silently filing its probes as real student demand — which is exactly how 45 of the first 80 rows went wrong.
+
+### Not done here (founder-gated)
+
+Nothing was deployed and no row was written. Still to run, in order, with the founder: apply `supabase_2026_09_02_answerbook_ledger_actor.sql`; set `AB_PROBE_TOKEN`; redeploy `answerbook-vidi-chat` + `answerbook-sync`; the reviewed relabel of the 80 historical rows (`actor` UPDATE only — nothing deleted); `deploy:answers`; `deploy:cf-site`; then the team walks `#/notastudent/viditra-team` on every browser. The negative-control curls and the "if the number does not move, stop" check are in the runbook §6/§7.
 
 
 ## 🧮 SESSION — The PRACTICE section: `qtype: "PROBLEM"`, the first question kind the paper does not ask (2026-09-02, `feat/answerbook-problems-section`)

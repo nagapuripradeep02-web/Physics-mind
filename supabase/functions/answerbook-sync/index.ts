@@ -73,6 +73,24 @@ async function sha256Hex(s: string): Promise<string> {
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 
+// A deliberate subset of ALLOWED_ORIGINS, kept LITERAL so that widening the
+// allowlist can never silently reclassify a real domain as "local".
+const LOCAL_ORIGINS = new Set([
+    'http://localhost:8100', 'http://127.0.0.1:8100',
+    'http://localhost:8101', 'http://127.0.0.1:8101',
+    'http://localhost:8102', 'http://127.0.0.1:8102',
+]);
+
+/**
+ * Headless walks, crawlers and scripts are not students. Coarse and
+ * deliberately OVER-inclusive: a false "team" costs one row on a dashboard,
+ * while a false "student" corrupts the only number the founder is reading.
+ * Not a security boundary — a user agent is a self-report. Modern headless
+ * Chrome hides itself, so the Playwright helper in the analytics runbook
+ * (set pm_internal before newPage) stays the reliable path for our own walks.
+ */
+const BOT_RE = /bot\b|crawler|spider|crawling|HeadlessChrome|Headless|Lighthouse|PhantomJS|Puppeteer|Playwright|curl\/|wget|python-requests|axios\/|node-fetch|Go-http-client|facebookexternalhit|WhatsApp|Slackbot|Twitterbot|bingpreview|AhrefsBot|SemrushBot|PetalBot|YandexBot|Googlebot/i;
+
 /** Only ever a coarse category — never a fingerprint. */
 function platformOf(ua: string): string {
     if (/Android/i.test(ua)) return 'android';
@@ -144,6 +162,16 @@ Deno.serve(async (req: Request) => {
     const rawIp = (req.headers.get('x-forwarded-for') ?? '').split(',')[0].trim();
     const ipHash = rawIp ? await sha256Hex(IP_SALT + '|' + rawIp) : null;
 
+    // TEAM DEVICES. The page may send internal:true (the founder opened
+    // #/notastudent/<word>) or internal:false (the /off route); anything else
+    // is null = "the page said nothing", and the device keeps the flag it has —
+    // so one browser of a person cannot un-mark what another browser marked.
+    // Strictly a boolean: a string "false" must not read as a claim. With no
+    // claim at all, a bot user-agent or a localhost origin is enough on its own.
+    const ua = req.headers.get('user-agent') ?? '';
+    const internal = typeof body.internal === 'boolean' ? body.internal
+        : (BOT_RE.test(ua) || LOCAL_ORIGINS.has(origin)) ? true : null;
+
     try {
         const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/ab_sync', {
             method: 'POST',
@@ -161,6 +189,7 @@ Deno.serve(async (req: Request) => {
                 p_plan_saved_at: planSaved,
                 p_max_rows: MAX_ROWS,
                 p_max_new_per_ip: NEW_PER_IP,
+                p_internal: internal,
             }),
         });
         if (!res.ok) {

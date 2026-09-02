@@ -695,6 +695,13 @@ if (GATED && !authAnon) {
     fail('  no Supabase anon key — Google sign-in would sign every student back out');
 }
 
+// The word behind #/notastudent/<word>: opening that route once marks a browser
+// as the team's, so the usage dashboard never counts our own testing as a
+// student. HOSTED builds only — with no word the route answers "not valid", and
+// the offline suite therefore never sees it do anything.
+const STAFF_WORD_DEFAULT = 'viditra-team';
+const staffWord = HOSTED ? (process.env.ANSWER_BOOK_STAFF_WORD ?? STAFF_WORD_DEFAULT) : '';
+
 // The door's tiles, resolved against THIS build. Counts for the live cell are
 // read off the BUILT manifest rather than typed in — the same rule the og card
 // follows, so the door can never advertise a book bigger than the file it is
@@ -767,6 +774,7 @@ const dataJs =
     `window.PM_PAY_BASE = ${JSON.stringify(payBase)};\n` +
     `window.PM_AUTH_BASE = ${JSON.stringify(authBase)};\n` +
     `window.PM_AUTH_ANON = ${JSON.stringify(authAnon)};\n` +
+    `window.PM_STAFF_WORD = ${JSON.stringify(staffWord)};\n` +
     // null on the full build — the catalog eyebrow then stays subject-neutral.
     // Every stream in one artifact shares a short label today (both MPC cells say
     // "MPC"); if that ever stops being true this becomes per-stream like the year.
