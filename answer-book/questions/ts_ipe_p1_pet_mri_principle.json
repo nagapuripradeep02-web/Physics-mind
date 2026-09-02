@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pet_mri_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Physics of Emerging Technologies"
+  },
+  "chapter": "Physics of Emerging Technologies",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the physics principle behind MRI (Magnetic Resonance Imaging) and explain how it helps doctors.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The principle",
+      "marks": 1
+    },
+    {
+      "label": "How it helps",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 14 Very Short Answer Question 13 (printed p.144). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Chapter 14 is new to the 2026-27 syllabus and no board has examined it, so there is no exam history to cite. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: MRI uses nuclear magnetic resonance, hydrogen nuclei align in a strong magnetic field and absorb and re-emit radio waves at a definite frequency, and this gives high-contrast images of soft tissue without ionising radiation, unlike an X-ray or a CT scan."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physics of Emerging Technologies · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_the_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 1,
+        "mark_note": "Principle",
+        "lines": [
+          "Nuclear magnetic resonance:",
+          "hydrogen nuclei in the body line",
+          "up in a strong magnetic field and",
+          "absorb and re-emit radio waves",
+          "at a definite frequency."
+        ],
+        "why": "Hydrogen nuclei behave like tiny magnets. A strong magnetic field lines them up, a radio pulse at their own resonant frequency flips them, and as they return to alignment they re-emit radio waves that a scanner detects and turns into an image.",
+        "common_mistakes": [
+          "Naming X-rays or radioactivity as the mechanism; MRI uses neither.",
+          "Leaving out the word resonance, which names the effect."
+        ],
+        "memory_tip": "MRI: magnetic field lines up hydrogen nuclei, a radio pulse and its echo build the image.",
+        "margin_note": "The words magnetic and resonance must both appear for full credit."
+      },
+      {
+        "id": "s2_how_it_helps",
+        "kind": "boxed_final",
+        "label": "How it helps",
+        "marks": 1,
+        "mark_note": "Use",
+        "lines": [
+          {
+            "text": "Detailed images of soft tissue",
+            "style": "boxed"
+          },
+          "and internal organs, without",
+          "using ionising radiation."
+        ],
+        "why": "Because the signal comes from hydrogen nuclei, which are abundant in soft tissue and water, MRI shows contrast between different soft tissues that an X-ray cannot, and it does this without the ionising radiation an X-ray or a CT scan uses.",
+        "common_mistakes": [
+          "Saying MRI is better than an X-ray, with no reason given.",
+          "Claiming MRI uses no radiation at all; radio waves are a form of radiation, only not ionising."
+        ],
+        "memory_tip": "MRI shows soft tissue clearly and safely, since radio waves are not ionising radiation.",
+        "margin_note": "Naming one example organ or tissue, such as the brain, is accepted as part of this mark."
+      }
+    ]
+  }
+}

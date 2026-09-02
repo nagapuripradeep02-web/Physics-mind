@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pet_graphene_applications",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Physics of Emerging Technologies"
+  },
+  "chapter": "Physics of Emerging Technologies",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Mention two applications of graphene in modern technology.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Transparent electrodes",
+      "marks": 1
+    },
+    {
+      "label": "Battery electrodes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 14 Very Short Answer Question 11 (printed p.143). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Chapter 14 is new to the 2026-27 syllabus and no board has examined it, so there is no exam history to cite. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: both named uses of graphene, transparent conducting films in touchscreens and electrodes in batteries, are genuine current applications, and they are distinct from each other and from graphene's own definition asked in the previous question."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physics of Emerging Technologies · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_transparent_electrodes",
+        "kind": "text",
+        "label": "Transparent electrodes",
+        "marks": 1,
+        "mark_note": "Application 1",
+        "lines": [
+          "Graphene is used as the clear",
+          "conducting layer inside touchscreens",
+          "and flexible display screens."
+        ],
+        "why": "Graphene conducts electricity well and is almost transparent, so a thin layer of it can carry the touch signal without blocking the light from the screen.",
+        "common_mistakes": [
+          "Naming glass or a metal oxide as the transparent conductor instead of graphene.",
+          "Giving only one application when the question asks for two."
+        ],
+        "memory_tip": "Graphene is thin, strong and conducts electricity, so touchscreens use it as the transparent conductor.",
+        "margin_note": "Any transparent conducting film use, including flexible displays, is accepted here."
+      },
+      {
+        "id": "s2_battery_electrodes",
+        "kind": "boxed_final",
+        "label": "Battery electrodes",
+        "marks": 1,
+        "mark_note": "Application 2",
+        "lines": [
+          {
+            "text": "Electrodes in batteries",
+            "style": "boxed"
+          },
+          "Graphene electrodes give a battery",
+          "a larger surface area, so it",
+          "charges in less time."
+        ],
+        "why": "A graphene electrode has a very large surface area for its weight and conducts well, so more charge moves in less time and the battery charges faster.",
+        "common_mistakes": [
+          "Writing only the words graphene battery, with no mention of the electrode or the faster charging.",
+          "Repeating the touchscreen application instead of naming a second, different one."
+        ],
+        "memory_tip": "Graphene electrode: more surface area, more charge moving, less charging time.",
+        "margin_note": "A solar cell electrode is also accepted as the second application."
+      }
+    ]
+  }
+}

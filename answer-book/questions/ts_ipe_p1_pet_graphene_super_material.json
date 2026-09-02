@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pet_graphene_super_material",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Physics of Emerging Technologies"
+  },
+  "chapter": "Physics of Emerging Technologies",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is graphene, and what makes it a super material?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Why it is a super material",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 14 Very Short Answer Question 10 (printed p.143). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Chapter 14 is new to the 2026-27 syllabus and no board has examined it, so there is no exam history to cite. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: graphene is a single-atom-thick two-dimensional carbon lattice, about 200 times stronger than steel for its weight; the study material's own comparison that graphene is a million times thinner than a human hair is a loose figure, closer to 200,000 times by the true dimensions, so it was deliberately not repeated here."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physics of Emerging Technologies · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Graphene is a single layer of carbon",
+          "atoms arranged in a two-dimensional",
+          "honeycomb lattice, one atom thick."
+        ],
+        "why": "Graphene is carbon arranged as flat, connected hexagons only one atom thick, which is what gives it such unusual strength and conductivity.",
+        "common_mistakes": [
+          "Describing graphene as a three-dimensional crystal instead of a single flat layer.",
+          "Confusing graphene with graphite, which is many such layers stacked together."
+        ],
+        "memory_tip": "Graphene: one layer, one atom thick, carbon atoms in hexagons.",
+        "margin_note": "The words single layer or one atom thick must appear in this step."
+      },
+      {
+        "id": "s2_properties",
+        "kind": "boxed_final",
+        "label": "Why it is a super material",
+        "marks": 1,
+        "mark_note": "Properties",
+        "lines": [
+          {
+            "text": "About 200 times stronger than steel",
+            "style": "boxed"
+          },
+          "for its weight.",
+          "It conducts heat and electricity",
+          "very well, and is flexible and",
+          "almost transparent."
+        ],
+        "why": "These properties together — strength for its weight, high heat and electrical conductivity, flexibility and near transparency — are why graphene is called a super material.",
+        "common_mistakes": [
+          "Writing that graphene is a million times thinner than a human hair — that printed comparison is inaccurate; write one atom thick instead.",
+          "Naming only one property instead of at least two."
+        ],
+        "memory_tip": "Remember: one atom thick, about 200 times stronger than steel by weight.",
+        "margin_note": "Do not write a million times thinner than a hair; write one atom thick."
+      }
+    ]
+  }
+}

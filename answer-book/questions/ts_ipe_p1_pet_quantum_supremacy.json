@@ -1,0 +1,85 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pet_quantum_supremacy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Physics of Emerging Technologies"
+  },
+  "chapter": "Physics of Emerging Technologies",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A quantum processor has demonstrated quantum supremacy. What does this term mean?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "The condition",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 14 Very Short Answer Question 8 (printed p.143). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Chapter 14 is new to the 2026-27 syllabus and no board has examined it, so there is no exam history to cite. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: quantum supremacy (also called quantum advantage) is correctly defined as the point where a programmable quantum processor solves a problem no classical computer can solve in any practical amount of time; the book's named commercial processor is replaced with neutral wording per Rule 35."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physics of Emerging Technologies · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Meaning",
+        "lines": [
+          "Quantum supremacy is also called",
+          "quantum advantage.",
+          "It is reached by a programmable",
+          "quantum processor."
+        ],
+        "why": "The term names the moment a quantum processor first outperforms every classical computer on a chosen task, not a permanent state of computers in general.",
+        "common_mistakes": [
+          "Writing that quantum computers are now better than all computers in general.",
+          "Leaving out the alternate name quantum advantage."
+        ],
+        "memory_tip": "Quantum supremacy equals quantum advantage: one processor, one task.",
+        "margin_note": "Both names, quantum supremacy and quantum advantage, are accepted."
+      },
+      {
+        "id": "s2_condition",
+        "kind": "boxed_final",
+        "label": "The condition",
+        "marks": 1,
+        "mark_note": "Condition",
+        "lines": [
+          {
+            "text": "No classical computer can solve it",
+            "style": "boxed"
+          },
+          "in any practical amount of time.",
+          "The quantum processor solves it."
+        ],
+        "why": "This condition is what makes the achievement quantum supremacy rather than just a quantum computer being faster in general: no classical machine can finish the task at all in a reasonable time.",
+        "common_mistakes": [
+          "Saying the classical computer takes longer instead of saying it takes an impractical amount of time.",
+          "Leaving out the word classical and only mentioning computers in general."
+        ],
+        "memory_tip": "The line to write: no classical computer finishes it in practical time.",
+        "margin_note": "State the comparison as classical computer versus quantum processor."
+      }
+    ]
+  }
+}

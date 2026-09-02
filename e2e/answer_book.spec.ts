@@ -2660,7 +2660,7 @@ test('a pre-renumbering exam-eve link still lands on the chapter it meant', asyn
     expect(await page.locator('#eveTitle').textContent()).toContain('The Straight Line');
 });
 
-test('the physics bank is on the 2026-27 numbering and Unit 14 is coming-soon', async ({ page }) => {
+test('the physics bank is on the 2026-27 numbering and Unit 14 is fully authored', async ({ page }) => {
     await page.goto(URL);
     await page.waitForFunction(() => (window as any).PM_ANSWER);
     const r = await page.evaluate(() => {
@@ -2681,8 +2681,12 @@ test('the physics bank is on the 2026-27 numbering and Unit 14 is coming-soon', 
     expect(r.u1n).toBe(25);                               // 3 + 22 merged
     expect(r.u3).toBe('Motion in a Plane');
     expect(r.u14).toBe('Physics of Emerging Technologies');
-    expect(r.u14ready).toBe(0);
-    expect(r.u14coming).toBeGreaterThan(0);
+    // Authored 2026-09-02 (wave A of the 2026-27 first-year campaign): all 15 of the
+    // chapter's Very Short Answer questions now have cards, so the chapter that
+    // opened as a coming-soon shell is the first one this campaign closed. The book
+    // prints no SAQ, LAQ or PROBLEM section for it, so 15 is the whole chapter.
+    expect(r.u14ready).toBe(15);
+    expect(r.u14coming).toBe(15);
     expect(r.patternsLaq).toBe(8);                        // the maths LAQ is 8 marks now
 });
 

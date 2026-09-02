@@ -1,0 +1,81 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pet_nanoscale_property_change",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Physics of Emerging Technologies"
+  },
+  "chapter": "Physics of Emerging Technologies",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why do carbon nanotubes behave differently from bulk carbon at the nanoscale?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Quantum confinement",
+      "marks": 1
+    },
+    {
+      "label": "Surface-area ratio",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 14 Very Short Answer Question 5 (printed p.143). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Chapter 14 is new to the 2026-27 syllabus and no board has examined it, so there is no exam history to cite. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: quantum confinement (separated electron energy levels) and a large surface-area-to-volume ratio are confirmed as the two standard, textbook reasons carbon nanotubes behave differently from bulk carbon at the nanoscale."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physics of Emerging Technologies · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_confinement",
+        "kind": "text",
+        "label": "Quantum confinement",
+        "marks": 1,
+        "mark_note": "Reason 1",
+        "lines": [
+          "Quantum confinement.",
+          "At a few nanometres, electron energy",
+          "levels become separated, not continuous."
+        ],
+        "why": "In bulk carbon the electron energy levels lie so close together they form a continuous band; confining the electrons to a few nanometres spaces the levels apart, which changes the material's electrical and optical behaviour.",
+        "common_mistakes": [
+          "Writing 'quantum effects' without naming quantum confinement specifically.",
+          "Describing confinement without saying the energy levels become separated."
+        ],
+        "memory_tip": "Confine the electrons to nanometres, and their energy levels separate.",
+        "margin_note": "The words separated and continuous both help state this point clearly."
+      },
+      {
+        "id": "s2_surface_ratio",
+        "kind": "boxed_final",
+        "label": "Surface-area ratio",
+        "marks": 1,
+        "mark_note": "Reason 2",
+        "lines": [
+          "A very large surface-area-to-volume",
+          "ratio: far more atoms sit on the",
+          "surface than inside a bulk sample."
+        ],
+        "why": "As a particle shrinks to the nanoscale, the fraction of its atoms sitting on the surface grows sharply, and surface atoms behave differently from atoms surrounded on every side, so the material's properties shift.",
+        "common_mistakes": [
+          "Saying only 'more surface area' without linking it to the surface-to-volume ratio.",
+          "Repeating quantum confinement instead of stating this as the second, separate reason."
+        ],
+        "memory_tip": "Shrink the size, and most of the atoms end up on the surface.",
+        "margin_note": "State this reason as a ratio, not just as more total surface area."
+      }
+    ]
+  }
+}

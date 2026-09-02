@@ -2255,7 +2255,8 @@
           "number": 1,
           "stars": 0,
           "text": "How do artificial intelligence and machine learning help scientists in astrophysics?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_ai_ml_in_astrophysics"
         },
         {
           "ref": "vsaq2",
@@ -2263,7 +2264,8 @@
           "number": 2,
           "stars": 0,
           "text": "Name one field of physics other than astrophysics where artificial intelligence and machine learning speed up discovery.",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_ai_ml_other_field"
         },
         {
           "ref": "vsaq3",
@@ -2271,7 +2273,8 @@
           "number": 3,
           "stars": 0,
           "text": "Name two branches of physics that are combined to build a robot.",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_physics_areas_in_robots"
         },
         {
           "ref": "vsaq4",
@@ -2279,7 +2282,8 @@
           "number": 4,
           "stars": 0,
           "text": "A four-legged walking robot keeps its balance using the principles of dynamics. Whose laws of motion are applied to work out the forces and torques it needs?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_walking_robot_newton_laws"
         },
         {
           "ref": "vsaq5",
@@ -2287,7 +2291,8 @@
           "number": 5,
           "stars": 0,
           "text": "Why do materials such as carbon nanotubes show very different properties at the nanoscale?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_nanoscale_property_change"
         },
         {
           "ref": "vsaq6",
@@ -2295,7 +2300,8 @@
           "number": 6,
           "stars": 0,
           "text": "Give one example of the use of nanotechnology in modern technology.",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_nanotechnology_example"
         },
         {
           "ref": "vsaq7",
@@ -2303,7 +2309,8 @@
           "number": 7,
           "stars": 0,
           "text": "Which property of a qubit lets a quantum computer do more than a classical bit?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_qubit_superposition"
         },
         {
           "ref": "vsaq8",
@@ -2311,7 +2318,8 @@
           "number": 8,
           "stars": 0,
           "text": "What is meant by the term quantum supremacy (quantum advantage)?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_quantum_supremacy"
         },
         {
           "ref": "vsaq9",
@@ -2319,7 +2327,8 @@
           "number": 9,
           "stars": 0,
           "text": "Which natural process in the universe does fusion energy copy?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_fusion_copies_stars"
         },
         {
           "ref": "vsaq10",
@@ -2327,7 +2336,8 @@
           "number": 10,
           "stars": 0,
           "text": "What is graphene? Why is it called a super material?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_graphene_super_material"
         },
         {
           "ref": "vsaq11",
@@ -2335,7 +2345,8 @@
           "number": 11,
           "stars": 0,
           "text": "Name two possible applications of graphene.",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_graphene_applications"
         },
         {
           "ref": "vsaq12",
@@ -2343,7 +2354,8 @@
           "number": 12,
           "stars": 0,
           "text": "What is the main function of the sunshield on a space telescope such as the James Webb Space Telescope, and which branch of physics does it relate to?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_space_telescope_sunshield"
         },
         {
           "ref": "vsaq13",
@@ -2351,7 +2363,8 @@
           "number": 13,
           "stars": 0,
           "text": "Which physics principle is the basis of magnetic resonance imaging (MRI)? How does it help doctors?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_mri_principle"
         },
         {
           "ref": "vsaq14",
@@ -2359,7 +2372,8 @@
           "number": 14,
           "stars": 0,
           "text": "Which property of light lets an optical fibre carry light over a long distance with very little loss?",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_optical_fibre_light_property"
         },
         {
           "ref": "vsaq15",
@@ -2367,7 +2381,8 @@
           "number": 15,
           "stars": 0,
           "text": "Name two technologies based on photonics.",
-          "source": "chaitanya_fastrack"
+          "source": "chaitanya_fastrack",
+          "question_id": "ts_ipe_p1_pet_photonics_technologies"
         }
       ]
     },

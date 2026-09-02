@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pet_space_telescope_sunshield",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Physics of Emerging Technologies"
+  },
+  "chapter": "Physics of Emerging Technologies",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the function of the sunshield of a space telescope such as the James Webb Space Telescope? Name the branch of physics its working belongs to.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Function of the sunshield",
+      "marks": 1
+    },
+    {
+      "label": "Branch of physics",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 14 Very Short Answer Question 12 (printed p.144). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Chapter 14 is new to the 2026-27 syllabus and no board has examined it, so there is no exam history to cite. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the sunshield blocks incoming heat and light and radiates the absorbed heat away, keeping the mirror near a few tens of kelvin, which is genuinely needed to detect faint infrared light; the branch named is thermal physics (heat radiation) together with optics, not electromagnetism."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physics of Emerging Technologies · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_sunshield_function",
+        "kind": "text",
+        "label": "Function of the sunshield",
+        "marks": 1,
+        "mark_note": "Function",
+        "lines": [
+          "It blocks the heat and light of",
+          "the Sun, Earth and Moon, and",
+          "radiates the absorbed heat away,",
+          "keeping the mirror very cold."
+        ],
+        "why": "The mirror must detect very faint infrared light from distant objects. Any warmth in the mirror itself would radiate infrared light of its own, adding to the faint signal being measured, so the sunshield keeps the mirror and instruments at a few tens of kelvin.",
+        "common_mistakes": [
+          "Saying the sunshield protects the telescope, with no mention of heat or temperature.",
+          "Describing it as shade for astronauts, confusing it with a crewed spacecraft."
+        ],
+        "memory_tip": "Sunshield blocks heat, radiates it away, keeps the mirror cold enough to see faint infrared light.",
+        "margin_note": "A numeric value near a few tens of kelvin is accepted; an exact figure is not required."
+      },
+      {
+        "id": "s2_branch_of_physics",
+        "kind": "boxed_final",
+        "label": "Branch of physics",
+        "marks": 1,
+        "mark_note": "Branch",
+        "lines": [
+          {
+            "text": "Thermal physics (heat radiation)",
+            "style": "boxed"
+          },
+          "together with optics, since the",
+          "shield manages heat while the",
+          "mirror forms the image."
+        ],
+        "why": "Blocking incoming heat and radiating it away is a thermal physics problem, while forming a sharp image on the mirror is an optics problem, so the sunshield and the telescope together use both branches.",
+        "common_mistakes": [
+          "Naming only space physics, which is not a recognised branch.",
+          "Naming electromagnetism alone, without heat radiation or optics."
+        ],
+        "memory_tip": "Heat radiating away is thermal physics; forming the image is optics — the telescope needs both.",
+        "margin_note": "Thermal physics alone, or optics alone, earns partial credit; both together is the full answer."
+      }
+    ]
+  }
+}

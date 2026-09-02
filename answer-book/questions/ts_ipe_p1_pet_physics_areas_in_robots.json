@@ -1,0 +1,83 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_pet_physics_areas_in_robots",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 14,
+    "name": "Physics of Emerging Technologies"
+  },
+  "chapter": "Physics of Emerging Technologies",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name two fundamental areas of physics combined to build a robot.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Mechanics",
+      "marks": 1
+    },
+    {
+      "label": "Electromagnetism",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 14 Very Short Answer Question 3 (printed p.143). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Chapter 14 is new to the 2026-27 syllabus and no board has examined it, so there is no exam history to cite. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: mechanics and electromagnetism are confirmed as the two areas needed for a robot's motion and actuation; some study materials print thermodynamics as the second area instead, for heat removal, and that alternative is recorded on this card."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Physics of Emerging Technologies · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_mechanics",
+        "kind": "text",
+        "label": "Mechanics",
+        "marks": 1,
+        "mark_note": "Area 1",
+        "lines": [
+          "Mechanics (dynamics).",
+          "It is the physics behind the forces",
+          "and torques needed to move the",
+          "robot's limbs and joints."
+        ],
+        "why": "Mechanics is the physics behind rigid-body motion, so it determines the forces and torques needed to move a robot's limbs and joints.",
+        "common_mistakes": [
+          "Naming mechanics without saying what it supplies — the forces and torques for motion.",
+          "Writing 'physics' alone instead of naming mechanics specifically."
+        ],
+        "memory_tip": "Mechanics moves the limbs: forces and torques at each joint.",
+        "margin_note": "Some study materials name thermodynamics instead, for heat removal — see the note on the next step."
+      },
+      {
+        "id": "s2_electromagnetism",
+        "kind": "boxed_final",
+        "label": "Electromagnetism",
+        "marks": 1,
+        "mark_note": "Area 2",
+        "lines": [
+          "Electromagnetism.",
+          "It is the physics behind the motors",
+          "that drive the joints and the",
+          "sensors that read the robot's state."
+        ],
+        "why": "Electric motors and most sensors work on electromagnetic principles, so electromagnetism is the second essential area for a robot's motion and sensing. A few study materials print thermodynamics as the second area instead, for the heat removed from motors and circuits — this card follows mechanics plus electromagnetism.",
+        "common_mistakes": [
+          "Naming thermodynamics as the second area. Heat removal matters in a robot, but it does not supply the motion or the sensing.",
+          "Naming electromagnetism without saying it supplies the motors and sensors."
+        ],
+        "memory_tip": "Electromagnetism moves it: motors move the joints, sensors read the state.",
+        "margin_note": "Thermodynamics, for heat removal, is also printed as the second area in some materials."
+      }
+    ]
+  }
+}
