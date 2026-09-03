@@ -178,11 +178,7 @@
           "For a liquid that wets the glass,",
           "such as water, the angle of contact",
           "θ is nearly zero, so cos θ is",
-          "nearly one:",
-          {
-            "text": "T = h r ρ g / 2",
-            "style": "eq"
-          },
+          "nearly one.",
           "Measuring h for a tube of known",
           "radius r then gives T directly.",
           {
@@ -194,7 +190,7 @@
         "why": "Most liquids used in this experiment wet clean glass, so this simplified form is the one actually used to calculate T from the measured h and r.",
         "common_mistakes": [
           "Applying T = hrρg/2 to a liquid that does not wet the tube, such as mercury, where θ is far from zero.",
-          "Writing θ as exactly zero rather than nearly zero, which is why cos θ is nearly one, not exactly one."
+          "Assuming θ = 0° for every water sample. It is taken as 0° for pure water on clean glass; an ordinary water sample gives a few degrees, so cos θ is very close to one, not exactly one."
         ],
         "recall": {
           "credit": "say_it",

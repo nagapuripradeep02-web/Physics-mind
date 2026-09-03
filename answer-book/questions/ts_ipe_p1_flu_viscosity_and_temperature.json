@@ -49,11 +49,12 @@
           "For a liquid, the viscosity",
           "decreases as the temperature",
           "rises.",
-          "A higher temperature reduces the",
-          "force holding neighbouring",
-          "molecules together, so the",
-          "layers slide past each other",
-          "more easily."
+          "As the temperature rises the",
+          "molecules move faster and",
+          "separate a little, so the",
+          "cohesive force between",
+          "neighbouring layers becomes",
+          "less effective."
         ],
         "margin_note": "First mark. Liquid: viscosity falls, and say why — weaker force between molecules.",
         "why": "In a liquid, viscosity comes from the force holding neighbouring molecules together. A higher temperature weakens that force directly, so the layers move past each other more easily.",

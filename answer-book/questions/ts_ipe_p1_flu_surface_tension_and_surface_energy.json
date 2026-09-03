@@ -94,18 +94,19 @@
         "kind": "equation",
         "label": "Surface energy — the definition",
         "marks": 1,
-        "mark_note": "W = T × ΔA, unit J m⁻²",
+        "mark_note": "Surface energy = W/ΔA, unit J m⁻²",
         "lines": [
-          "Surface energy is the work done in",
-          "increasing the area of the liquid",
-          "surface by one unit:",
+          "The work done to increase the",
+          "area of a liquid surface by",
+          "ΔA is",
           {
             "text": "W = T × ΔA",
             "style": "eq"
           },
-          "so the surface energy per unit area",
-          "is W/ΔA, unit joule per square",
-          "metre, J m⁻²."
+          "Surface energy is defined as",
+          "this work done per unit",
+          "increase in area, W/ΔA, unit",
+          "joule per square metre, J m⁻²."
         ],
         "margin_note": "Second mark. Definition, with the unit J m⁻².",
         "why": "Enlarging a liquid surface needs work done against the surface tension, so the energy stored is set by how much the area has grown, ΔA.",
@@ -151,7 +152,7 @@
           "same unit, written two ways."
         ],
         "margin_note": "Third mark. Reduce J m⁻² to N m⁻¹ to show the units match.",
-        "why": "Two quantities that reduce to the identical unit cannot be independent physical quantities — the unit algebra is the proof that T and surface energy are the same quantity.",
+        "why": "Matching units are a necessary check, not a proof of the equality — two different quantities can share a unit (torque and energy are both N·m). The equality itself follows from W = T × ΔA, which gives W/ΔA = T directly.",
         "common_mistakes": [
           "Stopping at N·m/m² without reducing it the final step to N m⁻¹.",
           "Treating the match as a coincidence rather than a consequence of W = T × ΔA."
@@ -221,5 +222,5 @@
       }
     ]
   },
-  "insider_note": "The third mark is the one students skip — reducing J m⁻² to N m⁻¹ is what proves the equality, not just stating it."
+  "insider_note": "The third mark is the one students skip — reducing J m⁻² to N m⁻¹ shows the two units are the same unit. The equality itself comes from W = T × ΔA, not from the units matching."
 }

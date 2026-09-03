@@ -84,18 +84,16 @@
         "marks": 1,
         "mark_note": "v_c = Re·η/(ρD)",
         "lines": [
+          "The critical velocity is given",
+          "by the expression:",
           {
             "text": "v_c = Re·η/(ρD)",
-            "style": "eq"
+            "style": "boxed"
           },
           "Re is the Reynolds number, η is the",
           "coefficient of viscosity, ρ is the",
           "density of the fluid and D is the",
-          "diameter of the tube.",
-          {
-            "text": "v_c = Re·η/(ρD)",
-            "style": "boxed"
-          }
+          "diameter of the tube."
         ],
         "margin_note": "Second mark. Write the expression and name every symbol, with D as the diameter of the tube.",
         "why": "The Reynolds number Re is itself defined using the diameter D, so the same D must appear in v_c for the two expressions to stay consistent.",
@@ -124,5 +122,5 @@
       }
     ]
   },
-  "insider_note": "D is the diameter, not the radius — the printed book calls d the radius here, but the Reynolds number it is built from uses the diameter, so writing D as the diameter is the correction this card makes."
+  "insider_note": "Two marks: the definition of the critical velocity, then the expression v_c = Re·η/(ρD) with every symbol named. D is the diameter, not the radius — the printed book calls d the radius here, but the Reynolds number it is built from uses the diameter, so writing D as the diameter is the correction this card makes."
 }

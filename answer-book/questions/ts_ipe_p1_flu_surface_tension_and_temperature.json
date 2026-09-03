@@ -50,7 +50,7 @@
           "decreases as its temperature rises."
         ],
         "margin_note": "First mark. State the direction: surface tension decreases as temperature rises.",
-        "why": "A single word for the direction of change is the whole first mark, so the answer has to commit to decreases, not just mention that temperature has an effect.",
+        "why": "Surface tension comes from the cohesive pull between the liquid's molecules; heating makes that pull weaker, so the surface tension falls.",
         "common_mistakes": [
           "Saying surface tension increases with temperature. It decreases.",
           "Saying temperature has an effect without stating the direction of the change."

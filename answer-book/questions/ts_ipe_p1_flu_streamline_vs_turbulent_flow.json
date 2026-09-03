@@ -167,7 +167,19 @@
         },
         "s6_contrast_energy": {
           "marks": 1,
-          "margin_note": "Fourth mark. Little loss, against energy lost into eddies and heat."
+          "margin_note": "Fourth mark. Little loss, against energy lost into eddies and heat.",
+          "lines": [
+            {
+              "text": "Energy loss:",
+              "style": "heading"
+            },
+            "In streamline flow, the kinetic energy",
+            "of the liquid is carried forward with",
+            "little loss.",
+            "In turbulent flow, much of the energy is",
+            "lost to small whirls called eddies, and",
+            "converted into heat."
+          ]
         }
       },
       "needs_teacher_verification": true,
@@ -286,42 +298,42 @@
             "text": "Path of particles:",
             "style": "heading"
           },
-          "In streamline flow, every particle",
-          "passing a given point follows the same",
-          "path with the same velocity as the",
-          "particle before it.",
-          "In turbulent flow, the paths of",
-          "particles cross one another and change",
-          "from moment to moment."
+          "In streamline flow, the streamlines",
+          "never cross one another, so the flow",
+          "is steady and predictable at each",
+          "point.",
+          "In turbulent flow, fluid mixes across",
+          "layers and no fixed streamlines can",
+          "be drawn."
         ],
-        "margin_note": "Third mark. State both sides, one path repeated, against paths that cross and change.",
-        "why": "This is the clearest test: watch one point and see whether every particle that passes it repeats the same path, or a different one each time.",
+        "margin_note": "Third mark. Streamlines never cross in streamline flow, against mixing across layers in turbulent flow.",
+        "why": "Two streamlines can never cross: at the crossing point the fluid would need two different velocities at once. That is why streamline flow stays steady and predictable, while turbulent mixing across layers breaks this picture.",
         "common_mistakes": [
-          "Describing only streamline flow and leaving turbulent flow unstated.",
-          "Saying the paths are random without saying they cross and change."
+          "Saying streamlines never cross without adding that this makes the flow steady and predictable.",
+          "Describing turbulent flow only as messy, without saying that fluid mixes across layers."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That streamline flow has every particle repeat the same path and velocity at a point, while turbulent flow has paths that cross and change moment to moment.",
+          "must_convey": "That streamlines never cross one another in streamline flow, so the flow is steady and predictable, while in turbulent flow fluid mixes across layers and no fixed streamlines can be drawn.",
           "accept": [
-            "streamline keeps one path, turbulent paths cross",
-            "same path and velocity against crossing changing paths",
-            "particles repeat the same path in streamline flow",
-            "path contrast, streamline same, turbulent changes",
-            "one is a fixed path, the other keeps crossing"
+            "streamlines never cross in streamline flow",
+            "streamline flow is steady and predictable",
+            "turbulent flow, fluid mixes across layers",
+            "no fixed streamlines in turbulent flow",
+            "streamlines don't intersect each other"
           ],
           "reject": [
-            "velocity at a point is steady or irregular",
-            "energy is carried forward or lost to eddies"
+            "every particle repeats the same path as the one before it",
+            "the velocity at a point stays steady with time"
           ],
           "heard_as": [
-            "same path",
-            "crossing paths",
-            "changing paths",
-            "path of particles"
+            "streamlines never cross",
+            "steady and predictable",
+            "mixing across layers",
+            "no fixed streamlines"
           ]
         },
-        "memory_tip": "One path repeated is streamline. Crossing, changing paths is turbulent."
+        "memory_tip": "Streamlines never cross: steady and predictable. Turbulent flow: layers mix, no fixed streamlines."
       },
       {
         "id": "s4_contrast_velocity",
@@ -379,42 +391,42 @@
             "text": "Critical velocity:",
             "style": "heading"
           },
-          "Streamline flow occurs only below the",
-          "critical velocity of the liquid.",
-          "Turbulent flow occurs above it.",
-          "Which one occurs is decided by the",
-          "Reynolds number, a number found from the",
-          "density, speed, tube size and viscosity",
-          "of the liquid."
+          "The critical velocity is the flow",
+          "speed at which streamline flow",
+          "changes into turbulent flow, for",
+          "a given liquid and tube.",
+          "It depends on the density and",
+          "viscosity of the liquid and the",
+          "diameter of the tube."
         ],
-        "margin_note": "Fifth mark. Below or above the critical velocity, and name the Reynolds number as the deciding factor.",
-        "why": "The critical velocity is the actual boundary between the two flows, and the Reynolds number is the rule that fixes where that boundary lies for a given liquid and tube.",
+        "margin_note": "Fifth mark. Define the critical velocity as the speed at which the flow changes character, and name what it depends on.",
+        "why": "Every contrast above holds only up to this speed; defining what the critical velocity depends on explains why the same liquid can show both kinds of flow at different speeds.",
         "common_mistakes": [
-          "Leaving out the Reynolds number entirely.",
-          "Reversing the direction. Turbulent flow is above the critical velocity, not below."
+          "Saying only that streamline flow is below and turbulent flow is above, without defining the critical velocity itself.",
+          "Leaving out what the critical velocity depends on: the liquid's density and viscosity and the tube's diameter."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That streamline flow is below the critical velocity and turbulent flow is above it, and that the Reynolds number decides which occurs.",
+          "must_convey": "That the critical velocity is the flow speed at which streamline flow changes into turbulent flow, and that it depends on the density and viscosity of the liquid and the diameter of the tube.",
           "accept": [
-            "below critical velocity streamline, above turbulent",
-            "the Reynolds number decides streamline or turbulent",
-            "critical velocity is the boundary between the two",
-            "Reynolds number ni batti decide chestham",
-            "streamline below, turbulent above the critical speed"
+            "critical velocity is where streamline flow turns turbulent",
+            "critical velocity depends on density, viscosity and diameter",
+            "the speed at which the flow changes character",
+            "critical velocity ni define chestha",
+            "the flow speed where streamline flow gives way to turbulent flow"
           ],
           "reject": [
-            "little energy is lost in streamline flow",
-            "the paths cross and change from moment to moment"
+            "the Reynolds number Re equals rho v D by eta",
+            "the paths of particles cross and change from moment to moment"
           ],
           "heard_as": [
             "critical velocity",
-            "Reynolds number",
-            "below",
-            "above"
+            "changes character",
+            "density and viscosity",
+            "tube diameter"
           ]
         },
-        "memory_tip": "Below critical velocity, streamline. Above it, turbulent. Reynolds number decides."
+        "memory_tip": "Critical velocity: the speed where streamline flow turns turbulent. Depends on the liquid and the tube."
       },
       {
         "id": "s6_contrast_energy",
@@ -461,7 +473,7 @@
             "little loss"
           ]
         },
-        "memory_tip": "Streamline carries energy forward. Turbulent spends it on eddies and heat."
+        "memory_tip": "In streamline flow the energy is carried forward; in turbulent flow much of it goes into eddies and heat."
       },
       {
         "id": "s7_reynolds_number",

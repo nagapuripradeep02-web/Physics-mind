@@ -114,7 +114,7 @@
             "no longer streamline"
           ]
         },
-        "memory_tip": "Above critical velocity, flow breaks into eddies, and energy leaks into them."
+        "memory_tip": "Above the critical velocity the flow breaks into eddies, and the eddies carry energy away from the main flow."
       }
     ]
   },

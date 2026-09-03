@@ -51,7 +51,7 @@
           "density of water at 4 °C."
         ],
         "margin_note": "First mark. Give the ratio: density of the substance to density of water at 4 °C.",
-        "why": "Density on its own depends on the substance chosen; comparing it with a fixed reference, water at 4 °C, gives a number that describes the substance alone.",
+        "why": "Dividing by a fixed reference makes the answer independent of the units used, so relative density is the same number in every system, and it tells you at once whether the substance sinks or floats in water.",
         "common_mistakes": [
           "Leaving out the reference temperature, 4 °C, at which water's density is fixed.",
           "Comparing with the density of air instead of water."

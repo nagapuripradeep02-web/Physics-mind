@@ -15,7 +15,7 @@
   "marks_total": 8,
   "paper_section": "Section C",
   "expected_time_min": 16,
-  "question_text": "Define coefficient of viscosity. State Stokes' law. Explain the terminal velocity attained by a freely falling body (raindrop) in a viscous medium using a graph.",
+  "question_text": "Define the coefficient of viscosity. Explain Stokes' law, and explain the conditions under which a raindrop attains terminal velocity vₜ. Give the expression for vₜ.",
   "appearances": [],
   "mark_split": [
     { "label": "The viscous force between layers", "marks": 1 },

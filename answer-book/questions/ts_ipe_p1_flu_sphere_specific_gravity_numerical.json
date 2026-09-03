@@ -194,7 +194,7 @@
           "Specific gravity is a pure",
           "number — it carries no unit."
         ],
-        "margin_note": "Fourth mark. State clearly that specific gravity has no unit.",
+        "margin_note": "Fourth mark. Divide by the density of water and give 2.69, with no unit.",
         "why": "Dividing one density by another cancels the kg m⁻³ on both sides, which is exactly why specific gravity is a pure number.",
         "common_mistakes": [
           "Writing a unit such as kg m⁻³ after the value 2.69.",

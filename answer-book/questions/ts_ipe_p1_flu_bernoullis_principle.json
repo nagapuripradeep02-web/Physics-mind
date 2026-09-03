@@ -55,9 +55,9 @@
           "every point along a streamline."
         ],
         "margin_note": "First mark. Say the sum is per unit mass, not per unit volume.",
-        "why": "The book's own printed formula is energy per unit mass, so the statement must say per unit mass to agree with it. Per unit volume is a different quantity.",
+        "why": "Each term in P/ρ + ½v² + gh is an energy per unit mass — P/ρ is the pressure energy of one kilogram — so the statement must say per unit mass to match it.",
         "common_mistakes": [
-          "Saying the sum is constant per unit volume. The book's own formula is per unit mass.",
+          "Mixing the two forms — saying \"per unit mass\" but then writing P + ½ρv² + ρgh, or saying \"per unit volume\" but writing P/ρ + ½v² + gh. The words and the formula must be the same form.",
           "Leaving out non-viscous or incompressible, without which the statement does not hold."
         ],
         "recall": {
@@ -77,7 +77,7 @@
             "constant"
           ]
         },
-        "memory_tip": "Per unit MASS matches the formula P/ρ + ½v² + gh — divide by ρ, not multiply."
+        "memory_tip": "Per unit mass it is P/ρ + ½v² + gh; multiply through by ρ for the per-unit-volume form."
       },
       {
         "id": "s2_formula",

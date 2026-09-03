@@ -54,7 +54,7 @@
           "friction between two solid",
           "surfaces in contact."
         ],
-        "margin_note": "First mark. Give the definition and the friction analogy.",
+        "margin_note": "First mark. Give the definition — the property by which a fluid opposes relative motion between its own layers; the comparison with friction helps but the definition alone is the answer.",
         "why": "The friction analogy makes the definition concrete: a faster layer drags a slower one forward and is dragged back in turn, exactly as friction acts between two solid surfaces.",
         "common_mistakes": [
           "Defining viscosity as a fluid's thickness. Thickness is not a physics definition.",
@@ -126,5 +126,5 @@
       }
     ]
   },
-  "insider_note": "One mark for the definition with the friction analogy, one for η's formula with its SI unit, CGS unit and dimensional formula together."
+  "insider_note": "One mark for the definition — the property by which a fluid opposes relative motion between its own layers; the comparison with friction helps but the definition alone is the answer — one for η's formula with its SI unit, CGS unit and dimensional formula together."
 }

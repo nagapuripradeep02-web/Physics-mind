@@ -25,7 +25,7 @@
     { "label": "Spinning ball — the air speeds differ", "marks": 1 },
     { "label": "Spinning ball — the swerve", "marks": 1 },
     { "label": "A ball with no spin", "marks": 1 },
-    { "label": "One mechanism, two examples", "marks": 1 }
+    { "label": "Topspin and backspin send the ball opposite ways", "marks": 1 }
   ],
   "verification": {
     "status": "unverified",
@@ -46,12 +46,14 @@
         "marks": 1,
         "mark_note": "Definition",
         "lines": [
-          "A body moving through a fluid can",
-          "feel an extra upward force, caused",
-          "only by its own motion through the",
-          "fluid.",
-          "This upward force is called dynamic",
-          "lift."
+          "A body moving through a fluid",
+          "can feel a force, caused only",
+          "by its own motion through the",
+          "fluid, acting perpendicular to",
+          "the direction of motion. This",
+          "is called dynamic lift: upward",
+          "on a wing, sideways on a",
+          "spinning ball."
         ],
         "margin_note": "First mark. State that dynamic lift is caused by the body's own motion through the fluid.",
         "why": "Dynamic lift is not a separate force of nature — it is a pressure difference set up by motion, so the definition has to name the motion as its cause.",
@@ -61,19 +63,19 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That dynamic lift is the extra upward force a body moving through a fluid feels, caused by its own motion through the fluid.",
+          "must_convey": "That dynamic lift is the force a body moving through a fluid feels, caused only by its own motion, acting perpendicular to the direction of motion.",
           "accept": [
             "dynamic lift is caused by the body's own motion",
-            "upward force from moving through a fluid",
+            "force perpendicular to the direction of motion",
             "lift caused by motion through the fluid",
-            "an extra upward force on a moving body"
+            "upward on a wing, sideways on a spinning ball"
           ],
           "reject": [
             "faster flow means lower pressure"
           ],
           "heard_as": [
             "dynamic lift",
-            "upward force",
+            "perpendicular to motion",
             "its own motion",
             "moving through a fluid"
           ]
@@ -352,49 +354,51 @@
         "memory_tip": "No spin, no dragged air, no speed difference, no swerve."
       },
       {
-        "id": "s8_summary",
+        "id": "s8_topspin_backspin",
         "kind": "text",
-        "label": "One mechanism, two examples",
+        "label": "Topspin and backspin send the ball opposite ways",
         "marks": 1,
-        "mark_note": "The general result",
+        "mark_note": "Topspin dips, backspin lifts",
         "lines": [
-          "In both examples the mechanism is",
-          "the same: a speed difference on the",
-          "two sides of the body, caused by",
-          "shape in the aerofoil and by spin",
-          "in the ball, gives a pressure",
-          "difference by Bernoulli's",
-          "principle, and so a net force.",
-          "This force, produced only by a",
-          "body's own motion through a fluid,",
-          "is dynamic lift."
+          "The direction of the lift",
+          "depends on the spin's axis.",
+          "A ball with topspin has its",
+          "top surface moving against the",
+          "oncoming air and its underside",
+          "moving with it, so the lift",
+          "acts downward and the ball",
+          "dips sooner.",
+          "A ball with backspin has the",
+          "opposite pattern, so the lift",
+          "acts upward and the ball",
+          "stays up longer."
         ],
-        "margin_note": "Eighth mark. Close by naming the shared mechanism — speed difference to pressure difference to force — for both examples together.",
-        "why": "The two examples are illustrations of one physical idea, not two separate topics, so the answer is complete only once that shared mechanism is stated explicitly.",
+        "margin_note": "Eighth mark. Say which way topspin and backspin send the ball — downward for topspin, upward for backspin.",
+        "why": "The direction of the deflection is set by which side of the spinning ball drags the air with it and which side drags against it — topspin makes the top slower and higher pressure, so the ball is pushed down; backspin reverses this, so the ball is pushed up.",
         "common_mistakes": [
-          "Treating the aerofoil and the spinning ball as two unrelated facts instead of two examples of the same mechanism.",
-          "Ending on the ball's swerve without returning to the general definition of dynamic lift."
+          "Saying topspin lifts the ball and backspin sends it down — the directions are the other way round: topspin dips the ball, backspin keeps it up longer.",
+          "Repeating the sideways swerve already given, instead of the new topspin/backspin fact."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That both examples share the same mechanism — a speed difference gives a pressure difference gives a force — and that force, from a body's own motion through a fluid, is dynamic lift.",
+          "must_convey": "That topspin makes the lift act downward, so the ball dips sooner, and backspin makes the lift act upward, so the ball stays up longer.",
           "accept": [
-            "same mechanism in both examples",
-            "speed difference to pressure difference to force",
-            "both are examples of dynamic lift",
-            "one idea, two illustrations"
+            "topspin dips the ball",
+            "backspin keeps the ball up longer",
+            "the direction depends on the spin axis",
+            "topspin down, backspin up"
           ],
           "reject": [
             "the ball swerves because of wind"
           ],
           "heard_as": [
-            "one mechanism",
-            "two examples",
-            "dynamic lift",
-            "speed difference to force"
+            "topspin",
+            "backspin",
+            "dips",
+            "stays up longer"
           ]
         },
-        "memory_tip": "Same story twice: speed difference, pressure difference, force — from shape once, from spin once."
+        "memory_tip": "Topspin tips it down, backspin holds it up."
       }
     ]
   },

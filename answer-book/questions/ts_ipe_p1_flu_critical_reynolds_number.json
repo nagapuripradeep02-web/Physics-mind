@@ -91,36 +91,37 @@
         "marks": 1,
         "mark_note": "Value",
         "lines": [
-          "For flow in a pipe its value is",
-          "about 2000. Below this value the",
-          "flow stays streamline; at and",
-          "above it the flow turns",
-          "turbulent."
+          "For flow in a pipe, below about",
+          "1000 the flow is streamline,",
+          "between 1000 and 2000 it is",
+          "unsteady, and at about 2000 it",
+          "turns turbulent."
         ],
-        "margin_note": "Second mark. Give the number, about 2000, and both sides of it.",
-        "why": "Giving the numerical value, and saying which side of it is which, is what makes the definition usable rather than just a name.",
+        "margin_note": "Second mark. Give the three ranges: streamline below 1000, unsteady between 1000 and 2000, turbulent at about 2000.",
+        "why": "Giving the numerical ranges, and saying which is which, is what makes the definition usable rather than just a name.",
         "common_mistakes": [
           "Giving no numerical value at all.",
-          "Reversing which side of 2000 is streamline and which is turbulent."
+          "Saying flow stays streamline all the way up to 2000 — it turns unsteady already at about 1000."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the critical Reynolds number for pipe flow is about 2000, streamline below it and turbulent at and above it.",
+          "must_convey": "That for pipe flow the critical Reynolds number is about 2000, flow is streamline below about 1000, unsteady between 1000 and 2000, and turbulent at about 2000.",
           "accept": [
             "about 2000",
-            "below 2000 streamline",
-            "at or above 2000 turbulent"
+            "streamline below 1000",
+            "unsteady between 1000 and 2000",
+            "turbulent at about 2000"
           ],
           "reject": [
             "fixes the critical velocity"
           ],
           "heard_as": [
             "2000",
-            "streamline below",
-            "turbulent above"
+            "1000",
+            "unsteady"
           ]
         },
-        "memory_tip": "About 2000 for a pipe — below it streamline, at and above it turbulent."
+        "memory_tip": "Below 1000 streamline, 1000 to 2000 unsteady, about 2000 turbulent."
       },
       {
         "id": "s3_significance_universal",
@@ -173,12 +174,14 @@
           "tube at which flow turns",
           "turbulent:",
           {
-            "text": "v_c = Re·η/(ρD)",
+            "text": "v_c = Re_c·η/(ρD)",
             "style": "boxed"
           },
-          "with D the diameter of the tube."
+          "Re_c is the critical Reynolds",
+          "number, about 2000, and D is",
+          "the diameter of the tube."
         ],
-        "margin_note": "Last mark. Write the critical-velocity formula with D as the diameter.",
+        "margin_note": "Last mark. Write the critical-velocity formula with Re_c as the critical Reynolds number and D as the diameter.",
         "why": "This turns the dimensionless critical Reynolds number into an actual speed for a real tube, which is what a laboratory measurement or a design calculation needs.",
         "common_mistakes": [
           "Writing D as the radius; D is the diameter.",
@@ -186,9 +189,9 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the critical Reynolds number fixes the critical velocity through v c equals Re eta by rho D, with D the diameter.",
+          "must_convey": "That the critical Reynolds number fixes the critical velocity through v c equals Re c eta by rho D, with Re c about 2000 and D the diameter.",
           "accept": [
-            "v c equals Re eta by rho D",
+            "v c equals Re c eta by rho D",
             "fixes the critical velocity",
             "D is the diameter"
           ],
@@ -197,7 +200,7 @@
           ],
           "heard_as": [
             "v c",
-            "Re eta over rho D",
+            "Re c eta over rho D",
             "diameter"
           ]
         },

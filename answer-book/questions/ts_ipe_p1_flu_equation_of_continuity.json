@@ -80,7 +80,7 @@
             "area times speed"
           ]
         },
-        "memory_tip": "Same fluid, same pipe: A₁v₁ = A₂v₂, always."
+        "memory_tip": "For an incompressible fluid in steady flow, A₁v₁ = A₂v₂ at every section."
       },
       {
         "id": "s2_av_constant",
@@ -119,7 +119,7 @@
             "narrower, faster"
           ]
         },
-        "memory_tip": "Squeeze the pipe, and the same Av forces the flow to speed up."
+        "memory_tip": "Where the pipe is narrower A is smaller, so v must be larger to keep Av the same."
       }
     ]
   },

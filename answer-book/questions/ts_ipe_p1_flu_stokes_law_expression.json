@@ -81,7 +81,7 @@
             "Stokes law"
           ]
         },
-        "memory_tip": "Six, pi, eta, r, v — all four quantities multiplied together."
+        "memory_tip": "F = 6πηrv, the constant 6π multiplied by the three quantities η, r and v."
       },
       {
         "id": "s2_conditions",

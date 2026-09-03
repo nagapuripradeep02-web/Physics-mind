@@ -46,9 +46,10 @@
         "marks": 1,
         "mark_note": "Definition, formula and unit",
         "lines": [
-          "Average pressure at a point is the",
-          "normal force acting per unit area",
-          "there:",
+          "The average pressure on a",
+          "surface is the total normal",
+          "force acting on it divided",
+          "by its area:",
           {
             "text": "P = F/A",
             "style": "eq"
@@ -61,7 +62,7 @@
         "why": "The definition names pressure as force per unit area, and the unit and dimensional formula are the standard way to state any physical quantity completely.",
         "common_mistakes": [
           "Giving the formula alone without stating it in words as force per unit area.",
-          "Writing the unit as N/m² and never naming it as the pascal."
+          "Giving the unit without naming it as the pascal."
         ],
         "recall": {
           "credit": "say_it",
@@ -97,7 +98,7 @@
           "of its own."
         ],
         "margin_note": "Second mark. Say pressure is a scalar and give the reason: the force is always normal to the surface, whatever its orientation.",
-        "why": "A vector needs one fixed direction. Because the force producing pressure always points normal to whichever surface it acts on, pressure itself carries no direction and is a scalar.",
+        "why": "At a point the fluid presses equally whichever way the surface faces, and the force's direction is fixed by the surface, not by the pressure, so pressure carries no direction of its own.",
         "common_mistakes": [
           "Calling pressure a vector because the force producing it is a vector.",
           "Saying pressure has no direction without giving the reason."
@@ -118,7 +119,7 @@
             "normal to the surface"
           ]
         },
-        "memory_tip": "Force turns to face any surface, so pressure itself points nowhere: it is a scalar."
+        "memory_tip": "The force is always normal to whichever surface it acts on, so pressure itself has no direction."
       }
     ]
   },

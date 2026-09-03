@@ -75,7 +75,7 @@
             "immersed"
           ]
         },
-        "memory_tip": "Push a body into a fluid, and the fluid pushes back with the weight it had to move aside."
+        "memory_tip": "The upward force on an immersed body equals the weight of the fluid it displaces."
       },
       {
         "id": "s2_equivalent_form",

@@ -188,10 +188,7 @@
           "stops, and this repeated collapse",
           "and reopening can lead to a heart",
           "attack.",
-          {
-            "text": "Narrow ⇒ fast ⇒ low pressure ⇒ collapse",
-            "style": "boxed"
-          }
+          "Narrow ⇒ fast ⇒ low pressure ⇒ collapse"
         ],
         "margin_note": "Last mark. Say the heart works harder and name the repeated collapse.",
         "why": "This is the answer to the actual question — the mechanical strain on the heart and the repeated collapse are what produce the heart attack, not the narrowing alone.",

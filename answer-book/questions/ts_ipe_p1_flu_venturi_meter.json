@@ -35,11 +35,11 @@
       "marks": 1
     },
     {
-      "label": "Pressure difference",
+      "label": "Speed formula",
       "marks": 1
     },
     {
-      "label": "Speed formula",
+      "label": "Volume flow rate",
       "marks": 1
     },
     {
@@ -82,11 +82,11 @@
           "marks": 1
         },
         {
-          "label": "Pressure difference",
+          "label": "Speed formula",
           "marks": 1
         },
         {
-          "label": "Speed formula",
+          "label": "Volume flow rate",
           "marks": 1
         },
         {
@@ -111,10 +111,10 @@
         "s4_bernoulli": {
           "marks": 1
         },
-        "s5_derive_pressure_diff": {
+        "s5_derive_speed": {
           "marks": 1
         },
-        "s6_derive_speed": {
+        "s6_flow_rate": {
           "marks": 1
         },
         "s7_manometer_reading": {
@@ -165,9 +165,11 @@
               "text": "Continuity and Bernoulli:",
               "style": "heading"
             },
-            "By the equation of continuity A₁v₁ =",
-            "A₂v₂, the fluid speeds up in the narrow",
-            "throat, since A₂ is smaller than A₁.",
+            "A₁ is the wide-section area and A₂ the",
+            "throat area. By the equation of",
+            "continuity A₁v₁ = A₂v₂, the fluid",
+            "speeds up in the narrow throat, since",
+            "A₂ is smaller than A₁.",
             "By Bernoulli's principle, this rise in",
             "speed is matched by a fall in pressure",
             "at the throat."
@@ -176,13 +178,14 @@
           "why": "These two laws together are the whole working principle: one fixes the speed change, the other turns it into a pressure change a manometer can read.",
           "memory_tip": "Narrow throat: continuity speeds it up, Bernoulli drops the pressure."
         },
-        "s6_derive_speed": {
+        "s5_derive_speed": {
           "marks": 1,
           "lines": [
             "A manometer between the wide section and",
             "the throat measures the pressure",
-            "difference P₁ − P₂. From it, the speed",
-            "is found:",
+            "difference P₁ − P₂. ρ is the density of",
+            "the flowing fluid. From it, the speed",
+            "v₁ in the wide section is found:",
             {
               "text": "v₁ = √(2(P₁ − P₂) / ρ((A₁/A₂)² − 1))",
               "style": "boxed"
@@ -375,13 +378,15 @@
             "text": "P + ½ρv² = constant",
             "style": "eq"
           },
+          "P is the pressure, ρ the fluid density,",
+          "v the speed, and h the height.",
           "So where the speed v is larger, the",
           "pressure P is smaller."
         ],
-        "margin_note": "Fourth mark. State the per-unit-mass relation, then the per-unit-volume form used for a horizontal tube.",
+        "margin_note": "Fourth mark. State Bernoulli's principle, per unit mass or per unit volume, and say the tube is horizontal so the gh terms cancel.",
         "why": "This is the second law: continuity fixed the speed change, and Bernoulli is what turns that speed change into a pressure change a manometer can actually read.",
         "common_mistakes": [
-          "Writing the per-unit-volume form as if it were the only form, without the per-unit-mass relation.",
+          "Thinking the per-unit-volume form alone does not state Bernoulli's principle — either form does.",
           "Forgetting that this simplified form needs a horizontal tube, so the gh terms cancel."
         ],
         "recall": {
@@ -408,35 +413,40 @@
         "memory_tip": "Bernoulli: P + ½ρv² = constant. Faster flow, lower pressure."
       },
       {
-        "id": "s5_derive_pressure_diff",
-        "kind": "equation",
-        "label": "Pressure difference",
+        "id": "s5_derive_speed",
+        "kind": "boxed_final",
+        "label": "Speed formula",
         "marks": 1,
-        "mark_note": "Pressure difference",
+        "mark_note": "Speed formula",
         "lines": [
+          {
+            "text": "Speed formula:",
+            "style": "heading"
+          },
           "Put v₂ = (A₁/A₂) v₁ from continuity into",
           "the Bernoulli relation P + ½ρv² =",
-          "constant and simplify:",
+          "constant, simplify, and solve for v₁:",
           {
-            "text": "P₁ − P₂ = ½ρv₁²((A₁/A₂)² − 1)",
-            "style": "eq"
+            "text": "v₁ = √(2(P₁ − P₂) / ρ((A₁/A₂)² − 1))",
+            "style": "boxed"
           }
         ],
-        "margin_note": "Fifth mark. Substitute v₂ from continuity into the Bernoulli relation and simplify.",
-        "why": "Eliminating v₂ leaves a relation between the pressure difference and v₁ alone, which is the quantity the meter is actually built to measure.",
+        "margin_note": "Fifth mark. Substitute v₂ from continuity into Bernoulli and solve for v₁; box the final formula.",
+        "why": "Eliminating v₂ and solving for v₁ turns the two working laws into the boxed formula the instrument actually reads off: the speed in terms of the pressure difference and the two areas.",
         "common_mistakes": [
-          "Substituting v₁ for v₂ instead of v₂ for v₁.",
-          "Dropping the square on the area ratio (A₁/A₂)."
+          "Eliminating v₁ instead of v₂ — it is v₂ that must be replaced, by (A₁/A₂)v₁.",
+          "Dropping the square on the area ratio (A₁/A₂).",
+          "Writing v₂ instead of v₁ on the left of the boxed formula."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That substituting v₂ = (A₁/A₂)v₁ into Bernoulli gives P₁ − P₂ in terms of v₁ and the two areas.",
+          "must_convey": "That substituting v₂ = (A₁/A₂)v₁ into Bernoulli and solving gives v₁ equal to the square root of 2(P₁ − P₂) divided by rho times ((A₁/A₂) squared minus 1).",
           "accept": [
-            "substitute v two from continuity into Bernoulli",
-            "P one minus P two equals half rho v one squared times the area ratio term",
-            "eliminate v two to get the pressure difference",
-            "v two ni substitute chesi pressure difference thistham",
-            "combine continuity and Bernoulli to get P one minus P two"
+            "substitute v two from continuity into Bernoulli and solve for v one",
+            "v one equals root of 2 P one minus P two by rho into area ratio squared minus one",
+            "eliminate v two to get the speed formula",
+            "v two ni substitute chesi v one formula thistham",
+            "square root of two delta P by rho times the bracket"
           ],
           "reject": [
             "the meter is used in a carburettor",
@@ -444,55 +454,64 @@
           ],
           "heard_as": [
             "substitute",
-            "P one minus P two",
-            "area ratio",
-            "eliminate v two"
-          ]
-        },
-        "memory_tip": "Swap v₂ for (A₁/A₂)v₁ in Bernoulli, and P₁ − P₂ falls out."
-      },
-      {
-        "id": "s6_derive_speed",
-        "kind": "boxed_final",
-        "label": "Speed formula",
-        "marks": 1,
-        "mark_note": "Speed formula",
-        "lines": [
-          "Solving for v₁, and taking the square",
-          "root:",
-          {
-            "text": "v₁ = √(2(P₁ − P₂) / ρ((A₁/A₂)² − 1))",
-            "style": "boxed"
-          }
-        ],
-        "margin_note": "Sixth mark. Box the final formula for v₁.",
-        "why": "This boxed formula is the actual output of the instrument: it converts a pressure reading into a speed.",
-        "common_mistakes": [
-          "Forgetting the square on (A₁/A₂) inside the bracket.",
-          "Writing v₂ instead of v₁ on the left of the formula."
-        ],
-        "recall": {
-          "credit": "say_it",
-          "must_convey": "That v₁ equals the square root of 2(P₁ − P₂) divided by rho times ((A₁/A₂) squared minus 1).",
-          "accept": [
-            "v one equals root of 2 P one minus P two by rho into area ratio squared minus one",
-            "box the final formula for v one",
-            "the speed formula uses the pressure difference and the area ratio",
-            "final formula v one ki raastha",
-            "square root of two delta P by rho times the bracket"
-          ],
-          "reject": [
-            "the throat area A₂ is smaller than A₁",
-            "it is used to measure flow rate"
-          ],
-          "heard_as": [
+            "eliminate v two",
             "v one equals",
-            "square root",
-            "final formula",
             "boxed formula"
           ]
         },
-        "memory_tip": "v₁ = √(2ΔP / ρ((A₁/A₂)² − 1)). Read ΔP, get v₁."
+        "memory_tip": "Swap v₂ for (A₁/A₂)v₁ in Bernoulli, and solve: v₁ = √(2(P₁ − P₂) / ρ((A₁/A₂)² − 1))."
+      },
+      {
+        "id": "s6_flow_rate",
+        "kind": "equation",
+        "label": "Volume flow rate",
+        "marks": 1,
+        "mark_note": "Volume flow rate",
+        "lines": [
+          {
+            "text": "Volume flow rate:",
+            "style": "heading"
+          },
+          "Once v₁ is known, the volume flow rate",
+          "through the tube follows at once, since",
+          "the continuity equation already gives",
+          "the same volume per second at every",
+          "section:",
+          {
+            "text": "Q = A₁v₁",
+            "style": "eq"
+          },
+          "Q is the volume of fluid flowing per",
+          "second."
+        ],
+        "margin_note": "Sixth mark. State Q = A₁v₁, the volume of fluid flowing per second.",
+        "why": "The formula for v₁ alone does not give the flow rate the meter is used to measure; multiplying by the area A₁ gives the volume flowing per second.",
+        "common_mistakes": [
+          "Giving only the speed v₁ without multiplying by an area to get a flow rate.",
+          "Using A₂ and v₂ instead of A₁ and v₁ — either pair gives the same Q, but A₁v₁ is already known."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That once v₁ is known, the volume flow rate is Q = A₁v₁, the volume of fluid flowing per second.",
+          "accept": [
+            "Q equals A one v one",
+            "volume flow rate is area times speed",
+            "flow rate follows from v one and A one",
+            "flow rate ni Q equals A one v one ani raastham",
+            "the volume passing per second is A one v one"
+          ],
+          "reject": [
+            "the throat area A₂ is smaller than A₁",
+            "the manometer level difference gives the pressure"
+          ],
+          "heard_as": [
+            "flow rate",
+            "Q equals",
+            "A one v one",
+            "volume per second"
+          ]
+        },
+        "memory_tip": "Flow rate: Q = A₁v₁, volume per second."
       },
       {
         "id": "s7_manometer_reading",
@@ -506,10 +525,15 @@
             "style": "heading"
           },
           "A manometer is connected between the",
-          "wide section and the throat.",
-          "The difference in liquid level between",
-          "its two arms gives the value of P₁ − P₂",
-          "directly."
+          "wide section and the throat. The",
+          "difference in its liquid levels gives",
+          "P₁ − P₂ directly:",
+          {
+            "text": "P₁ − P₂ = h ρ_m g",
+            "style": "eq"
+          },
+          "h is the level difference and ρ_m the",
+          "density of the manometer liquid."
         ],
         "margin_note": "Seventh mark. Say the manometer's level difference gives P₁ − P₂ directly.",
         "why": "The boxed formula needs a value for P₁ − P₂ from somewhere. This step is where that number actually comes from, in the working instrument.",

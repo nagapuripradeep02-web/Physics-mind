@@ -187,19 +187,15 @@
         "lines": [
           "Because of this, a raindrop does",
           "not keep accelerating all the way",
-          "down. It reaches its terminal",
-          "velocity within a short fall and",
-          "then strikes the ground at that",
-          "steady, moderate speed rather than",
-          "at high speed.",
+          "down. It reaches a terminal",
+          "velocity within a short fall:",
           {
-            "text": "Drag grows ⇒ v_t reached",
+            "text": "v_t = (2/9)r²g(ρ − σ)/η",
             "style": "boxed"
           },
-          {
-            "text": "⇒ moderate impact speed",
-            "style": "boxed"
-          }
+          "It then strikes the ground at",
+          "that steady, moderate speed,",
+          "not at high speed."
         ],
         "margin_note": "Last mark. Say what the terminal velocity means for the raindrop's impact.",
         "why": "This is the physical result the application is asked for — it explains why a small raindrop causes no harm even though it falls from a considerable height.",

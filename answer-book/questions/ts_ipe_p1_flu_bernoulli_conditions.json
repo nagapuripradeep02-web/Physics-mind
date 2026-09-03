@@ -95,24 +95,21 @@
           "density stays the same at every",
           "point in the flow.",
           "This lets the same density ρ be",
-          "used throughout the equation.",
-          "The flow must also be steady, so",
-          "the picture at each point does",
-          "not change with time."
+          "used throughout the equation."
         ],
         "margin_note": "Second mark. Name incompressible and say why: one fixed density ρ.",
         "why": "If the density changed from point to point, a single ρ could not stand for the whole flow, and the formula would need a different ρ at each point.",
         "common_mistakes": [
           "Naming incompressible without saying that the density is the same at every point.",
-          "Giving only steady flow as one of the two conditions. Steady flow is the setting Bernoulli's theorem is derived in; non-viscous and incompressible are the two named conditions."
+          "Giving steady flow and only one other condition. Steady flow is assumed as well, but the two conditions this question asks for are non-viscous and incompressible."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the fluid must be incompressible, so its density is the same at every point, and the flow must be steady.",
+          "must_convey": "That the fluid must be incompressible, so its density is the same at every point.",
           "accept": [
             "incompressible, density constant everywhere",
             "one fixed density rho",
-            "steady flow"
+            "same density throughout"
           ],
           "reject": [
             "no friction between layers"
@@ -120,7 +117,7 @@
           "heard_as": [
             "incompressible",
             "density",
-            "steady"
+            "fixed"
           ]
         },
         "memory_tip": "Incompressible means one fixed ρ for the whole flow."

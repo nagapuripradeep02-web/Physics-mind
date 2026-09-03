@@ -59,7 +59,7 @@
           "point that is at the same",
           "height."
         ],
-        "margin_note": "First mark. State that the pressure depends only on height, not on position.",
+        "margin_note": "First mark. State that the pressure depends only on the height, not on the horizontal position or the shape of the vessel.",
         "why": "This is the first half of Pascal's law, and it is what makes 'the pressure at a height' a meaningful single number.",
         "common_mistakes": [
           "Saying the pressure is the same everywhere in the fluid, without the same-height condition.",

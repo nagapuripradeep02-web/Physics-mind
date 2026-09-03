@@ -27,12 +27,8 @@
       "marks": 1
     },
     {
-      "label": "Why it has no unit",
-      "marks": 1
-    },
-    {
       "label": "The significance",
-      "marks": 1
+      "marks": 2
     }
   ],
   "verification": {
@@ -57,31 +53,35 @@
           "The Reynolds number is a pure",
           "number that decides whether the",
           "flow of a fluid in a tube is",
-          "streamline or turbulent."
+          "streamline or turbulent.",
+          "Its units cancel completely, so",
+          "it has no unit and no dimensions."
         ],
-        "margin_note": "First mark. Say what the number decides before writing the formula.",
-        "why": "The question asks what the Reynolds number is before it asks for the formula — stating what it decides is the definition.",
+        "margin_note": "First mark. Say what the number decides, and that it has no unit because its units cancel.",
+        "why": "The question asks what the Reynolds number is before it asks for the formula — stating what it decides and that it is a pure number together is the full definition.",
         "common_mistakes": [
           "Starting straight with the formula without saying what the number is for.",
-          "Calling it a physical quantity with a unit; it is a pure number."
+          "Calling it a physical quantity with a unit, or giving it dimensions; it is a pure number and its units cancel."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the Reynolds number is a pure number deciding whether flow is streamline or turbulent.",
+          "must_convey": "That the Reynolds number is a pure number, with no unit because its units cancel, deciding whether flow is streamline or turbulent.",
           "accept": [
             "pure number",
             "decides streamline or turbulent",
-            "decides the type of flow"
+            "no unit, the units cancel",
+            "dimensionless number for flow type"
           ],
           "reject": [
             "Re equals rho v D by eta"
           ],
           "heard_as": [
             "pure number",
-            "streamline or turbulent"
+            "streamline or turbulent",
+            "no unit"
           ]
         },
-        "memory_tip": "Reynolds number: one number, decides streamline or turbulent."
+        "memory_tip": "Reynolds number: one pure number, no unit, decides streamline or turbulent."
       },
       {
         "id": "s2_formula",
@@ -125,47 +125,10 @@
         "memory_tip": "Re = ρvD/η — D is the full diameter, not the radius."
       },
       {
-        "id": "s3_dimensionless",
-        "kind": "text",
-        "label": "Why it has no unit",
-        "marks": 1,
-        "mark_note": "No unit",
-        "lines": [
-          "Density, speed, diameter and",
-          "viscosity combine so that all",
-          "their units cancel. Reynolds",
-          "number therefore has no unit and",
-          "no dimensions."
-        ],
-        "margin_note": "Third mark. Say the units cancel, so Re has no unit and no dimensions.",
-        "why": "Building the number this way is what lets a dimensionless number be compared directly across different fluids and different tubes.",
-        "common_mistakes": [
-          "Assigning the Reynolds number a unit such as m/s.",
-          "Saying it has dimensions but no SI unit — it has neither."
-        ],
-        "recall": {
-          "credit": "say_it",
-          "must_convey": "That the Reynolds number has no unit and no dimensions.",
-          "accept": [
-            "no unit no dimensions",
-            "dimensionless",
-            "pure number, units cancel"
-          ],
-          "reject": [
-            "formula Re equals rho v D by eta"
-          ],
-          "heard_as": [
-            "no unit",
-            "dimensionless"
-          ]
-        },
-        "memory_tip": "Every unit cancels in Re — that is why it has none of its own."
-      },
-      {
         "id": "s4_significance",
         "kind": "boxed_final",
         "label": "The significance",
-        "marks": 1,
+        "marks": 2,
         "mark_note": "Significance",
         "lines": [
           "Its significance: for flow in a",
@@ -181,21 +144,29 @@
           {
             "text": "Re > 2000 ⇒ turbulent",
             "style": "boxed"
-          }
+          },
+          "Knowing Re predicts the type of",
+          "flow without measuring it",
+          "directly, and lets results from a",
+          "small scale model be applied to",
+          "the full-size structure."
         ],
-        "margin_note": "Last mark. Give both boundary values, not just one.",
-        "why": "Being able to predict streamline or turbulent flow just from Re, without measuring the flow directly, is exactly why the number is useful.",
+        "margin_note": "Third and fourth marks. Give both boundary values, then explain why knowing Re matters — it predicts the type of flow without measuring it directly, and lets a scale model's results apply to the full-size structure.",
+        "why": "This is the actual value of computing Re: it tells you the flow regime without measuring it directly, and it lets test results from a small scale model be applied to a full-size structure.",
         "common_mistakes": [
           "Quoting only one of the two boundary values.",
-          "Saying the flow is turbulent for every Re above 1000; the region up to 2000 is unsteady, not yet turbulent."
+          "Saying the flow is turbulent for every Re above 1000; the region up to 2000 is unsteady, not yet turbulent.",
+          "Omitting why the number matters — giving only the boundary values without saying what they let you do."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That below about 1000 the flow is streamline, above about 2000 it is turbulent, and it is unsteady in between.",
+          "must_convey": "That below about 1000 the flow is streamline, above about 2000 it is turbulent, unsteady in between, and that Re predicts the flow type without measuring it and lets scale-model results apply to the full-size structure.",
           "accept": [
             "below 1000 streamline",
             "above 2000 turbulent",
-            "unsteady in between"
+            "unsteady in between",
+            "predicts flow type without measuring it",
+            "used for scale models"
           ],
           "reject": [
             "Re equals rho v D by eta"
@@ -204,10 +175,11 @@
             "1000",
             "2000",
             "streamline",
-            "turbulent"
+            "turbulent",
+            "scale model"
           ]
         },
-        "memory_tip": "Below 1000, streamline. Above 2000, turbulent. In between, unsteady."
+        "memory_tip": "Below 1000, streamline. Above 2000, turbulent. Re predicts the flow type and scales up to real structures."
       }
     ]
   },
