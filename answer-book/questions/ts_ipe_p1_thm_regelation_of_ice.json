@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_regelation_of_ice",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is regelation of ice?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The phenomenon",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 11 Very Short Answer Question 14 (printed p.117). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: regelation is the melting of ice under increased pressure and its re-freezing when the pressure is removed, because the melting point of ice falls as the pressure on it rises — ice under pressure sits above its own melting point and melts, and releasing the pressure raises the melting point again so the water re-freezes."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_phenomenon",
+        "kind": "text",
+        "label": "The phenomenon",
+        "marks": 1,
+        "mark_note": "Melts under pressure, refreezes",
+        "lines": [
+          "Regelation is the melting of ice under",
+          "increased pressure, and its freezing",
+          "again once the pressure is removed."
+        ],
+        "margin_note": "First mark. Say ice melts under pressure and freezes again once the pressure is removed.",
+        "why": "This one sentence names the whole cycle — melting under load, then re-freezing the instant the load is taken away — which is the phenomenon regelation names.",
+        "common_mistakes": [
+          "Describing only the melting and leaving out that the ice freezes again when the pressure is removed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That regelation is the melting of ice under increased pressure and its freezing again when the pressure is removed.",
+          "accept": [
+            "melts under pressure and freezes again",
+            "pressure melts it, removing it re-freezes",
+            "melting then re-freezing of ice"
+          ],
+          "reject": [
+            "melting point falls as pressure rises"
+          ],
+          "heard_as": [
+            "regelation",
+            "melts under pressure",
+            "freezes again"
+          ]
+        },
+        "memory_tip": "Regelation: melt under pressure, freeze again once it is gone."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Melting point falls with pressure",
+        "lines": [
+          "It happens because the melting point of",
+          "ice falls as the pressure on it rises.",
+          "Ice under pressure is then above its own",
+          "melting point and melts. Removing the",
+          "pressure raises the melting point again,",
+          "so the water re-freezes."
+        ],
+        "margin_note": "Second mark. Say the melting point of ice falls as pressure rises, and rises again when pressure is removed.",
+        "why": "Most substances have a melting point that rises with pressure; ice is one of the few whose melting point falls with pressure, and that reversal is the reason pressure alone can melt it and releasing pressure can freeze it again.",
+        "common_mistakes": [
+          "Saying only that pressure melts ice, without saying the melting point of ice falls as pressure rises."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the melting point of ice falls as pressure rises, so pressure melts it and removing the pressure lets it re-freeze.",
+          "accept": [
+            "melting point falls as pressure rises",
+            "pressure lowers the melting point of ice",
+            "ice sits above its melting point under pressure"
+          ],
+          "reject": [
+            "freezes again when pressure is removed"
+          ],
+          "heard_as": [
+            "melting point falls",
+            "pressure rises",
+            "re-freezes"
+          ]
+        },
+        "memory_tip": "Ice is unusual: pressure LOWERS its melting point, instead of raising it."
+      }
+    ]
+  },
+  "insider_note": "Regelation is two ideas together: the melting-and-re-freezing cycle, and the reason for it — the melting point of ice falling as the pressure on it rises. A complete answer states both."
+}

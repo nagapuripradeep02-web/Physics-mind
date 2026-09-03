@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_newtons_law_of_cooling",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Newton's law of cooling.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The relation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 11 Very Short Answer Question 18 (printed p.117). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Newton's law of cooling states that the rate of loss of heat of a body is directly proportional to the temperature difference between the body and its surroundings, provided that difference is small, written −dQ/dt ∝ (T − T₀) with T the body's temperature and T₀ the temperature of the surroundings."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "Rate ∝ temperature difference",
+        "lines": [
+          "The rate of loss of heat of a body is",
+          "directly proportional to the difference",
+          "in temperature between the body and its",
+          "surroundings, provided that difference",
+          "is small."
+        ],
+        "margin_note": "First mark. Say the rate of loss of heat is directly proportional to the temperature difference, provided that difference is small.",
+        "why": "A hot body loses heat faster than a cooler one under the same conditions, and this law states exactly how much faster: in direct proportion to how far its temperature is above its surroundings, as long as that gap stays small.",
+        "common_mistakes": [
+          "Leaving out the word directly, or leaving out that the difference must be small."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rate of loss of heat of a body is directly proportional to the temperature difference between the body and its surroundings, provided that difference is small.",
+          "accept": [
+            "rate of cooling proportional to temperature difference",
+            "directly proportional to the difference in temperature",
+            "loses heat faster the bigger the gap, for a small gap"
+          ],
+          "reject": [
+            "minus dQ by dt equals T minus T naught"
+          ],
+          "heard_as": [
+            "directly proportional",
+            "temperature difference",
+            "small difference"
+          ]
+        },
+        "memory_tip": "Bigger gap, faster cooling — in direct proportion, while the gap stays small."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "−dQ/dt ∝ (T − T₀)",
+        "lines": [
+          {
+            "text": "−dQ/dt ∝ (T − T₀)",
+            "style": "boxed"
+          },
+          "T is the body's temperature and T₀ is",
+          "the temperature of its surroundings.",
+          "The negative sign shows heat is being",
+          "lost, so Q decreases with time."
+        ],
+        "margin_note": "Second mark. Write −dQ/dt ∝ (T − T₀) with T the body's temperature and T₀ the surroundings' temperature.",
+        "why": "Writing the relation names every symbol at once — T for the body, T₀ for the surroundings — and the negative sign records that this is heat being lost, not gained.",
+        "common_mistakes": [
+          "Writing dQ/dt ∝ (T − T₀) without the negative sign, or without naming T and T₀."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That −dQ/dt ∝ (T − T₀), with T the body's temperature and T₀ the temperature of the surroundings.",
+          "accept": [
+            "minus dQ by dt proportional to T minus T naught",
+            "rate of heat loss proportional to T minus T zero",
+            "the relation with the negative sign for heat loss"
+          ],
+          "reject": [
+            "provided the difference is small"
+          ],
+          "heard_as": [
+            "dQ dt",
+            "T minus T naught",
+            "negative sign"
+          ]
+        },
+        "memory_tip": "−dQ/dt ∝ (T − T₀): the minus sign says heat is leaving, not arriving."
+      }
+    ]
+  },
+  "insider_note": "Two marks: the statement in words, with the small-difference proviso, and then the relation −dQ/dt ∝ (T − T₀) with both temperatures named."
+}

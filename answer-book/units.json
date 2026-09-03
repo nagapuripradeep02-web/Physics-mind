@@ -2623,6 +2623,87 @@
           "source": "ts_paper"
         },
         {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "If the temperature is measured in Fahrenheit instead of Celsius, does the value of the coefficient of expansion of a solid change? Explain.",
+          "question_id": "ts_ipe_p1_thm_expansion_coefficient_scale_change",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Why are gaps left between the iron rails of a railway track?",
+          "question_id": "ts_ipe_p1_thm_railway_track_gaps",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "What is latent heat of fusion?",
+          "question_id": "ts_ipe_p1_thm_latent_heat_of_fusion",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "What is specific gas constant? Is it the same for all gases?",
+          "question_id": "ts_ipe_p1_thm_specific_gas_constant",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "What are the different modes of transmission of heat?",
+          "question_id": "ts_ipe_p1_thm_modes_of_heat_transmission",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "What is regelation of ice?",
+          "question_id": "ts_ipe_p1_thm_regelation_of_ice",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "What is the principle of a pressure cooker?",
+          "question_id": "ts_ipe_p1_thm_pressure_cooker_principle",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "State Newton's law of cooling.",
+          "question_id": "ts_ipe_p1_thm_newtons_law_of_cooling",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "State the conditions under which Newton's law of cooling is applicable.",
+          "question_id": "ts_ipe_p1_thm_newtons_law_cooling_conditions",
+          "source": "chaitanya_fastrack"
+        },
+        {
           "ref": "saq1",
           "section": "SAQ",
           "number": 1,
@@ -2639,6 +2720,33 @@
           "text": "In what way is the anomalous behaviour of water advantageous to aquatic animals?",
           "question_id": "ts_ipe_p1_thm_anomalous_water_aquatic_life",
           "source": "ts_paper"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain the Celsius and Fahrenheit scales of temperature. Obtain the relation between the Celsius and Fahrenheit scales of temperature.",
+          "question_id": "ts_ipe_p1_thm_celsius_and_fahrenheit_scales",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Define the coefficient of thermal conductivity and derive an expression for the rate of heat conduction through a slab. A copper bar 10 cm long, of cross-sectional area 1 mm², has its ends kept at 104 °C and 24 °C. Find the rate at which heat is conducted along the bar. (K for copper = 401 W m⁻¹ K⁻¹.)",
+          "question_id": "ts_ipe_p1_thm_thermal_conductivity_and_copper_bar",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "State Newton's law of cooling and write down the conditions under which it holds. A body cools from 60 °C to 50 °C in 5 minutes, and then from 50 °C to 40 °C in a further 8 minutes. Find the temperature of the surroundings.",
+          "question_id": "ts_ipe_p1_thm_newtons_law_of_cooling_and_surroundings",
+          "source": "chaitanya_fastrack"
         }
       ]
     },

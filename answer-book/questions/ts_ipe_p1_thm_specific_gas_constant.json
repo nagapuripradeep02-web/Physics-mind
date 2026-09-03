@@ -1,0 +1,124 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_specific_gas_constant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is specific gas constant? Is it the same for all gases?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition and formula",
+      "marks": 1
+    },
+    {
+      "label": "Not the same for all gases, and why",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 11 Very Short Answer Question 11 (printed p.117). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the specific gas constant r = R/M, where R is the universal gas constant (8.31 J mol⁻¹ K⁻¹) and M is the molar mass of the gas; r is different for different gases because M differs, while R itself is the same for every gas (NCERT Class-11 kinetic theory)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "equation",
+        "label": "The definition and formula",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The specific gas constant is the",
+          "universal gas constant taken per unit",
+          "mass of the gas:",
+          {
+            "text": "r = R/M",
+            "style": "eq"
+          },
+          "R is the universal gas constant and M",
+          "is the molar mass of the gas."
+        ],
+        "margin_note": "First mark. Write r = R/M with R and M both named.",
+        "why": "The universal gas constant R is the same for every gas, so dividing it by the molar mass M is what turns it into a constant that belongs to one particular gas.",
+        "common_mistakes": [
+          "Writing r = RM instead of r = R/M."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the specific gas constant is r = R/M, the universal gas constant per unit mass of the gas.",
+          "accept": [
+            "r equals R by M",
+            "universal gas constant per unit mass",
+            "R over M"
+          ],
+          "reject": [
+            "different for every gas"
+          ],
+          "heard_as": [
+            "r equals R over M",
+            "specific gas constant",
+            "molar mass"
+          ]
+        },
+        "memory_tip": "Small r is R divided by M — the universal constant shared out over one mole's mass."
+      },
+      {
+        "id": "s2_not_same",
+        "kind": "text",
+        "label": "Not the same for all gases",
+        "marks": 1,
+        "mark_note": "Not universal",
+        "lines": [
+          "No, the specific gas constant is not",
+          "the same for all gases, because the",
+          "molar mass M is different for each",
+          "gas.",
+          "The universal gas constant R, unlike",
+          "r, is the same for every gas."
+        ],
+        "margin_note": "Second mark. Say r differs because M differs, while R itself does not.",
+        "why": "Since r = R/M and R is fixed, the only thing that can make r different from one gas to another is a different M — that is the whole reason r is called specific to a gas.",
+        "common_mistakes": [
+          "Saying R itself changes from gas to gas. R is universal and fixed; only r changes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That r is different for different gases because M differs, while R is the same for all gases.",
+          "accept": [
+            "different because M differs",
+            "R is same for every gas",
+            "r depends on the gas"
+          ],
+          "reject": [
+            "r equals R by M"
+          ],
+          "heard_as": [
+            "not the same",
+            "molar mass differs",
+            "R is universal"
+          ]
+        },
+        "memory_tip": "R never changes; M does — so r changes with the gas, R does not."
+      }
+    ]
+  },
+  "insider_note": "Two marks — the formula r = R/M naming both R and M, then the explicit statement that r differs across gases because M does, while R stays universal."
+}

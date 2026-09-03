@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_railway_track_gaps",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are gaps left between the iron rails of a railway track?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rails expand in the summer heat",
+      "marks": 1
+    },
+    {
+      "label": "The gap gives room, avoiding buckling",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 11 Very Short Answer Question 5 (printed p.116). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: iron rails lengthen due to thermal expansion when the temperature rises in summer; a gap left between successive rails gives that expansion room, so the rails do not press against each other and buckle sideways out of alignment."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expansion",
+        "kind": "text",
+        "label": "Rails expand in the heat",
+        "marks": 1,
+        "mark_note": "Cause",
+        "lines": [
+          "In summer the temperature rises and",
+          "the iron rails become longer because",
+          "of thermal expansion."
+        ],
+        "margin_note": "First mark. Say the rails expand as the temperature rises.",
+        "why": "A metal rod grows longer when it is heated, and a rail lying in the summer sun over a hot day is no exception.",
+        "common_mistakes": [
+          "Jumping straight to the gap without first saying why the rails expand."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rails expand and grow longer when the temperature rises in summer.",
+          "accept": [
+            "rails expand in summer",
+            "temperature rise makes them longer",
+            "thermal expansion of the rail"
+          ],
+          "reject": [
+            "gap avoids buckling"
+          ],
+          "heard_as": [
+            "expand",
+            "summer",
+            "longer"
+          ]
+        },
+        "memory_tip": "Heat makes the metal rail grow longer, the same as any heated rod."
+      },
+      {
+        "id": "s2_gap_prevents_buckling",
+        "kind": "text",
+        "label": "The gap gives room to expand",
+        "marks": 1,
+        "mark_note": "Effect",
+        "lines": [
+          "Without a gap the expanding rails",
+          "would press against each other and",
+          "buckle sideways, bending the track",
+          "out of line.",
+          "A small gap between successive rails",
+          "leaves room for that expansion."
+        ],
+        "margin_note": "Second mark. Say the gap prevents the rails from buckling.",
+        "why": "A rail with nowhere to lengthen has to go somewhere, so it bends sideways instead — the gap gives the extra length somewhere safe to go.",
+        "common_mistakes": [
+          "Saying the gap is for the bolts or joints. The gap is for thermal expansion."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the gap leaves room for the rails to expand, so they do not press against each other and buckle.",
+          "accept": [
+            "gap leaves room to expand",
+            "prevents buckling of the track",
+            "rails would press and bend"
+          ],
+          "reject": [
+            "rails expand in summer"
+          ],
+          "heard_as": [
+            "gap",
+            "buckle",
+            "room to expand"
+          ]
+        },
+        "memory_tip": "No gap, no room — a rail with nowhere to grow bends sideways instead."
+      }
+    ]
+  },
+  "insider_note": "Two marks — first that the rails expand in the heat, then that the gap gives that expansion somewhere to go instead of buckling the track."
+}

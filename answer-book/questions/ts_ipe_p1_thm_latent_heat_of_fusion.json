@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_latent_heat_of_fusion",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is latent heat of fusion?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The formula and the value for ice",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 11 Very Short Answer Question 7 (printed p.116). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the latent heat of fusion is the heat required to convert unit mass of a solid into liquid at its melting point with no change of temperature, Q = mL; for ice L = 80 cal g⁻¹ = 3.36 × 10⁵ J kg⁻¹ (NCERT Class-11 value)."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The latent heat of fusion is the heat",
+          "needed to change one kilogram of a",
+          "solid into liquid at its melting",
+          "point, with no change in temperature."
+        ],
+        "margin_note": "First mark. Unit mass and no change of temperature must both appear.",
+        "why": "While a solid melts, the supplied heat goes into separating the particles held in its fixed lattice, not into raising their speed, so the thermometer stays fixed at the melting point throughout.",
+        "common_mistakes": [
+          "Leaving out that the temperature stays constant while the melting happens."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That it is the heat needed to change unit mass of a solid into liquid at its melting point without a change of temperature.",
+          "accept": [
+            "heat for one kilogram",
+            "solid into liquid",
+            "no change in temperature"
+          ],
+          "reject": [
+            "Q equals m L"
+          ],
+          "heard_as": [
+            "latent heat of fusion",
+            "melting point",
+            "unit mass"
+          ]
+        },
+        "memory_tip": "Latent means hidden: the heat is supplied but the temperature stays the same while melting happens."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "The formula and the value for ice",
+        "marks": 1,
+        "mark_note": "Q = mL",
+        "lines": [
+          {
+            "text": "Q = mL, L in J kg⁻¹",
+            "style": "boxed"
+          },
+          "L is the latent heat of fusion of the",
+          "substance and m the mass melted.",
+          "For ice, L = 3.36 × 10⁵ J kg⁻¹."
+        ],
+        "margin_note": "Second mark. Write Q = mL together with the value for ice.",
+        "why": "The heat needed is proportional to the mass being melted, so the total heat is the mass multiplied by the heat needed to melt one kilogram.",
+        "common_mistakes": [
+          "Giving the value of L only in cal g⁻¹, without the SI value in J kg⁻¹."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Q = mL and that for ice L = 3.36 × 10⁵ J kg⁻¹.",
+          "accept": [
+            "Q equals m L",
+            "three point three six into ten to the five",
+            "latent heat of ice"
+          ],
+          "reject": [
+            "no change in temperature"
+          ],
+          "heard_as": [
+            "Q is m L",
+            "latent heat",
+            "for ice"
+          ]
+        },
+        "memory_tip": "Multiply by the mass melted: Q = mL, and for ice L is 3.36 × 10⁵ J kg⁻¹."
+      }
+    ]
+  },
+  "insider_note": "Two marks — the definition carrying unit mass and no change of temperature, then Q = mL with the value for ice, 3.36 × 10⁵ J kg⁻¹."
+}

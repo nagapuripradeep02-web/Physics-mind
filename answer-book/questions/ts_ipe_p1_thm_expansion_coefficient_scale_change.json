@@ -1,0 +1,121 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_expansion_coefficient_scale_change",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "If the temperature is measured in Fahrenheit instead of Celsius, does the value of the coefficient of expansion of a solid change? Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Yes, with the reason",
+      "marks": 1
+    },
+    {
+      "label": "The relation between the two values",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 11 Very Short Answer Question 3 (printed p.116). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: a coefficient of expansion is a change in size per unit rise of temperature, and a Fahrenheit degree is 5/9 the size of a Celsius degree, so the same physical expansion gives a smaller number when expressed per Fahrenheit degree: α(per °F) = (5/9) × α(per °C). The physical expansion itself does not depend on the scale used to measure it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_yes",
+        "kind": "text",
+        "label": "Yes, it changes",
+        "marks": 1,
+        "mark_note": "Yes",
+        "lines": [
+          "Yes, the value changes.",
+          "A coefficient of expansion is a change",
+          "per degree, and a Fahrenheit degree is",
+          "smaller than a Celsius degree."
+        ],
+        "margin_note": "First mark. Yes, together with the reason.",
+        "why": "A coefficient of expansion states how much the size changes for a one-degree rise, so its number depends on the size of the degree used to measure it.",
+        "common_mistakes": [
+          "Answering no. The physical expansion is unchanged, but the number describing it per degree is not.",
+          "Saying a Fahrenheit degree is larger than a Celsius degree. It is smaller."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That yes, the value changes, because a Fahrenheit degree is a smaller unit of temperature than a Celsius degree.",
+          "accept": [
+            "yes it changes",
+            "a Fahrenheit degree is smaller",
+            "value depends on the size of the degree"
+          ],
+          "reject": [
+            "five ninths times alpha per Celsius"
+          ],
+          "heard_as": [
+            "yes",
+            "Fahrenheit degree",
+            "changes"
+          ]
+        },
+        "memory_tip": "The expansion itself does not change. Only the number changes with the size of the degree."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "boxed_final",
+        "label": "The relation between the two values",
+        "marks": 1,
+        "mark_note": "Relation",
+        "lines": [
+          {
+            "text": "α(per °F) = (5/9) × α(per °C)",
+            "style": "boxed"
+          },
+          "A Fahrenheit degree is 5/9 the size",
+          "of a Celsius degree, so the same",
+          "expansion gives a smaller number in °F."
+        ],
+        "margin_note": "Second mark. Write the 5/9 relation between the two values.",
+        "why": "A Fahrenheit degree is smaller than a Celsius degree, so a temperature rise of one Fahrenheit degree is a smaller rise, and the expansion measured per Fahrenheit degree is smaller by that same factor, 5/9.",
+        "common_mistakes": [
+          "Writing the factor as 9/5 instead of 5/9, which reverses which value is larger."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That α(per °F) = (5/9) × α(per °C), because a Fahrenheit degree is the smaller unit.",
+          "accept": [
+            "five ninths times alpha per Celsius",
+            "alpha per Fahrenheit equals five ninths",
+            "the physical expansion is unchanged"
+          ],
+          "reject": [
+            "yes it changes"
+          ],
+          "heard_as": [
+            "five ninths",
+            "alpha per Fahrenheit",
+            "relation"
+          ]
+        },
+        "memory_tip": "Five ninths — the same fraction that turns a Celsius reading into Fahrenheit degrees."
+      }
+    ]
+  },
+  "insider_note": "Two marks — the word yes with the reason, then the relation α(per °F) = (5/9) × α(per °C). Reversing the fraction is the common slip."
+}
