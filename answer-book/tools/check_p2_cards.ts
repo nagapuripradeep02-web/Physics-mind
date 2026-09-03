@@ -143,6 +143,10 @@ for (const [dir, f] of files) {
         if (s.why) r41.push([`${s.id}.why`, s.why]);
         if (s.memory_tip) r41.push([`${s.id}.memory_tip`, s.memory_tip]);
         if (s.margin_note) r41.push([`${s.id}.margin_note`, s.margin_note]);
+        for (const [i, mv] of (s.explain ?? []).entries()) {
+            r41.push([`${s.id}.explain[${i}].say`, mv.say]);
+            if (mv.show) r41.push([`${s.id}.explain[${i}].show`, mv.show]);
+        }
         for (const [i, m] of (s.common_mistakes ?? []).entries()) {
             r41.push([`${s.id}.common_mistakes[${i}]`, m]);
         }

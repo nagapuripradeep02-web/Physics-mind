@@ -328,6 +328,18 @@ const stepRecallSchema = z.object({
     heard_as: z.array(z.string().min(1)).default([]),
 });
 
+/**
+ * One move of "Working in full" — the step explained slowly for a student WATCHING
+ * the answer write itself (founder, 2026-09-04; proof card
+ * ts_ipe_m2a_bt_series_1_by_3_3_6_sum). `say` is one plain sentence naming the
+ * move (Rule 41); `show` is the intermediate math line the exam script skips —
+ * plain Unicode like lines[], never KaTeX. A check with no line omits `show`.
+ */
+const explainMoveSchema = z.object({
+    say: z.string().min(1),
+    show: z.string().min(1).optional(),
+});
+
 const stepSchema = z
     .object({
         /** Stable forever — the chatbot seam + deep-link anchor. */
@@ -366,6 +378,14 @@ const stepSchema = z
          * 3-star + LAQ first (founder, 2026-08-22).
          */
         memory_tip: z.string().min(1).optional(),
+        /**
+         * "Working in full": 2-8 moves that walk the step slowly (see explainMoveSchema).
+         * Rail card + Vidi chip + Vidi grounding ONLY — never on the notebook page,
+         * which stays the exam script (the rail-only invariant). All steps carry it
+         * or none do, gated by the build like memory_tip. Sparse by design: authored
+         * where the page's own lines skip working a student cannot reconstruct.
+         */
+        explain: z.array(explainMoveSchema).min(1).max(8).optional(),
     })
     .superRefine((step, ctx) => {
         if (step.kind === 'diagram') {
@@ -407,6 +427,8 @@ const cutStepSchema = z
         why: z.string().min(1).optional(),
         /** Override the memory tip when the shorter step covers different ground. */
         memory_tip: z.string().min(1).optional(),
+        /** Override the full working when the shorter step covers different ground. */
+        explain: z.array(explainMoveSchema).min(1).max(8).optional(),
     })
     .superRefine((cs, ctx) => {
         if (cs.marks === 0 && cs.mark_note) {
