@@ -1,0 +1,221 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_measuring_surface_tension",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain how surface tension can be measured experimentally.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Dip a capillary tube, liquid rises",
+      "marks": 1
+    },
+    {
+      "label": "Surface tension force balances weight",
+      "marks": 1
+    },
+    {
+      "label": "The relation, with every symbol named",
+      "marks": 1
+    },
+    {
+      "label": "A wetting liquid: cos θ nearly one",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Short Answer Question 13 (printed p.110). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: by the capillary rise method, a liquid rises to a height h in a clean capillary tube of radius r dipped vertically into it; at equilibrium the vertical component of the surface tension force around the rim, T cos θ × 2πr, balances the weight of the raised column, πr²hρg, giving T = hrρg/(2 cos θ); for a liquid that wets the glass, θ is nearly zero, cos θ is nearly one, and T = hrρg/2."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Fluids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "Dip a capillary tube, liquid rises",
+        "marks": 1,
+        "mark_note": "Capillary tube, height h",
+        "lines": [
+          "Dip a clean capillary tube of radius",
+          "r vertically into the liquid. The",
+          "liquid rises up the tube to a",
+          "height h above the free surface",
+          "outside the tube."
+        ],
+        "margin_note": "First mark. Name the apparatus: a clean capillary tube of radius r, rising to height h.",
+        "why": "The tube must be narrow for the rise to be large enough to read, and clean because a film of grease changes the angle of contact.",
+        "common_mistakes": [
+          "Describing an ordinary wide tube. A capillary tube has a narrow bore.",
+          "Leaving out that the tube must be clean, which the reading depends on."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a clean capillary tube of radius r is dipped into the liquid, which rises to a height h.",
+          "accept": [
+            "capillary tube of radius r",
+            "liquid rises to height h",
+            "clean tube"
+          ],
+          "reject": [
+            "T equals h r rho g by two cos theta"
+          ],
+          "heard_as": [
+            "capillary tube",
+            "radius r",
+            "height h"
+          ]
+        },
+        "memory_tip": "Narrow clean tube, liquid rises to height h."
+      },
+      {
+        "id": "s2_equilibrium",
+        "kind": "equation",
+        "label": "Surface tension force balances weight",
+        "marks": 1,
+        "mark_note": "Tension force = weight of column",
+        "lines": [
+          "At equilibrium, the upward pull of",
+          "surface tension around the rim of",
+          "the tube balances the weight of the",
+          "raised column of liquid:",
+          {
+            "text": "T cos θ × 2πr = πr² h ρ g",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Equate the surface tension force to the weight of the raised column.",
+        "why": "The liquid stops rising exactly where these two forces balance, so equating them is the whole derivation in one line.",
+        "common_mistakes": [
+          "Leaving out cos θ. The surface tension acts along the tangent to the liquid surface, not straight up.",
+          "Using the wrong volume for the raised column instead of the cylinder πr²h."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That at equilibrium T cos θ times 2 pi r equals the weight of the raised column, pi r squared h rho g.",
+          "accept": [
+            "T cos theta into two pi r",
+            "equals pi r squared h rho g",
+            "tension force balances the weight"
+          ],
+          "reject": [
+            "clean capillary tube of radius r"
+          ],
+          "heard_as": [
+            "T cos theta",
+            "two pi r",
+            "pi r squared h rho g"
+          ]
+        },
+        "memory_tip": "Tension around the rim holds up the weight of the column."
+      },
+      {
+        "id": "s3_relation",
+        "kind": "equation",
+        "label": "The relation, with every symbol named",
+        "marks": 1,
+        "mark_note": "T = h r ρ g / (2 cos θ)",
+        "lines": [
+          "Dividing both sides by 2πr cos θ,",
+          {
+            "text": "T = h r ρ g / (2 cos θ)",
+            "style": "eq"
+          },
+          "h is the height risen, r the radius",
+          "of the tube, ρ the density of the",
+          "liquid, θ the angle of contact and",
+          "g the acceleration due to gravity."
+        ],
+        "margin_note": "Third mark. Name every symbol: h, r, ρ, θ and g.",
+        "why": "The formula is only useful once every symbol is tied to a measurable quantity, so naming them is as much a part of the answer as the algebra.",
+        "common_mistakes": [
+          "Writing r as the diameter of the tube. It is the radius.",
+          "Leaving one of the five symbols unnamed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That T equals h r rho g divided by two cos theta, with h the height, r the radius, rho the density, theta the angle of contact and g the acceleration due to gravity.",
+          "accept": [
+            "T equals h r rho g by two cos theta",
+            "h is the height, r the radius",
+            "theta is the angle of contact"
+          ],
+          "reject": [
+            "T cos theta into two pi r"
+          ],
+          "heard_as": [
+            "h r rho g",
+            "two cos theta",
+            "angle of contact"
+          ]
+        },
+        "memory_tip": "h, r, ρ, θ, g — every symbol in T = hrρg/(2cos θ) is measurable."
+      },
+      {
+        "id": "s4_wetting",
+        "kind": "boxed_final",
+        "label": "A wetting liquid: cos θ nearly one",
+        "marks": 1,
+        "mark_note": "cos θ ≈ 1 for a wetting liquid",
+        "lines": [
+          "For a liquid that wets the glass,",
+          "such as water, the angle of contact",
+          "θ is nearly zero, so cos θ is",
+          "nearly one:",
+          {
+            "text": "T = h r ρ g / 2",
+            "style": "eq"
+          },
+          "Measuring h for a tube of known",
+          "radius r then gives T directly.",
+          {
+            "text": "T = h r ρ g / 2",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. State θ is nearly zero for a wetting liquid, so cos θ is nearly one.",
+        "why": "Most liquids used in this experiment wet clean glass, so this simplified form is the one actually used to calculate T from the measured h and r.",
+        "common_mistakes": [
+          "Applying T = hrρg/2 to a liquid that does not wet the tube, such as mercury, where θ is far from zero.",
+          "Writing θ as exactly zero rather than nearly zero, which is why cos θ is nearly one, not exactly one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for a liquid which wets the glass, θ is nearly zero and cos θ is nearly one, so T = h r ρ g / 2.",
+          "accept": [
+            "wetting liquid, theta nearly zero",
+            "cos theta nearly one",
+            "T equals h r rho g by two"
+          ],
+          "reject": [
+            "h is the height, r the radius"
+          ],
+          "heard_as": [
+            "wets the glass",
+            "nearly zero",
+            "T equals hrpg by two"
+          ]
+        },
+        "memory_tip": "Wets the glass: θ ≈ 0, cos θ ≈ 1, T = hrρg/2."
+      }
+    ]
+  },
+  "insider_note": "The formula alone, without naming h, r, ρ, θ and g, reads as a memorised line; naming every symbol is what shows the method is understood."
+}

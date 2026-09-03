@@ -2215,6 +2215,298 @@
           "text": "What are waterproofing agents and water wetting agents? What do they do?",
           "question_id": "ts_ipe_p1_flu_waterproofing_wetting_agents",
           "source": "ts_paper"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Define average pressure. State its SI unit and dimensional formula. Is pressure a scalar or a vector quantity?",
+          "question_id": "ts_ipe_p1_flu_average_pressure_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Define the relative density of a substance.",
+          "question_id": "ts_ipe_p1_flu_relative_density_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Write the expression for the variation of pressure with depth in a fluid.",
+          "question_id": "ts_ipe_p1_flu_pressure_variation_with_depth",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "State Archimedes' principle.",
+          "question_id": "ts_ipe_p1_flu_archimedes_principle",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Write the equation of continuity for fluid flow.",
+          "question_id": "ts_ipe_p1_flu_equation_of_continuity",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "State Bernoulli's principle.",
+          "question_id": "ts_ipe_p1_flu_bernoullis_principle",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "State the two conditions under which Bernoulli's theorem can be applied.",
+          "question_id": "ts_ipe_p1_flu_bernoulli_conditions",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Define viscosity. Give its units and dimensional formula.",
+          "question_id": "ts_ipe_p1_flu_viscosity_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Explain the effect of temperature on the viscosity of (a) liquids and (b) gases.",
+          "question_id": "ts_ipe_p1_flu_viscosity_and_temperature",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Write the expression for Stokes' law.",
+          "question_id": "ts_ipe_p1_flu_stokes_law_expression",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Define eddy flow in the case of a fluid.",
+          "question_id": "ts_ipe_p1_flu_eddy_flow_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Define the critical velocity of a fluid and give its expression.",
+          "question_id": "ts_ipe_p1_flu_critical_velocity_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Define surface tension. Write its SI unit and dimensional formula.",
+          "question_id": "ts_ipe_p1_flu_surface_tension_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "What is the effect of temperature on surface tension?",
+          "question_id": "ts_ipe_p1_flu_surface_tension_and_temperature",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "A metal sphere of radius 1.5 cm has a mass of 0.038 kg. Find its density and its specific gravity.",
+          "question_id": "ts_ipe_p1_flu_sphere_specific_gravity_numerical",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "State Pascal's law. Mention its applications.",
+          "question_id": "ts_ipe_p1_flu_pascals_law_and_applications",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "What is gauge pressure? Describe how an open-tube manometer measures it.",
+          "question_id": "ts_ipe_p1_flu_gauge_pressure_and_manometer",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Explain the working of a hydraulic lift and hydraulic brakes.",
+          "question_id": "ts_ipe_p1_flu_hydraulic_lift_and_brakes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Distinguish between streamline flow and turbulent flow of liquids.",
+          "question_id": "ts_ipe_p1_flu_streamline_vs_turbulent_flow",
+          "cut": "saq",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Explain how Bernoulli's principle accounts for the occurrence of a heart attack in human beings.",
+          "question_id": "ts_ipe_p1_flu_bernoulli_and_heart_attack",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "What is a Venturi meter? Explain how it is used.",
+          "question_id": "ts_ipe_p1_flu_venturi_meter",
+          "cut": "saq",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What is Reynolds number? What is its significance?",
+          "question_id": "ts_ipe_p1_flu_reynolds_number",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Explain the critical Reynolds number and discuss its significance.",
+          "question_id": "ts_ipe_p1_flu_critical_reynolds_number",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Explain Stokes' law with an application.",
+          "question_id": "ts_ipe_p1_flu_stokes_law_and_application",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Explain surface tension and surface energy.",
+          "question_id": "ts_ipe_p1_flu_surface_tension_and_surface_energy",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Discuss the role of surface tension in the removal of dirt from clothes using detergents.",
+          "question_id": "ts_ipe_p1_flu_detergent_and_surface_tension",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Explain how surface tension can be measured experimentally.",
+          "question_id": "ts_ipe_p1_flu_measuring_surface_tension",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "What is the angle of contact? Give its values for pure water and for mercury, each in contact with glass.",
+          "question_id": "ts_ipe_p1_flu_angle_of_contact_and_values",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Explain the term dynamic lift. Discuss the dynamic lift experienced by (a) an aerofoil and (b) a spinning ball.",
+          "question_id": "ts_ipe_p1_flu_dynamic_lift",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Distinguish between streamline flow and turbulent flow of liquids.",
+          "question_id": "ts_ipe_p1_flu_streamline_vs_turbulent_flow",
+          "cut": "laq",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Define coefficient of viscosity. State Stokes' law. Explain the terminal velocity attained by a freely falling body (raindrop) in a viscous medium using a graph.",
+          "question_id": "ts_ipe_p1_flu_coefficient_of_viscosity_stokes_and_raindrop",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What is a Venturi meter? Explain how it is used.",
+          "question_id": "ts_ipe_p1_flu_venturi_meter",
+          "cut": "laq",
+          "source": "chaitanya_fastrack"
         }
       ]
     },

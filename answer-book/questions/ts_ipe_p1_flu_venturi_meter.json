@@ -1,0 +1,594 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_venturi_meter",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 16,
+  "question_text": "What is a Venturi meter? Explain how it is used.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What a Venturi meter is",
+      "marks": 1
+    },
+    {
+      "label": "Construction",
+      "marks": 1
+    },
+    {
+      "label": "Continuity equation",
+      "marks": 1
+    },
+    {
+      "label": "Bernoulli's principle",
+      "marks": 1
+    },
+    {
+      "label": "Pressure difference",
+      "marks": 1
+    },
+    {
+      "label": "Speed formula",
+      "marks": 1
+    },
+    {
+      "label": "Reading the manometer",
+      "marks": 1
+    },
+    {
+      "label": "Uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Short Answer Question 7 (printed p.109), printed again word for word as Long Answer Question 4 (printed p.112). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 8-mark and 4-mark splits are both INVENTED and are a CLAIM until a Telangana IPE teacher confirms them. Physics hand-checked: continuity (A₁v₁ = A₂v₂) makes the fluid speed up in the narrower throat, and Bernoulli's principle — P/ρ + ½v² + gh = constant per unit mass, equivalently P + ½ρv² = constant per unit volume on a horizontal tube — then gives a lower pressure there; eliminating v₂ gives v₁ = √(2(P₁ − P₂) / ρ((A₁/A₂)² − 1)), matching the formula printed in the source book's answer."
+  },
+  "cuts": [
+    {
+      "key": "laq",
+      "label": "Long answer — 8 marks",
+      "qtype": "LAQ",
+      "marks_total": 8,
+      "paper_section": "Section C",
+      "expected_time_min": 16,
+      "mark_split": [
+        {
+          "label": "What a Venturi meter is",
+          "marks": 1
+        },
+        {
+          "label": "Construction",
+          "marks": 1
+        },
+        {
+          "label": "Continuity equation",
+          "marks": 1
+        },
+        {
+          "label": "Bernoulli's principle",
+          "marks": 1
+        },
+        {
+          "label": "Pressure difference",
+          "marks": 1
+        },
+        {
+          "label": "Speed formula",
+          "marks": 1
+        },
+        {
+          "label": "Reading the manometer",
+          "marks": 1
+        },
+        {
+          "label": "Uses",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_define_venturi": {
+          "marks": 1
+        },
+        "s2_construction": {
+          "marks": 1
+        },
+        "s3_continuity": {
+          "marks": 1
+        },
+        "s4_bernoulli": {
+          "marks": 1
+        },
+        "s5_derive_pressure_diff": {
+          "marks": 1
+        },
+        "s6_derive_speed": {
+          "marks": 1
+        },
+        "s7_manometer_reading": {
+          "marks": 1
+        },
+        "s8_uses": {
+          "marks": 1
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "The full question as the paper asks it: what it is, its construction, the continuity-Bernoulli derivation, the manometer reading and its uses. The 8-mark split is a claim."
+    },
+    {
+      "key": "saq",
+      "label": "Short answer — 4 marks",
+      "qtype": "SAQ",
+      "marks_total": 4,
+      "paper_section": "Section B",
+      "expected_time_min": 8,
+      "mark_split": [
+        {
+          "label": "What a Venturi meter is",
+          "marks": 1
+        },
+        {
+          "label": "Continuity and Bernoulli",
+          "marks": 1
+        },
+        {
+          "label": "Manometer and speed formula",
+          "marks": 1
+        },
+        {
+          "label": "Uses",
+          "marks": 1
+        }
+      ],
+      "steps": {
+        "s1_define_venturi": {
+          "marks": 1
+        },
+        "s3_continuity": {
+          "marks": 1,
+          "label": "Continuity and Bernoulli",
+          "mark_note": "Continuity and Bernoulli",
+          "lines": [
+            {
+              "text": "Continuity and Bernoulli:",
+              "style": "heading"
+            },
+            "By the equation of continuity A₁v₁ =",
+            "A₂v₂, the fluid speeds up in the narrow",
+            "throat, since A₂ is smaller than A₁.",
+            "By Bernoulli's principle, this rise in",
+            "speed is matched by a fall in pressure",
+            "at the throat."
+          ],
+          "margin_note": "Second mark. Say both laws, continuity gives the higher speed, Bernoulli gives the lower pressure, at the throat.",
+          "why": "These two laws together are the whole working principle: one fixes the speed change, the other turns it into a pressure change a manometer can read.",
+          "memory_tip": "Narrow throat: continuity speeds it up, Bernoulli drops the pressure."
+        },
+        "s6_derive_speed": {
+          "marks": 1,
+          "lines": [
+            "A manometer between the wide section and",
+            "the throat measures the pressure",
+            "difference P₁ − P₂. From it, the speed",
+            "is found:",
+            {
+              "text": "v₁ = √(2(P₁ − P₂) / ρ((A₁/A₂)² − 1))",
+              "style": "boxed"
+            }
+          ],
+          "margin_note": "Third mark. State how the manometer gives P₁ − P₂, then write the boxed formula for v₁.",
+          "why": "The manometer is what actually lets a reading of P₁ − P₂ be taken, and the boxed formula is what turns that reading into a speed.",
+          "memory_tip": "Read P₁ − P₂ on the manometer, then use the boxed formula for v₁."
+        },
+        "s8_uses": {
+          "marks": 1,
+          "margin_note": "Fourth mark. Name flow-rate measurement, and at least one other device using the same principle."
+        }
+      },
+      "needs_teacher_verification": true,
+      "note": "Sri Chaitanya Fastrack SHORT ANSWER form of the same question, four marks. Merges continuity with Bernoulli and the manometer with the speed formula, and drops the separate construction and pressure-difference algebra steps; the four-mark split is invented."
+    }
+  ],
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Mechanical Properties of Fluids · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_define_venturi",
+        "kind": "text",
+        "label": "What a Venturi meter is",
+        "marks": 1,
+        "mark_note": "Venturi meter",
+        "lines": [
+          {
+            "text": "Venturi meter:",
+            "style": "heading"
+          },
+          "A tube inserted into a pipe to measure",
+          "the speed of a flowing fluid.",
+          "It has a wide section, a narrow throat,",
+          "and widens again. It works on",
+          "Bernoulli's principle."
+        ],
+        "margin_note": "First mark. Name the device and say what it measures.",
+        "why": "Naming the device and its purpose first tells the reader what every later step is building towards.",
+        "common_mistakes": [
+          "Describing it only as a kind of pipe, without saying what it measures.",
+          "Leaving out that it has a narrow throat between two wide sections."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a Venturi meter is a tube with a constriction, fitted into a pipe to measure the speed of a flowing fluid, based on Bernoulli's principle.",
+          "accept": [
+            "Venturi meter measures the speed of a fluid",
+            "a tube with a narrow throat in a pipe",
+            "it works on Bernoulli's principle",
+            "Venturi meter ni define chestha",
+            "wide, narrow throat, wide again, fitted in a pipe"
+          ],
+          "reject": [
+            "the fluid speeds up in the throat",
+            "it is used in a carburettor"
+          ],
+          "heard_as": [
+            "Venturi meter",
+            "narrow throat",
+            "measures speed"
+          ]
+        },
+        "memory_tip": "Venturi meter: a tube with a pinch in the middle, reading fluid speed."
+      },
+      {
+        "id": "s2_construction",
+        "kind": "text",
+        "label": "Construction",
+        "marks": 1,
+        "mark_note": "Construction",
+        "lines": [
+          {
+            "text": "Construction:",
+            "style": "heading"
+          },
+          "A short tube with a wide section of area",
+          "A₁ at each end, joined by a narrower",
+          "throat of area A₂ in the middle.",
+          "It is fitted into the pipe so the fluid",
+          "flows straight through it."
+        ],
+        "margin_note": "Second mark. Name the three parts, wide, narrow throat, wide again, and their areas A₁ and A₂.",
+        "why": "The two areas A₁ and A₂ are the quantities every later formula in this answer is written in terms of.",
+        "common_mistakes": [
+          "Not naming the areas A₁ and A₂ with symbols.",
+          "Describing a bend or a valve instead of a smooth narrowing."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the meter is a wide-narrow-wide tube, area A₁ at the wide ends and A₂ at the throat, fitted into the pipe.",
+          "accept": [
+            "wide section A one, narrow throat A two",
+            "then I describe the construction",
+            "a wide, narrow, wide tube fitted in the pipe",
+            "construction gurinchi chepthanu",
+            "draw the tube with the two areas marked"
+          ],
+          "reject": [
+            "the fluid speeds up in the throat",
+            "P one minus P two equals"
+          ],
+          "heard_as": [
+            "construction",
+            "A one",
+            "A two",
+            "throat"
+          ]
+        },
+        "memory_tip": "Wide, narrow, wide: A₁, A₂, A₁ again."
+      },
+      {
+        "id": "s3_continuity",
+        "kind": "equation",
+        "label": "Continuity equation",
+        "marks": 1,
+        "mark_note": "Continuity",
+        "lines": [
+          {
+            "text": "Equation of continuity:",
+            "style": "heading"
+          },
+          "The volume of liquid flowing per second",
+          "is the same at every section of the",
+          "tube, since mass is conserved:",
+          {
+            "text": "A₁v₁ = A₂v₂",
+            "style": "eq"
+          },
+          "Since the throat area A₂ is smaller than",
+          "A₁, the throat speed v₂ is larger than",
+          "v₁. The fluid speeds up in the throat."
+        ],
+        "margin_note": "Third mark. Write A₁v₁ = A₂v₂ and say the fluid speeds up because A₂ is smaller.",
+        "why": "This is the first of the two laws that make the meter work: a smaller area forces a larger speed, whatever the pressure does.",
+        "common_mistakes": [
+          "Saying only that the fluid speeds up, without saying WHY, the throat area is smaller.",
+          "Confusing which area is smaller. A₂, the throat, is smaller than A₁."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That by the equation of continuity A₁v₁ = A₂v₂, the fluid speeds up in the narrower throat.",
+          "accept": [
+            "A one v one equals A two v two",
+            "continuity equation, fluid speeds up in the throat",
+            "smaller area, larger speed",
+            "continuity equation raastha",
+            "the flow speeds up because the throat is narrow"
+          ],
+          "reject": [
+            "the pressure falls at the throat",
+            "the manometer reads the pressure difference"
+          ],
+          "heard_as": [
+            "continuity",
+            "A one v one",
+            "throat speed",
+            "speeds up"
+          ]
+        },
+        "memory_tip": "Narrower throat, faster flow: A₁v₁ = A₂v₂."
+      },
+      {
+        "id": "s4_bernoulli",
+        "kind": "equation",
+        "label": "Bernoulli's principle",
+        "marks": 1,
+        "mark_note": "Bernoulli's principle",
+        "lines": [
+          {
+            "text": "Bernoulli's principle:",
+            "style": "heading"
+          },
+          "For steady, non-viscous, incompressible",
+          "flow, the total energy per unit mass is",
+          "the same everywhere on a streamline:",
+          {
+            "text": "P/ρ + ½v² + gh = constant",
+            "style": "eq"
+          },
+          "For a horizontal tube, where h is the",
+          "same on both sides, the equivalent",
+          "per-unit-volume form is more convenient:",
+          {
+            "text": "P + ½ρv² = constant",
+            "style": "eq"
+          },
+          "So where the speed v is larger, the",
+          "pressure P is smaller."
+        ],
+        "margin_note": "Fourth mark. State the per-unit-mass relation, then the per-unit-volume form used for a horizontal tube.",
+        "why": "This is the second law: continuity fixed the speed change, and Bernoulli is what turns that speed change into a pressure change a manometer can actually read.",
+        "common_mistakes": [
+          "Writing the per-unit-volume form as if it were the only form, without the per-unit-mass relation.",
+          "Forgetting that this simplified form needs a horizontal tube, so the gh terms cancel."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That by Bernoulli's principle, P + half rho v squared is constant on a horizontal tube, so a larger speed means a smaller pressure.",
+          "accept": [
+            "Bernoulli's principle, faster flow means lower pressure",
+            "P plus half rho v squared is constant",
+            "P by rho plus half v squared plus gh is constant",
+            "Bernoulli's principle ni state chestha",
+            "higher speed, lower pressure, at the throat"
+          ],
+          "reject": [
+            "A one v one equals A two v two",
+            "the manometer level difference gives the pressure"
+          ],
+          "heard_as": [
+            "Bernoulli",
+            "P plus half rho v squared",
+            "constant",
+            "lower pressure"
+          ]
+        },
+        "memory_tip": "Bernoulli: P + ½ρv² = constant. Faster flow, lower pressure."
+      },
+      {
+        "id": "s5_derive_pressure_diff",
+        "kind": "equation",
+        "label": "Pressure difference",
+        "marks": 1,
+        "mark_note": "Pressure difference",
+        "lines": [
+          "Put v₂ = (A₁/A₂) v₁ from continuity into",
+          "the Bernoulli relation P + ½ρv² =",
+          "constant and simplify:",
+          {
+            "text": "P₁ − P₂ = ½ρv₁²((A₁/A₂)² − 1)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Fifth mark. Substitute v₂ from continuity into the Bernoulli relation and simplify.",
+        "why": "Eliminating v₂ leaves a relation between the pressure difference and v₁ alone, which is the quantity the meter is actually built to measure.",
+        "common_mistakes": [
+          "Substituting v₁ for v₂ instead of v₂ for v₁.",
+          "Dropping the square on the area ratio (A₁/A₂)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting v₂ = (A₁/A₂)v₁ into Bernoulli gives P₁ − P₂ in terms of v₁ and the two areas.",
+          "accept": [
+            "substitute v two from continuity into Bernoulli",
+            "P one minus P two equals half rho v one squared times the area ratio term",
+            "eliminate v two to get the pressure difference",
+            "v two ni substitute chesi pressure difference thistham",
+            "combine continuity and Bernoulli to get P one minus P two"
+          ],
+          "reject": [
+            "the meter is used in a carburettor",
+            "the throat area A₂ is smaller than A₁"
+          ],
+          "heard_as": [
+            "substitute",
+            "P one minus P two",
+            "area ratio",
+            "eliminate v two"
+          ]
+        },
+        "memory_tip": "Swap v₂ for (A₁/A₂)v₁ in Bernoulli, and P₁ − P₂ falls out."
+      },
+      {
+        "id": "s6_derive_speed",
+        "kind": "boxed_final",
+        "label": "Speed formula",
+        "marks": 1,
+        "mark_note": "Speed formula",
+        "lines": [
+          "Solving for v₁, and taking the square",
+          "root:",
+          {
+            "text": "v₁ = √(2(P₁ − P₂) / ρ((A₁/A₂)² − 1))",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Sixth mark. Box the final formula for v₁.",
+        "why": "This boxed formula is the actual output of the instrument: it converts a pressure reading into a speed.",
+        "common_mistakes": [
+          "Forgetting the square on (A₁/A₂) inside the bracket.",
+          "Writing v₂ instead of v₁ on the left of the formula."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v₁ equals the square root of 2(P₁ − P₂) divided by rho times ((A₁/A₂) squared minus 1).",
+          "accept": [
+            "v one equals root of 2 P one minus P two by rho into area ratio squared minus one",
+            "box the final formula for v one",
+            "the speed formula uses the pressure difference and the area ratio",
+            "final formula v one ki raastha",
+            "square root of two delta P by rho times the bracket"
+          ],
+          "reject": [
+            "the throat area A₂ is smaller than A₁",
+            "it is used to measure flow rate"
+          ],
+          "heard_as": [
+            "v one equals",
+            "square root",
+            "final formula",
+            "boxed formula"
+          ]
+        },
+        "memory_tip": "v₁ = √(2ΔP / ρ((A₁/A₂)² − 1)). Read ΔP, get v₁."
+      },
+      {
+        "id": "s7_manometer_reading",
+        "kind": "text",
+        "label": "Reading the manometer",
+        "marks": 1,
+        "mark_note": "Manometer",
+        "lines": [
+          {
+            "text": "Reading the pressure difference:",
+            "style": "heading"
+          },
+          "A manometer is connected between the",
+          "wide section and the throat.",
+          "The difference in liquid level between",
+          "its two arms gives the value of P₁ − P₂",
+          "directly."
+        ],
+        "margin_note": "Seventh mark. Say the manometer's level difference gives P₁ − P₂ directly.",
+        "why": "The boxed formula needs a value for P₁ − P₂ from somewhere. This step is where that number actually comes from, in the working instrument.",
+        "common_mistakes": [
+          "Saying the manometer measures the speed directly, rather than the pressure difference.",
+          "Leaving out where the manometer is connected, the wide section and the throat."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a manometer connected between the wide section and the throat gives P₁ − P₂ from the difference in its liquid levels.",
+          "accept": [
+            "manometer reads P one minus P two",
+            "level difference in the manometer gives the pressure difference",
+            "manometer is connected between the wide part and the throat",
+            "manometer tho pressure difference measure chestham",
+            "the height difference in the two arms is the reading"
+          ],
+          "reject": [
+            "v one equals the square root of two delta P by rho",
+            "the throat speed v two is larger than v one"
+          ],
+          "heard_as": [
+            "manometer",
+            "level difference",
+            "pressure difference",
+            "two arms"
+          ]
+        },
+        "memory_tip": "The manometer's level difference is P₁ − P₂, read straight off."
+      },
+      {
+        "id": "s8_uses",
+        "kind": "text",
+        "label": "Uses",
+        "marks": 1,
+        "mark_note": "Uses",
+        "lines": [
+          {
+            "text": "Uses:",
+            "style": "heading"
+          },
+          "A Venturi meter is used to measure the",
+          "speed and flow rate of a fluid moving",
+          "through a pipe.",
+          "The same principle, a narrow throat",
+          "giving higher speed and lower pressure,",
+          "is also used in devices such as the",
+          "carburettor and the spray gun."
+        ],
+        "margin_note": "Eighth mark. Name flow-rate measurement, and at least one other device using the same principle.",
+        "why": "Naming a use is what shows the formula is not just an algebra result, it is why the instrument is built at all.",
+        "common_mistakes": [
+          "Naming a device that does not use a narrow throat, such as a plain pressure gauge.",
+          "Stopping at flow-rate measurement without naming a second device."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a Venturi meter measures the speed or flow rate of a fluid in a pipe, and that the same narrow-throat principle is used in the carburettor and the spray gun.",
+          "accept": [
+            "used to measure the flow rate of a fluid",
+            "same principle as the carburettor",
+            "spray gun also works this way",
+            "flow rate measure cheyadaniki upayogistharu",
+            "narrow throat principle used in other devices too"
+          ],
+          "reject": [
+            "the throat area A₂ is smaller than A₁",
+            "the manometer level difference gives the pressure"
+          ],
+          "heard_as": [
+            "uses",
+            "flow rate",
+            "carburettor",
+            "spray gun"
+          ]
+        },
+        "memory_tip": "Uses: flow-rate measurement, and the same idea in a carburettor or a spray gun."
+      }
+    ]
+  },
+  "insider_note": "Eight marks: what it is, its construction, and the continuity-Bernoulli derivation of the speed formula. The four-mark version states the same physics without the intermediate algebra."
+}

@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_relative_density_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the relative density of a substance.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition as a ratio of densities",
+      "marks": 1
+    },
+    {
+      "label": "Pure number, also called specific gravity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Very Short Answer Question 2 (printed p.105). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: relative density is the ratio of the density of a substance to the density of water at 4 °C, the temperature at which water's density is maximum; being a ratio of two densities it carries no unit and no dimensions, and it is also called specific gravity."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition as a ratio of densities",
+        "marks": 1,
+        "mark_note": "Ratio to density of water",
+        "lines": [
+          "The relative density of a substance",
+          "is the ratio of its density to the",
+          "density of water at 4 °C."
+        ],
+        "margin_note": "First mark. Give the ratio: density of the substance to density of water at 4 °C.",
+        "why": "Density on its own depends on the substance chosen; comparing it with a fixed reference, water at 4 °C, gives a number that describes the substance alone.",
+        "common_mistakes": [
+          "Leaving out the reference temperature, 4 °C, at which water's density is fixed.",
+          "Comparing with the density of air instead of water."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That relative density is the ratio of the density of the substance to the density of water at 4 degrees Celsius.",
+          "accept": [
+            "ratio of density to density of water",
+            "compared with water at 4 degrees",
+            "density divided by density of water"
+          ],
+          "reject": [
+            "no unit, no dimensions"
+          ],
+          "heard_as": [
+            "ratio",
+            "density of water",
+            "4 degrees"
+          ]
+        },
+        "memory_tip": "Relative density always compares to water at 4 °C."
+      },
+      {
+        "id": "s2_pure_number",
+        "kind": "boxed_final",
+        "label": "Pure number, also called specific gravity",
+        "marks": 1,
+        "mark_note": "No unit, no dimensions",
+        "lines": [
+          "Relative density is a ratio of two",
+          "densities, so it has no unit and no",
+          "dimensions: it is a pure number.",
+          "It is also called specific gravity."
+        ],
+        "margin_note": "Second mark. Say it is a pure number, with no unit and no dimensions, and give its other name, specific gravity.",
+        "why": "Dividing one density by another cancels the unit kg m⁻³ completely, which is why the result carries no unit and no dimensions.",
+        "common_mistakes": [
+          "Giving kg m⁻³ as its unit — that is the unit of density, not of the ratio.",
+          "Never stating the other name, specific gravity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That relative density has no unit and no dimensions because it is a ratio of two densities, and it is also called specific gravity.",
+          "accept": [
+            "no unit, no dimensions",
+            "pure number",
+            "also called specific gravity"
+          ],
+          "reject": [
+            "ratio of density to density of water"
+          ],
+          "heard_as": [
+            "no unit",
+            "specific gravity",
+            "pure number"
+          ]
+        },
+        "memory_tip": "A ratio of two densities cancels the unit — pure number, specific gravity."
+      }
+    ]
+  },
+  "insider_note": "Two marks: the ratio-to-water definition, then that it is dimensionless and is also called specific gravity. A complete answer names both: the ratio itself, and its other name."
+}

@@ -1,0 +1,225 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_sphere_specific_gravity_numerical",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "A metal sphere of radius 1.5 cm has a mass of 0.038 kg. Find its density and its specific gravity.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The given data",
+      "marks": 1
+    },
+    {
+      "label": "The volume",
+      "marks": 1
+    },
+    {
+      "label": "The density",
+      "marks": 1
+    },
+    {
+      "label": "The specific gravity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 (Mechanical Properties of Fluids), Short Answer Question 1 (printed p.107). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: r = 1.5 cm = 1.5 × 10⁻² m and m = 0.038 kg; V = (4/3)πr³ ≈ 1.41 × 10⁻⁵ m³ (using π ≈ 3.14); ρ = m/V ≈ 2690 kg m⁻³; specific gravity = ρ/ρ_water = 2690/1000 = 2.69, a pure number with no unit."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Fluids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_given_data",
+        "kind": "text",
+        "label": "The given data",
+        "marks": 1,
+        "mark_note": "r and m in SI units",
+        "lines": [
+          "The radius of the sphere is",
+          "r = 1.5 cm = 1.5 × 10⁻² m.",
+          "The mass of the sphere is",
+          "m = 0.038 kg."
+        ],
+        "margin_note": "First mark. Convert the radius from centimetres to metres.",
+        "why": "Every later step uses SI units, so the radius has to be in metres before it is cubed.",
+        "common_mistakes": [
+          "Using r = 1.5 in the volume formula without converting it to metres.",
+          "Writing the diameter, 3 cm, in place of the radius, 1.5 cm."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the radius is 1.5 × 10⁻² m and the mass is 0.038 kg.",
+          "accept": [
+            "r is 1.5 into 10 to the minus 2 metre",
+            "radius one point five centimetre",
+            "mass 0.038 kilogram"
+          ],
+          "reject": [
+            "density is 2690"
+          ],
+          "heard_as": [
+            "1.5 cm",
+            "0.038 kg",
+            "radius",
+            "mass"
+          ]
+        },
+        "memory_tip": "Centimetres to metres first: 1.5 cm becomes 1.5 × 10⁻² m."
+      },
+      {
+        "id": "s2_volume",
+        "kind": "equation",
+        "label": "The volume",
+        "marks": 1,
+        "mark_note": "V = (4/3)πr³",
+        "lines": [
+          "The volume of the sphere is",
+          {
+            "text": "V = (4/3)πr³",
+            "style": "eq"
+          },
+          {
+            "text": "V = (4/3)(3.14)(1.5×10⁻²)³",
+            "style": "eq"
+          },
+          {
+            "text": "V = 1.41 × 10⁻⁵ m³",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Cube the radius, then multiply by (4/3)π.",
+        "why": "The volume has to be found before the density, since density is defined as mass divided by volume.",
+        "common_mistakes": [
+          "Multiplying r by 3 instead of cubing it.",
+          "Forgetting the (4/3)π factor and using r³ alone."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That V = (4/3)πr³, which works out to about 1.41 × 10⁻⁵ cubic metre.",
+          "accept": [
+            "four thirds pi r cubed",
+            "V is 1.41 into 10 to minus 5",
+            "volume of the sphere formula"
+          ],
+          "reject": [
+            "density is mass by volume"
+          ],
+          "heard_as": [
+            "four thirds pi r cubed",
+            "1.41 into 10 minus 5"
+          ]
+        },
+        "memory_tip": "Cube r first, then multiply by (4/3)π — not the other way round."
+      },
+      {
+        "id": "s3_density",
+        "kind": "equation",
+        "label": "The density",
+        "marks": 1,
+        "mark_note": "ρ = m/V",
+        "lines": [
+          "The density is the mass divided",
+          "by the volume:",
+          {
+            "text": "ρ = m/V = 0.038 / 1.41×10⁻⁵",
+            "style": "eq"
+          },
+          {
+            "text": "ρ = 2690 kg m⁻³",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Third mark. Divide the mass by the volume found in the step above.",
+        "why": "Density is defined as mass per unit volume, so this step applies that definition to the numbers already found.",
+        "common_mistakes": [
+          "Dividing the volume by the mass instead of the mass by the volume.",
+          "Leaving the answer as a bare number without the unit kg m⁻³."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That density equals mass over volume, giving about 2690 kilogram per cubic metre.",
+          "accept": [
+            "rho equals m by V",
+            "2690 kg per metre cubed",
+            "mass over volume"
+          ],
+          "reject": [
+            "specific gravity is 2.69"
+          ],
+          "heard_as": [
+            "2690",
+            "kg per metre cube",
+            "density"
+          ]
+        },
+        "memory_tip": "Density: mass over volume. 0.038 over 1.41 × 10⁻⁵ gives 2690 kg m⁻³."
+      },
+      {
+        "id": "s4_specific_gravity",
+        "kind": "boxed_final",
+        "label": "The specific gravity",
+        "marks": 1,
+        "mark_note": "SG = ρ/ρ_water",
+        "lines": [
+          "The specific gravity is the",
+          "density of the sphere divided",
+          "by the density of water:",
+          {
+            "text": "SG = ρ/ρ_water = 2690/1000",
+            "style": "eq"
+          },
+          {
+            "text": "SG = 2.69",
+            "style": "boxed"
+          },
+          "Specific gravity is a pure",
+          "number — it carries no unit."
+        ],
+        "margin_note": "Fourth mark. State clearly that specific gravity has no unit.",
+        "why": "Dividing one density by another cancels the kg m⁻³ on both sides, which is exactly why specific gravity is a pure number.",
+        "common_mistakes": [
+          "Writing a unit such as kg m⁻³ after the value 2.69.",
+          "Dividing by the density of the sphere instead of the density of water."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That specific gravity is density divided by the density of water, equal to 2.69, with no unit.",
+          "accept": [
+            "2.69, no unit",
+            "density by density of water",
+            "specific gravity two point six nine"
+          ],
+          "reject": [
+            "1.41 into ten minus five"
+          ],
+          "heard_as": [
+            "2.69",
+            "specific gravity",
+            "no unit"
+          ]
+        },
+        "memory_tip": "Specific gravity = ρ/ρ_water. The kg m⁻³ cancels, so the answer is a bare number."
+      }
+    ]
+  },
+  "insider_note": "All four marks sit on a straight chain: convert the radius, cube it for the volume, divide for the density, divide again for the specific gravity. A slip in the radius conversion throws off every later step."
+}

@@ -1,0 +1,123 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_surface_tension_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define surface tension. Write its SI unit and dimensional formula.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "SI unit and dimensional formula",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Very Short Answer Question 16 (printed p.106). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: surface tension is the force acting per unit length on an imaginary line drawn in the surface of a liquid, T = F/l; SI unit N m⁻¹, dimensional formula [MT⁻²], matching NCERT Class-11 Chapter 10."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "equation",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "T = F/l",
+        "lines": [
+          "Draw an imaginary line on the surface",
+          "of a liquid. Surface tension is the",
+          "force acting per unit length on this",
+          "line, tangential to the surface and",
+          "at right angles to the line:",
+          {
+            "text": "T = F/l",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Say force per unit length on an imaginary line, tangential to the surface and at right angles to the line, and give T = F/l.",
+        "why": "The direction matters as much as the size: surface tension acts along the surface itself, not into or out of it, which is why it is described as tangential to the surface.",
+        "common_mistakes": [
+          "Saying surface tension acts perpendicular to the surface. It acts tangentially, along the surface.",
+          "Leaving out that the force is measured per unit length of the line, not per unit area."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That surface tension is the force per unit length on an imaginary line in the liquid's surface, acting tangentially to the surface and at right angles to the line: T = F/l.",
+          "accept": [
+            "force per unit length on an imaginary line",
+            "T equals F over l",
+            "tangential to the surface"
+          ],
+          "reject": [
+            "SI unit is N per metre"
+          ],
+          "heard_as": [
+            "surface tension",
+            "force per unit length",
+            "T equals F over l"
+          ]
+        },
+        "memory_tip": "Surface tension: force along the surface, per unit length of an imaginary line, T = F/l."
+      },
+      {
+        "id": "s2_unit_and_dimensions",
+        "kind": "text",
+        "label": "SI unit and dimensional formula",
+        "marks": 1,
+        "mark_note": "N m⁻¹; [MT⁻²]",
+        "lines": [
+          "The SI unit of surface tension is",
+          "newton per metre, N m⁻¹.",
+          "Its dimensional formula is [MT⁻²]."
+        ],
+        "margin_note": "Second mark. Give both the SI unit N m⁻¹ and the dimensional formula [MT⁻²].",
+        "why": "Force per unit length carries the dimensions of force, [MLT⁻²], divided by length, [L], which cancels one power of length and leaves [MT⁻²].",
+        "common_mistakes": [
+          "Writing the unit as N m instead of N m⁻¹.",
+          "Giving only the SI unit and leaving out the dimensional formula, or the other way round."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the SI unit of surface tension is newton per metre, N m⁻¹, and its dimensional formula is [MT⁻²].",
+          "accept": [
+            "N per metre",
+            "dimensional formula M T power minus two",
+            "newton per metre"
+          ],
+          "reject": [
+            "force per unit length on an imaginary line"
+          ],
+          "heard_as": [
+            "N m inverse",
+            "M T power minus two",
+            "dimensional formula"
+          ]
+        },
+        "memory_tip": "Force over length: N m⁻¹ for the unit, [MT⁻²] for the dimensions."
+      }
+    ]
+  },
+  "insider_note": "Give both the SI unit and the dimensional formula for the second mark — either alone earns only half."
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_reynolds_number",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is Reynolds number? What is its significance?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the number decides",
+      "marks": 1
+    },
+    {
+      "label": "The formula",
+      "marks": 1
+    },
+    {
+      "label": "Why it has no unit",
+      "marks": 1
+    },
+    {
+      "label": "The significance",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Short Answer Question 8 (printed p.109). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Re = ρvD/η with D the diameter of the tube, ρ the density, v the speed and η the coefficient of viscosity; it is dimensionless because all these units cancel, and it decides streamline flow below about Re = 1000, turbulent flow above about Re = 2000, with an unsteady region between."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Fluids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_decides",
+        "kind": "text",
+        "label": "What the number decides",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The Reynolds number is a pure",
+          "number that decides whether the",
+          "flow of a fluid in a tube is",
+          "streamline or turbulent."
+        ],
+        "margin_note": "First mark. Say what the number decides before writing the formula.",
+        "why": "The question asks what the Reynolds number is before it asks for the formula — stating what it decides is the definition.",
+        "common_mistakes": [
+          "Starting straight with the formula without saying what the number is for.",
+          "Calling it a physical quantity with a unit; it is a pure number."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Reynolds number is a pure number deciding whether flow is streamline or turbulent.",
+          "accept": [
+            "pure number",
+            "decides streamline or turbulent",
+            "decides the type of flow"
+          ],
+          "reject": [
+            "Re equals rho v D by eta"
+          ],
+          "heard_as": [
+            "pure number",
+            "streamline or turbulent"
+          ]
+        },
+        "memory_tip": "Reynolds number: one number, decides streamline or turbulent."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "equation",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          "It is defined as",
+          {
+            "text": "Re = ρvD/η",
+            "style": "eq"
+          },
+          "where ρ is the density, v the",
+          "speed, D the diameter of the tube",
+          "and η the coefficient of",
+          "viscosity."
+        ],
+        "margin_note": "Second mark. Write the formula and name every symbol, D as the diameter.",
+        "why": "D is the tube's diameter, not its radius — writing the wrong symbol here changes the number by a factor of two.",
+        "common_mistakes": [
+          "Writing D as the radius of the tube; D is the diameter.",
+          "Leaving a symbol unnamed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Re = ρvD/η with D the diameter of the tube, ρ the density, v the speed, η the viscosity.",
+          "accept": [
+            "rho v D by eta",
+            "D is the diameter",
+            "density times speed times diameter over viscosity"
+          ],
+          "reject": [
+            "below 1000 streamline"
+          ],
+          "heard_as": [
+            "rho v D over eta",
+            "diameter"
+          ]
+        },
+        "memory_tip": "Re = ρvD/η — D is the full diameter, not the radius."
+      },
+      {
+        "id": "s3_dimensionless",
+        "kind": "text",
+        "label": "Why it has no unit",
+        "marks": 1,
+        "mark_note": "No unit",
+        "lines": [
+          "Density, speed, diameter and",
+          "viscosity combine so that all",
+          "their units cancel. Reynolds",
+          "number therefore has no unit and",
+          "no dimensions."
+        ],
+        "margin_note": "Third mark. Say the units cancel, so Re has no unit and no dimensions.",
+        "why": "Building the number this way is what lets a dimensionless number be compared directly across different fluids and different tubes.",
+        "common_mistakes": [
+          "Assigning the Reynolds number a unit such as m/s.",
+          "Saying it has dimensions but no SI unit — it has neither."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Reynolds number has no unit and no dimensions.",
+          "accept": [
+            "no unit no dimensions",
+            "dimensionless",
+            "pure number, units cancel"
+          ],
+          "reject": [
+            "formula Re equals rho v D by eta"
+          ],
+          "heard_as": [
+            "no unit",
+            "dimensionless"
+          ]
+        },
+        "memory_tip": "Every unit cancels in Re — that is why it has none of its own."
+      },
+      {
+        "id": "s4_significance",
+        "kind": "boxed_final",
+        "label": "The significance",
+        "marks": 1,
+        "mark_note": "Significance",
+        "lines": [
+          "Its significance: for flow in a",
+          "tube, when Re is below about 1000",
+          "the flow is streamline; when Re is",
+          "above about 2000 it is turbulent;",
+          "between the two the flow is",
+          "unsteady.",
+          {
+            "text": "Re < 1000 ⇒ streamline",
+            "style": "boxed"
+          },
+          {
+            "text": "Re > 2000 ⇒ turbulent",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Last mark. Give both boundary values, not just one.",
+        "why": "Being able to predict streamline or turbulent flow just from Re, without measuring the flow directly, is exactly why the number is useful.",
+        "common_mistakes": [
+          "Quoting only one of the two boundary values.",
+          "Saying the flow is turbulent for every Re above 1000; the region up to 2000 is unsteady, not yet turbulent."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That below about 1000 the flow is streamline, above about 2000 it is turbulent, and it is unsteady in between.",
+          "accept": [
+            "below 1000 streamline",
+            "above 2000 turbulent",
+            "unsteady in between"
+          ],
+          "reject": [
+            "Re equals rho v D by eta"
+          ],
+          "heard_as": [
+            "1000",
+            "2000",
+            "streamline",
+            "turbulent"
+          ]
+        },
+        "memory_tip": "Below 1000, streamline. Above 2000, turbulent. In between, unsteady."
+      }
+    ]
+  },
+  "insider_note": "Two parts to this question: the definition with its formula, and the significance with both boundary values of Re."
+}

@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_viscosity_and_temperature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain the effect of temperature on the viscosity of (a) liquids and (b) gases.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Liquid: viscosity falls",
+      "marks": 1
+    },
+    {
+      "label": "Gas: viscosity rises",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Mechanical Properties of Fluids, Very Short Answer Question 12, parts (a) and (b) (printed p.106). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Part (a) asks about liquids and part (b) about gases; this card answers both parts as one 2-mark question, one mark per part. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: in a liquid, viscosity comes from the force holding neighbouring molecules together, and raising the temperature weakens that force, so the layers slide past each other more easily — viscosity falls. In a gas, viscosity comes from molecules crossing between layers and carrying momentum with them, and raising the temperature increases the molecular speed and so the rate of momentum transfer — viscosity rises."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_liquid",
+        "kind": "text",
+        "label": "Liquid: viscosity falls",
+        "marks": 1,
+        "mark_note": "Liquid η falls with temperature",
+        "lines": [
+          "For a liquid, the viscosity",
+          "decreases as the temperature",
+          "rises.",
+          "A higher temperature reduces the",
+          "force holding neighbouring",
+          "molecules together, so the",
+          "layers slide past each other",
+          "more easily."
+        ],
+        "margin_note": "First mark. Liquid: viscosity falls, and say why — weaker force between molecules.",
+        "why": "In a liquid, viscosity comes from the force holding neighbouring molecules together. A higher temperature weakens that force directly, so the layers move past each other more easily.",
+        "common_mistakes": [
+          "Saying liquid viscosity rises with temperature. It falls — the opposite of a gas.",
+          "Giving the gas reason (faster molecules) for a liquid. In a liquid it is the weaker force between molecules, not molecular speed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a liquid's viscosity decreases as temperature rises, because the force between its molecules weakens and the layers slide past each other more easily.",
+          "accept": [
+            "liquid viscosity falls with temperature",
+            "weaker force between molecules",
+            "layers slide more easily"
+          ],
+          "reject": [
+            "gas viscosity rises with temperature"
+          ],
+          "heard_as": [
+            "liquid",
+            "viscosity falls",
+            "weaker force"
+          ]
+        },
+        "memory_tip": "Liquid: hotter means weaker force between molecules, so viscosity falls."
+      },
+      {
+        "id": "s2_gas",
+        "kind": "boxed_final",
+        "label": "Gas: viscosity rises",
+        "marks": 1,
+        "mark_note": "Gas η rises with temperature",
+        "lines": [
+          "For a gas, the viscosity",
+          "increases as the temperature",
+          "rises.",
+          "A higher temperature makes the",
+          "gas molecules move faster, so",
+          "they carry more momentum from",
+          "one layer to the next as they",
+          "cross between the layers."
+        ],
+        "margin_note": "Second mark. Gas: viscosity rises, and say why — faster molecules carry more momentum.",
+        "why": "In a gas, viscosity comes from molecules crossing between layers and carrying momentum with them. A higher temperature speeds up the molecules, so more momentum is carried across in the same time.",
+        "common_mistakes": [
+          "Saying gas viscosity falls with temperature. It rises — the opposite of a liquid.",
+          "Giving the liquid reason (weaker intermolecular force) for a gas. In a gas it is faster molecules carrying momentum, not a weakening force."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a gas's viscosity increases as temperature rises, because faster molecules carry more momentum between the layers.",
+          "accept": [
+            "gas viscosity rises with temperature",
+            "faster molecules carry more momentum",
+            "momentum transfer between layers increases"
+          ],
+          "reject": [
+            "liquid viscosity falls with temperature"
+          ],
+          "heard_as": [
+            "gas",
+            "viscosity rises",
+            "faster molecules"
+          ]
+        },
+        "memory_tip": "Gas: hotter means faster molecules, so they carry more momentum, so viscosity rises."
+      }
+    ]
+  },
+  "insider_note": "One mark each, opposite directions: a liquid's viscosity falls with heat because the force between its molecules weakens; a gas's viscosity rises because its faster molecules carry more momentum between layers."
+}

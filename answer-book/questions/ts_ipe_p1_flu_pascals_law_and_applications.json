@@ -1,0 +1,207 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_pascals_law_and_applications",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State Pascal's law. Mention its applications.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Pressure equal at the same height",
+      "marks": 1
+    },
+    {
+      "label": "Pascal's law stated",
+      "marks": 1
+    },
+    {
+      "label": "Three applications named",
+      "marks": 1
+    },
+    {
+      "label": "The hydraulic press",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 (Mechanical Properties of Fluids), Short Answer Question 2 (printed p.107). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: for a fluid at rest the pressure is the same at every point at the same height, and a change of pressure applied at any point of an enclosed fluid is transmitted undiminished to every point of the fluid and to the walls of the container; the hydraulic lift, the hydraulic brake and the hydraulic press all work by this law. This card states the law and names the applications; a separate 4-mark question explains how the lift and the brakes work."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Fluids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pressure_same_height",
+        "kind": "text",
+        "label": "Pressure equal at the same height",
+        "marks": 1,
+        "mark_note": "Same height, same pressure",
+        "lines": [
+          "For a fluid at rest, the",
+          "pressure is the same at every",
+          "point that is at the same",
+          "height."
+        ],
+        "margin_note": "First mark. State that the pressure depends only on height, not on position.",
+        "why": "This is the first half of Pascal's law, and it is what makes 'the pressure at a height' a meaningful single number.",
+        "common_mistakes": [
+          "Saying the pressure is the same everywhere in the fluid, without the same-height condition.",
+          "Confusing this with the second half of the law, about pressure transmitted through the fluid."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That in a fluid at rest the pressure is the same at all points at the same height.",
+          "accept": [
+            "same height, same pressure",
+            "pressure depends only on height",
+            "at rest, equal pressure at equal height"
+          ],
+          "reject": [
+            "pressure is transmitted undiminished"
+          ],
+          "heard_as": [
+            "same height",
+            "equal pressure",
+            "fluid at rest"
+          ]
+        },
+        "memory_tip": "Same height means same pressure, for a fluid at rest."
+      },
+      {
+        "id": "s2_pascals_law_stated",
+        "kind": "text",
+        "label": "Pascal's law stated",
+        "marks": 1,
+        "mark_note": "Transmitted undiminished",
+        "lines": [
+          "Pascal's law: a change of",
+          "pressure applied at any point",
+          "of an enclosed fluid is",
+          "transmitted undiminished to",
+          "every point of the fluid and",
+          "to the walls of the container."
+        ],
+        "margin_note": "Second mark. Say 'undiminished' — the change reaches every point at full strength.",
+        "why": "This is the working part of the law, and it is the reason a small force applied at one point can act as a large force elsewhere, which every application below relies on.",
+        "common_mistakes": [
+          "Saying the pressure is transmitted, without 'undiminished' — the strength does not fall along the way.",
+          "Restricting the statement to liquids only, when the law holds for any fluid at rest."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a pressure change applied to an enclosed fluid is transmitted undiminished to every point and to the container walls.",
+          "accept": [
+            "transmitted undiminished",
+            "Pascal's law full statement",
+            "pressure change reaches every point equally"
+          ],
+          "reject": [
+            "same height, same pressure"
+          ],
+          "heard_as": [
+            "undiminished",
+            "transmitted",
+            "enclosed fluid"
+          ]
+        },
+        "memory_tip": "Undiminished is the key word — the change reaches every point at full strength."
+      },
+      {
+        "id": "s3_three_applications",
+        "kind": "text",
+        "label": "Three applications named",
+        "marks": 1,
+        "mark_note": "Lift, brake, press",
+        "lines": [
+          "Three applications of Pascal's",
+          "law: the hydraulic lift, the",
+          "hydraulic brake and the",
+          "hydraulic press."
+        ],
+        "margin_note": "Third mark. Name all three devices.",
+        "why": "Naming the devices is itself the mark here; the working of each is separate ground.",
+        "common_mistakes": [
+          "Naming only one or two of the three devices.",
+          "Naming a device that is not built on Pascal's law, such as a barometer."
+        ],
+        "recall": {
+          "credit": "name_it",
+          "must_convey": "The three named devices: the hydraulic lift, the hydraulic brake and the hydraulic press.",
+          "accept": [
+            "hydraulic lift, brake and press",
+            "lift, brake, press",
+            "the three hydraulic devices"
+          ],
+          "reject": [
+            "transmitted undiminished"
+          ],
+          "heard_as": [
+            "hydraulic lift",
+            "hydraulic brake",
+            "hydraulic press"
+          ]
+        },
+        "memory_tip": "Three hydraulic devices: lift, brake, press — all three from one law."
+      },
+      {
+        "id": "s4_hydraulic_press_use",
+        "kind": "boxed_final",
+        "label": "The hydraulic press",
+        "marks": 1,
+        "mark_note": "What the press is used for",
+        "lines": [
+          "The hydraulic press is used to",
+          "compress bales of raw cotton,",
+          "to crush scrap metal for",
+          "recycling, and to extract oil",
+          "from oilseeds.",
+          "It works on the same law as",
+          "the lift and the brakes."
+        ],
+        "margin_note": "Fourth mark. Give at least one real use of the hydraulic press.",
+        "why": "Naming a real use shows the application is understood, not just recited from a list of names.",
+        "common_mistakes": [
+          "Describing the press with no example of what it is used for.",
+          "Confusing the press with the hydraulic lift — the press compresses or crushes; it does not raise a load."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "At least one real use of the hydraulic press, such as compressing cotton, crushing scrap metal, or extracting oil from seeds.",
+          "accept": [
+            "compresses cotton bales",
+            "crushes scrap metal",
+            "extracts oil from seeds"
+          ],
+          "reject": [
+            "raises a load on a large piston"
+          ],
+          "heard_as": [
+            "press",
+            "crush",
+            "compress",
+            "oil"
+          ]
+        },
+        "memory_tip": "The press compresses and crushes; the lift raises. Different jobs, same law."
+      }
+    ]
+  },
+  "insider_note": "Four marks, four short facts: two halves of the law, the three names, and one real use of the press. A student who writes only the formula-free statement and no application usually stops at two marks."
+}

@@ -1,0 +1,224 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_angle_of_contact_and_values",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is the angle of contact? Give its values for pure water and for mercury, each in contact with glass.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The two values",
+      "marks": 1
+    },
+    {
+      "label": "What decides the angle",
+      "marks": 1
+    },
+    {
+      "label": "What follows from θ",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Short Answer Question 14 (printed p.110). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the angle of contact θ is measured inside the liquid, between the tangent to the liquid surface at the point of contact and the solid surface. The question asks for PURE water, whose angle of contact on clean glass is about 0°; an ordinary water sample on ordinary glass gives a small acute angle nearer 8°, worth naming but not the value asked for. Mercury on glass gives θ about 140°. θ is set by the balance of the adhesive force between liquid and solid against the cohesive force within the liquid: an acute θ means the liquid wets the solid, with a concave meniscus and a capillary rise; an obtuse θ means it does not wet, with a convex meniscus and a capillary depression."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Fluids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Angle measured inside the liquid",
+        "lines": [
+          "Where a liquid surface meets a solid,",
+          "draw the tangent to the liquid surface",
+          "at the point of contact.",
+          "The angle between that tangent and the",
+          "solid surface, measured inside the",
+          "liquid, is the angle of contact θ."
+        ],
+        "margin_note": "First mark. State that θ is measured inside the liquid — without it, the same drawing gives two possible angles.",
+        "why": "The tangent to the liquid surface and the solid surface meet at two angles that add to 180°. Saying inside the liquid is what selects the one meant by θ.",
+        "common_mistakes": [
+          "Leaving out inside the liquid, which leaves the supplementary angle equally valid.",
+          "Giving the angle between the solid surface and the vertical instead of the liquid tangent."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the angle of contact is between the tangent to the liquid surface at the point of contact and the solid surface, measured inside the liquid.",
+          "accept": [
+            "tangent to the liquid surface and the solid surface",
+            "measured inside the liquid",
+            "angle at the point of contact"
+          ],
+          "reject": [
+            "pure water is about 0 degrees",
+            "adhesion is larger than cohesion",
+            "acute angle wets the solid"
+          ],
+          "heard_as": [
+            "angle of contact",
+            "tangent",
+            "inside the liquid"
+          ]
+        },
+        "memory_tip": "Tangent to the liquid, then the solid surface, angle taken inside the liquid."
+      },
+      {
+        "id": "s2_values",
+        "kind": "text",
+        "label": "The two values",
+        "marks": 1,
+        "mark_note": "Pure water about 0°, mercury about 140°",
+        "lines": [
+          "For PURE water on clean glass, θ is",
+          "about 0°.",
+          "An ordinary water sample on ordinary",
+          "glass gives a smaller acute angle,",
+          "nearer 8°.",
+          "For mercury on glass, θ is about 140°."
+        ],
+        "margin_note": "Second mark. Name both values: pure water near 0° and mercury near 140°.",
+        "why": "The angle of contact is not one fixed number for a liquid — it depends on the solid and how clean the surface is, so the two named values are what the question asks for.",
+        "common_mistakes": [
+          "Giving only the ordinary-water value, about 8°, in place of the pure-water value the question asks for, about 0°.",
+          "Swapping the two values, mercury near 0° and water near 140°."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That pure water on clean glass gives θ about 0°, and mercury on glass gives θ about 140°.",
+          "accept": [
+            "pure water about 0 degrees",
+            "mercury about 140 degrees",
+            "0 degrees for water, 140 for mercury"
+          ],
+          "reject": [
+            "measured inside the liquid",
+            "adhesion is larger than cohesion"
+          ],
+          "heard_as": [
+            "zero degrees",
+            "one forty degrees",
+            "pure water",
+            "mercury"
+          ]
+        },
+        "memory_tip": "Water wets glass: θ near 0°. Mercury does not: θ near 140°."
+      },
+      {
+        "id": "s3_adhesion_cohesion",
+        "kind": "text",
+        "label": "What decides the angle",
+        "marks": 1,
+        "mark_note": "Adhesion versus cohesion",
+        "lines": [
+          "The value of θ is set by a balance of",
+          "two forces: the adhesive force between",
+          "the liquid and the solid, and the",
+          "cohesive force within the liquid",
+          "itself.",
+          "Adhesion larger than cohesion gives a",
+          "small θ; cohesion larger than adhesion",
+          "gives a large θ."
+        ],
+        "margin_note": "Third mark. Name both forces: adhesion between liquid and solid, cohesion within the liquid.",
+        "why": "The two values in the step before this are not arbitrary. They follow from which force is larger for that pair of substances, so naming the two forces is what explains the numbers rather than just stating them.",
+        "common_mistakes": [
+          "Using cohesion for the liquid-solid force. Adhesion is between the liquid and the solid; cohesion is within the liquid.",
+          "Naming only one of the two forces."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That θ is decided by the balance between the adhesive force, liquid to solid, and the cohesive force within the liquid.",
+          "accept": [
+            "adhesion versus cohesion decides theta",
+            "adhesive force and cohesive force in balance",
+            "balance of the two forces"
+          ],
+          "reject": [
+            "pure water is about 0 degrees",
+            "acute angle wets the solid"
+          ],
+          "heard_as": [
+            "adhesion",
+            "cohesion",
+            "adhesive force",
+            "cohesive force"
+          ]
+        },
+        "memory_tip": "Adhesion pulls the liquid to the solid. Cohesion pulls the liquid to itself."
+      },
+      {
+        "id": "s4_wetting_consequence",
+        "kind": "boxed_final",
+        "label": "What follows from θ",
+        "marks": 1,
+        "mark_note": "Acute wets, obtuse does not",
+        "lines": [
+          "An acute θ means the liquid wets the",
+          "solid: its meniscus is concave, and it",
+          "rises in a capillary tube.",
+          "An obtuse θ means the liquid does not",
+          "wet the solid: its meniscus is convex,",
+          "and it is depressed in a capillary",
+          "tube.",
+          {
+            "text": "θ < 90° ⇒ rises · θ > 90° ⇒ falls",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. State the meniscus shape and the capillary effect for both cases.",
+        "why": "The acute or obtuse angle is not just a number to quote. It sets the shape of the meniscus and whether the liquid rises or falls in a narrow tube, which is the physical consequence the definition and the two forces lead to.",
+        "common_mistakes": [
+          "Stating only wets or does not wet, without the meniscus shape or the capillary behaviour.",
+          "Swapping concave and convex, or rise and depression, between the two cases."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an acute θ means the liquid wets the solid with a concave meniscus and rises in a capillary tube, while an obtuse θ means it does not wet, has a convex meniscus, and is depressed in the tube.",
+          "accept": [
+            "acute wets, concave, rises",
+            "obtuse does not wet, convex, depressed",
+            "water rises in a capillary tube, mercury is depressed"
+          ],
+          "reject": [
+            "adhesion is larger than cohesion"
+          ],
+          "heard_as": [
+            "concave",
+            "convex",
+            "capillary",
+            "rises",
+            "depressed"
+          ]
+        },
+        "memory_tip": "Acute: concave, rises. Obtuse: convex, falls."
+      }
+    ]
+  },
+  "insider_note": "The most common slip is writing the ordinary-water value, about 8°, where the question asks for pure water, about 0°."
+}

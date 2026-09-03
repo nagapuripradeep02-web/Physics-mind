@@ -1,0 +1,122 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_eddy_flow_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define eddy flow in the case of a fluid.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "When it occurs, and its effect",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Very Short Answer Question 14 (printed p.106). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: eddy flow is the irregular motion in which small portions of a fluid rotate about their own axes, forming whirls called eddies; it sets in once the flow speed exceeds the critical velocity, and the eddies carry energy away from the main flow, matching NCERT Class-11 Chapter 10."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Portions rotate, forming eddies",
+        "lines": [
+          "When the flow of a fluid becomes",
+          "irregular, small portions of the fluid",
+          "rotate about their own axes, forming",
+          "whirls. Each whirl is called an eddy,",
+          "and this motion is called eddy flow."
+        ],
+        "margin_note": "First mark. Say the flow is irregular and small portions of the fluid rotate about their own axes, forming eddies.",
+        "why": "Eddy flow describes what happens inside the fluid, not just a loss of streamline flow — the portions of fluid spinning about their own axes are the eddies themselves.",
+        "common_mistakes": [
+          "Saying only that the flow becomes irregular, without saying portions of the fluid rotate about their own axes.",
+          "Confusing an eddy in a fluid with an eddy current in a conductor. These are different physical effects."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That eddy flow is the irregular motion in which small portions of the fluid rotate about their own axes, forming whirls called eddies.",
+          "accept": [
+            "portions of the fluid rotate about their own axes",
+            "small whirls called eddies",
+            "irregular motion, the fluid spins on itself"
+          ],
+          "reject": [
+            "it happens above the critical velocity"
+          ],
+          "heard_as": [
+            "eddy flow",
+            "portions rotate",
+            "whirls",
+            "eddies"
+          ]
+        },
+        "memory_tip": "Eddy flow: small parts of the fluid spin about their own axes."
+      },
+      {
+        "id": "s2_when_and_effect",
+        "kind": "text",
+        "label": "When it occurs, and its effect",
+        "marks": 1,
+        "mark_note": "Above critical velocity; carries energy away",
+        "lines": [
+          "Eddy flow sets in once the speed of the",
+          "fluid exceeds the critical velocity, and",
+          "the flow is no longer streamline.",
+          "The eddies carry energy away from the",
+          "main flow."
+        ],
+        "margin_note": "Second mark. Say it sets in above the critical velocity, and the eddies carry energy away from the main flow.",
+        "why": "The critical velocity is the exact speed at which streamline flow breaks down, so eddy flow is what streamline flow turns into once that speed is crossed; the energy the eddies carry away is lost from the useful forward flow.",
+        "common_mistakes": [
+          "Saying eddy flow occurs below the critical velocity. It occurs above it.",
+          "Leaving out that the eddies carry energy away from the main flow."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That eddy flow sets in once the speed exceeds the critical velocity, and the eddies carry energy away from the main flow.",
+          "accept": [
+            "above the critical velocity",
+            "flow is no longer streamline",
+            "eddies carry energy away"
+          ],
+          "reject": [
+            "portions of the fluid rotate about their own axes"
+          ],
+          "heard_as": [
+            "critical velocity",
+            "carries energy away",
+            "no longer streamline"
+          ]
+        },
+        "memory_tip": "Above critical velocity, flow breaks into eddies, and energy leaks into them."
+      }
+    ]
+  },
+  "insider_note": "Both marks need a distinct idea: the first names the rotation, the second names when it happens and what it costs — energy carried away from the main flow."
+}

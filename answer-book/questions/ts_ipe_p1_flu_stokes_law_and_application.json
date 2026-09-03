@@ -1,0 +1,232 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_stokes_law_and_application",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain Stokes' law with an application.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Stokes' law",
+      "marks": 1
+    },
+    {
+      "label": "Forces on a raindrop",
+      "marks": 1
+    },
+    {
+      "label": "Terminal velocity",
+      "marks": 1
+    },
+    {
+      "label": "Why the impact speed is moderate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Short Answer Question 10 (printed p.110). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Stokes' law F = 6πηrv holds for a small sphere moving slowly with streamline flow around it; for a falling raindrop the drag grows with speed until it balances weight minus upthrust, 6πηrv = (4/3)πr³(ρ − σ)g, giving the terminal velocity v_t = (2/9)r²g(ρ − σ)/η, arithmetic of the balance verified."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Fluids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_stokes_law_statement",
+        "kind": "equation",
+        "label": "Stokes' law",
+        "marks": 1,
+        "mark_note": "Stokes' law",
+        "lines": [
+          "Stokes' law: a small sphere of",
+          "radius r moving slowly with",
+          "velocity v through a fluid of",
+          "coefficient of viscosity η meets a",
+          "viscous drag",
+          {
+            "text": "F = 6πηrv",
+            "style": "eq"
+          },
+          "provided the flow around the",
+          "sphere stays streamline."
+        ],
+        "margin_note": "First mark. Write the formula and name every symbol.",
+        "why": "The condition — small sphere, slow motion, streamline flow — is part of the law itself: the formula does not hold once the flow around the sphere turns turbulent.",
+        "common_mistakes": [
+          "Writing the formula without naming r, η and v.",
+          "Leaving out the streamline-flow condition."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Stokes' law gives the viscous drag on a small sphere as F = 6 pi eta r v, for streamline flow around it.",
+          "accept": [
+            "F equals 6 pi eta r v",
+            "viscous drag on a small sphere",
+            "streamline flow around the sphere"
+          ],
+          "reject": [
+            "terminal velocity"
+          ],
+          "heard_as": [
+            "6 pi eta r v",
+            "viscous drag",
+            "streamline"
+          ]
+        },
+        "memory_tip": "F = 6πηrv — small sphere, slow motion, streamline flow around it."
+      },
+      {
+        "id": "s2_raindrop_forces",
+        "kind": "text",
+        "label": "Forces on a raindrop",
+        "marks": 1,
+        "mark_note": "Raindrop forces",
+        "lines": [
+          "Application — a falling raindrop.",
+          "As it falls it is acted on by its",
+          "weight downward, the upthrust of",
+          "the air upward, and the viscous",
+          "drag upward, which grows larger as",
+          "its speed increases."
+        ],
+        "margin_note": "Second mark. Name all three forces, and say the drag grows with speed.",
+        "why": "Setting out the three forces, and noting that only the drag changes with speed, is what makes the next step — the balance — possible.",
+        "common_mistakes": [
+          "Naming only weight and drag, leaving out the upthrust of the air.",
+          "Saying the drag is constant; it grows as the speed grows."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a falling raindrop is acted on by weight down, upthrust up, and a viscous drag up that grows with speed.",
+          "accept": [
+            "weight upthrust and drag",
+            "drag grows with speed",
+            "three forces on the raindrop"
+          ],
+          "reject": [
+            "F equals 6 pi eta r v"
+          ],
+          "heard_as": [
+            "weight",
+            "upthrust",
+            "drag grows"
+          ]
+        },
+        "memory_tip": "Three forces on the raindrop: weight down, upthrust and drag up."
+      },
+      {
+        "id": "s3_terminal_velocity",
+        "kind": "equation",
+        "label": "Terminal velocity",
+        "marks": 1,
+        "mark_note": "Terminal velocity",
+        "lines": [
+          "The drag keeps growing until it",
+          "balances weight minus upthrust:",
+          {
+            "text": "6πηrv = (4/3)πr³(ρ − σ)g",
+            "style": "eq"
+          },
+          "After this the net force is zero",
+          "and the drop falls at a constant",
+          "terminal velocity",
+          {
+            "text": "v_t = (2/9)r²g(ρ − σ)/η",
+            "style": "eq"
+          },
+          "with ρ the drop's density and σ",
+          "the air's."
+        ],
+        "margin_note": "Third mark. Set drag equal to weight minus upthrust, then give v_t.",
+        "why": "Terminal velocity is the state of zero net force, not zero speed — the drop keeps moving, just without accelerating any further.",
+        "common_mistakes": [
+          "Saying the raindrop stops; it keeps falling, at a constant speed.",
+          "Writing σ as the drop's density and ρ as the air's; it is the other way round."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That terminal velocity is reached when the drag balances weight minus upthrust, giving v t equals two ninths r squared g times rho minus sigma over eta.",
+          "accept": [
+            "v t equals two ninths r squared g rho minus sigma over eta",
+            "drag balances weight minus upthrust",
+            "constant terminal velocity"
+          ],
+          "reject": [
+            "6 pi eta r v is the drag alone"
+          ],
+          "heard_as": [
+            "terminal velocity",
+            "two ninths r squared",
+            "balance"
+          ]
+        },
+        "memory_tip": "v_t = (2/9)r²g(ρ − σ)/η — reached when drag balances weight minus upthrust."
+      },
+      {
+        "id": "s4_why_it_matters",
+        "kind": "boxed_final",
+        "label": "Why the impact speed is moderate",
+        "marks": 1,
+        "mark_note": "Significance",
+        "lines": [
+          "Because of this, a raindrop does",
+          "not keep accelerating all the way",
+          "down. It reaches its terminal",
+          "velocity within a short fall and",
+          "then strikes the ground at that",
+          "steady, moderate speed rather than",
+          "at high speed.",
+          {
+            "text": "Drag grows ⇒ v_t reached",
+            "style": "boxed"
+          },
+          {
+            "text": "⇒ moderate impact speed",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Last mark. Say what the terminal velocity means for the raindrop's impact.",
+        "why": "This is the physical result the application is asked for — it explains why a small raindrop causes no harm even though it falls from a considerable height.",
+        "common_mistakes": [
+          "Saying the raindrop accelerates all the way to the ground; it stops accelerating once terminal velocity is reached.",
+          "Leaving out why the terminal speed matters — the moderate impact."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That because of Stokes' law drag, a raindrop reaches a terminal velocity and so strikes the ground at a moderate speed, not at high speed.",
+          "accept": [
+            "reaches terminal velocity quickly",
+            "strikes ground at moderate speed",
+            "does not keep accelerating"
+          ],
+          "reject": [
+            "6 pi eta r v is the formula"
+          ],
+          "heard_as": [
+            "moderate speed",
+            "not high speed",
+            "terminal velocity reached"
+          ]
+        },
+        "memory_tip": "Terminal velocity reached fast — that is why rain does not hurt."
+      }
+    ]
+  },
+  "insider_note": "Four marks, four parts: the law and its formula, the three forces on the raindrop, the terminal-velocity balance, and why that keeps the impact speed moderate."
+}

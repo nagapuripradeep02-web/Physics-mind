@@ -1,0 +1,131 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_bernoulli_conditions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the two conditions under which Bernoulli's theorem can be applied.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Non-viscous — no friction losses",
+      "marks": 1
+    },
+    {
+      "label": "Incompressible — fixed density",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Mechanical Properties of Fluids, Very Short Answer Question 8 (printed p.106). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Bernoulli's theorem is derived for the steady, streamline flow of a fluid that is non-viscous, so no energy is lost to internal friction between its layers, and incompressible, so its density is the same at every point — both are needed for the sum of pressure, kinetic and potential energy per unit mass to stay constant along a streamline."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_non_viscous",
+        "kind": "text",
+        "label": "Non-viscous — no friction losses",
+        "marks": 1,
+        "mark_note": "Non-viscous: no energy lost to friction",
+        "lines": [
+          "Bernoulli's theorem is derived",
+          "for the steady, streamline flow",
+          "of a fluid.",
+          "The first condition is that the",
+          "fluid is non-viscous, so its",
+          "layers have no internal friction",
+          "between them.",
+          "No energy is then lost to",
+          "friction, so the total mechanical",
+          "energy along the streamline",
+          "stays constant."
+        ],
+        "margin_note": "First mark. Name non-viscous and say why: no energy lost to friction.",
+        "why": "Without this condition, some of the fluid's mechanical energy would be lost to internal friction as it flows, and the sum would fall rather than stay constant.",
+        "common_mistakes": [
+          "Naming non-viscous without saying what it means for the energy — that no energy is lost to friction.",
+          "Confusing non-viscous with incompressible. Non-viscous is about friction between layers, not density."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fluid must be non-viscous, so no energy is lost to internal friction as it flows.",
+          "accept": [
+            "non-viscous, no friction between layers",
+            "no energy lost to friction",
+            "zero internal friction"
+          ],
+          "reject": [
+            "density stays the same"
+          ],
+          "heard_as": [
+            "non-viscous",
+            "friction",
+            "energy lost"
+          ]
+        },
+        "memory_tip": "Non-viscous means no friction, so no energy is lost."
+      },
+      {
+        "id": "s2_incompressible",
+        "kind": "boxed_final",
+        "label": "Incompressible — fixed density",
+        "marks": 1,
+        "mark_note": "Incompressible: one fixed density ρ",
+        "lines": [
+          "The second condition is that the",
+          "fluid is incompressible — its",
+          "density stays the same at every",
+          "point in the flow.",
+          "This lets the same density ρ be",
+          "used throughout the equation.",
+          "The flow must also be steady, so",
+          "the picture at each point does",
+          "not change with time."
+        ],
+        "margin_note": "Second mark. Name incompressible and say why: one fixed density ρ.",
+        "why": "If the density changed from point to point, a single ρ could not stand for the whole flow, and the formula would need a different ρ at each point.",
+        "common_mistakes": [
+          "Naming incompressible without saying that the density is the same at every point.",
+          "Giving only steady flow as one of the two conditions. Steady flow is the setting Bernoulli's theorem is derived in; non-viscous and incompressible are the two named conditions."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the fluid must be incompressible, so its density is the same at every point, and the flow must be steady.",
+          "accept": [
+            "incompressible, density constant everywhere",
+            "one fixed density rho",
+            "steady flow"
+          ],
+          "reject": [
+            "no friction between layers"
+          ],
+          "heard_as": [
+            "incompressible",
+            "density",
+            "steady"
+          ]
+        },
+        "memory_tip": "Incompressible means one fixed ρ for the whole flow."
+      }
+    ]
+  },
+  "insider_note": "Two marks, two named conditions: non-viscous and incompressible. Steady flow is the setting Bernoulli's theorem is derived in, not one of the two conditions asked for."
+}

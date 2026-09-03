@@ -1,0 +1,126 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_average_pressure_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define average pressure. State its SI unit and dimensional formula. Is pressure a scalar or a vector quantity?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition, formula and unit",
+      "marks": 1
+    },
+    {
+      "label": "Pressure is a scalar quantity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Very Short Answer Question 1 (printed p.105). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: average pressure is P = F/A with SI unit N m⁻² (the pascal) and dimensional formula [ML⁻¹T⁻²]; pressure is a scalar because the force producing it always acts normal to the surface, whatever the surface's orientation, so no fixed direction attaches to pressure itself."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition, formula and unit",
+        "marks": 1,
+        "mark_note": "Definition, formula and unit",
+        "lines": [
+          "Average pressure at a point is the",
+          "normal force acting per unit area",
+          "there:",
+          {
+            "text": "P = F/A",
+            "style": "eq"
+          },
+          "SI unit N m⁻², also called the",
+          "pascal (Pa). Dimensional formula",
+          "[ML⁻¹T⁻²]."
+        ],
+        "margin_note": "First mark. Give the definition, the formula P = F/A, the SI unit and the dimensional formula.",
+        "why": "The definition names pressure as force per unit area, and the unit and dimensional formula are the standard way to state any physical quantity completely.",
+        "common_mistakes": [
+          "Giving the formula alone without stating it in words as force per unit area.",
+          "Writing the unit as N/m² and never naming it as the pascal."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That average pressure is the normal force per unit area, P equals F over A, SI unit newton per metre squared or pascal, dimensional formula M L to the minus 1 T to the minus 2.",
+          "accept": [
+            "force per unit area",
+            "P equals F over A",
+            "SI unit pascal"
+          ],
+          "reject": [
+            "pressure is a scalar"
+          ],
+          "heard_as": [
+            "force per unit area",
+            "pascal",
+            "P equals F over A"
+          ]
+        },
+        "memory_tip": "Pressure is force spread over area: P = F/A, unit pascal."
+      },
+      {
+        "id": "s2_scalar",
+        "kind": "boxed_final",
+        "label": "Pressure is a scalar quantity",
+        "marks": 1,
+        "mark_note": "Scalar, not vector",
+        "lines": [
+          "Pressure is a scalar quantity.",
+          "The force on a surface always acts",
+          "normal to that surface, whatever",
+          "direction the surface faces, so",
+          "pressure itself has no direction",
+          "of its own."
+        ],
+        "margin_note": "Second mark. Say pressure is a scalar and give the reason: the force is always normal to the surface, whatever its orientation.",
+        "why": "A vector needs one fixed direction. Because the force producing pressure always points normal to whichever surface it acts on, pressure itself carries no direction and is a scalar.",
+        "common_mistakes": [
+          "Calling pressure a vector because the force producing it is a vector.",
+          "Saying pressure has no direction without giving the reason."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That pressure is a scalar because the force is always normal to the surface, whatever the surface's orientation.",
+          "accept": [
+            "pressure is a scalar",
+            "force is always normal to the surface",
+            "no fixed direction"
+          ],
+          "reject": [
+            "force per unit area"
+          ],
+          "heard_as": [
+            "scalar",
+            "normal to the surface"
+          ]
+        },
+        "memory_tip": "Force turns to face any surface, so pressure itself points nowhere: it is a scalar."
+      }
+    ]
+  },
+  "insider_note": "Two marks: the definition with formula and unit, then the reason pressure is a scalar. The reason — force normal to the surface whatever its orientation — is the substance of the second mark, not just the word 'scalar' on its own."
+}

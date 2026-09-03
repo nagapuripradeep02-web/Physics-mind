@@ -1,0 +1,128 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_critical_velocity_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define the critical velocity of a fluid and give its expression.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The expression",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Very Short Answer Question 15 (printed p.106). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. BOOK ERROR: the source book's expression for the critical velocity names d as the RADIUS of the tube; it is the DIAMETER, because the Reynolds number is defined as Re = ρvD/η with D the diameter — so this card writes D throughout and names it the diameter, not the book's d/radius. Physics hand-checked: v_c = Re·η/(ρD), where Re is the Reynolds number, η the coefficient of viscosity, ρ the density of the fluid and D the diameter of the tube, matching NCERT Class-11 Chapter 10."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Greatest speed for streamline flow",
+        "lines": [
+          "The critical velocity is the greatest",
+          "velocity up to which the flow of a fluid",
+          "in a tube stays streamline.",
+          "Above this velocity the flow turns",
+          "turbulent."
+        ],
+        "margin_note": "First mark. Say it is the greatest velocity up to which the flow stays streamline; above it the flow turns turbulent.",
+        "why": "The word critical marks a boundary speed, not a typical one: below it the flow is orderly, and crossing it is exactly what changes the flow's character to turbulent.",
+        "common_mistakes": [
+          "Calling it the speed at which the flow is turbulent. It is the greatest speed at which the flow is still streamline.",
+          "Leaving out that flow above this speed turns turbulent."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the critical velocity is the greatest velocity up to which the flow stays streamline, and above it the flow turns turbulent.",
+          "accept": [
+            "greatest velocity for streamline flow",
+            "flow turns turbulent above it",
+            "boundary between streamline and turbulent flow"
+          ],
+          "reject": [
+            "v_c equals Re eta over rho D"
+          ],
+          "heard_as": [
+            "critical velocity",
+            "streamline flow",
+            "turns turbulent"
+          ]
+        },
+        "memory_tip": "Critical velocity: the last streamline speed, before the flow turns turbulent."
+      },
+      {
+        "id": "s2_expression",
+        "kind": "boxed_final",
+        "label": "The expression",
+        "marks": 1,
+        "mark_note": "v_c = Re·η/(ρD)",
+        "lines": [
+          {
+            "text": "v_c = Re·η/(ρD)",
+            "style": "eq"
+          },
+          "Re is the Reynolds number, η is the",
+          "coefficient of viscosity, ρ is the",
+          "density of the fluid and D is the",
+          "diameter of the tube.",
+          {
+            "text": "v_c = Re·η/(ρD)",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Second mark. Write the expression and name every symbol, with D as the diameter of the tube.",
+        "why": "The Reynolds number Re is itself defined using the diameter D, so the same D must appear in v_c for the two expressions to stay consistent.",
+        "common_mistakes": [
+          "Calling D the radius of the tube. D is the diameter.",
+          "Leaving one of the four symbols unnamed on the right side of the expression."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That v_c equals Re times eta over rho D, with Re the Reynolds number, eta the coefficient of viscosity, rho the density and D the diameter of the tube.",
+          "accept": [
+            "v_c is Re eta over rho D",
+            "D is the diameter of the tube",
+            "Reynolds number times viscosity over density and diameter"
+          ],
+          "reject": [
+            "greatest velocity for streamline flow"
+          ],
+          "heard_as": [
+            "v c",
+            "Reynolds number",
+            "diameter"
+          ]
+        },
+        "memory_tip": "v_c = Re·η/(ρD) — D is the diameter, the same D that sits inside the Reynolds number."
+      }
+    ]
+  },
+  "insider_note": "D is the diameter, not the radius — the printed book calls d the radius here, but the Reynolds number it is built from uses the diameter, so writing D as the diameter is the correction this card makes."
+}
