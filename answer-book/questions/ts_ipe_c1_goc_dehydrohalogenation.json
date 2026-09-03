@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_dehydrohalogenation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is dehydrohalogenation? Write the equation for the formation of an alkene from an alkyl halide.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "What is removed, and the reagent",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    },
+    {
+      "label": "The general change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.115, chapter 10 GENERAL ORGANIC CHEMISTRY, SHORT ANSWER QUESTIONS question 24. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The equation was counted atom by atom: CH₃CH₂Br + KOH → CH₂=CH₂ + KBr + H₂O (C 2 = 2, H 6 = 6, Br 1 = 1, K 1 = 1, O 1 = 1). THE EQUATION MAY ALSO BE WRITTEN WITH THE HYDROGEN HALIDE SHOWN LEAVING, CH₃CH₂Br → CH₂=CH₂ + HBr, with alcoholic KOH written over the arrow; that form is also correct and the card does not treat it as an error. The card writes the fuller form because it accounts for the potassium and shows the water."
+  },
+  "insider_note": "The name is the definition: hydrogen and halogen are removed together from adjacent carbon atoms. Write the word alcoholic next to the KOH, because aqueous KOH gives the alcohol instead.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "General Organic Chemistry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Dehydrohalogenation is the removal of a",
+          "hydrogen atom and a halogen atom from",
+          "adjacent carbon atoms of an alkyl",
+          "halide, giving an alkene.",
+          "It is an elimination reaction."
+        ],
+        "why": "The word carries the definition: de-hydro-halogenation, the taking away of hydrogen and halogen. Both leave together as one molecule of hydrogen halide, and the two carbon atoms they leave behind form a double bond between them.",
+        "common_mistakes": [
+          "Writing that two halogen atoms are removed. That is dehalogenation; here one hydrogen and one halogen leave.",
+          "Calling it a substitution. Nothing joins the molecule; two atoms are removed and a double bond is formed."
+        ],
+        "memory_tip": "De-hydro-halogenation: hydrogen and halogen leave together.",
+        "margin_note": "Open with the definition in one sentence, then name the reagent."
+      },
+      {
+        "id": "s2_what_is_removed",
+        "kind": "text",
+        "label": "What is removed, and the reagent",
+        "marks": 1,
+        "mark_note": "The two atoms and the reagent",
+        "lines": [
+          "The halogen sits on one carbon atom and",
+          "the hydrogen is taken from the carbon",
+          "atom next to it, so the change is a",
+          "β-elimination.",
+          "The reagent is alcoholic potassium",
+          "hydroxide, warmed.",
+          "Alcoholic KOH gives the alkene;",
+          "aqueous KOH gives the alcohol instead."
+        ],
+        "why": "Naming the carbon atom the hydrogen comes from is what makes the definition exact: a double bond can only form between two carbon atoms that are already joined, so the two atoms removed must come off adjacent carbon atoms. The solvent settles which product is obtained, so it belongs in the answer.",
+        "common_mistakes": [
+          "Writing aqueous KOH. Water gives the alcohol by substitution; the alcoholic solution gives the alkene.",
+          "Taking the hydrogen from the same carbon atom as the halogen. The two must be on adjacent carbon atoms."
+        ],
+        "memory_tip": "Alcoholic KOH for the alkene, aqueous KOH for the alcohol.",
+        "margin_note": "Write the word alcoholic beside the KOH. The solvent is part of the condition."
+      },
+      {
+        "id": "s3_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "The equation",
+        "lines": [
+          "Ethyl bromide warmed with alcoholic KOH",
+          "gives ethylene:",
+          {
+            "text": "CH₃CH₂Br + KOH → CH₂=CH₂ + KBr + H₂O",
+            "style": "eq"
+          },
+          "The hydrogen comes from the CH₃ carbon",
+          "and the bromine from the CH₂ carbon."
+        ],
+        "why": "Counting the atoms shows the elimination plainly: six hydrogen atoms enter, four stay in the ethylene and two leave in the water, while the bromine leaves as potassium bromide. The hydrogen and the bromine come off adjacent carbon atoms, which is what leaves a double bond between them.",
+        "common_mistakes": [
+          "Writing HBr as a product when KOH is written on the left of the arrow. Written that way the KOH neutralises it, so the products are potassium bromide and water. The form CH₃CH₂Br → CH₂=CH₂ + HBr, with alcoholic KOH written over the arrow, is also correct.",
+          "Writing CH₃CH₃ as the product. Two atoms are removed, so an alkene is formed and not an alkane."
+        ],
+        "memory_tip": "Ethyl bromide loses H and Br and becomes ethylene.",
+        "margin_note": "With KOH on the left, show the water: the hydrogen leaves in the water and the bromine in the KBr."
+      },
+      {
+        "id": "s4_general",
+        "kind": "boxed_final",
+        "label": "The general change",
+        "marks": 1,
+        "mark_note": "The general change",
+        "lines": [
+          "With a longer alkyl halide more than",
+          "one alkene can be formed. The alkene",
+          "carrying more alkyl groups on the",
+          "double bond is the main product, which",
+          "is Saytzeff's rule.",
+          {
+            "text": "Alkyl halide − HX → alkene",
+            "style": "boxed"
+          }
+        ],
+        "why": "Writing the change in one general line shows what dehydrohalogenation does to any alkyl halide and not only to ethyl bromide. The Saytzeff note is worth adding because from 2-bromobutane two different alkenes can be formed, and then the question of which one is the main product arises.",
+        "common_mistakes": [
+          "Writing that only one alkene is ever possible. From 2-bromobutane two are, and the more substituted one is the main product.",
+          "Leaving the answer at ethyl bromide. That one equation is a single case of the general change."
+        ],
+        "memory_tip": "Take HX away from an alkyl halide and an alkene is left.",
+        "margin_note": "One closing line naming the general change completes the answer."
+      }
+    ]
+  }
+}

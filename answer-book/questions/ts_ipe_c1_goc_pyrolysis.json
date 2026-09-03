@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_pyrolysis",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is pyrolysis?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.113, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATIONS WERE CHECKED ATOM BY ATOM: C₆H₁₄ → C₆H₁₂ + H₂ has C 6 = 6 and H 14 = 12 + 2; C₆H₁₄ → C₄H₈ + C₂H₆ has C 6 = 4 + 2 and H 14 = 8 + 6; C₆H₁₄ → C₃H₆ + C₂H₄ + CH₄ has C 6 = 3 + 2 + 1 and H 14 = 6 + 4 + 4. The temperature 773 K and the three hexane equations are the source's own."
+  },
+  "insider_note": "The absence of air is the whole definition. With air the same alkane would burn to carbon dioxide and water; without it, heat alone breaks the chain into lower alkanes, alkenes and hydrogen.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Pyrolysis is the decomposition of an",
+          "alkane into smaller molecules by strong",
+          "heating in the absence of air.",
+          "It is used most on the higher alkanes.",
+          "The products are lower alkanes, alkenes",
+          "and hydrogen.",
+          "Applied to alkanes the process is also",
+          "called cracking."
+        ],
+        "why": "The definition carries two conditions at once: heat is the only reagent, and air is excluded. Excluding the air is what makes the alkane break up instead of burning, which is why the products are smaller hydrocarbons and hydrogen rather than carbon dioxide and water.",
+        "common_mistakes": [
+          "Calling it combustion. Pyrolysis is carried out in the absence of air, so nothing burns.",
+          "Giving carbon and hydrogen as the products. The products are lower alkanes, alkenes and hydrogen.",
+          "Leaving out the words in the absence of air. That condition is part of the definition."
+        ],
+        "memory_tip": "Heat alone and no air: the chain breaks into smaller pieces.",
+        "margin_note": "Name the strong heating, the absence of air and the kind of products."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "C₆H₁₄ → C₆H₁₂ + H₂ (773 K)",
+            "style": "boxed"
+          },
+          "Hexane heated to 773 K breaks in more",
+          "ways than one:",
+          {
+            "text": "C₆H₁₄ → C₄H₈ + C₂H₆",
+            "style": "eq"
+          },
+          {
+            "text": "C₆H₁₄ → C₃H₆ + C₂H₄ + CH₄",
+            "style": "eq"
+          },
+          "So a mixture of products is obtained,",
+          "not a single compound."
+        ],
+        "why": "One example makes the definition concrete, and hexane shows the point that matters: the chain can break at more than one place, so pyrolysis gives a mixture. Each equation still balances on its own.",
+        "common_mistakes": [
+          "Calling the single equation the complete answer. Pyrolysis gives a mixture, so say so even when only one equation is written out.",
+          "Writing an equation that does not balance. Every fragment equation must account for all six carbons and all fourteen hydrogens."
+        ],
+        "memory_tip": "The same hexane can break at different places, so several equations are correct.",
+        "margin_note": "Give one worked example and say that a mixture of products is formed."
+      }
+    ]
+  }
+}

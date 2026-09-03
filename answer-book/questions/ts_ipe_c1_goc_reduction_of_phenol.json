@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_reduction_of_phenol",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the reaction for the reduction of phenol.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reagent",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.114, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. No exam-appearance years are recorded for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reagent",
+        "kind": "text",
+        "label": "The reagent",
+        "marks": 1,
+        "mark_note": "Reagent",
+        "lines": [
+          "Phenol C₆H₅OH is reduced to benzene.",
+          "The vapour of phenol is passed over",
+          "heated zinc dust.",
+          "The zinc removes the oxygen atom of",
+          "the –OH group and is left behind as",
+          "zinc oxide ZnO."
+        ],
+        "why": "Reduction here means the loss of oxygen: the hydroxyl group of phenol is replaced by a hydrogen atom and the oxygen leaves on the zinc as zinc oxide. Zinc dust is used because it is finely divided, so it reacts readily when heated.",
+        "common_mistakes": [
+          "Using zinc in solution. The phenol vapour is passed over heated zinc dust.",
+          "Reducing the ring as well. Only the –OH group is removed, so the product is benzene and not cyclohexane."
+        ],
+        "memory_tip": "Phenol vapour over hot zinc dust: the oxygen leaves as ZnO and benzene remains.",
+        "margin_note": "Name the reagent as heated zinc dust before writing the equation."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "C₆H₅OH + Zn → C₆H₆ + ZnO",
+            "style": "boxed"
+          },
+          "Conditions: heated zinc dust.",
+          "Benzene C₆H₆ is the product and zinc",
+          "oxide ZnO is the by-product.",
+          "Atoms: 6 C, 6 H, 1 O and 1 Zn on",
+          "each side."
+        ],
+        "why": "Counting the atoms shows the equation is balanced as it stands: one zinc atom takes the one oxygen atom, and the six carbon and six hydrogen atoms pass through unchanged into benzene.",
+        "common_mistakes": [
+          "Writing ZnO₂ or Zn(OH)₂ as the by-product. One zinc atom with one oxygen atom gives ZnO.",
+          "Adding hydrogen to balance. Phenol C₆H₅OH already carries the six hydrogen atoms that benzene needs."
+        ],
+        "memory_tip": "The zinc removes the oxygen as ZnO and the six hydrogen atoms stay on the ring.",
+        "margin_note": "One closing line naming benzene as the product completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The product here is benzene, not cyclohexane. Only the hydroxyl group is removed; the ring is left as it was."
+}

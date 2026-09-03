@@ -68,7 +68,11 @@
         "mark_note": "Balanced equation",
         "lines": [
           {
-            "text": "Na₂B₄O₇·10H₂O + H₂SO₄ → Na₂SO₄ + 4H₃BO₃ + 5H₂O",
+            "text": "Na₂B₄O₇·10H₂O + H₂SO₄ →",
+            "style": "boxed"
+          },
+          {
+            "text": "Na₂SO₄ + 4H₃BO₃ + 5H₂O",
             "style": "boxed"
           },
           "Borax has four boron atoms, so four",

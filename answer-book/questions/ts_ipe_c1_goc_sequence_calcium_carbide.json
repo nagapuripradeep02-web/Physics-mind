@@ -1,0 +1,151 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_sequence_calcium_carbide",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Complete the following reaction sequence and name the products A, B and C: CaC₂ reacts with water to give A, A over a hot metal tube gives B, and B with AlCl₃ and CH₃Cl gives C.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "A from calcium carbide",
+      "marks": 1
+    },
+    {
+      "label": "B over the hot metal tube",
+      "marks": 1
+    },
+    {
+      "label": "C by Friedel–Crafts alkylation",
+      "marks": 1
+    },
+    {
+      "label": "A, B and C named",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.115, chapter 10 GENERAL ORGANIC CHEMISTRY, SHORT ANSWER QUESTIONS question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Every equation on this card was counted atom by atom: CaC₂ + 2H₂O → C₂H₂ + Ca(OH)₂ (Ca 1 = 1, C 2 = 2, H 4 = 4, O 2 = 2); 3C₂H₂ → C₆H₆ (C 6 = 6, H 6 = 6); C₆H₆ + CH₃Cl → C₆H₅CH₃ + HCl (C 7 = 7, H 9 = 9, Cl 1 = 1). TWO FORMS OF THE HOT TUBE ARE BOTH CORRECT and the card names both, neither as an error: this book passes the acetylene through a red-hot COPPER tube at about 600 °C, while NCERT and several other books use a red-hot IRON tube at 873 K — the SAME temperature in the other unit, since 873 K is 600 °C, so only the metal differs. The question itself says only \"a hot metal tube\", so the card writes the equation with the metal tube named in words. Methyl iodide with anhydrous AlCl₃ is also a correct last step and gives HI in place of HCl (C₆H₆ + CH₃I → C₆H₅CH₃ + HI); the card names it as also correct."
+  },
+  "insider_note": "Three arrows, so three balanced equations — and the question also asks for the names, so write out A acetylene, B benzene, C toluene at the end.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "General Organic Chemistry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_product_a",
+        "kind": "equation",
+        "label": "A from calcium carbide",
+        "marks": 1,
+        "mark_note": "Product A",
+        "lines": [
+          "Water is added to calcium carbide and",
+          "a gas comes off at once:",
+          {
+            "text": "CaC₂ + 2H₂O → C₂H₂ + Ca(OH)₂",
+            "style": "eq"
+          },
+          "A is acetylene, C₂H₂, also named",
+          "ethyne.",
+          "Calcium hydroxide is the other",
+          "product."
+        ],
+        "why": "Both carbon atoms of the carbide leave together as the two carbon atoms of acetylene, and the calcium leaves as calcium hydroxide. Counting the hydrogen atoms shows why two molecules of water are needed: two of the four go to the acetylene and two to the hydroxide.",
+        "common_mistakes": [
+          "Writing CaC₂ + H₂O with one molecule of water. Four hydrogen atoms are needed in all, so two molecules are used.",
+          "Naming A as ethylene. Calcium carbide gives acetylene, which carries a triple bond."
+        ],
+        "memory_tip": "Carbide and water give acetylene and slaked lime.",
+        "margin_note": "Write the equation before naming A. The name follows from the formula C₂H₂."
+      },
+      {
+        "id": "s2_product_b",
+        "kind": "equation",
+        "label": "B over the hot metal tube",
+        "marks": 1,
+        "mark_note": "Product B",
+        "lines": [
+          "Acetylene passed through a red-hot",
+          "metal tube at about 600 °C polymerises.",
+          "Three molecules join into one ring:",
+          {
+            "text": "3C₂H₂ → C₆H₆",
+            "style": "eq"
+          },
+          "B is benzene, C₆H₆."
+        ],
+        "why": "Three molecules of C₂H₂ contain six carbon and six hydrogen atoms between them, which is exactly the formula of benzene, so nothing is added and nothing leaves. This book heats a copper tube and other books heat an iron tube at 873 K, which is the same temperature written the other way — 873 K is 600 °C — so only the metal differs; both are used for this preparation, and the question names only a hot metal tube.",
+        "common_mistakes": [
+          "Writing 2C₂H₂ → C₆H₆. Three molecules are needed for the six carbon atoms of the ring.",
+          "Writing hydrogen as a second product. The three acetylene molecules join with nothing left over."
+        ],
+        "memory_tip": "Three acetylenes, six carbon atoms, one benzene ring.",
+        "margin_note": "Say that three molecules join. The coefficient 3 is the whole of this step."
+      },
+      {
+        "id": "s3_product_c",
+        "kind": "equation",
+        "label": "C by Friedel–Crafts alkylation",
+        "marks": 1,
+        "mark_note": "Product C",
+        "lines": [
+          "Benzene with methyl chloride and",
+          "anhydrous AlCl₃ gives toluene. This is",
+          "Friedel–Crafts alkylation:",
+          {
+            "text": "C₆H₆ + CH₃Cl → C₆H₅CH₃ + HCl",
+            "style": "eq"
+          },
+          "C is toluene, C₆H₅CH₃, a benzene ring",
+          "carrying one –CH₃ group."
+        ],
+        "why": "Anhydrous aluminium chloride is the catalyst; it removes the chlorine from methyl chloride so that the methyl group can join the ring. One ring hydrogen is replaced and leaves with that chlorine as hydrogen chloride, so the change is a substitution and not an addition.",
+        "common_mistakes": [
+          "Writing an addition product such as C₆H₆·CH₃Cl. A ring hydrogen is replaced and HCl leaves.",
+          "Leaving out the word anhydrous. Moisture destroys the aluminium chloride catalyst.",
+          "Writing that methyl iodide cannot be used. Methyl iodide with AlCl₃ is also correct and gives HI in place of HCl."
+        ],
+        "memory_tip": "Methyl group in, ring hydrogen out as HCl.",
+        "margin_note": "Write anhydrous next to the AlCl₃. It is part of the condition, not an extra."
+      },
+      {
+        "id": "s4_named",
+        "kind": "boxed_final",
+        "label": "A, B and C named",
+        "marks": 1,
+        "mark_note": "The three names",
+        "lines": [
+          "A is acetylene, C₂H₂.",
+          "B is benzene, C₆H₆.",
+          "C is toluene, C₆H₅CH₃.",
+          {
+            "text": "A acetylene, B benzene, C toluene",
+            "style": "boxed"
+          }
+        ],
+        "why": "The question asks for the names as well as the equations, so the three are written out together at the end where they can be read off in order. Reading them back also shows the sequence goes from a two-carbon gas to a six-carbon ring and then to a substituted ring.",
+        "common_mistakes": [
+          "Giving the formulae only. The question asks for the names of A, B and C.",
+          "Naming C as xylene. Only one methyl group joins the ring, so the product is toluene."
+        ],
+        "memory_tip": "Carbide to acetylene, acetylene to benzene, benzene to toluene.",
+        "margin_note": "One closing line naming A, B and C completes the answer."
+      }
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_benzene_to_methylbenzene",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are the reagents required to convert benzene into methyl benzene?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reagents",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.112, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. No exam-appearance years are recorded for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. BOTH ALKYL HALIDES ARE CORRECT, recorded here so no later editor treats one as a defect: this card writes methyl chloride, C₆H₆ + CH₃Cl → C₆H₅CH₃ + HCl, and names methyl iodide, C₆H₆ + CH₃I → C₆H₅CH₃ + HI, as an equally correct way of doing the same reaction. Neither is an error."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reagents",
+        "kind": "text",
+        "label": "The reagents",
+        "marks": 1,
+        "mark_note": "Reagents",
+        "lines": [
+          "Two reagents are needed.",
+          "1. Methyl chloride CH₃Cl. It supplies",
+          "the methyl group –CH₃.",
+          "2. Anhydrous aluminium chloride AlCl₃.",
+          "It is the catalyst.",
+          "The reaction is the Friedel–Crafts",
+          "alkylation of benzene."
+        ],
+        "why": "Benzene carries no methyl group of its own, so one has to be supplied by an alkyl halide, and anhydrous aluminium chloride is the catalyst that makes the alkyl halide react with the ring. Water hydrolyses aluminium chloride, which is why the word anhydrous is part of the reagent. Methyl iodide CH₃I with the same catalyst is equally correct.",
+        "common_mistakes": [
+          "Naming only the alkyl halide. Anhydrous aluminium chloride AlCl₃ is part of the answer.",
+          "Writing moist or hydrated AlCl₃. The catalyst has to be anhydrous."
+        ],
+        "memory_tip": "Alkyl halide plus anhydrous AlCl₃: the halide brings the methyl group, the AlCl₃ is the catalyst.",
+        "margin_note": "Name both reagents in words, then write the equation under them."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "C₆H₆ + CH₃Cl → C₆H₅CH₃ + HCl",
+            "style": "boxed"
+          },
+          "Conditions: anhydrous AlCl₃.",
+          "One hydrogen atom of the ring is",
+          "replaced by a methyl group.",
+          "The product C₆H₅CH₃ is methylbenzene,",
+          "also called toluene."
+        ],
+        "why": "The equation shows what the two reagents do: the ring loses one hydrogen atom and gains a methyl group, and the hydrogen leaves together with the chlorine as HCl. Counting atoms, there are 7 C, 9 H and 1 Cl on each side.",
+        "common_mistakes": [
+          "Writing C₆H₆ + CH₃Cl → C₆H₅CH₃ and stopping. HCl is the second product.",
+          "Writing the product as C₆H₆CH₃. Benzene loses one hydrogen atom, so the product is C₆H₅CH₃."
+        ],
+        "memory_tip": "One hydrogen out, one methyl in, and the two that left join as HCl.",
+        "margin_note": "One closing line naming the product methylbenzene completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The question asks for reagents, so the answer has to name both the methyl chloride and the anhydrous aluminium chloride. Writing the equation alone leaves the catalyst unnamed."
+}

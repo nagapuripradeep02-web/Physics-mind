@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_huckel_rule",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Huckel's rule.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The rule",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.114, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. No exam-appearance years are recorded for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The name is written Huckel here, following the question as printed; Hückel with the umlaut is the same name and is equally correct."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule",
+        "kind": "text",
+        "label": "The rule",
+        "marks": 1,
+        "mark_note": "Statement",
+        "lines": [
+          "Huckel's rule: a compound is aromatic",
+          "if its ring is planar, cyclic and",
+          "conjugated, and the ring holds",
+          {
+            "text": "(4n + 2) π electrons",
+            "style": "eq"
+          },
+          "where n is a whole number,",
+          "n = 0, 1, 2, 3 and so on."
+        ],
+        "why": "The rule is a count with conditions attached, so all four parts belong in the statement: the ring must be flat, closed and conjugated before the electron count is applied at all. A flat conjugated ring holding 4n π electrons instead of 4n + 2 is not aromatic.",
+        "common_mistakes": [
+          "Writing 4n + 2 without saying π electrons. Only the π electrons are counted.",
+          "Leaving out planar, cyclic and conjugated. The electron count on its own is not the whole rule."
+        ],
+        "memory_tip": "Flat, closed, conjugated, and 4n + 2 π electrons.",
+        "margin_note": "Write the three conditions and the formula on the page, not the formula alone."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Benzene C₆H₆ has a planar, cyclic and",
+          "conjugated ring.",
+          "It is drawn with three C=C bonds, so",
+          "it holds 6 π electrons.",
+          "Putting n = 1 in the rule:",
+          {
+            "text": "4(1) + 2 = 6",
+            "style": "eq"
+          },
+          {
+            "text": "Benzene has 6 π electrons: aromatic",
+            "style": "boxed"
+          }
+        ],
+        "why": "Benzene is the standard test of the rule: the ring is drawn with three double bonds, which gives six π electrons, and six is exactly what the formula returns for n = 1, so benzene satisfies the rule and is aromatic.",
+        "common_mistakes": [
+          "Counting every electron in the ring. Only the π electrons are counted — those of the double bonds, and a lone pair that is delocalised into the ring. Benzene has 6.",
+          "Writing n = 6 for benzene. The count of π electrons is 6, and the value of n is 1."
+        ],
+        "memory_tip": "Benzene is drawn with three double bonds, so six π electrons, and n = 1.",
+        "margin_note": "Show the substitution 4(1) + 2 = 6 in figures, not only in words."
+      }
+    ]
+  },
+  "insider_note": "The rule is often written as the formula alone. The words planar, cyclic and conjugated are part of it, and one worked example with the value of n makes the short answer complete."
+}

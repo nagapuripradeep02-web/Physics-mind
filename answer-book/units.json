@@ -6427,8 +6427,531 @@
           "section": "VSAQ",
           "number": 1,
           "stars": 0,
-          "text": "General Organic Chemistry — questions coming",
-          "source": "syllabus_2026_27"
+          "text": "What are the reagents required to convert benzene into methyl benzene?",
+          "question_id": "ts_ipe_c1_goc_benzene_to_methylbenzene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "How is nitrobenzene prepared?",
+          "question_id": "ts_ipe_c1_goc_nitrobenzene_preparation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Write the possible conformations of ethane and explain which one is more stable.",
+          "question_id": "ts_ipe_c1_goc_ethane_conformations",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "How is ethyl chloride prepared from ethylene?",
+          "question_id": "ts_ipe_c1_goc_ethyl_chloride_from_ethylene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Write the IUPAC name of CH₃–CH₂–CH₂–CH=CH₂.",
+          "question_id": "ts_ipe_c1_goc_iupac_pentene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Write the IUPAC names of CH₃–CO–CH₂–CH₂–CH₃ and CH₃–CH₂–CO–CH₂–CH₃.",
+          "question_id": "ts_ipe_c1_goc_iupac_two_ketones",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Write the IUPAC names of the two aromatic aldehydes: benzaldehyde with a nitro group meta to the CHO group, and benzaldehyde with a nitro group para to it.",
+          "question_id": "ts_ipe_c1_goc_iupac_two_nitro_aldehydes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Write the structure of each of the following: trichloroethanoic acid, neopentane and p-nitrobenzaldehyde.",
+          "question_id": "ts_ipe_c1_goc_structures_three_compounds",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Explain the principle of chromatography.",
+          "question_id": "ts_ipe_c1_goc_chromatography_principle",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Explain crystallisation.",
+          "question_id": "ts_ipe_c1_goc_crystallisation_explained",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Explain distillation.",
+          "question_id": "ts_ipe_c1_goc_distillation_explained",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Write the chemical equation for the combustion reaction of butane.",
+          "question_id": "ts_ipe_c1_goc_combustion_of_butane",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Write the chemical equation for the combustion reaction of pentene.",
+          "question_id": "ts_ipe_c1_goc_combustion_of_pentene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Write the chemical equation for the combustion reaction of hexyne.",
+          "question_id": "ts_ipe_c1_goc_combustion_of_hexyne",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Write the equation for the preparation of ethyl alcohol from ethylene.",
+          "question_id": "ts_ipe_c1_goc_ethanol_from_ethylene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "What is pyrolysis?",
+          "question_id": "ts_ipe_c1_goc_pyrolysis",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "State Markovnikov's rule.",
+          "question_id": "ts_ipe_c1_goc_markovnikov_rule",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "What is a polymerisation reaction?",
+          "question_id": "ts_ipe_c1_goc_polymerisation_reaction",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "State Huckel's rule.",
+          "question_id": "ts_ipe_c1_goc_huckel_rule",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Write the reaction for the reduction of phenol.",
+          "question_id": "ts_ipe_c1_goc_reduction_of_phenol",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "What are ortho- and para-directing groups? Give one example of each.",
+          "question_id": "ts_ipe_c1_goc_ortho_para_directing_groups",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "What are meta-directing groups? Give one example of each.",
+          "question_id": "ts_ipe_c1_goc_meta_directing_groups",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Write Kolbe's electrolytic reaction.",
+          "question_id": "ts_ipe_c1_goc_kolbe_electrolytic_reaction",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Write the Friedel–Crafts alkylation reaction with one example.",
+          "question_id": "ts_ipe_c1_goc_friedel_crafts_alkylation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Write the combustion reaction of benzene with one example.",
+          "question_id": "ts_ipe_c1_goc_combustion_of_benzene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Write any two addition reactions of benzene, with equations.",
+          "question_id": "ts_ipe_c1_goc_benzene_addition_reactions",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What do you understand by geometrical isomerism? Explain the geometrical isomers of 2-butene.",
+          "question_id": "ts_ipe_c1_goc_geometrical_isomerism_butene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Complete the following reaction sequence and name the products A, B and C: CaC₂ reacts with water to give A, A over a hot metal tube gives B, and B with AlCl₃ and CH₃Cl gives C.",
+          "question_id": "ts_ipe_c1_goc_sequence_calcium_carbide",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Name the products A, B and C formed in the following reaction sequence and give the equations: ethylene with Br₂ in CCl₄ gives A, A with alcoholic KOH gives B, and B with Br₂ gives C.",
+          "question_id": "ts_ipe_c1_goc_sequence_ethylene_bromine",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "What is dehydrohalogenation? Write the equation for the formation of an alkene from an alkyl halide.",
+          "question_id": "ts_ipe_c1_goc_dehydrohalogenation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Which type of compounds react with ozone? Explain with one example.",
+          "question_id": "ts_ipe_c1_goc_compounds_reacting_with_ozone",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Give two examples each of position isomerism and functional isomerism.",
+          "question_id": "ts_ipe_c1_goc_position_and_functional_isomers",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Explain crystallisation and sublimation, the phenomena used in the purification of organic compounds.",
+          "question_id": "ts_ipe_c1_goc_crystallisation_and_sublimation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Describe the solvent extraction method used to purify a compound.",
+          "question_id": "ts_ipe_c1_goc_solvent_extraction",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Explain the estimation of phosphorus and of sulphur in a given organic compound.",
+          "question_id": "ts_ipe_c1_goc_estimation_phosphorus_sulphur",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Explain the classification of hydrocarbons.",
+          "question_id": "ts_ipe_c1_goc_classification_of_hydrocarbons",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Describe any two methods of preparation of ethane. Give any three reactions of ethane.",
+          "question_id": "ts_ipe_c1_goc_ethane_preparation_and_reactions",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Describe two methods of preparation of ethylene.",
+          "question_id": "ts_ipe_c1_goc_ethylene_preparation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Give the equation for the reaction of ethylene with ozone.",
+          "question_id": "ts_ipe_c1_goc_ethylene_with_ozone",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Give the equation for the reaction of ethylene with hypochlorous acid.",
+          "question_id": "ts_ipe_c1_goc_ethylene_with_hocl",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Give the equation for the reaction of ethylene with Baeyer's reagent, cold dilute alkaline KMnO₄.",
+          "question_id": "ts_ipe_c1_goc_ethylene_with_baeyer_reagent",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Give the equation for the reaction of ethylene when it is heated with O₂ at high pressure.",
+          "question_id": "ts_ipe_c1_goc_ethylene_heated_with_oxygen",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Give two methods of preparation of acetylene. How does acetylene react with water and with ozone?",
+          "question_id": "ts_ipe_c1_goc_acetylene_preparation_water_ozone",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Describe any two methods of preparation of benzene with the corresponding equations. Why does benzene not behave like an alkene? How do we get methyl benzene from benzene?",
+          "question_id": "ts_ipe_c1_goc_benzene_preparation_and_toluene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "How is benzene obtained from acetylene? Give the corresponding equation. Explain the halogenation, alkylation, acylation, nitration and sulphonation of benzene.",
+          "question_id": "ts_ipe_c1_goc_benzene_from_acetylene_substitution",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Explain the differences between structural isomers and stereoisomers.",
+          "question_id": "ts_ipe_c1_goc_structural_vs_stereoisomers",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Write a note on distillation.",
+          "question_id": "ts_ipe_c1_goc_distillation_note",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq13",
+          "section": "LAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Write a note on fractional distillation.",
+          "question_id": "ts_ipe_c1_goc_fractional_distillation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq14",
+          "section": "LAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Write a note on distillation under reduced pressure.",
+          "question_id": "ts_ipe_c1_goc_distillation_reduced_pressure",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq15",
+          "section": "LAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Write a note on steam distillation.",
+          "question_id": "ts_ipe_c1_goc_steam_distillation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq16",
+          "section": "LAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Explain column chromatography.",
+          "question_id": "ts_ipe_c1_goc_column_chromatography",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq17",
+          "section": "LAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Explain thin layer chromatography.",
+          "question_id": "ts_ipe_c1_goc_thin_layer_chromatography",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq18",
+          "section": "LAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Explain partition chromatography.",
+          "question_id": "ts_ipe_c1_goc_partition_chromatography",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq19",
+          "section": "LAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Explain the inductive effect with a suitable example.",
+          "question_id": "ts_ipe_c1_goc_inductive_effect",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq20",
+          "section": "LAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Write a note on the mesomeric effect.",
+          "question_id": "ts_ipe_c1_goc_mesomeric_effect",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq21",
+          "section": "LAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Describe the resonance effect with one example.",
+          "question_id": "ts_ipe_c1_goc_resonance_effect",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq22",
+          "section": "LAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Explain how many types of organic reactions are possible.",
+          "question_id": "ts_ipe_c1_goc_types_of_organic_reactions",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq23",
+          "section": "LAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Discuss Markownikoff's rule and the Kharasch effect.",
+          "question_id": "ts_ipe_c1_goc_markovnikov_and_kharasch",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq24",
+          "section": "LAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Write the IUPAC names of the following compounds: (a) CH₂=CH–CH=CH₂ (b) CH₂=CH–C≡C–CH₃ (c) CH₃CH=C(CH₃)₂ (d) C₆H₅–CH₂–CH₂–CH=CH₂ (e) CH₃–CH=CH–CH₂–CH=CH–CH(C₂H₅)–CH₂–CH=CH₂",
+          "question_id": "ts_ipe_c1_goc_iupac_five_compounds",
+          "source": "chaitanya_fastrack"
         }
       ]
     },

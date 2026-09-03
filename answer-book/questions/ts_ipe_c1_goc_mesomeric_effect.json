@@ -1,0 +1,211 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_mesomeric_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write a note on the mesomeric effect.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition and the second name",
+      "marks": 2
+    },
+    {
+      "label": "+M groups",
+      "marks": 2
+    },
+    {
+      "label": "–M groups",
+      "marks": 2
+    },
+    {
+      "label": "An illustration: nitrobenzene",
+      "marks": 1
+    },
+    {
+      "label": "How it differs from the inductive effect",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.122, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 42. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THE MESOMERIC EFFECT AND THE RESONANCE EFFECT ARE ONE EFFECT UNDER TWO NAMES — the permanent displacement of π or lone-pair electrons in a conjugated system — and this card says so in its opening step. Nothing here treats them as two different effects, and a student who writes either name is naming the same thing. The card contrasts it with the inductive effect in the same words used wherever that contrast appears in this chapter: the inductive effect acts through SIGMA bonds, weakens sharply from bond to bond and is negligible beyond the third carbon atom, while the mesomeric effect acts through π electrons or a lone pair and is passed through the whole conjugated system without weakening. Both are permanent; the electromeric effect is the temporary one. The halogens are named as +M groups that are nevertheless ring-deactivating, because their –I effect is the stronger — the standard exception, stated as such."
+  },
+  "insider_note": "The mesomeric effect and the resonance effect are two names for the same effect, so say that in the first sentence. Then the answer is the two classes: +M releases into the system, –M withdraws from it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition and the second name",
+        "marks": 2,
+        "mark_note": "Definition",
+        "lines": [
+          "The mesomeric effect is the permanent",
+          "displacement of π electrons, or of a",
+          "lone pair, in a conjugated system.",
+          "It is also called the resonance effect.",
+          "The two names are used for the same",
+          "effect.",
+          "A conjugated system is a chain of",
+          "alternating single and double bonds, or",
+          "a benzene ring, with a group carrying a",
+          "lone pair or a π bond joined to it."
+        ],
+        "why": "The definition has three parts and each is doing work. Permanent, so the effect is present in the molecule at rest. π electrons or a lone pair, which is what makes it different from the inductive effect. A conjugated system, without which the electrons have nowhere to be displaced to.",
+        "common_mistakes": [
+          "Writing that the mesomeric effect and the resonance effect are different effects. They are two names for the same displacement.",
+          "Writing that sigma electrons are displaced. The mesomeric effect moves π electrons or a lone pair."
+        ],
+        "memory_tip": "Mesomeric and resonance are one effect under two names.",
+        "margin_note": "Give both names in the opening sentence."
+      },
+      {
+        "id": "s2_plus_m",
+        "kind": "text",
+        "label": "+M groups",
+        "marks": 2,
+        "mark_note": "+M groups",
+        "lines": [
+          "+M groups release electrons into the",
+          "conjugated system:",
+          "–OH, –OR, –NH₂, –NHR, –NR₂, and the",
+          "halogens –Cl, –Br, –I.",
+          "Each of them carries a lone pair on the",
+          "atom joined to the system.",
+          "On a benzene ring they raise the",
+          "electron density at the ortho and para",
+          "positions, so an electrophile joins the",
+          "ring at those positions.",
+          "The halogens are the exception: they",
+          "direct to ortho and para, but their –I",
+          "effect is the stronger, so they leave",
+          "the ring less reactive than benzene."
+        ],
+        "why": "The lone pair is the source of the effect: it is drawn into the π system of the ring, and the electron density it brings appears at positions 2 and 4 — the ortho and para carbon atoms — counting the attached carbon as position 1. That is why every +M group directs an incoming group to ortho and para.",
+        "common_mistakes": [
+          "Writing that a +M group must carry a negative charge. Most are neutral; what they need is a lone pair on the attached atom.",
+          "Placing –NO₂ among the +M groups. It withdraws from the system and is –M."
+        ],
+        "memory_tip": "A lone pair on the attached atom means +M.",
+        "margin_note": "Give the groups and say where they direct on a ring."
+      },
+      {
+        "id": "s3_minus_m",
+        "kind": "text",
+        "label": "–M groups",
+        "marks": 2,
+        "mark_note": "–M groups",
+        "lines": [
+          "–M groups draw electrons out of the",
+          "conjugated system:",
+          "–NO₂, –CHO, –COOH, –COOR, –CN.",
+          "Each of them has a multiply bonded",
+          "electronegative atom at the point of",
+          "attachment.",
+          "On a benzene ring they lower the",
+          "electron density at the ortho and para",
+          "positions, so an electrophile joins at",
+          "the meta position instead.",
+          "They leave the ring less reactive than",
+          "benzene."
+        ],
+        "why": "A –M group has a double or triple bond to an electronegative atom, and the π electrons of the ring are displaced into that bond. The density lost falls at the ortho and para carbon atoms, so the meta position is left as the richest of the three and substitution happens there.",
+        "common_mistakes": [
+          "Writing that a –M group directs to some fourth position. A benzene ring has only ortho, meta and para positions to direct to.",
+          "Writing that the ring becomes positively charged as a whole. Electron density falls at particular carbon atoms, and the ring stays neutral."
+        ],
+        "memory_tip": "A double bond to oxygen or nitrogen at the joint means –M.",
+        "margin_note": "Set the –M list against the +M list. The two are learnt as a pair."
+      },
+      {
+        "id": "s4_illustration",
+        "kind": "text",
+        "label": "An illustration: nitrobenzene",
+        "marks": 1,
+        "mark_note": "Illustration",
+        "lines": [
+          "Nitrobenzene, C₆H₅NO₂, shows the –M",
+          "effect.",
+          "The –NO₂ group draws π electrons out of",
+          "the ring, so the ring has less",
+          "electron density than benzene does.",
+          "Nitrobenzene is therefore harder to",
+          "nitrate than benzene, and the second",
+          "–NO₂ group enters the meta position."
+        ],
+        "why": "One compound is enough to show the effect at work, and nitrobenzene shows both of its consequences at once: the ring is deactivated, so the reaction is slower, and the position substituted has moved from ortho and para to meta.",
+        "common_mistakes": [
+          "Writing that nitrobenzene does not undergo substitution at all. It does; the ring is less reactive, not unreactive.",
+          "Writing that the second nitro group enters the para position. A –M group directs to the meta position."
+        ],
+        "memory_tip": "Nitrobenzene: less reactive than benzene, and meta directing.",
+        "margin_note": "One compound is enough here. Say what changes in it, not only what it is."
+      },
+      {
+        "id": "s5_contrast",
+        "kind": "text",
+        "label": "How it differs from the inductive effect",
+        "marks": 1,
+        "mark_note": "The contrast",
+        "lines": [
+          "The inductive effect acts through sigma",
+          "bonds. It weakens sharply from bond to",
+          "bond and is negligible beyond the third",
+          "carbon atom.",
+          "The mesomeric effect acts through π",
+          "electrons or a lone pair, and is passed",
+          "through the whole conjugated system",
+          "without weakening.",
+          "Both effects are permanent."
+        ],
+        "why": "The two effects are told apart by two questions only: which electrons are displaced, and whether the displacement fades with distance. Answering both questions in the same words every time keeps the two accounts from drifting apart.",
+        "common_mistakes": [
+          "Writing that the mesomeric effect also fades along the chain. It reaches the far end of a conjugated system undiminished.",
+          "Writing that one of the two is temporary. Both are permanent; the temporary one is the electromeric effect, which appears only while a reagent is near."
+        ],
+        "memory_tip": "Sigma and fading is inductive; π and unfading is mesomeric.",
+        "margin_note": "Close with the contrast. It shows where this effect sits among the others."
+      },
+      {
+        "id": "s6_summary",
+        "kind": "boxed_final",
+        "label": "The effect in one line",
+        "marks": 0,
+        "lines": [
+          "The mesomeric or resonance effect is the",
+          "permanent displacement of π or lone-pair",
+          "electrons in a conjugated system.",
+          {
+            "text": "+M releases, –M withdraws",
+            "style": "boxed"
+          }
+        ],
+        "why": "The closing line names the effect and its two classes together, which is what a reader looking back over the answer needs to find in a single place.",
+        "common_mistakes": [
+          "Closing with one of the two names only. The effect answers to both, and a reader may know it by either.",
+          "Leaving out the conjugated system. Without one there is nothing for the electrons to be displaced through."
+        ],
+        "memory_tip": "Permanent, π or lone pair, conjugated system.",
+        "margin_note": "Unmarked closing step. It puts the definition and the two classes in one line."
+      }
+    ]
+  }
+}

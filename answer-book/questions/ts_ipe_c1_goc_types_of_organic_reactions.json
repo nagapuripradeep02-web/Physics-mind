@@ -1,0 +1,227 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_types_of_organic_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain how many types of organic reactions are possible.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Substitution",
+      "marks": 2
+    },
+    {
+      "label": "Addition",
+      "marks": 2
+    },
+    {
+      "label": "Elimination",
+      "marks": 2
+    },
+    {
+      "label": "Rearrangement",
+      "marks": 1
+    },
+    {
+      "label": "Two further types",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.122, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 44. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Every equation was counted atom by atom: CH₄ + Cl₂ → CH₃Cl + HCl (C 1 = 1, H 4 = 4, Cl 2 = 2); CH₂=CH₂ + Br₂ → BrCH₂–CH₂Br (C 2 = 2, H 4 = 4, Br 2 = 2); CH₂=CH₂ + H₂ → CH₃–CH₃ (C 2 = 2, H 6 = 6); CH₃CH₂Br + KOH → CH₂=CH₂ + KBr + H₂O (C 2 = 2, H 6 = 6, Br 1 = 1, K 1 = 1, O 1 = 1); NH₄CNO → NH₂CONH₂ (N 2 = 2, H 4 = 4, C 1 = 1, O 1 = 1); CH₃CH₂OH + [O] → CH₃CHO + H₂O (C 2 = 2, H 6 = 6, O 2 = 2). THE COUNT ITSELF DIFFERS BETWEEN BOOKS and the card treats both counts as correct: four main types (substitution, addition, elimination, rearrangement) is the usual answer, and some books add oxidation-reduction and polymerisation as separate headings. The card names all six, the four first, and does not call either count an error."
+  },
+  "insider_note": "Four main types — substitution, addition, elimination, rearrangement — and each one needs its own equation, not a description. Oxidation-reduction and polymerisation are worth naming at the end.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substitution",
+        "kind": "equation",
+        "label": "Substitution",
+        "marks": 2,
+        "mark_note": "First type",
+        "lines": [
+          "Organic reactions fall into four main",
+          "types: substitution, addition,",
+          "elimination and rearrangement.",
+          "1. Substitution — an atom or group in a",
+          "molecule is replaced by another atom or",
+          "group.",
+          {
+            "text": "CH₄ + Cl₂ → CH₃Cl + HCl",
+            "style": "eq"
+          },
+          "Diffused sunlight or heat is needed.",
+          "Alkanes and benzene rings react this way.",
+          "By the kind of reagent, substitution",
+          "is nucleophilic, electrophilic or free",
+          "radical."
+        ],
+        "why": "Writing the four names at the top helps because the answer is a classification, and a reader who has the list can follow each type as it arrives. Substitution comes first because it is the reaction of the saturated compounds, which have no multiple bond for anything to add to, and of benzene, whose delocalised π electrons make substitution easier than addition.",
+        "common_mistakes": [
+          "Writing that the whole molecule is replaced. One atom or group is replaced and the rest of the molecule is unchanged.",
+          "Calling the chlorination of methane an addition. Methane is saturated, and a hydrogen atom leaves as HCl."
+        ],
+        "memory_tip": "Substitution: one group leaves, another takes its place.",
+        "margin_note": "Number the types 1 to 4 and give an equation under each."
+      },
+      {
+        "id": "s2_addition",
+        "kind": "equation",
+        "label": "Addition",
+        "marks": 2,
+        "mark_note": "Second type",
+        "lines": [
+          "2. Addition — two molecules join into",
+          "one, and a multiple bond becomes a bond",
+          "of lower order.",
+          {
+            "text": "CH₂=CH₂ + Br₂ → BrCH₂–CH₂Br",
+            "style": "eq"
+          },
+          {
+            "text": "CH₂=CH₂ + H₂ → CH₃–CH₃",
+            "style": "eq"
+          },
+          "Nickel is the catalyst for the second",
+          "of these.",
+          "Alkenes, alkynes and the carbonyl",
+          "compounds react this way."
+        ],
+        "why": "Addition is the reaction of unsaturated compounds: the multiple bond is where the two new groups go, so nothing leaves and the product carries both new groups. That is the test which separates addition from substitution, where one group is replaced by another.",
+        "common_mistakes": [
+          "Writing a small molecule such as HCl as a second product. In an addition nothing leaves.",
+          "Writing that alkanes add bromine. They have no multiple bond, so they are substituted instead."
+        ],
+        "memory_tip": "Addition: the multiple bond takes two new groups and nothing leaves.",
+        "margin_note": "Say what kind of compound each type belongs to. It makes the four easy to tell apart."
+      },
+      {
+        "id": "s3_elimination",
+        "kind": "equation",
+        "label": "Elimination",
+        "marks": 2,
+        "mark_note": "Third type",
+        "lines": [
+          "3. Elimination — two atoms or groups are",
+          "removed from adjacent carbon atoms of",
+          "one molecule, and a multiple bond is",
+          "formed.",
+          {
+            "text": "CH₃CH₂Br + KOH → CH₂=CH₂ + KBr + H₂O",
+            "style": "eq"
+          },
+          "Alcoholic KOH, warmed.",
+          "Elimination is the reverse of addition."
+        ],
+        "why": "Elimination and addition are one change run in the two directions, so they are best learnt together: addition takes a multiple bond away and elimination makes one. The two atoms removed must sit on adjacent carbon atoms, because a double bond can only form between two carbon atoms that are already joined.",
+        "common_mistakes": [
+          "Removing both atoms from the same carbon atom. They must come from adjacent carbon atoms for a double bond to form.",
+          "Writing aqueous KOH. Water gives the alcohol by substitution; the alcoholic solution gives the alkene."
+        ],
+        "memory_tip": "Elimination: two groups leave and a multiple bond appears.",
+        "margin_note": "Write the word alcoholic beside the KOH. The solvent determines which product forms."
+      },
+      {
+        "id": "s4_rearrangement",
+        "kind": "equation",
+        "label": "Rearrangement",
+        "marks": 1,
+        "mark_note": "Fourth type",
+        "lines": [
+          "4. Rearrangement — the atoms of a",
+          "molecule are arranged in a new way and",
+          "an isomer is formed.",
+          "The molecular formula does not change.",
+          {
+            "text": "NH₄CNO → NH₂CONH₂",
+            "style": "eq"
+          },
+          "Ammonium cyanate on heating gives urea.",
+          "This was Wöhler's preparation of 1828."
+        ],
+        "why": "A rearrangement is recognised from its equation: the same atoms appear on both sides, so nothing has been added and nothing removed, and only the arrangement is different. That makes it the one type of the four in which the molecular formula is unchanged.",
+        "common_mistakes": [
+          "Writing a rearrangement with different formulae on the two sides. The atoms are the same; only their arrangement changes.",
+          "Writing that a catalyst is always needed. Heating alone rearranges ammonium cyanate to urea."
+        ],
+        "memory_tip": "Rearrangement: the same atoms in a new order.",
+        "margin_note": "Compare the two formulae atom by atom. They are the same set."
+      },
+      {
+        "id": "s5_further_types",
+        "kind": "equation",
+        "label": "Two further types",
+        "marks": 1,
+        "mark_note": "Further types",
+        "lines": [
+          "Some books count two more types.",
+          "Oxidation and reduction: the oxygen or",
+          "hydrogen content of the molecule is",
+          "changed.",
+          {
+            "text": "CH₃CH₂OH + [O] → CH₃CHO + H₂O",
+            "style": "eq"
+          },
+          "Polymerisation: many small molecules",
+          "join into one large molecule.",
+          {
+            "text": "n CH₂=CH₂ → (–CH₂–CH₂–)ₙ",
+            "style": "eq"
+          }
+        ],
+        "why": "These two are correct as separate headings and are also correct read as special cases of the first four, which is why books differ over the count. Naming them shows the classification is not closed, while the four main types remain the ones to give first.",
+        "common_mistakes": [
+          "Giving the two further types without the four main ones. Name substitution, addition, elimination and rearrangement first; books that count six add these two to that list.",
+          "Writing polymerisation without the n. The n is what shows that many molecules join."
+        ],
+        "memory_tip": "Two more that some books count: oxidation-reduction and polymerisation.",
+        "margin_note": "Put these after the four. They are additions to the list, not replacements."
+      },
+      {
+        "id": "s6_summary",
+        "kind": "boxed_final",
+        "label": "The four types in one line each",
+        "marks": 0,
+        "lines": [
+          "Substitution: one group replaces",
+          "another.",
+          "Addition: a multiple bond takes two new",
+          "groups.",
+          "Elimination: two groups leave and a",
+          "multiple bond forms.",
+          "Rearrangement: the same atoms in a new",
+          "order.",
+          {
+            "text": "Four main types, with two often added",
+            "style": "boxed"
+          }
+        ],
+        "why": "Setting the four one-line descriptions together at the end lets a reader check each type against the others, and the differences between them are easiest to see when the four sentences are read one after another.",
+        "common_mistakes": [
+          "Giving the four names without saying what each one does. The question asks for the types to be explained.",
+          "Leaving out the examples. One equation under each type is what shows the difference between them."
+        ],
+        "memory_tip": "Replace, add, remove, rearrange.",
+        "margin_note": "Unmarked closing step. It sets the four descriptions side by side."
+      }
+    ]
+  }
+}

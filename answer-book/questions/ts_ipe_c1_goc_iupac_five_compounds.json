@@ -1,0 +1,299 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_iupac_five_compounds",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write the IUPAC names of the following compounds: (a) CH₂=CH–CH=CH₂ (b) CH₂=CH–C≡C–CH₃ (c) CH₃CH=C(CH₃)₂ (d) C₆H₅–CH₂–CH₂–CH=CH₂ (e) CH₃–CH=CH–CH₂–CH=CH–CH(C₂H₅)–CH₂–CH=CH₂",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The naming method",
+      "marks": 1
+    },
+    {
+      "label": "(a) The four-carbon diene",
+      "marks": 1
+    },
+    {
+      "label": "(b) The chain with two kinds of bond",
+      "marks": 2
+    },
+    {
+      "label": "(c) The branched alkene",
+      "marks": 1
+    },
+    {
+      "label": "(d) The ring and the chain",
+      "marks": 1
+    },
+    {
+      "label": "(e) The ten-carbon chain",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.117, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 31, parts (a) to (e). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CARD SHAPE — FIVE PARTS, ONE QUESTION: question 31 is a single eight-mark long answer printed with five lettered naming parts, and the source index records it as ref laq31 with part a to part e. The five parts were first carded as five separate eight-mark cards, which between them claimed forty marks and seventy-five minutes for one eight-mark question. They are merged here into the one card the printed question is, and all five worked derivations are kept. The marks are cut 1 for the method, 1 for (a), 2 for (b), 1 for (c), 1 for (d) and 2 for (e), which sums to 8. TWO STRUCTURE CORRECTIONS ARE RECORDED ON THE PAGE. (i) Part (a) is printed as a bond-line drawing; it is stated here as the condensed formula CH₂=CH–CH=CH₂, which is precise enough to work from and needs no figure. (ii) Part (b) is printed as CH₂=C–C≡C–CH₃, in which the second carbon has a double bond and one single bond, three bonds in all, where a carbon atom forms four; one hydrogen atom is missing. The book's own answer, pent-1-en-3-yne, is the name of the structure WITH that hydrogen, so the name is right and the printed structure is wrong. This card writes CH₂=CH–C≡C–CH₃ throughout and says so on the page. ALL FIVE NAMES WERE RE-DERIVED WHILE AUTHORING, each chain numbered from both ends. (a) Four carbons in one chain hold both double bonds and the molecule reads the same from either end, so the locant set is 1,3 whichever way it is numbered: buta-1,3-diene, molecular formula C₄H₆, which agrees with CₙH₂ₙ₋₂ for a diene with n = 4. (b) Five carbons in one chain hold the double bond and the triple bond; from the left the set is 1,3 and from the right 2,4, and 1,3 is the lower set at the first point of difference; the -ene ending is cited before the -yne ending: pent-1-en-3-yne, molecular formula C₅H₆, which agrees with CₙH₂ₙ₋₄ when n = 5. (c) CH₃CH=C(CH₃)₂ expands to CH₃–CH=C(CH₃)–CH₃: five carbon atoms, but the longest chain through them is four, so one methyl group is a branch; the double bond takes the locant 2 from either direction, and the tie is settled by the branch, which is at 2 from the right against 3 from the left: 2-methylbut-2-ene, molecular formula C₅H₁₀, which agrees with CₙH₂ₙ when n = 5. (d) The four-carbon chain holds the double bond, so it is the parent and the ring is a phenyl substituent; the suffix is numbered before the substituent, which gives the double bond 1 and the ring 4: 4-phenylbut-1-ene, molecular formula C₁₀H₁₂. (e) The written row is ten carbons long and holds all three double bonds, while a chain that turns into the branch is nine carbons and holds only two, so the row is the parent; from the CH₃ end the double bonds are at 2, 5 and 9 with the ethyl group at 7, and from the CH₂= end they are at 1, 5 and 8 with the ethyl group at 4, and the sets differ first at 1 against 2: 4-ethyldeca-1,5,8-triene, molecular formula C₁₂H₂₀, which agrees with CₙH₂ₙ₋₄ when n = 12. ALTERNATIVE FORMS ARE STATED, NOT FORBIDDEN: current IUPAC keeps the letter a of the stem before a consonant in a multiplied suffix, so the card writes buta-1,3-diene and deca-1,5,8-triene, while the source book prints But-1,3-diene and 4-Ethyldec-1,5,8-triene. The older styles 1,3-butadiene, 1-penten-3-yne, 2-methyl-2-butene, 4-phenyl-1-butene and 4-ethyl-1,5,8-decatriene, and the ring-as-parent form (but-3-en-1-yl)benzene, all name the same compounds. Every one of them is correct and the card says so on the page. A FABRICATED PROHIBITION WAS DROPPED: each of the five merged cards carried, as its last common mistake, a form of \"writing both names together with an or between them — write one form of the name\". Both members of every one of those pairs are correct names, so that entry marked a correct answer wrong. It is not carried across. CONSISTENCY RECORD (both siblings opened and read): ts_ipe_c1_goc_iupac_pentene prints \"The older style 1-pentene names the same compound.\" and ts_ipe_c1_goc_iupac_two_ketones prints \"Older style 2-pentanone; common name methyl propyl ketone.\" Both give a second correct form as correct, which is the house ruling this card follows. ONE CARRIED CLAIM WAS DROPPED AS FALSE: the merged (e) card said of the two locant sets that \"Both sets add to 14\". They do not — 1 + 5 + 8 is 14 and 2 + 5 + 9 is 16 — so the mistake about adding the locants up is kept and that reason for it is dropped."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_the_method",
+        "kind": "text",
+        "label": "The naming method",
+        "marks": 1,
+        "mark_note": "The rules, used five times",
+        "lines": [
+          "The same rules give all five names.",
+          "Take the longest chain containing the",
+          "multiple bonds. That chain is the",
+          "parent; anything outside it is a",
+          "substituent.",
+          "Number it from both ends, write both",
+          "locant sets down, and keep the set",
+          "that is lower at the first place they",
+          "differ.",
+          "The suffix is numbered before any",
+          "substituent; the substituent settles",
+          "the direction only when the suffix",
+          "gets the same number both ways."
+        ],
+        "why": "Five different structures are named by one procedure, so the procedure is written out once and then applied five times. Stating the rules first also fixes the order the decisions are made in, and that order is what settles every tie in the parts below.",
+        "common_mistakes": [
+          "Numbering from one end only. Both directions have to be written down, because the comparison between them is the working.",
+          "Comparing the totals of the two locant sets. The sets are read term by term, at the first place they differ.",
+          "Giving a branch the lower number before checking the multiple bond. The suffix is numbered first."
+        ],
+        "memory_tip": "Longest chain, both directions, lower set, suffix before substituent.",
+        "margin_note": "Write these rules at the top of the answer. Each part below is one use of them."
+      },
+      {
+        "id": "s2_compound_a",
+        "kind": "text",
+        "label": "(a) The four-carbon diene",
+        "marks": 1,
+        "mark_note": "The first name",
+        "lines": [
+          {
+            "text": "CH₂=CH–CH=CH₂",
+            "style": "eq"
+          },
+          "The book prints a bond-line drawing;",
+          "with the hydrogen atoms put back it is",
+          "the formula above.",
+          "All four carbons lie in one chain and",
+          "both double bonds are inside it, so",
+          "the stem is but-.",
+          "The molecule reads the same from",
+          "either end, so both directions give",
+          "the locants 1 and 3.",
+          "Two double bonds give the ending",
+          "-diene, and the a of the stem is kept",
+          "before the d:",
+          {
+            "text": "buta-1,3-diene",
+            "style": "boxed"
+          },
+          "But-1,3-diene and 1,3-butadiene name",
+          "the same compound."
+        ],
+        "why": "A bond-line drawing shows only the carbon skeleton, so the hydrogen atoms are put back before anything is named. The chain, the numbering and the ending are then read straight off the condensed formula, and the two directions agree here because the molecule is the same read either way.",
+        "common_mistakes": [
+          "Writing the locants as 1 and 4. A double bond is named by the lower of the two carbons it joins, so the second one is 3.",
+          "Writing butadiene with no numbers. The two double bonds could sit at 1,2 or at 1,3, so the locants are needed."
+        ],
+        "memory_tip": "Two double bonds, so di- goes in front of -ene: diene.",
+        "margin_note": "Write the condensed formula on the page before naming. The rest of this part is read off it."
+      },
+      {
+        "id": "s3_compound_b",
+        "kind": "text",
+        "label": "(b) The chain with two kinds of bond",
+        "marks": 2,
+        "mark_note": "The correction and the second name",
+        "lines": [
+          "The book prints:",
+          {
+            "text": "CH₂=C–C≡C–CH₃",
+            "style": "eq"
+          },
+          "The second carbon there shows only",
+          "three bonds and a carbon atom forms",
+          "four, so one hydrogen is missing. The",
+          "compound meant is:",
+          {
+            "text": "CH₂=CH–C≡C–CH₃",
+            "style": "eq"
+          },
+          "That form counts as C₅H₆, which fits",
+          "CₙH₂ₙ₋₄ with n = 5; the printed form",
+          "fits no general formula.",
+          "Five carbons in one chain give pent-.",
+          "From the left the double bond is at 1",
+          "and the triple bond at 3, giving 1,3;",
+          "from the right they are at 4 and 2,",
+          "giving 2,4. The sets differ first at 1",
+          "against 2, so 1,3 is used.",
+          "The -ene ending comes before -yne,",
+          "each with its own number:",
+          {
+            "text": "pent-1-en-3-yne",
+            "style": "boxed"
+          },
+          "1-penten-3-yne names it too."
+        ],
+        "why": "A name can only be written from a structure in which every carbon has four bonds, so the missing hydrogen is put in first and the molecular formula confirms it. The two locant sets are then compared term by term, and the fixed order of the two endings keeps the name from depending on which bond was noticed first.",
+        "common_mistakes": [
+          "Naming the structure as printed, with a carbon showing three bonds. Count the bonds on every carbon and put the missing hydrogen in.",
+          "Numbering from the triple bond end because a triple bond looks more important. The two sets are compared together, and 1,3 is lower than 2,4.",
+          "Writing pent-3-yn-1-ene. The -ene ending comes before the -yne ending in the name."
+        ],
+        "memory_tip": "The letter e comes before the letter y, and so does -ene before -yne.",
+        "margin_note": "Say on the page that the printed structure is short of a hydrogen atom. The correction belongs to this part of the answer."
+      },
+      {
+        "id": "s4_compound_c",
+        "kind": "text",
+        "label": "(c) The branched alkene",
+        "marks": 1,
+        "mark_note": "The third name",
+        "lines": [
+          {
+            "text": "CH₃CH=C(CH₃)₂",
+            "style": "eq"
+          },
+          "The bracket means two methyl groups",
+          "on one carbon, so written out:",
+          {
+            "text": "CH₃–CH=C(CH₃)–CH₃",
+            "style": "eq"
+          },
+          "There are five carbon atoms, but the",
+          "longest chain through them is four, so",
+          "the stem is but- and one methyl group",
+          "is a branch.",
+          "The double bond joins carbons 2 and 3",
+          "from either end, so its locant is 2",
+          "both ways. The branch then settles the",
+          "direction: carbon 2 from the right,",
+          "carbon 3 from the left.",
+          {
+            "text": "2-methylbut-2-ene",
+            "style": "boxed"
+          },
+          "2-methyl-2-butene names it too."
+        ],
+        "why": "Five carbon atoms do not make a five-carbon chain, so the longest route through the skeleton is traced before the stem is written. The double bond is numbered lowest first, and only because it gives 2 in both directions does the branch decide which end the numbering starts from.",
+        "common_mistakes": [
+          "Calling the compound a pentene because there are five carbon atoms. No chain through this skeleton is five carbons long.",
+          "Reading (CH₃)₂ as one group of two carbons. It is two separate methyl groups on the same carbon atom.",
+          "Writing 3-methylbut-2-ene. That is the numbering from the left, where the branch has the higher number."
+        ],
+        "memory_tip": "Count the longest route through the skeleton, not the total number of carbon atoms.",
+        "margin_note": "Trace the chain with your pen before writing anything down for this part."
+      },
+      {
+        "id": "s5_compound_d",
+        "kind": "text",
+        "label": "(d) The ring and the chain",
+        "marks": 1,
+        "mark_note": "The fourth name",
+        "lines": [
+          {
+            "text": "C₆H₅–CH₂–CH₂–CH=CH₂",
+            "style": "eq"
+          },
+          "C₆H₅– is a benzene ring joined through",
+          "one of its carbons: the phenyl group.",
+          "The double bond lies in the chain of",
+          "four carbons and the suffix sits on",
+          "the parent, so the chain is the parent",
+          "and the ring is a substituent.",
+          "From the CH₂= end the double bond is",
+          "at 1 and the ring at 4; from the ring",
+          "end the double bond is at 3 and the",
+          "ring at 1. The suffix is numbered",
+          "first, so 1 is used.",
+          {
+            "text": "4-phenylbut-1-ene",
+            "style": "boxed"
+          },
+          "4-phenyl-1-butene names it too, and",
+          "taking the ring as the parent gives",
+          "(but-3-en-1-yl)benzene."
+        ],
+        "why": "A compound with a ring and a chain has to be split into a parent and a substituent, and the part carrying the double bond takes the ending. The rule numbers the suffix before the substituent, so the double bond keeps the low number even though that puts the ring at the far end of the chain.",
+        "common_mistakes": [
+          "Calling the group benzyl. Benzyl is C₆H₅–CH₂–, which carries an extra carbon; the group joined straight to the chain here is phenyl.",
+          "Writing 1-phenylbut-3-ene. That is the numbering from the ring end, whose double bond locant is the higher one.",
+          "Counting the ring carbons into the chain. The ring is a separate closed loop of six carbons."
+        ],
+        "memory_tip": "Phenyl is the ring on its own; benzyl is the ring plus one CH₂ group.",
+        "margin_note": "Say in one line why the chain was chosen as the parent. A parent chosen with no reason leaves the working incomplete."
+      },
+      {
+        "id": "s6_compound_e",
+        "kind": "boxed_final",
+        "label": "(e) The ten-carbon chain",
+        "marks": 2,
+        "mark_note": "The fifth name",
+        "lines": [
+          {
+            "text": "CH₃–CH=CH–CH₂–CH=CH–",
+            "style": "eq"
+          },
+          {
+            "text": "CH(C₂H₅)–CH₂–CH=CH₂",
+            "style": "eq"
+          },
+          "The written row is ten carbons long",
+          "and contains all three double bonds,",
+          "so it is the parent. A chain that",
+          "turns into the branch runs only nine",
+          "carbons and leaves a double bond out.",
+          "The branch C₂H₅– is an ethyl group.",
+          "From the CH₃ end the double bonds are",
+          "at 2, 5 and 9 and the ethyl group at",
+          "7; from the CH₂= end they are at 1, 5",
+          "and 8 and the ethyl group at 4.",
+          "The sets differ first at 1 against 2,",
+          "so numbering runs from the CH₂= end.",
+          "Three double bonds give -triene, and",
+          "dec- keeps its a before the t:",
+          {
+            "text": "4-ethyldeca-1,5,8-triene",
+            "style": "boxed"
+          },
+          "4-Ethyldec-1,5,8-triene names the",
+          "same compound."
+        ],
+        "why": "Every route through the branching carbon has to be traced, because the parent is the longest chain that still contains all three double bonds. All four numbers in the finished name then come from one numbering direction, and that direction is the one the locant sets choose.",
+        "common_mistakes": [
+          "Adding the locants up and comparing the totals. The two sets are compared term by term, at the first place they differ.",
+          "Keeping the ethyl locant from one direction and the double bond locants from the other. All four numbers come from the same numbering.",
+          "Counting the two branch carbons into the row and calling the chain twelve carbons long. They hang off the seventh carbon."
+        ],
+        "memory_tip": "Three double bonds, so tri- goes in front of -ene: triene.",
+        "margin_note": "One closing line saying that all four numbers come from one direction completes the answer."
+      }
+    ]
+  },
+  "insider_note": "All five names come from the same short list of rules, so the working is written once and used five times. The two parts students most often get wrong are (b), where the printed structure is short of a hydrogen atom, and (c), where five carbon atoms sit on a chain of only four."
+}

@@ -1,0 +1,190 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_acetylene_preparation_water_ozone",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Give two methods of preparation of acetylene. How does acetylene react with water and with ozone?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Preparation from calcium carbide",
+      "marks": 2
+    },
+    {
+      "label": "Preparation by dehalogenation",
+      "marks": 2
+    },
+    {
+      "label": "Reaction with water",
+      "marks": 2
+    },
+    {
+      "label": "Reaction with ozone",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.119, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 34. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Every equation was counted atom by atom: CaC₂ + 2H₂O → C₂H₂ + Ca(OH)₂ (Ca 1 = 1, C 2 = 2, H 4 = 4, O 2 = 2); CaO + 3C → CaC₂ + CO (Ca 1 = 1, O 1 = 1, C 3 = 3); Br₂CH–CHBr₂ + 2Zn → HC≡CH + 2ZnBr₂ (C 2 = 2, H 2 = 2, Br 4 = 4, Zn 2 = 2); HC≡CH + H₂O → CH₂=CHOH and CH₂=CHOH → CH₃CHO (C 2 = 2, H 4 = 4, O 1 = 1 throughout); acetylene ozonide is C₂H₂O₃, and C₂H₂O₃ + H₂O → CHO–CHO + H₂O₂ gives C 2 = 2, H 4 = 4, O 4 = 4. THE SECOND PREPARATION MAY BE ANY OF FOUR and the card names all four as correct: dehalogenation of 1,1,2,2-tetrabromoethane with zinc (written out here), 1,2-dibromoethane with alcoholic KOH followed by sodamide, iodoform with silver (2CHI₃ + 6Ag → HC≡CH + 6AgI), and Kolbe's electrolysis of potassium maleate. The ozonolysis is written as TWO clean stages because elsewhere in this chapter the same reaction is typeset so that water reads as a product of ozonide formation; water is the reagent of the second stage. TWO CONDITIONS HAVE NO RECORDED PROVENANCE: the strength of the acid and the catalyst in the hydration (30% sulphuric acid containing 1% mercuric sulphate), and the furnace temperature for making the carbide (about 2000 °C). It was not recorded at authoring time whether the printed answer names them, and the source index carries stems only. Treat both as unattributed until a teacher confirms the values and where they came from."
+  },
+  "insider_note": "The question has four equal parts — two preparations and two reactions — so every one of them needs its own equation, not a description in words.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_prep_carbide",
+        "kind": "equation",
+        "label": "Preparation from calcium carbide",
+        "marks": 2,
+        "mark_note": "First preparation",
+        "lines": [
+          "1. From calcium carbide.",
+          "Water is dripped on to calcium carbide",
+          "and acetylene comes off as a gas:",
+          {
+            "text": "CaC₂ + 2H₂O → C₂H₂ + Ca(OH)₂",
+            "style": "eq"
+          },
+          "The carbide itself is made by heating",
+          "quicklime with coke at about 2000 °C:",
+          {
+            "text": "CaO + 3C → CaC₂ + CO",
+            "style": "eq"
+          }
+        ],
+        "why": "This is the laboratory method and the industrial method both, because the carbide is cheap and the gas comes off at room temperature with no heating. Two molecules of water are needed since two of the four hydrogen atoms go to the acetylene and two to the calcium hydroxide.",
+        "common_mistakes": [
+          "Writing one molecule of water. Four hydrogen atoms are needed in all, two for the acetylene and two for the calcium hydroxide.",
+          "Writing calcium oxide as the other product. Water is in excess, so the calcium leaves as calcium hydroxide."
+        ],
+        "memory_tip": "Carbide and water give acetylene and slaked lime.",
+        "margin_note": "Number the two preparations 1 and 2 so both can be found at a glance."
+      },
+      {
+        "id": "s2_prep_dehalogenation",
+        "kind": "equation",
+        "label": "Preparation by dehalogenation",
+        "marks": 2,
+        "mark_note": "Second preparation",
+        "lines": [
+          "2. By dehalogenation of a tetrahalide.",
+          "1,1,2,2-tetrabromoethane is warmed with",
+          "zinc dust:",
+          {
+            "text": "Br₂CH–CHBr₂ + 2Zn → HC≡CH + 2ZnBr₂",
+            "style": "eq"
+          },
+          "Each zinc atom removes two bromine",
+          "atoms, and a triple bond is left",
+          "between the two carbon atoms."
+        ],
+        "why": "Two bromine atoms come off each carbon atom, so four leave in all and two formula units of zinc are needed. Acetylene is also obtained from 1,2-dibromoethane with alcoholic KOH followed by sodamide, from iodoform with silver, and by the electrolysis of potassium maleate; any one of these is a correct second method.",
+        "common_mistakes": [
+          "Writing one atom of zinc. Four bromine atoms leave, and each zinc atom takes two of them.",
+          "Writing ethylene as the product. All four halogen atoms are removed, so the bond left is a triple bond."
+        ],
+        "memory_tip": "Zinc removes the four bromine atoms and leaves a triple bond.",
+        "margin_note": "Write out whichever second preparation you know; the equation is the part that must balance."
+      },
+      {
+        "id": "s3_with_water",
+        "kind": "equation",
+        "label": "Reaction with water",
+        "marks": 2,
+        "mark_note": "With water",
+        "lines": [
+          "Acetylene is passed into 30% sulphuric",
+          "acid containing 1% mercuric sulphate as",
+          "catalyst, and warmed. Water adds across",
+          "the triple bond:",
+          {
+            "text": "HC≡CH + H₂O → CH₂=CHOH",
+            "style": "eq"
+          },
+          "Vinyl alcohol is unstable and",
+          "rearranges at once to acetaldehyde:",
+          {
+            "text": "CH₂=CHOH → CH₃CHO",
+            "style": "eq"
+          }
+        ],
+        "why": "The water adds across the triple bond and gives vinyl alcohol, an alcohol with its –OH on a doubly bonded carbon atom. That arrangement is unstable: the hydrogen moves from the oxygen to the next carbon atom, which turns the C=C into a C=O, so the compound obtained is acetaldehyde and not the alcohol.",
+        "common_mistakes": [
+          "Stopping at vinyl alcohol. It rearranges at once, and the compound obtained is acetaldehyde.",
+          "Writing ethanol as the product. One molecule of water adds, and the rearrangement gives an aldehyde.",
+          "Leaving out the mercuric sulphate. Without the catalyst the addition does not take place."
+        ],
+        "memory_tip": "Water on acetylene gives vinyl alcohol, which turns into acetaldehyde.",
+        "margin_note": "Write both lines. The rearrangement is half of this reaction."
+      },
+      {
+        "id": "s4_with_ozone",
+        "kind": "equation",
+        "label": "Reaction with ozone",
+        "marks": 2,
+        "mark_note": "With ozone",
+        "lines": [
+          "Ozone adds across the triple bond and",
+          "gives acetylene ozonide, C₂H₂O₃:",
+          {
+            "text": "HC≡CH + O₃ → acetylene ozonide",
+            "style": "eq"
+          },
+          "The ozonide is then broken by water,",
+          "with zinc dust present:",
+          {
+            "text": "acetylene ozonide + H₂O → CHO–CHO + H₂O₂",
+            "style": "eq"
+          },
+          "Glyoxal, CHO–CHO, is the product."
+        ],
+        "why": "Ozonolysis breaks the molecule exactly where the multiple bond was, so the two carbon atoms of acetylene finish as the two carbon atoms of glyoxal, one aldehyde group on each. The zinc dust destroys the hydrogen peroxide as it is formed, which would otherwise oxidise those aldehyde groups to acid groups.",
+        "common_mistakes": [
+          "Writing water into the first line. Water belongs to the second stage; the ozonide is formed from acetylene and ozone alone.",
+          "Writing two molecules of formaldehyde. That is what ethylene gives; acetylene carries only two hydrogen atoms in all and gives glyoxal."
+        ],
+        "memory_tip": "Ozone then water: acetylene gives glyoxal, one CHO from each carbon atom.",
+        "margin_note": "Keep the ozonide on its own line before the water is brought in."
+      },
+      {
+        "id": "s5_summary",
+        "kind": "boxed_final",
+        "label": "The four parts in order",
+        "marks": 0,
+        "lines": [
+          "Two preparations: calcium carbide with",
+          "water, and a tetrabromide with zinc.",
+          "Two reactions: water gives",
+          "acetaldehyde, ozone gives glyoxal.",
+          {
+            "text": "C₂H₂ + H₂O → CH₃CHO",
+            "style": "boxed"
+          }
+        ],
+        "why": "Reading the four parts back in order shows that the question has two halves of equal size, and that the answer is finished only when both preparations and both reactions carry their own equations.",
+        "common_mistakes": [
+          "Giving three preparations and one reaction. The question asks for two of each.",
+          "Describing the reactions in words only. Each of the four parts needs its equation."
+        ],
+        "memory_tip": "Two ways in and two ways on: carbide and tetrabromide, water and ozone.",
+        "margin_note": "Unmarked closing step. It puts the four parts back in order."
+      }
+    ]
+  }
+}

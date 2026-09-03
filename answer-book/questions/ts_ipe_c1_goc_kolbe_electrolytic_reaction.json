@@ -1,0 +1,111 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_kolbe_electrolytic_reaction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write Kolbe's electrolytic reaction.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The electrolyte and the electrodes",
+      "marks": 1
+    },
+    {
+      "label": "The equations",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.114, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 18. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATIONS WERE CHECKED ATOM BY ATOM AND FOR CHARGE: 2CH₃COOK + 2H₂O → C₂H₆ + 2CO₂ + 2KOH + H₂ has C 4 = 2 + 2, H 10 = 6 + 2 + 2, O 6 = 4 + 2 and K 2 = 2; the anode half 2CH₃COO⁻ → C₂H₆ + 2CO₂ + 2e⁻ has C 4 = 4, H 6 = 6, O 4 = 4 and charge −2 = −2; the cathode half 2H₂O + 2e⁻ → H₂ + 2OH⁻ has H 4 = 4, O 2 = 2 and charge −2 = −2. THE OVERALL EQUATION IS WRITTEN ACROSS TWO LINES, split at the arrow, because on one line it runs past the width of a ruled row. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the two electrode half equations, the word concentrated on the solution, and the note that sodium acetate serves as well as the potassium salt."
+  },
+  "insider_note": "Say which electrode each product comes from. Ethane and carbon dioxide are liberated at the anode, hydrogen and potassium hydroxide at the cathode, and that is the part of the answer most often left out.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "text",
+        "label": "The electrolyte and the electrodes",
+        "marks": 1,
+        "mark_note": "The set-up",
+        "lines": [
+          "A concentrated aqueous solution of",
+          "potassium acetate, CH₃COOK, is",
+          "electrolysed.",
+          "At the anode the acetate ion loses an",
+          "electron, carbon dioxide is given off and",
+          "the two methyl parts join as ethane.",
+          "At the cathode water is reduced, so",
+          "hydrogen is given off and potassium",
+          "hydroxide is left in the solution.",
+          "Sodium acetate may be used instead; the",
+          "products are the same."
+        ],
+        "why": "Naming the electrode for each product is the substance of this answer: ethane and carbon dioxide come off at the anode, hydrogen and the alkali at the cathode. The solution has to be concentrated so that it is the acetate ion and not the water that is oxidised.",
+        "common_mistakes": [
+          "Putting the hydrogen at the anode. Hydrogen is given off at the cathode.",
+          "Giving methane as the organic product. Two methyl parts join, so the product is ethane.",
+          "Using the dry salt. The electrolyte is a concentrated aqueous solution."
+        ],
+        "memory_tip": "Ethane and carbon dioxide at the anode; hydrogen and alkali at the cathode.",
+        "margin_note": "Name the electrolyte, then say which product comes off at which electrode."
+      },
+      {
+        "id": "s2_equations",
+        "kind": "boxed_final",
+        "label": "The equations",
+        "marks": 1,
+        "mark_note": "The equations",
+        "lines": [
+          {
+            "text": "2CH₃COOK + 2H₂O →",
+            "style": "boxed"
+          },
+          {
+            "text": "C₂H₆ + 2CO₂ + 2KOH + H₂",
+            "style": "boxed"
+          },
+          "Atoms: 4 C, 10 H, 6 O and 2 K each side.",
+          "At the anode:",
+          {
+            "text": "2CH₃COO⁻ → C₂H₆ + 2CO₂ + 2e⁻",
+            "style": "eq"
+          },
+          "This anode reaction is the one that",
+          "gives the ethane.",
+          "At the cathode:",
+          {
+            "text": "2H₂O + 2e⁻ → H₂ + 2OH⁻",
+            "style": "eq"
+          },
+          "Charge: −2 on each side."
+        ],
+        "why": "The overall equation is what the question asks for, and the two half changes show where each product comes from. Two electrons are released at the anode and two are taken at the cathode, so the charge balances as well as the atoms.",
+        "common_mistakes": [
+          "Writing the half reactions with different numbers of electrons. Two are released and two are taken.",
+          "Leaving KOH and H₂ out of the overall equation. Both are formed at the cathode.",
+          "Writing CO₂ as CO. The acetate ion gives carbon dioxide at the anode."
+        ],
+        "memory_tip": "Two acetate ions lose two CO₂ and the two methyl parts join into one ethane.",
+        "margin_note": "Write the two electrode reactions and the overall change, all balanced."
+      }
+    ]
+  }
+}

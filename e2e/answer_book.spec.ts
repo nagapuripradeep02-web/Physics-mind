@@ -2773,10 +2773,17 @@ test('the chemistry bank is on the 2026-27 numbering: ten chapters, States of Ma
     expect(r.u6).toBe('Chemical Equilibrium, Acids and Bases (Chemistry)');
     expect(r.u7).toBe('s-Block Elements (Chemistry)');
     expect(r.u10).toBe('General Organic Chemistry (Chemistry)');
-    // chemistry-7 (71), chemistry-8 (36) and chemistry-9 (60) were authored in wave C of the
-    // first-year 2026-27 campaign and their "questions coming" placeholder rows are gone.
-    // Chapter 10 is the last one still listed-not-written.
-    expect(r.comingReady).toEqual([71, 36, 60, 0]);
+    // WAVE C COMPLETE. chemistry 7 (71), 8 (36), 9 (60) and 10 (59) were all authored in the
+    // first-year 2026-27 campaign; every "questions coming" placeholder row in chemistry is
+    // gone, and all ten chapters of the first-year chemistry book are now carded.
+    // Chapter 10 is 59, not the 63 it was first merged at: the book prints LAQ 31 as ONE
+    // eight-mark question with five IUPAC naming parts, and the first authoring pass carded
+    // each part as a full eight-mark LAQ -- 40 marks and 75 minutes claimed for one 8-mark
+    // question. The five are now one card. Carding lettered parts separately is CORRECT where
+    // each part stands alone as a question of that size (LAQ 39's four distillation notes and
+    // LAQ 40's three chromatography questions both do, and both stay split); a bare IUPAC name
+    // does not, and the book's own VSAQ 5 sets the same task at two marks.
+    expect(r.comingReady).toEqual([71, 36, 60, 59]);
 });
 
 test('a pre-2026-09-02 chemistry exam-eve link still lands on the chapter it meant', async ({ page }) => {

@@ -1,0 +1,167 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_solvent_extraction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Describe the solvent extraction method used to purify a compound.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The principle",
+      "marks": 1
+    },
+    {
+      "label": "Using the separating funnel",
+      "marks": 1
+    },
+    {
+      "label": "Why the extraction is repeated",
+      "marks": 1
+    },
+    {
+      "label": "Recovering the compound",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.116, chapter 10 GENERAL ORGANIC CHEMISTRY, SHORT ANSWER QUESTIONS question 28. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. APPARATUS IN WORDS, NOT A FIGURE: the separating funnel is described by its parts and its operation. ONE POINT ADDED beyond the bare method, in step 3: several extractions with small portions of the solvent recover more of the compound than one extraction with the whole quantity, because the distribution between the two liquids is an equilibrium reached afresh at every shaking. It is standard, it is what makes the laboratory practice make sense, and it is stated as a fact about the equilibrium, not as a claim about any mark scheme."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "General Organic Chemistry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 1,
+        "mark_note": "Immiscible solvent, greater solubility",
+        "lines": [
+          "Solvent extraction removes an organic",
+          "compound from a solution of it in water.",
+          "The aqueous solution is shaken with an",
+          "organic solvent that does not mix with",
+          "water and in which the compound is much",
+          "more soluble than it is in water.",
+          "The compound distributes itself between",
+          "the two liquids in a fixed ratio at a",
+          "given temperature, and most of it passes",
+          "into the organic solvent."
+        ],
+        "why": "Two conditions do all the work. The solvent must be immiscible with water, or there would be no two layers to separate; and the compound must be much more soluble in it than in water, or very little would transfer.",
+        "common_mistakes": [
+          "Choosing a solvent that mixes with water, such as ethanol. Then no second layer forms and nothing can be separated.",
+          "Saying the compound moves completely into the solvent. It distributes itself in a fixed ratio, so some stays in the water."
+        ],
+        "memory_tip": "The solvent must not mix with water, and the compound must be far more soluble in the solvent than in the water.",
+        "margin_note": "Write both conditions on the solvent in the opening lines: immiscible with water, and a better solvent for the compound."
+      },
+      {
+        "id": "s2_separating_funnel",
+        "kind": "text",
+        "label": "Using the separating funnel",
+        "marks": 1,
+        "mark_note": "The funnel and the two layers",
+        "lines": [
+          "The aqueous solution and the organic",
+          "solvent are poured into a separating",
+          "funnel, a pear-shaped glass funnel with",
+          "a stopper at the top and a stopcock at",
+          "the bottom.",
+          "The funnel is stoppered and shaken well,",
+          "so that the two liquids are brought into",
+          "close contact.",
+          "It is then clamped upright and left to",
+          "stand, and the liquids settle into two",
+          "clear layers.",
+          "The stopper is removed, the stopcock is",
+          "opened, and the lower layer is run out",
+          "first.",
+          "Ether, chloroform and benzene are the",
+          "solvents commonly used."
+        ],
+        "why": "Shaking breaks the solvent into small drops and gives a very large surface between the two liquids, so the compound reaches its distribution ratio quickly. Standing lets the drops run together again into two layers that can be drawn off separately.",
+        "common_mistakes": [
+          "Running out the upper layer through the stopcock. The lower layer leaves first, and the upper layer is poured out from the top.",
+          "Opening the stopcock with the stopper still in place. The liquid will not flow steadily until air can enter."
+        ],
+        "memory_tip": "Shake to mix, stand to separate, and let the lower layer out through the stopcock.",
+        "margin_note": "Say which layer is drawn off first. It is the detail that shows the funnel has actually been used."
+      },
+      {
+        "id": "s3_repeated_extraction",
+        "kind": "text",
+        "label": "Why the extraction is repeated",
+        "marks": 1,
+        "mark_note": "Small portions, several times",
+        "lines": [
+          "One shaking does not transfer all of the",
+          "compound, because the distribution",
+          "between the two liquids is an",
+          "equilibrium and some of the compound",
+          "always remains in the water.",
+          "So the aqueous layer is returned to the",
+          "funnel and shaken with a fresh portion",
+          "of the solvent.",
+          "Several extractions with small portions",
+          "recover more of the compound than one",
+          "extraction with the whole quantity of",
+          "solvent."
+        ],
+        "why": "Each fresh portion of solvent meets water that has already been partly stripped, and it removes the same FRACTION of what is still there. Three portions therefore leave behind a fraction cubed, which is far less than the single fraction one large portion would leave.",
+        "common_mistakes": [
+          "Using the whole solvent in one shaking. The same volume divided into three portions recovers more of the compound.",
+          "Discarding the aqueous layer after one extraction. It still carries part of the compound."
+        ],
+        "memory_tip": "Three small shakings recover more than one big one, because each one starts the sharing out again.",
+        "margin_note": "State that the extraction is repeated with fresh small portions, and give the reason in one line."
+      },
+      {
+        "id": "s4_recovery",
+        "kind": "boxed_final",
+        "label": "Recovering the compound",
+        "marks": 1,
+        "mark_note": "Drying and distilling the solvent off",
+        "lines": [
+          "The organic layers from all the",
+          "extractions are combined.",
+          "They are dried over a suitable drying",
+          "agent, such as anhydrous sodium",
+          "sulphate, to take out the small amount",
+          "of dissolved water.",
+          "The dried solution is then distilled,",
+          "and the solvent passes over and is",
+          "collected for use again.",
+          {
+            "text": "What remains is the organic compound",
+            "style": "boxed"
+          }
+        ],
+        "why": "The solvent is chosen to be low boiling as well as immiscible, so that it can be distilled off gently at the end and the compound is not heated hard. Drying first matters, because water left in the solution would be carried into the residue.",
+        "common_mistakes": [
+          "Evaporating the solution to dryness over a flame. The solvents used are volatile and inflammable, so the solvent is distilled off.",
+          "Stopping at the separation of the layers. The compound is still in solution until the solvent is removed."
+        ],
+        "memory_tip": "Combine the organic layers, dry them, distil the solvent off, and the compound is what is left.",
+        "margin_note": "One closing line naming what is left in the flask completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Four marks over four stages: the two conditions on the solvent, the separating funnel with the lower layer run off first, repeating the extraction with fresh small portions, and distilling the solvent away at the end. Naming a real solvent — ether, chloroform or benzene — and a real drying agent makes the description concrete."
+}

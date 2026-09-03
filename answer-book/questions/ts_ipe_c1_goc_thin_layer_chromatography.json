@@ -1,0 +1,248 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_thin_layer_chromatography",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain thin layer chromatography.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What thin layer chromatography is",
+      "marks": 1
+    },
+    {
+      "label": "Preparing the plate",
+      "marks": 1
+    },
+    {
+      "label": "The spot and the development",
+      "marks": 2
+    },
+    {
+      "label": "Locating the spots",
+      "marks": 1
+    },
+    {
+      "label": "The Rf value",
+      "marks": 2
+    },
+    {
+      "label": "Uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.123, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 40(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. APPARATUS IN WORDS, NOT A FIGURE: the coated glass plate, the base line 2 cm from one end, the closed jar with the eluant level below that base line, and the solvent front are described precisely enough to be drawn from the words. NOTATION: the retardation factor is written Rf, with an ordinary letter f, because Unicode has no subscript f and an underscore would be read aloud as a word. The relation authored is Rf = distance moved by the substance ÷ distance moved by the solvent, both measured from the base line, which is the standard definition. THE CONSTANCY CLAIM IS QUALIFIED: Rf is constant for a substance on a given adsorbent with a given solvent, and the card says so rather than calling it a constant of the substance alone."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What thin layer chromatography is",
+        "marks": 1,
+        "mark_note": "Adsorption on a thin layer",
+        "lines": [
+          "Thin layer chromatography, written TLC,",
+          "is an adsorption chromatography carried",
+          "out on a thin layer of adsorbent spread",
+          "on a glass plate.",
+          "The stationary phase is that solid",
+          "layer, and the mobile phase is a liquid",
+          "solvent called the eluant.",
+          "The components of the mixture are",
+          "adsorbed on the layer to different",
+          "extents, so the rising solvent carries",
+          "them up the plate at different rates and",
+          "they separate."
+        ],
+        "why": "The stationary phase is a solid here, so this is an adsorption method, and the separation comes from a difference in adsorption. The only difference from a column is the shape of the adsorbent: a thin flat layer instead of a packed tube, with the solvent rising instead of running down.",
+        "common_mistakes": [
+          "Calling it a partition chromatography. The stationary phase is a solid adsorbent.",
+          "Saying the solvent runs down the plate. It rises up the layer by capillary action."
+        ],
+        "memory_tip": "A thin solid layer standing still, a solvent rising through it, and the components adsorbed by different amounts.",
+        "margin_note": "Open by naming the two phases and the word adsorption, and give the short form TLC once."
+      },
+      {
+        "id": "s2_plate",
+        "kind": "text",
+        "label": "Preparing the plate",
+        "marks": 1,
+        "mark_note": "The adsorbent and the thickness",
+        "lines": [
+          "Silica gel or alumina is mixed with a",
+          "little water into a thin paste.",
+          "The paste is spread evenly on a clean",
+          "glass plate to a thickness of about",
+          "0.2 mm.",
+          "The plate is dried and then activated by",
+          "warming it in an oven.",
+          "A plate prepared in this way is called a",
+          "chromaplate or a thin layer",
+          "chromatography plate."
+        ],
+        "why": "The layer must be thin and even. A thick layer takes far longer for the solvent to climb, and an uneven one makes the solvent front travel at different speeds across the plate, which puts every measured distance out.",
+        "common_mistakes": [
+          "Using the plate without drying and activating it. The layer is dried and warmed in an oven first.",
+          "Spreading a thick layer. About 0.2 mm is used."
+        ],
+        "memory_tip": "Silica gel or alumina, spread about 0.2 mm thick, dried and activated.",
+        "margin_note": "Name the adsorbent and give the thickness as a number. The plate is called a chromaplate."
+      },
+      {
+        "id": "s3_spot_and_development",
+        "kind": "text",
+        "label": "The spot and the development",
+        "marks": 2,
+        "mark_note": "Base line, the jar, the solvent front",
+        "lines": [
+          "A base line is marked about 2 cm above",
+          "one end of the plate.",
+          "The solution of the mixture is applied",
+          "on this line as a small spot with a fine",
+          "capillary, and the spot is dried.",
+          "The plate is stood upright in a closed",
+          "jar containing the eluant, with the",
+          "level of the eluant BELOW the base line,",
+          "so that the spot itself is not dipped",
+          "into the liquid.",
+          "The solvent rises up the layer by",
+          "capillary action and carries the",
+          "components with it at different rates.",
+          "The plate is taken out when the solvent",
+          "front has nearly reached the top, and",
+          "that front is marked at once, before it",
+          "dries."
+        ],
+        "why": "The eluant level must be below the base line. If the spot were dipped into the liquid the mixture would simply dissolve away into the jar, and nothing would climb the plate at all. Marking the front at once matters for the same practical reason: once the plate dries the front cannot be seen.",
+        "common_mistakes": [
+          "Dipping the spot into the eluant. The eluant level stays below the base line.",
+          "Leaving the jar open. It is closed, so that the air inside is saturated with solvent vapour and the plate does not dry as the solvent climbs.",
+          "Letting the solvent reach the very top. The plate is removed while the front is still short of the top edge."
+        ],
+        "memory_tip": "Spot on the base line 2 cm up, eluant level below that line, closed jar, and mark the front as soon as the plate comes out.",
+        "margin_note": "Two marks here, so give the applying of the spot AND the development with the solvent front marked."
+      },
+      {
+        "id": "s4_locating",
+        "kind": "text",
+        "label": "Locating the spots",
+        "marks": 1,
+        "mark_note": "Iodine, ultraviolet or a spray",
+        "lines": [
+          "A coloured component is seen at once as",
+          "a separate coloured spot.",
+          "A colourless component is located in one",
+          "of three ways.",
+          "The plate is put in a closed jar holding",
+          "a few iodine crystals, and brown spots",
+          "appear where the substances are.",
+          "Or the plate is examined under",
+          "ultraviolet light, when the spots show",
+          "up dark against a bright background.",
+          "Or a suitable reagent is sprayed on the",
+          "plate, and it gives a coloured spot with",
+          "each substance."
+        ],
+        "why": "Most organic compounds are colourless, so a plate that has separated a mixture perfectly may show nothing at all. A method of making the spots visible is therefore part of the technique and not an afterthought.",
+        "common_mistakes": [
+          "Assuming the spots are always visible. Most organic compounds are colourless and have to be located.",
+          "Naming only one method. Iodine vapour, ultraviolet light and a spray reagent are the three."
+        ],
+        "memory_tip": "Iodine vapour, ultraviolet light, or a spray reagent: three ways to see a colourless spot.",
+        "margin_note": "Give all three ways of locating a colourless spot. Each one is a separate line."
+      },
+      {
+        "id": "s5_rf",
+        "kind": "equation",
+        "label": "The Rf value",
+        "marks": 2,
+        "mark_note": "The definition and what it means",
+        "lines": [
+          "The position of a spot is reported as",
+          "its retardation factor, written Rf.",
+          {
+            "text": "Rf = distance moved by the substance",
+            "style": "eq"
+          },
+          {
+            "text": "÷ distance moved by the solvent",
+            "style": "indent"
+          },
+          "Both distances are measured from the",
+          "base line, the second of them up to the",
+          "solvent front.",
+          "The distance to a spot is measured to",
+          "the centre of that spot.",
+          "Rf is never greater than 1, and in",
+          "practice is less than 1, because a",
+          "substance cannot travel further than the",
+          "solvent that carries it.",
+          "On a given adsorbent with a given",
+          "solvent, the Rf of a substance is a",
+          "constant, so comparing Rf values",
+          "identifies it."
+        ],
+        "why": "The Rf value turns a picture into a number. Two plates run on different days will have different solvent fronts and different spot positions, but the RATIO of the two distances is the same, and that is why a value measured in one laboratory can be compared with a value measured in another.",
+        "common_mistakes": [
+          "Measuring the distances from the bottom edge of the plate. Both are measured from the base line.",
+          "Inverting the ratio. The distance moved by the substance is on top, which is why Rf is less than 1.",
+          "Calling Rf a constant of the substance alone. It is constant only for a given adsorbent and a given solvent."
+        ],
+        "memory_tip": "Spot distance over solvent distance, both from the base line, and the answer is always less than 1.",
+        "margin_note": "Two marks here, so write the formula AND say what the value means and why it is less than 1."
+      },
+      {
+        "id": "s6_uses",
+        "kind": "boxed_final",
+        "label": "Uses",
+        "marks": 1,
+        "mark_note": "Purity and following a reaction",
+        "lines": [
+          "Thin layer chromatography tests the",
+          "purity of a compound.",
+          "It follows the progress of a reaction:",
+          "the spot of the starting material fades",
+          "as the spot of the product appears, and",
+          "the reaction is stopped when the",
+          "starting material is gone.",
+          "It needs only a trace of material and",
+          "gives its answer in a few minutes, which",
+          "is why it is the quickest test in the",
+          "organic laboratory.",
+          {
+            "text": "A pure compound gives a single spot",
+            "style": "boxed"
+          }
+        ],
+        "why": "A single spot is the useful result because it is a negative test that can be trusted for the common cases: any component with a different adsorption would have travelled a different distance and shown as a second spot.",
+        "common_mistakes": [
+          "Giving TLC as the method for purifying a working quantity of a compound. It separates a very small quantity, so it is used mainly to test purity and to follow a reaction; column chromatography is the preparative method.",
+          "Ending at the Rf value. A full answer names what the method is used for."
+        ],
+        "memory_tip": "One spot means pure, and a fading starting-material spot means the reaction is finishing.",
+        "margin_note": "One closing line saying what a single spot means completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Six things make this a full answer: the adsorbent layer about 0.2 mm thick, the base line 2 cm up, the eluant level BELOW that line, the three ways of locating a colourless spot, the Rf formula with both distances measured from the base line, and the use of a single spot as a test of purity."
+}

@@ -1,0 +1,150 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_friedel_crafts_alkylation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the Friedel–Crafts alkylation reaction with one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the reaction is",
+      "marks": 1
+    },
+    {
+      "label": "Reagents and conditions",
+      "marks": 1
+    },
+    {
+      "label": "The worked example",
+      "marks": 1
+    },
+    {
+      "label": "The general form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.115, chapter 10 GENERAL ORGANIC CHEMISTRY, SHORT ANSWER QUESTIONS question 19(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. No exam-appearance years are recorded for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. BOTH ALKYL HALIDES ARE CORRECT, recorded here so no later editor treats one as a defect: the card works the example with methyl chloride, C₆H₆ + CH₃Cl → C₆H₅CH₃ + HCl, and names methyl iodide, C₆H₆ + CH₃I → C₆H₅CH₃ + HI, as an equally correct way of running the same reaction. Neither is an error."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "General Organic Chemistry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What the reaction is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Friedel–Crafts alkylation is an",
+          "electrophilic substitution reaction of",
+          "benzene.",
+          "One hydrogen atom of the ring is",
+          "replaced by an alkyl group.",
+          "The alkyl group is supplied by an",
+          "alkyl halide R–X."
+        ],
+        "why": "Naming the reaction type first fixes what has to appear in the equation: a substitution replaces one ring hydrogen atom and leaves the six-carbon ring itself unchanged, so the product still has a benzene ring in it.",
+        "common_mistakes": [
+          "Calling it an addition reaction. The ring is not broken; one hydrogen atom is replaced.",
+          "Saying the whole alkyl halide joins the ring. Only the alkyl group joins; the halogen leaves."
+        ],
+        "memory_tip": "Alkylation means putting an alkyl group on the ring in place of a hydrogen atom.",
+        "margin_note": "Say substitution in the first line. The rest of the answer follows from it."
+      },
+      {
+        "id": "s2_reagents",
+        "kind": "text",
+        "label": "Reagents and conditions",
+        "marks": 1,
+        "mark_note": "Reagents",
+        "lines": [
+          "Reagents: benzene and an alkyl halide.",
+          "In this example the alkyl halide is",
+          "methyl chloride CH₃Cl.",
+          "Catalyst: anhydrous aluminium",
+          "chloride AlCl₃.",
+          "Everything must be dry, because water",
+          "hydrolyses aluminium chloride."
+        ],
+        "why": "The catalyst is what takes the halogen from the alkyl halide and leaves the alkyl electrophile, so without it the ring and the alkyl halide do not react. Methyl iodide CH₃I with the same catalyst is equally correct and gives HI in place of HCl.",
+        "common_mistakes": [
+          "Leaving out the catalyst. Anhydrous AlCl₃ is part of the answer.",
+          "Writing moist or hydrated AlCl₃. Water hydrolyses the catalyst, so it has to be anhydrous."
+        ],
+        "memory_tip": "Alkyl halide plus anhydrous AlCl₃, and keep the apparatus dry.",
+        "margin_note": "Write the catalyst beside the arrow of the equation as well as in the reagent list."
+      },
+      {
+        "id": "s3_example",
+        "kind": "equation",
+        "label": "The worked example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          "Benzene with methyl chloride gives",
+          "methylbenzene:",
+          {
+            "text": "C₆H₆ + CH₃Cl → C₆H₅CH₃ + HCl",
+            "style": "eq"
+          },
+          "Conditions: anhydrous AlCl₃.",
+          "The product C₆H₅CH₃ is methylbenzene,",
+          "also called toluene.",
+          "Atoms: 7 C, 9 H and 1 Cl on each side."
+        ],
+        "why": "The atom count is the check on the equation: the methyl group moves from the chlorine to the ring, and the ring hydrogen atom moves the other way, so nothing is gained or lost overall.",
+        "common_mistakes": [
+          "Leaving the equation with one product. The chlorine leaves together with the displaced hydrogen atom, so HCl is the second product.",
+          "Writing the product as C₆H₆CH₃. Benzene loses one hydrogen atom, so it is C₆H₅CH₃."
+        ],
+        "memory_tip": "Check the atom count: 7 C, 9 H and 1 Cl on each side.",
+        "margin_note": "Give the equation a line of its own and name the product under it."
+      },
+      {
+        "id": "s4_general",
+        "kind": "boxed_final",
+        "label": "The general form",
+        "marks": 1,
+        "mark_note": "General form",
+        "lines": [
+          "An alkyl halide with a simple alkyl",
+          "group reacts in the same way. With",
+          "ethyl chloride C₂H₅Cl the product is",
+          "ethylbenzene C₆H₅C₂H₅.",
+          "So the reaction may be written",
+          "generally as",
+          {
+            "text": "C₆H₆ + R–X → C₆H₅R + HX",
+            "style": "boxed"
+          }
+        ],
+        "why": "Writing the general form shows the reaction is not about methyl chloride in particular: whatever alkyl group the halide carries goes on to the ring, and the halogen leaves with the displaced hydrogen atom as HX. A longer straight chain is the exception: n-propyl chloride gives isopropylbenzene, because the propyl group rearranges before it joins the ring.",
+        "common_mistakes": [
+          "Writing R and X without saying what they stand for. R is the alkyl group and X is the halogen.",
+          "Giving the general form only. The question asks for one worked example as well."
+        ],
+        "memory_tip": "R goes on to the ring, X comes off with the hydrogen as HX.",
+        "margin_note": "One closing line giving the general form completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Two parts are asked here: the reaction and one example. The catalyst has to be written as anhydrous aluminium chloride, and HCl has to appear as the second product of the example."
+}
