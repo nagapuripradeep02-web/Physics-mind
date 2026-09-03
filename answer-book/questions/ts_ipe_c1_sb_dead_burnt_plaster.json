@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_dead_burnt_plaster",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is dead burnt plaster?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "Why it is called dead burnt",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.86, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "lines": [
+          "Gypsum, CaSO₄·2H₂O, is heated to",
+          "393 K to make plaster of Paris.",
+          "If gypsum is heated above 393 K, all",
+          "the water of crystallisation is",
+          "driven off and anhydrous calcium",
+          "sulphate is left:",
+          {
+            "text": "CaSO₄·2H₂O → CaSO₄ + 2H₂O",
+            "style": "eq"
+          },
+          "This anhydrous CaSO₄ is dead burnt",
+          "plaster."
+        ],
+        "why": "Dead burnt plaster is defined by the temperature. Up to 393 K the solid keeps half a water molecule and is plaster of Paris; above 393 K it keeps none, and the product is the anhydrous salt.",
+        "common_mistakes": [
+          "Writing that dead burnt plaster still holds half a water molecule. It holds none, so it is anhydrous CaSO₄.",
+          "Writing the temperature as 393 °C. The figure is 393 K."
+        ],
+        "memory_tip": "Above 393 K the last of the water leaves and only CaSO₄ is left.",
+        "margin_note": "Write the temperature 393 K beside the equation."
+      },
+      {
+        "id": "s2_why_dead_burnt",
+        "kind": "text",
+        "label": "Why it is called dead burnt",
+        "marks": 1,
+        "mark_note": "Loss of setting",
+        "lines": [
+          "Anhydrous calcium sulphate no longer",
+          "sets to a hard mass when it is mixed",
+          "with water, because it does not take",
+          "the water back to form gypsum.",
+          "A plaster that has lost this setting",
+          "property is called dead burnt",
+          "plaster, and it cannot be used as a",
+          "plaster."
+        ],
+        "why": "The name records the loss of the one property that makes plaster useful. Overheating removes the setting action, so the material is of no use as a plaster even though it is still calcium sulphate.",
+        "common_mistakes": [
+          "Writing that dead burnt plaster sets slowly. It has lost its setting property; mixing it with water does not give a hard mass.",
+          "Naming the product without saying why it is called dead. The lost setting property is the reason."
+        ],
+        "memory_tip": "Dead means it no longer sets with water.",
+        "margin_note": "State the temperature limit and the lost setting property together."
+      }
+    ]
+  },
+  "insider_note": "A complete answer names the temperature limit of 393 K and says that the anhydrous product no longer sets with water."
+}

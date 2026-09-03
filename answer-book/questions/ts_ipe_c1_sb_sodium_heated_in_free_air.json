@@ -1,0 +1,151 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_sodium_heated_in_free_air",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What happens when sodium metal is heated in a free supply of air?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the air supply decides",
+      "marks": 1
+    },
+    {
+      "label": "In a free supply of air",
+      "marks": 1
+    },
+    {
+      "label": "In a limited supply of air",
+      "marks": 1
+    },
+    {
+      "label": "The answer to the question asked",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.90, chapter 7 s-BLOCK ELEMENTS, SAQ question 46(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. ONE FIGURE IS CARRIED BEYOND THE SOURCE ANSWER and should be confirmed by a teacher: the temperature of about 573 K for burning sodium in a free supply of air. It is the standard figure for the manufacture of sodium peroxide and it is written in kelvin, as the rest of this chapter is; the sodium-peroxide preparation card of this chapter carries the same figure in the same unit."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_air_supply",
+        "kind": "text",
+        "label": "What the air supply decides",
+        "marks": 1,
+        "mark_note": "The condition",
+        "lines": [
+          "Sodium burns when it is heated in air.",
+          "Which oxide is formed depends on how",
+          "much oxygen is available.",
+          "A free supply of air means oxygen is in",
+          "excess, and then the peroxide is formed.",
+          "A limited supply of air gives the",
+          "monoxide instead."
+        ],
+        "why": "The question names the free supply of air on purpose, so the first thing the answer has to show is that the amount of oxygen is the deciding condition. Without that sentence the two equations below look like two unrelated reactions rather than one reaction under two conditions.",
+        "common_mistakes": [
+          "Reading the question as ordinary burning in air and writing only Na₂O. A free supply of air means excess oxygen, which gives the peroxide.",
+          "Writing the superoxide NaO₂ as the product. In a free supply of air sodium gives the peroxide Na₂O₂; the superoxide is the main product only for potassium, rubidium and caesium."
+        ],
+        "memory_tip": "More oxygen, more oxygen in the product: excess air gives the peroxide Na₂O₂, limited air gives the monoxide Na₂O.",
+        "margin_note": "State the deciding condition first; the words free supply are what the question turns on."
+      },
+      {
+        "id": "s2_free_air",
+        "kind": "equation",
+        "label": "In a free supply of air",
+        "marks": 1,
+        "mark_note": "Peroxide equation",
+        "lines": [
+          "With excess oxygen sodium burns and",
+          "gives sodium peroxide, a pale yellow",
+          "solid:",
+          {
+            "text": "2Na + O₂ → Na₂O₂",
+            "style": "eq"
+          },
+          "Atoms: 2 Na and 2 O on each side.",
+          "The reaction is carried out at about",
+          "573 K."
+        ],
+        "why": "With plenty of oxygen present, each O₂ molecule is reduced only as far as the peroxide ion O₂²⁻, so the oxygen to oxygen bond is still present in the product. That is exactly what makes the product a peroxide and not an oxide.",
+        "common_mistakes": [
+          "Writing Na + O₂ → Na₂O₂. Two atoms of sodium are needed to balance the two sodium atoms in the product.",
+          "Writing the formula as NaO₂ or Na₂O. Sodium peroxide is Na₂O₂."
+        ],
+        "memory_tip": "In the peroxide the two oxygen atoms are still joined to each other, so the formula carries O₂.",
+        "margin_note": "Write the equation and then check the atom count in the margin. Both sides carry 2 Na and 2 O."
+      },
+      {
+        "id": "s3_limited_air",
+        "kind": "equation",
+        "label": "In a limited supply of air",
+        "marks": 1,
+        "mark_note": "Monoxide equation",
+        "lines": [
+          "With a limited supply of air there is",
+          "not enough oxygen for the peroxide, and",
+          "only the monoxide is formed:",
+          {
+            "text": "4Na + O₂ → 2Na₂O",
+            "style": "eq"
+          },
+          "Sodium monoxide Na₂O is a white solid.",
+          "Atoms: 4 Na and 2 O on each side."
+        ],
+        "why": "Writing the limited-air reaction beside the free-air one is what shows the contrast the question is built on. Here the oxygen to oxygen bond is broken and each oxygen becomes a separate oxide ion O²⁻, so four sodium atoms are needed for one molecule of oxygen.",
+        "common_mistakes": [
+          "Writing 2Na + O₂ → 2Na₂O. The oxygen balances but the sodium does not; four sodium atoms are needed.",
+          "Leaving this equation out. The contrast between limited and free air is the point of the question."
+        ],
+        "memory_tip": "In the monoxide the two oxygen atoms are separate, so four sodium atoms are needed for one O₂ molecule.",
+        "margin_note": "Write this equation as a contrast, clearly labelled limited supply, so the two conditions cannot be mixed up."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The answer to the question asked",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "Free supply of air → Na₂O₂ (peroxide)",
+            "style": "boxed"
+          },
+          "In a free supply of air sodium burns",
+          "with a golden yellow flame and the",
+          "product is sodium peroxide Na₂O₂.",
+          "The monoxide Na₂O is formed only when",
+          "the air supply is limited."
+        ],
+        "why": "The two equations are the evidence and this line is what they are evidence for, so the condition named in the question has to be answered in one clear sentence at the end. Naming the golden yellow flame also identifies the metal from its flame colour.",
+        "common_mistakes": [
+          "Ending after the two equations without saying which one answers the question asked.",
+          "Giving the flame colour as crimson red. Crimson red is lithium; sodium gives golden yellow."
+        ],
+        "memory_tip": "Free air, peroxide; limited air, monoxide. Answer with the one the question named.",
+        "margin_note": "One closing line naming the product for a free supply of air completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The words free supply decide the answer in this question, and the usual loss is answering with the monoxide Na₂O, so write both equations and then say plainly which one the free supply of air gives."
+}

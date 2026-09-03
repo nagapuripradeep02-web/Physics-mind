@@ -1,0 +1,205 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_chlorine_with_slaked_lime",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What happens when chlorine reacts with slaked lime?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What slaked lime is",
+      "marks": 2
+    },
+    {
+      "label": "The reaction with chlorine",
+      "marks": 2
+    },
+    {
+      "label": "The product",
+      "marks": 2
+    },
+    {
+      "label": "Its uses",
+      "marks": 1
+    },
+    {
+      "label": "The answer in one line",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.97, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 58(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THE EQUATIONS WERE CHECKED ATOM BY ATOM: CaO + H₂O → Ca(OH)₂; 2Ca(OH)₂ + 2Cl₂ → CaCl₂ + Ca(OCl)₂ + 2H₂O (Ca 2 = 2, O 4 = 4, H 4 = 4, Cl 4 = 4); Ca(OH)₂ + Cl₂ → CaOCl₂ + H₂O (Ca 1 = 1, O 2 = 2, H 2 = 2, Cl 2 = 2); CaOCl₂ + H₂SO₄ → CaSO₄ + Cl₂ + H₂O (Ca 1 = 1, O 5 = 5, Cl 2 = 2, H 2 = 2, S 1 = 1). BOTH WAYS OF WRITING THE MAIN REACTION ARE CORRECT and both are printed on the card: the mixed-salt form 2Ca(OH)₂ + 2Cl₂ → CaCl₂ + Ca(OCl)₂ + 2H₂O and the shorter form Ca(OH)₂ + Cl₂ → CaOCl₂ + H₂O, which writes bleaching powder as one compound. Neither is called an error. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: that the slaked lime used in the manufacture is dry, that bleaching powder smells of chlorine, and the acid reaction that sets the chlorine free again. They are the standard account of available chlorine, and without them the uses have no reason behind them."
+  },
+  "insider_note": "The product has to be named as bleaching powder in words as well as written as a formula, because the whole point of the reaction is the substance it makes and not the arithmetic of the equation.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_slaked_lime",
+        "kind": "text",
+        "label": "What slaked lime is",
+        "marks": 2,
+        "mark_note": "Slaked lime and how it is obtained",
+        "lines": [
+          "Slaked lime is calcium hydroxide,",
+          "Ca(OH)₂.",
+          "It is obtained by adding water to quick",
+          "lime, calcium oxide. This is called",
+          "slaking:",
+          {
+            "text": "CaO + H₂O → Ca(OH)₂",
+            "style": "eq"
+          },
+          "A great deal of heat is given out while",
+          "the water is taken up.",
+          "Slaked lime is a white powder, only",
+          "slightly soluble in water, and it is a",
+          "base. Its suspension in water is called",
+          "milk of lime."
+        ],
+        "why": "The reaction asked about is between a base and chlorine, so the answer opens by saying what that base is and where it comes from. Naming the slaking reaction also keeps slaked lime apart from quick lime, and the two are asked about separately in this chapter.",
+        "common_mistakes": [
+          "Confusing slaked lime with quick lime. Quick lime is CaO; slaked lime is Ca(OH)₂.",
+          "Writing the formula as CaOH. Calcium is divalent, so calcium hydroxide is Ca(OH)₂.",
+          "Calling slaked lime freely soluble in water. It is only slightly soluble, which is why its suspension is milky."
+        ],
+        "memory_tip": "Quick lime plus water gives slaked lime: the oxide takes up water and becomes the hydroxide.",
+        "margin_note": "Give the formula and the slaking equation before the reaction with chlorine."
+      },
+      {
+        "id": "s2_reaction",
+        "kind": "equation",
+        "label": "The reaction with chlorine",
+        "marks": 2,
+        "mark_note": "The balanced equation",
+        "lines": [
+          "Chlorine gas is passed over dry slaked",
+          "lime. The product is bleaching powder:",
+          {
+            "text": "2Ca(OH)₂ + 2Cl₂ → CaCl₂ + Ca(OCl)₂ + 2H₂O",
+            "style": "eq"
+          },
+          "Atoms: 2 Ca, 4 O, 4 H and 4 Cl on each",
+          "side.",
+          "The same reaction is also correctly",
+          "written in a shorter form, with the",
+          "product as one compound:",
+          {
+            "text": "Ca(OH)₂ + Cl₂ → CaOCl₂ + H₂O",
+            "style": "eq"
+          },
+          "Both forms are correct."
+        ],
+        "why": "Chlorine is both oxidised and reduced here: half of it ends up as the chloride ion Cl⁻ and half as the hypochlorite ion OCl⁻, which is why the first form shows two calcium salts. The shorter form writes bleaching powder as the single compound CaOCl₂ and carries the same chemistry, so either equation is a complete answer.",
+        "common_mistakes": [
+          "Writing calcium hypochlorite as CaOCl. The hypochlorite ion is OCl⁻ and calcium is divalent, so it is Ca(OCl)₂.",
+          "Giving calcium chloride alone as the product. The hypochlorite is the part that does the bleaching and cannot be left out.",
+          "Using wet slaked lime for the manufacture. The slaked lime used is dry."
+        ],
+        "memory_tip": "Chlorine splits two ways here: half becomes chloride, half becomes hypochlorite.",
+        "margin_note": "Either form of the equation is complete, so write one of them carefully rather than both in a hurry."
+      },
+      {
+        "id": "s3_product",
+        "kind": "text",
+        "label": "The product",
+        "marks": 2,
+        "mark_note": "What bleaching powder is",
+        "lines": [
+          "The product is bleaching powder, also",
+          "called chlorinated lime.",
+          "It is a pale yellow powder with the",
+          "smell of chlorine.",
+          "It contains calcium hypochlorite",
+          "Ca(OCl)₂ together with calcium chloride",
+          "CaCl₂, and it is often written as the",
+          "single formula CaOCl₂.",
+          "The hypochlorite part is the active",
+          "part. With a dilute acid the chlorine is",
+          "set free again:",
+          {
+            "text": "CaOCl₂ + H₂SO₄ → CaSO₄ + Cl₂ + H₂O",
+            "style": "eq"
+          },
+          "The amount of chlorine set free in this",
+          "way, given as a percentage by weight, is",
+          "called its available chlorine."
+        ],
+        "why": "Bleaching powder is useful because it stores chlorine in a solid that can be kept and carried, and releases that chlorine when an acid is added. The hypochlorite ion is where the chlorine is stored, so naming it, and showing the acid reaction that releases the chlorine, is what explains every use in the next step.",
+        "common_mistakes": [
+          "Calling bleaching powder calcium chloride. Calcium chloride is only part of it; the hypochlorite is the active part.",
+          "Saying the powder bleaches by itself with no chlorine involved. The bleaching is done by the chlorine it releases."
+        ],
+        "memory_tip": "Bleaching powder stores chlorine as a solid, and an acid releases it.",
+        "margin_note": "Name the product in words as well as in formula, and say which part of it is active."
+      },
+      {
+        "id": "s4_uses",
+        "kind": "text",
+        "label": "Its uses",
+        "marks": 1,
+        "mark_note": "The uses",
+        "lines": [
+          "Uses of bleaching powder:",
+          "1. bleaching cotton and linen in the",
+          "textile industry,",
+          "2. bleaching wood pulp in paper making,",
+          "3. disinfecting drinking water,",
+          "4. as an oxidising agent in chemical",
+          "industries,",
+          "5. in the manufacture of chloroform."
+        ],
+        "why": "Every use on this list follows from the same property: the powder releases chlorine. Chlorine removes colour from cloth and pulp, and it kills the organisms in water, so bleaching and disinfecting are two results of one chemical action.",
+        "common_mistakes": [
+          "Writing only that it bleaches clothes. Disinfecting drinking water is an equally important use.",
+          "Giving the uses of slaked lime, such as whitewashing. This step is about the product, bleaching powder."
+        ],
+        "memory_tip": "One property, many uses: it releases chlorine, so it bleaches and it disinfects.",
+        "margin_note": "A short numbered list of three or four named uses is a comfortable length."
+      },
+      {
+        "id": "s5_conclusion",
+        "kind": "boxed_final",
+        "label": "The answer in one line",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "Bleaching powder is Ca(OCl)₂ with CaCl₂",
+            "style": "boxed"
+          },
+          "Chlorine passed over dry slaked lime",
+          "gives bleaching powder.",
+          "The chlorine stays in the powder as the",
+          "hypochlorite ion and is released when an",
+          "acid is added, and that is why it",
+          "bleaches and disinfects."
+        ],
+        "why": "The question asks what happens, so the closing line names the substance formed rather than repeating the equation. Putting the composition in the box is what makes the answer readable at a glance.",
+        "common_mistakes": [
+          "Ending with the equation and never writing the name bleaching powder.",
+          "Ending with the name alone and no composition. Give the hypochlorite in the closing line."
+        ],
+        "memory_tip": "Chlorine on slaked lime gives bleaching powder: hypochlorite with chloride.",
+        "margin_note": "Close by naming the product and saying which ion carries the chlorine."
+      }
+    ]
+  }
+}

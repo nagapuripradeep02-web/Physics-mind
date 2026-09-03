@@ -1,0 +1,191 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_calcium_nitrate_strongly_heated",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What happens when calcium nitrate is strongly heated?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The salt heated",
+      "marks": 1
+    },
+    {
+      "label": "The decomposition",
+      "marks": 3
+    },
+    {
+      "label": "The three products",
+      "marks": 3
+    },
+    {
+      "label": "Why the oxide is formed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.97, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 58(iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THE EQUATION WAS CHECKED ATOM BY ATOM: 2Ca(NO₃)₂ → 2CaO + 4NO₂ + O₂ (Ca 2 = 2, N 4 = 4, O 12 = 12). This card agrees with the magnesium nitrate card in this chapter, which carries the same decomposition for the magnesium salt. RE-CUT ON 2026-09-03: the old s5_contrast step spent one of the eight marks printing the magnesium, sodium and lithium nitrate equations, which are the substance of two other cards in this chapter, and the old s6 spent another repeating the equation already written in s2. Those two marks were moved to the decomposition (now 3) and the three products (now 3); the contrast survives as an unmarked two-line note inside s4, and the closing boxed line survives as an unmarked step. NO HYDRATE FORMULA IS PRINTED FOR CALCIUM NITRATE: the source gives none for this salt, so the card says only that a hydrated sample loses its water of crystallisation before it decomposes, and does not state how many water molecules that is. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the tests that identify the three products, and the charge-density reason why a group 2 nitrate gives the oxide while most alkali metal nitrates give the nitrite."
+  },
+  "insider_note": "Three products come off this one salt, so the equation has to be balanced before it is written down — the oxygen count is the part that is usually wrong, and there are twelve oxygen atoms on each side.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_the_salt",
+        "kind": "text",
+        "label": "The salt heated",
+        "marks": 1,
+        "mark_note": "The salt and the first change",
+        "lines": [
+          "Calcium nitrate is Ca(NO₃)₂. It is the",
+          "nitrate of calcium, an alkaline earth",
+          "metal.",
+          "If a hydrated sample is taken, gentle",
+          "heating first drives off its water of",
+          "crystallisation and leaves the anhydrous",
+          "salt.",
+          "On stronger heating the anhydrous salt",
+          "itself breaks up."
+        ],
+        "why": "Water of crystallisation is held in the crystal only, so it leaves at a much lower temperature than the one that breaks the nitrate ion apart. The question says strongly heated, which names the second change, but a complete answer says that the water goes first.",
+        "common_mistakes": [
+          "Writing the formula as CaNO₃. The nitrate ion carries one negative charge and calcium is divalent, so the salt is Ca(NO₃)₂.",
+          "Going straight to the products without saying that the water of crystallisation leaves first."
+        ],
+        "memory_tip": "Water leaves first, then the nitrate ion itself breaks up.",
+        "margin_note": "Give the formula with the bracket. Ca(NO₃)₂ is the shape that carries two nitrate ions."
+      },
+      {
+        "id": "s2_decomposition",
+        "kind": "equation",
+        "label": "The decomposition",
+        "marks": 3,
+        "mark_note": "The balanced equation",
+        "lines": [
+          "On strong heating calcium nitrate",
+          "decomposes to calcium oxide, nitrogen",
+          "dioxide and oxygen:",
+          {
+            "text": "2Ca(NO₃)₂ → 2CaO + 4NO₂ + O₂",
+            "style": "eq"
+          },
+          "Atoms on the left: 2 Ca, 4 N and 12 O.",
+          "Atoms on the right: 2 Ca, 4 N, and",
+          "2 + 8 + 2 = 12 O.",
+          "So two formula units of the nitrate are",
+          "needed before the equation balances."
+        ],
+        "why": "One formula unit of the nitrate carries six oxygen atoms, and those cannot be shared out among an oxide, four nitrogen dioxide molecules and a molecule of oxygen. Doubling the nitrate gives twelve oxygen atoms, which is exactly what the three products need, so the coefficient 2 in front of the nitrate is forced by the oxygen count.",
+        "common_mistakes": [
+          "Writing Ca(NO₃)₂ → CaO + 2NO₂ + O₂. The oxygen does not balance: six on the left against seven on the right.",
+          "Giving calcium nitrite Ca(NO₂)₂ as the product. An alkaline earth nitrate gives the oxide, not the nitrite.",
+          "Leaving the oxygen out of the products. Three products come off: the oxide, nitrogen dioxide and oxygen."
+        ],
+        "memory_tip": "Twelve oxygen atoms on each side is the check that fixes the coefficient of 2 on the nitrate.",
+        "margin_note": "Count the oxygen atoms in the margin before writing the equation on the answer line."
+      },
+      {
+        "id": "s3_products",
+        "kind": "text",
+        "label": "The three products",
+        "marks": 3,
+        "mark_note": "What each product is",
+        "lines": [
+          "Calcium oxide CaO is left behind as a",
+          "white solid in the tube. It is quick",
+          "lime, and with water it gives slaked",
+          "lime Ca(OH)₂.",
+          "Nitrogen dioxide NO₂ comes off as a",
+          "brown gas with a sharp smell. It turns",
+          "moist blue litmus paper red, because it",
+          "is acidic.",
+          "Oxygen O₂ comes off as a colourless gas",
+          "with no smell. It relights a glowing",
+          "splint.",
+          "So the residue is a solid and the two",
+          "gases escape."
+        ],
+        "why": "The question asks what happens, so each product has to be identified and not only written in the equation. The brown colour of the nitrogen dioxide is what a student actually sees, the glowing splint identifies the oxygen, and the white residue is quick lime, which links this reaction to the rest of the chapter.",
+        "common_mistakes": [
+          "Calling nitrogen dioxide colourless. NO₂ is a brown gas, and the brown colour is the visible sign of the decomposition.",
+          "Naming the residue as calcium carbonate. The residue is calcium oxide, quick lime.",
+          "Testing the oxygen with a burning splint only. Oxygen relights a GLOWING splint, and that is the test."
+        ],
+        "memory_tip": "White solid stays behind, brown gas and colourless gas come off.",
+        "margin_note": "Identify all three products by name, colour and one test each."
+      },
+      {
+        "id": "s4_why_the_oxide",
+        "kind": "text",
+        "label": "Why the oxide is formed",
+        "marks": 1,
+        "mark_note": "The reason for the oxide",
+        "lines": [
+          "The calcium ion Ca²⁺ carries two",
+          "positive charges, twice the charge of",
+          "an alkali metal ion of about the same",
+          "size, so its pull on the nitrate ion",
+          "beside it is much stronger.",
+          "That strong pull distorts the nitrate ion",
+          "and breaks it down completely, so the",
+          "oxide ion O²⁻ is left.",
+          "An alkali metal ion carries only one",
+          "charge, so its pull is weaker and its",
+          "nitrate breaks down only as far as the",
+          "nitrite.",
+          "Every alkaline earth nitrate behaves the",
+          "same way and gives the oxide. Lithium",
+          "nitrate is the exception among the alkali",
+          "metals: its ion is very small, so it too",
+          "gives the oxide Li₂O."
+        ],
+        "why": "The charge on the cation decides how far the nitrate ion is broken down. A doubly charged ion pulls electron density strongly towards itself, so the nitrate is taken apart all the way to the oxide, while a singly charged ion breaks the nitrate down only as far as the nitrite. The last two lines are an unmarked note: they place calcium in the pattern, and the magnesium, sodium and lithium equations themselves are the substance of other questions.",
+        "common_mistakes": [
+          "Writing that all nitrates give the oxide. Most alkali metal nitrates give the nitrite instead.",
+          "Explaining the difference by the size of the anion. The nitrate ion is the same in both salts; it is the cation that differs."
+        ],
+        "memory_tip": "Two charges pull harder than one, so a group 2 nitrate goes all the way to the oxide.",
+        "margin_note": "Give the charge on the cation as the reason, then close with one line on how the other nitrates behave."
+      },
+      {
+        "id": "s6_conclusion",
+        "kind": "boxed_final",
+        "label": "The answer in one line",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "2Ca(NO₃)₂ → 2CaO + 4NO₂ + O₂",
+            "style": "boxed"
+          },
+          "Calcium nitrate strongly heated leaves",
+          "calcium oxide as a white solid and gives",
+          "off brown nitrogen dioxide and oxygen."
+        ],
+        "why": "The boxed equation and the one sentence beside it answer the question completely, in both forms it can be asked for: the balanced equation and the plain statement of what is seen.",
+        "common_mistakes": [
+          "Ending with an unbalanced equation. Check the oxygen count before the answer is closed.",
+          "Ending with the equation and no words. Say in a sentence what is left behind and what comes off."
+        ],
+        "memory_tip": "Nitrate to oxide, with brown nitrogen dioxide and oxygen given off.",
+        "margin_note": "Unmarked closing step. Close with the balanced equation and one sentence naming the three products."
+      }
+    ]
+  }
+}

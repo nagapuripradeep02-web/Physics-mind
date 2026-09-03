@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkali_metal_liquid_ammonia_colour",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "When an alkali metal dissolves in liquid ammonia the solution can acquire different colours. Explain the reasons for this colour change.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What happens on dissolving",
+      "marks": 1
+    },
+    {
+      "label": "The dilute solution is blue",
+      "marks": 1
+    },
+    {
+      "label": "The concentrated solution is bronze",
+      "marks": 1
+    },
+    {
+      "label": "The reason for the change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.90, chapter 7 s-BLOCK ELEMENTS, SAQ question 45. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. NOTATION: the equation is written M + (x + y)NH₃ → [M(NH₃)x]⁺ + [e(NH₃)y]⁻, with x and y both as ordinary letters rather than as subscripts. There is no subscript y character to match the subscript x, so writing one as a subscript and not the other would look like two different kinds of index; both are written in the same style instead. The letters x and y are the numbers of ammonia molecules held by the cation and by the electron, and any pair of letters is acceptable for them. The concentration figure above which the colour turns copper-bronze is about 3 M."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_dissolving",
+        "kind": "equation",
+        "label": "What happens on dissolving",
+        "marks": 1,
+        "mark_note": "The ammoniated electron",
+        "lines": [
+          "An alkali metal M dissolves in liquid",
+          "ammonia and separates into two ions:",
+          {
+            "text": "M + (x + y)NH₃ → [M(NH₃)x]⁺ + [e(NH₃)y]⁻",
+            "style": "eq"
+          },
+          "The metal atom loses its outer electron.",
+          "The cation is surrounded by x ammonia",
+          "molecules and the free electron by y",
+          "ammonia molecules.",
+          "The second ion is the ammoniated",
+          "electron."
+        ],
+        "why": "Nothing about the colour can be explained until the ammoniated electron exists, because it is that electron and not the metal ion which absorbs light. The metal does not dissolve unchanged: it separates into an ammoniated cation and an ammoniated electron.",
+        "common_mistakes": [
+          "Writing that the metal dissolves as neutral atoms. It gives an ammoniated cation and an ammoniated electron.",
+          "Leaving the electron out of the right hand side. The ammoniated electron is the species the rest of the answer is about."
+        ],
+        "memory_tip": "The metal separates into two parts: an ammoniated ion and an ammoniated electron.",
+        "margin_note": "Write the equation first; both colours are explained from it."
+      },
+      {
+        "id": "s2_blue",
+        "kind": "text",
+        "label": "The dilute solution is blue",
+        "marks": 1,
+        "mark_note": "Cause of the blue colour",
+        "lines": [
+          "A dilute solution is deep blue.",
+          "The ammoniated electron absorbs energy",
+          "in the visible region of light, and the",
+          "colour left is blue.",
+          "The solution also conducts electricity,",
+          "because the ions and the free electron",
+          "are able to move."
+        ],
+        "why": "The colour belongs to the ammoniated electron alone, which is why every alkali metal gives the same blue in dilute solution. The conductivity is the second piece of evidence that free electrons and ions are present, so it belongs beside the colour.",
+        "common_mistakes": [
+          "Saying the blue colour comes from the metal ion. Every alkali metal gives the same blue, so it cannot be the metal ion.",
+          "Writing that the solution does not conduct. It conducts, because the ammoniated electron is free to move."
+        ],
+        "memory_tip": "Dilute and blue: the ammoniated electron absorbs in the visible region.",
+        "margin_note": "Name the ammoniated electron as the cause of the blue colour."
+      },
+      {
+        "id": "s3_bronze",
+        "kind": "text",
+        "label": "The concentrated solution is bronze",
+        "marks": 1,
+        "mark_note": "Cause of the bronze colour",
+        "lines": [
+          "As more metal is dissolved the colour",
+          "changes.",
+          "Above about 3 M the solution is",
+          "copper-bronze and has a metallic lustre.",
+          "At this concentration the solution holds",
+          "clusters of metal ions, and these give",
+          "the bronze colour and the lustre."
+        ],
+        "why": "The change comes with concentration and not with the choice of metal, so the figure of about 3 M is part of the answer. Once the metal ions are close enough to gather into clusters, the solution reflects light in the way a metal does.",
+        "common_mistakes": [
+          "Writing that the blue solution turns bronze on standing. The change comes with concentration, not with time.",
+          "Leaving out the concentration. Say that the change comes above about 3 M."
+        ],
+        "memory_tip": "Dilute is blue and concentrated is bronze; the change comes above about 3 M.",
+        "margin_note": "The figure 3 M is part of the answer and should be written."
+      },
+      {
+        "id": "s4_reason",
+        "kind": "boxed_final",
+        "label": "The reason for the change",
+        "marks": 1,
+        "mark_note": "Two colours, two causes",
+        "lines": [
+          {
+            "text": "Dilute blue, concentrated copper-bronze",
+            "style": "boxed"
+          },
+          "The blue colour is due to the ammoniated",
+          "electron and the copper-bronze colour is",
+          "due to clusters of metal ions.",
+          "So the colour changes because the",
+          "species present in the solution change",
+          "with concentration."
+        ],
+        "why": "The question asks for the reasons, so the answer has to end by naming the two different species and not only the two colours. One sentence pairing each colour with its cause is the sentence being asked for.",
+        "common_mistakes": [
+          "Naming the two colours without their causes. The question asks for the reasons for the change.",
+          "Giving one cause for both colours. The blue and the bronze come from two different species."
+        ],
+        "memory_tip": "Two colours, two causes: the ammoniated electron and the metal ion clusters.",
+        "margin_note": "End by pairing each colour with the species that causes it."
+      }
+    ]
+  },
+  "insider_note": "Write the equation first and the blue colour follows from it: once the ammoniated electron is written down, the blue is explained in one line and only the concentrated solution needs a second cause."
+}

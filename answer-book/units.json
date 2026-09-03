@@ -4903,8 +4903,639 @@
           "section": "VSAQ",
           "number": 1,
           "stars": 0,
-          "text": "s-Block Elements (Group 1 and Group 2) — questions coming",
-          "source": "syllabus_2026_27"
+          "text": "Give the reasons for the diagonal relationship observed in the periodic table.",
+          "question_id": "ts_ipe_c1_sb_diagonal_relationship_reasons",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Write the complete electronic configurations of K and Li.",
+          "question_id": "ts_ipe_c1_sb_k_and_li_configurations",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Lithium salts are mostly hydrated. Why?",
+          "question_id": "ts_ipe_c1_sb_lithium_salts_hydrated",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Lithium reacts with water less vigorously than sodium. Give the reasons.",
+          "question_id": "ts_ipe_c1_sb_lithium_reacts_water_less_vigorously",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Lithium iodide is the most covalent among the alkali metal halides. Give the reasons.",
+          "question_id": "ts_ipe_c1_sb_lithium_iodide_most_covalent",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "In what respect does lithium hydrogen carbonate differ from the other alkali metal hydrogen carbonates?",
+          "question_id": "ts_ipe_c1_sb_lithium_hydrogen_carbonate_difference",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Write the complete electronic configurations of any two alkaline earth metals.",
+          "question_id": "ts_ipe_c1_sb_two_alkaline_earth_configurations",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What are the characteristic colours imparted by the group IIA elements?",
+          "question_id": "ts_ipe_c1_sb_group2_flame_colours",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "What happens when magnesium metal is burnt in air?",
+          "question_id": "ts_ipe_c1_sb_magnesium_burnt_in_air",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Lithium carbonate is less stable to heat than the other alkali metal carbonates. Explain.",
+          "question_id": "ts_ipe_c1_sb_lithium_carbonate_less_stable",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "What happens when hydrated Mg(NO₃)₂ is heated? Give the balanced equation.",
+          "question_id": "ts_ipe_c1_sb_hydrated_magnesium_nitrate_heated",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Write the average composition of Portland cement.",
+          "question_id": "ts_ipe_c1_sb_portland_cement_composition",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Why is gypsum added to cement?",
+          "question_id": "ts_ipe_c1_sb_gypsum_added_to_cement",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Why are the alkali metals not found in the free state in nature?",
+          "question_id": "ts_ipe_c1_sb_alkali_metals_not_free_in_nature",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Potassium carbonate cannot be prepared by the Solvay process. Why?",
+          "question_id": "ts_ipe_c1_sb_potassium_carbonate_not_by_solvay",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Write a few applications (uses) of caustic soda.",
+          "question_id": "ts_ipe_c1_sb_caustic_soda_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Mention some uses of sodium carbonate.",
+          "question_id": "ts_ipe_c1_sb_sodium_carbonate_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Describe the important uses of quick lime.",
+          "question_id": "ts_ipe_c1_sb_quick_lime_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Describe the importance of plaster of Paris.",
+          "question_id": "ts_ipe_c1_sb_plaster_of_paris_importance",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Which of the alkaline earth metal carbonates is thermally the most stable? Why?",
+          "question_id": "ts_ipe_c1_sb_most_stable_alkaline_earth_carbonate",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "What is the chemical name of plaster of Paris? Write its formula.",
+          "question_id": "ts_ipe_c1_sb_plaster_of_paris_name_formula",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "What is dead burnt plaster?",
+          "question_id": "ts_ipe_c1_sb_dead_burnt_plaster",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Write the importance of Mg²⁺ and Ca²⁺ ions in biological systems.",
+          "question_id": "ts_ipe_c1_sb_mg_ca_biological_importance",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Write the chemical formulae of baking soda and washing soda.",
+          "question_id": "ts_ipe_c1_sb_baking_soda_washing_soda_formulae",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Mention the important uses of magnesium metal.",
+          "question_id": "ts_ipe_c1_sb_magnesium_metal_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "What is milk of lime?",
+          "question_id": "ts_ipe_c1_sb_milk_of_lime",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Alkali metals and their salts impart characteristic colours to an oxidising flame. Explain the reason.",
+          "question_id": "ts_ipe_c1_sb_flame_colour_reason",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Why are potassium and caesium, rather than lithium, used in photoelectric cells?",
+          "question_id": "ts_ipe_c1_sb_potassium_caesium_photoelectric_cells",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Write a short note on the reactivity of the alkali metals towards air.",
+          "question_id": "ts_ipe_c1_sb_alkali_metals_reactivity_air",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Give any two uses of lithium metal.",
+          "question_id": "ts_ipe_c1_sb_lithium_metal_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Give any two uses of sodium metal.",
+          "question_id": "ts_ipe_c1_sb_sodium_metal_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Give an account of the properties of washing soda.",
+          "question_id": "ts_ipe_c1_sb_washing_soda_properties",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "How do you obtain pure NaCl from a crude sample?",
+          "question_id": "ts_ipe_c1_sb_pure_nacl_from_crude",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What do you know about the Castner–Kellner process? Write the principle involved in it.",
+          "question_id": "ts_ipe_c1_sb_castner_kellner_process",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Give an account of the biological importance of Na⁺ and K⁺ ions.",
+          "question_id": "ts_ipe_c1_sb_na_k_biological_importance",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Show that Be(OH)₂ is amphoteric in nature.",
+          "question_id": "ts_ipe_c1_sb_be_oh_2_amphoteric",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Write a note on the anomalous behaviour of beryllium.",
+          "question_id": "ts_ipe_c1_sb_beryllium_anomalous_behaviour",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Beryllium shows a diagonal relationship with aluminium. Discuss.",
+          "question_id": "ts_ipe_c1_sb_beryllium_aluminium_diagonal",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "What is plaster of Paris? Write a short note on it.",
+          "question_id": "ts_ipe_c1_sb_plaster_of_paris_note",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "In what ways does lithium show similarities to magnesium in its chemical behaviour?",
+          "question_id": "ts_ipe_c1_sb_lithium_magnesium_similarities",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq15",
+          "section": "SAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "When an alkali metal dissolves in liquid ammonia the solution can acquire different colours. Explain the reasons for this colour change.",
+          "question_id": "ts_ipe_c1_sb_alkali_metal_liquid_ammonia_colour",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq16",
+          "section": "SAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "What happens when sodium metal is dropped in water?",
+          "question_id": "ts_ipe_c1_sb_sodium_dropped_in_water",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq17",
+          "section": "SAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "What happens when sodium metal is heated in a free supply of air?",
+          "question_id": "ts_ipe_c1_sb_sodium_heated_in_free_air",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq18",
+          "section": "SAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "What happens when sodium peroxide dissolves in water?",
+          "question_id": "ts_ipe_c1_sb_sodium_peroxide_in_water",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq19",
+          "section": "SAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "State why an aqueous solution of Na₂CO₃ is alkaline.",
+          "question_id": "ts_ipe_c1_sb_sodium_carbonate_solution_alkaline",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq20",
+          "section": "SAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "State why the alkali metals are prepared by the electrolysis of their fused chlorides.",
+          "question_id": "ts_ipe_c1_sb_alkali_metals_by_fused_chloride_electrolysis",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq21",
+          "section": "SAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Explain the following observation: BeO is almost insoluble in water, but BeSO₄ is soluble in water.",
+          "question_id": "ts_ipe_c1_sb_beo_insoluble_beso4_soluble",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq22",
+          "section": "SAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Explain the following observation: BaO is soluble in water, but BaSO₄ is insoluble in water.",
+          "question_id": "ts_ipe_c1_sb_bao_soluble_baso4_insoluble",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Justify the inclusion of the alkali metals in the same group of the periodic table with reference to their electronic configuration.",
+          "question_id": "ts_ipe_c1_sb_alkali_group_electronic_configuration",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Justify the inclusion of the alkali metals in the same group of the periodic table with reference to their reducing nature.",
+          "question_id": "ts_ipe_c1_sb_alkali_group_reducing_nature",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Justify the inclusion of the alkali metals in the same group of the periodic table with reference to their oxides and hydroxides.",
+          "question_id": "ts_ipe_c1_sb_alkali_group_oxides_hydroxides",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Write an essay on the differences between lithium and the other alkali metals.",
+          "question_id": "ts_ipe_c1_sb_lithium_differences_essay",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Discuss the preparation, properties and uses of sodium carbonate.",
+          "question_id": "ts_ipe_c1_sb_sodium_carbonate_preparation_properties_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Discuss the similarities among the alkaline earth metals and the gradation in their electronic configuration.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_electronic_configuration",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Discuss the similarities among the alkaline earth metals and the gradation in their hydration enthalpies.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_hydration_enthalpies",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Discuss the similarities among the alkaline earth metals and the gradation in the nature of their oxides and hydroxides.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_oxides_hydroxides",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Discuss the carbonates of the alkaline earth metals.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_carbonates",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Discuss the sulphates of the alkaline earth metals.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_sulphates",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Discuss the nitrates of the alkaline earth metals.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_nitrates",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "What are the common physical and chemical features of the alkali metals?",
+          "question_id": "ts_ipe_c1_sb_alkali_metals_common_features",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq13",
+          "section": "LAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Discuss the general characteristics of the alkaline earth metals and the gradation in their properties.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_general_characteristics",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq14",
+          "section": "LAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Discuss the various reactions that occur in the Solvay process.",
+          "question_id": "ts_ipe_c1_sb_solvay_process_reactions",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq15",
+          "section": "LAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Starting with sodium chloride, how would you prepare sodium metal?",
+          "question_id": "ts_ipe_c1_sb_sodium_metal_from_nacl",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq16",
+          "section": "LAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Starting with sodium chloride, how would you prepare sodium hydroxide?",
+          "question_id": "ts_ipe_c1_sb_sodium_hydroxide_from_nacl",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq17",
+          "section": "LAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Starting with sodium chloride, how would you prepare sodium peroxide?",
+          "question_id": "ts_ipe_c1_sb_sodium_peroxide_from_nacl",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq18",
+          "section": "LAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Starting with sodium chloride, how would you prepare sodium carbonate?",
+          "question_id": "ts_ipe_c1_sb_sodium_carbonate_from_nacl",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq19",
+          "section": "LAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "What happens when quick lime is heated with silica?",
+          "question_id": "ts_ipe_c1_sb_quick_lime_with_silica",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq20",
+          "section": "LAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "What happens when chlorine reacts with slaked lime?",
+          "question_id": "ts_ipe_c1_sb_chlorine_with_slaked_lime",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq21",
+          "section": "LAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "What happens when calcium nitrate is strongly heated?",
+          "question_id": "ts_ipe_c1_sb_calcium_nitrate_strongly_heated",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq22",
+          "section": "LAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Explain the significance of sodium, potassium, magnesium and calcium in biological fluids.",
+          "question_id": "ts_ipe_c1_sb_biological_fluids_na_k_mg_ca",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq23",
+          "section": "LAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Write a few lines about cement.",
+          "question_id": "ts_ipe_c1_sb_cement_note",
+          "source": "chaitanya_fastrack"
         }
       ]
     },

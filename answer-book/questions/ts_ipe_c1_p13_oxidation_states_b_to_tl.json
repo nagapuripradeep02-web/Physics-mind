@@ -82,7 +82,11 @@
           "stable one.",
           "The reason is the inert pair effect: the",
           "ns² electron pair takes less and less",
-          "part in bonding down the group."
+          "part in bonding down the group.",
+          {
+            "text": "All show +3, and +1 is most stable at Tl",
+            "style": "boxed"
+          }
         ],
         "why": "The +1 state appears because the ns² pair can be left out of bonding while only the single np¹ electron is used. That pair is held more tightly down the group, so +1 grows steadily more stable from aluminium to thallium.",
         "common_mistakes": [

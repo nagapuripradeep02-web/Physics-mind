@@ -1,0 +1,326 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkaline_earth_general_characteristics",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Discuss the general characteristics of the alkaline earth metals and the gradation in their properties.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Electronic configuration",
+      "marks": 1
+    },
+    {
+      "label": "Atomic and ionic radii",
+      "marks": 1
+    },
+    {
+      "label": "Ionisation enthalpy and electropositive character",
+      "marks": 1
+    },
+    {
+      "label": "Oxidation state and nature of the bonding",
+      "marks": 1
+    },
+    {
+      "label": "Physical properties",
+      "marks": 1
+    },
+    {
+      "label": "Chemical properties",
+      "marks": 1
+    },
+    {
+      "label": "Flame colour and reducing nature",
+      "marks": 1
+    },
+    {
+      "label": "The gradation down the group",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.95, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 55. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SOURCE-BOOK ERROR CORRECTED HERE, recorded so no later editor restores it: the source writes that the alkaline earth metals possess a strong electropositive nature than the alkali metals. They are LESS electropositive than the alkali metals, because an alkali metal loses its single ns¹ electron far more readily than an alkaline earth metal loses two. Within group 2 the electropositive character does increase down the group, and this card says so. The chemistry is otherwise as the book gives it. A CHEMICAL PROPERTIES STEP WAS ADDED and one mark moved to it from the ionisation enthalpy step, because an eight-mark answer on the general characteristics of a group that carries no equation at all is short of what the question asks. THE FIVE GENERAL EQUATIONS WERE CHECKED ATOM BY ATOM: 2M + O₂ → 2MO (M 2 = 2, O 2 = 2); M + H₂ → MH₂ (M 1 = 1, H 2 = 2); M + 2H₂O → M(OH)₂ + H₂ (M 1 = 1, H 4 = 2 + 2, O 2 = 2); M + X₂ → MX₂ (M 1 = 1, X 2 = 2); 3M + N₂ → M₃N₂ (M 3 = 3, N 2 = 2). THE FLAME COLOUR MECHANISM WAS CORRECTED: a flame test turns on the energy needed to EXCITE an outer electron, not on the ionisation enthalpy, which is the energy needed to remove it altogether; the ionisation enthalpies of beryllium and magnesium are kept as supporting evidence. CARRIED AS EXTRA CONTENT, to be confirmed by a teacher: that beryllium does not react with water, that magnesium reacts with water slowly, and that the hydride of beryllium is not made by direct combination with hydrogen."
+  },
+  "insider_note": "The comparison in this answer runs two ways at once — group 2 against group 1, and each member of group 2 against the one below it — so every trend written down should say which of the two comparisons it belongs to.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_configuration",
+        "kind": "text",
+        "label": "Electronic configuration",
+        "marks": 1,
+        "mark_note": "Configuration",
+        "lines": [
+          "The alkaline earth metals are",
+          "beryllium, magnesium, calcium,",
+          "strontium, barium and radium.",
+          "Each has two electrons in its outermost",
+          "shell, so the general configuration is",
+          "[noble gas] ns².",
+          "For example Mg = 1s² 2s² 2p⁶ 3s² and",
+          "Ca = 1s² 2s² 2p⁶ 3s² 3p⁶ 4s².",
+          "The two outer electrons are in the same",
+          "s orbital."
+        ],
+        "why": "The whole group is defined by the ns² pair, and the rest of the answer follows from it: two electrons are lost, the ion carries two units of charge, and each atom gives two electrons to the metallic bond. Naming the members first also fixes what the gradation is a gradation across.",
+        "common_mistakes": [
+          "Writing the general configuration as ns¹. That is the alkali metals; the alkaline earth metals are ns².",
+          "Leaving beryllium out of the list. It is the first member, and it is the one that behaves differently."
+        ],
+        "memory_tip": "Two outer electrons in one s orbital gives the ns² configuration of the whole group.",
+        "margin_note": "Name the members and write the general configuration before any trend."
+      },
+      {
+        "id": "s2_radii",
+        "kind": "text",
+        "label": "Atomic and ionic radii",
+        "marks": 1,
+        "mark_note": "Radii",
+        "lines": [
+          "The atomic and ionic radii increase",
+          "down the group from beryllium to",
+          "barium, because a new shell is added at",
+          "each step.",
+          "They are smaller than the radii of the",
+          "alkali metals of the same period,",
+          "because the nuclear charge is one unit",
+          "higher and pulls the shells inwards.",
+          "The ion M²⁺ is much smaller than the",
+          "atom it came from, since the whole ns²",
+          "shell is lost."
+        ],
+        "why": "Size is the quantity that most of the later trends depend on, and it has to be given in both directions: down the group it increases, and across to the alkali metals of the same period it is smaller. Almost every difference between the two groups goes back to that second comparison.",
+        "common_mistakes": [
+          "Writing that these atoms are larger than the alkali metal atoms of the same period. They are smaller, because the nuclear charge is higher.",
+          "Writing that the ion is about the size of the atom. Losing both outer electrons removes a whole shell."
+        ],
+        "memory_tip": "Bigger down the group, smaller than the alkali metal beside them.",
+        "margin_note": "Give both comparisons here. Down the group is one, across to group 1 is the other."
+      },
+      {
+        "id": "s3_ionisation",
+        "kind": "text",
+        "label": "Ionisation enthalpy and electropositive character",
+        "marks": 1,
+        "mark_note": "Ionisation enthalpy",
+        "lines": [
+          "Two electrons have to be removed to",
+          "reach the M²⁺ ion, so two ionisation",
+          "enthalpies matter.",
+          "The first ionisation enthalpy is higher",
+          "than that of the alkali metal of the",
+          "same period, because the atom is",
+          "smaller and the nuclear charge is",
+          "higher.",
+          "Both ionisation enthalpies decrease",
+          "down the group as the atom grows.",
+          "So the alkaline earth metals are LESS",
+          "electropositive than the alkali metals:",
+          "an alkali metal gives up one ns¹",
+          "electron far more readily than these",
+          "metals give up two.",
+          "Within group 2 itself the",
+          "electropositive character increases",
+          "from beryllium to barium."
+        ],
+        "why": "Two comparisons are being made at once and they point in different directions, which is what makes this step easy to get wrong. Against group 1 these metals are the less electropositive; within group 2 the electropositive character still increases downwards as the ionisation enthalpy falls.",
+        "common_mistakes": [
+          "Writing that the alkaline earth metals are more electropositive than the alkali metals. They are less electropositive; losing two electrons is harder than losing one.",
+          "Writing that the ionisation enthalpy increases down group 2. It decreases, because the outer electrons get further from the nucleus.",
+          "Giving only the first ionisation enthalpy. Both are needed, because the ion formed is M²⁺."
+        ],
+        "memory_tip": "Less electropositive than group 1, but more electropositive as you go down group 2.",
+        "margin_note": "Keep the two comparisons in separate sentences. Mixing them is what turns this step into a wrong statement."
+      },
+      {
+        "id": "s4_oxidation_bonding",
+        "kind": "text",
+        "label": "Oxidation state and nature of the bonding",
+        "marks": 1,
+        "mark_note": "Oxidation state",
+        "lines": [
+          "The oxidation state is +2 in all their",
+          "compounds.",
+          "Most of these compounds are ionic.",
+          "Beryllium is the exception: Be²⁺ is very",
+          "small and its polarising power is high,",
+          "so beryllium compounds are largely",
+          "covalent.",
+          "Magnesium compounds show some covalent",
+          "character as well.",
+          "Their hydration enthalpies are larger",
+          "than those of the alkali metal ions,",
+          "and fall down the group:",
+          {
+            "text": "Be²⁺ > Mg²⁺ > Ca²⁺ > Sr²⁺ > Ba²⁺",
+            "style": "eq"
+          }
+        ],
+        "why": "A double charge on a small ion has two consequences that run through the whole chapter: it makes the hydration enthalpy larger than for any alkali metal ion, and at beryllium it is high enough to pull electron density back from the anion and make the bonding covalent.",
+        "common_mistakes": [
+          "Writing that beryllium compounds are ionic like the rest. They are largely covalent, because Be²⁺ is very small and strongly polarising.",
+          "Writing that the hydration enthalpies are smaller than those of the alkali metal ions. They are larger, because the charge is +2."
+        ],
+        "memory_tip": "Always +2, ionic except at beryllium, and hydration falls from Be²⁺ to Ba²⁺.",
+        "margin_note": "Name beryllium as the exception here rather than later. Several trends in this group stop at it."
+      },
+      {
+        "id": "s5_physical_properties",
+        "kind": "text",
+        "label": "Physical properties",
+        "marks": 1,
+        "mark_note": "Physical properties",
+        "lines": [
+          "The metals are silvery white and",
+          "lustrous.",
+          "They are harder and denser than the",
+          "alkali metals of the same period, and",
+          "their melting and boiling points are",
+          "higher.",
+          "Each atom supplies two electrons to the",
+          "metallic bond instead of one, so that",
+          "bond is stronger.",
+          "They are still good conductors of heat",
+          "and of electricity."
+        ],
+        "why": "Hardness, density and melting point all move together because they all measure how strongly the metallic bond holds the atoms. Two valence electrons per atom make that bond stronger than in the alkali metals, so all three properties are higher.",
+        "common_mistakes": [
+          "Writing that these metals are softer than the alkali metals. They are harder, because the metallic bonding is stronger.",
+          "Giving the comparison without the reason. Two electrons per atom in the metallic bond is the reason."
+        ],
+        "memory_tip": "Two bonding electrons instead of one, so harder, denser and higher melting.",
+        "margin_note": "Compare with the alkali metals in this step, and give the reason in the same sentence."
+      },
+      {
+        "id": "s6_chemical_properties",
+        "kind": "equation",
+        "label": "Chemical properties",
+        "marks": 1,
+        "mark_note": "The reactions with equations",
+        "lines": [
+          "Burning in oxygen gives the monoxide:",
+          {
+            "text": "2M + O₂ → 2MO",
+            "style": "eq"
+          },
+          "Heating in hydrogen gives the hydride,",
+          "beryllium excepted:",
+          {
+            "text": "M + H₂ → MH₂",
+            "style": "eq"
+          },
+          "With water they give the hydroxide and",
+          "hydrogen:",
+          {
+            "text": "M + 2H₂O → M(OH)₂ + H₂",
+            "style": "eq"
+          },
+          "Beryllium does not react with water and",
+          "magnesium reacts slowly, while calcium",
+          "to barium react readily.",
+          "With the halogens they give the halide,",
+          "and on heating in nitrogen the nitride:",
+          {
+            "text": "M + X₂ → MX₂",
+            "style": "eq"
+          },
+          {
+            "text": "3M + N₂ → M₃N₂",
+            "style": "eq"
+          }
+        ],
+        "why": "The general characteristics of a group include what its members react with, and these five reactions are shown by the whole group, with the general symbol M standing for any member. The reaction with water also carries the gradation, because it is where the rise in reactivity from beryllium to barium can be seen directly.",
+        "common_mistakes": [
+          "Writing MO₂ as the product with oxygen. The metal is divalent, so the oxide is MO.",
+          "Leaving the hydrogen out of the reaction with water. The products are the hydroxide M(OH)₂ and hydrogen gas.",
+          "Writing that every member reacts with water alike. Beryllium does not react with water and magnesium reacts slowly, while calcium, strontium and barium react readily."
+        ],
+        "memory_tip": "Oxide, hydride, hydroxide, halide, nitride: five products, and the metal is divalent in all of them.",
+        "margin_note": "Write the equation next to each reaction, using M for the general metal."
+      },
+      {
+        "id": "s7_flame_reducing",
+        "kind": "text",
+        "label": "Flame colour and reducing nature",
+        "marks": 1,
+        "mark_note": "Flame colour",
+        "lines": [
+          "Calcium gives a brick red flame,",
+          "strontium a crimson red flame and",
+          "barium an apple green flame.",
+          "Beryllium and magnesium give no flame",
+          "colour. Their electrons are too",
+          "strongly bound to be excited by the heat",
+          "of a bunsen flame, so no visible light",
+          "is given out. Their ionisation",
+          "enthalpies are also the highest in the",
+          "group.",
+          "These metals are reducing agents, but",
+          "generally weaker than the alkali metals.",
+          "Two electrons have to be removed instead",
+          "of one, so the first and second",
+          "ionisation enthalpies both have to be",
+          "supplied, and the larger hydration",
+          "enthalpy of M²⁺ makes up for only part",
+          "of that."
+        ],
+        "why": "The flame colour and the reducing strength both turn on how tightly the outer electrons are held. Beryllium and magnesium hold theirs too tightly for a bunsen flame to excite them, while the reducing strength of the whole group is set by both ionisation enthalpies together with the hydration enthalpy of M²⁺.",
+        "common_mistakes": [
+          "Giving a flame colour for beryllium or magnesium. Neither gives one, because their electrons are held too tightly to be excited by the heat of a bunsen flame.",
+          "Deciding this from the first ionisation enthalpy alone. Both ionisation enthalpies and the hydration enthalpy of M²⁺ decide reducing strength in solution."
+        ],
+        "memory_tip": "Calcium brick red, strontium crimson red, barium apple green, and the first two members give none.",
+        "margin_note": "Three flame colours, then the two members that give none, then the reducing strength."
+      },
+      {
+        "id": "s8_gradation",
+        "kind": "boxed_final",
+        "label": "The gradation down the group",
+        "marks": 1,
+        "mark_note": "Gradation",
+        "lines": [
+          "Down the group the atomic and ionic",
+          "radii increase.",
+          "The ionisation enthalpy decreases, so",
+          "the electropositive character and the",
+          "reactivity increase.",
+          "The hydration enthalpy decreases from",
+          "Be²⁺ to Ba²⁺.",
+          "The carbonates become more stable to",
+          "heat, and the sulphates become less",
+          "soluble:",
+          {
+            "text": "Down group 2: bigger and more reactive",
+            "style": "boxed"
+          }
+        ],
+        "why": "The question asks for the gradation as well as the characteristics, so the trends have to be gathered in one place rather than left scattered through the answer. Every line here is the same cause seen again: the cation grows larger from beryllium to barium.",
+        "common_mistakes": [
+          "Listing the properties without any trend. The question asks for the gradation as well.",
+          "Writing that the sulphates become more soluble down the group. Their solubility falls, while the thermal stability of the carbonates rises."
+        ],
+        "memory_tip": "One cause down the group: the cation grows, so it holds water less and holds its own compounds together differently.",
+        "margin_note": "Collect the trends in one closing block. That block is what answers the second half of the question."
+      }
+    ]
+  }
+}

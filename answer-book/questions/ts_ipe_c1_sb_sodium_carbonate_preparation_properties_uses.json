@@ -1,0 +1,262 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_sodium_carbonate_preparation_properties_uses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Discuss the preparation, properties and uses of sodium carbonate.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The substance and the process",
+      "marks": 1
+    },
+    {
+      "label": "Ammonium carbonate and bicarbonate",
+      "marks": 1
+    },
+    {
+      "label": "Sodium bicarbonate and its heating",
+      "marks": 2
+    },
+    {
+      "label": "Recovery of ammonia",
+      "marks": 1
+    },
+    {
+      "label": "Properties",
+      "marks": 2
+    },
+    {
+      "label": "Uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.92, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 51. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. A SOURCE-BOOK CORRECTION IS CARRIED HERE. The ammonia-recovery step is printed three times in this volume (p.92, p.96 and p.97) as 2NH₄Cl + Ca(OH)₂ → 2NH₃ + CaCl₂ + H₂O, which does not balance: the left side carries H 10 and O 2 while that right side carries H 8 and O 1. This card writes 2NH₄Cl + Ca(OH)₂ → 2NH₃ + CaCl₂ + 2H₂O, which balances (N 2 = 2, H 10 = 10, Cl 2 = 2, Ca 1 = 1, O 2 = 2) and which is also the form NCERT prints. EVERY OTHER EQUATION WAS CHECKED ATOM BY ATOM: 2NH₃ + H₂O + CO₂ → (NH₄)₂CO₃ (N 2 = 2, H 8 = 8, C 1 = 1, O 3 = 3); (NH₄)₂CO₃ + H₂O + CO₂ → 2NH₄HCO₃ (N 2 = 2, H 10 = 10, C 2 = 2, O 6 = 6); NaCl + NH₄HCO₃ → NaHCO₃ + NH₄Cl (Na 1 = 1, Cl 1 = 1, N 1 = 1, H 5 = 5, C 1 = 1, O 3 = 3); 2NaHCO₃ → Na₂CO₃ + CO₂ + H₂O (Na 2 = 2, H 2 = 2, C 2 = 2, O 6 = 6); Na₂CO₃·10H₂O → Na₂CO₃·H₂O + 9H₂O (H 20 = 20, O 13 = 13); Na₂CO₃ + 2H₂O → 2Na⁺ + 2OH⁻ + H₂CO₃ (H 4 = 4, O 5 = 5, charge 0 = 0); the condensed first stage NH₃ + H₂O + CO₂ → NH₄HCO₃ (N 1 = 1, H 5 = 5, C 1 = 1, O 3 = 3); and the ionic hydrolysis CO₃²⁻ + H₂O ⇌ HCO₃⁻ + OH⁻ (C 1 = 1, H 2 = 2, O 4 = 4, charge −2 = −2). BOTH FORMS OF THE FIRST STAGE ARE CORRECT — the two stages through (NH₄)₂CO₃ and the single step — and this card prints both; neither is called an error. The two dehydration temperatures are NCERT's own: about 375 K for the loss of nine water molecules and above 373 K for the last one. CARRIED AS EXTRA CONTENT, to be confirmed by a teacher: that the carbon dioxide of the process is obtained by heating limestone and that the calcium hydroxide for the recovery step comes from the quick lime left behind, which is why the two halves of the process fit together. HYDROLYSIS ARROW: the carbonate hydrolysis is an equilibrium, so both the molecular and the ionic form are printed with the equilibrium arrow. A full arrow would claim complete conversion to carbonic acid, which is not what happens; the source book prints a full arrow, and a student who writes one is not making an error."
+  },
+  "insider_note": "The question names three things — preparation, properties and uses — so all three must appear; an answer that gives only the Solvay equations has answered a third of it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_substance_process",
+        "kind": "text",
+        "label": "The substance and the process",
+        "marks": 1,
+        "mark_note": "Formula and the name of the process",
+        "lines": [
+          "Sodium carbonate is Na₂CO₃.",
+          "Its crystalline decahydrate,",
+          "Na₂CO₃·10H₂O, is called washing soda,",
+          "and the anhydrous form is soda ash.",
+          "It is prepared by the SOLVAY process,",
+          "also called the ammonia-soda process.",
+          "The raw materials are brine, which is",
+          "concentrated sodium chloride solution,",
+          "ammonia, and carbon dioxide.",
+          "The carbon dioxide is obtained by",
+          "heating limestone, which also leaves",
+          "quick lime for the last step."
+        ],
+        "why": "The answer opens by fixing which compound is being described, because one substance is met here under three names. Naming the process and its three raw materials before the equations means each equation that follows can be read as one stage of a single method rather than as a separate fact.",
+        "common_mistakes": [
+          "Writing NaHCO₃ as sodium carbonate. NaHCO₃ is sodium hydrogen carbonate, baking soda.",
+          "Calling the anhydrous salt washing soda. Washing soda is the decahydrate Na₂CO₃·10H₂O.",
+          "Naming the wrong process. Sodium carbonate is made by the Solvay process; the Castner-Kellner process makes sodium hydroxide."
+        ],
+        "memory_tip": "Brine, ammonia and carbon dioxide are the three things the Solvay process starts from.",
+        "margin_note": "Give the formula and the name of the process before the first equation."
+      },
+      {
+        "id": "s2_ammonium_salts",
+        "kind": "equation",
+        "label": "Ammonium carbonate and bicarbonate",
+        "marks": 1,
+        "mark_note": "The first two equations",
+        "lines": [
+          "Ammonia is passed into water with carbon",
+          "dioxide and gives ammonium carbonate:",
+          {
+            "text": "2NH₃ + H₂O + CO₂ → (NH₄)₂CO₃",
+            "style": "eq"
+          },
+          "More carbon dioxide converts this into",
+          "ammonium hydrogen carbonate:",
+          {
+            "text": "(NH₄)₂CO₃ + H₂O + CO₂ → 2NH₄HCO₃",
+            "style": "eq"
+          },
+          "These two stages are also correctly",
+          "written as one step:",
+          {
+            "text": "NH₃ + H₂O + CO₂ → NH₄HCO₃",
+            "style": "eq"
+          }
+        ],
+        "why": "These two stages build the reagent the process actually needs. Sodium chloride will not react with carbon dioxide directly, so the carbon dioxide is first fixed as the hydrogen carbonate of ammonia, and the hydrogen carbonate ion of that salt then combines with sodium in the next step.",
+        "common_mistakes": [
+          "Writing NH₃ instead of 2NH₃ in the first equation of the two-stage form. Two ammonia molecules are needed for one ammonium carbonate.",
+          "Sending the brine straight to the carbonate (NH₄)₂CO₃. It is the hydrogen carbonate NH₄HCO₃ that reacts with brine — written either as the two stages above or as the single step; both are complete."
+        ],
+        "memory_tip": "Carbon dioxide reacts with ammonia first, as the carbonate and then as the hydrogen carbonate.",
+        "margin_note": "The second stage makes the reagent used next, whichever of the two forms is written."
+      },
+      {
+        "id": "s3_bicarbonate",
+        "kind": "equation",
+        "label": "Sodium bicarbonate and its heating",
+        "marks": 2,
+        "mark_note": "The key step and the calcination",
+        "lines": [
+          "Ammonium hydrogen carbonate is treated",
+          "with brine:",
+          {
+            "text": "NaCl + NH₄HCO₃ → NaHCO₃ + NH₄Cl",
+            "style": "eq"
+          },
+          "Sodium hydrogen carbonate is only",
+          "sparingly soluble, so it separates out",
+          "as a solid and is filtered off. This is",
+          "the step the whole process depends on.",
+          "The solid is then heated, and sodium",
+          "carbonate is left:",
+          {
+            "text": "2NaHCO₃ → Na₂CO₃ + CO₂ + H₂O",
+            "style": "eq"
+          },
+          "The carbon dioxide given out here is",
+          "returned to the earlier stage."
+        ],
+        "why": "The whole method turns on the low solubility of sodium hydrogen carbonate: it is the one product that leaves the solution, so it can be separated from the ammonium chloride formed with it. Heating it then removes carbon dioxide and water and leaves the carbonate, and the carbon dioxide is not wasted but used again.",
+        "common_mistakes": [
+          "Writing that sodium carbonate itself precipitates. It is sodium hydrogen carbonate that comes out of solution and is then heated.",
+          "Writing NaHCO₃ → Na₂CO₃ without the 2. Two molecules of the hydrogen carbonate give one of the carbonate.",
+          "Leaving out the carbon dioxide and water on heating. Both are released and the carbon dioxide is sent back into the process."
+        ],
+        "memory_tip": "The bicarbonate is the one that will not stay dissolved, so it can be filtered and then heated.",
+        "margin_note": "Write the words sparingly soluble beside the first equation; that property is the reason the process works."
+      },
+      {
+        "id": "s4_ammonia_recovery",
+        "kind": "equation",
+        "label": "Recovery of ammonia",
+        "marks": 1,
+        "mark_note": "The recovery equation",
+        "lines": [
+          "The ammonium chloride left in solution",
+          "is heated with calcium hydroxide, which",
+          "is made from the quick lime obtained",
+          "when the limestone was heated:",
+          {
+            "text": "2NH₄Cl + Ca(OH)₂ → 2NH₃ + CaCl₂ + 2H₂O",
+            "style": "eq"
+          },
+          "The ammonia is returned to the start of",
+          "the process and used again.",
+          "Calcium chloride is the by-product."
+        ],
+        "why": "Ammonia is not used up by the process; it is recovered here and sent back to the start. Writing this step completes the account, because the two leftover materials of the earlier stages, ammonium chloride and quick lime, are exactly what this step needs.",
+        "common_mistakes": [
+          "Writing only one water molecule on the right. Two water molecules are needed: with one, the hydrogen and oxygen atoms do not balance.",
+          "Writing that ammonia is used up in the process. It is recovered here and returned to the start.",
+          "Naming the by-product as calcium carbonate. The by-product of this step is calcium chloride."
+        ],
+        "memory_tip": "Calcium hydroxide takes the ammonia back out of the ammonium chloride, so none of it is used up.",
+        "margin_note": "Count the hydrogen atoms on both sides before moving on; this equation is often written short of one water."
+      },
+      {
+        "id": "s5_properties",
+        "kind": "equation",
+        "label": "Properties",
+        "marks": 2,
+        "mark_note": "Physical nature, heating and hydrolysis",
+        "lines": [
+          "1. Sodium carbonate is a colourless",
+          "    crystalline solid.",
+          "2. It is readily soluble in water.",
+          "3. It exists as the decahydrate",
+          "    Na₂CO₃·10H₂O, washing soda.",
+          "4. On heating to about 375 K it loses",
+          "    nine of its ten water molecules:",
+          {
+            "text": "Na₂CO₃·10H₂O → Na₂CO₃·H₂O + 9H₂O",
+            "style": "eq"
+          },
+          "    Above 373 K the last water goes and",
+          "    anhydrous soda ash is left:",
+          {
+            "text": "Na₂CO₃·H₂O → Na₂CO₃ + H₂O",
+            "style": "eq"
+          },
+          "5. It is the salt of a strong base and a",
+          "    weak acid, so it hydrolyses and its",
+          "    solution is alkaline:",
+          {
+            "text": "Na₂CO₃ + 2H₂O ⇌ 2Na⁺ + 2OH⁻ + H₂CO₃",
+            "style": "eq"
+          },
+          "    The same hydrolysis is also written",
+          "    in the ionic form:",
+          {
+            "text": "CO₃²⁻ + H₂O ⇌ HCO₃⁻ + OH⁻",
+            "style": "eq"
+          }
+        ],
+        "why": "The properties asked for are the physical description, the behaviour on heating and the behaviour in water. The water of crystallisation leaves in two stages rather than one, and the alkaline solution is the property behind every cleaning use listed in the last step, so the two are worth writing with their equations.",
+        "common_mistakes": [
+          "Removing all ten water molecules in one step. Nine leave first and the monohydrate is formed.",
+          "Saying the solution is neutral because it is a salt. The salt of a strong base and a weak acid gives an alkaline solution.",
+          "Writing the sodium ion as the one that hydrolyses. It is the carbonate ion that takes a proton from water."
+        ],
+        "memory_tip": "Nine water molecules first, then the tenth; and the solution is alkaline, never neutral.",
+        "margin_note": "Number the properties and give both temperatures with the heating equations."
+      },
+      {
+        "id": "s6_uses",
+        "kind": "boxed_final",
+        "label": "Uses",
+        "marks": 1,
+        "mark_note": "The uses listed",
+        "lines": [
+          {
+            "text": "Na₂CO₃·10H₂O is washing soda",
+            "style": "boxed"
+          },
+          "Uses of sodium carbonate:",
+          "1. softening hard water,",
+          "2. laundering and cleaning,",
+          "3. manufacture of glass, borax, soap and",
+          "    caustic soda,",
+          "4. in the paper, paint and textile",
+          "    industries,",
+          "5. as a reagent in the laboratory, in",
+          "    qualitative and quantitative analysis."
+        ],
+        "why": "The uses follow from the properties just written: the alkaline solution is what does the cleaning, and the ability to take calcium and magnesium ions out of hard water as insoluble carbonates is what softens it. Taking the uses in the order home, factory, laboratory keeps the list from repeating itself.",
+        "common_mistakes": [
+          "Giving the uses of caustic soda, such as refining petroleum. Those belong to NaOH.",
+          "Writing only that it is used in industry. Name the products made from it: glass, borax, soap and caustic soda."
+        ],
+        "memory_tip": "Home, then factory, then laboratory: the three kinds of use in order.",
+        "margin_note": "Close with a short numbered list; four or five named uses complete this part."
+      }
+    ]
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_castner_kellner_process",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What do you know about the Castner–Kellner process? Write the principle involved in it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the process makes",
+      "marks": 1
+    },
+    {
+      "label": "The principle",
+      "marks": 1
+    },
+    {
+      "label": "The electrode reactions",
+      "marks": 1
+    },
+    {
+      "label": "The amalgam treated with water",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.88, chapter 7 s-BLOCK ELEMENTS, SAQ question 36. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The three equations were checked: 2Na⁺ + 2e⁻ → 2Na (charge 0 = 0), 2Cl⁻ → Cl₂ + 2e⁻ (charge −2 = −2) and 2NaHg + 2H₂O → 2NaOH + 2Hg + H₂ (Na 2 = 2, Hg 2 = 2, O 2 = 2, H 4 = 4). ONE SUPPORTING REASON IS CARRIED BEYOND THE SOURCE ANSWER and should be confirmed by a teacher: the sodium ion is discharged in preference to the hydrogen ion because mercury has a high overvoltage for hydrogen. It is the standard explanation for the mercury cathode, and without it the principle reads as an assertion."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_makes",
+        "kind": "text",
+        "label": "What the process makes",
+        "marks": 1,
+        "mark_note": "Product and raw material",
+        "lines": [
+          "The Castner–Kellner process is the",
+          "industrial method of making sodium",
+          "hydroxide, also called caustic soda.",
+          "The raw material is brine, which is a",
+          "concentrated solution of sodium chloride",
+          "in water.",
+          "Chlorine and hydrogen are obtained as",
+          "by-products."
+        ],
+        "why": "The question asks two things, what the process is and what its principle is, so the product and the raw material have to be named before any electrode reaction is written down.",
+        "common_mistakes": [
+          "Saying the process makes sodium metal. Sodium is only formed on the way; the product is sodium hydroxide.",
+          "Naming solid sodium chloride as the raw material. The electrolyte is brine, its concentrated solution in water."
+        ],
+        "memory_tip": "Brine goes in; caustic soda comes out, with chlorine and hydrogen alongside.",
+        "margin_note": "Name the product and the raw material first."
+      },
+      {
+        "id": "s2_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 1,
+        "mark_note": "Electrolysis with a mercury cathode",
+        "lines": [
+          "The principle is the electrolysis of",
+          "brine in a cell that has a mercury",
+          "cathode and a carbon anode.",
+          "Mercury has a high overvoltage for",
+          "hydrogen.",
+          "So at the mercury cathode the sodium ion",
+          "is discharged and not the hydrogen ion",
+          "of the water."
+        ],
+        "why": "This is the point of the whole design: on an ordinary cathode the water would give hydrogen first, and it is the mercury surface alone that allows a sodium ion to be discharged from a solution in water.",
+        "common_mistakes": [
+          "Naming an iron or a platinum cathode. The cathode of this cell is flowing mercury.",
+          "Saying hydrogen is set free at the cathode. On mercury the sodium ion is discharged, and the hydrogen comes later from the separate chamber."
+        ],
+        "memory_tip": "Mercury cathode and carbon anode: on mercury it is the sodium ion that is discharged.",
+        "margin_note": "The high overvoltage of hydrogen on mercury is the reason; write it."
+      },
+      {
+        "id": "s3_electrode_reactions",
+        "kind": "equation",
+        "label": "The electrode reactions",
+        "marks": 1,
+        "mark_note": "One half reaction at each electrode",
+        "lines": [
+          "At the mercury cathode:",
+          {
+            "text": "2Na⁺ + 2e⁻ → 2Na",
+            "style": "eq"
+          },
+          "The sodium formed dissolves in the",
+          "mercury and leaves the cell as sodium",
+          "amalgam, written NaHg.",
+          "At the carbon anode:",
+          {
+            "text": "2Cl⁻ → Cl₂ + 2e⁻",
+            "style": "eq"
+          },
+          "Chlorine gas is collected here."
+        ],
+        "why": "Each electrode does one job and the two half equations show it: the cathode reduces the sodium ion and the anode oxidises the chloride ion, and the electrons released at one are exactly the electrons taken at the other.",
+        "common_mistakes": [
+          "Collecting free sodium metal from the cell. It leaves dissolved in the mercury, as the amalgam.",
+          "Writing chlorine at the cathode. Chlorine is set free at the carbon anode."
+        ],
+        "memory_tip": "Cathode reduces the sodium ion; anode oxidises the chloride ion.",
+        "margin_note": "Two half reactions belong here, one for each electrode."
+      },
+      {
+        "id": "s4_amalgam_with_water",
+        "kind": "boxed_final",
+        "label": "The amalgam treated with water",
+        "marks": 1,
+        "mark_note": "The equation and the recovery of mercury",
+        "lines": [
+          "The amalgam is run into a separate",
+          "chamber and treated with water:",
+          {
+            "text": "2NaHg + 2H₂O → 2NaOH + 2Hg + H₂",
+            "style": "boxed"
+          },
+          "Sodium hydroxide solution is drawn off",
+          "and hydrogen gas escapes.",
+          "The mercury set free here is pumped back",
+          "into the cell and used again."
+        ],
+        "why": "The sodium hydroxide is made outside the electrolysis cell and not inside it, and the mercury is not used up — it only carries the sodium from one place to the other, which is why the same mercury works the cell over and over.",
+        "common_mistakes": [
+          "Forming the sodium hydroxide inside the electrolysis cell. It is formed in the separate chamber where the amalgam is treated with water.",
+          "Saying the mercury is used up. It is recovered and returned to the cell."
+        ],
+        "memory_tip": "Amalgam plus water gives caustic soda, hydrogen, and the mercury back again.",
+        "margin_note": "Close with the recovery of the mercury."
+      }
+    ]
+  },
+  "insider_note": "Two things must both appear: the mercury cathode that lets the sodium ion be discharged, and the separate treatment of the amalgam with water, which is where the caustic soda is actually made."
+}

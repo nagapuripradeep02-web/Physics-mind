@@ -71,7 +71,11 @@
           "Every element of the group has three",
           "electrons in its outermost shell.",
           "Those three electrons are why the group",
-          "shows the +3 oxidation state."
+          "shows the +3 oxidation state.",
+          {
+            "text": "Group 13 valence shell is ns²np¹",
+            "style": "boxed"
+          }
         ],
         "why": "One line, ns²np¹, covers all five elements: two electrons in the s subshell and one in the p subshell of the outermost shell n, which is three valence electrons in every case.",
         "common_mistakes": [

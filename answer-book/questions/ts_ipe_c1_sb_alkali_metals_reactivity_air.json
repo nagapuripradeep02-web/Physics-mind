@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkali_metals_reactivity_air",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a short note on the reactivity of the alkali metals towards air.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reactivity in air and storage",
+      "marks": 1
+    },
+    {
+      "label": "Lithium with oxygen and nitrogen",
+      "marks": 1
+    },
+    {
+      "label": "Sodium in limited and in excess oxygen",
+      "marks": 1
+    },
+    {
+      "label": "Superoxides of potassium, rubidium and caesium",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.87, chapter 7 s-BLOCK ELEMENTS, SAQ question 31. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. A SOURCE-BOOK CORRECTION IS CARRIED HERE: the book prints the schematic Li + air (O₂ + N₂) → Li₂O + Li₃N, which does not balance. This card writes the two balanced equations instead, 4Li + O₂ → 2Li₂O (Li 4 = 4, O 2 = 2) and 6Li + N₂ → 2Li₃N (Li 6 = 6, N 2 = 2). The other four equations were checked atom by atom in the same way: 4Na + O₂ → 2Na₂O, 2Na + O₂ → Na₂O₂ and M + O₂ → MO₂ all balance as written."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_general",
+        "kind": "text",
+        "label": "Reactivity in air and storage",
+        "marks": 1,
+        "mark_note": "The general behaviour",
+        "lines": [
+          "The alkali metals are very reactive.",
+          "A freshly cut surface is bright, but it",
+          "tarnishes at once in air, because the",
+          "metal reacts with the oxygen and the",
+          "moisture of the air.",
+          "Reactivity towards air increases down",
+          "the group from lithium to caesium.",
+          "The metals are therefore kept under",
+          "kerosene."
+        ],
+        "why": "The note has to open with the general behaviour before the separate oxides are written, because this reactivity is also the reason none of these metals is found free in nature and the reason each is stored under kerosene.",
+        "common_mistakes": [
+          "Saying they are stored under water. They react with water, so they are kept under kerosene.",
+          "Saying lithium is the most reactive. Reactivity towards air increases down the group, so caesium is the most reactive."
+        ],
+        "memory_tip": "They tarnish in air, so they are kept under kerosene.",
+        "margin_note": "Open with the general behaviour and the way they are stored."
+      },
+      {
+        "id": "s2_lithium",
+        "kind": "equation",
+        "label": "Lithium with oxygen and nitrogen",
+        "marks": 1,
+        "mark_note": "Two balanced equations for lithium",
+        "lines": [
+          "Lithium burns in oxygen and gives",
+          "mainly the monoxide:",
+          {
+            "text": "4Li + O₂ → 2Li₂O",
+            "style": "eq"
+          },
+          "Lithium is also the only alkali metal",
+          "that combines directly with the nitrogen",
+          "of the air, giving the nitride:",
+          {
+            "text": "6Li + N₂ → 2Li₃N",
+            "style": "eq"
+          }
+        ],
+        "why": "Lithium is the exception in this group twice over — it gives mainly the monoxide and it takes nitrogen straight from the air — and both facts follow from its very small size and high polarising power.",
+        "common_mistakes": [
+          "Writing Li₂O₂ as the product to be shown. Lithium gives mainly the monoxide Li₂O, so Li₂O is the equation to write.",
+          "Writing an unbalanced schematic such as Li + air → Li₂O + Li₃N. Write the two balanced equations separately."
+        ],
+        "memory_tip": "Lithium alone takes nitrogen from the air and gives Li₃N.",
+        "margin_note": "Two balanced equations belong here, one for oxygen and one for nitrogen."
+      },
+      {
+        "id": "s3_sodium",
+        "kind": "equation",
+        "label": "Sodium in limited and in excess oxygen",
+        "marks": 1,
+        "mark_note": "Both sodium products",
+        "lines": [
+          "Sodium gives the monoxide when the",
+          "supply of oxygen is limited:",
+          {
+            "text": "4Na + O₂ → 2Na₂O",
+            "style": "eq"
+          },
+          "When oxygen is in excess the peroxide",
+          "is formed instead:",
+          {
+            "text": "2Na + O₂ → Na₂O₂",
+            "style": "eq"
+          }
+        ],
+        "why": "Sodium is the middle case of the group: the monoxide forms when oxygen is short and the peroxide when oxygen is plentiful, so the supply of oxygen has to be named beside each product.",
+        "common_mistakes": [
+          "Writing only one product for sodium. Which oxide forms depends on how much oxygen is present.",
+          "Calling Na₂O₂ a superoxide. Na₂O₂ is the peroxide; the superoxide has the formula MO₂."
+        ],
+        "memory_tip": "Little oxygen gives Na₂O; plenty of oxygen gives Na₂O₂.",
+        "margin_note": "Name the oxygen supply beside each of the two equations."
+      },
+      {
+        "id": "s4_superoxides",
+        "kind": "boxed_final",
+        "label": "Superoxides of potassium, rubidium and caesium",
+        "marks": 1,
+        "mark_note": "The superoxide and its reason",
+        "lines": [
+          "Potassium, rubidium and caesium burn in",
+          "excess oxygen and give superoxides:",
+          {
+            "text": "M + O₂ → MO₂  (M = K, Rb, Cs)",
+            "style": "boxed"
+          },
+          "The superoxide ion O₂⁻ is large and is",
+          "held stable only by a large cation,",
+          "which is why lithium and sodium",
+          "give mainly the monoxide and the",
+          "peroxide instead."
+        ],
+        "why": "The group ends with a third kind of product, and the reason is the size of the cation: a large, weakly polarising ion holds the big superoxide ion without breaking it up, so only the heavier metals give MO₂.",
+        "common_mistakes": [
+          "Giving potassium the peroxide. In excess oxygen potassium gives the superoxide KO₂.",
+          "Leaving out the reason. The large cation is what makes the superoxide stable."
+        ],
+        "memory_tip": "Down the group the product changes: monoxide, then peroxide, then superoxide.",
+        "margin_note": "Close with the reason: a superoxide needs a large cation."
+      }
+    ]
+  },
+  "insider_note": "Three different oxides sit in this one answer — lithium the monoxide, sodium the peroxide, potassium and the heavier metals the superoxide — and the nitride Li₃N is the fact most often left out."
+}

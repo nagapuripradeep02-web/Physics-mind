@@ -1,0 +1,218 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_quick_lime_with_silica",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What happens when quick lime is heated with silica?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What quick lime is",
+      "marks": 1
+    },
+    {
+      "label": "What silica is",
+      "marks": 1
+    },
+    {
+      "label": "The reaction",
+      "marks": 3
+    },
+    {
+      "label": "The product",
+      "marks": 2
+    },
+    {
+      "label": "Where the reaction is used",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.97, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 58(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. A SOURCE-BOOK FAULT IS REPAIRED ON THIS CARD. The book prints the reactants CaO + SiO₂ with no arrow and no product at all, and the product CaSiO₃ appears further down the page inside an unrelated paragraph about oxidation states — a layout fault, not a chemical claim. This card prints the complete equation CaO + SiO₂ → CaSiO₃ (Ca 1 = 1, Si 1 = 1, O 3 = 3), which is the same equation the quick-lime uses card in this chapter already carries. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: that the reaction needs the high temperature of a furnace, that calcium silicate is the salt of the weak acid silicic acid, and that the slag formed is fusible and can be run off. These are the standard account of a basic flux, and without them the equation on its own does not answer what happens. Also carried and to be confirmed: that lime and silica are combined in glass making. TWO CORRECTIONS ON 2026-09-03. The card used to say the same reaction takes place when CEMENT is manufactured; it does not, and the cement card in this chapter names CaSiO₃ as a mistake there and gives Ca₃SiO₅ and Ca₂SiO₄ as the silicates actually present. The cement clause was removed. The card also used to bracket Ca₂SiO₄ with the impossible CaSiO₄ as products to avoid; Ca₂SiO₄ is a real compound, dicalcium silicate, and is 26% of Portland cement on the cement card, so the mistake now names only CaSiO₄ and says what Ca₂SiO₄ really is. RE-CUT ON 2026-09-03: the opening step spent 2 of the 8 marks defining quick lime before the question begins and the closing step spent 1 repeating the equation from s3. Those marks moved to the reaction (now 3) and the product (now 2); the closing step survives as an unmarked step."
+  },
+  "insider_note": "This is an acid-base reaction between two oxides and not a redox one, so an answer that names quick lime as the basic oxide and silica as the acidic oxide has already explained why they combine at all.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_quick_lime",
+        "kind": "text",
+        "label": "What quick lime is",
+        "marks": 1,
+        "mark_note": "Quick lime and how it is obtained",
+        "lines": [
+          "Quick lime is calcium oxide, CaO.",
+          "It is made by heating limestone,",
+          "calcium carbonate, strongly:",
+          {
+            "text": "CaCO₃ → CaO + CO₂",
+            "style": "eq"
+          },
+          "It is a white solid.",
+          "Calcium oxide is a BASIC oxide: it is",
+          "the oxide of a metal, and with water it",
+          "gives the base calcium hydroxide,",
+          {
+            "text": "CaO + H₂O → Ca(OH)₂",
+            "style": "eq"
+          },
+          "Being basic is what makes it react with",
+          "silica."
+        ],
+        "why": "The question is about a reaction between two oxides, so the answer has to say what kind of oxide each one is. Quick lime is the oxide of a metal and gives a base with water, and that single fact is the reason the reaction with silica happens at all.",
+        "common_mistakes": [
+          "Confusing quick lime with slaked lime. Quick lime is CaO; slaked lime is Ca(OH)₂.",
+          "Writing CaCO₃ as quick lime. Calcium carbonate is limestone, the raw material it is made from.",
+          "Naming quick lime without saying it is a basic oxide. That is the property the whole answer rests on."
+        ],
+        "memory_tip": "Limestone heated gives quick lime, and quick lime is a basic oxide.",
+        "margin_note": "Give the formula, the preparation and the word basic. All three are used later."
+      },
+      {
+        "id": "s2_silica",
+        "kind": "text",
+        "label": "What silica is",
+        "marks": 1,
+        "mark_note": "Silica as an acidic oxide",
+        "lines": [
+          "Silica is silicon dioxide, SiO₂.",
+          "It is the main substance of sand and",
+          "quartz, and it is a hard solid with a",
+          "very high melting point.",
+          "Silicon is a non-metal, and silica is an",
+          "ACIDIC oxide.",
+          "It does not dissolve in water, but it",
+          "reacts with a basic oxide when the two",
+          "are heated together."
+        ],
+        "why": "Silica is the acidic partner in this reaction. It is the oxide of a non-metal, so it reacts with a base rather than with an acid, and because it does not dissolve in water the reaction has to be brought about by heating the two solids together.",
+        "common_mistakes": [
+          "Writing silica as SiO or Si₂O. Silicon dioxide is SiO₂.",
+          "Calling silica a basic oxide. It is the oxide of a non-metal and is acidic."
+        ],
+        "memory_tip": "Metal oxide is basic, non-metal oxide is acidic: lime is the base, silica is the acid.",
+        "margin_note": "Name silica as the acidic oxide here. The pairing with quick lime is the whole reaction."
+      },
+      {
+        "id": "s3_reaction",
+        "kind": "equation",
+        "label": "The reaction",
+        "marks": 3,
+        "mark_note": "The balanced equation",
+        "lines": [
+          "When quick lime is heated with silica at",
+          "the high temperature of a furnace, the",
+          "two oxides combine:",
+          {
+            "text": "CaO + SiO₂ → CaSiO₃",
+            "style": "eq"
+          },
+          "Atoms: 1 Ca, 1 Si and 3 O on each side.",
+          "A basic oxide and an acidic oxide have",
+          "reacted to give a salt.",
+          "No water is formed and nothing is",
+          "oxidised or reduced."
+        ],
+        "why": "A basic oxide reacting with an acidic oxide gives a salt directly, without any water, because neither oxide has to be turned into a hydroxide or an acid first. That is why the equation is as short as it is, and it is also why the reaction needs heat rather than a solvent.",
+        "common_mistakes": [
+          "Leaving the equation without a product. The product is calcium silicate, CaSiO₃.",
+          "Writing CaSiO₄ as the product. Calcium is divalent and the silicate here is CaSiO₃. (Ca₂SiO₄ is a real compound, dicalcium silicate, but it needs two CaO to one SiO₂ and is not the product of this reaction.)",
+          "Calling this a redox reaction. No oxidation number changes; it is an acid-base reaction between two oxides."
+        ],
+        "memory_tip": "Base plus acidic oxide gives a salt: add the two formulae together and CaSiO₃ is what is left.",
+        "margin_note": "Count the oxygen atoms across the arrow. Three on each side is the check."
+      },
+      {
+        "id": "s4_product",
+        "kind": "text",
+        "label": "The product",
+        "marks": 2,
+        "mark_note": "What calcium silicate is",
+        "lines": [
+          "The product CaSiO₃ is calcium silicate.",
+          "It is the calcium salt of the weak acid",
+          "silicic acid.",
+          "It is a glassy solid which melts at the",
+          "temperature of the furnace, so it runs",
+          "out as a liquid.",
+          "A liquid of this kind, floating on the",
+          "molten metal below it, is called slag."
+        ],
+        "why": "The question asks what happens, so the answer has to describe the product and not only name it. Calcium silicate melts at the working temperature, which is why it can be separated from a metal as a liquid, and that property is what the next step depends on.",
+        "common_mistakes": [
+          "Calling calcium silicate a gas or a solution. It is a solid that melts to a glassy liquid in the furnace.",
+          "Naming the product without saying it is a salt. It is the salt formed from a basic oxide and an acidic oxide."
+        ],
+        "memory_tip": "Calcium silicate melts in the furnace and floats off as slag.",
+        "margin_note": "Say the product melts and runs off. That single property is why the reaction is useful."
+      },
+      {
+        "id": "s5_use",
+        "kind": "text",
+        "label": "Where the reaction is used",
+        "marks": 1,
+        "mark_note": "Quick lime as a basic flux",
+        "lines": [
+          "This reaction is used in metallurgy.",
+          "An ore often carries silica with it as an",
+          "unwanted impurity.",
+          "Quick lime is added to the furnace as a",
+          "basic flux. It takes up the silica as",
+          "fusible calcium silicate, which is run",
+          "off as slag and thrown away.",
+          "The same reaction takes place in glass",
+          "making, where silica is combined with",
+          "lime."
+        ],
+        "why": "A flux is a substance added to a furnace to remove an impurity, and here the impurity is acidic, so the flux has to be basic. Quick lime is the cheapest basic oxide available, which is why it is the flux used, and the slag it forms is easy to remove because it is liquid at the working temperature.",
+        "common_mistakes": [
+          "Calling quick lime an acidic flux. It is a basic flux, used because the impurity silica is acidic.",
+          "Saying the calcium silicate is the wanted product. In metallurgy it is the slag, and it is removed."
+        ],
+        "memory_tip": "An acidic impurity needs a basic flux, so silica is removed by lime.",
+        "margin_note": "Use the word flux and say what a flux does; that names the use exactly."
+      },
+      {
+        "id": "s6_conclusion",
+        "kind": "boxed_final",
+        "label": "The answer in one line",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "CaO + SiO₂ → CaSiO₃ (calcium silicate)",
+            "style": "boxed"
+          },
+          "Quick lime heated with silica gives",
+          "calcium silicate.",
+          "The basic oxide has combined with the",
+          "acidic oxide to give a salt, and that",
+          "salt is the fusible slag of the furnace."
+        ],
+        "why": "The whole answer comes back to one equation, so it is written once more at the end of the answer, with the names attached. Restating that a base and an acidic oxide gave a salt is what turns the equation from something remembered into something explained.",
+        "common_mistakes": [
+          "Ending with the equation alone. Name the product in words as well as in formula.",
+          "Ending without saying what kind of reaction it is. It is a basic oxide reacting with an acidic oxide."
+        ],
+        "memory_tip": "Lime is the base, silica is the acid, calcium silicate is the salt.",
+        "margin_note": "Unmarked closing step. Close with the equation and the name of the product together on one line."
+      }
+    ]
+  }
+}

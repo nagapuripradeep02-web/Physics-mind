@@ -74,7 +74,11 @@
           "three nitrogen, placed alternately.",
           "Each boron is bonded to two nitrogens and",
           "one hydrogen, so the ring is planar and",
-          "the bond angles are close to 120°."
+          "the bond angles are close to 120°.",
+          {
+            "text": "Boron is sp³ in B₂H₆ and sp² in B₃N₃H₆",
+            "style": "boxed"
+          }
         ],
         "why": "Boron in borazine has three bonded neighbours and no lone pair, so three hybrid orbitals are needed, which is sp²; three sp² orbitals lie in one plane at about 120° to each other, so the ring is flat.",
         "common_mistakes": [

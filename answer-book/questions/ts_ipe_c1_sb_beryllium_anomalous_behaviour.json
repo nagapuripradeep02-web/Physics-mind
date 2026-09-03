@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_beryllium_anomalous_behaviour",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a note on the anomalous behaviour of beryllium.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why beryllium is different",
+      "marks": 1
+    },
+    {
+      "label": "Its compounds are covalent",
+      "marks": 1
+    },
+    {
+      "label": "Coordination number four",
+      "marks": 1
+    },
+    {
+      "label": "Amphoteric oxide and hydroxide",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.89, chapter 7 s-BLOCK ELEMENTS, SAQ question 41. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. STRUCTURE: the card gives the causes first (small atomic and ionic size, high polarising power, high ionisation enthalpy and electronegativity, no vacant d orbitals in the valence shell) and then the three consequences that follow from them — largely covalent and easily hydrolysed compounds, a maximum coordination number of four, and an amphoteric oxide and hydroxide. The two example ions carried as extra content, [BeF₄]²⁻ for coordination number four and [Mg(H₂O)₆]²⁺ for coordination number six, are standard values and are not taken from the source book; a teacher should confirm them before they are relied on."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reasons",
+        "kind": "text",
+        "label": "Why beryllium is different",
+        "marks": 1,
+        "mark_note": "The causes",
+        "lines": [
+          "Beryllium is the first member of group 2",
+          "and differs from the rest of the group.",
+          "The reasons are:",
+          "1. its very small atomic and ionic size,",
+          "2. its high polarising power, that is a",
+          "    high charge to size ratio,",
+          "3. its high ionisation enthalpy and high",
+          "    electronegativity,",
+          "4. no vacant d orbitals in its valence",
+          "    shell."
+        ],
+        "why": "Every difference written below comes from one of these four points, so they are set out first. A small ion carrying a double charge pulls on electrons far harder than magnesium does, and having only 2s and 2p orbitals available fixes how many groups can bond to beryllium.",
+        "common_mistakes": [
+          "Giving only the small size. The high polarising power and the absence of d orbitals are separate reasons.",
+          "Saying beryllium has d orbitals in its valence shell. Its valence shell is the second shell, which has no d orbitals."
+        ],
+        "memory_tip": "Small size, high polarising power, high ionisation enthalpy, no d orbitals.",
+        "margin_note": "Write the reasons before the differences; each difference then follows from one of them."
+      },
+      {
+        "id": "s2_covalent",
+        "kind": "text",
+        "label": "Its compounds are covalent",
+        "marks": 1,
+        "mark_note": "Covalent and hydrolysed",
+        "lines": [
+          "Because of its small size and high",
+          "polarising power, beryllium distorts the",
+          "electron cloud of the anion strongly.",
+          "Its compounds are therefore largely",
+          "covalent, while the compounds of the",
+          "other group 2 metals are ionic.",
+          "These covalent compounds are easily",
+          "hydrolysed by water."
+        ],
+        "why": "A small cation with a double charge distorts the anion so far that the electrons are shared rather than transferred, which is Fajans' rule applied to beryllium. Hydrolysis follows from the same covalent character: a covalent halide such as BeCl₂ reacts with water instead of dissolving unchanged as an ionic salt does.",
+        "common_mistakes": [
+          "Writing that beryllium compounds are ionic like those of the rest of the group. They are largely covalent.",
+          "Leaving out hydrolysis. The covalent compounds of beryllium are easily hydrolysed by water."
+        ],
+        "memory_tip": "Small ion, strong pull, shared electrons: the compounds of beryllium are covalent.",
+        "margin_note": "Fajans' rule may be named here; the small size with a double charge is the reason."
+      },
+      {
+        "id": "s3_coordination",
+        "kind": "text",
+        "label": "Coordination number four",
+        "marks": 1,
+        "mark_note": "Four orbitals only",
+        "lines": [
+          "The valence shell of beryllium has only",
+          "four orbitals, one 2s and three 2p.",
+          "So beryllium holds at most four groups",
+          "around it, as in [BeF₄]²⁻.",
+          "The other members of group 2 have vacant",
+          "d orbitals and reach a coordination",
+          "number of six, as in [Mg(H₂O)₆]²⁺."
+        ],
+        "why": "The number of groups a metal can bond is limited by the number of orbitals available to it. Beryllium's second shell has no d orbitals, so four is its limit, while magnesium and the metals below it can use d orbitals and take six.",
+        "common_mistakes": [
+          "Writing a coordination number of six for beryllium. Four is its maximum.",
+          "Giving no example. One ion such as [BeF₄]²⁻ makes the limit clear."
+        ],
+        "memory_tip": "One 2s and three 2p make four orbitals, so four is the limit for beryllium.",
+        "margin_note": "State the orbital count; the coordination number four follows from it."
+      },
+      {
+        "id": "s4_amphoteric",
+        "kind": "boxed_final",
+        "label": "Amphoteric oxide and hydroxide",
+        "marks": 1,
+        "mark_note": "The sharpest difference",
+        "lines": [
+          {
+            "text": "BeO and Be(OH)₂ are amphoteric",
+            "style": "boxed"
+          },
+          "The oxides and hydroxides of the other",
+          "group 2 metals are basic.",
+          "Beryllium also resembles aluminium, the",
+          "element placed diagonally to it."
+        ],
+        "why": "This is the clearest single difference between beryllium and the rest of its group, so it makes a strong closing line. The resemblance to aluminium is worth one sentence because it comes from the same small size and high charge that caused every other difference.",
+        "common_mistakes": [
+          "Writing that BeO is basic like MgO. BeO is amphoteric while MgO is basic.",
+          "Stopping after the covalent character. The amphoteric oxide and hydroxide are a separate difference and are the best known one."
+        ],
+        "memory_tip": "Beryllium is the one metal in group 2 whose oxide and hydroxide are amphoteric.",
+        "margin_note": "Close with the amphoteric oxide and hydroxide, the sharpest difference in the group."
+      }
+    ]
+  },
+  "insider_note": "Give the causes first and the differences after them; a note that lists differences with no reason behind them reads as memorised rather than understood."
+}

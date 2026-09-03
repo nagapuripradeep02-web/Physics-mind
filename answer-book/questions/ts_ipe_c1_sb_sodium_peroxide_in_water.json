@@ -1,0 +1,151 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_sodium_peroxide_in_water",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What happens when sodium peroxide dissolves in water?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "It reacts, it does not only dissolve",
+      "marks": 1
+    },
+    {
+      "label": "The equation with cold water",
+      "marks": 1
+    },
+    {
+      "label": "What hot water gives",
+      "marks": 1
+    },
+    {
+      "label": "The solution left behind",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.90, chapter 7 s-BLOCK ELEMENTS, SAQ question 46(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. BOTH REACTIONS ARE CORRECT, recorded here so no later editor treats one as a defect: with cold water Na₂O₂ + 2H₂O → 2NaOH + H₂O₂, and with hot water the hydrogen peroxide decomposes so the reaction is written 2Na₂O₂ + 2H₂O → 4NaOH + O₂. NCERT gives both. The card writes the cold-water equation as the main answer and names the hot-water one as also correct; neither is an error."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_it_reacts",
+        "kind": "text",
+        "label": "It reacts, it does not only dissolve",
+        "marks": 1,
+        "mark_note": "The nature of the change",
+        "lines": [
+          "Sodium peroxide Na₂O₂ does not simply",
+          "dissolve in water. It reacts with it.",
+          "The peroxide ion O₂²⁻ is a strong base,",
+          "so it accepts protons from water and",
+          "hydroxide ions are produced.",
+          "That is why the solution turns alkaline."
+        ],
+        "why": "The word dissolves in the question suggests a physical change, and the whole answer depends on seeing that a chemical reaction takes place instead. Once the peroxide ion is recognised as a strong base, both products follow: the hydroxide ions form the alkali and the protons taken from water build the hydrogen peroxide.",
+        "common_mistakes": [
+          "Treating it as ordinary dissolving and writing no equation at all. Sodium peroxide reacts with water.",
+          "Writing that the products are sodium and oxygen. The products are sodium hydroxide and hydrogen peroxide."
+        ],
+        "memory_tip": "A peroxide in water gives a hydroxide plus hydrogen peroxide — the two oxygen atoms stay joined and take two hydrogen atoms from the water.",
+        "margin_note": "Say first that a reaction takes place. The word dissolves is what students misread."
+      },
+      {
+        "id": "s2_cold_water",
+        "kind": "equation",
+        "label": "The equation with cold water",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          "With cold water sodium hydroxide and",
+          "hydrogen peroxide are formed:",
+          {
+            "text": "Na₂O₂ + 2H₂O → 2NaOH + H₂O₂",
+            "style": "eq"
+          },
+          "Atoms: 2 Na, 4 H and 4 O on each side."
+        ],
+        "why": "Two molecules of water are needed because two hydroxide ions are formed, one for each sodium ion, and the two hydrogen atoms removed from those water molecules are exactly the two that appear in the hydrogen peroxide. That is the whole balancing argument in one sentence.",
+        "common_mistakes": [
+          "Writing Na₂O₂ + H₂O → 2NaOH + O₂. That does not balance, and hydrogen peroxide is the product with cold water.",
+          "Writing the hydrogen peroxide as H₂O. Hydrogen peroxide is H₂O₂ and it keeps the oxygen to oxygen bond of the peroxide."
+        ],
+        "memory_tip": "Two water molecules in: two of their hydrogen atoms go to the peroxide ion, and what is left of them becomes the two hydroxide ions.",
+        "margin_note": "Count the oxygen atoms as a check: two in Na₂O₂ and two in the water make four, and the products carry four."
+      },
+      {
+        "id": "s3_hot_water",
+        "kind": "equation",
+        "label": "What hot water gives",
+        "marks": 1,
+        "mark_note": "The hot-water form",
+        "lines": [
+          "If the water is hot, the hydrogen",
+          "peroxide breaks down and oxygen gas is",
+          "given off instead:",
+          {
+            "text": "2Na₂O₂ + 2H₂O → 4NaOH + O₂",
+            "style": "eq"
+          },
+          "Atoms: 4 Na, 4 H and 6 O on each side.",
+          "Both forms are correct chemistry; they",
+          "differ only in the temperature of the",
+          "water."
+        ],
+        "why": "Hydrogen peroxide is not stable when warm, so the first product decomposes as it forms and oxygen leaves the solution. Writing both forms shows that the two equations describe one reaction under two conditions, exactly as the peroxide and monoxide of sodium do in air.",
+        "common_mistakes": [
+          "Calling one of the two equations wrong. Both are correct; the cold-water one gives H₂O₂ and the hot-water one gives O₂.",
+          "Writing 2Na₂O₂ + 2H₂O → 4NaOH + 2O₂. Only one molecule of oxygen is released; count the oxygen atoms."
+        ],
+        "memory_tip": "Hydrogen peroxide breaks down when it is warm, so hot water gives oxygen in its place.",
+        "margin_note": "Name this as the hot-water form rather than replacing the first equation. Either one can be asked for."
+      },
+      {
+        "id": "s4_solution_left",
+        "kind": "boxed_final",
+        "label": "The solution left behind",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "Na₂O₂ + 2H₂O → 2NaOH + H₂O₂",
+            "style": "boxed"
+          },
+          "The solution left behind is sodium",
+          "hydroxide, so it is alkaline and turns",
+          "red litmus paper blue.",
+          "Because the reaction also releases",
+          "hydrogen peroxide or oxygen, sodium",
+          "peroxide is used as an oxidising and",
+          "bleaching agent."
+        ],
+        "why": "The question asks what happens, so the answer has to end with the state of the liquid a student would actually be holding: an alkaline solution of sodium hydroxide. Naming the uses as an oxidising and bleaching agent connects the reaction to why the compound is made at all.",
+        "common_mistakes": [
+          "Saying the solution is neutral because water was the other reactant. Sodium hydroxide is a strong base.",
+          "Forgetting to name sodium hydroxide in words. The formula alone does not say which product makes the solution alkaline."
+        ],
+        "memory_tip": "Whatever the temperature, sodium hydroxide is always one of the products, so the solution is always alkaline.",
+        "margin_note": "Close with the boxed cold-water equation and the alkaline solution. That pair answers the question directly."
+      }
+    ]
+  },
+  "insider_note": "The word dissolves in the question makes students describe a physical change, but sodium peroxide reacts with water, so the answer must carry a balanced equation and must name the alkaline solution left behind."
+}

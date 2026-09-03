@@ -67,6 +67,10 @@
         "marks": 1,
         "mark_note": "Poor shielding, stronger pull",
         "lines": [
+          {
+            "text": "3d¹⁰ shields poorly, so Ga is smaller",
+            "style": "boxed"
+          },
           "The 3d electrons are diffuse and shield",
           "the outer electrons poorly.",
           "So the outermost electrons of gallium",

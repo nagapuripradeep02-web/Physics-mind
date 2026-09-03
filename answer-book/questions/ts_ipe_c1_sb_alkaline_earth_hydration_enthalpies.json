@@ -1,0 +1,247 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkaline_earth_hydration_enthalpies",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Discuss the similarities among the alkaline earth metals and the gradation in their hydration enthalpies.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What hydration enthalpy is",
+      "marks": 2
+    },
+    {
+      "label": "The order down the group",
+      "marks": 2
+    },
+    {
+      "label": "The reason for the gradation",
+      "marks": 1
+    },
+    {
+      "label": "Comparison with the alkali metals",
+      "marks": 1
+    },
+    {
+      "label": "Evidence from the hydrated salts",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.93, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 52(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SCOPE: question 52 is printed as one question with three parts and this card answers part (ii) only, the hydration enthalpies. Parts (i) and (iii), the electronic configuration and the oxides and hydroxides, are answered on their own cards; nothing here is repeated there. THE HYDRATE FORMULA MgCl₂·6H₂O IS CORRECT IN THIS CONTEXT — it is the figure NCERT prints in the discussion of hydration of the alkaline earth ions, and it is the figure used here. A different card, listing the similarities between lithium and magnesium, uses MgCl₂·8H₂O, which is the figure NCERT prints there. Both are correct in their own context and neither should be changed to match the other. THE SOLUBILITY OF BeSO₄ IS EXPLAINED HERE THE SAME WAY THE BERYLLIUM SULPHATE CARD EXPLAINS IT, and it carries the same source-book correction: where the volume explains that solubility it writes that the hydration enthalpy of Be²⁺ overcomes the lattice enthalpy of BaSO₄, naming the wrong compound in its own answer. The lattice enthalpy that is overcome is that of BeSO₄. CARRIED AS EXTRA CONTENT, to be confirmed by a teacher: the Mg(NO₃)₂ and Ba(NO₃)₂ contrast, and the statement that hydration enthalpy varies with charge divided by ionic size."
+  },
+  "insider_note": "Hydration enthalpy is one of the three terms that decide solubility, so the answer is stronger when it ends on real hydrated salts rather than on the trend alone.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "equation",
+        "label": "What hydration enthalpy is",
+        "marks": 2,
+        "mark_note": "The meaning and the shared behaviour",
+        "lines": [
+          "Hydration enthalpy is the energy given",
+          "out when one mole of gaseous ions is",
+          "surrounded by water molecules:",
+          {
+            "text": "M²⁺(g) + water → M²⁺(aq)",
+            "style": "eq"
+          },
+          "Energy is released in this change.",
+          "Every alkaline earth metal loses its two",
+          "ns² electrons and gives an M²⁺ ion.",
+          "Water is a polar molecule, so its oxygen",
+          "end is attracted to that double positive",
+          "charge and a shell of water molecules",
+          "forms around each ion.",
+          "So every member of the group forms a",
+          "strongly hydrated ion. That is the",
+          "similarity the question asks for."
+        ],
+        "why": "The similarity is not that the numbers are equal but that every member behaves the same way: each gives a doubly charged cation, and a doubly charged cation always attracts polar water molecules strongly. The definition has to come first because the gradation that follows is a gradation in this quantity.",
+        "common_mistakes": [
+          "Defining hydration enthalpy as energy absorbed. Energy is given out when an ion is hydrated.",
+          "Writing M⁺ for an alkaline earth ion. Both outer electrons are lost, so the ion is M²⁺.",
+          "Saying water is attracted because it is a liquid. It is attracted because the water molecule is polar."
+        ],
+        "memory_tip": "A double charge pulls polar water molecules in hard, and energy comes out when it does.",
+        "margin_note": "Define the quantity and say why every member of the group shows it before writing any order."
+      },
+      {
+        "id": "s2_order",
+        "kind": "equation",
+        "label": "The order down the group",
+        "marks": 2,
+        "mark_note": "The gradation written out",
+        "lines": [
+          "Hydration enthalpy DECREASES down the",
+          "group:",
+          {
+            "text": "Be²⁺ > Mg²⁺ > Ca²⁺ > Sr²⁺ > Ba²⁺",
+            "style": "eq"
+          },
+          "The Be²⁺ ion has the largest hydration",
+          "enthalpy in the group and Ba²⁺ the",
+          "smallest.",
+          "The ionic size runs the other way:",
+          {
+            "text": "Be²⁺ < Mg²⁺ < Ca²⁺ < Sr²⁺ < Ba²⁺",
+            "style": "eq"
+          },
+          "So the smallest ion is the most",
+          "strongly hydrated and the largest ion",
+          "the least."
+        ],
+        "why": "This is the gradation the question names, and writing the size order beside it is what turns the list into an explanation. The two orders run in opposite directions, and that opposition is the whole content of the trend, so both belong on the page together.",
+        "common_mistakes": [
+          "Writing the order the other way round. Be²⁺ has the largest hydration enthalpy, not the smallest.",
+          "Writing the ionic size order in the same direction as the hydration order. Size increases down the group while hydration enthalpy decreases."
+        ],
+        "memory_tip": "Smallest ion, strongest hydration: the two orders run opposite ways.",
+        "margin_note": "Write the two orders one under the other; the opposite directions are the point."
+      },
+      {
+        "id": "s3_reason",
+        "kind": "text",
+        "label": "The reason for the gradation",
+        "marks": 1,
+        "mark_note": "Charge and size",
+        "lines": [
+          "Hydration enthalpy depends on the charge",
+          "on the ion divided by its size.",
+          "Across this group the charge is the same",
+          "at +2 for every member, so size alone",
+          "decides the order.",
+          "A small ion lets water molecules come",
+          "very close to the centre of charge, so",
+          "the attraction is strong and much",
+          "energy is released.",
+          "A large ion keeps the water molecules",
+          "further away, so less energy is",
+          "released."
+        ],
+        "why": "A trend stated without a cause is only a list to be memorised. Here the cause is simple because one of the two variables is held fixed: the charge is +2 throughout, so the whole order is decided by how close a water molecule can get to the centre of the ion.",
+        "common_mistakes": [
+          "Saying the charge changes down the group. It is +2 for every member; only the size changes.",
+          "Saying a larger ion holds more water because it has more room. The attraction is weaker at a greater distance, so a larger ion is less hydrated."
+        ],
+        "memory_tip": "Same charge for all, so distance decides: closer water means more energy released.",
+        "margin_note": "One sentence on charge and one on size are enough for this step."
+      },
+      {
+        "id": "s4_vs_alkali",
+        "kind": "text",
+        "label": "Comparison with the alkali metals",
+        "marks": 1,
+        "mark_note": "Larger than the group 1 values",
+        "lines": [
+          "The hydration enthalpies of the alkaline",
+          "earth ions are LARGER than those of the",
+          "alkali metal ions.",
+          "There are two reasons:",
+          "1. the charge is +2 instead of +1,",
+          "2. the ion is smaller than the group 1",
+          "    ion of the same period.",
+          "Both work the same way, so the pull on",
+          "water is much stronger.",
+          "Compounds of the alkaline earth metals",
+          "are therefore more extensively hydrated",
+          "than those of the alkali metals."
+        ],
+        "why": "The comparison across to group 1 is what makes the numbers mean something. Both of the quantities that decide hydration enthalpy move in the same direction here, higher charge and smaller size, so the group 2 values are not slightly larger but much larger, and the hydrated salts in the next step are the visible result.",
+        "common_mistakes": [
+          "Writing that the alkali metal ions are more hydrated. The group 2 ions are more hydrated, because of the higher charge and the smaller size.",
+          "Giving only the charge as the reason. The smaller size of the group 2 ion works in the same direction and is the second reason."
+        ],
+        "memory_tip": "Twice the charge on a smaller ion: group 2 pulls water far harder than group 1.",
+        "margin_note": "Give both reasons; one alone leaves the comparison half explained."
+      },
+      {
+        "id": "s5_evidence",
+        "kind": "text",
+        "label": "Evidence from the hydrated salts",
+        "marks": 1,
+        "mark_note": "Hydrates and solubility",
+        "lines": [
+          "The strong hydration shows in real",
+          "compounds:",
+          "1. MgCl₂ and CaCl₂ crystallise as",
+          "    MgCl₂·6H₂O and CaCl₂·6H₂O, while NaCl",
+          "    and KCl form no such hydrates.",
+          "2. Mg(NO₃)₂ crystallises with six water",
+          "    molecules, while Ba(NO₃)₂, whose ion",
+          "    is much larger, is anhydrous.",
+          "3. BeSO₄ and MgSO₄ dissolve readily. The",
+          "    hydration enthalpy of the small Be²⁺",
+          "    ion is large enough to overcome the",
+          "    lattice enthalpy of BeSO₄.",
+          "Magnesium chloride is also written as",
+          "MgCl₂·8H₂O in the list of lithium and",
+          "magnesium similarities. Both formulae",
+          "are correct in their own place. The",
+          "point here is only that magnesium",
+          "chloride crystallises with water while",
+          "sodium and potassium chlorides do not."
+        ],
+        "why": "A trend is best supported by compounds a student has actually met. The number of water molecules a salt crystallises with, and whether it crystallises with any at all, follow the hydration enthalpy directly: magnesium takes six and barium takes none, in the same order as the trend.",
+        "common_mistakes": [
+          "Writing that NaCl crystallises as a hydrate. Sodium and potassium chlorides form no such hydrates.",
+          "Writing that Ba(NO₃)₂ is hydrated like Mg(NO₃)₂. The barium ion is large and weakly hydrated, so its nitrate is anhydrous.",
+          "Naming the lattice enthalpy of the wrong compound when explaining BeSO₄. What is overcome is the lattice enthalpy of BeSO₄ itself."
+        ],
+        "memory_tip": "Magnesium nitrate takes six water molecules and barium nitrate takes none, in the same order as the trend.",
+        "margin_note": "Three short numbered examples; each one is a compound the trend predicts."
+      },
+      {
+        "id": "s6_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "The conclusion stated",
+        "lines": [
+          {
+            "text": "Smaller ion, larger hydration enthalpy",
+            "style": "boxed"
+          },
+          "Every alkaline earth metal gives an M²⁺",
+          "ion that is strongly hydrated, which is",
+          "the similarity.",
+          "The size of that hydration falls",
+          "steadily from Be²⁺ to Ba²⁺, which is",
+          "the gradation.",
+          "One shared behaviour changing in one",
+          "steady direction is what a group means."
+        ],
+        "why": "The question named two things, so the answer ends by naming both and saying which is which. The closing line states the rule in six words, which is the form a student can carry into any question about solubility or hydrated salts in this group.",
+        "common_mistakes": [
+          "Answering only the gradation. The similarity, that every member gives a strongly hydrated M²⁺ ion, is asked for as well.",
+          "Ending at the examples with no closing statement. One sentence tying the two halves together completes the answer."
+        ],
+        "memory_tip": "Same behaviour for all, steadily weaker down the group.",
+        "margin_note": "Close by naming both halves the question asked for, in that order."
+      }
+    ]
+  }
+}

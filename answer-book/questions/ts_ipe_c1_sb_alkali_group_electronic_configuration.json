@@ -1,0 +1,251 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkali_group_electronic_configuration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Justify the inclusion of the alkali metals in the same group of the periodic table with reference to their electronic configuration.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The general configuration",
+      "marks": 2
+    },
+    {
+      "label": "Why one group",
+      "marks": 1
+    },
+    {
+      "label": "Loss of the single electron",
+      "marks": 2
+    },
+    {
+      "label": "Radii down the group",
+      "marks": 1
+    },
+    {
+      "label": "Ionisation enthalpy down the group",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.91, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 49(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SCOPE: question 49 is printed as one question with three parts and this card answers part (i) only, the electronic configuration. Parts (ii) and (iii), the reducing nature and the oxides and hydroxides, are answered on their own cards; nothing here is repeated there. THE SIX CONFIGURATIONS WERE CHECKED AGAINST THE ATOMIC NUMBERS: Li 3 = [He]2s¹, Na 11 = [Ne]3s¹, K 19 = [Ar]4s¹, Rb 37 = [Kr]5s¹, Cs 55 = [Xe]6s¹, Fr 87 = [Rn]7s¹. CARRIED AS EXTRA CONTENT, not taken from the source answer and to be confirmed by a teacher: the statement that the alkali metal of a period has the lowest ionisation enthalpy in that period, and the statement that the M⁺ ion is smaller than the neutral atom. Both are standard syllabus content."
+  },
+  "insider_note": "The question names the electronic configuration, so the general form [noble gas] ns¹ and the individual configurations have to be on the page before any trend is discussed.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_configuration",
+        "kind": "equation",
+        "label": "The elements and their configuration",
+        "marks": 2,
+        "mark_note": "General form and the six elements",
+        "lines": [
+          "The alkali metals are the elements of",
+          "group 1: lithium Li, sodium Na,",
+          "potassium K, rubidium Rb, caesium Cs",
+          "and francium Fr.",
+          "Each of them has one electron in the",
+          "outermost s orbital, sitting over a",
+          "complete noble gas core:",
+          {
+            "text": "[noble gas] ns¹",
+            "style": "eq"
+          },
+          "Written out for each element:",
+          {
+            "text": "Li = [He]2s¹     Na = [Ne]3s¹",
+            "style": "eq"
+          },
+          {
+            "text": "K = [Ar]4s¹      Rb = [Kr]5s¹",
+            "style": "eq"
+          },
+          {
+            "text": "Cs = [Xe]6s¹     Fr = [Rn]7s¹",
+            "style": "eq"
+          }
+        ],
+        "why": "The question asks for a justification from the electronic configuration, so the configurations themselves are the evidence and belong on the page first. Writing all six shows that the pattern is not a claim about two or three elements but holds for the whole group, and n rises by one each time only because a new shell is being started.",
+        "common_mistakes": [
+          "Writing hydrogen as an alkali metal. Hydrogen has the 1s¹ configuration but it is a non-metal and is not placed in this group.",
+          "Writing ns² for the alkali metals. That is the alkaline earth configuration; an alkali metal has ns¹.",
+          "Giving only the general form. The individual configurations are what show the pattern actually holds."
+        ],
+        "memory_tip": "One outer electron each: the number in front of s changes, the ns¹ does not.",
+        "margin_note": "Write the general form on its own line, then the six configurations under it."
+      },
+      {
+        "id": "s2_same_group",
+        "kind": "text",
+        "label": "Why they are placed together",
+        "marks": 1,
+        "mark_note": "Configuration decides the group",
+        "lines": [
+          "Elements are placed in the same group",
+          "when they have the same outer electronic",
+          "configuration.",
+          "All six of these elements have the ns¹",
+          "configuration, so all six are put in",
+          "group 1.",
+          "Chemical behaviour is decided by the",
+          "outermost electrons, so elements with",
+          "the same outer configuration react in",
+          "the same way."
+        ],
+        "why": "This is the actual justification the question asks for. A group is not a list of elements that happen to look alike; it is a set of elements with the same outer configuration, and the shared chemistry follows from that configuration rather than the other way round.",
+        "common_mistakes": [
+          "Saying they are in one group because they are all soft metals. The physical properties are consequences; the shared ns¹ configuration is the reason.",
+          "Saying the group is decided by the total number of electrons. It is decided by the outermost configuration."
+        ],
+        "memory_tip": "Same outer configuration, same group.",
+        "margin_note": "State this in one clear sentence; it is the sentence the question is asking for."
+      },
+      {
+        "id": "s3_loss_of_electron",
+        "kind": "equation",
+        "label": "The single electron is lost easily",
+        "marks": 2,
+        "mark_note": "M⁺ ion and the +1 state",
+        "lines": [
+          "The single ns¹ electron is far from the",
+          "nucleus and is screened by all the inner",
+          "shells, so it is held loosely.",
+          "Every alkali metal therefore loses it",
+          "readily and forms a unipositive ion:",
+          {
+            "text": "M → M⁺ + e⁻",
+            "style": "eq"
+          },
+          "The ion M⁺ is left with the electronic",
+          "configuration of the noble gas before",
+          "it, which is a stable arrangement.",
+          "Because of this, every alkali metal:",
+          "1. shows only the +1 oxidation state,",
+          "2. is strongly electropositive,",
+          "3. forms ionic compounds.",
+          "This common behaviour comes straight",
+          "from the one ns¹ electron."
+        ],
+        "why": "The configuration explains the chemistry only when the next step is taken: losing one electron gives a noble gas arrangement, and gaining or sharing electrons would not. That is why the +1 state is the only one seen and why the compounds are ionic, and it is the same for every member of the group.",
+        "common_mistakes": [
+          "Writing a +2 oxidation state for an alkali metal. Removing a second electron would break into a noble gas core, which needs far more energy, so only +1 is seen.",
+          "Writing M → M⁻ or saying the metal gains an electron. An alkali metal loses its one outer electron.",
+          "Leaving out the noble gas configuration of the ion. That is the reason the electron is lost so readily."
+        ],
+        "memory_tip": "Lose the one electron and a noble gas core is left, so the charge is always +1.",
+        "margin_note": "The equation M → M⁺ + e⁻ and the words noble gas configuration both belong in this step."
+      },
+      {
+        "id": "s4_radii",
+        "kind": "text",
+        "label": "Gradation in atomic and ionic radii",
+        "marks": 1,
+        "mark_note": "Radii increase down the group",
+        "lines": [
+          "Going down the group a whole new shell",
+          "is added at each element, so the outer",
+          "electron is further from the nucleus.",
+          "Atomic and ionic radii therefore",
+          "increase down the group:",
+          {
+            "text": "Li < Na < K < Rb < Cs",
+            "style": "eq"
+          },
+          "The alkali metals have the largest",
+          "atoms in their respective periods.",
+          "Each M⁺ ion is smaller than its own",
+          "atom, because the whole outer shell",
+          "has been removed."
+        ],
+        "why": "A group is justified not only by a shared configuration but by a regular change along it, and the radii are the plainest example. The principal quantum number of the outer electron rises by one at each step, so the size rises with it in an orderly way and not at random.",
+        "common_mistakes": [
+          "Writing that the radii decrease down the group. A new shell is added at each step, so they increase.",
+          "Writing that M⁺ is larger than M. Removing the outer shell makes the ion smaller than the atom."
+        ],
+        "memory_tip": "A new shell at every step down, so the atom gets bigger every step.",
+        "margin_note": "One trend line with the order written out is enough here."
+      },
+      {
+        "id": "s5_ionisation",
+        "kind": "text",
+        "label": "Gradation in ionisation enthalpy",
+        "marks": 1,
+        "mark_note": "Ionisation enthalpy falls down the group",
+        "lines": [
+          "Ionisation enthalpy is the energy needed",
+          "to remove the ns¹ electron from a free",
+          "atom.",
+          "As the atom gets bigger down the group",
+          "that electron is further from the",
+          "nucleus and better screened, so less",
+          "energy is needed to remove it.",
+          "Ionisation enthalpy therefore decreases",
+          "down the group:",
+          {
+            "text": "Li > Na > K > Rb > Cs",
+            "style": "eq"
+          },
+          "In each period, the alkali metal has the",
+          "lowest ionisation enthalpy."
+        ],
+        "why": "This is the second regular gradation, and it has the same cause as the first. Size and ionisation enthalpy move in opposite directions because both depend on how far the outer electron sits from the nucleus, so the two trends are one explanation, not two.",
+        "common_mistakes": [
+          "Writing that ionisation enthalpy increases down the group. It decreases, because the outer electron is further away and better screened.",
+          "Confusing the two trends. Size increases down the group while ionisation enthalpy decreases."
+        ],
+        "memory_tip": "Bigger atom, looser electron: size up, ionisation enthalpy down.",
+        "margin_note": "Write the order in the opposite direction to the radii order; the contrast is the point."
+      },
+      {
+        "id": "s6_conclusion",
+        "kind": "boxed_final",
+        "label": "The justification",
+        "marks": 1,
+        "mark_note": "The conclusion stated",
+        "lines": [
+          {
+            "text": "All alkali metals are [noble gas] ns¹",
+            "style": "boxed"
+          },
+          "One outer configuration is shared by",
+          "every member, and the properties that",
+          "depend on it change in one steady",
+          "direction down the group.",
+          "A shared configuration with a regular",
+          "gradation is what a group means, so the",
+          "alkali metals are correctly placed in",
+          "the same group."
+        ],
+        "why": "The question uses the word justify, so the answer has to end by saying what has been shown rather than stopping at the last trend. The two halves of the justification are the shared configuration and the steady gradation, and both have to be named in the closing sentence.",
+        "common_mistakes": [
+          "Ending at the trends without a conclusion. The question asks for a justification, so the closing sentence has to state it.",
+          "Justifying the group only by physical properties such as softness. The configuration is the reason and the properties follow from it."
+        ],
+        "memory_tip": "One shared configuration plus one steady gradation equals one group.",
+        "margin_note": "Close by naming both halves of the argument: the same ns¹ and the regular change down the group."
+      }
+    ]
+  }
+}

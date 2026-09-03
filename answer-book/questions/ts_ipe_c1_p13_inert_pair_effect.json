@@ -67,6 +67,10 @@
         "marks": 1,
         "mark_note": "The reason and its result",
         "lines": [
+          {
+            "text": "The ns² pair does not readily bond",
+            "style": "boxed"
+          },
           "Down a group the d and f electrons in",
           "between shield the outer electrons",
           "poorly, so the ns² pair feels a greater",

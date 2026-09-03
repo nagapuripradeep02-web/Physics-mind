@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_beryllium_aluminium_diagonal",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Beryllium shows a diagonal relationship with aluminium. Discuss.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why the two resemble each other",
+      "marks": 1
+    },
+    {
+      "label": "Bonding and the hydroxides",
+      "marks": 1
+    },
+    {
+      "label": "Oxide film, oxides and complexes",
+      "marks": 1
+    },
+    {
+      "label": "Carbides and salts",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.89, chapter 7 s-BLOCK ELEMENTS, SAQ question 42. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SEVEN SIMILARITIES are numbered across the four steps: covalent compounds; amphoteric hydroxides that dissolve in excess alkali; a protective oxide film; high melting insoluble oxides; fluoro complexes [BeF₄]²⁻ and [AlF₆]³⁻; carbides that give methane on hydrolysis; extensively hydrolysed salts. CARRIED AS EXTRA CONTENT, not from the source book: the aluminate ion [Al(OH)₄]⁻ written beside the beryllate ion [Be(OH)₄]²⁻, and the carbide formulae Be₂C and Al₄C₃. Both are standard NCERT content — Be₂C + 4H₂O → 2Be(OH)₂ + CH₄ and Al₄C₃ + 12H₂O → 4Al(OH)₃ + 3CH₄ — but a teacher should confirm they are wanted at four marks. NCERT WORDING DEPARTED FROM DELIBERATELY, recorded so no later editor restores it: NCERT prints this similarity as beryllium and aluminium not reacting readily with acids because of the oxide film on the surface of the metal. That statement is too broad — both metals react readily with dilute hydrochloric acid — so this card writes the accurate form instead, that both are rendered passive by nitric acid because of the oxide film. A student who writes NCERT's own sentence is not writing something the board would mark wrong; this card simply does not teach the loose form."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "text",
+        "label": "Why the two resemble each other",
+        "marks": 1,
+        "mark_note": "The reason for the likeness",
+        "lines": [
+          "Beryllium is in group 2 of period 2 and",
+          "aluminium is in group 13 of period 3,",
+          "placed diagonally to it.",
+          "Be²⁺ is small and carries a charge of 2+;",
+          "Al³⁺ is larger and carries 3+.",
+          "The charge to radius ratio of the two",
+          "ions is therefore nearly the same, so",
+          "their compounds behave alike."
+        ],
+        "why": "Going down a group makes an ion larger and going one group to the right makes it smaller and more highly charged. Along the diagonal these two changes nearly cancel, so beryllium and aluminium end with almost the same charge to radius ratio, and that ratio is what fixes the chemistry.",
+        "common_mistakes": [
+          "Writing that the two ions carry the same charge. Be²⁺ carries 2+ and Al³⁺ carries 3+; it is the charge to radius ratio that matches.",
+          "Placing aluminium directly below beryllium. It is one group to the right in the next period."
+        ],
+        "memory_tip": "The same charge to radius ratio gives the same kind of chemistry.",
+        "margin_note": "Give the reason first; every similarity that follows rests on it."
+      },
+      {
+        "id": "s2_bonding",
+        "kind": "text",
+        "label": "Bonding and the hydroxides",
+        "marks": 1,
+        "mark_note": "Covalent and amphoteric",
+        "lines": [
+          "1. Both form covalent compounds, unlike",
+          "    the ionic compounds of the other",
+          "    group 2 metals.",
+          "2. Be(OH)₂ and Al(OH)₃ are both",
+          "    amphoteric, while the other group 2",
+          "    hydroxides are basic.",
+          "    Both dissolve in excess alkali, giving",
+          "    the beryllate ion [Be(OH)₄]²⁻ and the",
+          "    aluminate ion [Al(OH)₄]⁻."
+        ],
+        "why": "These are the two similarities that separate beryllium from its own group, so they are written first. A hydroxide dissolving in excess alkali is the observation that shows amphoteric character, and both hydroxides show it.",
+        "common_mistakes": [
+          "Writing that Mg(OH)₂ is amphoteric as well. Among the group 2 hydroxides only Be(OH)₂ is amphoteric.",
+          "Giving the aluminate ion the same formula as the beryllate ion. They are [Al(OH)₄]⁻ and [Be(OH)₄]²⁻."
+        ],
+        "memory_tip": "Both hydroxides dissolve in excess alkali: beryllate and aluminate.",
+        "margin_note": "Number the similarities; the answer is a list and should be written as one."
+      },
+      {
+        "id": "s3_oxides",
+        "kind": "text",
+        "label": "Oxide film, oxides and complexes",
+        "marks": 1,
+        "mark_note": "Three more similarities",
+        "lines": [
+          "3. Both metals carry a thin protective",
+          "    oxide film, so both are rendered",
+          "    passive by nitric acid.",
+          "4. BeO and Al₂O₃ are both high melting",
+          "    solids and are insoluble in water.",
+          "5. Both form fluoro complexes,",
+          "    [BeF₄]²⁻ and [AlF₆]³⁻."
+        ],
+        "why": "The oxide film explains something a student can picture: nitric acid, which oxidises most metals, leaves these two unchanged, because it thickens the oxide layer on the surface instead. The high melting oxides and the fluoro complexes are the structural similarities that follow from the matching charge to radius ratio.",
+        "common_mistakes": [
+          "Writing that beryllium and aluminium do not react with acids. Both react with dilute hydrochloric acid; it is nitric acid that renders them passive, because of the oxide film.",
+          "Giving both fluoro complexes the same formula. Beryllium takes four fluorides and aluminium takes six."
+        ],
+        "memory_tip": "A protective oxide film, high melting oxides, and fluoro complexes with four and six fluorides.",
+        "margin_note": "Keep the numbering running on from the previous step."
+      },
+      {
+        "id": "s4_carbides",
+        "kind": "boxed_final",
+        "label": "Carbides and salts",
+        "marks": 1,
+        "mark_note": "Methane and hydrolysis",
+        "lines": [
+          {
+            "text": "Be₂C and Al₄C₃ both give CH₄ with water",
+            "style": "boxed"
+          },
+          "6. The carbides of both give methane on",
+          "    hydrolysis.",
+          "7. The salts of both are extensively",
+          "    hydrolysed in water."
+        ],
+        "why": "The carbide a student meets first, calcium carbide, gives ethyne with water, so a carbide that gives methane instead is a real point of similarity and is easy to state. The extensive hydrolysis of the salts returns to the same cause as everything else: a small ion of high charge pulls hard on the water molecules around it.",
+        "common_mistakes": [
+          "Writing that the carbides give ethyne. Be₂C and Al₄C₃ both give methane.",
+          "Stopping after four or five similarities. The word discuss asks for the full list."
+        ],
+        "memory_tip": "Both carbides give methane, and the salts of both hydrolyse in water.",
+        "margin_note": "Close with the carbides; methane is what separates them from other carbides."
+      }
+    ]
+  },
+  "insider_note": "This is a list question: one line of reason, then numbered similarities, because a paragraph makes the separate points harder to find."
+}

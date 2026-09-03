@@ -67,6 +67,10 @@
         "marks": 1,
         "mark_note": "The inert pair effect",
         "lines": [
+          {
+            "text": "The inert pair effect makes Tl⁺ stable",
+            "style": "boxed"
+          },
           "For thallium the +1 state is more stable",
           "than +3 because of the inert pair effect:",
           "the 6s² electron pair does not readily",

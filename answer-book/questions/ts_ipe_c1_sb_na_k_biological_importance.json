@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_na_k_biological_importance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give an account of the biological importance of Na⁺ and K⁺ ions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Where the two ions are found",
+      "marks": 1
+    },
+    {
+      "label": "What Na⁺ does",
+      "marks": 1
+    },
+    {
+      "label": "What K⁺ does",
+      "marks": 1
+    },
+    {
+      "label": "The role they share",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.89, chapter 7 s-BLOCK ELEMENTS, SAQ question 38. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SCOPE: the question names Na⁺ and K⁺ only, so Mg²⁺ and Ca²⁺ are deliberately absent from this card; their biological roles belong to a separate question. CONTENT CARRIED BEYOND THE THREE-ROLE AND TWO-ROLE LISTS: the opening step states that Na⁺ is found mainly outside the cells, in blood plasma and in the fluid surrounding the cells, while K⁺ is the most abundant cation inside the cell fluid, and that the two ions cross a cell membrane differently. That is standard NCERT content and it is what the later roles rest on, but it is an addition to the printed list and a teacher should confirm it is wanted at four marks."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_where",
+        "kind": "text",
+        "label": "Where the two ions are found",
+        "marks": 1,
+        "mark_note": "Position of each ion",
+        "lines": [
+          "Sodium ions Na⁺ and potassium ions K⁺ are",
+          "both essential for the body.",
+          "Na⁺ is found mainly outside the cells, in",
+          "the blood plasma and in the fluid that",
+          "surrounds the cells.",
+          "K⁺ is the most abundant cation inside the",
+          "cell fluid.",
+          "The two ions differ in how easily they",
+          "cross a cell membrane."
+        ],
+        "why": "Every role written below depends on the two ions sitting on opposite sides of the cell membrane. It is the difference in concentration across that membrane which a nerve signal and the flow of water actually use, so stating the positions first makes the roles readable.",
+        "common_mistakes": [
+          "Writing that both ions are inside the cell. Na⁺ is mainly outside the cell and K⁺ mainly inside it.",
+          "Treating Na⁺ and K⁺ as interchangeable because both are alkali metal ions. They cross a cell membrane differently and do different work."
+        ],
+        "memory_tip": "Sodium stays outside the cell, potassium stays inside it.",
+        "margin_note": "Name the position of each ion before listing its work."
+      },
+      {
+        "id": "s2_sodium",
+        "kind": "text",
+        "label": "What Na⁺ does",
+        "marks": 1,
+        "mark_note": "Three roles of sodium",
+        "lines": [
+          "Sodium ions Na⁺ take part in:",
+          "1. the transmission of nerve signals,",
+          "2. regulating the flow of water across",
+          "    cell membranes,",
+          "3. the transport of sugars and amino",
+          "    acids into cells."
+        ],
+        "why": "Three separate roles are named for sodium and each is a different kind of work: a signal, a flow of water and the carrying of food molecules into the cell. Writing all three keeps this step complete on its own.",
+        "common_mistakes": [
+          "Giving only nerve signals. Sodium also controls the flow of water and carries sugars and amino acids into cells.",
+          "Writing that Na⁺ carries oxygen. Oxygen is carried by haemoglobin, not by sodium ions."
+        ],
+        "memory_tip": "Sodium does three things: signal, water flow, transport into the cell.",
+        "margin_note": "Number the three roles of sodium so each one can be read separately."
+      },
+      {
+        "id": "s3_potassium",
+        "kind": "text",
+        "label": "What K⁺ does",
+        "marks": 1,
+        "mark_note": "Two roles of potassium",
+        "lines": [
+          "Potassium ions K⁺ take part in:",
+          "1. activating many enzymes,",
+          "2. the oxidation of glucose to produce",
+          "    ATP, adenosine triphosphate, which",
+          "    the cell uses as its energy store."
+        ],
+        "why": "Potassium works inside the cell, which is where enzymes act and where glucose is oxidised, so its roles follow directly from its position. Naming ATP says what the oxidation is for and finishes the point.",
+        "common_mistakes": [
+          "Writing that K⁺ builds bone. Bone is built from calcium salts; potassium ions activate enzymes and help produce ATP.",
+          "Stopping at the words oxidation of glucose. Say what the oxidation produces, which is ATP."
+        ],
+        "memory_tip": "Potassium works inside the cell: it starts enzymes and helps make ATP.",
+        "margin_note": "Name ATP. The oxidation point is incomplete without the product."
+      },
+      {
+        "id": "s4_together",
+        "kind": "boxed_final",
+        "label": "The role they share",
+        "marks": 1,
+        "mark_note": "Nerve signals need both",
+        "lines": [
+          {
+            "text": "Na⁺ and K⁺ together carry nerve signals",
+            "style": "boxed"
+          },
+          "A nerve signal passes because Na⁺ and K⁺",
+          "move across the membrane in opposite",
+          "directions, and the difference in their",
+          "concentrations is then restored.",
+          "Both ions are therefore needed for the",
+          "nerves to work."
+        ],
+        "why": "The question names both ions, so the answer is not finished until the role they share is written. The transmission of a nerve signal is that shared role, and it is the one place in the answer where the two ions have to be described together.",
+        "common_mistakes": [
+          "Giving nerve signals to sodium alone. Both Na⁺ and K⁺ take part in carrying a nerve signal.",
+          "Writing about only one of the two ions. The question names both, so both need their own account."
+        ],
+        "memory_tip": "One signal, two ions: sodium moves in, potassium moves out.",
+        "margin_note": "Close with the role the two ions share, so both halves of the question are answered."
+      }
+    ]
+  },
+  "insider_note": "The two ions are asked together, so an answer that describes sodium fully and forgets potassium is only half an answer; write two short numbered lists and one closing line on the nerve signal they share."
+}

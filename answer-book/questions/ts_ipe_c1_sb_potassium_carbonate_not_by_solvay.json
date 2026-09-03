@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_potassium_carbonate_not_by_solvay",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Potassium carbonate cannot be prepared by the Solvay process. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The step the process needs",
+      "marks": 1
+    },
+    {
+      "label": "Why the process stops for potassium",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.86, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_step_the_process_needs",
+        "kind": "equation",
+        "label": "The step the process needs",
+        "marks": 1,
+        "mark_note": "The step needed",
+        "lines": [
+          "In the Solvay process the hydrogen",
+          "carbonate must separate out as a solid.",
+          "Ammonium hydrogen carbonate, NH₄HCO₃,",
+          "reacts with brine, which is sodium",
+          "chloride solution:",
+          {
+            "text": "NaCl + NH₄HCO₃ → NaHCO₃ + NH₄Cl",
+            "style": "eq"
+          },
+          "Sodium hydrogen carbonate is only",
+          "sparingly soluble, so it precipitates,",
+          "leaving ammonium chloride, NH₄Cl, in",
+          "the solution.",
+          "The solid is filtered off and heated to",
+          "give sodium carbonate."
+        ],
+        "why": "The process turns on one physical fact: the hydrogen carbonate formed must be insoluble enough to come out of solution, because settling out as a solid is how it is separated from everything else in the solution.",
+        "common_mistakes": [
+          "Writing that sodium hydrogen carbonate is insoluble. It is sparingly soluble, which is just low enough for it to precipitate.",
+          "Describing the whole Solvay process. The step this question turns on is the precipitation; the rest of the process is not needed to answer it."
+        ],
+        "memory_tip": "The process works only because the hydrogen carbonate comes out as a solid.",
+        "margin_note": "Show the precipitation step first, then give the reason for potassium."
+      },
+      {
+        "id": "s2_why_potassium_fails",
+        "kind": "text",
+        "label": "Why the process stops for potassium",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          "Potassium hydrogen carbonate, KHCO₃, is",
+          "too soluble in water to precipitate.",
+          "It stays in solution, so the separation",
+          "step never happens and the process",
+          "cannot go on to give K₂CO₃.",
+          "Potassium carbonate is therefore made by",
+          "a different method."
+        ],
+        "why": "Solubility is the single difference between the two metals here. KHCO₃ dissolves far more readily than NaHCO₃, so nothing settles out and the Solvay route has no way to collect its product.",
+        "common_mistakes": [
+          "Writing that potassium does not react with ammonium hydrogen carbonate. It does react; the product simply stays dissolved.",
+          "Naming the larger size of the potassium ion without saying what it leads to — the high solubility of KHCO₃."
+        ],
+        "memory_tip": "KHCO₃ stays dissolved, so there is nothing to filter off.",
+        "margin_note": "The one word that answers this question is soluble."
+      }
+    ]
+  },
+  "insider_note": "This rests on one idea — KHCO₃ is too soluble to precipitate — but a complete answer first shows the step in the process that needs a precipitate."
+}

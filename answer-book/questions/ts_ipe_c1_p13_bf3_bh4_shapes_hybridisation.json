@@ -77,7 +77,11 @@
           "Once the ion has formed, all four B–H",
           "bonds are the same length and strength.",
           "The ion is tetrahedral with H–B–H bond",
-          "angles of 109°28′."
+          "angles of 109°28′.",
+          {
+            "text": "BF₃ is sp² planar; BH₄⁻ is sp³ tetrahedral",
+            "style": "boxed"
+          }
         ],
         "why": "BH₃ is a boron atom joined to three hydrogens, and it still has one empty orbital. A hydride ion H⁻ adds its lone pair to that empty orbital, so boron gains a fourth pair. The hybridisation changes from sp² to sp³ and the four pairs move to the corners of a tetrahedron.",
         "common_mistakes": [

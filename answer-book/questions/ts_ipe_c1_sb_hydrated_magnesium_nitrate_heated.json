@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_hydrated_magnesium_nitrate_heated",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens when hydrated Mg(NO₃)₂ is heated? Give the balanced equation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Loss of water",
+      "marks": 1
+    },
+    {
+      "label": "Decomposition of the salt",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.85, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_loss_of_water",
+        "kind": "text",
+        "label": "Loss of water",
+        "marks": 1,
+        "mark_note": "Loss of water",
+        "lines": [
+          "Hydrated magnesium nitrate is",
+          "Mg(NO₃)₂·6H₂O.",
+          "On gentle heating it first loses its six",
+          "water molecules of crystallisation and",
+          "leaves the anhydrous salt Mg(NO₃)₂."
+        ],
+        "why": "The water molecules are held in the crystal lattice only, so they are driven off at a lower temperature than the one that breaks up the nitrate itself. The heating therefore happens in two stages, and the question asks what happens, so both stages belong in the answer.",
+        "common_mistakes": [
+          "Going straight to the oxide. The hydrate loses its water first, and that stage is part of the answer.",
+          "Writing the hydrate with the wrong number of waters. The one meant here is the hexahydrate, Mg(NO₃)₂·6H₂O."
+        ],
+        "memory_tip": "Water leaves first, then the nitrate breaks up.",
+        "margin_note": "Name the hydrate as Mg(NO₃)₂·6H₂O and say the water goes first."
+      },
+      {
+        "id": "s2_decomposition",
+        "kind": "boxed_final",
+        "label": "Decomposition of the salt",
+        "marks": 1,
+        "mark_note": "Decomposition",
+        "lines": [
+          "On stronger heating the anhydrous salt",
+          "decomposes to magnesium oxide, brown",
+          "nitrogen dioxide and oxygen:",
+          {
+            "text": "2Mg(NO₃)₂ → 2MgO + 4NO₂ + O₂",
+            "style": "boxed"
+          }
+        ],
+        "why": "A group 2 nitrate decomposes to the metal oxide, nitrogen dioxide and oxygen. Counting the atoms: two magnesium, four nitrogen and twelve oxygen on each side, so the equation as written is balanced.",
+        "common_mistakes": [
+          "Writing Mg(NO₂)₂ as the product. Magnesium nitrate gives the oxide MgO, not the nitrite.",
+          "Leaving the equation unbalanced. Two formula units of the nitrate are needed before the oxygen atoms match."
+        ],
+        "memory_tip": "Nitrate to oxide, with brown nitrogen dioxide and oxygen given off.",
+        "margin_note": "Write both stages; the balanced equation belongs to the second one."
+      }
+    ]
+  },
+  "insider_note": "The question asks what happens, so the answer names both stages — the water leaving and then the salt decomposing — and finishes with the balanced equation."
+}

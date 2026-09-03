@@ -1,0 +1,158 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_sodium_carbonate_solution_alkaline",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State why an aqueous solution of Na₂CO₃ is alkaline.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The kind of salt it is",
+      "marks": 1
+    },
+    {
+      "label": "The hydrolysis equation",
+      "marks": 1
+    },
+    {
+      "label": "Why the hydroxide ions stay free",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.91, chapter 7 s-BLOCK ELEMENTS, SAQ question 47(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. BOTH WAYS OF WRITING THE HYDROLYSIS ARE CORRECT, recorded here so no later editor treats one as a defect: the molecular form Na₂CO₃ + 2H₂O ⇌ 2Na⁺ + 2OH⁻ + H₂CO₃ (Na 2 = 2, C 1 = 1, O 5 = 5, H 4 = 4, charge 0 = 0) and the ionic form CO₃²⁻ + H₂O ⇌ HCO₃⁻ + OH⁻ (C 1 = 1, H 2 = 2, O 4 = 4, charge −2 = −2) describe the same hydrolysis. The card writes the first as the main answer and names the second as equally correct; neither is an error. BOTH ARE PRINTED WITH THE EQUILIBRIUM SIGN ON THIS CARD: the hydrolysis of the carbonate ion is partial, and the step that follows explains the alkalinity by carbonic acid staying mostly un-ionised, so one full arrow beside one equilibrium sign inside a single step reads as two different claims about the same reaction. Other cards in this chapter print the molecular form with a full arrow, which is the usual textbook rendering; the chemistry is the same either way and neither rendering is an error."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_kind_of_salt",
+        "kind": "text",
+        "label": "The kind of salt it is",
+        "marks": 1,
+        "mark_note": "Nature of the salt",
+        "lines": [
+          "Sodium carbonate Na₂CO₃ is the salt of a",
+          "strong base, sodium hydroxide NaOH, and",
+          "a weak acid, carbonic acid H₂CO₃.",
+          "A salt of a strong base and a weak acid",
+          "undergoes hydrolysis in water and gives",
+          "an alkaline solution."
+        ],
+        "why": "The whole answer follows from identifying the parent acid and the parent base, so that identification has to be written down first. Once the salt is placed in the strong base plus weak acid class, the alkaline result is a general rule and not a fact to be memorised for this one salt.",
+        "common_mistakes": [
+          "Naming carbonic acid as a strong acid. H₂CO₃ is weak, and that is the whole reason the solution is alkaline.",
+          "Writing that the solution is alkaline because sodium is a metal. The behaviour comes from the carbonate ion, not the sodium ion."
+        ],
+        "memory_tip": "Strong base plus weak acid gives an alkaline solution; strong acid plus weak base gives an acidic one.",
+        "margin_note": "Name both parents, the base and the acid, before writing any equation. The classification is a mark on its own."
+      },
+      {
+        "id": "s2_hydrolysis",
+        "kind": "equation",
+        "label": "The hydrolysis equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          "In water the carbonate ion accepts",
+          "protons from water molecules and",
+          "hydroxide ions are produced:",
+          {
+            "text": "Na₂CO₃ + 2H₂O ⇌ 2Na⁺ + 2OH⁻ + H₂CO₃",
+            "style": "eq"
+          },
+          "Atoms: 2 Na, 1 C, 5 O and 4 H on each",
+          "side, and the total charge is zero on",
+          "each side.",
+          "The same hydrolysis is also written in",
+          "the ionic form:",
+          {
+            "text": "CO₃²⁻ + H₂O ⇌ HCO₃⁻ + OH⁻",
+            "style": "eq"
+          },
+          "Both forms are correct."
+        ],
+        "why": "The equation is where the hydroxide ions actually appear, so it is the evidence for the answer. Writing the charges on both sides is worth doing here because the reaction is between ions: two positive sodium ions and two negative hydroxide ions leave the total charge at zero, the same as the neutral salt it started from.",
+        "common_mistakes": [
+          "Writing Na₂CO₃ + H₂O → 2NaOH + H₂CO₃ without balancing. Two molecules of water are needed.",
+          "Leaving the hydroxide ion out of the products. OH⁻ is the ion the question is asking about."
+        ],
+        "memory_tip": "The carbonate ion accepts a proton from water, and what remains of that water molecule is the hydroxide ion.",
+        "margin_note": "Either the molecular form or the ionic form is a complete answer. Write one of them balanced rather than both half written."
+      },
+      {
+        "id": "s3_why_oh_survives",
+        "kind": "text",
+        "label": "Why the hydroxide ions stay free",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          "Carbonic acid H₂CO₃ is a weak acid, so",
+          "it stays mostly un-ionised and supplies",
+          "very few H⁺ ions.",
+          "Sodium hydroxide is a strong base and is",
+          "completely ionised, so all its OH⁻ ions",
+          "stay free in the solution.",
+          "There are not enough H⁺ ions to cancel",
+          "the OH⁻ ions."
+        ],
+        "why": "Hydrolysis alone does not explain the result, because both an acid and a base are produced. What decides the answer is that only one of them ionises: the strong base releases all its hydroxide ions while the weak acid stays mostly un-ionised, so the two products do not cancel.",
+        "common_mistakes": [
+          "Writing that hydrolysis produces only a base. It produces carbonic acid as well, and the answer depends on that acid being weak.",
+          "Saying the solution is alkaline because sodium hydroxide is formed, without saying why the carbonic acid does not neutralise it."
+        ],
+        "memory_tip": "Both an acid and a base are made, but only the base ionises fully, so only its ions are left free.",
+        "margin_note": "This is the sentence that turns the equation into a reason. Do not stop at the equation."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "Free OH⁻ ions make the solution alkaline",
+            "style": "boxed"
+          },
+          "The concentration of OH⁻ ions is greater",
+          "than that of H⁺ ions, so the pH is above",
+          "7.",
+          "Red litmus paper turns blue in the",
+          "solution.",
+          "An aqueous solution of Na₂CO₃ is",
+          "therefore alkaline, not neutral."
+        ],
+        "why": "The question says state why, so the answer has to close by naming the cause in one line: an excess of hydroxide ions over hydrogen ions. Adding the pH and the litmus test gives the observable form of the same statement.",
+        "common_mistakes": [
+          "Ending at the hydrolysis equation without naming the hydroxide ions as the cause.",
+          "Writing that the pH is below 7. An excess of OH⁻ ions puts the pH above 7."
+        ],
+        "memory_tip": "More OH⁻ than H⁺ means alkaline, pH above 7, red litmus turning blue.",
+        "margin_note": "One closing line naming the excess of hydroxide ions completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Students usually write the hydrolysis equation and stop, but the question asks why, so the answer must also say that carbonic acid is weak and leaves the hydroxide ions free."
+}

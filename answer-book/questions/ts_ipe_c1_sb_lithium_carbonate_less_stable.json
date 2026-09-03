@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_lithium_carbonate_less_stable",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Lithium carbonate is less stable to heat than the other alkali metal carbonates. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reason",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.85, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          "The other alkali metal carbonates are",
+          "stable to heat and do not decompose",
+          "easily.",
+          "The Li⁺ ion is the smallest alkali metal",
+          "ion, so its polarising power is very high.",
+          "It polarises the large CO₃²⁻ ion strongly",
+          "and weakens the C–O bonds inside it.",
+          "So Li₂CO₃ decomposes at a much lower",
+          "temperature than the other carbonates."
+        ],
+        "why": "The thermal stability of a carbonate depends on how strongly the cation pulls at the carbonate ion. A small cation with high polarising power distorts the carbonate ion and weakens its C–O bonds, so less heat is needed to break it into the oxide and carbon dioxide.",
+        "common_mistakes": [
+          "Writing that Li⁺ is large. It is the smallest of the alkali metal ions, and that small size is the reason for the answer.",
+          "Stopping at the statement that lithium is different. The answer needs the polarisation of the large carbonate ion by the small Li⁺ ion."
+        ],
+        "memory_tip": "Small ion, strong pull, weak C–O bond, early decomposition.",
+        "margin_note": "Name the small size of Li⁺ and the polarisation of the carbonate ion."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "The equation",
+        "lines": [
+          "On heating, lithium carbonate gives",
+          "lithium oxide and carbon dioxide:",
+          {
+            "text": "Li₂CO₃ → Li₂O + CO₂",
+            "style": "boxed"
+          }
+        ],
+        "why": "The carbonate ion breaks into an oxide ion and carbon dioxide, so the products are lithium oxide and carbon dioxide gas. The equation is balanced as written: two lithium, one carbon and three oxygen atoms on each side.",
+        "common_mistakes": [
+          "Writing LiOH or Li₂O₂ as the product. Heating the carbonate gives the oxide Li₂O and CO₂.",
+          "Writing LiO for lithium oxide. Lithium is +1 and oxygen is −2, so the formula is Li₂O."
+        ],
+        "memory_tip": "Take carbon dioxide away from the carbonate and the oxide is what is left.",
+        "margin_note": "Write the balanced equation under the reason; the products are the oxide and carbon dioxide."
+      }
+    ]
+  },
+  "insider_note": "A complete answer has two parts — the small size and high polarising power of Li⁺, and the balanced equation for the decomposition."
+}

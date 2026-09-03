@@ -1,0 +1,234 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_sodium_peroxide_from_nacl",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Starting with sodium chloride, how would you prepare sodium peroxide?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The route in two stages",
+      "marks": 1
+    },
+    {
+      "label": "Sodium from fused sodium chloride",
+      "marks": 2
+    },
+    {
+      "label": "The metal heated in excess dry air",
+      "marks": 2
+    },
+    {
+      "label": "In a limited supply of air",
+      "marks": 1
+    },
+    {
+      "label": "What sodium peroxide is like",
+      "marks": 1
+    },
+    {
+      "label": "The answer to the question asked",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.96, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 57(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THE EQUATIONS WERE CHECKED ATOM BY ATOM: 2Na⁺ + 2e⁻ → 2Na (charge 0 = 0); 2Cl⁻ → Cl₂ + 2e⁻ (charge −2 = −2); 2Na + O₂ → Na₂O₂ (Na 2 = 2, O 2 = 2); 4Na + O₂ → 2Na₂O (Na 4 = 4, O 2 = 2); Na₂O₂ + 2H₂O → 2NaOH + H₂O₂ (Na 2 = 2, H 4 = 4, O 4 = 4). THIS CARD AGREES WITH THE OTHER CARDS IN THIS CHAPTER on the same chemistry: the temperature about 573 K (written in kelvin, as the rest of the chapter is, and carried beyond the source answer for a teacher to confirm), sodium peroxide as a pale yellow solid, sodium monoxide as a white solid, and the cold-water reaction giving sodium hydroxide and hydrogen peroxide. The electrolysis stage is the same Down's process written on the sodium-metal card of this chapter, given here in short because this question starts from sodium chloride and the metal has to be reached first."
+  },
+  "insider_note": "The question starts at sodium chloride but the peroxide is made from the METAL, so the answer needs two stages — get the sodium first, then burn it in excess dry air — and the words excess and dry are what decide the product.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_route",
+        "kind": "text",
+        "label": "The route in two stages",
+        "marks": 1,
+        "mark_note": "The plan of the preparation",
+        "lines": [
+          "Sodium peroxide is Na₂O₂.",
+          "It is not made from sodium chloride in",
+          "one step. The route has two stages.",
+          "Stage 1 — sodium metal is obtained from",
+          "sodium chloride by electrolysis of the",
+          "fused salt.",
+          "Stage 2 — that sodium is heated in an",
+          "excess of dry air, and the peroxide is",
+          "formed."
+        ],
+        "why": "The question names the starting material, so the answer has to show how sodium chloride is connected to the peroxide. Nothing in sodium chloride will give a peroxide directly; the chlorine has to be removed first and the metal has then to be oxidised, which is why the route is written as two named stages before any equation.",
+        "common_mistakes": [
+          "Trying to reach the peroxide from sodium chloride in one reaction. The metal has to be obtained first.",
+          "Writing the second stage as burning in air without saying excess and dry. Both words decide which oxide is formed."
+        ],
+        "memory_tip": "Salt to metal by electricity, metal to peroxide by excess dry air.",
+        "margin_note": "Open with the plan in two named stages, then give the chemistry of each."
+      },
+      {
+        "id": "s2_sodium_from_salt",
+        "kind": "equation",
+        "label": "Sodium from fused sodium chloride",
+        "marks": 2,
+        "mark_note": "Stage 1 — the electrolysis",
+        "lines": [
+          "Sodium cannot be obtained by chemical",
+          "reduction, because sodium is itself one",
+          "of the strongest reducing agents known.",
+          "An aqueous solution cannot be used,",
+          "because water is reduced in preference",
+          "to Na⁺.",
+          "So dry molten sodium chloride is",
+          "electrolysed, with calcium chloride",
+          "added to lower the melting point.",
+          "The cell used is the Down's cell, with",
+          "an iron cathode and a graphite anode:",
+          {
+            "text": "Cathode: 2Na⁺ + 2e⁻ → 2Na",
+            "style": "eq"
+          },
+          {
+            "text": "Anode: 2Cl⁻ → Cl₂ + 2e⁻",
+            "style": "eq"
+          },
+          "Sodium is collected at the cathode and",
+          "chlorine at the anode."
+        ],
+        "why": "This stage is the same electrolysis used to prepare sodium metal itself, so the two reasons behind it are written in short: nothing common is a stronger reducing agent than sodium, and in water it is the water that is reduced. Both electrode reactions carry two electrons, so the charge balances.",
+        "common_mistakes": [
+          "Electrolysing a solution of sodium chloride in water. That cell gives hydrogen at the cathode, not sodium.",
+          "Leaving out the calcium chloride. It is added to lower the melting point of the sodium chloride.",
+          "Writing Na⁺ + e⁻ → Na beside 2Cl⁻ → Cl₂ + 2e⁻. The electrons must match in number."
+        ],
+        "memory_tip": "Fused salt, iron cathode, graphite anode: sodium one side, chlorine the other.",
+        "margin_note": "Keep this stage short but give both half reactions; the metal has to be reached before the peroxide can be made."
+      },
+      {
+        "id": "s3_excess_dry_air",
+        "kind": "equation",
+        "label": "The metal heated in excess dry air",
+        "marks": 2,
+        "mark_note": "Stage 2 — the peroxide equation",
+        "lines": [
+          "The sodium obtained is heated in an",
+          "excess of dry air at about 573 K.",
+          "The air must be dry, because the sodium",
+          "would react with the moisture instead,",
+          "and it must be in excess, because the",
+          "amount of oxygen decides the product.",
+          "Sodium peroxide is formed:",
+          {
+            "text": "2Na + O₂ → Na₂O₂",
+            "style": "eq"
+          },
+          "Atoms: 2 Na and 2 O on each side.",
+          "In the peroxide ion O₂²⁻ the two oxygen",
+          "atoms are still joined to each other,",
+          "which is why the formula carries O₂."
+        ],
+        "why": "With plenty of oxygen present, each O₂ molecule is reduced only as far as the peroxide ion O₂²⁻, so the oxygen to oxygen bond is kept in the product. That retained bond is exactly what makes the product a peroxide and not an ordinary oxide, and it is why only two atoms of sodium are needed for one molecule of oxygen.",
+        "common_mistakes": [
+          "Writing Na + O₂ → Na₂O₂. Two atoms of sodium are needed to match the two in the product.",
+          "Writing the formula as NaO₂. That is a superoxide, formed by potassium, rubidium and caesium, not by sodium.",
+          "Using moist air. The air has to be dry, or the sodium reacts with the moisture instead."
+        ],
+        "memory_tip": "In the peroxide the two oxygen atoms are still joined, so the formula keeps O₂ and only two sodium atoms are needed.",
+        "margin_note": "Write the conditions — excess, dry, about 573 K — on the same line as the equation."
+      },
+      {
+        "id": "s4_limited_air",
+        "kind": "equation",
+        "label": "In a limited supply of air",
+        "marks": 1,
+        "mark_note": "The contrast",
+        "lines": [
+          "With a limited supply of air there is not",
+          "enough oxygen for the peroxide, and only",
+          "the monoxide is formed:",
+          {
+            "text": "4Na + O₂ → 2Na₂O",
+            "style": "eq"
+          },
+          "Sodium monoxide Na₂O is a white solid.",
+          "Atoms: 4 Na and 2 O on each side.",
+          "So the supply of air is what decides",
+          "which of the two oxides is obtained."
+        ],
+        "why": "Writing the limited-air reaction beside the excess-air one shows why the word excess had to be in the method. Here the oxygen to oxygen bond is broken and each oxygen becomes a separate oxide ion O²⁻, so four sodium atoms are needed for one molecule of oxygen instead of two.",
+        "common_mistakes": [
+          "Writing 2Na + O₂ → 2Na₂O. The oxygen balances but the sodium does not; four sodium atoms are needed.",
+          "Treating the monoxide and the peroxide as the same product. Na₂O is the monoxide and Na₂O₂ is the peroxide."
+        ],
+        "memory_tip": "Limited air breaks the oxygen pair apart, so four sodium atoms are needed instead of two.",
+        "margin_note": "Label this equation limited supply so the two conditions cannot be mixed up."
+      },
+      {
+        "id": "s5_what_it_is_like",
+        "kind": "text",
+        "label": "What sodium peroxide is like",
+        "marks": 1,
+        "mark_note": "Properties and uses",
+        "lines": [
+          "Sodium peroxide is a pale yellow solid.",
+          "With cold water it reacts to give sodium",
+          "hydroxide and hydrogen peroxide:",
+          {
+            "text": "Na₂O₂ + 2H₂O → 2NaOH + H₂O₂",
+            "style": "eq"
+          },
+          "The solution left is alkaline.",
+          "Sodium peroxide is used as an oxidising",
+          "agent and as a bleaching agent."
+        ],
+        "why": "A preparation answer is stronger when it also identifies the substance made. The pale yellow colour, the alkaline solution with water and the use as an oxidising agent are all consequences of the peroxide ion, so this step is the evidence that the peroxide is what has actually been prepared.",
+        "common_mistakes": [
+          "Writing that sodium peroxide only dissolves in water. It reacts with water; it does not simply dissolve.",
+          "Calling sodium peroxide white. The peroxide is pale yellow; the monoxide is white."
+        ],
+        "memory_tip": "Pale yellow solid; with cold water it gives caustic soda and hydrogen peroxide.",
+        "margin_note": "Name the colour and one reaction; that is what identifies the product."
+      },
+      {
+        "id": "s6_conclusion",
+        "kind": "boxed_final",
+        "label": "The answer to the question asked",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "2Na + O₂ → Na₂O₂ (excess dry air)",
+            "style": "boxed"
+          },
+          "Sodium chloride gives sodium by",
+          "electrolysis of the fused salt, and that",
+          "sodium heated in excess dry air at about",
+          "573 K gives sodium peroxide Na₂O₂.",
+          "The monoxide Na₂O is formed only when",
+          "the air supply is limited."
+        ],
+        "why": "The two stages are the working and this line is what they were for, so the route from sodium chloride to the peroxide is restated in one place. Naming the condition in the box also keeps the answer from being read as the monoxide reaction.",
+        "common_mistakes": [
+          "Ending with the monoxide. The question asks for the peroxide, which needs excess air.",
+          "Ending after the equations without joining the two stages back to sodium chloride."
+        ],
+        "memory_tip": "Excess air gives the peroxide; limited air gives the monoxide. Answer with the peroxide.",
+        "margin_note": "Close by joining both stages back to the starting material named in the question."
+      }
+    ]
+  }
+}

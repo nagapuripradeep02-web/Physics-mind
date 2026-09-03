@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_plaster_of_paris_importance",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Describe the importance of plaster of Paris.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "How it behaves on setting",
+      "marks": 1
+    },
+    {
+      "label": "Where it is used",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.86, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CARRIED AS STANDARD CONTENT, not from the source book: the expansion of about one per cent on setting, and the uses in dentistry and for statues and models. A teacher should confirm the expansion figure before it is relied on. The same flag is carried by the 4-mark plaster of Paris card in this chapter, which prints the same figure."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setting_property",
+        "kind": "text",
+        "label": "How it behaves on setting",
+        "marks": 1,
+        "mark_note": "Setting property",
+        "lines": [
+          "Plaster of Paris sets to a hard solid",
+          "mass a few minutes after it is mixed",
+          "with water. The water it lost on",
+          "heating is taken back and gypsum is",
+          "formed again.",
+          "While it sets it expands slightly, by",
+          "about 1%, instead of shrinking."
+        ],
+        "why": "Plaster of Paris is useful because of what it does with water. It takes the water back, hardens, and expands a little instead of shrinking, so the set mass presses against the mould and copies its surface.",
+        "common_mistakes": [
+          "Writing that it shrinks on setting. It expands slightly, by about 1%.",
+          "Describing the hardening only. The slight expansion is what gives the sharp impression."
+        ],
+        "memory_tip": "Water back, hard mass, slight expansion of about 1%. Those three facts carry every use.",
+        "margin_note": "Name the slight expansion. It is the property the uses depend on."
+      },
+      {
+        "id": "s2_uses",
+        "kind": "text",
+        "label": "Where it is used",
+        "marks": 1,
+        "mark_note": "Uses",
+        "lines": [
+          "Because it expands slightly, it takes",
+          "a sharp impression of a mould, so it",
+          "is used to make moulds and casts.",
+          "It is used to set broken or fractured",
+          "bones in plaster casts, and to hold",
+          "the injured part still.",
+          "It is used for statues, models and",
+          "decorative material, and in dentistry."
+        ],
+        "why": "Each use follows from the setting property. A hard mass that copies fine detail can hold a broken bone still and can reproduce the surface of a mould.",
+        "common_mistakes": [
+          "Naming the plaster cast for bones only. The question asks for the importance, so the mould and statue uses belong here as well.",
+          "Listing uses with no reason. The hard set and the slight expansion are why it suits them."
+        ],
+        "memory_tip": "Moulds, bones, statues. All three need a hard set that copies fine detail.",
+        "margin_note": "Two or three named uses with the reason is a comfortable length."
+      }
+    ]
+  },
+  "insider_note": "The property and the uses are one answer here: say that it sets to a hard mass and expands slightly, then name the uses that need exactly that."
+}

@@ -1,0 +1,148 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_sodium_dropped_in_water",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What happens when sodium metal is dropped in water?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What is seen",
+      "marks": 1
+    },
+    {
+      "label": "The balanced equation",
+      "marks": 1
+    },
+    {
+      "label": "The products named",
+      "marks": 1
+    },
+    {
+      "label": "The heat and the flame",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.90, chapter 7 s-BLOCK ELEMENTS, SAQ question 46(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_is_seen",
+        "kind": "text",
+        "label": "What is seen",
+        "marks": 1,
+        "mark_note": "Observation",
+        "lines": [
+          "Sodium is one of the most reactive",
+          "metals, so it reacts with cold water at",
+          "once and very vigorously.",
+          "Sodium is less dense than water, so the",
+          "piece floats and moves quickly over the",
+          "surface as a molten globule.",
+          "Bubbles of gas come off all the time."
+        ],
+        "why": "Sodium loses its single ns¹ electron very easily, so it reduces water at room temperature with no heating at all. The reaction gives out so much heat that the metal melts, which is why the piece rounds into a globule instead of staying a cut cube.",
+        "common_mistakes": [
+          "Writing that the sodium sinks. Sodium is less dense than water and floats on it.",
+          "Writing that the water must be warmed first. The reaction happens with cold water."
+        ],
+        "memory_tip": "Floats, melts, moves — all three follow from one fact: the reaction is fast and gives out heat.",
+        "margin_note": "Describe what is seen before writing the equation. The question asks what happens, so the observation is part of the answer."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "equation",
+        "label": "The balanced equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          "Sodium reduces water and gives sodium",
+          "hydroxide and hydrogen gas:",
+          {
+            "text": "2Na + 2H₂O → 2NaOH + H₂↑",
+            "style": "eq"
+          },
+          "Atoms: 2 Na, 4 H and 2 O on each side."
+        ],
+        "why": "Each sodium atom loses one electron, and one water molecule releases one hydrogen atom when it accepts that electron, so two sodium atoms and two water molecules are needed before a whole molecule of hydrogen can leave.",
+        "common_mistakes": [
+          "Writing Na + H₂O → NaOH + H₂. That does not balance; two atoms of sodium and two molecules of water are needed.",
+          "Writing the product as Na₂O. Water gives the hydroxide NaOH, not the oxide."
+        ],
+        "memory_tip": "Two sodium, two water, two hydroxide, one hydrogen molecule — the coefficient 2 appears three times.",
+        "margin_note": "The coefficient 2 on both reactants is where this equation is usually written wrongly. Count the hydrogen atoms before moving on."
+      },
+      {
+        "id": "s3_products",
+        "kind": "text",
+        "label": "The products named",
+        "marks": 1,
+        "mark_note": "Products",
+        "lines": [
+          "Sodium hydroxide NaOH is formed and it",
+          "dissolves in the water, so the solution",
+          "becomes alkaline.",
+          "Red litmus paper dipped in it turns",
+          "blue, and phenolphthalein turns pink.",
+          "The gas given off is hydrogen H₂."
+        ],
+        "why": "Naming the two products and saying what each one does is what turns a written equation into an answer to the question. The alkaline solution is the test a student can actually describe, and the gas has to be named as hydrogen so it is not confused with oxygen.",
+        "common_mistakes": [
+          "Calling the solution acidic. Sodium hydroxide is a strong base, so the solution is alkaline.",
+          "Naming the gas as oxygen. The gas released here is hydrogen."
+        ],
+        "memory_tip": "A metal with water gives a hydroxide and hydrogen — base plus gas, never an acid.",
+        "margin_note": "Naming the products and the litmus change is a separate mark from writing the equation."
+      },
+      {
+        "id": "s4_heat_and_flame",
+        "kind": "boxed_final",
+        "label": "The heat and the flame",
+        "marks": 1,
+        "mark_note": "Heat effect",
+        "lines": [
+          {
+            "text": "The heat released can ignite the hydrogen",
+            "style": "boxed"
+          },
+          "The reaction is strongly exothermic.",
+          "The heat released is enough to set the",
+          "hydrogen alight, and it burns with a",
+          "golden yellow flame, the colour sodium",
+          "gives to a flame.",
+          "Because sodium reacts with water and",
+          "with moist air, it is stored under",
+          "kerosene."
+        ],
+        "why": "The burning is the part of this question that separates a full answer from a half one: the hydrogen is not ignited on its own, it is set alight by the heat of the reaction itself. The golden yellow colour is the sodium flame colour, so it also names the metal.",
+        "common_mistakes": [
+          "Writing that the hydrogen burns without saying why. The heat of the reaction is what ignites it.",
+          "Giving the flame colour as violet. Violet is potassium; sodium gives golden yellow."
+        ],
+        "memory_tip": "The heat of the reaction is what sets the hydrogen alight, and sodium colours that flame golden yellow.",
+        "margin_note": "Finish with the exothermic reaction and the flame. Adding the kerosene storage line shows the same reactivity from another side."
+      }
+    ]
+  },
+  "insider_note": "Most students write the equation and stop there, but the question asks what happens, so the floating molten globule, the alkaline solution and the burning hydrogen all belong in the answer."
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_magnesium_burnt_in_air",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens when magnesium metal is burnt in air?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Reaction with oxygen",
+      "marks": 1
+    },
+    {
+      "label": "Reaction with nitrogen",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.85, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. Both equations are re-checked atom by atom here: 2Mg + O₂ → 2MgO (Mg 2, O 2 both sides) and 3Mg + N₂ → Mg₃N₂ (Mg 3, N 2 both sides). This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_oxide",
+        "kind": "equation",
+        "label": "Reaction with oxygen",
+        "marks": 1,
+        "mark_note": "The oxide",
+        "lines": [
+          "Magnesium burns in air with a bright",
+          "white light and leaves a white ash.",
+          {
+            "text": "2Mg + O₂ → 2MgO",
+            "style": "eq"
+          },
+          "The white ash is magnesium oxide."
+        ],
+        "why": "Air is mostly nitrogen and oxygen, and magnesium burns in both. The reaction with oxygen is the one that gives the bright white light and most of the white ash.",
+        "common_mistakes": [
+          "Writing Mg + O₂ → MgO. Two magnesium atoms are needed for one oxygen molecule.",
+          "Naming the product as magnesium peroxide. Magnesium burns to the oxide, MgO."
+        ],
+        "memory_tip": "Two magnesium with one oxygen molecule give two magnesium oxide.",
+        "margin_note": "Balance the equation and state the white light and the white ash."
+      },
+      {
+        "id": "s2_nitride",
+        "kind": "boxed_final",
+        "label": "Reaction with nitrogen",
+        "marks": 1,
+        "mark_note": "The nitride",
+        "lines": [
+          "Magnesium also combines with the",
+          "nitrogen of the air, so the ash contains",
+          "magnesium nitride along with magnesium",
+          "oxide.",
+          {
+            "text": "3Mg + N₂ → Mg₃N₂",
+            "style": "boxed"
+          }
+        ],
+        "why": "The question says burnt in air, not burnt in oxygen, so the nitrogen of the air reacts as well. Magnesium is one of the few metals that combines directly with nitrogen.",
+        "common_mistakes": [
+          "Giving magnesium oxide only. Burning in air forms magnesium nitride as well.",
+          "Writing the nitride as MgN. Magnesium is +2 and nitrogen is −3, so the formula is Mg₃N₂."
+        ],
+        "memory_tip": "Air is nitrogen as well as oxygen, so burning magnesium in air gives two products.",
+        "margin_note": "Both products belong in the answer when the metal is burnt in air."
+      }
+    ]
+  },
+  "insider_note": "The nitride is the half that is most often left out; burning magnesium in air gives magnesium oxide and magnesium nitride together."
+}

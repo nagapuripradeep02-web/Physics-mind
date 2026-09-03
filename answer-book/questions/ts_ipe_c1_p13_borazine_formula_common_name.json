@@ -72,7 +72,11 @@
           "The name comes from the likeness to",
           "benzene C₆H₆: both are planar six membered",
           "rings with one hydrogen on each ring atom.",
-          "Borazine is also called borazole."
+          "Borazine is also called borazole.",
+          {
+            "text": "B₃N₃H₆ is called inorganic benzene",
+            "style": "boxed"
+          }
         ],
         "why": "One boron and one nitrogen together supply as many electrons as two carbon atoms, so borazine and benzene have the same electron count and the same flat six membered ring — which is where the name inorganic benzene comes from.",
         "common_mistakes": [

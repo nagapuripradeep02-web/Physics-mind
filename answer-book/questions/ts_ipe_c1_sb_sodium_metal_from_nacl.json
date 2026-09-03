@@ -1,0 +1,234 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_sodium_metal_from_nacl",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Starting with sodium chloride, how would you prepare sodium metal?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why electrolysis of the fused salt",
+      "marks": 2
+    },
+    {
+      "label": "The electrolyte",
+      "marks": 1
+    },
+    {
+      "label": "The cell",
+      "marks": 1
+    },
+    {
+      "label": "The electrode reactions",
+      "marks": 2
+    },
+    {
+      "label": "Collecting the sodium",
+      "marks": 1
+    },
+    {
+      "label": "The overall change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.96, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 57(i). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THE EQUATIONS WERE CHECKED ATOM BY ATOM: NaCl → Na⁺ + Cl⁻; 2Na⁺ + 2e⁻ → 2Na (charge 0 = 0); 2Cl⁻ → Cl₂ + 2e⁻ (charge −2 = −2); 2NaCl → 2Na + Cl₂ (Na 2 = 2, Cl 2 = 2). CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the description of the Down's cell — an iron cathode, a graphite anode and a steel gauze screen between the two electrode spaces — and the statement that the molten sodium is lighter than the melt, so it rises and is drawn off. These are the standard description of the cell, and without them the answer never says how the sodium is actually collected. No melting-point figure is printed on this card: the source gives none, and the card states only that calcium chloride lowers the melting point."
+  },
+  "insider_note": "The two reasons that rule everything else out — that no common reducing agent is stronger than sodium, and that in water it is the water that is reduced — are what the word fused in this answer is doing, and they are the part most answers leave out.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_why_electrolysis",
+        "kind": "text",
+        "label": "Why electrolysis of the fused salt",
+        "marks": 2,
+        "mark_note": "Why electrolysis of the fused salt",
+        "lines": [
+          "Sodium is present in sodium chloride as",
+          "the ion Na⁺, so the metal is obtained by",
+          "reducing Na⁺ to Na.",
+          "Sodium is itself one of the strongest",
+          "reducing agents known, because it loses",
+          "its single 3s¹ electron very easily.",
+          "No ordinary reducing agent — carbon,",
+          "carbon monoxide or hydrogen — is a",
+          "stronger reducing agent than sodium, so",
+          "chemical reduction cannot be used.",
+          "An aqueous solution cannot be used",
+          "either. Water is reduced in preference",
+          "to Na⁺, so hydrogen is given off at the",
+          "cathode and no sodium is deposited.",
+          "The metal is therefore obtained by",
+          "electrolysing the FUSED chloride."
+        ],
+        "why": "Extracting a metal means reducing its ion, and that needs either a reducing agent stronger than the metal or a supply of electrons. Chemical reduction is ruled out because nothing common is a stronger reducing agent than sodium, and an aqueous solution is ruled out because water takes the electrons before Na⁺ does. Naming both is what leaves the fused salt as the only method.",
+        "common_mistakes": [
+          "Writing that sodium chloride is too stable to be reduced. The reason is that no common reducing agent is stronger than sodium itself.",
+          "Electrolysing a solution of sodium chloride in water. Water is reduced before Na⁺, so that cell gives hydrogen and not sodium.",
+          "Leaving out the word fused. The whole point of the method is that the salt is molten and dry, with no water present."
+        ],
+        "memory_tip": "Nothing common can reduce it, and water is reduced before it, so the dry molten salt is what is left.",
+        "margin_note": "Rule out chemical reduction and the aqueous route before naming the method. That is what the word fused is answering."
+      },
+      {
+        "id": "s2_electrolyte",
+        "kind": "text",
+        "label": "The electrolyte",
+        "marks": 1,
+        "mark_note": "The fused electrolyte",
+        "lines": [
+          "The electrolyte is dry, molten sodium",
+          "chloride — the fused salt, and not its",
+          "solution in water.",
+          "Sodium chloride on its own melts only at",
+          "a very high temperature.",
+          "Calcium chloride is mixed with it, and",
+          "calcium chloride lowers the melting",
+          "point of the mixture.",
+          "The cell can then be worked at a much",
+          "lower temperature."
+        ],
+        "why": "The melt has to be liquid before any current will pass through it, and heating pure sodium chloride to its melting point is expensive. Calcium chloride is added mainly for that reason: it lowers the melting point of the mixture, and it takes no part in the change at the electrodes.",
+        "common_mistakes": [
+          "Giving conductivity as the only reason. Calcium chloride is added mainly to lower the melting point of the sodium chloride so the cell can be worked at a lower temperature.",
+          "Naming a solution of sodium chloride as the electrolyte. The electrolyte here is the dry molten salt."
+        ],
+        "memory_tip": "Calcium chloride is added mainly to lower the melting point, and it is not changed in the cell.",
+        "margin_note": "Say why calcium chloride is present. An answer that names it without a reason is incomplete."
+      },
+      {
+        "id": "s3_the_cell",
+        "kind": "text",
+        "label": "The cell",
+        "marks": 1,
+        "mark_note": "The Down's cell",
+        "lines": [
+          "The cell used is the Down's cell, and the",
+          "method is called the Down's process.",
+          "The cathode is a ring of iron.",
+          "The anode is a rod of graphite, that is",
+          "carbon, standing inside that ring.",
+          "A steel gauze screen separates the two",
+          "electrode spaces, so the sodium made at",
+          "the cathode cannot reach the chlorine",
+          "made at the anode."
+        ],
+        "why": "Sodium and chlorine react with each other as soon as they come together, which would undo the whole electrolysis. The screen between the two electrode spaces is what keeps the two products apart, so the design of the cell is part of the chemistry and not just apparatus.",
+        "common_mistakes": [
+          "Naming a graphite cathode and an iron anode. The cathode is iron and the anode is graphite.",
+          "Leaving out the screen between the electrodes. Without it the sodium and the chlorine would recombine."
+        ],
+        "memory_tip": "Iron ring outside, graphite rod inside, and a screen between them so the two products stay apart.",
+        "margin_note": "Name each electrode with its material, then say what the screen is for."
+      },
+      {
+        "id": "s4_electrode_reactions",
+        "kind": "equation",
+        "label": "The electrode reactions",
+        "marks": 2,
+        "mark_note": "Ionisation and the two half reactions",
+        "lines": [
+          "In the melt the salt is present as free",
+          "ions:",
+          {
+            "text": "NaCl → Na⁺ + Cl⁻",
+            "style": "eq"
+          },
+          "At the iron cathode the sodium ion takes",
+          "electrons and is reduced to the metal:",
+          {
+            "text": "2Na⁺ + 2e⁻ → 2Na",
+            "style": "eq"
+          },
+          "At the graphite anode the chloride ion",
+          "gives up electrons and is oxidised to",
+          "chlorine gas:",
+          {
+            "text": "2Cl⁻ → Cl₂ + 2e⁻",
+            "style": "eq"
+          },
+          "Two electrons are released at the anode",
+          "and two are taken at the cathode, so the",
+          "charge balances."
+        ],
+        "why": "In the fused salt the only ions present are Na⁺ and Cl⁻, so the cathode has nothing to reduce except the sodium ion — which is exactly what an aqueous solution would not allow. Writing both half reactions with the same number of electrons shows that the electrons taken in the reduction at one electrode are exactly the electrons released by the oxidation at the other.",
+        "common_mistakes": [
+          "Writing Na⁺ + e⁻ → Na beside 2Cl⁻ → Cl₂ + 2e⁻. The electrons must match in number, so the cathode reaction is doubled.",
+          "Writing the anode product as Cl⁻ or as HCl. The chloride ion is oxidised to chlorine gas Cl₂.",
+          "Writing the two half reactions without saying which electrode each belongs to."
+        ],
+        "memory_tip": "Cathode takes electrons and gives the metal; anode removes electrons and gives the gas.",
+        "margin_note": "Label the cathode and the anode by name beside each half reaction."
+      },
+      {
+        "id": "s5_collecting",
+        "kind": "text",
+        "label": "Collecting the sodium",
+        "marks": 1,
+        "mark_note": "Collection and the by-product",
+        "lines": [
+          "At the working temperature the sodium",
+          "formed is a liquid, and it is lighter",
+          "than the melt around it.",
+          "So it rises to the top of the cathode",
+          "space, is drawn off and is cast into",
+          "blocks.",
+          "Sodium reacts with air and with water,",
+          "so it is stored under kerosene.",
+          "The chlorine given off at the anode is",
+          "collected as a valuable by-product."
+        ],
+        "why": "The question asks how the metal is prepared, so the answer is not finished at the electrode equation — the sodium still has to be got out of the cell and kept. It floats because it is less dense than the molten salt, and it is stored under kerosene because it reacts with both air and water.",
+        "common_mistakes": [
+          "Writing that sodium sinks to the bottom of the cell. Molten sodium is lighter than the melt and rises.",
+          "Storing the sodium under water. Sodium reacts violently with water; it is kept under kerosene."
+        ],
+        "memory_tip": "Light metal rises, is drawn off the top, and is then kept under kerosene.",
+        "margin_note": "Add the storage under kerosene and the chlorine by-product; both belong to a preparation answer."
+      },
+      {
+        "id": "s6_overall",
+        "kind": "boxed_final",
+        "label": "The overall change",
+        "marks": 1,
+        "mark_note": "Overall reaction",
+        "lines": [
+          {
+            "text": "Fused 2NaCl → 2Na + Cl₂ (Down's cell)",
+            "style": "boxed"
+          },
+          "The two half reactions added together",
+          "give the boxed change, brought about by",
+          "passing electricity through the melt.",
+          "Sodium is obtained at the cathode and",
+          "chlorine at the anode."
+        ],
+        "why": "The two half reactions are one reaction seen from two electrodes, and writing the overall change shows that the chlorine is a product of the same process and not of a separate one. It also answers the question in a single line that can be read on its own.",
+        "common_mistakes": [
+          "Stopping after the two half reactions without giving the overall change.",
+          "Writing NaCl → Na + Cl₂ as the overall change. The chlorine molecule needs two chloride ions, so both sides are doubled."
+        ],
+        "memory_tip": "Two formula units of the salt give two atoms of sodium and one molecule of chlorine.",
+        "margin_note": "Close with the overall change on its own line, so the whole preparation can be read at a glance."
+      }
+    ]
+  }
+}

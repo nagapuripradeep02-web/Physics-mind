@@ -1,0 +1,231 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_solvay_process_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Discuss the various reactions that occur in the Solvay process.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Ammonia and carbon dioxide in brine",
+      "marks": 2
+    },
+    {
+      "label": "Precipitation of sodium hydrogen carbonate",
+      "marks": 2
+    },
+    {
+      "label": "Heating the sodium hydrogen carbonate",
+      "marks": 1
+    },
+    {
+      "label": "Recovery of the ammonia",
+      "marks": 2
+    },
+    {
+      "label": "What is recycled, and potassium",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.96, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 56. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SOURCE-BOOK ERROR CORRECTED HERE, recorded so no later editor restores it: the ammonia recovery step is printed three times in this chapter as 2NH₄Cl + Ca(OH)₂ → 2NH₃ + CaCl₂ + H₂O, which does not balance — the left side carries ten hydrogen atoms and two oxygen atoms, the right side eight and one. This card writes 2NH₄Cl + Ca(OH)₂ → 2NH₃ + CaCl₂ + 2H₂O. The chemistry is otherwise as the book gives it, and the four tower equations here are the same as on the card that makes sodium carbonate from sodium chloride. THE CONDENSED FORM OF THE FIRST STAGE IS ALSO CORRECT and is named on this card, never as an error: NH₃ + H₂O + CO₂ → NH₄HCO₃ (N 1 = 1, H 5 = 5, C 1 = 1, O 3 = 3), which is the form NCERT prints. The alternative recovery equation written from quick lime also balances: CaO + 2NH₄Cl → 2NH₃ + CaCl₂ + H₂O (N 2 = 2, H 8 = 8, Cl 2 = 2, Ca 1 = 1, O 1 = 1)."
+  },
+  "insider_note": "Every one of the four tower reactions and both recovery reactions belongs in this answer, written out balanced rather than described in words.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ammonia_and_carbon_dioxide",
+        "kind": "equation",
+        "label": "Ammonia and carbon dioxide in brine",
+        "marks": 2,
+        "mark_note": "In the tower",
+        "lines": [
+          "The Solvay process makes sodium",
+          "carbonate from sodium chloride,",
+          "ammonia and carbon dioxide.",
+          "A concentrated solution of sodium",
+          "chloride, called brine, is first",
+          "saturated with ammonia.",
+          "Carbon dioxide is then passed in, and",
+          "ammonium carbonate is formed:",
+          {
+            "text": "2NH₃ + H₂O + CO₂ → (NH₄)₂CO₃",
+            "style": "eq"
+          },
+          "More carbon dioxide converts this to",
+          "ammonium hydrogen carbonate:",
+          {
+            "text": "(NH₄)₂CO₃ + H₂O + CO₂ → 2NH₄HCO₃",
+            "style": "eq"
+          }
+        ],
+        "why": "Ammonia is dissolved before the carbon dioxide because it makes the solution alkaline, and an alkaline solution takes up far more carbon dioxide than plain brine would. The carbon dioxide used here is obtained by heating limestone in a kiln, and the same kiln supplies the quick lime needed later for the ammonia recovery.",
+        "common_mistakes": [
+          "Passing the carbon dioxide in first. The brine is saturated with ammonia before the carbon dioxide is passed in.",
+          "Stopping before the ammonium hydrogen carbonate. It is the hydrogen carbonate, not the carbonate, that reacts with the brine. The same stage may instead be written in one step as NH₃ + H₂O + CO₂ → NH₄HCO₃, which is equally correct.",
+          "Leaving the water out of either equation. Both changes take one molecule of water."
+        ],
+        "memory_tip": "Ammonia first, then carbon dioxide, giving the carbonate and then the hydrogen carbonate of ammonium.",
+        "margin_note": "State the order of the two gases in words before writing the equations."
+      },
+      {
+        "id": "s2_precipitation",
+        "kind": "equation",
+        "label": "Precipitation of sodium hydrogen carbonate",
+        "marks": 2,
+        "mark_note": "Precipitation",
+        "lines": [
+          "The ammonium hydrogen carbonate then",
+          "reacts with the sodium chloride of the",
+          "brine:",
+          {
+            "text": "NaCl + NH₄HCO₃ → NaHCO₃ + NH₄Cl",
+            "style": "eq"
+          },
+          "Sodium hydrogen carbonate is only",
+          "sparingly soluble, so it separates out",
+          "as a solid and is filtered off.",
+          "Ammonium chloride is far more soluble",
+          "and stays behind in the filtrate."
+        ],
+        "why": "This is the step the whole process depends on. Both products are formed in the same solution, and they are separated only because one of them is sparingly soluble and comes out as a solid while the other stays dissolved.",
+        "common_mistakes": [
+          "Writing that sodium hydrogen carbonate is insoluble. It is sparingly soluble, which is just low enough for it to precipitate.",
+          "Writing sodium carbonate as the product of this step. Sodium carbonate is obtained only after the solid is heated."
+        ],
+        "memory_tip": "The sodium salt comes out as a solid, the ammonium salt stays in solution.",
+        "margin_note": "Say which product precipitates and which stays dissolved. The separation is the reason this step works."
+      },
+      {
+        "id": "s3_heating_the_solid",
+        "kind": "equation",
+        "label": "Heating the sodium hydrogen carbonate",
+        "marks": 1,
+        "mark_note": "Heating the solid",
+        "lines": [
+          "The filtered solid is dried and heated.",
+          "It breaks up into sodium carbonate,",
+          "carbon dioxide and water:",
+          {
+            "text": "2NaHCO₃ → Na₂CO₃ + CO₂ + H₂O",
+            "style": "eq"
+          },
+          "The sodium carbonate obtained this way",
+          "is the anhydrous salt, soda ash.",
+          "The carbon dioxide given off is passed",
+          "back into the tower and used again."
+        ],
+        "why": "Two formula units of the hydrogen carbonate are needed because one sodium carbonate contains two sodium atoms. The carbon dioxide released here is not waste: it returns to the first step, which is one of the two reasons the process is economical.",
+        "common_mistakes": [
+          "Writing NaHCO₃ → Na₂CO₃ + CO₂ + H₂O. Two formula units are needed on the left for the sodium atoms to match.",
+          "Writing that the product is washing soda. Heating gives the anhydrous salt; washing soda is Na₂CO₃·10H₂O."
+        ],
+        "memory_tip": "Two hydrogen carbonates give one carbonate, with carbon dioxide and water leaving.",
+        "margin_note": "Say what happens to the carbon dioxide from this step. It goes back to the tower."
+      },
+      {
+        "id": "s4_ammonia_recovery",
+        "kind": "equation",
+        "label": "Recovery of the ammonia",
+        "marks": 2,
+        "mark_note": "Ammonia recovery",
+        "lines": [
+          "The ammonia is not used up. It is",
+          "recovered from the filtrate.",
+          "Heating the filtrate breaks up the",
+          "ammonium hydrogen carbonate left in",
+          "it:",
+          {
+            "text": "NH₄HCO₃ → NH₃ + H₂O + CO₂",
+            "style": "eq"
+          },
+          "The ammonium chloride is then treated",
+          "with slaked lime, Ca(OH)₂:",
+          {
+            "text": "2NH₄Cl + Ca(OH)₂ → 2NH₃ + CaCl₂ + 2H₂O",
+            "style": "eq"
+          },
+          "The ammonia given off is returned to",
+          "the tower and used again."
+        ],
+        "why": "Ammonia is the costly material in this process, so the whole design rests on getting it back. Counting the atoms in the second equation shows why two water molecules are formed: ten hydrogen atoms and two oxygen atoms enter, and six of those hydrogen atoms leave in the ammonia. The same step is also correctly written from quick lime instead of slaked lime, CaO + 2NH₄Cl → 2NH₃ + CaCl₂ + H₂O; both forms are correct and balanced, and the quick lime is in any case slaked with water before it is used.",
+        "common_mistakes": [
+          "Writing 2NH₄Cl + Ca(OH)₂ → 2NH₃ + CaCl₂ + H₂O with one water molecule. Ten hydrogen atoms and two oxygen atoms enter, so two water molecules are formed.",
+          "Writing that the ammonia is lost as a waste gas. It is collected and returned to the tower.",
+          "Writing calcium oxide as the calcium product. The calcium leaves as calcium chloride, CaCl₂."
+        ],
+        "memory_tip": "Slaked lime on the ammonium chloride sets the ammonia free again.",
+        "margin_note": "Count the hydrogen atoms on both sides of the lime equation before writing the water down."
+      },
+      {
+        "id": "s5_recycled_and_potassium",
+        "kind": "text",
+        "label": "What is recycled, and potassium",
+        "marks": 1,
+        "mark_note": "Recycling",
+        "lines": [
+          "Ammonia and carbon dioxide are both",
+          "returned to the tower and used again.",
+          "Calcium chloride is the by-product",
+          "left over at the end.",
+          "Potassium carbonate cannot be made by",
+          "this process.",
+          "Potassium hydrogen carbonate is too",
+          "soluble to separate out as a solid, so",
+          "the precipitation step never happens."
+        ],
+        "why": "Naming what is recycled shows why only sodium chloride and limestone are consumed. The potassium case is worth adding because it shows that the process depends on one physical property, the low solubility of sodium hydrogen carbonate, and not on anything general about the alkali metals.",
+        "common_mistakes": [
+          "Writing that potassium does not react with ammonium hydrogen carbonate. It does react; the product simply stays dissolved.",
+          "Writing that nothing is left over. Calcium chloride is the by-product of the ammonia recovery."
+        ],
+        "memory_tip": "Ammonia and carbon dioxide go round again; calcium chloride is what is left.",
+        "margin_note": "Close the reaction sequence by saying which materials go round again."
+      },
+      {
+        "id": "s6_summary",
+        "kind": "boxed_final",
+        "label": "The process in one line",
+        "marks": 0,
+        "lines": [
+          "Brine takes up ammonia and then carbon",
+          "dioxide.",
+          "Sodium hydrogen carbonate comes out as",
+          "a solid and is filtered off.",
+          "Heating that solid gives sodium",
+          "carbonate, and the ammonia is set free",
+          "again with slaked lime:",
+          {
+            "text": "Na₂CO₃ is the product; NH₃ is recovered",
+            "style": "boxed"
+          }
+        ],
+        "why": "Reading the four stages back in order shows that the process is a loop rather than a list: only sodium chloride and limestone are consumed, and both the ammonia and the carbon dioxide return to where they started.",
+        "common_mistakes": [
+          "Ending with the precipitation step. The product asked for is sodium carbonate, which is obtained by heating the solid.",
+          "Closing without the ammonia. Its recovery is as much a part of the process as the product itself."
+        ],
+        "memory_tip": "Four stages: saturate, precipitate, heat, recover.",
+        "margin_note": "Unmarked closing step. It puts the four stages back in order so the loop is visible."
+      }
+    ]
+  }
+}

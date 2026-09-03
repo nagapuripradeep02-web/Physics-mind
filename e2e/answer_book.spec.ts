@@ -2773,10 +2773,10 @@ test('the chemistry bank is on the 2026-27 numbering: ten chapters, States of Ma
     expect(r.u6).toBe('Chemical Equilibrium, Acids and Bases (Chemistry)');
     expect(r.u7).toBe('s-Block Elements (Chemistry)');
     expect(r.u10).toBe('General Organic Chemistry (Chemistry)');
-    // chemistry-8 was authored in wave C of the first-year 2026-27 campaign (36 cards:
-    // 25 VSAQ, 8 SAQ, 3 LAQ) and its "questions coming" placeholder row is gone. 7, 9
-    // and 10 are still listed-not-written and move in later waves of the same campaign.
-    expect(r.comingReady).toEqual([0, 36, 0, 0]);
+    // chemistry-7 (71 cards) and chemistry-8 (36) were authored in wave C of the first-year
+    // 2026-27 campaign and their "questions coming" placeholder rows are gone. 9 and 10
+    // are still listed-not-written and move later in the same wave.
+    expect(r.comingReady).toEqual([71, 36, 0, 0]);
 });
 
 test('a pre-2026-09-02 chemistry exam-eve link still lands on the chapter it meant', async ({ page }) => {

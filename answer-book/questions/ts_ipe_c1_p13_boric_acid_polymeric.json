@@ -68,6 +68,10 @@
         "marks": 1,
         "mark_note": "The linking",
         "lines": [
+          {
+            "text": "Repeating hydrogen bonds link BO₃ units",
+            "style": "boxed"
+          },
           "The OH group of one H₃BO₃ molecule forms",
           "a hydrogen bond to an oxygen of the next.",
           "This joins many BO₃ units into a two",

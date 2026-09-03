@@ -70,6 +70,10 @@
         "marks": 1,
         "mark_note": "Units joined into a sheet",
         "lines": [
+          {
+            "text": "Flat BO₃ units hydrogen bonded in sheets",
+            "style": "boxed"
+          },
           "Draw three or more such units in the",
           "same plane. The H of one OH group points",
           "at an oxygen of the next unit; join them",

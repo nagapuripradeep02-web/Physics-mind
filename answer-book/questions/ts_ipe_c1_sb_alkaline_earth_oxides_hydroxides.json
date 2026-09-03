@@ -1,0 +1,231 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkaline_earth_oxides_hydroxides",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Discuss the similarities among the alkaline earth metals and the gradation in the nature of their oxides and hydroxides.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The oxides and how they form",
+      "marks": 2
+    },
+    {
+      "label": "Nature of the oxides",
+      "marks": 2
+    },
+    {
+      "label": "The hydroxides",
+      "marks": 1
+    },
+    {
+      "label": "Gradation in the hydroxides",
+      "marks": 2
+    },
+    {
+      "label": "Beryllium hydroxide is amphoteric",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.93, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 52(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SCOPE: question 52 is printed as one question with three parts and this card answers part (iii) only, the oxides and hydroxides. Parts (i) and (ii), the electronic configuration and the hydration enthalpies, are answered on their own cards; nothing here is repeated there. EVERY EQUATION WAS CHECKED ATOM BY ATOM AND FOR CHARGE: 2M + O₂ → 2MO (M 2 = 2, O 2 = 2); MO + H₂O → M(OH)₂ (M 1 = 1, O 2 = 2, H 2 = 2); Be(OH)₂ + 2OH⁻ → [Be(OH)₄]²⁻ (Be 1 = 1, O 4 = 4, H 4 = 4, charge 2− = 2−); Be(OH)₂ + 2HCl + 2H₂O → [Be(H₂O)₄]Cl₂ (Be 1 = 1, O 4 = 4, H 8 = 8, Cl 2 = 2, charge 0 = 0). THE SHORTER NEUTRALISATION Be(OH)₂ + 2HCl → BeCl₂ + 2H₂O IS ALSO CORRECT and is named as equally acceptable in this card's reasoning; neither form is called an error. CARRIED AS EXTRA CONTENT, to be confirmed by a teacher: that beryllium oxide does not react with water, the rock-salt structure of the oxides other than BeO, and the statement that the oxides are very stable to heat because of their high lattice enthalpy."
+  },
+  "insider_note": "The question asks for the similarities and the gradation together, so beryllium is written about twice: once as a member forming the same MO and M(OH)₂ as the rest, and once as the amphoteric exception at the top of both trends.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_oxides_form",
+        "kind": "equation",
+        "label": "The oxides and how they form",
+        "marks": 2,
+        "mark_note": "Formation, formula and structure",
+        "lines": [
+          "Every alkaline earth metal burns in",
+          "oxygen and gives the monoxide MO:",
+          {
+            "text": "2M + O₂ → 2MO",
+            "style": "eq"
+          },
+          "So all six give an oxide of the same",
+          "type, MO, in which the metal is in the",
+          "+2 state. That is the similarity.",
+          "For magnesium, for example:",
+          {
+            "text": "2Mg + O₂ → 2MgO",
+            "style": "eq"
+          },
+          "All these oxides except BeO have the",
+          "rock-salt structure.",
+          "They are all very stable to heat,",
+          "because their lattice enthalpies are",
+          "high: a small doubly charged cation and",
+          "a small doubly charged anion hold each",
+          "other very firmly."
+        ],
+        "why": "The similarity comes straight from the ns² configuration: two electrons lost gives M²⁺, and M²⁺ with O²⁻ gives a one-to-one formula for every member. The high lattice enthalpy is worth stating because it explains the thermal stability and, later on, why these oxides are so hard to melt or decompose.",
+        "common_mistakes": [
+          "Writing MO₂ or M₂O for a group 2 oxide. The metal is divalent, so the oxide is MO.",
+          "Writing that the oxides decompose easily on heating. They are very stable to heat.",
+          "Writing that BeO has the rock-salt structure. BeO is the one exception in the group."
+        ],
+        "memory_tip": "M²⁺ with O²⁻ gives MO for every member of the group.",
+        "margin_note": "Give the general equation and one worked example; both belong in this step."
+      },
+      {
+        "id": "s2_nature_oxides",
+        "kind": "equation",
+        "label": "Nature of the oxides",
+        "marks": 2,
+        "mark_note": "BeO amphoteric, the rest basic",
+        "lines": [
+          "BeO is essentially COVALENT, because the",
+          "Be²⁺ ion is very small and polarises the",
+          "oxide ion strongly.",
+          "BeO is also AMPHOTERIC: it reacts both",
+          "with acids and with alkalis.",
+          "The oxides of the other members, MgO to",
+          "BaO, are IONIC and BASIC.",
+          "These basic oxides react with water and",
+          "give hydroxides:",
+          {
+            "text": "MO + H₂O → M(OH)₂",
+            "style": "eq"
+          },
+          "BeO does not react with water in this",
+          "way.",
+          "The basic character of the oxides",
+          "increases down the group."
+        ],
+        "why": "This is the gradation in the oxides, and it runs from amphoteric at the top to strongly basic at the bottom. The cause is the same small size that made the beryllium ion so strongly hydrating: it pulls electron density back from the oxide ion, so BeO behaves partly like a non-metal oxide while BaO is plainly a metal oxide.",
+        "common_mistakes": [
+          "Writing that BeO is basic like MgO. BeO is amphoteric while the oxides below it are basic.",
+          "Writing that all the oxides dissolve in water to give hydroxides. BeO does not react with water this way.",
+          "Writing M(OH) for the hydroxide. The metal is divalent, so it is M(OH)₂."
+        ],
+        "memory_tip": "The first oxide is amphoteric; every one below it is basic, and more so further down.",
+        "margin_note": "Separate beryllium from the rest here; the two halves have different chemistry."
+      },
+      {
+        "id": "s3_hydroxides",
+        "kind": "text",
+        "label": "The hydroxides",
+        "marks": 1,
+        "mark_note": "General nature of M(OH)₂",
+        "lines": [
+          "Every alkaline earth metal forms a",
+          "hydroxide of the type M(OH)₂.",
+          "So Be(OH)₂, Mg(OH)₂, Ca(OH)₂, Sr(OH)₂",
+          "and Ba(OH)₂ are all of the same type.",
+          "They are white solids.",
+          "They are LESS basic and LESS stable to",
+          "heat than the alkali metal hydroxides",
+          "of the corresponding periods, because",
+          "the M²⁺ ion holds the OH⁻ ion more",
+          "tightly than a singly charged M⁺ ion",
+          "does."
+        ],
+        "why": "This is the second similarity the question asks for, and the comparison across to group 1 is the sentence that fixes where these hydroxides stand. A doubly charged cation attracts the hydroxide ion more strongly, so it releases OH⁻ less readily, which is exactly what being a weaker base means.",
+        "common_mistakes": [
+          "Writing that the group 2 hydroxides are stronger bases than the alkali metal hydroxides. They are weaker and less stable to heat.",
+          "Writing MOH for a group 2 hydroxide. Each metal is divalent, so the formula is M(OH)₂."
+        ],
+        "memory_tip": "Same type M(OH)₂ for all six, and all weaker bases than the group 1 hydroxides.",
+        "margin_note": "State the common formula, then the one comparison with group 1."
+      },
+      {
+        "id": "s4_gradation",
+        "kind": "text",
+        "label": "Gradation in the hydroxides",
+        "marks": 2,
+        "mark_note": "Solubility, stability and basic character",
+        "lines": [
+          "Going down the group, three things",
+          "increase together:",
+          "1. solubility in water,",
+          "2. thermal stability,",
+          "3. basic character.",
+          "So the order of basic strength is:",
+          {
+            "text": "Be(OH)₂ < Mg(OH)₂ < Ca(OH)₂ <",
+            "style": "eq"
+          },
+          {
+            "text": "Sr(OH)₂ < Ba(OH)₂",
+            "style": "eq"
+          },
+          "Be(OH)₂ and Mg(OH)₂ are almost",
+          "insoluble, Ca(OH)₂ is sparingly soluble,",
+          "and Ba(OH)₂ is the most soluble and the",
+          "strongest base of the five.",
+          "The reason is size: as the M²⁺ ion gets",
+          "larger its hold on the OH⁻ ion weakens,",
+          "so the hydroxide gives up OH⁻ more",
+          "readily."
+        ],
+        "why": "The three trends have one cause between them, so they are written together rather than as three separate facts. A larger cation attracts the hydroxide ion more weakly, which makes the lattice easier for water to break up, easier for the base to release OH⁻, and harder for heat to pull apart into the oxide.",
+        "common_mistakes": [
+          "Writing the order the other way round. Be(OH)₂ is the weakest base of the five and Ba(OH)₂ the strongest.",
+          "Writing that Mg(OH)₂ is freely soluble. It is almost insoluble; Ba(OH)₂ is the soluble one.",
+          "Giving the three trends with no reason. The increasing size of the M²⁺ ion is the reason for all three."
+        ],
+        "memory_tip": "Down the group all three rise together: more soluble, more stable, more basic.",
+        "margin_note": "Number the three trends, then give the one reason that covers all of them."
+      },
+      {
+        "id": "s5_beryllium",
+        "kind": "boxed_final",
+        "label": "Beryllium hydroxide is amphoteric",
+        "marks": 1,
+        "mark_note": "The exception with its equations",
+        "lines": [
+          {
+            "text": "Be(OH)₂ is amphoteric; the rest basic",
+            "style": "boxed"
+          },
+          "With a strong alkali it gives the",
+          "beryllate ion, acting as an acid:",
+          {
+            "text": "Be(OH)₂ + 2OH⁻ → [Be(OH)₄]²⁻",
+            "style": "eq"
+          },
+          "With an acid it gives a beryllium salt,",
+          "acting as a base:",
+          {
+            "text": "Be(OH)₂ + 2HCl + 2H₂O → [Be(H₂O)₄]Cl₂",
+            "style": "eq"
+          },
+          "Because both reactions take place,",
+          "Be(OH)₂ is amphoteric, while the",
+          "hydroxides of the other members of the",
+          "group are basic only."
+        ],
+        "why": "The trend ends where it began, with beryllium standing apart at the top of the group, so this is the natural closing step. The shorter neutralisation Be(OH)₂ + 2HCl → BeCl₂ + 2H₂O says the same thing without showing the hydration, and it is equally correct; whichever form is written, the atoms have to balance.",
+        "common_mistakes": [
+          "Writing only the reaction with an alkali. Amphoteric behaviour needs the reaction with an acid as well.",
+          "Leaving the charge off the beryllate ion. It carries a charge of 2−, and the charge must balance across the arrow.",
+          "Writing that all group 2 hydroxides are amphoteric. Only beryllium hydroxide is; the rest are basic."
+        ],
+        "memory_tip": "Beryllium sits at the acid end of its own group's trend, so its hydroxide reacts both ways.",
+        "margin_note": "Two equations close the answer: one with an alkali and one with an acid."
+      }
+    ]
+  }
+}

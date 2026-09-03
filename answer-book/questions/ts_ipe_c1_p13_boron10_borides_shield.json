@@ -65,6 +65,10 @@
         "marks": 1,
         "mark_note": "The use that follows",
         "lines": [
+          {
+            "text": "The ¹⁰B in the boride absorbs neutrons",
+            "style": "boxed"
+          },
           "A layer of metal boride containing ¹⁰B",
           "therefore stops the neutrons that would",
           "otherwise pass out.",

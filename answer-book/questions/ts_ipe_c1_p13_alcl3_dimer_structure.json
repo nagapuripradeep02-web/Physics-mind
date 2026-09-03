@@ -70,6 +70,10 @@
         "marks": 1,
         "mark_note": "The bridged structure with bond lengths",
         "lines": [
+          {
+            "text": "Al₂Cl₆ has two bridging chlorine atoms",
+            "style": "boxed"
+          },
           "Draw the two aluminium atoms with two",
           "chlorine atoms between them, forming a",
           "four-membered Al–Cl–Al–Cl ring.",
