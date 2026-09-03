@@ -1,0 +1,262 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_benzene_from_acetylene_substitution",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "How is benzene obtained from acetylene? Give the corresponding equation. Explain the halogenation, alkylation, acylation, nitration and sulphonation of benzene.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Benzene from acetylene",
+      "marks": 2
+    },
+    {
+      "label": "The substitution pattern",
+      "marks": 1
+    },
+    {
+      "label": "Halogenation",
+      "marks": 1
+    },
+    {
+      "label": "Alkylation",
+      "marks": 1
+    },
+    {
+      "label": "Acylation",
+      "marks": 1
+    },
+    {
+      "label": "Nitration",
+      "marks": 1
+    },
+    {
+      "label": "Sulphonation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.121, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 36. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. No exam-appearance years are recorded for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THREE POINTS WHERE EQUALLY CORRECT FORMS EXIST, recorded here so no later editor treats one as a defect. (1) The tube in the acetylene method: this card writes a red-hot copper tube at about 600 °C, following the source; NCERT writes a red-hot iron tube at 873 K, which is the same temperature and the same reaction. (2) The halogenation catalyst: FeCl₃ is written here, and anhydrous AlCl₃, or FeBr₃ with bromine, act in the same way. (3) The alkyl halide in the alkylation step: the card writes methyl chloride giving HCl, and methyl iodide with the same catalyst, giving HI, is equally correct. None of these is an error."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_from_acetylene",
+        "kind": "equation",
+        "label": "Benzene from acetylene",
+        "marks": 2,
+        "mark_note": "From acetylene",
+        "lines": [
+          "Acetylene C₂H₂ is passed through a",
+          "red-hot copper tube at about 600 °C,",
+          "which is 873 K.",
+          "Three molecules combine into one",
+          "six-membered ring:",
+          {
+            "text": "3C₂H₂ → C₆H₆",
+            "style": "eq"
+          },
+          "Six carbon atoms and six hydrogen",
+          "atoms go in, and six of each come",
+          "out, so nothing is added and nothing",
+          "is removed.",
+          "The reaction is called cyclic",
+          "polymerisation."
+        ],
+        "why": "Acetylene and benzene have the same simplest formula, CH, so the ring can be built from acetylene alone with no second reagent at all: the hot tube is the only condition. The same reaction is also correctly written with a red-hot iron tube at 873 K.",
+        "common_mistakes": [
+          "Adding a reagent to the equation. Acetylene alone gives benzene, and the tube supplies the heat.",
+          "Writing C₆H₆ + H₂ as the products. Three molecules of acetylene give exactly one molecule of benzene and nothing else."
+        ],
+        "memory_tip": "Acetylene and benzene are both CH repeated, so no other reagent is needed.",
+        "margin_note": "Give the tube, the temperature and the name cyclic polymerisation."
+      },
+      {
+        "id": "s2_pattern",
+        "kind": "text",
+        "label": "The substitution pattern",
+        "marks": 1,
+        "mark_note": "The pattern",
+        "lines": [
+          "Benzene reacts by electrophilic",
+          "substitution. An electrophile replaces",
+          "one hydrogen atom of the ring and the",
+          "ring itself is left unchanged.",
+          "The general form is",
+          {
+            "text": "C₆H₆ + E–Y → C₆H₅E + HY",
+            "style": "eq"
+          },
+          "Halogenation, alkylation, acylation,",
+          "nitration and sulphonation all follow",
+          "this one pattern."
+        ],
+        "why": "Substitution keeps the six delocalised π electrons of the ring, while addition would break that system up, and that is why all five of these reactions replace a hydrogen atom instead of adding across a bond. Writing the pattern once saves repeating the same reasoning five times.",
+        "common_mistakes": [
+          "Writing addition products for these five reactions. Every one of them is a substitution.",
+          "Writing the product as C₆H₆E. Benzene loses one hydrogen atom, so the product is C₆H₅E."
+        ],
+        "memory_tip": "One hydrogen out, one new group in, ring unchanged.",
+        "margin_note": "Write the general form once, then set the five equations under it."
+      },
+      {
+        "id": "s3_halogenation",
+        "kind": "equation",
+        "label": "Halogenation",
+        "marks": 1,
+        "mark_note": "Halogenation",
+        "lines": [
+          "Halogenation — benzene is treated with",
+          "chlorine in the presence of anhydrous",
+          "ferric chloride FeCl₃:",
+          {
+            "text": "C₆H₆ + Cl₂ → C₆H₅Cl + HCl",
+            "style": "eq"
+          },
+          "A chlorine atom replaces a ring",
+          "hydrogen atom, and the product",
+          "C₆H₅Cl is chlorobenzene."
+        ],
+        "why": "Ferric chloride is a Lewis acid: it takes a chloride ion from the chlorine molecule and leaves the chlorine electrophile that replaces the ring hydrogen atom. Anhydrous AlCl₃ acts in the same way, and bromine with FeBr₃ gives bromobenzene by the same route.",
+        "common_mistakes": [
+          "Writing C₆H₆Cl₆ here. That is the addition product formed in ultraviolet light; with FeCl₃ the reaction is a substitution and gives C₆H₅Cl.",
+          "Leaving out HCl. The displaced hydrogen atom leaves together with a chlorine atom."
+        ],
+        "memory_tip": "A Lewis acid catalyst gives substitution; ultraviolet light gives addition.",
+        "margin_note": "Name the catalyst FeCl₃ and name the product chlorobenzene."
+      },
+      {
+        "id": "s4_alkylation",
+        "kind": "equation",
+        "label": "Alkylation",
+        "marks": 1,
+        "mark_note": "Alkylation",
+        "lines": [
+          "Alkylation — benzene is treated with",
+          "methyl chloride CH₃Cl in the presence",
+          "of anhydrous aluminium chloride AlCl₃:",
+          {
+            "text": "C₆H₆ + CH₃Cl → C₆H₅CH₃ + HCl",
+            "style": "eq"
+          },
+          "An alkyl group replaces a ring",
+          "hydrogen atom. The product C₆H₅CH₃ is",
+          "methylbenzene, also called toluene.",
+          "This is the Friedel–Crafts alkylation."
+        ],
+        "why": "The catalyst produces the methyl electrophile from the alkyl halide, and the methyl group then takes the place of a ring hydrogen atom. Methyl iodide CH₃I with the same catalyst is equally correct and gives HI in place of HCl.",
+        "common_mistakes": [
+          "Using a moist catalyst. Water hydrolyses aluminium chloride, so it has to be anhydrous.",
+          "Writing the product as C₆H₆CH₃. One ring hydrogen atom is replaced, so the product is C₆H₅CH₃."
+        ],
+        "memory_tip": "Alkyl halide with AlCl₃ puts an alkyl group on the ring.",
+        "margin_note": "Name the reaction Friedel–Crafts alkylation and the product methylbenzene."
+      },
+      {
+        "id": "s5_acylation",
+        "kind": "equation",
+        "label": "Acylation",
+        "marks": 1,
+        "mark_note": "Acylation",
+        "lines": [
+          "Acylation — benzene is treated with",
+          "acetyl chloride CH₃COCl in the",
+          "presence of anhydrous aluminium",
+          "chloride AlCl₃:",
+          {
+            "text": "C₆H₆ + CH₃COCl → C₆H₅COCH₃ + HCl",
+            "style": "eq"
+          },
+          "The acyl group CH₃CO– replaces a ring",
+          "hydrogen atom, and the product",
+          "C₆H₅COCH₃ is acetophenone.",
+          "This is the Friedel–Crafts acylation."
+        ],
+        "why": "Alkylation and acylation use the same catalyst, and what changes is the halide: an acid chloride puts a CH₃CO– group on the ring instead of an alkyl group, so the product carries a C=O bond and is a ketone.",
+        "common_mistakes": [
+          "Writing the product as C₆H₅CH₃. Acetyl chloride gives the ketone C₆H₅COCH₃, not the hydrocarbon.",
+          "Writing the acyl group as CH₃COO–. Acetyl chloride supplies CH₃CO–."
+        ],
+        "memory_tip": "Acid chloride in, ketone out: C₆H₅COCH₃ is acetophenone.",
+        "margin_note": "Show the C=O in the product. It is what separates acylation from alkylation."
+      },
+      {
+        "id": "s6_nitration",
+        "kind": "equation",
+        "label": "Nitration",
+        "marks": 1,
+        "mark_note": "Nitration",
+        "lines": [
+          "Nitration — benzene is warmed with a",
+          "nitrating mixture of concentrated",
+          "nitric acid and concentrated sulphuric",
+          "acid, below 60 °C:",
+          {
+            "text": "C₆H₆ + HNO₃ → C₆H₅NO₂ + H₂O",
+            "style": "eq"
+          },
+          "The nitro group –NO₂ replaces a ring",
+          "hydrogen atom, and the product",
+          "C₆H₅NO₂ is nitrobenzene."
+        ],
+        "why": "Sulphuric acid converts nitric acid into the nitronium ion, which is the electrophile here, and the leftover oxygen and hydrogen appear as water. The temperature is held below 60 °C because a second nitro group enters the ring at a higher temperature.",
+        "common_mistakes": [
+          "Writing HCl as the second product. In nitration the second product is water.",
+          "Using dilute acids. Both acids of the nitrating mixture are concentrated."
+        ],
+        "memory_tip": "Two concentrated acids below 60 °C give nitrobenzene and water.",
+        "margin_note": "Give both acids and the temperature limit, and write water as the second product."
+      },
+      {
+        "id": "s7_sulphonation",
+        "kind": "boxed_final",
+        "label": "Sulphonation",
+        "marks": 1,
+        "mark_note": "Sulphonation",
+        "lines": [
+          "Sulphonation — benzene is heated with",
+          "fuming sulphuric acid, which is",
+          "sulphuric acid holding dissolved",
+          "sulphur trioxide:",
+          {
+            "text": "C₆H₆ + H₂SO₄ → C₆H₅SO₃H + H₂O",
+            "style": "eq"
+          },
+          "The sulphonic acid group –SO₃H",
+          "replaces a ring hydrogen atom, giving",
+          "benzenesulphonic acid.",
+          {
+            "text": "All five replace one ring hydrogen",
+            "style": "boxed"
+          }
+        ],
+        "why": "Fuming sulphuric acid supplies sulphur trioxide, which is the electrophile for this reaction, and the remaining oxygen and hydrogen leave as water. The closing line is the point of the whole answer: five different reagents, one pattern.",
+        "common_mistakes": [
+          "Writing the product as C₆H₅SO₄H. The group that replaces the hydrogen atom is –SO₃H.",
+          "Using ordinary dilute sulphuric acid. Sulphonation is carried out with fuming sulphuric acid."
+        ],
+        "memory_tip": "Fuming sulphuric acid puts –SO₃H on the ring.",
+        "margin_note": "One closing line naming the common pattern completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Five reactions are asked for and each needs its own reagent, its own condition and its own named product. The commonest loss is a missing catalyst or a missing second product, so write HCl or water at the end of every equation that produces one."
+}

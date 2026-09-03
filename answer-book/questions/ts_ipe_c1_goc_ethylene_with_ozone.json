@@ -1,0 +1,217 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_ethylene_with_ozone",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Give the equation for the reaction of ethylene with ozone.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formation of the ozonide",
+      "marks": 2
+    },
+    {
+      "label": "Hydrolysis of the ozonide",
+      "marks": 2
+    },
+    {
+      "label": "What the zinc dust is for",
+      "marks": 1
+    },
+    {
+      "label": "The conditions",
+      "marks": 1
+    },
+    {
+      "label": "What ozonolysis shows",
+      "marks": 1
+    },
+    {
+      "label": "The overall change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.118, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 33(a). PAGE AND NUMBER CHECKED AGAINST THE SOURCE INDEX (answer-book/sources/chaitanya_c1_2027_ch10_general_organic_chemistry.json), which records laq33 and all of its parts on printed page 118; p.119 carries question 34, the acetylene question. PRINTED QUESTION 33 IS ONE QUESTION WITH FIVE ASKS: it opens by asking for two methods of preparation of ethylene and then continues with the lettered parts (a)-(d), each asking for the equation of one reaction of ethylene. The opening ask is carded as ts_ipe_c1_goc_ethylene_preparation and the four lettered parts as four cards, so the shared number 33 is not a citation clash. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATIONS WERE CHECKED ATOM BY ATOM: CH₂=CH₂ + O₃ → C₂H₄O₃ has C 2 = 2, H 4 = 4 and O 3 = 3; C₂H₄O₃ + H₂O → 2HCHO + H₂O₂ has C 2 = 2, H 6 = 4 + 2 and O 4 = 2 + 2. THE REACTION IS WRITTEN AS TWO SEPARATE STEPS ON PURPOSE. The source's first setting of this reaction is typeset so that water appears among the products of the ozonide formation, which it is not: water is the reagent of the second step. The same chapter sets the reaction correctly three pages later, with Zn and H₂O over the second arrow, and that later form is the one carried here. A NOTE FOR THE TEACHER: with zinc dust present the hydrogen peroxide is destroyed as it forms, so a stricter treatment writes only 2HCHO as the product of the second step; this card keeps H₂O₂ in the equation, as the source and the standard Intermediate textbooks do, and states in its own step that the zinc is there so the peroxide does not oxidise the aldehyde. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the inert cold solvent (carbon tetrachloride), the ozonide formula C₂H₄O₃, the statement that the ozonide is not separated, and the use of ozonolysis to locate a double bond."
+  },
+  "insider_note": "The water belongs to the second step, not the first. Ozone alone gives the ozonide; water with zinc dust then splits it into two molecules of formaldehyde.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ozonide",
+        "kind": "equation",
+        "label": "Formation of the ozonide",
+        "marks": 2,
+        "mark_note": "Ozonide formation",
+        "lines": [
+          "Ozonised oxygen is passed into ethylene",
+          "dissolved in an inert solvent such as",
+          "carbon tetrachloride, kept cold.",
+          "Ozone adds across the double bond and",
+          "gives an unstable addition product called",
+          "ethylene ozonide.",
+          {
+            "text": "CH₂=CH₂ + O₃ → C₂H₄O₃ (ozonide)",
+            "style": "eq"
+          },
+          "Atoms: 2 C, 4 H and 3 O on each side.",
+          "No water takes part in this first step."
+        ],
+        "why": "Ozone adds to the double bond rather than replacing anything, because the π bond is the reactive part of an alkene. Every atom of both reactants stays in the product, which is why the ozonide has the formula C₂H₄O₃; it is unstable and is never separated, but broken up at once in the next step.",
+        "common_mistakes": [
+          "Writing water into this first step. Water is the reagent of the second step, not part of the first.",
+          "Giving the final products at this stage. The first step gives only the ozonide.",
+          "Writing a substitution product. Ozone adds across the double bond and nothing is released."
+        ],
+        "memory_tip": "Ozone adds whole across the double bond, so the ozonide is C₂H₄O₃.",
+        "margin_note": "Show the ozonide as a separate first step, before any water appears."
+      },
+      {
+        "id": "s2_hydrolysis",
+        "kind": "equation",
+        "label": "Hydrolysis of the ozonide",
+        "marks": 2,
+        "mark_note": "Hydrolysis",
+        "lines": [
+          "The ozonide is then hydrolysed with water",
+          "in the presence of zinc dust.",
+          {
+            "text": "C₂H₄O₃ + H₂O → 2HCHO + H₂O₂ (Zn)",
+            "style": "eq"
+          },
+          "The molecule is split where the double",
+          "bond used to be, so each carbon ends up",
+          "in a carbonyl group.",
+          "One molecule of ethylene therefore gives",
+          "two molecules of formaldehyde, HCHO.",
+          "Atoms: 2 C, 6 H and 4 O on each side."
+        ],
+        "why": "The ozonide breaks at the place the double bond occupied, so the two carbons separate and each becomes a carbonyl carbon. Ethylene is symmetrical, so both fragments are the same and formaldehyde is the only organic product.",
+        "common_mistakes": [
+          "Giving one molecule of HCHO. The two carbons separate, so two molecules are formed.",
+          "Naming the product formic acid. The product is formaldehyde; the acid would mean it had been oxidised.",
+          "Leaving the hydrogen peroxide out without naming the zinc dust. With the zinc written over the arrow the peroxide is destroyed as it is formed, and 2HCHO alone is also correct."
+        ],
+        "memory_tip": "The ozonide splits where the double bond was: one ethylene gives two HCHO.",
+        "margin_note": "Put the water on the second arrow only, and give two molecules of HCHO."
+      },
+      {
+        "id": "s3_zinc",
+        "kind": "text",
+        "label": "What the zinc dust is for",
+        "marks": 1,
+        "mark_note": "The zinc dust",
+        "lines": [
+          "Zinc dust is added along with the water.",
+          "Hydrogen peroxide is formed in the",
+          "hydrolysis, and hydrogen peroxide can",
+          "oxidise formaldehyde to formic acid.",
+          "The zinc dust destroys the hydrogen",
+          "peroxide as it is formed, so the",
+          "aldehyde is obtained unchanged.",
+          "It is written over the arrow, not as a",
+          "reactant in the equation."
+        ],
+        "why": "Without the zinc the hydrogen peroxide formed beside the aldehyde would oxidise it, and the compound isolated would be the acid instead. Naming the zinc is what explains why the aldehyde is written as the product of the second step.",
+        "common_mistakes": [
+          "Leaving zinc dust out of the conditions. Without it the aldehyde is oxidised to the acid.",
+          "Writing zinc as a reactant in the equation. It is written over the arrow with the water."
+        ],
+        "memory_tip": "Zinc dust is there so the peroxide does not oxidise the aldehyde.",
+        "margin_note": "Say in one line what the zinc dust is for."
+      },
+      {
+        "id": "s4_conditions",
+        "kind": "text",
+        "label": "The conditions",
+        "marks": 1,
+        "mark_note": "The conditions",
+        "lines": [
+          "The ethylene is dissolved in an inert",
+          "solvent such as carbon tetrachloride.",
+          "The solution is kept cold and a stream of",
+          "ozonised oxygen is passed through it.",
+          "The ozonide is not separated out, because",
+          "it is unstable.",
+          "Water and zinc dust are added to the same",
+          "solution to complete the reaction."
+        ],
+        "why": "The conditions all follow from the ozonide being unstable: a cold, inert solvent so that nothing else reacts with it, and hydrolysis in the same vessel so that it is never separated or dried.",
+        "common_mistakes": [
+          "Separating the ozonide before hydrolysis. It is unstable and is hydrolysed in the same solution.",
+          "Using water as the solvent for the ozonisation. The solvent is inert; the water is added afterwards."
+        ],
+        "memory_tip": "Cold inert solvent first, then water and zinc in the same vessel.",
+        "margin_note": "Name the inert solvent and say that the ozonide is not separated."
+      },
+      {
+        "id": "s5_use",
+        "kind": "text",
+        "label": "What ozonolysis shows",
+        "marks": 1,
+        "mark_note": "The use of the reaction",
+        "lines": [
+          "The reaction is called ozonolysis, from",
+          "ozone and lysis, meaning splitting.",
+          "It is used to find where a double bond",
+          "lies in a molecule.",
+          "The molecule is cut at the double bond,",
+          "and the two carbonyl compounds obtained",
+          "show which carbons carried that bond.",
+          "For ethylene both halves are the same, so",
+          "formaldehyde alone is obtained."
+        ],
+        "why": "The cut falls exactly at the double bond, so the carbonyl compounds obtained are a direct record of where that bond was. That is what makes ozonolysis a test of structure as well as a reaction.",
+        "common_mistakes": [
+          "Saying ozonolysis only adds ozone. The molecule is also split at the double bond in the second step.",
+          "Expecting two different products from ethylene. Both halves are the same, so only formaldehyde is formed."
+        ],
+        "memory_tip": "Lysis means splitting: the molecule breaks where the double bond was.",
+        "margin_note": "Add one line on what the products tell about the position of the double bond."
+      },
+      {
+        "id": "s6_overall",
+        "kind": "boxed_final",
+        "label": "The overall change",
+        "marks": 1,
+        "mark_note": "The overall change",
+        "lines": [
+          {
+            "text": "CH₂=CH₂ → 2HCHO (O₃, then Zn/H₂O)",
+            "style": "boxed"
+          },
+          "The two steps together turn one molecule",
+          "of ethylene into two molecules of",
+          "formaldehyde.",
+          "Ozone is added first; water and zinc dust",
+          "come only in the second step."
+        ],
+        "why": "The overall change states the answer in one line that can be read on its own, and writing the two reagents in order keeps the water where it belongs — on the second arrow and not the first.",
+        "common_mistakes": [
+          "Writing ozone and water over the same arrow. The two steps happen one after the other.",
+          "Stopping at the ozonide. The question is answered only when the ozonide has been split."
+        ],
+        "memory_tip": "One ethylene, two formaldehyde molecules, in two steps.",
+        "margin_note": "Close with the overall change in one line, with the two reagents in order."
+      }
+    ]
+  }
+}

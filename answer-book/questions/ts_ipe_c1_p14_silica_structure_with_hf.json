@@ -1,0 +1,234 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_silica_structure_with_hf",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the structure of silica, and describe how silica reacts with HF.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula and the tetrahedral unit",
+      "marks": 1
+    },
+    {
+      "label": "The three-dimensional network",
+      "marks": 2
+    },
+    {
+      "label": "Silica and the hydrogen halides",
+      "marks": 1
+    },
+    {
+      "label": "The reaction with hydrogen fluoride",
+      "marks": 2
+    },
+    {
+      "label": "With hydrogen fluoride in excess",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.109, chapter 9 p-BLOCK ELEMENTS GROUP 14, LONG ANSWER QUESTIONS question 42(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD: the same chapter asks for the structure of silica a second time, with the reaction with NaOH in place of the reaction with HF. Both cards describe the same structure — the SiO₄ tetrahedron, every oxygen atom shared between two silicon atoms, one giant three-dimensional network. THE MARK SHARES WERE COUNTED 2026-09-03 and the earlier claim that each card spends the larger share of its marks on its own reaction is CORRECTED: this card gives three marks to the structure and four to the hydrogen halides and the two equations; the NaOH card gives three to the structure, one to the properties that follow from it and three to the acidic character and the reaction. The two equations here, SiO₂ + 4HF → SiF₄ + 2H₂O and SiF₄ + 2HF → H₂SiF₆, are the same two used on the four-mark short answer in this chapter that asks only what happens when SiO₂ is treated with HF."
+  },
+  "insider_note": "The structure and the reaction are one argument: the giant network of Si–O bonds is what makes silica unreactive towards the ordinary acids, and hydrogen fluoride is worth writing about because it is the one hydrogen halide that reacts with it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "p-Block Elements: Group 14 · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_tetrahedral_unit",
+        "kind": "text",
+        "label": "Formula and the tetrahedral unit",
+        "marks": 1,
+        "mark_note": "The unit",
+        "lines": [
+          "Silica is silicon dioxide, SiO₂. Sand",
+          "and quartz are silica.",
+          "Its building block is one silicon atom",
+          "bonded to four oxygen atoms placed at",
+          "the corners of a tetrahedron.",
+          "Silicon is sp³ hybridised in it.",
+          "The whole of the structure is made by",
+          "repeating this one tetrahedron."
+        ],
+        "why": "Fixing the tetrahedron first makes the rest of the structure a single idea repeated. It is also the unit whose Si–O bonds hydrogen fluoride later replaces by Si–F bonds, so the reaction can be described in terms of it.",
+        "common_mistakes": [
+          "Writing the building block as SiO₂. The block is one silicon atom with four oxygen atoms around it; SiO₂ is the formula that comes out of the sharing.",
+          "Writing sp² for silicon. Four bonded oxygen atoms and no lone pair give sp³."
+        ],
+        "memory_tip": "One silicon at the centre and four oxygen atoms at the corners is the block that repeats.",
+        "margin_note": "Draw the tetrahedron once at the top of the answer and refer back to it later."
+      },
+      {
+        "id": "s2_network",
+        "kind": "text",
+        "label": "The three-dimensional network",
+        "marks": 2,
+        "mark_note": "The structure",
+        "lines": [
+          "Every oxygen atom of a tetrahedron is",
+          "shared with a second tetrahedron, so",
+          "each oxygen atom belongs half to one",
+          "silicon atom and half to the next.",
+          "Four half shares make two oxygen atoms",
+          "for each silicon atom, which is the",
+          "formula SiO₂.",
+          "The tetrahedra go on joining in all",
+          "three directions, so the whole crystal",
+          "is one giant covalent network and not a",
+          "set of separate molecules.",
+          "Silicon does not form pπ–pπ double",
+          "bonds with oxygen, so no small O=Si=O",
+          "molecule is possible.",
+          "Every Si–O bond in the crystal is",
+          "strong, which is why silica melts only",
+          "at a very high temperature and is",
+          "insoluble in water."
+        ],
+        "why": "The sharing is what turns four oxygen atoms per silicon atom into the formula SiO₂, and it is also what makes the crystal one molecule. Both facts are needed later: the reaction with hydrogen fluoride has to take that whole network apart.",
+        "common_mistakes": [
+          "Writing that silica exists as O=Si=O molecules. Silicon does not form pπ–pπ double bonds with oxygen.",
+          "Writing that each oxygen atom belongs to one silicon atom. Each is shared between two tetrahedra, which is what gives the formula SiO₂.",
+          "Describing silica as layers held by weak forces. That is the structure of graphite, not of silica."
+        ],
+        "memory_tip": "Each oxygen shared between two silicon atoms, so four half shares give two.",
+        "margin_note": "State the sharing and then the formula it produces, in that order."
+      },
+      {
+        "id": "s3_hydrogen_halides",
+        "kind": "text",
+        "label": "Silica and the hydrogen halides",
+        "marks": 1,
+        "mark_note": "Why HF is the exception",
+        "lines": [
+          "Because of that network silica is",
+          "unreactive towards the ordinary acids.",
+          "Hydrochloric acid, hydrobromic acid and",
+          "hydriodic acid leave it unchanged.",
+          "Hydrogen fluoride is the exception: it",
+          "is the one hydrogen halide that reacts",
+          "with silica.",
+          "This is the reaction the question asks",
+          "for."
+        ],
+        "why": "The reaction is only remarkable against the background of silica being unreactive. Naming the three acids that do nothing to it puts the reaction with hydrogen fluoride in its place as the single exception.",
+        "common_mistakes": [
+          "Writing that silica reacts with all the hydrogen halides. It reacts with HF and not with HCl, HBr or HI.",
+          "Writing that silica reacts with no reagent at all. It also reacts with hot concentrated alkali."
+        ],
+        "memory_tip": "Of the four hydrogen halides only HF reacts with silica.",
+        "margin_note": "Name the three acids that leave silica unchanged before writing the HF equation."
+      },
+      {
+        "id": "s4_first_reaction",
+        "kind": "equation",
+        "label": "The reaction with hydrogen fluoride",
+        "marks": 2,
+        "mark_note": "The first equation",
+        "lines": [
+          "Silica reacts with hydrogen fluoride to",
+          "give silicon tetrafluoride and water:",
+          {
+            "text": "SiO₂ + 4HF → SiF₄ + 2H₂O",
+            "style": "eq"
+          },
+          "Four molecules of HF are used for one",
+          "of SiO₂: the four fluorine atoms go to",
+          "the silicon atom, and the four hydrogen",
+          "atoms leave with the two oxygen atoms",
+          "as two molecules of water.",
+          "The Si–O bonds of the network are",
+          "replaced by Si–F bonds, so the network",
+          "breaks down and the solid dissolves.",
+          "The product SiF₄ is a separate",
+          "molecule, unlike the network it came",
+          "from."
+        ],
+        "why": "The reaction takes a giant covalent solid to a small molecule, and the atom count shows how: every oxygen atom that was bridging two silicon atoms is carried away as water, and fluorine takes its place on the silicon.",
+        "common_mistakes": [
+          "Writing SiO₂ + 2HF → SiF₄ + H₂O. That equation does not balance; four molecules of HF are needed and two molecules of water are formed.",
+          "Writing SiF₂ or SiF₆ as the product of this step. It is SiF₄.",
+          "Writing that the silica melts rather than reacts. The Si–O bonds are replaced by Si–F bonds, which is a chemical change."
+        ],
+        "memory_tip": "Four HF for one SiO₂: four fluorine atoms in, two molecules of water out.",
+        "margin_note": "Count the hydrogen and the oxygen atoms on both sides before going on to the excess."
+      },
+      {
+        "id": "s5_excess_hf",
+        "kind": "equation",
+        "label": "With hydrogen fluoride in excess",
+        "marks": 1,
+        "mark_note": "The second equation",
+        "lines": [
+          "With hydrogen fluoride in excess the",
+          "silicon tetrafluoride reacts again:",
+          {
+            "text": "SiF₄ + 2HF → H₂SiF₆",
+            "style": "eq"
+          },
+          "H₂SiF₆ is hydrofluorosilicic acid.",
+          "It contains the [SiF₆]²⁻ ion, in which",
+          "six fluorine atoms surround one silicon",
+          "atom.",
+          "Silicon can reach a covalency of six",
+          "because it has vacant d orbitals;",
+          "carbon has none and stops at four."
+        ],
+        "why": "Silicon accepts two more fluoride ions into its vacant d orbitals, so the covalency rises from four to six. The second equation is therefore the same property of silicon that explains the hydrolysis of SiCl₄, carried one step further.",
+        "common_mistakes": [
+          "Stopping at SiF₄. With hydrogen fluoride in excess the reaction goes on to H₂SiF₆.",
+          "Writing the acid as H₂SiF₄ or HSiF₆. It is H₂SiF₆, with two hydrogen atoms and six fluorine atoms.",
+          "Writing that carbon forms a similar [CF₆]²⁻ ion. Carbon has no d orbitals in its valence shell."
+        ],
+        "memory_tip": "Two more HF turn SiF₄ into H₂SiF₆, six fluorine atoms round the silicon.",
+        "margin_note": "Name the product in words as well as in symbols: hydrofluorosilicic acid."
+      },
+      {
+        "id": "s6_conclusion",
+        "kind": "boxed_final",
+        "label": "Conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          "So the giant three-dimensional network",
+          "of Si–O bonds makes silica inert to the",
+          "common acids, and hydrogen fluoride is",
+          "the single acid that breaks it down.",
+          "This is also why hydrogen fluoride is",
+          "not kept in glass vessels.",
+          {
+            "text": "SiF₄ + 2HF → H₂SiF₆",
+            "style": "boxed"
+          }
+        ],
+        "why": "The closing lines join the two halves of the question: the structure says why almost nothing reacts with silica, and the exception is the reaction that was asked for. Boxing the second equation records the product that forms when hydrogen fluoride is in excess.",
+        "common_mistakes": [
+          "Closing with the structure alone. The reaction with hydrogen fluoride is half of what was asked.",
+          "Closing with SiF₄ as the final product. With hydrogen fluoride in excess the final product is H₂SiF₆."
+        ],
+        "memory_tip": "Silica is unreactive towards the common acids; hydrogen fluoride is the one acid that reacts with it.",
+        "margin_note": "Close on the second equation, since it is the last product of the reaction described."
+      }
+    ]
+  }
+}

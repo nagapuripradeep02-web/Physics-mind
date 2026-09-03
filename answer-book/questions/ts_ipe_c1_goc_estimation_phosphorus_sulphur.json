@@ -1,0 +1,192 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_estimation_phosphorus_sulphur",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the estimation of phosphorus and of sulphur in a given organic compound.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Phosphorus: oxidation and precipitation",
+      "marks": 1
+    },
+    {
+      "label": "Phosphorus: the percentage",
+      "marks": 1
+    },
+    {
+      "label": "Sulphur: oxidation and precipitation",
+      "marks": 1
+    },
+    {
+      "label": "Sulphur: the percentage",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.117, chapter 10 GENERAL ORGANIC CHEMISTRY, SHORT ANSWER QUESTIONS question 29. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. MARK SPLIT RE-CUT 2026-09-03, CHEMISTRY UNCHANGED: the question names phosphorus AND sulphur, so the four marks are now two and two — precipitation and percentage for each element. The earlier split gave phosphorus three marks, the third of them for the ALTERNATIVE pyrophosphate route, and compressed the whole sulphur estimation, Carius tube to percentage formula, into a single mark. The pyrophosphate route is kept in full as the alternative inside the phosphorus percentage step, so no teaching is lost; it simply no longer carries a mark of its own. Four rows of 1 mark, sum 4, and the four steps sum to 4 as well. FORMULA MASSES RE-COMPUTED FOR THIS CARD, all three agreeing with the standard values: BaSO₄ = 137.33 + 32.07 + (4 × 16.00) = 233.4, written 233; (NH₄)₃PO₄·12MoO₃ = (3 × 18.04) + 30.97 + (4 × 16.00) + 12 × (95.95 + 48.00) = 54.12 + 94.97 + 1727.4 = 1876.5, written 1877; Mg₂P₂O₇ = (2 × 24.31) + (2 × 30.97) + (7 × 16.00) = 48.62 + 61.95 + 112.00 = 222.6, written 222. The factor 2 × 31 in the pyrophosphate formula is because one formula unit of Mg₂P₂O₇ carries TWO phosphorus atoms, while one formula unit of the phosphomolybdate carries one. FORMULA LAYOUT: the sulphur percentage is written in the same × and ÷ layout as the two phosphorus percentages, so that the three read alike on the page; (32 × mass of BaSO₄ × 100) ÷ (233 × mass of compound) is the same relation as (32/233) × (mass of BaSO₄ / mass of compound) × 100. ONE STAGE ADDED to the pyrophosphate route: magnesia mixture precipitates magnesium ammonium phosphate, MgNH₄PO₄, which yields Mg₂P₂O₇ on ignition. Without it the appearance of the pyrophosphate has no explanation."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "General Organic Chemistry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_phosphorus_precipitation",
+        "kind": "equation",
+        "label": "Phosphorus: oxidation and precipitation",
+        "marks": 1,
+        "mark_note": "Carius tube and the precipitate",
+        "lines": [
+          "A known mass of the organic compound is",
+          "heated with fuming nitric acid in a",
+          "sealed hard-glass tube called a Carius",
+          "tube.",
+          "The phosphorus in the compound is",
+          "oxidised to phosphoric acid, H₃PO₄.",
+          "Ammonia and ammonium molybdate are then",
+          "added, and the phosphorus comes down as",
+          "a yellow precipitate of ammonium",
+          "phosphomolybdate:",
+          {
+            "text": "(NH₄)₃PO₄·12MoO₃, formula mass 1877",
+            "style": "eq"
+          },
+          "The precipitate is filtered, washed,",
+          "dried and weighed."
+        ],
+        "why": "Every estimation of this kind turns the element into one compound of known formula, whose mass can be weighed. Fuming nitric acid in the sealed tube oxidises the phosphorus completely, and ammonium molybdate then fixes all of it in a single precipitate.",
+        "common_mistakes": [
+          "Heating the compound in an open dish. The tube is sealed, so that nothing is lost while it is heated.",
+          "Writing the precipitate as ammonium phosphate. It is ammonium phosphomolybdate, (NH₄)₃PO₄·12MoO₃."
+        ],
+        "memory_tip": "Carius tube, fuming nitric acid, then ammonium molybdate gives the yellow phosphomolybdate.",
+        "margin_note": "Write the formula of the precipitate with its formula mass. The number 1877 is used in the next step."
+      },
+      {
+        "id": "s2_phosphorus_percentage",
+        "kind": "equation",
+        "label": "Phosphorus: the percentage",
+        "marks": 1,
+        "mark_note": "The phosphomolybdate formula",
+        "lines": [
+          "One formula unit of ammonium",
+          "phosphomolybdate, of formula mass 1877,",
+          "carries one phosphorus atom of atomic",
+          "mass 31, so:",
+          {
+            "text": "%P = (31 × mass of (NH₄)₃PO₄·12MoO₃",
+            "style": "eq"
+          },
+          {
+            "text": "× 100) ÷ (1877 × mass of compound)",
+            "style": "indent"
+          },
+          "The phosphoric acid may instead be",
+          "precipitated with magnesia mixture as",
+          "magnesium ammonium phosphate, MgNH₄PO₄,",
+          "and ignited to magnesium pyrophosphate,",
+          "Mg₂P₂O₇, of formula mass 222, and that",
+          "is then the precipitate weighed.",
+          "One formula unit of Mg₂P₂O₇ carries TWO",
+          "phosphorus atoms, so:",
+          {
+            "text": "%P = (2 × 31 × mass of Mg₂P₂O₇ × 100)",
+            "style": "eq"
+          },
+          {
+            "text": "÷ (222 × mass of compound)",
+            "style": "indent"
+          }
+        ],
+        "why": "The ratio 31 / 1877 is the fraction of the precipitate that is phosphorus. Multiplying the mass of precipitate by that fraction gives the mass of phosphorus, and dividing by the mass of compound taken and multiplying by 100 turns it into a percentage. Both masses are taken in the same unit, so the unit cancels. The second route is the same relation with the factor 2 put in, because magnesium pyrophosphate has two phosphorus atoms in each formula unit, so the phosphorus in it is 2 × 31 out of every 222 units of mass.",
+        "common_mistakes": [
+          "Dividing by the mass of the precipitate instead of the mass of the compound. The percentage is of the compound taken.",
+          "Using 31 / 1877 upside down. The atomic mass of phosphorus, 31, is on top.",
+          "Writing 31 instead of 2 × 31 in the pyrophosphate formula, or weighing MgNH₄PO₄ itself. Mg₂P₂O₇ carries two phosphorus atoms per formula unit, and it is the ignited precipitate that is weighed."
+        ],
+        "memory_tip": "The small 31 sits on top and the big 1877 below; in the pyrophosphate formula the 31 is doubled, because Mg₂P₂O₇ carries two phosphorus atoms.",
+        "margin_note": "Write each formula in full before putting numbers into it. Either precipitate answers the question, so give one formula and show the other as the alternative."
+      },
+      {
+        "id": "s3_sulphur_precipitation",
+        "kind": "equation",
+        "label": "Sulphur: oxidation and precipitation",
+        "marks": 1,
+        "mark_note": "Carius tube and the precipitate",
+        "lines": [
+          "A known mass of the organic compound is",
+          "heated with sodium peroxide, or with",
+          "fuming nitric acid, in a Carius tube.",
+          "The sulphur in the compound is oxidised",
+          "to sulphuric acid, H₂SO₄.",
+          "Excess barium chloride solution is then",
+          "added, and the sulphur comes down as a",
+          "white precipitate of barium sulphate:",
+          {
+            "text": "BaSO₄, formula mass 233",
+            "style": "eq"
+          },
+          "The precipitate is filtered, washed,",
+          "dried and weighed."
+        ],
+        "why": "Barium sulphate is chosen because it is almost completely insoluble in water and in dilute acid, so adding excess barium chloride brings down every sulphate ion present, and the weighed mass really does account for all the sulphur in the compound taken.",
+        "common_mistakes": [
+          "Writing the precipitate as barium sulphite. Sulphur is oxidised to sulphuric acid, so the precipitate is barium sulphate, BaSO₄.",
+          "Adding just enough barium chloride. Excess is added, so that no sulphate is left in the solution unprecipitated."
+        ],
+        "memory_tip": "A Carius tube again, and then excess barium chloride gives the white barium sulphate.",
+        "margin_note": "Write the formula of the precipitate with its formula mass. The number 233 is used in the next step."
+      },
+      {
+        "id": "s4_sulphur_percentage",
+        "kind": "boxed_final",
+        "label": "Sulphur: the percentage",
+        "marks": 1,
+        "mark_note": "The barium sulphate formula",
+        "lines": [
+          "One formula unit of barium sulphate, of",
+          "formula mass 233, carries one sulphur",
+          "atom of atomic mass 32, so:",
+          {
+            "text": "%S = (32 × mass of BaSO₄ × 100)",
+            "style": "eq"
+          },
+          {
+            "text": "÷ (233 × mass of compound)",
+            "style": "indent"
+          },
+          "Both masses are taken in the same unit,",
+          "so the unit cancels.",
+          {
+            "text": "Both estimations use a Carius tube",
+            "style": "boxed"
+          }
+        ],
+        "why": "The ratio 32 / 233 is the fraction of the precipitate that is sulphur, exactly as 31 / 1877 was the fraction that was phosphorus. The three formulae on this card are one relation written three times: the mass of the element inside the weighed precipitate, divided by the mass of compound taken, multiplied by 100.",
+        "common_mistakes": [
+          "Using 32 / 233 upside down. The atomic mass of sulphur, 32, is on top.",
+          "Dividing by the mass of the precipitate instead of the mass of the compound. The percentage is of the compound taken."
+        ],
+        "memory_tip": "Sulphur becomes sulphuric acid and then barium sulphate: 32 out of every 233 of that precipitate is the sulphur.",
+        "margin_note": "One closing line saying that both estimations are carried out in a Carius tube completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Four marks over two elements, two each, and the formulae are what carry them. For each element the work is the same pair: oxidise the compound in a Carius tube and weigh one precipitate, then turn that mass into a percentage. Phosphorus is weighed either as ammonium phosphomolybdate, formula mass 1877 with one phosphorus atom, or as magnesium pyrophosphate, formula mass 222 with two; sulphur is weighed as barium sulphate, formula mass 233. Do not spend the whole answer on phosphorus."
+}

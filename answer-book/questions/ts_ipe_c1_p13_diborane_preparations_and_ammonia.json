@@ -1,0 +1,194 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_diborane_preparations_and_ammonia",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write any two methods of preparation of diborane. How does it react with ammonia?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Two methods of preparation",
+      "marks": 3
+    },
+    {
+      "label": "Why the reaction happens",
+      "marks": 1
+    },
+    {
+      "label": "The addition compound",
+      "marks": 2
+    },
+    {
+      "label": "Borazine at 473 K",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.103, chapter 8 p-BLOCK ELEMENTS : GROUP 13, LONG ANSWER QUESTIONS question 29(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This card answers the ammonia reaction; the carbon monoxide reaction of diborane is answered on a card of its own, so a student reading either one gets the preparations in full. The first preparation is also correctly written with the double salt lithium tetrafluoroaluminate, 4BF₃ + 3LiAlH₄ → 2B₂H₆ + 3LiAlF₄; that form is named as equally acceptable in the step's reasoning line and neither form is called an error. The boron trichloride route named in the same step's first common mistake has the same double-salt form, 4BCl₃ + 3LiAlH₄ → 2B₂H₆ + 3LiAlCl₄, which balances at B 4, Cl 12, Li 3, Al 3 and H 12 on each side; both of its forms are named as accepted too, so the courtesy is the same for both routes. BONDING OF THE ADDITION COMPOUND: B₂H₆·2NH₃ is the diammoniate of diborane and it is ionic, formulated [BH₂(NH₃)₂]⁺[BH₄]⁻ — both ammonia molecules add to ONE boron atom and the other boron leaves as the borohydride ion, which is the opposite of the symmetrical split trimethylamine causes. The card keeps B₂H₆·2NH₃ as the written product because that is the board form, and gives the ionic formulation as what it stands for. TEMPERATURE NOT ASSERTED FOR STAGE 1: the book prints 120 °C for the addition compound, and this card deliberately does NOT print that number. The diammoniate is formed at LOW temperature — heating is what destroys it, and this card's own stage 2 decomposes it at 200 °C — while the standard figure quoted for its formation is 120 K, so the printed unit looks wrong rather than the digits. The card therefore names no figure for that stage and says only low temperature, which is true on either reading, and a Telangana IPE teacher should settle the exact value. Stage 2 keeps the book's 200 °C, written as 473 K to match the kelvin used everywhere else in this chapter."
+  },
+  "insider_note": "The ammonia reaction has two stages at two different temperatures, so the answer is only complete when both the low-temperature addition compound and the borazine step at about 473 K are written, with the 12H₂ balanced on the second one.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "p-Block Elements: Group 13 · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_methods",
+        "kind": "equation",
+        "label": "Preparation — two methods",
+        "marks": 3,
+        "mark_note": "Two methods of preparation",
+        "lines": [
+          "Diborane is B₂H₆. Two methods of",
+          "preparation:",
+          "Method 1 — boron trifluoride is reduced by",
+          "lithium aluminium hydride in dry ether:",
+          {
+            "text": "4BF₃ + 3LiAlH₄ → 2B₂H₆ + 3LiF + 3AlF₃",
+            "style": "eq"
+          },
+          "Here the by-products are lithium fluoride",
+          "and aluminium fluoride.",
+          "Method 2 — sodium borohydride is oxidised",
+          "by iodine. This is the usual laboratory",
+          "method:",
+          {
+            "text": "2NaBH₄ + I₂ → B₂H₆ + 2NaI + H₂",
+            "style": "eq"
+          },
+          "Here the by-products are sodium iodide and",
+          "hydrogen gas."
+        ],
+        "why": "In the first method lithium aluminium hydride hands hydride to boron, so the fluorine leaves with the lithium and the aluminium as fluorides. In the second, iodine takes electrons from the hydride of sodium borohydride, so iodide and hydrogen gas come off and the boron pairs up as B₂H₆. The first preparation is also correctly written with the double salt lithium tetrafluoroaluminate, 4BF₃ + 3LiAlH₄ → 2B₂H₆ + 3LiAlF₄; both forms are correct.",
+        "common_mistakes": [
+          "Copying the by-products from the boron trichloride method. That method is also correct, but with BCl₃ the by-products are AlCl₃ and LiCl; with BF₃ they are AlF₃ and LiF. The BCl₃ route is equally correct written with the double salt lithium tetrachloroaluminate, 4BCl₃ + 3LiAlH₄ → 2B₂H₆ + 3LiAlCl₄; both forms are correct, as they are for the BF₃ route.",
+          "Dropping the coefficients in the first equation. Four BF₃ and three LiAlH₄ give two B₂H₆.",
+          "Writing NaBH₄ + I₂ without the 2 in front of NaBH₄. Two NaBH₄ are needed for one B₂H₆."
+        ],
+        "memory_tip": "Two ways in: the fluoride with the hydride (BF₃ with LiAlH₄), and the borohydride with iodine (NaBH₄ with I₂).",
+        "margin_note": "Both equations belong here together with their by-products, because the question asks for two methods before it asks anything about ammonia."
+      },
+      {
+        "id": "s2_why_nh3",
+        "kind": "text",
+        "label": "Why diborane reacts with ammonia",
+        "marks": 1,
+        "mark_note": "Why the reaction happens",
+        "lines": [
+          "Diborane is electron deficient.",
+          "A boron atom with only three bonds has six",
+          "electrons in its valence shell, two short",
+          "of an octet, so it can accept a lone pair",
+          "of electrons. Boron is therefore a Lewis",
+          "acid.",
+          "The nitrogen atom of ammonia, NH₃, carries",
+          "a lone pair, so ammonia is a Lewis base",
+          "and adds on to diborane."
+        ],
+        "why": "The reaction is a Lewis acid and Lewis base combination, and naming which species is short of electrons and which one supplies them is what this mark is for. The 1 : 2 ratio of the next step comes from where the two ammonia molecules go: both of them add to the same boron atom of one diborane molecule.",
+        "common_mistakes": [
+          "Calling diborane a Lewis base. Diborane is short of electrons, so it is the acceptor.",
+          "Saying the hydrogen atoms of ammonia are donated. What ammonia donates is the lone pair on its nitrogen atom."
+        ],
+        "memory_tip": "Short of electrons accepts, rich in electrons donates. Boron is short; the nitrogen of ammonia has the spare pair.",
+        "margin_note": "One sentence on boron's six electrons and one on the lone pair of nitrogen are enough to set up both equations."
+      },
+      {
+        "id": "s3_adduct",
+        "kind": "equation",
+        "label": "Stage 1 — addition at low temperature",
+        "marks": 2,
+        "mark_note": "The addition compound",
+        "lines": [
+          "Reaction with ammonia, stage 1.",
+          "At low temperature, diborane and ammonia",
+          "combine in the ratio 1 : 2 and give an",
+          "addition compound:",
+          {
+            "text": "B₂H₆ + 2NH₃ → B₂H₆·2NH₃",
+            "style": "eq"
+          },
+          "B₂H₆·2NH₃ is called the diammoniate of",
+          "diborane. It is an ionic solid, and the",
+          "formula stands for [BH₂(NH₃)₂]⁺[BH₄]⁻."
+        ],
+        "why": "Both ammonia molecules add to the same boron atom, and the other boron atom leaves with four hydrogen atoms as the borohydride ion BH₄⁻. This uneven split of the diborane molecule is why one molecule of diborane takes two molecules of ammonia. Nothing is lost in this stage, so the board form of the product is the two reactants written together, B₂H₆·2NH₃.",
+        "common_mistakes": [
+          "Writing B₂H₆ + NH₃ → B₂H₆·NH₃. One molecule of diborane takes up two molecules of ammonia, so the ratio is 1 : 2.",
+          "Splitting the diborane into two BH₃ units here. That is what trimethylamine does, giving 2BH₃·N(CH₃)₃, but with ammonia both molecules go on to one boron atom and the other boron leaves as BH₄⁻."
+        ],
+        "memory_tip": "One diborane and two ammonia: both ammonia molecules go on to one boron atom, and the product is written B₂H₆·2NH₃.",
+        "margin_note": "Write low temperature beside the arrow, and give the name diammoniate of diborane under the product."
+      },
+      {
+        "id": "s4_borazine",
+        "kind": "equation",
+        "label": "Stage 2 — borazine at 473 K",
+        "marks": 2,
+        "mark_note": "Borazine at 473 K",
+        "lines": [
+          "Reaction with ammonia, stage 2.",
+          "On stronger heating, at about 473 K, the",
+          "addition compound loses hydrogen and gives",
+          "borazine:",
+          {
+            "text": "3B₂H₆·2NH₃ → 2B₃N₃H₆ + 12H₂",
+            "style": "eq"
+          },
+          "Borazine is B₃N₃H₆. It is also called",
+          "borazole."
+        ],
+        "why": "Three molecules of the addition compound supply six boron and six nitrogen atoms, which is exactly what two six-membered borazine rings need. The hydrogen left over is released as twelve molecules of hydrogen gas.",
+        "common_mistakes": [
+          "Writing the equation with one molecule of the addition compound. Three are needed to make two borazine rings.",
+          "Leaving the hydrogen unbalanced. Thirty-six hydrogen atoms on the left become twelve in the two rings and twenty-four in 12H₂."
+        ],
+        "memory_tip": "Three in, two rings out, twelve hydrogens off: 3B₂H₆·2NH₃ gives 2B₃N₃H₆ and 12H₂.",
+        "margin_note": "Count the hydrogen atoms on both sides before moving on. The coefficient 12 on H₂ is the part most often written wrongly."
+      },
+      {
+        "id": "s5_borazine_structure",
+        "kind": "boxed_final",
+        "label": "Borazine — inorganic benzene",
+        "marks": 0,
+        "lines": [
+          "Borazine, B₃N₃H₆, is known as inorganic",
+          "benzene.",
+          "Its molecule is a flat six-membered ring of",
+          "three boron atoms and three nitrogen atoms",
+          "placed alternately, and every ring atom",
+          "carries one hydrogen atom.",
+          "Each ring atom is sp² hybridised.",
+          "That ring is why the molecule resembles",
+          "benzene, C₆H₆.",
+          {
+            "text": "3B₂H₆·2NH₃ → 2B₃N₃H₆ + 12H₂",
+            "style": "boxed"
+          }
+        ],
+        "why": "The name inorganic benzene is asked for on its own in short questions, and it follows from the shape: six atoms in a flat ring, alternating boron and nitrogen, each with one hydrogen, exactly matching the six carbon atoms of benzene.",
+        "common_mistakes": [
+          "Writing the formula as B₃N₃H₃. Every one of the six ring atoms carries a hydrogen atom, so the formula is B₃N₃H₆.",
+          "Putting the three boron atoms together on one side of the ring. Boron and nitrogen alternate around it."
+        ],
+        "memory_tip": "Six ring atoms, boron and nitrogen turn by turn, one hydrogen atom each — the same flat ring as benzene, but with no carbon in it.",
+        "margin_note": "Unmarked closing step. It ends the answer on the borazine equation, which is the line the second half of the question was asking for."
+      }
+    ]
+  }
+}

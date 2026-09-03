@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_diborane_two_preparations",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give two methods of preparation of diborane.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Method 1 — BF₃ with LiAlH₄",
+      "marks": 2
+    },
+    {
+      "label": "Method 2 — NaBH₄ with iodine",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.102, chapter 8 p-BLOCK ELEMENTS : GROUP 13, SAQ question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. BY-PRODUCT CAUTION recorded, because two correct forms are in circulation and mixing them is the real risk: this card's first method uses BF₃, so the by-products are LiF and AlF₃ (4BF₃ + 3LiAlH₄ → 2B₂H₆ + 3LiF + 3AlF₃). Another question in the same chapter runs the same reduction on BCl₃ and gives LiCl and AlCl₃ (3LiAlH₄ + 4BCl₃ → 2B₂H₆ + 3AlCl₃ + 3LiCl). Both are in the book and BOTH ARE CORRECT; only the halogen has to stay consistent through whichever equation is written. Each reduction is ALSO correctly written with the double salt — the boron trichloride one as 4BCl₃ + 3LiAlH₄ → 2B₂H₆ + 3LiAlCl₄ (lithium tetrachloroaluminate), the boron trifluoride one as 4BF₃ + 3LiAlH₄ → 2B₂H₆ + 3LiAlF₄ (lithium tetrafluoroaluminate) — and both forms of each are accepted, so neither is called an error anywhere on this card. Every equation on this card was checked atom by atom, including the hydrolysis B₂H₆ + 6H₂O → 2H₃BO₃ + 6H₂."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 13 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method_one",
+        "kind": "equation",
+        "label": "Method 1 — BF₃ with LiAlH₄",
+        "marks": 2,
+        "mark_note": "First method",
+        "lines": [
+          "Boron trifluoride is reduced by lithium",
+          "aluminium hydride in dry ether:",
+          {
+            "text": "4BF₃ + 3LiAlH₄ → 2B₂H₆ + 3LiF + 3AlF₃",
+            "style": "eq"
+          },
+          "Conditions: dry ether, warmed.",
+          "The by-products are lithium fluoride and",
+          "aluminium fluoride."
+        ],
+        "why": "Lithium aluminium hydride is the source of the hydride ions and boron trifluoride is the source of the boron, so the reaction is a straight reduction of the halide to the hydride. The fluorine that leaves boron ends up on lithium and on aluminium, which is why both fluorides appear on the right.",
+        "common_mistakes": [
+          "Writing LiCl and AlCl₃ as the by-products of this equation. Those belong to the reduction of boron trichloride; with BF₃ the by-products are LiF and AlF₃. That boron trichloride reduction is also correctly written with the double salt lithium tetrachloroaluminate, 4BCl₃ + 3LiAlH₄ → 2B₂H₆ + 3LiAlCl₄, and both forms of it are correct.",
+          "Leaving out the ratio. Four molecules of BF₃ and three of LiAlH₄ give two molecules of B₂H₆.",
+          "Running the reaction in water. Diborane is hydrolysed by water, so the ether must be dry."
+        ],
+        "memory_tip": "Four BF₃ and three LiAlH₄ give two B₂H₆, with LiF and AlF₃ left over.",
+        "margin_note": "Write dry ether above the arrow. The fluoride by-products go with BF₃, never the chlorides."
+      },
+      {
+        "id": "s2_method_two",
+        "kind": "equation",
+        "label": "Method 2 — NaBH₄ with iodine",
+        "marks": 2,
+        "mark_note": "Second method",
+        "lines": [
+          "Sodium borohydride is oxidised by iodine:",
+          {
+            "text": "2NaBH₄ + I₂ → B₂H₆ + 2NaI + H₂",
+            "style": "eq"
+          },
+          "The by-products are sodium iodide and",
+          "hydrogen gas.",
+          "This is a convenient laboratory method,",
+          "because the borohydride already carries",
+          "the hydrogen."
+        ],
+        "why": "In this route the boron already holds four hydrogen atoms, so no separate hydride source is needed; iodine simply removes electrons from the borohydride ion and two BH₃ units join to give B₂H₆. Two of the eight hydrogen atoms are released as one molecule of H₂.",
+        "common_mistakes": [
+          "Leaving the hydrogen gas out of the products. Without H₂ the equation does not balance: eight hydrogen atoms enter and only six are in B₂H₆.",
+          "Writing the iodide as NaI₂. Sodium is +1, so the iodide is NaI."
+        ],
+        "memory_tip": "Two NaBH₄ and one I₂ give B₂H₆, two NaI and one H₂.",
+        "margin_note": "The H₂ on the product side is the term most often dropped. Count the hydrogen atoms on both sides."
+      },
+      {
+        "id": "s3_conditions",
+        "kind": "text",
+        "label": "What both methods need",
+        "marks": 0,
+        "lines": [
+          "Both routes put hydrogen on to boron.",
+          "In the LiAlH₄ route the hydride ions are",
+          "supplied to BF₃ by LiAlH₄.",
+          "In the NaBH₄ route the borohydride ion",
+          "already holds the hydrogen, and iodine",
+          "oxidises it.",
+          "Both are carried out in dry apparatus,",
+          "because diborane is hydrolysed by water:",
+          {
+            "text": "B₂H₆ + 6H₂O → 2H₃BO₃ + 6H₂",
+            "style": "indent"
+          }
+        ],
+        "why": "Naming what the two routes have in common shows the reader that both are understood as the same kind of change. The dry condition is not a detail: diborane reacts with water at once to give boric acid and hydrogen, so any moisture destroys the product as it is formed.",
+        "common_mistakes": [
+          "Collecting the gas over water. Water hydrolyses diborane to boric acid and hydrogen.",
+          "Writing the hydrolysis product as B₂O₃. The product with water is orthoboric acid H₃BO₃."
+        ],
+        "memory_tip": "Both routes give hydrogen to boron, and both need dry apparatus.",
+        "margin_note": "Unmarked supporting step. The hydrolysis equation takes one line and explains why dry ether is specified above."
+      },
+      {
+        "id": "s4_summary",
+        "kind": "boxed_final",
+        "label": "The two methods together",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "Two methods: from BF₃ and from NaBH₄",
+            "style": "boxed"
+          },
+          {
+            "text": "4BF₃ + 3LiAlH₄ → 2B₂H₆ + 3LiF + 3AlF₃",
+            "style": "indent"
+          },
+          {
+            "text": "2NaBH₄ + I₂ → B₂H₆ + 2NaI + H₂",
+            "style": "indent"
+          },
+          "Diborane is a colourless gas.",
+          "It is highly toxic and catches fire in",
+          "air, so it is prepared and stored away",
+          "from air and moisture."
+        ],
+        "why": "The question asks for two methods, so the closing box names them side by side and repeats both equations in one place. The handling note is one line and explains why the whole preparation is done in closed dry apparatus.",
+        "common_mistakes": [
+          "Giving only one method. The question asks for two.",
+          "Describing diborane as a stable gas that can be kept in air. It catches fire in air."
+        ],
+        "memory_tip": "One route starts from BF₃, the other from NaBH₄.",
+        "margin_note": "Unmarked closing step. Name both methods in the last line so the two answers are easy to find on the page."
+      }
+    ]
+  },
+  "insider_note": "Keep the halogen consistent: with BF₃ the by-products are LiF and AlF₃, and with BCl₃ they are LiCl and AlCl₃. Both reductions are correct, and each is also correctly written with the double salt, LiAlF₄ or LiAlCl₄. The error to avoid is mixing the two halogens inside one equation."
+}

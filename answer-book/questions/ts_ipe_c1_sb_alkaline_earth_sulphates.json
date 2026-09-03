@@ -1,0 +1,234 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkaline_earth_sulphates",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Discuss the sulphates of the alkaline earth metals.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Preparation",
+      "marks": 1
+    },
+    {
+      "label": "Physical nature",
+      "marks": 1
+    },
+    {
+      "label": "Solubility in water",
+      "marks": 2
+    },
+    {
+      "label": "Reason for the solubility trend",
+      "marks": 2
+    },
+    {
+      "label": "Uses",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.93, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 53(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD: the solubility reasoning here is stated on the hydration side, exactly as on the two paired short cards of this chapter that explain BeO against BeSO₄ and BaO against BaSO₄ — down group 2 the sulphate lattice enthalpies change little because the sulphate ion is large, while the hydration enthalpy falls from Be²⁺ to Ba²⁺. No claim is made anywhere on this card that the lattice enthalpy of BaSO₄ is larger than that of BaO, because it is not."
+  },
+  "insider_note": "The whole discussion turns on one anion: the sulphate ion is large, so the lattice enthalpies of these five sulphates stay close together and the falling hydration enthalpy is left to decide which of them dissolves.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_preparation",
+        "kind": "equation",
+        "label": "Preparation",
+        "marks": 1,
+        "mark_note": "Preparation",
+        "lines": [
+          "The sulphates of the alkaline earth",
+          "metals have the general formula MSO₄,",
+          "where M is Be, Mg, Ca, Sr or Ba.",
+          "They are made by the action of dilute",
+          "sulphuric acid on the metal, or on its",
+          "oxide, hydroxide or carbonate:",
+          {
+            "text": "MgO + H₂SO₄ → MgSO₄ + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "CaCO₃ + H₂SO₄ → CaSO₄ + H₂O + CO₂",
+            "style": "eq"
+          }
+        ],
+        "why": "Sulphuric acid supplies the sulphate ion, and any compound that supplies the metal ion will serve as the other reactant. Starting from the carbonate also releases carbon dioxide, which is why that equation carries a third product.",
+        "common_mistakes": [
+          "Leaving carbon dioxide out when the carbonate is used. The carbonate ion breaks up and gives off carbon dioxide.",
+          "Writing MgO + H₂SO₄ → MgSO₄ without the water. The oxide ion takes the two hydrogen atoms of the acid and leaves as water."
+        ],
+        "memory_tip": "Dilute sulphuric acid on the metal, its oxide, its hydroxide or its carbonate gives the sulphate.",
+        "margin_note": "Name all four starting materials in words, then write one or two of the equations."
+      },
+      {
+        "id": "s2_physical_nature",
+        "kind": "text",
+        "label": "Physical nature",
+        "marks": 1,
+        "mark_note": "Physical nature",
+        "lines": [
+          "All the sulphates of this group are",
+          "white solids.",
+          "They are stable to heat.",
+          "Calcium sulphate occurs naturally as",
+          "gypsum, CaSO₄·2H₂O, which is the",
+          "starting material for plaster of Paris.",
+          "Beryllium sulphate and magnesium",
+          "sulphate crystallise as hydrated salts,",
+          "because the small ions Be²⁺ and Mg²⁺",
+          "hold water strongly."
+        ],
+        "why": "The physical description is short but it is part of a discussion: it says what these compounds look like, that heat does not break them up in the way it breaks up the carbonates, and that one of them is a common mineral used to make plaster of Paris.",
+        "common_mistakes": [
+          "Writing that the sulphates decompose readily on heating. They are stable to heat; it is the carbonates of the same metals that decompose easily.",
+          "Writing gypsum as CaSO₄. Gypsum is the hydrated salt CaSO₄·2H₂O."
+        ],
+        "memory_tip": "White solids, stable to heat, and the calcium one is gypsum.",
+        "margin_note": "State the colour and the behaviour on heating before moving to solubility."
+      },
+      {
+        "id": "s3_solubility",
+        "kind": "text",
+        "label": "Solubility in water",
+        "marks": 2,
+        "mark_note": "Solubility",
+        "lines": [
+          "Beryllium sulphate and magnesium",
+          "sulphate are readily soluble in water.",
+          "From calcium sulphate onwards the",
+          "solubility decreases:",
+          {
+            "text": "BeSO₄ > MgSO₄ > CaSO₄ > SrSO₄ > BaSO₄",
+            "style": "eq"
+          },
+          "Calcium sulphate is only slightly",
+          "soluble.",
+          "Strontium sulphate is less soluble",
+          "still, and barium sulphate is",
+          "practically insoluble in water."
+        ],
+        "why": "The question asks for a discussion, so the order matters as much as the two end members. Naming BeSO₄ and MgSO₄ as readily soluble and then following the fall from CaSO₄ to BaSO₄ gives the whole group in one line rather than two remembered facts.",
+        "common_mistakes": [
+          "Writing that all the sulphates are insoluble. Beryllium sulphate and magnesium sulphate dissolve readily.",
+          "Writing the order the other way round. Solubility falls from BeSO₄ to BaSO₄, not the reverse."
+        ],
+        "memory_tip": "The two smallest cations give soluble sulphates; solubility then falls to barium.",
+        "margin_note": "Write the order on one line. The reason belongs in the step after it, not mixed into this one."
+      },
+      {
+        "id": "s4_reason",
+        "kind": "text",
+        "label": "Reason for the solubility trend",
+        "marks": 2,
+        "mark_note": "The reason",
+        "lines": [
+          "An ionic solid dissolves only if the",
+          "hydration enthalpy released is at least",
+          "as large as the lattice enthalpy that",
+          "has to be supplied.",
+          "The sulphate ion SO₄²⁻ is a large ion,",
+          "so it sets the distance between the ion",
+          "centres, and the lattice enthalpies of",
+          "these five sulphates change little",
+          "down the group.",
+          "The hydration enthalpy, however, falls",
+          "steadily from Be²⁺ to Ba²⁺.",
+          "For Be²⁺ and Mg²⁺ it is large enough to",
+          "overcome the lattice enthalpy of their",
+          "own sulphates, so BeSO₄ and MgSO₄",
+          "dissolve.",
+          "By the time barium is reached it is too",
+          "small to do so, and BaSO₄ stays",
+          "insoluble."
+        ],
+        "why": "Two quantities decide solubility, and only one of them changes much across this group. Because the large sulphate ion fixes how close the ion centres can come, the lattice enthalpies stay close together, so the falling hydration enthalpy is what settles the trend.",
+        "common_mistakes": [
+          "Writing that BaSO₄ is insoluble because its lattice enthalpy is larger than that of BaO. It is not larger; the trend down group 2 comes from the hydration enthalpy falling.",
+          "Writing that the hydration enthalpy of Be²⁺ overcomes the lattice enthalpy of BaSO₄. The compound being explained is BeSO₄, so it is the lattice enthalpy of BeSO₄ that is overcome.",
+          "Writing that the sulphate ion is small. SO₄²⁻ is a large anion, and that is what keeps the lattice enthalpies close together."
+        ],
+        "memory_tip": "Same large anion all the way down, so only the hydration of the cation changes, and it falls.",
+        "margin_note": "Name the compound whose lattice enthalpy is being overcome. It is the sulphate of the same metal."
+      },
+      {
+        "id": "s5_uses",
+        "kind": "text",
+        "label": "Uses of two of the sulphates",
+        "marks": 1,
+        "mark_note": "Uses",
+        "lines": [
+          "Barium sulphate is insoluble and stops",
+          "X-rays, so a suspension of it is",
+          "swallowed as a barium meal before an",
+          "X-ray of the digestive tract.",
+          "It is safe to swallow only because it",
+          "does not dissolve, so no barium ion",
+          "enters the body.",
+          "Gypsum, CaSO₄·2H₂O, is heated to 393 K",
+          "to give plaster of Paris, which is used",
+          "for setting broken bones and for",
+          "casting statues and models."
+        ],
+        "why": "Both uses come straight out of the properties already stated. The insolubility of barium sulphate is what makes a barium meal safe, and the water of crystallisation in gypsum is what plaster of Paris loses on heating and regains when it sets.",
+        "common_mistakes": [
+          "Writing that a soluble barium salt could be used for the barium meal. Soluble barium salts are poisonous; the insolubility of BaSO₄ is the point.",
+          "Writing that gypsum itself is plaster of Paris. Gypsum has to be heated to 393 K first."
+        ],
+        "memory_tip": "Barium sulphate is used because it does not dissolve; gypsum is used after it is heated.",
+        "margin_note": "Tie each use to the property above it, rather than listing uses on their own."
+      },
+      {
+        "id": "s6_conclusion",
+        "kind": "boxed_final",
+        "label": "The pattern in one line",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          "The sulphates are white solids and are",
+          "stable to heat.",
+          "The small ions Be²⁺ and Mg²⁺ are",
+          "strongly hydrated, so their sulphates",
+          "dissolve.",
+          "The larger ions are hydrated weakly, so",
+          "their sulphates do not:",
+          {
+            "text": "BeSO₄, MgSO₄ soluble; BaSO₄ insoluble",
+            "style": "boxed"
+          }
+        ],
+        "why": "A discussion has to close on the comparison it was built around. Placing the soluble members and the insoluble member on one line shows that a single comparison of hydration enthalpy with lattice enthalpy produced both results.",
+        "common_mistakes": [
+          "Closing with the solubility order alone. The comparison of the two enthalpies is what explains it.",
+          "Naming CaSO₄ as freely soluble. It is only slightly soluble, and it stands between the soluble and the insoluble members."
+        ],
+        "memory_tip": "Small cation dissolves, large cation does not, with the same anion throughout.",
+        "margin_note": "Close by naming which enthalpy is the larger one at each end of the group."
+      }
+    ]
+  }
+}

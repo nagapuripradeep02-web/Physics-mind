@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_co_is_poisonous",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Suggest a reason why CO is poisonous.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The complex with haemoglobin",
+      "marks": 1
+    },
+    {
+      "label": "Why oxygen is not carried",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 2. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_complex_with_haemoglobin",
+        "kind": "text",
+        "label": "The complex with haemoglobin",
+        "marks": 1,
+        "mark_note": "The complex",
+        "lines": [
+          "Haemoglobin is the substance in blood",
+          "that carries oxygen. It binds oxygen as",
+          "the O₂–Hb complex.",
+          "Carbon monoxide CO that is breathed in",
+          "binds to the same haemoglobin and forms",
+          "a CO–Hb complex."
+        ],
+        "why": "Carbon monoxide is poisonous because of where it goes in the body, not because it burns or corrodes. It binds at the same site on haemoglobin that oxygen uses, so the first half of the answer is naming that complex.",
+        "common_mistakes": [
+          "Writing that CO reacts with the oxygen in the lungs. It binds to haemoglobin, not to oxygen.",
+          "Naming CO₂ as the poisonous oxide. Carbon dioxide is not poisonous in this way; carbon monoxide is."
+        ],
+        "memory_tip": "Carbon monoxide goes to the same place oxygen goes — the haemoglobin.",
+        "margin_note": "Name haemoglobin and name both complexes, CO–Hb and O₂–Hb."
+      },
+      {
+        "id": "s2_oxygen_not_carried",
+        "kind": "boxed_final",
+        "label": "Why oxygen is not carried",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          {
+            "text": "CO–Hb is far more stable than O₂–Hb",
+            "style": "boxed"
+          },
+          "The CO–Hb complex is about 300 times",
+          "more stable than the O₂–Hb complex.",
+          "So the carbon monoxide stays attached",
+          "and that haemoglobin is no longer",
+          "available to carry oxygen.",
+          "The blood then supplies less oxygen to",
+          "the body, and this is why CO is",
+          "poisonous."
+        ],
+        "why": "The number is the reason. If the two complexes were of similar stability the carbon monoxide would come off again and do little damage. Because the CO complex is about 300 times more stable, the haemoglobin is taken out of use.",
+        "common_mistakes": [
+          "Writing only that CO forms a complex. The answer needs the comparison: that complex is about 300 times more stable than the oxygen one.",
+          "Writing that CO destroys the haemoglobin. The haemoglobin is not destroyed; it is occupied by CO and cannot carry oxygen."
+        ],
+        "memory_tip": "About 300 times more stable — that one number is the whole reason CO is poisonous.",
+        "margin_note": "Give the figure of about 300 times and then state the result, that oxygen is no longer carried."
+      }
+    ]
+  },
+  "insider_note": "Most students write that carbon monoxide forms a complex with haemoglobin and stop there. The comparison completes it: the CO complex is about 300 times more stable than the oxygen complex, and that is why the blood no longer carries oxygen."
+}

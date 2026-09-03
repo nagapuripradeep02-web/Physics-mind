@@ -1,0 +1,102 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_milk_of_lime",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is milk of lime?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is",
+      "marks": 1
+    },
+    {
+      "label": "How it is made and used",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.87, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 28. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What it is",
+        "marks": 1,
+        "mark_note": "What it is",
+        "lines": [
+          "Milk of lime is a suspension of",
+          "slaked lime, that is calcium",
+          "hydroxide Ca(OH)₂, in water.",
+          "It looks white and milky because",
+          "calcium hydroxide is only slightly",
+          "soluble, so most of it stays as fine",
+          "solid particles spread through the",
+          "water.",
+          "It is not the same as milk of",
+          "magnesia, which is magnesium",
+          "hydroxide, Mg(OH)₂, in water."
+        ],
+        "why": "The word milk describes the appearance. Calcium hydroxide dissolves only slightly in water, so most of it stays as solid particles held in the liquid and the mixture looks white.",
+        "common_mistakes": [
+          "Calling it a solution. It is a suspension, because calcium hydroxide is only slightly soluble.",
+          "Confusing it with milk of magnesia. Milk of lime is Ca(OH)₂ in water; milk of magnesia is Mg(OH)₂ in water."
+        ],
+        "memory_tip": "Lime means calcium, so milk of lime is calcium hydroxide in water.",
+        "margin_note": "Write the formula Ca(OH)₂ beside the name."
+      },
+      {
+        "id": "s2_made_and_used",
+        "kind": "text",
+        "label": "How it is made and used",
+        "marks": 1,
+        "mark_note": "Preparation and uses",
+        "lines": [
+          "Quick lime, calcium oxide, reacts",
+          "with water to give slaked lime:",
+          {
+            "text": "CaO + H₂O → Ca(OH)₂",
+            "style": "eq"
+          },
+          "With plenty of water the slaked lime",
+          "stays suspended, and that suspension",
+          "is milk of lime.",
+          "It is used in whitewashing and in",
+          "the purification of sugar, and with",
+          "chlorine it gives calcium hypochlorite",
+          "in solution.",
+          "Bleaching powder itself is made from",
+          "dry slaked lime, not from milk of lime."
+        ],
+        "why": "Milk of lime is only slaked lime and water, so the answer is complete once the reaction that makes slaked lime is written and one or two uses are named.",
+        "common_mistakes": [
+          "Writing quick lime, CaO, as milk of lime. Quick lime is the oxide, while milk of lime holds the hydroxide.",
+          "Writing lime water instead. Lime water is the clear saturated solution of calcium hydroxide; milk of lime is the thick white suspension."
+        ],
+        "memory_tip": "Quick lime plus water gives slaked lime, and slaked lime with more water gives milk of lime.",
+        "margin_note": "One equation and one named use complete this answer."
+      }
+    ]
+  },
+  "insider_note": "The answer is short: name the suspension, give the formula Ca(OH)₂, and add the reaction that makes slaked lime."
+}

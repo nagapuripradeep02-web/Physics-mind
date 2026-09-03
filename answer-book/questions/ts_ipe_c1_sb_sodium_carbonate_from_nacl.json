@@ -1,0 +1,243 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_sodium_carbonate_from_nacl",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Starting with sodium chloride, how would you prepare sodium carbonate?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The process and its raw materials",
+      "marks": 1
+    },
+    {
+      "label": "Ammonia and carbon dioxide in brine",
+      "marks": 2
+    },
+    {
+      "label": "Sodium hydrogen carbonate separates out",
+      "marks": 2
+    },
+    {
+      "label": "Heating the hydrogen carbonate",
+      "marks": 1
+    },
+    {
+      "label": "The ammonia is recovered",
+      "marks": 1
+    },
+    {
+      "label": "The product",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.97, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 57(iv). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. A SOURCE-BOOK EQUATION IS CORRECTED ON THIS CARD. The book prints the ammonia-recovery step as 2NH₄Cl + Ca(OH)₂ → 2NH₃ + CaCl₂ + H₂O, which does not balance: the left side carries 10 hydrogen and 2 oxygen, the right side 8 hydrogen and 1 oxygen. This card prints the balanced form 2NH₄Cl + Ca(OH)₂ → 2NH₃ + CaCl₂ + 2H₂O (N 2 = 2, H 10 = 10, Cl 2 = 2, Ca 1 = 1, O 2 = 2). EVERY OTHER EQUATION WAS CHECKED ATOM BY ATOM TOO: CaCO₃ → CaO + CO₂; 2NH₃ + H₂O + CO₂ → (NH₄)₂CO₃ (N 2 = 2, H 8 = 8, C 1 = 1, O 3 = 3); (NH₄)₂CO₃ + H₂O + CO₂ → 2NH₄HCO₃ (N 2 = 2, H 10 = 10, C 2 = 2, O 6 = 6); NaCl + NH₄HCO₃ → NaHCO₃ + NH₄Cl (Na 1 = 1, Cl 1 = 1, N 1 = 1, H 5 = 5, C 1 = 1, O 3 = 3); 2NaHCO₃ → Na₂CO₃ + CO₂ + H₂O (Na 2 = 2, H 2 = 2, C 2 = 2, O 6 = 6); CaO + H₂O → Ca(OH)₂. THE SHORTER ONE-STEP FORM OF THE FIRST STAGE IS ALSO CORRECT AND IS NAMED AS CORRECT ON THE CARD: NH₃ + H₂O + CO₂ → NH₄HCO₃ (N 1 = 1, H 5 = 5, C 1 = 1, O 3 = 3). Neither form is called an error."
+  },
+  "insider_note": "The one step that makes the whole process work is the precipitation step — sodium hydrogen carbonate is only sparingly soluble, so it comes out of the solution as a solid and can be filtered off — and an answer that writes the equations without saying that has not explained the process.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_raw_materials",
+        "kind": "text",
+        "label": "The process and its raw materials",
+        "marks": 1,
+        "mark_note": "The process and its materials",
+        "lines": [
+          "Sodium carbonate Na₂CO₃ is made from",
+          "sodium chloride by the Solvay process,",
+          "also called the ammonia soda process.",
+          "The materials are brine, which is a",
+          "concentrated solution of sodium chloride",
+          "in water, ammonia gas, and carbon",
+          "dioxide.",
+          "The carbon dioxide is obtained by",
+          "heating limestone:",
+          {
+            "text": "CaCO₃ → CaO + CO₂",
+            "style": "eq"
+          },
+          "The quick lime CaO left behind is used",
+          "later in the same process."
+        ],
+        "why": "Naming the three materials first makes the equations below readable, and the limestone is worth writing out because it supplies both things the process needs from outside: the carbon dioxide for the early stages and the quick lime for the recovery of the ammonia at the end.",
+        "common_mistakes": [
+          "Using solid sodium chloride. The process works on brine, its concentrated solution in water.",
+          "Treating the quick lime as waste. It is used at the end of the process to recover the ammonia."
+        ],
+        "memory_tip": "Brine, ammonia and carbon dioxide go in; limestone supplies the carbon dioxide and the quick lime.",
+        "margin_note": "Name the process and its three materials before the first equation."
+      },
+      {
+        "id": "s2_ammonia_and_co2",
+        "kind": "equation",
+        "label": "Ammonia and carbon dioxide in brine",
+        "marks": 2,
+        "mark_note": "Making ammonium hydrogen carbonate",
+        "lines": [
+          "The brine is first saturated with ammonia",
+          "and then carbon dioxide is passed in.",
+          "Ammonium carbonate forms first:",
+          {
+            "text": "2NH₃ + H₂O + CO₂ → (NH₄)₂CO₃",
+            "style": "eq"
+          },
+          "More carbon dioxide converts it into",
+          "ammonium hydrogen carbonate:",
+          {
+            "text": "(NH₄)₂CO₃ + H₂O + CO₂ → 2NH₄HCO₃",
+            "style": "eq"
+          },
+          "These two stages are also correctly",
+          "written as one step:",
+          {
+            "text": "NH₃ + H₂O + CO₂ → NH₄HCO₃",
+            "style": "eq"
+          }
+        ],
+        "why": "The ammonia is what makes the solution able to take up carbon dioxide, and the hydrogen carbonate ion HCO₃⁻ is what the next step needs. The two-stage form shows the ammonium carbonate that is really formed on the way, and the one-step form is the same chemistry written together; both are complete and both are correct.",
+        "common_mistakes": [
+          "Passing the carbon dioxide in before the ammonia. The brine is saturated with ammonia first.",
+          "Writing NH₄CO₃ for ammonium carbonate. The formula is (NH₄)₂CO₃, because the carbonate ion carries two negative charges.",
+          "Leaving the water out of the equation. Water is a reactant here, not just the solvent."
+        ],
+        "memory_tip": "Ammonia first, then carbon dioxide: the pair build the hydrogen carbonate ion in the brine.",
+        "margin_note": "Ammonia before carbon dioxide, in that order. Writing them the other way round changes the chemistry."
+      },
+      {
+        "id": "s3_precipitation",
+        "kind": "equation",
+        "label": "Sodium hydrogen carbonate separates out",
+        "marks": 2,
+        "mark_note": "The precipitation step",
+        "lines": [
+          "The ammonium hydrogen carbonate now",
+          "reacts with the sodium chloride of the",
+          "brine:",
+          {
+            "text": "NaCl + NH₄HCO₃ → NaHCO₃ + NH₄Cl",
+            "style": "eq"
+          },
+          "Sodium hydrogen carbonate is only",
+          "sparingly soluble in water, so it",
+          "separates out as a white solid while the",
+          "ammonium chloride stays in solution.",
+          "The solid is filtered off and washed.",
+          "This separation is the step the whole",
+          "process depends on."
+        ],
+        "why": "Nothing here would be of any use if all four substances stayed dissolved together. Sodium hydrogen carbonate is the least soluble of them, so it leaves the solution as a solid and can be filtered off, and that is what pulls the sodium away from the chloride. Potassium carbonate cannot be made this way for exactly this reason: potassium hydrogen carbonate is too soluble to separate.",
+        "common_mistakes": [
+          "Writing sodium carbonate as the product of this step. The solid formed here is the hydrogen carbonate NaHCO₃.",
+          "Saying the sodium hydrogen carbonate is insoluble. It is sparingly soluble, which is enough for it to separate out.",
+          "Filtering off the ammonium chloride. The ammonium chloride stays dissolved; the solid filtered off is NaHCO₃."
+        ],
+        "memory_tip": "The least soluble substance leaves the solution first, and here that is sodium hydrogen carbonate.",
+        "margin_note": "State the sparing solubility beside the equation. It is the reason the step works."
+      },
+      {
+        "id": "s4_calcination",
+        "kind": "equation",
+        "label": "Heating the hydrogen carbonate",
+        "marks": 1,
+        "mark_note": "Decomposition to the carbonate",
+        "lines": [
+          "The sodium hydrogen carbonate collected",
+          "is dried and heated:",
+          {
+            "text": "2NaHCO₃ → Na₂CO₃ + CO₂ + H₂O",
+            "style": "eq"
+          },
+          "Sodium carbonate is left as a solid.",
+          "The carbon dioxide given off here is",
+          "returned to the earlier stage and used",
+          "again."
+        ],
+        "why": "Two formula units of the hydrogen carbonate give one of the carbonate, along with carbon dioxide and water. The carbon dioxide is not thrown away — it goes back into the brine, which is one of the two reasons this process is cheap enough to be used on a large scale.",
+        "common_mistakes": [
+          "Writing NaHCO₃ → Na₂CO₃ + CO₂ + H₂O. Two formula units of the hydrogen carbonate are needed before the sodium balances.",
+          "Treating the carbon dioxide as waste. It is returned to the process."
+        ],
+        "memory_tip": "Two hydrogen carbonates give one carbonate, and the carbon dioxide goes back into the process.",
+        "margin_note": "Add the return of the carbon dioxide. It is part of why the process is used."
+      },
+      {
+        "id": "s5_ammonia_recovery",
+        "kind": "equation",
+        "label": "The ammonia is recovered",
+        "marks": 1,
+        "mark_note": "Recovery of the ammonia",
+        "lines": [
+          "The quick lime from the limestone is",
+          "slaked with water:",
+          {
+            "text": "CaO + H₂O → Ca(OH)₂",
+            "style": "eq"
+          },
+          "The slaked lime is warmed with the",
+          "ammonium chloride solution left over:",
+          {
+            "text": "2NH₄Cl + Ca(OH)₂ → 2NH₃ + CaCl₂ + 2H₂O",
+            "style": "eq"
+          },
+          "The ammonia is returned to the brine and",
+          "used again. Calcium chloride is the only",
+          "by-product of the process."
+        ],
+        "why": "The ammonia is expensive and is not consumed overall, so it is taken back out of the ammonium chloride and returned. Counting the atoms on the recovery equation: nitrogen 2 on each side, hydrogen 10 on each side, chlorine 2, calcium 1 and oxygen 2 — so two molecules of water are needed on the right, not one.",
+        "common_mistakes": [
+          "Writing one molecule of water on the right of the recovery equation. Two are needed: the left side carries 10 hydrogen and 2 oxygen.",
+          "Throwing the ammonium chloride away. It is the source of the recovered ammonia."
+        ],
+        "memory_tip": "Lime takes the ammonia back out of the ammonium chloride, so the same ammonia works round and round.",
+        "margin_note": "Check the hydrogen count on the recovery equation before writing it down; two waters are needed."
+      },
+      {
+        "id": "s6_product",
+        "kind": "boxed_final",
+        "label": "The product",
+        "marks": 1,
+        "mark_note": "The product and its uses",
+        "lines": [
+          {
+            "text": "2NaHCO₃ → Na₂CO₃ + CO₂ + H₂O",
+            "style": "boxed"
+          },
+          "The boxed step is where the sodium",
+          "carbonate itself is formed.",
+          "The anhydrous solid Na₂CO₃ is called",
+          "soda ash. Crystallised from water it",
+          "gives washing soda, Na₂CO₃·10H₂O.",
+          "It is used in softening hard water, in",
+          "laundering and cleaning, and in making",
+          "glass, borax, soap and caustic soda."
+        ],
+        "why": "The last equation is the one that actually produces the substance asked for, so it is the line to close on. Naming soda ash and washing soda shows that the same compound is sold in two forms, and the uses identify why the process is worked at all.",
+        "common_mistakes": [
+          "Calling the anhydrous solid washing soda. Washing soda is the decahydrate Na₂CO₃·10H₂O; the anhydrous form is soda ash.",
+          "Ending at the precipitation step. Sodium hydrogen carbonate is not sodium carbonate."
+        ],
+        "memory_tip": "Soda ash is the dry carbonate; washing soda is the same carbonate with ten water molecules.",
+        "margin_note": "Close on the equation that makes the carbonate itself, then name the two forms."
+      }
+    ]
+  }
+}

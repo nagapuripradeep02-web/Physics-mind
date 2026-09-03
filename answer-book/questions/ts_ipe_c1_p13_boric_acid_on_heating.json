@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_boric_acid_on_heating",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain what happens when boric acid is heated.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "370 K gives metaboric acid",
+      "marks": 1
+    },
+    {
+      "label": "Further heating gives boric oxide",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.99, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Two authoring notes on the source. The book prints tetraboric acid once as H₂B₃O₇ and once, correctly, as H₂B₄O₇; this card writes H₂B₄O₇, which is the formula that balances. The book also gives two different temperatures for the second stage, so this card writes that stage as further heating and quotes only the 370 K it states consistently for the first stage."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_metaboric_acid",
+        "kind": "text",
+        "label": "370 K gives metaboric acid",
+        "marks": 1,
+        "mark_note": "370 K gives metaboric acid",
+        "lines": [
+          "On heating to 370 K, orthoboric acid",
+          "H₃BO₃ loses one water molecule and gives",
+          "metaboric acid, HBO₂:",
+          {
+            "text": "H₃BO₃ → HBO₂ + H₂O   (370 K)",
+            "style": "eq"
+          }
+        ],
+        "why": "Heating removes water in stages. The first stage is at 370 K, where each H₃BO₃ unit loses one water molecule and becomes metaboric acid HBO₂.",
+        "common_mistakes": [
+          "Giving B₂O₃ as the product of the first stage. Boric oxide is formed only on stronger heating.",
+          "Leaving the water molecule off the right side of the equation."
+        ],
+        "memory_tip": "First water out at 370 K gives metaboric acid HBO₂.",
+        "margin_note": "370 K is the temperature to write; describe the later stages without a number."
+      },
+      {
+        "id": "s2_boric_oxide",
+        "kind": "boxed_final",
+        "label": "Further heating gives boric oxide",
+        "marks": 1,
+        "mark_note": "Further heating gives boric oxide",
+        "lines": [
+          "On further heating metaboric acid HBO₂",
+          "changes to tetraboric acid, and at red",
+          "heat this gives boric oxide B₂O₃:",
+          {
+            "text": "4HBO₂ → H₂B₄O₇ + H₂O",
+            "style": "eq"
+          },
+          {
+            "text": "H₂B₄O₇ → 2B₂O₃ + H₂O",
+            "style": "eq"
+          },
+          "Taking all the stages together:",
+          {
+            "text": "2H₃BO₃ → B₂O₃ + 3H₂O",
+            "style": "boxed"
+          }
+        ],
+        "why": "Strong heating drives the loss of water all the way to boric oxide B₂O₃. The overall equation gathers the stages into one line: two units of boric acid lose three water molecules in all.",
+        "common_mistakes": [
+          "Writing tetraboric acid as H₂B₃O₇. The formula is H₂B₄O₇, with four boron atoms.",
+          "Stopping at metaboric acid. Strong heating carries the change on to B₂O₃."
+        ],
+        "memory_tip": "Water leaves in stages and boric oxide is what is left: 2H₃BO₃ → B₂O₃ + 3H₂O.",
+        "margin_note": "Write the overall equation as well as the stages."
+      }
+    ]
+  },
+  "insider_note": "Both the stagewise equations and the overall equation are worth writing, because the overall line is what shows the three water molecules that leave altogether."
+}

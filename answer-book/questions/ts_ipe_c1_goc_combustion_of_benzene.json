@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_combustion_of_benzene",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write the combustion reaction of benzene with one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What combustion is",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    },
+    {
+      "label": "The whole-number form",
+      "marks": 1
+    },
+    {
+      "label": "The flame",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.115, chapter 10 GENERAL ORGANIC CHEMISTRY, SHORT ANSWER QUESTIONS question 19(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. No exam-appearance years are recorded for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. BOTH FORMS OF THE EQUATION ARE CORRECT, recorded here so no later editor treats one as a defect: the fractional form C₆H₆ + 15/2 O₂ → 6CO₂ + 3H₂O and the doubled whole-number form 2C₆H₆ + 15O₂ → 12CO₂ + 6H₂O are the same balanced equation, and the card prints both."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "General Organic Chemistry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What combustion is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Combustion is the burning of a",
+          "compound in oxygen.",
+          "In excess oxygen benzene C₆H₆ burns",
+          "completely to carbon dioxide and",
+          "water.",
+          "A large amount of heat is given out,",
+          "so the reaction is exothermic."
+        ],
+        "why": "Complete combustion of any hydrocarbon gives the same two products, because every carbon atom ends as carbon dioxide and every hydrogen atom ends in water. Naming the two products first is what makes the equation below predictable rather than remembered.",
+        "common_mistakes": [
+          "Writing carbon monoxide as the product. In complete combustion the carbon ends as carbon dioxide.",
+          "Leaving water out of the products. The six hydrogen atoms of benzene leave as three molecules of water."
+        ],
+        "memory_tip": "Every carbon becomes CO₂ and every two hydrogens become one H₂O.",
+        "margin_note": "Name both products in words before writing the equation."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          "For one molecule of benzene:",
+          {
+            "text": "C₆H₆ + 15/2 O₂ → 6CO₂ + 3H₂O",
+            "style": "eq"
+          },
+          "Carbon: 6 on the left, 6 on the right.",
+          "Hydrogen: 6 on the left, 6 on the",
+          "right.",
+          "Oxygen: 15 on the left, and",
+          "12 + 3 = 15 on the right."
+        ],
+        "why": "The oxygen coefficient is fixed by the products, not guessed: six molecules of carbon dioxide need twelve oxygen atoms and three molecules of water need three more, so fifteen oxygen atoms are needed, which is 15/2 molecules of O₂.",
+        "common_mistakes": [
+          "Writing 6O₂ or 7O₂. Fifteen oxygen atoms are needed, so the coefficient is 15/2.",
+          "Writing 6H₂O. Benzene has six hydrogen atoms, which give three molecules of water."
+        ],
+        "memory_tip": "Count the oxygen atoms in the products first: 12 in the CO₂ and 3 in the H₂O make 15.",
+        "margin_note": "Show the atom count for carbon, hydrogen and oxygen under the equation."
+      },
+      {
+        "id": "s3_whole_numbers",
+        "kind": "equation",
+        "label": "The whole-number form",
+        "marks": 1,
+        "mark_note": "Whole-number form",
+        "lines": [
+          "The same equation is also correctly",
+          "written with whole numbers only.",
+          "Doubling every coefficient gives",
+          {
+            "text": "2C₆H₆ + 15O₂ → 12CO₂ + 6H₂O",
+            "style": "eq"
+          },
+          "Carbon: 12 on each side.",
+          "Hydrogen: 12 on each side.",
+          "Oxygen: 30 on each side.",
+          "Either form is correct."
+        ],
+        "why": "Doubling every coefficient does not change the chemistry, only the number of molecules described. The whole-number form is useful when the fraction 15/2 is awkward to write, and the atom count confirms the two forms say the same thing.",
+        "common_mistakes": [
+          "Doubling only the oxygen. Every coefficient in the equation is doubled together.",
+          "Writing 2C₆H₆ + 15O₂ → 6CO₂ + 3H₂O. If the benzene is doubled, the products double too."
+        ],
+        "memory_tip": "Double everything at once and the fraction 15/2 becomes 15.",
+        "margin_note": "Write one form on the page and the other beside it only if there is room."
+      },
+      {
+        "id": "s4_flame",
+        "kind": "boxed_final",
+        "label": "The flame",
+        "marks": 1,
+        "mark_note": "The flame",
+        "lines": [
+          "In air the oxygen supply is limited,",
+          "and benzene contains a high proportion",
+          "of carbon, so some carbon is set free",
+          "as soot during burning.",
+          "It therefore burns with a bright,",
+          "sooty flame.",
+          {
+            "text": "Benzene burns with a sooty flame",
+            "style": "boxed"
+          }
+        ],
+        "why": "The sooty flame is the observation that separates benzene from an alkane of similar size: in benzene there are six carbon atoms to only six hydrogen atoms, so oxygen reaches some carbon atoms too slowly for complete burning and they appear as soot.",
+        "common_mistakes": [
+          "Describing the flame as clean and blue. That is an alkane flame; benzene burns with a sooty flame.",
+          "Giving the flame without the reason. The high proportion of carbon is what makes the flame sooty."
+        ],
+        "memory_tip": "Six carbons to six hydrogens is carbon-rich, and carbon-rich burning makes soot.",
+        "margin_note": "One closing line naming the sooty flame completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The balanced equation is where marks are lost here: fifteen oxygen atoms are needed, so the coefficient is 15/2, or 15 if the whole equation is doubled. Add one line on the sooty flame to finish the answer."
+}

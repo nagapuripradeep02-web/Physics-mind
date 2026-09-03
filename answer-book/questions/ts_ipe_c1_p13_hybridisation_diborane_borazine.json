@@ -1,0 +1,94 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_hybridisation_diborane_borazine",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the hybridisation of boron in diborane and in borazine, B₃N₃H₆?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Boron in diborane",
+      "marks": 1
+    },
+    {
+      "label": "Boron in borazine",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_diborane",
+        "kind": "text",
+        "label": "Boron in diborane",
+        "marks": 1,
+        "mark_note": "Diborane",
+        "lines": [
+          "In diborane B₂H₆ each boron atom is sp³",
+          "hybridised.",
+          "Every boron uses four orbitals: two for",
+          "its two terminal B–H bonds and two for",
+          "the two B–H–B bridges.",
+          "The four directions around each boron are",
+          "roughly tetrahedral."
+        ],
+        "why": "Each boron is surrounded by four hydrogen atoms, two terminal and two bridging, so four orbitals are needed; one s and three p orbitals give four sp³ orbitals.",
+        "common_mistakes": [
+          "Answering sp² because a single BH₃ unit is planar. In the dimer B₂H₆ each boron is bonded to two terminal hydrogens and to two bridging hydrogens it shares with the other boron, so it is sp³.",
+          "Counting only the terminal hydrogens. The two bridging hydrogens are bonded to boron as well."
+        ],
+        "memory_tip": "Each boron has two terminal hydrogens and shares two bridging ones, so four orbitals and sp³.",
+        "margin_note": "Give the answer sp³ and the reason: two terminal hydrogens and two shared bridging ones."
+      },
+      {
+        "id": "s2_borazine",
+        "kind": "text",
+        "label": "Boron in borazine",
+        "marks": 1,
+        "mark_note": "Borazine",
+        "lines": [
+          "In borazine B₃N₃H₆ each boron atom is sp²",
+          "hybridised.",
+          "The ring has six atoms, three boron and",
+          "three nitrogen, placed alternately.",
+          "Each boron is bonded to two nitrogens and",
+          "one hydrogen, so the ring is planar and",
+          "the bond angles are close to 120°.",
+          {
+            "text": "Boron is sp³ in B₂H₆ and sp² in B₃N₃H₆",
+            "style": "boxed"
+          }
+        ],
+        "why": "Boron in borazine has three bonded neighbours and no lone pair, so three hybrid orbitals are needed, which is sp²; three sp² orbitals lie in one plane at about 120° to each other, so the ring is flat.",
+        "common_mistakes": [
+          "Giving the same hybridisation for both compounds. Boron is sp³ in diborane and sp² in borazine.",
+          "Saying the borazine ring is not planar. Three sp² orbitals lie in one plane, so the ring is flat."
+        ],
+        "memory_tip": "Three neighbours means sp²; four neighbours means sp³.",
+        "margin_note": "Write the compound name beside each answer so the two are not mixed up."
+      }
+    ]
+  },
+  "insider_note": "Two one-word answers, sp³ and sp², so add the reason — how many atoms are bonded to boron in each compound — and the page is complete."
+}

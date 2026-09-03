@@ -1,0 +1,207 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_diborane_preparations_and_co",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write any two methods of preparation of diborane. How does it react with carbon monoxide?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Method 1",
+      "marks": 2
+    },
+    {
+      "label": "Method 2",
+      "marks": 2
+    },
+    {
+      "label": "Why the reaction happens",
+      "marks": 1
+    },
+    {
+      "label": "Reaction with carbon monoxide",
+      "marks": 2
+    },
+    {
+      "label": "The product",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.103, chapter 8 p-BLOCK ELEMENTS : GROUP 13, LONG ANSWER QUESTIONS question 29(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This card answers the carbon monoxide reaction; the ammonia reaction of diborane is answered on a card of its own, so a student reading either one gets the preparations in full. The first preparation is also correctly written with the double salt lithium tetrafluoroaluminate, 4BF₃ + 3LiAlH₄ → 2B₂H₆ + 3LiAlF₄; that form is named as equally acceptable in the step's reasoning line and neither form is called an error. CONDITIONS NOT ASSERTED: the prescribed book prints 1000 °C and 2 atmospheres for the carbon monoxide reaction. Diborane decomposes well below 1000 °C, so it could not survive to react there, and standard reference works give roughly 100 °C and about 20 atmospheres for borane carbonyl — the printed pair reads like a shifted digit. This card therefore states only that the reaction needs heating under pressure, which is true on either reading, and leaves the exact figures to a Telangana IPE teacher."
+  },
+  "insider_note": "Two things are asked, so two things have to be on the page: both preparation equations and then the carbon monoxide reaction with its conditions and the product name borane carbonyl, which are the easiest parts to leave out when writing quickly.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "p-Block Elements: Group 13 · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method_lialh4",
+        "kind": "equation",
+        "label": "Method 1 — boron trifluoride route",
+        "marks": 2,
+        "mark_note": "Method 1",
+        "lines": [
+          "Diborane is B₂H₆.",
+          "Method 1 — reduction of boron trifluoride.",
+          "Boron trifluoride is treated with lithium",
+          "aluminium hydride in dry ether:",
+          {
+            "text": "4BF₃ + 3LiAlH₄ → 2B₂H₆ + 3LiF + 3AlF₃",
+            "style": "eq"
+          },
+          "The by-products are lithium fluoride and",
+          "aluminium fluoride."
+        ],
+        "why": "Lithium aluminium hydride supplies hydride to boron, so the fluorine on boron is replaced by hydrogen and the BH₃ units that form pair up at once as B₂H₆. The fluorine leaves with the lithium and the aluminium, which is why the by-products are fluorides. This preparation is also correctly written with the double salt lithium tetrafluoroaluminate, 4BF₃ + 3LiAlH₄ → 2B₂H₆ + 3LiAlF₄; both forms are correct.",
+        "common_mistakes": [
+          "Copying the by-products from the boron trichloride method. That method is also correct, but with BCl₃ the by-products are AlCl₃ and LiCl; with BF₃ they are AlF₃ and LiF. The boron trichloride method is also correctly written with the double salt lithium tetrachloroaluminate, 4BCl₃ + 3LiAlH₄ → 2B₂H₆ + 3LiAlCl₄; both forms are correct.",
+          "Dropping the coefficients. Four BF₃ and three LiAlH₄ give two B₂H₆.",
+          "Leaving out the solvent. The reaction is carried out in dry ether."
+        ],
+        "memory_tip": "Fluoride in, fluoride out: BF₃ goes in with the hydride, and the fluorine leaves as LiF and AlF₃.",
+        "margin_note": "Name the reagents in words on one line, then the balanced equation on its own line, then the by-products."
+      },
+      {
+        "id": "s2_method_nabh4",
+        "kind": "equation",
+        "label": "Method 2 — sodium borohydride route",
+        "marks": 2,
+        "mark_note": "Method 2",
+        "lines": [
+          "Method 2 — oxidation of sodium borohydride.",
+          "Sodium borohydride is oxidised by iodine:",
+          {
+            "text": "2NaBH₄ + I₂ → B₂H₆ + 2NaI + H₂",
+            "style": "eq"
+          },
+          "The by-products are sodium iodide and",
+          "hydrogen gas.",
+          "This is the usual laboratory method."
+        ],
+        "why": "Iodine takes electrons from the hydride ions of sodium borohydride, so iodine becomes iodide and some hydride is released as hydrogen gas. What is left of the two BH₄⁻ units joins as one B₂H₆ molecule.",
+        "common_mistakes": [
+          "Writing NaBH₄ + I₂ without the 2 in front of NaBH₄. Two NaBH₄ are needed for one B₂H₆.",
+          "Leaving out the H₂ on the right. Without it the equation does not balance for hydrogen."
+        ],
+        "memory_tip": "Two borohydrides plus one iodine: the boron pairs up as B₂H₆, the sodium leaves as NaI, and one H₂ comes off.",
+        "margin_note": "Check this equation for hydrogen before moving on: eight hydrogen atoms on the left, six in B₂H₆ and two in H₂ on the right."
+      },
+      {
+        "id": "s3_why_co",
+        "kind": "text",
+        "label": "Why diborane reacts with CO",
+        "marks": 1,
+        "mark_note": "Why the reaction happens",
+        "lines": [
+          "Diborane is electron deficient.",
+          "In a BH₃ unit the boron atom has only six",
+          "electrons in its valence shell, two short",
+          "of an octet, so it can accept a lone pair",
+          "of electrons. Boron is therefore a Lewis",
+          "acid.",
+          "The carbon atom of carbon monoxide, C≡O,",
+          "carries a lone pair, so carbon monoxide is",
+          "a Lewis base and can donate that pair."
+        ],
+        "why": "The reaction is a Lewis acid and Lewis base combination. Naming which species is short of electrons and which one supplies them makes the product predictable instead of memorised.",
+        "common_mistakes": [
+          "Saying the oxygen atom of carbon monoxide donates the pair. The lone pair used here is on the carbon atom, so the bond formed is C→B.",
+          "Calling diborane a Lewis base. Diborane is short of electrons, so it is the acceptor."
+        ],
+        "memory_tip": "Short of electrons accepts, rich in electrons donates. Boron is short; the carbon of CO is the one with a spare pair.",
+        "margin_note": "One sentence on boron's six electrons and one on the lone pair of carbon monoxide are enough to set up the equation."
+      },
+      {
+        "id": "s4_co_reaction",
+        "kind": "equation",
+        "label": "Reaction with carbon monoxide",
+        "marks": 2,
+        "mark_note": "Reaction with carbon monoxide",
+        "lines": [
+          "Reaction with carbon monoxide:",
+          "On heating under pressure, diborane",
+          "reacts with carbon monoxide:",
+          {
+            "text": "B₂H₆ + 2CO → 2BH₃·CO",
+            "style": "eq"
+          },
+          "The B₂H₆ molecule splits into two BH₃",
+          "units, and each BH₃ unit takes on one",
+          "molecule of carbon monoxide."
+        ],
+        "why": "Diborane behaves here as two BH₃ units, which is why two molecules of carbon monoxide are used and two molecules of product are formed. The conditions are part of the answer because the reaction is carried out hot and under pressure.",
+        "common_mistakes": [
+          "Writing B₂H₆ + CO → BH₃·CO. Two CO molecules are needed and two product molecules are formed.",
+          "Leaving out the conditions. Write that the reaction needs heating under pressure beside the equation."
+        ],
+        "memory_tip": "One diborane splits into two BH₃, so it takes two CO and gives two BH₃·CO.",
+        "margin_note": "Write the conditions this answer gives — heated, under pressure — beside the arrow, on the line just before it, not at the end of the answer."
+      },
+      {
+        "id": "s5_product",
+        "kind": "text",
+        "label": "The product — borane carbonyl",
+        "marks": 1,
+        "mark_note": "The product",
+        "lines": [
+          "The product BH₃·CO is called borane",
+          "carbonyl.",
+          "It is an addition compound, also called an",
+          "adduct.",
+          "The bond joining carbon to boron is a",
+          "coordinate bond, also called a dative",
+          "bond: both electrons of that bond come",
+          "from the carbon atom.",
+          "In BH₃·CO the boron atom now has eight",
+          "electrons in its valence shell and is",
+          "sp³ hybridised."
+        ],
+        "why": "The product is worth naming and describing because the whole point of the reaction is that boron completes its octet. Once the lone pair of carbon monoxide arrives, boron has four bonds and eight electrons.",
+        "common_mistakes": [
+          "Calling BH₃·CO a mixture. It is a single addition compound held by a coordinate bond.",
+          "Saying boron still has six electrons after the reaction. It has eight once carbon monoxide donates its pair."
+        ],
+        "memory_tip": "Borane carbonyl: borane BH₃ plus the carbonyl CO, joined by a bond whose pair came entirely from carbon.",
+        "margin_note": "Give the name borane carbonyl in words as well as the formula, and say the C–B bond is coordinate."
+      },
+      {
+        "id": "s6_summary",
+        "kind": "boxed_final",
+        "label": "The reaction in one line",
+        "marks": 0,
+        "lines": [
+          "The carbon monoxide reaction in one line:",
+          {
+            "text": "B₂H₆ + 2CO → 2BH₃·CO",
+            "style": "boxed"
+          },
+          "Conditions: heating under pressure.",
+          "Product: borane carbonyl, BH₃·CO."
+        ],
+        "why": "The single boxed equation with its conditions written under it is the form an examiner can read at a glance, and it is also the form to write first if time runs short.",
+        "common_mistakes": [
+          "Boxing the equation but leaving the conditions off the page entirely."
+        ],
+        "memory_tip": "One equation, one condition, one name: B₂H₆ + 2CO → 2BH₃·CO on heating under pressure, giving borane carbonyl.",
+        "margin_note": "Unmarked closing step. It repeats the equation deliberately, so the answer ends on the line the question asked for."
+      }
+    ]
+  }
+}

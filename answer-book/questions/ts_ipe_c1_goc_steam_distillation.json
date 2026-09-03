@@ -1,0 +1,246 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_steam_distillation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write a note on steam distillation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it is used for and the conditions",
+      "marks": 1
+    },
+    {
+      "label": "The principle",
+      "marks": 2
+    },
+    {
+      "label": "The apparatus",
+      "marks": 1
+    },
+    {
+      "label": "The procedure",
+      "marks": 2
+    },
+    {
+      "label": "A worked example",
+      "marks": 1
+    },
+    {
+      "label": "Separating the distillate, and uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.123, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 39(d). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. APPARATUS IN WORDS, NOT A FIGURE: the steam can with its safety tube, the delivery tube reaching almost to the bottom of the slanted flask, the water condenser and the receiver are described precisely enough to be drawn from the words. THE PRINCIPLE IS STATED IN FULL: two immiscible liquids do not lower each other's vapour pressure, so the vapour pressure over the mixture is the SUM of the two separate vapour pressures and the mixture boils below 100 °C. That addition is what explains why a liquid boiling at 184 °C comes over below the boiling point of water, and without it the method has no explanation. NO TEMPERATURE IS QUOTED for the aniline and water mixture: the answer states only that it distils below 100 °C, which is what the addition of vapour pressures guarantees. The boiling point of aniline is given as 457 K, that is 184 °C, from the settled list for this chapter."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_use_and_conditions",
+        "kind": "text",
+        "label": "What it is used for and the conditions",
+        "marks": 1,
+        "mark_note": "Immiscible, steam-volatile, stable",
+        "lines": [
+          "Steam distillation purifies a liquid by",
+          "passing steam through it, so that the",
+          "liquid distils over along with the",
+          "steam.",
+          "It is used for a liquid whose own",
+          "boiling point is above 100 °C and which",
+          "is present with a non-volatile",
+          "impurity.",
+          "Three conditions must be met.",
+          "The liquid must be immiscible with",
+          "water.",
+          "It must be steam-volatile, that is, it",
+          "must have an appreciable vapour pressure",
+          "at about 100 °C.",
+          "It must not react with water or",
+          "decompose in it."
+        ],
+        "why": "The three conditions are exactly what the principle needs. Immiscibility is what lets the two vapour pressures be added; an appreciable vapour pressure at about 100 °C is what makes the quantity carried over worth having; and stability in water is what keeps the compound unchanged while steam passes through it for an hour.",
+        "common_mistakes": [
+          "Saying the liquid must be soluble in water. It must be immiscible with water, or the vapour pressures could not be added.",
+          "Leaving out the non-volatile impurity. A volatile impurity that is also steam-volatile would come over with the compound."
+        ],
+        "memory_tip": "Immiscible with water, steam-volatile, and unchanged by water: those three, and a non-volatile impurity.",
+        "margin_note": "List the conditions as separate lines. They are the part of this answer that is easiest to write and easiest to forget."
+      },
+      {
+        "id": "s2_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 2,
+        "mark_note": "Vapour pressures add, so it boils below 100 °C",
+        "lines": [
+          "Two immiscible liquids do not lower each",
+          "other's vapour pressure, because neither",
+          "one dissolves in the other.",
+          "Each of them exerts its full vapour",
+          "pressure as though the other were not",
+          "there.",
+          "The vapour pressure over the mixture is",
+          "therefore the SUM of the vapour pressure",
+          "of water and the vapour pressure of the",
+          "organic liquid.",
+          "That sum becomes equal to atmospheric",
+          "pressure at a temperature below 100 °C,",
+          "because water alone needs the whole of",
+          "100 °C to reach it.",
+          "So the mixture boils below 100 °C, far",
+          "below the boiling point of the organic",
+          "liquid, and both pass over together."
+        ],
+        "why": "The word SUM is the reason the method works. Because the two pressures add, the pair reaches atmospheric pressure sooner than either one would alone, and a liquid boiling at 184 °C is carried over at under 100 °C without ever being heated to a temperature that would harm it.",
+        "common_mistakes": [
+          "Saying the steam dissolves the compound and carries it away. Nothing dissolves; the two vapour pressures simply add.",
+          "Saying the mixture boils at 100 °C. It boils BELOW 100 °C, because the organic liquid supplies part of the pressure."
+        ],
+        "memory_tip": "Two immiscible liquids add their vapour pressures, so together they boil below the lower of the two boiling points.",
+        "margin_note": "Two marks here, so write both parts: the pressures add because the liquids are immiscible, and the sum reaches atmospheric pressure below 100 °C."
+      },
+      {
+        "id": "s3_apparatus",
+        "kind": "text",
+        "label": "The apparatus",
+        "marks": 1,
+        "mark_note": "Steam can, slanted flask, condenser",
+        "lines": [
+          "Steam is raised in a separate metal can",
+          "fitted with a safety tube.",
+          "Its delivery tube passes into a",
+          "round-bottomed flask that contains the",
+          "impure liquid, and reaches almost to the",
+          "bottom, so that the steam bubbles up",
+          "through the whole of the liquid.",
+          "The flask is clamped at a slant, so that",
+          "no liquid is thrown up into the side arm",
+          "by the bubbling.",
+          "The side arm leads to a water condenser",
+          "and then to a receiver."
+        ],
+        "why": "Two details in this apparatus exist for the same reason: the bubbling is vigorous. The delivery tube goes to the bottom so that every part of the liquid meets steam, and the flask is slanted so that the splashing cannot carry impure liquid straight into the side arm.",
+        "common_mistakes": [
+          "Boiling the water in the same flask as the compound. The steam is raised separately and passed in.",
+          "Leaving out the safety tube on the steam can. It relieves the pressure if the delivery tube becomes blocked."
+        ],
+        "memory_tip": "Steam raised in one vessel, bubbled to the bottom of a slanted flask in the other, then condensed.",
+        "margin_note": "Describe the steam can, the slanted flask and the condenser in words, and say why the flask is slanted."
+      },
+      {
+        "id": "s4_procedure",
+        "kind": "text",
+        "label": "The procedure",
+        "marks": 2,
+        "mark_note": "Steam passed in, two layers collected",
+        "lines": [
+          "The flask is warmed gently, so that the",
+          "steam does not condense inside it and",
+          "fill it with water.",
+          "Steam is then passed in continuously.",
+          "The steam heats the mixture, and at the",
+          "temperature at which the two vapour",
+          "pressures together reach atmospheric",
+          "pressure the mixture begins to distil.",
+          "The mixed vapour passes into the",
+          "condenser, and the distillate collects",
+          "in the receiver as two layers, because",
+          "the two liquids do not mix.",
+          "The steam is kept passing until no more",
+          "oily drops come over, which shows that",
+          "the compound is exhausted.",
+          "The non-volatile impurity does not",
+          "distil and is left in the flask."
+        ],
+        "why": "The flask is warmed for a practical reason. If it stays cold the incoming steam condenses in it instead of boiling the mixture, the flask fills with water and the distillation never starts, so the gentle heating is part of the method and not an optional extra.",
+        "common_mistakes": [
+          "Stopping the steam as soon as distillate appears. It is passed until no more oily drops come over.",
+          "Expecting one clear liquid in the receiver. The distillate is two layers, since the compound and the water are immiscible."
+        ],
+        "memory_tip": "Warm the flask, pass steam until the oily drops stop, and collect a distillate of two layers.",
+        "margin_note": "Two marks here, so give the passing of steam AND the two-layer distillate with the residue left behind."
+      },
+      {
+        "id": "s5_worked_example",
+        "kind": "text",
+        "label": "A worked example",
+        "marks": 1,
+        "mark_note": "Aniline, with its boiling point",
+        "lines": [
+          "Aniline is purified by steam",
+          "distillation.",
+          "Aniline boils at 457 K, that is 184 °C,",
+          "and it is immiscible with water and",
+          "steam-volatile, so it meets the",
+          "conditions.",
+          "With steam it distils over below 100 °C",
+          "instead, which is more than 80 °C below",
+          "its own boiling point.",
+          "The distillate separates into an aniline",
+          "layer and a water layer.",
+          "Nitrobenzene is purified in the same",
+          "way."
+        ],
+        "why": "Aniline is the standard example because the saving in temperature is so large. Its own boiling point is 457 K, yet with steam it comes over below 373 K, and that difference of more than eighty degrees is the whole reason the method is worth setting up.",
+        "common_mistakes": [
+          "Saying aniline distils at 457 K in this method. It distils below 100 °C; the 457 K is its boiling point on its own.",
+          "Naming a water-soluble compound as the example. The compound must be immiscible with water."
+        ],
+        "memory_tip": "Aniline boils at 457 K alone but comes over below 100 °C with steam.",
+        "margin_note": "Give the boiling point of the compound and the temperature it actually distils at. The contrast is the point of the example."
+      },
+      {
+        "id": "s6_separating_and_uses",
+        "kind": "boxed_final",
+        "label": "Separating the distillate, and uses",
+        "marks": 1,
+        "mark_note": "Separating funnel and uses",
+        "lines": [
+          "The distillate is poured into a",
+          "separating funnel and the two layers are",
+          "run off separately.",
+          "Immiscible does not mean completely",
+          "insoluble: a small quantity of the",
+          "compound is always dissolved in the",
+          "water layer, and it is recovered by",
+          "shaking that layer with a solvent.",
+          "The method is used for essential oils",
+          "such as oil of turpentine, and for",
+          "aniline and nitrobenzene.",
+          {
+            "text": "The mixture distils below 100 °C",
+            "style": "boxed"
+          }
+        ],
+        "why": "The distillation is only part of the work. Two immiscible liquids arrive together in the receiver, so a separating funnel is still needed at the end, and a little of the compound is always dissolved in the water and is worth recovering.",
+        "common_mistakes": [
+          "Calling the distillate the pure compound. It is two layers and still has to be separated.",
+          "Discarding the water layer at once. A small quantity of the compound is dissolved in it."
+        ],
+        "memory_tip": "Two layers in the receiver, so finish the job in a separating funnel.",
+        "margin_note": "One closing line naming the temperature the mixture distils at completes the answer."
+      }
+    ]
+  },
+  "insider_note": "One sentence decides this answer: two immiscible liquids do not lower each other's vapour pressure, so the pressures ADD and the mixture boils below 100 °C. Write that, then the three conditions, then aniline at 457 K coming over below 100 °C. Remember that the distillate arrives as two layers and still needs a separating funnel."
+}

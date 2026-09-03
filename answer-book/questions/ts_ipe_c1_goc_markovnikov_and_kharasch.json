@@ -1,0 +1,222 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_markovnikov_and_kharasch",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Discuss Markownikoff's rule and the Kharasch effect.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Markovnikov's rule stated",
+      "marks": 2
+    },
+    {
+      "label": "The example: propene with HBr",
+      "marks": 2
+    },
+    {
+      "label": "Why the rule works",
+      "marks": 1
+    },
+    {
+      "label": "The Kharasch effect",
+      "marks": 2
+    },
+    {
+      "label": "Where the peroxide effect stops",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.123, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 46. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Both equations were counted atom by atom: CH₃–CH=CH₂ + HBr → CH₃–CHBr–CH₃ and CH₃CH=CH₂ + HBr → CH₃CH₂CH₂Br each give C 3 = 3, H 7 = 7, Br 1 = 1; the two products are isomers, and it is the peroxide that settles which of them is formed. THE NAME IS SPELT SEVERAL WAYS and none of the spellings is treated as an error: the question prints Markownikoff, and Markovnikov and Markownikoff are both in ordinary use for the same Russian chemist. The card writes Markovnikov throughout and states the rule in the same words used wherever it appears in this chapter: the NEGATIVE part of the reagent goes to the double-bonded carbon atom carrying the FEWER hydrogen atoms. The Kharasch effect is stated as the reverse of that for HBr ONLY, by a free-radical mechanism instead of an ionic one."
+  },
+  "insider_note": "One rule and its reversal. Markovnikov: the negative part goes to the carbon with fewer hydrogen atoms. Kharasch: with a peroxide present, HBr goes the other way — and HBr only.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_rule_stated",
+        "kind": "text",
+        "label": "Markovnikov's rule stated",
+        "marks": 2,
+        "mark_note": "The rule",
+        "lines": [
+          "Markovnikov's rule applies when an",
+          "unsymmetrical reagent adds to an",
+          "unsymmetrical alkene.",
+          "The negative part of the reagent goes to",
+          "the double-bonded carbon atom that",
+          "carries the fewer hydrogen atoms.",
+          "The positive part goes to the other",
+          "double-bonded carbon atom, the one with",
+          "more hydrogen atoms.",
+          "An alkene is unsymmetrical when the two",
+          "carbon atoms of the double bond carry",
+          "different numbers of hydrogen atoms."
+        ],
+        "why": "Both halves of the rule carry a condition. The alkene has to be unsymmetrical, because with ethylene or but-2-ene the two ends are alike and there is nothing to settle. The reagent has to be unsymmetrical too, because Br₂ has no positive and negative parts to be placed.",
+        "common_mistakes": [
+          "Writing that the negative part goes to the carbon atom with more hydrogen atoms. It goes to the one with fewer.",
+          "Applying the rule to ethylene. Both carbon atoms of ethylene carry two hydrogen atoms, so the rule has nothing to settle."
+        ],
+        "memory_tip": "The negative part goes where the hydrogen atoms are fewer.",
+        "margin_note": "State the two conditions before the rule itself."
+      },
+      {
+        "id": "s2_example",
+        "kind": "equation",
+        "label": "The example: propene with HBr",
+        "marks": 2,
+        "mark_note": "The example",
+        "lines": [
+          "Propene with hydrogen bromide:",
+          {
+            "text": "CH₃–CH=CH₂ + HBr → CH₃–CHBr–CH₃",
+            "style": "eq"
+          },
+          "The middle carbon of the double bond",
+          "carries one hydrogen atom and the end",
+          "carbon carries two.",
+          "So the bromine goes to the middle carbon",
+          "and the hydrogen to the end carbon.",
+          "The product is 2-bromopropane.",
+          "1-bromopropane is the product the rule",
+          "rules out here; it is formed only when a",
+          "peroxide is present, as in step 4."
+        ],
+        "why": "Counting the hydrogen atoms on the two double-bonded carbon atoms is the whole of the working: one on the middle carbon, two on the end carbon, so the bromine goes to the middle one. Writing the name of the product as well as its formula shows that the count has been carried through.",
+        "common_mistakes": [
+          "Writing 1-bromopropane. With no peroxide present the bromine goes to the middle carbon atom.",
+          "Counting the hydrogen atoms of the CH₃ group. Only the two carbon atoms of the double bond are counted."
+        ],
+        "memory_tip": "Propene and HBr give 2-bromopropane.",
+        "margin_note": "Write the hydrogen count above both double-bonded carbon atoms."
+      },
+      {
+        "id": "s3_why_the_rule_holds",
+        "kind": "text",
+        "label": "Why the rule works",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          "The addition is ionic and runs in two",
+          "stages.",
+          "H⁺ adds first. Adding it to the end",
+          "carbon leaves the positive charge on the",
+          "middle carbon, giving the secondary ion",
+          "CH₃–CH⁺–CH₃.",
+          "Adding it to the middle carbon would",
+          "leave the primary ion CH₃–CH₂–CH₂⁺.",
+          "A secondary carbocation is more stable",
+          "than a primary one, so the first route",
+          "is the one taken.",
+          "Br⁻ then joins the positive carbon."
+        ],
+        "why": "The rule states what is observed; the stability of the carbocation is the reason behind it. Alkyl groups are +I and release electrons towards the positive carbon atom, so the more alkyl groups on it the more stable the ion — which is why the secondary ion is formed in preference to the primary one.",
+        "common_mistakes": [
+          "Writing that Br⁻ adds first. The proton adds first, and the bromide ion joins the carbocation afterwards.",
+          "Writing that the primary carbocation is the more stable. More alkyl groups on the positive carbon atom means more stability, so the secondary one is."
+        ],
+        "memory_tip": "The proton adds where it leaves the more stable carbocation.",
+        "margin_note": "Write both carbocations and say which of them is more stable."
+      },
+      {
+        "id": "s4_kharasch",
+        "kind": "equation",
+        "label": "The Kharasch effect",
+        "marks": 2,
+        "mark_note": "The peroxide effect",
+        "lines": [
+          "The Kharasch effect is also called the",
+          "peroxide effect.",
+          "When an organic peroxide such as benzoyl",
+          "peroxide is present, HBr adds the other",
+          "way round:",
+          {
+            "text": "CH₃CH=CH₂ + HBr → CH₃CH₂CH₂Br (peroxide)",
+            "style": "eq"
+          },
+          "The bromine goes to the carbon atom",
+          "carrying more hydrogen atoms.",
+          "The product is 1-bromopropane. This is",
+          "anti-Markovnikov addition."
+        ],
+        "why": "The peroxide changes the mechanism, and the change of mechanism is what reverses the product. A peroxide breaks up into free radicals easily; those radicals take a hydrogen atom from HBr and set a bromine atom free, and it is a bromine atom, not a bromide ion, that joins the double bond first.",
+        "common_mistakes": [
+          "Writing 2-bromopropane as the product. With a peroxide present the bromine goes to the end carbon atom.",
+          "Writing that the peroxide is used up as a reagent. A small amount is enough, because it only starts the chain."
+        ],
+        "memory_tip": "Peroxide present: the bromine goes to the carbon with more hydrogen atoms.",
+        "margin_note": "Write the peroxide beside the equation. Without it the product is the other one."
+      },
+      {
+        "id": "s5_limits",
+        "kind": "text",
+        "label": "Where the peroxide effect stops",
+        "marks": 1,
+        "mark_note": "The limit",
+        "lines": [
+          "The peroxide effect is shown by HBr",
+          "only. HCl and HI do not show it.",
+          "The H–Cl bond is too strong to be broken",
+          "by a peroxide radical, so no chlorine",
+          "atoms are formed.",
+          "Iodine atoms are formed from HI, but",
+          "they join together again instead of",
+          "adding to the double bond.",
+          "So the mechanism here is a free-radical",
+          "one, while Markovnikov addition is",
+          "ionic."
+        ],
+        "why": "The limit is the part of the question a student is most likely to miss, because someone who has learnt only the reversal will apply it to all three hydrogen halides. Only H–Br is weak enough for the peroxide radical to take its hydrogen atom, so no chlorine atoms are formed from HCl at all; and the bromine atoms that are formed add to the double bond instead of joining up again, which is what the iodine atoms do.",
+        "common_mistakes": [
+          "Applying the peroxide effect to HCl and HI. It is shown by HBr only.",
+          "Writing that the mechanism stays ionic. With a peroxide present the addition goes by free radicals."
+        ],
+        "memory_tip": "HBr only, and by free radicals.",
+        "margin_note": "Name the two hydrogen halides that do not show the effect."
+      },
+      {
+        "id": "s6_summary",
+        "kind": "boxed_final",
+        "label": "The two results side by side",
+        "marks": 0,
+        "lines": [
+          "Without a peroxide the bromine goes to",
+          "the carbon atom with fewer hydrogen",
+          "atoms.",
+          "With a peroxide it goes to the carbon",
+          "atom with more.",
+          {
+            "text": "A peroxide reverses HBr addition",
+            "style": "boxed"
+          }
+        ],
+        "why": "Putting the two results in one sentence shows that the peroxide effect is not a second rule to be learnt separately, but the same addition with its direction reversed, and that the reversal reaches one reagent only.",
+        "common_mistakes": [
+          "Closing without the word only. The reversal is limited to HBr.",
+          "Writing that Markovnikov's rule is wrong. It is correct whenever no peroxide is present."
+        ],
+        "memory_tip": "No peroxide, fewer hydrogen atoms; peroxide, more hydrogen atoms.",
+        "margin_note": "Unmarked closing step. It sets the two results side by side."
+      }
+    ]
+  }
+}

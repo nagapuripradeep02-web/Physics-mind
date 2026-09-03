@@ -1,0 +1,310 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkali_metals_common_features",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "What are the common physical and chemical features of the alkali metals?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Electronic configuration and size",
+      "marks": 1
+    },
+    {
+      "label": "Ionisation enthalpy and oxidation state",
+      "marks": 1
+    },
+    {
+      "label": "Physical properties",
+      "marks": 1
+    },
+    {
+      "label": "Flame colour and photoelectric effect",
+      "marks": 1
+    },
+    {
+      "label": "Reaction with dihydrogen and with air",
+      "marks": 2
+    },
+    {
+      "label": "Reaction with water and with halogens",
+      "marks": 1
+    },
+    {
+      "label": "Reducing nature and liquid ammonia",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.94, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 54. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SOURCE-BOOK ERROR CORRECTED HERE, recorded so no later editor restores it: the source prints the behaviour of lithium in air as the unbalanced schematic Li + air (O₂ + N₂) → Li₂O + Li₃N. This card writes the two balanced equations instead, 4Li + O₂ → 2Li₂O and 6Li + N₂ → 2Li₃N. The chemistry is otherwise as the book gives it."
+  },
+  "insider_note": "This question asks for physical AND chemical features, so an answer that lists only the properties, or only the reactions, has answered half of it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_configuration",
+        "kind": "text",
+        "label": "Electronic configuration and size",
+        "marks": 1,
+        "mark_note": "Configuration and size",
+        "lines": [
+          "The alkali metals are lithium, sodium,",
+          "potassium, rubidium, caesium and",
+          "francium.",
+          "Each has one electron in its outermost",
+          "shell, so the general configuration is",
+          "[noble gas] ns¹.",
+          "For example Li = 1s² 2s¹ and",
+          "K = 1s² 2s² 2p⁶ 3s² 3p⁶ 4s¹.",
+          "They are the largest atoms in their own",
+          "periods, and the atomic radius increases",
+          "down the group.",
+          "The ion M⁺ is smaller than the atom it",
+          "came from, because a whole shell has",
+          "been lost."
+        ],
+        "why": "Every other common feature follows from the single ns¹ electron and the large size of the atom that holds it. Starting the answer here means the low ionisation enthalpy, the +1 state and the reactivity are all traced back to one cause instead of being listed separately.",
+        "common_mistakes": [
+          "Writing the general configuration as ns². That is the alkaline earth metals; the alkali metals are ns¹.",
+          "Writing that M⁺ is larger than the atom. Losing the outermost shell makes the ion smaller."
+        ],
+        "memory_tip": "One outer electron, largest atom of its period, and the ion is smaller than the atom.",
+        "margin_note": "Open with the configuration. Every later feature in this answer is traced back to it."
+      },
+      {
+        "id": "s2_ionisation",
+        "kind": "text",
+        "label": "Ionisation enthalpy and oxidation state",
+        "marks": 1,
+        "mark_note": "Ionisation and oxidation state",
+        "lines": [
+          "The single ns¹ electron is far from the",
+          "nucleus and is well shielded, so the",
+          "ionisation enthalpy is the lowest in",
+          "each period.",
+          "It decreases down the group as the atom",
+          "grows larger.",
+          "The second ionisation enthalpy is very",
+          "high, because the second electron would",
+          "have to come from a noble gas core.",
+          "So only one electron is ever lost and",
+          "the oxidation state is +1 in every",
+          "compound.",
+          "Hydration enthalpy decreases as the ion",
+          "grows:",
+          {
+            "text": "Li⁺ > Na⁺ > K⁺ > Rb⁺ > Cs⁺",
+            "style": "eq"
+          }
+        ],
+        "why": "The two ionisation enthalpies together explain the fixed +1 state: the first is easy and the second is not, so the metal stops after one electron. The hydration order is placed here because it is the property that later reverses the reducing order in solution.",
+        "common_mistakes": [
+          "Writing that these metals show +1 and +2 states. Only +1 is shown, because the second ionisation enthalpy is very high.",
+          "Writing the hydration order the other way round. Li⁺ is the smallest ion, so it is the most strongly hydrated."
+        ],
+        "memory_tip": "First electron leaves easily, the second does not, so the state is always +1.",
+        "margin_note": "Say why the second electron does not leave. That is what fixes the oxidation state."
+      },
+      {
+        "id": "s3_physical_properties",
+        "kind": "text",
+        "label": "Physical properties",
+        "marks": 1,
+        "mark_note": "Physical properties",
+        "lines": [
+          "The metals are soft and can be cut with",
+          "a knife.",
+          "A freshly cut surface has a shining",
+          "lustre, which is lost on exposure to",
+          "air.",
+          "Their densities are low and increase",
+          "down the group, but potassium is less",
+          "dense than sodium.",
+          "Their melting and boiling points are",
+          "low, and decrease down the group.",
+          "Only one electron per atom goes into",
+          "the metallic bond, so that bond is weak."
+        ],
+        "why": "Softness, low density and low melting points all come from the same cause: a large atom giving only one electron to the metallic bond makes a weak bond. Potassium is named separately because it is the one place where the density trend does not hold.",
+        "common_mistakes": [
+          "Writing that the densities increase steadily down the whole group. Potassium is less dense than sodium.",
+          "Writing that the melting points increase down the group. They decrease, because the metallic bond gets weaker as the atom grows."
+        ],
+        "memory_tip": "Soft, light and low melting, because one electron makes a weak metallic bond.",
+        "margin_note": "Name potassium as the break in the density trend. It is the detail most often missed."
+      },
+      {
+        "id": "s4_flame_photoelectric",
+        "kind": "text",
+        "label": "Flame colour and photoelectric effect",
+        "marks": 1,
+        "mark_note": "Flame colour",
+        "lines": [
+          "The metals and their salts give",
+          "characteristic flame colours:",
+          "lithium crimson red, sodium golden",
+          "yellow, potassium pale violet,",
+          "rubidium reddish violet and caesium",
+          "blue.",
+          "The heat of the flame lifts an outer",
+          "electron to a higher energy level, and",
+          "light of a definite colour is given out",
+          "as it falls back.",
+          "All of them except lithium show the",
+          "photoelectric effect, and potassium and",
+          "caesium are used in photoelectric",
+          "cells."
+        ],
+        "why": "Both facts rest on how loosely the outer electron is held. A small amount of heat can raise it to a higher level, which gives the flame colour, and visible light can eject it altogether from all of them except lithium, whose ionisation enthalpy is the highest of the group.",
+        "common_mistakes": [
+          "Writing that potassium gives a yellow flame. Sodium is the golden yellow one; potassium is pale violet.",
+          "Writing that lithium shows the photoelectric effect. Its ionisation enthalpy is too high for visible light to eject the electron."
+        ],
+        "memory_tip": "Lithium crimson red, sodium golden yellow, potassium pale violet, rubidium reddish violet, caesium blue.",
+        "margin_note": "List all five colours. Sodium and potassium are the pair most often swapped."
+      },
+      {
+        "id": "s5_air_hydrogen",
+        "kind": "equation",
+        "label": "Reaction with dihydrogen and with air",
+        "marks": 2,
+        "mark_note": "Dihydrogen and air",
+        "lines": [
+          "With dihydrogen they give ionic",
+          "hydrides:",
+          {
+            "text": "2M + H₂ → 2MH",
+            "style": "eq"
+          },
+          "In air they tarnish at once. Lithium",
+          "gives mainly the monoxide, and it is",
+          "the only one that also combines with",
+          "the nitrogen of the air:",
+          {
+            "text": "4Li + O₂ → 2Li₂O",
+            "style": "eq"
+          },
+          {
+            "text": "6Li + N₂ → 2Li₃N",
+            "style": "eq"
+          },
+          "Sodium gives the monoxide when oxygen",
+          "is limited and the peroxide when",
+          "oxygen is in excess:",
+          {
+            "text": "4Na + O₂ → 2Na₂O",
+            "style": "eq"
+          },
+          {
+            "text": "2Na + O₂ → Na₂O₂",
+            "style": "eq"
+          },
+          "Potassium, rubidium and caesium give",
+          "superoxides in excess oxygen:",
+          {
+            "text": "M + O₂ → MO₂  (M = K, Rb, Cs)",
+            "style": "eq"
+          }
+        ],
+        "why": "The behaviour in air is the one chemical feature where the members of the group differ, which is why it carries the largest share of this card's split. The oxide, the peroxide and the superoxide ions get larger in that order, and a large anion is held stable by a large cation, which is why the product changes as the metal changes.",
+        "common_mistakes": [
+          "Writing the same oxide for all of them. Lithium gives the monoxide, sodium the peroxide in excess oxygen, and potassium, rubidium and caesium the superoxides.",
+          "Writing that every alkali metal reacts with nitrogen. Lithium is the only one that does.",
+          "Writing lithium in air as a single line such as Li + air → Li₂O + Li₃N. That line does not balance; write the two balanced equations 4Li + O₂ → 2Li₂O and 6Li + N₂ → 2Li₃N separately."
+        ],
+        "memory_tip": "Monoxide for lithium, peroxide for sodium in excess oxygen, superoxides for potassium, rubidium and caesium.",
+        "margin_note": "Group the equations by metal, not by gas. The difference between the metals is the substance of this step."
+      },
+      {
+        "id": "s6_water_halogens",
+        "kind": "equation",
+        "label": "Reaction with water and with halogens",
+        "marks": 1,
+        "mark_note": "Water and halogens",
+        "lines": [
+          "They react with water and set free",
+          "dihydrogen:",
+          {
+            "text": "2M + 2H₂O → 2M⁺ + 2OH⁻ + H₂",
+            "style": "eq"
+          },
+          "The reaction becomes more vigorous down",
+          "the group, and the solution left behind",
+          "is alkaline.",
+          "With the halogens they give ionic",
+          "halides:",
+          {
+            "text": "2M + X₂ → 2MX  (X = F, Cl, Br, I)",
+            "style": "eq"
+          },
+          "Lithium iodide is the most covalent of",
+          "these halides, because the small Li⁺",
+          "ion distorts the large iodide ion."
+        ],
+        "why": "Both reactions are the metal giving away its single electron, once to a hydrogen atom of water and once to a halogen atom. The hydroxide ions left in solution are why the water turns alkaline, and the lithium iodide remark shows where the ionic description begins to break down.",
+        "common_mistakes": [
+          "Leaving out the hydrogen gas. Water gives dihydrogen and the hydroxide.",
+          "Writing that all the halides are fully ionic. Lithium iodide has the most covalent character of them."
+        ],
+        "memory_tip": "Water gives the hydroxide and dihydrogen; a halogen gives the halide.",
+        "margin_note": "Say that the solution turns alkaline. That is what the hydroxide ions in the equation mean."
+      },
+      {
+        "id": "s7_reducing_ammonia",
+        "kind": "boxed_final",
+        "label": "Reducing nature and liquid ammonia",
+        "marks": 1,
+        "mark_note": "Reducing nature",
+        "lines": [
+          {
+            "text": "ns¹, +1 only, strong reducing agents",
+            "style": "boxed"
+          },
+          "Because they lose their single electron",
+          "readily, the alkali metals are strong",
+          "reducing agents.",
+          "In aqueous solution the order is",
+          "Li > Cs > Rb > K > Na.",
+          "Lithium is the strongest, because its",
+          "very large hydration enthalpy makes up",
+          "for its high ionisation enthalpy.",
+          "They also dissolve in liquid ammonia",
+          "and give deep blue solutions when",
+          "dilute, which conduct electricity; a",
+          "concentrated solution is copper-bronze.",
+          "The blue colour comes from the",
+          "ammoniated electron:",
+          {
+            "text": "M + (x+y)NH₃ → [M(NH₃)x]⁺ + [e(NH₃)y]⁻",
+            "style": "eq"
+          }
+        ],
+        "why": "Reducing strength in solution is not decided by the ionisation enthalpy alone: the ion formed also has to be hydrated. Lithium loses its electron least easily of the group and is still the strongest reducing agent in water, because the hydration of the very small Li⁺ ion releases so much energy.",
+        "common_mistakes": [
+          "Writing that lithium is the weakest reducing agent in solution because its ionisation enthalpy is the highest. In aqueous solution it is the strongest, because of its very large hydration enthalpy.",
+          "Writing that the liquid ammonia solution does not conduct. It conducts, and it is deep blue."
+        ],
+        "memory_tip": "Lithium comes first in water, because hydration of the small ion outweighs the ionisation enthalpy.",
+        "margin_note": "Say that the reducing order given is the one in aqueous solution. That qualification is what makes lithium first."
+      }
+    ]
+  }
+}

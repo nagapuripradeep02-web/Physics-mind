@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_combustion_of_butane",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the chemical equation for the combustion reaction of butane.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The equation",
+      "marks": 1
+    },
+    {
+      "label": "The balanced whole-number form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.113, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 9(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATIONS WERE CHECKED ATOM BY ATOM: C₄H₁₀ + 13/2 O₂ → 4CO₂ + 5H₂O has C 4 = 4, H 10 = 10 and O 13 = 8 + 5 = 13; the doubled form 2C₄H₁₀ + 13O₂ → 8CO₂ + 10H₂O has C 8 = 8, H 20 = 20 and O 26 = 16 + 10 = 26. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the doubled whole-number form, which the source does not print, and the general formula CₙH₂ₙ₊₂ quoted for the alkane."
+  },
+  "insider_note": "The oxygen count is where this one goes wrong. 4CO₂ contains eight oxygen atoms and 5H₂O contains five, thirteen in all, so the oxygen coefficient is 13/2 — or 13 if every coefficient is doubled.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "The equation",
+        "lines": [
+          "Butane is an alkane, CₙH₂ₙ₊₂, with four",
+          "carbon atoms, so it is C₄H₁₀.",
+          "In excess oxygen it burns completely to",
+          "carbon dioxide and water.",
+          {
+            "text": "C₄H₁₀ + 13/2 O₂ → 4CO₂ + 5H₂O",
+            "style": "eq"
+          },
+          "Four carbons give 4CO₂ and ten hydrogens",
+          "give 5H₂O."
+        ],
+        "why": "Complete combustion of any hydrocarbon gives carbon dioxide and water only, so the carbon count fixes the CO₂ and the hydrogen count fixes the H₂O. The oxygen coefficient then follows: 4CO₂ contains eight oxygen atoms and 5H₂O contains five, thirteen in all, which is 13/2 molecules of O₂.",
+        "common_mistakes": [
+          "Writing carbon monoxide as the product. In excess oxygen the combustion is complete and gives CO₂.",
+          "Giving butane the formula C₄H₈. Butane is saturated, so it is C₄H₁₀.",
+          "Balancing the oxygen before the carbon and hydrogen. Fix CO₂ and H₂O first."
+        ],
+        "memory_tip": "Carbons fix the CO₂, hydrogens fix the water, and the oxygen follows from both.",
+        "margin_note": "Settle the molecular formula first, then balance carbon, hydrogen and oxygen in that order."
+      },
+      {
+        "id": "s2_whole_numbers",
+        "kind": "boxed_final",
+        "label": "The whole-number form",
+        "marks": 1,
+        "mark_note": "Whole-number form",
+        "lines": [
+          {
+            "text": "2C₄H₁₀ + 13O₂ → 8CO₂ + 10H₂O",
+            "style": "boxed"
+          },
+          "Doubling every coefficient clears the",
+          "fraction 13/2.",
+          "Atoms: 8 C, 20 H and 26 O on each side.",
+          "Both forms are correct; the fraction form",
+          "is the shorter one to write."
+        ],
+        "why": "A half molecule of oxygen has no physical meaning, so the equation is usually doubled throughout to clear it. The check is the same either way: the atom counts must match on the two sides.",
+        "common_mistakes": [
+          "Doubling the oxygen alone and leaving the rest. Every coefficient must be doubled together.",
+          "Writing 13O₂ beside C₄H₁₀. With one butane molecule the oxygen coefficient is 13/2."
+        ],
+        "memory_tip": "Double everything at once to turn 13/2 O₂ into 13 O₂.",
+        "margin_note": "Give either the fraction form or the doubled form, and check the atom counts."
+      }
+    ]
+  }
+}

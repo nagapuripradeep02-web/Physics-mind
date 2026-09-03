@@ -1,0 +1,222 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_biological_fluids_na_k_mg_ca",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the significance of sodium, potassium, magnesium and calcium in biological fluids.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The four ions and where they are",
+      "marks": 1
+    },
+    {
+      "label": "Sodium ions",
+      "marks": 2
+    },
+    {
+      "label": "Potassium ions",
+      "marks": 2
+    },
+    {
+      "label": "Magnesium ions",
+      "marks": 1
+    },
+    {
+      "label": "Calcium ions",
+      "marks": 1
+    },
+    {
+      "label": "The answer in one line",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.97, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 59. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SCOPE: this is the only card in the chapter that covers all four ions together. Two shorter cards cover the same ground in halves — one on the sodium and potassium ions, one on the magnesium and calcium ions — and this card states the same roles as both of them, in the same words where the words matter: for sodium the transmission of nerve signals, the flow of water across cell membranes and the transport of sugars and amino acids into cells; for potassium the activation of enzymes, the oxidation of glucose to ATP and, with sodium, the carrying of nerve signals; for magnesium the metal ion of chlorophyll and the phosphohydrolase and phosphotransferase enzymes of ATP reactions; for calcium blood clotting, muscle contraction, neuromuscular transmission and the integrity of cell membranes. CONTENT CARRIED BEYOND THE PRINTED LISTS and to be confirmed by a teacher: that Na⁺ is found mainly outside the cells, in blood plasma and in the fluid surrounding them, while K⁺ is the most abundant cation inside the cell fluid; that Mg²⁺ is found mainly inside the cells while the Ca²⁺ of the body fluids is mainly outside them; and that most of the calcium of the body is held in bones and teeth. All are standard content and the roles below rest on the first of them."
+  },
+  "insider_note": "Four ions are named in the question, so four separate accounts are wanted — an answer that writes a long paragraph on sodium and one line on the rest has answered a quarter of the question at full length.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_the_four_ions",
+        "kind": "text",
+        "label": "The four ions and where they are",
+        "marks": 1,
+        "mark_note": "The ions and their positions",
+        "lines": [
+          "Sodium, potassium, magnesium and calcium",
+          "are present in body fluids as the ions",
+          "Na⁺, K⁺, Mg²⁺ and Ca²⁺.",
+          "Na⁺ and K⁺ are alkali metal ions and",
+          "carry one positive charge; Mg²⁺ and Ca²⁺",
+          "are alkaline earth metal ions and carry",
+          "two.",
+          "Na⁺ is found mainly outside the cells, in",
+          "the blood plasma and in the fluid that",
+          "surrounds the cells.",
+          "K⁺ is the most abundant cation inside the",
+          "cell fluid.",
+          "Mg²⁺ is found mainly inside the cells,",
+          "and Ca²⁺ mainly in the fluids outside",
+          "the cells."
+        ],
+        "why": "Sodium and potassium are on opposite sides of the cell membrane, and several of the roles written below are consequences of that difference in concentration. Stating the positions first is what makes the later roles readable rather than a list to be memorised.",
+        "common_mistakes": [
+          "Writing that both Na⁺ and K⁺ are inside the cell. Na⁺ is mainly outside the cell and K⁺ mainly inside it.",
+          "Writing the elements instead of the ions. The metals themselves are far too reactive to exist in a body fluid; they are present as ions.",
+          "Treating Na⁺ and K⁺ as interchangeable because both are alkali metal ions. They cross a cell membrane differently and do different work."
+        ],
+        "memory_tip": "Sodium stays outside the cell, potassium stays inside it.",
+        "margin_note": "Open by naming all four ions with their charges, then give each one its own account."
+      },
+      {
+        "id": "s2_sodium",
+        "kind": "text",
+        "label": "Sodium ions",
+        "marks": 2,
+        "mark_note": "Three roles of sodium",
+        "lines": [
+          "Sodium ions Na⁺ take part in:",
+          "1. the transmission of nerve signals,",
+          "2. regulating the flow of water across",
+          "    cell membranes,",
+          "3. the transport of sugars and amino",
+          "    acids into cells.",
+          "All three depend on Na⁺ being present",
+          "mainly outside the cell, so that it can",
+          "move inwards when it is needed."
+        ],
+        "why": "Three separate roles are named for sodium and each is a different kind of work: a signal, a movement of water and the carrying of food molecules into the cell. All three use the same difference in concentration across the membrane, so one position statement explains all of them.",
+        "common_mistakes": [
+          "Giving only nerve signals. Sodium also controls the flow of water and carries sugars and amino acids into cells.",
+          "Writing that Na⁺ carries oxygen. Oxygen is carried by haemoglobin, not by sodium ions."
+        ],
+        "memory_tip": "Sodium does three things: signal, water flow, transport into the cell.",
+        "margin_note": "Number the three roles of sodium so each one can be read separately."
+      },
+      {
+        "id": "s3_potassium",
+        "kind": "text",
+        "label": "Potassium ions",
+        "marks": 2,
+        "mark_note": "The roles of potassium",
+        "lines": [
+          "Potassium ions K⁺ take part in:",
+          "1. activating many enzymes,",
+          "2. the oxidation of glucose to produce",
+          "    ATP, adenosine triphosphate, which",
+          "    the cell uses as its energy store,",
+          "3. the transmission of nerve signals,",
+          "    together with Na⁺.",
+          "A nerve signal passes because Na⁺ and K⁺",
+          "move across the membrane in opposite",
+          "directions, and the difference in their",
+          "concentrations is then restored."
+        ],
+        "why": "Potassium works inside the cell, which is where the enzymes act and where glucose is oxidised, so its first two roles follow from its position. The third role is shared with sodium, and naming it here is what ties the two alkali metal ions together instead of leaving them as separate lists.",
+        "common_mistakes": [
+          "Writing that K⁺ builds bone. Bone is built from calcium salts; potassium ions activate enzymes and help produce ATP.",
+          "Stopping at the words oxidation of glucose. Say what the oxidation produces, which is ATP.",
+          "Giving nerve signals to sodium alone. Both Na⁺ and K⁺ take part in carrying a nerve signal."
+        ],
+        "memory_tip": "Potassium works inside the cell: it starts enzymes and helps make ATP, and it shares the nerve signal with sodium.",
+        "margin_note": "Name ATP in full at least once. The oxidation point is incomplete without the product."
+      },
+      {
+        "id": "s4_magnesium",
+        "kind": "text",
+        "label": "Magnesium ions",
+        "marks": 1,
+        "mark_note": "The roles of magnesium",
+        "lines": [
+          "Mg²⁺ is the metal ion at the centre of",
+          "chlorophyll, the green pigment of plants",
+          "that absorbs light, so photosynthesis",
+          "depends on it.",
+          "Enzymes of the phosphohydrolase and",
+          "phosphotransferase groups use Mg²⁺ in",
+          "the reactions of ATP."
+        ],
+        "why": "Magnesium appears in two places that can be named quickly: the chlorophyll molecule, and the enzymes that move phosphate groups in the reactions of ATP. The first is the plant role and the second is the animal role, so the pair covers both.",
+        "common_mistakes": [
+          "Writing that calcium is present in chlorophyll. The ion held in chlorophyll is Mg²⁺.",
+          "Naming chlorophyll alone. The enzyme role in ATP reactions is the other half."
+        ],
+        "memory_tip": "Magnesium is the metal ion of chlorophyll and works with the ATP enzymes: green plants and energy.",
+        "margin_note": "Name chlorophyll and one enzyme role for magnesium; two named roles are enough."
+      },
+      {
+        "id": "s5_calcium",
+        "kind": "text",
+        "label": "Calcium ions",
+        "marks": 1,
+        "mark_note": "The roles of calcium",
+        "lines": [
+          "Ca²⁺ is needed for the clotting of blood",
+          "and for the contraction of muscles.",
+          "It is also needed for transmission at",
+          "the junction between a nerve and a",
+          "muscle, which is neuromuscular",
+          "transmission.",
+          "It keeps cell membranes intact, and most",
+          "of the calcium in the body is held in",
+          "the bones and teeth."
+        ],
+        "why": "Calcium ions are the ions of the body fluids that act on tissue: they are required for the clotting reaction, for muscle contraction, for passing a signal from a nerve to a muscle, and for keeping the cell membrane intact.",
+        "common_mistakes": [
+          "Writing only that calcium is present in bones and teeth. The question asks about the ion in biological fluids, so the clotting and muscle roles are needed.",
+          "Swapping the two alkaline earth ions and giving chlorophyll to calcium."
+        ],
+        "memory_tip": "Calcium: clotting, contraction, the nerve-to-muscle signal, and cell membranes.",
+        "margin_note": "Three or four named roles for calcium complete this step."
+      },
+      {
+        "id": "s6_conclusion",
+        "kind": "boxed_final",
+        "label": "The answer in one line",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "Na⁺ K⁺ Mg²⁺ Ca²⁺ are all essential ions",
+            "style": "boxed"
+          },
+          "Each of the four does work that no other",
+          "ion does: Na⁺ and K⁺ carry nerve signals",
+          "and control what enters the cell, Mg²⁺",
+          "is at the centre of chlorophyll and",
+          "works with the ATP enzymes, and Ca²⁺ is",
+          "needed for clotting, for muscle and for",
+          "the cell membrane.",
+          "None of the four can be replaced by",
+          "another."
+        ],
+        "why": "The question asks for the significance of all four, so the answer closes by saying what makes each one necessary rather than simply repeating the lists. Stating that none of them can be replaced is the point the four accounts together are evidence for.",
+        "common_mistakes": [
+          "Ending after the fourth list without joining the four ions back together.",
+          "Writing that one ion can do another's work. Each of the four has roles the others do not carry out."
+        ],
+        "memory_tip": "Two alkali metal ions for signalling and transport, two alkaline earth ions for structure and control.",
+        "margin_note": "Close with one line covering all four ions, so the question is answered as it was asked."
+      }
+    ]
+  }
+}

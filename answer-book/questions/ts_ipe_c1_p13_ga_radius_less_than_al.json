@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_ga_radius_less_than_al",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain why the atomic radius of Ga is less than that of Al.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Gallium carries ten 3d electrons",
+      "marks": 1
+    },
+    {
+      "label": "Poor shielding, stronger pull",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_ten_d_electrons",
+        "kind": "text",
+        "label": "Gallium carries ten 3d electrons",
+        "marks": 1,
+        "mark_note": "Gallium carries ten 3d electrons",
+        "lines": [
+          "Aluminium is [Ne]3s²3p¹ and gallium is",
+          "[Ar]3d¹⁰4s²4p¹.",
+          "Gallium comes just after the first",
+          "transition series, so it has ten 3d",
+          "electrons between its nucleus and its",
+          "outermost shell. Aluminium has none."
+        ],
+        "why": "Gallium follows the ten transition elements, so its added electrons went into the 3d subshell. Writing the two configurations side by side shows the one difference the whole answer rests on.",
+        "common_mistakes": [
+          "Writing gallium as [Ar]4s²4p¹ and leaving out 3d¹⁰. Those ten d electrons are the reason for the answer.",
+          "Placing gallium in the same period as aluminium. Gallium is one period lower."
+        ],
+        "memory_tip": "Gallium sits after the ten transition elements, so it carries a 3d¹⁰ shell that aluminium never had.",
+        "margin_note": "Write both configurations; the explanation follows from the 3d¹⁰."
+      },
+      {
+        "id": "s2_poor_shielding",
+        "kind": "text",
+        "label": "Poor shielding, stronger pull",
+        "marks": 1,
+        "mark_note": "Poor shielding, stronger pull",
+        "lines": [
+          {
+            "text": "3d¹⁰ shields poorly, so Ga is smaller",
+            "style": "boxed"
+          },
+          "The 3d electrons are diffuse and shield",
+          "the outer electrons poorly.",
+          "So the outermost electrons of gallium",
+          "feel a greater effective nuclear charge",
+          "and are held closer to the nucleus.",
+          "The atomic radius of gallium is therefore",
+          "smaller than that of aluminium."
+        ],
+        "why": "Shielding decides how much of the nuclear charge actually reaches the valence electrons. Poor shielding by 3d¹⁰ leaves a larger effective nuclear charge, and a stronger pull gives a smaller radius, even though gallium is in a lower period.",
+        "common_mistakes": [
+          "Writing that gallium is smaller because it has fewer shells. It has more shells; the shielding is what settles the answer.",
+          "Saying the d electrons shield well. Diffuse d orbitals shield less than s and p orbitals do."
+        ],
+        "memory_tip": "Poor shielding, stronger pull, smaller atom.",
+        "margin_note": "The words poor shielding and effective nuclear charge both belong in this step."
+      }
+    ]
+  },
+  "insider_note": "The configuration on its own does not answer the question; the shielding argument is what turns 3d¹⁰ into a smaller radius."
+}

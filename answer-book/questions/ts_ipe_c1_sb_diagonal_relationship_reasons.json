@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_diagonal_relationship_reasons",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the reasons for the diagonal relationship observed in the periodic table.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The diagonal pairs",
+      "marks": 1
+    },
+    {
+      "label": "The reasons",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.85, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 1. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pairs",
+        "kind": "text",
+        "label": "The diagonal pairs",
+        "marks": 1,
+        "mark_note": "The pairs",
+        "lines": [
+          "In the second and third periods an",
+          "element resembles the element placed",
+          "diagonally below it and to the right.",
+          "This likeness is called the diagonal",
+          "relationship.",
+          "The pairs are Li and Mg, Be and Al,",
+          "and B and Si."
+        ],
+        "why": "The question asks for reasons, so the answer must first say which pairs it is about: a diagonal relationship is a property of two elements taken together, not of one element on its own.",
+        "common_mistakes": [
+          "Naming two elements of the same group. A diagonal pair lies in different groups and different periods.",
+          "Writing only the word similarity. Name at least one pair, such as Li and Mg."
+        ],
+        "memory_tip": "Move one step to the right and one step down: Li to Mg, Be to Al, B to Si.",
+        "margin_note": "Name one diagonal pair before giving the reasons."
+      },
+      {
+        "id": "s2_reasons",
+        "kind": "text",
+        "label": "The reasons",
+        "marks": 1,
+        "mark_note": "The reasons",
+        "lines": [
+          "Across a period the atomic and ionic",
+          "size falls and electronegativity rises.",
+          "Down a group the size rises and",
+          "electronegativity falls.",
+          "Along a diagonal the two changes cancel.",
+          "So a diagonal pair has a similar ionic",
+          "size, a similar charge to size ratio",
+          "(polarising power) and a similar",
+          "electronegativity, so the two elements",
+          "show similar properties."
+        ],
+        "why": "The diagonal relationship is not a separate rule. It follows from two periodic trends acting in opposite directions, which leave a diagonal pair close in ionic size, in charge to size ratio and in electronegativity. How close each of the three is varies from one pair to the next — for Be and Al the charge to size ratios are very nearly equal — so the three are written as the reasons for the likeness, not as three exact equalities.",
+        "common_mistakes": [
+          "Naming the trend without saying what it leaves similar — the size and the electronegativity of the pair.",
+          "Writing that size increases across a period. Size decreases across a period and increases down a group."
+        ],
+        "memory_tip": "A step to the right lowers the size, a step down raises it, so the diagonal step leaves size, charge to size ratio and electronegativity nearly unchanged.",
+        "margin_note": "State both trends; the cancelling is what makes the pair alike."
+      }
+    ]
+  },
+  "insider_note": "The reasons are the two opposite periodic trends and the three properties they leave nearly equal: ionic size, charge to size ratio and electronegativity."
+}

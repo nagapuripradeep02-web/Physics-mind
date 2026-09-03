@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_k_and_li_configurations",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the complete electronic configurations of K and Li.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Potassium (Z = 19)",
+      "marks": 1
+    },
+    {
+      "label": "Lithium (Z = 3)",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.85, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 2. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_potassium",
+        "kind": "equation",
+        "label": "Potassium (Z = 19)",
+        "marks": 1,
+        "mark_note": "Potassium",
+        "lines": [
+          "Potassium has atomic number 19, so it",
+          "has 19 electrons.",
+          "K (Z = 19) = 1s² 2s² 2p⁶ 3s² 3p⁶ 4s¹",
+          "The orbitals fill in order of rising",
+          "energy, so 4s fills before 3d."
+        ],
+        "why": "The configuration is built by filling orbitals in order of rising energy until all 19 electrons are placed. The 4s orbital lies below 3d in energy, so the last electron enters 4s and potassium ends with one outer s electron.",
+        "common_mistakes": [
+          "Writing 3d¹ for the last electron. The 4s orbital is lower in energy than 3d, so 4s fills first.",
+          "Stopping at 3p⁶, which is only 18 electrons. Potassium has 19."
+        ],
+        "memory_tip": "Fill up to argon, which is 18 electrons, then add the nineteenth in 4s.",
+        "margin_note": "Add the superscripts; they must total 19."
+      },
+      {
+        "id": "s2_lithium",
+        "kind": "equation",
+        "label": "Lithium (Z = 3)",
+        "marks": 1,
+        "mark_note": "Lithium",
+        "lines": [
+          "Lithium has atomic number 3, so it has",
+          "3 electrons.",
+          "Li (Z = 3) = 1s² 2s¹",
+          "Both metals end in ns¹, which is the",
+          "general configuration of the alkali",
+          "metals."
+        ],
+        "why": "Two electrons fill the 1s orbital and the third goes into 2s, so lithium also ends in a single outer s electron. That shared ns¹ ending is why lithium and potassium are placed in the same group.",
+        "common_mistakes": [
+          "Writing 1s³. An s orbital holds two electrons at most.",
+          "The shorthand [He] 2s¹ is correct chemistry, but this question asks for the complete form, so write every subshell out."
+        ],
+        "memory_tip": "Lithium is helium's pair plus one 2s electron, written out in full as 1s² 2s¹.",
+        "margin_note": "Write every subshell out; the question asks for the complete form."
+      }
+    ]
+  },
+  "insider_note": "Check each configuration by adding the superscripts: they must come to the atomic number, 19 for potassium and 3 for lithium."
+}

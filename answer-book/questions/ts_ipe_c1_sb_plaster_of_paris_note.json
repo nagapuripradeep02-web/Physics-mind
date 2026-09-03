@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_plaster_of_paris_note",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is plaster of Paris? Write a short note on it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What plaster of Paris is",
+      "marks": 1
+    },
+    {
+      "label": "How it is made",
+      "marks": 1
+    },
+    {
+      "label": "Setting and dead burnt plaster",
+      "marks": 1
+    },
+    {
+      "label": "Its uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.90, chapter 7 s-BLOCK ELEMENTS, SAQ question 43. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THE EQUATIONS WERE CHECKED ATOM BY ATOM, AS THE STRINGS ARE PRINTED. 2CaSO₄·2H₂O → 2CaSO₄·½H₂O + 3H₂O: left, 2 × (CaSO₄·2H₂O) = Ca 2, S 2, O 12, H 8; right, 2 × (CaSO₄·½H₂O) = Ca 2, S 2, O 9, H 2, plus 3H₂O = O 3, H 6, giving Ca 2, S 2, O 12, H 8. The setting equation is that reaction written backwards, 2CaSO₄·½H₂O + 3H₂O → 2CaSO₄·2H₂O, and balances for the same reason. THE EARLIER FORM 2(CaSO₄·2H₂O) → 2CaSO₄·H₂O + 3H₂O WAS REPLACED ON 2026-09-03 after two independent audits flagged it: in that string the digit 2 is a coefficient on the left but an in-formula multiplier on the right, so read the ordinary way — 2CaSO₄·H₂O as 2 × (CaSO₄·H₂O) — the right-hand side carries O 13 and H 10 and does NOT balance. The old atom count proved the intended reading, not the printed string. The form now printed balances on its own reading, with no convention the student has to supply. BOTH WAYS OF WRITING THE FORMULA ARE CORRECT and both are given on the card: CaSO₄·½H₂O and 2CaSO₄·H₂O are the same substance, calcium sulphate hemihydrate, and the card now says in words that 2CaSO₄·H₂O means one water molecule for every two units of calcium sulphate. The temperature 393 K is the figure used across every card in this chapter that mentions plaster of Paris. CARRIED AS STANDARD CONTENT, not from the source book: the expansion of about one per cent on setting, and the uses in dentistry and as a building plaster. A teacher should confirm the expansion figure before it is relied on."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What plaster of Paris is",
+        "marks": 1,
+        "mark_note": "Name and formula",
+        "lines": [
+          "Plaster of Paris is calcium sulphate",
+          "hemihydrate, CaSO₄·½H₂O.",
+          "The same substance is also written as",
+          "2CaSO₄·H₂O. Here 2CaSO₄·H₂O means one",
+          "water molecule for every two units of",
+          "calcium sulphate.",
+          "It is a white powder and it is obtained",
+          "from gypsum, CaSO₄·2H₂O."
+        ],
+        "why": "The word hemihydrate is the formula in one word: half a water molecule for each unit of calcium sulphate. Both ways of writing it are correct and both appear in textbooks, so either one names the substance properly.",
+        "common_mistakes": [
+          "Writing the formula as CaSO₄·2H₂O. That is gypsum, the starting material, not plaster of Paris.",
+          "Calling it calcium sulphate only. The half water molecule is part of the substance and part of its name."
+        ],
+        "memory_tip": "Hemi means half: half a water molecule for each CaSO₄.",
+        "margin_note": "Write the formula beside the name; the name on its own does not identify it."
+      },
+      {
+        "id": "s2_preparation",
+        "kind": "equation",
+        "label": "How it is made",
+        "marks": 1,
+        "mark_note": "Gypsum heated to 393 K",
+        "lines": [
+          "Gypsum is heated to 393 K:",
+          {
+            "text": "2CaSO₄·2H₂O → 2CaSO₄·½H₂O + 3H₂O",
+            "style": "eq"
+          },
+          "Three of the four water molecules are",
+          "driven off and the hemihydrate is left."
+        ],
+        "why": "Only part of the water of crystallisation leaves at 393 K, which is why the product is a hemihydrate and not the anhydrous salt. Counting the water across the arrow makes the equation easy to hold: four water molecules go in, three leave and one stays.",
+        "common_mistakes": [
+          "Writing the temperature as 393 °C. It is 393 K, which is about 120 °C.",
+          "Driving off all four water molecules. Only three leave; the fourth is shared between the two formula units of the product."
+        ],
+        "memory_tip": "Four waters in, three out, one left behind: that is the hemihydrate.",
+        "margin_note": "The temperature 393 K belongs with this equation, not in a separate sentence."
+      },
+      {
+        "id": "s3_setting",
+        "kind": "equation",
+        "label": "Setting and dead burnt plaster",
+        "marks": 1,
+        "mark_note": "Setting and overheating",
+        "lines": [
+          "When plaster of Paris is mixed with",
+          "water the change reverses and gypsum is",
+          "formed again:",
+          {
+            "text": "2CaSO₄·½H₂O + 3H₂O → 2CaSO₄·2H₂O",
+            "style": "eq"
+          },
+          "The mass sets to a hard solid in a few",
+          "minutes and expands slightly, by about",
+          "one per cent.",
+          "If gypsum is heated above 393 K all the",
+          "water is lost and anhydrous CaSO₄ is",
+          "formed. This is dead burnt plaster and",
+          "it no longer sets with water."
+        ],
+        "why": "Setting is the preparation run backwards, so one equation covers both changes. The small expansion is what presses the setting plaster into every part of a mould, and heating past 393 K removes that property, because the salt left has no water at all and does not take water back in the same way.",
+        "common_mistakes": [
+          "Writing that plaster of Paris sets by drying. It sets by combining with water to form gypsum again.",
+          "Treating dead burnt plaster as the same substance. It is anhydrous CaSO₄ and it does not set with water."
+        ],
+        "memory_tip": "Setting is the preparation run backwards: the hemihydrate takes the water back.",
+        "margin_note": "Name dead burnt plaster and say why it is of no use for setting."
+      },
+      {
+        "id": "s4_uses",
+        "kind": "boxed_final",
+        "label": "Its uses",
+        "marks": 1,
+        "mark_note": "Property and uses",
+        "lines": [
+          {
+            "text": "CaSO₄·½H₂O sets to gypsum with water",
+            "style": "boxed"
+          },
+          "Because it sets hard and expands a",
+          "little, it takes a sharp impression of a",
+          "mould. It is used:",
+          "1. for setting broken bones,",
+          "2. for making statues and models,",
+          "3. as a building plaster and in",
+          "    ornamental work,",
+          "4. in dentistry."
+        ],
+        "why": "Every use follows from the one property in the boxed line: a powder that sets to a hard solid when water is added. Writing the property beside the list is what turns a set of uses into an explanation.",
+        "common_mistakes": [
+          "Listing uses with no property behind them. State that it sets hard with water, then give the uses.",
+          "Giving the uses of cement instead. Plaster of Paris sets on its own with water and is a different material from cement."
+        ],
+        "memory_tip": "It sets hard with water and holds a shape: bones, statues, plaster, dentistry.",
+        "margin_note": "One property and a short numbered list of uses complete this step."
+      }
+    ]
+  },
+  "insider_note": "The formula and the temperature 393 K carry the chemistry of this answer, so write both before the list of uses."
+}

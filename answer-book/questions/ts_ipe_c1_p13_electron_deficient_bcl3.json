@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_electron_deficient_bcl3",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are electron deficient compounds? Is BCl₃ an electron deficient species? Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What an electron deficient compound is",
+      "marks": 1
+    },
+    {
+      "label": "The electron count in BCl₃",
+      "marks": 1
+    },
+    {
+      "label": "The adduct with ammonia",
+      "marks": 1
+    },
+    {
+      "label": "The answer for BCl₃",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.101, chapter 8 p-BLOCK ELEMENTS : GROUP 13, SAQ question 21. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 13 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What an electron deficient compound is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An electron deficient compound is one in",
+          "which the central atom has fewer than eight",
+          "electrons in its valence shell after",
+          "bonding.",
+          "The octet is incomplete, so the molecule",
+          "can accept a lone pair from a donor.",
+          "Such a compound acts as a Lewis acid."
+        ],
+        "why": "The whole idea rests on counting the electrons around the central atom once the bonds are drawn. If that count is below eight, an empty orbital is left on the central atom, and an empty orbital is exactly what a lone pair can be donated into.",
+        "common_mistakes": [
+          "Saying the molecule has too few electrons in total. It is the count around the central atom that decides the question.",
+          "Confusing it with an electron rich species. An electron deficient species accepts a lone pair; it does not donate one."
+        ],
+        "memory_tip": "Fewer than eight electrons around the central atom means electron deficient.",
+        "margin_note": "Write the definition in terms of the central atom's valence shell, not the whole molecule."
+      },
+      {
+        "id": "s2_count_in_bcl3",
+        "kind": "text",
+        "label": "The electron count in BCl₃",
+        "marks": 1,
+        "mark_note": "Electron count",
+        "lines": [
+          "Boron is 1s² 2s² 2p¹, so it has three",
+          "valence electrons.",
+          "It forms three single covalent bonds with",
+          "three chlorine atoms.",
+          "Boron is sp² hybridised, so BCl₃ is",
+          "trigonal planar with bond angles of 120°.",
+          "Count around boron: 3 bonds × 2 electrons",
+          "= 6 electrons, two short of an octet."
+        ],
+        "why": "Three valence electrons allow boron three bonding pairs and no more, and three pairs is six electrons. The two missing electrons leave one empty 2p orbital on boron, standing perpendicular to the plane of the molecule.",
+        "common_mistakes": [
+          "Counting the lone pairs on the chlorine atoms as part of boron's shell. Only the electrons around the central atom are counted.",
+          "Writing that boron has a complete octet in BCl₃. It has six electrons."
+        ],
+        "memory_tip": "Three bonds, six electrons, two short of eight.",
+        "margin_note": "The number 6 is the answer to this part. Write the count, not only the word deficient."
+      },
+      {
+        "id": "s3_adduct",
+        "kind": "equation",
+        "label": "The adduct with ammonia",
+        "marks": 1,
+        "mark_note": "Adduct equation",
+        "lines": [
+          "The empty 2p orbital on boron accepts a",
+          "lone pair from a donor such as ammonia:",
+          {
+            "text": "H₃N: + BCl₃ → [H₃N→BCl₃]",
+            "style": "eq"
+          },
+          "The arrow is a coordinate bond: both",
+          "electrons come from nitrogen.",
+          "Boron now has eight electrons and is sp³",
+          "hybridised in the adduct."
+        ],
+        "why": "Forming an adduct is the evidence for the deficiency. Ammonia has a lone pair to give and boron has an empty orbital to receive it, so the two combine and the octet on boron is completed by the donated pair.",
+        "common_mistakes": [
+          "Drawing the new bond without showing where the pair came from. Both electrons come from nitrogen, so mark the bond with an arrow from nitrogen to boron, H₃N→BCl₃, and the donation is visible on the page.",
+          "Writing that the new pair is contributed by both atoms. Both electrons come from nitrogen alone."
+        ],
+        "memory_tip": "Ammonia gives the pair, boron takes it, and the octet is complete.",
+        "margin_note": "One equation for the adduct is enough. Show the arrow direction from N to B."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "The answer for BCl₃",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "Yes: only six electrons on boron in BCl₃",
+            "style": "boxed"
+          },
+          "Because it accepts a lone pair, BCl₃ is",
+          "also a Lewis acid.",
+          "BF₃ and AlCl₃ are electron deficient in",
+          "the same way."
+        ],
+        "why": "The question asks a direct yes or no and then asks for the reason, so both have to appear on the page. Naming BCl₃ as a Lewis acid links the electron count to the reaction it actually undergoes.",
+        "common_mistakes": [
+          "Answering yes without giving the electron count. The count is the reason.",
+          "Calling BCl₃ a Lewis base. It accepts a pair of electrons, so it is a Lewis acid."
+        ],
+        "memory_tip": "Six electrons on boron: electron deficient, and therefore a Lewis acid.",
+        "margin_note": "Answer the yes or no part in one clear sentence at the end."
+      }
+    ]
+  },
+  "insider_note": "This question has two parts, a definition and a yes or no about BCl₃. Answer both in separate sentences, and give the electron count around boron as the reason."
+}

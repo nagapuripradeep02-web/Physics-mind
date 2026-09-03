@@ -1,0 +1,222 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_cement_note",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write a few lines about cement.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What cement is",
+      "marks": 1
+    },
+    {
+      "label": "How it is made",
+      "marks": 1
+    },
+    {
+      "label": "Its average composition",
+      "marks": 2
+    },
+    {
+      "label": "The compounds present in it",
+      "marks": 2
+    },
+    {
+      "label": "Gypsum and the setting",
+      "marks": 1
+    },
+    {
+      "label": "Its uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.97, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 60. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THE FIGURES ON THIS CARD AGREE WITH THE TWO SHORTER CARDS in this chapter that cover the same ground, one on the average composition and one on the gypsum: CaO 50-60%, SiO₂ 20-25%, Al₂O₃ 5-10%, MgO 2-3%, Fe₂O₃ 1-2%, SO₃ 1-2%; the SiO₂ : Al₂O₃ ratio between 2.5 and 4; the main compounds Ca₂SiO₄ 26%, Ca₃SiO₅ 51% and Ca₃Al₂O₆ 11%; and 2-3% of gypsum ground with the clinker, which SLOWS the setting. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the second quality ratio, lime to the sum of SiO₂, Al₂O₃ and Fe₂O₃ close to 2; the names dicalcium silicate, tricalcium silicate and tricalcium aluminate for the three compounds; and the statement that setting gives out heat. The percentages are ranges and averages, not fixed values, and the card prints them as ranges throughout. No chemical equation is printed for the setting: it is the hydration of several compounds at once and no single balanced equation describes it."
+  },
+  "insider_note": "The word cement is short but the answer is mostly numbers: six oxides with their ranges and three compounds with their percentages have to be written out, and they are the hardest part to recall under time.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What cement is",
+        "marks": 1,
+        "mark_note": "What cement is",
+        "lines": [
+          "Cement is a building material, also",
+          "called Portland cement.",
+          "It is a grey powder which, when it is",
+          "mixed with water, sets on its own into a",
+          "hard stone-like mass.",
+          "It is a mixture of the oxides of calcium,",
+          "silicon, aluminium and iron, combined",
+          "together as calcium silicates and a",
+          "calcium aluminate."
+        ],
+        "why": "Cement is not a single compound, and saying so at the start is what makes the composition list below necessary. The one property that makes it useful is that it sets hard with water on its own, without anything else being added.",
+        "common_mistakes": [
+          "Writing cement as a single compound with one formula. It is a mixture of several compounds.",
+          "Confusing cement with plaster of Paris. Both set with water, but plaster of Paris is calcium sulphate hemihydrate and cement is a mixture of silicates and an aluminate."
+        ],
+        "memory_tip": "Cement is a mixture, not a compound, and its one useful property is that it sets hard with water.",
+        "margin_note": "Say that it is a mixture in the opening line. The list of oxides that follows depends on it."
+      },
+      {
+        "id": "s2_manufacture",
+        "kind": "text",
+        "label": "How it is made",
+        "marks": 1,
+        "mark_note": "The raw materials and the burning",
+        "lines": [
+          "Cement is made by heating limestone and",
+          "clay together.",
+          "The limestone supplies the lime CaO.",
+          "The clay supplies the silica SiO₂",
+          "together with the oxides of aluminium,",
+          "iron and magnesium.",
+          "The mixture is burnt strongly in a rotary",
+          "kiln, and the hard lumps that come out",
+          "are called clinker.",
+          "The clinker is then ground to a fine",
+          "powder."
+        ],
+        "why": "Two raw materials supply everything in the list of oxides, and knowing which one supplies what makes the composition easy to hold: the lime comes from the limestone and everything else comes from the clay. The burning is what combines the oxides into the silicates and the aluminate.",
+        "common_mistakes": [
+          "Naming gypsum as a raw material burnt in the kiln. Gypsum is added later, at the grinding stage.",
+          "Writing that the oxides are simply mixed. They are burnt together, so the compounds are formed in the kiln."
+        ],
+        "memory_tip": "Limestone brings the lime, clay brings everything else, and the kiln joins them into clinker.",
+        "margin_note": "Name the two raw materials and say which oxides each one supplies."
+      },
+      {
+        "id": "s3_composition",
+        "kind": "text",
+        "label": "Its average composition",
+        "marks": 2,
+        "mark_note": "The six oxides and the ratios",
+        "lines": [
+          "The average composition of Portland",
+          "cement is:",
+          "CaO (lime): 50 – 60%",
+          "SiO₂ (silica): 20 – 25%",
+          "Al₂O₃ (alumina): 5 – 10%",
+          "MgO: 2 – 3%",
+          "Fe₂O₃: 1 – 2%",
+          "SO₃: 1 – 2%",
+          "For good cement the SiO₂ : Al₂O₃ ratio",
+          "lies between 2.5 and 4, and the ratio of",
+          "lime to the sum of SiO₂, Al₂O₃ and Fe₂O₃",
+          "is close to 2."
+        ],
+        "why": "Lime, silica and alumina together make up between three quarters and nine tenths of the cement and they are the oxides that react with water when it sets, so they are written first. The two ratios are the quality checks applied to a sample: a cement whose figures fall outside them was made from a mixture in the wrong proportions.",
+        "common_mistakes": [
+          "Writing a single figure instead of a range. The composition is an average, so each oxide is given as a range.",
+          "Writing Fe₃O₄ instead of Fe₂O₃. The oxide reported in cement is ferric oxide, Fe₂O₃.",
+          "Leaving out SO₃. It comes from the gypsum ground with the clinker and is part of the composition."
+        ],
+        "memory_tip": "Six oxides: three in large amounts, three in small ones, with lime the largest share.",
+        "margin_note": "Write the formula and the percentage range together on one line for each oxide."
+      },
+      {
+        "id": "s4_compounds",
+        "kind": "text",
+        "label": "The compounds present in it",
+        "marks": 2,
+        "mark_note": "The three main compounds",
+        "lines": [
+          "In the clinker those oxides are present",
+          "combined as three main compounds:",
+          "Ca₃SiO₅, tricalcium silicate: 51%",
+          "Ca₂SiO₄, dicalcium silicate: 26%",
+          "Ca₃Al₂O₆, tricalcium aluminate: 11%",
+          "The two silicates together make up more",
+          "than three quarters of the cement, and",
+          "they are what give it its strength."
+        ],
+        "why": "The oxide list is what went into the kiln and the compound list is what came out of it, and the two are different accounts. Setting is the reaction of these three compounds with water, so the compound list is the one the next step needs.",
+        "common_mistakes": [
+          "Writing that the oxides stay as separate oxides in the cement. They are combined as silicates and an aluminate.",
+          "Giving CaSiO₃ as a compound of cement. The silicates present are Ca₃SiO₅ and Ca₂SiO₄.",
+          "Mixing the two lists together. The percentages of the oxides and of the compounds are separate figures."
+        ],
+        "memory_tip": "Three compounds: two calcium silicates and one calcium aluminate, with the tricalcium silicate the largest.",
+        "margin_note": "Keep the compound list separate from the oxide list; they are two different accounts of the same material."
+      },
+      {
+        "id": "s5_gypsum_setting",
+        "kind": "text",
+        "label": "Gypsum and the setting",
+        "marks": 1,
+        "mark_note": "Gypsum and how cement sets",
+        "lines": [
+          "About 2 – 3% of gypsum, calcium sulphate",
+          "dihydrate CaSO₄·2H₂O, is ground together",
+          "with the clinker.",
+          "Gypsum SLOWS the setting of the cement.",
+          "Without it the paste would set too",
+          "quickly to be mixed and placed; the",
+          "slower setting lets it harden properly.",
+          "Setting is the hydration of the",
+          "silicates and the aluminate: they take",
+          "up water and grow into a hard,",
+          "interlocked mass, and heat is given out",
+          "while this happens."
+        ],
+        "why": "Cement does not set by drying; it sets by reacting with water, which is why it will harden even under water. Gypsum controls how fast that reaction starts, so the same chemistry explains both the additive and the setting.",
+        "common_mistakes": [
+          "Writing that gypsum makes the cement set faster. Its effect is the opposite; it slows the setting.",
+          "Writing that cement sets by drying out. It sets by taking up water, not by losing it.",
+          "Writing gypsum as CaSO₄·½H₂O. That formula is plaster of Paris; gypsum carries two water molecules."
+        ],
+        "memory_tip": "Gypsum slows the setting; it does not stop it. Setting is water going in, not water coming out.",
+        "margin_note": "Use the word slows for gypsum, and the word hydration for the setting."
+      },
+      {
+        "id": "s6_uses",
+        "kind": "boxed_final",
+        "label": "Its uses",
+        "marks": 1,
+        "mark_note": "The uses",
+        "lines": [
+          {
+            "text": "Cement sets by hydration, not by drying",
+            "style": "boxed"
+          },
+          "Uses of cement:",
+          "1. making concrete, which is cement with",
+          "    sand and gravel,",
+          "2. making reinforced concrete, in which",
+          "    steel rods are set inside it,",
+          "3. plastering walls and floors,",
+          "4. building bridges, dams and buildings."
+        ],
+        "why": "Every use follows from the property in the boxed line. Because cement hardens by reacting with water rather than by drying, it can be placed wet, moulded to any shape and left to set even where the air cannot reach it, which is what concrete work requires.",
+        "common_mistakes": [
+          "Listing uses with no property behind them. State that it sets hard with water, then give the uses.",
+          "Writing concrete and cement as the same thing. Concrete is cement mixed with sand and gravel."
+        ],
+        "memory_tip": "It sets hard with water, so it is used wherever a shape has to be poured and left to harden.",
+        "margin_note": "Close with the property and a short numbered list of uses."
+      }
+    ]
+  }
+}

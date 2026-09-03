@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_gypsum_added_to_cement",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why is gypsum added to cement?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What is added",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.85, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_is_added",
+        "kind": "text",
+        "label": "What is added",
+        "marks": 1,
+        "mark_note": "What is added",
+        "lines": [
+          "Gypsum is calcium sulphate dihydrate,",
+          "CaSO₄·2H₂O.",
+          "About 2 – 3% of it by weight is ground",
+          "together with the cement clinker."
+        ],
+        "why": "The answer opens with what gypsum is and how much of it goes in, because the amount is small and deliberate. Gypsum is added to the clinker at the grinding stage; it is not one of the raw materials burnt in the kiln.",
+        "common_mistakes": [
+          "Writing the half water molecule, CaSO₄·½H₂O. What is ground with the clinker is the dihydrate, with two water molecules.",
+          "Adding the gypsum before burning. It is ground with the clinker after the burning is over."
+        ],
+        "memory_tip": "Gypsum, two waters, two to three per cent, added at the grinding stage.",
+        "margin_note": "Give the formula and the percentage before giving the reason."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          "Gypsum slows down the setting of the",
+          "cement.",
+          "Without it the cement paste would set",
+          "too quickly to be mixed and placed.",
+          "The slower setting lets the cement",
+          "harden properly into a strong mass."
+        ],
+        "why": "Gypsum controls the rate at which cement reacts with water. The setting still takes place; it is delayed, and that delay is what gives time to place the cement and lets it gain its full strength.",
+        "common_mistakes": [
+          "Writing that gypsum stops the cement from setting. It slows the setting, it does not prevent it.",
+          "Writing that gypsum makes the cement set faster. Its effect is the opposite."
+        ],
+        "memory_tip": "Gypsum slows the setting; it does not stop it.",
+        "margin_note": "Use the word slows. Setting is delayed, not prevented."
+      }
+    ]
+  },
+  "insider_note": "One word carries this answer — gypsum slows the setting — and a complete answer also says why a slower set is useful."
+}

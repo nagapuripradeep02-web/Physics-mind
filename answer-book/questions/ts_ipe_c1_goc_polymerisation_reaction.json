@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_polymerisation_reaction",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a polymerisation reaction?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The example",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.114, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATION WAS CHECKED: n CH₂=CH₂ → (–CH₂–CH₂–)ₙ conserves atoms unit for unit — each repeating unit –CH₂–CH₂– is C 2 and H 4, the same as one ethylene molecule, so both sides carry 2n carbon and 4n hydrogen atoms. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the term degree of polymerisation, and the naming of –CH₂–CH₂– as the repeating unit. The polythene conditions (about 200 °C, 1500–2000 atm, a trace of oxygen) are the source's own."
+  },
+  "insider_note": "Give the definition with an example attached. Ethylene to polythene shows the monomer, the polymer and the repeating unit in a single line.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A polymerisation reaction is one in which",
+          "many small molecules join together to",
+          "form one very large molecule.",
+          "The small molecules are the monomers.",
+          "The large molecule is the polymer.",
+          "The number of monomer units joined into",
+          "one chain is the degree of",
+          "polymerisation."
+        ],
+        "why": "The definition needs three words, not one: the small molecule, the large molecule, and the joining. Naming the monomer and the polymer separately is what makes the definition usable on any example a question supplies.",
+        "common_mistakes": [
+          "Calling the small molecule the polymer. The small starting molecule is the monomer.",
+          "Saying the molecules are simply mixed. They are joined by chemical bonds into one molecule.",
+          "Leaving out the word many. One or two molecules joining is not a polymerisation."
+        ],
+        "memory_tip": "Many monomers join into one polymer; poly means many.",
+        "margin_note": "Define both words, monomer and polymer, then attach one example."
+      },
+      {
+        "id": "s2_example",
+        "kind": "boxed_final",
+        "label": "The example",
+        "marks": 1,
+        "mark_note": "Example",
+        "lines": [
+          {
+            "text": "n CH₂=CH₂ → (–CH₂–CH₂–)ₙ",
+            "style": "boxed"
+          },
+          "Ethylene is the monomer and polythene is",
+          "the polymer.",
+          "The conditions are about 200 °C and",
+          "1500–2000 atm with a trace of oxygen.",
+          "The repeating unit –CH₂–CH₂– is one",
+          "ethylene molecule with its double bond",
+          "opened."
+        ],
+        "why": "Ethylene to polythene shows the whole definition in one line: the monomer on the left, the polymer on the right, and the repeating unit visible inside the bracket. The double bond opening is what supplies the two bonds that join each unit to its neighbours.",
+        "common_mistakes": [
+          "Keeping the double bond in the product. Every double bond opens as the chain forms.",
+          "Leaving out the n. The n says that many monomer units are joined, which is the point of the definition."
+        ],
+        "memory_tip": "The double bond opens on every molecule, and the opened units link into a chain.",
+        "margin_note": "Write the n on both sides and name the monomer and the polymer."
+      }
+    ]
+  }
+}

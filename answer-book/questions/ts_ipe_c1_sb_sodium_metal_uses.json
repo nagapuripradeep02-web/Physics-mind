@@ -1,0 +1,113 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_sodium_metal_uses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Give any two uses of sodium metal.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Use one — coolant in a fast breeder reactor",
+      "marks": 2
+    },
+    {
+      "label": "Use two — making the anti-knock compound",
+      "marks": 2
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.88, chapter 7 s-BLOCK ELEMENTS, SAQ question 32(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The question asks for two uses on a four-mark question, so the split here is two marks for each of the two uses, and the further uses are carried as an unmarked closing step. Four supporting facts are carried beyond the source book's answer and a teacher should confirm them: sodium melts at about 371 K; the tetraethyl lead additive is now restricted in many places because of lead pollution; sodium is used as a reducing agent in the extraction of metals such as titanium from their chlorides; and sodium vapour is used in sodium vapour street lamps."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reactor_coolant",
+        "kind": "text",
+        "label": "Use one — coolant in a fast breeder reactor",
+        "marks": 2,
+        "mark_note": "The coolant and why sodium suits it",
+        "lines": [
+          "Liquid sodium is used as a coolant in",
+          "fast breeder nuclear reactors.",
+          "Sodium melts at about 371 K and stays",
+          "liquid over a wide range of temperature.",
+          "It also conducts heat very well, so it",
+          "carries heat away from the reactor core",
+          "quickly."
+        ],
+        "why": "A reactor coolant has to stay liquid over a wide range and move heat fast; sodium does both, and unlike water it does not slow down the fast neutrons that this kind of reactor works with.",
+        "common_mistakes": [
+          "Writing solid sodium as the coolant. It is molten sodium that is pumped round the reactor.",
+          "Naming an ordinary thermal reactor. Liquid sodium is the coolant of a fast breeder reactor."
+        ],
+        "memory_tip": "Melts low and conducts heat well, so liquid sodium cools the reactor.",
+        "margin_note": "Say the state of the sodium and the kind of reactor."
+      },
+      {
+        "id": "s2_antiknock_compound",
+        "kind": "text",
+        "label": "Use two — making the anti-knock compound",
+        "marks": 2,
+        "mark_note": "The alloy and the compound made from it",
+        "lines": [
+          "Sodium is used with lead to make a",
+          "sodium-lead alloy.",
+          "That alloy is used to make tetraethyl",
+          "lead, Pb(C₂H₅)₄.",
+          "Tetraethyl lead was added to petrol as",
+          "an anti-knock agent.",
+          "Its use is now restricted in many places",
+          "because of lead pollution."
+        ],
+        "why": "Sodium's part in this use is indirect, but it is the part the question asks for: the metal makes the alloy, the alloy makes the lead compound, and the lead compound is the petrol additive.",
+        "common_mistakes": [
+          "Writing sodium itself as the anti-knock agent. Sodium makes the alloy from which tetraethyl lead is made.",
+          "Writing the formula as Pb(CH₃)₄. Tetraethyl lead is Pb(C₂H₅)₄; Pb(CH₃)₄ is tetramethyl lead."
+        ],
+        "memory_tip": "Sodium to the alloy, the alloy to Pb(C₂H₅)₄, and that compound to the petrol.",
+        "margin_note": "Write the chain in order: sodium, then the alloy, then the lead compound."
+      },
+      {
+        "id": "s3_further_uses",
+        "kind": "text",
+        "label": "Further uses",
+        "marks": 0,
+        "lines": [
+          "Sodium is also used as a reducing agent",
+          "in the extraction of metals such as",
+          "titanium from their chlorides.",
+          "Sodium vapour is used in sodium vapour",
+          "street lamps.",
+          "The question asks for two uses, so any",
+          "two of these may be written."
+        ],
+        "why": "More than two uses of sodium metal are in the syllabus, so a student who cannot recall one of the first two still has a correct second use ready to write.",
+        "common_mistakes": [
+          "Writing uses of sodium compounds such as common salt. The question asks for uses of sodium metal.",
+          "Stopping after one use. The question asks for two."
+        ],
+        "memory_tip": "Coolant, anti-knock compound, reducing agent, lamp — four uses, and any two are asked for.",
+        "margin_note": "Unmarked closing step."
+      }
+    ]
+  },
+  "insider_note": "The second use of sodium is a chain of three things — the metal, the sodium-lead alloy and tetraethyl lead — and writing all three is what makes it read as a use of the metal itself."
+}

@@ -4903,8 +4903,639 @@
           "section": "VSAQ",
           "number": 1,
           "stars": 0,
-          "text": "s-Block Elements (Group 1 and Group 2) — questions coming",
-          "source": "syllabus_2026_27"
+          "text": "Give the reasons for the diagonal relationship observed in the periodic table.",
+          "question_id": "ts_ipe_c1_sb_diagonal_relationship_reasons",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Write the complete electronic configurations of K and Li.",
+          "question_id": "ts_ipe_c1_sb_k_and_li_configurations",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Lithium salts are mostly hydrated. Why?",
+          "question_id": "ts_ipe_c1_sb_lithium_salts_hydrated",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Lithium reacts with water less vigorously than sodium. Give the reasons.",
+          "question_id": "ts_ipe_c1_sb_lithium_reacts_water_less_vigorously",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Lithium iodide is the most covalent among the alkali metal halides. Give the reasons.",
+          "question_id": "ts_ipe_c1_sb_lithium_iodide_most_covalent",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "In what respect does lithium hydrogen carbonate differ from the other alkali metal hydrogen carbonates?",
+          "question_id": "ts_ipe_c1_sb_lithium_hydrogen_carbonate_difference",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Write the complete electronic configurations of any two alkaline earth metals.",
+          "question_id": "ts_ipe_c1_sb_two_alkaline_earth_configurations",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What are the characteristic colours imparted by the group IIA elements?",
+          "question_id": "ts_ipe_c1_sb_group2_flame_colours",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "What happens when magnesium metal is burnt in air?",
+          "question_id": "ts_ipe_c1_sb_magnesium_burnt_in_air",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Lithium carbonate is less stable to heat than the other alkali metal carbonates. Explain.",
+          "question_id": "ts_ipe_c1_sb_lithium_carbonate_less_stable",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "What happens when hydrated Mg(NO₃)₂ is heated? Give the balanced equation.",
+          "question_id": "ts_ipe_c1_sb_hydrated_magnesium_nitrate_heated",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Write the average composition of Portland cement.",
+          "question_id": "ts_ipe_c1_sb_portland_cement_composition",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Why is gypsum added to cement?",
+          "question_id": "ts_ipe_c1_sb_gypsum_added_to_cement",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Why are the alkali metals not found in the free state in nature?",
+          "question_id": "ts_ipe_c1_sb_alkali_metals_not_free_in_nature",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Potassium carbonate cannot be prepared by the Solvay process. Why?",
+          "question_id": "ts_ipe_c1_sb_potassium_carbonate_not_by_solvay",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Write a few applications (uses) of caustic soda.",
+          "question_id": "ts_ipe_c1_sb_caustic_soda_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Mention some uses of sodium carbonate.",
+          "question_id": "ts_ipe_c1_sb_sodium_carbonate_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Describe the important uses of quick lime.",
+          "question_id": "ts_ipe_c1_sb_quick_lime_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Describe the importance of plaster of Paris.",
+          "question_id": "ts_ipe_c1_sb_plaster_of_paris_importance",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Which of the alkaline earth metal carbonates is thermally the most stable? Why?",
+          "question_id": "ts_ipe_c1_sb_most_stable_alkaline_earth_carbonate",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "What is the chemical name of plaster of Paris? Write its formula.",
+          "question_id": "ts_ipe_c1_sb_plaster_of_paris_name_formula",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "What is dead burnt plaster?",
+          "question_id": "ts_ipe_c1_sb_dead_burnt_plaster",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Write the importance of Mg²⁺ and Ca²⁺ ions in biological systems.",
+          "question_id": "ts_ipe_c1_sb_mg_ca_biological_importance",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Write the chemical formulae of baking soda and washing soda.",
+          "question_id": "ts_ipe_c1_sb_baking_soda_washing_soda_formulae",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Mention the important uses of magnesium metal.",
+          "question_id": "ts_ipe_c1_sb_magnesium_metal_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "What is milk of lime?",
+          "question_id": "ts_ipe_c1_sb_milk_of_lime",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Alkali metals and their salts impart characteristic colours to an oxidising flame. Explain the reason.",
+          "question_id": "ts_ipe_c1_sb_flame_colour_reason",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Why are potassium and caesium, rather than lithium, used in photoelectric cells?",
+          "question_id": "ts_ipe_c1_sb_potassium_caesium_photoelectric_cells",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Write a short note on the reactivity of the alkali metals towards air.",
+          "question_id": "ts_ipe_c1_sb_alkali_metals_reactivity_air",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Give any two uses of lithium metal.",
+          "question_id": "ts_ipe_c1_sb_lithium_metal_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Give any two uses of sodium metal.",
+          "question_id": "ts_ipe_c1_sb_sodium_metal_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Give an account of the properties of washing soda.",
+          "question_id": "ts_ipe_c1_sb_washing_soda_properties",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "How do you obtain pure NaCl from a crude sample?",
+          "question_id": "ts_ipe_c1_sb_pure_nacl_from_crude",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What do you know about the Castner–Kellner process? Write the principle involved in it.",
+          "question_id": "ts_ipe_c1_sb_castner_kellner_process",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Give an account of the biological importance of Na⁺ and K⁺ ions.",
+          "question_id": "ts_ipe_c1_sb_na_k_biological_importance",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Show that Be(OH)₂ is amphoteric in nature.",
+          "question_id": "ts_ipe_c1_sb_be_oh_2_amphoteric",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Write a note on the anomalous behaviour of beryllium.",
+          "question_id": "ts_ipe_c1_sb_beryllium_anomalous_behaviour",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Beryllium shows a diagonal relationship with aluminium. Discuss.",
+          "question_id": "ts_ipe_c1_sb_beryllium_aluminium_diagonal",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "What is plaster of Paris? Write a short note on it.",
+          "question_id": "ts_ipe_c1_sb_plaster_of_paris_note",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "In what ways does lithium show similarities to magnesium in its chemical behaviour?",
+          "question_id": "ts_ipe_c1_sb_lithium_magnesium_similarities",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq15",
+          "section": "SAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "When an alkali metal dissolves in liquid ammonia the solution can acquire different colours. Explain the reasons for this colour change.",
+          "question_id": "ts_ipe_c1_sb_alkali_metal_liquid_ammonia_colour",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq16",
+          "section": "SAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "What happens when sodium metal is dropped in water?",
+          "question_id": "ts_ipe_c1_sb_sodium_dropped_in_water",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq17",
+          "section": "SAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "What happens when sodium metal is heated in a free supply of air?",
+          "question_id": "ts_ipe_c1_sb_sodium_heated_in_free_air",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq18",
+          "section": "SAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "What happens when sodium peroxide dissolves in water?",
+          "question_id": "ts_ipe_c1_sb_sodium_peroxide_in_water",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq19",
+          "section": "SAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "State why an aqueous solution of Na₂CO₃ is alkaline.",
+          "question_id": "ts_ipe_c1_sb_sodium_carbonate_solution_alkaline",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq20",
+          "section": "SAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "State why the alkali metals are prepared by the electrolysis of their fused chlorides.",
+          "question_id": "ts_ipe_c1_sb_alkali_metals_by_fused_chloride_electrolysis",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq21",
+          "section": "SAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Explain the following observation: BeO is almost insoluble in water, but BeSO₄ is soluble in water.",
+          "question_id": "ts_ipe_c1_sb_beo_insoluble_beso4_soluble",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq22",
+          "section": "SAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Explain the following observation: BaO is soluble in water, but BaSO₄ is insoluble in water.",
+          "question_id": "ts_ipe_c1_sb_bao_soluble_baso4_insoluble",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Justify the inclusion of the alkali metals in the same group of the periodic table with reference to their electronic configuration.",
+          "question_id": "ts_ipe_c1_sb_alkali_group_electronic_configuration",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Justify the inclusion of the alkali metals in the same group of the periodic table with reference to their reducing nature.",
+          "question_id": "ts_ipe_c1_sb_alkali_group_reducing_nature",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Justify the inclusion of the alkali metals in the same group of the periodic table with reference to their oxides and hydroxides.",
+          "question_id": "ts_ipe_c1_sb_alkali_group_oxides_hydroxides",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Write an essay on the differences between lithium and the other alkali metals.",
+          "question_id": "ts_ipe_c1_sb_lithium_differences_essay",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Discuss the preparation, properties and uses of sodium carbonate.",
+          "question_id": "ts_ipe_c1_sb_sodium_carbonate_preparation_properties_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Discuss the similarities among the alkaline earth metals and the gradation in their electronic configuration.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_electronic_configuration",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Discuss the similarities among the alkaline earth metals and the gradation in their hydration enthalpies.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_hydration_enthalpies",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Discuss the similarities among the alkaline earth metals and the gradation in the nature of their oxides and hydroxides.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_oxides_hydroxides",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Discuss the carbonates of the alkaline earth metals.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_carbonates",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Discuss the sulphates of the alkaline earth metals.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_sulphates",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Discuss the nitrates of the alkaline earth metals.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_nitrates",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "What are the common physical and chemical features of the alkali metals?",
+          "question_id": "ts_ipe_c1_sb_alkali_metals_common_features",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq13",
+          "section": "LAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Discuss the general characteristics of the alkaline earth metals and the gradation in their properties.",
+          "question_id": "ts_ipe_c1_sb_alkaline_earth_general_characteristics",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq14",
+          "section": "LAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Discuss the various reactions that occur in the Solvay process.",
+          "question_id": "ts_ipe_c1_sb_solvay_process_reactions",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq15",
+          "section": "LAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Starting with sodium chloride, how would you prepare sodium metal?",
+          "question_id": "ts_ipe_c1_sb_sodium_metal_from_nacl",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq16",
+          "section": "LAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Starting with sodium chloride, how would you prepare sodium hydroxide?",
+          "question_id": "ts_ipe_c1_sb_sodium_hydroxide_from_nacl",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq17",
+          "section": "LAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Starting with sodium chloride, how would you prepare sodium peroxide?",
+          "question_id": "ts_ipe_c1_sb_sodium_peroxide_from_nacl",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq18",
+          "section": "LAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Starting with sodium chloride, how would you prepare sodium carbonate?",
+          "question_id": "ts_ipe_c1_sb_sodium_carbonate_from_nacl",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq19",
+          "section": "LAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "What happens when quick lime is heated with silica?",
+          "question_id": "ts_ipe_c1_sb_quick_lime_with_silica",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq20",
+          "section": "LAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "What happens when chlorine reacts with slaked lime?",
+          "question_id": "ts_ipe_c1_sb_chlorine_with_slaked_lime",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq21",
+          "section": "LAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "What happens when calcium nitrate is strongly heated?",
+          "question_id": "ts_ipe_c1_sb_calcium_nitrate_strongly_heated",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq22",
+          "section": "LAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Explain the significance of sodium, potassium, magnesium and calcium in biological fluids.",
+          "question_id": "ts_ipe_c1_sb_biological_fluids_na_k_mg_ca",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq23",
+          "section": "LAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Write a few lines about cement.",
+          "question_id": "ts_ipe_c1_sb_cement_note",
+          "source": "chaitanya_fastrack"
         }
       ]
     },
@@ -4918,8 +5549,324 @@
           "section": "VSAQ",
           "number": 1,
           "stars": 0,
-          "text": "p-Block Elements, Group 13 — questions coming",
-          "source": "syllabus_2026_27"
+          "text": "Discuss the pattern of variation in the oxidation states of boron to thallium.",
+          "question_id": "ts_ipe_c1_p13_oxidation_states_b_to_tl",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "How do you explain the higher stability of TlCl?",
+          "question_id": "ts_ipe_c1_p13_tlcl_higher_stability",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Why does BF₃ behave as a Lewis acid?",
+          "question_id": "ts_ipe_c1_p13_bf3_lewis_acid",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Is boric acid a protic acid? Explain.",
+          "question_id": "ts_ipe_c1_p13_boric_acid_not_protic",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Explain what happens when boric acid is heated.",
+          "question_id": "ts_ipe_c1_p13_boric_acid_on_heating",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Describe the shapes of BF₃ and BH₄⁻, and assign the hybridisation of boron in these species.",
+          "question_id": "ts_ipe_c1_p13_bf3_bh4_shapes_hybridisation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Explain why the atomic radius of Ga is less than that of Al.",
+          "question_id": "ts_ipe_c1_p13_ga_radius_less_than_al",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Explain the inert pair effect.",
+          "question_id": "ts_ipe_c1_p13_inert_pair_effect",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Write the balanced equation for the reaction BF₃ + LiH →",
+          "question_id": "ts_ipe_c1_p13_eq_bf3_with_lih",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Write the balanced equation for the reaction B₂H₆ + H₂O →",
+          "question_id": "ts_ipe_c1_p13_eq_diborane_with_water",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Write the balanced equation for the reaction NaH + B₂H₆ →",
+          "question_id": "ts_ipe_c1_p13_eq_nah_with_diborane",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Write the balanced equation for the reaction of H₃BO₃ on heating.",
+          "question_id": "ts_ipe_c1_p13_eq_boric_acid_on_heating",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Write the balanced equation for the reaction of B₂H₆ + NH₃ on heating.",
+          "question_id": "ts_ipe_c1_p13_eq_diborane_with_ammonia",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Why is boric acid polymeric?",
+          "question_id": "ts_ipe_c1_p13_boric_acid_polymeric",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "What is the hybridisation of boron in diborane and in borazine, B₃N₃H₆?",
+          "question_id": "ts_ipe_c1_p13_hybridisation_diborane_borazine",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Write the electronic configuration of the group-13 elements.",
+          "question_id": "ts_ipe_c1_p13_group13_electronic_configuration",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Give the formula of borazine. What is its common name?",
+          "question_id": "ts_ipe_c1_p13_borazine_formula_common_name",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Give the formula of borax.",
+          "question_id": "ts_ipe_c1_p13_borax_formula",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Give the formula of orthoboric acid.",
+          "question_id": "ts_ipe_c1_p13_orthoboric_acid_formula",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Give two uses of aluminium.",
+          "question_id": "ts_ipe_c1_p13_aluminium_two_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "What happens when a mixture of LiAlH₄ and BCl₃ in dry ether is warmed?",
+          "question_id": "ts_ipe_c1_p13_lialh4_bcl3_dry_ether",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "What happens when borax is heated with H₂SO₄?",
+          "question_id": "ts_ipe_c1_p13_borax_heated_with_h2so4",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Sketch the structure of orthoboric acid.",
+          "question_id": "ts_ipe_c1_p13_orthoboric_acid_structure",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Write the structure of AlCl₃ as a dimer.",
+          "question_id": "ts_ipe_c1_p13_alcl3_dimer_structure",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Metal borides containing ¹⁰B are used as protective shields. Why?",
+          "question_id": "ts_ipe_c1_p13_boron10_borides_shield",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Al₂O₃ is amphoteric. Explain with suitable reactions.",
+          "question_id": "ts_ipe_c1_p13_al2o3_amphoteric",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "What are electron deficient compounds? Is BCl₃ an electron deficient species? Explain.",
+          "question_id": "ts_ipe_c1_p13_electron_deficient_bcl3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain the structure of boric acid.",
+          "question_id": "ts_ipe_c1_p13_boric_acid_structure",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Explain the borax bead test with a suitable example.",
+          "question_id": "ts_ipe_c1_p13_borax_bead_test",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Explain the structure of diborane.",
+          "question_id": "ts_ipe_c1_p13_diborane_structure",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Give two methods of preparation of diborane.",
+          "question_id": "ts_ipe_c1_p13_diborane_two_preparations",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "How does diborane react with CO?",
+          "question_id": "ts_ipe_c1_p13_diborane_with_co",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "How does diborane react with trimethylamine?",
+          "question_id": "ts_ipe_c1_p13_diborane_with_trimethylamine",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "How is diborane prepared? Explain its structure.",
+          "question_id": "ts_ipe_c1_p13_diborane_preparation_and_structure",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Write any two methods of preparation of diborane. How does it react with carbon monoxide?",
+          "question_id": "ts_ipe_c1_p13_diborane_preparations_and_co",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Write any two methods of preparation of diborane. How does it react with ammonia?",
+          "question_id": "ts_ipe_c1_p13_diborane_preparations_and_ammonia",
+          "source": "chaitanya_fastrack"
         }
       ]
     },
@@ -4933,8 +5880,540 @@
           "section": "VSAQ",
           "number": 1,
           "stars": 0,
-          "text": "p-Block Elements, Group 14 — questions coming",
-          "source": "syllabus_2026_27"
+          "text": "What is the state of hybridisation of carbon in CO₃²⁻?",
+          "question_id": "ts_ipe_c1_p14_co3_carbon_hybridisation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "What is the state of hybridisation of carbon in diamond?",
+          "question_id": "ts_ipe_c1_p14_diamond_carbon_hybridisation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "What is the state of hybridisation of carbon in graphite?",
+          "question_id": "ts_ipe_c1_p14_graphite_carbon_hybridisation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What is the state of hybridisation of carbon in fullerene?",
+          "question_id": "ts_ipe_c1_p14_fullerene_carbon_hybridisation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Suggest a reason why CO is poisonous.",
+          "question_id": "ts_ipe_c1_p14_co_is_poisonous",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "What is allotropy? Give the crystalline allotropes of carbon.",
+          "question_id": "ts_ipe_c1_p14_allotropy_and_crystalline_allotropes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Classify the oxide CO as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_co",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Classify the oxide B₂O₃ as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_b2o3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Classify the oxide SiO₂ as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_sio2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Classify the oxide CO₂ as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_co2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Classify the oxide Al₂O₃ as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_al2o3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Classify the oxide PbO₂ as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_pbo2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Classify the oxide Tl₂O₃ as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_tl2o3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Name any two man-made silicates.",
+          "question_id": "ts_ipe_c1_p14_man_made_silicates",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Write the outer electron configuration of the group-14 elements.",
+          "question_id": "ts_ipe_c1_p14_group14_outer_configuration",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "How does graphite function as a lubricant?",
+          "question_id": "ts_ipe_c1_p14_graphite_as_lubricant",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Graphite is a good conductor. Explain.",
+          "question_id": "ts_ipe_c1_p14_graphite_good_conductor",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "What is 'synthesis gas'?",
+          "question_id": "ts_ipe_c1_p14_synthesis_gas",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "What is 'producer gas'?",
+          "question_id": "ts_ipe_c1_p14_producer_gas",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Diamond has a high melting point. Explain.",
+          "question_id": "ts_ipe_c1_p14_diamond_high_melting_point",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Give the use of CO₂ in photosynthesis.",
+          "question_id": "ts_ipe_c1_p14_co2_in_photosynthesis",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "How is an excessive amount of CO₂ responsible for global warming?",
+          "question_id": "ts_ipe_c1_p14_co2_and_global_warming",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "What are silicones?",
+          "question_id": "ts_ipe_c1_p14_what_are_silicones",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Give the uses of silicones.",
+          "question_id": "ts_ipe_c1_p14_silicones_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "What is the effect of water on tin?",
+          "question_id": "ts_ipe_c1_p14_effect_of_water_on_tin",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "Write an account of SiCl₄.",
+          "question_id": "ts_ipe_c1_p14_sicl4_account",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq27",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 0,
+          "text": "SiO₂ is a solid while CO₂ is a gas. Explain.",
+          "question_id": "ts_ipe_c1_p14_sio2_solid_co2_gas",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq28",
+          "section": "VSAQ",
+          "number": 28,
+          "stars": 0,
+          "text": "Write the use of ZSM-5.",
+          "question_id": "ts_ipe_c1_p14_zsm5_use",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq29",
+          "section": "VSAQ",
+          "number": 29,
+          "stars": 0,
+          "text": "What is the use of dry ice?",
+          "question_id": "ts_ipe_c1_p14_dry_ice_use",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq30",
+          "section": "VSAQ",
+          "number": 30,
+          "stars": 0,
+          "text": "How is water gas prepared?",
+          "question_id": "ts_ipe_c1_p14_water_gas_preparation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq31",
+          "section": "VSAQ",
+          "number": 31,
+          "stars": 0,
+          "text": "How is producer gas prepared?",
+          "question_id": "ts_ipe_c1_p14_producer_gas_preparation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq32",
+          "section": "VSAQ",
+          "number": 32,
+          "stars": 0,
+          "text": "The C–C bond length in graphite is shorter than the C–C bond length in diamond. Explain.",
+          "question_id": "ts_ipe_c1_p14_graphite_diamond_bond_length",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq33",
+          "section": "VSAQ",
+          "number": 33,
+          "stars": 0,
+          "text": "Diamond is used as a precious stone. Explain.",
+          "question_id": "ts_ipe_c1_p14_diamond_as_precious_stone",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq34",
+          "section": "VSAQ",
+          "number": 34,
+          "stars": 0,
+          "text": "Producer gas is a less efficient fuel than water gas. Explain.",
+          "question_id": "ts_ipe_c1_p14_producer_gas_less_efficient",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq35",
+          "section": "VSAQ",
+          "number": 35,
+          "stars": 0,
+          "text": "Why is diamond hard?",
+          "question_id": "ts_ipe_c1_p14_diamond_is_hard",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq36",
+          "section": "VSAQ",
+          "number": 36,
+          "stars": 0,
+          "text": "Define catenation.",
+          "question_id": "ts_ipe_c1_p14_catenation_definition",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq37",
+          "section": "VSAQ",
+          "number": 37,
+          "stars": 0,
+          "text": "What is allotropy?",
+          "question_id": "ts_ipe_c1_p14_allotropy_definition",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq38",
+          "section": "VSAQ",
+          "number": 38,
+          "stars": 0,
+          "text": "Graphite is an electric conductor whereas diamond is not. Why?",
+          "question_id": "ts_ipe_c1_p14_graphite_conducts_diamond_not",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq39",
+          "section": "VSAQ",
+          "number": 39,
+          "stars": 0,
+          "text": "How many five-membered and six-membered rings are present in fullerene?",
+          "question_id": "ts_ipe_c1_p14_fullerene_ring_count",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Explain the difference in the properties of diamond and graphite on the basis of their structure.",
+          "question_id": "ts_ipe_c1_p14_diamond_graphite_differences",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Explain what happens when silicon is heated with methyl chloride at high temperature in the presence of copper.",
+          "question_id": "ts_ipe_c1_p14_silicon_with_methyl_chloride",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain what happens when SiO₂ is treated with HF.",
+          "question_id": "ts_ipe_c1_p14_sio2_with_hf",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Explain why graphite is a lubricant.",
+          "question_id": "ts_ipe_c1_p14_graphite_lubricant_explained",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Explain why diamond is an abrasive.",
+          "question_id": "ts_ipe_c1_p14_diamond_as_abrasive",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "What do you understand by allotropy?",
+          "question_id": "ts_ipe_c1_p14_allotropy_meaning",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "What do you understand by the inert pair effect?",
+          "question_id": "ts_ipe_c1_p14_inert_pair_effect_meaning",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What do you understand by catenation?",
+          "question_id": "ts_ipe_c1_p14_catenation_meaning",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "If the starting material for the manufacture of a silicone is RSiCl₃, write the structure of the product formed.",
+          "question_id": "ts_ipe_c1_p14_rsicl3_silicone_product",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Write a short note on zeolites.",
+          "question_id": "ts_ipe_c1_p14_zeolites_note",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Write a short note on silicates.",
+          "question_id": "ts_ipe_c1_p14_silicates_note",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "What are silicones? How are they obtained?",
+          "question_id": "ts_ipe_c1_p14_silicones_and_preparation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Why does a Na₂CO₃ solution turn into a suspension when it is saturated with CO₂ gas?",
+          "question_id": "ts_ipe_c1_p14_sodium_carbonate_with_co2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Write a note on the anomalous behaviour of carbon in group 14.",
+          "question_id": "ts_ipe_c1_p14_carbon_anomalous_behaviour",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "What are silicones? How are they prepared? Give one example. What are their uses?",
+          "question_id": "ts_ipe_c1_p14_silicones_full_account",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Explain the structure of silica, and describe how silica reacts with NaOH.",
+          "question_id": "ts_ipe_c1_p14_silica_structure_with_naoh",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain the structure of silica, and describe how silica reacts with HF.",
+          "question_id": "ts_ipe_c1_p14_silica_structure_with_hf",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Write on the allotropy of carbon.",
+          "question_id": "ts_ipe_c1_p14_allotropy_of_carbon",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Write a note on silicates.",
+          "question_id": "ts_ipe_c1_p14_silicates_long_note",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Write a note on zeolites.",
+          "question_id": "ts_ipe_c1_p14_zeolites_long_note",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Write a note on fullerenes.",
+          "question_id": "ts_ipe_c1_p14_fullerenes_note",
+          "source": "chaitanya_fastrack"
         }
       ]
     },
@@ -4948,8 +6427,531 @@
           "section": "VSAQ",
           "number": 1,
           "stars": 0,
-          "text": "General Organic Chemistry — questions coming",
-          "source": "syllabus_2026_27"
+          "text": "What are the reagents required to convert benzene into methyl benzene?",
+          "question_id": "ts_ipe_c1_goc_benzene_to_methylbenzene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "How is nitrobenzene prepared?",
+          "question_id": "ts_ipe_c1_goc_nitrobenzene_preparation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Write the possible conformations of ethane and explain which one is more stable.",
+          "question_id": "ts_ipe_c1_goc_ethane_conformations",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "How is ethyl chloride prepared from ethylene?",
+          "question_id": "ts_ipe_c1_goc_ethyl_chloride_from_ethylene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Write the IUPAC name of CH₃–CH₂–CH₂–CH=CH₂.",
+          "question_id": "ts_ipe_c1_goc_iupac_pentene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Write the IUPAC names of CH₃–CO–CH₂–CH₂–CH₃ and CH₃–CH₂–CO–CH₂–CH₃.",
+          "question_id": "ts_ipe_c1_goc_iupac_two_ketones",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Write the IUPAC names of the two aromatic aldehydes: benzaldehyde with a nitro group meta to the CHO group, and benzaldehyde with a nitro group para to it.",
+          "question_id": "ts_ipe_c1_goc_iupac_two_nitro_aldehydes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Write the structure of each of the following: trichloroethanoic acid, neopentane and p-nitrobenzaldehyde.",
+          "question_id": "ts_ipe_c1_goc_structures_three_compounds",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Explain the principle of chromatography.",
+          "question_id": "ts_ipe_c1_goc_chromatography_principle",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Explain crystallisation.",
+          "question_id": "ts_ipe_c1_goc_crystallisation_explained",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Explain distillation.",
+          "question_id": "ts_ipe_c1_goc_distillation_explained",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Write the chemical equation for the combustion reaction of butane.",
+          "question_id": "ts_ipe_c1_goc_combustion_of_butane",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Write the chemical equation for the combustion reaction of pentene.",
+          "question_id": "ts_ipe_c1_goc_combustion_of_pentene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Write the chemical equation for the combustion reaction of hexyne.",
+          "question_id": "ts_ipe_c1_goc_combustion_of_hexyne",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Write the equation for the preparation of ethyl alcohol from ethylene.",
+          "question_id": "ts_ipe_c1_goc_ethanol_from_ethylene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "What is pyrolysis?",
+          "question_id": "ts_ipe_c1_goc_pyrolysis",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "State Markovnikov's rule.",
+          "question_id": "ts_ipe_c1_goc_markovnikov_rule",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "What is a polymerisation reaction?",
+          "question_id": "ts_ipe_c1_goc_polymerisation_reaction",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "State Huckel's rule.",
+          "question_id": "ts_ipe_c1_goc_huckel_rule",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Write the reaction for the reduction of phenol.",
+          "question_id": "ts_ipe_c1_goc_reduction_of_phenol",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "What are ortho- and para-directing groups? Give one example of each.",
+          "question_id": "ts_ipe_c1_goc_ortho_para_directing_groups",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "What are meta-directing groups? Give one example of each.",
+          "question_id": "ts_ipe_c1_goc_meta_directing_groups",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Write Kolbe's electrolytic reaction.",
+          "question_id": "ts_ipe_c1_goc_kolbe_electrolytic_reaction",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Write the Friedel–Crafts alkylation reaction with one example.",
+          "question_id": "ts_ipe_c1_goc_friedel_crafts_alkylation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Write the combustion reaction of benzene with one example.",
+          "question_id": "ts_ipe_c1_goc_combustion_of_benzene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Write any two addition reactions of benzene, with equations.",
+          "question_id": "ts_ipe_c1_goc_benzene_addition_reactions",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What do you understand by geometrical isomerism? Explain the geometrical isomers of 2-butene.",
+          "question_id": "ts_ipe_c1_goc_geometrical_isomerism_butene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Complete the following reaction sequence and name the products A, B and C: CaC₂ reacts with water to give A, A over a hot metal tube gives B, and B with AlCl₃ and CH₃Cl gives C.",
+          "question_id": "ts_ipe_c1_goc_sequence_calcium_carbide",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Name the products A, B and C formed in the following reaction sequence and give the equations: ethylene with Br₂ in CCl₄ gives A, A with alcoholic KOH gives B, and B with Br₂ gives C.",
+          "question_id": "ts_ipe_c1_goc_sequence_ethylene_bromine",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "What is dehydrohalogenation? Write the equation for the formation of an alkene from an alkyl halide.",
+          "question_id": "ts_ipe_c1_goc_dehydrohalogenation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Which type of compounds react with ozone? Explain with one example.",
+          "question_id": "ts_ipe_c1_goc_compounds_reacting_with_ozone",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Give two examples each of position isomerism and functional isomerism.",
+          "question_id": "ts_ipe_c1_goc_position_and_functional_isomers",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Explain crystallisation and sublimation, the phenomena used in the purification of organic compounds.",
+          "question_id": "ts_ipe_c1_goc_crystallisation_and_sublimation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Describe the solvent extraction method used to purify a compound.",
+          "question_id": "ts_ipe_c1_goc_solvent_extraction",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Explain the estimation of phosphorus and of sulphur in a given organic compound.",
+          "question_id": "ts_ipe_c1_goc_estimation_phosphorus_sulphur",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Explain the classification of hydrocarbons.",
+          "question_id": "ts_ipe_c1_goc_classification_of_hydrocarbons",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Describe any two methods of preparation of ethane. Give any three reactions of ethane.",
+          "question_id": "ts_ipe_c1_goc_ethane_preparation_and_reactions",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Describe two methods of preparation of ethylene.",
+          "question_id": "ts_ipe_c1_goc_ethylene_preparation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Give the equation for the reaction of ethylene with ozone.",
+          "question_id": "ts_ipe_c1_goc_ethylene_with_ozone",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Give the equation for the reaction of ethylene with hypochlorous acid.",
+          "question_id": "ts_ipe_c1_goc_ethylene_with_hocl",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Give the equation for the reaction of ethylene with Baeyer's reagent, cold dilute alkaline KMnO₄.",
+          "question_id": "ts_ipe_c1_goc_ethylene_with_baeyer_reagent",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Give the equation for the reaction of ethylene when it is heated with O₂ at high pressure.",
+          "question_id": "ts_ipe_c1_goc_ethylene_heated_with_oxygen",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq8",
+          "section": "LAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Give two methods of preparation of acetylene. How does acetylene react with water and with ozone?",
+          "question_id": "ts_ipe_c1_goc_acetylene_preparation_water_ozone",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq9",
+          "section": "LAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Describe any two methods of preparation of benzene with the corresponding equations. Why does benzene not behave like an alkene? How do we get methyl benzene from benzene?",
+          "question_id": "ts_ipe_c1_goc_benzene_preparation_and_toluene",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq10",
+          "section": "LAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "How is benzene obtained from acetylene? Give the corresponding equation. Explain the halogenation, alkylation, acylation, nitration and sulphonation of benzene.",
+          "question_id": "ts_ipe_c1_goc_benzene_from_acetylene_substitution",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq11",
+          "section": "LAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Explain the differences between structural isomers and stereoisomers.",
+          "question_id": "ts_ipe_c1_goc_structural_vs_stereoisomers",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq12",
+          "section": "LAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Write a note on distillation.",
+          "question_id": "ts_ipe_c1_goc_distillation_note",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq13",
+          "section": "LAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Write a note on fractional distillation.",
+          "question_id": "ts_ipe_c1_goc_fractional_distillation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq14",
+          "section": "LAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Write a note on distillation under reduced pressure.",
+          "question_id": "ts_ipe_c1_goc_distillation_reduced_pressure",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq15",
+          "section": "LAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Write a note on steam distillation.",
+          "question_id": "ts_ipe_c1_goc_steam_distillation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq16",
+          "section": "LAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Explain column chromatography.",
+          "question_id": "ts_ipe_c1_goc_column_chromatography",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq17",
+          "section": "LAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Explain thin layer chromatography.",
+          "question_id": "ts_ipe_c1_goc_thin_layer_chromatography",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq18",
+          "section": "LAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Explain partition chromatography.",
+          "question_id": "ts_ipe_c1_goc_partition_chromatography",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq19",
+          "section": "LAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Explain the inductive effect with a suitable example.",
+          "question_id": "ts_ipe_c1_goc_inductive_effect",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq20",
+          "section": "LAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Write a note on the mesomeric effect.",
+          "question_id": "ts_ipe_c1_goc_mesomeric_effect",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq21",
+          "section": "LAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Describe the resonance effect with one example.",
+          "question_id": "ts_ipe_c1_goc_resonance_effect",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq22",
+          "section": "LAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Explain how many types of organic reactions are possible.",
+          "question_id": "ts_ipe_c1_goc_types_of_organic_reactions",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq23",
+          "section": "LAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Discuss Markownikoff's rule and the Kharasch effect.",
+          "question_id": "ts_ipe_c1_goc_markovnikov_and_kharasch",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq24",
+          "section": "LAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Write the IUPAC names of the following compounds: (a) CH₂=CH–CH=CH₂ (b) CH₂=CH–C≡C–CH₃ (c) CH₃CH=C(CH₃)₂ (d) C₆H₅–CH₂–CH₂–CH=CH₂ (e) CH₃–CH=CH–CH₂–CH=CH–CH(C₂H₅)–CH₂–CH=CH₂",
+          "question_id": "ts_ipe_c1_goc_iupac_five_compounds",
+          "source": "chaitanya_fastrack"
         }
       ]
     },

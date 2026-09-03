@@ -1,0 +1,243 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_fullerenes_note",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write a note on fullerenes.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What fullerenes are",
+      "marks": 1
+    },
+    {
+      "label": "Preparation",
+      "marks": 1
+    },
+    {
+      "label": "The rings of the cage",
+      "marks": 2
+    },
+    {
+      "label": "The sixty carbon atoms",
+      "marks": 1
+    },
+    {
+      "label": "Bonding and hybridisation",
+      "marks": 1
+    },
+    {
+      "label": "The two bond lengths",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.111, chapter 9 p-BLOCK ELEMENTS GROUP 14, LONG ANSWER QUESTIONS question 44(c). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD, CHECKED FIELD BY FIELD 2026-09-03: the ring counts and the vertex count on this card — twenty six-membered rings, twelve five-membered rings, thirty-two rings in all and sixty vertices — are the same as the ones on the short question that asks for the ring counts, and the sp² hybridisation with the delocalised fourth electron is the same as on the short question that asks for the hybridisation of carbon in fullerene. The two C–C distances, 143.5 pm and 138.3 pm, are printed on this card only: neither short question gives a bond length, so there is nothing on them to check the distances against. The source does not say which of the two distances belongs to which kind of ring fusion, so this card does not assign them either."
+  },
+  "insider_note": "Fullerene is a cage, so the note is a description of a cage: how many rings of each size, how they are fused, where the carbon atoms sit, and what each carbon does with its four valence electrons.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "p-Block Elements: Group 14 · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_they_are",
+        "kind": "text",
+        "label": "What fullerenes are",
+        "marks": 1,
+        "mark_note": "The definition",
+        "lines": [
+          "Fullerenes are a crystalline allotrope",
+          "of carbon, counted alongside diamond",
+          "and graphite.",
+          "The best known fullerene is C₆₀, a cage",
+          "of sixty carbon atoms.",
+          "C₆₀ is called buckminsterfullerene, and",
+          "also a bucky ball.",
+          "Unlike diamond and graphite it is made",
+          "of separate molecules."
+        ],
+        "why": "Diamond and graphite are giant structures with no molecules in them, so naming fullerene as a molecule is the first real difference. Everything else in the note describes the shape of that molecule.",
+        "common_mistakes": [
+          "Leaving fullerene out of the crystalline forms. Diamond and graphite are the two always named, and NCERT counts the fullerenes as crystalline too.",
+          "Writing the formula as C₇₀ or C₆₀₀. The fullerene described here is C₆₀."
+        ],
+        "memory_tip": "C₆₀, buckminsterfullerene or bucky ball, the third crystalline allotrope of carbon.",
+        "margin_note": "Open with the formula and both names before describing the cage."
+      },
+      {
+        "id": "s2_preparation",
+        "kind": "text",
+        "label": "Preparation",
+        "marks": 1,
+        "mark_note": "Preparation",
+        "lines": [
+          "Fullerenes are made by heating graphite",
+          "strongly in an electric arc in an",
+          "atmosphere of helium or argon.",
+          "The graphite is vaporised, and the",
+          "carbon vapour condenses to the cage",
+          "molecules.",
+          "Helium and argon are inert gases, and",
+          "they are used so that the hot carbon",
+          "does not burn."
+        ],
+        "why": "The preparation explains why fullerene was found so late: the cage forms only from free carbon vapour, and carbon vapour can be kept only in an atmosphere that will not react with it.",
+        "common_mistakes": [
+          "Writing that fullerene is made by heating graphite in air. Carbon would burn; an inert gas such as helium or argon is used.",
+          "Writing that fullerene is made from diamond. The starting material is graphite."
+        ],
+        "memory_tip": "Graphite in an electric arc under helium or argon gives the fullerene cage.",
+        "margin_note": "Name the inert gas, since that is the part of the preparation easiest to forget."
+      },
+      {
+        "id": "s3_rings",
+        "kind": "text",
+        "label": "The rings of the cage",
+        "marks": 2,
+        "mark_note": "The rings",
+        "lines": [
+          "The cage of C₆₀ is built from rings of",
+          "carbon atoms.",
+          "There are twenty six-membered rings and",
+          "twelve five-membered rings, thirty-two",
+          "rings in all.",
+          "A six-membered ring is fused either to",
+          "another six-membered ring or to a",
+          "five-membered ring.",
+          "A five-membered ring is fused only to",
+          "six-membered rings; two five-membered",
+          "rings are never fused to each other.",
+          "The twelve five-membered rings are what",
+          "curve the sheet of six-membered rings",
+          "round into a closed cage."
+        ],
+        "why": "A sheet of six-membered rings alone stays flat, as it does in graphite. The twelve five-membered rings are what bend it, and the rule that no two of them are fused is what spreads that bending evenly over the whole cage.",
+        "common_mistakes": [
+          "Swapping the two counts. There are twenty six-membered rings and twelve five-membered rings.",
+          "Writing that two five-membered rings are fused to each other. A five-membered ring is fused only to six-membered rings.",
+          "Writing sixty as a ring count. Sixty is the number of carbon atoms, not of rings."
+        ],
+        "memory_tip": "Twenty six-membered and twelve five-membered rings, and no two five-membered rings together.",
+        "margin_note": "Write the two counts first and the fusion rule after them, as two separate statements."
+      },
+      {
+        "id": "s4_vertices",
+        "kind": "text",
+        "label": "The sixty carbon atoms",
+        "marks": 1,
+        "mark_note": "The vertices",
+        "lines": [
+          "The cage has sixty vertices, and one",
+          "carbon atom sits at each of them.",
+          "That is why the molecule is C₆₀.",
+          "Three rings meet at every vertex, so",
+          "every carbon atom of the cage has the",
+          "same surroundings as every other."
+        ],
+        "why": "Sixty is a count of vertices rather than of rings, and that is the number most often misplaced. Because three rings meet at each vertex, all sixty carbon atoms are alike, which is why one description of the bonding covers the whole molecule.",
+        "common_mistakes": [
+          "Writing that the sixty carbon atoms are of different kinds. Every vertex of the cage is the same, so all sixty carbon atoms are alike.",
+          "Confusing the sixty vertices with the thirty-two rings. They are two different counts."
+        ],
+        "memory_tip": "Sixty vertices, one carbon atom at each, and three rings meeting at every one.",
+        "margin_note": "Separate the count of vertices from the count of rings; they are easily mixed up."
+      },
+      {
+        "id": "s5_bonding",
+        "kind": "text",
+        "label": "Bonding and hybridisation",
+        "marks": 1,
+        "mark_note": "The bonding",
+        "lines": [
+          "Each carbon atom is sp² hybridised.",
+          "It forms three sigma bonds to three",
+          "neighbouring carbon atoms.",
+          "The fourth valence electron of each",
+          "carbon atom lies in an unhybridised p",
+          "orbital and is delocalised over the",
+          "whole cage.",
+          "That delocalisation gives fullerene",
+          "aromatic character."
+        ],
+        "why": "The carbon atoms of fullerene do the same thing as those of graphite: three sigma bonds and one delocalised electron. The difference is only that the sheet is closed into a cage, so the delocalised electrons spread over a surface that has no edge.",
+        "common_mistakes": [
+          "Writing sp³. That is the state of carbon in diamond, where each carbon atom is bonded to four others.",
+          "Writing that all four valence electrons are in sigma bonds. Three are; the fourth is delocalised."
+        ],
+        "memory_tip": "Three sigma bonds and one delocalised electron per carbon atom, the same count as in graphite.",
+        "margin_note": "State the hybridisation and then say where the fourth electron goes."
+      },
+      {
+        "id": "s6_bond_lengths",
+        "kind": "text",
+        "label": "The two bond lengths",
+        "marks": 1,
+        "mark_note": "Bond lengths",
+        "lines": [
+          "The C–C bonds of C₆₀ are not all of one",
+          "length.",
+          "There are two C–C distances:",
+          {
+            "text": "143.5 pm and 138.3 pm",
+            "style": "eq"
+          },
+          "So the cage is not a regular solid with",
+          "identical edges, even though all sixty",
+          "carbon atoms are alike."
+        ],
+        "why": "The two distances are a real measured difference and they are worth stating because they qualify the picture of a perfectly regular cage. The carbon atoms are all equivalent, but the bonds between them are of two kinds.",
+        "common_mistakes": [
+          "Writing one bond length for the whole cage. There are two C–C distances, 143.5 pm and 138.3 pm.",
+          "Writing 141.5 pm or 154 pm here. Those are the C–C distances in graphite and in diamond."
+        ],
+        "memory_tip": "Two C–C distances in C₆₀: 143.5 pm and 138.3 pm.",
+        "margin_note": "Write both figures with the unit; one figure alone leaves the point of the step unmade."
+      },
+      {
+        "id": "s7_conclusion",
+        "kind": "boxed_final",
+        "label": "Conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          "So sixty sp² carbon atoms, twelve",
+          "five-membered rings and twenty",
+          "six-membered rings make one closed",
+          "cage, and the delocalised fourth",
+          "electrons give it aromatic character.",
+          {
+            "text": "Fullerene C₆₀ is a cage of sp² carbons",
+            "style": "boxed"
+          }
+        ],
+        "why": "The closing lines gather the counts and the bonding into one sentence, so that the note ends as a description of a single molecule rather than as a list of separate figures.",
+        "common_mistakes": [
+          "Closing with the ring counts alone. The bonding and the aromatic character are part of what was asked for.",
+          "Closing by calling fullerene a giant structure. It is a molecule of sixty carbon atoms."
+        ],
+        "memory_tip": "Sixty sp² carbon atoms in thirty-two rings, with the fourth electrons delocalised.",
+        "margin_note": "Close by naming the cage and the aromatic character together."
+      }
+    ]
+  }
+}

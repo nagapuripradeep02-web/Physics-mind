@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_potassium_caesium_photoelectric_cells",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Why are potassium and caesium, rather than lithium, used in photoelectric cells?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What a photoelectric cell needs",
+      "marks": 1
+    },
+    {
+      "label": "Ionisation enthalpy down the group",
+      "marks": 1
+    },
+    {
+      "label": "The energy the light carries",
+      "marks": 1
+    },
+    {
+      "label": "Why lithium is not used",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.87, chapter 7 s-BLOCK ELEMENTS, SAQ question 30. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. One point for the teacher to note: the textbook explanation uses the ionisation enthalpy trend of the free atom, while the quantity that strictly decides photoemission is the work function of the metal surface. The two run in the same order for group 1, so the textbook argument reaches the right answer; the card therefore names the ionisation enthalpy trend as the book does but words the emission condition as the energy needed to remove an electron from the metal, which is true on either reading."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_the_cell_needs",
+        "kind": "text",
+        "label": "What a photoelectric cell needs",
+        "marks": 1,
+        "mark_note": "The requirement stated",
+        "lines": [
+          "A photoelectric cell carries a metal",
+          "surface.",
+          "When light falls on that surface the",
+          "metal must give out electrons.",
+          "Those electrons make the small current",
+          "that the cell measures.",
+          "So the metal chosen must lose an",
+          "electron to ordinary visible light."
+        ],
+        "why": "The choice of metal is settled by one requirement — visible light must be able to eject an electron — so the requirement has to be written down before any two metals are compared against it.",
+        "common_mistakes": [
+          "Saying the cell stores light energy. It turns light into an electric current.",
+          "Assuming any metal will serve. Only a metal that loses an electron to visible light is of use here."
+        ],
+        "memory_tip": "The cell needs a metal that gives out electrons in ordinary visible light.",
+        "margin_note": "State the requirement first, then measure the metals against it."
+      },
+      {
+        "id": "s2_ionisation_trend",
+        "kind": "text",
+        "label": "Ionisation enthalpy down the group",
+        "marks": 1,
+        "mark_note": "The trend, in order",
+        "lines": [
+          "Down group 1 the atoms get larger, the",
+          "outer electron lies further from the",
+          "nucleus and the inner shells screen it",
+          "more.",
+          "So the ionisation enthalpy falls down",
+          "the group:",
+          {
+            "text": "Li > Na > K > Rb > Cs",
+            "style": "eq"
+          },
+          "Caesium holds its outer electron most",
+          "weakly of all the alkali metals."
+        ],
+        "why": "The comparison the question asks for rests on this trend: the energy needed to pull the outer electron away is largest for lithium and smallest for caesium, so lithium is the hardest member of the group to take an electron from.",
+        "common_mistakes": [
+          "Writing the trend the other way round. Ionisation enthalpy falls down the group, so lithium's is the highest.",
+          "Giving nuclear charge as the only reason. The larger size and the screening by inner shells are what lower it."
+        ],
+        "memory_tip": "Larger atom, weaker hold: ionisation enthalpy falls from lithium to caesium.",
+        "margin_note": "This trend is the main reason; write it out in order."
+      },
+      {
+        "id": "s3_light_energy",
+        "kind": "equation",
+        "label": "The energy the light carries",
+        "marks": 1,
+        "mark_note": "The photon energy relation",
+        "lines": [
+          "Light of frequency ν is carried in",
+          "packets, and one packet has energy",
+          {
+            "text": "E = hν = hc / λ",
+            "style": "eq"
+          },
+          "Visible light carries only a small",
+          "amount of energy in each packet.",
+          "An electron is ejected only when this",
+          "energy is at least the energy needed to",
+          "remove an electron from the metal."
+        ],
+        "why": "One packet of light carries a fixed amount of energy, so the whole question is whether that amount reaches the energy needed to remove an electron from the metal — this is what turns the ionisation enthalpy trend into a plain yes or no for each metal.",
+        "common_mistakes": [
+          "Saying brighter light ejects the electron. Brighter light sends more packets; each packet still carries the same energy hν.",
+          "Leaving out E = hν. The energy of one packet is the quantity that has to be compared with the energy the metal needs."
+        ],
+        "memory_tip": "One packet carries hν, and that one amount must be enough on its own.",
+        "margin_note": "Write E = hν here; it joins the light to the metal."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "Why lithium is not used",
+        "marks": 1,
+        "mark_note": "Both halves of the comparison",
+        "lines": [
+          "For potassium and caesium the energy",
+          "needed is small enough, so visible light",
+          "ejects electrons from them.",
+          "Lithium needs far more energy, so",
+          "visible light does not eject electrons",
+          "from lithium.",
+          {
+            "text": "K and Cs emit electrons in visible light",
+            "style": "boxed"
+          }
+        ],
+        "why": "The answer is finished only when both halves are written — why potassium and caesium serve and why lithium does not — because the question asks for the comparison and not for one metal on its own.",
+        "common_mistakes": [
+          "Naming only potassium and caesium. The question also asks why lithium is left out.",
+          "Saying lithium never emits electrons. Light of much higher energy, beyond the visible region, can still eject them."
+        ],
+        "memory_tip": "Little energy needed, so visible light is enough: potassium and caesium.",
+        "margin_note": "Answer both halves: why these two, and why not lithium."
+      }
+    ]
+  },
+  "insider_note": "Both halves belong in the answer — the low ionisation enthalpy of potassium and caesium, and the high ionisation enthalpy of lithium that keeps it out of the cell."
+}

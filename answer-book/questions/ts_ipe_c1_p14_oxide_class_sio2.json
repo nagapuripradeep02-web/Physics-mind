@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_oxide_class_sio2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Classify the oxide SiO₂ as neutral, acidic, basic or amphoteric.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The classification",
+      "marks": 1
+    },
+    {
+      "label": "Why fusion is needed",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 4(c). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's classification of SiO₂ as acidic is correct and is what this card gives. THE HF POINT IS DELIBERATE, recorded so no later editor reads it as a contradiction: silica does react with hydrofluoric acid (SiO₂ + 4HF → SiF₄ + 2H₂O), and that is fluoride chemistry, not the reaction of a basic oxide with an acid, so it does not make silica amphoteric. The alkali equation was atom-counted: SiO₂ + 2NaOH → Na₂SiO₃ + H₂O has Si 1, Na 2, H 2, O 4 on each side. This book prints no exam-appearance years for this chapter, so appearances[] is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_classification",
+        "kind": "text",
+        "label": "The classification",
+        "marks": 1,
+        "mark_note": "Classification",
+        "lines": [
+          "Silicon dioxide SiO₂, or silica, is an",
+          "acidic oxide.",
+          "It is a giant three-dimensional network",
+          "solid, so it is insoluble in water and",
+          "gives no acid with water.",
+          "An oxide is still acidic if it reacts",
+          "with a base, and silica does."
+        ],
+        "why": "Silica is the case that separates solubility in water from acidic character. Every silicon atom is joined to four oxygen atoms by strong covalent bonds through the whole crystal, so water cannot break the solid down, and the class has to be settled by the reaction with a base instead.",
+        "common_mistakes": [
+          "Calling SiO₂ neutral because it does not dissolve in water. The test of an acidic oxide is the reaction with a base, and silica gives a silicate.",
+          "Writing H₂SiO₃ as the product of SiO₂ with water. Silica does not react with water."
+        ],
+        "memory_tip": "Silica is insoluble and still acidic: the test is the alkali, not the water.",
+        "margin_note": "Say why water is no test here before writing the alkali equation."
+      },
+      {
+        "id": "s2_with_alkali",
+        "kind": "boxed_final",
+        "label": "Why fusion is needed",
+        "marks": 1,
+        "mark_note": "Fusion with alkali",
+        "lines": [
+          {
+            "text": "SiO₂ is acidic though insoluble in water",
+            "style": "boxed"
+          },
+          "On fusion with sodium hydroxide it gives",
+          "a salt and water:",
+          {
+            "text": "SiO₂ + 2NaOH → Na₂SiO₃ + H₂O",
+            "style": "eq"
+          },
+          "The salt is sodium silicate Na₂SiO₃.",
+          "Fusion with sodium carbonate gives the",
+          "same silicate."
+        ],
+        "why": "Fusion is the word that carries this step. Every silicon atom in silica is held to four oxygen atoms right through the crystal, and that giant network breaks down only at a high temperature, so the solid has to be melted with the alkali rather than shaken with a solution of it. Sodium carbonate does the same work at the same temperature and gives the same silicate, with carbon dioxide driven off.",
+        "common_mistakes": [
+          "Calling SiO₂ amphoteric because it reacts with hydrofluoric acid. That reaction gives the fluoride SiF₄ and is not the reaction of a basic oxide with an acid.",
+          "Balancing the alkali but not the silicate: one SiO₂ needs two NaOH to give Na₂SiO₃."
+        ],
+        "memory_tip": "Fused alkali turns silica into sodium silicate, the salt that shows it is acidic.",
+        "margin_note": "Balance this equation; the 2 in front of NaOH is the part most often written wrong."
+      }
+    ]
+  },
+  "insider_note": "Silica is the oxide that seems unreactive and is still acidic. Say plainly that it is insoluble in water and then give the reaction with fused alkali, which is the evidence the question asks for."
+}

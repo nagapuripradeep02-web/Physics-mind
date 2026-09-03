@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_diamond_high_melting_point",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Diamond has a high melting point. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The network structure",
+      "marks": 1
+    },
+    {
+      "label": "What melting has to break",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.105, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 11. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_network",
+        "kind": "text",
+        "label": "The network structure",
+        "marks": 1,
+        "mark_note": "Structure",
+        "lines": [
+          "In diamond every carbon atom is sp³",
+          "hybridised and is joined to four other",
+          "carbon atoms by covalent bonds.",
+          "The C–C bond length is 154 pm and the",
+          "bond angle is 109°28′.",
+          "This bonding repeats in all three",
+          "directions, so the whole crystal is one",
+          "giant covalent network with no separate",
+          "molecules in it."
+        ],
+        "why": "The last line is the one that matters for melting. Most solids are built of separate molecules held to each other by weak forces, and melting only has to separate those molecules. Diamond has no molecules at all.",
+        "common_mistakes": [
+          "Calling diamond a molecular solid. It has no separate molecules; the whole crystal is a single covalent network.",
+          "Writing that the carbon atoms are held by van der Waals forces. Those act between graphite's sheets; in diamond every carbon is covalently bonded to four others."
+        ],
+        "memory_tip": "One crystal, one network, every carbon bonded to four others.",
+        "margin_note": "Say there are no separate molecules; that sentence sets up the reason."
+      },
+      {
+        "id": "s2_melting",
+        "kind": "text",
+        "label": "What melting has to break",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "Because there are no separate molecules,",
+          "melting diamond does not mean pulling",
+          "molecules apart.",
+          "It means breaking the covalent C–C",
+          "bonds themselves, and each of those",
+          "bonds takes 348 kJ mol⁻¹ to break.",
+          "A very large number of such strong",
+          "bonds has to be broken throughout the",
+          "crystal, so a very high temperature is",
+          "needed.",
+          {
+            "text": "Melting diamond breaks covalent bonds",
+            "style": "boxed"
+          }
+        ],
+        "why": "Melting point measures the energy needed to loosen a solid enough for it to flow. For diamond that energy is the energy of the covalent bonds themselves, which is why its melting point is far above that of a molecular solid.",
+        "common_mistakes": [
+          "Writing that only a few bonds break on melting. Melting a covalent network means breaking bonds throughout the crystal.",
+          "Saying the high melting point is caused by the hardness. Both the hardness and the high melting point follow from the same network of strong bonds; one is not the cause of the other."
+        ],
+        "memory_tip": "No molecules to separate, so the bonds themselves have to break.",
+        "margin_note": "Give the bond energy figure if you can; it makes the reason concrete."
+      }
+    ]
+  },
+  "insider_note": "A complete answer says diamond is one giant covalent network with no separate molecules, so melting it means breaking strong C–C bonds throughout the crystal."
+}

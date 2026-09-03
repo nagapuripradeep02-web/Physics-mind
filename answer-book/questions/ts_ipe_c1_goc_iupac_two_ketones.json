@@ -1,0 +1,107 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_iupac_two_ketones",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the IUPAC names of CH₃–CO–CH₂–CH₂–CH₃ and CH₃–CH₂–CO–CH₂–CH₃.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The carbonyl at position 2",
+      "marks": 1
+    },
+    {
+      "label": "The carbonyl at position 3",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.113, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 5(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. BOTH NAMES WERE RE-DERIVED WHILE AUTHORING. CH₃–CO–CH₂–CH₂–CH₃: numbering from the left puts the carbonyl carbon at 2, from the right at 4, so the locant is 2 and the name is pentan-2-one. CH₃–CH₂–CO–CH₂–CH₃: the carbonyl carbon is the middle carbon of five, so the locant is 3 from either end and the name is pentan-3-one. Both have the molecular formula C₅H₁₀O and they are position isomers of each other. QUESTION FORM: the book prints the two structures as bond-line drawings; they are stated here as condensed formulae, which read correctly as text and need no figure. QUESTION WORDING CORRECTED: an earlier version of question_text named the locants ('one with the carbonyl group at position 2 and one at position 3'), which handed the student both answers before the working began, and it was a rewording rather than the printed question. The condensed formulae above replace it and match what the book actually sets. The older styles 2-pentanone and 3-pentanone, and the common names methyl propyl ketone and diethyl ketone, name the same two compounds and are stated on the card as such."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_carbonyl_at_two",
+        "kind": "text",
+        "label": "Carbonyl at position 2",
+        "marks": 1,
+        "mark_note": "First name",
+        "lines": [
+          {
+            "text": "CH₃–CO–CH₂–CH₂–CH₃",
+            "style": "eq"
+          },
+          "Five carbons in the chain give the",
+          "stem pent-, and a ketone group gives",
+          "the suffix -one.",
+          "From the left the carbonyl carbon is",
+          "C2; from the right it is C4. The",
+          "lower locant is 2.",
+          {
+            "text": "pentan-2-one",
+            "style": "boxed"
+          },
+          "Older style 2-pentanone; common name",
+          "methyl propyl ketone."
+        ],
+        "why": "In a ketone the carbonyl carbon is inside the chain, so its position has to be stated. Numbering from both ends and keeping the lower number is what fixes the locant at 2.",
+        "common_mistakes": [
+          "Writing pentan-4-one. Numbering runs from the end that gives the carbonyl carbon the lower number.",
+          "Writing pentanone with no locant. A five-carbon ketone can have the carbonyl carbon at 2 or at 3."
+        ],
+        "memory_tip": "Number from both ends, then keep the smaller number.",
+        "margin_note": "Write the condensed formula out first; the carbonyl carbon is easier to count in it than in a drawing."
+      },
+      {
+        "id": "s2_carbonyl_at_three",
+        "kind": "boxed_final",
+        "label": "Carbonyl at position 3",
+        "marks": 1,
+        "mark_note": "Second name",
+        "lines": [
+          {
+            "text": "CH₃–CH₂–CO–CH₂–CH₃",
+            "style": "eq"
+          },
+          "The carbonyl carbon is the middle",
+          "carbon of the five, so the locant is",
+          "3 counted from either end.",
+          {
+            "text": "pentan-3-one",
+            "style": "boxed"
+          },
+          "Older style 3-pentanone; common name",
+          "diethyl ketone.",
+          "Both compounds are C₅H₁₀O, so they",
+          "are position isomers."
+        ],
+        "why": "This structure is symmetrical about its middle carbon, so the two numbering directions give the same locant and there is nothing to choose between them. The shared molecular formula is what makes the two compounds position isomers.",
+        "common_mistakes": [
+          "Numbering to get 2 and writing pentan-2-one again. The carbonyl carbon here has two carbons on each side of it.",
+          "Calling the two compounds functional isomers. They have the same ketone group in different places, so they are position isomers."
+        ],
+        "memory_tip": "A carbonyl carbon in the middle of five carbons can only be number 3.",
+        "margin_note": "One closing line naming the shared molecular formula C₅H₁₀O completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The locant is the whole of this question. Both compounds are pentanones, and the only thing that separates them is the number written in the middle of the name."
+}

@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_sodium_hydroxide_from_nacl",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Starting with sodium chloride, how would you prepare sodium hydroxide?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The starting material",
+      "marks": 1
+    },
+    {
+      "label": "The cell",
+      "marks": 1
+    },
+    {
+      "label": "The principle",
+      "marks": 1
+    },
+    {
+      "label": "The electrode reactions",
+      "marks": 2
+    },
+    {
+      "label": "The amalgam treated with water",
+      "marks": 2
+    },
+    {
+      "label": "The product",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.96, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 57(ii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THE EQUATIONS WERE CHECKED ATOM BY ATOM: 2Na⁺ + 2e⁻ → 2Na (charge 0 = 0); 2Cl⁻ → Cl₂ + 2e⁻ (charge −2 = −2); 2NaHg + 2H₂O → 2NaOH + 2Hg + H₂ (Na 2 = 2, Hg 2 = 2, O 2 = 2, H 4 = 4). THIS CARD AGREES WITH THE SHORTER CASTNER–KELLNER ANSWER in this chapter and is the fuller treatment of the same process: same mercury cathode and carbon anode, same three equations, same recovery of the mercury. ONE SUPPORTING REASON IS CARRIED BEYOND THE SOURCE ANSWER and should be confirmed by a teacher: the sodium ion is discharged in preference to the hydrogen ion because mercury has a high overvoltage for hydrogen. It is the standard explanation for the mercury cathode, and without it the principle reads as an assertion."
+  },
+  "insider_note": "This preparation has two halves in two different places — the electrolysis makes sodium amalgam, and the caustic soda is made afterwards in a separate chamber where that amalgam meets water — and an answer that stops at the electrode reactions has not yet made any sodium hydroxide.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_starting_material",
+        "kind": "text",
+        "label": "The starting material",
+        "marks": 1,
+        "mark_note": "Brine from sodium chloride",
+        "lines": [
+          "Sodium hydroxide, also called caustic",
+          "soda, is made from sodium chloride by",
+          "the Castner–Kellner process.",
+          "The sodium chloride is dissolved in",
+          "water to give brine, which is a",
+          "concentrated solution of sodium chloride",
+          "in water.",
+          "Brine is the electrolyte, and chlorine",
+          "and hydrogen are obtained as by-products."
+        ],
+        "why": "The question begins at sodium chloride, so the first step is what is done to it: here the salt is dissolved, not melted. That is the opposite of the preparation of sodium metal, where the salt must be fused, and the difference is deliberate — the water is needed later to make the hydroxide.",
+        "common_mistakes": [
+          "Using the fused salt. Sodium metal is made from the fused chloride; caustic soda is made from brine, its solution in water.",
+          "Saying the process makes sodium metal. Sodium is only formed on the way; the product is sodium hydroxide."
+        ],
+        "memory_tip": "Brine goes in; caustic soda comes out, with chlorine and hydrogen alongside.",
+        "margin_note": "Name the process and the electrolyte before any electrode reaction is written."
+      },
+      {
+        "id": "s2_the_cell",
+        "kind": "text",
+        "label": "The cell",
+        "marks": 1,
+        "mark_note": "Mercury cathode and carbon anode",
+        "lines": [
+          "The cell has a layer of mercury flowing",
+          "along its floor, and this mercury is the",
+          "cathode.",
+          "The anode is a set of carbon rods dipping",
+          "into the brine above the mercury.",
+          "The brine flows through the cell between",
+          "the two electrodes.",
+          "A second chamber, the denuding chamber,",
+          "is placed beside the cell and the mercury",
+          "flows on into it."
+        ],
+        "why": "The cell is built in two connected parts, and that is why the process works: the electrolysis happens in the first part and the sodium hydroxide is made in the second. Naming both parts here means the later steps have somewhere to happen.",
+        "common_mistakes": [
+          "Naming an iron or a platinum cathode. The cathode of this cell is flowing mercury.",
+          "Describing one chamber only. The mercury carries the sodium out of the cell into a second chamber."
+        ],
+        "memory_tip": "Mercury on the floor is the cathode, carbon rods above are the anode, and the mercury flows on to a second chamber.",
+        "margin_note": "Name both electrodes with their materials, and name the second chamber."
+      },
+      {
+        "id": "s3_principle",
+        "kind": "text",
+        "label": "The principle",
+        "marks": 1,
+        "mark_note": "Why the sodium ion is discharged",
+        "lines": [
+          "The principle is the electrolysis of",
+          "brine at a mercury cathode.",
+          "Brine contains Na⁺ and Cl⁻ ions and also",
+          "the H⁺ and OH⁻ ions of the water.",
+          "Mercury has a high overvoltage for",
+          "hydrogen.",
+          "So at the mercury cathode the sodium ion",
+          "is discharged and not the hydrogen ion",
+          "of the water."
+        ],
+        "why": "This is the point of the whole design. On an ordinary cathode the water would give hydrogen first, and it is the mercury surface alone that allows a sodium ion to be discharged out of a solution in water. Without this sentence the next step has no reason to give sodium at all.",
+        "common_mistakes": [
+          "Saying hydrogen is set free at the cathode of the cell. On mercury the sodium ion is discharged; the hydrogen comes later, from the second chamber.",
+          "Writing that brine contains only Na⁺ and Cl⁻. The ions of water are present too, and the whole principle is about which of them is discharged."
+        ],
+        "memory_tip": "On mercury it is the sodium ion, not the hydrogen ion, that is discharged.",
+        "margin_note": "Give the high overvoltage of hydrogen on mercury as the reason; it is the one line that explains the choice of cathode."
+      },
+      {
+        "id": "s4_electrode_reactions",
+        "kind": "equation",
+        "label": "The electrode reactions",
+        "marks": 2,
+        "mark_note": "One half reaction at each electrode",
+        "lines": [
+          "At the mercury cathode:",
+          {
+            "text": "2Na⁺ + 2e⁻ → 2Na",
+            "style": "eq"
+          },
+          "The sodium formed dissolves at once in",
+          "the mercury and leaves the cell as",
+          "sodium amalgam, written NaHg.",
+          "At the carbon anode:",
+          {
+            "text": "2Cl⁻ → Cl₂ + 2e⁻",
+            "style": "eq"
+          },
+          "Chlorine gas is collected here.",
+          "Two electrons are taken at the cathode",
+          "and two are released at the anode, so",
+          "the charge balances."
+        ],
+        "why": "Each electrode does one job and the two half reactions show it: the cathode reduces the sodium ion and the anode oxidises the chloride ion. The sodium never appears as free metal in the cell, because it dissolves in the mercury as it is formed, and that is what allows it to be carried out of the brine.",
+        "common_mistakes": [
+          "Collecting free sodium metal from the cell. It leaves dissolved in the mercury, as sodium amalgam.",
+          "Writing chlorine at the cathode. Chlorine is set free at the carbon anode.",
+          "Writing Na⁺ + e⁻ → Na beside 2Cl⁻ → Cl₂ + 2e⁻. The electrons must match in number."
+        ],
+        "memory_tip": "Cathode reduces the sodium ion into the mercury; anode oxidises the chloride ion to chlorine gas.",
+        "margin_note": "Write the sodium into the mercury as amalgam here. That is what the next step needs."
+      },
+      {
+        "id": "s5_amalgam_with_water",
+        "kind": "equation",
+        "label": "The amalgam treated with water",
+        "marks": 2,
+        "mark_note": "Where the caustic soda is made",
+        "lines": [
+          "The sodium amalgam runs into the second",
+          "chamber and is treated there with water:",
+          {
+            "text": "2NaHg + 2H₂O → 2NaOH + 2Hg + H₂",
+            "style": "eq"
+          },
+          "Sodium hydroxide solution is drawn off",
+          "and hydrogen gas escapes.",
+          "The mercury set free here is pumped back",
+          "into the cell and used again, so it is",
+          "not used up in the process.",
+          "The solution is then evaporated to give",
+          "solid sodium hydroxide."
+        ],
+        "why": "The sodium hydroxide is made outside the electrolysis cell, not inside it. The mercury is only a carrier: it takes the sodium out of the brine into the second chamber, where water reacts with that sodium, and the mercury then flows back, which is why the same mercury works the cell over and over.",
+        "common_mistakes": [
+          "Forming the sodium hydroxide inside the electrolysis cell. It is formed in the second chamber where the amalgam meets water.",
+          "Saying the mercury is used up. It is recovered and returned to the cell.",
+          "Leaving the hydrogen out. Water gives up hydrogen here, and that is where the hydrogen by-product comes from."
+        ],
+        "memory_tip": "Amalgam plus water gives caustic soda, hydrogen, and the mercury back again.",
+        "margin_note": "Say plainly that this happens in the second chamber. That placement is half the answer."
+      },
+      {
+        "id": "s6_product",
+        "kind": "boxed_final",
+        "label": "The product",
+        "marks": 1,
+        "mark_note": "The product and its uses",
+        "lines": [
+          {
+            "text": "The product is caustic soda, NaOH",
+            "style": "boxed"
+          },
+          "Sodium hydroxide is a white deliquescent",
+          "solid and a strong base.",
+          "It is used in the manufacture of soap,",
+          "paper and artificial silk, in refining",
+          "petroleum, in the purification of",
+          "bauxite and as a laboratory reagent."
+        ],
+        "why": "The question asked for a preparation, so it is answered only when the substance prepared is named and identified. Adding what caustic soda is like and what it is used for closes the answer on the product rather than on the apparatus.",
+        "common_mistakes": [
+          "Ending at the equation without naming the product. Say that it is sodium hydroxide, caustic soda.",
+          "Calling sodium hydroxide a weak base. It is a strong base and a deliquescent white solid."
+        ],
+        "memory_tip": "Caustic soda is NaOH: a white solid, strongly basic, and it takes up water from the air.",
+        "margin_note": "Finish by naming the product and giving two or three of its uses."
+      }
+    ]
+  }
+}

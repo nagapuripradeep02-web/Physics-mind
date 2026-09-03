@@ -1,0 +1,145 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_ethanol_from_ethylene",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the equation for the preparation of ethyl alcohol from ethylene.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Direct hydration",
+      "marks": 1
+    },
+    {
+      "label": "The catalyst and the conditions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.113, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATIONS WERE CHECKED ATOM BY ATOM: CH₂=CH₂ + H₂O → CH₃CH₂OH has C 2 = 2, H 6 = 6 and O 1 = 1; C₂H₄ + H₂SO₄ → C₂H₅HSO₄ has C 2 = 2, H 6 = 6, S 1 = 1 and O 4 = 4; C₂H₅HSO₄ + H₂O → C₂H₅OH + H₂SO₄ has C 2 = 2, H 8 = 8, S 1 = 1 and O 5 = 5. The unmarked steps carry 0 marks by design and therefore no mark_note. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the words cold and concentrated on the sulphuric acid in the first step, and boiled with water in the second. ONE CONDITION HAS NO RECORDED PROVENANCE: the direct-hydration catalyst and conditions, phosphoric acid at about 300 °C and 60 atm. It was not recorded at authoring time whether the printed answer names them, and the source index carries stems only. Treat them as unattributed until a teacher confirms both the values and where they came from. THE MARK SPLIT WAS RE-CUT ON 2026-09-03 after an examiner audit: the old split gave 1 of the 2 marks to the sulphuric acid route, which the card's own margin note calls optional and whose closing step calls the single direct equation the one the question asks for. The two marks now sit on the direct hydration — 1 for the equation and 1 for the catalyst and the conditions — and the sulphuric acid route is an unmarked step, named as also correct. Both routes and all three equations are unchanged."
+  },
+  "insider_note": "Two routes are correct here. Direct hydration over phosphoric acid is the single equation the question asks for; absorption in sulphuric acid followed by hydrolysis reaches the same alcohol in two steps, with the acid recovered at the end.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_direct",
+        "kind": "equation",
+        "label": "Direct hydration",
+        "marks": 1,
+        "mark_note": "Direct hydration",
+        "lines": [
+          "Ethylene adds a molecule of water across",
+          "its double bond. One carbon takes the",
+          "hydrogen atom and the other takes the OH",
+          "group.",
+          {
+            "text": "CH₂=CH₂ + H₂O → CH₃CH₂OH",
+            "style": "eq"
+          },
+          "Atoms: 2 C, 6 H and 1 O on each side."
+        ],
+        "why": "Water adds across the double bond exactly as hydrogen chloride does: one carbon takes the hydrogen and the other takes the OH group. Every atom of both reactants appears in the single product, so there is no by-product to write.",
+        "common_mistakes": [
+          "Writing the product with a double bond. The double bond opens when the water adds.",
+          "Naming the product ethanal. The product is ethyl alcohol, CH₃CH₂OH."
+        ],
+        "memory_tip": "Water splits as H and OH, one to each carbon of the double bond.",
+        "margin_note": "Write the addition equation with the double bond opened."
+      },
+      {
+        "id": "s2_conditions",
+        "kind": "text",
+        "label": "The catalyst and the conditions",
+        "marks": 1,
+        "mark_note": "Catalyst and conditions",
+        "lines": [
+          "The catalyst is phosphoric acid.",
+          "The conditions are about 300 °C and 60",
+          "atmospheres.",
+          "The acid catalyst is what makes the",
+          "addition go, the heat gives it a workable",
+          "rate, and the pressure holds the two",
+          "gases together at that temperature."
+        ],
+        "why": "The equation on its own does not describe a preparation: ethylene and water do not combine at any useful rate when they are simply mixed. Naming the catalyst and the two conditions is what turns the equation into a method, and this is the part of the answer students most often leave out.",
+        "common_mistakes": [
+          "Leaving out the catalyst and the conditions. The addition needs an acid catalyst, heat and pressure.",
+          "Naming sulphuric acid as the catalyst for this route. The direct hydration is carried out over phosphoric acid; sulphuric acid belongs to the two-step route below."
+        ],
+        "memory_tip": "Phosphoric acid, heat and pressure: without them the equation is not a method.",
+        "margin_note": "Name the catalyst and give both conditions, the temperature and the pressure."
+      },
+      {
+        "id": "s3_sulphuric",
+        "kind": "equation",
+        "label": "The sulphuric acid route",
+        "marks": 0,
+        "lines": [
+          "Ethyl alcohol is also made in two steps,",
+          "and this route is correct as well.",
+          "Ethylene is first absorbed in cold",
+          "concentrated sulphuric acid:",
+          {
+            "text": "C₂H₄ + H₂SO₄ → C₂H₅HSO₄",
+            "style": "eq"
+          },
+          "The ethyl hydrogen sulphate formed is",
+          "then boiled with water:",
+          {
+            "text": "C₂H₅HSO₄ + H₂O → C₂H₅OH + H₂SO₄",
+            "style": "eq"
+          },
+          "The sulphuric acid is recovered unchanged."
+        ],
+        "why": "The sulphuric acid route reaches the same alcohol by adding the acid first and then replacing it with water. The acid comes out of the second step unchanged, so the overall change is still the addition of one molecule of water to ethylene.",
+        "common_mistakes": [
+          "Stopping at the ethyl hydrogen sulphate. The second step, hydrolysis with water, gives the alcohol.",
+          "Using dilute sulphuric acid in the first step. The acid must be concentrated for ethylene to be absorbed."
+        ],
+        "memory_tip": "Add the acid first, then swap it for water: the acid comes back unchanged.",
+        "margin_note": "Unmarked step. Either route answers the question; this one takes two equations."
+      },
+      {
+        "id": "s4_answer",
+        "kind": "boxed_final",
+        "label": "The overall change",
+        "marks": 0,
+        "lines": [
+          {
+            "text": "CH₂=CH₂ + H₂O → C₂H₅OH (H₃PO₄)",
+            "style": "boxed"
+          },
+          "Either route makes the same change:",
+          "ethylene plus water gives ethyl alcohol.",
+          "This one line is the equation the",
+          "question asks for."
+        ],
+        "why": "Both routes come to the same overall change, so closing with it in one line makes the answer readable on its own and shows that the sulphuric acid of the second route is not consumed.",
+        "common_mistakes": [
+          "Giving the two-step route without saying what the overall change is.",
+          "Writing H₂SO₄ into the overall equation. It is recovered, so it does not appear."
+        ],
+        "memory_tip": "Whichever route is used, one ethylene plus one water gives one ethyl alcohol.",
+        "margin_note": "Unmarked closing step."
+      }
+    ]
+  }
+}

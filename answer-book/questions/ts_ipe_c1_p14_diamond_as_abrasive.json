@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_diamond_as_abrasive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain why diamond is an abrasive.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The structure of diamond",
+      "marks": 1
+    },
+    {
+      "label": "Why diamond is hard",
+      "marks": 1
+    },
+    {
+      "label": "What an abrasive must be",
+      "marks": 1
+    },
+    {
+      "label": "Where it is used",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.107, chapter 9 p-BLOCK ELEMENTS GROUP 14, Short Answer Questions question 32(d). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. SPELLING CORRECTED: the source prints 'Diamond dyes are used for drawing thin wires'. The word is 'dies' — a die is the tool a wire is drawn through — and this card writes 'diamond dies' and explains what a die is, because 'dyes' makes the sentence mean nothing. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 14 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_structure",
+        "kind": "text",
+        "label": "The structure of diamond",
+        "marks": 1,
+        "mark_note": "Structure",
+        "lines": [
+          "In diamond every carbon atom is sp³",
+          "hybridised and is joined to four other",
+          "carbon atoms by covalent bonds.",
+          "The bonds point to the corners of a",
+          "regular tetrahedron, the bond angle is",
+          "109°28′ and the C–C bond length is",
+          "154 pm.",
+          "The pattern repeats in all three",
+          "directions, so the whole crystal is one",
+          "rigid covalent network."
+        ],
+        "why": "An abrasive question is really a hardness question, and hardness has to be argued from the structure. The four fixed bond directions per carbon are what will make the crystal rigid two steps further on.",
+        "common_mistakes": [
+          "Starting at the uses. Give the structure that makes diamond hard, and let the uses follow from it.",
+          "Answering sp² for diamond. Each carbon is bonded to four other carbon atoms, so it is sp³."
+        ],
+        "memory_tip": "Four bonds per carbon, tetrahedral, repeating in three dimensions.",
+        "margin_note": "Begin with the structure. Every later line in this answer depends on it."
+      },
+      {
+        "id": "s2_hardness",
+        "kind": "text",
+        "label": "Why diamond is hard",
+        "marks": 1,
+        "mark_note": "Hardness",
+        "lines": [
+          "Each C–C bond in diamond takes",
+          "348 kJ mol⁻¹ to break.",
+          "There are no weak forces in diamond and",
+          "no layers that can slide, so an atom",
+          "cannot be pushed out of place without",
+          "covalent bonds being broken.",
+          "Diamond is therefore the hardest known",
+          "substance, and nothing but another",
+          "diamond can scratch it."
+        ],
+        "why": "Hardness means a surface cannot be scratched or dented. In diamond both would require covalent bonds to break, and every one of those bonds points in a fixed direction, so the surface stays as it was cut.",
+        "common_mistakes": [
+          "Writing that diamond is hard because it is dense. Density is a separate property; the hardness comes from the rigid network of strong bonds.",
+          "Giving graphite's reason by mistake. Graphite is soft because its sheets slide, and diamond has no sheets to slide."
+        ],
+        "memory_tip": "Nothing weak and nothing sliding, so no atom can be pushed out of place.",
+        "margin_note": "State that diamond is harder than the material being worked; the next step needs that sentence."
+      },
+      {
+        "id": "s3_abrasive",
+        "kind": "text",
+        "label": "What an abrasive must be",
+        "marks": 1,
+        "mark_note": "The requirement",
+        "lines": [
+          "An abrasive is a substance used to",
+          "grind, cut or polish another material",
+          "by wearing it away.",
+          "To do that it must be harder than the",
+          "material worked against it, or it",
+          "would be worn away instead.",
+          "Diamond scratches every other known",
+          "substance, so it can grind, cut and",
+          "polish them all, and it wears away only",
+          "very slowly."
+        ],
+        "why": "This is the step that connects hardness to the word abrasive. Grinding is one surface scratching another, so the abrasive is simply whichever of the two is harder — and diamond is harder than every other material.",
+        "common_mistakes": [
+          "Naming the uses without saying what an abrasive is. The definition is what makes the hardness relevant.",
+          "Writing that an abrasive must be heavy or rough. It must be harder than the material it is used on."
+        ],
+        "memory_tip": "An abrasive has to be the harder of the two surfaces.",
+        "margin_note": "Define the word abrasive in one line; it is what ties the hardness to the uses."
+      },
+      {
+        "id": "s4_uses",
+        "kind": "boxed_final",
+        "label": "Where it is used",
+        "marks": 1,
+        "mark_note": "The uses",
+        "lines": [
+          {
+            "text": "The hardest substance grinds all others",
+            "style": "boxed"
+          },
+          "Diamond dust is set into grinding",
+          "wheels, cutting discs and polishing",
+          "powders.",
+          "Diamond tipped bits are used for",
+          "drilling rock, and small diamonds are",
+          "used for cutting glass.",
+          "Diamond dies are used for drawing thin",
+          "wire. A die is a block with a hole in",
+          "it, and the metal is pulled through the",
+          "hole to make it thinner; a diamond die",
+          "keeps the hole at its exact size",
+          "because it does not wear away."
+        ],
+        "why": "The uses are the evidence that the hardness argument is right. Each of them is the same job — one surface wearing another away — and in every one of them diamond is the surface that is not worn away.",
+        "common_mistakes": [
+          "Writing 'diamond dyes'. A die is the block with a hole through which a wire is drawn, so the word here is die.",
+          "Giving the gem use as an example of an abrasive. A gem is valued for its high refractive index, which is a different property."
+        ],
+        "memory_tip": "Grinding wheels, drill bits, glass cutters and wire-drawing dies — all of them cut or wear something else away.",
+        "margin_note": "One closing line naming a use completes the answer."
+      }
+    ]
+  },
+  "insider_note": "A complete answer builds the argument in order: the rigid network, the hardness that follows from it, what an abrasive has to be, and then the grinding, drilling and wire-drawing uses."
+}

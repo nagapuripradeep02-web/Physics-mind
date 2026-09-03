@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_group14_outer_configuration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the outer electron configuration of the group-14 elements.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The five configurations",
+      "marks": 1
+    },
+    {
+      "label": "The general form ns²np²",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Each configuration was checked against the element's atomic number while authoring: C 6, Si 14, Ge 32, Sn 50, Pb 82. In germanium, tin and lead the filled inner d and f subshells may be written before or after the ns electrons; both orders are used and both are correct. This book prints no exam-appearance years for this chapter, so appearances[] is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_configurations",
+        "kind": "text",
+        "label": "The five configurations",
+        "marks": 1,
+        "mark_note": "Configurations",
+        "lines": [
+          "C  (Z = 6)  : [He]2s²2p²",
+          "Si (Z = 14) : [Ne]3s²3p²",
+          "Ge (Z = 32) : [Ar]3d¹⁰4s²4p²",
+          "Sn (Z = 50) : [Kr]4d¹⁰5s²5p²",
+          "Pb (Z = 82) : [Xe]4f¹⁴5d¹⁰6s²6p²"
+        ],
+        "why": "Each element is written with a noble gas core so that the outer shell, which is what the question asks for, stands at the end of the line where it can be read at once. From germanium onward a complete d subshell lies below the outer shell, and in lead a complete f subshell as well, but those inner electrons are not valence electrons.",
+        "common_mistakes": [
+          "Writing germanium as [Ar]4s²4p². The ten 3d electrons are filled before 4p and must be shown.",
+          "Leaving out 4f¹⁴ in lead. Both the 4f and the 5d subshells are complete before 6p."
+        ],
+        "memory_tip": "Carbon 6, silicon 14, germanium 32, tin 50, lead 82: every one ends in ns²np².",
+        "margin_note": "Use the noble gas core and write each element with its atomic number."
+      },
+      {
+        "id": "s2_general_form",
+        "kind": "boxed_final",
+        "label": "The general form ns²np²",
+        "marks": 1,
+        "mark_note": "General form",
+        "lines": [
+          {
+            "text": "Group 14 outer shell is ns²np²",
+            "style": "boxed"
+          },
+          "Every member has four electrons in its",
+          "outermost shell, two in the s subshell",
+          "and two in the p subshell.",
+          "Those four valence electrons are why the",
+          "group shows the +4 oxidation state.",
+          "Lower down the group the +2 state also",
+          "appears, through the inert pair effect."
+        ],
+        "why": "One line, ns²np², covers all five elements, and the count of four valence electrons is what the rest of the chapter rests on: four electrons give the +4 state, and when the ns² pair does not take part in bonding the state falls to +2.",
+        "common_mistakes": [
+          "Writing ns²np⁴. Group 14 has two p electrons in the outer shell, not four.",
+          "Counting the filled 3d or 4f electrons as valence electrons. The valence shell is the outermost one, ns²np²."
+        ],
+        "memory_tip": "Group 14, four valence electrons: two in s and two in p.",
+        "margin_note": "Write ns²np² once; that single line answers the question for all five elements."
+      }
+    ]
+  },
+  "insider_note": "The question asks for the outer configuration, so ns²np² is the line that answers it, and the five elements written out are the support. Four valence electrons is the number the whole chapter uses."
+}

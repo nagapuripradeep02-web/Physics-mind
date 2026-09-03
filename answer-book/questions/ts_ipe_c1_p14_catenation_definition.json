@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_catenation_definition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define catenation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Which elements show it",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.106, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 27. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. TWIN QUESTION: the same chapter asks catenation again in Section B at 4 marks; the two cards were written together so they agree. This 2-mark card gives the definition and the C–C bond energy of 348 kJ mol⁻¹ as the reason; the 4-mark card adds the Si–Si, Ge–Ge and Sn–Sn bond energies and the order down the group. The bond energy 348 kJ mol⁻¹ for C–C is NCERT's value. This book prints no exam-appearance years for this chapter, so appearances[] is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "Catenation is the linking of atoms of the",
+          "same element to one another by covalent",
+          "bonds.",
+          "The atoms may join into straight chains,",
+          "branched chains or closed rings.",
+          "A chain of carbon atoms, C–C–C–C, is the",
+          "common example."
+        ],
+        "why": "The word means self-linking: the bond that counts is between two atoms of the same element, not between the element and oxygen or hydrogen. Naming chains and rings together keeps the definition complete, because catenation covers both.",
+        "common_mistakes": [
+          "Defining catenation as the linking of any two atoms. The atoms joined must be atoms of the same element.",
+          "Writing that catenation gives chains only. Rings come from the same self-linking and count as catenation."
+        ],
+        "memory_tip": "Catena means a chain: catenation is a chain of atoms of one element.",
+        "margin_note": "Say same element and covalent bond; both words carry the definition."
+      },
+      {
+        "id": "s2_which_elements",
+        "kind": "boxed_final",
+        "label": "Which elements show it",
+        "marks": 1,
+        "mark_note": "Carbon and the reason",
+        "lines": [
+          {
+            "text": "Carbon catenates best of group 14",
+            "style": "boxed"
+          },
+          "Catenation depends on the strength of",
+          "the bond between two atoms of the same",
+          "element.",
+          "The C–C bond energy is 348 kJ mol⁻¹, the",
+          "highest in the group, so carbon forms the",
+          "longest chains and rings.",
+          "Silicon and sulphur also catenate, but",
+          "far less than carbon."
+        ],
+        "why": "The strength of the bond between two atoms of the element is what limits catenation: a strong C–C bond keeps a long chain together, while the weaker Si–Si and Ge–Ge bonds break more easily and their chains stay short. That one bond energy is the reason carbon has more compounds than any other element.",
+        "common_mistakes": [
+          "Giving the small size and stopping there. Small size is a real reason, but say how it works: the small carbon atoms make the strong C–C bond of 348 kJ mol⁻¹, and that bond is what holds a long chain together.",
+          "Naming carbon as the only element that catenates. Silicon and sulphur do as well, though to a much smaller extent."
+        ],
+        "memory_tip": "The stronger the bond between atoms of the same element, the longer the chain: C–C at 348 kJ mol⁻¹ is the strongest.",
+        "margin_note": "One number, the C–C bond energy, turns the definition into a reason."
+      }
+    ]
+  },
+  "insider_note": "A definition on its own is short for this question. Add the element that shows catenation best and the bond energy that explains it, and the answer is complete."
+}

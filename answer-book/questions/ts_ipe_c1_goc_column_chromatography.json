@@ -1,0 +1,235 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_column_chromatography",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain column chromatography.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What column chromatography is",
+      "marks": 1
+    },
+    {
+      "label": "Packing the column",
+      "marks": 1
+    },
+    {
+      "label": "Loading and developing",
+      "marks": 2
+    },
+    {
+      "label": "Elution and collection",
+      "marks": 2
+    },
+    {
+      "label": "The order in which the bands come out",
+      "marks": 1
+    },
+    {
+      "label": "Uses",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.123, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 40(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. APPARATUS IN WORDS, NOT A FIGURE: the glass tube with a stopcock, the plug of cotton or glass wool, the packing of alumina or silica gel poured in as a slurry, and the receivers are described precisely enough to be drawn from the words. CLASSIFICATION STATED: column chromatography is an ADSORPTION chromatography, the stationary phase being a solid adsorbent and the mobile phase a liquid eluant. That classification is what separates this method from a partition method, and it is written at the head of the answer for that reason. The order of elution is stated the way it physically follows: the most strongly adsorbed component moves slowest, stays nearest the top of the column and leaves last."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What column chromatography is",
+        "marks": 1,
+        "mark_note": "Adsorption, and the two phases",
+        "lines": [
+          "Column chromatography is an adsorption",
+          "chromatography.",
+          "The stationary phase is a SOLID",
+          "adsorbent packed in a vertical tube, and",
+          "the mobile phase is a liquid called the",
+          "eluant, which flows down through it.",
+          "The components of the mixture are",
+          "adsorbed on the solid to different",
+          "extents.",
+          "So they travel down the column at",
+          "different rates and separate from one",
+          "another."
+        ],
+        "why": "Naming this as an adsorption method at the start settles what the two phases are and where the separation comes from. The components differ in how strongly the solid adsorbs them, and that single difference is what produces every result described afterwards.",
+        "common_mistakes": [
+          "Calling it a partition chromatography. Here the stationary phase is a solid adsorbent, not a liquid.",
+          "Saying the components differ in solubility. They differ in how strongly they are adsorbed on the solid."
+        ],
+        "memory_tip": "Solid adsorbent standing still, liquid eluant moving down, and the components adsorbed by different amounts.",
+        "margin_note": "Open by naming the two phases and the word adsorption. Everything after this follows from them."
+      },
+      {
+        "id": "s2_packing",
+        "kind": "text",
+        "label": "Packing the column",
+        "marks": 1,
+        "mark_note": "The tube and the adsorbent",
+        "lines": [
+          "A long glass tube with a stopcock at the",
+          "bottom is used.",
+          "A plug of cotton or glass wool is put in",
+          "first to support the packing and to stop",
+          "the adsorbent from running out.",
+          "Alumina, Al₂O₃, or silica gel is made",
+          "into a slurry with the eluant and poured",
+          "in, and it settles into an even column.",
+          "The packing is kept covered with liquid",
+          "throughout the run, because a dry crack",
+          "in the column lets the eluant pass",
+          "without touching the adsorbent and",
+          "spoils the separation."
+        ],
+        "why": "The adsorbent is poured in as a slurry rather than as a dry powder so that no air is trapped in it. An even, air-free column is what makes every part of a band travel at the same rate, and an uneven one makes the bands slant and overlap.",
+        "common_mistakes": [
+          "Pouring the adsorbent in dry. It is added as a slurry in the eluant, so that no air is trapped.",
+          "Letting the column run dry between fractions. The packing must stay covered with liquid."
+        ],
+        "memory_tip": "Cotton plug first, then alumina or silica gel as a slurry, and never let the column run dry.",
+        "margin_note": "Name the adsorbent, alumina or silica gel, and say that it goes in as a slurry."
+      },
+      {
+        "id": "s3_loading_and_developing",
+        "kind": "text",
+        "label": "Loading and developing",
+        "marks": 2,
+        "mark_note": "The narrow band and its separation",
+        "lines": [
+          "The mixture is dissolved in the smallest",
+          "possible amount of solvent and poured on",
+          "the top of the column as a narrow band.",
+          "The eluant is then run down the column",
+          "steadily.",
+          "A component that is strongly adsorbed",
+          "moves slowly, and a component that is",
+          "weakly adsorbed moves quickly.",
+          "The single band therefore separates into",
+          "a set of bands, one for each component,",
+          "spread out down the length of the",
+          "column.",
+          "With coloured substances the bands can",
+          "be seen directly, and the set of bands",
+          "is called the chromatogram."
+        ],
+        "why": "The mixture is loaded in the smallest possible volume for a definite reason: every band ends up at least as wide as the band it started from. A narrow start gives narrow, well separated bands, and a wide start gives bands that overlap even when the rates differ.",
+        "common_mistakes": [
+          "Dissolving the mixture in plenty of solvent before loading. The smallest possible volume is used, so that the starting band is narrow.",
+          "Pouring the eluant in so fast that the top of the column is disturbed. It is added gently down the side."
+        ],
+        "memory_tip": "A narrow band at the top separates into as many bands as there are components.",
+        "margin_note": "Two marks here, so write both the loading of a narrow band AND the separation into bands at different rates."
+      },
+      {
+        "id": "s4_elution",
+        "kind": "text",
+        "label": "Elution and collection",
+        "marks": 2,
+        "mark_note": "Continuous flow and separate receivers",
+        "lines": [
+          "Elution is the washing down of the",
+          "separated bands by a continuous flow of",
+          "the eluant.",
+          "The stopcock is opened and the liquid",
+          "leaving the column is collected in",
+          "separate receivers, a fresh one for each",
+          "band that comes out.",
+          "A more polar eluant is used later, to",
+          "bring down the bands that are adsorbed",
+          "most strongly and would otherwise stay",
+          "near the top.",
+          "Each fraction is then distilled to",
+          "remove the solvent, and the pure",
+          "component is left behind."
+        ],
+        "why": "Separating the bands inside the column is only half of the method. Until the eluant has washed each band right out of the tube and into its own receiver, the components are separated in space but are still together in one vessel and cannot be used.",
+        "common_mistakes": [
+          "Collecting all the liquid in one receiver. A fresh receiver is taken for each band.",
+          "Stopping at the collection of the fractions. The solvent is distilled off before the component is obtained."
+        ],
+        "memory_tip": "Elution is simply washing the bands out one at a time, each into its own receiver.",
+        "margin_note": "Two marks here, so give the meaning of elution AND the collecting and working up of the fractions."
+      },
+      {
+        "id": "s5_order",
+        "kind": "text",
+        "label": "The order in which the bands come out",
+        "marks": 1,
+        "mark_note": "Strongest adsorbed leaves last",
+        "lines": [
+          "The order is set by the strength of the",
+          "adsorption.",
+          "The most strongly adsorbed component",
+          "moves slowest, stays nearest the top of",
+          "the column and leaves it last.",
+          "The most weakly adsorbed component moves",
+          "fastest, reaches the bottom first and",
+          "leaves first.",
+          "So the fractions come out in the reverse",
+          "of the order in which the bands stand on",
+          "the column."
+        ],
+        "why": "This is the one point at which the picture inside the column and the sequence of the receivers can be confused. The band nearest the top leaves the column last, so what is highest on the column is lowest in the sequence of collection.",
+        "common_mistakes": [
+          "Saying the strongly adsorbed component comes out first. It moves slowest, so it comes out last.",
+          "Reading the order of the bands down the column as the order of collection. It is the reverse."
+        ],
+        "memory_tip": "Strongly adsorbed means slow, so the top band leaves the column last.",
+        "margin_note": "State the order explicitly and say it is the reverse of the order of the bands on the column."
+      },
+      {
+        "id": "s6_uses",
+        "kind": "boxed_final",
+        "label": "Uses",
+        "marks": 1,
+        "mark_note": "Two or three real uses",
+        "lines": [
+          "Column chromatography separates the",
+          "pigments of a leaf into their coloured",
+          "bands.",
+          "It purifies a reaction product from the",
+          "by-products formed with it, and it",
+          "separates the compounds of a natural",
+          "extract from one another.",
+          "It works on a few milligrams and on",
+          "kilograms alike, which is why it is used",
+          "both in the laboratory and in industry.",
+          {
+            "text": "Strong adsorption means slow movement",
+            "style": "boxed"
+          }
+        ],
+        "why": "The method is used more widely than any other purification because it needs no difference in boiling point, melting point or solubility. A difference in adsorption is enough, and two compounds that are alike in every other way usually still differ in that.",
+        "common_mistakes": [
+          "Saying it works only for coloured substances. The bands are simply easier to see when they are coloured.",
+          "Ending at the elution. A full answer names what the method is used for."
+        ],
+        "memory_tip": "Leaf pigments, reaction products and natural extracts, from milligrams up to kilograms.",
+        "margin_note": "One closing line naming the relation between adsorption and speed completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Say at the start that this is an adsorption method with a solid stationary phase, and the rest follows. Load a narrow band, run the eluant, collect each band in its own receiver, and distil the solvent off. The point most answers get backwards is the order: the most strongly adsorbed component sits nearest the top and comes out last."
+}

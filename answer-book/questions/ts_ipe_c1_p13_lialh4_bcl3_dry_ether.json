@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_lialh4_bcl3_dry_ether",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens when a mixture of LiAlH₄ and BCl₃ in dry ether is warmed?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Diborane is formed",
+      "marks": 1
+    },
+    {
+      "label": "Balanced equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, VERY SHORT ANSWER QUESTIONS question 16(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_product",
+        "kind": "text",
+        "label": "Diborane is formed",
+        "marks": 1,
+        "mark_note": "Product named",
+        "lines": [
+          "Warming lithium aluminium hydride with",
+          "boron trichloride in dry ether gives",
+          "diborane, B₂H₆.",
+          "Hydride ions transfer to boron and",
+          "chlorine to aluminium, so AlCl₃ and",
+          "LiCl are the by-products."
+        ],
+        "why": "The reaction is an exchange of hydride for chloride, so naming diborane as the product and the two chlorides as the by-products states the whole change before any coefficients are worked out.",
+        "common_mistakes": [
+          "Naming BH₃ as the product. Borane is not stable on its own, so two units join to give B₂H₆.",
+          "Giving LiF and AlF₃ as the by-products. Those come from the reaction with BF₃; with BCl₃ the by-products are AlCl₃ and LiCl."
+        ],
+        "memory_tip": "Hydrogen moves to boron, chlorine moves to aluminium and lithium.",
+        "margin_note": "Say dry ether. Diborane reacts with water, so the solvent has to be dry."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "Balanced equation",
+        "marks": 1,
+        "mark_note": "Balanced equation",
+        "lines": [
+          {
+            "text": "3LiAlH₄ + 4BCl₃ → 2B₂H₆ + 3AlCl₃ + 3LiCl",
+            "style": "boxed"
+          },
+          "Conditions: dry ether, warmed.",
+          "Each side has 3 Li, 3 Al, 4 B, 12 H and",
+          "12 Cl, so the equation is balanced."
+        ],
+        "why": "The coefficients here are not obvious, so counting each element on both sides is the only way to be sure the equation written down is the balanced one.",
+        "common_mistakes": [
+          "Writing the equation with 1 : 1 coefficients. Three LiAlH₄ and four BCl₃ are needed to match twelve hydrogen atoms with twelve chlorine atoms.",
+          "Leaving out LiCl, which leaves the lithium unaccounted for on the right."
+        ],
+        "memory_tip": "The coefficients read 3, 4, 2, 3, 3 in the order they are written.",
+        "margin_note": "Write dry ether above the arrow and the word warm beside it."
+      }
+    ]
+  },
+  "insider_note": "The balanced equation carries this answer, so write it in full and name the two chlorides; a single line saying only that diborane forms leaves the change half stated."
+}

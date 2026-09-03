@@ -1,0 +1,168 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_flame_colour_reason",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Alkali metals and their salts impart characteristic colours to an oxidising flame. Explain the reason.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What is observed",
+      "marks": 1
+    },
+    {
+      "label": "The electron is excited",
+      "marks": 1
+    },
+    {
+      "label": "Light emitted on falling back",
+      "marks": 1
+    },
+    {
+      "label": "The characteristic colours",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.87, chapter 7 s-BLOCK ELEMENTS, SAQ question 29. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The flame colours printed here — lithium crimson red, sodium golden yellow, potassium pale violet, rubidium reddish violet, caesium blue — are the source book's own table and agree with the standard values; potassium is violet and sodium is the yellow one, and that pairing was checked deliberately because it is the one most often reversed."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_is_seen",
+        "kind": "text",
+        "label": "What is observed",
+        "marks": 1,
+        "mark_note": "The observation stated",
+        "lines": [
+          "An oxidising flame is the non-luminous",
+          "flame of a Bunsen burner.",
+          "When an alkali metal or one of its salts",
+          "is heated in this flame, the flame takes",
+          "a colour that belongs to that metal.",
+          "This is the basis of the flame test used",
+          "in qualitative analysis."
+        ],
+        "why": "The question asks for a reason, so the thing to be explained must be stated first; naming the oxidising flame also fixes the condition, because the colour is seen in the hot non-luminous flame and not in a smoky one.",
+        "common_mistakes": [
+          "Saying only the free metal gives the colour. The salts of the metal give the same colour.",
+          "Describing the colour of the burning gas. The colour comes from the metal, not from the fuel."
+        ],
+        "memory_tip": "The colour belongs to the metal, whether it is taken as the metal or as its salt.",
+        "margin_note": "State what is observed before explaining why it happens."
+      },
+      {
+        "id": "s2_excitation",
+        "kind": "text",
+        "label": "The electron is excited",
+        "marks": 1,
+        "mark_note": "Excitation of the ns¹ electron",
+        "lines": [
+          "An alkali metal atom has a single",
+          "electron in its outermost ns orbital.",
+          "That electron is far from the nucleus,",
+          "is screened by the inner shells and is",
+          "loosely held, so the ionisation enthalpy",
+          "is low.",
+          "The heat of the flame is enough to raise",
+          "this electron to a higher energy level."
+        ],
+        "why": "Excitation is possible only because the single ns¹ electron is weakly held; a metal whose valence electron is tightly bound is not excited by a flame at all, which is why the alkali metals show this behaviour so clearly.",
+        "common_mistakes": [
+          "Saying the flame removes the electron from the atom. The electron is raised to a higher level, not knocked out.",
+          "Saying an inner-shell electron is excited. It is the single outermost ns¹ electron."
+        ],
+        "memory_tip": "One loosely held ns¹ electron, so a Bunsen flame is hot enough to excite it.",
+        "margin_note": "Name the electron that is excited: the single outermost ns¹ electron."
+      },
+      {
+        "id": "s3_emission",
+        "kind": "equation",
+        "label": "Light emitted on falling back",
+        "marks": 1,
+        "mark_note": "The energy relation",
+        "lines": [
+          "The excited electron is not stable and",
+          "falls back to the lower energy level.",
+          "The energy difference is given out as",
+          "radiation:",
+          {
+            "text": "ΔE = E₂ − E₁ = hν = hc / λ",
+            "style": "eq"
+          },
+          "Each metal has its own energy gap, so",
+          "each emits its own wavelength.",
+          "That wavelength lies in the visible",
+          "region, so a colour is seen."
+        ],
+        "why": "The light is emitted while the electron RETURNS, not while it is being excited, and the energy gap is fixed for each metal — that is what makes the colour characteristic and lets one metal be told from another.",
+        "common_mistakes": [
+          "Saying light is emitted when the electron is excited. It is emitted when the electron falls back.",
+          "Leaving out the energy relation. ΔE = hν is what links the energy gap to the colour seen."
+        ],
+        "memory_tip": "Heat sends the electron up; light is given out when it comes down.",
+        "margin_note": "The relation ΔE = hν belongs in this step."
+      },
+      {
+        "id": "s4_colours",
+        "kind": "boxed_final",
+        "label": "The characteristic colours",
+        "marks": 1,
+        "mark_note": "The colours named",
+        "lines": [
+          "The colours down the group are:",
+          {
+            "text": "Lithium — crimson red",
+            "style": "indent"
+          },
+          {
+            "text": "Sodium — golden yellow",
+            "style": "indent"
+          },
+          {
+            "text": "Potassium — pale violet",
+            "style": "indent"
+          },
+          {
+            "text": "Rubidium — reddish violet",
+            "style": "indent"
+          },
+          {
+            "text": "Caesium — blue",
+            "style": "indent"
+          },
+          {
+            "text": "The colour seen names the metal",
+            "style": "boxed"
+          }
+        ],
+        "why": "The reason explains why any colour appears; the list is what shows that the colour differs from metal to metal, and a reason without the list leaves the word characteristic in the question unanswered.",
+        "common_mistakes": [
+          "Giving potassium a yellow flame. Potassium is pale violet and sodium is the golden yellow one.",
+          "Saying all the alkali metals give one colour. Each has its own energy gap and its own colour."
+        ],
+        "memory_tip": "Sodium is the yellow one; potassium is the violet one.",
+        "margin_note": "Give the colours in order down the group."
+      }
+    ]
+  },
+  "insider_note": "Write both halves: why a colour appears at all, and which colour belongs to which metal — potassium is pale violet and sodium is golden yellow."
+}

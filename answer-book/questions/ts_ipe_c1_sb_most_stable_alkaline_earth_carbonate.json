@@ -1,0 +1,100 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_most_stable_alkaline_earth_carbonate",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Which of the alkaline earth metal carbonates is thermally the most stable? Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The carbonate named",
+      "marks": 1
+    },
+    {
+      "label": "The reason",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.86, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 20. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_carbonate_named",
+        "kind": "text",
+        "label": "The carbonate named",
+        "marks": 1,
+        "mark_note": "The carbonate",
+        "lines": [
+          "Barium carbonate, BaCO₃, is thermally",
+          "the most stable of the alkaline earth",
+          "metal carbonates.",
+          "A carbonate of this group decomposes",
+          "on heating to the oxide and carbon",
+          "dioxide:",
+          {
+            "text": "BaCO₃ → BaO + CO₂",
+            "style": "eq"
+          },
+          "and barium carbonate needs the",
+          "highest temperature for this change."
+        ],
+        "why": "The question asks for one carbonate by name, so the answer opens with barium carbonate. Thermal stability here means the temperature at which the carbonate breaks into the oxide and carbon dioxide, and barium carbonate needs the highest.",
+        "common_mistakes": [
+          "Naming beryllium carbonate or magnesium carbonate. These two are the least stable of the group.",
+          "Giving the name and stopping. The question also asks for the reason."
+        ],
+        "memory_tip": "Stability rises down the group, so the last member, barium carbonate, is the most stable.",
+        "margin_note": "Write the formula BaCO₃ beside the name."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "text",
+        "label": "The reason",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "Thermal stability increases as the",
+          "size of the cation increases down",
+          "the group:",
+          {
+            "text": "BeCO₃ < MgCO₃ < CaCO₃ < SrCO₃ < BaCO₃",
+            "style": "eq"
+          },
+          "Ba²⁺ is the largest cation of the",
+          "group and its polarising power is",
+          "low, so it distorts the carbonate ion",
+          "only slightly and the C–O bonds in it",
+          "stay strong."
+        ],
+        "why": "A carbonate decomposes when the cation pulls electron density away from the carbonate ion and weakens a C–O bond. A large cation with a low charge density does this least, so the carbonate of the largest cation needs the highest temperature to decompose.",
+        "common_mistakes": [
+          "Writing that thermal stability decreases down the group. It increases, which is why BaCO₃ is the most stable.",
+          "Giving the order without the reason. The size of the cation is what the reason rests on."
+        ],
+        "memory_tip": "A bigger cation pulls on the carbonate ion less, so the carbonate is more stable.",
+        "margin_note": "The stability order written out shows the trend in one line."
+      }
+    ]
+  },
+  "insider_note": "One name and one reason are the whole answer, but the reason has to be the size of the cation, not the mass of the metal."
+}

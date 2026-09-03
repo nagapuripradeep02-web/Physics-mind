@@ -1,0 +1,247 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkaline_earth_nitrates",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Discuss the nitrates of the alkaline earth metals.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Preparation",
+      "marks": 2
+    },
+    {
+      "label": "Water of crystallisation",
+      "marks": 2
+    },
+    {
+      "label": "Action of heat",
+      "marks": 2
+    },
+    {
+      "label": "Heating the hydrated salt",
+      "marks": 1
+    },
+    {
+      "label": "Comparison with lithium nitrate",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.93, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 53(iii). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD: the two-stage account of heating hydrated magnesium nitrate, and the equations 2Mg(NO₃)₂ → 2MgO + 4NO₂ + O₂ and 2Ca(NO₃)₂ → 2CaO + 4NO₂ + O₂, are the same as on the short cards of this chapter that carry the magnesium case and the calcium case. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the unmarked closing step, that the thermal stability of these nitrates increases down the group, Be < Mg < Ca < Sr < Ba, for the same polarising-power reason the card already gives for the group 2 result against the alkali metal one. No decomposition temperatures are printed, because none is sourced; the step gives the order only."
+  },
+  "insider_note": "One fact carries most of this answer — the nitrates of this group give the OXIDE on heating, not the nitrite — and the water of crystallisation, six molecules for magnesium and none for barium, is the part most often left out.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_preparation",
+        "kind": "equation",
+        "label": "Preparation",
+        "marks": 2,
+        "mark_note": "Preparation",
+        "lines": [
+          "The nitrates of the alkaline earth",
+          "metals have the general formula",
+          "M(NO₃)₂, where M is Be, Mg, Ca, Sr",
+          "or Ba.",
+          "They are made by dissolving the",
+          "carbonate of the metal in dilute nitric",
+          "acid:",
+          {
+            "text": "MgCO₃ + 2HNO₃ → Mg(NO₃)₂ + H₂O + CO₂",
+            "style": "eq"
+          },
+          {
+            "text": "CaCO₃ + 2HNO₃ → Ca(NO₃)₂ + H₂O + CO₂",
+            "style": "eq"
+          },
+          "The carbon dioxide escapes and the",
+          "nitrate is left dissolved in the water.",
+          "Crystals are obtained by evaporating",
+          "that solution."
+        ],
+        "why": "The carbonates are insoluble solids that are easy to obtain, and dilute nitric acid converts any of them to the nitrate in one step. Two nitric acid molecules are needed for each carbonate because the metal ion carries two units of charge.",
+        "common_mistakes": [
+          "Writing one HNO₃ instead of two. The metal ion is M²⁺, so it needs two nitrate ions.",
+          "Leaving out the carbon dioxide. The carbonate ion breaks up and the gas comes off during the reaction."
+        ],
+        "memory_tip": "Carbonate plus dilute nitric acid gives the nitrate, water and carbon dioxide.",
+        "margin_note": "Balance the acid first. Two nitrate ions are needed for one M²⁺ ion."
+      },
+      {
+        "id": "s2_water_of_crystallisation",
+        "kind": "text",
+        "label": "Water of crystallisation",
+        "marks": 2,
+        "mark_note": "Water of crystallisation",
+        "lines": [
+          "The nitrates differ in the water they",
+          "take up when they crystallise.",
+          "Magnesium nitrate crystallises with six",
+          "water molecules, as Mg(NO₃)₂·6H₂O.",
+          "Barium nitrate crystallises with no",
+          "water at all, as Ba(NO₃)₂.",
+          "The tendency to form a hydrate",
+          "decreases as the size of the cation",
+          "increases.",
+          "A small ion such as Mg²⁺ has a large",
+          "hydration enthalpy and keeps water",
+          "molecules in the crystal; the larger",
+          "Ba²⁺ has a small hydration enthalpy and",
+          "keeps none."
+        ],
+        "why": "The two ends of the group are compared because they show the trend most plainly. The hydration enthalpy falls as the cation grows, so the number of water molecules the crystal keeps falls with it, from six down to none.",
+        "common_mistakes": [
+          "Writing the magnesium salt as Mg(NO₃)₂·2H₂O. Magnesium nitrate crystallises with six water molecules.",
+          "Writing barium nitrate as a hydrate. It crystallises as the anhydrous salt Ba(NO₃)₂.",
+          "Giving the two formulae without the reason. The falling hydration enthalpy is what has to be named."
+        ],
+        "memory_tip": "Six water molecules for magnesium, none for barium: hydration falls as the ion grows.",
+        "margin_note": "Write both formulae in full. The contrast between six and none is the whole point here."
+      },
+      {
+        "id": "s3_action_of_heat",
+        "kind": "equation",
+        "label": "Action of heat",
+        "marks": 2,
+        "mark_note": "Action of heat",
+        "lines": [
+          "All the nitrates of this group decompose",
+          "on heating and give the metal oxide,",
+          "brown nitrogen dioxide and oxygen:",
+          {
+            "text": "2M(NO₃)₂ → 2MO + 4NO₂ + O₂",
+            "style": "eq"
+          },
+          "For magnesium and for calcium:",
+          {
+            "text": "2Mg(NO₃)₂ → 2MgO + 4NO₂ + O₂",
+            "style": "eq"
+          },
+          {
+            "text": "2Ca(NO₃)₂ → 2CaO + 4NO₂ + O₂",
+            "style": "eq"
+          },
+          "Two formula units are needed before",
+          "the oxygen atoms match on both sides."
+        ],
+        "why": "The nitrate ion breaks up into an oxide ion, nitrogen dioxide and oxygen, so the solid left in the tube is the metal oxide for every member of the group. Counting the atoms shows why the equation starts with two formula units: one gives an odd number of oxygen atoms.",
+        "common_mistakes": [
+          "Writing the nitrite M(NO₂)₂ as the product. The nitrates of this group give the oxide.",
+          "Leaving the equation unbalanced. With 2M(NO₃)₂ there are twelve oxygen atoms on each side.",
+          "Leaving out the oxygen. Both nitrogen dioxide and oxygen come off."
+        ],
+        "memory_tip": "Nitrate to oxide, with brown nitrogen dioxide and oxygen given off.",
+        "margin_note": "Write the general equation once, then the two named examples under it."
+      },
+      {
+        "id": "s4_hydrated_salt",
+        "kind": "text",
+        "label": "Heating the hydrated salt",
+        "marks": 1,
+        "mark_note": "The hydrated salt",
+        "lines": [
+          "A hydrated nitrate loses its water",
+          "first.",
+          "Mg(NO₃)₂·6H₂O gives up its six water",
+          "molecules on gentle heating and leaves",
+          "the anhydrous salt Mg(NO₃)₂.",
+          "Stronger heating then decomposes that",
+          "anhydrous salt to MgO, NO₂ and O₂.",
+          "So heating a hydrated nitrate happens",
+          "in two stages."
+        ],
+        "why": "The water molecules are bound in the crystal lattice only, so they are driven off at a lower temperature than the one that breaks up the nitrate ion. An answer that goes straight to the oxide has left out the first stage.",
+        "common_mistakes": [
+          "Going straight to the oxide. The hydrate loses its water of crystallisation first.",
+          "Writing that the water comes off together with the nitrogen dioxide. The two stages happen at different temperatures."
+        ],
+        "memory_tip": "Water leaves first, then the nitrate ion breaks up.",
+        "margin_note": "Name both stages. The balanced equation belongs to the second one."
+      },
+      {
+        "id": "s5_comparison_with_lithium",
+        "kind": "equation",
+        "label": "Comparison with lithium nitrate",
+        "marks": 1,
+        "mark_note": "Comparison",
+        "lines": [
+          "These nitrates behave like lithium",
+          "nitrate, which also gives the oxide:",
+          {
+            "text": "4LiNO₃ → 2Li₂O + 4NO₂ + O₂",
+            "style": "eq"
+          },
+          "The other alkali metal nitrates give",
+          "the nitrite instead:",
+          {
+            "text": "2NaNO₃ → 2NaNO₂ + O₂",
+            "style": "eq"
+          },
+          "Li⁺ and the M²⁺ ions of group 2 are",
+          "small and strongly polarising, so they",
+          "break the nitrate ion down as far as",
+          "the oxide."
+        ],
+        "why": "This comparison is the reason the group 2 result is worth stating at all: a nitrate does not always give an oxide. The small, strongly polarising cations take the nitrate ion apart completely, while a large cation such as Na⁺ breaks the nitrate ion down only as far as the nitrite.",
+        "common_mistakes": [
+          "Writing that all nitrates give the oxide. Sodium nitrate and the nitrates below it give the nitrite.",
+          "Writing 2LiNO₃ → Li₂O + 2NO₂ + O₂. That line does not balance: there are six oxygen atoms on the left and seven on the right. Four formula units of LiNO₃ make them match."
+        ],
+        "memory_tip": "Small polarising cations give the oxide; with a large cation the nitrite is the product.",
+        "margin_note": "This comparison shows what is special about the group 2 result, so write both equations."
+      },
+      {
+        "id": "s6_summary",
+        "kind": "boxed_final",
+        "label": "Thermal stability down the group",
+        "marks": 0,
+        "lines": [
+          "The five nitrates all give the oxide,",
+          "but not at the same temperature.",
+          "Thermal stability increases as the size",
+          "of the cation increases:",
+          {
+            "text": "M(NO₃)₂: Be < Mg < Ca < Sr < Ba",
+            "style": "eq"
+          },
+          "A small cation has a high polarising",
+          "power, so it distorts the nitrate ion",
+          "more and the ion breaks up at a lower",
+          "temperature.",
+          "Barium nitrate therefore needs the",
+          "strongest heating of the five:",
+          {
+            "text": "Larger cation, more heat to decompose",
+            "style": "boxed"
+          }
+        ],
+        "why": "The general equation above treats heat as acting on all five nitrates alike, and it does not. The same polarising-power argument that decides the group 2 result against the alkali metal one also orders the five metals among themselves, so the temperature needed rises down the group.",
+        "common_mistakes": [
+          "Writing that all five nitrates decompose alike. They all give the oxide, but the temperature needed rises down the group.",
+          "Writing that thermal stability decreases down the group. It increases, so barium nitrate is the most stable of the five."
+        ],
+        "memory_tip": "The larger the cation, the less it distorts the nitrate ion, and the more heat the nitrate needs.",
+        "margin_note": "Unmarked closing step. It adds the trend the one general equation does not show."
+      }
+    ]
+  }
+}

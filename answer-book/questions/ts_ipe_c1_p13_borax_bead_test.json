@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_borax_bead_test",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the borax bead test with a suitable example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the test is for",
+      "marks": 1
+    },
+    {
+      "label": "Heating the borax",
+      "marks": 1
+    },
+    {
+      "label": "The coloured bead",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.101, chapter 8 p-BLOCK ELEMENTS : GROUP 13, SAQ question 23. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The three equations on this card were checked atom by atom: Na₂B₄O₇·10H₂O → Na₂B₄O₇ + 10H₂O; Na₂B₄O₇ → 2NaBO₂ + B₂O₃ (Na₂B₄O₇ on both sides); B₂O₃ + CoO → Co(BO₂)₂ (Co, 2 B, 4 O on both sides). The bead colours named for chromium and manganese are standard laboratory values carried as extra content, not taken from the source book, and a teacher should confirm them before they are relied on."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 13 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_purpose",
+        "kind": "text",
+        "label": "What the test is for",
+        "marks": 1,
+        "mark_note": "Purpose and reagent",
+        "lines": [
+          "The borax bead test is used in qualitative",
+          "analysis to identify basic radicals, the",
+          "metal ions that give a coloured bead.",
+          "Borax is sodium tetraborate decahydrate,",
+          "Na₂B₄O₇·10H₂O.",
+          "A loop of platinum wire is dipped in",
+          "borax and heated in a flame."
+        ],
+        "why": "The test works only for metals whose oxides give coloured metaborates, so it identifies the basic radical of a salt and says nothing about the acid radical. Stating the purpose first is what the word explain in the question asks for.",
+        "common_mistakes": [
+          "Saying the test identifies acid radicals. It identifies basic radicals, the metal ions.",
+          "Naming the salt used as anhydrous Na₂B₄O₇. The solid taken on the wire is the decahydrate, Na₂B₄O₇·10H₂O."
+        ],
+        "memory_tip": "The borax bead test identifies the metal ion, the basic radical.",
+        "margin_note": "Say what the test is for before writing any equation."
+      },
+      {
+        "id": "s2_heating",
+        "kind": "equation",
+        "label": "Heating the borax",
+        "marks": 1,
+        "mark_note": "Two equations on heating",
+        "lines": [
+          "On heating, borax first loses its water of",
+          "crystallisation and swells into a white",
+          "opaque mass:",
+          {
+            "text": "Na₂B₄O₇·10H₂O → Na₂B₄O₇ + 10H₂O",
+            "style": "eq"
+          },
+          "On stronger heating it melts and breaks up",
+          "into a clear glassy bead:",
+          {
+            "text": "Na₂B₄O₇ → 2NaBO₂ + B₂O₃",
+            "style": "eq"
+          },
+          "The bead is sodium metaborate NaBO₂ with",
+          "boric anhydride B₂O₃."
+        ],
+        "why": "Two separate changes happen and both are asked for: the water leaves first and the solid swells, then the anhydrous salt melts and splits into the metaborate and B₂O₃. The B₂O₃ formed here is the substance that reacts in the next step.",
+        "common_mistakes": [
+          "Writing only one equation. The loss of water and the fusion are two different changes.",
+          "Writing the clear bead as borax itself. The bead is NaBO₂ together with B₂O₃."
+        ],
+        "memory_tip": "First the water leaves and it swells, then it fuses to NaBO₂ and B₂O₃.",
+        "margin_note": "Both equations belong here. The B₂O₃ formed is the reagent for the colour step."
+      },
+      {
+        "id": "s3_coloured_bead",
+        "kind": "equation",
+        "label": "The coloured bead",
+        "marks": 1,
+        "mark_note": "Example with cobalt",
+        "lines": [
+          "The hot bead is touched to a little of the",
+          "salt under test and heated again.",
+          "In the flame the salt decomposes to its",
+          "metal oxide.",
+          "The boric anhydride combines with that",
+          "metal oxide to give a coloured metaborate.",
+          "Taking a cobalt salt, which gives CoO, as",
+          "the example:",
+          {
+            "text": "B₂O₃ + CoO → Co(BO₂)₂",
+            "style": "eq"
+          },
+          "The bead turns blue."
+        ],
+        "why": "Each metal oxide gives a metaborate of its own colour, so it is the colour of the bead that names the metal. Cobalt is the clearest example to write because the blue is deep and is seen in the hot bead and in the cold bead alike.",
+        "common_mistakes": [
+          "Writing the coloured product as CoO. The coloured substance is the metaborate Co(BO₂)₂.",
+          "Giving no example at all. The question asks for a suitable example, so one metal and its colour must be named."
+        ],
+        "memory_tip": "B₂O₃ with the metal oxide gives the coloured metaborate. Cobalt gives blue.",
+        "margin_note": "Name the metal, the metaborate and the colour together in one sentence."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Identification",
+        "lines": [
+          {
+            "text": "A blue Co(BO₂)₂ bead shows cobalt",
+            "style": "boxed"
+          },
+          "Other metals give beads of other colours:",
+          "chromium gives green and manganese gives",
+          "violet.",
+          "Only metals whose oxides give coloured",
+          "metaborates can be identified this way."
+        ],
+        "why": "Naming the metal is the purpose of the whole test, so the answer is not finished until that sentence is written. The one line on the limitation is worth adding: a metal whose metaborate is colourless cannot be found by this test at all.",
+        "common_mistakes": [
+          "Ending at the equation without naming the metal. The identification is the point of the test.",
+          "Using the test for every salt. It works only where the metaborate formed is coloured."
+        ],
+        "memory_tip": "The colour of the bead names the metal.",
+        "margin_note": "One closing sentence naming the metal completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Three equations and one named colour make this answer complete: the loss of water, the fusion to NaBO₂ and B₂O₃, and the coloured metaborate. Cobalt with its blue bead is the safest example to choose."
+}

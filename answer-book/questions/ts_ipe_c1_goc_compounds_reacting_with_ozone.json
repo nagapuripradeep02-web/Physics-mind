@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_compounds_reacting_with_ozone",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Which type of compounds react with ozone? Explain with one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The compounds that react",
+      "marks": 1
+    },
+    {
+      "label": "Formation of the ozonide",
+      "marks": 1
+    },
+    {
+      "label": "Breaking the ozonide with water",
+      "marks": 1
+    },
+    {
+      "label": "The products and the use",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.115, chapter 10 GENERAL ORGANIC CHEMISTRY, SHORT ANSWER QUESTIONS question 25. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SOURCE-BOOK ERROR CORRECTED HERE, recorded so no later editor restores it: on this page the ozonolysis of ethylene is typeset as ONE equation in which the water appears among the products of ozonide formation, so that water reads as something the alkene and the ozone give out. Water is the REAGENT of the second stage, not a product of the first. This card writes the reaction as two clean stages, CH₂=CH₂ + O₃ → ethylene ozonide, then ethylene ozonide + H₂O → 2HCHO + H₂O₂ with zinc dust present. The same book sets the same reaction CORRECTLY three pages later, with Zn and H₂O written over the second arrow, so the chapter contradicts itself and the later form is the right one. Both stages were counted atom by atom: ethylene ozonide is C₂H₄O₃, and C₂H₄O₃ + H₂O → 2HCHO + H₂O₂ gives C 2 = 2, H 6 = 6, O 4 = 4."
+  },
+  "insider_note": "Unsaturated compounds react with ozone — those with a carbon–carbon double or triple bond. Keep the two stages on separate lines: the water belongs to the second stage, never to the first.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "General Organic Chemistry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_which_compounds",
+        "kind": "text",
+        "label": "The compounds that react",
+        "marks": 1,
+        "mark_note": "The class named",
+        "lines": [
+          "Unsaturated compounds react with ozone",
+          "— any compound carrying a carbon–carbon",
+          "double bond or a carbon–carbon triple",
+          "bond.",
+          "The alkenes and the alkynes are the two",
+          "families asked for as examples here.",
+          "The reaction is called ozonolysis.",
+          "It is carried out in two stages."
+        ],
+        "why": "Ozone adds across a multiple bond, so a compound with no multiple bond has nothing for it to add to. Alkanes and other saturated compounds are therefore unaffected, and that difference is what the question is asking about.",
+        "common_mistakes": [
+          "Writing that alkanes react. They carry no multiple bond, so ozone does not add to them.",
+          "Giving alkenes only. Alkynes react as well, so the answer is unsaturated compounds in general."
+        ],
+        "memory_tip": "Ozone needs a multiple bond: alkenes and alkynes react, alkanes do not.",
+        "margin_note": "Name the class first, then the two families inside it."
+      },
+      {
+        "id": "s2_ozonide",
+        "kind": "equation",
+        "label": "Formation of the ozonide",
+        "marks": 1,
+        "mark_note": "Stage one",
+        "lines": [
+          "Stage one — ozone adds across the",
+          "double bond of ethylene and gives an",
+          "ozonide:",
+          {
+            "text": "CH₂=CH₂ + O₃ → ethylene ozonide",
+            "style": "eq"
+          },
+          "Ethylene ozonide is C₂H₄O₃: a ring of",
+          "five atoms, the two carbon atoms and",
+          "three oxygen atoms."
+        ],
+        "why": "The ozonide is a ring and not an open chain: one oxygen atom bridges the two carbon atoms on one side, and an –O–O– bridge joins them on the other. It is unstable and explosive, so it is never separated out; the second stage is carried out on the solution as it stands.",
+        "common_mistakes": [
+          "Writing water into this line. Water belongs to the second stage; the first stage is the alkene and the ozone alone.",
+          "Writing two aldehyde molecules here. The ozonide has to be broken by water before any aldehyde is obtained."
+        ],
+        "memory_tip": "Ozone first gives a ring: two carbon atoms and three oxygen atoms.",
+        "margin_note": "Keep the two stages on separate lines. The first has no water in it."
+      },
+      {
+        "id": "s3_hydrolysis",
+        "kind": "equation",
+        "label": "Breaking the ozonide with water",
+        "marks": 1,
+        "mark_note": "Stage two",
+        "lines": [
+          "Stage two — the ozonide is broken by",
+          "water, with zinc dust present:",
+          {
+            "text": "ethylene ozonide + H₂O → 2HCHO + H₂O₂",
+            "style": "eq"
+          },
+          "Ethylene gives two molecules of",
+          "formaldehyde, HCHO."
+        ],
+        "why": "The zinc dust is there to destroy the hydrogen peroxide as it is formed, because hydrogen peroxide would otherwise oxidise the formaldehyde to formic acid and the aldehyde would not be obtained. Counting the oxygen atoms: three come from the ozonide and one from the water, and the four are shared between the two aldehyde molecules and the peroxide.",
+        "common_mistakes": [
+          "Leaving out the zinc dust. Without it the hydrogen peroxide oxidises the aldehyde to an acid.",
+          "Writing one molecule of HCHO. The two carbon atoms of ethylene separate, so two molecules are formed."
+        ],
+        "memory_tip": "Water splits the ring, and zinc dust removes the peroxide.",
+        "margin_note": "Write the zinc dust with this stage, not with the first one."
+      },
+      {
+        "id": "s4_products_and_use",
+        "kind": "boxed_final",
+        "label": "The products and the use",
+        "marks": 1,
+        "mark_note": "Products and use",
+        "lines": [
+          "An alkene gives two carbonyl compounds",
+          "and an alkyne gives a dicarbonyl",
+          "compound: acetylene gives glyoxal,",
+          "CHO–CHO.",
+          "Ozonolysis is used to find where the",
+          "multiple bond lies in a molecule.",
+          {
+            "text": "The molecule breaks at the multiple bond",
+            "style": "boxed"
+          }
+        ],
+        "why": "Ozonolysis is useful because the molecule breaks exactly where the multiple bond was, so the two fragments show where it stood. Reading the aldehydes or ketones obtained backwards gives the structure of the compound the reaction was started with.",
+        "common_mistakes": [
+          "Writing that the whole molecule breaks up. Only the multiple bond is broken; the rest of each fragment is unchanged.",
+          "Writing an alcohol as a product. The products are aldehydes or ketones, according to what the multiply bonded carbon atoms carry."
+        ],
+        "memory_tip": "The molecule breaks where the multiple bond was.",
+        "margin_note": "One closing line naming the use of ozonolysis completes the answer."
+      }
+    ]
+  }
+}

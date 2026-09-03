@@ -1,0 +1,152 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_diborane_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the structure of diborane.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The electron count",
+      "marks": 1
+    },
+    {
+      "label": "The shape",
+      "marks": 1
+    },
+    {
+      "label": "Bond lengths and bond angles",
+      "marks": 1
+    },
+    {
+      "label": "The two kinds of bond",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.102, chapter 8 p-BLOCK ELEMENTS : GROUP 13, SAQ question 24. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. TWO PRINTED VARIANTS RESOLVED, neither treated as an error: the volume gives the bridge B–H length as 134 pm in one figure and as 1.33 Å in another, and the terminal H–B–H angle as 120° in one figure and 121.5° in the other. This card prints ONE value for each — bridge B–H 133 pm, terminal H–B–H 121.5°, terminal B–H 119 pm, bridge H–B–H 97° — so that a student copies a single consistent set. The book's phrase 'short of 2 electrons' is written precisely here instead: diborane has 12 valence electrons against the 16 that eight ordinary two-centre two-electron bonds would need, a shortfall of two electron pairs."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 13 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_electron_count",
+        "kind": "text",
+        "label": "The electron count",
+        "marks": 1,
+        "mark_note": "Electron deficiency",
+        "lines": [
+          "Diborane is B₂H₆.",
+          "Each boron atom has 3 valence electrons",
+          "and each hydrogen atom has 1.",
+          "Total = 2 × 3 + 6 × 1 = 12 valence",
+          "electrons.",
+          "Eight ordinary two centre two electron",
+          "bonds would need 16 electrons.",
+          "B₂H₆ is short by two electron pairs, so it",
+          "is an electron deficient molecule."
+        ],
+        "why": "This count is the reason the structure is unusual. Eight B–H links are drawn in the ethane-like picture, eight ordinary bonds need sixteen electrons, and only twelve are available, so two of the links cannot be ordinary bonds at all.",
+        "common_mistakes": [
+          "Writing that diborane is short of two electrons. It is short of two electron PAIRS, which is four electrons: 12 against 16.",
+          "Giving diborane the same structure as ethane. Ethane has 14 valence electrons for its 7 bonds; diborane does not have enough for 8."
+        ],
+        "memory_tip": "Twelve electrons available, sixteen needed, two pairs short.",
+        "margin_note": "Do the count in figures, 12 against 16. That number is the reason for everything below it."
+      },
+      {
+        "id": "s2_shape",
+        "kind": "text",
+        "label": "The shape",
+        "marks": 1,
+        "mark_note": "Geometry",
+        "lines": [
+          "The two boron atoms and four of the six",
+          "hydrogen atoms lie in one plane.",
+          "These four are the terminal hydrogen",
+          "atoms, two on each boron.",
+          "The remaining two hydrogen atoms lie above",
+          "and below that plane.",
+          "Each of these two is bonded to both boron",
+          "atoms at once, forming a B–H–B bridge.",
+          "Each boron atom is sp³ hybridised."
+        ],
+        "why": "The molecule is not planar as a whole: the four terminal hydrogen atoms make a plane with the two boron atoms, and the two bridging hydrogen atoms sit outside that plane, one on each side. Saying which hydrogen atoms are terminal and which are bridging is the part of the answer a sketch alone cannot carry.",
+        "common_mistakes": [
+          "Putting all six hydrogen atoms in one plane. Two of them lie above and below it.",
+          "Writing that every hydrogen atom is bonded to one boron atom. The two bridging hydrogen atoms are bonded to both."
+        ],
+        "memory_tip": "Four terminal hydrogen atoms in the plane, two bridging hydrogen atoms above and below.",
+        "margin_note": "Label the terminal and the bridging hydrogen atoms on the sketch. The two kinds are not the same."
+      },
+      {
+        "id": "s3_numbers",
+        "kind": "text",
+        "label": "Bond lengths and bond angles",
+        "marks": 1,
+        "mark_note": "Lengths and angles",
+        "lines": [
+          "Terminal B–H bond length = 119 pm.",
+          "Bridge B–H bond length = 133 pm.",
+          "Terminal H–B–H bond angle = 121.5°.",
+          "Bridge H–B–H bond angle = 97°.",
+          "The bridge bonds are longer and weaker",
+          "than the terminal bonds."
+        ],
+        "why": "The bridge bond is longer because its single pair of electrons is spread over three atoms instead of two, so the hold between any one pair of atoms is weaker. Quoting both lengths and both angles is what shows the two kinds of bond are not equivalent.",
+        "common_mistakes": [
+          "Giving one bond length for all six B–H bonds. The terminal and bridge bonds differ: 119 pm against 133 pm.",
+          "Exchanging the two angles. The wider angle, 121.5°, belongs to the terminal hydrogen atoms."
+        ],
+        "memory_tip": "Terminal 119 pm and 121.5°; bridge 133 pm and 97°. The bridge is longer with the narrower angle.",
+        "margin_note": "Write the four numbers next to the sketch: two lengths and two angles."
+      },
+      {
+        "id": "s4_bonding",
+        "kind": "boxed_final",
+        "label": "The two kinds of bond",
+        "marks": 1,
+        "mark_note": "Bonding",
+        "lines": [
+          "The four terminal B–H bonds are ordinary",
+          "two centre two electron bonds, and they",
+          "use eight of the twelve electrons.",
+          "The four electrons left over form the two",
+          "bridges.",
+          {
+            "text": "B–H–B bridges are three centre bonds",
+            "style": "boxed"
+          },
+          "In a bridge, one electron pair is shared",
+          "by three atoms: two boron and one",
+          "hydrogen. It is called a banana bond."
+        ],
+        "why": "Eight electrons are used up by the four ordinary terminal bonds, so only four are left for two bridges, which gives each bridge a single pair. One pair holding three atoms together is exactly what a three centre two electron bond means, and it is the answer to the shortage found in the first step.",
+        "common_mistakes": [
+          "Calling the bridges ordinary covalent bonds. They are three centre two electron bonds.",
+          "Writing that each bridge holds two pairs of electrons. Each bridge has one pair shared over three atoms."
+        ],
+        "memory_tip": "Eight electrons for the four terminal bonds, four electrons for the two bridges.",
+        "margin_note": "The words three centre two electron bond are the ones to write. Banana bond is the other name for it."
+      }
+    ]
+  },
+  "insider_note": "The electron count is what makes this answer an explanation: 12 valence electrons against the 16 that eight ordinary bonds would need. Write it in figures first, and the two bridging bonds follow from it."
+}

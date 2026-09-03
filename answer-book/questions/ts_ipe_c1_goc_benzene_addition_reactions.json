@@ -1,0 +1,153 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_benzene_addition_reactions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write any two addition reactions of benzene, with equations.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "When benzene adds",
+      "marks": 1
+    },
+    {
+      "label": "Addition of hydrogen",
+      "marks": 1
+    },
+    {
+      "label": "Addition of chlorine",
+      "marks": 1
+    },
+    {
+      "label": "What the two have in common",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.115, chapter 10 GENERAL ORGANIC CHEMISTRY, SHORT ANSWER QUESTIONS question 20. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. No exam-appearance years are recorded for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The addition product C₆H₆Cl₆ is named here as benzene hexachloride and also as gammexane; both names are in use for the same compound. TWO CONDITIONS ARE WRITTEN OUT HERE THAT THE SOURCE LEAVES SHORT, recorded so no later editor treats them as unsupported: the hydrogenation is given as 473–573 K over nickel, which is the standard textbook range for the nickel-catalysed hydrogenation of benzene and replaces the bare word heat; and the chlorine addition is given as ultraviolet light with no catalyst, because a Lewis-acid catalyst turns the same two reagents into the substitution product C₆H₅Cl instead. Both stay unverified until a teacher confirms them."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "General Organic Chemistry · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_when_it_adds",
+        "kind": "text",
+        "label": "When benzene adds",
+        "marks": 1,
+        "mark_note": "Conditions for addition",
+        "lines": [
+          "Benzene usually gives substitution and",
+          "not addition, because its π electrons",
+          "are delocalised over all six carbon",
+          "atoms.",
+          "Addition takes place only under strong",
+          "conditions, and then all three double",
+          "bonds react together."
+        ],
+        "why": "Delocalisation makes benzene stable, so an addition has to be driven by a catalyst, by heat or by ultraviolet light. Once addition does begin it does not stop half way, because a partly added ring has lost the delocalisation that made it stable, so all three double bonds react.",
+        "common_mistakes": [
+          "Adding one molecule of the reagent. Three molecules add to benzene at once.",
+          "Saying benzene never adds. It does add, but only under strong conditions."
+        ],
+        "memory_tip": "Three double bonds, so three molecules add together.",
+        "margin_note": "Say why addition is difficult before writing the two equations."
+      },
+      {
+        "id": "s2_hydrogenation",
+        "kind": "equation",
+        "label": "Addition of hydrogen",
+        "marks": 1,
+        "mark_note": "Hydrogenation",
+        "lines": [
+          "1. Addition of hydrogen.",
+          "Benzene with hydrogen over a nickel",
+          "catalyst gives cyclohexane:",
+          {
+            "text": "C₆H₆ + 3H₂ → C₆H₁₂",
+            "style": "eq"
+          },
+          "Conditions: nickel catalyst, 473–573 K.",
+          "Three molecules of hydrogen are added",
+          "and the product C₆H₁₂ is cyclohexane."
+        ],
+        "why": "Each double bond takes one molecule of hydrogen, so three molecules of hydrogen are needed for the three double bonds of benzene. The product is a ring of six carbon atoms with no double bonds left, which is cyclohexane.",
+        "common_mistakes": [
+          "Writing C₆H₆ + H₂ → C₆H₈. Benzene takes three molecules of hydrogen in one reaction, giving C₆H₁₂.",
+          "Writing hexane C₆H₁₄ as the product. The ring is not opened, so the product is the ring compound cyclohexane."
+        ],
+        "memory_tip": "Three H₂ turn C₆H₆ into C₆H₁₂, the saturated ring.",
+        "margin_note": "Write the catalyst nickel beside the arrow and name the product cyclohexane."
+      },
+      {
+        "id": "s3_chlorination",
+        "kind": "equation",
+        "label": "Addition of chlorine",
+        "marks": 1,
+        "mark_note": "Chlorination",
+        "lines": [
+          "2. Addition of chlorine.",
+          "Benzene with chlorine in ultraviolet",
+          "light gives benzene hexachloride:",
+          {
+            "text": "C₆H₆ + 3Cl₂ → C₆H₆Cl₆",
+            "style": "eq"
+          },
+          "Conditions: ultraviolet light, no catalyst.",
+          "The product C₆H₆Cl₆ is benzene",
+          "hexachloride, also called gammexane."
+        ],
+        "why": "Ultraviolet light and the absence of a catalyst are what make this an addition instead of a substitution: three molecules of chlorine add across the three double bonds, so six chlorine atoms join the ring and no hydrogen atom is lost.",
+        "common_mistakes": [
+          "Writing C₆H₅Cl as the product. That is the substitution product; the addition product is C₆H₆Cl₆.",
+          "Writing HCl as a second product. Nothing leaves the ring in an addition, so there is only one product."
+        ],
+        "memory_tip": "Six chlorine atoms on and no hydrogen off: C₆H₆Cl₆.",
+        "margin_note": "Write ultraviolet light beside the arrow. It is what makes this an addition."
+      },
+      {
+        "id": "s4_common_point",
+        "kind": "boxed_final",
+        "label": "What the two have in common",
+        "marks": 1,
+        "mark_note": "The common point",
+        "lines": [
+          "In both reactions three molecules add",
+          "at the same time and the ring becomes",
+          "saturated.",
+          "No double bond is left in either",
+          "product, so the aromatic character of",
+          "benzene is lost.",
+          {
+            "text": "Three molecules add, not one",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two equations are examples and this is what they are examples of: an addition to benzene uses up all three double bonds together, which is exactly why benzene adds only under strong conditions.",
+        "common_mistakes": [
+          "Stopping after the two equations without saying what they show.",
+          "Saying the product is still aromatic. Both products have no double bonds, so neither is aromatic."
+        ],
+        "memory_tip": "Two reagents, one pattern: three molecules add and the ring becomes saturated.",
+        "margin_note": "One closing line naming the common pattern completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The coefficient 3 is what this answer depends on. One molecule of hydrogen or chlorine is not enough: three add at once, giving C₆H₁₂ and C₆H₆Cl₆."
+}

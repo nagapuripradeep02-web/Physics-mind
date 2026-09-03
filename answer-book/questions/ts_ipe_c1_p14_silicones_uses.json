@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_silicones_uses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the uses of silicones.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Rubbers, sealants, greases and insulators",
+      "marks": 1
+    },
+    {
+      "label": "Waterproofing fabrics, and implants",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.105, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD: the eight-mark card in this chapter that asks for a full account of silicones closes on the uses, and names the SAME four: silicone rubbers; sealants, greases and electrical insulators; surgical and cosmetic implants; and the waterproofing of fabrics. TWO SUPPORTING REASONS ARE CARRIED BEYOND THE SOURCE LIST and should be confirmed by a teacher: that a silicone does not conduct electricity (the reason behind the insulator use) and that water does not wet a silicone surface (the reason behind the waterproofing use). Both are the standard explanations for these uses, and without them the answer is a bare list."
+  },
+  "insider_note": "The question asks for uses, so each line has to name a thing silicones are used AS or used FOR. A line that only names a property of silicones has not given a use.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_industrial_uses",
+        "kind": "text",
+        "label": "Rubbers, sealants, greases and insulators",
+        "marks": 1,
+        "mark_note": "Industrial uses",
+        "lines": [
+          "Silicones are made into silicone rubbers.",
+          "They are also used as sealants, as",
+          "greases, and as electrical insulators.",
+          "A silicone does not conduct electricity,",
+          "which is why insulating parts are made",
+          "of it."
+        ],
+        "why": "These four are all uses of a bulk silicone material — as a rubber, a sealant, a grease or an insulator — so they can be written as one short group.",
+        "common_mistakes": [
+          "Giving a property in place of a use. Water repelling is a property; waterproofing a fabric is the use.",
+          "Naming a use of silica or of a silicate. This question is about silicones, the organosilicon polymers."
+        ],
+        "memory_tip": "Rubber, sealant, grease, insulator: four uses of the bulk silicone material.",
+        "margin_note": "Each use gets its own short sentence. Run together in one line they are hard to read back."
+      },
+      {
+        "id": "s2_water_and_medical",
+        "kind": "boxed_final",
+        "label": "Waterproofing and implants",
+        "marks": 1,
+        "mark_note": "Water repelling and medical uses",
+        "lines": [
+          "Fabrics are treated with silicones to",
+          "make them waterproof.",
+          "Silicones are also used in surgical and",
+          "cosmetic implants.",
+          "Water does not wet a silicone surface, so",
+          "rain runs off a treated fabric.",
+          {
+            "text": "Rubber, sealant, insulator, implant, fabric",
+            "style": "boxed"
+          }
+        ],
+        "why": "Both of these uses rest on the outward organic groups of the polymer. They give a surface that water does not wet, and a surface that stays unchanged in contact with living tissue.",
+        "common_mistakes": [
+          "Saying the fabric itself repels water. The silicone coating on the fabric is the part water does not wet.",
+          "Leaving the medical use out. Silicones are used in surgical and cosmetic implants as well as in industry."
+        ],
+        "memory_tip": "Water does not wet a silicone, so silicones go on to fabrics and into implants.",
+        "margin_note": "Close by naming a use, not a property."
+      }
+    ]
+  }
+}

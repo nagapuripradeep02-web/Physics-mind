@@ -1,0 +1,98 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_what_are_silicones",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are silicones?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What silicones are, and the repeating unit",
+      "marks": 1
+    },
+    {
+      "label": "The Si–O–Si chain",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.105, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD: this chapter asks what silicones are three times — at two marks here, at four marks with the preparation added, and at eight marks with the preparation, a worked example and the uses added. All three state the same chemistry: synthetic organosilicon polymers, repeating unit R₂SiO, neighbouring silicon atoms joined through oxygen as Si–O–Si, R an alkyl or an aryl group. The water repelling property is stated on this card and on the eight-mark card, and is deliberately not on the four-mark preparation card, which stops at the definition and the three-step route. The longer cards carry ADDITIONAL content rather than the same content at greater length; this two-mark card stops at the definition and the Si–O–Si chain and prints no preparation and no uses."
+  },
+  "insider_note": "Two things make this answer complete: the words organosilicon polymer, and the repeating unit R₂SiO written down as a formula. A description of silicon and oxygen with no R₂SiO on the page has not said what a silicone is.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What silicones are",
+        "marks": 1,
+        "mark_note": "Definition and repeating unit",
+        "lines": [
+          "Silicones are synthetic organosilicon",
+          "polymers. Silicon and oxygen atoms build",
+          "the chain, and organic groups sit on the",
+          "silicon.",
+          "The repeating unit of the chain is:",
+          {
+            "text": "R₂SiO",
+            "style": "eq"
+          },
+          "R stands for an alkyl or an aryl group,",
+          "such as CH₃ or C₆H₅."
+        ],
+        "why": "A silicone is named by its repeating unit, not by a list of the elements in it. Writing R₂SiO fixes the two facts that separate a silicone from every other silicon compound: one oxygen atom and two organic groups on each silicon atom.",
+        "common_mistakes": [
+          "Calling a silicone a silicate. A silicate carries no organic group on the silicon; a silicone carries two.",
+          "Writing the repeating unit as SiO₂. That is silica. The repeating unit of a silicone is R₂SiO."
+        ],
+        "memory_tip": "Read R₂SiO as two organic groups and one oxygen atom on every silicon atom.",
+        "margin_note": "Write the repeating unit R₂SiO on its own line. The words organosilicon polymer alone do not show it."
+      },
+      {
+        "id": "s2_backbone",
+        "kind": "boxed_final",
+        "label": "The Si–O–Si chain",
+        "marks": 1,
+        "mark_note": "How the chain is joined",
+        "lines": [
+          "Along the chain, silicon and oxygen atoms",
+          "alternate. Each oxygen atom joins two",
+          "silicon atoms.",
+          "Every silicon atom still carries its two",
+          "R groups, and these face outwards.",
+          "Water does not wet the organic groups, so",
+          "silicones are water repelling.",
+          {
+            "text": "The chain is a run of Si–O–Si linkages",
+            "style": "boxed"
+          }
+        ],
+        "why": "The oxygen atoms are inside the chain and the organic groups are outside it. That one arrangement explains both halves of the name: the silicon and oxygen chain is the silicon part, and the outward organic groups are the organo part.",
+        "common_mistakes": [
+          "Joining the silicon atoms to each other directly. Neighbouring silicon atoms are joined through an oxygen atom, as Si–O–Si.",
+          "Leaving the R groups off the silicon atoms. Without them the chain is silica, not a silicone."
+        ],
+        "memory_tip": "Oxygen inside the chain, organic groups outside it.",
+        "margin_note": "One closing line naming the Si–O–Si linkage completes the answer."
+      }
+    ]
+  }
+}

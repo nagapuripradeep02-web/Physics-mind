@@ -1,0 +1,155 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_diborane_with_trimethylamine",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How does diborane react with trimethylamine?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reagent and why it reacts",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    },
+    {
+      "label": "The product and its bonding",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.102, chapter 8 p-BLOCK ELEMENTS : GROUP 13, SAQ question 26(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: the printed QUESTION writes the reagent as N(CH₃)₂. The book's own ANSWER says trimethyl amine and writes B₂H₆ + 2N(CH₃)₃ → 2BH₃·N(CH₃)₃, so the card is authored as trimethylamine N(CH₃)₃; the question text on this card is written with the name rather than the misprinted formula. N(CH₃)₂ is not a stable neutral reagent. EQUATION CHECKED AND CORRECT: B₂H₆ + 2N(CH₃)₃ → 2BH₃·N(CH₃)₃ balances at 2 B, 2 N, 6 C and 24 H on each side."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 13 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reagent",
+        "kind": "text",
+        "label": "The reagent and why it reacts",
+        "marks": 1,
+        "mark_note": "Lewis acid and base",
+        "lines": [
+          "Trimethylamine is N(CH₃)₃.",
+          "The nitrogen atom carries one lone pair.",
+          "Diborane is electron deficient: its two",
+          "bridge bonds open and give two BH₃ units.",
+          "Boron in BH₃ has six electrons and an",
+          "empty orbital, so it accepts the lone",
+          "pair.",
+          "Trimethylamine is the Lewis base and BH₃",
+          "is the Lewis acid."
+        ],
+        "why": "The reaction is an acid and base combination in the Lewis sense and nothing more. Naming which molecule gives the pair and which one receives it is what turns the equation below into an explanation rather than a statement.",
+        "common_mistakes": [
+          "Writing the reagent as N(CH₃)₂. Trimethylamine is N(CH₃)₃: three methyl groups and one lone pair on nitrogen.",
+          "Calling trimethylamine the acid. It donates the lone pair, so it is the base."
+        ],
+        "memory_tip": "Three methyl groups on nitrogen, one lone pair to give.",
+        "margin_note": "Write the formula N(CH₃)₃ once at the start; the rest of the answer uses it."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Balanced equation",
+        "lines": [
+          "Diborane is treated with excess",
+          "trimethylamine:",
+          {
+            "text": "B₂H₆ + 2N(CH₃)₃ → 2BH₃·N(CH₃)₃",
+            "style": "eq"
+          },
+          "Each diborane molecule gives two BH₃",
+          "units, so two molecules of the amine are",
+          "needed.",
+          "Atoms: 2 B, 2 N, 6 C and 24 H on each",
+          "side."
+        ],
+        "why": "One molecule of diborane supplies two BH₃ units and each unit takes one amine molecule, which fixes the coefficients at 1, 2 and 2. Counting the hydrogen atoms is the quickest check, because the nine hydrogen atoms of each amine are easy to overlook.",
+        "common_mistakes": [
+          "Writing B₂H₆ + N(CH₃)₃ → B₂H₆·N(CH₃)₃. Two amine molecules react and two separate adducts are formed.",
+          "Writing the reagent as N(CH₃)₂ and balancing to it. The amine is N(CH₃)₃."
+        ],
+        "memory_tip": "One diborane, two amine molecules, two adducts.",
+        "margin_note": "The 2 in front of the amine and in front of the product is the part most often dropped."
+      },
+      {
+        "id": "s3_product",
+        "kind": "text",
+        "label": "The product and its bonding",
+        "marks": 1,
+        "mark_note": "Product and bonding",
+        "lines": [
+          "The product BH₃·N(CH₃)₃ is trimethylamine",
+          "borane.",
+          "It is an adduct, held together by a",
+          "coordinate bond from nitrogen to boron,",
+          "written (CH₃)₃N→BH₃.",
+          "Both electrons of that bond come from",
+          "nitrogen.",
+          "Boron now has eight electrons and changes",
+          "from sp² in BH₃ to sp³ in the adduct.",
+          "Nitrogen stays sp³ throughout."
+        ],
+        "why": "The bond is coordinate because one atom supplies both of its electrons. The change of hybridisation at boron follows from the change in the number of groups around it: three groups in BH₃ and four in the adduct, so sp² becomes sp³.",
+        "common_mistakes": [
+          "Drawing the new bond without showing where the pair came from. Both electrons come from nitrogen, so mark the bond with an arrow from nitrogen to boron, (CH₃)₃N→BH₃, and the donation is visible on the page.",
+          "Writing that boron stays sp². With four groups around it, boron in the adduct is sp³."
+        ],
+        "memory_tip": "Nitrogen gives the pair; boron goes from sp² with six electrons to sp³ with eight.",
+        "margin_note": "Name the product and show the arrow direction. Both belong in this step."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "B₂H₆ + 2N(CH₃)₃ → 2BH₃·N(CH₃)₃",
+            "style": "boxed"
+          },
+          "The product is trimethylamine borane.",
+          "The reaction shows the Lewis acid",
+          "character of diborane.",
+          "Carbon monoxide reacts in the same pattern",
+          "and gives BH₃·CO."
+        ],
+        "why": "The closing box carries the balanced equation and the product name together. The comparison with carbon monoxide shows the behaviour belongs to diborane itself and not to one particular donor.",
+        "common_mistakes": [
+          "Ending without naming the product. Trimethylamine borane is the name to write.",
+          "Writing the ammonia product here. Ammonia and diborane give a different addition compound; the amine gives BH₃·N(CH₃)₃."
+        ],
+        "memory_tip": "Any donor with a lone pair opens the bridges and gives an adduct of BH₃.",
+        "margin_note": "One closing line with the equation and the product name finishes the answer."
+      }
+    ]
+  },
+  "insider_note": "The reagent is trimethylamine N(CH₃)₃, with three methyl groups on nitrogen. One diborane molecule gives two BH₃ units, so the balanced equation carries a 2 in front of both the amine and the product."
+}

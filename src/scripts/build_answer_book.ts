@@ -465,6 +465,17 @@ manifest.units = manifest.units
             for (const [i, m] of (s.common_mistakes ?? []).entries()) {
                 strings.push([`${s.id}.common_mistakes[${i}]`, m]);
             }
+            /* `lines[]` is the text actually WRITTEN ON THE PAGE, and until
+             * 2026-09-03 it was the one student-facing field this check skipped —
+             * so "no idioms in anything a student reads" was true of every field
+             * except the answer itself. Measured over 3290 cards before the change:
+             * zero existing cards carry a listed idiom in lines[], so closing the
+             * hole costs nothing and stops the next one. `label` rides the rail. */
+            strings.push([`${s.id}.label`, s.label]);
+            for (const [i, line] of (s.lines ?? []).entries()) {
+                const text = typeof line === 'string' ? line : line.text;
+                if (text) strings.push([`${s.id}.lines[${i}]`, text]);
+            }
         }
 
         // memory_tip and margin_note are authored in WHOLE-QUESTION passes — all

@@ -1,0 +1,217 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_ethylene_with_baeyer_reagent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Give the equation for the reaction of ethylene with Baeyer's reagent, cold dilute alkaline KMnO₄.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What Baeyer's reagent is",
+      "marks": 1
+    },
+    {
+      "label": "The reaction",
+      "marks": 2
+    },
+    {
+      "label": "The equation",
+      "marks": 2
+    },
+    {
+      "label": "The product",
+      "marks": 1
+    },
+    {
+      "label": "The colour change",
+      "marks": 1
+    },
+    {
+      "label": "The overall change",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.118, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 33(c). PAGE AND NUMBER CHECKED AGAINST THE SOURCE INDEX (answer-book/sources/chaitanya_c1_2027_ch10_general_organic_chemistry.json), which records laq33 and all of its parts on printed page 118; p.119 carries question 34, the acetylene question. PRINTED QUESTION 33 IS ONE QUESTION WITH FIVE ASKS: it opens by asking for two methods of preparation of ethylene and then continues with the lettered parts (a)-(d), each asking for the equation of one reaction of ethylene. The opening ask is carded as ts_ipe_c1_goc_ethylene_preparation and the four lettered parts as four cards, so the shared number 33 is not a citation clash. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATION WAS CHECKED ATOM BY ATOM: CH₂=CH₂ + [O] + H₂O → HOCH₂–CH₂OH has C 2 = 2, H 6 = 4 + 2 = 6 and O 2 = 1 + 1 = 2, counting [O] as one oxygen atom. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the brown precipitate of manganese dioxide; the statement that a hot concentrated permanganate solution splits the molecule at the double bond instead; the IUPAC name ethane-1,2-diol; and the extension of the test to alkynes. The reagent's description (cold dilute alkaline KMnO₄, 273 K), the product ethylene glycol and the discharge of the pink colour are the source's own."
+  },
+  "insider_note": "Cold and dilute is what keeps the molecule whole: each carbon takes one OH group and the two stay joined. The discharged pink colour is the observation, and it is what makes this a test for unsaturation.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reagent",
+        "kind": "text",
+        "label": "What Baeyer's reagent is",
+        "marks": 1,
+        "mark_note": "The reagent",
+        "lines": [
+          "Baeyer's reagent is a cold, dilute,",
+          "alkaline solution of potassium",
+          "permanganate, KMnO₄.",
+          "It is used at about 273 K.",
+          "The permanganate is the oxidising agent:",
+          "it supplies the oxygen the alkene takes",
+          "up.",
+          "It must be cold and dilute, because a hot",
+          "concentrated solution breaks the molecule",
+          "at the double bond instead."
+        ],
+        "why": "All three words in the name of the reagent matter. Alkaline and dilute keep the permanganate a mild oxidising agent, and cold keeps it from going further, so the two carbons are left joined. A hot concentrated solution cuts the molecule in two instead of adding to it.",
+        "common_mistakes": [
+          "Using a hot or concentrated permanganate solution. That splits the molecule at the double bond.",
+          "Writing an acidified permanganate solution. Baeyer's reagent is alkaline.",
+          "Leaving out the word cold. The temperature is part of the reagent's description."
+        ],
+        "memory_tip": "Cold, dilute and alkaline: three words that keep the molecule whole.",
+        "margin_note": "Give all three conditions — cold, dilute and alkaline — when naming the reagent."
+      },
+      {
+        "id": "s2_reaction",
+        "kind": "text",
+        "label": "The reaction",
+        "marks": 2,
+        "mark_note": "The reaction",
+        "lines": [
+          "The double bond of ethylene opens.",
+          "One OH group is added to each of the two",
+          "carbon atoms.",
+          "The oxygen of one OH group comes from",
+          "the permanganate.",
+          "The oxygen of the other, and both",
+          "hydrogen atoms, come from the water.",
+          "Adding two OH groups to neighbouring",
+          "carbons in this way is called",
+          "hydroxylation.",
+          "The product has two hydroxyl groups, so",
+          "it is a glycol.",
+          "The molecule is not broken: both carbon",
+          "atoms stay joined to each other."
+        ],
+        "why": "The π bond breaks and leaves one free bond on each carbon, and each of those free bonds takes an OH group. The single bond between the two carbons is untouched, which is what makes this an oxidation of the alkene rather than a splitting of it.",
+        "common_mistakes": [
+          "Splitting the molecule into two carbonyl compounds. That is what a hot concentrated solution does.",
+          "Adding both OH groups to the same carbon. One goes to each carbon of the double bond.",
+          "Writing the product with the double bond still there. It becomes a single bond."
+        ],
+        "memory_tip": "One OH on each carbon, and the carbons stay joined.",
+        "margin_note": "Say that both carbons keep their bond and each takes one OH group."
+      },
+      {
+        "id": "s3_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 2,
+        "mark_note": "The equation",
+        "lines": [
+          {
+            "text": "CH₂=CH₂ + [O] + H₂O → HOCH₂–CH₂OH",
+            "style": "eq"
+          },
+          "[O] stands for the oxygen supplied by the",
+          "alkaline permanganate.",
+          "Atoms: 2 C, 6 H and 2 O on each side.",
+          "The oxidising agent is written as [O]",
+          "because the permanganate is reduced at",
+          "the same time and does not appear in the",
+          "organic product."
+        ],
+        "why": "The equation is written with [O] so that the organic change stays in view: the permanganate is the source of the oxygen and is itself reduced. With the water included the count balances — six hydrogen and two oxygen atoms on each side.",
+        "common_mistakes": [
+          "Leaving the water out. It supplies one of the two oxygen atoms and both hydrogen atoms of the OH groups, so without it the equation does not balance.",
+          "Writing KMnO₄ into the organic equation without balancing the manganese. The oxidising agent is shown as [O].",
+          "Writing only one OH group in the product. Both carbons take one each."
+        ],
+        "memory_tip": "Add [O] and H₂O to ethylene and the two OH groups appear.",
+        "margin_note": "Write [O] for the oxidising agent and keep the water in the equation."
+      },
+      {
+        "id": "s4_product",
+        "kind": "text",
+        "label": "The product",
+        "marks": 1,
+        "mark_note": "The product",
+        "lines": [
+          "The product is ethylene glycol.",
+          "Its IUPAC name is ethane-1,2-diol.",
+          "Its formula is HOCH₂–CH₂OH.",
+          "A diol carries two hydroxyl groups, and",
+          "here they sit on neighbouring carbon",
+          "atoms."
+        ],
+        "why": "The name matches the structure exactly: ethane names the two carbons, 1,2 says the two OH groups are on different carbons, and diol says there are two of them. Giving the formula alongside makes the answer unmistakable.",
+        "common_mistakes": [
+          "Naming the product ethanol. Ethanol has one OH group; the product here has two.",
+          "Calling it ethane-1,1-diol. The two OH groups are on different carbons, so it is ethane-1,2-diol."
+        ],
+        "memory_tip": "Two carbons, two OH groups, one on each: ethane-1,2-diol.",
+        "margin_note": "Give the common name and the IUPAC name, with the formula beside them."
+      },
+      {
+        "id": "s5_colour",
+        "kind": "text",
+        "label": "The colour change",
+        "marks": 1,
+        "mark_note": "The observation",
+        "lines": [
+          "The pink colour of the dilute permanganate",
+          "is discharged during the reaction.",
+          "A brown precipitate of manganese dioxide",
+          "separates as the permanganate is reduced.",
+          "This colour change is used as a test for",
+          "unsaturation: an alkene or an alkyne",
+          "discharges the colour, an alkane does not.",
+          "The test is called Baeyer's test."
+        ],
+        "why": "The reaction is worth as much as a test as it is as a preparation, and the test is the colour change: the permanganate is consumed only if there is a multiple bond to oxidise, so a saturated compound does not discharge the colour.",
+        "common_mistakes": [
+          "Saying the solution turns pink. It starts pink and the colour is discharged.",
+          "Expecting an alkane to give the same change. A saturated compound does not discharge the colour."
+        ],
+        "memory_tip": "Pink colour gone means a multiple bond was there.",
+        "margin_note": "State the colour change as the observation, and name what the test detects."
+      },
+      {
+        "id": "s6_overall",
+        "kind": "boxed_final",
+        "label": "The overall change",
+        "marks": 1,
+        "mark_note": "The overall change",
+        "lines": [
+          {
+            "text": "CH₂=CH₂ → HOCH₂–CH₂OH (Baeyer)",
+            "style": "boxed"
+          },
+          "Cold dilute alkaline permanganate turns",
+          "ethylene into ethylene glycol, and the",
+          "pink colour is discharged.",
+          "The change is an oxidation of the alkene,",
+          "not a splitting of it."
+        ],
+        "why": "The overall change states the answer in one line, and naming it an oxidation rather than a splitting is the point the conditions were chosen to secure.",
+        "common_mistakes": [
+          "Writing two separate one-carbon products. The molecule is not split by this reagent.",
+          "Leaving the reagent unnamed beside the boxed change."
+        ],
+        "memory_tip": "Ethylene in, ethylene glycol out, and the pink colour goes.",
+        "margin_note": "Close with the change in one line and name the reagent beside it."
+      }
+    ]
+  }
+}

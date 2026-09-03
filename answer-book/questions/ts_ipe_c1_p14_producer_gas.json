@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_producer_gas",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is 'producer gas'?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the mixture is",
+      "marks": 1
+    },
+    {
+      "label": "The composition and the use",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.105, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_the_mixture_is",
+        "kind": "text",
+        "label": "What the mixture is",
+        "marks": 1,
+        "mark_note": "The composition",
+        "lines": [
+          "Producer gas is a mixture of carbon",
+          "monoxide CO and nitrogen N₂.",
+          "The nitrogen is in it because air is",
+          "used to make the gas, and the nitrogen",
+          "of the air does not react.",
+          "So producer gas always contains a large",
+          "volume of nitrogen along with the",
+          "carbon monoxide."
+        ],
+        "why": "The nitrogen in producer gas is there only because air was used instead of steam. Saying that in the first step explains the composition rather than asking a student to memorise it.",
+        "common_mistakes": [
+          "Naming the mixture as CO and H₂. That composition is water gas; producer gas has nitrogen in place of the hydrogen.",
+          "Leaving the nitrogen out. Nitrogen is the larger part of producer gas and has to be named."
+        ],
+        "memory_tip": "Air was used, so the nitrogen of the air is still there: producer gas is CO plus N₂.",
+        "margin_note": "Name both gases and say that the nitrogen comes from the air used to make it."
+      },
+      {
+        "id": "s2_composition_and_use",
+        "kind": "boxed_final",
+        "label": "The composition and the use",
+        "marks": 1,
+        "mark_note": "Figures and use",
+        "lines": [
+          {
+            "text": "Producer gas is used as a cheap fuel",
+            "style": "boxed"
+          },
+          {
+            "text": "CO ≈ 33% · N₂ ≈ 64% · CO₂ and H₂ ≈ 3%",
+            "style": "eq"
+          },
+          "Nitrogen is the largest part of the",
+          "mixture and it does not burn.",
+          "The carbon monoxide is the part that",
+          "burns, so producer gas is used as a low",
+          "cost fuel for heating and in furnaces."
+        ],
+        "why": "The rough percentages follow from the way the gas is made: air supplies about four parts of nitrogen for every one part of oxygen, and each oxygen molecule gives two molecules of carbon monoxide, so two volumes of CO come with four of N₂ — about one third and two thirds.",
+        "common_mistakes": [
+          "Writing that the nitrogen burns as well. Nitrogen is non-combustible; only the carbon monoxide burns.",
+          "Giving the composition and stopping. One closing line naming the use as a fuel completes the answer."
+        ],
+        "memory_tip": "One oxygen molecule gives two CO, and brings four N₂ with it: 2 parts CO to 4 parts N₂, so one third and two thirds.",
+        "margin_note": "The percentages are approximate figures for an ordinary sample, so write them as about."
+      }
+    ]
+  },
+  "insider_note": "Producer gas and water gas are the two that get mixed up. Producer gas is CO with nitrogen; water gas is CO with hydrogen."
+}

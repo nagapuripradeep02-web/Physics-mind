@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_diamond_as_precious_stone",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Diamond is used as a precious stone. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The optical reason",
+      "marks": 1
+    },
+    {
+      "label": "Hardness and unreactivity",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.106, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 24. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_optical",
+        "kind": "text",
+        "label": "The optical reason",
+        "marks": 1,
+        "mark_note": "Refractive index",
+        "lines": [
+          "Diamond has a very high refractive",
+          "index.",
+          "Light entering a cut diamond is",
+          "refracted strongly and is then",
+          "reflected many times inside the stone",
+          "before it comes out again.",
+          "The stone therefore shines brightly,",
+          "and white light entering it is split",
+          "into colours."
+        ],
+        "why": "The gem value comes from an optical property, not from the bonding. A high refractive index bends light sharply on entry and keeps it inside the stone through repeated reflections, so a cut diamond returns far more light to the eye than an ordinary transparent stone.",
+        "common_mistakes": [
+          "Giving hardness as the only reason. The brightness of a diamond comes from its high refractive index.",
+          "Writing that a diamond gives out light of its own. It only refracts and reflects the light that falls on it."
+        ],
+        "memory_tip": "A high refractive index keeps light inside the stone, so it shines.",
+        "margin_note": "Name the refractive index first; it is the main reason."
+      },
+      {
+        "id": "s2_durable",
+        "kind": "text",
+        "label": "Hardness and unreactivity",
+        "marks": 1,
+        "mark_note": "Durability",
+        "lines": [
+          "Diamond is the hardest known substance,",
+          "so a cut and polished face is not",
+          "scratched in ordinary use and the stone",
+          "keeps its shape and its polish.",
+          "It is also chemically unreactive at",
+          "ordinary temperature, so it does not",
+          "tarnish or corrode.",
+          {
+            "text": "Bright, hard and unchanging: a valued gem",
+            "style": "boxed"
+          }
+        ],
+        "why": "Brightness alone would not make a gem. The cut faces that produce the brightness must not be worn away, so the hardness and the chemical unreactivity are what keep the stone looking the same for years.",
+        "common_mistakes": [
+          "Writing that a diamond can be scratched by steel. Diamond is the hardest known substance, so steel cannot scratch it.",
+          "Saying diamond is valued because it conducts electricity. Diamond is a bad conductor of electricity."
+        ],
+        "memory_tip": "Hard and unreactive means the cut faces and the polish last.",
+        "margin_note": "Add hardness and unreactivity after the optical reason to complete the answer."
+      }
+    ]
+  },
+  "insider_note": "A complete answer names the high refractive index as the reason for the brightness and then adds that diamond is the hardest known substance and does not tarnish, so the polish lasts."
+}

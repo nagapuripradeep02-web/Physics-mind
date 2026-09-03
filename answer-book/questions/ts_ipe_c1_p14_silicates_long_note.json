@@ -1,0 +1,271 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_silicates_long_note",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write a note on silicates.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What silicates are",
+      "marks": 1
+    },
+    {
+      "label": "The basic unit",
+      "marks": 1
+    },
+    {
+      "label": "How the units join",
+      "marks": 1
+    },
+    {
+      "label": "The types and their repeating units",
+      "marks": 2
+    },
+    {
+      "label": "Chain and cyclic silicates",
+      "marks": 1
+    },
+    {
+      "label": "Balancing the charge",
+      "marks": 1
+    },
+    {
+      "label": "Conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.111, chapter 9 p-BLOCK ELEMENTS GROUP 14, LONG ANSWER QUESTIONS question 44(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD: the same chapter also asks for a short note on silicates at four marks. That card carries the definition, the SiO₄⁴⁻ unit, the corner sharing and the balancing cations. This eight-mark card adds content rather than length: the five named types with their repeating units, the note that chain and cyclic silicates share the empirical formula (SiO₃)ₙ²ⁿ⁻, and the fall in the charge per silicon atom as more oxygen atoms are shared. Both cards were re-checked line by line on 2026-09-03 and both now state that zeolites occur as minerals and as laboratory-made solids, so neither files them simply under the natural silicates. CHARGE RECORD: an all-silicon three-dimensional framework such as quartz carries no charge, but feldspars and zeolites are aluminosilicates and their frameworks DO carry a charge, balanced by metal cations. The earlier wording of step 4 named quartz and the feldspars together as uncharged, which was wrong and contradicted both zeolite cards in this chapter. FORMULA RECORD: chain silicates and cyclic silicates are both written (SiO₃)ₙ²ⁿ⁻. That is not a copying error in the source and not an error here — both are built from tetrahedra sharing two oxygen atoms each, so both have the silicon to oxygen ratio 1 : 3 and the same empirical formula. The card says so on the page so that a reader does not take it for a misprint."
+  },
+  "insider_note": "The whole class comes from one unit and one operation: the SiO₄⁴⁻ tetrahedron, and the number of its corner oxygen atoms that are shared. Every type in the list is just a different count.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "p-Block Elements: Group 14 · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What silicates are",
+        "marks": 1,
+        "mark_note": "The definition",
+        "lines": [
+          "Silicates are the metal derivatives of",
+          "silicic acid.",
+          "They form the greater part of the rocks",
+          "of the earth's crust.",
+          "The natural silicates are minerals such",
+          "as feldspar, micas and asbestos.",
+          "Zeolites occur both ways: some are",
+          "minerals and others, such as ZSM-5, are",
+          "made in the laboratory.",
+          "Glass and cement are man-made ones."
+        ],
+        "why": "The definition names both parts of a silicate: an anion derived from silicic acid, and metal cations. Examples from both the natural and the man-made side show how wide the class is before the structure narrows it to one unit.",
+        "common_mistakes": [
+          "Calling silica a silicate. SiO₂ is the oxide; a silicate contains metal cations as well.",
+          "Naming only minerals. Glass and cement are silicates too."
+        ],
+        "memory_tip": "A silicate is a metal salt of silicic acid, whether mined or made in a furnace.",
+        "margin_note": "Give the definition and two or three examples in the opening lines."
+      },
+      {
+        "id": "s2_basic_unit",
+        "kind": "text",
+        "label": "The basic unit",
+        "marks": 1,
+        "mark_note": "The SiO₄⁴⁻ unit",
+        "lines": [
+          "The basic structural unit of every",
+          "silicate is the SiO₄⁴⁻ ion.",
+          "One silicon atom lies at the centre of",
+          "a tetrahedron and four oxygen atoms at",
+          "its corners; silicon is sp³ hybridised.",
+          "An oxygen atom that is not shared",
+          "carries one negative charge, so a free",
+          "unit carries four negative charges."
+        ],
+        "why": "Every silicate is built from this one tetrahedron. Fixing the charge of the free unit at four also makes the charges of the later types easy to follow, because each shared oxygen atom removes one negative charge.",
+        "common_mistakes": [
+          "Writing the unit as SiO₄²⁻ or SiO₃²⁻. The free tetrahedral unit is SiO₄⁴⁻.",
+          "Drawing the four oxygen atoms in one plane. The unit is tetrahedral."
+        ],
+        "memory_tip": "One silicon at the centre, four oxygen atoms at the corners, four negative charges.",
+        "margin_note": "Draw the tetrahedron here; the sharing described later is easier to show on a drawing."
+      },
+      {
+        "id": "s3_joining",
+        "kind": "text",
+        "label": "How the units join",
+        "marks": 1,
+        "mark_note": "Corner sharing",
+        "lines": [
+          "The tetrahedra may stand alone, or they",
+          "may be joined to one another at their",
+          "corners.",
+          "Two tetrahedra that are joined share",
+          "one oxygen atom between them.",
+          "A tetrahedron may share one, two, three",
+          "or all four of its oxygen atoms, and",
+          "the number shared settles which type of",
+          "silicate is formed."
+        ],
+        "why": "One operation, applied a different number of times, produces the whole variety of silicates. Corner sharing joins two tetrahedra through a single oxygen atom, so the count of shared corners is what the classification rests on.",
+        "common_mistakes": [
+          "Writing that the tetrahedra share edges or faces. They are joined at their corners, one oxygen atom at a time.",
+          "Writing that every silicate is a chain. A chain is only the case where two oxygen atoms are shared."
+        ],
+        "memory_tip": "Count the shared corners: that count names the type.",
+        "margin_note": "State the sharing rule before the list of types, so the list reads as one idea repeated."
+      },
+      {
+        "id": "s4_types",
+        "kind": "text",
+        "label": "The types and their repeating units",
+        "marks": 2,
+        "mark_note": "The types",
+        "lines": [
+          "The types are named by the number of",
+          "oxygen atoms each tetrahedron shares:",
+          {
+            "text": "Orthosilicates — SiO₄⁴⁻ — 0 shared",
+            "style": "eq"
+          },
+          {
+            "text": "Pyrosilicates — Si₂O₇⁶⁻ — 1 shared",
+            "style": "eq"
+          },
+          {
+            "text": "Chain silicates — (SiO₃)ₙ²ⁿ⁻ — 2 shared",
+            "style": "eq"
+          },
+          {
+            "text": "Cyclic silicates — (SiO₃)ₙ²ⁿ⁻ — 2 shared",
+            "style": "eq"
+          },
+          {
+            "text": "Sheet silicates — (Si₂O₅)ₙ²ⁿ⁻ — 3 shared",
+            "style": "eq"
+          },
+          "When all four oxygen atoms are shared",
+          "the framework is three-dimensional.",
+          "If every centre is a silicon atom the",
+          "framework carries no charge, as in",
+          "quartz.",
+          "In feldspars and zeolites some silicon",
+          "is replaced by aluminium, so the",
+          "framework does carry a charge and metal",
+          "cations balance it."
+        ],
+        "why": "The list is the main part of the note, and it is one table rather than five separate facts: the formula in each row follows from the number of shared oxygen atoms in the same row. An orthosilicate shares none and keeps all four charges; a three-dimensional framework of silicon alone shares all four and keeps none, and a framework carries a charge again only when aluminium takes some of the silicon places.",
+        "common_mistakes": [
+          "Writing the pyrosilicate ion as Si₂O₇⁴⁻ or Si₂O₆⁶⁻. It is Si₂O₇⁶⁻: two tetrahedra, seven oxygen atoms because one is shared.",
+          "Writing the sheet silicate unit as (SiO₃)ₙ²ⁿ⁻. Sheets share three oxygen atoms per tetrahedron and their unit is (Si₂O₅)ₙ²ⁿ⁻.",
+          "Giving the names without the repeating units. The formula is what tells the types apart."
+        ],
+        "memory_tip": "Nothing shared gives SiO₄⁴⁻, one gives Si₂O₇⁶⁻, two a chain or a ring, three a sheet, four a network.",
+        "margin_note": "Write this as a two-column list, name on the left and formula on the right."
+      },
+      {
+        "id": "s5_same_formula",
+        "kind": "text",
+        "label": "Chain and cyclic silicates",
+        "marks": 1,
+        "mark_note": "The shared formula",
+        "lines": [
+          "Chain silicates and cyclic silicates",
+          "have the same empirical formula:",
+          {
+            "text": "(SiO₃)ₙ²ⁿ⁻",
+            "style": "eq"
+          },
+          "This is correct and is not a misprint.",
+          "Both are built from tetrahedra that",
+          "share two oxygen atoms each, so in both",
+          "the ratio of silicon to oxygen is 1 : 3.",
+          "They differ in shape, not in formula:",
+          "a chain is a row of tetrahedra open at",
+          "both ends, while a cyclic silicate is",
+          "the same row closed into a ring."
+        ],
+        "why": "An empirical formula records a ratio, and both arrangements have the same ratio because both share two corners per tetrahedron. The difference between them is whether the row of tetrahedra ends or closes on itself, and a ratio cannot record that.",
+        "common_mistakes": [
+          "Treating one of the two formulas as a printing error and changing it. Both are (SiO₃)ₙ²ⁿ⁻, and that is right.",
+          "Writing that chain and cyclic silicates are therefore the same substance. They share a formula and differ in shape."
+        ],
+        "memory_tip": "Two shared corners give the ratio 1 : 3 whether the row is open or closed into a ring.",
+        "margin_note": "Say in one line that the repeated formula is correct, so the answer does not read as a slip."
+      },
+      {
+        "id": "s6_charge",
+        "kind": "text",
+        "label": "Balancing the charge",
+        "marks": 1,
+        "mark_note": "The cations",
+        "lines": [
+          "Every oxygen atom that is not shared",
+          "carries a negative charge, so a",
+          "silicate anion is negatively charged as",
+          "a whole.",
+          "Metal cations such as Na⁺, K⁺, Mg²⁺,",
+          "Ca²⁺ and Al³⁺ are present in the",
+          "structure and balance that charge.",
+          "The more oxygen atoms are shared, the",
+          "smaller the charge per silicon atom:",
+          "four in an orthosilicate, two in a",
+          "chain, one in a sheet and none in a",
+          "three-dimensional framework of silicon",
+          "alone."
+        ],
+        "why": "The charge is not a separate fact to remember. It is the count of unshared oxygen atoms, so it falls in step with the sharing that produced each type in the list above.",
+        "common_mistakes": [
+          "Leaving the cations out. A silicate anion on its own is not a compound.",
+          "Writing that the charge stays the same for every type. It falls as more oxygen atoms are shared."
+        ],
+        "memory_tip": "Each shared oxygen atom removes one negative charge, so the charge falls from four to none.",
+        "margin_note": "Link this step back to the list of types, since the charges come from the same sharing."
+      },
+      {
+        "id": "s7_conclusion",
+        "kind": "boxed_final",
+        "label": "Conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          "So one unit and one operation account",
+          "for the whole class: the SiO₄⁴⁻",
+          "tetrahedron, and the sharing of its",
+          "corner oxygen atoms with its",
+          "neighbours.",
+          {
+            "text": "Every silicate is built from SiO₄⁴⁻",
+            "style": "boxed"
+          }
+        ],
+        "why": "A note has to close on the idea it was built around. Naming the unit and the operation together shows that the five types were not five facts but one rule counted five ways.",
+        "common_mistakes": [
+          "Closing with the list of types alone. The unit and the sharing are what the list came from.",
+          "Closing with a mineral name. The question asks about silicates as a class, not about one mineral."
+        ],
+        "memory_tip": "One tetrahedron, sharing none to all four of its corners, gives every silicate.",
+        "margin_note": "Close by naming the unit again, since it is what every type in the list is made of."
+      }
+    ]
+  }
+}

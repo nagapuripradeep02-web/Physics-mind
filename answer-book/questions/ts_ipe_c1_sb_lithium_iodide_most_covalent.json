@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_lithium_iodide_most_covalent",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Lithium iodide is the most covalent among the alkali metal halides. Give the reasons.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The small cation Li⁺",
+      "marks": 1
+    },
+    {
+      "label": "The large anion I⁻",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.85, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_small_cation",
+        "kind": "text",
+        "label": "The small cation Li⁺",
+        "marks": 1,
+        "mark_note": "Small cation",
+        "lines": [
+          "By Fajans' rules a small cation with a",
+          "high charge to size ratio pulls strongly",
+          "on the electron cloud of the anion.",
+          "Li⁺ is the smallest of the alkali metal",
+          "ions, so its polarising power is the",
+          "highest in group 1."
+        ],
+        "why": "Covalent character in an ionic compound means the cation has pulled the anion's electron cloud towards itself. How hard it pulls is set by its charge to size ratio, and Li⁺ has the largest such ratio in group 1.",
+        "common_mistakes": [
+          "Writing that Li⁺ carries a higher charge than the other alkali metal ions. All of them are +1, so Li⁺ differs only by size.",
+          "Naming Fajans' rules and stopping. Apply them to Li⁺ and to I⁻."
+        ],
+        "memory_tip": "Small cation with a high charge to size ratio distorts the anion the most.",
+        "margin_note": "Name Fajans' rules, then apply them to this compound."
+      },
+      {
+        "id": "s2_large_anion",
+        "kind": "text",
+        "label": "The large anion I⁻",
+        "marks": 1,
+        "mark_note": "Large anion",
+        "lines": [
+          "I⁻ is the largest halide ion and its",
+          "outer electrons are held loosely, so it",
+          "is the most easily polarised.",
+          "In LiI the small Li⁺ distorts the large",
+          "iodide cloud strongly and draws electron",
+          "density into the space between the two",
+          "ions, which is sharing.",
+          "So LiI is the most covalent of the",
+          "alkali metal halides."
+        ],
+        "why": "How much the anion is distorted depends on its size and on how loosely it holds its outer electrons. Iodide is the largest halide ion and holds its outer electrons most loosely, so the same lithium ion distorts iodide far more than it distorts fluoride or chloride.",
+        "common_mistakes": [
+          "Naming LiF as the most covalent. Fluoride is the smallest and least easily polarised halide ion, so LiF is the most ionic lithium halide.",
+          "Writing that LiI is a purely covalent compound. It has the most covalent character of the alkali metal halides, which is not the same as being fully covalent."
+        ],
+        "memory_tip": "From F⁻ to I⁻ the ion grows larger and softer, so iodide is distorted the most.",
+        "margin_note": "Finish with the conclusion the question states, that LiI is the most covalent."
+      }
+    ]
+  },
+  "insider_note": "Both halves of Fajans' rules meet in this one compound: the smallest cation Li⁺ and the largest, most easily polarised anion I⁻."
+}

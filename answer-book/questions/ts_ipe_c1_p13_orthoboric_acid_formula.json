@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_orthoboric_acid_formula",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the formula of orthoboric acid.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Formula H₃BO₃",
+      "marks": 1
+    },
+    {
+      "label": "The same formula written as B(OH)₃",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, VERY SHORT ANSWER QUESTIONS question 14(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "equation",
+        "label": "Formula of orthoboric acid",
+        "marks": 1,
+        "mark_note": "Formula of orthoboric acid",
+        "lines": [
+          {
+            "text": "Orthoboric acid = H₃BO₃",
+            "style": "eq"
+          },
+          "It is also called boric acid.",
+          "One molecule has one boron atom, three",
+          "hydrogen atoms and three oxygen atoms.",
+          "It is a white crystalline solid."
+        ],
+        "why": "The formula is the answer, and stating the atom count beside it settles the number of oxygen atoms, which is where this formula is most often written wrongly.",
+        "common_mistakes": [
+          "Giving H₃BO₃ four oxygen atoms. It has three. Four oxygen atoms appear in the ion [B(OH)₄]⁻, which is a different species.",
+          "Writing HBO₂. That is metaboric acid, which forms when orthoboric acid is heated to 370 K."
+        ],
+        "memory_tip": "Read it straight off the formula: three H, one B, three O.",
+        "margin_note": "Write the name boric acid beside the formula. It costs one line."
+      },
+      {
+        "id": "s2_boh3_form",
+        "kind": "boxed_final",
+        "label": "The same formula as B(OH)₃",
+        "marks": 1,
+        "mark_note": "The B(OH)₃ form or the nature of the acid",
+        "lines": [
+          "The three hydrogen atoms sit on the",
+          "three oxygen atoms as OH groups, so",
+          {
+            "text": "H₃BO₃ = B(OH)₃",
+            "style": "boxed"
+          },
+          "In water it is a weak monobasic Lewis",
+          "acid: it accepts OH⁻ instead of giving",
+          "up a proton of its own."
+        ],
+        "why": "Writing B(OH)₃ shows where the three hydrogen atoms actually sit, and that placement is what explains why the acid accepts OH⁻ from water rather than releasing H⁺.",
+        "common_mistakes": [
+          "Reading H₃BO₃ as three hydrogen atoms bonded to boron. All three sit on oxygen, as OH groups.",
+          "Calling it tribasic because it has three hydrogen atoms. It is monobasic."
+        ],
+        "memory_tip": "Three OH groups on one boron is H₃BO₃ rewritten as B(OH)₃.",
+        "margin_note": "B(OH)₃ is an equally correct way to answer this question."
+      }
+    ]
+  },
+  "insider_note": "The formula is four characters, so add the name boric acid and the B(OH)₃ form rather than stopping after one short line."
+}

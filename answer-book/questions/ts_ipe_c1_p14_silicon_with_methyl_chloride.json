@@ -1,0 +1,170 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_silicon_with_methyl_chloride",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain what happens when silicon is heated with methyl chloride at high temperature in the presence of copper.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reagents and the conditions",
+      "marks": 1
+    },
+    {
+      "label": "The main balanced equation",
+      "marks": 1
+    },
+    {
+      "label": "The mixture of methyl chlorosilanes, and (CH₃)₄Si",
+      "marks": 1
+    },
+    {
+      "label": "What the products are used for",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.107, chapter 9 p-BLOCK ELEMENTS GROUP 14, SHORT ANSWER QUESTIONS question 32(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. TEMPERATURE RECORD: the source prints three different temperatures for this one reaction in this one chapter. Every silicone card in this answer book prints NCERT's value, 573 K, and prints no other figure for it. EQUATION CHECK: 2CH₃Cl + Si → (CH₃)₂SiCl₂ balances atom by atom — C 2 = 2, H 6 = 6, Cl 2 = 2, Si 1 = 1 — and nothing else is formed in it. PRODUCT CLASS RECORD: three of the four products are methyl chlorosilanes — CH₃SiCl₃, (CH₃)₂SiCl₂ and (CH₃)₃SiCl. The fourth, tetramethylsilane (CH₃)₄Si, carries no chlorine on the silicon atom and is therefore not a chlorosilane, so the step that lists the products names it separately rather than inside that class. CONSISTENCY RECORD: this card stays on the reaction the question names and stops at what the chlorosilanes are used for. The separate cards in this chapter that ask what silicones are and how they are obtained carry the hydrolysis and the polymerisation in full."
+  },
+  "insider_note": "The question says at high temperature and in the presence of copper, so the answer has to state both conditions as numbers and names, not repeat the question's words. The mixture of four products is the part most answers leave out.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 14 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_conditions",
+        "kind": "text",
+        "label": "The reagents and the conditions",
+        "marks": 1,
+        "mark_note": "Reagents and conditions",
+        "lines": [
+          "Methyl chloride vapour is passed over",
+          "heated silicon.",
+          "Copper powder is present as the catalyst,",
+          "and the temperature is 573 K.",
+          "Silicon and methyl chloride combine, and",
+          "methyl chlorosilanes are formed."
+        ],
+        "why": "Three conditions must all be present for this reaction: the silicon is hot, the methyl chloride arrives as a vapour, and copper powder is there as the catalyst. Naming all three describes the reaction rather than just its product.",
+        "common_mistakes": [
+          "Leaving the copper out. Copper is the catalyst named in the question, so it belongs in the answer.",
+          "Writing the reaction with chlorine gas. The reagent is methyl chloride CH₃Cl, which supplies the methyl group and the chlorine atom together."
+        ],
+        "memory_tip": "Hot silicon, methyl chloride vapour, copper powder, 573 K.",
+        "margin_note": "Name all three conditions before writing the equation: heated silicon, copper powder, 573 K."
+      },
+      {
+        "id": "s2_main_equation",
+        "kind": "equation",
+        "label": "The main balanced equation",
+        "marks": 1,
+        "mark_note": "The balanced equation",
+        "lines": [
+          "With copper powder as the catalyst at",
+          "573 K, the main reaction is:",
+          {
+            "text": "2CH₃Cl + Si → (CH₃)₂SiCl₂",
+            "style": "eq"
+          },
+          "The product (CH₃)₂SiCl₂ is called",
+          "dimethyldichlorosilane."
+        ],
+        "why": "Two molecules of methyl chloride are needed for one silicon atom, because two methyl groups and two chlorine atoms end up on that silicon atom. Nothing else is formed in this equation, so the two sides balance with no third product.",
+        "common_mistakes": [
+          "Writing CH₃Cl + Si → CH₃SiCl. Two molecules of methyl chloride are needed, and the product is (CH₃)₂SiCl₂.",
+          "Putting the chlorine atoms on the carbon in the product. In (CH₃)₂SiCl₂ both chlorine atoms are on the silicon atom."
+        ],
+        "memory_tip": "Two CH₃Cl on one Si: two methyl groups and two chlorine atoms end up on the silicon.",
+        "margin_note": "In your own script the copper and the 573 K go above the arrow of the equation."
+      },
+      {
+        "id": "s3_mixture",
+        "kind": "equation",
+        "label": "A mixture of methyl chlorosilanes, and (CH₃)₄Si",
+        "marks": 1,
+        "mark_note": "All four products",
+        "lines": [
+          "The reaction does not give one product",
+          "only. Three methyl chlorosilanes are",
+          "formed together:",
+          {
+            "text": "methyltrichlorosilane CH₃SiCl₃",
+            "style": "eq"
+          },
+          {
+            "text": "dimethyldichlorosilane (CH₃)₂SiCl₂",
+            "style": "eq"
+          },
+          {
+            "text": "trimethylchlorosilane (CH₃)₃SiCl",
+            "style": "eq"
+          },
+          "A small amount of a fourth product is",
+          "formed with them. Its silicon atom",
+          "carries no chlorine, so it is not a",
+          "chlorosilane:",
+          {
+            "text": "tetramethylsilane (CH₃)₄Si",
+            "style": "eq"
+          },
+          "Of the four products, (CH₃)₂SiCl₂ is",
+          "formed in the largest amount."
+        ],
+        "why": "One silicon atom has four bonds, so it can take one, two, three or four methyl groups. All four products therefore appear together, and the number of chlorine atoms left on the silicon is what sets how each one behaves later.",
+        "common_mistakes": [
+          "Writing (CH₃)₂SiCl₂ as the only product. Four products form together, and (CH₃)₂SiCl₂ is the largest share of them.",
+          "Writing the fourth product as (CH₃)₄SiCl. Tetramethylsilane is (CH₃)₄Si, with no chlorine left on the silicon atom."
+        ],
+        "memory_tip": "One, two, three or four methyl groups on the silicon give the four products in order.",
+        "margin_note": "List all four formulae. The names on their own do not show how many chlorine atoms are left."
+      },
+      {
+        "id": "s4_use_of_products",
+        "kind": "boxed_final",
+        "label": "What the products are used for",
+        "marks": 1,
+        "mark_note": "Where the chlorosilanes go",
+        "lines": [
+          "These methyl chlorosilanes are the",
+          "starting materials for silicones. As a",
+          "group they are written RₙSiCl₍₄₋ₙ₎.",
+          "(CH₃)₂SiCl₂ is the one used for the",
+          "straight chain silicone: hydrolysis",
+          "followed by condensation turns it into",
+          "the chain.",
+          "The other two chlorosilanes have their",
+          "own uses. Three chlorine atoms give a",
+          "cross-linked network; one chlorine atom",
+          "closes a chain end.",
+          {
+            "text": "Silicones are made from the chlorosilanes",
+            "style": "boxed"
+          }
+        ],
+        "why": "This reaction is the industrial source of silicones. The chlorine atoms left on the silicon are the places where OH groups replace them once water is added, and it is those OH groups that later join one silicon atom to the next.",
+        "common_mistakes": [
+          "Stopping at the equation. The question asks what happens, so the answer says what the chlorosilanes are then used for.",
+          "Calling (CH₃)₂SiCl₂ a silicone. It is the starting material; the silicone is the polymer made from it."
+        ],
+        "memory_tip": "The chlorine atoms left on the silicon are the places where the chain is built later.",
+        "margin_note": "One closing line naming silicones as what these chlorosilanes go into completes the answer."
+      }
+    ]
+  }
+}

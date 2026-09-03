@@ -1,0 +1,285 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_structural_vs_stereoisomers",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Explain the differences between structural isomers and stereoisomers.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Isomerism and its two classes",
+      "marks": 1
+    },
+    {
+      "label": "Structural isomers",
+      "marks": 2
+    },
+    {
+      "label": "Stereoisomers",
+      "marks": 2
+    },
+    {
+      "label": "Physical properties",
+      "marks": 1
+    },
+    {
+      "label": "Separating the isomers",
+      "marks": 1
+    },
+    {
+      "label": "The two classes compared",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.121, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 37. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this chapter, so appearances[] is empty. SCOPE: this is the broad classification question, so geometrical isomerism appears here as one leaf of the stereoisomerism branch with a single named example, and the space goes to the six kinds of structural isomerism, the physical properties and the separation. CARRIED AS EXTRA CONTENT, not from the source book: the worked example pairs written beside each kind (butane and 2-methylpropane for chain; the propanols for position; ethanol and dimethyl ether for functional; diethyl ether and methyl propyl ether for metamerism; acetaldehyde and vinyl alcohol for tautomerism; propene and cyclopropane for ring-chain; the two forms of butan-2-ol for optical isomerism), and the statement that two enantiomers have the same melting point and boiling point and differ in the direction in which they rotate plane polarised light. All are standard NCERT-level content and a teacher should confirm they are wanted at eight marks. TAUTOMERISM IS WRITTEN AS AN EQUILIBRIUM, with the two forms joined by ⇌, because the two tautomers are present together and interconvert; it is the one kind of structural isomerism where the two forms are not separately bottled. NO FIGURE: this chapter's cards carry no figure objects, so every structure is written as a condensed formula. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_two_classes",
+        "kind": "text",
+        "label": "Isomerism and its two classes",
+        "marks": 1,
+        "mark_note": "The split, with the reason for it",
+        "lines": [
+          "Isomers are compounds that have the same",
+          "molecular formula but are not the same",
+          "compound. This is isomerism.",
+          "Isomerism is of two classes.",
+          "Structural isomerism: the atoms are",
+          "joined to one another in a different",
+          "order, so the structural formulae are",
+          "different.",
+          "Stereoisomerism: the atoms are joined in",
+          "the same order, and only their",
+          "arrangement in space is different, so",
+          "the structural formulae are the same."
+        ],
+        "why": "The whole answer follows from one question asked twice: are the atoms joined in the same order or not. Putting that question at the top means every later difference, in the kinds, in the properties and in the separation, is a consequence of it rather than a fresh fact to remember.",
+        "common_mistakes": [
+          "Writing that stereoisomers have different structural formulae. They have the same one; that is what makes them stereoisomers.",
+          "Treating isomers as compounds with different molecular formulae. Every isomer of a set has the same molecular formula."
+        ],
+        "memory_tip": "Ask one question: is the order of joining different, or only the arrangement in space?",
+        "margin_note": "State the dividing test first; everything after it follows from that."
+      },
+      {
+        "id": "s2_structural",
+        "kind": "text",
+        "label": "Structural isomers",
+        "marks": 2,
+        "mark_note": "The six kinds, with an example each",
+        "lines": [
+          "Structural isomers have the same",
+          "molecular formula and different",
+          "structural formulae. There are six",
+          "kinds.",
+          "Chain isomerism: the carbon skeleton is",
+          "different.",
+          {
+            "text": "C₄H₁₀: CH₃CH₂CH₂CH₃ and (CH₃)₃CH",
+            "style": "eq"
+          },
+          "Position isomerism: the same functional",
+          "group sits at a different place.",
+          {
+            "text": "C₃H₈O: CH₃CH₂CH₂OH and CH₃CH(OH)CH₃",
+            "style": "eq"
+          },
+          "Functional isomerism: the functional",
+          "group itself is different.",
+          {
+            "text": "C₂H₆O: CH₃CH₂OH and CH₃OCH₃",
+            "style": "eq"
+          },
+          "Metamerism: different alkyl groups sit",
+          "on the two sides of the same group.",
+          {
+            "text": "C₄H₁₀O: C₂H₅OC₂H₅ and CH₃OC₃H₇",
+            "style": "eq"
+          },
+          "Tautomerism: two forms in equilibrium,",
+          "differing in the place of one hydrogen",
+          "atom and of a double bond.",
+          {
+            "text": "C₂H₄O: CH₃CHO ⇌ CH₂=CH–OH",
+            "style": "eq"
+          },
+          "Ring-chain isomerism: one form is a",
+          "ring and the other an open chain.",
+          {
+            "text": "C₃H₆: CH₃–CH=CH₂ and cyclopropane",
+            "style": "eq"
+          }
+        ],
+        "why": "Six named kinds is a great deal to remember, so each one is written as a rule of one line with a formula pair under it, always in the same shape. The molecular formula is put in front of every pair because that is what proves the two structures are isomers at all.",
+        "common_mistakes": [
+          "Mixing up metamerism and position isomerism. In metamerism the alkyl groups on the two sides of the group change size; in position isomerism the group itself moves along one chain.",
+          "Writing the two tautomers as separate bottled compounds. The keto and enol forms are in equilibrium with each other.",
+          "Giving a pair whose molecular formulae differ. Two structures are isomers only if their molecular formulae are the same."
+        ],
+        "memory_tip": "Chain, position, functional, metamerism, tautomerism, ring-chain — six kinds, one example each.",
+        "margin_note": "Write the molecular formula in front of every pair; it is the proof that the two are isomers."
+      },
+      {
+        "id": "s3_stereo",
+        "kind": "text",
+        "label": "Stereoisomers",
+        "marks": 2,
+        "mark_note": "Configurational and conformational",
+        "lines": [
+          "Stereoisomers have the same structural",
+          "formula and differ in the arrangement of",
+          "the atoms in space. There are two kinds.",
+          "Configurational isomers change into one",
+          "another only if a bond is broken.",
+          "Geometrical, also called cis–trans: the",
+          "two groups lie on the same side or on",
+          "opposite sides of a C=C double bond,",
+          "because rotation about that bond is",
+          "restricted.",
+          {
+            "text": "C₄H₈: cis- and trans-but-2-ene",
+            "style": "eq"
+          },
+          "Optical: the molecule and its mirror",
+          "image cannot be placed on one another,",
+          "and the two forms turn plane polarised",
+          "light through equal angles in opposite",
+          "directions.",
+          {
+            "text": "Butan-2-ol: CH₃–CH(OH)–CH₂–CH₃",
+            "style": "eq"
+          },
+          "Its carbon 2 carries four different",
+          "groups, so butan-2-ol exists in two",
+          "such forms.",
+          "Conformational isomers change into one",
+          "another by rotation about a single bond,",
+          "which is nearly free.",
+          "Example: the staggered and the eclipsed",
+          "forms of ethane."
+        ],
+        "why": "Stereoisomerism splits on a physical question with a clear answer: does going from one form to the other need a bond broken. Geometrical and optical isomerism sit on the yes side and conformations on the no side, and that single test also settles which of them can be separated in the next steps.",
+        "common_mistakes": [
+          "Putting conformations among the configurational isomers. Rotation about a single bond is nearly free, so no bond is broken.",
+          "Writing that the two optical forms are different in every property. They turn plane polarised light in opposite directions, and by equal amounts.",
+          "Leaving out the restricted rotation in the geometrical case. It is the reason the two arrangements stay as they are."
+        ],
+        "memory_tip": "Break a bond and it is configurational; turn a single bond and it is conformational.",
+        "margin_note": "Name the bond-breaking test once; it sorts all three kinds."
+      },
+      {
+        "id": "s4_properties",
+        "kind": "text",
+        "label": "Physical properties",
+        "marks": 1,
+        "mark_note": "How the properties differ",
+        "lines": [
+          "Structural isomers have different",
+          "physical properties, because their",
+          "skeletons themselves are different.",
+          "A branched chain has a lower boiling",
+          "point than its straight chain isomer,",
+          "because the branched molecule has a",
+          "smaller surface of contact with its",
+          "neighbours.",
+          "Stereoisomers may or may not differ.",
+          "Geometrical isomers and diastereomers",
+          "have different melting points and",
+          "different boiling points.",
+          "Two enantiomers have the same melting",
+          "point and the same boiling point. They",
+          "differ in the direction in which they",
+          "turn plane polarised light."
+        ],
+        "why": "Properties are where the two classes stop being a matter of drawing. Structural isomers always differ, because the shape of the skeleton is what fixes the boiling point. Stereoisomers are the interesting case, and the enantiomer pair is the one place in the whole subject where two different compounds share every ordinary physical constant.",
+        "common_mistakes": [
+          "Writing that a branched isomer boils at a higher temperature than its straight chain isomer. The branched molecule has a smaller surface of contact, so it boils at a lower temperature.",
+          "Giving two enantiomers different melting points. They differ in the direction of optical rotation, not in melting point or boiling point."
+        ],
+        "memory_tip": "Branching lowers the boiling point; enantiomers differ only in which way they turn the light.",
+        "margin_note": "Give the surface of contact as the reason for the branching effect; a bare statement explains nothing."
+      },
+      {
+        "id": "s5_separation",
+        "kind": "text",
+        "label": "Separating the isomers",
+        "marks": 1,
+        "mark_note": "Which forms can be separated",
+        "lines": [
+          "Structural isomers are different",
+          "compounds and are separated by ordinary",
+          "methods such as distillation, since",
+          "their boiling points differ.",
+          "Configurational stereoisomers can also",
+          "be separated, because turning one into",
+          "the other means breaking a bond, which",
+          "does not happen on its own.",
+          "Conformers cannot be separated. Rotation",
+          "about a single bond is nearly free at",
+          "room temperature, so a sample contains",
+          "all the conformations at once."
+        ],
+        "why": "Whether two forms can be put into two separate bottles is the practical test of the difference, and it follows straight from the bond-breaking test. It is also the reason the staggered and eclipsed forms of ethane cannot be separated and are never obtained as two separate compounds.",
+        "common_mistakes": [
+          "Writing that the staggered and eclipsed forms of ethane can be separated and stored. Rotation about the single bond is nearly free, so a sample contains all the conformations at once.",
+          "Writing that cis and trans forms change into each other on standing. Rotation about a double bond means breaking the π bond, so each form can be kept."
+        ],
+        "memory_tip": "Two bottles for structural isomers and for cis–trans; one bottle for the conformations.",
+        "margin_note": "Tie each answer back to the bond-breaking test; it keeps this step from becoming a new list."
+      },
+      {
+        "id": "s6_compared",
+        "kind": "boxed_final",
+        "label": "The two classes compared",
+        "marks": 1,
+        "mark_note": "The difference in one line",
+        "lines": [
+          {
+            "text": "Stereoisomers differ only in space",
+            "style": "boxed"
+          },
+          "Structural isomers differ in the order",
+          "in which the atoms are joined, so their",
+          "structural formulae are different, and",
+          "so are their physical properties.",
+          "Stereoisomers are joined in the same",
+          "order, so their structural formulae are",
+          "the same, and only the arrangement of",
+          "the atoms in space is different.",
+          "Every isomer of either class has the",
+          "same molecular formula. That is what",
+          "makes them isomers in the first place."
+        ],
+        "why": "A comparison question is easiest to read when the two halves are set out in the same words at the end, one after the other. Returning to the shared molecular formula in the last line also states the one thing both classes have in common, which the differences can otherwise hide.",
+        "common_mistakes": [
+          "Ending with a list of the kinds and no comparison. The question asks for the differences, so a closing contrast is needed.",
+          "Writing that the two classes differ in molecular formula. They do not; both classes keep the same molecular formula."
+        ],
+        "memory_tip": "Different order of joining is structural; the same order in a different arrangement is stereo.",
+        "margin_note": "One closing line naming the space difference completes the answer."
+      }
+    ]
+  },
+  "insider_note": "The question asks for differences, so the two classes have to be set against each other and not merely described one after the other. The six kinds of structural isomerism and the three kinds of stereoisomerism, each with one example, is a comfortable length for eight marks."
+}

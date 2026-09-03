@@ -1,0 +1,149 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_be_oh_2_amphoteric",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Show that Be(OH)₂ is amphoteric in nature.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What amphoteric means",
+      "marks": 1
+    },
+    {
+      "label": "Reaction with an alkali",
+      "marks": 1
+    },
+    {
+      "label": "Reaction with an acid",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.89, chapter 7 s-BLOCK ELEMENTS, SAQ question 40. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. BOTH EQUATIONS WERE CHECKED ATOM BY ATOM AND FOR CHARGE. Be(OH)₂ + 2OH⁻ → [Be(OH)₄]²⁻: left Be 1, O 4, H 4, charge 2−; right Be 1, O 4, H 4, charge 2−. Be(OH)₂ + 2HCl + 2H₂O → [Be(H₂O)₄]Cl₂: left Be 1, O 4, H 8, Cl 2, charge 0; right Be 1, O 4, H 8, Cl 2, charge 0. The word show in the question is read as an instruction to give BOTH reactions, since a single reaction demonstrates only acidic or only basic behaviour; a teacher should confirm that a two-equation answer is what is wanted at four marks."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "s-Block Elements · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "What amphoteric means",
+        "marks": 1,
+        "mark_note": "The meaning of the word",
+        "lines": [
+          "A substance is amphoteric when it reacts",
+          "both with an acid and with a base.",
+          "To show that beryllium hydroxide Be(OH)₂",
+          "is amphoteric, both reactions have to be",
+          "written.",
+          "A single reaction shows only acidic",
+          "behaviour or only basic behaviour."
+        ],
+        "why": "The word show in the question is an instruction to prove the property, and the proof is two reactions rather than one. Fixing the meaning first states what the answer has to produce and stops it ending after a single equation.",
+        "common_mistakes": [
+          "Writing only the reaction with an alkali. Amphoteric behaviour needs the reaction with an acid as well.",
+          "Defining amphoteric as reacting with water. It means reacting with an acid and with a base."
+        ],
+        "memory_tip": "Amphoteric means two reactions: one with an acid and one with a base.",
+        "margin_note": "Say what amphoteric means before writing either equation."
+      },
+      {
+        "id": "s2_with_alkali",
+        "kind": "equation",
+        "label": "Reaction with an alkali",
+        "marks": 1,
+        "mark_note": "Beryllate ion formed",
+        "lines": [
+          "With a strong alkali, Be(OH)₂ dissolves",
+          "and gives the beryllate ion:",
+          {
+            "text": "Be(OH)₂ + 2OH⁻ → [Be(OH)₄]²⁻",
+            "style": "eq"
+          },
+          "Beryllium hydroxide takes up hydroxide",
+          "ions here, so it is acting as an acid."
+        ],
+        "why": "A hydroxide that dissolves in excess alkali is behaving as an acid, because it takes up hydroxide ions instead of releasing them. The product is the beryllate ion [Be(OH)₄]²⁻, in which four hydroxide groups surround one beryllium.",
+        "common_mistakes": [
+          "Writing the product as BeO or as Be(OH)₂ again. The product is the beryllate ion [Be(OH)₄]²⁻.",
+          "Leaving the charge off the beryllate ion. It carries a charge of 2−, and the charge must balance across the arrow."
+        ],
+        "memory_tip": "With alkali, two more hydroxide groups join beryllium to give [Be(OH)₄]²⁻.",
+        "margin_note": "Balance the charge as well as the atoms here: 2− on each side."
+      },
+      {
+        "id": "s3_with_acid",
+        "kind": "equation",
+        "label": "Reaction with an acid",
+        "marks": 1,
+        "mark_note": "Beryllium salt formed",
+        "lines": [
+          "With an acid, Be(OH)₂ dissolves and gives",
+          "a beryllium salt:",
+          {
+            "text": "Be(OH)₂ + 2HCl + 2H₂O → [Be(H₂O)₄]Cl₂",
+            "style": "eq"
+          },
+          "Beryllium hydroxide neutralises the acid",
+          "here, so it is acting as a base.",
+          "In the product the beryllium is joined to",
+          "four water molecules."
+        ],
+        "why": "This is the second half of the proof. The hydroxide neutralises hydrochloric acid, which is basic behaviour, and the beryllium ends as the hydrated ion [Be(H₂O)₄]²⁺ with two chloride ions balancing its charge. The shorter neutralisation Be(OH)₂ + 2HCl → BeCl₂ + 2H₂O says the same thing without showing the hydration, and it is equally correct.",
+        "common_mistakes": [
+          "Mixing the two forms: keeping the two water molecules on the left but writing BeCl₂ on the right. Be(OH)₂ + 2HCl → BeCl₂ + 2H₂O is also a correct neutralisation; the atoms have to balance in whichever form is written.",
+          "Leaving out the two water molecules on the left. Without them the hydrogen and oxygen atoms do not balance."
+        ],
+        "memory_tip": "With acid, beryllium ends up joined to four water molecules.",
+        "margin_note": "The two water molecules on the left are needed for the equation to balance."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "The property stated",
+        "lines": [
+          {
+            "text": "Be(OH)₂ reacts with acid and with alkali",
+            "style": "boxed"
+          },
+          "Because both reactions take place,",
+          "Be(OH)₂ is amphoteric.",
+          "The hydroxides of the other group 2",
+          "metals are basic only."
+        ],
+        "why": "The two equations are the evidence and this line is the statement they support, which is what the question asked to be shown. The closing sentence adds that beryllium is the exception in its own group, since the hydroxides of the metals below it are basic.",
+        "common_mistakes": [
+          "Ending at the equations without the closing sentence. The question asks for the property to be shown, so it has to be named.",
+          "Writing that all group 2 hydroxides are amphoteric. Only beryllium hydroxide is; the rest are basic."
+        ],
+        "memory_tip": "Two equations, then one sentence: acid and alkali both react, so it is amphoteric.",
+        "margin_note": "Write the closing sentence. The equations alone do not state the property."
+      }
+    ]
+  },
+  "insider_note": "The whole answer is two equations and one sentence, so keep the writing short; a student who gives only the alkali reaction has shown acidic behaviour and nothing more."
+}

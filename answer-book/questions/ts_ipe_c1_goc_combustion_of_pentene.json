@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_combustion_of_pentene",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the chemical equation for the combustion reaction of pentene.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The molecular formula and the equation",
+      "marks": 1
+    },
+    {
+      "label": "The balanced whole-number form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.113, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 9(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. This book prints no exam-appearance years for this chapter, so appearances[] is empty. THE EQUATIONS WERE CHECKED ATOM BY ATOM: C₅H₁₀ + 15/2 O₂ → 5CO₂ + 5H₂O has C 5 = 5, H 10 = 10 and O 15 = 10 + 5 = 15; the doubled form 2C₅H₁₀ + 15O₂ → 10CO₂ + 10H₂O has C 10 = 10, H 20 = 20 and O 30 = 20 + 10 = 30. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: the doubled whole-number form, and the statement that pent-1-ene and pent-2-ene give the same combustion equation because the molecular formula is the same."
+  },
+  "insider_note": "Pentene is C₅H₁₀, an alkene — not C₅H₁₂. Write the alkane formula and every coefficient after it comes out wrong.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "equation",
+        "label": "The formula and the equation",
+        "marks": 1,
+        "mark_note": "The equation",
+        "lines": [
+          "The ending -ene means an alkene, CₙH₂ₙ.",
+          "Pentene has five carbon atoms, so it is",
+          "C₅H₁₀, not C₅H₁₂.",
+          {
+            "text": "C₅H₁₀ + 15/2 O₂ → 5CO₂ + 5H₂O",
+            "style": "eq"
+          },
+          "Five carbons give 5CO₂ and ten hydrogens",
+          "give 5H₂O.",
+          "The position of the double bond does not",
+          "change the molecular formula."
+        ],
+        "why": "The molecular formula has to be settled before the equation can be balanced, and that is what the -ene ending gives: an alkene has two hydrogen atoms fewer than the alkane with the same carbons. Once C₅H₁₀ is fixed, five carbons give 5CO₂ and ten hydrogens give 5H₂O, which together contain fifteen oxygen atoms.",
+        "common_mistakes": [
+          "Using C₅H₁₂ for pentene. That is pentane, the alkane; pentene is C₅H₁₀.",
+          "Writing 6H₂O. Ten hydrogen atoms give five molecules of water.",
+          "Expecting the double bond to change the products. Complete combustion gives CO₂ and water."
+        ],
+        "memory_tip": "The ending -ene means CₙH₂ₙ, so five carbons carry ten hydrogens.",
+        "margin_note": "Write the molecular formula from the -ene ending before balancing anything."
+      },
+      {
+        "id": "s2_whole_numbers",
+        "kind": "boxed_final",
+        "label": "The whole-number form",
+        "marks": 1,
+        "mark_note": "Whole-number form",
+        "lines": [
+          {
+            "text": "2C₅H₁₀ + 15O₂ → 10CO₂ + 10H₂O",
+            "style": "boxed"
+          },
+          "Doubling every coefficient clears the",
+          "fraction 15/2.",
+          "Atoms: 10 C, 20 H and 30 O on each side.",
+          "Pent-1-ene and pent-2-ene are both C₅H₁₀,",
+          "so both give this same equation."
+        ],
+        "why": "Doubling clears the half molecule of oxygen, and the atom count confirms the result. Because only the molecular formula enters a combustion equation, every pentene gives the same equation whatever the position of its double bond.",
+        "common_mistakes": [
+          "Doubling the oxygen alone and leaving the rest. Every coefficient must be doubled together.",
+          "Balancing for a named isomer. Combustion depends on the molecular formula only."
+        ],
+        "memory_tip": "Same molecular formula, same combustion equation, whichever pentene is meant.",
+        "margin_note": "Give either the fraction form or the doubled form, and check the atom counts."
+      }
+    ]
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_resonance_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Describe the resonance effect with one example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the resonance effect is",
+      "marks": 2
+    },
+    {
+      "label": "Contributing structures",
+      "marks": 2
+    },
+    {
+      "label": "The example: phenol",
+      "marks": 2
+    },
+    {
+      "label": "What the delocalisation explains",
+      "marks": 1
+    },
+    {
+      "label": "How it differs from the inductive effect",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.122, chapter 10 GENERAL ORGANIC CHEMISTRY, LONG ANSWER QUESTIONS question 43. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. THE RESONANCE EFFECT AND THE MESOMERIC EFFECT ARE ONE EFFECT UNDER TWO NAMES — the permanent displacement of π or lone-pair electrons in a conjugated system — and this card says so in its opening step. Nothing here treats them as two different effects, and a student who writes either name is naming the same thing. This card is the worked example: phenol, its contributing structures, and the three things the delocalisation accounts for. Phenol is described as having FIVE contributing structures — the two Kekulé structures plus three charge-separated ones with the negative charge on an ortho, the para, or the other ortho carbon atom. Some books draw only the three charge-separated ones and some draw all five; both counts describe the same hybrid and neither is treated here as an error. The card contrasts the effect with the inductive effect in the same words used wherever that contrast appears in this chapter."
+  },
+  "insider_note": "The resonance effect and the mesomeric effect are two names for the same effect, so say that first. Then phenol carries the whole answer: the oxygen lone pair goes into the ring, and three separate facts about phenol follow from it.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "General Organic Chemistry · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_it_is",
+        "kind": "text",
+        "label": "What the resonance effect is",
+        "marks": 2,
+        "mark_note": "Definition",
+        "lines": [
+          "The resonance effect is the permanent",
+          "displacement of π electrons, or of a",
+          "lone pair, in a conjugated system.",
+          "It is also called the mesomeric effect.",
+          "The two names are used for the same",
+          "effect.",
+          "A group that releases electrons into the",
+          "system is called +M; a group that",
+          "withdraws them is called –M."
+        ],
+        "why": "The definition names three things that all have to be present: a permanent displacement, π or lone-pair electrons rather than sigma electrons, and a conjugated system for the electrons to move through. Take away the conjugated system and the effect cannot occur at all.",
+        "common_mistakes": [
+          "Writing that the resonance effect and the mesomeric effect are different effects. They are two names for the same displacement.",
+          "Writing that the electrons move only while a reagent is near. That is the electromeric effect; the resonance effect is permanent."
+        ],
+        "memory_tip": "Resonance and mesomeric are one effect under two names.",
+        "margin_note": "Give both names in the opening sentence, then the +M and –M labels."
+      },
+      {
+        "id": "s2_contributing_structures",
+        "kind": "text",
+        "label": "Contributing structures",
+        "marks": 2,
+        "mark_note": "Contributing structures",
+        "lines": [
+          "When one formula cannot describe a",
+          "molecule, two or more contributing",
+          "structures are written for it.",
+          "They differ only in where the electrons",
+          "are placed. No atom moves and no bond",
+          "angle changes.",
+          "The real molecule is none of them. It is",
+          "a single structure called the resonance",
+          "hybrid, and it is more stable than any",
+          "of the contributing structures."
+        ],
+        "why": "The rule that no atom may move is what separates resonance from isomerism: two isomers are two real compounds that can be put into two separate bottles, while contributing structures are two drawings of one compound that can never be separated. The extra stability of the hybrid is called resonance energy.",
+        "common_mistakes": [
+          "Writing that the molecule changes from one structure into another. The structures are drawings; the molecule is one hybrid at all times.",
+          "Moving an atom between the two structures. Only electrons are moved; the atoms stay where they are."
+        ],
+        "memory_tip": "Electrons move between the structures, atoms never do.",
+        "margin_note": "Say that the hybrid is more stable. That is why the effect matters."
+      },
+      {
+        "id": "s3_phenol",
+        "kind": "text",
+        "label": "The example: phenol",
+        "marks": 2,
+        "mark_note": "The example",
+        "lines": [
+          "Phenol, C₆H₅OH, is a benzene ring",
+          "carrying an –OH group.",
+          "The oxygen has two lone pairs and is",
+          "joined straight to the ring, so one lone",
+          "pair is drawn into the ring.",
+          "Besides the two Kekulé structures,",
+          "three more can be written. In each of",
+          "them the oxygen carries a positive",
+          "charge and a negative charge sits on a",
+          "ring carbon atom — on one ortho carbon,",
+          "on the para carbon, or on the other",
+          "ortho carbon.",
+          "So –OH is a +M group."
+        ],
+        "why": "The three charge-separated structures are not guesses. The lone pair can move into the ring only at the carbon atom the oxygen is attached to, and the negative charge that appears then falls at the two ortho carbon atoms and the para carbon atom. It never falls at a meta carbon atom, which is the whole reason phenol is substituted at ortho and para.",
+        "common_mistakes": [
+          "Putting the negative charge on a meta carbon atom. It falls at the ortho and para carbon atoms only.",
+          "Writing that the oxygen becomes negatively charged. The oxygen gives a lone pair away, so it carries a positive charge in those structures."
+        ],
+        "memory_tip": "The oxygen lone pair moves into the ring, and the negative charge appears at the ortho and para carbon atoms.",
+        "margin_note": "Name the three positions the negative charge reaches. That is the working."
+      },
+      {
+        "id": "s4_what_it_explains",
+        "kind": "text",
+        "label": "What the delocalisation explains",
+        "marks": 1,
+        "mark_note": "Three consequences",
+        "lines": [
+          "The ring is electron rich at the ortho",
+          "and para positions, so –OH is ortho and",
+          "para directing and leaves the ring more",
+          "reactive than benzene.",
+          "The C–O bond has some double bond",
+          "character, so it is shorter than the C–O",
+          "bond of an alcohol.",
+          "Phenol is a stronger acid than an",
+          "alcohol, because the phenoxide ion left",
+          "when the H⁺ goes is stabilised the same",
+          "way."
+        ],
+        "why": "One cause with three separate consequences is the strongest evidence that the delocalisation is real: a shorter bond is measured, a faster substitution is observed, and a larger acid strength is measured. Not one of the three could be predicted from the plain Kekulé formula of phenol.",
+        "common_mistakes": [
+          "Writing that phenol is a stronger acid than a carboxylic acid. It is stronger than an alcohol and weaker than a carboxylic acid.",
+          "Writing that –OH deactivates the ring. It releases electrons into the ring, so the ring is more reactive than benzene."
+        ],
+        "memory_tip": "Three consequences: ortho and para directing, a shorter C–O bond, a stronger acid.",
+        "margin_note": "Give all three consequences. Each one is separate evidence."
+      },
+      {
+        "id": "s5_contrast",
+        "kind": "text",
+        "label": "How it differs from the inductive effect",
+        "marks": 1,
+        "mark_note": "The contrast",
+        "lines": [
+          "The inductive effect acts through sigma",
+          "bonds. It weakens sharply from bond to",
+          "bond and is negligible beyond the third",
+          "carbon atom.",
+          "The resonance effect acts through π",
+          "electrons or a lone pair, and is passed",
+          "through the whole conjugated system",
+          "without weakening.",
+          "In phenol the oxygen shows both: –I",
+          "through the sigma bond and +M through",
+          "the ring. The +M is the larger of the",
+          "two."
+        ],
+        "why": "Naming both effects in the same molecule shows that they are not alternatives. Every group has an inductive effect, and a group joined to a conjugated system has a resonance effect as well. In phenol the two work in opposite directions, and the resonance effect is the larger, which is why the ring is activated rather than deactivated.",
+        "common_mistakes": [
+          "Writing that a group has one effect or the other. Every group has an inductive effect; a group on a conjugated system has a resonance effect too.",
+          "Writing that the two effects always work the same way. In phenol they work in opposite directions."
+        ],
+        "memory_tip": "Sigma and fading is inductive; π and unfading is resonance.",
+        "margin_note": "Close with the contrast, and say which of the two is larger in phenol."
+      },
+      {
+        "id": "s6_summary",
+        "kind": "boxed_final",
+        "label": "The example in one line",
+        "marks": 0,
+        "lines": [
+          "In phenol the lone pair of the oxygen is",
+          "delocalised into the ring, which leaves",
+          "the ring electron rich at the ortho and",
+          "para positions.",
+          {
+            "text": "–OH is +M and ortho/para directing",
+            "style": "boxed"
+          }
+        ],
+        "why": "The closing line ties the effect to the compound the question asked for an example of, so the definition and the example are read off together rather than as two separate answers.",
+        "common_mistakes": [
+          "Closing with the definition alone. The question asks for an example, so the example belongs in the closing line.",
+          "Writing that the ring is electron rich everywhere. The extra density is at the ortho and para positions."
+        ],
+        "memory_tip": "Phenol: lone pair into the ring, ortho and para enriched.",
+        "margin_note": "Unmarked closing step. It puts the effect and the example in one line."
+      }
+    ]
+  }
+}

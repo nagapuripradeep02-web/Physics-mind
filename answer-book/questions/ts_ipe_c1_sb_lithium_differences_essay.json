@@ -1,0 +1,246 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_lithium_differences_essay",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write an essay on the differences between lithium and the other alkali metals.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why lithium differs",
+      "marks": 1
+    },
+    {
+      "label": "Physical differences",
+      "marks": 2
+    },
+    {
+      "label": "With oxygen and with nitrogen",
+      "marks": 2
+    },
+    {
+      "label": "Chloride, hydrogen carbonate and ethyne",
+      "marks": 1
+    },
+    {
+      "label": "Nitrate and solubility",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.92, chapter 7 s-BLOCK ELEMENTS, LONG ANSWER QUESTIONS question 50. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. EVERY EQUATION WAS CHECKED ATOM BY ATOM: 4Li + O₂ → 2Li₂O (Li 4 = 4, O 2 = 2); 6Li + N₂ → 2Li₃N (Li 6 = 6, N 2 = 2); 4LiNO₃ → 2Li₂O + 4NO₂ + O₂ (Li 4 = 4, N 4 = 4, O 12 = 2 + 8 + 2 = 12); 2NaNO₃ → 2NaNO₂ + O₂ (Na 2 = 2, N 2 = 2, O 6 = 4 + 2 = 6). A SOURCE-BOOK CORRECTION IS CARRIED HERE: the book elsewhere prints the schematic Li + air (O₂ + N₂) → Li₂O + Li₃N, which does not balance, so this card writes the two balanced equations separately. THE HYDRATE FORMULA LiCl·2H₂O IS THE ONE USED HERE, the same figure the lithium and magnesium similarity card uses. CARRIED AS EXTRA CONTENT, to be confirmed by a teacher: lithium having the highest melting and boiling points in group 1, and the polarising power being read as charge divided by the square of the radius. Both are standard syllabus content and neither is taken from the source answer."
+  },
+  "insider_note": "One cause explains the whole essay — the very small size of the lithium atom and ion — so name it first and then trace every difference back to it, rather than writing a plain list.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "s-Block Elements · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cause",
+        "kind": "text",
+        "label": "Why lithium differs from the rest",
+        "marks": 1,
+        "mark_note": "The cause of the differences",
+        "lines": [
+          "Lithium is the first member of group 1",
+          "and differs from the metals below it.",
+          "The reasons are:",
+          "1. its exceptionally small atomic and",
+          "    ionic size,",
+          "2. its high polarising power, that is a",
+          "    high charge to radius squared ratio,",
+          "3. its high ionisation enthalpy,",
+          "4. the absence of d orbitals in its",
+          "    valence shell.",
+          "Every difference written below follows",
+          "from one of these."
+        ],
+        "why": "An essay needs a controlling idea, and here it is the small size. A small ion carrying a full positive charge pulls hard on the electron cloud of any anion near it, which is what makes lithium compounds partly covalent and different from the plainly ionic compounds of sodium and the metals below it.",
+        "common_mistakes": [
+          "Giving the differences with no reason behind them. The small size and high polarising power are what the whole essay rests on.",
+          "Saying lithium differs because it is the lightest. Its small size and the pull it exerts on anions are the reasons, not its mass."
+        ],
+        "memory_tip": "Smallest atom, smallest ion, strongest pull: that one fact explains every difference.",
+        "margin_note": "Set the reasons out first; the essay then reads as an explanation rather than a list."
+      },
+      {
+        "id": "s2_physical",
+        "kind": "text",
+        "label": "Physical differences",
+        "marks": 2,
+        "mark_note": "Hardness, melting point and reducing power",
+        "lines": [
+          "1. Lithium is the hardest alkali metal.",
+          "    Its small atoms give it the strongest",
+          "    metallic bonding in the group.",
+          "2. It has the highest melting point and",
+          "    the highest boiling point in group 1,",
+          "    for the same reason.",
+          "3. It is the least reactive metal of the",
+          "    group. It reacts with water steadily",
+          "    while sodium reacts far faster.",
+          "4. Yet in aqueous solution it is the",
+          "    STRONGEST reducing agent of the",
+          "    alkali metals.",
+          "The reason for point 4 is the very large",
+          "hydration enthalpy of the small Li⁺ ion,",
+          "which outweighs lithium's high",
+          "ionisation enthalpy."
+        ],
+        "why": "Points 3 and 4 look like a contradiction and are the part of the essay most often written wrongly. Reactivity is about how fast the metal reacts; reducing power in solution is decided by three enthalpy terms together, and the hydration of the tiny Li⁺ ion is large enough to put lithium first even though its electron is the hardest to remove.",
+        "common_mistakes": [
+          "Writing that lithium is the most reactive alkali metal. It is the least reactive of the group.",
+          "Writing that lithium is the weakest reducing agent because its ionisation enthalpy is highest. In aqueous solution it is the strongest, because of its large hydration enthalpy.",
+          "Writing that lithium is the softest. It is the hardest alkali metal."
+        ],
+        "memory_tip": "Least reactive metal, strongest reducing agent in solution: reactivity and reducing power are different things.",
+        "margin_note": "Write the reason beside point 4; without it the two statements look contradictory."
+      },
+      {
+        "id": "s3_oxygen_nitrogen",
+        "kind": "equation",
+        "label": "With oxygen and with nitrogen",
+        "marks": 2,
+        "mark_note": "Monoxide and the nitride",
+        "lines": [
+          "5. Lithium burns in oxygen and gives",
+          "    mainly the monoxide:",
+          {
+            "text": "4Li + O₂ → 2Li₂O",
+            "style": "eq"
+          },
+          "    Sodium gives the peroxide Na₂O₂ and",
+          "    potassium the superoxide KO₂.",
+          "6. Lithium is the ONLY alkali metal that",
+          "    combines directly with nitrogen,",
+          "    giving the nitride:",
+          {
+            "text": "6Li + N₂ → 2Li₃N",
+            "style": "eq"
+          },
+          "    No other alkali metal forms a nitride",
+          "    in this way.",
+          "The small Li⁺ ion holds the small O²⁻",
+          "and N³⁻ ions firmly, while the larger",
+          "cations below it hold the larger",
+          "peroxide and superoxide ions."
+        ],
+        "why": "The nitride is the single strongest point in the essay, because it is a compound the other five metals simply do not form. Both differences come from ionic size: a small cation gives a high lattice enthalpy with a small anion, so Li₂O and Li₃N are stable while the bigger cations do better with the bigger oxygen anions.",
+        "common_mistakes": [
+          "Writing that all alkali metals form nitrides. Lithium alone combines directly with nitrogen.",
+          "Writing Li₂O₂ as the product of burning lithium. The product to write is the monoxide Li₂O.",
+          "Writing an unbalanced schematic such as Li + air → Li₂O + Li₃N. Write the two balanced equations separately."
+        ],
+        "memory_tip": "Lithium alone takes nitrogen straight from the air and gives Li₃N.",
+        "margin_note": "Both equations belong here, and the word only belongs beside the nitride."
+      },
+      {
+        "id": "s4_compounds",
+        "kind": "text",
+        "label": "Chloride, hydrogen carbonate and ethyne",
+        "marks": 1,
+        "mark_note": "Three compound differences",
+        "lines": [
+          "7. Lithium chloride is deliquescent and",
+          "    crystallises as the hydrate LiCl·2H₂O.",
+          "    The chlorides of the other alkali",
+          "    metals form no such hydrates.",
+          "8. Lithium hydrogen carbonate LiHCO₃",
+          "    exists only in solution. It cannot be",
+          "    obtained as a solid, while NaHCO₃ and",
+          "    KHCO₃ are solids.",
+          "9. Lithium forms no ethynide with ethyne,",
+          "    while the other alkali metals do."
+        ],
+        "why": "These three differences all come back to the same cause. A small strongly polarising cation attracts water molecules hard, so lithium salts crystallise with water, and the same cation cannot support a large, easily broken anion such as the hydrogen carbonate ion in a solid lattice.",
+        "common_mistakes": [
+          "Writing solid LiHCO₃. Lithium hydrogen carbonate is known only in solution.",
+          "Writing that lithium chloride crystallises without water. It crystallises as LiCl·2H₂O.",
+          "Writing that lithium forms an ethynide. It is the one alkali metal that does not."
+        ],
+        "memory_tip": "Lithium salts hold water, and lithium will not hold a big anion in a solid.",
+        "margin_note": "Number these three; short numbered points read better here than a paragraph."
+      },
+      {
+        "id": "s5_nitrate_solubility",
+        "kind": "equation",
+        "label": "Nitrate on heating, and solubility",
+        "marks": 1,
+        "mark_note": "Nitrate contrast and the insoluble salts",
+        "lines": [
+          "10. On heating, lithium nitrate gives the",
+          "     oxide:",
+          {
+            "text": "4LiNO₃ → 2Li₂O + 4NO₂ + O₂",
+            "style": "eq"
+          },
+          "     The other alkali metal nitrates give",
+          "     the nitrite instead:",
+          {
+            "text": "2NaNO₃ → 2NaNO₂ + O₂",
+            "style": "eq"
+          },
+          "11. LiF and Li₂O are much less soluble in",
+          "     water than the corresponding",
+          "     compounds of the other alkali metals."
+        ],
+        "why": "The two nitrate equations are the clearest single contrast on the page, because the same heating gives two different kinds of product. The low solubility of LiF and Li₂O has the same cause as everything else: a small cation with a small anion gives a high lattice enthalpy, and a lattice that strong is hard for water to pull apart.",
+        "common_mistakes": [
+          "Writing LiNO₂ as the product of heating lithium nitrate. Lithium nitrate gives the oxide Li₂O, not the nitrite.",
+          "Writing NaNO₃ giving Na₂O. Sodium nitrate gives the nitrite NaNO₂ and oxygen.",
+          "Writing that lithium fluoride is freely soluble. LiF is much less soluble than the other alkali metal fluorides."
+        ],
+        "memory_tip": "Lithium nitrate gives the oxide; every other alkali nitrate gives the nitrite.",
+        "margin_note": "Write the two nitrate equations one under the other so the difference is easy to see."
+      },
+      {
+        "id": "s6_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "The cause restated",
+        "lines": [
+          {
+            "text": "Lithium resembles magnesium, not sodium",
+            "style": "boxed"
+          },
+          "Because it is so small and polarises so",
+          "strongly, lithium behaves less like the",
+          "metals below it in group 1 and more like",
+          "magnesium, the element placed diagonally",
+          "to it.",
+          "This is called the diagonal relationship,",
+          "and it is the reason lithium stands",
+          "apart in its own group."
+        ],
+        "why": "The essay needs an ending that ties the list together, and the diagonal relationship does exactly that: lithium is not simply odd, it is following a different neighbour. Li⁺ and Mg²⁺ have nearly the same size and nearly the same charge to radius ratio, so they behave alike.",
+        "common_mistakes": [
+          "Ending at the last difference with no closing statement. An essay has to say what the differences add up to.",
+          "Writing that lithium and magnesium are in the same group. They are diagonal neighbours in different groups."
+        ],
+        "memory_tip": "The small size that made lithium different also made it like magnesium.",
+        "margin_note": "Close with the diagonal relationship; it turns the list into an explanation."
+      }
+    ]
+  }
+}

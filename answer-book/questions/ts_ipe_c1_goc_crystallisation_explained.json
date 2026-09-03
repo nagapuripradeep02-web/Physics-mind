@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_crystallisation_explained",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain crystallisation.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What it purifies and the property used",
+      "marks": 1
+    },
+    {
+      "label": "The operation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.113, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 8(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. SCOPE NOTE: at two marks this card carries the definition, the solubility property the method rests on, and the outline of the operation. The finer working — activated charcoal for a coloured impurity, and repeated crystallisation when the two solubilities are close — belongs to a longer answer and is deliberately not compressed in here. HOT FILTRATION IS NOT ON THAT EXCLUSION LIST, and was struck from it on 2026-09-03: this card's own s2_operation says \"The hot solution is filtered and set aside to cool\", so naming it as content deliberately left out contradicted the card. The 4-mark sibling ts_ipe_c1_goc_crystallisation_and_sublimation was opened and read the same day; it carries hot filtration too (\"Insoluble matter is removed by filtering the solution while it is still hot\"), and what it genuinely adds beyond this card is the activated-charcoal line and the fractional-crystallisation line."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_property_used",
+        "kind": "text",
+        "label": "What it purifies and the property used",
+        "marks": 1,
+        "mark_note": "Difference in solubility",
+        "lines": [
+          "Crystallisation is a method of",
+          "purifying a SOLID organic compound.",
+          "It rests on one property: the compound",
+          "and the impurity are not equally soluble",
+          "in the same solvent.",
+          "A solvent is chosen in which the",
+          "compound dissolves freely when hot and",
+          "very little when cold."
+        ],
+        "why": "The method has no chemistry in it at all. It works only because the compound and the impurity dissolve to different extents in the same solvent, and because the compound is far more soluble hot than cold. Naming that difference is naming the principle.",
+        "common_mistakes": [
+          "Saying crystallisation purifies liquids. It is a method for solids.",
+          "Saying it depends on the melting point. It depends on the solubility in a chosen solvent."
+        ],
+        "memory_tip": "The compound must dissolve much better hot than cold, and not in the same way as the impurity does.",
+        "margin_note": "Write the word SOLID and the word SOLUBILITY in the opening line. Those two words carry this mark."
+      },
+      {
+        "id": "s2_operation",
+        "kind": "boxed_final",
+        "label": "The operation",
+        "marks": 1,
+        "mark_note": "Dissolve hot, cool, filter",
+        "lines": [
+          "The impure solid is dissolved in the",
+          "smallest quantity of hot solvent that",
+          "will dissolve it.",
+          "The hot solution is filtered and set",
+          "aside to cool.",
+          "On cooling, crystals of the pure",
+          "compound separate out, and these are",
+          "filtered off, washed and dried.",
+          {
+            "text": "The impurities stay in the mother liquor",
+            "style": "boxed"
+          }
+        ],
+        "why": "The smallest quantity of hot solvent is used on purpose, so that the solution is close to saturated. On cooling, the compound is far past the quantity the cold solvent can dissolve and comes out as crystals, while the impurity is present in so small a quantity that the cold solvent still dissolves it.",
+        "common_mistakes": [
+          "Using plenty of solvent. The smallest quantity that will dissolve the solid is used, so that cooling brings the compound out.",
+          "Saying the impurity is destroyed. It is not; it stays dissolved in the liquid left behind after the crystals are filtered off."
+        ],
+        "memory_tip": "Dissolve hot, cool, filter — and the liquid left over is the one carrying the impurities.",
+        "margin_note": "Name the mother liquor by that name. One closing line naming where the impurities go completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Two things carry this answer: the difference in solubility between compound and impurity in one solvent, and the sequence dissolve in the minimum of hot solvent, cool, filter. Naming the mother liquor is what says where the impurities went."
+}

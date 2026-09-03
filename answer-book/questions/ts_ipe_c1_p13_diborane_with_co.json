@@ -1,0 +1,154 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_diborane_with_co",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "How does diborane react with CO?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Why diborane reacts with a donor",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    },
+    {
+      "label": "The product and its bonding",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.102, chapter 8 p-BLOCK ELEMENTS : GROUP 13, SAQ question 26(a). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. EQUATION CHECKED AND CORRECT: B₂H₆ + 2CO → 2BH₃·CO balances at 2 B, 6 H, 2 C and 2 O on each side. CONDITIONS NOT ASSERTED: the prescribed book prints 1000 °C and 2 atmospheres, and this card deliberately does NOT print those numbers. Standard reference works give roughly 100 °C and about 20 atmospheres for borane carbonyl, and diborane decomposes well below 1000 °C, so the printed pair looks like a shifted digit rather than a measured condition. The card therefore says only that the reaction needs heating under pressure, which is true on either reading, and leaves the exact figures to a Telangana IPE teacher. The equation and the product name are unaffected either way."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 13 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_why_it_reacts",
+        "kind": "text",
+        "label": "Why diborane reacts with a donor",
+        "marks": 1,
+        "mark_note": "Electron deficiency",
+        "lines": [
+          "Diborane is electron deficient: it has 12",
+          "valence electrons where eight ordinary",
+          "bonds would need 16.",
+          "In its addition reactions the two bridge",
+          "bonds open and the molecule supplies two",
+          "BH₃ units.",
+          "Boron in BH₃ has only six electrons and an",
+          "empty orbital.",
+          "Carbon monoxide has a lone pair on carbon,",
+          "so it acts as the donor."
+        ],
+        "why": "Every addition reaction of diborane with a donor follows this one pattern: the bridges open, two BH₃ units are released, and each takes one lone pair. Writing the pattern once explains the reaction with carbon monoxide and the reaction with amines at the same time.",
+        "common_mistakes": [
+          "Writing that the terminal B–H bonds break. It is the two bridge bonds that open.",
+          "Saying carbon monoxide donates through its oxygen atom. The lone pair used is the one on carbon."
+        ],
+        "memory_tip": "The bridges open, two BH₃ units form, and each takes one lone pair.",
+        "margin_note": "One sentence on the electron deficiency sets up the equation. Write it before the equation."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "Equation and conditions",
+        "lines": [
+          "Diborane is heated with carbon monoxide",
+          "under pressure:",
+          {
+            "text": "B₂H₆ + 2CO → 2BH₃·CO",
+            "style": "eq"
+          },
+          "Atoms: 2 B, 6 H, 2 C and 2 O on each",
+          "side."
+        ],
+        "why": "One molecule of diborane gives two BH₃ units, so two molecules of carbon monoxide are taken up and two molecules of the product are formed. Checking the four atom counts is the quickest way to confirm the coefficients 1, 2 and 2.",
+        "common_mistakes": [
+          "Writing B₂H₆ + CO → B₂H₆·CO. Two molecules of carbon monoxide react and two separate adducts are formed.",
+          "Leaving the conditions out. The reaction is carried out hot and under pressure."
+        ],
+        "memory_tip": "One diborane and two carbon monoxide give two borane carbonyl.",
+        "margin_note": "Write the conditions above the arrow, and check the atom counts before moving on."
+      },
+      {
+        "id": "s3_product",
+        "kind": "text",
+        "label": "The product and its bonding",
+        "marks": 1,
+        "mark_note": "Product and bonding",
+        "lines": [
+          "The product BH₃·CO is called borane",
+          "carbonyl.",
+          "It is an addition compound, that is an",
+          "adduct.",
+          "Carbon monoxide donates its lone pair from",
+          "carbon into the empty orbital on boron.",
+          "The new bond is a coordinate bond, written",
+          "BH₃←CO or BH₃·CO.",
+          "Boron now has eight electrons and is sp³",
+          "hybridised."
+        ],
+        "why": "The product is not a new boron hydride; it is a BH₃ unit with a carbon monoxide molecule joined to it by a coordinate bond. The octet on boron is completed by the donated pair, and that is why the adduct is stable enough to be isolated.",
+        "common_mistakes": [
+          "Drawing the new bond without showing where the pair came from. Both electrons come from carbon, so mark the bond with an arrow from carbon to boron, BH₃←CO, and the donation is visible on the page.",
+          "Writing the product as B₂H₆·CO. Each BH₃ unit takes one CO, so the product is BH₃·CO and two of them are formed."
+        ],
+        "memory_tip": "Borane carbonyl: one CO on each BH₃, joined by a coordinate bond.",
+        "margin_note": "Name the product borane carbonyl in words as well as in formula."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "B₂H₆ + 2CO → 2BH₃·CO",
+            "style": "boxed"
+          },
+          "The product is borane carbonyl.",
+          "The reaction shows that diborane behaves",
+          "as two BH₃ units and that each unit is a",
+          "Lewis acid.",
+          "Trimethylamine reacts in the same pattern",
+          "and gives BH₃·N(CH₃)₃."
+        ],
+        "why": "The closing box carries the balanced equation and the product name in one place. The last line generalises the result: any molecule with a lone pair can open the bridges and attach to a BH₃ unit, which is the shape of this whole group of reactions.",
+        "common_mistakes": [
+          "Writing one BH₃·CO instead of two. One diborane molecule gives two BH₃ units, so two adducts are formed.",
+          "Stopping at the equation without naming the product. Borane carbonyl is the name to write."
+        ],
+        "memory_tip": "Any donor with a lone pair opens the bridges and gives an adduct of BH₃.",
+        "margin_note": "Close with the balanced equation and the product name on one line."
+      }
+    ]
+  },
+  "insider_note": "Diborane splits into two BH₃ units in this reaction, so the balanced equation needs two molecules of carbon monoxide and gives two molecules of borane carbonyl."
+}

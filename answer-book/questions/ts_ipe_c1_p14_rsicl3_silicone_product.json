@@ -1,0 +1,163 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_rsicl3_silicone_product",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "If the starting material for the manufacture of a silicone is RSiCl₃, write the structure of the product formed.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Hydrolysis of RSiCl₃ to the triol",
+      "marks": 1
+    },
+    {
+      "label": "Condensation of the OH groups",
+      "marks": 1
+    },
+    {
+      "label": "Why three OH groups give cross-linking",
+      "marks": 1
+    },
+    {
+      "label": "The structure of the product",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.107, chapter 9 p-BLOCK ELEMENTS GROUP 14, SHORT ANSWER QUESTIONS question 34. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. EQUATION CHECK: RSiCl₃ + 3H₂O → RSi(OH)₃ + 3HCl balances atom by atom — Si 1 = 1, Cl 3 = 3, O 3 = 3, H (R + 6) = (R + 3 + 3), and the R group is unchanged on both sides. CONSISTENCY RECORD: the other silicone cards in this chapter build the STRAIGHT-CHAIN polymer from the two OH groups of (CH₃)₂Si(OH)₂. This card builds the CROSS-LINKED network from the three OH groups of RSi(OH)₃, and the contrast between two and three is stated here rather than assumed. ONE SUPPORTING STATEMENT IS CARRIED BEYOND THE SOURCE ANSWER and should be confirmed by a teacher: that a chain can grow in only two directions, so the third linkage is what joins one chain to another. It is the standard reading of the structure, and without it the word cross-linked is asserted rather than explained."
+  },
+  "insider_note": "The number of chlorine atoms in the starting material is the whole question. Three chlorine atoms give three OH groups, and three OH groups on one silicon atom cannot make a straight chain, so the product has to be drawn as a network.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 14 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hydrolysis",
+        "kind": "equation",
+        "label": "Hydrolysis of RSiCl₃",
+        "marks": 1,
+        "mark_note": "The hydrolysis equation",
+        "lines": [
+          "In RSiCl₃ the silicon atom carries one R",
+          "group and three chlorine atoms.",
+          "With water, each chlorine atom is",
+          "replaced by an OH group:",
+          {
+            "text": "RSiCl₃ + 3H₂O → RSi(OH)₃ + 3HCl",
+            "style": "eq"
+          },
+          "RSi(OH)₃ is a triol: three OH groups on",
+          "one silicon atom."
+        ],
+        "why": "Every chlorine atom on the silicon is replaced by one OH group, so counting the chlorine atoms in the starting material gives the number of OH groups on the silicon. That count settles the shape of the whole product.",
+        "common_mistakes": [
+          "Replacing only one chlorine atom. All three are replaced, so three molecules of water are needed.",
+          "Writing R(OH)₃ instead of RSi(OH)₃. The OH groups go on to the silicon atom, not on to the R group."
+        ],
+        "memory_tip": "Three chlorine atoms out, three OH groups in, on the same silicon atom.",
+        "margin_note": "Write the hydrolysis equation first. The structure that follows is read off the number of OH groups."
+      },
+      {
+        "id": "s2_condensation",
+        "kind": "text",
+        "label": "Condensation of the OH groups",
+        "marks": 1,
+        "mark_note": "Water lost, Si–O–Si formed",
+        "lines": [
+          "The triol molecules then polymerise by",
+          "condensation.",
+          "An OH group on one silicon atom and an",
+          "OH group on a neighbouring silicon atom",
+          "lose one molecule of water, and a",
+          "Si–O–Si linkage is left in its place.",
+          "This happens at all three OH groups of",
+          "every silicon atom."
+        ],
+        "why": "Condensation is the same single step in every silicone: two OH groups become one Si–O–Si bridge and one molecule of water leaves. The only thing that changes from one silicone to another is how many times each silicon atom can repeat it.",
+        "common_mistakes": [
+          "Keeping the OH groups in the final structure. They condense away, and Si–O–Si linkages stand in their place.",
+          "Adding water in this step. Water is lost in condensation, not taken in."
+        ],
+        "memory_tip": "Two OH groups become one Si–O–Si bridge, and one molecule of water leaves.",
+        "margin_note": "Name the step condensation and say that water is lost. The word polymerisation on its own does not say it."
+      },
+      {
+        "id": "s3_why_cross_linked",
+        "kind": "text",
+        "label": "Why the product is cross-linked",
+        "marks": 1,
+        "mark_note": "Three OH groups per silicon atom",
+        "lines": [
+          "Count the OH groups on each silicon atom.",
+          "In RSi(OH)₃ there are three, so each",
+          "silicon atom can be linked to three",
+          "others.",
+          "A chain grows in two directions only, so",
+          "the third linkage joins this chain to a",
+          "neighbouring chain.",
+          "With two OH groups per silicon atom, as",
+          "in R₂Si(OH)₂, a straight chain is formed",
+          "instead."
+        ],
+        "why": "This contrast is the point of the question. Two OH groups per silicon atom can only lengthen a chain; the third OH group is the one that joins one chain to the next, and that joining is what the word cross-linked means.",
+        "common_mistakes": [
+          "Drawing a straight chain. A straight chain comes from R₂Si(OH)₂, which has two OH groups; RSi(OH)₃ has three.",
+          "Saying the R group makes the cross-link. The R group stays on its own silicon atom; the shared oxygen atoms are the cross-links."
+        ],
+        "memory_tip": "Two OH groups give a line; three OH groups give a net.",
+        "margin_note": "The comparison with R₂Si(OH)₂ is what shows why this product is a network and not a chain."
+      },
+      {
+        "id": "s4_structure",
+        "kind": "boxed_final",
+        "label": "The structure of the product",
+        "marks": 1,
+        "mark_note": "How to draw it",
+        "lines": [
+          "Draw a row of silicon atoms joined",
+          "through oxygen atoms:",
+          {
+            "text": "–O–Si–O–Si–O–Si–O–",
+            "style": "eq"
+          },
+          "Draw a second such row below the first.",
+          "Give every silicon atom one R group.",
+          "From every silicon atom of the upper row",
+          "draw one more oxygen atom going down to",
+          "a silicon atom of the row below.",
+          "Each silicon atom then carries one R",
+          "group and three oxygen atoms, and each",
+          "oxygen atom is shared between two",
+          "silicon atoms.",
+          {
+            "text": "The product is a cross-linked silicone",
+            "style": "boxed"
+          }
+        ],
+        "why": "Drawn in this order the picture shows what the formula says: one R group and three shared oxygen atoms on every silicon atom. That is a three-dimensional network held together by Si–O–Si linkages in every direction, not a single chain.",
+        "common_mistakes": [
+          "Drawing the two rows side by side with nothing between them. The cross-links are the oxygen atoms shared between the rows, so they must be drawn in.",
+          "Giving a silicon atom two R groups. RSiCl₃ carries one R group, so every silicon atom in the product carries one."
+        ],
+        "memory_tip": "One R group on top, three oxygen atoms out: that is every silicon atom in this network.",
+        "margin_note": "A labelled sketch answers this question. Mark one R group and three oxygen atoms on one silicon atom of the drawing."
+      }
+    ]
+  }
+}

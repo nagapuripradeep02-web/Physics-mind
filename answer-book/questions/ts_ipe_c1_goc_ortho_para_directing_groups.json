@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_goc_ortho_para_directing_groups",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "General Organic Chemistry (Chemistry)"
+  },
+  "chapter": "General Organic Chemistry",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What are ortho- and para-directing groups? Give one example of each.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.114, chapter 10 GENERAL ORGANIC CHEMISTRY, VERY SHORT ANSWER QUESTIONS question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. No exam-appearance years are recorded for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The card writes that the COMMON ortho and para directors release electrons and activate the ring, rather than that all of them do: the halogens direct to ortho and para while deactivating the ring, and that exception is named in this step's reasoning line rather than on the page, which a two-mark answer has no room for."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "General Organic Chemistry · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An ortho- and para-directing group is a",
+          "group already present on a benzene",
+          "ring which directs the next incoming",
+          "group to position 2 (ortho) and",
+          "position 4 (para).",
+          "The common ones release electrons into",
+          "the ring, so they also activate it."
+        ],
+        "why": "A group that releases electrons raises the electron density at positions 2 and 4 of the ring, so the next substitution takes place there, and it takes place faster than on benzene itself. That is why these are also called ring-activating groups. The halogens are the one set that directs to ortho and para while still deactivating the ring.",
+        "common_mistakes": [
+          "Giving only the positions. The answer also has to say that these groups release electrons and activate the ring.",
+          "Writing positions 2 and 3. Ortho is position 2 and para is position 4."
+        ],
+        "memory_tip": "Ortho is the neighbouring carbon, position 2; para is the carbon straight across, position 4.",
+        "margin_note": "Write both position numbers and the words electron releasing."
+      },
+      {
+        "id": "s2_examples",
+        "kind": "boxed_final",
+        "label": "The examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "The hydroxy group –OH, as in phenol",
+          "C₆H₅OH, is one example.",
+          "The methyl group –CH₃, as in",
+          "methylbenzene C₆H₅CH₃, is another.",
+          "Alkoxy –OR and amino –NH₂ groups",
+          "behave in the same way.",
+          {
+            "text": "–OH and –CH₃ direct ortho and para",
+            "style": "boxed"
+          }
+        ],
+        "why": "Both examples release electrons towards the ring, the hydroxy group through the lone pair on its oxygen atom and the methyl group through its +I effect, releasing electron density along the sigma bond, so both direct the next group to positions 2 and 4.",
+        "common_mistakes": [
+          "Giving –NO₂ as an example. The nitro group withdraws electrons and directs to position 3.",
+          "Naming the group without naming a compound that carries it. Write –OH in phenol."
+        ],
+        "memory_tip": "Electron-releasing groups — OH, OR, NH₂, alkyl — direct to ortho and para.",
+        "margin_note": "One closing line naming the two example groups completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Two things make this short answer complete: the position numbers 2 and 4, and the fact that these groups release electrons and activate the ring. Give each example group together with a compound that carries it."
+}

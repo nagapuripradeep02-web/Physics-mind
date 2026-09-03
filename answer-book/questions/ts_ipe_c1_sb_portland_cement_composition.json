@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_portland_cement_composition",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the average composition of Portland cement.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The major constituents",
+      "marks": 1
+    },
+    {
+      "label": "The smaller amounts",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.85, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_major_oxides",
+        "kind": "text",
+        "label": "The major constituents",
+        "marks": 1,
+        "mark_note": "Major oxides",
+        "lines": [
+          "Portland cement is a mixture of oxides.",
+          "Its average composition is:",
+          "CaO (lime): 50 – 60%",
+          "SiO₂ (silica): 20 – 25%",
+          "Al₂O₃ (alumina): 5 – 10%"
+        ],
+        "why": "Lime, silica and alumina together make up between three quarters and nine tenths of the cement, and they are the oxides that react with water when the cement sets. Each one is written with its formula and its percentage range.",
+        "common_mistakes": [
+          "Writing 55% for CaO or 22% for SiO₂. The question asks for an average composition, so each oxide is written as the range it lies in.",
+          "Writing Ca₂O or CaO₂ for lime. Calcium oxide is CaO."
+        ],
+        "memory_tip": "Lime is the largest share, then silica, then alumina.",
+        "margin_note": "Write the formula and the percentage range together for each oxide."
+      },
+      {
+        "id": "s2_minor_oxides",
+        "kind": "text",
+        "label": "The smaller amounts",
+        "marks": 1,
+        "mark_note": "Smaller amounts",
+        "lines": [
+          "The remaining oxides are present in",
+          "small amounts:",
+          "MgO: 2 – 3%",
+          "Fe₂O₃: 1 – 2%",
+          "SO₃: 1 – 2%",
+          "For good cement the SiO₂ : Al₂O₃ ratio",
+          "lies between 2.5 and 4."
+        ],
+        "why": "The three small oxides complete the list of six. The silica to alumina ratio is the quality check applied to a sample, so it is worth adding once the list is finished.",
+        "common_mistakes": [
+          "Stopping at five oxides. SO₃ belongs in the list, and without it the composition is short of one of the six.",
+          "Writing Fe₃O₄ or FeO for the iron oxide. The one reported in cement is ferric oxide, Fe₂O₃."
+        ],
+        "memory_tip": "Six oxides in all: three large amounts, three small ones.",
+        "margin_note": "Finish the list of six oxides before adding the quality ratio."
+      }
+    ]
+  },
+  "insider_note": "The whole answer is a list, so write all six oxides with their formulae and ranges instead of describing cement in words."
+}

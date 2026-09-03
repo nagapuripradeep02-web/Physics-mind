@@ -1,0 +1,161 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_silicates_note",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Write a short note on silicates.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What silicates are",
+      "marks": 1
+    },
+    {
+      "label": "The basic unit",
+      "marks": 1
+    },
+    {
+      "label": "How the units join",
+      "marks": 1
+    },
+    {
+      "label": "Balancing the charge",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.108, chapter 9 p-BLOCK ELEMENTS GROUP 14, SHORT ANSWER QUESTIONS question 36. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD: the same chapter also asks for a note on silicates at eight marks. Both cards state the same chemistry — metal derivatives of silicic acid, the SiO₄⁴⁻ tetrahedron as the basic unit, corner sharing of one to four oxygen atoms, and metal cations balancing the charge. The eight-mark card carries additional content rather than the same content at greater length: the five named types with their repeating units, the note that chain and cyclic silicates share the empirical formula (SiO₃)ₙ²ⁿ⁻, and the fall in the charge per silicon atom as more oxygen atoms are shared. Both cards were re-checked line by line on 2026-09-03 and both now state that zeolites occur as minerals and as laboratory-made solids, so neither files them simply under the natural silicates."
+  },
+  "insider_note": "One unit and one operation cover the whole class: the SiO₄⁴⁻ tetrahedron, and the sharing of its corner oxygen atoms. Write those two down first and the rest of the note follows.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 14 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_they_are",
+        "kind": "text",
+        "label": "What silicates are",
+        "marks": 1,
+        "mark_note": "The definition",
+        "lines": [
+          "Silicates are the metal derivatives of",
+          "silicic acid.",
+          "They make up the greater part of the",
+          "rocks of the earth's crust.",
+          "The natural silicates are minerals such",
+          "as feldspar, micas and asbestos.",
+          "Zeolites occur both ways: some are",
+          "minerals and others, such as ZSM-5, are",
+          "made in the laboratory.",
+          "Glass and cement are man-made ones."
+        ],
+        "why": "The definition names the two parts of every silicate: a silicate anion, which comes from silicic acid, and metal cations. Naming examples of both kinds shows at once how wide the class is.",
+        "common_mistakes": [
+          "Calling silica a silicate. SiO₂ is the oxide; a silicate contains metal cations as well.",
+          "Naming only minerals. Glass and cement are silicates too, and they are made rather than mined."
+        ],
+        "memory_tip": "Silicate means a metal salt of silicic acid, natural or made in a furnace.",
+        "margin_note": "Give the definition first, then two or three named examples beside it."
+      },
+      {
+        "id": "s2_basic_unit",
+        "kind": "text",
+        "label": "The basic unit",
+        "marks": 1,
+        "mark_note": "The SiO₄⁴⁻ unit",
+        "lines": [
+          "The basic structural unit of every",
+          "silicate is the SiO₄⁴⁻ ion.",
+          "One silicon atom lies at the centre and",
+          "four oxygen atoms at the corners of a",
+          "tetrahedron around it.",
+          "Silicon is sp³ hybridised in this unit.",
+          "Each oxygen atom that is not shared",
+          "carries one negative charge, so a free",
+          "unit carries four."
+        ],
+        "why": "Every silicate, however complicated, is built from this one tetrahedron. Fixing the charge of the free unit at four also makes the later charges easy to follow, because each shared oxygen atom removes one negative charge.",
+        "common_mistakes": [
+          "Writing the unit as SiO₄²⁻ or SiO₃²⁻. The free tetrahedral unit is SiO₄⁴⁻.",
+          "Drawing the four oxygen atoms in a plane. The unit is tetrahedral, not square."
+        ],
+        "memory_tip": "One silicon at the centre, four oxygen atoms at the corners, charge four minus.",
+        "margin_note": "Draw the tetrahedron beside these lines; it makes the sharing in the next step easy to show."
+      },
+      {
+        "id": "s3_joining",
+        "kind": "text",
+        "label": "How the units join",
+        "marks": 1,
+        "mark_note": "Corner sharing",
+        "lines": [
+          "The SiO₄⁴⁻ units occur singly, or they",
+          "join to one another at their corners by",
+          "sharing oxygen atoms.",
+          "A unit may share one, two, three or all",
+          "four of its oxygen atoms, and the",
+          "number shared settles the shape of the",
+          "silicate.",
+          "Sharing one gives a pair of units,",
+          "sharing two gives chains and rings,",
+          "sharing three gives sheets, and sharing",
+          "all four gives a three-dimensional",
+          "network."
+        ],
+        "why": "The whole variety of silicates comes from one operation applied a different number of times. Sharing a corner joins two tetrahedra through a single oxygen atom, so the count of shared corners is what settles whether a chain, a sheet or a network is formed.",
+        "common_mistakes": [
+          "Writing that the tetrahedra share edges or faces. They are joined at their corners, through one oxygen atom at a time.",
+          "Writing that all silicates are chains. Chains are only the case where two oxygen atoms are shared."
+        ],
+        "memory_tip": "One shared gives a pair, two chains and rings, three sheets, four a network.",
+        "margin_note": "Write the four cases as a short list; a list is easier to read back than a sentence."
+      },
+      {
+        "id": "s4_charge",
+        "kind": "boxed_final",
+        "label": "Balancing the charge",
+        "marks": 1,
+        "mark_note": "The cations",
+        "lines": [
+          "Every oxygen atom that is not shared",
+          "carries a negative charge, so a",
+          "silicate anion is negatively charged as",
+          "a whole.",
+          "Metal cations such as Na⁺, K⁺, Mg²⁺,",
+          "Ca²⁺ and Al³⁺ are present in the",
+          "structure and balance that charge.",
+          "The metal cations are what make the",
+          "compound a silicate rather than an",
+          "anion on its own.",
+          {
+            "text": "Metal cations balance the charge",
+            "style": "boxed"
+          }
+        ],
+        "why": "A silicate is a salt, so the anion cannot be the whole compound. Naming the cations closes the note by returning to the definition it opened with: a metal derivative of silicic acid.",
+        "common_mistakes": [
+          "Leaving the cations out. A silicate anion on its own is not a compound.",
+          "Writing that the cations join the tetrahedra by covalent bonds. They balance the negative charge on the silicate anion."
+        ],
+        "memory_tip": "Unshared oxygen atoms give the negative charge, and metal cations balance it.",
+        "margin_note": "One closing line naming the metal cations completes the note."
+      }
+    ]
+  }
+}

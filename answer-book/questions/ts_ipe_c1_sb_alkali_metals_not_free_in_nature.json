@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_sb_alkali_metals_not_free_in_nature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 7,
+    "name": "s-Block Elements (Chemistry)"
+  },
+  "chapter": "s-Block Elements",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why are the alkali metals not found in the free state in nature?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "They are very reactive",
+      "marks": 1
+    },
+    {
+      "label": "So they occur combined",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.86, chapter 7 s-BLOCK ELEMENTS, Very Short Answer Questions question 14. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONTENT CARRIED BEYOND THE PRINTED ANSWER and to be confirmed by a teacher: that sodium and potassium are kept under kerosene while lithium, whose density is about 0.53 against kerosene's 0.8, floats on it and is kept in paraffin wax. This is standard content and it is why the storage sentence names two liquids rather than one."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "s-Block Elements · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reactivity",
+        "kind": "text",
+        "label": "They are very reactive",
+        "marks": 1,
+        "mark_note": "The reason",
+        "lines": [
+          "An alkali metal has a single electron in",
+          "its outermost ns orbital and a very low",
+          "ionisation enthalpy, so this electron is",
+          "lost readily.",
+          "That makes the alkali metals the most",
+          "reactive metals: they react at once with",
+          "air, moisture and water."
+        ],
+        "why": "The reason is the single loosely held ns¹ electron. Removing it needs very little energy, so an alkali metal reacts with the air and water around it instead of remaining as the free metal.",
+        "common_mistakes": [
+          "Writing that their ionisation enthalpy is high. Each alkali metal has the lowest ionisation enthalpy in its own period, which is why they react so readily. Down the group the values fall, so lithium's is the highest of the six.",
+          "Stopping at the word reactive. Reactivity is the right reason, but add the cause — one ns¹ electron and a low ionisation enthalpy — to make it complete."
+        ],
+        "memory_tip": "One outer electron, lost easily, so the free metal does not last.",
+        "margin_note": "Name the ns¹ electron and the low ionisation enthalpy behind the reactivity."
+      },
+      {
+        "id": "s2_combined_state",
+        "kind": "text",
+        "label": "So they occur combined",
+        "marks": 1,
+        "mark_note": "Where they occur",
+        "lines": [
+          "Because of this reactivity they occur",
+          "only in the combined state, as their",
+          "compounds — chlorides, silicates and",
+          "carbonates.",
+          "Sodium and potassium are kept under",
+          "kerosene, which keeps air and moisture",
+          "away from the surface.",
+          "Lithium is too light to stay under",
+          "kerosene, so it is kept in paraffin wax."
+        ],
+        "why": "The second half of the answer is what follows from the reactivity: in nature these metals are held in compounds, and even a pure sample has to be kept under kerosene or wax to keep it from reacting.",
+        "common_mistakes": [
+          "Writing that they are stored in water. They react with water; sodium and potassium are kept under kerosene, and lithium, which floats on kerosene, in paraffin wax.",
+          "Giving the reason but not saying where the metals are actually found — in their compounds."
+        ],
+        "memory_tip": "Found as compounds in nature, kept under kerosene or wax in the laboratory.",
+        "margin_note": "Say the combined state, then add the storage liquid as the familiar example."
+      }
+    ]
+  },
+  "insider_note": "Reactive is the right word to open with; complete the answer by naming the single ns¹ electron and the low ionisation enthalpy behind that reactivity."
+}
