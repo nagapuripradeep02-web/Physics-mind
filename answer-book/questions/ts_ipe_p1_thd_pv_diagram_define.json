@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_pv_diagram_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is a P-V diagram?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "What the diagram shows",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 17 (printed p.125). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: a P-V diagram plots pressure on the vertical axis against volume on the horizontal axis for a thermodynamic process, its shape depends on the process, and the area under the curve equals the work done, since W = ∫P dV."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A P-V diagram is a graph drawn for",
+          "a thermodynamic process, with the",
+          "pressure of the gas on the vertical",
+          "axis and its volume on the",
+          "horizontal axis."
+        ],
+        "margin_note": "The axes, stated correctly, are the whole first mark.",
+        "why": "Plotting P against V turns an evolving process into a single curve, so the state of the gas at every instant can be read straight off the graph.",
+        "common_mistakes": [
+          "Swapping the axes. Pressure is plotted on the vertical axis and volume on the horizontal axis.",
+          "Describing it as a graph of P against time. It is P against V, not against time."
+        ],
+        "memory_tip": "P-V diagram: P up the side, V along the bottom."
+      },
+      {
+        "id": "s2_significance",
+        "kind": "boxed_final",
+        "label": "What the diagram shows",
+        "marks": 1,
+        "mark_note": "Area under curve = work done",
+        "lines": [
+          "The shape of the curve depends on",
+          "the process — isothermal, adiabatic,",
+          "isobaric or isochoric each draws a",
+          "different curve.",
+          "The area under the curve equals the",
+          "work done, W, in that process:",
+          {
+            "text": "Area under curve = W",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "The area-equals-work statement is the whole second mark.",
+        "why": "Work in a thermodynamic process is W = ∫P dV, and that integral is exactly the area swept out under the curve, so the diagram carries the work done as a visible area.",
+        "common_mistakes": [
+          "Saying the area under the curve is the heat exchanged. It is the work done, not the heat.",
+          "Treating one curve shape as the P-V diagram for every process. Each process has its own distinct shape."
+        ],
+        "memory_tip": "The area under a P-V curve is always the work done."
+      }
+    ]
+  },
+  "insider_note": "Get both axes right — pressure vertical, volume horizontal — and state that the area under the curve is the work done."
+}

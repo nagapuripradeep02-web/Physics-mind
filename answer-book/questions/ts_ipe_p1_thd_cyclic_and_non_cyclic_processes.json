@@ -1,0 +1,220 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_cyclic_and_non_cyclic_processes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the cyclic process, with an example. Explain the non-cyclic process, with an example.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The cyclic process",
+      "marks": 1
+    },
+    {
+      "label": "Cyclic process — energy",
+      "marks": 1
+    },
+    {
+      "label": "The non-cyclic process",
+      "marks": 1
+    },
+    {
+      "label": "Non-cyclic process — energy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Short Answer Question 13 (printed p.130), printed as two sub-parts, i) the cyclic process with example and ii) the non-cyclic process with example. Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. Combined here as one card, two of its four marks to each part, since the book prints the two sub-parts as one question. The mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: a cyclic process returns the system to its initial state so ΔU = 0 over the cycle and ΔQ = ΔW, with the enclosed P–V loop area equal to the net work; a non-cyclic process ends in a different state so ΔU ≠ 0 in general, still governed by ΔQ = ΔU + ΔW."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cyclic_define",
+        "kind": "text",
+        "label": "The cyclic process",
+        "marks": 1,
+        "mark_note": "Cyclic",
+        "lines": [
+          "A cyclic process is a series of",
+          "changes after which the system",
+          "returns exactly to its initial",
+          "state. Example: the working cycle",
+          "of a heat engine, such as the",
+          "Carnot cycle."
+        ],
+        "margin_note": "First mark. The system returns to its initial state, plus a named example.",
+        "why": "A cycle is defined purely by where it ENDS — back at the start — regardless of how many steps or what path it followed to get there.",
+        "common_mistakes": [
+          "Describing a cycle as one that simply \"repeats\" without stating that it returns to the SAME state.",
+          "Giving an example that is a single process rather than a closed sequence of processes."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a cyclic process returns the system to its initial state, with the example of a heat engine's working cycle such as the Carnot cycle.",
+          "accept": [
+            "returns to its initial state",
+            "Carnot cycle example"
+          ],
+          "reject": [
+            "ends in a different state"
+          ],
+          "heard_as": [
+            "cyclic",
+            "returns to start"
+          ]
+        },
+        "memory_tip": "Cyclic: the system is back where it started — same P, V and T as before."
+      },
+      {
+        "id": "s2_cyclic_energy",
+        "kind": "equation",
+        "label": "Cyclic process — energy",
+        "marks": 1,
+        "mark_note": "ΔU = 0",
+        "lines": [
+          "Since the initial and final states",
+          "are the same, internal energy is",
+          "unchanged over a complete cycle:",
+          {
+            "text": "ΔU = 0",
+            "style": "eq"
+          },
+          "so the first law gives",
+          {
+            "text": "ΔQ = ΔW",
+            "style": "eq"
+          },
+          "and on a P–V diagram the area",
+          "enclosed by the loop is the net",
+          "work done."
+        ],
+        "margin_note": "Second mark. ΔU = 0, so ΔQ = ΔW, read as the enclosed area.",
+        "why": "Internal energy is a STATE function, so it can only depend on where the system is, not on the path taken — returning to the same state forces ΔU = 0 no matter how many steps the cycle had.",
+        "common_mistakes": [
+          "Saying ΔU = 0 means no work is done in a cycle — work and heat can both be non-zero even though their difference over the cycle leaves no net internal energy change.",
+          "Forgetting that the enclosed AREA, not the length of the curve, gives the net work."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That delta U equals zero over a complete cycle, so delta Q equals delta W, read as the area enclosed on a P V diagram.",
+          "accept": [
+            "delta U equals zero",
+            "delta Q equals delta W",
+            "area enclosed is the work"
+          ],
+          "reject": [
+            "delta U is not zero"
+          ],
+          "heard_as": [
+            "delta U zero",
+            "enclosed area"
+          ]
+        },
+        "memory_tip": "Same start and end state: ΔU = 0 always, for ANY cycle."
+      },
+      {
+        "id": "s3_noncyclic_define",
+        "kind": "text",
+        "label": "The non-cyclic process",
+        "marks": 1,
+        "mark_note": "Non-cyclic",
+        "lines": [
+          "A non-cyclic process is one after",
+          "which the system does NOT return",
+          "to its initial state — it ends in a",
+          "different state. Example: a single",
+          "isothermal expansion of a gas",
+          "from one volume to a larger one."
+        ],
+        "margin_note": "Third mark. The system ends in a different state, plus a named example.",
+        "why": "A non-cyclic process is simply the opposite case: the system takes one path and stops, without ever closing the loop back to where it began.",
+        "common_mistakes": [
+          "Giving an example that is actually a closed cycle, such as the Carnot cycle.",
+          "Saying a non-cyclic process cannot be reversible — the two ideas are independent; a single reversible expansion is still non-cyclic."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a non-cyclic process ends in a different state from where it started, with the example of a single isothermal expansion.",
+          "accept": [
+            "ends in a different state",
+            "single isothermal expansion example"
+          ],
+          "reject": [
+            "returns to its initial state"
+          ],
+          "heard_as": [
+            "non cyclic",
+            "different state"
+          ]
+        },
+        "memory_tip": "Non-cyclic: one path, one direction, and it stops somewhere new."
+      },
+      {
+        "id": "s4_noncyclic_energy",
+        "kind": "boxed_final",
+        "label": "Non-cyclic process — energy",
+        "marks": 1,
+        "mark_note": "ΔQ = ΔU + ΔW",
+        "lines": [
+          "Because the final state differs",
+          "from the initial state, nothing",
+          "forces the internal energy to",
+          "zero the way a closed cycle",
+          "does. But ΔU is zero when",
+          "the final temperature equals the",
+          "initial one, as in the",
+          "isothermal example above. Heat,",
+          "work and the change in",
+          "internal energy are always related",
+          "by the first law:",
+          {
+            "text": "ΔQ = ΔU + ΔW",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Nothing forces ΔU to zero as a cycle does, but it is zero when the final temperature equals the initial one; always governed by ΔQ = ΔU + ΔW.",
+        "why": "This is the one place the two processes differ in their energy bookkeeping: a cycle forces ΔU = 0 by returning to its start, while a non-cyclic process has no such constraint.",
+        "common_mistakes": [
+          "Assuming ΔU = 0 for every non-cyclic process — it is only zero when the final temperature equals the initial one, as in the isothermal example; in general it can be non-zero.",
+          "Forgetting that the first law ΔQ = ΔU + ΔW still governs a non-cyclic process, exactly as it does a cyclic one."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That nothing forces delta U to zero for a non-cyclic process the way a cycle does, though it is zero when the final temperature equals the initial one, always governed by delta Q equals delta U plus delta W.",
+          "accept": [
+            "delta U is not forced to zero",
+            "delta Q equals delta U plus delta W"
+          ],
+          "reject": [
+            "delta U is always zero"
+          ],
+          "heard_as": [
+            "not forced to zero",
+            "first law still applies"
+          ]
+        },
+        "memory_tip": "Different start and end state: ΔU is zero only if the final temperature matches the initial one — no automatic cancellation like a cycle."
+      }
+    ]
+  },
+  "insider_note": "The one line that separates the two halves of this answer is that a cycle forces ΔU = 0 by returning to its start, while a non-cyclic process carries no such guarantee — its ΔU is zero only when the final temperature equals the initial one, as in the isothermal example. An answer that gives two definitions and two examples but never states this contrast is missing the energy mark on each half."
+}

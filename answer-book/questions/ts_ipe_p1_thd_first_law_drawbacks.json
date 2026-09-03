@@ -1,0 +1,163 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_first_law_drawbacks",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are the limitations (drawbacks) of the first law of thermodynamics?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "No direction",
+      "marks": 1
+    },
+    {
+      "label": "No possibility test",
+      "marks": 1
+    },
+    {
+      "label": "No efficiency limit",
+      "marks": 1
+    },
+    {
+      "label": "What the second law adds",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 (Thermodynamics) Short Answer Question 4 (printed p.127). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the first law conserves energy but does not fix the direction of a process (it does not forbid heat flowing from a colder to a hotter body), does not say whether an energy-conserving process is physically possible, and sets no limit on the efficiency of converting heat into work; the second law (Clausius and Kelvin–Planck statements) supplies all three."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_no_direction",
+        "kind": "text",
+        "label": "No direction of the process",
+        "marks": 1,
+        "mark_note": "Direction",
+        "lines": [
+          "The first law only balances energy;",
+          "it does not say WHICH WAY a process",
+          "actually goes.",
+          "It permits heat to flow from a",
+          "colder body to a hotter one, since",
+          "energy would still balance.",
+          "Heat never flows from cold to hot",
+          "of its own accord, that is without",
+          "external work being done — this",
+          "is the Clausius form."
+        ],
+        "margin_note": "Give the cold-to-hot example — it is the standard illustration of this drawback.",
+        "why": "This is the textbook example that shows the gap directly: the first law has nothing to say against heat flowing the wrong way on its own, which the Clausius statement of the second law forbids.",
+        "common_mistakes": [
+          "Saying the first law is wrong. It is correct; it is only silent on direction.",
+          "Giving no example — the cold-to-hot case is what makes the drawback concrete."
+        ],
+        "memory_tip": "Cold to hot needs external work — that direction never happens BY ITSELF."
+      },
+      {
+        "id": "s2_no_possibility",
+        "kind": "text",
+        "label": "No statement on whether a process is possible",
+        "marks": 1,
+        "mark_note": "Possibility",
+        "lines": [
+          "The first law says only that",
+          "energy is conserved in a process.",
+          "It does not say whether a process",
+          "consistent with that balance can",
+          "actually happen at all.",
+          "Example: a gas that has spread to",
+          "fill a vessel spontaneously",
+          "re-compressing into half the",
+          "vessel conserves energy exactly,",
+          "yet this is never observed.",
+          "Deciding what is possible needs a",
+          "separate law."
+        ],
+        "margin_note": "This is a separate point from direction — say it as its own sentence, not folded into the first drawback.",
+        "why": "A process can conserve energy on paper and still be physically impossible — the first law offers no way to tell the two apart.",
+        "common_mistakes": [
+          "Merging this with the direction drawback. They are two separate gaps: WHICH WAY, and WHETHER AT ALL.",
+          "Saying the first law predicts outcomes. It only checks a balance; it does not predict."
+        ],
+        "memory_tip": "Conserved on paper is not the same as possible in practice."
+      },
+      {
+        "id": "s3_no_efficiency_limit",
+        "kind": "text",
+        "label": "No limit on efficiency",
+        "marks": 1,
+        "mark_note": "Efficiency",
+        "lines": [
+          "The first law sets no limit on how",
+          "much of a given heat can be turned",
+          "into work.",
+          "It would allow an engine working",
+          "in a CYCLE to convert all the heat",
+          "it absorbs into work, with none",
+          "rejected — but no cyclic engine",
+          "can do this.",
+          "Kelvin-Planck forbids any process",
+          "whose SOLE RESULT is complete",
+          "conversion of heat into work."
+        ],
+        "margin_note": "This is the drawback the second law's Kelvin–Planck statement directly closes.",
+        "why": "An engine at 100% efficiency conserves energy exactly as well as a real one; only a separate law about heat and work sets the actual ceiling.",
+        "common_mistakes": [
+          "Saying the first law limits efficiency to less than 100%. It sets NO limit at all — that is the drawback.",
+          "Confusing this with the direction drawback — this one is about work, not about which way heat flows."
+        ],
+        "memory_tip": "The first law has no ceiling on efficiency; the second law puts one there."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "text",
+        "label": "What the second law adds",
+        "marks": 1,
+        "mark_note": "The second law supplies all three",
+        "lines": [
+          "Direction, possibility and the",
+          "efficiency limit are three separate",
+          "gaps the first law leaves open.",
+          "The Clausius statement (cold to",
+          "hot needs external work) and the",
+          "Kelvin-Planck statement (no cyclic",
+          "engine converts all its heat into",
+          "work) together fix direction and",
+          "the efficiency limit, and with them",
+          "which processes are possible.",
+          {
+            "text": "The second law supplies all three.",
+            "style": "heading"
+          }
+        ],
+        "margin_note": "Name all three gaps, and tie the Clausius and Kelvin-Planck statements to the gaps they close.",
+        "why": "The question asks for the drawbacks of the first law; naming the Clausius and Kelvin-Planck statements against the specific gaps they close shows the answer is complete, not just a list.",
+        "common_mistakes": [
+          "Listing only one or two of the three gaps in the closing line and leaving the count incomplete.",
+          "Naming the second law's statements without tying each one to the specific gap it closes."
+        ],
+        "memory_tip": "Three gaps, one law that closes them: direction, possibility, efficiency limit."
+      }
+    ]
+  },
+  "insider_note": "Three separate gaps, not one restated three ways — direction, possibility, and the efficiency limit are each their own mark."
+}

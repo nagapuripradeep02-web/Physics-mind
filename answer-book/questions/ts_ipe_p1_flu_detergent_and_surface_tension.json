@@ -1,0 +1,207 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_detergent_and_surface_tension",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Discuss the role of surface tension in the removal of dirt from clothes using detergents.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Water alone does not wet greasy cloth",
+      "marks": 1
+    },
+    {
+      "label": "A detergent molecule has two ends",
+      "marks": 1
+    },
+    {
+      "label": "Detergent lowers T, water spreads",
+      "marks": 1
+    },
+    {
+      "label": "Grease is lifted off and rinsed away",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Short Answer Question 12 (printed p.110). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: water alone has a high surface tension and forms beads on a greasy cloth rather than spreading into the fibres; a detergent molecule has one end attracted to water and one end attracted to grease; adding detergent lowers the surface tension of water, letting it spread into the cloth, and the grease-attracted ends surround each drop of grease and lift it off the fibre, after which it is carried away with the rinse water."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Fluids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_water_alone",
+        "kind": "text",
+        "label": "Water alone does not wet greasy cloth",
+        "marks": 1,
+        "mark_note": "High T, water beads on grease",
+        "lines": [
+          "Water on its own has a high surface",
+          "tension. On a greasy cloth it forms",
+          "small round beads rather than",
+          "spreading into the fibres.",
+          "So water alone does not clean a",
+          "greasy cloth well."
+        ],
+        "margin_note": "First mark. State that water's high surface tension makes it bead, not spread, on grease.",
+        "why": "Cleaning needs water to reach the fibre under the grease, and a high surface tension keeps the water contracted instead of spreading over the grease.",
+        "common_mistakes": [
+          "Saying water cannot wet cloth at all. It wets clean cloth; the problem is the grease.",
+          "Leaving out the reason, and stating only that water alone does not clean well."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That water alone has a high surface tension and beads on a greasy cloth instead of spreading into the fibres.",
+          "accept": [
+            "water beads on grease",
+            "high surface tension of water",
+            "does not spread into the fibres"
+          ],
+          "reject": [
+            "one end attracted to water, one to grease"
+          ],
+          "heard_as": [
+            "surface tension",
+            "beads",
+            "greasy cloth"
+          ]
+        },
+        "memory_tip": "High tension: water beads, it does not spread."
+      },
+      {
+        "id": "s2_molecule",
+        "kind": "text",
+        "label": "A detergent molecule has two ends",
+        "marks": 1,
+        "mark_note": "One end water-loving, one grease-loving",
+        "lines": [
+          "A detergent molecule has two ends of",
+          "different character: one end is",
+          "attracted to water, and the other",
+          "end is attracted to grease."
+        ],
+        "margin_note": "Second mark. Name both ends: one attracted to water, one to grease.",
+        "why": "A molecule with only one kind of end could not link the water being rinsed away to the grease being removed.",
+        "common_mistakes": [
+          "Naming only one end of the molecule and leaving out the other.",
+          "Saying the whole molecule is attracted to water, with no separate grease-attracted end."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a detergent molecule has one end attracted to water and one end attracted to grease.",
+          "accept": [
+            "one end attracted to water",
+            "other end attracted to grease",
+            "two different ends"
+          ],
+          "reject": [
+            "water beads on grease"
+          ],
+          "heard_as": [
+            "detergent molecule",
+            "attracted to water",
+            "attracted to grease"
+          ]
+        },
+        "memory_tip": "Two ends, two attractions: one for water, one for grease."
+      },
+      {
+        "id": "s3_lowers_tension",
+        "kind": "text",
+        "label": "Detergent lowers T, water spreads",
+        "marks": 1,
+        "mark_note": "Lower T, water spreads into cloth",
+        "lines": [
+          "Adding detergent lowers the surface",
+          "tension of water, so the water now",
+          "spreads into the cloth instead of",
+          "beading on it, and reaches the",
+          "fibres under the grease."
+        ],
+        "margin_note": "Third mark. Say detergent lowers the surface tension, so water spreads into the cloth.",
+        "why": "A lower surface tension is what turns the beading water of the first step into water that spreads and reaches the grease.",
+        "common_mistakes": [
+          "Saying detergent raises the surface tension of water. It lowers it.",
+          "Skipping the spreading step and moving straight to the grease being lifted off."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That detergent lowers the surface tension of water, so it spreads into the cloth and reaches the grease.",
+          "accept": [
+            "detergent lowers surface tension",
+            "water spreads into the cloth",
+            "reaches the fibres under the grease"
+          ],
+          "reject": [
+            "carried away with the rinse water"
+          ],
+          "heard_as": [
+            "lowers surface tension",
+            "spreads",
+            "reaches the grease"
+          ]
+        },
+        "memory_tip": "Detergent lowers T, so water spreads instead of beading."
+      },
+      {
+        "id": "s4_lifts_dirt",
+        "kind": "boxed_final",
+        "label": "Grease is lifted off and rinsed away",
+        "marks": 1,
+        "mark_note": "Grease-loving ends lift off the dirt",
+        "lines": [
+          "The grease-attracted ends of the",
+          "detergent molecules surround each",
+          "drop of grease, and lift it off the",
+          "fibre.",
+          "The loosened dirt is then carried",
+          "away with the rinse water.",
+          "Lower T ⇒ spreads ⇒ grease lifted off"
+        ],
+        "margin_note": "Fourth mark. Say the grease-attracted ends surround the grease and lift it off; the dirt leaves with the rinse water.",
+        "why": "The grease-attracted ends are what physically detach the grease from the fibre, so naming them is what completes the mechanism, not just the spreading.",
+        "common_mistakes": [
+          "Stopping at the water spreading into the cloth, and never saying how the grease is actually removed.",
+          "Saying the detergent dissolves the grease. It surrounds and lifts it off; the grease is carried away, not dissolved."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the grease-attracted ends of the detergent surround each grease drop and lift it off the fibre, and it is carried away with the rinse water.",
+          "accept": [
+            "grease-attracted ends surround the grease",
+            "lift it off the fibre",
+            "carried away with the rinse water"
+          ],
+          "reject": [
+            "detergent lowers surface tension"
+          ],
+          "heard_as": [
+            "surround",
+            "lift off",
+            "rinse water"
+          ]
+        },
+        "memory_tip": "The grease-attracted ends surround the grease; the rinse carries it away."
+      }
+    ]
+  },
+  "insider_note": "The third and fourth marks are often merged into one sentence — spreading into the cloth and lifting off the grease are two separate steps, and both must appear."
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_surface_tension_and_temperature",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the effect of temperature on surface tension?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Surface tension decreases",
+      "marks": 1
+    },
+    {
+      "label": "The reason, and the critical temperature",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Very Short Answer Question 19 (printed p.107). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the surface tension of a liquid decreases as its temperature rises, because the faster-moving molecules pull on each other with a weaker cohesive force, and surface tension falls to zero at the critical temperature, matching NCERT Class-11 Chapter 10."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_decreases",
+        "kind": "text",
+        "label": "Surface tension decreases",
+        "marks": 1,
+        "mark_note": "Decreases as temperature rises",
+        "lines": [
+          "The surface tension of a liquid",
+          "decreases as its temperature rises."
+        ],
+        "margin_note": "First mark. State the direction: surface tension decreases as temperature rises.",
+        "why": "Surface tension comes from the cohesive pull between the liquid's molecules; heating makes that pull weaker, so the surface tension falls.",
+        "common_mistakes": [
+          "Saying surface tension increases with temperature. It decreases.",
+          "Saying temperature has an effect without stating the direction of the change."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the surface tension of a liquid decreases as its temperature rises.",
+          "accept": [
+            "surface tension decreases with temperature",
+            "hotter liquid, lower surface tension"
+          ],
+          "reject": [
+            "falls to zero at the critical temperature"
+          ],
+          "heard_as": [
+            "surface tension decreases",
+            "temperature rises"
+          ]
+        },
+        "memory_tip": "Hotter liquid, lower surface tension — the two move in opposite directions."
+      },
+      {
+        "id": "s2_reason_and_limit",
+        "kind": "text",
+        "label": "The reason, and the critical temperature",
+        "marks": 1,
+        "mark_note": "Weaker cohesion; zero at critical temperature",
+        "lines": [
+          "As the temperature rises the molecules",
+          "of the liquid move faster, and the",
+          "cohesive force between them weakens.",
+          "Surface tension falls to zero at the",
+          "critical temperature."
+        ],
+        "margin_note": "Second mark. Give the reason — faster molecules, weaker cohesive force — and name the critical temperature as the point where it reaches zero.",
+        "why": "Surface tension comes from the cohesive force between the liquid's own molecules, so anything that weakens that force, such as faster thermal motion, must weaken surface tension too.",
+        "common_mistakes": [
+          "Giving the direction of change again without saying why it happens.",
+          "Leaving out the critical temperature, the point where surface tension reaches zero."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the molecules move faster and the cohesive force between them weakens as temperature rises, and surface tension falls to zero at the critical temperature.",
+          "accept": [
+            "faster molecules, weaker cohesive force",
+            "zero at the critical temperature",
+            "cohesion weakens with rising temperature"
+          ],
+          "reject": [
+            "surface tension decreases with temperature"
+          ],
+          "heard_as": [
+            "cohesive force weakens",
+            "critical temperature",
+            "faster molecules"
+          ]
+        },
+        "memory_tip": "Faster molecules pull on each other less. At the critical temperature, that pull reaches zero."
+      }
+    ]
+  },
+  "insider_note": "State the reason, not just the direction — faster molecules pulling less on their neighbours is what earns the second mark, along with naming the critical temperature."
+}

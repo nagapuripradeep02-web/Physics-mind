@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_specific_heat_relation_ideal_gas",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the relation between the specific heats of an ideal gas.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The relation",
+      "marks": 1
+    },
+    {
+      "label": "Symbols and the per-mass form",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 9 (printed p.125; printed wording 'Write the specific heat relation for an ideal gas'). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The two-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: C_P − C_V = R holds for the MOLAR specific heats of an ideal gas, R the universal gas constant; C_P exceeds C_V because a gas heated at constant pressure also does external work as it expands, needing more heat for the same rise in temperature than at constant volume. The per-unit-mass form c_P − c_V = R/M, with M the molar mass, is a DIFFERENT relation and is not what this card states."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_relation",
+        "kind": "equation",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "The relation",
+        "lines": [
+          "For an ideal gas the MOLAR specific",
+          "heats at constant pressure and at",
+          "constant volume, C_P and C_V, satisfy",
+          {
+            "text": "C_P − C_V = R",
+            "style": "eq"
+          },
+          "R is the universal gas constant."
+        ],
+        "margin_note": "First mark. Write C_P − C_V = R and say plainly these are MOLAR specific heats.",
+        "why": "The per-unit-mass specific heats of the same gas satisfy a different relation, c_P − c_V = R/M, so naming C_P and C_V as molar keeps this relation from being applied to the wrong pair of quantities.",
+        "common_mistakes": [
+          "Writing C_P − C_V = R beside a per-unit-mass specific heat without saying it is molar — the per-mass relation is c_P − c_V = R/M.",
+          "Writing C_V − C_P = R with the sign reversed — C_P is the larger of the two."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for an ideal gas the MOLAR specific heats satisfy C_P minus C_V equal to R, the universal gas constant.",
+          "accept": [
+            "C P minus C V equals R",
+            "molar specific heats",
+            "universal gas constant R"
+          ],
+          "reject": [
+            "c P minus c V equals R by M"
+          ],
+          "heard_as": [
+            "C P minus C V",
+            "equals R"
+          ]
+        },
+        "memory_tip": "Molar C_P minus molar C_V equals R — the per-mass form divides R by the molar mass M."
+      },
+      {
+        "id": "s2_why_greater",
+        "kind": "equation",
+        "label": "Symbols and the per-mass form",
+        "marks": 1,
+        "mark_note": "Symbols and the per-mass form",
+        "lines": [
+          "C_P and C_V are the MOLAR specific",
+          "heats, and R is the universal gas",
+          "constant. Per unit mass, with M",
+          "the molar mass,",
+          {
+            "text": "c_P − c_V = R/M",
+            "style": "eq"
+          },
+          "C_P is greater than C_V because a",
+          "gas heated at constant pressure",
+          "also expands and does external",
+          "work, needing more heat for the",
+          "same rise in temperature."
+        ],
+        "margin_note": "Second mark. Name C_P, C_V and R, then give the per-mass form c_P − c_V = R/M.",
+        "why": "Naming what C_P, C_V and R stand for, and giving the equivalent per-unit-mass relation, shows the relation C_P − C_V = R is understood, not just copied.",
+        "common_mistakes": [
+          "Writing the per-mass relation as c_P − c_V = R, leaving out the division by M.",
+          "Stopping at C_P > C_V with no reason — the reason is the extra work done at constant pressure."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That C_P and C_V are the molar specific heats and R is the universal gas constant, and that per unit mass the relation is c_P minus c_V equal to R over M, with M the molar mass.",
+          "accept": [
+            "C_P and C_V are molar, R is the gas constant",
+            "c_P minus c_V equals R over M",
+            "M is the molar mass"
+          ],
+          "reject": [
+            "c_P minus c_V equals R"
+          ],
+          "heard_as": [
+            "c_P minus c_V",
+            "R over M"
+          ]
+        },
+        "memory_tip": "Divide R by the molar mass M to go from C_P − C_V = R to c_P − c_V = R/M; C_P is the larger of the two."
+      }
+    ]
+  },
+  "insider_note": "Say MOLAR explicitly next to C_P − C_V = R — the per-unit-mass relation is c_P − c_V = R/M, for the specific heat capacity, which is per unit mass — a different formula for a different quantity."
+}

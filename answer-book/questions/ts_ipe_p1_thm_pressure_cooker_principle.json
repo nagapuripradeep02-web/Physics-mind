@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_pressure_cooker_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the principle of a pressure cooker?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "How the pressure rises",
+      "marks": 1
+    },
+    {
+      "label": "Why the food cooks faster",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 11 Very Short Answer Question 16 (printed p.117). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: a pressure cooker is sealed so the steam it generates cannot escape, raising the pressure inside above atmospheric; the boiling point of water rises with pressure, so the water inside boils well above 100 °C, and the food cooks faster because it is cooked at that higher temperature, not simply because the steam is trapped."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_pressure_rises",
+        "kind": "text",
+        "label": "How the pressure rises",
+        "marks": 1,
+        "mark_note": "Sealed lid traps steam, pressure rises",
+        "lines": [
+          "A pressure cooker is a closed vessel with",
+          "a tightly fitting lid, so the steam formed",
+          "inside cannot escape freely.",
+          "This raises the pressure inside well",
+          "above atmospheric pressure."
+        ],
+        "margin_note": "First mark. Say the cooker is sealed so steam cannot escape, and the pressure inside rises above atmospheric.",
+        "why": "A pressure cooker works because it is sealed: with nowhere for the steam to go, more of it collects inside the same volume, and that is what raises the pressure above atmospheric.",
+        "common_mistakes": [
+          "Saying the steam is trapped and stopping there, without saying what that does to the pressure inside."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a pressure cooker is sealed so the steam cannot escape, and this raises the pressure inside above atmospheric.",
+          "accept": [
+            "sealed lid, steam cannot escape",
+            "pressure inside rises above atmospheric",
+            "closed vessel traps the steam and pressure builds"
+          ],
+          "reject": [
+            "boiling point rises with pressure"
+          ],
+          "heard_as": [
+            "closed vessel",
+            "steam cannot escape",
+            "pressure rises"
+          ]
+        },
+        "memory_tip": "Sealed lid, no escape for the steam: the pressure inside rises."
+      },
+      {
+        "id": "s2_boiling_point",
+        "kind": "text",
+        "label": "Why the food cooks faster",
+        "marks": 1,
+        "mark_note": "Boiling point rises, water hotter",
+        "lines": [
+          "The boiling point of water rises as the",
+          "pressure on it rises. Inside the cooker",
+          "the water boils at a temperature well",
+          "above 100 °C, not at 100 °C.",
+          "Food cooks faster because it is cooked",
+          "at that higher temperature."
+        ],
+        "margin_note": "Second mark. Say the boiling point rises with the pressure, so the water boils well above 100 °C and the food is cooked at that higher temperature.",
+        "why": "A higher pressure alone does not cook food faster — what matters is that the boiling point of water rises with pressure, so the water inside is well above 100 °C, and it is that higher temperature that cooks the food faster.",
+        "common_mistakes": [
+          "Saying the food cooks faster simply because the steam is trapped, without saying the pressure raises the boiling point and the water reaches a higher temperature."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the boiling point of water rises with pressure, so the water inside boils well above 100 °C and the food cooks faster at that higher temperature.",
+          "accept": [
+            "boiling point rises with pressure",
+            "water boils above 100 degrees Celsius inside",
+            "food cooks at the higher temperature, not because steam is trapped"
+          ],
+          "reject": [
+            "steam cannot escape"
+          ],
+          "heard_as": [
+            "boiling point rises",
+            "above 100 degrees",
+            "higher temperature"
+          ]
+        },
+        "memory_tip": "Higher pressure, higher boiling point, hotter water — that is what cooks the food faster."
+      }
+    ]
+  },
+  "insider_note": "Two ideas complete this answer: the sealed cooker raising the pressure, and the higher pressure raising the boiling point so the food is cooked at a higher temperature — not simply that the steam is trapped."
+}

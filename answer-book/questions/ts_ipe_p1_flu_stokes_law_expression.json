@@ -1,0 +1,129 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_stokes_law_expression",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the expression for Stokes' law.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "F = 6πηrv, symbols named",
+      "marks": 1
+    },
+    {
+      "label": "Holds for slow, streamline motion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Mechanical Properties of Fluids, Very Short Answer Question 13 (printed p.106). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Stokes' law gives the viscous drag on a small sphere moving slowly through a fluid as F = 6πηrv, with η the coefficient of viscosity, r the radius of the sphere and v its velocity; it holds only while the flow around the sphere stays streamline, which needs the sphere small and its speed low."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expression",
+        "kind": "equation",
+        "label": "F = 6πηrv, symbols named",
+        "marks": 1,
+        "mark_note": "F = 6πηrv, name every symbol",
+        "lines": [
+          "For a sphere moving through a",
+          "viscous fluid, the viscous drag",
+          "force is given by Stokes' law:",
+          {
+            "text": "F = 6πηrv",
+            "style": "eq"
+          },
+          "where F is the viscous drag, η",
+          "the coefficient of viscosity of",
+          "the fluid, r the radius of the",
+          "sphere and v its velocity."
+        ],
+        "margin_note": "First mark. Write F = 6πηrv and name every symbol.",
+        "why": "Naming every symbol is what turns the formula into an answer — F, η, r and v each stand for a specific quantity in the same setup.",
+        "common_mistakes": [
+          "Writing F = 6πrv or F = 6ηrv, missing one of the four factors.",
+          "Not naming the symbols — the formula alone, unlabelled, is an incomplete answer."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the viscous drag on a sphere is F = 6πηrv, with η the coefficient of viscosity, r the radius and v the velocity.",
+          "accept": [
+            "F equals six pi eta r v",
+            "viscous drag on a sphere",
+            "six pi eta r v"
+          ],
+          "reject": [
+            "holds only for slow, streamline motion"
+          ],
+          "heard_as": [
+            "six pi eta r v",
+            "viscous drag",
+            "Stokes law"
+          ]
+        },
+        "memory_tip": "F = 6πηrv, the constant 6π multiplied by the three quantities η, r and v."
+      },
+      {
+        "id": "s2_conditions",
+        "kind": "boxed_final",
+        "label": "Holds for slow, streamline motion",
+        "marks": 1,
+        "mark_note": "Small sphere, slow, streamline flow",
+        "lines": [
+          "This expression holds only for a",
+          "small sphere moving slowly",
+          "through the fluid.",
+          "Under these conditions, the flow",
+          "of fluid around the sphere stays",
+          "streamline and does not turn",
+          "turbulent."
+        ],
+        "margin_note": "Second mark. Say it needs a small sphere moving slowly, so the flow stays streamline.",
+        "why": "Stokes' law is derived assuming streamline flow around the sphere. A large sphere or a high speed turns the flow turbulent, and the formula no longer applies.",
+        "common_mistakes": [
+          "Giving the formula alone without the condition — a sphere moving fast enough to turn the flow turbulent is not covered by F = 6πηrv.",
+          "Saying the condition is a small fluid rather than a small, slow-moving sphere."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Stokes' law holds only for a small sphere moving slowly, so that the flow around it stays streamline.",
+          "accept": [
+            "small sphere, low speed",
+            "flow stays streamline",
+            "not valid once flow turns turbulent"
+          ],
+          "reject": [
+            "F equals six pi eta r v"
+          ],
+          "heard_as": [
+            "small sphere",
+            "slowly",
+            "streamline"
+          ]
+        },
+        "memory_tip": "Small and slow keeps the flow streamline — that is when Stokes' law holds."
+      }
+    ]
+  },
+  "insider_note": "One mark for F = 6πηrv with every symbol named, one for the condition it needs: a small sphere moving slowly enough to keep the flow streamline."
+}

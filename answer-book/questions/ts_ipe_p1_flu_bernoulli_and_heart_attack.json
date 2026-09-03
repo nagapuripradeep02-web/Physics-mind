@@ -1,0 +1,221 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_bernoulli_and_heart_attack",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain how Bernoulli's principle accounts for the occurrence of a heart attack in human beings.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The narrowed artery",
+      "marks": 1
+    },
+    {
+      "label": "Continuity: blood speeds up",
+      "marks": 1
+    },
+    {
+      "label": "Bernoulli: pressure falls, artery squeezed",
+      "marks": 1
+    }
+    ,
+    {
+      "label": "Effect on the heart",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Short Answer Question 6 (printed p.108). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: by the equation of continuity a narrowed artery raises the local blood speed, and by Bernoulli's principle (P + ½ρv² = constant at the same height) a higher speed gives a lower pressure; if the internal pressure falls far enough the artery can be squeezed shut by the surrounding tissue, and the resulting extra strain on the heart and the repeated collapse and reopening of the artery are the mechanism linked to a heart attack."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Fluids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_narrowed_artery",
+        "kind": "text",
+        "label": "The narrowed artery",
+        "marks": 1,
+        "mark_note": "Narrowing",
+        "lines": [
+          "Fat and other deposits can build up",
+          "on the inner wall of an artery.",
+          "This narrows the artery at that",
+          "point, reducing its cross-section."
+        ],
+        "margin_note": "First mark. Name the narrowing before anything else.",
+        "why": "The narrowing is the physical change everything else follows from — without it there is no speed change and no pressure drop to explain.",
+        "common_mistakes": [
+          "Starting the answer with Bernoulli's principle before saying the artery is narrowed.",
+          "Saying the artery is blocked completely rather than narrowed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That deposits on the inner wall narrow the artery at that point.",
+          "accept": [
+            "deposits narrow the artery",
+            "artery narrowed by deposits",
+            "reduced cross-section"
+          ],
+          "reject": [
+            "blood speeds up"
+          ],
+          "heard_as": [
+            "narrowed artery",
+            "deposits",
+            "cross-section"
+          ]
+        },
+        "memory_tip": "Start with the narrower artery, not with Bernoulli."
+      },
+      {
+        "id": "s2_continuity_speeds_up",
+        "kind": "equation",
+        "label": "Continuity: blood speeds up",
+        "marks": 1,
+        "mark_note": "Continuity",
+        "lines": [
+          "By the equation of continuity,",
+          {
+            "text": "A₁v₁ = A₂v₂",
+            "style": "eq"
+          },
+          "a smaller cross-section A means a",
+          "larger speed v. So blood speeds up",
+          "as it passes through the narrowed",
+          "part of the artery."
+        ],
+        "margin_note": "Second mark. Write the continuity equation, then say the speed rises.",
+        "why": "The continuity equation is what forces the speed to rise — the same volume of blood has to pass the narrow section each second as passes the wide section.",
+        "common_mistakes": [
+          "Saying the blood slows down in the narrow part; it is the opposite.",
+          "Skipping the continuity equation and jumping straight to pressure."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That by the continuity equation A₁v₁ = A₂v₂, blood speeds up through the narrowed part.",
+          "accept": [
+            "continuity equation",
+            "A one v one equals A two v two",
+            "blood speeds up in the narrow part"
+          ],
+          "reject": [
+            "pressure falls"
+          ],
+          "heard_as": [
+            "continuity",
+            "A v equals A v",
+            "speeds up"
+          ]
+        },
+        "memory_tip": "Narrower section, faster flow — A₁v₁ = A₂v₂."
+      },
+      {
+        "id": "s3_bernoulli_pressure_falls",
+        "kind": "equation",
+        "label": "Bernoulli: pressure falls, artery squeezed",
+        "marks": 1,
+        "mark_note": "Bernoulli",
+        "lines": [
+          "By Bernoulli's principle, at the",
+          "same height,",
+          {
+            "text": "P + ½ρv² = constant",
+            "style": "eq"
+          },
+          "so a larger speed means a smaller",
+          "pressure. The internal pressure in",
+          "the narrowed part falls. If it",
+          "falls far enough, the pressure of",
+          "the surrounding tissue from outside",
+          "pushes the artery wall shut at",
+          "that point."
+        ],
+        "margin_note": "Third mark. Name Bernoulli and say the artery can be squeezed shut.",
+        "why": "Bernoulli's principle is what turns the speed increase into a pressure drop severe enough to squeeze the artery shut from outside.",
+        "common_mistakes": [
+          "Saying the pressure rises with the speed; Bernoulli gives the opposite.",
+          "Stopping at 'pressure falls' without saying the artery can be squeezed shut."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That by Bernoulli's principle the pressure falls in the narrowed part, and can fall far enough that outside pressure squeezes the artery shut.",
+          "accept": [
+            "Bernoulli, pressure falls where speed is higher",
+            "artery squeezed shut from outside",
+            "internal pressure drops"
+          ],
+          "reject": [
+            "blood speeds up"
+          ],
+          "heard_as": [
+            "Bernoulli",
+            "pressure falls",
+            "squeezed shut"
+          ]
+        },
+        "memory_tip": "Faster flow, lower pressure — low enough, and outside pressure shuts the artery."
+      },
+      {
+        "id": "s4_heart_attack_consequence",
+        "kind": "boxed_final",
+        "label": "Effect on the heart",
+        "marks": 1,
+        "mark_note": "Consequence",
+        "lines": [
+          "The heart must then work harder to",
+          "force blood through the narrowed,",
+          "partly closed artery.",
+          "The artery repeatedly collapses",
+          "and reopens as the flow starts and",
+          "stops, and this repeated collapse",
+          "and reopening can lead to a heart",
+          "attack.",
+          "Narrow ⇒ fast ⇒ low pressure ⇒ collapse"
+        ],
+        "margin_note": "Last mark. Say the heart works harder and name the repeated collapse.",
+        "why": "This is the answer to the actual question — the mechanical strain on the heart and the repeated collapse are what produce the heart attack, not the narrowing alone.",
+        "common_mistakes": [
+          "Stopping at 'the artery is squeezed shut' without saying what that does to the heart.",
+          "Saying the heart stops instead of saying it works harder against the resistance."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the heart works harder against the narrowed artery, and the repeated collapse and reopening can lead to a heart attack.",
+          "accept": [
+            "heart works harder",
+            "artery collapses and reopens",
+            "can lead to a heart attack"
+          ],
+          "reject": [
+            "pressure falls in the narrow part"
+          ],
+          "heard_as": [
+            "heart works harder",
+            "collapse and reopen",
+            "heart attack"
+          ]
+        },
+        "memory_tip": "Narrow, fast, low pressure, collapse — extra load on the heart."
+      }
+    ]
+  },
+  "insider_note": "Four marks, four steps: the narrowing, the continuity equation, Bernoulli's pressure drop, and what that does to the heart."
+}

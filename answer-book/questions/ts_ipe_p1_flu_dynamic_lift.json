@@ -1,0 +1,406 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_dynamic_lift",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 16,
+  "question_text": "Explain the term dynamic lift. Discuss the dynamic lift experienced by (a) an aerofoil and (b) a spinning ball.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "What dynamic lift is", "marks": 1 },
+    { "label": "Continuity and Bernoulli together", "marks": 1 },
+    { "label": "Aerofoil — the air speeds differ", "marks": 1 },
+    { "label": "Aerofoil — the lift force", "marks": 1 },
+    { "label": "Spinning ball — the air speeds differ", "marks": 1 },
+    { "label": "Spinning ball — the swerve", "marks": 1 },
+    { "label": "A ball with no spin", "marks": 1 },
+    { "label": "Topspin and backspin send the ball opposite ways", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Long Answer Question 1 (printed p.111). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The eight 1-mark step split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the aerofoil's boxed lift formula F = ½ρ(v₂² − v₁²)A follows from applying Bernoulli's principle across the two surfaces, with v₂ the faster (upper) air speed and v₁ the slower (lower) air speed; the spinning-ball case is treated here as one worked example of dynamic lift, reached through the same continuity-then-Bernoulli chain as the aerofoil, not as a separate topic; the no-spin closing case is consistent with the mechanism, since removing the spin removes the air-speed difference and so removes the force."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Mechanical Properties of Fluids · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What dynamic lift is",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A body moving through a fluid",
+          "can feel a force, caused only",
+          "by its own motion through the",
+          "fluid, acting perpendicular to",
+          "the direction of motion. This",
+          "is called dynamic lift: upward",
+          "on a wing, sideways on a",
+          "spinning ball."
+        ],
+        "margin_note": "First mark. State that dynamic lift is caused by the body's own motion through the fluid.",
+        "why": "Dynamic lift is not a separate force of nature — it is a pressure difference set up by motion, so the definition has to name the motion as its cause.",
+        "common_mistakes": [
+          "Describing lift as a force that acts on every body in a fluid, moving or not — a body at rest in a fluid feels no dynamic lift.",
+          "Leaving out that the force is caused by the body's own motion, not by an outside push."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dynamic lift is the force a body moving through a fluid feels, caused only by its own motion, acting perpendicular to the direction of motion.",
+          "accept": [
+            "dynamic lift is caused by the body's own motion",
+            "force perpendicular to the direction of motion",
+            "lift caused by motion through the fluid",
+            "upward on a wing, sideways on a spinning ball"
+          ],
+          "reject": [
+            "faster flow means lower pressure"
+          ],
+          "heard_as": [
+            "dynamic lift",
+            "perpendicular to motion",
+            "its own motion",
+            "moving through a fluid"
+          ]
+        },
+        "memory_tip": "Dynamic lift needs motion — no motion, no lift."
+      },
+      {
+        "id": "s2_continuity_bernoulli",
+        "kind": "equation",
+        "label": "Continuity and Bernoulli together",
+        "marks": 1,
+        "mark_note": "The two rules of flow",
+        "lines": [
+          "Dynamic lift rests on two rules of",
+          "fluid flow.",
+          "Continuity: a narrower path speeds",
+          "a fluid up:",
+          {
+            "text": "A₁v₁ = A₂v₂",
+            "style": "eq"
+          },
+          "Bernoulli: a faster fluid is at",
+          "lower pressure.",
+          "So a speed difference on the two",
+          "sides of a body gives a pressure",
+          "difference, and so a net force."
+        ],
+        "margin_note": "Second mark. Name both rules: continuity gives the speed change, Bernoulli turns it into a pressure difference.",
+        "why": "Both examples that follow use exactly this chain — a speed difference becomes a pressure difference becomes a force — so stating it once here is what makes the two examples read as one idea.",
+        "common_mistakes": [
+          "Naming only Bernoulli's principle and leaving out the equation of continuity, which is what creates the speed difference in the first place.",
+          "Reversing Bernoulli's principle: faster flow means lower pressure, not higher."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dynamic lift rests on the equation of continuity, which speeds up a fluid in a narrower path, and Bernoulli's principle, by which a faster fluid is at lower pressure.",
+          "accept": [
+            "continuity and bernoulli together",
+            "narrower path speeds the fluid up",
+            "faster fluid is at lower pressure",
+            "a speed difference gives a pressure difference"
+          ],
+          "reject": [
+            "curved upper surface of the wing"
+          ],
+          "heard_as": [
+            "continuity",
+            "bernoulli",
+            "faster means lower pressure",
+            "speed difference"
+          ]
+        },
+        "memory_tip": "Continuity changes the speed. Bernoulli turns that into pressure."
+      },
+      {
+        "id": "s3_aerofoil_shape",
+        "kind": "text",
+        "label": "Aerofoil — the air speeds differ",
+        "marks": 1,
+        "mark_note": "Shape and air speed",
+        "lines": [
+          "Example 1: an aerofoil, the cross",
+          "section of a wing.",
+          "Its upper surface is curved and its",
+          "lower surface is nearly flat.",
+          "Because of this shape, air travels",
+          "faster over the upper surface than",
+          "along the lower surface."
+        ],
+        "margin_note": "Third mark. Name the shape — curved above, flatter below — and say which surface has the faster air.",
+        "why": "The shape is what creates the speed difference for the aerofoil; without stating the shape, the pressure difference that follows has no stated cause.",
+        "common_mistakes": [
+          "Saying the air is faster below the wing — it is the upper surface that has the faster air.",
+          "Describing the wing shape without connecting it to a difference in air speed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the aerofoil's curved upper surface and flatter lower surface make air travel faster over the top than underneath.",
+          "accept": [
+            "curved above, flat below",
+            "air is faster over the top of the wing",
+            "wing shape makes the air speeds differ",
+            "upper surface has the faster air"
+          ],
+          "reject": [
+            "the ball's spin drags the air"
+          ],
+          "heard_as": [
+            "aerofoil",
+            "curved upper surface",
+            "faster over the top",
+            "wing shape"
+          ]
+        },
+        "memory_tip": "Curved top, flat bottom: the top gets the faster air."
+      },
+      {
+        "id": "s4_aerofoil_lift",
+        "kind": "equation",
+        "label": "Aerofoil — the lift force",
+        "marks": 1,
+        "mark_note": "Pressure difference and lift",
+        "lines": [
+          "By Bernoulli's principle, the faster",
+          "air above is at lower pressure, and",
+          "the slower air below is at higher",
+          "pressure.",
+          "This pressure difference gives a",
+          "net upward force on the wing:",
+          {
+            "text": "F = ½ρ(v₂² − v₁²)A",
+            "style": "boxed"
+          },
+          "ρ is the density of air, v₁ and v₂",
+          "the air speeds below and above the",
+          "wing, and A the area of the wing."
+        ],
+        "margin_note": "Fourth mark. Give the boxed formula and name every symbol: ρ, v₁, v₂, A.",
+        "why": "This is the payoff of the shape described in the previous step — a real formula for how much upward force the shape produces.",
+        "common_mistakes": [
+          "Writing v₁ and v₂ without saying which speed is which — v₁ is below the wing, v₂ above it.",
+          "Leaving out the area A, so the expression is a pressure difference, not a force."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That by Bernoulli's principle the faster air above the wing is at lower pressure, giving the boxed lift formula F equals half rho times v two squared minus v one squared times A.",
+          "accept": [
+            "lower pressure above, higher below",
+            "F equals half rho v two squared minus v one squared A",
+            "the pressure difference gives the lift force",
+            "boxed formula for the aerofoil's lift"
+          ],
+          "reject": [
+            "the ball swerves towards the faster side"
+          ],
+          "heard_as": [
+            "F equals half rho",
+            "v two squared minus v one squared",
+            "pressure difference",
+            "lift force"
+          ]
+        },
+        "memory_tip": "Faster air above minus slower air below, squared, times half the density and the area."
+      },
+      {
+        "id": "s5_ball_spin",
+        "kind": "text",
+        "label": "Spinning ball — the air speeds differ",
+        "marks": 1,
+        "mark_note": "Spin and air speed",
+        "lines": [
+          "Example 2: a ball spinning as it",
+          "moves through air.",
+          "The spin drags the thin layer of",
+          "air touching the ball's surface",
+          "around with it.",
+          "On one side this dragged air moves",
+          "with the oncoming air, so the air",
+          "speed there is higher. On the other",
+          "side the two are opposite, so the",
+          "air speed there is lower."
+        ],
+        "margin_note": "Fifth mark. Name the spin as the cause, and say the air speed is higher on one side and lower on the other.",
+        "why": "The same speed-difference idea from the aerofoil now has a different cause — spin instead of shape — which is the point of a second example.",
+        "common_mistakes": [
+          "Saying the ball's path curves because of wind — the cause is the ball's own spin.",
+          "Describing the spin but never saying the air speeds on the two sides differ."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a spinning ball drags the air near its surface with it, so the air speed is higher on one side and lower on the other.",
+          "accept": [
+            "the spin drags the air",
+            "air moves faster on one side of the ball",
+            "different air speeds on the two sides",
+            "spin creates the speed difference"
+          ],
+          "reject": [
+            "curved upper surface of the wing"
+          ],
+          "heard_as": [
+            "spin",
+            "drags the air",
+            "faster on one side",
+            "spinning ball"
+          ]
+        },
+        "memory_tip": "Spin drags air: with the stream on one side, against it on the other."
+      },
+      {
+        "id": "s6_ball_swerve",
+        "kind": "text",
+        "label": "Spinning ball — the swerve",
+        "marks": 1,
+        "mark_note": "Pressure difference and swerve",
+        "lines": [
+          "By Bernoulli's principle, the side",
+          "with the higher air speed is at",
+          "lower pressure, and the other side",
+          "is at higher pressure.",
+          "This pressure difference gives a",
+          "sideways force on the ball, and the",
+          "ball swerves towards the faster,",
+          "lower-pressure side.",
+          "This sideways deflection caused by",
+          "spin is called the Magnus effect."
+        ],
+        "margin_note": "Sixth mark. Say which way the ball swerves — towards the faster side — and name the effect.",
+        "why": "Naming the effect ties this example back to the same Bernoulli reasoning used for the aerofoil, showing dynamic lift is one idea with two causes.",
+        "common_mistakes": [
+          "Saying the ball swerves towards the slower, higher-pressure side — it swerves towards the faster side.",
+          "Stopping at the pressure difference without saying which way the ball swerves."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That by Bernoulli's principle the faster side of the spinning ball is at lower pressure, so the ball swerves towards that side — this is the Magnus effect.",
+          "accept": [
+            "fast side is at lower pressure",
+            "the ball swerves towards the fast side",
+            "sideways force from the pressure difference",
+            "this is the magnus effect"
+          ],
+          "reject": [
+            "the wing has a curved upper surface"
+          ],
+          "heard_as": [
+            "magnus effect",
+            "lower pressure",
+            "sideways force",
+            "ball swerves"
+          ]
+        },
+        "memory_tip": "The ball swerves towards its own faster, low-pressure side."
+      },
+      {
+        "id": "s7_no_spin_no_swerve",
+        "kind": "text",
+        "label": "A ball with no spin",
+        "marks": 1,
+        "mark_note": "No spin, no swerve",
+        "lines": [
+          "A ball moving through air without",
+          "spin does not drag any air around",
+          "with it, so the air speed is the",
+          "same on both sides.",
+          "With no speed difference there is",
+          "no pressure difference, so there is",
+          "no sideways force, and the ball",
+          "does not swerve."
+        ],
+        "margin_note": "Seventh mark. Say plainly that with no spin the two sides have the same air speed, so no force and no swerve.",
+        "why": "This closing case checks the reasoning by removing its cause — without spin the speed difference disappears, and so does the force, confirming spin was the whole cause.",
+        "common_mistakes": [
+          "Saying a ball with no spin still swerves, only less — a ball with no spin has no speed difference at all.",
+          "Giving another cause for the ball's flight path instead of returning to the speed difference."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a ball with no spin has the same air speed on both sides, so there is no pressure difference and no swerve.",
+          "accept": [
+            "no spin means no speed difference",
+            "same air speed on both sides",
+            "no pressure difference so no sideways force",
+            "the ball does not swerve without spin"
+          ],
+          "reject": [
+            "curved upper surface gives the lift"
+          ],
+          "heard_as": [
+            "no spin",
+            "same air speed",
+            "no swerve",
+            "no sideways force"
+          ]
+        },
+        "memory_tip": "No spin, no dragged air, no speed difference, no swerve."
+      },
+      {
+        "id": "s8_topspin_backspin",
+        "kind": "text",
+        "label": "Topspin and backspin send the ball opposite ways",
+        "marks": 1,
+        "mark_note": "Topspin dips, backspin lifts",
+        "lines": [
+          "The direction of the lift",
+          "depends on the spin's axis.",
+          "A ball with topspin has its",
+          "top surface moving against the",
+          "oncoming air and its underside",
+          "moving with it, so the lift",
+          "acts downward and the ball",
+          "dips sooner.",
+          "A ball with backspin has the",
+          "opposite pattern, so the lift",
+          "acts upward and the ball",
+          "stays up longer."
+        ],
+        "margin_note": "Eighth mark. Say which way topspin and backspin send the ball — downward for topspin, upward for backspin.",
+        "why": "The direction of the deflection is set by which side of the spinning ball drags the air with it and which side drags against it — topspin makes the top slower and higher pressure, so the ball is pushed down; backspin reverses this, so the ball is pushed up.",
+        "common_mistakes": [
+          "Saying topspin lifts the ball and backspin sends it down — the directions are the other way round: topspin dips the ball, backspin keeps it up longer.",
+          "Repeating the sideways swerve already given, instead of the new topspin/backspin fact."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That topspin makes the lift act downward, so the ball dips sooner, and backspin makes the lift act upward, so the ball stays up longer.",
+          "accept": [
+            "topspin dips the ball",
+            "backspin keeps the ball up longer",
+            "the direction depends on the spin axis",
+            "topspin down, backspin up"
+          ],
+          "reject": [
+            "the ball swerves because of wind"
+          ],
+          "heard_as": [
+            "topspin",
+            "backspin",
+            "dips",
+            "stays up longer"
+          ]
+        },
+        "memory_tip": "Topspin tips it down, backspin holds it up."
+      }
+    ]
+  },
+  "insider_note": "The two examples share one mechanism — continuity gives the speed difference, Bernoulli turns it into pressure — so write it once and apply it twice, rather than telling two separate stories."
+}

@@ -1,0 +1,222 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_adiabatic_t_v_relation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Obtain the relation between temperature and volume for an adiabatic process.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Starting point",
+      "marks": 1
+    },
+    {
+      "label": "Substituting",
+      "marks": 1
+    },
+    {
+      "label": "The relation",
+      "marks": 1
+    },
+    {
+      "label": "What it means",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Short Answer Question 10 (printed p.130). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: combining PV^γ = constant with PV = nRT gives P = nRT/V, and substituting back gives nR T V^(γ−1) = constant, so T V^(γ−1) = constant since n and R are fixed; applied to two states this gives T₁V₁^(γ−1) = T₂V₂^(γ−1), so an adiabatic expansion (V increases) cools the gas and an adiabatic compression (V decreases) heats it."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_start",
+        "kind": "equation",
+        "label": "Starting point",
+        "marks": 1,
+        "mark_note": "Starting relations",
+        "lines": [
+          "An adiabatic process obeys",
+          {
+            "text": "PV^γ = constant",
+            "style": "eq"
+          },
+          "and every state of an ideal gas",
+          "obeys",
+          {
+            "text": "PV = nRT",
+            "style": "eq"
+          },
+          "so P can be written as",
+          {
+            "text": "P = nRT/V",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Write both PV^γ = constant and PV = nRT before combining them.",
+        "why": "The T–V relation has to come from combining the adiabatic condition with the equation of state — neither one alone contains temperature and volume together.",
+        "common_mistakes": [
+          "Starting straight from PV^γ = constant without also writing PV = nRT.",
+          "Writing P = nRT/V incorrectly as P = nR/(TV) or similar."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the derivation starts from P V to the gamma equals constant and P V equals n R T, giving P equals n R T over V.",
+          "accept": [
+            "P V to the gamma equals constant",
+            "P V equals n R T",
+            "P equals n R T over V"
+          ],
+          "reject": [
+            "T V to the gamma minus one equals constant"
+          ],
+          "heard_as": [
+            "P equals n R T over V"
+          ]
+        },
+        "memory_tip": "Two relations are needed here, not one: the adiabatic condition AND the gas equation."
+      },
+      {
+        "id": "s2_substitute",
+        "kind": "equation",
+        "label": "Substituting",
+        "marks": 1,
+        "mark_note": "Substitute",
+        "lines": [
+          "Substituting P = nRT/V into",
+          "PV^γ = constant,",
+          {
+            "text": "(nRT/V) V^γ = constant",
+            "style": "eq"
+          },
+          {
+            "text": "nR (T V^(γ−1)) = constant",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Substitute and simplify the power of V to (γ − 1).",
+        "why": "Substituting removes P from the relation, leaving only the temperature and the volume — which is exactly what the question asks for.",
+        "common_mistakes": [
+          "Cancelling V incorrectly and losing the power (γ − 1).",
+          "Forgetting that V^γ / V = V^(γ−1), not V^γ itself."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That substituting P equals n R T over V into P V to the gamma equals constant gives n R times T V to the gamma minus one equals constant.",
+          "accept": [
+            "substitute n R T over V",
+            "T V to the gamma minus one",
+            "power drops to gamma minus one"
+          ],
+          "reject": [
+            "P equals n R T over V"
+          ],
+          "heard_as": [
+            "T V gamma minus one"
+          ]
+        },
+        "memory_tip": "V^γ divided by V leaves V to the power (γ − 1) — one V has cancelled, not all of them."
+      },
+      {
+        "id": "s3_result",
+        "kind": "equation",
+        "label": "The relation",
+        "marks": 1,
+        "mark_note": "T V^(γ−1) = constant",
+        "lines": [
+          "Since n and R are themselves",
+          "constants, they can be absorbed",
+          "into the constant on the right,",
+          "giving",
+          {
+            "text": "T V^(γ−1) = constant",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Third mark. The boxed relation TV^(γ−1) = constant.",
+        "why": "n and R never change during the process, so dropping them into the constant is valid and gives the cleanest form of the result.",
+        "common_mistakes": [
+          "Leaving nR explicitly in the final boxed relation instead of absorbing it.",
+          "Writing the power as γ instead of (γ − 1)."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That n and R are constants, so T V to the power gamma minus one equals constant.",
+          "accept": [
+            "T V to the gamma minus one equals constant",
+            "n and R absorbed into the constant"
+          ],
+          "reject": [
+            "T one V one to the gamma minus one equals T two V two to the gamma minus one"
+          ],
+          "heard_as": [
+            "T V gamma minus one equals constant"
+          ]
+        },
+        "memory_tip": "The final relation has NO n and NO R in it — both are absorbed into the constant."
+      },
+      {
+        "id": "s4_meaning",
+        "kind": "equation",
+        "label": "What it means",
+        "marks": 1,
+        "mark_note": "Cools / heats",
+        "lines": [
+          "Between an initial and a final",
+          "state this reads",
+          {
+            "text": "T₁V₁^(γ−1) = T₂V₂^(γ−1)",
+            "style": "eq"
+          },
+          "In an adiabatic expansion V",
+          "increases, so T must fall: the gas",
+          "cools. In an adiabatic",
+          "compression V decreases, so T",
+          "rises: the gas heats up."
+        ],
+        "margin_note": "Fourth mark. Apply the relation to two states and state both directions.",
+        "why": "The relation on its own is just algebra — the physical content is that a bigger V on one side must be balanced by a smaller T, which is the cooling-on-expansion result used throughout this chapter.",
+        "common_mistakes": [
+          "Stating the relation but never saying which direction the temperature moves.",
+          "Getting expansion and compression backwards — expansion COOLS, it does not heat."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That applying the relation to two states gives T one V one to the gamma minus one equals T two V two to the gamma minus one, so expansion cools the gas and compression heats it.",
+          "accept": [
+            "T one V one to the gamma minus one equals T two V two to the gamma minus one",
+            "expansion cools",
+            "compression heats"
+          ],
+          "reject": [
+            "T V to the gamma minus one equals constant"
+          ],
+          "heard_as": [
+            "expansion cools",
+            "compression heats"
+          ]
+        },
+        "memory_tip": "Bigger V, smaller T: V and T move opposite ways in TV^(γ−1) = constant."
+      }
+    ]
+  },
+  "insider_note": "TV^(γ−1) = constant has no n or R in it — an answer that leaves them in has not finished simplifying the third mark."
+}

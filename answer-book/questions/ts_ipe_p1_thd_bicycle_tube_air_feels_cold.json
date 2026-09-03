@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_bicycle_tube_air_feels_cold",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why does the escaping air feel cold when the valve of a bicycle tube is opened in summer?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The expansion is adiabatic",
+      "marks": 1
+    },
+    {
+      "label": "Why the gas cools",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 19 (printed p.126). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the tube's air is at higher pressure than the atmosphere, so on opening the valve it expands too quickly for heat exchange (adiabatic, ΔQ = 0); the first law then gives ΔU = −W, so the work done against the atmosphere is drawn from the gas's own internal energy and its temperature falls."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_adiabatic",
+        "kind": "text",
+        "label": "The expansion is adiabatic",
+        "marks": 1,
+        "mark_note": "Adiabatic escape",
+        "lines": [
+          "The air inside the tube is at a much",
+          "higher pressure than the atmosphere. When",
+          "the valve opens, it escapes so quickly",
+          "that no heat is exchanged with the",
+          "surroundings: the expansion is adiabatic."
+        ],
+        "margin_note": "First mark. Say the sudden escape exchanges no heat, so the expansion is adiabatic.",
+        "why": "Naming the process as adiabatic is what makes ΔQ = 0 in the first law, which is the step that connects the work done to the fall in internal energy.",
+        "common_mistakes": [
+          "Calling the expansion isothermal. It is adiabatic — the escape is too fast for heat to be exchanged.",
+          "Leaving out the pressure difference. It is the reason the air rushes out and expands at all."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the air escapes so fast that no heat is exchanged, so the expansion is adiabatic.",
+          "accept": [
+            "escapes too quickly for heat exchange",
+            "adiabatic expansion",
+            "no heat exchanged"
+          ],
+          "reject": [
+            "temperature stays constant"
+          ],
+          "heard_as": [
+            "adiabatic",
+            "escapes quickly",
+            "no heat exchanged"
+          ]
+        },
+        "memory_tip": "Fast escape, no time for heat exchange: that is what makes it adiabatic."
+      },
+      {
+        "id": "s2_cooling",
+        "kind": "equation",
+        "label": "Why the gas cools",
+        "marks": 1,
+        "mark_note": "ΔU = −W",
+        "lines": [
+          "With ΔQ = 0, the first law gives",
+          {
+            "text": "ΔU = −W",
+            "style": "eq"
+          },
+          "The gas does work W pushing back the",
+          "atmosphere, and that work comes out of its",
+          "own internal energy. Its temperature falls,",
+          "so the escaping air feels cold."
+        ],
+        "margin_note": "Second mark. Apply ΔU = −W and say the gas cools as it does work on the atmosphere.",
+        "why": "With no heat entering or leaving, the only place the work done against the atmosphere can come from is the gas's own internal energy, and a fall in internal energy is a fall in temperature.",
+        "common_mistakes": [
+          "Saying the air cools because it expands, without saying where the energy for that work comes from.",
+          "Writing ΔU = +W instead of ΔU = −W. The gas loses internal energy doing work outward, so ΔU is negative."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That with no heat exchange the work the gas does against the atmosphere comes out of its own internal energy, so its temperature falls and the escaping air feels cold.",
+          "accept": [
+            "work comes out of internal energy",
+            "delta U equals minus W",
+            "temperature falls so air feels cold"
+          ],
+          "reject": [
+            "heat flows in from the surroundings"
+          ],
+          "heard_as": [
+            "delta U minus W",
+            "internal energy falls",
+            "air feels cold"
+          ]
+        },
+        "memory_tip": "No heat in, so the work done on the atmosphere comes out of the gas's own internal energy."
+      }
+    ]
+  },
+  "insider_note": "The two marks are the process (adiabatic) and the consequence (the gas cools via ΔU = −W)."
+}

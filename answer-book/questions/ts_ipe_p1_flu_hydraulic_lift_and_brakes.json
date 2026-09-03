@@ -1,0 +1,228 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_hydraulic_lift_and_brakes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain the working of a hydraulic lift and hydraulic brakes.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Both use Pascal's law",
+      "marks": 1
+    },
+    {
+      "label": "The hydraulic lift",
+      "marks": 1
+    },
+    {
+      "label": "The master cylinder feeds four wheel cylinders",
+      "marks": 1
+    },
+    {
+      "label": "Equal, simultaneous braking",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 (Mechanical Properties of Fluids), Short Answer Question 4 (printed p.108). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: both devices work by Pascal's law; in the hydraulic lift a force F₁ on a small piston of area A₁ gives pressure P = F₁/A₁, and the same pressure acting on the large piston of area A₂ gives F₂ = F₁ × A₂/A₁; in hydraulic brakes the force on the brake pedal produces a pressure that is transmitted through the brake fluid to the cylinders at all four wheels equally and at the same instant. This card explains how the two named devices work; a separate question states Pascal's law itself and names the applications, including the hydraulic press."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Fluids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_both_use_pascals_law",
+        "kind": "text",
+        "label": "Both use Pascal's law",
+        "marks": 1,
+        "mark_note": "Pressure transmitted undiminished",
+        "lines": [
+          "Both devices work by Pascal's",
+          "law: a change of pressure",
+          "applied to an enclosed fluid",
+          "is transmitted undiminished to",
+          "every part of it."
+        ],
+        "margin_note": "First mark. Name Pascal's law before describing either device.",
+        "why": "Both mechanisms are the same law used two different ways, so stating the shared law first is what makes the rest of the answer read as one explanation.",
+        "common_mistakes": [
+          "Describing the lift and the brakes without ever naming the law both rest on.",
+          "Stating the law for liquids only, when Pascal's law holds for any fluid at rest."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That both the lift and the brakes work by Pascal's law, pressure applied to an enclosed fluid transmitted undiminished.",
+          "accept": [
+            "Pascal's law, transmitted undiminished",
+            "pressure change reaches every part",
+            "both devices use the same law"
+          ],
+          "reject": [
+            "F2 equals F1 into A2 by A1"
+          ],
+          "heard_as": [
+            "Pascal's law",
+            "undiminished",
+            "enclosed fluid"
+          ]
+        },
+        "memory_tip": "One law, two machines: the lift and the brakes both transmit pressure undiminished."
+      },
+      {
+        "id": "s2_hydraulic_lift",
+        "kind": "equation",
+        "label": "The hydraulic lift",
+        "marks": 1,
+        "mark_note": "P = F₁/A₁ = F₂/A₂ = F₁×A₂/A₁",
+        "lines": [
+          "A small force F₁ on a small",
+          "piston of area A₁ gives a",
+          "pressure P = F₁/A₁. The same",
+          "pressure acts on the large",
+          "piston of area A₂:",
+          {
+            "text": "F₂ = F₁ × (A₂/A₁)",
+            "style": "boxed"
+          },
+          "Since A₂ is much larger than",
+          "A₁, a small force lifts a",
+          "much larger load."
+        ],
+        "margin_note": "Second mark. Set up the pressure equality, then the force multiplication F₂ = F₁ × (A₂/A₁).",
+        "why": "The pressure set at the small piston is the same at the large piston, since the fluid is enclosed and connects them; the same pressure acting over a much larger area multiplies the force, with no extra force supplied by hand.",
+        "common_mistakes": [
+          "Mixing up which piston is A₁, small, force applied, and which is A₂, large, load carried.",
+          "Saying the force is multiplied by A₁/A₂ instead of A₂/A₁ — that would make F₂ smaller."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That F1 on the small piston A1 gives a pressure P equal to F1 by A1, the same pressure acts on the large piston, and F2 equals F1 times A2 over A1, so a small force lifts a much larger load.",
+          "accept": [
+            "P equals F1 by A1 equals F2 by A2",
+            "F2 equals F1 into A2 by A1",
+            "small force lifts large load"
+          ],
+          "reject": [
+            "brake fluid to all four wheels"
+          ],
+          "heard_as": [
+            "F1 by A1",
+            "F2 by A2",
+            "area ratio"
+          ]
+        },
+        "memory_tip": "F₂ = F₁ × (A₂/A₁) — the bigger the second piston, the bigger the lift."
+      },
+      {
+        "id": "s3_master_cylinder",
+        "kind": "text",
+        "label": "The master cylinder feeds four wheel cylinders",
+        "marks": 1,
+        "mark_note": "One master cylinder, four wheel cylinders",
+        "lines": [
+          "Pressing the brake pedal moves",
+          "a piston inside the master",
+          "cylinder. This piston pushes on",
+          "the brake fluid, which fills a",
+          "network of pipes connecting the",
+          "master cylinder to a wheel",
+          "cylinder at each of the four",
+          "wheels."
+        ],
+        "margin_note": "Third mark. Name the master cylinder and say it feeds all four wheel cylinders through the brake fluid.",
+        "why": "One master cylinder pushing on the enclosed brake fluid is what lets a single pedal press reach every wheel, instead of needing a separate pedal for each one.",
+        "common_mistakes": [
+          "Describing only one wheel's cylinder and not saying the same master cylinder feeds all four.",
+          "Leaving out the master cylinder and saying the pedal itself presses the brake fluid."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That pressing the pedal moves a piston in the master cylinder, which pushes brake fluid through pipes to a wheel cylinder at each of the four wheels.",
+          "accept": [
+            "master cylinder pushes the brake fluid",
+            "one master cylinder feeds four wheel cylinders",
+            "pipes connect the master cylinder to each wheel"
+          ],
+          "reject": [
+            "F2 equals F1 into A2 by A1"
+          ],
+          "heard_as": [
+            "master cylinder",
+            "wheel cylinder",
+            "four wheels"
+          ]
+        },
+        "memory_tip": "One master cylinder, one push, four wheel cylinders fed by the same fluid."
+      },
+      {
+        "id": "s4_equal_simultaneous_braking",
+        "kind": "boxed_final",
+        "label": "Equal, simultaneous braking",
+        "marks": 1,
+        "mark_note": "Same braking at every wheel, same instant",
+        "lines": [
+          "By Pascal's law, the pressure",
+          "set at the master cylinder is",
+          "transmitted undiminished to",
+          "every wheel cylinder, at the",
+          "same instant:",
+          {
+            "text": "P = F_master/A_master",
+            "style": "boxed"
+          },
+          {
+            "text": "  = F_wheel/A_wheel",
+            "style": "boxed"
+          },
+          "A_master is the area of the",
+          "master-cylinder piston, so",
+          "every wheel is braked by the",
+          "same amount, at the same",
+          "instant."
+        ],
+        "margin_note": "Fourth mark. Say that every wheel gets the same pressure at the same instant, and name A_master.",
+        "why": "The same pressure reaches every wheel cylinder at the same instant, so identical wheel cylinders produce the same braking force.",
+        "common_mistakes": [
+          "Describing only one wheel's cylinder and not saying the same pressure reaches all four.",
+          "Saying the four wheels brake one after another instead of at the same instant."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the pressure set at the master cylinder is transmitted undiminished to all four wheel cylinders at the same instant, so identical wheel cylinders give the same braking force.",
+          "accept": [
+            "same pressure at every wheel cylinder",
+            "all four wheels brake together",
+            "pressure from the master cylinder reaches every wheel"
+          ],
+          "reject": [
+            "F2 equals F1 into A2 by A1"
+          ],
+          "heard_as": [
+            "four wheels",
+            "same instant",
+            "master cylinder"
+          ]
+        },
+        "memory_tip": "One master cylinder, one pressure, four wheels — all braked together at the same instant."
+      }
+    ]
+  },
+  "insider_note": "The lift and the brakes use the same law two different ways: the lift multiplies a force between two pistons, the brakes copy one pressure to four wheels at once."
+}

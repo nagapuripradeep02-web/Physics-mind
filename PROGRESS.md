@@ -1,5 +1,93 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — Wave B complete: five chapters, 149 new cards, five audits, 151 findings (2026-09-02/03, `feat/ipe-firstyear-2027`)
+
+**Bottom line: physics 9 through 13 are authored, audited, repaired and green. Every arithmetic answer was right in every chapter; every one of the 151 audit findings was in the prose. Not one was machine-checkable.** Wave C, chemistry 7–10, is next.
+
+### What the wave built
+
+| chapter | before | after | new cards |
+|---|---|---|---|
+| physics-9 Mechanical Properties of Solids | 4 | 26 | 20 |
+| physics-10 Mechanical Properties of Fluids | 9 | 41 | 30 |
+| physics-11 Thermal Properties of Matter | 14 | 26 | 12 |
+| physics-12 Thermodynamics | 2 | 39 | 37 |
+| physics-13 Kinetic Theory | 5 | 27 | 22 |
+
+physics-12 was the thinnest chapter in the first-year book: two cards against a book asking 44 entries.
+
+### The audits, chapter by chapter
+
+| | p9 | p13 | p12 | p10 | p11 |
+|---|---|---|---|---|---|
+| cards | 20 | 22 | 37 | 30 | 12 |
+| findings | 26 | 23 | 51 | 54 | 23 |
+| harmful | 3 | 5 | 7 | 6 | 5 |
+| **numbers wrong** | **0** | **0** | **0** | **0** | **0** |
+
+Every automated gate was green before every audit ran.
+
+### Reading the scans found four book errors the transcribed index could not
+
+- **Poisson's ratio for steel** prints as "027 - 0.30" — a dropped decimal.
+- **Sand heaps** are explained by "stress increases with depth", which is true of a heap of any shape. The pyramid shape comes from the shear-stress limit and the angle of repose.
+- **Critical velocity** names *d* the radius of the tube. It is the diameter, because the Reynolds number is defined with the diameter. Left alone, that puts a factor of two into every answer a student computes.
+- **Bernoulli's principle** is stated "per unit volume" while the formula printed two pages earlier is per unit mass.
+
+A fifth landed on a card that was already **live**: the angle-of-contact card gave 8° for water on glass where the question asks about *pure* water, which is 0°. The gap report had said that card lacked the values entirely. It had them. **Reading the card rather than the report is what found the real defect.**
+
+### The one pattern that produced eight of the 26 harmful findings
+
+**A correction became a prohibition.** The briefs told authors to correct the book; cards then went further and told students that a second, entirely correct form is an *error*:
+
+- the per-unit-volume statement of Bernoulli's principle, which is the standard board form
+- 80 cal g⁻¹ for the latent heat of fusion
+- C/100 = (F − 32)/180 before simplifying
+- converting both end temperatures to kelvin before subtracting
+- Y = FL/(AΔL) as a one-line route
+- a bare "pascal" as the SI unit of stress
+- C_V = (3/2)R without its numeric value
+- starting an absolute-zero argument from PV = Nk_BT
+
+It appeared in physics-9, recurred in physics-10, and recurred again in physics-11 after being written into the repair brief. **The rule belongs in the AUTHORING brief: a correction says "write this"; it never says "the other is wrong" unless the other really is wrong.**
+
+### The cut that did not stand alone
+
+physics-10 introduced `cuts` to this campaign, because the book prints two of its questions word for word in both the short-answer and long-answer sections. One authored step list, an 8-mark cut and a 4-mark cut, two rows reaching the student.
+
+Read on its own, **the Venturi card's 4-mark cut handed the student a boxed formula whose symbols it never named** — the two areas were identified only in a hidden step, the density nowhere — and its override called the wide-section speed the throat speed. The authoring brief warned about exactly this. **The schema checks a cut's arithmetic; nothing checks whether it makes sense. Read every cut back in isolation before it ships.**
+
+### An audit finding is a lead, not a verdict
+
+The viscosity-and-raindrop card's question text ended "using a graph" and no step drew one, so the audit proposed adding a velocity–time graph. The source settled it the other way: the book's stem asks for the definition, Stokes' law, the conditions for terminal velocity and the expression. **There is no graph in the question.** The defect was a question text that had drifted from the source, so the fix was to restore the stem, not to author a graph nobody asked for.
+
+### Cards in the same chapter contradicting each other
+
+Three instances, all caught only by audit:
+
+- one Reynolds card put 1000–2000 in the unsteady band, another said everything below 2000 stays streamline
+- the temperature-scales card gave the boiling point with no pressure qualifier while the pressure-cooker card in the same chapter teaches that the boiling point rises with pressure
+- a cooling card said the small-difference proviso is "not a condition" while its own fourth mark and the neighbouring conditions card both list it as one
+
+### The physics that nearly shipped wrong
+
+Newton's first law "does not apply to a moving, balancing robot" · the action–reaction pair "keeps the robot from falling" · plastic deformation "keeps the energy" rather than dissipating it as heat · one qubit holding more information than one bit · a bare glass rod treated as *not* a light pipe · indium tin oxide disowned as a transparent conductor · elastomers defined by a Young's modulus they do not obey · the bulk modulus without its minus sign · the elastic limit as the failure point · the internal energy of an ideal gas equated to its translational kinetic energy for *any* gas · absolute zero attributed to the second law rather than the third · "heat never flows from cold to hot", in a chapter that explains refrigerators · a two-thirds that "cancels" when it is divided across · squaring **speeds** to stop a cancellation that only velocities have · the wall area "cancelling" out of the pressure derivation when it becomes the volume · dynamic lift defined as upward on a card that then spends three steps on a ball swerving sideways · and the load-bearing ideal-gas step missing from all three cards that derive C_P − C_V = R.
+
+### What the gates cannot see, four chapters running
+
+`check:xrefs` catches "the previous question" and "the twin". It does not catch "as before", which pointed at a step that does not exist. Nothing catches a mark-scheme claim the card's own split does not support — those appeared on six cards in one chapter after the rule was established in the one before. Nothing catches a boxed line that is a word-chain rather than a relation. Nothing catches an internal card id spoken aloud to a student as "vsaq6".
+
+### Tooling
+
+`merge_unit.mjs` takes a small JSON plan and writes the manifest rows, reading each row's `text` from the card's own `question_text` so the two cannot disagree, and refusing on any qtype, marks, unit or subject mismatch. It now also understands a row that points at a **cut**.
+
+### Recorded, not fixed
+
+`recall` coverage is inconsistent — 27 of 39 cards in physics-12 have a rubric and 12 do not, because parallel agents each made a defensible choice about an optional field. physics-10 and physics-11 were briefed to author it everywhere and did. The grader endpoint is a standing founder-level blocker, so nothing is student-visible; but future briefs must state one way or the other rather than leaving it open.
+
+---
+
+
 ## 📘 SESSION — Wave B opens: physics-9 and physics-13, 42 cards, two audits, 49 findings (2026-09-02, `feat/ipe-firstyear-2027`)
 
 **Bottom line: two of wave B's five chapters are authored, audited, repaired and green. Every number was right both times; every defect was in the prose.** Chapters 10, 11 and 12 remain, 83 cards.

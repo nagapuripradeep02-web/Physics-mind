@@ -1,0 +1,381 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_newtons_law_of_cooling_and_surroundings",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 16,
+  "question_text": "State Newton's law of cooling and write down the conditions under which it holds. A body cools from 60 °C to 50 °C in 5 minutes, and then from 50 °C to 40 °C in a further 8 minutes. Find the temperature of the surroundings.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "Statement of the law", "marks": 1 },
+    { "label": "The relation in symbols", "marks": 1 },
+    { "label": "The rate of cooling form", "marks": 1 },
+    { "label": "Small difference and constant surroundings", "marks": 1 },
+    { "label": "Convection and uniform temperature", "marks": 1 },
+    { "label": "Set up the two stage equations", "marks": 1 },
+    { "label": "Divide out the unknown k", "marks": 1 },
+    { "label": "The temperature of the surroundings", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 11 Long Answer Question, printed p.120. Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The eight 1-mark step split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the average-temperature form (θ₁ − θ₂)/t = k[(θ₁ + θ₂)/2 − θ₀] gives 10/5 = 2 = k(55 − θ₀) and 10/8 = 1.25 = k(45 − θ₀); dividing gives 1.6 = (55 − θ₀)/(45 − θ₀), and solving gives θ₀ = 28.3 °C."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Thermal Properties of Matter · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "Statement of the law",
+        "marks": 1,
+        "mark_note": "Statement of the law",
+        "lines": [
+          "Newton's law of cooling: the rate",
+          "of loss of heat of a body is",
+          "directly proportional to the",
+          "temperature difference between the",
+          "body and its surroundings, provided",
+          "that difference is small."
+        ],
+        "margin_note": "First mark. State that the rate of heat loss is proportional to the temperature difference, for a small difference.",
+        "why": "This sentence is the law itself — every other step in the theory and the numerical part follows from this one proportionality.",
+        "common_mistakes": [
+          "Leaving out the words provided that difference is small — it belongs both in the statement of the law and as the first condition, so it must be written in both answers.",
+          "Stating the law as proportional to the body's own temperature instead of the difference from the surroundings."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the rate of loss of heat of a body is directly proportional to the temperature difference between the body and its surroundings, provided the difference is small.",
+          "accept": [
+            "rate of heat loss proportional to temperature difference",
+            "directly proportional to T minus T naught",
+            "provided the difference is small"
+          ],
+          "reject": [
+            "dT by dt equals minus k T minus T naught"
+          ],
+          "heard_as": [
+            "rate of loss of heat",
+            "temperature difference",
+            "small difference"
+          ]
+        },
+        "memory_tip": "Newton's law: the bigger the gap, the faster the cooling."
+      },
+      {
+        "id": "s2_relation",
+        "kind": "equation",
+        "label": "The relation in symbols",
+        "marks": 1,
+        "mark_note": "− dQ/dt ∝ (T − T₀)",
+        "lines": [
+          "In symbols, with T the body's",
+          "temperature and T₀ that of the",
+          "surroundings,",
+          {
+            "text": "− dQ/dt ∝ (T − T₀)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Write − dQ/dt ∝ (T − T₀).",
+        "why": "Writing the law in symbols is what lets it be turned into a usable equation with a constant of proportionality in the next step.",
+        "common_mistakes": [
+          "Dropping the minus sign — Q is the body's heat content, so dQ/dt is negative while it cools, and −dQ/dt is therefore the positive rate of heat loss.",
+          "Writing T₀ − T instead of T − T₀."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That − dQ/dt ∝ (T − T₀), with T the body's temperature and T₀ that of the surroundings.",
+          "accept": [
+            "minus dQ by dt proportional to T minus T naught",
+            "rate of heat loss proportional to T minus T naught",
+            "T is the body, T naught is the surroundings"
+          ],
+          "reject": [
+            "dT by dt equals minus k T minus T naught"
+          ],
+          "heard_as": [
+            "dQ by dt",
+            "T minus T naught",
+            "proportional to"
+          ]
+        },
+        "memory_tip": "− dQ/dt ∝ (T − T₀): T is the body, T₀ is the surroundings."
+      },
+      {
+        "id": "s3_rate_form",
+        "kind": "equation",
+        "label": "The rate of cooling form",
+        "marks": 1,
+        "mark_note": "dT/dt = − k(T − T₀)",
+        "lines": [
+          "The law is also written as a",
+          "rate of cooling:",
+          {
+            "text": "dT/dt = − k(T − T₀)",
+            "style": "eq"
+          },
+          "where k is a constant."
+        ],
+        "margin_note": "Third mark. Write dT/dt = − k(T − T₀), and name k as a constant.",
+        "why": "This is the form the numerical part actually uses — a rate of temperature change rather than a rate of heat loss — and it is the form both stage equations in the numerical are built from.",
+        "common_mistakes": [
+          "Confusing this k with the coefficient of thermal conductivity from a different question.",
+          "Dropping the minus sign, which shows the body's temperature falling, not rising."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the law is also written as a rate of cooling, dT/dt = − k(T − T₀), with k a constant.",
+          "accept": [
+            "dT by dt equals minus k T minus T naught",
+            "rate of cooling form",
+            "k is a constant"
+          ],
+          "reject": [
+            "minus dQ by dt proportional to T minus T naught"
+          ],
+          "heard_as": [
+            "dT by dt",
+            "minus k",
+            "constant k"
+          ]
+        },
+        "memory_tip": "dT/dt = − k(T − T₀) is the form the numerical problem actually uses."
+      },
+      {
+        "id": "s4_small_diff_constant_surroundings",
+        "kind": "text",
+        "label": "Small difference and constant surroundings",
+        "marks": 1,
+        "mark_note": "Small ΔT, constant surroundings",
+        "lines": [
+          "The law holds only when the",
+          "temperature difference between the",
+          "body and its surroundings is small.",
+          "The surroundings must stay at a",
+          "constant temperature, losing the",
+          "heat away without warming up."
+        ],
+        "margin_note": "Fourth mark. State that the difference must be small and the surroundings stay at a constant temperature.",
+        "why": "Both conditions keep k itself constant through the cooling — a surroundings that warmed up, or too large a difference, would make k change during the process.",
+        "common_mistakes": [
+          "Naming only one of the two conditions and treating it as the whole answer.",
+          "Saying the body's temperature must stay constant instead of the surroundings'."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the temperature difference must be small, and the surroundings must stay at a constant temperature.",
+          "accept": [
+            "the difference must be small",
+            "surroundings stay at a constant temperature",
+            "surroundings do not warm up"
+          ],
+          "reject": [
+            "heat is lost mainly by convection"
+          ],
+          "heard_as": [
+            "small difference",
+            "constant temperature",
+            "surroundings"
+          ]
+        },
+        "memory_tip": "Small gap, steady surroundings — both keep k fixed."
+      },
+      {
+        "id": "s5_convection_uniform",
+        "kind": "text",
+        "label": "Convection and uniform temperature",
+        "marks": 1,
+        "mark_note": "Convection, uniform T, fixed surface",
+        "lines": [
+          "The heat must be lost mainly by",
+          "convection, with the body's own",
+          "temperature uniform throughout.",
+          "The rate also depends on the",
+          "nature and the exposed area of",
+          "the surface, so those are held fixed."
+        ],
+        "margin_note": "Fifth mark. State convection, a uniform body temperature, and that the surface's nature and area are held fixed.",
+        "why": "These conditions rule out a body losing heat mainly by radiation or conduction, or one with hot and cold spots, since either would break the simple proportionality.",
+        "common_mistakes": [
+          "Stating only the mode of heat loss and leaving out that the body's temperature must be uniform."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the heat is lost mainly by convection, the body's temperature is uniform, and the surface's nature and exposed area are held fixed.",
+          "accept": [
+            "heat lost mainly by convection",
+            "the body's temperature is uniform",
+            "nature and area of the surface are fixed"
+          ],
+          "reject": [
+            "the difference must be small"
+          ],
+          "heard_as": [
+            "convection",
+            "uniform temperature",
+            "exposed area"
+          ]
+        },
+        "memory_tip": "Convection carries the heat away; the surface's nature and area are held fixed too, so the rate stays comparable."
+      },
+      {
+        "id": "s6_stage_equations",
+        "kind": "equation",
+        "label": "Set up the two stage equations",
+        "marks": 1,
+        "mark_note": "10/5=k(55−θ₀); 10/8=k(45−θ₀)",
+        "lines": [
+          "Use the average-temperature form",
+          "of the law,",
+          {
+            "text": "(θ₁ − θ₂)/t = k[(θ₁ + θ₂)/2 − θ₀]",
+            "style": "eq"
+          },
+          "Here θ₁ − θ₂ is the fall in",
+          "temperature, so this form is already",
+          "positive; the minus sign is absorbed.",
+          "First stage, 60 °C to 50 °C in",
+          "5 minutes:",
+          {
+            "text": "10/5 = 2 = k(55 − θ₀)",
+            "style": "eq"
+          },
+          "Second stage, 50 °C to 40 °C in",
+          "8 minutes:",
+          {
+            "text": "10/8 = 1.25 = k(45 − θ₀)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Sixth mark. Write both stage equations from the average-temperature form of the law.",
+        "why": "The average-temperature form is the version of Newton's law that works with the temperature midway through each stage, which is exactly the data the question gives — a start and an end temperature over a known time.",
+        "common_mistakes": [
+          "Using the start temperature of each stage instead of the average, (θ₁ + θ₂)/2, inside the bracket.",
+          "Mixing up the two stages' times, using 8 minutes for the first stage or 5 for the second."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That using (θ₁ − θ₂)/t = k[(θ₁ + θ₂)/2 − θ₀], the first stage gives 10/5 = 2 = k(55 − θ₀) and the second gives 10/8 = 1.25 = k(45 − θ₀).",
+          "accept": [
+            "average temperature form of the law",
+            "first stage: 2 equals k times 55 minus theta naught",
+            "second stage: 1.25 equals k times 45 minus theta naught"
+          ],
+          "reject": [
+            "2 over 1.25 equals 1.6"
+          ],
+          "heard_as": [
+            "average temperature",
+            "k times 55 minus theta naught",
+            "k times 45 minus theta naught"
+          ]
+        },
+        "memory_tip": "Average of each stage's two temperatures: 55 for the first, 45 for the second."
+      },
+      {
+        "id": "s7_divide_out_k",
+        "kind": "equation",
+        "label": "Divide out the unknown k",
+        "marks": 1,
+        "mark_note": "2/1.25 = (55−θ₀)/(45−θ₀)",
+        "lines": [
+          "Divide the first stage equation by",
+          "the second. k is never given, and",
+          "this division removes it:",
+          {
+            "text": "2/1.25 = 1.6 = (55 − θ₀)/(45 − θ₀)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Seventh mark. Divide the two stage equations to remove k, which is never given.",
+        "why": "k is never given in the question, and it appears in both stage equations in exactly the same way, so dividing one equation by the other cancels it out and leaves a single equation in θ₀ alone — the step that makes the problem solvable.",
+        "common_mistakes": [
+          "Trying to solve either stage equation on its own, which cannot be done because k is unknown.",
+          "Dividing the equations the wrong way round, writing 1.25/2 instead of 2/1.25."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That dividing the first stage equation by the second removes the unknown k, giving 2/1.25 = 1.6 = (55 − θ₀)/(45 − θ₀).",
+          "accept": [
+            "divide the two equations to remove k",
+            "k cancels out when you divide",
+            "1.6 equals 55 minus theta naught over 45 minus theta naught"
+          ],
+          "reject": [
+            "theta naught equals 28.3"
+          ],
+          "heard_as": [
+            "divide out k",
+            "1.6",
+            "55 minus theta naught over 45 minus theta naught"
+          ]
+        },
+        "memory_tip": "k is never given — divide the two stage equations to cancel it."
+      },
+      {
+        "id": "s8_surroundings_temperature",
+        "kind": "boxed_final",
+        "label": "The temperature of the surroundings",
+        "marks": 1,
+        "mark_note": "θ₀ = 28.3 °C",
+        "lines": [
+          {
+            "text": "1.6(45 − θ₀) = 55 − θ₀",
+            "style": "eq"
+          },
+          "72 − 1.6θ₀ = 55 − θ₀, so",
+          {
+            "text": "17 = 0.6θ₀",
+            "style": "eq"
+          },
+          {
+            "text": "θ₀ = 28.3 °C",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Eighth mark. Solve for θ₀, giving 28.3 °C for the surroundings.",
+        "why": "Solving the single equation left after dividing out k gives the number the question asks for — the temperature of the surroundings.",
+        "common_mistakes": [
+          "Making a sign error while expanding 1.6(45 − θ₀), giving the wrong constant term.",
+          "Stopping at 17 = 0.6θ₀ without dividing through to state θ₀ itself."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving 1.6(45 − θ₀) = 55 − θ₀ gives 17 = 0.6θ₀, so θ₀ = 28.3 °C.",
+          "accept": [
+            "theta naught equals 28.3 degrees celsius",
+            "17 equals 0.6 theta naught",
+            "solving gives 28.3 degrees"
+          ],
+          "reject": [
+            "2 over 1.25 equals 1.6"
+          ],
+          "heard_as": [
+            "28.3 degrees celsius",
+            "17 equals 0.6 theta naught",
+            "temperature of the surroundings"
+          ]
+        },
+        "memory_tip": "17 divided by 0.6 gives 28.3 — the surroundings' temperature."
+      }
+    ]
+  },
+  "insider_note": "The complete answer divides the two stage equations to eliminate k before solving for the surroundings' temperature — solving either stage equation on its own is not possible, since k is not given."
+}

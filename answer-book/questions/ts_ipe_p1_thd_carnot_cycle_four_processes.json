@@ -1,0 +1,90 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_carnot_cycle_four_processes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name the processes that make up the cycle of a Carnot engine.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Expansion processes",
+      "marks": 1
+    },
+    {
+      "label": "Compression processes",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 16 (printed p.125). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the Carnot cycle is isothermal expansion at T₁, adiabatic expansion, isothermal compression at T₂, adiabatic compression, in that order, and the last step returns the gas to its starting state."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_expansion",
+        "kind": "text",
+        "label": "Expansion processes",
+        "marks": 1,
+        "mark_note": "The two expansion steps",
+        "lines": [
+          "A Carnot cycle begins with the gas",
+          "at a source temperature T₁.",
+          "1. Isothermal expansion at T₁: the",
+          "gas takes in heat as it expands.",
+          "2. Adiabatic expansion: no heat is",
+          "exchanged; the gas cools to T₂."
+        ],
+        "margin_note": "First mark. Name both expansion steps, isothermal at T₁ then adiabatic, in order.",
+        "why": "The two expansion steps take the gas from the source temperature down to the sink temperature, in that order, before the compression half returns it.",
+        "common_mistakes": [
+          "Naming the four processes in the wrong order. The isothermal and adiabatic steps must alternate, with heat absorbed on the isothermal step at the higher temperature and rejected on the isothermal step at the lower.",
+          "Saying the temperature changes during the isothermal expansion. It changes only on the adiabatic step."
+        ],
+        "memory_tip": "Expand twice: isothermal first, then adiabatic."
+      },
+      {
+        "id": "s2_compression",
+        "kind": "text",
+        "label": "Compression processes",
+        "marks": 1,
+        "mark_note": "The two compression steps",
+        "lines": [
+          "3. Isothermal compression at T₂:",
+          "the gas rejects heat as it is",
+          "compressed.",
+          "4. Adiabatic compression: no heat",
+          "is exchanged; the gas warms back",
+          "to T₁, closing the cycle.",
+          "The gas returns to its starting",
+          "state."
+        ],
+        "margin_note": "Second mark. Name both compression steps, isothermal at T₂ then adiabatic, in order; noting the cycle closes secures it.",
+        "why": "The two compression steps mirror the expansion steps and bring the gas back to T₁ at its original pressure and volume, which is what makes the process a closed cycle.",
+        "common_mistakes": [
+          "Omitting that the cycle closes — the last step must return the gas to its exact starting state.",
+          "Saying the gas rejects heat during the adiabatic compression. Heat is rejected on the isothermal step; the adiabatic step exchanges none."
+        ],
+        "memory_tip": "Compress twice: isothermal first, then adiabatic, back to the start."
+      }
+    ]
+  },
+  "insider_note": "List all four steps in order — isothermal expansion, adiabatic expansion, isothermal compression, adiabatic compression — and say the cycle returns to its starting state."
+}

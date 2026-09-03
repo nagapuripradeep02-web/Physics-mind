@@ -1,0 +1,133 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_bernoullis_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Bernoulli's principle.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement, per unit mass",
+      "marks": 1
+    },
+    {
+      "label": "The formula and its two forms",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Mechanical Properties of Fluids, Very Short Answer Question 7 (printed p.105). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. BOOK INCONSISTENCY: the source book's own statement of Bernoulli's principle says the total energy is constant \"per unit volume\", but the formula it prints in the same block, P/ρ + ½v² + gh = constant, is energy per unit mass. This answer follows the book's own formula and states the principle consistently as per unit mass, giving P + ½ρv² + ρgh = constant as the equivalent per-unit-volume form. Physics hand-checked: for the steady flow of a non-viscous, incompressible fluid along a streamline, P/ρ + ½v² + gh = constant is Bernoulli's equation per unit mass — each term has units of J/kg; multiplying through by ρ gives P + ½ρv² + ρgh = constant, the same relation per unit volume, with units of J/m³."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement, per unit mass",
+        "marks": 1,
+        "mark_note": "State it per unit mass",
+        "lines": [
+          "For the steady flow of a fluid",
+          "that is non-viscous and",
+          "incompressible, the sum of the",
+          "pressure energy, the kinetic",
+          "energy and the potential energy,",
+          "per unit mass, is the same at",
+          "every point along a streamline."
+        ],
+        "margin_note": "First mark. Say the sum is per unit mass, not per unit volume.",
+        "why": "Each term in P/ρ + ½v² + gh is an energy per unit mass — P/ρ is the pressure energy of one kilogram — so the statement must say per unit mass to match it.",
+        "common_mistakes": [
+          "Mixing the two forms — saying \"per unit mass\" but then writing P + ½ρv² + ρgh, or saying \"per unit volume\" but writing P/ρ + ½v² + gh. The words and the formula must be the same form.",
+          "Leaving out non-viscous or incompressible, without which the statement does not hold."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for steady, non-viscous, incompressible flow, the total energy per unit mass is constant along a streamline.",
+          "accept": [
+            "per unit mass is constant",
+            "pressure, kinetic and potential energy per unit mass",
+            "same at every point on a streamline"
+          ],
+          "reject": [
+            "per unit volume is constant"
+          ],
+          "heard_as": [
+            "per unit mass",
+            "streamline",
+            "constant"
+          ]
+        },
+        "memory_tip": "Per unit mass it is P/ρ + ½v² + gh; multiply through by ρ for the per-unit-volume form."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "The formula and its two forms",
+        "marks": 1,
+        "mark_note": "P/ρ + ½v² + gh = constant",
+        "lines": [
+          "The equation, per unit mass, is",
+          {
+            "text": "P/ρ + ½v² + gh = constant",
+            "style": "eq"
+          },
+          "where P is the pressure, ρ the",
+          "density, v the speed and h the",
+          "height at that point.",
+          "Multiplying through by ρ gives",
+          "the same statement per unit",
+          "volume:",
+          {
+            "text": "P + ½ρv² + ρgh = constant",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Second mark. Give the formula and name every symbol.",
+        "why": "The formula is the statement written in symbols, and the per-unit-volume form shows the same physics scaled by ρ — writing both keeps the two from being confused.",
+        "common_mistakes": [
+          "Writing P + ½ρv² + ρgh = constant and calling it the per-unit-mass form. That form is per unit volume.",
+          "Not naming P, ρ, v and h."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That P/ρ + ½v² + gh = constant is the per-unit-mass form, and multiplying by ρ gives P + ½ρv² + ρgh = constant per unit volume.",
+          "accept": [
+            "P by rho plus half v squared plus gh",
+            "multiply by rho for per unit volume",
+            "P plus half rho v squared plus rho gh"
+          ],
+          "reject": [
+            "per unit volume is the original form"
+          ],
+          "heard_as": [
+            "P over rho",
+            "half v squared",
+            "rho g h"
+          ]
+        },
+        "memory_tip": "Divide the per-unit-volume form by ρ to get back to per unit mass."
+      }
+    ]
+  },
+  "insider_note": "Two marks: the statement per unit mass, then the formula in both forms. The book's own statement says per unit volume, but its own formula is per unit mass — write per unit mass and give the per-unit-volume form as the equivalent."
+}

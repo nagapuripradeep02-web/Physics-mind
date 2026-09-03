@@ -1,0 +1,209 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_reversible_and_irreversible_processes",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain reversible and irreversible processes.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The reversible process",
+      "marks": 1
+    },
+    {
+      "label": "The conditions for reversibility",
+      "marks": 1
+    },
+    {
+      "label": "The irreversible process",
+      "marks": 1
+    },
+    {
+      "label": "Examples",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Short Answer Question 12 (printed p.130). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way 1+1+1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: a reversible process retraces the same equilibrium states so that both system and surroundings return to their starting condition, requires quasi-static and dissipation-free conditions, and is an idealisation; an irreversible process cannot be so retraced, and friction, free expansion and heat flow across a finite temperature difference are standard examples, with every real process being irreversible."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_reversible_define",
+        "kind": "text",
+        "label": "The reversible process",
+        "marks": 1,
+        "mark_note": "Reversible",
+        "lines": [
+          "A reversible process can be made",
+          "to run backwards through exactly",
+          "the same sequence of states, so",
+          "that at the end BOTH the system",
+          "and its surroundings return to",
+          "their starting condition."
+        ],
+        "margin_note": "First mark. Both the system AND the surroundings return, along the same states.",
+        "why": "The word \"reversible\" names a PATH property: not just that the system can go back, but that the whole path — including the surroundings — can be undone with no trace left.",
+        "common_mistakes": [
+          "Saying only the system returns to its initial state — the surroundings must return as well.",
+          "Describing it as a process that simply \"can happen backwards\" without the same-states condition."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a reversible process retraces the same states so that both the system and the surroundings return to their starting condition.",
+          "accept": [
+            "retraces the same states",
+            "system and surroundings both return"
+          ],
+          "reject": [
+            "quasi static and loss free"
+          ],
+          "heard_as": [
+            "reversible",
+            "retrace the path"
+          ]
+        },
+        "memory_tip": "Reversible needs BOTH back: system and surroundings, by the same path."
+      },
+      {
+        "id": "s2_reversible_conditions",
+        "kind": "text",
+        "label": "The conditions for reversibility",
+        "marks": 1,
+        "mark_note": "Conditions",
+        "lines": [
+          "A reversible process must be",
+          "quasi-static — carried out",
+          "infinitely slowly, through a",
+          "continuous series of equilibrium",
+          "states — and free of friction,",
+          "viscosity and every other loss."
+        ],
+        "margin_note": "Second mark. Both conditions: quasi-static AND free of dissipation.",
+        "why": "Any finite speed or any dissipation leaves the system out of equilibrium at some instant, and that instant cannot be undone — so both conditions are needed together, not either alone.",
+        "common_mistakes": [
+          "Naming only one condition (slow, or loss-free) and treating it as sufficient on its own.",
+          "Saying a reversible process is one that happens in practice — it is an idealisation, approached but never reached."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a reversible process must be quasi-static and free of friction and other dissipation, making it an idealisation.",
+          "accept": [
+            "quasi static",
+            "free of friction",
+            "idealisation"
+          ],
+          "reject": [
+            "system and surroundings both return"
+          ],
+          "heard_as": [
+            "quasi static",
+            "no friction"
+          ]
+        },
+        "memory_tip": "Reversible is an ideal LIMIT: infinitely slow and with no losses at all."
+      },
+      {
+        "id": "s3_irreversible_define",
+        "kind": "text",
+        "label": "The irreversible process",
+        "marks": 1,
+        "mark_note": "Irreversible",
+        "lines": [
+          "An irreversible process cannot be",
+          "retraced through the same states.",
+          "Once it has run, the system and",
+          "its surroundings cannot both be",
+          "restored to their starting",
+          "condition without some further",
+          "change being left behind."
+        ],
+        "margin_note": "Third mark. It cannot be retraced without leaving some change behind.",
+        "why": "Irreversibility is defined as the FAILURE of the reversible condition — it is not a separate rule but simply what happens whenever a process is not quasi-static or not loss-free.",
+        "common_mistakes": [
+          "Saying an irreversible process cannot happen at all — it happens; it is just the one that cannot be undone without a trace.",
+          "Describing it only by an example, without stating the general definition first."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an irreversible process cannot be retraced without leaving some change behind.",
+          "accept": [
+            "cannot be retraced",
+            "change left behind"
+          ],
+          "reject": [
+            "quasi static and loss free"
+          ],
+          "heard_as": [
+            "irreversible",
+            "cannot retrace"
+          ]
+        },
+        "memory_tip": "Irreversible = reversible's two conditions FAIL — not slow enough, or not loss-free."
+      },
+      {
+        "id": "s4_examples",
+        "kind": "text",
+        "label": "Examples",
+        "marks": 1,
+        "mark_note": "Examples",
+        "lines": [
+          "Friction, the sudden (free)",
+          "expansion of a gas, and heat",
+          "flowing across a finite",
+          "temperature difference are all",
+          "irreversible. Every real, natural",
+          "process is irreversible; a",
+          "reversible process is only an",
+          "ideal limit no real process",
+          "reaches exactly."
+        ],
+        "margin_note": "Fourth mark. At least two named examples, and the statement that all natural processes are irreversible.",
+        "why": "Naming real examples is what shows the definition has been understood, not just memorised — and stating that ALL natural processes are irreversible is the point the whole answer is building to.",
+        "common_mistakes": [
+          "Giving only one example instead of naming more than one kind of irreversibility.",
+          "Implying that some real processes are actually reversible — none are; reversible is only ever an ideal limit."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That friction, free expansion and heat flow across a finite temperature difference are irreversible, and that every real process is irreversible.",
+          "accept": [
+            "friction",
+            "free expansion",
+            "heat flow across a temperature difference",
+            "every real process is irreversible"
+          ],
+          "reject": [
+            "cannot be retraced"
+          ],
+          "heard_as": [
+            "friction",
+            "free expansion",
+            "natural processes irreversible"
+          ]
+        },
+        "memory_tip": "Friction, free expansion, heat across a gap: three everyday ways a process becomes irreversible."
+      }
+    ]
+  },
+  "insider_note": "Naming examples such as friction, free expansion and heat flow across a finite temperature difference earns the fourth mark; adding that ALL natural processes are irreversible is worth including alongside them."
+}

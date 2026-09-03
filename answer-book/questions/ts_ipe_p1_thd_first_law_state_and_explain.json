@@ -1,0 +1,156 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_first_law_state_and_explain",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "State and explain the first law of thermodynamics.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The statement",
+      "marks": 1
+    },
+    {
+      "label": "The equation",
+      "marks": 1
+    },
+    {
+      "label": "What it means",
+      "marks": 1
+    },
+    {
+      "label": "The sign convention",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 (Thermodynamics) Short Answer Question 1 (printed p.126). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: ΔQ = ΔU + ΔW is the first law, with Q positive for heat supplied to the system and negative for heat leaving it, W positive for work done by the system and negative for work done on it; the law is the statement of conservation of energy for a system exchanging heat and work with its surroundings."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "The statement",
+        "marks": 1,
+        "mark_note": "The statement",
+        "lines": [
+          "When heat is given to a system, part",
+          "of it raises the internal energy of",
+          "the system and the rest goes into",
+          "external work done by the system."
+        ],
+        "margin_note": "State the law in one sentence: heat given to a system raises its internal energy and does external work, together.",
+        "why": "This sentence is the whole law in words; every other part of the answer only writes it in symbols and explains the symbols.",
+        "common_mistakes": [
+          "Saying heat becomes only internal energy or only work. The law splits it between both.",
+          "Writing the equation only, with no sentence. The question asks to state AND explain."
+        ],
+        "memory_tip": "Heat splits two ways: part raises internal energy, part becomes work."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "equation",
+        "label": "The equation",
+        "marks": 1,
+        "mark_note": "ΔQ = ΔU + ΔW",
+        "lines": [
+          "In symbols, for a small change,",
+          {
+            "text": "ΔQ = ΔU + ΔW",
+            "style": "eq"
+          },
+          "ΔQ is the heat supplied, ΔU is the",
+          "change in internal energy and ΔW is",
+          "the external work done by the system."
+        ],
+        "margin_note": "Define ΔQ, ΔU and ΔW right after writing the equation.",
+        "why": "Writing the equation without naming the three quantities leaves the symbols undefined, and the definitions are worth their own mark.",
+        "common_mistakes": [
+          "Writing the equation with no symbol defined. All three symbols need a name.",
+          "Mixing up ΔU and ΔW — ΔU is internal energy, ΔW is work, not the other way round."
+        ],
+        "memory_tip": "Q splits as U plus W: heat in equals energy stored plus work out."
+      },
+      {
+        "id": "s3_meaning",
+        "kind": "text",
+        "label": "What the law means",
+        "marks": 1,
+        "mark_note": "Conservation of energy",
+        "lines": [
+          "The first law is the law of",
+          "conservation of energy, applied to a",
+          "system exchanging heat and work with",
+          "its surroundings.",
+          "Energy is neither created nor",
+          "destroyed — it only changes form."
+        ],
+        "margin_note": "Name it explicitly as conservation of energy — this is the mark for saying WHY the law holds.",
+        "why": "The equation alone is a bookkeeping relation; naming it as energy conservation is what makes it a LAW and not just an algebraic identity.",
+        "common_mistakes": [
+          "Leaving out the words 'conservation of energy' — the connection is the point of this mark, not implied by the equation alone.",
+          "Saying energy can be created if enough work is done. The law forbids that in every case."
+        ],
+        "memory_tip": "First law = energy conservation, written for heat and work."
+      },
+      {
+        "id": "s4_sign_convention",
+        "kind": "boxed_final",
+        "label": "The sign convention",
+        "marks": 1,
+        "mark_note": "Sign convention",
+        "lines": [
+          "The equation needs a fixed sign",
+          "convention before it is used.",
+          {
+            "text": "Q > 0 for heat supplied",
+            "style": "eq"
+          },
+          {
+            "text": "Q < 0 for heat given out",
+            "style": "eq"
+          },
+          {
+            "text": "W > 0 for work done by the system",
+            "style": "eq"
+          },
+          {
+            "text": "W < 0 for work done on the system",
+            "style": "eq"
+          },
+          {
+            "text": "ΔU = ΔQ − ΔW",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Give both signs for Q and both for W — one direction each is not enough.",
+        "why": "The same equation gives a different answer depending on which way heat and work are taken as positive, so the convention has to be stated, not assumed.",
+        "common_mistakes": [
+          "Giving only the positive case for Q or W and leaving the negative case unstated.",
+          "Reversing the convention — calling work done ON the system positive. The standard convention here takes work done BY the system as positive."
+        ],
+        "memory_tip": "Heat IN is positive; work done BY the system is positive."
+      }
+    ]
+  },
+  "insider_note": "The sign convention is the mark most often left out — write both signs for Q and both for W, not just one."
+}

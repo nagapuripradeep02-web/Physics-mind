@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_thermal_vs_thermodynamic_equilibrium",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Distinguish between thermal equilibrium and thermodynamic equilibrium.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Thermal equilibrium",
+      "marks": 1
+    },
+    {
+      "label": "Thermodynamic equilibrium",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 1 (printed p.124). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked against NCERT Class-11 Chapter 12: two systems are in thermal equilibrium when they are at the same temperature and no heat flows between them; a system is in thermodynamic equilibrium when its pressure, volume, temperature and mass stay constant with time, which needs thermal, mechanical and chemical equilibrium together, of which thermal equilibrium is only one condition."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_thermal",
+        "kind": "text",
+        "label": "Thermal equilibrium",
+        "marks": 1,
+        "mark_note": "Thermal equilibrium",
+        "lines": [
+          "Two systems are in thermal",
+          "equilibrium when they are at the",
+          "same temperature.",
+          "No heat flows between them."
+        ],
+        "margin_note": "First mark. Say same temperature and no heat flow.",
+        "why": "Temperature is defined as the property that is equal for two systems in thermal equilibrium, so this condition is the working definition of temperature itself.",
+        "common_mistakes": [
+          "Saying thermal equilibrium means the two systems have the same energy. It means the same temperature.",
+          "Leaving out that no heat flows between the systems once they reach thermal equilibrium."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That thermal equilibrium is the same temperature for both systems and that no heat flows between them.",
+          "accept": [
+            "same temperature",
+            "no heat flows between them",
+            "no heat exchange"
+          ],
+          "reject": [
+            "pressure volume temperature and mass stay constant"
+          ],
+          "heard_as": [
+            "thermal equilibrium",
+            "same temperature"
+          ]
+        },
+        "memory_tip": "Thermal equilibrium: one word, temperature. Same temperature, no heat flow."
+      },
+      {
+        "id": "s2_thermodynamic",
+        "kind": "boxed_final",
+        "label": "Thermodynamic equilibrium",
+        "marks": 1,
+        "mark_note": "Thermodynamic equilibrium",
+        "lines": [
+          {
+            "text": "Thermodynamic equilibrium",
+            "style": "heading"
+          },
+          "A system is in thermodynamic",
+          "equilibrium when its pressure,",
+          "volume, temperature and mass",
+          "stay constant with time.",
+          "This needs thermal, mechanical",
+          "and chemical equilibrium",
+          "together. Thermal equilibrium is",
+          "only one of the three conditions."
+        ],
+        "margin_note": "Second mark. Name all three conditions, not thermal equilibrium alone.",
+        "why": "A system can be at uniform temperature while its pressure is still changing, so thermal equilibrium alone does not make the whole system steady — thermodynamic equilibrium needs all three conditions together.",
+        "common_mistakes": [
+          "Treating thermal equilibrium and thermodynamic equilibrium as the same condition.",
+          "Naming only two of the three conditions that thermodynamic equilibrium needs."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That thermodynamic equilibrium needs thermal, mechanical and chemical equilibrium together, with unchanging pressure, volume, temperature and mass, and that thermal equilibrium is only one of the three.",
+          "accept": [
+            "thermal mechanical and chemical equilibrium",
+            "pressure volume temperature and mass constant",
+            "thermal equilibrium is only one condition"
+          ],
+          "reject": [
+            "no heat flows between them"
+          ],
+          "heard_as": [
+            "thermodynamic equilibrium",
+            "three conditions"
+          ]
+        },
+        "memory_tip": "Thermodynamic equilibrium needs three: thermal, mechanical, chemical. Thermal is only one."
+      }
+    ]
+  },
+  "insider_note": "The two names look alike, so name all three conditions — thermal, mechanical, chemical — for the second mark, not thermal equilibrium repeated."
+}
