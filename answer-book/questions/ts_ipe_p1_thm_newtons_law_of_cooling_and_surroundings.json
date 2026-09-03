@@ -56,7 +56,7 @@
         "margin_note": "First mark. State that the rate of heat loss is proportional to the temperature difference, for a small difference.",
         "why": "This sentence is the law itself — every other step in the theory and the numerical part follows from this one proportionality.",
         "common_mistakes": [
-          "Leaving out the words provided that difference is small, which is a necessary part of the law, not an extra condition.",
+          "Leaving out the words provided that difference is small — it belongs both in the statement of the law and as the first condition, so it must be written in both answers.",
           "Stating the law as proportional to the body's own temperature instead of the difference from the surroundings."
         ],
         "recall": {
@@ -96,7 +96,7 @@
         "margin_note": "Second mark. Write − dQ/dt ∝ (T − T₀).",
         "why": "Writing the law in symbols is what lets it be turned into a usable equation with a constant of proportionality in the next step.",
         "common_mistakes": [
-          "Dropping the minus sign — the rate of loss of heat falls as the body cools, since dQ/dt itself is negative.",
+          "Dropping the minus sign — Q is the body's heat content, so dQ/dt is negative while it cools, and −dQ/dt is therefore the positive rate of heat loss.",
           "Writing T₀ − T instead of T − T₀."
         ],
         "recall": {
@@ -125,8 +125,7 @@
         "marks": 1,
         "mark_note": "dT/dt = − k(T − T₀)",
         "lines": [
-          "For a body of mass m and specific",
-          "heat s, the law is written as a",
+          "The law is also written as a",
           "rate of cooling:",
           {
             "text": "dT/dt = − k(T − T₀)",
@@ -142,7 +141,7 @@
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That for a body of mass m and specific heat s, the law is written dT/dt = − k(T − T₀), with k a constant.",
+          "must_convey": "That the law is also written as a rate of cooling, dT/dt = − k(T − T₀), with k a constant.",
           "accept": [
             "dT by dt equals minus k T minus T naught",
             "rate of cooling form",
@@ -215,8 +214,7 @@
         "margin_note": "Fifth mark. State convection, a uniform body temperature, and that the surface's nature and area are held fixed.",
         "why": "These conditions rule out a body losing heat mainly by radiation or conduction, or one with hot and cold spots, since either would break the simple proportionality.",
         "common_mistakes": [
-          "Stating only the mode of heat loss and leaving out that the body's temperature must be uniform.",
-          "Leaving out that the nature and exposed area of the surface are held fixed."
+          "Stating only the mode of heat loss and leaving out that the body's temperature must be uniform."
         ],
         "recall": {
           "credit": "say_it",
@@ -235,7 +233,7 @@
             "exposed area"
           ]
         },
-        "memory_tip": "Convection carries the heat away; a fixed surface keeps the rate comparable."
+        "memory_tip": "Convection carries the heat away; the surface's nature and area are held fixed too, so the rate stays comparable."
       },
       {
         "id": "s6_stage_equations",
@@ -250,6 +248,9 @@
             "text": "(θ₁ − θ₂)/t = k[(θ₁ + θ₂)/2 − θ₀]",
             "style": "eq"
           },
+          "Here θ₁ − θ₂ is the fall in",
+          "temperature, so this form is already",
+          "positive; the minus sign is absorbed.",
           "First stage, 60 °C to 50 °C in",
           "5 minutes:",
           {

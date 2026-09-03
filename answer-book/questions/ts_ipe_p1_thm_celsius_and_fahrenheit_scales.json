@@ -56,8 +56,9 @@
         "lines": [
           "The Celsius scale has the melting point",
           "of ice as its lower fixed point, marked",
-          "0 °C, and the boiling point of water as",
-          "its upper fixed point, marked 100 °C.",
+          "0 °C, and the boiling point of water at",
+          "normal atmospheric pressure as its upper",
+          "fixed point, marked 100 °C.",
           "The interval between them is divided",
           "into 100 equal degrees."
         ],
@@ -96,7 +97,8 @@
           "The Fahrenheit scale marks the same two",
           "fixed points differently: the melting",
           "point of ice is 32 °F and the boiling",
-          "point of water is 212 °F.",
+          "point of water at normal atmospheric",
+          "pressure is 212 °F.",
           "The interval between them is divided",
           "into 180 equal degrees."
         ],
@@ -144,7 +146,7 @@
         "why": "Both scales measure the same physical temperature, so the fraction of the way from the lower fixed point to the upper fixed point must be the same number on each scale; setting those two fractions equal and simplifying 100/180 to 5/9 gives the relation between C and F directly.",
         "common_mistakes": [
           "Writing C/100 = F/180 without first subtracting the lower fixed points 0 and 32.",
-          "Leaving the relation as (C)/100 = (F − 32)/180 instead of simplifying it to C/5 = (F − 32)/9."
+          "Not simplifying the relation — C/5 = (F − 32)/9 is the standard form to quote, though (C)/100 = (F − 32)/180 is the same relation before simplifying and is equally correct."
         ],
         "recall": {
           "credit": "say_it",

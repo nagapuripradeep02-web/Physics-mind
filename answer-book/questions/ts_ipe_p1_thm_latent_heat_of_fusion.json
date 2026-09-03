@@ -88,12 +88,12 @@
           },
           "L is the latent heat of fusion of the",
           "substance and m the mass melted.",
-          "For ice, L = 3.36 × 10⁵ J kg⁻¹."
+          "For ice, L = 80 cal g⁻¹ = 3.36 × 10⁵ J kg⁻¹."
         ],
         "margin_note": "Second mark. Write Q = mL together with the value for ice.",
         "why": "The heat needed is proportional to the mass being melted, so the total heat is the mass multiplied by the heat needed to melt one kilogram.",
         "common_mistakes": [
-          "Giving the value of L only in cal g⁻¹, without the SI value in J kg⁻¹."
+          "Quoting a value with no unit."
         ],
         "recall": {
           "credit": "say_it",

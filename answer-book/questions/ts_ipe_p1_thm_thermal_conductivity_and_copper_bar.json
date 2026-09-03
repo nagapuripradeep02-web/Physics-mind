@@ -19,10 +19,10 @@
   "appearances": [],
   "mark_split": [
     { "label": "Definition of conduction", "marks": 1 },
-    { "label": "Heat conducted through a slab", "marks": 1 },
-    { "label": "Rate of heat flow", "marks": 1 },
     { "label": "Coefficient of thermal conductivity", "marks": 1 },
     { "label": "SI unit of K", "marks": 1 },
+    { "label": "Deriving the heat conduction formula", "marks": 1 },
+    { "label": "Heat conducted and the rate of flow", "marks": 1 },
     { "label": "Values for the copper bar", "marks": 1 },
     { "label": "Substitute the values", "marks": 1 },
     { "label": "The rate of heat conducted", "marks": 1 }
@@ -77,87 +77,7 @@
         "memory_tip": "Conduction: the heat travels, the material stays still."
       },
       {
-        "id": "s2_slab_setup",
-        "kind": "equation",
-        "label": "Heat conducted through a slab",
-        "marks": 1,
-        "mark_note": "Q = KA(T₁ − T₂)t / L",
-        "lines": [
-          "For a slab of area A and thickness",
-          "L, with its two faces kept at T₁",
-          "and T₂, the heat conducted in a",
-          "time t is",
-          {
-            "text": "Q = KA(T₁ − T₂)t / L",
-            "style": "eq"
-          }
-        ],
-        "margin_note": "Second mark. Write Q = KA(T₁ − T₂)t / L for the heat conducted through the slab.",
-        "why": "This equation is the starting point that the rate law and the numerical answer are both built from.",
-        "common_mistakes": [
-          "Writing the temperature difference as T₂ − T₁ instead of T₁ − T₂.",
-          "Placing the thickness L in the numerator instead of the denominator."
-        ],
-        "recall": {
-          "credit": "say_it",
-          "must_convey": "That for a slab of area A, thickness L, faces at T₁ and T₂, the heat conducted in time t is Q = KA(T₁ − T₂)t / L.",
-          "accept": [
-            "Q equals K A T1 minus T2 t over L",
-            "heat conducted is K A delta T t divided by L",
-            "area A thickness L"
-          ],
-          "reject": [
-            "P equals Q over t"
-          ],
-          "heard_as": [
-            "K A delta T",
-            "t over L",
-            "area and thickness"
-          ]
-        },
-        "memory_tip": "Q = KA(T₁ − T₂)t / L — more area or bigger gap, more heat; thicker slab, less."
-      },
-      {
-        "id": "s3_rate",
-        "kind": "equation",
-        "label": "Rate of heat flow",
-        "marks": 1,
-        "mark_note": "P = KA(T₁ − T₂) / L",
-        "lines": [
-          "The rate of heat conduction is Q",
-          "divided by the time taken, t:",
-          {
-            "text": "P = Q/t = KA(T₁ − T₂) / L",
-            "style": "eq"
-          }
-        ],
-        "margin_note": "Third mark. Divide by t to reach the rate, P = KA(T₁ − T₂) / L.",
-        "why": "The question asks for a rate of heat conduction, so this step turns the total heat Q into power P — the quantity the numerical part actually calculates.",
-        "common_mistakes": [
-          "Leaving the answer as Q instead of dividing by t to reach the rate P.",
-          "Writing P = KA(T₁ − T₂) × L instead of KA(T₁ − T₂) / L."
-        ],
-        "recall": {
-          "credit": "say_it",
-          "must_convey": "That dividing Q by t gives the rate P = KA(T₁ − T₂) / L.",
-          "accept": [
-            "P equals Q over t",
-            "P equals K A delta T over L",
-            "dividing by time gives the rate"
-          ],
-          "reject": [
-            "Q equals K A delta T t over L"
-          ],
-          "heard_as": [
-            "P equals K A delta T over L",
-            "rate of heat flow",
-            "divide by t"
-          ]
-        },
-        "memory_tip": "P is Q per second: divide the slab equation by t."
-      },
-      {
-        "id": "s4_conductivity_def",
+        "id": "s2_conductivity_def",
         "kind": "text",
         "label": "Coefficient of thermal conductivity",
         "marks": 1,
@@ -168,8 +88,8 @@
           "of heat per unit area per unit",
           "temperature gradient across the slab."
         ],
-        "margin_note": "Fourth mark. State that K is the rate of heat flow per unit area per unit temperature gradient.",
-        "why": "Naming K this way is what lets it be read directly off the slab equation: it is the constant that turns area, temperature difference and thickness into a rate.",
+        "margin_note": "Second mark. State that K is the rate of heat flow per unit area per unit temperature gradient.",
+        "why": "Defining K here, before the slab equation is derived, means the derivation can name K as an already-known constant of proportionality, rather than using an undefined symbol.",
         "common_mistakes": [
           "Defining K only as how well a material conducts heat, without the per unit area, per unit gradient part.",
           "Confusing K with specific heat, which is a different constant entirely."
@@ -194,7 +114,7 @@
         "memory_tip": "K: heat flow, per area, per degree of gradient."
       },
       {
-        "id": "s5_unit",
+        "id": "s3_unit",
         "kind": "text",
         "label": "SI unit of K",
         "marks": 1,
@@ -204,8 +124,8 @@
           "A large value of K means the",
           "material is a good conductor of heat."
         ],
-        "margin_note": "Fifth mark. Give the SI unit W m⁻¹ K⁻¹, and note that a large K means a good conductor.",
-        "why": "The unit W m⁻¹ K⁻¹ follows directly from the slab equation, power per area per gradient, and stating what a large K means gives the definition physical content.",
+        "margin_note": "Third mark. Give the SI unit W m⁻¹ K⁻¹, and note that a large K means a good conductor.",
+        "why": "The unit W m⁻¹ K⁻¹ follows from how K was just defined — a rate of heat flow, per unit area, per unit temperature gradient — and stating what a large K means gives the definition physical content.",
         "common_mistakes": [
           "Giving the unit without its exponents, writing W m K instead of W m⁻¹ K⁻¹.",
           "Reversing the meaning of K and calling a small K a good conductor."
@@ -230,6 +150,96 @@
         "memory_tip": "W m⁻¹ K⁻¹ — power, per metre, per kelvin."
       },
       {
+        "id": "s4_derivation",
+        "kind": "equation",
+        "label": "Deriving the heat conduction formula",
+        "marks": 1,
+        "mark_note": "Derive Q = KA(T₁ − T₂)t / L",
+        "lines": [
+          "For a slab of area A and thickness",
+          "L, with its faces kept at T₁ and T₂,",
+          "the heat conducted Q in time t obeys:",
+          {
+            "text": "Q ∝ A, Q ∝ (T₁ − T₂), Q ∝ t, Q ∝ 1 / L",
+            "style": "eq"
+          },
+          "Combining these four, with K as",
+          "the constant of proportionality,",
+          {
+            "text": "Q = KA(T₁ − T₂)t / L",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Fourth mark. Combine Q ∝ A, Q ∝ (T₁ − T₂), Q ∝ t and Q ∝ 1/L into Q = KA(T₁ − T₂)t / L.",
+        "why": "The question asks the student to DERIVE the expression, not assume it: Q depends directly on the area, the temperature difference and the time, and inversely on the thickness, so combining these four proportions with K, already defined, as the constant of proportionality is what makes this step a derivation.",
+        "common_mistakes": [
+          "Writing the final formula directly, without showing the four proportions that combine to give it.",
+          "Getting one proportion inverted, such as writing Q ∝ L instead of Q ∝ 1/L."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Q ∝ A, Q ∝ (T₁ − T₂), Q ∝ t and Q ∝ 1/L, and combining these four proportions with K as the constant of proportionality gives Q = KA(T₁ − T₂)t / L.",
+          "accept": [
+            "Q is proportional to area, to the temperature difference and to time, and inversely proportional to thickness",
+            "combining the four proportions with K gives Q equals K A delta T t over L",
+            "Q proportional to A, delta T, t, and one over L"
+          ],
+          "reject": [
+            "P equals Q over t"
+          ],
+          "heard_as": [
+            "Q proportional to A",
+            "inversely proportional to L",
+            "combine with K"
+          ]
+        },
+        "memory_tip": "Q ∝ A, ΔT and t; Q ∝ 1/L — combine with K."
+      },
+      {
+        "id": "s5_rate",
+        "kind": "equation",
+        "label": "Heat conducted and the rate of flow",
+        "marks": 1,
+        "mark_note": "P = Q/t = KA(T₁ − T₂) / L",
+        "lines": [
+          "The heat conducted is therefore",
+          {
+            "text": "Q = KA(T₁ − T₂)t / L",
+            "style": "eq"
+          },
+          "and the rate of conduction is Q",
+          "divided by the time t:",
+          {
+            "text": "P = Q/t = KA(T₁ − T₂) / L",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Fifth mark. State Q = KA(T₁ − T₂)t / L, then divide by t to reach the rate P = KA(T₁ − T₂) / L.",
+        "why": "The question asks for a RATE of heat conduction, so this step takes the derived heat Q and divides it by the time t to reach the power P — the quantity the numerical part of the question actually calculates.",
+        "common_mistakes": [
+          "Leaving the answer as Q instead of dividing by t to reach the rate P.",
+          "Writing P = KA(T₁ − T₂) × L instead of KA(T₁ − T₂) / L."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Q = KA(T₁ − T₂)t / L, and dividing by t gives the rate P = Q/t = KA(T₁ − T₂) / L.",
+          "accept": [
+            "Q equals K A delta T t over L",
+            "P equals Q over t",
+            "dividing by time gives the rate K A delta T over L"
+          ],
+          "reject": [
+            "Q proportional to A, delta T, t, and one over L"
+          ],
+          "heard_as": [
+            "Q equals K A delta T t over L",
+            "P equals Q over t",
+            "rate of heat flow"
+          ]
+        },
+        "memory_tip": "P is Q per second: divide the derived formula by t."
+      },
+      {
         "id": "s6_given_values",
         "kind": "equation",
         "label": "Values for the copper bar",
@@ -240,7 +250,7 @@
           "L = 0.10 m and A = 1.0 × 10⁻⁶ m².",
           "T₁ = 104 °C and T₂ = 24 °C, so",
           {
-            "text": "ΔT = T₁ − T₂ = 80",
+            "text": "ΔT = 104 °C − 24 °C = 80 °C = 80 K",
             "style": "eq"
           },
           "A difference of 80 is the same",
@@ -250,7 +260,7 @@
         "margin_note": "Sixth mark. Write the given values, and note ΔT = 80 is the same number in °C and in K.",
         "why": "The formula uses a temperature DIFFERENCE. A difference of one degree Celsius is the same size as a difference of one kelvin, so ΔT = 80 can be used directly, without converting either end temperature to kelvin first.",
         "common_mistakes": [
-          "Believing the difference changes value when converted to kelvin, and converting both temperatures unnecessarily.",
+          "Believing the temperature difference itself changes value when converted to kelvin — it does not; converting both end temperatures first is valid, just unnecessary extra work.",
           "Subtracting the temperatures the wrong way round, getting ΔT = −80."
         ],
         "recall": {
@@ -318,17 +328,20 @@
         "marks": 1,
         "mark_note": "P = 0.32 W",
         "lines": [
-          "Multiplying and dividing through,",
+          {
+            "text": "401 × 1.0 × 10⁻⁶ × 80 = 3.208 × 10⁻²",
+            "style": "eq"
+          },
+          "Dividing by 0.10,",
           {
             "text": "P = 0.32 W",
             "style": "boxed"
           }
         ],
-        "margin_note": "Eighth mark. State the final rate, P = 0.32 W.",
+        "margin_note": "Eighth mark. Show 401 × 1.0 × 10⁻⁶ × 80 = 3.208 × 10⁻², then divide by 0.10 to state P = 0.32 W.",
         "why": "The complete answer states the rate as a number with its unit, watts, which is what the question asks for.",
         "common_mistakes": [
-          "Leaving the answer as a decimal without its unit, watts.",
-          "Rounding to a different number of figures, such as 0.3 W, and dropping precision the given data supports."
+          "Leaving the answer as a decimal without its unit, watts."
         ],
         "recall": {
           "credit": "say_it",
@@ -351,5 +364,5 @@
       }
     ]
   },
-  "insider_note": "The complete answer keeps the temperature difference as 80 throughout, the same number in °C and in K, and never converts either end temperature to kelvin, since only the difference is needed."
+  "insider_note": "The complete answer keeps the temperature difference as 80 throughout, the same number in °C and in K. Converting both end temperatures to kelvin first gives the same 80 K difference and is equally valid — it is simply unnecessary extra work when only the difference is needed."
 }

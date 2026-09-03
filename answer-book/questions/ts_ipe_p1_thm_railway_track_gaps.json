@@ -89,7 +89,7 @@
           "leaves room for that expansion."
         ],
         "margin_note": "Second mark. Say the gap prevents the rails from buckling.",
-        "why": "A rail with nowhere to lengthen has to go somewhere, so it bends sideways instead — the gap gives the extra length somewhere safe to go.",
+        "why": "The rail cannot lengthen along the track, so it bends sideways instead; the gap gives the extra length room.",
         "common_mistakes": [
           "Saying the gap is for the bolts or joints. The gap is for thermal expansion."
         ],
@@ -110,7 +110,7 @@
             "room to expand"
           ]
         },
-        "memory_tip": "No gap, no room — a rail with nowhere to grow bends sideways instead."
+        "memory_tip": "The rail cannot lengthen along the track, so it bends sideways instead — the gap gives it room."
       }
     ]
   },

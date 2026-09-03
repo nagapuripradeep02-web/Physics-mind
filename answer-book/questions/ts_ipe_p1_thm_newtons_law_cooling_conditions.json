@@ -19,11 +19,11 @@
   "appearances": [],
   "mark_split": [
     {
-      "label": "The four conditions",
+      "label": "Small difference and constant surroundings",
       "marks": 1
     },
     {
-      "label": "What the rate also depends on",
+      "label": "Convection and uniform body temperature",
       "marks": 1
     }
   ],
@@ -40,85 +40,76 @@
     ],
     "steps": [
       {
-        "id": "s1_conditions",
+        "id": "s1_small_diff_constant_surroundings",
         "kind": "text",
-        "label": "The four conditions",
+        "label": "Small difference and constant surroundings",
         "marks": 1,
-        "mark_note": "Small difference, constant surroundings, convection, uniform body",
+        "mark_note": "Small temperature difference, constant surroundings",
         "lines": [
           "The temperature difference between the",
           "body and its surroundings must be small.",
           "The surroundings must stay at a constant",
-          "temperature.",
-          "Heat must be lost mainly by convection,",
-          "and the body's own temperature must be",
-          "uniform throughout."
+          "temperature."
         ],
-        "margin_note": "First mark. Name the four conditions: a small temperature difference, surroundings at a constant temperature, heat lost mainly by convection, and a uniform body temperature.",
-        "why": "Each condition keeps the simple proportional law true: a small gap keeps the proportionality valid, constant surroundings stop the reference temperature from drifting, convection is the loss mechanism the law is built for, and a uniform body temperature means one single temperature difference describes the whole body.",
+        "margin_note": "First mark. Say the temperature difference must be small and the surroundings must stay at a constant temperature.",
+        "why": "A small gap keeps the proportional law valid, and constant surroundings stop the reference temperature from drifting, so the difference being tracked stays well defined.",
         "common_mistakes": [
-          "Naming only one or two of the four conditions.",
+          "Naming only the small temperature difference and leaving out the constant-surroundings condition.",
           "Leaving out that the surroundings must stay at a constant temperature."
         ],
         "recall": {
           "credit": "say_it",
-          "must_convey": "That the law needs a small temperature difference, surroundings at a constant temperature, heat lost mainly by convection, and a uniform body temperature.",
+          "must_convey": "That the law needs a small temperature difference and surroundings at a constant temperature.",
           "accept": [
             "small temperature difference and constant surroundings",
-            "heat lost by convection with a uniform body temperature",
-            "four conditions: small gap, steady surroundings, convection, uniform body"
+            "small gap and steady surroundings",
+            "the difference must be small and the surroundings steady"
           ],
           "reject": [
             "depends on the nature and area of the surface"
           ],
           "heard_as": [
             "small difference",
-            "constant temperature",
+            "constant temperature"
+          ]
+        },
+        "memory_tip": "Small gap, steady surroundings — the first two conditions."
+      },
+      {
+        "id": "s2_convection_uniform_body",
+        "kind": "text",
+        "label": "Convection and uniform body temperature",
+        "marks": 1,
+        "mark_note": "Convection, uniform body",
+        "lines": [
+          "Heat must be lost mainly by convection,",
+          "and the body's own temperature must be",
+          "uniform throughout."
+        ],
+        "margin_note": "Second mark. Say heat is lost mainly by convection and the body's own temperature is uniform.",
+        "why": "Convection is the loss mechanism the law is built for, and a uniform body temperature means one single temperature difference describes the whole body.",
+        "common_mistakes": [
+          "Leaving out that heat must be lost mainly by convection, or that the body's temperature must be uniform."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That heat must be lost mainly by convection and the body's own temperature must be uniform.",
+          "accept": [
+            "heat lost by convection",
+            "uniform body temperature",
+            "convection with a uniform body temperature"
+          ],
+          "reject": [
+            "depends on the nature and area of the surface"
+          ],
+          "heard_as": [
             "convection",
             "uniform"
           ]
         },
-        "memory_tip": "Small gap, steady surroundings, convection, uniform body — four conditions, one law."
-      },
-      {
-        "id": "s2_surface_dependence",
-        "kind": "text",
-        "label": "What the rate also depends on",
-        "marks": 1,
-        "mark_note": "Surface nature and area, held fixed",
-        "lines": [
-          "The rate of cooling also depends on the",
-          "nature of the body's surface and the",
-          "area of the surface exposed.",
-          "These are not conditions for the law to",
-          "hold — they are held fixed while the law",
-          "is applied."
-        ],
-        "margin_note": "Second mark. Say the rate also depends on the nature and area of the exposed surface, and that these are held fixed, not conditions for the law itself.",
-        "why": "The nature and the area of the surface change how fast a body cools, but they are not requirements for the proportional law to hold — they are kept fixed while the law is applied, so that the temperature difference alone is what is being studied.",
-        "common_mistakes": [
-          "Listing the nature and area of the surface as conditions for the law to hold, rather than as factors the rate of cooling depends on."
-        ],
-        "recall": {
-          "credit": "say_it",
-          "must_convey": "That the rate of cooling also depends on the nature and the exposed area of the surface, and that these are held fixed rather than being conditions for the law.",
-          "accept": [
-            "depends on the nature and area of the surface",
-            "surface properties held fixed while applying the law",
-            "not conditions for the law, but the rate depends on them"
-          ],
-          "reject": [
-            "surroundings at a constant temperature"
-          ],
-          "heard_as": [
-            "nature of the surface",
-            "area of the surface",
-            "held fixed"
-          ]
-        },
-        "memory_tip": "Surface nature and area change the RATE, not whether the law holds."
+        "memory_tip": "Convection and a uniform body — the other two conditions."
       }
     ]
   },
-  "insider_note": "The genuine conditions are a small temperature difference, constant surroundings, convection as the loss mechanism, and a uniform body temperature. The nature and the area of the surface change the rate of cooling, so they are held fixed when the law is applied, rather than being conditions for it."
+  "insider_note": "Mark 1 is the small temperature difference and the constant surroundings; mark 2 is convection as the loss mechanism and a uniform body temperature. The prescribed book also lists the nature and the area of the exposed surface among the conditions — write them if there is room, and understand them as factors the rate of cooling depends on, held fixed while the law is applied, rather than the four conditions above the law strictly needs."
 }

@@ -47,9 +47,11 @@
         "mark_note": "Yes",
         "lines": [
           "Yes, the value changes.",
-          "A coefficient of expansion is a change",
-          "per degree, and a Fahrenheit degree is",
-          "smaller than a Celsius degree."
+          "A coefficient of expansion is the",
+          "fractional change in length per unit",
+          "original length, per degree rise.",
+          "A Fahrenheit degree is smaller than",
+          "a Celsius degree."
         ],
         "margin_note": "First mark. Yes, together with the reason.",
         "why": "A coefficient of expansion states how much the size changes for a one-degree rise, so its number depends on the size of the degree used to measure it.",
@@ -113,7 +115,7 @@
             "relation"
           ]
         },
-        "memory_tip": "Five ninths — the same fraction that turns a Celsius reading into Fahrenheit degrees."
+        "memory_tip": "Five ninths — the same fraction that turns a Fahrenheit reading into Celsius."
       }
     ]
   },

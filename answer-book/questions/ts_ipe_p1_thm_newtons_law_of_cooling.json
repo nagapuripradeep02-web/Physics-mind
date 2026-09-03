@@ -95,7 +95,8 @@
         "margin_note": "Second mark. Write −dQ/dt ∝ (T − T₀) with T the body's temperature and T₀ the surroundings' temperature.",
         "why": "Writing the relation names every symbol at once — T for the body, T₀ for the surroundings — and the negative sign records that this is heat being lost, not gained.",
         "common_mistakes": [
-          "Writing dQ/dt ∝ (T − T₀) without the negative sign, or without naming T and T₀."
+          "Leaving T and T₀ unnamed in the relation.",
+          "The sign convention must match how the symbol is defined — write −dQ/dt when Q is the body's heat content."
         ],
         "recall": {
           "credit": "say_it",

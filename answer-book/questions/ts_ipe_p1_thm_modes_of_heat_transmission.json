@@ -49,10 +49,11 @@
           "Heat travels from one place to another",
           "in three ways: conduction, convection",
           "and radiation.",
-          "Conduction and convection both need a",
-          "material medium, because heat passes",
-          "on through the particles of that",
-          "medium."
+          "Conduction passes heat from particle",
+          "to particle without the material",
+          "itself moving. Convection needs a",
+          "medium that can move, and it carries",
+          "the heat with it."
         ],
         "margin_note": "First mark. Name all three modes: conduction, convection, radiation.",
         "why": "Naming all three, not just one or two, is what the question asks for — each is a distinct way heat can move from a hotter place to a colder one.",
