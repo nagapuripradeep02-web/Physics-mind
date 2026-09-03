@@ -1,0 +1,95 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_graphite_carbon_hybridisation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the state of hybridisation of carbon in graphite?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The hybridisation",
+      "marks": 1
+    },
+    {
+      "label": "The sheets and the fourth electron",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 1(c). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_hybridisation",
+        "kind": "text",
+        "label": "The hybridisation",
+        "marks": 1,
+        "mark_note": "Hybridisation",
+        "lines": [
+          "In graphite every carbon atom is sp²",
+          "hybridised.",
+          "Each carbon is joined to three other",
+          "carbon atoms and carries no lone pair,",
+          "so it needs three hybrid orbitals.",
+          "One 2s orbital and two 2p orbitals mix",
+          "to give three sp² orbitals."
+        ],
+        "why": "Each carbon in graphite has only three bonded neighbours, so only three hybrid orbitals are needed. One s orbital and two p orbitals give those three, which is sp², and one 2p orbital is left unhybridised.",
+        "common_mistakes": [
+          "Answering sp³ for graphite. That is the hybridisation in diamond, where each carbon is joined to four others.",
+          "Writing that all four valence electrons of carbon are used in sigma bonds. Only three are; the fourth is left in the unhybridised p orbital."
+        ],
+        "memory_tip": "Three bonded carbon atoms means three orbitals, so sp².",
+        "margin_note": "Answer sp² and say each carbon is joined to only three other carbon atoms."
+      },
+      {
+        "id": "s2_sheets",
+        "kind": "text",
+        "label": "The sheets and the fourth electron",
+        "marks": 1,
+        "mark_note": "Sheets and fourth electron",
+        "lines": [
+          "The three sp² orbitals lie in one plane",
+          "at 120° to one another, so the carbon",
+          "atoms build flat sheets of hexagonal",
+          "rings.",
+          "The fourth valence electron of each",
+          "carbon stays in the unhybridised p",
+          "orbital and is delocalised over the",
+          "whole sheet.",
+          {
+            "text": "Carbon in graphite is sp² hybridised",
+            "style": "boxed"
+          }
+        ],
+        "why": "Three sp² orbitals at 120° fill a plane with six-membered rings, which is why graphite is built of flat sheets. The p orbital left over on every carbon holds one electron, and those electrons spread over the sheet instead of staying between two atoms.",
+        "common_mistakes": [
+          "Saying the sheets are puckered. Three sp² orbitals lie in one plane, so each sheet is flat.",
+          "Using the fourth electron to make a fourth sigma bond. Each carbon makes three sigma bonds only; the fourth electron is delocalised."
+        ],
+        "memory_tip": "Three neighbours means sp², a flat sheet and 120° angles.",
+        "margin_note": "Say what happens to the fourth electron; the hybridisation alone is not the whole answer."
+      }
+    ]
+  },
+  "insider_note": "The answer itself is sp², so a complete answer says each carbon is joined to only three others in flat hexagonal sheets and that the fourth electron is left delocalised over the sheet."
+}

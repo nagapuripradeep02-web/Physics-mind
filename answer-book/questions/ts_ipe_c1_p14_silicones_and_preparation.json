@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_silicones_and_preparation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What are silicones? How are they obtained?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What silicones are",
+      "marks": 1
+    },
+    {
+      "label": "The starting chlorosilanes",
+      "marks": 1
+    },
+    {
+      "label": "Hydrolysis of the dimethyl compound",
+      "marks": 1
+    },
+    {
+      "label": "Condensation polymerisation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.108, chapter 9 p-BLOCK ELEMENTS GROUP 14, SHORT ANSWER QUESTIONS question 37. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. TEMPERATURE RECORD: the source prints three different temperatures for the methyl chloride and silicon reaction in this one chapter. Every silicone card in this answer book prints NCERT's value, 573 K, and prints no other figure for it. PRODUCT LIST CORRECTED: the source names the products of the direct process as mono, di, tri and tetra methyl chlorosilanes. Read as formulae that makes the fourth (CH₃)₄SiCl, which is five bonds on a tetravalent silicon atom. The fourth product is tetramethylsilane (CH₃)₄Si, which carries no chlorine and is therefore not a chlorosilane, so this card names the three methyl chlorosilanes CH₃SiCl₃, (CH₃)₂SiCl₂ and (CH₃)₃SiCl and then names (CH₃)₄Si separately. NCERT gives the same four products. EQUATION CHECKS: (CH₃)₂SiCl₂ + 2H₂O → (CH₃)₂Si(OH)₂ + 2HCl balances — C 2 = 2, H 10 = 10, O 2 = 2, Si 1 = 1, Cl 2 = 2. The polymerisation n(CH₃)₂Si(OH)₂ → [(CH₃)₂SiO]ₙ + nH₂O balances — C 2n = 2n, H 8n = 6n + 2n, O 2n = n + n, Si n = n. CONSISTENCY RECORD: this chapter asks what silicones are three times — at two marks, at four marks here, and at eight marks. All three state the same chemistry: synthetic organosilicon polymers, repeating unit R₂SiO, silicon atoms joined through oxygen as Si–O–Si, R an alkyl or an aryl group. This four-mark card ADDS the starting chlorosilanes RₙSiCl₍₄₋ₙ₎ and the three-step route to the polymer. The Grignard route, a drawn example and the uses are carried by the eight-mark card and are deliberately not here."
+  },
+  "insider_note": "The question has two halves and the answer needs both. A definition with no preparation, or three equations with no statement of what a silicone is, has answered half the question.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 14 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "What silicones are",
+        "marks": 1,
+        "mark_note": "Definition and repeating unit",
+        "lines": [
+          "Silicones are synthetic organosilicon",
+          "polymers whose repeating unit is:",
+          {
+            "text": "R₂SiO",
+            "style": "eq"
+          },
+          "R is an alkyl or an aryl group.",
+          "Neighbouring silicon atoms are joined",
+          "through oxygen, so the chain of the",
+          "polymer is a run of Si–O–Si linkages."
+        ],
+        "why": "The name has to be pinned to a structure before any preparation makes sense. A silicone is a polymer whose chain is silicon and oxygen and whose side groups are organic, and every step of the preparation is aimed at building exactly that.",
+        "common_mistakes": [
+          "Calling a silicone a silicate. A silicate is a metal derivative of silicic acid; a silicone carries organic R groups on the silicon.",
+          "Writing the repeating unit as RSiO₂. It is R₂SiO, with two organic groups on each silicon atom."
+        ],
+        "memory_tip": "R₂SiO repeated many times, with Si–O–Si running through the middle of it.",
+        "margin_note": "Write the repeating unit R₂SiO on its own line before starting on the preparation."
+      },
+      {
+        "id": "s2_starting_materials",
+        "kind": "equation",
+        "label": "The starting chlorosilanes",
+        "marks": 1,
+        "mark_note": "Starting materials and how they are made",
+        "lines": [
+          "The starting materials are alkyl or aryl",
+          "substituted chlorosilanes, RₙSiCl₍₄₋ₙ₎.",
+          "They are made by passing methyl chloride",
+          "vapour over heated silicon, with copper",
+          "powder as the catalyst, at 573 K:",
+          {
+            "text": "2CH₃Cl + Si → (CH₃)₂SiCl₂",
+            "style": "eq"
+          },
+          "A mixture of methyl chlorosilanes is",
+          "formed — CH₃SiCl₃, (CH₃)₂SiCl₂ and",
+          "(CH₃)₃SiCl — together with a small",
+          "amount of tetramethylsilane (CH₃)₄Si.",
+          "(CH₃)₂SiCl₂ is the main one."
+        ],
+        "why": "Silicones are built from chlorosilanes because a chlorine atom on silicon is replaced by an OH group when water is added, and the OH groups are what join one silicon atom to the next. A compound with no chlorine on the silicon gives no chain.",
+        "common_mistakes": [
+          "Leaving the copper and the temperature off the arrow. Both conditions are part of the equation.",
+          "Naming SiCl₄ as the starting material for the silicone. SiCl₄ carries no organic group; the starting material is RₙSiCl₍₄₋ₙ₎."
+        ],
+        "memory_tip": "Methyl chloride over hot silicon with copper at 573 K gives the chlorosilanes.",
+        "margin_note": "Write the general formula RₙSiCl₍₄₋ₙ₎ first, then the equation that makes it."
+      },
+      {
+        "id": "s3_hydrolysis",
+        "kind": "equation",
+        "label": "Hydrolysis of the dimethyl compound",
+        "marks": 1,
+        "mark_note": "The hydrolysis equation",
+        "lines": [
+          "The dimethyl compound is hydrolysed. Each",
+          "chlorine atom on the silicon atom is",
+          "replaced by an OH group:",
+          {
+            "text": "(CH₃)₂SiCl₂ + 2H₂O → (CH₃)₂Si(OH)₂ + 2HCl",
+            "style": "eq"
+          },
+          "The product (CH₃)₂Si(OH)₂ is a diol: two",
+          "OH groups on one silicon atom."
+        ],
+        "why": "Hydrolysis is what turns the chlorosilane into something that can polymerise. Two chlorine atoms on a silicon atom cannot join it to another silicon atom, but two OH groups can, by losing water between them.",
+        "common_mistakes": [
+          "Using one molecule of water. Two chlorine atoms are replaced, so two molecules of water are needed.",
+          "Writing the products as H₂ and Cl₂. The chlorine leaves as hydrogen chloride, HCl."
+        ],
+        "memory_tip": "Two chlorine atoms out, two OH groups in, two molecules of HCl away.",
+        "margin_note": "Both the equation and the word diol belong in this step."
+      },
+      {
+        "id": "s4_condensation",
+        "kind": "boxed_final",
+        "label": "Condensation polymerisation",
+        "marks": 1,
+        "mark_note": "The polymer",
+        "lines": [
+          "The diol molecules then polymerise by",
+          "condensation. An OH group on one silicon",
+          "atom and an OH group on the next lose",
+          "one molecule of water, and a Si–O–Si",
+          "linkage is left in its place.",
+          "Repeating this joins the silicon atoms",
+          "into a long straight chain:",
+          {
+            "text": "n(CH₃)₂Si(OH)₂ → [(CH₃)₂SiO]ₙ + nH₂O",
+            "style": "boxed"
+          }
+        ],
+        "why": "This is where the polymer appears. Each condensation adds one more silicon atom to the chain and releases one molecule of water, and the unit left behind, (CH₃)₂SiO, is the R₂SiO written down in the definition at the start.",
+        "common_mistakes": [
+          "Stopping at the diol. The diol is not the silicone; the silicone is the polymer left after condensation.",
+          "Writing the repeating unit as (CH₃)₂Si(OH)₂. The OH groups are lost as water, so the unit in the chain is (CH₃)₂SiO."
+        ],
+        "memory_tip": "Chlorosilane, then diol, then chain. Water leaves at the last step.",
+        "margin_note": "Close with the polymerisation equation. It is what shows the R₂SiO unit named at the start."
+      }
+    ]
+  }
+}

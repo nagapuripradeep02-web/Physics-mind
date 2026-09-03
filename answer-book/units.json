@@ -5880,8 +5880,540 @@
           "section": "VSAQ",
           "number": 1,
           "stars": 0,
-          "text": "p-Block Elements, Group 14 — questions coming",
-          "source": "syllabus_2026_27"
+          "text": "What is the state of hybridisation of carbon in CO₃²⁻?",
+          "question_id": "ts_ipe_c1_p14_co3_carbon_hybridisation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "What is the state of hybridisation of carbon in diamond?",
+          "question_id": "ts_ipe_c1_p14_diamond_carbon_hybridisation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "What is the state of hybridisation of carbon in graphite?",
+          "question_id": "ts_ipe_c1_p14_graphite_carbon_hybridisation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What is the state of hybridisation of carbon in fullerene?",
+          "question_id": "ts_ipe_c1_p14_fullerene_carbon_hybridisation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Suggest a reason why CO is poisonous.",
+          "question_id": "ts_ipe_c1_p14_co_is_poisonous",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "What is allotropy? Give the crystalline allotropes of carbon.",
+          "question_id": "ts_ipe_c1_p14_allotropy_and_crystalline_allotropes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Classify the oxide CO as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_co",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Classify the oxide B₂O₃ as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_b2o3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Classify the oxide SiO₂ as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_sio2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Classify the oxide CO₂ as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_co2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Classify the oxide Al₂O₃ as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_al2o3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Classify the oxide PbO₂ as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_pbo2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Classify the oxide Tl₂O₃ as neutral, acidic, basic or amphoteric.",
+          "question_id": "ts_ipe_c1_p14_oxide_class_tl2o3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Name any two man-made silicates.",
+          "question_id": "ts_ipe_c1_p14_man_made_silicates",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "Write the outer electron configuration of the group-14 elements.",
+          "question_id": "ts_ipe_c1_p14_group14_outer_configuration",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "How does graphite function as a lubricant?",
+          "question_id": "ts_ipe_c1_p14_graphite_as_lubricant",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Graphite is a good conductor. Explain.",
+          "question_id": "ts_ipe_c1_p14_graphite_good_conductor",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "What is 'synthesis gas'?",
+          "question_id": "ts_ipe_c1_p14_synthesis_gas",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "What is 'producer gas'?",
+          "question_id": "ts_ipe_c1_p14_producer_gas",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Diamond has a high melting point. Explain.",
+          "question_id": "ts_ipe_c1_p14_diamond_high_melting_point",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Give the use of CO₂ in photosynthesis.",
+          "question_id": "ts_ipe_c1_p14_co2_in_photosynthesis",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "How is an excessive amount of CO₂ responsible for global warming?",
+          "question_id": "ts_ipe_c1_p14_co2_and_global_warming",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "What are silicones?",
+          "question_id": "ts_ipe_c1_p14_what_are_silicones",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Give the uses of silicones.",
+          "question_id": "ts_ipe_c1_p14_silicones_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "What is the effect of water on tin?",
+          "question_id": "ts_ipe_c1_p14_effect_of_water_on_tin",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq26",
+          "section": "VSAQ",
+          "number": 26,
+          "stars": 0,
+          "text": "Write an account of SiCl₄.",
+          "question_id": "ts_ipe_c1_p14_sicl4_account",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq27",
+          "section": "VSAQ",
+          "number": 27,
+          "stars": 0,
+          "text": "SiO₂ is a solid while CO₂ is a gas. Explain.",
+          "question_id": "ts_ipe_c1_p14_sio2_solid_co2_gas",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq28",
+          "section": "VSAQ",
+          "number": 28,
+          "stars": 0,
+          "text": "Write the use of ZSM-5.",
+          "question_id": "ts_ipe_c1_p14_zsm5_use",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq29",
+          "section": "VSAQ",
+          "number": 29,
+          "stars": 0,
+          "text": "What is the use of dry ice?",
+          "question_id": "ts_ipe_c1_p14_dry_ice_use",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq30",
+          "section": "VSAQ",
+          "number": 30,
+          "stars": 0,
+          "text": "How is water gas prepared?",
+          "question_id": "ts_ipe_c1_p14_water_gas_preparation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq31",
+          "section": "VSAQ",
+          "number": 31,
+          "stars": 0,
+          "text": "How is producer gas prepared?",
+          "question_id": "ts_ipe_c1_p14_producer_gas_preparation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq32",
+          "section": "VSAQ",
+          "number": 32,
+          "stars": 0,
+          "text": "The C–C bond length in graphite is shorter than the C–C bond length in diamond. Explain.",
+          "question_id": "ts_ipe_c1_p14_graphite_diamond_bond_length",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq33",
+          "section": "VSAQ",
+          "number": 33,
+          "stars": 0,
+          "text": "Diamond is used as a precious stone. Explain.",
+          "question_id": "ts_ipe_c1_p14_diamond_as_precious_stone",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq34",
+          "section": "VSAQ",
+          "number": 34,
+          "stars": 0,
+          "text": "Producer gas is a less efficient fuel than water gas. Explain.",
+          "question_id": "ts_ipe_c1_p14_producer_gas_less_efficient",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq35",
+          "section": "VSAQ",
+          "number": 35,
+          "stars": 0,
+          "text": "Why is diamond hard?",
+          "question_id": "ts_ipe_c1_p14_diamond_is_hard",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq36",
+          "section": "VSAQ",
+          "number": 36,
+          "stars": 0,
+          "text": "Define catenation.",
+          "question_id": "ts_ipe_c1_p14_catenation_definition",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq37",
+          "section": "VSAQ",
+          "number": 37,
+          "stars": 0,
+          "text": "What is allotropy?",
+          "question_id": "ts_ipe_c1_p14_allotropy_definition",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq38",
+          "section": "VSAQ",
+          "number": 38,
+          "stars": 0,
+          "text": "Graphite is an electric conductor whereas diamond is not. Why?",
+          "question_id": "ts_ipe_c1_p14_graphite_conducts_diamond_not",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq39",
+          "section": "VSAQ",
+          "number": 39,
+          "stars": 0,
+          "text": "How many five-membered and six-membered rings are present in fullerene?",
+          "question_id": "ts_ipe_c1_p14_fullerene_ring_count",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Explain the difference in the properties of diamond and graphite on the basis of their structure.",
+          "question_id": "ts_ipe_c1_p14_diamond_graphite_differences",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Explain what happens when silicon is heated with methyl chloride at high temperature in the presence of copper.",
+          "question_id": "ts_ipe_c1_p14_silicon_with_methyl_chloride",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain what happens when SiO₂ is treated with HF.",
+          "question_id": "ts_ipe_c1_p14_sio2_with_hf",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Explain why graphite is a lubricant.",
+          "question_id": "ts_ipe_c1_p14_graphite_lubricant_explained",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Explain why diamond is an abrasive.",
+          "question_id": "ts_ipe_c1_p14_diamond_as_abrasive",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "What do you understand by allotropy?",
+          "question_id": "ts_ipe_c1_p14_allotropy_meaning",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "What do you understand by the inert pair effect?",
+          "question_id": "ts_ipe_c1_p14_inert_pair_effect_meaning",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What do you understand by catenation?",
+          "question_id": "ts_ipe_c1_p14_catenation_meaning",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "If the starting material for the manufacture of a silicone is RSiCl₃, write the structure of the product formed.",
+          "question_id": "ts_ipe_c1_p14_rsicl3_silicone_product",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Write a short note on zeolites.",
+          "question_id": "ts_ipe_c1_p14_zeolites_note",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Write a short note on silicates.",
+          "question_id": "ts_ipe_c1_p14_silicates_note",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "What are silicones? How are they obtained?",
+          "question_id": "ts_ipe_c1_p14_silicones_and_preparation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Why does a Na₂CO₃ solution turn into a suspension when it is saturated with CO₂ gas?",
+          "question_id": "ts_ipe_c1_p14_sodium_carbonate_with_co2",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Write a note on the anomalous behaviour of carbon in group 14.",
+          "question_id": "ts_ipe_c1_p14_carbon_anomalous_behaviour",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "What are silicones? How are they prepared? Give one example. What are their uses?",
+          "question_id": "ts_ipe_c1_p14_silicones_full_account",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Explain the structure of silica, and describe how silica reacts with NaOH.",
+          "question_id": "ts_ipe_c1_p14_silica_structure_with_naoh",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain the structure of silica, and describe how silica reacts with HF.",
+          "question_id": "ts_ipe_c1_p14_silica_structure_with_hf",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Write on the allotropy of carbon.",
+          "question_id": "ts_ipe_c1_p14_allotropy_of_carbon",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq5",
+          "section": "LAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Write a note on silicates.",
+          "question_id": "ts_ipe_c1_p14_silicates_long_note",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq6",
+          "section": "LAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Write a note on zeolites.",
+          "question_id": "ts_ipe_c1_p14_zeolites_long_note",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq7",
+          "section": "LAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Write a note on fullerenes.",
+          "question_id": "ts_ipe_c1_p14_fullerenes_note",
+          "source": "chaitanya_fastrack"
         }
       ]
     },

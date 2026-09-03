@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_synthesis_gas",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is 'synthesis gas'?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What the mixture is",
+      "marks": 1
+    },
+    {
+      "label": "Why it is called synthesis gas",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 9. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. COMPOSITION FIGURES: the ranges CO ≈ 40–50% and H₂ ≈ 45–50% are typical values for water gas, not a figure printed by this book for this question, which is why they are written with ≈. A Telangana IPE teacher should confirm the ranges the board expects."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_what_the_mixture_is",
+        "kind": "text",
+        "label": "What the mixture is",
+        "marks": 1,
+        "mark_note": "The composition",
+        "lines": [
+          "Synthesis gas is a mixture of carbon",
+          "monoxide CO and hydrogen H₂.",
+          {
+            "text": "CO ≈ 40–50% · H₂ ≈ 45–50%",
+            "style": "eq"
+          },
+          "Small amounts of CO₂ and N₂ are also",
+          "present.",
+          "The same mixture is called water gas, so",
+          "synthesis gas and water gas are two",
+          "names for one gas."
+        ],
+        "why": "The answer to a 'what is' question is the composition. Carbon monoxide and hydrogen are the two gases that matter, and giving their rough percentages shows that neither one is a trace.",
+        "common_mistakes": [
+          "Naming the mixture as CO and N₂. That composition is producer gas; synthesis gas is CO and H₂.",
+          "Writing that synthesis gas and water gas are different gases. This book and NCERT both use the two names for the same mixture."
+        ],
+        "memory_tip": "Synthesis gas has hydrogen in it: CO plus H₂, and the same mixture is water gas.",
+        "margin_note": "Name both gases and add that water gas is the other name for this mixture."
+      },
+      {
+        "id": "s2_why_the_name",
+        "kind": "boxed_final",
+        "label": "Why it is called synthesis gas",
+        "marks": 1,
+        "mark_note": "The reason for the name",
+        "lines": [
+          {
+            "text": "Synthesis gas is used to make methanol",
+            "style": "boxed"
+          },
+          "The mixture is the starting material for",
+          "making methanol and other hydrocarbons.",
+          "Because it is used to synthesise these",
+          "compounds, it is named synthesis gas,",
+          "shortened in industry to syn gas."
+        ],
+        "why": "The name is not arbitrary, and saying where it comes from is what turns a memorised composition into an answer. The mixture is fed to industrial plants that build larger molecules from it, so it is the gas used for synthesis.",
+        "common_mistakes": [
+          "Writing that it is called synthesis gas because it is synthesised. It is named for what is made FROM it, such as methanol.",
+          "Giving only the composition. One closing line naming what the gas is used to make completes the answer."
+        ],
+        "memory_tip": "Synthesis gas is the gas that synthesises other things — methanol first of all.",
+        "margin_note": "Naming one product such as methanol is what shows the reason for the name."
+      }
+    ]
+  },
+  "insider_note": "Water gas and synthesis gas are two names for one mixture. What this question asks for is the composition and the reason for the name, not the preparation."
+}

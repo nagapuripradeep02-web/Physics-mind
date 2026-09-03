@@ -1,0 +1,160 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_sio2_with_hf",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain what happens when SiO₂ is treated with HF.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Silica and the other hydrogen halides",
+      "marks": 1
+    },
+    {
+      "label": "The reaction with HF",
+      "marks": 1
+    },
+    {
+      "label": "With HF in excess",
+      "marks": 1
+    },
+    {
+      "label": "What the reaction shows",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.107, chapter 9 p-BLOCK ELEMENTS GROUP 14, SHORT ANSWER QUESTIONS question 32(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. CONSISTENCY RECORD: the same two equations, SiO₂ + 4HF → SiF₄ + 2H₂O and SiF₄ + 2HF → H₂SiF₆, are used on the eight-mark question in this chapter that asks for the structure of silica together with its reaction with HF. That longer card carries the structure of silica in full; this four-mark card gives only the sentence about the network that the reaction needs."
+  },
+  "insider_note": "The point of this question is that HF is the exception: hydrochloric, hydrobromic and hydriodic acids leave silica unchanged, and only hydrogen fluoride reacts with it.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 14 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_other_acids",
+        "kind": "text",
+        "label": "Silica and the other hydrogen halides",
+        "marks": 1,
+        "mark_note": "Why HF is the exception",
+        "lines": [
+          "Silica, SiO₂, is one giant covalent",
+          "network in three dimensions, so it is",
+          "hard and unreactive.",
+          "It does not react with hydrochloric",
+          "acid, with hydrobromic acid or with",
+          "hydriodic acid.",
+          "Hydrogen fluoride is the one hydrogen",
+          "halide that does react with silica, and",
+          "that is what this question is about."
+        ],
+        "why": "The reaction is worth writing about only because it is the exception. Setting HCl, HBr and HI beside HF at the start shows that silica is unreactive to acids in general, so the reaction that follows is the special case.",
+        "common_mistakes": [
+          "Writing that silica reacts with all the hydrogen halides. It reacts with hydrogen fluoride and not with HCl, HBr or HI.",
+          "Writing that silica is unreactive to everything. It also reacts with alkalis such as sodium hydroxide."
+        ],
+        "memory_tip": "Of the four hydrogen halides only HF reacts with silica.",
+        "margin_note": "Open by naming the three acids that leave silica unchanged, then bring in HF."
+      },
+      {
+        "id": "s2_first_reaction",
+        "kind": "equation",
+        "label": "The reaction with HF",
+        "marks": 1,
+        "mark_note": "The first equation",
+        "lines": [
+          "Silica reacts with hydrogen fluoride to",
+          "give silicon tetrafluoride and water:",
+          {
+            "text": "SiO₂ + 4HF → SiF₄ + 2H₂O",
+            "style": "eq"
+          },
+          "Four molecules of HF are used for one",
+          "of SiO₂: the four fluorine atoms go to",
+          "the silicon atom, and the four hydrogen",
+          "atoms leave with the two oxygen atoms",
+          "as two molecules of water."
+        ],
+        "why": "The Si–O bonds of the network are replaced by Si–F bonds, so the network breaks down and the solid dissolves. Counting the atoms shows why four molecules of HF are needed: four fluorine atoms for the silicon and four hydrogen atoms for the two oxygen atoms.",
+        "common_mistakes": [
+          "Writing SiO₂ + 2HF → SiF₄ + H₂O. That equation does not balance; four molecules of HF are needed, and two molecules of water are formed.",
+          "Writing H₂SiF₆ as the product of this first step. H₂SiF₆ forms only in the second step, when HF is in excess."
+        ],
+        "memory_tip": "Four HF for one SiO₂: four fluorine atoms in, two molecules of water out.",
+        "margin_note": "Write the equation on its own line and check the four hydrogen atoms on each side."
+      },
+      {
+        "id": "s3_excess_hf",
+        "kind": "equation",
+        "label": "With HF in excess",
+        "marks": 1,
+        "mark_note": "The second equation",
+        "lines": [
+          "If hydrogen fluoride is present in",
+          "excess, the silicon tetrafluoride",
+          "reacts further:",
+          {
+            "text": "SiF₄ + 2HF → H₂SiF₆",
+            "style": "eq"
+          },
+          "The product H₂SiF₆ is hydrofluorosilicic",
+          "acid.",
+          "It contains the [SiF₆]²⁻ ion, in which",
+          "six fluorine atoms surround one silicon",
+          "atom."
+        ],
+        "why": "Silicon has vacant d orbitals, so it can take two more fluoride ions and reach a covalency of six. The second equation is therefore not an extra fact but the same property of silicon carried one step further.",
+        "common_mistakes": [
+          "Stopping at SiF₄. With hydrogen fluoride in excess the reaction goes on to H₂SiF₆.",
+          "Writing the acid as H₂SiF₄ or HSiF₆. It is H₂SiF₆, with six fluorine atoms and two hydrogen atoms."
+        ],
+        "memory_tip": "Two more HF turn SiF₄ into H₂SiF₆, with six fluorine atoms round the silicon.",
+        "margin_note": "Name the product in words as well as in symbols: hydrofluorosilicic acid."
+      },
+      {
+        "id": "s4_what_it_shows",
+        "kind": "boxed_final",
+        "label": "What the reaction shows",
+        "marks": 1,
+        "mark_note": "The conclusion",
+        "lines": [
+          "Silicon can expand its covalency to six",
+          "because it has vacant d orbitals;",
+          "carbon cannot go beyond four.",
+          "So silica dissolves in hydrogen",
+          "fluoride while the other hydrogen",
+          "halides leave it unchanged.",
+          "This reaction is also why hydrogen",
+          "fluoride is not kept in glass vessels.",
+          {
+            "text": "SiO₂ + 4HF → SiF₄ + 2H₂O",
+            "style": "boxed"
+          }
+        ],
+        "why": "The two equations together say more than that silica dissolves: they show silicon using four bonds first and six afterwards. The vacant d orbitals that allow the covalency of six are the same ones that make SiCl₄ hydrolyse, so one property explains both.",
+        "common_mistakes": [
+          "Closing without naming the vacant d orbitals. They are the reason silicon reaches a covalency of six.",
+          "Writing that carbon dioxide behaves in the same way with HF. Carbon has no d orbitals in its valence shell and cannot form a [CF₆]²⁻ ion."
+        ],
+        "memory_tip": "Silicon reaches six because of its vacant d orbitals; carbon stops at four.",
+        "margin_note": "Close with the first equation written out, since it is the reaction the question names."
+      }
+    ]
+  }
+}

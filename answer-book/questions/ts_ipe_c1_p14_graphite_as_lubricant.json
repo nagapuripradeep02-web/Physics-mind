@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_graphite_as_lubricant",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How does graphite function as a lubricant?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The layers and the forces",
+      "marks": 1
+    },
+    {
+      "label": "The sliding",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 7. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. This chapter asks why graphite is a lubricant twice, at two and at four marks; this is the two-mark form and it carries the sheets, the weak forces between them and the sliding, without the full structural description that the longer form has room for. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_layers",
+        "kind": "text",
+        "label": "The layers and the forces",
+        "marks": 1,
+        "mark_note": "Structure",
+        "lines": [
+          "Graphite is built of flat sheets of",
+          "carbon atoms lying one above the other.",
+          "Within a sheet the carbon atoms are",
+          "joined by strong covalent bonds.",
+          "Between one sheet and the next there",
+          "are only weak van der Waals forces."
+        ],
+        "why": "A lubricant works by putting a layer between two surfaces that moves easily under a sideways push. In graphite that easy movement happens between the sheets, so the answer has to name the sheets and the weak forces holding them together.",
+        "common_mistakes": [
+          "Writing that the bonds inside a sheet are weak. Inside a sheet the covalent bonds are strong; it is the forces between the sheets that are weak.",
+          "Naming hydrogen bonds between the layers. Graphite is pure carbon; the forces between the sheets are van der Waals forces."
+        ],
+        "memory_tip": "Strong inside a sheet, weak between the sheets.",
+        "margin_note": "Describe the sheets and name the weak forces between them before giving the reason."
+      },
+      {
+        "id": "s2_sliding",
+        "kind": "text",
+        "label": "The sliding",
+        "marks": 1,
+        "mark_note": "The sliding",
+        "lines": [
+          "Because the forces between the sheets",
+          "are weak, one sheet slides over the",
+          "next when a small sideways force is",
+          "applied.",
+          "The strong bonds inside each sheet are",
+          "not broken while this happens.",
+          "Graphite is therefore soft and greasy,",
+          "and a thin film of it between two",
+          "moving surfaces lets them slide past",
+          "each other with less friction.",
+          {
+            "text": "The layers slide, so graphite lubricates",
+            "style": "boxed"
+          }
+        ],
+        "why": "The sliding is the whole mechanism. Because only the weak forces between the sheets are overcome and the sheets themselves stay whole, a film of graphite lasts instead of wearing away quickly.",
+        "common_mistakes": [
+          "Stopping at soft and greasy without saying why. The sliding of the layers is the reason, and it has to be written.",
+          "Giving the delocalised electron as the reason. That electron explains why graphite conducts, not why it lubricates."
+        ],
+        "memory_tip": "Weak forces between layers means the layers slide, and sliding lubricates.",
+        "margin_note": "Finish with the word lubricant and say plainly what slides over what."
+      }
+    ]
+  },
+  "insider_note": "A complete answer names the weak van der Waals forces between the sheets and says the sheets slide over one another, which is what makes graphite a lubricant."
+}

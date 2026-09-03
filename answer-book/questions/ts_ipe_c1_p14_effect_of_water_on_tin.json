@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_effect_of_water_on_tin",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What is the effect of water on tin?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Cold water",
+      "marks": 1
+    },
+    {
+      "label": "Steam on heating",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.105, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 16. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The equation was atom-counted while authoring: Sn + 2H₂O → SnO₂ + 2H₂ has Sn 1, H 4 and O 2 on each side. The card answers for water in BOTH its forms — cold water has no effect, steam on heating reacts — because the question names water and not steam; the source book's answer is the steam reaction, which this card carries as the boxed line. This book prints no exam-appearance years for this chapter, so appearances[] is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_cold_water",
+        "kind": "text",
+        "label": "Cold water",
+        "marks": 1,
+        "mark_note": "Cold water",
+        "lines": [
+          "Cold water has no effect on tin.",
+          "Tin lies low in the reactivity series and",
+          "a thin oxide film covers its surface, so",
+          "the metal is left unchanged.",
+          "This is why tin is used as a protective",
+          "coating on other metals."
+        ],
+        "why": "The question names water, and water comes in two forms, so the answer has to separate them. Tin is a weakly reactive metal and its own surface oxide film separates the metal from the liquid, so nothing happens in the cold; only steam at a high temperature reacts.",
+        "common_mistakes": [
+          "Writing that tin gives hydrogen with cold water. Cold water has no effect on tin; steam is needed.",
+          "Giving Sn(OH)₂ as a product. The product with steam is the oxide SnO₂, not a hydroxide."
+        ],
+        "memory_tip": "Cold water leaves tin unchanged; only steam reacts with it.",
+        "margin_note": "Answer for cold water first and for steam after it; both belong in the answer."
+      },
+      {
+        "id": "s2_steam",
+        "kind": "boxed_final",
+        "label": "Steam on heating",
+        "marks": 1,
+        "mark_note": "Steam reaction",
+        "lines": [
+          {
+            "text": "Sn + 2H₂O → SnO₂ + 2H₂",
+            "style": "boxed"
+          },
+          "Tin decomposes steam on heating and gives",
+          "tin dioxide and hydrogen gas.",
+          "Atoms: 1 Sn, 4 H and 2 O on each side.",
+          "Tin goes to the +4 state here, which is",
+          "the stable state for tin."
+        ],
+        "why": "Steam at a high temperature reacts where cold water does not: the oxygen of each water molecule stays with the tin and the hydrogen leaves as gas. Tin ends in the +4 state because, unlike lead, tin is more stable in the higher of its two oxidation states.",
+        "common_mistakes": [
+          "Writing SnO as the product. Tin is more stable as +4, so steam gives SnO₂.",
+          "Writing Sn + H₂O → SnO₂ + H₂. Two molecules of water are needed for the equation to balance."
+        ],
+        "memory_tip": "Two waters for one SnO₂: steam plus tin gives tin dioxide and hydrogen.",
+        "margin_note": "Write the equation balanced and say that it needs heat."
+      }
+    ]
+  },
+  "insider_note": "Answer for both forms of water. The equation with steam is the line the question is asking for, and the atom count 1 Sn, 4 H, 2 O is worth a moment before you write it down."
+}

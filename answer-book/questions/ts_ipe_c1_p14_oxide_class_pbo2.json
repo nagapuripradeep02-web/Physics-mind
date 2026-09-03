@@ -1,0 +1,99 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_oxide_class_pbo2",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Classify the oxide PbO₂ as neutral, acidic, basic or amphoteric.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The classification and the alkali reaction",
+      "marks": 1
+    },
+    {
+      "label": "The reaction with an acid",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 4(f). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The book's classification of PbO₂ as amphoteric is correct and is what this card gives. THE ACID REACTION IS CONDITION-DEPENDENT and the card says so: with COLD concentrated hydrochloric acid PbO₂ + 4HCl → PbCl₄ + 2H₂O (Pb 1, O 2, H 4, Cl 4 each side), and lead(IV) chloride decomposes on warming to PbCl₂ and chlorine, which is why the hot reaction is written as PbO₂ + 4HCl → PbCl₂ + Cl₂ + 2H₂O in some books. Both are correct at their own temperature; neither is an error, and a card that printed only one without its condition would be misleading. The alkali equation PbO₂ + 2NaOH → Na₂PbO₃ + H₂O has Pb 1, Na 2, H 2, O 4 on each side. This book prints no exam-appearance years for this chapter, so appearances[] is empty."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_alkali_side",
+        "kind": "equation",
+        "label": "The classification and the alkali reaction",
+        "marks": 1,
+        "mark_note": "Classification",
+        "lines": [
+          "Lead dioxide PbO₂ is an amphoteric oxide:",
+          "it reacts with an alkali and also with an",
+          "acid.",
+          "With a fused alkali it behaves as an",
+          "acidic oxide and gives a plumbate:",
+          {
+            "text": "PbO₂ + 2NaOH → Na₂PbO₃ + H₂O",
+            "style": "eq"
+          },
+          "The salt is sodium plumbate Na₂PbO₃."
+        ],
+        "why": "Lead is the last member of group 14, and its higher oxide is amphoteric rather than acidic. That is the pattern down the group: as the element becomes more metallic, the acidic character of its oxide falls and the basic character rises, so the acidic oxides CO₂ and SiO₂ at the top of the group are matched by an amphoteric PbO₂ at the bottom.",
+        "common_mistakes": [
+          "Calling PbO₂ basic because lead is a metal. It gives a plumbate with alkali, which a purely basic oxide does not do.",
+          "Writing the plumbate ion as PbO₂²⁻. In sodium plumbate Na₂PbO₃ the ion is PbO₃²⁻."
+        ],
+        "memory_tip": "Alkali turns lead dioxide into a plumbate, so PbO₂ has an acidic side.",
+        "margin_note": "Name the class first, then give the alkali equation for the acidic half."
+      },
+      {
+        "id": "s2_acid_side",
+        "kind": "boxed_final",
+        "label": "The reaction with an acid",
+        "marks": 1,
+        "mark_note": "Acid reaction",
+        "lines": [
+          {
+            "text": "PbO₂ is an amphoteric oxide",
+            "style": "boxed"
+          },
+          "With cold concentrated hydrochloric acid",
+          "it behaves as a basic oxide:",
+          {
+            "text": "PbO₂ + 4HCl → PbCl₄ + 2H₂O",
+            "style": "eq"
+          },
+          "Lead(IV) is a strong oxidising agent, so",
+          "on warming PbCl₄ decomposes to PbCl₂ and",
+          "chlorine gas."
+        ],
+        "why": "The reaction with an acid is the basic half, and it must be written before the word amphoteric can be used. Lead is more stable as +2 than as +4 because of the inert pair effect, so the lead(IV) chloride formed in the cold does not last on warming, and that same instability is why PbO₂ is used as an oxidising agent.",
+        "common_mistakes": [
+          "Writing PbCl₂ as the direct product in the cold. The cold reaction gives PbCl₄; PbCl₂ and chlorine come from PbCl₄ on warming.",
+          "Answering only that PbO₂ is an oxidising agent. That is true, but the question asks for the class of the oxide, which is amphoteric."
+        ],
+        "memory_tip": "Alkali gives the plumbate, acid gives the chloride: PbO₂ is amphoteric.",
+        "margin_note": "Both halves are needed; the acid reaction is the one usually left out."
+      }
+    ]
+  },
+  "insider_note": "Lead dioxide is amphoteric and is also a strong oxidising agent, and the two are easy to confuse. The class asked for is amphoteric; the oxidising power explains why its lead(IV) products do not last on warming."
+}

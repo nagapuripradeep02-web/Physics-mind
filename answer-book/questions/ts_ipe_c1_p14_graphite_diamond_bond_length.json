@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_graphite_diamond_bond_length",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The C–C bond length in graphite is shorter than the C–C bond length in diamond. Explain.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two bond lengths",
+      "marks": 1
+    },
+    {
+      "label": "Why the graphite bond is shorter",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.106, chapter 9 p-BLOCK ELEMENTS GROUP 14, Very Short Answer Questions question 23. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. BOND LENGTH: the source book prints the graphite C–C distance as 141.5 pm in one place and as 1.42 Å in two others; those are the same value rounded differently, and this card prints 141.5 pm only, with 154 pm for diamond. Neither form is an error. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_values",
+        "kind": "text",
+        "label": "The two bond lengths",
+        "marks": 1,
+        "mark_note": "The values",
+        "lines": [
+          "In graphite the C–C bond length inside",
+          "a sheet is 141.5 pm.",
+          "In diamond the C–C bond length is",
+          "154 pm.",
+          {
+            "text": "graphite 141.5 pm < diamond 154 pm",
+            "style": "eq"
+          },
+          "So the bond in graphite is about 13 pm",
+          "shorter than the bond in diamond."
+        ],
+        "why": "The question states a fact and asks for the reason, so the two measured values are written down first. They also fix which bond in graphite is meant: the 141.5 pm is the distance between carbon atoms inside a sheet, not the distance between the sheets.",
+        "common_mistakes": [
+          "Quoting one bond length for carbon. The C–C distance is 141.5 pm in graphite and 154 pm in diamond.",
+          "Comparing the graphite value with the distance between graphite's sheets. The 141.5 pm is the C–C distance inside a sheet."
+        ],
+        "memory_tip": "Graphite is the shorter one: 141.5 pm against 154 pm.",
+        "margin_note": "Write both numbers with the substance named beside each."
+      },
+      {
+        "id": "s2_reason",
+        "kind": "text",
+        "label": "Why the graphite bond is shorter",
+        "marks": 1,
+        "mark_note": "Reason",
+        "lines": [
+          "In diamond each carbon is sp³ and every",
+          "C–C bond is a plain single sigma bond.",
+          "In graphite each carbon is sp², and its",
+          "fourth electron is delocalised over the",
+          "sheet, so every C–C bond inside a sheet",
+          "has partial double bond character.",
+          "A bond with double bond character is",
+          "shorter and stronger than a single bond.",
+          "An sp² orbital also has more s character",
+          "than an sp³ orbital, and greater s",
+          "character makes a bond shorter.",
+          {
+            "text": "Double bond character shortens the bond",
+            "style": "boxed"
+          }
+        ],
+        "why": "Two effects push in the same direction. The delocalised electrons add some double bond character to every C–C bond in a sheet, and an sp² orbital holds its electrons closer to the nucleus than an sp³ orbital does, so both make the graphite bond shorter than the plain single bond in diamond.",
+        "common_mistakes": [
+          "Saying the graphite bond is shorter because graphite is softer. Softness comes from the weak forces between the sheets, and has nothing to do with the bond length inside a sheet.",
+          "Writing that graphite has full double bonds. Each C–C bond in a sheet has partial double bond character, because the fourth electron is delocalised over the whole sheet."
+        ],
+        "memory_tip": "Partial double bond character means a shorter bond.",
+        "margin_note": "The delocalised fourth electron is the reason; write it in words, not only as sp² against sp³."
+      }
+    ]
+  },
+  "insider_note": "A complete answer gives both numbers, 141.5 pm for graphite and 154 pm for diamond, and then the reason: the delocalised fourth electron gives every bond inside a graphite sheet partial double bond character."
+}

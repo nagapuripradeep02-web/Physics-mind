@@ -1,0 +1,157 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_graphite_lubricant_explained",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain why graphite is a lubricant.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The structure of graphite",
+      "marks": 1
+    },
+    {
+      "label": "The forces between the sheets",
+      "marks": 1
+    },
+    {
+      "label": "Why the sheets slide",
+      "marks": 1
+    },
+    {
+      "label": "Graphite as a lubricant",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.107, chapter 9 p-BLOCK ELEMENTS GROUP 14, Short Answer Questions question 32(c). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. This is the four-mark form of a question the chapter also asks at two marks; the extra marks here are spent on the structure that causes the sliding — the sp² sheets, the bond length and angle inside a sheet, and the contrast between the two directions — and on where a dry lubricant is used, not on restating the sliding. BOND LENGTH: the source book prints the graphite C–C distance as 141.5 pm in one place and as 1.42 Å in two others; those are the same value rounded differently, and this card prints 141.5 pm only. Neither form is an error. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 14 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_structure",
+        "kind": "text",
+        "label": "The structure of graphite",
+        "marks": 1,
+        "mark_note": "Structure",
+        "lines": [
+          "In graphite each carbon atom is sp²",
+          "hybridised and is joined to three other",
+          "carbon atoms by strong sigma bonds.",
+          "These bonds build flat sheets of",
+          "hexagonal rings.",
+          "Inside a sheet the C–C bond length is",
+          "141.5 pm and the bond angle is 120°.",
+          "The fourth valence electron of each",
+          "carbon is delocalised over the sheet."
+        ],
+        "why": "The answer has to start with the structure, because everything about the lubrication follows from it. The sp² bonding is what makes the sheets flat, and a flat sheet is the shape that can slide over another flat sheet.",
+        "common_mistakes": [
+          "Answering sp³ for graphite. Each carbon is joined to three others, so it is sp².",
+          "Describing graphite as a three-dimensional network. That is diamond; graphite is built of separate flat sheets."
+        ],
+        "memory_tip": "sp² carbon, three bonds, flat hexagonal sheets at 120°.",
+        "margin_note": "Start with the structure. A description of the sliding with no structure behind it is only half the answer."
+      },
+      {
+        "id": "s2_forces",
+        "kind": "text",
+        "label": "The forces between the sheets",
+        "marks": 1,
+        "mark_note": "Weak forces",
+        "lines": [
+          "The sheets are stacked one above",
+          "another.",
+          "Nothing joins one sheet to the next",
+          "except weak van der Waals forces, and",
+          "the sheets lie much further apart than",
+          "the carbon atoms within a sheet.",
+          "So the crystal is strongly bonded in",
+          "two directions and only weakly held in",
+          "the third."
+        ],
+        "why": "This contrast between the two directions is the main point. A crystal that is strong along its sheets and weak across them can be pulled apart in one direction only, and that single weak direction is what a lubricant needs.",
+        "common_mistakes": [
+          "Writing that the sheets are covalently bonded to each other. If they were, graphite could not slide and would not be soft.",
+          "Saying the layers are held by metallic bonds. Graphite is a non-metal; the forces between the sheets are van der Waals forces."
+        ],
+        "memory_tip": "Strong in two directions, weak in the third.",
+        "margin_note": "Say in words that the two directions are different; that contrast is the argument."
+      },
+      {
+        "id": "s3_sliding",
+        "kind": "text",
+        "label": "Why the sheets slide",
+        "marks": 1,
+        "mark_note": "The sliding",
+        "lines": [
+          "A small sideways force is enough to",
+          "overcome the weak forces between the",
+          "sheets, so one sheet slides over the",
+          "next.",
+          "The strong sigma bonds inside each",
+          "sheet are not broken while this",
+          "happens, so the sheets stay whole.",
+          "Graphite is therefore soft and greasy",
+          "to the touch, and it marks paper, which",
+          "is why it is used in pencil leads."
+        ],
+        "why": "Two facts have to sit side by side here: the sheets move, and the sheets stay whole. If the sheets broke as well, graphite would crumble away instead of lasting as a lubricating film.",
+        "common_mistakes": [
+          "Writing that the covalent bonds break when graphite is used. Only the weak forces between the sheets are overcome.",
+          "Saying graphite is soft because it has a low melting point. Its melting point is high; the softness comes from the sliding sheets."
+        ],
+        "memory_tip": "The sheets move but do not break.",
+        "margin_note": "State both halves: the sheets slide, and the bonds inside them hold."
+      },
+      {
+        "id": "s4_lubricant",
+        "kind": "boxed_final",
+        "label": "Graphite as a lubricant",
+        "marks": 1,
+        "mark_note": "The use",
+        "lines": [
+          {
+            "text": "Sliding sheets make graphite a lubricant",
+            "style": "boxed"
+          },
+          "Powdered graphite spread between two",
+          "moving metal surfaces forms thin sheets",
+          "that slide over one another, so the",
+          "metal surfaces move with less friction",
+          "and wear away more slowly.",
+          "Graphite is a dry lubricant, so it can",
+          "be used at temperatures at which an oil",
+          "would decompose, and in machinery where",
+          "an oil film would collect dust."
+        ],
+        "why": "A reason has to end in the thing it explains. Naming the two places a dry lubricant is chosen — high temperature and dusty machinery — turns the structural argument into an answer about lubrication.",
+        "common_mistakes": [
+          "Describing the structure and never using the word lubricant. The question asks for the use, so the answer has to reach it.",
+          "Writing that graphite lubricates because it is a good conductor. Conduction and lubrication come from two different parts of the structure."
+        ],
+        "memory_tip": "A dry lubricant works where oil would burn away or trap dust.",
+        "margin_note": "One closing line naming the use completes the answer."
+      }
+    ]
+  },
+  "insider_note": "A complete answer works downwards from the structure: flat sp² sheets, weak van der Waals forces between them, sheets sliding under a small force, and only then the word lubricant with a place it is used."
+}

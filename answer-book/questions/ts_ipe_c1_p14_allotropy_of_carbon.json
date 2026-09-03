@@ -1,0 +1,296 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_allotropy_of_carbon",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 15,
+  "question_text": "Write on the allotropy of carbon.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Allotropy and the forms of carbon",
+      "marks": 1
+    },
+    {
+      "label": "Diamond — structure",
+      "marks": 1
+    },
+    {
+      "label": "Diamond — properties and uses",
+      "marks": 1
+    },
+    {
+      "label": "Graphite — structure",
+      "marks": 1
+    },
+    {
+      "label": "Graphite — properties and uses",
+      "marks": 1
+    },
+    {
+      "label": "Fullerene",
+      "marks": 2
+    },
+    {
+      "label": "Relative stability",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.110, chapter 9 p-BLOCK ELEMENTS GROUP 14, Long Answer Questions question 43. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. The book prints no exam-appearance years for this question, so appearances[] is empty. THE CRYSTALLINE FORMS: the book names diamond and graphite as the crystalline allotropes and calls fullerene the third form of carbon; NCERT counts diamond, graphite and the fullerenes as crystalline, so this card treats all three. The two-item answer is not an error. BOND LENGTH: the source book prints the graphite C–C distance as 141.5 pm in one place and as 1.42 Å in two others; those are the same value rounded differently, and this card prints 141.5 pm only. Neither form is an error. SPELLING CORRECTED: the source prints 'Diamond dyes are used for drawing thin wires'; the word is 'dies' — a die is the tool a wire is drawn through — so this card writes 'diamond dies'. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "p-Block Elements: Group 14 · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_allotropy",
+        "kind": "text",
+        "label": "Allotropy and the forms of carbon",
+        "marks": 1,
+        "mark_note": "Allotropy and the forms",
+        "lines": [
+          "Allotropy is the existence of an element",
+          "in two or more forms in the same",
+          "physical state, differing in physical",
+          "properties but having the same chemical",
+          "properties. The forms are allotropes.",
+          "Carbon shows allotropy.",
+          "Crystalline forms: diamond and graphite,",
+          "and the fullerenes such as C₆₀, which",
+          "are also counted as crystalline.",
+          "Amorphous forms: coal, coke, animal",
+          "charcoal, lamp black and gas carbon."
+        ],
+        "why": "A long answer needs a plan on the page before the detail starts. Defining allotropy and then splitting carbon's forms into crystalline and amorphous tells the reader what the rest of the answer is going to cover and in what order.",
+        "common_mistakes": [
+          "Starting straight at diamond. The word allotropy has to be defined, because that is what the question is about.",
+          "Putting coal or coke among the crystalline forms. Those are the amorphous forms of carbon."
+        ],
+        "memory_tip": "Crystalline: diamond, graphite, fullerene. Amorphous: coal, coke, charcoal, lamp black, gas carbon.",
+        "margin_note": "Write the definition and the two lists first; they are the plan for the whole page."
+      },
+      {
+        "id": "s2_diamond_structure",
+        "kind": "text",
+        "label": "Diamond — structure",
+        "marks": 1,
+        "mark_note": "Diamond structure",
+        "lines": [
+          "In diamond each carbon atom is sp³",
+          "hybridised and is bonded to four other",
+          "carbon atoms.",
+          "The four bonds point to the corners of",
+          "a regular tetrahedron.",
+          {
+            "text": "C–C bond length = 154 pm",
+            "style": "eq"
+          },
+          {
+            "text": "C–C–C bond angle = 109°28′",
+            "style": "eq"
+          },
+          {
+            "text": "C–C bond energy = 348 kJ mol⁻¹",
+            "style": "eq"
+          },
+          "The pattern repeats in all three",
+          "directions, so the whole crystal is one",
+          "giant covalent network."
+        ],
+        "why": "Every property of diamond in the next step is read off these lines: four bonds per carbon, fixed directions, and a network that never ends in a molecule. Writing the three numbers here means they do not have to be repeated later.",
+        "common_mistakes": [
+          "Giving the bond angle as 120°. That is graphite's angle; diamond's is 109°28′.",
+          "Calling diamond a molecular solid. There are no separate molecules; the crystal is one covalent network."
+        ],
+        "memory_tip": "Diamond: sp³, four bonds, 154 pm, 109°28′, 348 kJ mol⁻¹.",
+        "margin_note": "Put the three numbers on their own lines; they are easy to read back."
+      },
+      {
+        "id": "s3_diamond_properties",
+        "kind": "text",
+        "label": "Diamond — properties and uses",
+        "marks": 1,
+        "mark_note": "Diamond properties and uses",
+        "lines": [
+          "Diamond is the hardest known substance,",
+          "because its network is rigid in three",
+          "dimensions and has no sliding layers.",
+          "It has a very high melting point,",
+          "because melting it means breaking",
+          "covalent bonds throughout the crystal.",
+          "It is a bad conductor of electricity,",
+          "because all four valence electrons are",
+          "used in bonds and none is free.",
+          "It has a very high refractive index, so",
+          "a cut stone shines brightly and is used",
+          "as a gem.",
+          "It is used as an abrasive, for cutting",
+          "glass, in drilling bits, and in diamond",
+          "dies for drawing thin wire."
+        ],
+        "why": "Each property is written with the structural reason beside it, so the answer explains rather than lists. Hardness, melting point and the lack of conduction all come out of the same network, and the gem use is the one property that does not — it comes from the refractive index.",
+        "common_mistakes": [
+          "Writing that diamond conducts electricity. It has no free electrons, so it is a bad conductor.",
+          "Writing 'diamond dyes' for the wire-drawing use. A die is the block with a hole through which the wire is drawn, so the word is die."
+        ],
+        "memory_tip": "Hard, high melting, no conduction, high refractive index — the first three from the network, the last from the optics.",
+        "margin_note": "Give the reason beside each property; a bare list of properties does not answer the question."
+      },
+      {
+        "id": "s4_graphite_structure",
+        "kind": "text",
+        "label": "Graphite — structure",
+        "marks": 1,
+        "mark_note": "Graphite structure",
+        "lines": [
+          "In graphite each carbon atom is sp²",
+          "hybridised and is bonded to three other",
+          "carbon atoms by sigma bonds.",
+          "These bonds build flat sheets of",
+          "hexagonal rings, stacked one above",
+          "another.",
+          {
+            "text": "C–C bond length in a sheet = 141.5 pm",
+            "style": "eq"
+          },
+          {
+            "text": "C–C–C bond angle = 120°",
+            "style": "eq"
+          },
+          "The fourth valence electron of each",
+          "carbon is delocalised over the sheet.",
+          "The sheets are held together only by",
+          "weak van der Waals forces."
+        ],
+        "why": "Graphite differs from diamond in two ways only, and both are on these lines: one bond fewer per carbon, which leaves a delocalised electron, and weak forces between the sheets instead of a network in the third direction.",
+        "common_mistakes": [
+          "Writing that the sheets are joined to each other by covalent bonds. Only weak van der Waals forces act between the sheets.",
+          "Answering sp³ for graphite. Each carbon is bonded to three others, so it is sp²."
+        ],
+        "memory_tip": "Graphite: sp², three bonds, 141.5 pm, 120°, one delocalised electron.",
+        "margin_note": "Name the delocalised electron and the weak forces; the next step is built on both."
+      },
+      {
+        "id": "s5_graphite_properties",
+        "kind": "text",
+        "label": "Graphite — properties and uses",
+        "marks": 1,
+        "mark_note": "Graphite properties and uses",
+        "lines": [
+          "Graphite is soft and greasy, because a",
+          "small sideways force overcomes the weak",
+          "forces and one sheet slides over the",
+          "next.",
+          "It conducts electricity, because the",
+          "delocalised electrons move along the",
+          "sheets.",
+          "It has a high melting point, because",
+          "the bonds inside the sheets are strong",
+          "covalent bonds.",
+          "It is used as a lubricant and in pencil",
+          "leads.",
+          "It is also used for crucibles that must",
+          "stand great heat, for electrodes, in",
+          "electroplating, and as a moderator in",
+          "nuclear reactors."
+        ],
+        "why": "The two headline properties of graphite come from two different parts of its structure, and they must not be swapped: the sliding sheets make it a lubricant, and the delocalised electron makes it a conductor. The high melting point is added because it shows the sheets themselves are strongly bonded.",
+        "common_mistakes": [
+          "Giving the sliding layers as the reason for the conduction. The layers explain the lubricant property; the delocalised electron explains the conduction.",
+          "Writing that graphite has a low melting point because it is soft. Its melting point is high; the softness comes from the sliding sheets."
+        ],
+        "memory_tip": "Sheets slide, so it lubricates. Electrons move, so it conducts.",
+        "margin_note": "Keep the two reasons apart; swapping them is easy to do."
+      },
+      {
+        "id": "s6_fullerene",
+        "kind": "text",
+        "label": "Fullerene",
+        "marks": 2,
+        "mark_note": "Fullerene",
+        "lines": [
+          "The fullerenes are the third crystalline",
+          "form of carbon. The best known is C₆₀,",
+          "called buckminsterfullerene or a bucky",
+          "ball.",
+          "C₆₀ is a closed cage built of twenty",
+          "six-membered rings and twelve",
+          "five-membered rings.",
+          "A six-membered ring may share an edge",
+          "with either a six-membered or a",
+          "five-membered ring, but a five-membered",
+          "ring shares its edges only with",
+          "six-membered rings.",
+          "The cage has 60 vertices, with one",
+          "carbon atom at each vertex.",
+          "Each carbon is sp² hybridised and makes",
+          "three sigma bonds; its fourth electron",
+          "is delocalised, so C₆₀ has aromatic",
+          "character.",
+          "There are two C–C distances in C₆₀:",
+          {
+            "text": "143.5 pm and 138.3 pm",
+            "style": "eq"
+          },
+          "It is made by heating graphite strongly",
+          "in an electric arc under helium or",
+          "argon."
+        ],
+        "why": "Fullerene carries two marks here because it needs a shape, a ring count, a bonding description and a preparation. The ring rule is the part easiest to forget, and it is what makes the cage close: a sheet of six-membered rings alone stays flat, as it does in graphite.",
+        "common_mistakes": [
+          "Swapping the ring counts. There are twenty six-membered rings and twelve five-membered rings.",
+          "Writing that two five-membered rings share an edge. A five-membered ring shares its edges only with six-membered rings.",
+          "Giving one C–C distance for C₆₀. There are two, 143.5 pm and 138.3 pm."
+        ],
+        "memory_tip": "Twenty six-membered rings, twelve five-membered rings, sixty vertices, sixty carbon atoms.",
+        "margin_note": "Give the ring counts and the rule about which rings may share an edge; both are part of the structure."
+      },
+      {
+        "id": "s7_stability",
+        "kind": "boxed_final",
+        "label": "Relative stability",
+        "marks": 1,
+        "mark_note": "Stability",
+        "lines": [
+          {
+            "text": "Graphite is more stable than diamond",
+            "style": "boxed"
+          },
+          "Graphite is thermodynamically more",
+          "stable than diamond, even though",
+          "diamond is the harder of the two.",
+          "Heated to 1800–2000 °C in a vacuum,",
+          "diamond changes into graphite.",
+          "All of these forms are the same",
+          "element, carbon. Only the way the atoms",
+          "are joined is different, which is what",
+          "allotropy means."
+        ],
+        "why": "Hardness and stability are two different things, and a student who assumes the hardest form must be the most stable has the relationship backwards. Closing with the definition again ties the three structures back to the one word the question asked about.",
+        "common_mistakes": [
+          "Writing that diamond is the more stable form because it is harder. Graphite is thermodynamically the more stable of the two.",
+          "Saying diamond changes into graphite on ordinary heating. The change needs 1800–2000 °C in a vacuum."
+        ],
+        "memory_tip": "The harder form is not the more stable one: graphite is.",
+        "margin_note": "One closing line naming the stability and the element completes the answer."
+      }
+    ]
+  },
+  "insider_note": "This is a survey question, so a complete answer covers all three crystalline forms — diamond, graphite and fullerene — with the structure of each and the properties that follow from it."
+}

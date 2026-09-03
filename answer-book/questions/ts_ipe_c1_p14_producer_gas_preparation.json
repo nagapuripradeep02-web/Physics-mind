@@ -1,0 +1,96 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_producer_gas_preparation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "How is producer gas prepared?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The method and the conditions",
+      "marks": 1
+    },
+    {
+      "label": "The balanced equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.106, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 22. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_method_and_conditions",
+        "kind": "text",
+        "label": "The method and the conditions",
+        "marks": 1,
+        "mark_note": "Method and conditions",
+        "lines": [
+          "Air is passed over white-hot coke, that",
+          "is over carbon heated until it glows.",
+          "The temperature is kept at about 1273 K.",
+          "The oxygen of the air reacts with the",
+          "carbon and gives carbon monoxide.",
+          "The nitrogen of the air does not react.",
+          "It passes through with the CO, so the",
+          "gas collected is a mixture of CO and N₂."
+        ],
+        "why": "Air, not pure oxygen, is what makes this gas what it is. Air contains about four parts of nitrogen for every one part of oxygen, and since the nitrogen does not react it stays in the product and dilutes it.",
+        "common_mistakes": [
+          "Writing that steam is passed over the coke. Steam gives water gas; air is what gives producer gas.",
+          "Writing that the nitrogen reacts with the carbon. Nitrogen passes through unchanged at this temperature."
+        ],
+        "memory_tip": "Air over hot coke: the oxygen becomes carbon monoxide and the nitrogen passes through with it.",
+        "margin_note": "Name air and white-hot coke, and say clearly that the nitrogen does not react."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "The balanced equation",
+        "marks": 1,
+        "mark_note": "Equation",
+        "lines": [
+          {
+            "text": "2C(s) + O₂(g) + 4N₂(g) → 2CO(g) + 4N₂(g)",
+            "style": "boxed"
+          },
+          "At about 1273 K.",
+          "Atoms: 2 C, 2 O and 8 N on each side.",
+          "The 4N₂ is written on both sides because",
+          "air contains about four parts of",
+          "nitrogen to one part of oxygen, and the",
+          "nitrogen comes through unchanged.",
+          "The mixture of CO and N₂ collected is",
+          "producer gas."
+        ],
+        "why": "Two carbon atoms are needed for one oxygen molecule, because one oxygen atom combines with each carbon atom to give carbon monoxide. The nitrogen is written on both sides to show the composition of the air and of the gas produced.",
+        "common_mistakes": [
+          "Writing CO₂ as the product. Only one oxygen atom combines with each carbon atom here, so the product is carbon monoxide.",
+          "Leaving the nitrogen out of the equation. Writing it on both sides is what shows why producer gas contains so much nitrogen."
+        ],
+        "memory_tip": "Two carbons for one oxygen molecule, and the four nitrogen molecules of the air pass through unchanged, so they appear on both sides.",
+        "margin_note": "Count the atoms on both sides. The nitrogen is unchanged, so the same 4N₂ appears left and right."
+      }
+    ]
+  },
+  "insider_note": "The whole difference from water gas is one word: air instead of steam. Writing the nitrogen on both sides of the equation is what explains the composition of producer gas and why it burns poorly."
+}

@@ -1,0 +1,97 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p14_man_made_silicates",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 9,
+    "name": "p-Block Elements: Group 14 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 14",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Name any two man-made silicates.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The two names",
+      "marks": 1
+    },
+    {
+      "label": "Man-made against natural",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, IPE STUDY MATERIAL for Jr. Students — Chemistry (2026-27 edition), book p.104, chapter 9 p-BLOCK ELEMENTS GROUP 14, VERY SHORT ANSWER QUESTIONS question 5. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this question, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for it. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "insider_note": "Glass and cement are the two names asked for. Feldspar, mica and asbestos are silicates too, but they are mined and not made. A laboratory-made zeolite such as ZSM-5 is a man-made silicate as well.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 14 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_names",
+        "kind": "text",
+        "label": "The two names",
+        "marks": 1,
+        "mark_note": "The two names",
+        "lines": [
+          "Two man-made silicates are glass and",
+          "cement.",
+          "Silicates are the metal derivatives of",
+          "silicic acid, built from SiO₄⁴⁻",
+          "tetrahedra which may stand alone or be",
+          "joined at their corners.",
+          "Glass and cement are made in a furnace,",
+          "so they are man-made."
+        ],
+        "why": "The question asks for names only, but saying first what a silicate is shows that glass and cement belong to the class asked about. Both are built from the same SiO₄⁴⁻ tetrahedron as the natural silicates.",
+        "common_mistakes": [
+          "Naming feldspar, mica or asbestos. Those are silicates, but they are minerals taken from the ground and not man-made.",
+          "Naming silica or sand. Silica is SiO₂ itself, which is an oxide and occurs naturally."
+        ],
+        "memory_tip": "Glass and cement are the two silicates made in a furnace.",
+        "margin_note": "Write both names on one line; the question asks for two, not one."
+      },
+      {
+        "id": "s2_contrast",
+        "kind": "boxed_final",
+        "label": "Man-made against natural",
+        "marks": 1,
+        "mark_note": "The contrast",
+        "lines": [
+          "The natural silicates are minerals such",
+          "as feldspar, micas and asbestos.",
+          "Zeolites occur both ways: some are",
+          "minerals and others, such as ZSM-5, are",
+          "made in the laboratory, so a synthetic",
+          "zeolite is a man-made silicate as well.",
+          "Glass and cement are not mined; they",
+          "are manufactured, and that is what the",
+          "word man-made means here.",
+          {
+            "text": "Glass and cement are man-made silicates",
+            "style": "boxed"
+          }
+        ],
+        "why": "Naming two natural silicates beside the two man-made ones shows that the difference asked about is how they are obtained, not what they are built from. Every one of them is built from the SiO₄⁴⁻ tetrahedron.",
+        "common_mistakes": [
+          "Writing that man-made silicates have a different basic unit. The unit is the same SiO₄⁴⁻ tetrahedron in both.",
+          "Giving one name only. The question asks for two man-made silicates."
+        ],
+        "memory_tip": "Mined means natural, made in a furnace means man-made.",
+        "margin_note": "One closing line separating the mined silicates from the manufactured ones completes the answer."
+      }
+    ]
+  }
+}
