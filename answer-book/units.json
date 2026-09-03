@@ -2215,6 +2215,298 @@
           "text": "What are waterproofing agents and water wetting agents? What do they do?",
           "question_id": "ts_ipe_p1_flu_waterproofing_wetting_agents",
           "source": "ts_paper"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Define average pressure. State its SI unit and dimensional formula. Is pressure a scalar or a vector quantity?",
+          "question_id": "ts_ipe_p1_flu_average_pressure_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Define the relative density of a substance.",
+          "question_id": "ts_ipe_p1_flu_relative_density_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Write the expression for the variation of pressure with depth in a fluid.",
+          "question_id": "ts_ipe_p1_flu_pressure_variation_with_depth",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "State Archimedes' principle.",
+          "question_id": "ts_ipe_p1_flu_archimedes_principle",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Write the equation of continuity for fluid flow.",
+          "question_id": "ts_ipe_p1_flu_equation_of_continuity",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "State Bernoulli's principle.",
+          "question_id": "ts_ipe_p1_flu_bernoullis_principle",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "State the two conditions under which Bernoulli's theorem can be applied.",
+          "question_id": "ts_ipe_p1_flu_bernoulli_conditions",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Define viscosity. Give its units and dimensional formula.",
+          "question_id": "ts_ipe_p1_flu_viscosity_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Explain the effect of temperature on the viscosity of (a) liquids and (b) gases.",
+          "question_id": "ts_ipe_p1_flu_viscosity_and_temperature",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Write the expression for Stokes' law.",
+          "question_id": "ts_ipe_p1_flu_stokes_law_expression",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Define eddy flow in the case of a fluid.",
+          "question_id": "ts_ipe_p1_flu_eddy_flow_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Define the critical velocity of a fluid and give its expression.",
+          "question_id": "ts_ipe_p1_flu_critical_velocity_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "Define surface tension. Write its SI unit and dimensional formula.",
+          "question_id": "ts_ipe_p1_flu_surface_tension_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "What is the effect of temperature on surface tension?",
+          "question_id": "ts_ipe_p1_flu_surface_tension_and_temperature",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "A metal sphere of radius 1.5 cm has a mass of 0.038 kg. Find its density and its specific gravity.",
+          "question_id": "ts_ipe_p1_flu_sphere_specific_gravity_numerical",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "State Pascal's law. Mention its applications.",
+          "question_id": "ts_ipe_p1_flu_pascals_law_and_applications",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "What is gauge pressure? Describe how an open-tube manometer measures it.",
+          "question_id": "ts_ipe_p1_flu_gauge_pressure_and_manometer",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Explain the working of a hydraulic lift and hydraulic brakes.",
+          "question_id": "ts_ipe_p1_flu_hydraulic_lift_and_brakes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Distinguish between streamline flow and turbulent flow of liquids.",
+          "question_id": "ts_ipe_p1_flu_streamline_vs_turbulent_flow",
+          "cut": "saq",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Explain how Bernoulli's principle accounts for the occurrence of a heart attack in human beings.",
+          "question_id": "ts_ipe_p1_flu_bernoulli_and_heart_attack",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "What is a Venturi meter? Explain how it is used.",
+          "question_id": "ts_ipe_p1_flu_venturi_meter",
+          "cut": "saq",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "What is Reynolds number? What is its significance?",
+          "question_id": "ts_ipe_p1_flu_reynolds_number",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Explain the critical Reynolds number and discuss its significance.",
+          "question_id": "ts_ipe_p1_flu_critical_reynolds_number",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Explain Stokes' law with an application.",
+          "question_id": "ts_ipe_p1_flu_stokes_law_and_application",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Explain surface tension and surface energy.",
+          "question_id": "ts_ipe_p1_flu_surface_tension_and_surface_energy",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Discuss the role of surface tension in the removal of dirt from clothes using detergents.",
+          "question_id": "ts_ipe_p1_flu_detergent_and_surface_tension",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Explain how surface tension can be measured experimentally.",
+          "question_id": "ts_ipe_p1_flu_measuring_surface_tension",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq14",
+          "section": "SAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "What is the angle of contact? Give its values for pure water and for mercury, each in contact with glass.",
+          "question_id": "ts_ipe_p1_flu_angle_of_contact_and_values",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Explain the term dynamic lift. Discuss the dynamic lift experienced by (a) an aerofoil and (b) a spinning ball.",
+          "question_id": "ts_ipe_p1_flu_dynamic_lift",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Distinguish between streamline flow and turbulent flow of liquids.",
+          "question_id": "ts_ipe_p1_flu_streamline_vs_turbulent_flow",
+          "cut": "laq",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Define coefficient of viscosity. State Stokes' law. Explain the terminal velocity attained by a freely falling body (raindrop) in a viscous medium using a graph.",
+          "question_id": "ts_ipe_p1_flu_coefficient_of_viscosity_stokes_and_raindrop",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What is a Venturi meter? Explain how it is used.",
+          "question_id": "ts_ipe_p1_flu_venturi_meter",
+          "cut": "laq",
+          "source": "chaitanya_fastrack"
         }
       ]
     },
@@ -2331,6 +2623,87 @@
           "source": "ts_paper"
         },
         {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "If the temperature is measured in Fahrenheit instead of Celsius, does the value of the coefficient of expansion of a solid change? Explain.",
+          "question_id": "ts_ipe_p1_thm_expansion_coefficient_scale_change",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Why are gaps left between the iron rails of a railway track?",
+          "question_id": "ts_ipe_p1_thm_railway_track_gaps",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "What is latent heat of fusion?",
+          "question_id": "ts_ipe_p1_thm_latent_heat_of_fusion",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "What is specific gas constant? Is it the same for all gases?",
+          "question_id": "ts_ipe_p1_thm_specific_gas_constant",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "What are the different modes of transmission of heat?",
+          "question_id": "ts_ipe_p1_thm_modes_of_heat_transmission",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "What is regelation of ice?",
+          "question_id": "ts_ipe_p1_thm_regelation_of_ice",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "What is the principle of a pressure cooker?",
+          "question_id": "ts_ipe_p1_thm_pressure_cooker_principle",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "State Newton's law of cooling.",
+          "question_id": "ts_ipe_p1_thm_newtons_law_of_cooling",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "State the conditions under which Newton's law of cooling is applicable.",
+          "question_id": "ts_ipe_p1_thm_newtons_law_cooling_conditions",
+          "source": "chaitanya_fastrack"
+        },
+        {
           "ref": "saq1",
           "section": "SAQ",
           "number": 1,
@@ -2347,6 +2720,33 @@
           "text": "In what way is the anomalous behaviour of water advantageous to aquatic animals?",
           "question_id": "ts_ipe_p1_thm_anomalous_water_aquatic_life",
           "source": "ts_paper"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain the Celsius and Fahrenheit scales of temperature. Obtain the relation between the Celsius and Fahrenheit scales of temperature.",
+          "question_id": "ts_ipe_p1_thm_celsius_and_fahrenheit_scales",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Define the coefficient of thermal conductivity and derive an expression for the rate of heat conduction through a slab. A copper bar 10 cm long, of cross-sectional area 1 mm², has its ends kept at 104 °C and 24 °C. Find the rate at which heat is conducted along the bar. (K for copper = 401 W m⁻¹ K⁻¹.)",
+          "question_id": "ts_ipe_p1_thm_thermal_conductivity_and_copper_bar",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "State Newton's law of cooling and write down the conditions under which it holds. A body cools from 60 °C to 50 °C in 5 minutes, and then from 50 °C to 40 °C in a further 8 minutes. Find the temperature of the surroundings.",
+          "question_id": "ts_ipe_p1_thm_newtons_law_of_cooling_and_surroundings",
+          "source": "chaitanya_fastrack"
         }
       ]
     },
@@ -2354,6 +2754,321 @@
       "number": 12,
       "name": "Thermodynamics",
       "questions": [
+        {
+          "ref": "vsaq1",
+          "section": "VSAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Distinguish between thermal equilibrium and thermodynamic equilibrium.",
+          "question_id": "ts_ipe_p1_thd_thermal_vs_thermodynamic_equilibrium",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "State the zeroth law of thermodynamics. What is its significance?",
+          "question_id": "ts_ipe_p1_thd_zeroth_law",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Which thermodynamic variable is defined by a) the zeroth law of thermodynamics b) the first law of thermodynamics?",
+          "question_id": "ts_ipe_p1_thd_variables_from_zeroth_and_first_law",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "State the sign convention for heat (Q) and work (W) used in the first law of thermodynamics.",
+          "question_id": "ts_ipe_p1_thd_sign_convention_q_and_w",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "The potential energy of the molecules of an ideal gas is zero. Give the reason.",
+          "question_id": "ts_ipe_p1_thd_ideal_gas_zero_potential_energy",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Define the specific heat capacity of a substance. On what factors does it depend?",
+          "question_id": "ts_ipe_p1_thd_specific_heat_capacity_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Define one calorie. Define the mechanical equivalent of heat.",
+          "question_id": "ts_ipe_p1_thd_calorie_and_mechanical_equivalent",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Define molar specific heat capacity.",
+          "question_id": "ts_ipe_p1_thd_molar_specific_heat_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Write the relation between the specific heats of an ideal gas.",
+          "question_id": "ts_ipe_p1_thd_specific_heat_relation_ideal_gas",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "The coolant used in a chemical plant or a nuclear plant should have a high specific heat. Why?",
+          "question_id": "ts_ipe_p1_thd_coolant_high_specific_heat",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Define state variables, and define the equation of state.",
+          "question_id": "ts_ipe_p1_thd_state_variables_and_equation_of_state",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "The volume of a gas is reduced to 50% of its initial value, once by an adiabatic process and once by an isothermal process. Which of the two processes increases the pressure more?",
+          "question_id": "ts_ipe_p1_thd_adiabatic_vs_isothermal_pressure_rise",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "A thermos flask containing a liquid is shaken vigorously. What happens to the temperature of the liquid?",
+          "question_id": "ts_ipe_p1_thd_thermos_flask_shaken",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Explain the following processes: (i) isochoric process (ii) isobaric process.",
+          "question_id": "ts_ipe_p1_thd_isochoric_and_isobaric_processes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "State the second law of thermodynamics.",
+          "question_id": "ts_ipe_p1_thd_second_law_statements",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Name the processes that make up the cycle of a Carnot engine.",
+          "question_id": "ts_ipe_p1_thd_carnot_cycle_four_processes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "What is a P-V diagram?",
+          "question_id": "ts_ipe_p1_thd_pv_diagram_define",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Can a room be cooled by leaving the door of an electric refrigerator open?",
+          "question_id": "ts_ipe_p1_thd_refrigerator_door_open",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Why does the escaping air feel cold when the valve of a bicycle tube is opened in summer?",
+          "question_id": "ts_ipe_p1_thd_bicycle_tube_air_feels_cold",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Why does the brake drum of an automobile get heated while the automobile moves down an incline at constant speed?",
+          "question_id": "ts_ipe_p1_thd_brake_drum_heats_on_incline",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "Why can a heat engine with 100% efficiency never be realised in practice?",
+          "question_id": "ts_ipe_p1_thd_hundred_percent_efficiency_impossible",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "State the Kelvin-Planck statement of the second law of thermodynamics.",
+          "question_id": "ts_ipe_p1_thd_kelvin_planck_statement",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "State and explain the first law of thermodynamics.",
+          "question_id": "ts_ipe_p1_thd_first_law_state_and_explain",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Define the two principal specific heats of a gas. Which one is greater, and why?",
+          "question_id": "ts_ipe_p1_thd_two_principal_specific_heats",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Show that C_P − C_V = R for an ideal gas.",
+          "question_id": "ts_ipe_p1_thd_cp_cv_relation_derive",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "What are the limitations (drawbacks) of the first law of thermodynamics?",
+          "question_id": "ts_ipe_p1_thd_first_law_drawbacks",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "What is a quasi-static process? Explain its characteristics.",
+          "question_id": "ts_ipe_p1_thd_quasi_static_process",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Derive an expression for the work done in an isothermal process.",
+          "question_id": "ts_ipe_p1_thd_isothermal_work_derive",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Obtain an expression for the work done by an ideal gas during an adiabatic change, and explain it.",
+          "question_id": "ts_ipe_p1_thd_adiabatic_work_derive",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Compare the isothermal process with the adiabatic process.",
+          "question_id": "ts_ipe_p1_thd_isothermal_vs_adiabatic_compare",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq9",
+          "section": "SAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Draw the P–V diagrams for the isothermal process, the adiabatic process, the isobaric process and the isochoric process.",
+          "question_id": "ts_ipe_p1_thd_pv_diagrams_four_processes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq10",
+          "section": "SAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Obtain the relation between temperature and volume for an adiabatic process.",
+          "question_id": "ts_ipe_p1_thd_adiabatic_t_v_relation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq11",
+          "section": "SAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Discuss the isochoric process and the isobaric process.",
+          "question_id": "ts_ipe_p1_thd_isochoric_and_isobaric_discuss",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq12",
+          "section": "SAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Explain reversible and irreversible processes.",
+          "question_id": "ts_ipe_p1_thd_reversible_and_irreversible_processes",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq13",
+          "section": "SAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Explain the cyclic process, with an example. Explain the non-cyclic process, with an example.",
+          "question_id": "ts_ipe_p1_thd_cyclic_and_non_cyclic_processes",
+          "source": "chaitanya_fastrack"
+        },
         {
           "ref": "laq1",
           "section": "LAQ",
@@ -2371,6 +3086,24 @@
           "text": "Explain reversible and irreversible processes. Describe the working of Carnot engine. Obtain an expression for the efficiency.",
           "question_id": "ts_ipe_p1_thd_carnot_engine_efficiency",
           "source": "ts_paper"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Show that C_P − C_V = R for an ideal gas, where the symbols have their usual meaning. A Carnot engine works between temperatures 127 °C and 327 °C. Calculate its efficiency.",
+          "question_id": "ts_ipe_p1_thd_cp_cv_relation_and_carnot_efficiency",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq4",
+          "section": "LAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Obtain an expression for the work done during an adiabatic process. A quantity of heat 6 × 10⁵ J is supplied to a system at constant pressure 10⁵ N/m². If the volume of the system increases from 3 m³ to 5 m³, calculate the work done by the system and the change in its internal energy.",
+          "question_id": "ts_ipe_p1_thd_adiabatic_work_and_internal_energy_change",
+          "source": "chaitanya_fastrack"
         }
       ]
     },

@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_archimedes_principle",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State Archimedes' principle.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Statement: upthrust equals weight displaced",
+      "marks": 1
+    },
+    {
+      "label": "Equivalent form: apparent loss of weight",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Very Short Answer Question 5 (printed p.105). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: a body wholly or partly immersed in a fluid experiences an upward upthrust equal to the weight of the fluid it displaces, equivalently stated as the apparent loss of weight of the body in the fluid equalling the weight of the fluid displaced."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_statement",
+        "kind": "text",
+        "label": "Statement: upthrust equals weight displaced",
+        "marks": 1,
+        "mark_note": "Upthrust = weight of fluid displaced",
+        "lines": [
+          "When a body is wholly or partly",
+          "immersed in a fluid, it",
+          "experiences an upward force, the",
+          "upthrust, equal to the weight of",
+          "the fluid it displaces."
+        ],
+        "margin_note": "First mark. State the principle: the upthrust equals the weight of the fluid the body displaces.",
+        "why": "The principle names the upthrust and ties its size to a measurable quantity, the weight of fluid pushed aside, rather than leaving it as an unspecified upward force.",
+        "common_mistakes": [
+          "Saying the upthrust equals the weight of the body itself, not the weight of the fluid displaced.",
+          "Leaving out 'wholly or partly immersed' and stating it only for a fully submerged body."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a body wholly or partly immersed in a fluid feels an upward force, the upthrust, equal to the weight of the fluid it displaces.",
+          "accept": [
+            "upthrust equals weight of fluid displaced",
+            "upward force equal to weight displaced",
+            "wholly or partly immersed"
+          ],
+          "reject": [
+            "apparent loss of weight equals weight displaced"
+          ],
+          "heard_as": [
+            "upthrust",
+            "weight of fluid displaced",
+            "immersed"
+          ]
+        },
+        "memory_tip": "The upward force on an immersed body equals the weight of the fluid it displaces."
+      },
+      {
+        "id": "s2_equivalent_form",
+        "kind": "boxed_final",
+        "label": "Equivalent form: apparent loss of weight",
+        "marks": 1,
+        "mark_note": "Apparent loss of weight",
+        "lines": [
+          "Equivalently, the apparent loss of",
+          "weight of the body in the fluid is",
+          "equal to the weight of the fluid",
+          "it displaces."
+        ],
+        "margin_note": "Second mark. Give the equivalent form: the apparent loss of weight equals the weight of the fluid displaced.",
+        "why": "This form is how the principle is actually used in a weighing experiment: the weight measured in the fluid is less than in air, and that difference is the weight of the displaced fluid.",
+        "common_mistakes": [
+          "Saying the body loses actual mass in the fluid. The loss is only in the weight a scale reads, not in the body's mass.",
+          "Stating this form without saying it is equivalent to the upthrust statement."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the apparent loss of weight of the body in the fluid equals the weight of the fluid it displaces, and this is the same statement as the upthrust in different words.",
+          "accept": [
+            "apparent loss of weight equals weight displaced",
+            "weighs less in the fluid by the weight displaced",
+            "same statement, different words"
+          ],
+          "reject": [
+            "upthrust equal to the weight of fluid displaced"
+          ],
+          "heard_as": [
+            "apparent loss of weight",
+            "weighs less",
+            "equivalent"
+          ]
+        },
+        "memory_tip": "Weigh it in the fluid: what it seems to lose is exactly what it displaced."
+      }
+    ]
+  },
+  "insider_note": "Two marks: the upthrust statement, then its equivalent apparent-loss-of-weight form. They say the same thing in two different ways, and a complete answer states both."
+}

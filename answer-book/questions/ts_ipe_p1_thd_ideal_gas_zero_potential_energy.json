@@ -1,0 +1,125 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_ideal_gas_zero_potential_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "The potential energy of the molecules of an ideal gas is zero. Give the reason.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "No intermolecular forces",
+      "marks": 1
+    },
+    {
+      "label": "Internal energy is purely kinetic",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 5 (printed p.124). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked against NCERT Class-11 Chapter 12: an ideal gas is defined to have no intermolecular forces of attraction; since potential energy arises from such forces, an ideal gas molecule has no potential energy, and the internal energy of an ideal gas is entirely kinetic, depending only on its temperature."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_no_forces",
+        "kind": "text",
+        "label": "No intermolecular forces",
+        "marks": 1,
+        "mark_note": "No intermolecular forces",
+        "lines": [
+          "An ideal gas is defined to have",
+          "no intermolecular forces of",
+          "attraction between its",
+          "molecules."
+        ],
+        "margin_note": "First mark. Name the assumption: no intermolecular forces.",
+        "why": "Real gas molecules do attract one another weakly, but the ideal-gas model sets that attraction to zero — this removes the potential energy, and PV = nRT holds exactly only when the molecular volume is also negligible.",
+        "common_mistakes": [
+          "Saying an ideal gas has no forces at all. It is intermolecular attraction that is taken to be zero, not the force of collision.",
+          "Naming a different assumption, such as point-sized molecules, instead of zero intermolecular force."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an ideal gas is defined to have no intermolecular forces of attraction between its molecules.",
+          "accept": [
+            "no intermolecular forces",
+            "no forces of attraction between molecules"
+          ],
+          "reject": [
+            "internal energy depends only on temperature"
+          ],
+          "heard_as": [
+            "intermolecular forces",
+            "attraction"
+          ]
+        },
+        "memory_tip": "Ideal gas: molecules that never pull on each other."
+      },
+      {
+        "id": "s2_kinetic",
+        "kind": "boxed_final",
+        "label": "Internal energy is purely kinetic",
+        "marks": 1,
+        "mark_note": "Internal energy is kinetic only",
+        "lines": [
+          {
+            "text": "Internal energy is kinetic only",
+            "style": "heading"
+          },
+          "Potential energy comes from",
+          "intermolecular forces.",
+          "With no such forces, an ideal",
+          "gas molecule has no potential",
+          "energy.",
+          "The internal energy of an ideal",
+          "gas is entirely kinetic, and",
+          "depends only on its temperature."
+        ],
+        "margin_note": "Second mark. Say potential energy is zero, and internal energy depends only on temperature.",
+        "why": "Kinetic theory computes the pressure and internal energy of an ideal gas from molecular speed alone, and that computation is correct only if there is no stored potential energy to add to it.",
+        "common_mistakes": [
+          "Saying the kinetic energy of an ideal gas is zero. It is the potential energy that is zero; the kinetic energy is not.",
+          "Leaving out that internal energy then depends only on temperature."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That potential energy comes from intermolecular forces, so with none present an ideal gas molecule has no potential energy, and its internal energy is entirely kinetic, depending only on temperature.",
+          "accept": [
+            "potential energy from intermolecular forces",
+            "internal energy is entirely kinetic",
+            "depends only on temperature"
+          ],
+          "reject": [
+            "no intermolecular forces of attraction"
+          ],
+          "heard_as": [
+            "potential energy zero",
+            "kinetic energy",
+            "temperature"
+          ]
+        },
+        "memory_tip": "No force, no potential energy. What is left is kinetic energy alone, set by temperature."
+      }
+    ]
+  },
+  "insider_note": "Say WHY potential energy is zero — no intermolecular force — before saying internal energy is purely kinetic. The reason carries the first mark, the conclusion the second."
+}

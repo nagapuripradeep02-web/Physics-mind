@@ -1,0 +1,164 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_isothermal_work_derive",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Derive an expression for the work done in an isothermal process.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Setting up the integral",
+      "marks": 1
+    },
+    {
+      "label": "Integrating",
+      "marks": 1
+    },
+    {
+      "label": "Evaluating between the limits",
+      "marks": 1
+    },
+    {
+      "label": "Connecting to the first law",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 (Thermodynamics) Short Answer Question 6 (printed p.128). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: for n moles at constant temperature T, W = ∫P dV with P = nRT/V gives W = nRT ln(V₂/V₁) = 2.303 nRT log₁₀(V₂/V₁), positive for an expansion (V₂ > V₁); since the internal energy of an ideal gas depends only on temperature, ΔU = 0 for an isothermal change, so by the first law ΔQ = W — all the heat supplied becomes work."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_setup",
+        "kind": "equation",
+        "label": "Setting up the work integral",
+        "marks": 1,
+        "mark_note": "W = ∫P dV",
+        "lines": [
+          "For n moles of an ideal gas at",
+          "constant temperature T, expanding",
+          "from V₁ to V₂, the work done is",
+          {
+            "text": "W = ∫ P dV, V₁ to V₂",
+            "style": "eq"
+          },
+          "with P = nRT/V from the ideal gas",
+          "equation."
+        ],
+        "margin_note": "Write P in terms of V using PV = nRT before integrating — that is the substitution this step earns.",
+        "why": "The work integral needs P as a function of V alone; the ideal gas equation at fixed T and n is what supplies that function.",
+        "common_mistakes": [
+          "Leaving P as a constant while integrating — P changes with V during an isothermal expansion, since T is fixed but V is not.",
+          "Forgetting the ideal gas equation and trying to integrate P dV with no substitution at all."
+        ],
+        "memory_tip": "Substitute P = nRT/V first — an isothermal integral always starts here."
+      },
+      {
+        "id": "s2_integrate",
+        "kind": "equation",
+        "label": "Integrating",
+        "marks": 1,
+        "mark_note": "∫dV/V = ln V",
+        "lines": [
+          "Substituting and integrating,",
+          {
+            "text": "W = nRT ∫(dV/V), V₁ to V₂",
+            "style": "eq"
+          },
+          "using the standard integral",
+          {
+            "text": "∫dV/V = ln V",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "This is the standard integral ∫dV/V = ln V — the substitution and the antiderivative are this mark; the limits are evaluated in the next step.",
+        "why": "∫dV/V is one of the few integrals a student is expected to know outright — recognising it as ln V is the substance of this mark.",
+        "common_mistakes": [
+          "Dropping the constant nRT outside the integral partway through.",
+          "Confusing ∫dV/V with ∫V dV — the antiderivative of 1/V is ln V, not V²/2."
+        ],
+        "memory_tip": "∫dV/V is ln V — know this antiderivative outright."
+      },
+      {
+        "id": "s3_log10_form",
+        "kind": "equation",
+        "label": "Evaluating between the limits",
+        "marks": 1,
+        "mark_note": "W = nRT ln(V₂/V₁)",
+        "lines": [
+          "Evaluating the integral between",
+          "its limits,",
+          {
+            "text": "W = nRT[ln V] from V₁ to V₂",
+            "style": "eq"
+          },
+          {
+            "text": "W = nRT ln(V₂/V₁)",
+            "style": "eq"
+          },
+          "= 2.303 nRT log₁₀(V₂/V₁)",
+          "For an expansion, V₂ > V₁, so W is",
+          "positive: the gas does work ON the",
+          "surroundings."
+        ],
+        "margin_note": "The limits substitution gives ln(V₂/V₁); the base-10 form and the sign are part of stating it fully.",
+        "why": "Evaluating [ln V] between V₁ and V₂ gives ln(V₂/V₁) directly; converting it to 2.303 log₁₀ is the conventional way to present it for numerical work, and stating the sign completes the answer.",
+        "common_mistakes": [
+          "Writing the answer as nRT ln(V₁/V₂), with the limits reversed — that gives the wrong sign for an expansion.",
+          "Writing the constant as 2.3 instead of 2.303 — 2.303 is the conventional value."
+        ],
+        "memory_tip": "Upper limit over lower limit, V₂ over V₁ — and 2.303 log₁₀ is the same thing in base ten."
+      },
+      {
+        "id": "s4_first_law_connection",
+        "kind": "boxed_final",
+        "label": "Connecting to the first law",
+        "marks": 1,
+        "mark_note": "ΔQ = W",
+        "lines": [
+          "For an ideal gas, internal energy",
+          "depends only on temperature. Since",
+          "T is constant through an isothermal",
+          "process,",
+          {
+            "text": "ΔU = 0",
+            "style": "eq"
+          },
+          "By the first law, ΔQ = ΔU + W, so",
+          {
+            "text": "ΔQ = W",
+            "style": "boxed"
+          },
+          "All the heat supplied in an",
+          "isothermal expansion becomes work."
+        ],
+        "margin_note": "State ΔU = 0 BEFORE writing ΔQ = W — the zero is the reason, not an afterthought.",
+        "why": "This ties the isothermal work formula back to the first law: because internal energy cannot change at constant temperature for an ideal gas, the entire heat input must appear as work.",
+        "common_mistakes": [
+          "Writing ΔQ = W without first establishing ΔU = 0 — the connection is the mark, not just the final equation.",
+          "Saying no heat is exchanged in an isothermal process. Heat IS exchanged — all of it turns into work, since none of it raises the internal energy."
+        ],
+        "memory_tip": "Isothermal means ΔU = 0 for an ideal gas, so every joule of heat leaves again as work."
+      }
+    ]
+  },
+  "insider_note": "The sign statement — positive for expansion — and the ΔU = 0 reasoning are the two marks students most often skip, even when the formula itself is right."
+}

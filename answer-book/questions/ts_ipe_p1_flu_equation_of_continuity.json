@@ -1,0 +1,127 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_equation_of_continuity",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the equation of continuity for fluid flow.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "A₁v₁ = A₂v₂ for incompressible steady flow",
+      "marks": 1
+    },
+    {
+      "label": "Av is constant: a narrower pipe flows faster",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Very Short Answer Question 6 (printed p.105). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: for an incompressible fluid in steady flow, A₁v₁ = A₂v₂, so Av — the volume flux, the volume of fluid crossing a section each second — is constant along the pipe, and a narrower cross-section therefore carries a faster flow."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_equation",
+        "kind": "boxed_final",
+        "label": "A₁v₁ = A₂v₂ for incompressible steady flow",
+        "marks": 1,
+        "mark_note": "A₁v₁ = A₂v₂",
+        "lines": [
+          "For an incompressible fluid in",
+          "steady flow through a pipe of",
+          "changing cross-section,",
+          {
+            "text": "A₁v₁ = A₂v₂",
+            "style": "eq"
+          },
+          "where A₁, v₁ and A₂, v₂ are the",
+          "area and speed at two sections",
+          "of the pipe."
+        ],
+        "margin_note": "First mark. Write A₁v₁ = A₂v₂ and name the symbols: area and speed at two sections of the pipe.",
+        "why": "The fluid is incompressible, so the same volume must pass every section of the pipe each second; equal Av at both sections is exactly that statement written as an equation.",
+        "common_mistakes": [
+          "Writing A₁ = A₂ instead of A₁v₁ = A₂v₂ — the areas are not equal, only the product Av is.",
+          "Leaving the symbols A₁, v₁, A₂, v₂ unnamed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That for an incompressible fluid in steady flow, A one v one equals A two v two, the area times speed at one section equal to the area times speed at another.",
+          "accept": [
+            "A one v one equals A two v two",
+            "area times speed the same at every section",
+            "Av equals Av"
+          ],
+          "reject": [
+            "a narrower pipe means a faster flow"
+          ],
+          "heard_as": [
+            "A one v one",
+            "A two v two",
+            "area times speed"
+          ]
+        },
+        "memory_tip": "For an incompressible fluid in steady flow, A₁v₁ = A₂v₂ at every section."
+      },
+      {
+        "id": "s2_av_constant",
+        "kind": "text",
+        "label": "Av is constant: a narrower pipe flows faster",
+        "marks": 1,
+        "mark_note": "Av is constant along the pipe",
+        "lines": [
+          "That is, Av is constant along the",
+          "pipe. Av is the volume of fluid",
+          "flowing past a section each",
+          "second, so a narrower section",
+          "must carry a faster flow to keep",
+          "Av the same."
+        ],
+        "margin_note": "Second mark. Say Av is constant, name it as the volume flowing past a section each second, and say a narrower pipe means a faster flow.",
+        "why": "Naming Av as the volume flowing per second is what turns the bare equation into a statement that mass is conserved, and it is what lets a student predict that a narrower section speeds the fluid up.",
+        "common_mistakes": [
+          "Never naming Av as the volume flowing per second — leaving it as an abstract product.",
+          "Saying a narrower section slows the flow, the opposite of what the equation gives."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Av, the volume of fluid flowing past a section each second, stays constant along the pipe, so a narrower section carries a faster flow.",
+          "accept": [
+            "Av is constant",
+            "volume flowing per second stays the same",
+            "narrower pipe, faster flow"
+          ],
+          "reject": [
+            "A one v one equals A two v two"
+          ],
+          "heard_as": [
+            "Av constant",
+            "volume per second",
+            "narrower, faster"
+          ]
+        },
+        "memory_tip": "Where the pipe is narrower A is smaller, so v must be larger to keep Av the same."
+      }
+    ]
+  },
+  "insider_note": "Two marks: the equation A₁v₁ = A₂v₂, then that Av is constant and a narrower pipe means a faster flow. The second part is the physical reading of the equation, not just its symbols."
+}

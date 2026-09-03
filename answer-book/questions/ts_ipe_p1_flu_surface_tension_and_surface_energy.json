@@ -1,0 +1,226 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_surface_tension_and_surface_energy",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Explain surface tension and surface energy.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Surface tension — the definition",
+      "marks": 1
+    },
+    {
+      "label": "Surface energy — the definition",
+      "marks": 1
+    },
+    {
+      "label": "The two units are the same unit",
+      "marks": 1
+    },
+    {
+      "label": "Numerically equal, one property",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Short Answer Question 11 (printed p.110). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: surface tension T = F/l (unit N m⁻¹) is the force per unit length on a line in the liquid surface; surface energy per unit area is W/ΔA = T (unit J m⁻²), from the work W = T × ΔA needed to enlarge the surface by ΔA; reducing J m⁻² to base units gives N·m·m⁻² = N m⁻¹, so the two units are identical and T and surface energy are numerically equal."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Fluids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_surface_tension",
+        "kind": "equation",
+        "label": "Surface tension — the definition",
+        "marks": 1,
+        "mark_note": "T = F/l, unit N m⁻¹",
+        "lines": [
+          "Surface tension is the force acting",
+          "per unit length on an imaginary line",
+          "drawn in the liquid surface, acting",
+          "tangential to the surface:",
+          {
+            "text": "T = F / l",
+            "style": "eq"
+          },
+          "SI unit newton per metre, N m⁻¹."
+        ],
+        "margin_note": "First mark. Definition, with the unit N m⁻¹.",
+        "why": "The force alone is not fixed for a liquid — a longer line carries a larger force — so dividing by the length is what makes T a property of the liquid itself.",
+        "common_mistakes": [
+          "Calling surface tension a force. It is a force per unit length.",
+          "Giving the unit as newton alone, leaving out the per metre."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That surface tension is the force per unit length on a line in the liquid surface, T = F/l, unit N m⁻¹.",
+          "accept": [
+            "force per unit length",
+            "T equals F by l",
+            "unit newton per metre"
+          ],
+          "reject": [
+            "work done per unit area increase"
+          ],
+          "heard_as": [
+            "surface tension",
+            "force per unit length",
+            "newton per metre"
+          ]
+        },
+        "memory_tip": "Surface tension is force divided by length, not force alone."
+      },
+      {
+        "id": "s2_surface_energy",
+        "kind": "equation",
+        "label": "Surface energy — the definition",
+        "marks": 1,
+        "mark_note": "Surface energy = W/ΔA, unit J m⁻²",
+        "lines": [
+          "The work done to increase the",
+          "area of a liquid surface by",
+          "ΔA is",
+          {
+            "text": "W = T × ΔA",
+            "style": "eq"
+          },
+          "Surface energy is defined as",
+          "this work done per unit",
+          "increase in area, W/ΔA, unit",
+          "joule per square metre, J m⁻²."
+        ],
+        "margin_note": "Second mark. Definition, with the unit J m⁻².",
+        "why": "Enlarging a liquid surface needs work done against the surface tension, so the energy stored is set by how much the area has grown, ΔA.",
+        "common_mistakes": [
+          "Calling surface energy the total energy of the liquid. It is defined per unit increase in area.",
+          "Giving the unit as joule alone, leaving out the per square metre."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That surface energy is the work done per unit increase in area, W/ΔA, unit J m⁻².",
+          "accept": [
+            "work done per unit area increase",
+            "W equals T into delta A",
+            "unit joule per square metre"
+          ],
+          "reject": [
+            "force per unit length"
+          ],
+          "heard_as": [
+            "surface energy",
+            "work done",
+            "joule per square metre"
+          ]
+        },
+        "memory_tip": "Surface energy is work divided by the extra area, not the total energy."
+      },
+      {
+        "id": "s3_units_match",
+        "kind": "equation",
+        "label": "The two units are the same unit",
+        "marks": 1,
+        "mark_note": "N m⁻¹ reduces to J m⁻²",
+        "lines": [
+          "Reduce the surface energy unit to",
+          "base terms:",
+          {
+            "text": "J m⁻² = N·m / m² = N m⁻¹",
+            "style": "eq"
+          },
+          "since one joule is one newton",
+          "metre. So newton per metre and",
+          "joule per square metre are the",
+          "same unit, written two ways."
+        ],
+        "margin_note": "Third mark. Reduce J m⁻² to N m⁻¹ to show the units match.",
+        "why": "Matching units are a necessary check, not a proof of the equality — two different quantities can share a unit (torque and energy are both N·m). The equality itself follows from W = T × ΔA, which gives W/ΔA = T directly.",
+        "common_mistakes": [
+          "Stopping at N·m/m² without reducing it the final step to N m⁻¹.",
+          "Treating the match as a coincidence rather than a consequence of W = T × ΔA."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That reducing J m⁻² to base units gives N m⁻¹, so the two units are identical.",
+          "accept": [
+            "J per m squared reduces to N per m",
+            "one joule is one newton metre",
+            "the two units are the same unit"
+          ],
+          "reject": [
+            "work done per unit area increase"
+          ],
+          "heard_as": [
+            "N metre",
+            "J per m squared",
+            "same unit"
+          ]
+        },
+        "memory_tip": "One joule is one newton metre, so J/m² reduces to N/m."
+      },
+      {
+        "id": "s4_numerically_equal",
+        "kind": "boxed_final",
+        "label": "Numerically equal, one property",
+        "marks": 1,
+        "mark_note": "T and the surface energy are the same T",
+        "lines": [
+          "From W = T × ΔA, the surface energy",
+          "per unit area works out to T itself.",
+          "So surface tension and surface",
+          "energy are numerically equal, and",
+          "are two descriptions of the one",
+          "property of the liquid surface, not",
+          "two separate quantities.",
+          {
+            "text": "T = W / ΔA",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. State plainly: numerically equal, one property described two ways.",
+        "why": "The same symbol T measures the force per unit length and the energy per unit area because one defines the other through W = T × ΔA.",
+        "common_mistakes": [
+          "Calling surface tension and surface energy two different properties that happen to share a value.",
+          "Leaving out the word numerically, so the statement reads as if the two quantities were identical in every respect, not only in value."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That surface tension and surface energy are numerically equal, being two descriptions of the same property.",
+          "accept": [
+            "numerically equal",
+            "two names for the same property",
+            "T equals the surface energy per unit area"
+          ],
+          "reject": [
+            "J per m squared reduces to N per m"
+          ],
+          "heard_as": [
+            "numerically equal",
+            "same property",
+            "two descriptions"
+          ]
+        },
+        "memory_tip": "One property, two names: force per length and energy per area, same T."
+      }
+    ]
+  },
+  "insider_note": "The third mark is the one students skip — reducing J m⁻² to N m⁻¹ shows the two units are the same unit. The equality itself comes from W = T × ΔA, not from the units matching."
+}

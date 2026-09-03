@@ -1,0 +1,115 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thm_newtons_law_cooling_conditions",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 11,
+    "name": "Thermal Properties of Matter"
+  },
+  "chapter": "Thermal Properties of Matter",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the conditions under which Newton's law of cooling is applicable.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Small difference and constant surroundings",
+      "marks": 1
+    },
+    {
+      "label": "Convection and uniform body temperature",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 11 Very Short Answer Question 19 (printed p.117). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: Newton's law of cooling holds when the temperature difference between the body and its surroundings is small, the surroundings stay at a constant temperature, the heat is lost mainly by convection, and the body's own temperature is uniform; the rate of cooling also depends on the nature and the exposed area of the body's surface, so those are held fixed rather than being conditions for the law itself."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermal Properties of Matter · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_small_diff_constant_surroundings",
+        "kind": "text",
+        "label": "Small difference and constant surroundings",
+        "marks": 1,
+        "mark_note": "Small temperature difference, constant surroundings",
+        "lines": [
+          "The temperature difference between the",
+          "body and its surroundings must be small.",
+          "The surroundings must stay at a constant",
+          "temperature."
+        ],
+        "margin_note": "First mark. Say the temperature difference must be small and the surroundings must stay at a constant temperature.",
+        "why": "A small gap keeps the proportional law valid, and constant surroundings stop the reference temperature from drifting, so the difference being tracked stays well defined.",
+        "common_mistakes": [
+          "Naming only the small temperature difference and leaving out the constant-surroundings condition.",
+          "Leaving out that the surroundings must stay at a constant temperature."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the law needs a small temperature difference and surroundings at a constant temperature.",
+          "accept": [
+            "small temperature difference and constant surroundings",
+            "small gap and steady surroundings",
+            "the difference must be small and the surroundings steady"
+          ],
+          "reject": [
+            "depends on the nature and area of the surface"
+          ],
+          "heard_as": [
+            "small difference",
+            "constant temperature"
+          ]
+        },
+        "memory_tip": "Small gap, steady surroundings — the first two conditions."
+      },
+      {
+        "id": "s2_convection_uniform_body",
+        "kind": "text",
+        "label": "Convection and uniform body temperature",
+        "marks": 1,
+        "mark_note": "Convection, uniform body",
+        "lines": [
+          "Heat must be lost mainly by convection,",
+          "and the body's own temperature must be",
+          "uniform throughout."
+        ],
+        "margin_note": "Second mark. Say heat is lost mainly by convection and the body's own temperature is uniform.",
+        "why": "Convection is the loss mechanism the law is built for, and a uniform body temperature means one single temperature difference describes the whole body.",
+        "common_mistakes": [
+          "Leaving out that heat must be lost mainly by convection, or that the body's temperature must be uniform."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That heat must be lost mainly by convection and the body's own temperature must be uniform.",
+          "accept": [
+            "heat lost by convection",
+            "uniform body temperature",
+            "convection with a uniform body temperature"
+          ],
+          "reject": [
+            "depends on the nature and area of the surface"
+          ],
+          "heard_as": [
+            "convection",
+            "uniform"
+          ]
+        },
+        "memory_tip": "Convection and a uniform body — the other two conditions."
+      }
+    ]
+  },
+  "insider_note": "Mark 1 is the small temperature difference and the constant surroundings; mark 2 is convection as the loss mechanism and a uniform body temperature. The prescribed book also lists the nature and the area of the exposed surface among the conditions — write them if there is room, and understand them as factors the rate of cooling depends on, held fixed while the law is applied, rather than the four conditions above the law strictly needs."
+}

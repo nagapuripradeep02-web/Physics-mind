@@ -1,0 +1,416 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_coefficient_of_viscosity_stokes_and_raindrop",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "LAQ",
+  "marks_total": 8,
+  "paper_section": "Section C",
+  "expected_time_min": 16,
+  "question_text": "Define the coefficient of viscosity. Explain Stokes' law, and explain the conditions under which a raindrop attains terminal velocity vₜ. Give the expression for vₜ.",
+  "appearances": [],
+  "mark_split": [
+    { "label": "The viscous force between layers", "marks": 1 },
+    { "label": "Defining the coefficient of viscosity", "marks": 1 },
+    { "label": "Stokes' law — the conditions", "marks": 1 },
+    { "label": "Stokes' law — the formula", "marks": 1 },
+    { "label": "Forces on a falling raindrop", "marks": 1 },
+    { "label": "Weight and upthrust in terms of r", "marks": 1 },
+    { "label": "Balancing the three forces", "marks": 1 },
+    { "label": "Terminal velocity and its r² law", "marks": 1 }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Long Answer Question 3 (printed p.111). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The eight 1-mark step split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: η = F/(A·dv/dx) with SI unit N s m⁻² and dimensional formula [ML⁻¹T⁻¹]; Stokes' law F = 6πηrv for a small sphere in streamline flow; the raindrop's weight (4/3)πr³ρg and upthrust (4/3)πr³σg from the same volume; the balance 6πηrv_t = (4/3)πr³(ρ − σ)g solves to v_t = (2/9)r²g(ρ − σ)/η, proportional to r², all matching the standard NCERT Class-11 Mechanical Properties of Fluids treatment."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section C — Long Answer Question",
+      "Mechanical Properties of Fluids · 8 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_viscous_force",
+        "kind": "equation",
+        "label": "The viscous force between layers",
+        "marks": 1,
+        "mark_note": "Viscous force law",
+        "lines": [
+          "Consider a fluid flowing in layers,",
+          "one layer sliding over the next.",
+          "Each layer exerts a tangential",
+          "force on the layer next to it,",
+          "opposing the relative motion",
+          "between them.",
+          "This viscous force is proportional",
+          "to the area of contact A and to",
+          "the velocity gradient dv/dx",
+          "between the layers:",
+          {
+            "text": "F = ηA(dv/dx)",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. State that the force is tangential, opposes relative motion, and depends on the area and the velocity gradient.",
+        "why": "This force law is the physical fact the coefficient of viscosity is defined from — without it, η has no formula to come from.",
+        "common_mistakes": [
+          "Leaving out the velocity gradient dv/dx and stating the force depends only on the area.",
+          "Describing the force as acting between the fluid and a solid wall rather than between two layers of the fluid itself."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the viscous force between two fluid layers is tangential, opposes their relative motion, and is proportional to the area of contact and the velocity gradient: F = ηA(dv/dx).",
+          "accept": [
+            "viscous force is tangential and opposes relative motion",
+            "force depends on area and velocity gradient",
+            "F equals eta A dv by dx",
+            "layers exert a tangential force on each other"
+          ],
+          "reject": [
+            "F equals six pi eta r v"
+          ],
+          "heard_as": [
+            "viscous force",
+            "velocity gradient",
+            "F equals eta A dv dx",
+            "tangential force"
+          ]
+        },
+        "memory_tip": "Layers dragging on layers: the force needs both an area and a velocity gradient."
+      },
+      {
+        "id": "s2_define_eta",
+        "kind": "equation",
+        "label": "Defining the coefficient of viscosity",
+        "marks": 1,
+        "mark_note": "Definition of η",
+        "lines": [
+          "Rearranging the force law defines",
+          "the coefficient of viscosity:",
+          {
+            "text": "η = F / (A·dv/dx)",
+            "style": "eq"
+          },
+          "η is the tangential force per unit",
+          "area per unit velocity gradient.",
+          "SI unit: N s m⁻², the pascal",
+          "second. CGS unit: the poise.",
+          "Dimensional formula: [ML⁻¹T⁻¹]."
+        ],
+        "margin_note": "Second mark. Give the formula for η in words, then its SI unit, CGS unit and dimensional formula.",
+        "why": "A defined quantity is only complete once its unit and dimensions are stated alongside its formula.",
+        "common_mistakes": [
+          "Stating only the SI unit and leaving out the dimensional formula [ML⁻¹T⁻¹].",
+          "Writing the formula as η = FA/(dv/dx) instead of η = F/(A·dv/dx) — the area divides, it does not multiply."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the coefficient of viscosity η is the tangential force per unit area per unit velocity gradient, η = F/(A·dv/dx), with SI unit N s per metre squared, CGS unit the poise, and dimensional formula M L inverse T inverse.",
+          "accept": [
+            "eta equals F over A dv dx",
+            "force per unit area per unit velocity gradient",
+            "SI unit is newton second per metre squared",
+            "dimensional formula M L inverse T inverse"
+          ],
+          "reject": [
+            "F equals six pi eta r v"
+          ],
+          "heard_as": [
+            "coefficient of viscosity",
+            "pascal second",
+            "poise",
+            "M L inverse T inverse"
+          ]
+        },
+        "memory_tip": "η is force per area per velocity gradient — divide by both."
+      },
+      {
+        "id": "s3_stokes_conditions",
+        "kind": "text",
+        "label": "Stokes' law — the conditions",
+        "marks": 1,
+        "mark_note": "When Stokes' law holds",
+        "lines": [
+          "Stokes' law gives the viscous drag",
+          "on a small sphere moving through a",
+          "fluid.",
+          "It holds when the sphere is small",
+          "and moves slowly, so that the flow",
+          "of fluid around it stays",
+          "streamline."
+        ],
+        "margin_note": "Third mark. State both conditions: a small sphere, moving slowly, so the flow around it stays streamline.",
+        "why": "Stokes' law is not universal — it is derived for streamline flow around the sphere, so the conditions have to be stated before the formula is used.",
+        "common_mistakes": [
+          "Giving the formula without stating the streamline-flow condition it depends on.",
+          "Saying Stokes' law holds for any sphere at any speed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Stokes' law holds for a small sphere moving slowly through a fluid, so that the flow around it stays streamline.",
+          "accept": [
+            "small sphere moving slowly",
+            "flow around the sphere stays streamline",
+            "stokes law needs streamline flow",
+            "conditions for stokes law"
+          ],
+          "reject": [
+            "F equals eta A dv dx"
+          ],
+          "heard_as": [
+            "stokes law",
+            "small sphere",
+            "moving slowly",
+            "streamline flow"
+          ]
+        },
+        "memory_tip": "Small sphere, slow motion, streamline flow — that is when Stokes' law applies."
+      },
+      {
+        "id": "s4_stokes_formula",
+        "kind": "equation",
+        "label": "Stokes' law — the formula",
+        "marks": 1,
+        "mark_note": "Boxed formula",
+        "lines": [
+          "For a sphere of radius r moving",
+          "with velocity v through a fluid of",
+          "coefficient of viscosity η, the",
+          "viscous drag is",
+          {
+            "text": "F = 6πηrv",
+            "style": "boxed"
+          },
+          "F is the viscous drag force, η the",
+          "coefficient of viscosity of the",
+          "fluid, r the radius of the sphere",
+          "and v its velocity relative to the",
+          "fluid."
+        ],
+        "margin_note": "Fourth mark. Give the boxed formula and name every symbol: F, η, r, v.",
+        "why": "Naming every symbol is what turns the formula into something that can be applied to the raindrop in the steps that follow.",
+        "common_mistakes": [
+          "Writing F = 6πrηv with a symbol left unnamed.",
+          "Forgetting the factor of 6π and writing F = πηrv."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That Stokes' law gives the viscous drag as F equals six pi eta r v, with F the drag force, eta the coefficient of viscosity, r the radius of the sphere and v its velocity.",
+          "accept": [
+            "F equals six pi eta r v",
+            "drag force on a sphere",
+            "name every symbol in stokes law",
+            "six pi eta r v"
+          ],
+          "reject": [
+            "v t equals two ninths r squared g rho minus sigma over eta"
+          ],
+          "heard_as": [
+            "six pi eta r v",
+            "stokes law formula",
+            "drag force",
+            "radius and velocity"
+          ]
+        },
+        "memory_tip": "Six pi eta r v — every letter named: drag, viscosity, radius, velocity."
+      },
+      {
+        "id": "s5_raindrop_forces",
+        "kind": "text",
+        "label": "Forces on a falling raindrop",
+        "marks": 1,
+        "mark_note": "Three forces",
+        "lines": [
+          "As a raindrop falls through air,",
+          "three forces act on it: its",
+          "weight, downward; the upthrust of",
+          "the air, upward; and the viscous",
+          "drag of the air, upward, given by",
+          "Stokes' law.",
+          "The drag grows as the drop's speed",
+          "grows."
+        ],
+        "margin_note": "Fifth mark. Name all three forces and their directions, and say the drag grows with speed.",
+        "why": "The whole derivation is a balance of these three forces, so stating them first sets up everything that follows.",
+        "common_mistakes": [
+          "Leaving out the upthrust and treating the fall as only weight against drag.",
+          "Forgetting to say the drag increases as the drop speeds up — this is why a terminal speed is reached at all."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a falling raindrop has three forces acting on it: weight downward, upthrust upward, and viscous drag upward, which grows as the speed grows.",
+          "accept": [
+            "weight, upthrust and drag",
+            "three forces on the raindrop",
+            "drag increases with speed",
+            "upthrust acts upward, drag acts upward"
+          ],
+          "reject": [
+            "v t is proportional to r squared"
+          ],
+          "heard_as": [
+            "weight",
+            "upthrust",
+            "viscous drag",
+            "three forces"
+          ]
+        },
+        "memory_tip": "Three forces: weight down, upthrust up, drag up and growing."
+      },
+      {
+        "id": "s6_weight_upthrust",
+        "kind": "equation",
+        "label": "Weight and upthrust in terms of r",
+        "marks": 1,
+        "mark_note": "Weight and upthrust",
+        "lines": [
+          "For a raindrop of radius r and",
+          "density ρ, falling through air of",
+          "density σ, the volume of the drop",
+          "is",
+          {
+            "text": "V = (4/3)πr³",
+            "style": "eq"
+          },
+          "so its weight and the upthrust on",
+          "it are",
+          {
+            "text": "Weight = (4/3)πr³ρg",
+            "style": "eq"
+          },
+          {
+            "text": "Upthrust = (4/3)πr³σg",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "Sixth mark. Write both weight and upthrust using the same volume (4/3)πr³, with ρ the drop's density and σ the air's.",
+        "why": "Writing both forces from the same volume is what lets them combine cleanly into the (ρ − σ) term in the balance that follows.",
+        "common_mistakes": [
+          "Using the drop's density for both weight and upthrust — the upthrust uses the density of air, σ.",
+          "Forgetting the factor (4/3)π and treating the volume as r³ alone."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the raindrop's weight is (4/3)πr³ρg and the upthrust is (4/3)πr³σg, using the same volume with the drop's density ρ and the air's density σ.",
+          "accept": [
+            "weight equals four thirds pi r cubed rho g",
+            "upthrust equals four thirds pi r cubed sigma g",
+            "same volume, drop density and air density",
+            "rho is the drop, sigma is the air"
+          ],
+          "reject": [
+            "F equals six pi eta r v"
+          ],
+          "heard_as": [
+            "four thirds pi r cubed",
+            "rho g",
+            "sigma g",
+            "weight and upthrust"
+          ]
+        },
+        "memory_tip": "Same volume, two densities: ρ for the drop's weight, σ for the air's upthrust."
+      },
+      {
+        "id": "s7_balance",
+        "kind": "equation",
+        "label": "Balancing the three forces",
+        "marks": 1,
+        "mark_note": "Balance condition",
+        "lines": [
+          "As the drop speeds up, the drag",
+          "grows until it balances the net",
+          "downward force:",
+          {
+            "text": "6πηrv_t = (4/3)πr³(ρ − σ)g",
+            "style": "eq"
+          },
+          "Once this balance is reached the",
+          "net force on the drop is zero, and",
+          "it falls at a constant speed, the",
+          "terminal velocity v_t."
+        ],
+        "margin_note": "Seventh mark. Write the balance equation and say the net force is zero once it holds.",
+        "why": "This is the moment the drop stops accelerating — stating the balance explicitly is what justifies calling the resulting speed constant.",
+        "common_mistakes": [
+          "Balancing only weight against drag and leaving out the upthrust.",
+          "Saying the drop stops moving at this point — it keeps falling, at a constant speed, not zero speed."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That as the drop speeds up the drag grows until it balances weight minus upthrust, six pi eta r v t equals four thirds pi r cubed rho minus sigma g, and the drop then falls at a constant terminal velocity.",
+          "accept": [
+            "six pi eta r v t equals four thirds pi r cubed rho minus sigma g",
+            "drag balances weight minus upthrust",
+            "net force becomes zero",
+            "the drop falls at a constant speed"
+          ],
+          "reject": [
+            "eta equals F over A dv dx"
+          ],
+          "heard_as": [
+            "balance equation",
+            "net force zero",
+            "terminal velocity",
+            "six pi eta r v t"
+          ]
+        },
+        "memory_tip": "Drag grows until it matches weight minus upthrust — then the speed stops changing."
+      },
+      {
+        "id": "s8_terminal_velocity",
+        "kind": "equation",
+        "label": "Terminal velocity and its r² law",
+        "marks": 1,
+        "mark_note": "Boxed terminal velocity",
+        "lines": [
+          "Solving the balance equation for",
+          "v_t,",
+          {
+            "text": "v_t = (2/9)·r²g(ρ − σ)/η",
+            "style": "boxed"
+          },
+          "Since v_t is proportional to r², a",
+          "large drop falls faster than a",
+          "small one."
+        ],
+        "margin_note": "Eighth mark. Give the boxed formula for v_t and state that it goes as r², so larger drops fall faster.",
+        "why": "The r² dependence is the physical payoff of the whole derivation — it is what explains why raindrops of different sizes fall at different terminal speeds.",
+        "common_mistakes": [
+          "Solving for v_t but never stating how it depends on r.",
+          "Losing the factor 2/9 while rearranging 6πηrv_t = (4/3)πr³(ρ − σ)g."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That solving the balance equation gives v t equals two ninths r squared g times rho minus sigma over eta, and that v t is proportional to r squared, so a larger drop falls faster.",
+          "accept": [
+            "v t equals two ninths r squared g rho minus sigma over eta",
+            "terminal velocity goes as r squared",
+            "a larger drop falls faster",
+            "boxed formula for terminal velocity"
+          ],
+          "reject": [
+            "F equals six pi eta r v"
+          ],
+          "heard_as": [
+            "two ninths r squared",
+            "terminal velocity",
+            "larger drop falls faster",
+            "r squared law"
+          ]
+        },
+        "memory_tip": "v_t goes as r squared: double the radius, four times the terminal speed."
+      }
+    ]
+  },
+  "insider_note": "The terminal velocity falls out of one balance equation once weight, upthrust and drag are all written from the same volume (4/3)πr³ — keep ρ (the drop) and σ (the air) from swapping places."
+}

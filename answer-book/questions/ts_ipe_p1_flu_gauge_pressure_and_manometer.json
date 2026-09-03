@@ -1,0 +1,221 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_gauge_pressure_and_manometer",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is gauge pressure? Describe how an open-tube manometer measures it.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Gauge pressure defined",
+      "marks": 1
+    },
+    {
+      "label": "The open-tube manometer",
+      "marks": 1
+    },
+    {
+      "label": "Reading the pressure difference",
+      "marks": 1
+    },
+    {
+      "label": "Choice of liquid",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 (Mechanical Properties of Fluids), Short Answer Question 3 (printed p.107). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the full pressure at depth h below a free surface is P = P₀ + hρg; the gauge pressure is the hρg term alone, the amount by which P exceeds the atmospheric pressure P₀. An open-tube manometer is a U-tube with one arm open to the atmosphere and the other connected to the vessel, and the level difference h between its two arms gives P − P₀ = hρg directly; rearranging, h = (P − P₀)/ρg, so a lower-density liquid gives a taller, more readable column for a small pressure difference, and a higher-density liquid keeps the column short for a large one."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Mechanical Properties of Fluids · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_gauge_pressure_defined",
+        "kind": "equation",
+        "label": "Gauge pressure defined",
+        "marks": 1,
+        "mark_note": "P_g = P − P₀",
+        "lines": [
+          "Gauge pressure is the amount",
+          "by which the pressure at a",
+          "point exceeds atmospheric",
+          "pressure:",
+          {
+            "text": "P_g = P − P₀ = hρg",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "First mark. Give the definition, then the formula.",
+        "why": "Naming it a difference from atmospheric pressure, not the total pressure, is what separates gauge pressure from the pressure itself.",
+        "common_mistakes": [
+          "Writing P_g = hρg without saying it equals P − P₀.",
+          "Calling P₀ the pressure at the point instead of the atmospheric pressure."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That gauge pressure is P minus P naught, equal to h rho g, the amount above atmospheric pressure.",
+          "accept": [
+            "P minus P naught",
+            "gauge pressure is h rho g",
+            "excess over atmospheric pressure"
+          ],
+          "reject": [
+            "oil for small differences"
+          ],
+          "heard_as": [
+            "gauge pressure",
+            "h rho g",
+            "P minus P naught"
+          ]
+        },
+        "memory_tip": "Gauge pressure is the EXTRA over atmospheric — P minus P naught, not P itself."
+      },
+      {
+        "id": "s2_open_tube_manometer",
+        "kind": "text",
+        "label": "The open-tube manometer",
+        "marks": 1,
+        "mark_note": "U-tube description",
+        "lines": [
+          "An open-tube manometer is a",
+          "U-tube holding a liquid. One",
+          "arm is open to the atmosphere,",
+          "and the other arm is connected",
+          "to the vessel whose pressure",
+          "is being measured."
+        ],
+        "margin_note": "Second mark. Describe the device: a U-tube, one arm open, the other connected.",
+        "why": "The device works only because one arm is left open to a known pressure, atmospheric, so the other arm can be compared against it.",
+        "common_mistakes": [
+          "Describing a closed tube with both ends sealed.",
+          "Leaving out which arm is open and which is connected to the vessel."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That an open-tube manometer is a U-tube with one arm open to air and the other connected to the vessel.",
+          "accept": [
+            "U-tube with one arm open",
+            "one side open, one side connected",
+            "open tube manometer description"
+          ],
+          "reject": [
+            "mercury for large differences"
+          ],
+          "heard_as": [
+            "U-tube",
+            "open arm",
+            "connected arm"
+          ]
+        },
+        "memory_tip": "One arm open to air, one arm to the vessel — that is the whole device."
+      },
+      {
+        "id": "s3_reading_pressure_difference",
+        "kind": "equation",
+        "label": "Reading the pressure difference",
+        "marks": 1,
+        "mark_note": "h gives P − P₀",
+        "lines": [
+          "The liquid stands at different",
+          "levels in the two arms. The",
+          "difference in level, h, gives",
+          {
+            "text": "P − P₀ = hρg",
+            "style": "eq"
+          },
+          "directly."
+        ],
+        "margin_note": "Third mark. Say that the LEVEL DIFFERENCE h is what is read and used.",
+        "why": "The manometer converts a pressure difference, which cannot be seen, into a height difference, which can be measured with a scale.",
+        "common_mistakes": [
+          "Reading the height of liquid in one arm alone instead of the difference between the two arms.",
+          "Using the density of the liquid inside the vessel instead of the density of the manometer liquid."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the level difference h between the two arms gives P minus P naught equals h rho g.",
+          "accept": [
+            "level difference h",
+            "difference between the two arms",
+            "h rho g from the height difference"
+          ],
+          "reject": [
+            "one arm open to atmosphere"
+          ],
+          "heard_as": [
+            "level difference",
+            "h rho g",
+            "two arms"
+          ]
+        },
+        "memory_tip": "Read the DIFFERENCE in level between the two arms, not either arm alone."
+      },
+      {
+        "id": "s4_choice_of_liquid",
+        "kind": "boxed_final",
+        "label": "Choice of liquid",
+        "marks": 1,
+        "mark_note": "Oil or mercury",
+        "lines": [
+          "A low-density liquid such as",
+          "oil is used for small pressure",
+          "differences, and a high-density",
+          "liquid such as mercury is used",
+          "for large ones. From",
+          "P − P₀ = hρg,",
+          {
+            "text": "h = (P − P₀)/ρg",
+            "style": "eq"
+          },
+          {
+            "text": "h ∝ 1/ρ, at fixed P − P₀",
+            "style": "boxed"
+          }
+        ],
+        "margin_note": "Fourth mark. Name which liquid suits which range, and give the reason.",
+        "why": "For the same pressure difference, a smaller ρ gives a taller, easier-to-read column, while a larger ρ keeps the column short enough to fit a large difference on the same scale.",
+        "common_mistakes": [
+          "Naming a liquid without saying which range, small or large, it suits.",
+          "Reversing the rule and saying mercury is used for small differences."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That a low-density liquid such as oil suits small pressure differences and a high-density liquid such as mercury suits large ones, because h is inversely proportional to ρ.",
+          "accept": [
+            "oil for small, mercury for large",
+            "h inversely proportional to density",
+            "low density gives a taller column"
+          ],
+          "reject": [
+            "one arm open to atmosphere"
+          ],
+          "heard_as": [
+            "oil",
+            "mercury",
+            "h proportional to 1 by rho"
+          ]
+        },
+        "memory_tip": "Small difference, small ρ (oil). Large difference, large ρ (mercury)."
+      }
+    ]
+  },
+  "insider_note": "The manometer turns a pressure difference into a height difference, and the fourth mark is choosing the right liquid density for the range being measured."
+}

@@ -36,7 +36,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2020 (Q6) — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the angle of contact θ is the angle between the tangent to the liquid surface at the point of contact and the tangent to the solid surface, measured INSIDE the liquid. θ is acute when the adhesive force between liquid and solid exceeds the cohesive force within the liquid, and the liquid wets the solid (water on clean glass, θ near 8°); θ is obtuse when cohesion dominates and the liquid does not wet the solid (mercury on glass, θ near 140°)."
+    "note": "Asked in TS Inter I-Year Physics Paper-I, March 2020 (Q6) — Section A, 2 marks. The 1+1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the angle of contact θ is the angle between the tangent to the liquid surface at the point of contact and the tangent to the solid surface, measured INSIDE the liquid. θ is acute when the adhesive force between liquid and solid exceeds the cohesive force within the liquid, and the liquid wets the solid (water on clean glass, θ near 8°); θ is obtuse when cohesion dominates and the liquid does not wet the solid (mercury on glass, θ near 140°). Angle values corrected 2026-09-03: the question asks for PURE water, whose angle of contact on clean glass is about 0°, not the roughly 8° an ordinary water sample on ordinary glass gives; both are now stated. The Sri Chaitanya 2026-27 physics volume prints 0° for pure water and 140° for mercury (VSAQ 18, printed p.107)."
   },
   "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
   "answer": {
@@ -95,7 +95,9 @@
           "liquid and solid is larger than the",
           "cohesive force inside the liquid. The",
           "liquid then wets the solid, as water does",
-          "on clean glass, where θ is about 8°.",
+          "on clean glass, where θ is about 0°.",
+          "Ordinary water on ordinary glass",
+          "gives a small acute angle, about 8°.",
           "θ is obtuse when cohesion is larger. The",
           "liquid does not wet the solid, as with",
           "mercury on glass, where θ is about 140°.",

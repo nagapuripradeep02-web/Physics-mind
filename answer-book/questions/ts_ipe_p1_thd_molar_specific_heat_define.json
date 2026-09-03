@@ -1,0 +1,118 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_molar_specific_heat_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define molar specific heat capacity.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "Formula and unit",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 8 (printed p.124). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The two-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: molar specific heat capacity C = ΔQ/(nΔT), SI unit J mol⁻¹ K⁻¹, the heat needed to raise the temperature of one mole of a substance through one degree — a per-MOLE quantity, distinct from the per-unit-mass specific heat capacity S of vsaq6."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "The molar specific heat capacity",
+          "of a substance is the heat needed",
+          "to raise the temperature of one",
+          "mole of it through one degree."
+        ],
+        "margin_note": "First mark. Say it is per mole, not per unit mass.",
+        "why": "The word molar signals the heat is measured per MOLE of substance, in contrast to the specific heat capacity, which is per unit mass.",
+        "common_mistakes": [
+          "Writing the same definition as specific heat capacity with mass in place of mole — the two are different quantities.",
+          "Leaving out one mole and saying only unit quantity."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That molar specific heat capacity is the heat needed to raise the temperature of one mole of a substance through one degree.",
+          "accept": [
+            "heat per mole per degree",
+            "one mole through one degree"
+          ],
+          "reject": [
+            "heat per unit mass per degree"
+          ],
+          "heard_as": [
+            "molar specific heat",
+            "one mole"
+          ]
+        },
+        "memory_tip": "Molar means per mole — swap mass for the mole count n."
+      },
+      {
+        "id": "s2_formula",
+        "kind": "boxed_final",
+        "label": "Formula and unit",
+        "marks": 1,
+        "mark_note": "Formula and unit",
+        "lines": [
+          "Writing n for the number of moles,",
+          {
+            "text": "C = ΔQ/(nΔT)",
+            "style": "boxed"
+          },
+          "SI unit: J mol⁻¹ K⁻¹"
+        ],
+        "margin_note": "Second mark. C = ΔQ/(nΔT), SI unit J mol⁻¹ K⁻¹.",
+        "why": "Writing n for the number of moles in the denominator is what makes C a per-mole quantity, mirroring the form S = (1/m)(dQ/dT) of the specific heat capacity, which is per unit mass.",
+        "common_mistakes": [
+          "Writing m for mass in place of n for moles — that turns C back into the per-mass specific heat capacity.",
+          "Giving the unit as J kg⁻¹ K⁻¹, the per-mass unit, instead of J mol⁻¹ K⁻¹."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That C equals delta Q over n delta T, with n the number of moles, SI unit joule per mole per kelvin.",
+          "accept": [
+            "C equals delta Q by n delta T",
+            "joule per mole per kelvin",
+            "n is the number of moles"
+          ],
+          "reject": [
+            "S equals one by m dQ by dT"
+          ],
+          "heard_as": [
+            "delta Q by n delta T",
+            "joule per mole kelvin"
+          ]
+        },
+        "memory_tip": "n for moles in the formula, mol⁻¹ in the unit — both say per mole."
+      }
+    ]
+  },
+  "insider_note": "C is per MOLE — contrast directly with S, the specific heat capacity, which is per unit MASS. Mixing the two symbols is the commonest slip on this pair."
+}

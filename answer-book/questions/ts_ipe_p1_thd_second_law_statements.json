@@ -1,0 +1,120 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_second_law_statements",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "State the second law of thermodynamics.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Clausius statement",
+      "marks": 1
+    },
+    {
+      "label": "Kelvin-Planck statement",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 15 (printed p.125). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: the Clausius statement (no process transfers heat from a colder body to a hotter body with no other effect) and the Kelvin-Planck statement (no engine working in a cycle converts heat from a single reservoir entirely into work) are the two standard, equivalent statements of the second law of thermodynamics."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_clausius",
+        "kind": "text",
+        "label": "Clausius statement",
+        "marks": 1,
+        "mark_note": "Clausius",
+        "lines": [
+          "Clausius statement: heat does not flow on",
+          "its own from a colder body to a hotter",
+          "body. It flows that way only when external",
+          "work is done on the system."
+        ],
+        "margin_note": "First mark. State that heat does not flow from cold to hot on its own.",
+        "why": "The second law adds a rule the first law does not: it fixes the direction heat can flow without outside help.",
+        "common_mistakes": [
+          "Leaving out \"on its own\". Heat does flow from cold to hot when work is supplied, as in a refrigerator.",
+          "Writing only one of the two statements. This question asks for the second law in general, and both statements together are the complete answer to that."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Clausius statement says heat does not flow on its own from a colder body to a hotter body, only when external work is done.",
+          "accept": [
+            "heat cannot flow by itself from cold to hot",
+            "only with external work",
+            "Clausius statement"
+          ],
+          "reject": [
+            "cannot convert all the heat into work"
+          ],
+          "heard_as": [
+            "Clausius",
+            "cold to hot",
+            "on its own"
+          ]
+        },
+        "memory_tip": "Clausius names the DIRECTION rule: cold to hot happens only with outside work."
+      },
+      {
+        "id": "s2_kelvin_planck",
+        "kind": "text",
+        "label": "Kelvin-Planck statement",
+        "marks": 1,
+        "mark_note": "Kelvin-Planck",
+        "lines": [
+          "Kelvin-Planck statement: no engine working",
+          "in a cycle can take heat from a single",
+          "reservoir and convert all of it into work.",
+          "Some heat must always be rejected to a",
+          "colder body."
+        ],
+        "margin_note": "Second mark. State that no engine converts heat from one reservoir completely into work.",
+        "why": "The first law alone does not forbid an engine that turns all its heat into work; the Kelvin-Planck statement is the separate rule that rules it out.",
+        "common_mistakes": [
+          "Leaving out \"working in a cycle\". A single expansion can convert all its heat into work; a repeated cycle cannot.",
+          "Saying no heat can be converted into work at all. Part of the heat can become work; all of it cannot."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That the Kelvin-Planck statement says no engine working in a cycle can take heat from one reservoir and convert all of it into work.",
+          "accept": [
+            "cannot convert all the heat into work",
+            "working in a cycle",
+            "some heat must be rejected"
+          ],
+          "reject": [
+            "heat cannot flow from a colder body to a hotter one"
+          ],
+          "heard_as": [
+            "Kelvin Planck",
+            "single reservoir",
+            "cannot convert completely"
+          ]
+        },
+        "memory_tip": "Kelvin-Planck names the WORK rule: a single reservoir cannot supply an engine's work with nothing rejected."
+      }
+    ]
+  },
+  "insider_note": "Both statements carry one mark each, so write both — the two together are the complete answer to this question."
+}

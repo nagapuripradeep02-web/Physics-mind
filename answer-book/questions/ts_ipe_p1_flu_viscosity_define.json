@@ -1,0 +1,130 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_flu_viscosity_define",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 10,
+    "name": "Mechanical Properties of Fluids"
+  },
+  "chapter": "Mechanical Properties of Fluids",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Define viscosity. Give its units and dimensional formula.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "η, its unit and dimensions",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 10 Mechanical Properties of Fluids, Very Short Answer Question 11, starred as a repeated question (printed p.106). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: viscosity is the property by which a fluid opposes relative motion between its layers, measured by the coefficient of viscosity η = F/(A·dv/dx), the shearing stress divided by the rate of strain; SI unit N s m⁻² (pascal second), CGS unit poise (1 Pa s = 10 poise), dimensional formula [ML⁻¹T⁻¹] — confirmed from F = ηA(dv/dx) ⇒ η = [MLT⁻²]/([L²][T⁻¹]) = [ML⁻¹T⁻¹]."
+  },
+  "recall_prompt": "Say the steps you would write for this answer, in order. You can speak in English, in Telugu, or in both.",
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Mechanical Properties of Fluids · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "Opposes relative motion between layers",
+        "lines": [
+          "Viscosity is the property of a",
+          "fluid by which it opposes the",
+          "relative motion between its own",
+          "layers.",
+          "It is the fluid analogue of",
+          "friction between two solid",
+          "surfaces in contact."
+        ],
+        "margin_note": "First mark. Give the definition — the property by which a fluid opposes relative motion between its own layers; the comparison with friction helps but the definition alone is the answer.",
+        "why": "The friction analogy makes the definition concrete: a faster layer drags a slower one forward and is dragged back in turn, exactly as friction acts between two solid surfaces.",
+        "common_mistakes": [
+          "Defining viscosity as a fluid's thickness. Thickness is not a physics definition.",
+          "Leaving out that it acts between the fluid's own layers."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That viscosity is the property by which a fluid opposes relative motion between its layers, the analogue of friction between solids.",
+          "accept": [
+            "opposes relative motion between layers",
+            "fluid friction",
+            "analogue of solid friction"
+          ],
+          "reject": [
+            "eta equals F over A dv by dx"
+          ],
+          "heard_as": [
+            "viscosity",
+            "layers",
+            "friction"
+          ]
+        },
+        "memory_tip": "Viscosity is friction, but between layers of the same fluid."
+      },
+      {
+        "id": "s2_units_dimensions",
+        "kind": "boxed_final",
+        "label": "η, its unit and dimensions",
+        "marks": 1,
+        "mark_note": "η = F/(A·dv/dx); [ML⁻¹T⁻¹]",
+        "lines": [
+          "It is measured by the coefficient",
+          "of viscosity η, the shearing",
+          "stress divided by the rate of",
+          "strain between the layers:",
+          {
+            "text": "η = F / (A · dv/dx)",
+            "style": "eq"
+          },
+          "SI unit: N s m⁻², also called the",
+          "pascal second. CGS unit: poise.",
+          "Dimensional formula: [ML⁻¹T⁻¹]."
+        ],
+        "margin_note": "Second mark. Give η's formula, then its SI unit and dimensional formula.",
+        "why": "The formula shows η as stress over strain rate, which is exactly what fixes its unit N s m⁻² and its dimensional formula [ML⁻¹T⁻¹].",
+        "common_mistakes": [
+          "Naming only the SI unit and leaving out the dimensional formula, or the reverse — the question asks for both.",
+          "Writing the unit as N s⁻¹ m⁻² instead of N s m⁻²."
+        ],
+        "recall": {
+          "credit": "say_it",
+          "must_convey": "That η = F/(A·dv/dx), SI unit N s m⁻² (pascal second), CGS unit poise, dimensional formula [ML⁻¹T⁻¹].",
+          "accept": [
+            "F over A dv by dx",
+            "N s per square metre",
+            "dimensional formula M L inverse T inverse"
+          ],
+          "reject": [
+            "opposes relative motion between layers"
+          ],
+          "heard_as": [
+            "eta",
+            "pascal second",
+            "poise",
+            "M L inverse T inverse"
+          ]
+        },
+        "memory_tip": "η = stress ÷ strain rate, unit N s m⁻², dimensions [ML⁻¹T⁻¹]."
+      }
+    ]
+  },
+  "insider_note": "One mark for the definition — the property by which a fluid opposes relative motion between its own layers; the comparison with friction helps but the definition alone is the answer — one for η's formula with its SI unit, CGS unit and dimensional formula together."
+}

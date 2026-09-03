@@ -1,0 +1,146 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_quasi_static_process",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "What is a quasi-static process? Explain its characteristics.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Definition",
+      "marks": 1
+    },
+    {
+      "label": "Infinitesimal difference",
+      "marks": 1
+    },
+    {
+      "label": "The P-V diagram",
+      "marks": 1
+    },
+    {
+      "label": "An idealisation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 (Thermodynamics) Short Answer Question 5 (printed p.127). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The four-way mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: a quasi-static process proceeds so slowly that the system remains in thermodynamic equilibrium with its surroundings at every stage, with pressure and temperature differing from the surroundings by only an infinitesimal amount throughout; this well-defined state at every point is why it can be drawn as a continuous curve on a P-V diagram, and it is an idealisation approached only in the limit of an infinitely slow real process."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "Thermodynamics · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "Definition",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "A quasi-static process is carried",
+          "out so slowly that the system",
+          "remains in thermodynamic",
+          "equilibrium with its surroundings",
+          "at every stage."
+        ],
+        "margin_note": "Write SLOWLY and that the system stays in thermodynamic equilibrium at every stage; slowness on its own is not the definition.",
+        "why": "Thermodynamic equilibrium needs the whole system to settle at one pressure and temperature; that settling takes time, so only a slow process allows it at every single stage.",
+        "common_mistakes": [
+          "Saying 'a very slow process' without adding that the system stays in equilibrium throughout — slowness alone is not the definition.",
+          "Describing it as reversible. A quasi-static process is a NECESSARY condition for reversibility, not the same word."
+        ],
+        "memory_tip": "Quasi-static = slow enough to stay in equilibrium at every single stage."
+      },
+      {
+        "id": "s2_infinitesimal_difference",
+        "kind": "equation",
+        "label": "The infinitesimal-difference condition",
+        "marks": 1,
+        "mark_note": "Infinitesimal difference",
+        "lines": [
+          "At every stage, the pressure and",
+          "temperature of the system differ",
+          "from those of the surroundings by",
+          "only an infinitesimally small",
+          "amount: dP in pressure, dT in",
+          "temperature."
+        ],
+        "margin_note": "State this as the PRECISE condition, not just 'very close' in words.",
+        "why": "This is what makes the process quasi-static in a checkable way — an infinitesimal difference is small enough that reversing it back needs only an infinitesimal push.",
+        "common_mistakes": [
+          "Saying the system and surroundings are at exactly the same P and T. A truly zero difference would mean no process happens at all — the difference is infinitesimal, not zero.",
+          "Leaving the condition only in words, with no symbol for the infinitesimal difference."
+        ],
+        "memory_tip": "Not zero difference, not a big difference — an infinitesimally small one, at every stage."
+      },
+      {
+        "id": "s3_pv_curve",
+        "kind": "text",
+        "label": "Why it draws as a curve",
+        "marks": 1,
+        "mark_note": "The P-V diagram",
+        "lines": [
+          "Because P and T are well-defined at",
+          "every intermediate stage, a",
+          "quasi-static process can be drawn",
+          "as a continuous curve on a P-V",
+          "diagram.",
+          "A fast, non-equilibrium process has",
+          "no single P or T to plot, so it",
+          "cannot be drawn this way."
+        ],
+        "margin_note": "Connect this to the previous step — well-defined P and T is WHY a curve can be drawn at all.",
+        "why": "A point on a P-V diagram needs one P and one V; a system out of equilibrium has no single pressure to plot, so only a quasi-static process gives a graph that means anything.",
+        "common_mistakes": [
+          "Saying every process can be drawn on a P-V diagram. Only a quasi-static one has a well-defined state at each intermediate point.",
+          "Missing the connection to well-defined P and T — this step is a consequence of the earlier condition, not a separate fact."
+        ],
+        "memory_tip": "A curve needs a point at every stage; only a quasi-static process has one."
+      },
+      {
+        "id": "s4_idealisation",
+        "kind": "text",
+        "label": "An idealisation",
+        "marks": 1,
+        "mark_note": "Idealisation",
+        "lines": [
+          "A truly quasi-static process would",
+          "take infinite time, so it is an",
+          "idealisation.",
+          "A real process approaches it only",
+          "when carried out very slowly,",
+          "compared to the time the system",
+          "needs to reach equilibrium.",
+          {
+            "text": "No real process is truly quasi-static.",
+            "style": "heading"
+          }
+        ],
+        "margin_note": "Say clearly that it is an IDEALISATION never fully achieved, only approached.",
+        "why": "Every real process happens in finite time, so this final point tells the student where the idealisation meets reality — the near-reversible isothermal and adiabatic processes are approached this way.",
+        "common_mistakes": [
+          "Saying real slow processes ARE quasi-static. They only approximate it; the true condition needs infinite time.",
+          "Leaving out that the comparison is to the equilibration time of the system — 'slow' has no meaning without something to compare it to."
+        ],
+        "memory_tip": "Quasi-static is a limit, approached but never reached, by processes carried out very slowly."
+      }
+    ]
+  },
+  "insider_note": "The infinitesimal-difference condition is the mark most often skipped — students give the 'very slow' idea but not the precise condition behind it."
+}

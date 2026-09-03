@@ -1,0 +1,101 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_p1_thd_thermos_flask_shaken",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "physics",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 12,
+    "name": "Thermodynamics"
+  },
+  "chapter": "Thermodynamics",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "A thermos flask containing a liquid is shaken vigorously. What happens to the temperature of the liquid?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Applying the first law",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Sourced from the Sri Chaitanya IPE Study Material for Jr. Students 2026-27 edition, physics volume, Chapter 12 Very Short Answer Question 13 (printed p.125). Only the question was taken; the answer, its steps and its mark split are original work — see docs/ORIGINALITY_MATHS.md. The 1 + 1 mark split is INVENTED and is a CLAIM until a Telangana IPE teacher confirms it. Physics hand-checked: an insulated thermos flask has ΔQ = 0; shaking does work on the liquid, so the work done BY the liquid, W, is negative, and the first law ΔU = ΔQ − W = −W is then positive, so the internal energy and temperature of the liquid rise."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "Thermodynamics · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_first_law",
+        "kind": "equation",
+        "label": "Applying the first law",
+        "marks": 1,
+        "mark_note": "ΔQ = 0 and W < 0",
+        "lines": [
+          "A thermos flask is insulated, so no",
+          "heat is exchanged with it:",
+          {
+            "text": "ΔQ = 0",
+            "style": "eq"
+          },
+          "Shaking does work ON the liquid, so",
+          "the work done BY the liquid is",
+          "negative:",
+          {
+            "text": "W < 0",
+            "style": "eq"
+          }
+        ],
+        "margin_note": "ΔQ = 0 and W < 0 together are the first mark.",
+        "why": "The first law needs both facts together — no heat crosses the insulated wall, and the work is done on the liquid, not by it — before the sign of ΔU can be found.",
+        "common_mistakes": [
+          "Saying heat is added by the shaking. Shaking does mechanical work; it exchanges no heat through the insulated wall.",
+          "Taking W as positive. Work done ON the liquid makes W, the work done BY the liquid, negative."
+        ],
+        "memory_tip": "Insulated flask: ΔQ = 0 always. Shaking: work done ON the liquid, so W is negative."
+      },
+      {
+        "id": "s2_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Temperature rises",
+        "lines": [
+          "The first law gives",
+          {
+            "text": "ΔU = ΔQ − W = −W",
+            "style": "eq"
+          },
+          "Since W is negative,",
+          {
+            "text": "ΔU > 0",
+            "style": "boxed"
+          },
+          "The internal energy, and so the",
+          "temperature, of the liquid rises."
+        ],
+        "margin_note": "ΔU = −W > 0, and the stated conclusion that the temperature rises, are the second mark.",
+        "why": "Internal energy is the only place the work done on an insulated liquid can go, and a rise in internal energy of a liquid shows up as a rise in its temperature.",
+        "common_mistakes": [
+          "Writing ΔU = ΔQ + W with the wrong sign convention and reaching the wrong sign for ΔU.",
+          "Stopping at 'internal energy increases' without saying the temperature rises — that is the actual answer to the question asked."
+        ],
+        "memory_tip": "ΔQ = 0 and W negative together make ΔU positive: the liquid warms up."
+      }
+    ]
+  },
+  "insider_note": "The temperature rises, not falls — work is done ON the liquid by the shaking, so ΔU is positive despite there being no heat supplied."
+}
