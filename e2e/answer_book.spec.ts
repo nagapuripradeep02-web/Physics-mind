@@ -46,6 +46,20 @@ async function openFirst(page: any): Promise<void> {
     await page.waitForSelector('.page');
 }
 
+/** Open the Vidi panel the way a student does — by tapping the pill.
+
+    Since 2026-09-02 the panel starts MINIMISED on a device's first question
+    (founder: on a phone it covered the answer). Gates that exercise what is
+    INSIDE the panel therefore have to open it first; the gate on the minimised
+    default itself lives in the 'Vidi panel renders in the rail' test, which is
+    the one place that must NOT call this. */
+async function openVidi(page: any): Promise<void> {
+    if (await page.evaluate(() => document.getElementById('pm-assistant-slot')!.hidden)) {
+        await page.click('#vidiFab');
+    }
+    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+}
+
 async function openQ(page: any, id: string, cut?: string): Promise<void> {
     await page.evaluate(
         ([qid, ck]: [string, string | undefined]) => (window as any).PM_ANSWER.openQuestion(qid, ck),
@@ -1119,6 +1133,20 @@ test('Vidi panel renders in the rail, chips answer deterministically, zero netwo
     });
     await openFirst(page);
 
+    // FIRST VISIT = MINIMISED (founder, 2026-09-02). The window used to open
+    // itself on a device's first question; on a phone that covered the notebook
+    // page, so the first thing a new student saw was a chat panel and not the
+    // answer. The pill stands in for it, pulsing. This is the gate on that
+    // decision — if the panel ever auto-opens over a first answer again, it
+    // fails here.
+    expect(await page.evaluate(() => document.getElementById('pm-assistant-slot')!.hidden)).toBe(true);
+    expect(await page.evaluate(() => document.getElementById('vidiFab')!.hidden)).toBe(false);
+    expect(await page.evaluate(
+        () => document.getElementById('vidiFab')!.classList.contains('vf-unread'))).toBe(true);
+
+    // the student taps the pill — from here the panel behaves exactly as before
+    await page.click('#vidiFab');
+
     // panel visible, greeting bubble lands after its typing beat
     await page.waitForSelector('#pm-assistant-slot:not([hidden])');
     await page.waitForSelector('#vidiThread .vidi-msg.tutor:not(.vidi-typing)', { timeout: 4000 });
@@ -1326,8 +1354,11 @@ test('the Vidi window minimizes to the launcher pill and comes back, no sideways
     await page.setViewportSize({ width: 390, height: 844 });
     await openFirst(page);
 
-    // first question on a fresh device: the window opens once so the student meets her
-    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    // first question on a fresh device: the window stays MINIMISED and the pill
+    // pulses (founder, 2026-09-02 — it used to open over the answer). Tapping
+    // the pill is how the student meets her, so that is where this gate starts.
+    expect(await page.evaluate(() => document.getElementById('pm-assistant-slot')!.hidden)).toBe(true);
+    await openVidi(page);
     const open = await page.evaluate(() => ({
         fabHidden: document.getElementById('vidiFab')!.hidden,
         hScroll: document.documentElement.scrollWidth > window.innerWidth + 1,
@@ -1355,7 +1386,7 @@ test('the Vidi window minimizes to the launcher pill and comes back, no sideways
 test('at desktop width Vidi docks as the third column and minimize collapses it', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 720 });
     await openFirst(page);
-    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    await openVidi(page);
 
     const docked = await page.evaluate(() => {
         const win = document.getElementById('pm-assistant-slot')!.getBoundingClientRect();
@@ -1389,7 +1420,7 @@ test('the Vidi window drags by its header and the place sticks', async ({ page }
     // 1100px sits in the FLOATING band (721–1179): docked above it never drags
     await page.setViewportSize({ width: 1100, height: 800 });
     await openFirst(page);
-    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    await openVidi(page);
 
     const before = (await page.locator('#pm-assistant-slot').boundingBox())!;
     const head = (await page.locator('#vidiHead').boundingBox())!;
@@ -1409,7 +1440,7 @@ test('the Vidi window drags by its header and the place sticks', async ({ page }
     });
     if (storageWorks) {
         await openFirst(page);
-        await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+        await openVidi(page);
         const kept = (await page.locator('#pm-assistant-slot').boundingBox())!;
         expect(Math.abs(kept.x - after.x)).toBeLessThan(8);
         expect(Math.abs(kept.y - after.y)).toBeLessThan(8);
@@ -1418,7 +1449,7 @@ test('the Vidi window drags by its header and the place sticks', async ({ page }
 
 test('the ask field and the mic exist exactly when the build has a chat base', async ({ page }) => {
     await openFirst(page);
-    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    await openVidi(page);
     const r = await page.evaluate(() => ({
         base: (window as any).PM_VIDI_BASE,
         askRowHidden: document.getElementById('vidiAskRow')!.hidden,
@@ -1677,7 +1708,7 @@ test('without a plan a question opens silently — chips only, and a quiet offer
     // intro already seen, no plan: the founder's "no 3-star talk" rule, locked
     await bootPlanner(page, '2026-09-01', { pm_intro_done: '1' });
     await openFirst(page);
-    await page.waitForSelector('#pm-assistant-slot:not([hidden])');
+    await openVidi(page);
     await page.waitForTimeout(1500);
     const bubbles = await page.$$eval('#vidiThread .vidi-msg.tutor:not(.vidi-typing)',
         (els) => els.map((e) => e.textContent || ''));

@@ -87,6 +87,7 @@
     "serve:answers": "npx --yes http-server answer-book/dist -p 8100 -c-1",
     "serve:answers:mpc": "npx --yes http-server answer-book/dist-mpc -p 8100 -c-1",
     "serve:answers:mpc2": "npx --yes http-server answer-book/dist-mpc_2 -p 8102 -c-1",
+    "reel": "npx tsx src/scripts/record_reel.ts",
     "smoke:answers": "playwright test e2e/answer_book.spec.ts",
     "probe:recall": "npx tsx --env-file=.env.local src/scripts/probe_recall.ts",
     "backtest:physics": "npx tsx src/scripts/backtest_ipe_papers.ts",
