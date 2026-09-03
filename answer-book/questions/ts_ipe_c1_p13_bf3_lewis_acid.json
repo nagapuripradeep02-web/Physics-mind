@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_bf3_lewis_acid",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why does BF₃ behave as a Lewis acid?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "BF₃ is electron deficient",
+      "marks": 1
+    },
+    {
+      "label": "It accepts a lone pair",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.99, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 3. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_electron_deficient",
+        "kind": "text",
+        "label": "BF₃ is electron deficient",
+        "marks": 1,
+        "mark_note": "BF₃ is electron deficient",
+        "lines": [
+          "Boron has the configuration 2s²2p¹ and",
+          "forms three bonds in BF₃.",
+          "Three shared pairs give boron only six",
+          "electrons in its valence shell, which is",
+          "two short of an octet.",
+          "So BF₃ is an electron deficient molecule."
+        ],
+        "why": "The Lewis acid behaviour of BF₃ rests on the electron count at boron, so the count has to be done first: three shared pairs are six electrons, not eight.",
+        "common_mistakes": [
+          "Counting the lone pairs on the fluorine atoms as part of the octet of boron. Only the three shared pairs belong to boron.",
+          "Writing that BF₃ gives H⁺. It has no hydrogen; it is an acid in the Lewis sense only."
+        ],
+        "memory_tip": "Three bonds, six electrons. Two short of eight is what makes boron an acceptor.",
+        "margin_note": "The count six electrons, two short of an octet is the line to write here."
+      },
+      {
+        "id": "s2_accepts_lone_pair",
+        "kind": "boxed_final",
+        "label": "It accepts a lone pair",
+        "marks": 1,
+        "mark_note": "It accepts a lone pair",
+        "lines": [
+          "A Lewis acid is a substance that accepts",
+          "a lone pair of electrons.",
+          "The empty 2p orbital of boron accepts a",
+          "lone pair from a donor such as NH₃, and",
+          "boron then completes its octet:",
+          {
+            "text": "BF₃ + NH₃ → BF₃·NH₃",
+            "style": "boxed"
+          }
+        ],
+        "why": "The definition of a Lewis acid is about accepting a lone pair, so the answer is complete only when the acceptance is shown. The ammonia adduct is the standard example: the nitrogen lone pair fills the empty orbital on boron.",
+        "common_mistakes": [
+          "Defining a Lewis acid as a proton donor. That is the Bronsted definition.",
+          "Writing that BF₃ donates a lone pair. It accepts one; the donor is the base."
+        ],
+        "memory_tip": "An acid accepts, a base donates. BF₃ has the empty orbital, so BF₃ accepts.",
+        "margin_note": "One adduct such as BF₃·NH₃ shows the acceptance in writing."
+      }
+    ]
+  },
+  "insider_note": "The electron count at boron and the definition of a Lewis acid are two separate statements, and the answer needs both of them."
+}

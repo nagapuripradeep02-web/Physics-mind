@@ -1,0 +1,87 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_group13_electronic_configuration",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the electronic configuration of the group-13 elements.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The five configurations",
+      "marks": 1
+    },
+    {
+      "label": "The general form ns²np¹",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 12. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Each configuration was checked against the element's atomic number while authoring: B 5, Al 13, Ga 31, In 49, Tl 81."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_configurations",
+        "kind": "text",
+        "label": "The five configurations",
+        "marks": 1,
+        "mark_note": "Configurations",
+        "lines": [
+          "B  (Z = 5)  : [He]2s²2p¹",
+          "Al (Z = 13) : [Ne]3s²3p¹",
+          "Ga (Z = 31) : [Ar]3d¹⁰4s²4p¹",
+          "In (Z = 49) : [Kr]4d¹⁰5s²5p¹",
+          "Tl (Z = 81) : [Xe]4f¹⁴5d¹⁰6s²6p¹"
+        ],
+        "why": "Writing each element on its own line with the noble gas core keeps the configuration short and shows the outer shell clearly, which is the part the question is about. In gallium, indium and thallium the filled d and f subshells may be written before or after the ns electrons; both orders are used and both are correct.",
+        "common_mistakes": [
+          "Writing gallium as [Ar]4s²4p¹. The ten 3d electrons are filled before 4p and must be shown.",
+          "Leaving out the 4f¹⁴ in thallium. Both the f and the d subshells are complete before 6p."
+        ],
+        "memory_tip": "From gallium onward an inner d shell is filled, and from thallium an f shell as well.",
+        "margin_note": "Use the noble gas core; the full form is long and easy to get wrong."
+      },
+      {
+        "id": "s2_general_form",
+        "kind": "text",
+        "label": "The general form",
+        "marks": 1,
+        "mark_note": "General form",
+        "lines": [
+          "The general valence shell configuration",
+          "of group 13 is ns²np¹.",
+          "Every element of the group has three",
+          "electrons in its outermost shell.",
+          "Those three electrons are why the group",
+          "shows the +3 oxidation state."
+        ],
+        "why": "One line, ns²np¹, covers all five elements: two electrons in the s subshell and one in the p subshell of the outermost shell n, which is three valence electrons in every case.",
+        "common_mistakes": [
+          "Writing ns²np³. Group 13 has one p electron in the valence shell, not three.",
+          "Counting the filled d electrons as valence electrons. The valence shell is the outermost one, ns²np¹."
+        ],
+        "memory_tip": "Group 13, three valence electrons: two in s and one in p.",
+        "margin_note": "Write ns²np¹ once; that one line covers all five elements."
+      }
+    ]
+  },
+  "insider_note": "The five configurations and the general form ns²np¹ both belong on the page, because the general form is the single line that explains the +3 state."
+}

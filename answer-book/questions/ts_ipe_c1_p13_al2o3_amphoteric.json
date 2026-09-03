@@ -1,0 +1,156 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_al2o3_amphoteric",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "SAQ",
+  "marks_total": 4,
+  "paper_section": "Section B",
+  "expected_time_min": 8,
+  "question_text": "Al₂O₃ is amphoteric. Explain with suitable reactions.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The meaning of amphoteric",
+      "marks": 1
+    },
+    {
+      "label": "Reaction with an acid",
+      "marks": 1
+    },
+    {
+      "label": "Reaction with a base",
+      "marks": 1
+    },
+    {
+      "label": "The conclusion",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.101, chapter 8 p-BLOCK ELEMENTS : GROUP 13, SAQ question 20. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. BOTH ALUMINATE FORMS ARE CORRECT, recorded here so no later editor treats one as a defect: the card writes the book's fusion form Al₂O₃ + 2NaOH → 2NaAlO₂ + H₂O and names the NCERT form Al₂O₃ + 2NaOH + 3H₂O → 2Na[Al(OH)₄] as an equally acceptable way of writing the same chemistry. Neither form is an error."
+  },
+  "answer": {
+    "page_header": [
+      "Section B — Short Answer Question",
+      "p-Block Elements: Group 13 · 4 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_meaning",
+        "kind": "text",
+        "label": "The meaning of amphoteric",
+        "marks": 1,
+        "mark_note": "Definition",
+        "lines": [
+          "An amphoteric oxide reacts with an acid",
+          "and also with a base, giving a salt and",
+          "water in each case.",
+          "Aluminium oxide Al₂O₃ does both, so it is",
+          "amphoteric.",
+          "It is neither purely basic nor purely",
+          "acidic."
+        ],
+        "why": "Aluminium stands at the boundary between the metals and the non-metals of the group, so its oxide shows both a basic and an acidic character. Defining the word first is what turns the two equations below into an explanation instead of a pair of unconnected reactions.",
+        "common_mistakes": [
+          "Writing that an amphoteric oxide reacts with water. The test is a reaction with an acid and a reaction with a base.",
+          "Calling Al₂O₃ a basic oxide because aluminium is a metal. It reacts with sodium hydroxide as well."
+        ],
+        "memory_tip": "Amphoteric means two reactions: one with an acid, one with a base.",
+        "margin_note": "Define the word before you write either equation. The definition is part of the answer."
+      },
+      {
+        "id": "s2_with_acid",
+        "kind": "equation",
+        "label": "Reaction with an acid",
+        "marks": 1,
+        "mark_note": "Acid reaction",
+        "lines": [
+          "With a mineral acid, Al₂O₃ behaves as a",
+          "basic oxide and gives a salt and water:",
+          {
+            "text": "Al₂O₃ + 6HCl → 2AlCl₃ + 3H₂O",
+            "style": "eq"
+          },
+          "The salt is aluminium chloride AlCl₃.",
+          "Atoms: 2 Al, 3 O, 6 H and 6 Cl on each",
+          "side."
+        ],
+        "why": "Reacting with an acid is the basic half of the behaviour. Six molecules of HCl are needed because each aluminium atom takes three chloride ions, and the three oxide ions carry away six hydrogen atoms as three molecules of water.",
+        "common_mistakes": [
+          "Writing Al₂O₃ + 3HCl → 2AlCl₃ + 3H₂O. Six molecules of HCl are needed for the equation to balance.",
+          "Writing the salt as AlCl₂ or AlCl. Aluminium is +3, so the chloride is AlCl₃."
+        ],
+        "memory_tip": "Six HCl give two AlCl₃ and three H₂O.",
+        "margin_note": "Balance this one before moving on. The counts 6, 2 and 3 are where the slip happens."
+      },
+      {
+        "id": "s3_with_base",
+        "kind": "equation",
+        "label": "Reaction with a base",
+        "marks": 1,
+        "mark_note": "Base reaction",
+        "lines": [
+          "With a strong alkali, Al₂O₃ behaves as an",
+          "acidic oxide and gives a salt and water:",
+          {
+            "text": "Al₂O₃ + 2NaOH → 2NaAlO₂ + H₂O",
+            "style": "eq"
+          },
+          "The salt is sodium meta-aluminate NaAlO₂.",
+          "An equally acceptable form, written with",
+          "water present, is",
+          {
+            "text": "Al₂O₃ + 2NaOH + 3H₂O → 2Na[Al(OH)₄]",
+            "style": "indent"
+          },
+          "which gives sodium tetrahydroxoaluminate."
+        ],
+        "why": "Reacting with an alkali is the acidic half of the behaviour, and it is the half most often left out. The two product forms describe the same chemistry: the meta-aluminate is written for the reaction carried out by fusion, and the tetrahydroxoaluminate when water is present.",
+        "common_mistakes": [
+          "Writing only the acid reaction and stopping. Both halves are needed before the word amphoteric can be used.",
+          "Writing the product as Al(OH)₃. Aluminium hydroxide dissolves further in excess alkali; the product here is the aluminate."
+        ],
+        "memory_tip": "Alkali gives an aluminate: NaAlO₂ by fusion, Na[Al(OH)₄] with water present.",
+        "margin_note": "Either aluminate form is correct chemistry. Write one of them, and write it balanced."
+      },
+      {
+        "id": "s4_conclusion",
+        "kind": "boxed_final",
+        "label": "The conclusion",
+        "marks": 1,
+        "mark_note": "Conclusion",
+        "lines": [
+          {
+            "text": "Al₂O₃ reacts with acids and with bases",
+            "style": "boxed"
+          },
+          "With hydrochloric acid it acts as the base",
+          "and gives the salt AlCl₃.",
+          "With sodium hydroxide it acts as the acid",
+          "and gives the salt NaAlO₂.",
+          "Aluminium hydroxide Al(OH)₃ behaves in the",
+          "same way."
+        ],
+        "why": "The two equations are evidence and the conclusion is what they are evidence for, so the word amphoteric has to be written back at the end. Saying which role the oxide plays in each reaction shows the two equations were understood and not only memorised.",
+        "common_mistakes": [
+          "Stopping after the two equations without stating what they show.",
+          "Calling Al₂O₃ neutral because it is insoluble in water. Solubility in water is a different property from amphoteric behaviour."
+        ],
+        "memory_tip": "Two reactions, two salts, one word: amphoteric.",
+        "margin_note": "One closing line naming the behaviour completes the answer."
+      }
+    ]
+  },
+  "insider_note": "Most students write the reaction with acid and stop there. The reaction with sodium hydroxide is the half usually left out, and it is the two reactions together that show the oxide is amphoteric, so write both equations."
+}

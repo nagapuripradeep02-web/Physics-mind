@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_aluminium_two_uses",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give two uses of aluminium.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "First use — electrical cables",
+      "marks": 1
+    },
+    {
+      "label": "Second use — reducing agent in metallurgy",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, VERY SHORT ANSWER QUESTIONS question 15. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_electrical_cables",
+        "kind": "text",
+        "label": "Electrical cables",
+        "marks": 1,
+        "mark_note": "First use",
+        "lines": [
+          "Aluminium conducts electricity well and",
+          "has a low density, so it is drawn into",
+          "wires and used for overhead power",
+          "transmission cables."
+        ],
+        "why": "Aluminium is chosen for cables because good conductivity and low density come together in one metal, so the use and the reason for it fit in a single sentence.",
+        "common_mistakes": [
+          "Naming a property instead of a use. Good conductivity is the reason; the cable is the use.",
+          "Giving a use of an aluminium compound, such as alum or aluminium oxide, when the question asks about the metal."
+        ],
+        "memory_tip": "Aluminium is light and conducts well, and that pair of properties is why cables are made of it.",
+        "margin_note": "One clear sentence names this use. A list of properties does not."
+      },
+      {
+        "id": "s2_reducing_agent",
+        "kind": "boxed_final",
+        "label": "Reducing agent in metallurgy",
+        "marks": 1,
+        "mark_note": "Second use",
+        "lines": [
+          "Aluminium powder is a reducing agent in",
+          "metallurgy. In the thermite process it",
+          "reduces iron oxide to molten iron, which",
+          "is used to weld broken rails and machine",
+          "parts:",
+          {
+            "text": "2Al + Fe₂O₃ → Al₂O₃ + 2Fe",
+            "style": "boxed"
+          }
+        ],
+        "why": "Aluminium has a greater affinity for oxygen than iron has, so it removes the oxygen from iron oxide, and that one fact covers both the metallurgical use and the welding use.",
+        "common_mistakes": [
+          "Writing the thermite equation unbalanced. Two aluminium atoms are needed for one Fe₂O₃.",
+          "Calling aluminium the oxidising agent here. It loses electrons, so it is the reducing agent."
+        ],
+        "memory_tip": "Aluminium has the greater affinity for oxygen, so it takes the oxygen and the other metal is left as molten metal.",
+        "margin_note": "Alloys for aircraft and vehicle parts, or foil for packing, are equally good second uses. The equation is extra."
+      }
+    ]
+  },
+  "insider_note": "Two named uses, one sentence each, are the whole answer; a paragraph about aluminium's properties still names no use."
+}

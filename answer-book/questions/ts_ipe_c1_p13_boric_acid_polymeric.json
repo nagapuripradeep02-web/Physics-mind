@@ -1,0 +1,89 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_boric_acid_polymeric",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Why is boric acid polymeric?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "What polymeric means, and the unit",
+      "marks": 1
+    },
+    {
+      "label": "Hydrogen bonding into layers",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 10. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The card states that orthoboric acid has three oxygen atoms; elsewhere the same chapter of the book says it contains four, which is the count for the ion [B(OH)₄]⁻, a different species."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_unit",
+        "kind": "text",
+        "label": "What polymeric means, and the unit",
+        "marks": 1,
+        "mark_note": "The meaning and the unit",
+        "lines": [
+          "Polymeric means a repeating extended",
+          "structure, not single separate molecules.",
+          "In orthoboric acid H₃BO₃ the boron atom",
+          "is sp² hybridised and bonded to three OH",
+          "groups, so one molecule is a flat BO₃",
+          "triangle. Each of its three OH groups can",
+          "form a hydrogen bond."
+        ],
+        "why": "The shape of the single molecule is what makes the extended structure possible: a flat triangle with an OH group at each corner can pack beside its neighbours in the same plane.",
+        "common_mistakes": [
+          "Calling the boron sp³. Boron here has three bonded groups and no lone pair, so it is sp² and the unit is planar.",
+          "Writing H₃BO₃ with four oxygen atoms. It has three; four oxygens belong to the ion [B(OH)₄]⁻."
+        ],
+        "memory_tip": "Three OH groups on a flat triangle means three places to hydrogen bond.",
+        "margin_note": "Say what polymeric means first, then the flat sp² unit, then the linking."
+      },
+      {
+        "id": "s2_layers",
+        "kind": "text",
+        "label": "Hydrogen bonding into layers",
+        "marks": 1,
+        "mark_note": "The linking",
+        "lines": [
+          "The OH group of one H₃BO₃ molecule forms",
+          "a hydrogen bond to an oxygen of the next.",
+          "This joins many BO₃ units into a two",
+          "dimensional sheet, or layer.",
+          "This repeating hydrogen bonded network is",
+          "why boric acid is described as polymeric."
+        ],
+        "why": "The link between one unit and the next is a hydrogen bond, not a covalent bond, and that same link repeats right across the layer. It is the repetition that makes the structure extended instead of a set of separate molecules.",
+        "common_mistakes": [
+          "Saying the units are joined by covalent bonds. The link between one unit and the next is a hydrogen bond.",
+          "Describing a three dimensional network. The hydrogen bonded units form flat layers, and the layers are held to each other by much weaker van der Waals forces."
+        ],
+        "memory_tip": "The same hydrogen bond repeats across a flat sheet, so the structure is polymeric.",
+        "margin_note": "The words hydrogen bond and layer carry this half of the answer."
+      }
+    ]
+  },
+  "insider_note": "The question is about the link between molecules, so the hydrogen bonding must be stated in words and not left to a drawing."
+}

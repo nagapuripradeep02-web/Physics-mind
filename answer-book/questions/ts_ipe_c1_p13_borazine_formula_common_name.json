@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_borazine_formula_common_name",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Give the formula of borazine. What is its common name?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The formula",
+      "marks": 1
+    },
+    {
+      "label": "The common name",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 13. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Borazole is recorded here as a second accepted name for the same compound, not as a wrong answer; the common name the question asks for is inorganic benzene."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_formula",
+        "kind": "text",
+        "label": "The formula",
+        "marks": 1,
+        "mark_note": "Formula",
+        "lines": [
+          "The formula of borazine is B₃N₃H₆.",
+          "It is a six membered ring of three boron",
+          "and three nitrogen atoms placed",
+          "alternately.",
+          "Each of the six ring atoms carries one",
+          "hydrogen, so there are six hydrogens."
+        ],
+        "why": "The formula follows straight from the ring: three boron and three nitrogen atoms alternate around a six membered ring, and each of the six carries one hydrogen.",
+        "common_mistakes": [
+          "Writing B₃N₃H₃. All six ring atoms carry a hydrogen, so the formula is B₃N₃H₆.",
+          "Writing BNH₂. That is the empirical formula; the molecule itself is B₃N₃H₆."
+        ],
+        "memory_tip": "Six ring atoms, one hydrogen on each: B₃N₃H₆.",
+        "margin_note": "Draw the alternating B and N ring if there is room; it fixes the formula."
+      },
+      {
+        "id": "s2_common_name",
+        "kind": "text",
+        "label": "The common name",
+        "marks": 1,
+        "mark_note": "Common name",
+        "lines": [
+          "The common name of borazine is inorganic",
+          "benzene.",
+          "The name comes from the likeness to",
+          "benzene C₆H₆: both are planar six membered",
+          "rings with one hydrogen on each ring atom.",
+          "Borazine is also called borazole."
+        ],
+        "why": "One boron and one nitrogen together supply as many electrons as two carbon atoms, so borazine and benzene have the same electron count and the same flat six membered ring — which is where the name inorganic benzene comes from.",
+        "common_mistakes": [
+          "Giving the formula and no name at all. The question asks for the common name as well, so write inorganic benzene or borazole.",
+          "Saying it is benzene with boron in it. Borazine is a different compound; only the ring shape and the electron count are like benzene's."
+        ],
+        "memory_tip": "A flat six membered ring like benzene, but built from boron and nitrogen.",
+        "margin_note": "The question asks two things, so write the formula and the name."
+      }
+    ]
+  },
+  "insider_note": "Two short answers, the formula B₃N₃H₆ and the name inorganic benzene, and one line on why the name fits completes the page."
+}

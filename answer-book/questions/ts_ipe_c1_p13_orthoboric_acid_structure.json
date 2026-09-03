@@ -1,0 +1,92 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_orthoboric_acid_structure",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Sketch the structure of orthoboric acid.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The planar BO₃ unit",
+      "marks": 1
+    },
+    {
+      "label": "Units joined into a hydrogen-bonded sheet",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.101, chapter 8 p-BLOCK ELEMENTS : GROUP 13, VERY SHORT ANSWER QUESTIONS question 17. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_planar_unit",
+        "kind": "equation",
+        "label": "The planar BO₃ unit",
+        "marks": 1,
+        "mark_note": "The planar BO₃ unit",
+        "lines": [
+          "Draw one boron atom with three OH groups",
+          "spaced evenly around it:",
+          {
+            "text": "H₃BO₃ = B(OH)₃",
+            "style": "eq"
+          },
+          "Boron is sp² hybridised, so the three",
+          "O–B–O angles are 120° and the BO₃ unit",
+          "is flat (trigonal planar)."
+        ],
+        "why": "The drawing has to show three OH groups on one boron at 120°, because those two features are what make it a boric acid molecule rather than any other three-armed unit.",
+        "common_mistakes": [
+          "Drawing the three hydrogen atoms bonded to boron. They sit on the oxygen atoms, as OH groups.",
+          "Drawing a pyramid. Boron is sp² here, so the unit is flat."
+        ],
+        "memory_tip": "sp² means flat and 120°: three OH groups spread evenly around one boron.",
+        "margin_note": "Label the 120° angle and write sp² beside the boron on the sketch."
+      },
+      {
+        "id": "s2_hydrogen_bonded_sheet",
+        "kind": "text",
+        "label": "Hydrogen-bonded sheet",
+        "marks": 1,
+        "mark_note": "Units joined into a sheet",
+        "lines": [
+          "Draw three or more such units in the",
+          "same plane. The H of one OH group points",
+          "at an oxygen of the next unit; join them",
+          "with dotted lines for the hydrogen bonds.",
+          "The units link into a flat sheet, so",
+          "boric acid is a layered solid."
+        ],
+        "why": "The hydrogen bonds are what turn separate molecules into a layered solid, so one unit drawn on its own shows the molecule but not the structure the question asks for.",
+        "common_mistakes": [
+          "Drawing the hydrogen bonds as full lines. They are weaker than the O–H bonds, so they are drawn dotted.",
+          "Drawing only one BO₃ unit. The structure is the sheet of units linked by hydrogen bonds.",
+          "Spreading the units in three directions. Each sheet is flat, and the sheets lie one above another."
+        ],
+        "memory_tip": "One unit is the molecule; many units joined by dotted lines are the structure.",
+        "margin_note": "Six units drawn in a ring show the sheet clearly, but three linked units already show the pattern. The layers slide over one another, which is why the crystals feel soapy."
+      }
+    ]
+  },
+  "insider_note": "This answer is a drawing, so keep the writing down to the labels: sp², 120°, and the words hydrogen bond beside one dotted line."
+}

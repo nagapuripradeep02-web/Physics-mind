@@ -1,0 +1,103 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_eq_boric_acid_on_heating",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the balanced equation for the reaction of H₃BO₃ on heating.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The stages of heating",
+      "marks": 1
+    },
+    {
+      "label": "The overall equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 9(d). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. TWO PRINTED ERRORS CORRECTED. First, the book prints tetraboric acid once as H₂B₃O₇; the formula is H₂B₄O₇, which the same page writes correctly one line above in 4HBO₂ → H₂B₄O₇ + H₂O. Second, the book gives two different temperatures for the second stage — 410 K in its prose and 470 K in its equation — so this card says 'on further heating' and states as a number only the 370 K the book gives consistently for H₃BO₃ → HBO₂. Every equation was balanced atom by atom while authoring, including the overall change B 2 = 2, H 6 = 6, O 6 = 6."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_stages",
+        "kind": "equation",
+        "label": "The stages of heating",
+        "marks": 1,
+        "mark_note": "Stages",
+        "lines": [
+          "Orthoboric acid H₃BO₃ loses water in",
+          "stages as it is heated.",
+          "At 370 K it gives metaboric acid HBO₂:",
+          {
+            "text": "H₃BO₃ → HBO₂ + H₂O",
+            "style": "eq"
+          },
+          "On further heating it gives tetraboric",
+          "acid H₂B₄O₇:",
+          {
+            "text": "4HBO₂ → H₂B₄O₇ + H₂O",
+            "style": "eq"
+          },
+          "At red heat it gives boric oxide B₂O₃:",
+          {
+            "text": "H₂B₄O₇ → 2B₂O₃ + H₂O",
+            "style": "eq"
+          }
+        ],
+        "why": "Heating drives water out of the acid one stage at a time: the three OH groups of orthoboric acid are reduced to one in metaboric acid, four HBO₂ units then join into tetraboric acid, and the last water leaves at red heat to give boric oxide.",
+        "common_mistakes": [
+          "Writing tetraboric acid as H₂B₃O₇. The formula is H₂B₄O₇, with four boron atoms.",
+          "Stopping at metaboric acid. Strong heating carries the change on to boric oxide B₂O₃."
+        ],
+        "memory_tip": "Water leaves three times: ortho, then meta, then tetra, then the oxide.",
+        "margin_note": "Name each product — metaboric acid, tetraboric acid, boric oxide."
+      },
+      {
+        "id": "s2_overall",
+        "kind": "boxed_final",
+        "label": "The overall equation",
+        "marks": 1,
+        "mark_note": "Overall equation",
+        "lines": [
+          "Taking the stages together, two H₃BO₃",
+          "lose three water molecules in all:",
+          {
+            "text": "2H₃BO₃ → B₂O₃ + 3H₂O",
+            "style": "boxed"
+          },
+          "Check: B 2 = 2, H 6 = 6, O 6 = 6.",
+          "B₂O₃ is boric oxide, also called boric",
+          "anhydride."
+        ],
+        "why": "The overall change is what one balanced equation has to show: two molecules of orthoboric acid carry two boron and six hydrogen atoms, which end as one B₂O₃ and three H₂O.",
+        "common_mistakes": [
+          "Writing H₃BO₃ → B₂O₃ + H₂O. Two acid molecules are needed to supply the two boron atoms of B₂O₃.",
+          "Giving two water molecules instead of three. Six hydrogen atoms make three H₂O."
+        ],
+        "memory_tip": "Two acid molecules give one oxide and three waters.",
+        "margin_note": "The overall equation on its own answers the question; the stages add the detail."
+      }
+    ]
+  },
+  "insider_note": "The overall equation is the short answer, and naming metaboric acid and boric oxide along the way shows the stages the heating goes through."
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_boron10_borides_shield",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Metal borides containing ¹⁰B are used as protective shields. Why?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "¹⁰B absorbs neutrons strongly",
+      "marks": 1
+    },
+    {
+      "label": "So the boride stops the neutrons",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.101, chapter 8 p-BLOCK ELEMENTS : GROUP 13, VERY SHORT ANSWER QUESTIONS question 19. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_absorbs_neutrons",
+        "kind": "text",
+        "label": "¹⁰B absorbs neutrons",
+        "marks": 1,
+        "mark_note": "The property of ¹⁰B",
+        "lines": [
+          "The ¹⁰B isotope absorbs neutrons very",
+          "strongly. A neutron that reaches a ¹⁰B",
+          "nucleus is captured instead of passing",
+          "through."
+        ],
+        "why": "The whole answer rests on one property of the isotope, so it has to be stated before the use, and it is the isotope ¹⁰B, not boron in general, that carries it.",
+        "common_mistakes": [
+          "Saying boron absorbs radiation in general. The property named here is neutron absorption by the ¹⁰B isotope.",
+          "Writing ¹¹B. It is ¹⁰B that has the high neutron-absorbing power."
+        ],
+        "memory_tip": "It is the lighter isotope that absorbs the neutrons: ¹⁰B, not ¹¹B.",
+        "margin_note": "The capture reaction ¹⁰B + ¹n → ⁷Li + ⁴He may be added if there is room."
+      },
+      {
+        "id": "s2_shield_use",
+        "kind": "text",
+        "label": "So the boride stops the neutrons",
+        "marks": 1,
+        "mark_note": "The use that follows",
+        "lines": [
+          "A layer of metal boride containing ¹⁰B",
+          "therefore stops the neutrons that would",
+          "otherwise pass out.",
+          "Such borides are used as protective",
+          "shields and as control rods in the",
+          "nuclear industry."
+        ],
+        "why": "The question asks why the borides are used, so the answer has to end on the use — a shield works because the neutrons are absorbed inside it rather than reaching what is behind it.",
+        "common_mistakes": [
+          "Stopping at the property and never naming the use. The question asks why the borides are used, so the answer has to end on the use.",
+          "Saying the boride reflects the neutrons. It absorbs them."
+        ],
+        "memory_tip": "Absorb the neutrons and nothing gets through: that is the shield.",
+        "margin_note": "Naming control rods alongside shields shows the same property at work."
+      }
+    ]
+  },
+  "insider_note": "Two sentences answer this: ¹⁰B absorbs neutrons, so a boride made with it shields whatever is behind it."
+}

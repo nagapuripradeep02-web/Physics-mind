@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_eq_diborane_with_water",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the balanced equation for the reaction B₂H₆ + H₂O →",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The products",
+      "marks": 1
+    },
+    {
+      "label": "The balanced equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 9(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. The equation was balanced atom by atom while authoring: B 2 = 2, O 6 = 6, H 18 = 18."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_products",
+        "kind": "text",
+        "label": "The products",
+        "marks": 1,
+        "mark_note": "Products",
+        "lines": [
+          "Diborane B₂H₆ is hydrolysed by water.",
+          "Each boron ends up bonded to three OH",
+          "groups, giving orthoboric acid H₃BO₃.",
+          "The hydrogen of the diborane leaves as",
+          "hydrogen gas, H₂."
+        ],
+        "why": "Water supplies OH to boron and H⁺ to the hydride hydrogen. The hydride H of diborane and the H⁺ of water combine and leave as hydrogen gas, and boron is left as orthoboric acid, which is also written B(OH)₃.",
+        "common_mistakes": [
+          "Leaving out the hydrogen gas. Hydrolysis of diborane releases H₂ as well as the acid.",
+          "Giving boric oxide B₂O₃ as the product. B₂O₃ comes from heating the acid, not from hydrolysis."
+        ],
+        "memory_tip": "Two borons give two H₃BO₃, and the six hydride hydrogens leave as H₂.",
+        "margin_note": "H₃BO₃ may also be written B(OH)₃; both forms are correct."
+      },
+      {
+        "id": "s2_balanced",
+        "kind": "boxed_final",
+        "label": "The balanced equation",
+        "marks": 1,
+        "mark_note": "Balanced equation",
+        "lines": [
+          "Two boron atoms need two H₃BO₃, and those",
+          "take six oxygen atoms from six waters.",
+          {
+            "text": "B₂H₆ + 6H₂O → 2H₃BO₃ + 6H₂",
+            "style": "boxed"
+          },
+          "Check: B 2 = 2, O 6 = 6, H 18 = 18."
+        ],
+        "why": "Six water molecules carry the six oxygen atoms that the two H₃BO₃ molecules need. Counting hydrogen last confirms the equation: 6 from B₂H₆ plus 12 from the water on the left, and 6 in the acid plus 12 in the hydrogen gas on the right.",
+        "common_mistakes": [
+          "Writing 3H₂O. Six water molecules are needed, one for each oxygen atom in the two acid molecules.",
+          "Writing 3H₂ instead of 6H₂. Six molecules of hydrogen gas are released."
+        ],
+        "memory_tip": "Count oxygen first: two H₃BO₃ need six O, so six H₂O.",
+        "margin_note": "Show the hydrogen count, since that is where the balance is checked."
+      }
+    ]
+  },
+  "insider_note": "Both products carry the answer, so write H₃BO₃ and H₂ together with their coefficients rather than the acid alone."
+}

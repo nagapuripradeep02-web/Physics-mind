@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_borax_heated_with_h2so4",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "What happens when borax is heated with H₂SO₄?",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "Orthoboric acid is formed",
+      "marks": 1
+    },
+    {
+      "label": "Balanced equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, VERY SHORT ANSWER QUESTIONS question 16(b). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_product",
+        "kind": "text",
+        "label": "Orthoboric acid is formed",
+        "marks": 1,
+        "mark_note": "Product named",
+        "lines": [
+          "Borax is the salt of the weak acid",
+          "H₃BO₃, and sulphuric acid is stronger,",
+          "so it displaces boric acid.",
+          "On warming and then cooling, white",
+          "crystals of orthoboric acid separate out",
+          "and sodium sulphate stays in solution."
+        ],
+        "why": "A stronger acid displaces a weaker one from its salt, and boric acid is only sparingly soluble in cold water, so it is the solid that appears while the sodium sulphate remains dissolved.",
+        "common_mistakes": [
+          "Naming metaboric acid HBO₂ as the product. HBO₂ forms when boric acid itself is heated to 370 K, not in this reaction.",
+          "Saying sodium sulphate crystallises out. Boric acid is the sparingly soluble one, so it is what separates on cooling."
+        ],
+        "memory_tip": "The stronger acid goes in, the weaker acid comes out: H₂SO₄ in, H₃BO₃ out.",
+        "margin_note": "Say that the crystals appear on cooling. Boric acid is sparingly soluble in cold water."
+      },
+      {
+        "id": "s2_equation",
+        "kind": "boxed_final",
+        "label": "Balanced equation",
+        "marks": 1,
+        "mark_note": "Balanced equation",
+        "lines": [
+          {
+            "text": "Na₂B₄O₇·10H₂O + H₂SO₄ → Na₂SO₄ + 4H₃BO₃ + 5H₂O",
+            "style": "boxed"
+          },
+          "Borax has four boron atoms, so four",
+          "molecules of boric acid are formed.",
+          "Borax is the decahydrate, so its ten",
+          "water molecules are written in. Five of",
+          "them react and five are left over.",
+          "Oxygen: 7 + 10 + 4 = 21 on the left and",
+          "4 + 12 + 5 = 21 on the right."
+        ],
+        "why": "One formula unit of borax carries four boron atoms, so four molecules of boric acid come out. Writing borax as Na₂B₄O₇·10H₂O keeps the water of crystallisation in the equation: five of those ten water molecules supply the hydrogen and oxygen the four boric acid molecules need, and the other five are left over on the right.",
+        "common_mistakes": [
+          "Writing a single H₃BO₃ on the right. Four boron atoms give four molecules of boric acid.",
+          "Leaving the 5H₂O off the right side, which leaves both hydrogen and oxygen unbalanced."
+        ],
+        "memory_tip": "Four borons go in, so four molecules of boric acid come out.",
+        "margin_note": "Check the hydrogen too: 20 + 2 = 22 on the left and 12 + 10 = 22 on the right."
+      }
+    ]
+  },
+  "insider_note": "Name the product — orthoboric acid, also called boric acid — and then write the balanced equation; the two together are the complete answer."
+}

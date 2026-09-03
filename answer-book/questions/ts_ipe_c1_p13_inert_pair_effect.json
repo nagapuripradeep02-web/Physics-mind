@@ -1,0 +1,91 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_inert_pair_effect",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Explain the inert pair effect.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The definition",
+      "marks": 1
+    },
+    {
+      "label": "The reason and its result",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 8. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_definition",
+        "kind": "text",
+        "label": "The definition",
+        "marks": 1,
+        "mark_note": "The definition",
+        "lines": [
+          "In the inert pair effect the ns² electron",
+          "pair of the valence shell does not",
+          "readily take part in bonding.",
+          "Only the np electrons are then used, so",
+          "the element shows an oxidation state two",
+          "units below the group oxidation state."
+        ],
+        "why": "The name of the effect states what happens: the pair in the ns orbital does not readily take part in bonding, so an element uses two electrons fewer and shows an oxidation state two units lower.",
+        "common_mistakes": [
+          "Writing that the ns² electrons are removed first. They are the pair that stays behind.",
+          "Naming the np electrons as the inert ones. It is the ns² pair that does not readily take part in bonding."
+        ],
+        "memory_tip": "Inert pair means the ns² pair does not readily bond, so the oxidation state drops by two.",
+        "margin_note": "Name the pair as ns² and say two units lower than the group state."
+      },
+      {
+        "id": "s2_reason_and_result",
+        "kind": "text",
+        "label": "The reason and its result",
+        "marks": 1,
+        "mark_note": "The reason and its result",
+        "lines": [
+          "Down a group the d and f electrons in",
+          "between shield the outer electrons",
+          "poorly, so the ns² pair feels a greater",
+          "effective nuclear charge, is held more",
+          "tightly and is harder to use in bonding.",
+          "The effect grows stronger down the group.",
+          "At the bottom of group 13 the +1 state",
+          "becomes more stable than +3: thallium is",
+          "most stable as Tl⁺."
+        ],
+        "why": "The effect is not a rule on its own. It follows from poor shielding by the d and f electrons that lie in between, which holds the ns² pair closer to the nucleus, and that is also why it grows stronger down the group.",
+        "common_mistakes": [
+          "Giving the definition and stopping. The reason, poor shielding by the d and f electrons, is the other half of the answer.",
+          "Writing that the effect weakens down the group. It grows stronger from gallium to thallium."
+        ],
+        "memory_tip": "Poor shielding by d and f electrons holds the ns² pair tightly, and the hold gets stronger down the group.",
+        "margin_note": "One example such as Tl⁺ makes the answer concrete."
+      }
+    ]
+  },
+  "insider_note": "The effect can be stated in one line, but a complete answer names the ns² pair, gives poor shielding as the reason, and shows one example such as thallium."
+}

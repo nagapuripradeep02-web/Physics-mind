@@ -1,0 +1,88 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_eq_nah_with_diborane",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Write the balanced equation for the reaction NaH + B₂H₆ →",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "The product",
+      "marks": 1
+    },
+    {
+      "label": "The balanced equation",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.100, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 9(c). Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. PRINTED ERROR CORRECTED: the book prints B₂H₆ + 2NaH → NaBH₄, which does not balance — the left side carries B 2, Na 2, H 8, so the right side needs 2NaBH₄. This card writes 2NaBH₄ and the atom count was checked while authoring: B 2 = 2, Na 2 = 2, H 8 = 8. WHERE 370 K COMES FROM: the temperature is not this card's invention and is not carried over from another reaction — the prescribed book prints this very reaction as B₂H₆ + 2NaH —370K→ NaBH₄, with 370 K written above the arrow, and that is the figure repeated on this card. Only the coefficient was corrected. Like every other figure on these cards, the 370 K stays unverified until a Telangana IPE teacher confirms it."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_product",
+        "kind": "text",
+        "label": "The product",
+        "marks": 1,
+        "mark_note": "Product",
+        "lines": [
+          "Diborane B₂H₆ reacts with sodium hydride",
+          "NaH at about 370 K.",
+          "Each boron takes one more hydride ion and",
+          "becomes the borohydride ion BH₄⁻.",
+          "Product: sodium borohydride NaBH₄."
+        ],
+        "why": "NaH supplies hydride, H⁻. Boron in a BH₃ unit has only six electrons in its valence shell, so it accepts the extra pair and becomes BH₄⁻, which pairs with Na⁺ as NaBH₄.",
+        "common_mistakes": [
+          "Writing sodium hydride as NaH₂. Sodium is +1, so the hydride is NaH.",
+          "Giving the product as NaBH₃. Boron takes a fourth hydrogen, so the ion is BH₄⁻."
+        ],
+        "memory_tip": "One hydride onto each BH₃ unit gives BH₄⁻, the borohydride ion.",
+        "margin_note": "State the temperature, about 370 K, beside the arrow."
+      },
+      {
+        "id": "s2_balanced",
+        "kind": "boxed_final",
+        "label": "The balanced equation",
+        "marks": 1,
+        "mark_note": "Balanced equation",
+        "lines": [
+          "One B₂H₆ holds two boron atoms, so two",
+          "NaBH₄ are formed.",
+          {
+            "text": "B₂H₆ + 2NaH → 2NaBH₄",
+            "style": "boxed"
+          },
+          "Check: B 2 = 2, Na 2 = 2, H 8 = 8."
+        ],
+        "why": "Diborane has two boron atoms and each becomes one BH₄⁻, so the right side needs 2NaBH₄. With only one NaBH₄ the hydrogen count would be 8 on the left and 4 on the right, and the equation would not balance.",
+        "common_mistakes": [
+          "Dropping the coefficient and writing B₂H₆ + 2NaH → NaBH₄. Two boron atoms go in, so two NaBH₄ come out.",
+          "Balancing sodium but not hydrogen. Six hydrogens from B₂H₆ plus two from 2NaH make eight, and 2NaBH₄ holds eight."
+        ],
+        "memory_tip": "Two borons in, two borohydrides out.",
+        "margin_note": "Count hydrogen on both sides; that count catches a missing coefficient."
+      }
+    ]
+  },
+  "insider_note": "Some printed copies of this equation show a single NaBH₄, which does not balance — write 2NaBH₄ and add the atom count beneath it."
+}

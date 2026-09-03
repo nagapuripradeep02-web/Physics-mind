@@ -4918,8 +4918,324 @@
           "section": "VSAQ",
           "number": 1,
           "stars": 0,
-          "text": "p-Block Elements, Group 13 — questions coming",
-          "source": "syllabus_2026_27"
+          "text": "Discuss the pattern of variation in the oxidation states of boron to thallium.",
+          "question_id": "ts_ipe_c1_p13_oxidation_states_b_to_tl",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq2",
+          "section": "VSAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "How do you explain the higher stability of TlCl?",
+          "question_id": "ts_ipe_c1_p13_tlcl_higher_stability",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq3",
+          "section": "VSAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Why does BF₃ behave as a Lewis acid?",
+          "question_id": "ts_ipe_c1_p13_bf3_lewis_acid",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq4",
+          "section": "VSAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Is boric acid a protic acid? Explain.",
+          "question_id": "ts_ipe_c1_p13_boric_acid_not_protic",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq5",
+          "section": "VSAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Explain what happens when boric acid is heated.",
+          "question_id": "ts_ipe_c1_p13_boric_acid_on_heating",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq6",
+          "section": "VSAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Describe the shapes of BF₃ and BH₄⁻, and assign the hybridisation of boron in these species.",
+          "question_id": "ts_ipe_c1_p13_bf3_bh4_shapes_hybridisation",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq7",
+          "section": "VSAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "Explain why the atomic radius of Ga is less than that of Al.",
+          "question_id": "ts_ipe_c1_p13_ga_radius_less_than_al",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq8",
+          "section": "VSAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "Explain the inert pair effect.",
+          "question_id": "ts_ipe_c1_p13_inert_pair_effect",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq9",
+          "section": "VSAQ",
+          "number": 9,
+          "stars": 0,
+          "text": "Write the balanced equation for the reaction BF₃ + LiH →",
+          "question_id": "ts_ipe_c1_p13_eq_bf3_with_lih",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq10",
+          "section": "VSAQ",
+          "number": 10,
+          "stars": 0,
+          "text": "Write the balanced equation for the reaction B₂H₆ + H₂O →",
+          "question_id": "ts_ipe_c1_p13_eq_diborane_with_water",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq11",
+          "section": "VSAQ",
+          "number": 11,
+          "stars": 0,
+          "text": "Write the balanced equation for the reaction NaH + B₂H₆ →",
+          "question_id": "ts_ipe_c1_p13_eq_nah_with_diborane",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq12",
+          "section": "VSAQ",
+          "number": 12,
+          "stars": 0,
+          "text": "Write the balanced equation for the reaction of H₃BO₃ on heating.",
+          "question_id": "ts_ipe_c1_p13_eq_boric_acid_on_heating",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq13",
+          "section": "VSAQ",
+          "number": 13,
+          "stars": 0,
+          "text": "Write the balanced equation for the reaction of B₂H₆ + NH₃ on heating.",
+          "question_id": "ts_ipe_c1_p13_eq_diborane_with_ammonia",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq14",
+          "section": "VSAQ",
+          "number": 14,
+          "stars": 0,
+          "text": "Why is boric acid polymeric?",
+          "question_id": "ts_ipe_c1_p13_boric_acid_polymeric",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq15",
+          "section": "VSAQ",
+          "number": 15,
+          "stars": 0,
+          "text": "What is the hybridisation of boron in diborane and in borazine, B₃N₃H₆?",
+          "question_id": "ts_ipe_c1_p13_hybridisation_diborane_borazine",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq16",
+          "section": "VSAQ",
+          "number": 16,
+          "stars": 0,
+          "text": "Write the electronic configuration of the group-13 elements.",
+          "question_id": "ts_ipe_c1_p13_group13_electronic_configuration",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq17",
+          "section": "VSAQ",
+          "number": 17,
+          "stars": 0,
+          "text": "Give the formula of borazine. What is its common name?",
+          "question_id": "ts_ipe_c1_p13_borazine_formula_common_name",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq18",
+          "section": "VSAQ",
+          "number": 18,
+          "stars": 0,
+          "text": "Give the formula of borax.",
+          "question_id": "ts_ipe_c1_p13_borax_formula",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq19",
+          "section": "VSAQ",
+          "number": 19,
+          "stars": 0,
+          "text": "Give the formula of orthoboric acid.",
+          "question_id": "ts_ipe_c1_p13_orthoboric_acid_formula",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq20",
+          "section": "VSAQ",
+          "number": 20,
+          "stars": 0,
+          "text": "Give two uses of aluminium.",
+          "question_id": "ts_ipe_c1_p13_aluminium_two_uses",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq21",
+          "section": "VSAQ",
+          "number": 21,
+          "stars": 0,
+          "text": "What happens when a mixture of LiAlH₄ and BCl₃ in dry ether is warmed?",
+          "question_id": "ts_ipe_c1_p13_lialh4_bcl3_dry_ether",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq22",
+          "section": "VSAQ",
+          "number": 22,
+          "stars": 0,
+          "text": "What happens when borax is heated with H₂SO₄?",
+          "question_id": "ts_ipe_c1_p13_borax_heated_with_h2so4",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq23",
+          "section": "VSAQ",
+          "number": 23,
+          "stars": 0,
+          "text": "Sketch the structure of orthoboric acid.",
+          "question_id": "ts_ipe_c1_p13_orthoboric_acid_structure",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq24",
+          "section": "VSAQ",
+          "number": 24,
+          "stars": 0,
+          "text": "Write the structure of AlCl₃ as a dimer.",
+          "question_id": "ts_ipe_c1_p13_alcl3_dimer_structure",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "vsaq25",
+          "section": "VSAQ",
+          "number": 25,
+          "stars": 0,
+          "text": "Metal borides containing ¹⁰B are used as protective shields. Why?",
+          "question_id": "ts_ipe_c1_p13_boron10_borides_shield",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq1",
+          "section": "SAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "Al₂O₃ is amphoteric. Explain with suitable reactions.",
+          "question_id": "ts_ipe_c1_p13_al2o3_amphoteric",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq2",
+          "section": "SAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "What are electron deficient compounds? Is BCl₃ an electron deficient species? Explain.",
+          "question_id": "ts_ipe_c1_p13_electron_deficient_bcl3",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq3",
+          "section": "SAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Explain the structure of boric acid.",
+          "question_id": "ts_ipe_c1_p13_boric_acid_structure",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq4",
+          "section": "SAQ",
+          "number": 4,
+          "stars": 0,
+          "text": "Explain the borax bead test with a suitable example.",
+          "question_id": "ts_ipe_c1_p13_borax_bead_test",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq5",
+          "section": "SAQ",
+          "number": 5,
+          "stars": 0,
+          "text": "Explain the structure of diborane.",
+          "question_id": "ts_ipe_c1_p13_diborane_structure",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq6",
+          "section": "SAQ",
+          "number": 6,
+          "stars": 0,
+          "text": "Give two methods of preparation of diborane.",
+          "question_id": "ts_ipe_c1_p13_diborane_two_preparations",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq7",
+          "section": "SAQ",
+          "number": 7,
+          "stars": 0,
+          "text": "How does diborane react with CO?",
+          "question_id": "ts_ipe_c1_p13_diborane_with_co",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "saq8",
+          "section": "SAQ",
+          "number": 8,
+          "stars": 0,
+          "text": "How does diborane react with trimethylamine?",
+          "question_id": "ts_ipe_c1_p13_diborane_with_trimethylamine",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq1",
+          "section": "LAQ",
+          "number": 1,
+          "stars": 0,
+          "text": "How is diborane prepared? Explain its structure.",
+          "question_id": "ts_ipe_c1_p13_diborane_preparation_and_structure",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq2",
+          "section": "LAQ",
+          "number": 2,
+          "stars": 0,
+          "text": "Write any two methods of preparation of diborane. How does it react with carbon monoxide?",
+          "question_id": "ts_ipe_c1_p13_diborane_preparations_and_co",
+          "source": "chaitanya_fastrack"
+        },
+        {
+          "ref": "laq3",
+          "section": "LAQ",
+          "number": 3,
+          "stars": 0,
+          "text": "Write any two methods of preparation of diborane. How does it react with ammonia?",
+          "question_id": "ts_ipe_c1_p13_diborane_preparations_and_ammonia",
+          "source": "chaitanya_fastrack"
         }
       ]
     },

@@ -1,0 +1,93 @@
+{
+  "schema_version": "answer_book_v1",
+  "question_id": "ts_ipe_c1_p13_bf3_bh4_shapes_hybridisation",
+  "board": "ts_ipe",
+  "board_label": "Telangana — Board of Intermediate Education",
+  "subject": "chemistry",
+  "year_cycle": "first_year",
+  "class_label": "Intermediate I Year (Class 11)",
+  "unit": {
+    "number": 8,
+    "name": "p-Block Elements: Group 13 (Chemistry)"
+  },
+  "chapter": "p-Block Elements: Group 13",
+  "qtype": "VSAQ",
+  "marks_total": 2,
+  "paper_section": "Section A",
+  "expected_time_min": 4,
+  "question_text": "Describe the shapes of BF₃ and BH₄⁻, and assign the hybridisation of boron in these species.",
+  "appearances": [],
+  "mark_split": [
+    {
+      "label": "BF₃ is sp² and trigonal planar",
+      "marks": 1
+    },
+    {
+      "label": "BH₄⁻ is sp³ and tetrahedral",
+      "marks": 1
+    }
+  ],
+  "verification": {
+    "status": "unverified",
+    "needs_teacher_verification": true,
+    "note": "Source: Sri Chaitanya, FAST TRACK IPE for Jr. Students — Physics and Chemistry (2026-27 edition), book p.99, chapter 8 p-BLOCK ELEMENTS : GROUP 13, Very Short Answer Questions question 6. Only the question was taken. The solution, the step order and the mark split are this answer book's own work — see docs/ORIGINALITY_MATHS.md. THE MARK SPLIT IS OURS, NOT THE BOOK'S: the volume prints no per-step allocation on any answer in this chapter. This book prints no exam-appearance years for this chapter, so appearances[] is empty — the chapter has long been examined, we simply have no sourced years for this question. This is a coaching publication, not a TSBIE document, so the split stays unverified until a Telangana IPE teacher confirms it. Authoring note on the source: the book writes the overlap in BF₃ as involving the 3p orbitals of fluorine. This card writes 2p, because the valence orbitals of fluorine are 2s and 2p."
+  },
+  "answer": {
+    "page_header": [
+      "Section A — Very Short Answer Question",
+      "p-Block Elements: Group 13 · 2 marks"
+    ],
+    "steps": [
+      {
+        "id": "s1_bf3_shape",
+        "kind": "text",
+        "label": "BF₃ is sp² and trigonal planar",
+        "marks": 1,
+        "mark_note": "BF₃ is sp² and trigonal planar",
+        "lines": [
+          "In BF₃ boron uses three sp² hybrid",
+          "orbitals, and each one overlaps a 2p",
+          "orbital of a fluorine atom.",
+          "Boron has three bond pairs and no lone",
+          "pair, so BF₃ is trigonal planar with",
+          "F–B–F bond angles of 120°."
+        ],
+        "why": "Three sp² hybrid orbitals point to the corners of an equilateral triangle in one plane. With three bond pairs and no lone pair on boron, the molecule keeps that flat triangular shape and 120° angles.",
+        "common_mistakes": [
+          "Writing that fluorine bonds through its 3p orbitals. The valence orbitals of fluorine are 2s and 2p.",
+          "Calling BF₃ pyramidal. Boron carries no lone pair here, so the three bonds stay in one plane."
+        ],
+        "memory_tip": "Three bonds and no lone pair on boron: sp², flat, 120°.",
+        "margin_note": "Give the shape and the bond angle together; the word sp² alone does not describe a shape."
+      },
+      {
+        "id": "s2_bh4_shape",
+        "kind": "text",
+        "label": "BH₄⁻ is sp³ and tetrahedral",
+        "marks": 1,
+        "mark_note": "BH₄⁻ is sp³ and tetrahedral",
+        "lines": [
+          "In BH₄⁻ boron uses four sp³ hybrid",
+          "orbitals and forms four B–H bonds.",
+          "Three of them are normal covalent bonds.",
+          "The fourth is a coordinate bond, made",
+          "when a hydride ion H⁻ donates its lone",
+          "pair, and that pair brings the negative",
+          "charge to the ion.",
+          "Once the ion has formed, all four B–H",
+          "bonds are the same length and strength.",
+          "The ion is tetrahedral with H–B–H bond",
+          "angles of 109°28′."
+        ],
+        "why": "BH₃ is a boron atom joined to three hydrogens, and it still has one empty orbital. A hydride ion H⁻ adds its lone pair to that empty orbital, so boron gains a fourth pair. The hybridisation changes from sp² to sp³ and the four pairs move to the corners of a tetrahedron.",
+        "common_mistakes": [
+          "Giving the shape as square planar. Four bond pairs and no lone pair make a tetrahedron.",
+          "Keeping boron as sp² in BH₄⁻. The fourth bond makes it sp³."
+        ],
+        "memory_tip": "Four bonds around boron: sp³, tetrahedral, 109°28′.",
+        "margin_note": "Write the angle 109°28′ beside the word tetrahedral."
+      }
+    ]
+  },
+  "insider_note": "The question asks two things about each species, the shape and the hybridisation, so four short statements complete the whole answer."
+}
