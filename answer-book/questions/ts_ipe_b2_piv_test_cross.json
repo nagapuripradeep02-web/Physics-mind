@@ -55,9 +55,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.31, printed question 34. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.31, printed question 34. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Examiner audit revision (2026-09-05): the insider note said a definition without the cross will not score the design marks, a verdict on a mark scheme the bank does not hold; it now states what the complete answer contains."
   },
-  "insider_note": "'Design' means draw it. A definition without the cross written out will not score the design marks, however well worded.",
+  "insider_note": "'Design' means draw it. The complete answer has both parts: the definition, and the cross written out in full with the two cases and their progeny.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",

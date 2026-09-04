@@ -39,9 +39,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.47, printed question 134. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.47, printed question 134. Revised 2026-09-05 after the examiner audit: the insider note no longer tells the student to write four lines for a twelve-line answer, and the s1_part mistakes line no longer treats leaving out the technique name as an error, because the question asks for the part. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
   },
-  "insider_note": "Meristem is the answer and the reason is that it divides too fast for the virus to keep up. Both halves in four lines.",
+  "insider_note": "Meristem is the answer and the reason is its rapid division. Name the part in two or three lines, then give the reason.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -63,7 +63,7 @@
         "why": "Even in a plant that is systemically infected, the meristem itself is usually free of virus, which is why it is the part to culture.",
         "common_mistakes": [
           "Naming the leaf or the root. It is the MERISTEM — the apical or axillary one.",
-          "Not naming shoot tip culture. It is the named technique."
+          "Naming the technique but not the part. The question asks which PART — the apical or axillary meristem."
         ],
         "memory_tip": "Take the very tip, where the virus has not reached."
       },

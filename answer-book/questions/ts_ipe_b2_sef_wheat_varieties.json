@@ -35,7 +35,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.47, printed question 127. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.47, printed question 127. Revised 2026-09-05 after the examiner audit: the s2_achieved mistakes line no longer calls it an error to say the varieties came from Borlaug's Mexican semi-dwarf wheats and were introduced in India, which is what the card's own s1_names why and the question word \"introduced\" both say; it now warns against calling them tall. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
   },
   "insider_note": "Two names. Adding one line about the green revolution turns a bare list into an answer.",
   "answer": {
@@ -89,7 +89,7 @@
         "why": "These varieties are the concrete content of the green revolution, so naming them and naming the revolution together shows the connection.",
         "common_mistakes": [
           "Giving the names with no context. The link to the green revolution is the second mark.",
-          "Saying they were developed abroad and used unchanged. They were bred for Indian conditions."
+          "Saying they are tall varieties. Both are SEMI-DWARF wheats, so they do not fall over under heavy fertiliser use."
         ],
         "memory_tip": "These two names ARE the wheat green revolution."
       }

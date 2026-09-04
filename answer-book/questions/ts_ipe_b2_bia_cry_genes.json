@@ -35,9 +35,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.46, printed question 118. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.46, printed question 118. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: the insider note warned about an Ac/Ab swap that cannot happen, since Ac is never a corn gene, so it now names the real confusable pair, Cry II Ab against Cry I Ab."
   },
-  "insider_note": "Three gene names, two pests. Get Ac and Ab the right way round — that is the whole question.",
+  "insider_note": "Three gene names, two pests. The pair to keep apart is Cry II Ab (cotton bollworm) and Cry I Ab (corn borer) — the roman numeral is the whole difference.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

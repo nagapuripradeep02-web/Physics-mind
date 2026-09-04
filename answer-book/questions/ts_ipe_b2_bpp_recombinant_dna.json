@@ -30,9 +30,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 112. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.45, printed question 112. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: the insider note asked for one enzyme (ligase) while s2_how's own common_mistakes[0] calls naming only one enzyme a mistake, so the note now asks for both the restriction enzyme and DNA ligase."
   },
-  "insider_note": "Two halves: what it is, and the enzyme that makes it. Naming ligase is the second mark.",
+  "insider_note": "Two halves: what it is, and how it is made. The second half needs BOTH enzymes — the same restriction enzyme cuts both DNAs so the sticky ends match, and DNA ligase joins them.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

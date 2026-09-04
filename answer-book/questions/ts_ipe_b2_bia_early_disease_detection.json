@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.46, printed question 119. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.46, printed question 119. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05: s1_yes's why said both techniques detect the pathogen rather than the body's reaction, which is false for ELISA — NCERT states infection is detected by the pathogen's antigens or by the antibodies made against it — so the why now states each principle separately."
   },
   "insider_note": "Yes, then two techniques with their two principles. Four facts in four lines.",
   "answer": {
@@ -69,7 +69,7 @@
           "Two techniques are used:",
           "(i) PCR  (ii) ELISA"
         ],
-        "why": "Both techniques detect the pathogen itself rather than the body's reaction to it, which is why they work before any symptom shows.",
+        "why": "PCR copies the pathogen's own nucleic acid until even a very small amount can be detected, and ELISA detects the pathogen's antigen or the antibody made against it. Both can give a result before any symptom appears.",
         "common_mistakes": [
           "Answering with a bare yes. The techniques are half the mark.",
           "Naming only one technique. Both PCR and ELISA are expected."

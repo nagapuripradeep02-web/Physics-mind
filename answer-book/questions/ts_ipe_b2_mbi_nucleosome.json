@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.34, printed question 44. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: the guide says a nucleosome holds \"a DNA segment of about 150 base pairs\". NCERT gives 146 bp wrapped on the histone core, within a repeat of about 200 bp per nucleosome. The card gives 146 bp wrapped and notes the repeat, and records the guide's figure. Figure revision (figure audit, 2026-09-05): the DNA is redrawn as one continuous spiral of about 1.7 turns around the octamer, which the old drawing showed as a single loop, and H1 now sits just outside the coil where the DNA enters and leaves."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.34, printed question 44. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK NOTE: the guide says a nucleosome holds \"a DNA segment of about 150 base pairs\". NCERT gives 146 bp wrapped on the histone core, within a repeat of about 200 bp per nucleosome. The card prints 146 bp wrapped and gives the about-200 bp repeat in the s2_octamer why, and records the guide's figure. Figure revision (figure audit, 2026-09-05): the DNA is redrawn as one continuous spiral of about 1.7 turns around the octamer, which the old drawing showed as a single loop, and H1 now sits just outside the coil where the DNA enters and leaves. Text revision (examiner audit, 2026-09-05): the s1_what why called the nucleosome the largest step of DNA packing, which the higher-order coiling named in s4 contradicts, and the about-200 bp repeat the note already claimed was on the card appeared nowhere; the why now says first step only, and the repeat was added to the s2_octamer why rather than to the printed lines."
   },
   "insider_note": "Two numbers carry this answer: EIGHT histones and 146 base pairs. Write both in the first two lines.",
   "answer": {
@@ -76,7 +76,7 @@
           "is packed into a nucleus a few micrometres",
           "across."
         ],
-        "why": "Two metres of DNA has to fit inside a nucleus, and the nucleosome is the first and largest step of that packing.",
+        "why": "Two metres of DNA has to fit inside a nucleus a few micrometres across, and the nucleosome is the first step of that packing; the further coiling of the chromatin does the rest.",
         "common_mistakes": [
           "Calling a nucleosome a chromosome. It is the repeating UNIT of chromatin, far smaller.",
           "Saying it is made only of DNA. It is DNA plus HISTONE PROTEIN."
@@ -99,7 +99,7 @@
           "One more histone, H1, sits where the DNA enters",
           "and leaves the bead."
         ],
-        "why": "Two copies each of four histones is what makes eight, so the name octamer is the composition stated in one word.",
+        "why": "Two copies each of four histones is what makes eight, so the name octamer is the composition stated in one word. The 146 base pairs are the length wound on the octamer itself; counting the linker DNA that joins one bead to the next, the whole repeating unit is about 200 base pairs.",
         "common_mistakes": [
           "Saying the octamer includes H1. H1 is OUTSIDE the octamer, at the entry and exit point.",
           "Giving the wrong count. It is EIGHT histones, two each of four kinds."

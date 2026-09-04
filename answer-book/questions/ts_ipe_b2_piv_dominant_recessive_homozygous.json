@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.30, printed question 32. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.30, printed question 32. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Examiner audit revision (2026-09-05): the first s4_heterozygous mistake said a heterozygote shows the dominant character only, which contradicts the co-dominance and incomplete-dominance cards in this same unit; it now limits that statement to complete dominance."
   },
   "insider_note": "Four one-line definitions. Give an example genotype with each — TT, tt, Tt — because a letter pair proves the definition faster than a sentence.",
   "answer": {
@@ -137,7 +137,7 @@
         ],
         "why": "Two different alleles make two kinds of gamete, which is why a heterozygote's offspring vary and a homozygote's do not.",
         "common_mistakes": [
-          "Saying a heterozygote shows both characters. It shows the DOMINANT one only.",
+          "Assuming a heterozygote always looks like the dominant parent. That holds under complete dominance, where Tt is tall. Under co-dominance the heterozygote shows BOTH characters, and under incomplete dominance it shows an intermediate character.",
           "Confusing heterozygous with co-dominant. A heterozygote is a genotype, not a pattern of expression."
         ],
         "memory_tip": "Hetero means different: Tt."
