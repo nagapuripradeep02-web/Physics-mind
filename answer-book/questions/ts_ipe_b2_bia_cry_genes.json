@@ -72,7 +72,7 @@
         "margin_note": "The gene, the pest, and the specificity point.",
         "lines": [
           {
-            "text": "Ac and Ab for cotton; Ab alone for corn",
+            "text": "Cotton: Cry I Ac, Cry II Ab. Corn: Cry I Ab",
             "style": "boxed"
           },
           "The protein of CRY I Ab controls the CORN BORER.",

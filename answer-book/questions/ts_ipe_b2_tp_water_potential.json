@@ -120,13 +120,13 @@
           "The cell becomes turgid (swollen).",
           "This rise in water potential is called",
           "pressure potential.",
-          "It is always positive.",
-          "It is seen in the ascent of water through the",
-          "stem."
+          "It is usually positive.",
+          "In a turgid cell the wall presses back, so the",
+          "pressure potential is positive."
         ],
         "why": "The wall pushes back on the water inside, and that push adds to the potential — the opposite sign to solute potential, which is why the two are listed as a pair.",
         "common_mistakes": [
-          "Writing pressure potential as negative. It is POSITIVE.",
+          "Writing pressure potential as negative inside a turgid cell. Inside a cell it is POSITIVE; in the xylem it turns negative (tension), which is what helps water rise.",
           "Leaving out turgidity. The pressure comes from the swollen cell pushing on its wall."
         ],
         "memory_tip": "Pressure pushes the value up; solute pulls it down. Opposite causes, opposite signs."

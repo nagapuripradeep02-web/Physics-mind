@@ -74,17 +74,18 @@
         "label": "What auxins are",
         "marks": 1,
         "mark_note": "What they are",
-        "margin_note": "Source, the natural one, two synthetic ones. Four lines.",
+        "margin_note": "Source, the two natural ones, the two synthetic ones. Five lines.",
         "lines": [
           "Auxins are plant growth hormones produced at",
           "the STEM TIPS and ROOT TIPS.",
-          "The natural auxin is indole-3-acetic acid (IAA).",
-          "2,4-D and IBA are synthetic auxins."
+          "Natural auxins isolated from plants are",
+          "indole-3-acetic acid (IAA) and indole butyric",
+          "acid (IBA). NAA and 2,4-D are synthetic auxins."
         ],
         "why": "Auxins are made at the growing tips and move down, which is why almost every use below is about a tip, a cutting, or the buds a tip controls.",
         "common_mistakes": [
           "Saying auxins are made in the leaves. They are made at the STEM and ROOT TIPS.",
-          "Naming no example. IAA, IBA and 2,4-D are the three worth writing."
+          "Naming no example. IAA, IBA, NAA and 2,4-D are the four worth writing."
         ],
         "memory_tip": "Made at the tips, and every use follows from that."
       },

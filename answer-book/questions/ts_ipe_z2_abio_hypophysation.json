@@ -83,8 +83,9 @@
         "memory_tip": "Pituitary extract or ovaprim, injected into brood fish.",
         "margin_note": "Name what is injected and into what.",
         "lines": [
+          "Pituitary extract or ovaprim is injected",
           {
-            "text": "Pituitary extract or ovaprim is injected in",
+            "text": "into mature brood fish to induce spawning",
             "style": "boxed"
           }
         ]

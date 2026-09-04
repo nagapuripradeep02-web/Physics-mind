@@ -73,7 +73,7 @@
         "margin_note": "Both crosses, both ratios, and keep genotype separate from phenotype.",
         "lines": [
           {
-            "text": "Only Aa × Aa can produce a recessive offspring",
+            "text": "Both parents must carry a recessive allele",
             "style": "boxed"
           },
           "(c) Aa × Aa  gives  1 AA : 2 Aa : 1 aa",

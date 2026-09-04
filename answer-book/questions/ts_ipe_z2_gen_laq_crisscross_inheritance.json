@@ -125,11 +125,10 @@
         "memory_tip": "One X means nothing to hide behind.",
         "margin_note": "Four numbered points cover this mark.",
         "lines": [
-          "Every gene, dominant or recessive, is",
-          "expressed phenotypically.",
-          "Males have only one X chromosome, so they",
-          "are more prone to X-linked recessive gene",
-          "expression.",
+          "Males have only one X chromosome, with no",
+          "partner to mask it.",
+          "So every gene on that X, dominant or",
+          "recessive, is expressed phenotypically.",
           "Females have two X chromosomes, so there is",
           "more than a 50% chance of carrying a",
           "dominant gene. They are less prone."
