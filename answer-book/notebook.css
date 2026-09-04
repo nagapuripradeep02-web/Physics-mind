@@ -202,6 +202,18 @@ body {
 
 .margin-note { font-size: 13.5px; line-height: 1.5; color: var(--chrome-ink); }
 
+/* "Working in full" — the rail card that walks the step being written, move by
+   move. The math line uses the page's own Kalam so it reads as handwritten
+   working beside the script, not as a second textbook. */
+.explain-step { font-size: 12.5px; font-weight: 700; color: var(--chrome-ink); margin-bottom: 8px; }
+.explain-list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 10px; }
+.explain-move { font-size: 13.5px; line-height: 1.5; color: var(--chrome-ink); }
+.explain-show {
+  margin-top: 3px; padding: 3px 8px; border-left: 2px solid var(--chrome-line);
+  font-family: 'Kalam', cursive; font-size: 15.5px; line-height: 1.35; color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
 .mark-split { display: flex; flex-direction: column; gap: 6px; }
 .mark-split .split-row {
   display: flex; justify-content: space-between; gap: 10px; font-size: 13px;

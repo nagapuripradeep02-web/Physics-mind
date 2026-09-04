@@ -1,5 +1,23 @@
 # PROGRESS.md — PhysicsMind Engine Build
 
+## 📗 SESSION — "Working in full": the detailed-explanation layer, proved on ONE binomial card (2026-09-04, `feat/answerbook-working-in-full`)
+
+**Bottom line: the founder asked for the steps of a maths long answer explained in much more detail for a student watching the answer write itself. Built as a new per-step field `explain[]` (one plain sentence + the intermediate Unicode math line the exam script skips, per move), shown in a rail card "Working in full", a deterministic Vidi chip "Show the working", and Vidi's grounding string — never on the notebook page. Authored on exactly one card, `ts_ipe_m2a_bt_series_1_by_3_3_6_sum`, and handed to the founder at a review link before any rollout.**
+
+### What changed
+- Platform (Rule 40, one small PR): `src/schemas/answerBook.ts` (`explain` on steps + cut overrides), `src/scripts/build_answer_book.ts` + `src/scripts/check_cards.ts` + `answer-book/tools/check_p2_cards.ts` (all-or-none gate + Rule 41 sweep over `say`/`show`), `answer-book/shell.html` + `notebook.css` + `notebook.js` (`#explainCard`, `renderExplainCard`, `chipWorking`, `WORKING IN FULL:` facts, `applyCut` merge), `docs/patterns/answer_book.md` + `answer-book/README.md`.
+- Content: 18 moves across the card's five steps. The page's lines, marks and split are untouched.
+
+### Verified
+tsc 0 · `check:cards --prefix ts_ipe_m2a_bt` 34/34 · vitest 81/81 · full build 21.8 MB and `--stream=mpc_2` build 8.0 MB both green · headless walk on 1380px and 390px: card fills for the step being written, rail order Answer plan < Mark split holds, `.step-block` gains no new child, no horizontal scroll, zero console errors. Playwright smoke: 72/73 non-sweep tests green (the three fleet sweeps carry 90/90/120-minute budgets and were excluded — the full suite is a 3-4 hour job now). Two failures, BOTH reproduced on a fresh build of untouched origin/master in the same environment, so pre-existing: (1) the figure-label sweep flags `ts_ipe_m2a_cn_argand_equilateral_triangle` — `"y" overlaps "C(−2√3, 2√3)"`; (2) the `hosted: telemetry AND the ask…` test waits for the Vidi ask row without calling `openVidi()`, and Vidi has started minimised since 11d4afa9. Both recorded on PR #199, neither fixed here (out of scope).
+
+### Two things worth knowing
+- `npx tsx …` HANGS in the Claude Code sandbox (0% CPU, waiting on the registry — `tsx` is not a local dep). The cached binary works: `~/.npm/_npx/<hash>/node_modules/.bin/tsx`.
+- Chrome is not installed at the default path on this Mac; the repo's Playwright Chromium is the browser for checks.
+
+### Next
+Founder verdict on the format at the review link. If OK: the other 19 Binomial Theorem LAQs (six infinite-series cards share this card's five-move shape), then decide the rollout order. If not: the field stays inert (no card carries it) and the branch closes.
+
 ## 📗 SESSION — Wave B complete: five chapters, 149 new cards, five audits, 151 findings (2026-09-02/03, `feat/ipe-firstyear-2027`)
 
 **Bottom line: physics 9 through 13 are authored, audited, repaired and green. Every arithmetic answer was right in every chapter; every one of the 151 audit findings was in the prose. Not one was machine-checkable.** Wave C, chemistry 7–10, is next.

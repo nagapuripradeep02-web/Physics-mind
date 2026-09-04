@@ -62,7 +62,10 @@ from `file://`.
      step marks sum to `marks_total`;
    - a diagram step carries `figure.elements[]` — array order IS the draw order; arrowheads
      are separate short strokes (never SVG markers); dashed construction lines use
-     `"pen": "pencil"` + `"wipe": "x"|"y"`.
+     `"pen": "pencil"` + `"wipe": "x"|"y"`;
+   - `explain[]` (optional, **all steps or none**) is "Working in full": 2-8 moves of
+     `{ "say": one plain sentence, "show": the Unicode math line the page skips }`. It renders in
+     the rail and in Vidi, never on the page — author it where the script's own lines jump.
 3. `npm run build:answers` — it will tell you loudly if the marks don't add up.
 4. Eyeball at `npm run serve:answers`, then `npm run smoke:answers`.
 

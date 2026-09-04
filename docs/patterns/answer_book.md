@@ -1243,3 +1243,33 @@ than asking for a general review.
    quadrant rule. **`verification.note` is provenance, not a place to put mathematics a student needs.**
    Grep for it: a condition word in the note that appears nowhere in the lines, `why`,
    `common_mistakes`, `memory_tip` or `insider_note` is the signature.
+
+## "Working in full" — `steps[].explain` (founder, 2026-09-04; proof card `ts_ipe_m2a_bt_series_1_by_3_3_6_sum`)
+
+The page writes each step exactly as the exam script has it, and for a student **watching** the answer
+write itself that is too compressed — `s1_rewrite` of the series-sum LAQ jumps from `(1·3)/(3·6)` to
+`(1·3/2!)(1/3)²` with nothing in between. The founder asked for the steps explained in much more
+detail. The detail is a new per-step field, `explain[]`: 2-8 **moves**, each `{ say, show? }` — `say` is
+one plain sentence naming the move (Rule 41), `show` is the intermediate Unicode math line the script
+skips (a check with no line omits it). Three surfaces read the one field:
+
+- the rail card **"Working in full"** (`#explainCard`, filled by `renderExplainCard` from
+  `updateChrome`) — shows the step being WRITTEN, while it types and after, until the next step
+  starts; the "How to earn it" card above it keeps covering the step about to be written;
+- the deterministic Vidi chip **"Show the working"** (`chipWorking`, ₹0, present only when the current
+  step carries `explain`);
+- the Vidi grounding string (`WORKING IN FULL:` per step in `answerFacts`), so "how did 3·6·9 become
+  3³·3!" is answered from the bank.
+
+**Rail only, by the same reasoning as `why`:** nothing renders inside `.step-block`, so pagination and
+the exam-script illusion are untouched, and the e2e child guard still holds. The losing option — typing
+the full working on the page — would teach a student to write three times what the 7-mark scheme
+rewards and would break the 0.0% wrap rate Maths-2A ships at.
+
+**Gates:** all steps carry `explain` or none do (build + `check:cards`, like `memory_tip`); every `say`
+and `show` goes through the Rule 41 idiom sweep; `cuts[].steps[].explain` overrides per cut and
+`applyCut` merges it. `show` is plain Unicode like `lines[]` — never KaTeX.
+
+**Scope:** ONE proof card on 2026-09-04, for founder review at a link before any rollout; the other 19
+Binomial Theorem LAQs share the same five-move shape across the six infinite-series cards and author
+fast once the format is approved.

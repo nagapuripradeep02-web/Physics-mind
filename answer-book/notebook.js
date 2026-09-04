@@ -73,6 +73,7 @@
         if (o.margin_note) merged.margin_note = o.margin_note;
         if (o.why) merged.why = o.why;
         if (o.memory_tip) merged.memory_tip = o.memory_tip;
+        if (o.explain) merged.explain = o.explain;
         // A 0-mark step gets no red tick, so it must carry no mark note.
         if (o.mark_note) merged.mark_note = o.mark_note;
         if (merged.marks === 0) delete merged.mark_note;
@@ -1198,6 +1199,33 @@
     loadQuestion(qIndexById[id], cutKey);
   }
 
+  /** Fill the "Working in full" card from step.explain[]; hide it when there is none. */
+  function renderExplainCard(step) {
+    var card = $('explainCard');
+    if (!card) return;
+    var list = $('explainList');
+    list.innerHTML = '';
+    if (!step || !step.explain || !step.explain.length) { card.hidden = true; return; }
+    $('explainStep').textContent = step.label;
+    for (var i = 0; i < step.explain.length; i++) {
+      var mv = step.explain[i];
+      var li = document.createElement('li');
+      li.className = 'explain-move';
+      var sayEl = document.createElement('div');
+      sayEl.className = 'explain-say';
+      sayEl.textContent = mv.say;
+      li.appendChild(sayEl);
+      if (mv.show) {
+        var showEl = document.createElement('div');
+        showEl.className = 'explain-show';
+        showEl.textContent = mv.show;
+        li.appendChild(showEl);
+      }
+      list.appendChild(li);
+    }
+    card.hidden = false;
+  }
+
   function updateChrome() {
     $('accValue').textContent = String(marksEarned);
     $('accFill').style.width = (marksEarned / marksTotal * 100) + '%';
@@ -1221,6 +1249,12 @@
     } else {
       noteCard.hidden = true;
     }
+
+    // "Working in full" (founder, 2026-09-04): the step being WRITTEN, explained
+    // move by move — while it types and after, until the next step starts. The
+    // margin note above covers the step about to be written; this card covers
+    // the one on the page. Rail only: nothing here touches .step-block.
+    renderExplainCard(revealing ? steps[stepIndex + 1] : (stepIndex >= 0 ? steps[stepIndex] : null));
 
     if (completed) {
       btnNext.disabled = true;
@@ -5257,6 +5291,7 @@
       row.appendChild(chipBtn('Will this come?', chipCome));
       row.appendChild(chipBtn('Why this step?', chipWhy));
       var s = currentStep();
+      if (s && s.explain && s.explain.length) row.appendChild(chipBtn('Show the working', chipWorking));
       if (s && s.memory_tip) row.appendChild(chipBtn('How to remember?', chipTip));
       row.appendChild(chipBtn('How much to write?', chipHowMuch));
       // Planner chips are APPENDED, never prepended: the offline gate clicks the
@@ -5335,6 +5370,22 @@
       Vidi.log('chip', { chip: 'tip', qid: question.question_id, step: s ? s.id : null });
       if (!s || !s.memory_tip) { say('No memory tip for this step yet.'); return; }
       say('To remember "' + s.label + '": ' + s.memory_tip);
+    }
+
+    /** "Working in full" as a chat bubble — the same authored moves the rail card shows. */
+    function chipWorking() {
+      var s = currentStep();
+      Vidi.log('chip', { chip: 'working', qid: question.question_id, step: s ? s.id : null });
+      if (!s || !s.explain || !s.explain.length) {
+        say('Tap the page to write a step first. Then ask me again and I will show the working for the step you are on.');
+        return;
+      }
+      var parts = ['Step "' + s.label + '", in full:'];
+      for (var i = 0; i < s.explain.length; i++) {
+        var mv = s.explain[i];
+        parts.push((i + 1) + '. ' + mv.say + (mv.show ? '\n   ' + mv.show : ''));
+      }
+      say(parts.join('\n'));
     }
 
     function chipHowMuch() {
@@ -5510,6 +5561,15 @@
         if (s.common_mistakes && s.common_mistakes.length) out.push('   MISTAKES: ' + s.common_mistakes.join(' | '));
         if (s.memory_tip) out.push('   REMEMBER: ' + s.memory_tip);
         if (s.margin_note) out.push('   NOTE: ' + s.margin_note);
+        if (s.explain && s.explain.length) {
+          // The full working, authored — so "how did 3·6·9 become 3³·3!" is
+          // answered from the bank, never improvised.
+          var wk = [];
+          for (var w = 0; w < s.explain.length; w++) {
+            wk.push(s.explain[w].say + (s.explain[w].show ? ' [' + s.explain[w].show + ']' : ''));
+          }
+          out.push('   WORKING IN FULL: ' + wk.join(' | '));
+        }
       }
       return out.join('\n');
     }

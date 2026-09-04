@@ -85,7 +85,7 @@ for (const q of parsed) {
     const strings: [string, string][] = [];
     if (q.insider_note) strings.push(['insider_note', q.insider_note]);
 
-    let tips = 0, notes = 0;
+    let tips = 0, notes = 0, works = 0;
     let marksSoFar = 0;
     for (const s of q.answer.steps) {
         const at = `${where} / ${s.id}`;
@@ -97,12 +97,17 @@ for (const q of parsed) {
         if (s.marks > 0 && !s.mark_note) bad.push(`${at}: no \`mark_note\` on a ${s.marks}M step`);
         if (s.memory_tip) tips++;
         if (s.margin_note) notes++;
+        if (s.explain?.length) works++;
 
         if (s.why) strings.push([`${s.id}.why`, s.why]);
         if (s.memory_tip) strings.push([`${s.id}.memory_tip`, s.memory_tip]);
         if (s.margin_note) strings.push([`${s.id}.margin_note`, s.margin_note]);
         for (const [i, m] of (s.common_mistakes ?? []).entries()) {
             strings.push([`${s.id}.common_mistakes[${i}]`, m]);
+        }
+        for (const [i, mv] of (s.explain ?? []).entries()) {
+            strings.push([`${s.id}.explain[${i}].say`, mv.say]);
+            if (mv.show) strings.push([`${s.id}.explain[${i}].show`, mv.show]);
         }
 
         // katex is typeset at BUILD time and a bad macro must fail loudly here too,
@@ -121,6 +126,7 @@ for (const q of parsed) {
     const n = q.answer.steps.length;
     if (tips > 0 && tips < n) bad.push(`${where}: \`memory_tip\` on ${tips}/${n} steps — author all or none`);
     if (notes > 0 && notes < n) bad.push(`${where}: \`margin_note\` on ${notes}/${n} steps — author all or none`);
+    if (works > 0 && works < n) bad.push(`${where}: \`explain\` on ${works}/${n} steps — author all or none`);
 
     for (const [field, text] of strings) {
         const hit = idiomsIn(text);

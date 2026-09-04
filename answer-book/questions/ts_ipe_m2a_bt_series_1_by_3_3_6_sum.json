@@ -100,6 +100,28 @@
         "common_mistakes": [
           "Adding 1 + 1/3 to both sides out of habit — this series already prints both of those terms, so nothing has to be added.",
           "Writing 3·6·9 as 3·3! instead of 3³·3! — every factor carries a 3."
+        ],
+        "explain": [
+          {
+            "say": "Look at the denominators first: 3, then 3·6, then 3·6·9. Every factor is a multiple of 3.",
+            "show": "3·6·9 = (3·1)(3·2)(3·3)"
+          },
+          {
+            "say": "Take the 3 out of each factor. Three factors give 3³, and what is left is 1·2·3, which is 3!.",
+            "show": "3·6·9 = 3³·(1·2·3) = 3³·3!"
+          },
+          {
+            "say": "The same works for every term: k factors give 3ᵏ times k!.",
+            "show": "3·6 = 3²·2!,  3 = 3¹·1!"
+          },
+          {
+            "say": "A 3ᵏ in the denominator is the same as (1/3)ᵏ. So each term becomes the odd-number product over k!, times (1/3)ᵏ.",
+            "show": "(1·3)/(3·6) = (1·3)/(3²·2!) = (1·3/2!)·(1/3)²"
+          },
+          {
+            "say": "Write the whole series in this shape. The first term 1 and the second term 1/3 are already there, so nothing is added.",
+            "show": "S = 1 + (1/1!)(1/3) + (1·3/2!)(1/3)² + (1·3·5/3!)(1/3)³ + …"
+          }
         ]
       },
       {
@@ -143,6 +165,20 @@
         "common_mistakes": [
           "Using the (1 − x) form for an alternating series or the (1 + x) form for an all-plus series.",
           "Writing p(p + 1) instead of p(p + q) — the step between factors is q, not 1."
+        ],
+        "explain": [
+          {
+            "say": "The standard expansion with a negative fraction as the power has exactly this shape: a k! under each term, and one fixed fraction x/q raised to the power k.",
+            "show": "(1 − x)^(−p/q) = 1 + (p/1!)(x/q) + (p(p+q)/2!)(x/q)² + (p(p+q)(p+2q)/3!)(x/q)³ + …"
+          },
+          {
+            "say": "Read the numerators: p, then p(p+q), then p(p+q)(p+2q). Each new factor is the last factor plus q. In our series the numerators are 1, 1·3, 1·3·5, and each new factor is the last one plus 2.",
+            "show": "p, p(p+q), p(p+q)(p+2q)  ↔  1, 1·3, 1·3·5"
+          },
+          {
+            "say": "Every term in our series is added, none is subtracted, so it matches the (1 − x) form. The (1 + x) form would give alternating plus and minus signs.",
+            "show": "all + signs ⇒ (1 − x)^(−p/q)"
+          }
         ]
       },
       {
@@ -182,6 +218,28 @@
         "common_mistakes": [
           "Taking x = 1/3 directly — the bracket holds x/q, so x = q × 1/3.",
           "Reading q from the second factor as a whole instead of as p + q."
+        ],
+        "explain": [
+          {
+            "say": "Match the first numerators. The standard form starts with p; our series starts with 1. So p = 1.",
+            "show": "p = 1"
+          },
+          {
+            "say": "Match the second numerators. The standard form has p(p + q); ours has 1·3. So p + q = 3, and with p = 1 that gives q = 2.",
+            "show": "p + q = 3 ⇒ q = 3 − 1 = 2"
+          },
+          {
+            "say": "Check with the third numerator before going on: p + 2q should be 5, and 1 + 2·2 = 5. It matches, so p and q are right.",
+            "show": "p + 2q = 1 + 4 = 5 ✓"
+          },
+          {
+            "say": "Match the bracket. The standard form raises x/q to the power k; our series raises 1/3 to the power k. So x/q = 1/3, not x = 1/3.",
+            "show": "x/q = 1/3 ⇒ x = q·(1/3) = 2/3"
+          },
+          {
+            "say": "The expansion is valid only when |x| < 1, and 2/3 is less than 1, so the sum exists.",
+            "show": "|x| = 2/3 < 1 ✓"
+          }
         ]
       },
       {
@@ -223,6 +281,20 @@
         "common_mistakes": [
           "Inverting the exponent instead of the fraction when the index is negative.",
           "Leaving a root in the denominator without a clear final value."
+        ],
+        "explain": [
+          {
+            "say": "Put p = 1, q = 2 and x = 2/3 into (1 − x)^(−p/q). The bracket becomes 1 − 2/3 = 1/3 and the power becomes −1/2.",
+            "show": "S = (1 − 2/3)^(−1/2) = (1/3)^(−1/2)"
+          },
+          {
+            "say": "A negative power means take the reciprocal. 1/3 becomes 3 and the power becomes +1/2.",
+            "show": "(1/3)^(−1/2) = 3^(1/2)"
+          },
+          {
+            "say": "A power of 1/2 means square root.",
+            "show": "3^(1/2) = √3"
+          }
         ]
       },
       {
@@ -263,6 +335,16 @@
         "common_mistakes": [
           "Writing 1.732 instead of √3.",
           "Stopping at (1/3) to the power −1/2 without simplifying."
+        ],
+        "explain": [
+          {
+            "say": "Write the final answer as √3. Do not change it to 1.732; the examiner expects the exact root.",
+            "show": "∴ S = √3"
+          },
+          {
+            "say": "A quick check: the first three terms add to 1 + 1/3 + 1/6 = 1.5, and √3 is about 1.732. The remaining terms are small and positive, so a sum a little above 1.5 is right.",
+            "show": "1 + 1/3 + 1/6 = 1.5 < √3 ≈ 1.732"
+          }
         ]
       }
     ]
