@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.44, SAQ 47. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.44, SAQ 47. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): a second heartbeat was added so the R-R interval named in the answer can be marked, and the P-R and Q-T brackets now start where the card defines them."
   },
   "answer": {
     "page_header": [
@@ -149,7 +149,7 @@
         "figure": {
           "id": "abio_ecg_trace",
           "width": 520,
-          "height": 344,
+          "height": 380,
           "elements": [
             {
               "type": "pause",
@@ -187,13 +187,36 @@
             {
               "type": "stroke",
               "id": "st_t",
-              "d": "M 226 200 L 278 200 C 292 156 330 156 344 200 L 464 200",
-              "ms": 3880
+              "d": "M 226 200 L 278 200 C 292 156 330 156 344 200 L 362 200 C 372 176 388 176 398 200 L 408 200",
+              "ms": 3210
+            },
+            {
+              "type": "pause",
+              "id": "p3b",
+              "caption": "Step 4 — the start of the next beat"
+            },
+            {
+              "type": "stroke",
+              "id": "qrs2_up",
+              "d": "M 408 200 L 416 216 L 428 82",
+              "ms": 2180
+            },
+            {
+              "type": "stroke",
+              "id": "qrs2_down",
+              "d": "M 428 82 L 440 232 L 452 200",
+              "ms": 2640
+            },
+            {
+              "type": "stroke",
+              "id": "tail2",
+              "d": "M 452 200 L 478 200",
+              "ms": 500
             },
             {
               "type": "pause",
               "id": "p4",
-              "caption": "Step 4 — naming the waves"
+              "caption": "Step 5 — naming the waves"
             },
             {
               "type": "label",
@@ -241,9 +264,18 @@
               "sm": true
             },
             {
+              "type": "label",
+              "id": "lb_r2",
+              "x": 434,
+              "y": 76,
+              "text": "R",
+              "ms": 450,
+              "sm": true
+            },
+            {
               "type": "pause",
               "id": "p5",
-              "caption": "Step 5 — the complex, the segments and the intervals"
+              "caption": "Step 6 — the complex, the segments and the intervals"
             },
             {
               "type": "stroke",
@@ -278,7 +310,7 @@
             {
               "type": "stroke",
               "id": "pr_bracket",
-              "d": "M 105 250 L 105 260 L 190 260 L 190 250",
+              "d": "M 105 250 L 105 260 L 182 260 L 182 250",
               "ms": 1500
             },
             {
@@ -293,7 +325,7 @@
             {
               "type": "stroke",
               "id": "qt_bracket",
-              "d": "M 186 290 L 186 300 L 344 300 L 344 290",
+              "d": "M 182 290 L 182 300 L 344 300 L 344 290",
               "ms": 2540
             },
             {
@@ -302,6 +334,21 @@
               "x": 212,
               "y": 322,
               "text": "QT interval",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "rr_bracket",
+              "d": "M 202 330 L 202 340 L 428 340 L 428 330",
+              "ms": 3510
+            },
+            {
+              "type": "label",
+              "id": "lb_rr",
+              "x": 268,
+              "y": 362,
+              "text": "RR interval",
               "ms": 450,
               "sm": true
             }

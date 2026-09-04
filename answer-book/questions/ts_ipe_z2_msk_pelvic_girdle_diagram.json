@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.32, SAQ 20. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.32, SAQ 20. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the ilium is now labelled by name, the break between each iliac blade and its acetabulum is closed, and the pubis leader lands on the pubis."
   },
   "answer": {
     "page_header": [
@@ -130,7 +130,7 @@
             {
               "type": "stroke",
               "id": "ilium_l2",
-              "d": "M 150 190 C 160 210 172 220 186 224",
+              "d": "M 150 190 C 160 210 174 218 190 214",
               "ms": 730
             },
             {
@@ -142,7 +142,7 @@
             {
               "type": "stroke",
               "id": "ilium_r2",
-              "d": "M 362 190 C 352 210 340 220 326 224",
+              "d": "M 362 190 C 352 210 338 218 322 214",
               "ms": 730
             },
             {
@@ -341,7 +341,7 @@
               "id": "lb_fossa",
               "x": 380,
               "y": 130,
-              "text": "iliac fossa",
+              "text": "ilium",
               "ms": 450,
               "sm": true
             },
@@ -380,7 +380,7 @@
             {
               "type": "stroke",
               "id": "ld_pubis",
-              "d": "M 378 248 L 290 282",
+              "d": "M 378 248 L 279 290",
               "ms": 1350,
               "w": 1.4
             },

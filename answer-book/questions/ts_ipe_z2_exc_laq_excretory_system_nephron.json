@@ -67,7 +67,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.14-15, LAQ 3. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.14-15, LAQ 3. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the kidneys are redrawn as beans with a hilum notch that the renal vessels enter, the vena cava and aorta labels moved to the clear band above the vessels so their leaders cross nothing, the phase caption no longer names the wrong side, and on the nephron figure the stacked PCT and DCT labels were re-spaced and the cortex and medulla regions labelled."
   },
   "answer": {
     "page_header": [
@@ -196,13 +196,13 @@
             {
               "type": "stroke",
               "id": "kidney_l",
-              "d": "M 240 88 C 208 86 192 112 192 144 C 192 176 208 202 240 200 C 228 180 224 162 224 144 C 224 126 228 108 240 88",
+              "d": "M 240 88 C 208 86 192 112 192 144 C 192 176 208 202 240 200 C 244 178 242 164 234 154 C 228 148 228 140 234 132 C 242 122 244 108 240 88",
               "ms": 4090
             },
             {
               "type": "stroke",
               "id": "kidney_r",
-              "d": "M 344 88 C 376 86 392 112 392 144 C 392 176 376 202 344 200 C 356 180 360 162 360 144 C 360 126 356 108 344 88",
+              "d": "M 344 88 C 376 86 392 112 392 144 C 392 176 376 202 344 200 C 340 178 342 164 350 154 C 356 148 356 140 350 132 C 342 122 340 108 344 88",
               "ms": 4090
             },
             {
@@ -249,7 +249,7 @@
             {
               "type": "pause",
               "id": "p3",
-              "caption": "Step 3 — inside the right kidney"
+              "caption": "Step 3 — inside one kidney"
             },
             {
               "type": "stroke",
@@ -278,7 +278,7 @@
             {
               "type": "stroke",
               "id": "pelvis",
-              "d": "M 352 124 C 342 132 342 156 352 164 L 344 158 L 344 130",
+              "d": "M 366 124 C 356 132 356 156 366 164 L 358 158 L 358 130",
               "ms": 1170
             },
             {
@@ -289,13 +289,13 @@
             {
               "type": "stroke",
               "id": "ureter_l",
-              "d": "M 224 178 C 232 244 238 314 244 368 M 236 174 C 244 244 250 314 256 368",
+              "d": "M 232 178 C 236 244 240 314 244 368 M 242 174 C 246 244 252 314 256 368",
               "ms": 4500
             },
             {
               "type": "stroke",
               "id": "ureter_r",
-              "d": "M 360 178 C 352 244 336 314 328 368 M 348 174 C 340 244 324 314 316 368",
+              "d": "M 352 178 C 348 244 334 314 328 368 M 342 174 C 338 244 322 314 316 368",
               "ms": 4500
             },
             {
@@ -334,8 +334,8 @@
             {
               "type": "label",
               "id": "lb_vena",
-              "x": 6,
-              "y": 126,
+              "x": 120,
+              "y": 16,
               "text": "Inferior vena cava",
               "ms": 450,
               "sm": true
@@ -343,8 +343,8 @@
             {
               "type": "stroke",
               "id": "ld_vena",
-              "d": "M 152 120 L 260 116",
-              "ms": 1540,
+              "d": "M 262 10 L 270 26",
+              "ms": 300,
               "w": 1.4
             },
             {
@@ -382,8 +382,8 @@
             {
               "type": "label",
               "id": "lb_aorta",
-              "x": 6,
-              "y": 252,
+              "x": 330,
+              "y": 16,
               "text": "Dorsal aorta",
               "ms": 450,
               "sm": true
@@ -391,8 +391,8 @@
             {
               "type": "stroke",
               "id": "ld_aorta",
-              "d": "M 110 246 L 290 236",
-              "ms": 2580,
+              "d": "M 328 10 L 306 26",
+              "ms": 390,
               "w": 1.4
             },
             {
@@ -471,8 +471,8 @@
             {
               "type": "stroke",
               "id": "ld_artery",
-              "d": "M 398 234 L 330 154",
-              "ms": 1500,
+              "d": "M 398 234 L 332 144",
+              "ms": 1600,
               "w": 1.4
             },
             {
@@ -878,7 +878,7 @@
               "type": "label",
               "id": "lb_pct",
               "x": 378,
-              "y": 120,
+              "y": 116,
               "text": "Proximal",
               "ms": 450,
               "sm": true
@@ -887,7 +887,7 @@
               "type": "label",
               "id": "lb_pct2",
               "x": 378,
-              "y": 142,
+              "y": 146,
               "text": "convoluted tubule",
               "ms": 450,
               "sm": true
@@ -895,15 +895,15 @@
             {
               "type": "stroke",
               "id": "ld_pct",
-              "d": "M 376 114 L 292 196",
-              "ms": 1680,
+              "d": "M 376 124 L 292 196",
+              "ms": 1600,
               "w": 1.4
             },
             {
               "type": "label",
               "id": "lb_dct",
               "x": 378,
-              "y": 196,
+              "y": 192,
               "text": "Distal",
               "ms": 450,
               "sm": true
@@ -912,7 +912,7 @@
               "type": "label",
               "id": "lb_dct2",
               "x": 378,
-              "y": 218,
+              "y": 222,
               "text": "convoluted tubule",
               "ms": 450,
               "sm": true
@@ -920,8 +920,8 @@
             {
               "type": "stroke",
               "id": "ld_dct",
-              "d": "M 376 190 L 346 178",
-              "ms": 460,
+              "d": "M 376 200 L 346 178",
+              "ms": 530,
               "w": 1.4
             },
             {
@@ -937,7 +937,25 @@
               "type": "stroke",
               "id": "ld_collecting",
               "d": "M 376 294 L 370 300",
-              "ms": 300,
+              "ms": 300
+            },
+            {
+              "type": "label",
+              "id": "lb_cortex_n",
+              "x": 190,
+              "y": 224,
+              "text": "Cortex",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "label",
+              "id": "lb_medulla_n",
+              "x": 190,
+              "y": 260,
+              "text": "Medulla",
+              "ms": 450,
+              "sm": true,
               "w": 1.4
             }
           ]

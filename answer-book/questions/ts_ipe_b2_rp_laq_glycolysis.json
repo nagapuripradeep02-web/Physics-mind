@@ -67,7 +67,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.10, printed question 1. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: the printed answer lists the end products as \"pyruvic acid (PA), ATP, NADPH+H+\". Glycolysis reduces NAD⁺, not NADP⁺, so the product is NADH+H⁺. The book's own p.11 flow chart prints NAD⁺ → NADH correctly, so the guide contradicts itself within one page turn. Two spelling slips are also corrected: the text writes \"Fructose 1,6-biphosphate\" where its diagram writes BISphosphate, and \"3-phosglyceric acid\" for 3-phosphoglyceric acid."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.10, printed question 1. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: the printed answer lists the end products as \"pyruvic acid (PA), ATP, NADPH+H+\". Glycolysis reduces NAD⁺, not NADP⁺, so the product is NADH+H⁺. The book's own p.11 flow chart prints NAD⁺ → NADH correctly, so the guide contradicts itself within one page turn. Two spelling slips are also corrected: the text writes \"Fructose 1,6-biphosphate\" where its diagram writes BISphosphate, and \"3-phosglyceric acid\" for 3-phosphoglyceric acid. Figure revision (figure audit, 2026-09-05): the phase divider moved above step 6, so G-3-P dehydrogenase and the NAD+ to NADH row now fall in the energy releasing phase, as the written answer says."
   },
   "insider_note": "Four questions in one. Answer them in the order asked — what, where, end products, fate — then give the ten steps. A student who writes ten beautiful steps and never says 'cytoplasm' has thrown away a mark that took two words.",
   "answer": {
@@ -525,7 +525,7 @@
               "type": "label",
               "id": "gl_e4",
               "x": 292,
-              "y": 256,
+              "y": 268,
               "text": "G-3-P dehydrogenase",
               "ms": 450,
               "sm": true
@@ -606,7 +606,7 @@
             {
               "type": "stroke",
               "id": "g_s4",
-              "d": "M 44 248 C 22 242 12 260 30 264",
+              "d": "M 44 260 C 22 254 12 272 30 276",
               "ms": 590,
               "w": 1.4
             },
@@ -614,7 +614,7 @@
               "type": "label",
               "id": "gl_s4",
               "x": 532,
-              "y": 256,
+              "y": 268,
               "text": "NAD⁺ → NADH",
               "ms": 450,
               "sm": true
@@ -675,7 +675,7 @@
             {
               "type": "stroke",
               "id": "g_divider",
-              "d": "M 16 284 L 644 284",
+              "d": "M 16 248 L 644 248",
               "ms": 4500,
               "pen": "pencil",
               "wipe": "x",

@@ -51,7 +51,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.32, SAQ 19. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.32, SAQ 19. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the outer membrane, inner membrane, ligament and articular capsule leaders were re-aimed so each one lands on its own line."
   },
   "answer": {
     "page_header": [
@@ -272,7 +272,7 @@
             {
               "type": "stroke",
               "id": "ld_ligament",
-              "d": "M 78 164 L 186 186",
+              "d": "M 78 164 L 200 187",
               "ms": 1570,
               "w": 1.4
             },
@@ -288,8 +288,8 @@
             {
               "type": "stroke",
               "id": "ld_outer",
-              "d": "M 124 294 L 200 282",
-              "ms": 1100,
+              "d": "M 124 294 L 218 282",
+              "ms": 1350,
               "w": 1.4
             },
             {
@@ -304,7 +304,7 @@
             {
               "type": "stroke",
               "id": "ld_inner",
-              "d": "M 124 338 L 210 272",
+              "d": "M 124 338 L 222 272",
               "ms": 1550,
               "w": 1.4
             },
@@ -336,7 +336,7 @@
             {
               "type": "stroke",
               "id": "ld_capsule",
-              "d": "M 348 162 L 318 188",
+              "d": "M 348 162 L 310 190",
               "ms": 570,
               "w": 1.4
             },

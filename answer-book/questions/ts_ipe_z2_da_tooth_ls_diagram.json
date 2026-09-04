@@ -67,7 +67,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.28, SAQ 11. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.28, SAQ 11. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the crown is widened and the neck pinched so crown, neck and root are distinguishable, the periodontal membrane is separated from the root outline, and the cement is labelled (the margin note now says nine parts)."
   },
   "answer": {
     "page_header": [
@@ -107,7 +107,7 @@
           "No labels. An unlabelled diagram earns almost nothing here."
         ],
         "memory_tip": "Draw outside in: enamel, then dentine, then the hollow pulp.",
-        "margin_note": "Draw it large, one third of the page. Label all eight parts.",
+        "margin_note": "Draw it large, one third of the page. Label all nine parts.",
         "figure": {
           "id": "da_tooth_ls",
           "width": 520,
@@ -121,19 +121,19 @@
             {
               "type": "stroke",
               "id": "enamel_outer",
-              "d": "M 322 172 L 319 130 C 317 104 324 84 338 72 C 348 80 354 86 360 86 C 366 86 372 80 382 72 C 396 84 403 104 401 130 L 398 172",
-              "ms": 3770
+              "d": "M 328 172 C 322 156 311 142 310 124 C 308 100 322 82 338 72 C 348 80 354 86 360 86 C 366 86 372 80 382 72 C 398 82 412 100 410 124 C 409 142 398 156 392 172",
+              "ms": 4010
             },
             {
               "type": "stroke",
               "id": "root_outer_l",
-              "d": "M 322 172 C 324 208 330 258 338 296 C 342 312 349 322 358 326",
+              "d": "M 328 172 C 330 208 334 258 340 296 C 344 312 350 322 358 326",
               "ms": 2320
             },
             {
               "type": "stroke",
               "id": "root_outer_r",
-              "d": "M 398 172 C 396 208 390 258 382 296 C 378 312 371 322 362 326",
+              "d": "M 392 172 C 390 208 386 258 380 296 C 376 312 370 322 362 326",
               "ms": 2320
             },
             {
@@ -150,8 +150,8 @@
             {
               "type": "stroke",
               "id": "dentine_crown",
-              "d": "M 334 172 L 332 132 C 331 110 336 94 346 86 C 352 92 356 96 360 96 C 364 96 368 92 374 86 C 384 94 389 110 388 132 L 386 172",
-              "ms": 3070
+              "d": "M 334 172 C 328 156 322 142 322 126 C 321 106 332 92 346 86 C 352 92 356 96 360 96 C 364 96 368 92 374 86 C 388 92 399 106 398 126 C 398 142 392 156 386 172",
+              "ms": 3290
             },
             {
               "type": "stroke",
@@ -207,13 +207,13 @@
             {
               "type": "stroke",
               "id": "gum_l",
-              "d": "M 321 168 C 306 172 292 182 286 204",
+              "d": "M 327 168 C 310 172 294 182 286 204",
               "ms": 750
             },
             {
               "type": "stroke",
               "id": "gum_r",
-              "d": "M 399 168 C 414 172 428 182 434 204",
+              "d": "M 393 168 C 410 172 426 182 434 204",
               "ms": 750
             },
             {
@@ -243,7 +243,7 @@
             {
               "type": "stroke",
               "id": "perio_l",
-              "d": "M 319 176 C 321 210 327 256 335 294 C 339 310 346 322 355 328",
+              "d": "M 321 176 C 323 212 327 258 333 296 C 338 314 346 326 356 331",
               "ms": 2280,
               "pen": "pencil",
               "wipe": "y"
@@ -251,7 +251,7 @@
             {
               "type": "stroke",
               "id": "perio_r",
-              "d": "M 401 176 C 399 210 393 256 385 294 C 381 310 374 322 365 328",
+              "d": "M 399 176 C 397 212 393 258 387 296 C 382 314 374 326 364 331",
               "ms": 2280,
               "pen": "pencil",
               "wipe": "y"
@@ -417,6 +417,20 @@
               "id": "ld_perio",
               "d": "M 236 352 L 344 320",
               "ms": 1610
+            },
+            {
+              "type": "label",
+              "id": "lb_cement",
+              "x": 384,
+              "y": 330,
+              "text": "Cement",
+              "ms": 450
+            },
+            {
+              "type": "stroke",
+              "id": "ld_cement",
+              "d": "M 382 326 L 374 312",
+              "ms": 300
             }
           ]
         }

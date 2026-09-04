@@ -43,7 +43,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.67, SAQ 175 (Star Questions Plus). The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.67, SAQ 175 (Star Questions Plus). The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): four of the eight gamete lines were re-routed so each child now receives exactly the alleles its printed genotype needs, and the stacked child and parent labels were re-spaced so the rendered text no longer overlaps."
   },
   "answer": {
     "page_header": [
@@ -146,7 +146,7 @@
               "type": "label",
               "id": "lb_father2",
               "x": 84,
-              "y": 138,
+              "y": 144,
               "text": "colour blind",
               "ms": 450,
               "sm": true
@@ -164,7 +164,7 @@
               "type": "label",
               "id": "lb_mother2",
               "x": 322,
-              "y": 138,
+              "y": 144,
               "text": "carrier",
               "ms": 450,
               "sm": true
@@ -236,14 +236,14 @@
             {
               "type": "stroke",
               "id": "cross_b",
-              "d": "M 122 190 L 300 250",
-              "ms": 2680
+              "d": "M 122 190 L 224 250",
+              "ms": 1690
             },
             {
               "type": "stroke",
               "id": "cross_c",
-              "d": "M 174 190 L 224 250",
-              "ms": 1120
+              "d": "M 174 190 L 300 250",
+              "ms": 1990
             },
             {
               "type": "stroke",
@@ -260,14 +260,14 @@
             {
               "type": "stroke",
               "id": "cross_f",
-              "d": "M 342 190 L 232 250",
-              "ms": 1790
+              "d": "M 342 190 L 308 250",
+              "ms": 990
             },
             {
               "type": "stroke",
               "id": "cross_g",
-              "d": "M 394 190 L 308 250",
-              "ms": 1500
+              "d": "M 394 190 L 232 250",
+              "ms": 2470
             },
             {
               "type": "stroke",
@@ -293,7 +293,7 @@
               "type": "label",
               "id": "lb_c1b",
               "x": 96,
-              "y": 300,
+              "y": 304,
               "text": "daughter,",
               "ms": 450,
               "sm": true
@@ -302,7 +302,7 @@
               "type": "label",
               "id": "lb_c1c",
               "x": 96,
-              "y": 322,
+              "y": 332,
               "text": "carrier",
               "ms": 450,
               "sm": true
@@ -320,7 +320,7 @@
               "type": "label",
               "id": "lb_c2b",
               "x": 182,
-              "y": 300,
+              "y": 304,
               "text": "daughter,",
               "ms": 450,
               "sm": true
@@ -329,7 +329,7 @@
               "type": "label",
               "id": "lb_c2c",
               "x": 182,
-              "y": 322,
+              "y": 332,
               "text": "colour blind",
               "ms": 450,
               "sm": true
@@ -347,7 +347,7 @@
               "type": "label",
               "id": "lb_c3b",
               "x": 276,
-              "y": 300,
+              "y": 304,
               "text": "son,",
               "ms": 450,
               "sm": true
@@ -356,7 +356,7 @@
               "type": "label",
               "id": "lb_c3c",
               "x": 276,
-              "y": 322,
+              "y": 332,
               "text": "normal",
               "ms": 450,
               "sm": true
@@ -374,7 +374,7 @@
               "type": "label",
               "id": "lb_c4b",
               "x": 356,
-              "y": 300,
+              "y": 304,
               "text": "son,",
               "ms": 450,
               "sm": true
@@ -383,7 +383,7 @@
               "type": "label",
               "id": "lb_c4c",
               "x": 356,
-              "y": 322,
+              "y": 332,
               "text": "colour blind",
               "ms": 450,
               "sm": true

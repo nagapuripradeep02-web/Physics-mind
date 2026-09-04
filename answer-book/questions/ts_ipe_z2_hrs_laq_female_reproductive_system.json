@@ -83,7 +83,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.16-17, LAQ 4. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.16-17, LAQ 4. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): a middle wall line was added on each side of the uterus so endometrium, myometrium and perimetrium each have their own target, and the cervical canal leader now lands in the lumen."
   },
   "answer": {
     "page_header": [
@@ -364,6 +364,18 @@
               "ms": 1590
             },
             {
+              "type": "stroke",
+              "id": "myo_line_l",
+              "d": "M 176 160 C 182 202 198 238 212 266",
+              "ms": 1600
+            },
+            {
+              "type": "stroke",
+              "id": "myo_line_r",
+              "d": "M 288 160 C 282 202 266 238 252 266",
+              "ms": 1600
+            },
+            {
               "type": "pause",
               "id": "p2",
               "caption": "Step 2 — the cervix and the vagina"
@@ -551,8 +563,8 @@
             {
               "type": "stroke",
               "id": "ld_myometrium",
-              "d": "M 98 244 L 180 232",
-              "ms": 1180,
+              "d": "M 98 244 L 196 234",
+              "ms": 1410,
               "w": 1.4
             },
             {
@@ -695,7 +707,7 @@
             {
               "type": "stroke",
               "id": "ld_canal",
-              "d": "M 394 324 L 242 296",
+              "d": "M 394 324 L 232 296",
               "ms": 2210,
               "w": 1.4
             }

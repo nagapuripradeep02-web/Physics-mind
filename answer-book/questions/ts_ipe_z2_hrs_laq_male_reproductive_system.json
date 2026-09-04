@@ -91,7 +91,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.18-19, LAQ 5. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.18-19, LAQ 5. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the vas deferens now runs down the outside of the bladder wall into the seminal vesicle instead of ending inside the bladder, and a scrotal sac is drawn around each testis so the Scrotum label points at a drawn structure."
   },
   "answer": {
     "page_header": [
@@ -432,7 +432,31 @@
             {
               "type": "pause",
               "id": "p4",
-              "caption": "Step 4 — the testis, epididymis and vas deferens"
+              "caption": "Step 4 — the scrotum, testis, epididymis and vas deferens"
+            },
+            {
+              "type": "stroke",
+              "id": "scrotum_l_a",
+              "d": "M 150 300 C 122 306 104 336 110 368 C 116 396 138 412 162 414",
+              "ms": 2310
+            },
+            {
+              "type": "stroke",
+              "id": "scrotum_l_b",
+              "d": "M 162 414 C 188 416 208 400 212 374 C 216 344 200 312 172 300",
+              "ms": 2300
+            },
+            {
+              "type": "stroke",
+              "id": "scrotum_r_a",
+              "d": "M 392 300 C 420 306 438 336 432 368 C 426 396 404 412 380 414",
+              "ms": 2310
+            },
+            {
+              "type": "stroke",
+              "id": "scrotum_r_b",
+              "d": "M 380 414 C 354 416 334 400 330 374 C 326 344 342 312 370 300",
+              "ms": 2300
             },
             {
               "type": "stroke",
@@ -461,26 +485,26 @@
             {
               "type": "stroke",
               "id": "vas_l_a",
-              "d": "M 156 310 C 166 262 190 220 216 196",
-              "ms": 1870
+              "d": "M 156 310 C 166 262 178 214 194 186 L 206 196 L 214 216",
+              "ms": 2390
             },
             {
               "type": "stroke",
               "id": "vas_l_b",
-              "d": "M 166 312 C 176 264 198 226 222 204",
-              "ms": 1760
+              "d": "M 166 312 C 176 264 188 218 204 194 L 214 204 L 222 222",
+              "ms": 2260
             },
             {
               "type": "stroke",
               "id": "vas_r_a",
-              "d": "M 386 310 C 376 262 352 220 326 196",
-              "ms": 1870
+              "d": "M 386 310 C 376 262 364 214 348 186 L 336 196 L 328 216",
+              "ms": 2390
             },
             {
               "type": "stroke",
               "id": "vas_r_b",
-              "d": "M 376 312 C 366 264 344 226 320 204",
-              "ms": 1760
+              "d": "M 376 312 C 366 264 354 218 338 194 L 328 204 L 320 222",
+              "ms": 2260
             },
             {
               "type": "stroke",
@@ -575,8 +599,8 @@
             {
               "type": "stroke",
               "id": "ld_scrotum",
-              "d": "M 68 390 L 142 378",
-              "ms": 1070,
+              "d": "M 68 390 L 114 383",
+              "ms": 660,
               "w": 1.4
             },
             {
@@ -607,8 +631,8 @@
             {
               "type": "stroke",
               "id": "ld_bladder",
-              "d": "M 388 70 L 316 142",
-              "ms": 1450,
+              "d": "M 388 70 L 310 145",
+              "ms": 1510,
               "w": 1.4
             },
             {
@@ -678,8 +702,8 @@
             {
               "type": "label",
               "id": "lb_testis",
-              "x": 390,
-              "y": 412,
+              "x": 438,
+              "y": 346,
               "text": "Testis",
               "ms": 450,
               "sm": true
@@ -687,8 +711,8 @@
             {
               "type": "stroke",
               "id": "ld_testis",
-              "d": "M 388 406 L 396 378",
-              "ms": 420,
+              "d": "M 436 340 L 412 350",
+              "ms": 370,
               "w": 1.4
             }
           ]

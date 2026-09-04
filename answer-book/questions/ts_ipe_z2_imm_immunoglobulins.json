@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.36, SAQ 29. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.36, SAQ 29. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the disulfide bonds now carry a label, and the two paratope leaders land on the Fab caps instead of stopping in the gap beside them."
   },
   "answer": {
     "page_header": [
@@ -292,7 +292,7 @@
             {
               "type": "stroke",
               "id": "ld_paratope_l",
-              "d": "M 72 106 L 184 122",
+              "d": "M 72 106 L 192 125",
               "ms": 1620,
               "w": 1.4
             },
@@ -356,7 +356,7 @@
             {
               "type": "stroke",
               "id": "ld_paratope_r",
-              "d": "M 382 106 L 336 122",
+              "d": "M 382 106 L 328 125",
               "ms": 700,
               "w": 1.4
             },
@@ -390,6 +390,22 @@
               "id": "ld_heavy_r",
               "d": "M 382 256 L 294 264",
               "ms": 1260,
+              "w": 1.4
+            },
+            {
+              "type": "label",
+              "id": "lb_disulfide",
+              "x": 384,
+              "y": 310,
+              "text": "Disulfide bonds",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_disulfide",
+              "d": "M 382 304 L 272 264",
+              "ms": 1670,
               "w": 1.4
             }
           ]

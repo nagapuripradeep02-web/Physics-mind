@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.65, SAQ 172 (Star Questions Plus). The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.65, SAQ 172 (Star Questions Plus). The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the grey matter is redrawn as a butterfly with slender dorsal horns and short broad ventral horns instead of four identical lobes, the grey matter and central canal leaders were re-aimed, and the stacked dorsal root ganglion label was re-spaced."
   },
   "answer": {
     "page_header": [
@@ -136,20 +136,20 @@
             {
               "type": "stroke",
               "id": "grey_left",
-              "d": "M 213 166 C 206 156 194 148 184 150 C 176 152 176 162 184 170 C 192 178 202 186 208 194 C 202 200 192 206 184 214 C 172 224 170 240 182 246 C 194 252 208 240 212 226 L 213 214",
-              "ms": 3080
+              "d": "M 207 176 C 202 166 193 150 180 142 C 173 139 171 148 177 157 C 185 168 194 177 199 187 C 189 190 176 196 166 208 C 154 222 159 240 176 243 C 191 245 203 230 206 212 L 207 204",
+              "ms": 3470
             },
             {
               "type": "stroke",
               "id": "grey_right",
-              "d": "M 217 166 C 224 156 236 148 246 150 C 254 152 254 162 246 170 C 238 178 228 186 222 194 C 228 200 238 206 246 214 C 258 224 260 240 248 246 C 236 252 222 240 218 226 L 217 214",
-              "ms": 3080
+              "d": "M 223 176 C 228 166 237 150 250 142 C 257 139 259 148 253 157 C 245 168 236 177 231 187 C 241 190 254 196 264 208 C 276 222 271 240 254 243 C 239 245 227 230 224 212 L 223 204",
+              "ms": 3470
             },
             {
               "type": "stroke",
               "id": "commissure",
-              "d": "M 213 166 L 213 214 M 217 166 L 217 214",
-              "ms": 1370
+              "d": "M 207 176 L 223 176 M 207 204 L 223 204",
+              "ms": 460
             },
             {
               "type": "stroke",
@@ -225,8 +225,8 @@
             {
               "type": "stroke",
               "id": "ld_dorsal_horn",
-              "d": "M 328 62 L 246 154",
-              "ms": 1760,
+              "d": "M 328 62 L 240 158",
+              "ms": 1830,
               "w": 1.4
             },
             {
@@ -257,8 +257,8 @@
             {
               "type": "stroke",
               "id": "ld_grey",
-              "d": "M 96 190 L 186 190",
-              "ms": 1290,
+              "d": "M 96 190 L 195 181",
+              "ms": 1420,
               "w": 1.4
             },
             {
@@ -273,8 +273,8 @@
             {
               "type": "stroke",
               "id": "ld_canal",
-              "d": "M 104 234 L 210 194",
-              "ms": 1620,
+              "d": "M 104 232 L 108 196 L 211 190",
+              "ms": 1990,
               "w": 1.4
             },
             {
@@ -313,7 +313,7 @@
               "type": "label",
               "id": "lb_ganglion",
               "x": 386,
-              "y": 150,
+              "y": 146,
               "text": "Dorsal root",
               "ms": 450,
               "sm": true
@@ -322,7 +322,7 @@
               "type": "label",
               "id": "lb_ganglion2",
               "x": 386,
-              "y": 172,
+              "y": 176,
               "text": "ganglion",
               "ms": 450,
               "sm": true
@@ -330,8 +330,8 @@
             {
               "type": "stroke",
               "id": "ld_ganglion",
-              "d": "M 384 144 L 360 166",
-              "ms": 470,
+              "d": "M 384 160 L 362 168",
+              "ms": 430,
               "w": 1.4
             },
             {

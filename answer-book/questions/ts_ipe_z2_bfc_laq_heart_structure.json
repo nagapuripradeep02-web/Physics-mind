@@ -83,7 +83,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.10-11, LAQ 1. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book pp.10-11, LAQ 1. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): both great vessels now arise from the ventricles instead of from the notch between the atria, the pulmonary and aortic valves are drawn at their openings, the inter-ventricular septum is labelled, and the right ventricle, left ventricle and columnae carneae leaders were re-aimed onto separate structures."
   },
   "answer": {
     "page_header": [
@@ -359,8 +359,8 @@
             {
               "type": "stroke",
               "id": "interatrial_septum",
-              "d": "M 252 104 L 254 204",
-              "ms": 1430
+              "d": "M 254 127 L 254 168",
+              "ms": 660
             },
             {
               "type": "stroke",
@@ -433,15 +433,27 @@
             },
             {
               "type": "stroke",
+              "id": "pulmonary_valve",
+              "d": "M 241 216 L 246 210 L 251 216",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
+              "id": "aortic_valve",
+              "d": "M 259 216 L 266 210 L 273 216",
+              "ms": 300
+            },
+            {
+              "type": "stroke",
               "id": "pulmonary_arch",
-              "d": "M 244 132 C 238 100 244 72 262 62 M 258 130 C 252 102 256 82 268 74",
-              "ms": 1950
+              "d": "M 240 212 C 236 184 232 158 234 134 C 230 102 240 70 260 60 M 252 212 C 248 184 244 156 246 130 C 242 102 250 78 266 72",
+              "ms": 4280
             },
             {
               "type": "stroke",
               "id": "systemic_arch",
-              "d": "M 270 126 C 274 92 294 66 318 66 C 344 66 356 86 354 112 M 284 120 C 290 96 304 80 320 80 C 338 80 344 94 342 112",
-              "ms": 3620
+              "d": "M 258 212 C 260 184 264 156 270 126 C 274 92 294 66 318 66 C 344 66 356 86 354 112 M 274 212 C 276 184 280 156 284 120 C 290 96 304 80 320 80 C 338 80 344 94 342 112",
+              "ms": 4500
             },
             {
               "type": "stroke",
@@ -546,8 +558,8 @@
             {
               "type": "stroke",
               "id": "ld_rv",
-              "d": "M 122 294 L 198 288",
-              "ms": 1090,
+              "d": "M 122 294 L 214 336",
+              "ms": 1440,
               "w": 1.4
             },
             {
@@ -585,7 +597,7 @@
             {
               "type": "label",
               "id": "lb_la",
-              "x": 372,
+              "x": 406,
               "y": 176,
               "text": "Left atrium",
               "ms": 450,
@@ -594,8 +606,8 @@
             {
               "type": "stroke",
               "id": "ld_la",
-              "d": "M 370 170 L 316 166",
-              "ms": 770,
+              "d": "M 404 176 L 316 180",
+              "ms": 1260,
               "w": 1.4
             },
             {
@@ -650,7 +662,7 @@
               "type": "label",
               "id": "lb_lv",
               "x": 372,
-              "y": 328,
+              "y": 366,
               "text": "Left ventricle",
               "ms": 450,
               "sm": true
@@ -658,15 +670,15 @@
             {
               "type": "stroke",
               "id": "ld_lv",
-              "d": "M 370 322 L 306 314",
-              "ms": 920,
+              "d": "M 370 360 L 285 348",
+              "ms": 1230,
               "w": 1.4
             },
             {
               "type": "label",
               "id": "lb_columnae",
               "x": 372,
-              "y": 366,
+              "y": 328,
               "text": "Columnae carneae",
               "ms": 450,
               "sm": true
@@ -674,8 +686,23 @@
             {
               "type": "stroke",
               "id": "ld_columnae",
-              "d": "M 370 360 L 322 314",
-              "ms": 950,
+              "d": "M 370 322 L 322 312",
+              "ms": 700
+            },
+            {
+              "type": "label",
+              "id": "lb_ivs",
+              "x": 150,
+              "y": 420,
+              "text": "Inter-ventricular septum",
+              "ms": 450,
+              "sm": true
+            },
+            {
+              "type": "stroke",
+              "id": "ld_ivs",
+              "d": "M 322 414 L 232 358",
+              "ms": 1520,
               "w": 1.4
             }
           ]

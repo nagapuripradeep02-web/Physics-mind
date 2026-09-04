@@ -30,7 +30,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.55, VSAQ 111. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from 'My Baby Bullet-Q — Senior Inter Zoology' (Star-Q Pass Track Series, Sri Publishers, 2022), book p.55, VSAQ 111. The printed exam years are the book's claim, reproduced here as appearances. Zoology-II holds only ONE source book in the corpus, so the two-book union check is structurally impossible for this card; 'not checked' does NOT mean 'checked and clean'. The mark split is our reading of the question and is a claim until a Telangana IPE teacher confirms it. Figure revision (figure audit, 2026-09-05): the head is smaller and oval and the tail is longer and tapered, so the tail now reads as the longest part of the sperm."
   },
   "answer": {
     "page_header": [
@@ -83,28 +83,28 @@
             {
               "type": "stroke",
               "id": "head",
-              "d": "M 246 66 C 214 70 200 100 202 130 C 204 162 224 184 250 184 C 276 184 296 162 298 130 C 300 100 286 70 254 66",
-              "ms": 4500
+              "d": "M 246 60 C 226 64 220 86 221 108 C 222 134 234 152 250 152 C 266 152 278 134 279 108 C 280 86 274 64 254 60",
+              "ms": 3350
             },
             {
               "type": "stroke",
               "id": "acrosome",
-              "d": "M 246 66 C 226 72 216 92 218 112 C 232 122 268 122 282 112 C 284 92 274 72 254 66",
-              "ms": 2620
+              "d": "M 246 60 C 233 64 227 79 228 95 C 237 101 263 101 272 95 C 273 79 267 64 254 60",
+              "ms": 1860
             },
             {
               "type": "stroke",
               "id": "plasma_membrane",
-              "d": "M 244 56 C 206 62 190 98 192 132 C 194 170 218 194 250 194 C 282 194 306 170 308 132",
-              "ms": 4150,
+              "d": "M 244 52 C 220 57 212 84 213 110 C 214 140 229 160 250 160 C 271 160 286 140 287 110",
+              "ms": 2990,
               "pen": "pencil",
               "wipe": "y"
             },
             {
               "type": "stroke",
               "id": "plasma_membrane2",
-              "d": "M 308 132 C 310 98 294 62 256 56",
-              "ms": 1450,
+              "d": "M 287 110 C 288 84 280 57 256 52",
+              "ms": 1140,
               "pen": "pencil",
               "wipe": "y"
             },
@@ -116,8 +116,8 @@
             {
               "type": "stroke",
               "id": "nucleus",
-              "d": "M 250 132 C 240 132 234 140 236 148 C 238 158 252 160 258 154 C 264 148 260 134 250 132",
-              "ms": 1140
+              "d": "M 250 116 C 242 116 237 123 239 130 C 241 138 252 140 257 135 C 262 130 258 118 250 116",
+              "ms": 930
             },
             {
               "type": "pause",
@@ -127,32 +127,32 @@
             {
               "type": "stroke",
               "id": "neck_l",
-              "d": "M 232 186 L 234 208",
-              "ms": 320
+              "d": "M 240 152 L 242 172",
+              "ms": 300
             },
             {
               "type": "stroke",
               "id": "neck_r",
-              "d": "M 268 186 L 266 208",
-              "ms": 320
+              "d": "M 260 152 L 258 172",
+              "ms": 300
             },
             {
               "type": "stroke",
               "id": "middle_l",
-              "d": "M 234 208 L 238 292",
-              "ms": 1200
+              "d": "M 242 172 L 245 238",
+              "ms": 950
             },
             {
               "type": "stroke",
               "id": "middle_r",
-              "d": "M 266 208 L 262 292",
-              "ms": 1200
+              "d": "M 258 172 L 255 238",
+              "ms": 950
             },
             {
               "type": "stroke",
               "id": "mitochondria",
-              "d": "M 238 222 C 250 218 254 226 262 224 M 238 240 C 250 236 254 244 262 242 M 238 258 C 250 254 254 262 262 260 M 238 276 C 250 272 254 280 262 278",
-              "ms": 1410
+              "d": "M 243 184 C 249 180 252 188 257 186 M 243 198 C 249 194 252 202 257 200 M 244 212 C 250 208 252 216 256 214 M 245 226 C 250 222 252 230 256 228",
+              "ms": 790
             },
             {
               "type": "pause",
@@ -162,19 +162,19 @@
             {
               "type": "stroke",
               "id": "tail_l",
-              "d": "M 238 292 C 240 340 236 380 222 408",
-              "ms": 1690
+              "d": "M 245 238 C 249 300 245 366 236 424",
+              "ms": 2530
             },
             {
               "type": "stroke",
               "id": "tail_r",
-              "d": "M 262 292 C 264 340 260 382 246 412",
-              "ms": 1740
+              "d": "M 255 238 C 259 300 253 368 241 428",
+              "ms": 2620
             },
             {
               "type": "stroke",
               "id": "tail_tip",
-              "d": "M 222 408 C 232 416 240 416 246 412",
+              "d": "M 236 424 C 238 430 239 430 241 428",
               "ms": 370
             },
             {
@@ -185,14 +185,14 @@
             {
               "type": "stroke",
               "id": "head_bracket",
-              "d": "M 156 62 L 148 62 L 148 194 L 156 194",
-              "ms": 2110
+              "d": "M 156 48 L 148 48 L 148 164 L 156 164",
+              "ms": 1890
             },
             {
               "type": "label",
               "id": "lb_head",
               "x": 86,
-              "y": 132,
+              "y": 106,
               "text": "Head",
               "ms": 450,
               "sm": true
@@ -209,8 +209,8 @@
             {
               "type": "stroke",
               "id": "ld_plasma",
-              "d": "M 348 60 L 300 84",
-              "ms": 770,
+              "d": "M 348 60 L 285 84",
+              "ms": 970,
               "w": 1.4
             },
             {
@@ -225,8 +225,8 @@
             {
               "type": "stroke",
               "id": "ld_acrosome",
-              "d": "M 348 104 L 286 100",
-              "ms": 890,
+              "d": "M 348 104 L 270 96",
+              "ms": 1120,
               "w": 1.4
             },
             {
@@ -241,8 +241,8 @@
             {
               "type": "stroke",
               "id": "ld_nucleus",
-              "d": "M 348 146 L 262 146",
-              "ms": 1230,
+              "d": "M 348 146 L 259 131",
+              "ms": 1290,
               "w": 1.4
             },
             {
@@ -257,8 +257,8 @@
             {
               "type": "stroke",
               "id": "ld_neck",
-              "d": "M 348 194 L 270 198",
-              "ms": 1120,
+              "d": "M 348 194 L 259 162",
+              "ms": 1350,
               "w": 1.4
             },
             {
@@ -273,8 +273,8 @@
             {
               "type": "stroke",
               "id": "ld_middle",
-              "d": "M 348 238 L 266 240",
-              "ms": 1170,
+              "d": "M 348 238 L 257 196",
+              "ms": 1440,
               "w": 1.4
             },
             {
@@ -289,8 +289,8 @@
             {
               "type": "stroke",
               "id": "ld_mitochondria",
-              "d": "M 348 282 L 262 278",
-              "ms": 1230,
+              "d": "M 348 282 L 256 228",
+              "ms": 1520,
               "w": 1.4
             },
             {
@@ -305,8 +305,8 @@
             {
               "type": "stroke",
               "id": "ld_tail",
-              "d": "M 348 350 L 262 356",
-              "ms": 1230,
+              "d": "M 348 350 L 252 356",
+              "ms": 1380,
               "w": 1.4
             }
           ]
