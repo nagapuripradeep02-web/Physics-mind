@@ -67,9 +67,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.10, printed question 1. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: the printed answer lists the end products as \"pyruvic acid (PA), ATP, NADPH+H+\". Glycolysis reduces NAD⁺, not NADP⁺, so the product is NADH+H⁺. The book's own p.11 flow chart prints NAD⁺ → NADH correctly, so the guide contradicts itself within one page turn. Two spelling slips are also corrected: the text writes \"Fructose 1,6-biphosphate\" where its diagram writes BISphosphate, and \"3-phosglyceric acid\" for 3-phosphoglyceric acid. Figure revision (figure audit, 2026-09-05): the phase divider moved above step 6, so G-3-P dehydrogenase and the NAD+ to NADH row now fall in the energy releasing phase, as the written answer says."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.10, printed question 1. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. BOOK ERROR, corrected on this card: the printed answer lists the end products as \"pyruvic acid (PA), ATP, NADPH+H+\". Glycolysis reduces NAD⁺, not NADP⁺, so the product is NADH+H⁺. The book's own p.11 flow chart prints NAD⁺ → NADH correctly, so the guide contradicts itself within one page turn. Two spelling slips are also corrected: the text writes \"Fructose 1,6-biphosphate\" where its diagram writes BISphosphate, and \"3-phosglyceric acid\" for 3-phosphoglyceric acid. Figure revision (figure audit, 2026-09-05): the phase divider moved above step 6, so G-3-P dehydrogenase and the NAD+ to NADH row now fall in the energy releasing phase, as the written answer says. Text revision (examiner audit, 2026-09-05): the insider note, the s3_fate margin note and its second common mistake were rewritten to drop unverified mark-scheme claims and to stop treating a single named fermentation as an error, and the last s7_net line now names the electron transport chain alongside the Krebs cycle, because most of the energy is released there."
   },
-  "insider_note": "Four questions in one. Answer them in the order asked — what, where, end products, fate — then give the ten steps. A student who writes ten beautiful steps and never says 'cytoplasm' has thrown away a mark that took two words.",
+  "insider_note": "Four questions in one. Answer them in the order asked — what, where, end products, fate — then give the ten steps. The 'where' is two words: write CYTOPLASM in the first line, because a full account of glycolysis has to name its site.",
   "answer": {
     "page_header": [
       "Section C — Long Answer Question",
@@ -129,7 +129,7 @@
         "label": "Fate of pyruvic acid",
         "marks": 1,
         "mark_note": "Fate",
-        "margin_note": "Both routes, both named, with an example organism or tissue each. The question asks for BOTH, so a one-sided answer loses this mark.",
+        "margin_note": "Both routes, both named, with an example organism or tissue each. The question asks for the fate in aerobic AND anaerobic respiration, so answer both.",
         "lines": [
           "The fate of pyruvic acid depends on oxygen.",
           "In AEROBIC respiration, where oxygen is",
@@ -143,7 +143,7 @@
         "why": "Oxygen is what decides the fate: with it the carbon is burned all the way to carbon dioxide, without it the pyruvate is only rearranged.",
         "common_mistakes": [
           "Saying pyruvate is fully oxidised in anaerobic respiration. It is not — fermentation only rearranges it.",
-          "Giving one fermentation product. Ethyl alcohol AND lactic acid are both asked for.",
+          "Naming a fermentation product with no organism or tissue. Say where it happens — ethyl alcohol in yeast, lactic acid in muscle; giving both makes the answer complete.",
           "Saying glycolysis itself needs oxygen. Only the FATE of its product depends on oxygen."
         ],
         "memory_tip": "Oxygen present, burn it to CO2; oxygen absent, ferment it."
@@ -727,7 +727,7 @@
           "2 molecules of pyruvic acid leave the cytoplasm.",
           "Glycolysis alone releases only a small part of",
           "the energy in glucose; the rest is released in",
-          "the Krebs cycle."
+          "the Krebs cycle and the electron transport chain."
         ],
         "why": "The net figure is what makes the point of the whole answer: glycolysis by itself is a poor return, which is why aerobic organisms go on to the Krebs cycle.",
         "common_mistakes": [

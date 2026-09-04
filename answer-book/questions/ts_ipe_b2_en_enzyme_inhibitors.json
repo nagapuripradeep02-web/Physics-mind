@@ -59,9 +59,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.24, printed question 15. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.24, printed question 15. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Examiner audit revision (2026-09-05): the insider note now counts the two examples the card prints instead of promising three, and s1_define no longer classifies feedback inhibition by a binding site, since it is named by what inhibits rather than by where."
   },
-  "insider_note": "Three types, three examples. Malonic acid against succinate is the example every examiner expects, so write it even if the other two examples are shorter.",
+  "insider_note": "Three types, with an example for the first two: malonic acid against succinate for competitive, copper and mercury ions for non-competitive. Feedback inhibition is answered by its definition, not by an example.",
   "answer": {
     "page_header": [
       "Section B — Short Answer Question",
@@ -83,12 +83,12 @@
           "1. Competitive  2. Non-competitive",
           "3. Feedback"
         ],
-        "why": "Listing the three types before explaining them shows the shape of the answer, and each type is then defined by WHERE on the enzyme it acts.",
+        "why": "Listing the three types before explaining them shows the shape of the answer. The first two are named by WHERE the inhibitor binds; the third is named by WHAT does the inhibiting.",
         "common_mistakes": [
           "Saying inhibitors destroy the enzyme. They stop its ACTIVITY; most do not destroy it.",
           "Naming only two types. The guide gives three, and each is a mark."
         ],
-        "memory_tip": "Three types, three places: the active site, elsewhere, and the end of the pathway."
+        "memory_tip": "Two are named by where the inhibitor binds: the active site, or another site. The third is named by what inhibits: the end product."
       },
       {
         "id": "s2_competitive",

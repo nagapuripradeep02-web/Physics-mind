@@ -30,9 +30,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 57. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.39, printed question 57. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the insider note no longer calls this a one-word answer, which contradicted the s1 margin note and mistakes line asking for a reason as well."
   },
-  "insider_note": "A one-word question with a one-word answer, so the whole risk is forgetting the example. Write the plant names first if you are short of time.",
+  "insider_note": "Two halves: yes, with one line saying some plants keep their stomata open at night, and then the named examples — Bryophyllum and cacti. Write the plant names first if you are short of time.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",

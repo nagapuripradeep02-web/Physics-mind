@@ -39,9 +39,9 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.50, printed question 152. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.50, printed question 152. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Examiner audit revision (2026-09-05): the insider note no longer calls the role \"one word long\" and now gives the term oxygen scavenger, which the s2_role why also carries so the phrase the note points at is present in the card."
   },
-  "insider_note": "The name and the job. The job is one word long — oxygen scavenger — and it is the mark most often left out.",
+  "insider_note": "The name and the job. Leg-haemoglobin is an oxygen scavenger: it binds oxygen inside the nodule so that nitrogenase is protected. The role is the half most often left out.",
   "answer": {
     "page_header": [
       "Section A — Very Short Answer Question",
@@ -83,7 +83,7 @@
           "highly sensitive to oxygen.",
           "So nitrogen fixation can go on."
         ],
-        "why": "Nitrogenase is destroyed by oxygen, so nitrogen fixation is only possible if something keeps the oxygen level inside the nodule very low.",
+        "why": "Nitrogenase is destroyed by oxygen, so nitrogen fixation is only possible if something keeps the oxygen level inside the nodule very low. That is why leg-haemoglobin is called an oxygen scavenger, and the term is worth writing.",
         "common_mistakes": [
           "Saying it carries oxygen TO the bacteria. Its job is to keep oxygen AWAY from nitrogenase.",
           "Naming no enzyme. Nitrogenase is what is being protected, and it is the mark."

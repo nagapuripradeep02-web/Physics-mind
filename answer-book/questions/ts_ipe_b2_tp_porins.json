@@ -47,7 +47,7 @@
   "verification": {
     "status": "unverified",
     "needs_teacher_verification": true,
-    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.38, printed question 49. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it."
+    "note": "Sourced from \"Sr. Botany — My Baby Bullet-Q\" (Sri Publishers, STAR-Q Pass Track), book p.38, printed question 49. Botany-II holds only ONE source book: the TSBIE Basic Learning Material in hand covers physics only, and no Telangana Botany-II board paper is in the corpus, so the two-book union check and the board back-test are BOTH structurally impossible for this card — \"not checked\" does NOT mean \"checked and clean\". Run both the moment a second source or a real paper arrives. The mark split is a claim until a Telangana IPE teacher confirms it. Revised 2026-09-05 after the examiner audit: the s2 line and why no longer call the movement simple diffusion or set diffusion against transport, since NCERT places porins in the facilitated diffusion section and facilitated diffusion is itself passive transport; the wording now says only that the movement is passive and follows the concentration gradient, which is safe under either name."
   },
   "insider_note": "Two halves, one mark each. The second half must say 'without using energy' or the answer reads as active transport.",
   "answer": {
@@ -90,11 +90,11 @@
           },
           "The pore is large enough to let even small",
           "sized proteins pass through.",
-          "Molecules move through it by simple diffusion,",
+          "Molecules move through the pore passively,",
           "down the concentration gradient, without using",
           "energy."
         ],
-        "why": "The pore is permanently open, so movement through it needs no carrier and no ATP — which is exactly what makes it diffusion and not transport.",
+        "why": "The pore is permanently open, so nothing has to be pumped and no ATP is spent — the movement is passive and follows the concentration gradient.",
         "common_mistakes": [
           "Saying porins pump molecules across. Nothing is pumped; molecules DIFFUSE through.",
           "Leaving out the size. The point of a porin is that even small proteins fit."
