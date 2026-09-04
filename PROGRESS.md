@@ -9,7 +9,7 @@
 - Content: 18 moves across the card's five steps. The page's lines, marks and split are untouched.
 
 ### Verified
-tsc 0 · `check:cards --prefix ts_ipe_m2a_bt` 34/34 · vitest 81/81 · full build 21.8 MB and `--stream=mpc_2` build 8.0 MB both green · headless walk on 1380px and 390px: card fills for the step being written, rail order Answer plan < Mark split holds, `.step-block` gains no new child, no horizontal scroll, zero console errors.
+tsc 0 · `check:cards --prefix ts_ipe_m2a_bt` 34/34 · vitest 81/81 · full build 21.8 MB and `--stream=mpc_2` build 8.0 MB both green · headless walk on 1380px and 390px: card fills for the step being written, rail order Answer plan < Mark split holds, `.step-block` gains no new child, no horizontal scroll, zero console errors. Playwright smoke: 72/73 non-sweep tests green (the three fleet sweeps carry 90/90/120-minute budgets and were excluded — the full suite is a 3-4 hour job now). Two failures, BOTH reproduced on a fresh build of untouched origin/master in the same environment, so pre-existing: (1) the figure-label sweep flags `ts_ipe_m2a_cn_argand_equilateral_triangle` — `"y" overlaps "C(−2√3, 2√3)"`; (2) the `hosted: telemetry AND the ask…` test waits for the Vidi ask row without calling `openVidi()`, and Vidi has started minimised since 11d4afa9. Both recorded on PR #199, neither fixed here (out of scope).
 
 ### Two things worth knowing
 - `npx tsx …` HANGS in the Claude Code sandbox (0% CPU, waiting on the registry — `tsx` is not a local dep). The cached binary works: `~/.npm/_npx/<hash>/node_modules/.bin/tsx`.
